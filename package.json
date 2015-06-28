@@ -4,8 +4,33 @@
   "description": "ReactJS Powered Presentation Framework",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server",
+    "build": "webpack",
+    "deploy": "npm run build && surge -p public -d somedomain.com"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer-core": "^5.2.1",
+    "babel": "^5.6.14",
+    "babel-core": "^5.6.15",
+    "babel-loader": "^5.2.2",
+    "css-loader": "^0.15.1",
+    "file-loader": "^0.8.4",
+    "hjs-webpack": "^2.8.1",
+    "json-loader": "^0.5.2",
+    "node-libs-browser": "^0.5.2",
+    "normalize.css": "^3.0.3",
+    "object-assign": "^3.0.0",
+    "postcss-loader": "^0.5.1",
+    "radium": "^0.13.2",
+    "react": "^0.13.3",
+    "react-hot-loader": "^1.2.7",
+    "style-loader": "^0.12.3",
+    "stylus-loader": "^1.2.1",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.10.0",
+    "webpack-dev-server": "^1.10.0",
+    "yeticss": "^6.0.7"
+  }
 }
