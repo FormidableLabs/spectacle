@@ -4,7 +4,7 @@ import assign from 'object-assign';
 class Fill extends React.Component {
   render() {
     let styles = {
-      flex: '1 100%'
+      flex: '1'
     };
     return (
       <div style={assign({}, styles, this.context.styles.fill)}>

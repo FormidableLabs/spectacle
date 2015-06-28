@@ -22,14 +22,14 @@ export default class extends React.Component {
         <Slide backgroundImg="./bg.png" backgroundExposure={-5}>
           <Heading size={1}>Slide 1</Heading>
           <Layout>
-            <Fit>
+            <Fill>
               <CodePane>
                 {"<a href='code></a>'"}
               </CodePane>
-              This is a <Code>example</Code>
-            </Fit>
+              Left Side
+            </Fill>
             <Fill>
-              <Image src="./img.png" mode="stretch"/>
+              Right Side
             </Fill>
           </Layout>
         </Slide>
