@@ -18,9 +18,10 @@ export default class extends React.Component {
           vAlign="center"
           transition="fade"
           transitionSpeed={300}>
+          <Heading size={1}>Slide 1</Heading>
         </Slide>
         <Slide backgroundImg="./bg.png" backgroundExposure={-5}>
-          <Heading size={1}>Slide 1</Heading>
+          <Heading size={1} fit>Fit Me</Heading>
           <Layout>
             <Fill>
               <CodePane>
@@ -34,7 +35,7 @@ export default class extends React.Component {
           </Layout>
         </Slide>
         <Slide>
-          <Heading>Custom Components</Heading>
+          <Heading size={1}>Slide 3</Heading>
         </Slide>
       </Deck>
     )

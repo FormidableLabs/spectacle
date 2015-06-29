@@ -8,7 +8,7 @@ function context(Component, params) {
       styles: React.PropTypes.object
     },
 
-    getChildContext: function() {
+    getChildContext() {
       return params;
     },
 

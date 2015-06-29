@@ -1,6 +1,10 @@
 export default {
   blockquote: {},
   cite: {},
+  content: {
+    maxWidth: 1000,
+    margin: 'auto'
+  },
   codePane: {
     pre: {},
     code: {}
@@ -11,7 +15,7 @@ export default {
   fit: {},
   heading: {
     h1: {
-
+      fontSize: 72
     }
   },
   image: {},
@@ -28,11 +32,13 @@ export default {
     width: '100%',
     height: '100%',
     display: 'table',
-    textAlign: 'center'
+    textAlign: 'center',
+    tableLayout: 'fixed'
   },
   slideInner: {
     display: 'table-cell',
-    verticalAlign: 'middle'
+    verticalAlign: 'middle',
+    padding: 20
   },
   text: {}
 }
