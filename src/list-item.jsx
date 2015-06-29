@@ -1,10 +1,11 @@
 import React from 'react/addons';
 import assign from 'object-assign';
+import Base from './base';
 
-class ListItem extends React.Component {
+class ListItem extends Base {
   render() {
     return (
-      <li style={assign({}, this.context.styles.listItem)}>
+      <li style={assign({}, this.context.styles.components.listItem, this.getStyles())}>
         {this.props.children}
       </li>
     )

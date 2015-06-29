@@ -1,50 +1,61 @@
 import React from 'react/addons';
 import assign from 'object-assign';
 import tweenState from 'react-tween-state';
+import Base from './base';
+import Transitions from './transitions';
+import config from '../config';
 
 const Slide = React.createClass({
   displayName: 'Slide',
-  mixins: [tweenState.Mixin],
+  mixins: [tweenState.Mixin, Base.Mixin, Transitions],
   contextTypes: {
     styles: React.PropTypes.object
   },
   getInitialState() {
     return {
-      opacity: 0
+      zoom: 1
     }
   },
-  componentWillEnter(cb) {
-    this.tweenState('opacity', {
-      easing: tweenState.easingTypes.easeInOutQuad,
-      duration: 300,
-      endValue: 1,
-      onEnd: cb
+  setZoom() {
+    let content = React.findDOMNode(this.refs.content);
+    this.setState({
+      zoom: (content.offsetWidth / config.width)
     });
   },
-  componentWillAppear(cb) {
-    this.tweenState('opacity', {
-      easing: tweenState.easingTypes.easeInOutQuad,
-      duration: 300,
-      endValue: 1,
-      onEnd: cb
-    });
+  componentDidMount() {
+    this.setZoom();
+    window.addEventListener('resize', this.setZoom);
   },
-  componentWillLeave(cb) {
-    this.tweenState('opacity', {
-      easing: tweenState.easingTypes.easeInOutQuad,
-      duration: 300,
-      endValue: 0,
-      onEnd: cb
-    });
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setZoom);
   },
   render() {
     let styles = {
-      opacity: this.getTweeningValue('opacity')
+      outer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        display: 'table',
+        tableLayout: 'fixed'
+      },
+      inner: {
+        display: 'table-cell',
+        textAlign: this.props.align ? this.props.align.split(' ')[0] : 'center',
+        verticalAlign: this.props.align ? this.props.align.split(' ')[1] : 'middle',
+        padding: config.margin
+      },
+      content: {
+        maxWidth: config.width,
+        fontSize: 16 * this.state.zoom
+      }
     };
     return (
-      <div style={assign({}, styles, this.context.styles.slide)}>
-        <div style={this.context.styles.slideInner}>
-          <div style={this.context.styles.content}>
+      <div style={assign({}, styles.outer, this.getStyles(), this.getTransitionStyles())}>
+        <div style={styles.inner}>
+          <div ref="content"
+            style={assign({}, styles.content, this.context.styles.components.content)}>
             {this.props.children}
           </div>
         </div>

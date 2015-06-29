@@ -8,7 +8,7 @@ class Layout extends React.Component {
       flexDirection: 'row'
     };
     return (
-      <div style={assign({}, styles, this.context.styles.layout)}>
+      <div style={styles}>
         {this.props.children}
       </div>
     )

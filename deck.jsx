@@ -1,31 +1,32 @@
 import React from 'react/addons';
 import {
-  BlockQuote, Cite, CodePane, Code, Deck, Fill, Fit,
+  Appear, BlockQuote, Cite, CodePane, Code, Deck, Fill, Fit,
   Heading, Image, Layout, ListItem, List, S, Slide, Text
 } from './src/spectacle';
 
 export default class extends React.Component {
   render() {
     return (
-      <Deck
-        autoplay={false}
-        autoplaySpeed={2000}
-        progress={true}
-        transition="slide"
-        transitionSpeed={300}>
-        <Slide
-          hAlign="center"
-          vAlign="center"
-          transition="fade"
-          transitionSpeed={300}>
-          <Heading size={1}>Slide 1</Heading>
+      <Deck transition={['zoom']} transitionDuration={800}>
+        <Slide bgColor="primary">
+          <Heading size={1} fit caps>
+            Getting Started With
+          </Heading>
+          <Heading size={2} fit caps>
+            Flux Architecture
+          </Heading>
+          <Heading size={5}>
+            @ken_wheeler
+          </Heading>
         </Slide>
-        <Slide backgroundImg="./bg.png" backgroundExposure={-5}>
-          <Heading size={1} fit>Fit Me</Heading>
+        <Slide bgColor="secondary" textColor="tertiary" align="center top">
+          <Heading size={1} fit textColor="tertiary" textFont="primary">
+            Fitted Text Works Great
+          </Heading>
           <Layout>
             <Fill>
               <CodePane>
-                {"<a href='code></a>'"}
+                {"<a href='code'></a>"}
               </CodePane>
               Left Side
             </Fill>
@@ -34,8 +35,10 @@ export default class extends React.Component {
             </Fill>
           </Layout>
         </Slide>
-        <Slide>
-          <Heading size={1}>Slide 3</Heading>
+        <Slide bgColor="primary">
+          <Heading size={1} textFont="primary">
+            Slide 3
+          </Heading>
         </Slide>
       </Deck>
     )

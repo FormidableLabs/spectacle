@@ -1,10 +1,11 @@
 import React from 'react/addons';
 import assign from 'object-assign';
+import Base from './base';
 
-class Code extends React.Component {
+class Code extends Base {
   render() {
     return (
-      <code style={assign({}, this.context.styles.code)}>
+      <code style={assign({}, this.context.styles.components.code, this.getStyles())}>
         {this.props.children}
       </code>
     )

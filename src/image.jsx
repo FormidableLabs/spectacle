@@ -3,7 +3,7 @@ import assign from 'object-assign';
 
 class Image extends React.Component {
   render() {
-    return <img src="" style={assign({}, this.context.styles.image)}/>
+    return <img src="" style={assign({}, this.context.styles.components.image)}/>
   }
 }
 

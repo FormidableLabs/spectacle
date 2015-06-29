@@ -1,11 +1,17 @@
 import React from 'react/addons';
 import assign from 'object-assign';
 
-class Fill extends React.Component {
+class Appear extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false
+    }
+  }
   render() {
     let styles = {
-      flex: '1'
-    };
+      opacity: this.state.active ? 1 : 0
+    }
     return (
       <div style={styles}>
         {this.props.children}
@@ -14,8 +20,4 @@ class Fill extends React.Component {
   }
 }
 
-Fill.contextTypes = {
-  styles: React.PropTypes.object
-}
-
-export default Fill;
+export default Appear;

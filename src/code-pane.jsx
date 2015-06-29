@@ -4,8 +4,8 @@ import assign from 'object-assign';
 class CodePane extends React.Component {
   render() {
     return (
-      <pre style={assign({}, this.context.styles.codePane.pre)}>
-        <code style={assign({}, this.context.styles.codePane.code)}>
+      <pre style={assign({}, this.context.styles.components.codePane.pre)}>
+        <code style={assign({}, this.context.styles.components.codePane.code)}>
           {this.props.children}
         </code>
       </pre>

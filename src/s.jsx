@@ -4,7 +4,7 @@ import assign from 'object-assign';
 class S extends React.Component {
   render() {
     return (
-      <span style={assign({}, this.context.styles.s[this.props.type])}>
+      <span style={assign({}, this.context.styles.components.s[this.props.type])}>
         {this.props.children}
       </span>
     )

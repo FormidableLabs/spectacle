@@ -7,7 +7,7 @@ class Fit extends React.Component {
       flex: '0'
     };
     return (
-      <div style={assign({}, styles, this.context.styles.fit)}>
+      <div style={styles}>
         {this.props.children}
       </div>
     )

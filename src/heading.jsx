@@ -1,9 +1,10 @@
 import React from 'react/addons';
 import assign from 'object-assign';
+import Base from './base';
 
-class Heading extends React.Component {
-  constructor () {
-    super ()
+class Heading extends Base {
+  constructor(props) {
+    super(props);
     this.resize = this.resize.bind(this);
     this.state = {
       width: 256,
@@ -11,10 +12,11 @@ class Heading extends React.Component {
     };
   }
   componentDidMount () {
-    this.resize()
+    this.resize();
+    window.addEventListener('load', this.resize);
   }
   componentWillReceiveProps () {
-    this.resize()
+    this.resize();
   }
   resize() {
     if (this.props.fit) {
@@ -35,7 +37,7 @@ class Heading extends React.Component {
     let viewBox = [
       0, 0,
       this.state.width,
-      this.state.height
+      this.state.height - 8
     ].join(' ');
     let styles = {
       svg: {
@@ -52,19 +54,21 @@ class Heading extends React.Component {
       }
     };
     return this.props.fit
-    ? <svg {...this.props}
-        viewBox={viewBox}
-        style={styles.svg}>
-        <text
-          ref='text'
-          x='50%'
-          y={16}
-          style={styles.text}>
-          {this.props.children}
-        </text>
-      </svg>
+    ? <div style={assign({}, this.context.styles.components.heading["h" + this.props.size], this.getStyles())}>
+        <svg {...this.props}
+          viewBox={viewBox}
+          style={styles.svg}>
+          <text
+            ref='text'
+            x='50%'
+            y='13'
+            style={styles.text}>
+            {this.props.children}
+          </text>
+        </svg>
+      </div>
     : React.createElement(Tag, {
-        style: assign({}, this.context.styles.heading["h" + this.props.size])
+        style: assign({}, this.context.styles.components.heading["h" + this.props.size], this.getStyles())
       }, this.props.children)
   }
 }
