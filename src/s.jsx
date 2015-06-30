@@ -3,12 +3,29 @@ import assign from 'object-assign';
 
 class S extends React.Component {
   render() {
+    let styles = {};
+    if (this.props.type.indexOf('strikethrough') !== -1) {
+      styles = assign(styles, {textDecoration: 'line-through'});
+    }
+    if (this.props.type.indexOf('underline') !== -1) {
+      styles = assign(styles, {textDecoration: 'underline'});
+    }
+    if (this.props.type.indexOf('bold') !== -1) {
+      styles = assign(styles, {fontWeight: 'bold'});
+    }
+    if (this.props.type.indexOf('italic') !== -1) {
+      styles = assign(styles, {fontStyle: 'italic'});
+    }
     return (
-      <span style={assign({}, this.context.styles.components.s[this.props.type])}>
+      <span style={assign({}, styles, this.context.styles.components.s[this.props.type])}>
         {this.props.children}
       </span>
     )
   }
+}
+
+S.propTypes = {
+  type: React.PropTypes.array
 }
 
 S.contextTypes = {

@@ -11,9 +11,10 @@ import Image from './image';
 import Layout from './layout';
 import ListItem from './list-item';
 import List from './list';
+import Quote from './quote';
 import S from './s';
-import Slide from './Slide';
-import Text from './Text';
+import Slide from './slide';
+import Text from './text';
 
 export {
   Appear,
@@ -29,6 +30,7 @@ export {
   Layout,
   ListItem,
   List,
+  Quote,
   S,
   Slide,
   Text

@@ -8,11 +8,11 @@ import Alt from "alt";
 import Flux from './src/flux/alt';
 import withAltContext from 'alt/utils/withAltContext'
 
-import Deck from './deck';
-import config from './config';
+import Deck from './presentation/deck';
+import config from './presentation/config';
 
 require('normalize.css');
-require('highlight.js/styles/monokai.css');
+require('highlight.js/styles/monokai_sublime.css');
 
 const flux = new Flux();
 Alt.debug('flux', flux);

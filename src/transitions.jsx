@@ -28,13 +28,19 @@ export default {
 
     if(this.props.transition.indexOf('zoom') !== -1) {
       state = assign(state, {
-        scale: 0
+        scale: 0.1
       });
     }
 
     if(this.props.transition.indexOf('slide') !== -1) {
       state = assign(state, {
         left: 0
+      });
+    }
+
+    if(this.props.transition.indexOf('spin') !== -1) {
+      state = assign(state, {
+        x: 0
       });
     }
 
@@ -76,6 +82,15 @@ export default {
       });
     }
 
+    if(this.props.transition.indexOf('spin') !== -1) {
+      this.tweenState('x', {
+        easing: tweenState.easingTypes.easeOutQuad,
+        duration: this.props.transitionDuration,
+        beginValue: direction ? 90 : -90,
+        endValue: 0
+      });
+    }
+
     this.setState({
       z: 200
     });
@@ -103,6 +118,12 @@ export default {
       });
     }
 
+    if(this.props.transition.indexOf('spin') !== -1) {
+      this.setState({
+        x: 0
+      });
+    }
+
     this.routerCallback(cb, true);
 
   },
@@ -123,7 +144,7 @@ export default {
       this.tweenState('scale', {
         easing: tweenState.easingTypes.easeInOutQuad,
         duration: this.props.transitionDuration,
-        endValue: 0
+        endValue: 0.1
       });
     }
 
@@ -132,6 +153,14 @@ export default {
         easing: tweenState.easingTypes.easeOutQuad,
         duration: this.props.transitionDuration,
         endValue: direction ? 100 : -100
+      });
+    }
+
+    if(this.props.transition.indexOf('spin') !== -1) {
+      this.tweenState('x', {
+        easing: tweenState.easingTypes.easeOutQuad,
+        duration: this.props.transitionDuration,
+        endValue: direction ? 90 : -90
       });
     }
 
@@ -152,12 +181,20 @@ export default {
     }
     if(this.props.transition.indexOf('zoom') !== -1) {
       styles = assign(styles, {
-        transform: 'scale(' + this.getTweeningValue('scale') + ')'
+        transform: 'scale(' + this.getTweeningValue('scale') + ')',
+        WebkitTransform: 'scale(' + this.getTweeningValue('scale') + ')'
       });
     }
     if(this.props.transition.indexOf('slide') !== -1) {
       styles = assign(styles, {
         left: this.getTweeningValue('left') + "%"
+      });
+    }
+    if(this.props.transition.indexOf('spin') !== -1) {
+      styles = assign(styles, {
+        transform:  'rotateY(' + this.getTweeningValue('x') + 'deg)',
+        WebkitTransform:  'rotateY(' + this.getTweeningValue('x') + 'deg)',
+        transformOrigin: 'center center'
       });
     }
     return styles;

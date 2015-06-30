@@ -73,6 +73,10 @@ class Heading extends Base {
   }
 }
 
+Heading.defaultProps = {
+  size: 1
+};
+
 Heading.contextTypes = {
   styles: React.PropTypes.object
 }

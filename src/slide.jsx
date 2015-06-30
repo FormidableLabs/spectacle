@@ -3,7 +3,7 @@ import assign from 'object-assign';
 import tweenState from 'react-tween-state';
 import Base from './base';
 import Transitions from './transitions';
-import config from '../config';
+import config from '../presentation/config';
 
 const Slide = React.createClass({
   displayName: 'Slide',
@@ -39,7 +39,9 @@ const Slide = React.createClass({
         width: '100%',
         height: '100%',
         display: 'table',
-        tableLayout: 'fixed'
+        tableLayout: 'fixed',
+        transformStyle: 'preserve-3d',
+        WebkitTransformStyle: 'preserve-3d'
       },
       inner: {
         display: 'table-cell',

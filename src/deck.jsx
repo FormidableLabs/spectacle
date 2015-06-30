@@ -4,6 +4,8 @@ import cloneWithProps from 'react/lib/cloneWithProps';
 import Radium from 'radium';
 import _ from 'lodash';
 
+React.initializeTouchEvents(true);
+
 const Style = Radium.Style;
 
 const TransitionGroup = React.addons.TransitionGroup;
@@ -12,6 +14,7 @@ class Deck extends React.Component {
   constructor(props) {
     super(props);
     this._handleKeyPress = this._handleKeyPress.bind(this);
+    this._handleClick = this._handleClick.bind(this);
     this.state = {
       lastSlide: null
     };
@@ -91,6 +94,93 @@ class Deck extends React.Component {
       return true;
     }
   }
+  _getTouchEvents() {
+    var self = this;
+
+    return {
+      onTouchStart(e) {
+        self.touchObject = {
+          startX: event.touches[0].pageX,
+          startY: event.touches[0].pageY
+        }
+      },
+      onTouchMove(e) {
+        var direction = self._swipeDirection(
+          self.touchObject.startX,
+          e.touches[0].pageX,
+          self.touchObject.startY,
+          e.touches[0].pageY
+        );
+
+        self.touchObject = {
+          startX: self.touchObject.startX,
+          startY: self.touchObject.startY,
+          endX: e.clientX,
+          endY: e.clientY,
+          length: Math.round(Math.sqrt(Math.pow(e.touches[0].pageX - self.touchObject.startX, 2))),
+          direction: direction
+        };
+
+        if (direction !== 0) {
+          e.preventDefault();
+        }
+      },
+      onTouchEnd(e) {
+        self._handleSwipe(e);
+      },
+      onTouchCancel(e) {
+        self._handleSwipe(e);
+      }
+    }
+  }
+  _handleClick(e) {
+    if (this.clickSafe === true) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.nativeEvent.stopPropagation();
+    }
+  }
+  _handleSwipe(e) {
+    if (typeof (this.touchObject.length) !== 'undefined' && this.touchObject.length > 44) {
+      this.clickSafe = true;
+    } else {
+      this.clickSafe = false;
+    }
+
+    if (Math.abs(this.touchObject.length) > 20) {
+      if(this.touchObject.direction === 1) {
+        this._nextSlide();
+      } else if (this.touchObject.direction === -1) {
+        this._prevSlide();
+      }
+    }
+
+    this.touchObject = {};
+  }
+  _swipeDirection(x1, x2, y1, y2) {
+    var xDist, yDist, r, swipeAngle;
+
+    xDist = x1 - x2;
+    yDist = y1 - y2;
+    r = Math.atan2(yDist, xDist);
+    swipeAngle = Math.round(r * 180 / Math.PI);
+
+    if (swipeAngle < 0) {
+      swipeAngle = 360 - Math.abs(swipeAngle);
+    }
+    if ((swipeAngle <= 45) && (swipeAngle >= 0)) {
+      return 1;
+    }
+    if ((swipeAngle <= 360) && (swipeAngle >= 315)) {
+      return 1;
+    }
+    if ((swipeAngle >= 135) && (swipeAngle <= 225)) {
+      return -1;
+    }
+
+    return 0;
+
+  }
   _renderSlide() {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
@@ -117,10 +207,13 @@ class Deck extends React.Component {
       width: '100%',
       height: '100%',
       overflow: 'hidden',
-
+      perspective: 1000,
+      WebkitPerspective: 1000
     };
     return (
-      <div style={styles}>
+      <div style={styles}
+        onClick={this._handleClick}
+        {...this._getTouchEvents()}>
         <TransitionGroup component="div">
           {this._renderSlide()}
         </TransitionGroup>

@@ -19,6 +19,9 @@ class Base extends React.Component {
     if (this.props.margin) {
       styles = assign(styles, {margin: this.props.margin});
     }
+    if (this.props.padding) {
+      styles = assign(styles, {margin: this.props.padding});
+    }
     if (this.props.textColor) {
       let color = "";
       if (!this.context.styles.colors.hasOwnProperty(this.props.textColor)) {
@@ -62,8 +65,8 @@ class Base extends React.Component {
 
 Base.propTypes = {
   textColor: React.PropTypes.string,
-  textFont: React.PropTypes.oneOf(['primary','secondary','tertiary']),
-  bgColor: React.PropTypes.oneOf(['primary','secondary','tertiary']),
+  textFont: React.PropTypes.string,
+  bgColor: React.PropTypes.string,
   bgImage: React.PropTypes.string,
   bgDarken: React.PropTypes.number
 };
@@ -86,6 +89,9 @@ Base.Mixin = {
     }
     if (this.props.margin) {
       styles = assign(styles, {margin: this.props.margin});
+    }
+    if (this.props.padding) {
+      styles = assign(styles, {margin: this.props.padding});
     }
     if (this.props.textColor) {
       let color = "";

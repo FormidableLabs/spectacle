@@ -1,9 +1,17 @@
 import React from 'react/addons';
 import assign from 'object-assign';
+import Base from './base';
 
-class Image extends React.Component {
+class Image extends Base {
   render() {
-    return <img src="" style={assign({}, this.context.styles.components.image)}/>
+    let styles = {
+      width: this.props.width || "",
+      height: this.props.height || "",
+      display: this.props.display || ""
+    };
+    return (
+      <img src={this.props.src} style={assign({}, styles, this.context.styles.components.image, this.getStyles())}/>
+    );
   }
 }
 

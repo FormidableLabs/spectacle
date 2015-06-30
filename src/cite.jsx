@@ -6,7 +6,7 @@ class Cite extends Base {
   render() {
     return (
       <cite style={assign({}, this.context.styles.components.cite, this.getStyles())}>
-        {this.props.children}
+        - {this.props.children}
       </cite>
     )
   }

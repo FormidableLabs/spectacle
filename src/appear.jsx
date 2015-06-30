@@ -7,7 +7,8 @@ const Appear = React.createClass({
   mixins: [tweenState.Mixin],
   contextTypes: {
     flux: React.PropTypes.object,
-    router: React.PropTypes.object
+    router: React.PropTypes.object,
+    slide: React.PropTypes.number
   },
   getInitialState() {
     return {
@@ -35,15 +36,17 @@ const Appear = React.createClass({
     let key = _.findKey(state.fragments[slide], {
       'id': this._reactInternalInstance._rootNodeID
     });
-    this.setState({
-      active: state.fragments[slide][key].visible
-    }, () => {
-      this.tweenState('opacity', {
-        easing: tweenState.easingTypes.easeInOutQuad,
-        duration: 300,
-        endValue: this.state.active ? 1 : 0
+    if(state.fragments[slide].hasOwnProperty(key)) {
+      this.setState({
+        active: state.fragments[slide][key].visible
+      }, () => {
+        this.tweenState('opacity', {
+          easing: tweenState.easingTypes.easeInOutQuad,
+          duration: 300,
+          endValue: this.state.active ? 1 : 0
+        });
       });
-    });
+    }
   },
   render() {
     let styles = {

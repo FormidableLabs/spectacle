@@ -1,5 +1,5 @@
 var getConfig = require('hjs-webpack')
-var config = require('./config');
+var config = require('./presentation/config');
 
 module.exports = getConfig({
   in: './index.jsx',
