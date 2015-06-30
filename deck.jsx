@@ -7,7 +7,7 @@ import {
 export default class extends React.Component {
   render() {
     return (
-      <Deck transition={['zoom']} transitionDuration={800}>
+      <Deck transition={['zoom','slide']} transitionDuration={800}>
         <Slide bgColor="primary">
           <Heading size={1} fit caps>
             Getting Started With
