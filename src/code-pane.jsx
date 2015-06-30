@@ -1,13 +1,22 @@
 import React from 'react/addons';
 import assign from 'object-assign';
+import highlight from 'highlight.js';
+import Base from './base';
 
-class CodePane extends React.Component {
+class CodePane extends Base {
+  createMarkup() {
+    let markup = highlight.highlight(this.props.lang, this.props.source);
+    return  {
+      __html: markup.value
+    }
+  }
   render() {
     return (
-      <pre style={assign({}, this.context.styles.components.codePane.pre)}>
-        <code style={assign({}, this.context.styles.components.codePane.code)}>
-          {this.props.children}
-        </code>
+      <pre style={assign({}, this.context.styles.components.codePane.pre, this.getStyles())}>
+        <code
+          className="hljs"
+          style={assign({}, this.context.styles.components.codePane.code)}
+          dangerouslySetInnerHTML={this.createMarkup()}/>
       </pre>
     )
   }
@@ -15,6 +24,16 @@ class CodePane extends React.Component {
 
 CodePane.contextTypes = {
   styles: React.PropTypes.object
-}
+};
+
+CodePane.propTypes = {
+  lang: React.PropTypes.string,
+  source: React.PropTypes.string
+};
+
+CodePane.defaultProps = {
+  lang: "html",
+  source: ""
+};
 
 export default CodePane;

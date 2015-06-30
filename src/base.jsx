@@ -34,8 +34,17 @@ class Base extends React.Component {
     if (this.props.textSize) {
       styles = assign(styles, {fontSize: this.props.textSize});
     }
+    if (this.props.textAlign) {
+      styles = assign(styles, {textAlign: this.props.textAlign});
+    }
     if (this.props.bgColor) {
-      styles = assign(styles, {backgroundColor: this.context.styles.colors[this.props.bgColor]});
+      let color = "";
+      if (!this.context.styles.colors.hasOwnProperty(this.props.bgColor)) {
+        color = this.props.bgColor
+      } else {
+        color = this.context.styles.colors[this.props.bgColor]
+      }
+      styles = assign(styles, {backgroundColor: color});
     }
     if (this.props.bgImage) {
       styles = assign(styles, {backgroundImage:
@@ -93,8 +102,17 @@ Base.Mixin = {
     if (this.props.textSize) {
       styles = assign(styles, {fontSize: this.props.textSize});
     }
+    if (this.props.textAlign) {
+      styles = assign(styles, {textAlign: this.props.textAlign});
+    }
     if (this.props.bgColor) {
-      styles = assign(styles, {backgroundColor: this.context.styles.colors[this.props.bgColor]});
+      let color = "";
+      if (!this.context.styles.colors.hasOwnProperty(this.props.bgColor)) {
+        color = this.props.bgColor
+      } else {
+        color = this.context.styles.colors[this.props.bgColor]
+      }
+      styles = assign(styles, {backgroundColor: color});
     }
     if (this.props.bgImage) {
       styles = assign(styles, {backgroundImage:

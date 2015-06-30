@@ -19,26 +19,29 @@ export default class extends React.Component {
             @ken_wheeler
           </Heading>
         </Slide>
-        <Slide bgColor="secondary" textColor="tertiary" align="center top">
-          <Heading size={1} fit textColor="tertiary" textFont="primary">
-            Fitted Text Works Great
+        <Slide bgColor="black">
+          <Heading size={1} fit textColor="primary" textFont="secondary">
+            What Is Flux?
           </Heading>
-          <Layout>
-            <Fill>
-              <CodePane>
-                {"<a href='code'></a>"}
-              </CodePane>
-              Left Side
-            </Fill>
-            <Fill>
-              Right Side
-            </Fill>
-          </Layout>
         </Slide>
-        <Slide bgColor="primary">
-          <Heading size={1} textFont="primary">
-            Slide 3
+        <Slide bgColor="primary" textColor="black" align="center top">
+          <Heading size={1} textColor="black" textFont="primary">
+            Flux Architecture
           </Heading>
+          <List>
+            <ListItem>It fits onto the page!</ListItem>
+            <ListItem>Lists work pretty well. Its incredible.</ListItem>
+            <ListItem>I hate typing demo typography copy.</ListItem>
+          </List>
+        </Slide>
+        <Slide bgColor="primary" align="center top">
+          <Heading size={2} textColor="black" textFont="primary">
+            Actions
+          </Heading>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./actions.example")}
+            margin="20px auto"/>
         </Slide>
       </Deck>
     )

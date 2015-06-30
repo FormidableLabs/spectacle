@@ -18,8 +18,9 @@ const Slide = React.createClass({
   },
   setZoom() {
     let content = React.findDOMNode(this.refs.content);
+    let zoom = (content.offsetWidth / config.width);
     this.setState({
-      zoom: (content.offsetWidth / config.width)
+      zoom: zoom > 0.6 ? zoom : 0.6
     });
   },
   componentDidMount() {
@@ -44,7 +45,7 @@ const Slide = React.createClass({
         display: 'table-cell',
         textAlign: this.props.align ? this.props.align.split(' ')[0] : 'center',
         verticalAlign: this.props.align ? this.props.align.split(' ')[1] : 'middle',
-        padding: config.margin
+        padding: this.state.zoom > 0.6 ? config.margin : 10
       },
       content: {
         maxWidth: config.width,

@@ -1,0 +1,35 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/Users/kenwheeler/local/bin/npm', 'start' ]
+2 info using npm@2.8.4
+3 info using node@v0.12.2
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart spectacle@0.0.1
+6 info start spectacle@0.0.1
+7 verbose unsafe-perm in lifecycle true
+8 info spectacle@0.0.1 Failed to exec start script
+9 verbose stack Error: spectacle@0.0.1 start: `webpack-dev-server`
+9 verbose stack Exit status 1
+9 verbose stack     at EventEmitter.<anonymous> (/Users/kenwheeler/local/lib/node_modules/npm/lib/utils/lifecycle.js:213:16)
+9 verbose stack     at EventEmitter.emit (events.js:110:17)
+9 verbose stack     at ChildProcess.<anonymous> (/Users/kenwheeler/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+9 verbose stack     at ChildProcess.emit (events.js:110:17)
+9 verbose stack     at maybeClose (child_process.js:1015:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
+10 verbose pkgid spectacle@0.0.1
+11 verbose cwd /Users/kenwheeler/Projects/spectacle
+12 error Darwin 14.1.0
+13 error argv "node" "/Users/kenwheeler/local/bin/npm" "start"
+14 error node v0.12.2
+15 error npm  v2.8.4
+16 error code ELIFECYCLE
+17 error spectacle@0.0.1 start: `webpack-dev-server`
+17 error Exit status 1
+18 error Failed at the spectacle@0.0.1 start script 'webpack-dev-server'.
+18 error This is most likely a problem with the spectacle package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     webpack-dev-server
+18 error You can get their info via:
+18 error     npm owner ls spectacle
+18 error There is likely additional logging output above.
+19 verbose exit [ 1, true ]

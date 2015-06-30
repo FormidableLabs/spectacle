@@ -7,6 +7,7 @@ import Deck from './deck';
 import config from './config';
 
 require('normalize.css');
+require('highlight.js/styles/monokai.css');
 
 class Presentation extends React.Component {
   render() {
