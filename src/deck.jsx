@@ -2,6 +2,8 @@ import React from 'react/addons';
 import assign from 'object-assign';
 import cloneWithProps from 'react/lib/cloneWithProps';
 import Radium from 'radium';
+import _ from 'lodash';
+
 const Style = Radium.Style;
 
 const TransitionGroup = React.addons.TransitionGroup;
@@ -41,8 +43,10 @@ class Deck extends React.Component {
     this.setState({
       lastSlide: slide
     });
-    if (slide > 0) {
-      this.context.router.transitionTo('/' + (slide - 1));
+    if (this._checkFragments(slide, false)) {
+      if (slide > 0) {
+        this.context.router.transitionTo('/' + (slide - 1));
+      }
     }
   }
   _nextSlide() {
@@ -51,8 +55,40 @@ class Deck extends React.Component {
     this.setState({
       lastSlide: slide
     });
-    if (slide < this.props.children.length - 1) {
-      this.context.router.transitionTo('/' + (slide + 1));
+    if(this._checkFragments(slide, true)) {
+      if (slide < this.props.children.length - 1) {
+        this.context.router.transitionTo('/' + (slide + 1));
+      }
+    }
+  }
+  _checkFragments(slide, forward) {
+    let store = this.context.flux.stores.SlideStore;
+    let fragments = store.getState().fragments;
+    if (slide in fragments) {
+      let count = _.size(fragments[slide]);
+      let visible = _.filter(fragments[slide], function(s){
+        return s.visible === true
+      });
+      let hidden = _.filter(fragments[slide], function(s){
+        return s.visible !== true
+      });
+      if (forward === true && visible.length !== count) {
+        this.context.flux.actions.SlideActions.updateFragment({
+          fragment: hidden[0],
+          visible: true
+        });
+        return false;
+      }
+      if (forward === false && hidden.length !== count) {
+        this.context.flux.actions.SlideActions.updateFragment({
+          fragment: visible[_.size(visible) - 1],
+          visible: false
+        });
+        return false;
+      }
+      return true;
+    } else {
+      return true;
     }
   }
   _renderSlide() {
@@ -102,7 +138,8 @@ Deck.defaultProps = {
 
 Deck.contextTypes = {
   styles: React.PropTypes.object,
-  router: React.PropTypes.object
+  router: React.PropTypes.object,
+  flux: React.PropTypes.object
 };
 
 export default Deck;

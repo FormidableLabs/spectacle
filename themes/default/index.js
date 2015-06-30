@@ -93,6 +93,11 @@ module.exports = {
     s: {
       strikethrough: {}
     },
-    text: {}
+    text: {
+      color: 'black',
+      fontSize: '2.66em',
+      fontFamily: fonts.primary,
+      margin: '0.25em auto'
+    }
   }
 }

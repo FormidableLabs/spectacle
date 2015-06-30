@@ -60,7 +60,7 @@ class Text extends Base {
           <text
             ref='text'
             x='50%'
-            y={13}
+            y='13'
             style={styles.text}>
             {this.props.children}
           </text>

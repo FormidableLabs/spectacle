@@ -5,7 +5,8 @@ function context(Component, params) {
     displayName: 'ContextWrapper',
 
     childContextTypes: {
-      styles: React.PropTypes.object
+      styles: React.PropTypes.object,
+      flux: React.PropTypes.object
     },
 
     getChildContext() {

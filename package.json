@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "alt": "^0.16.10",
     "autoprefixer-core": "^5.2.1",
     "babel": "^5.6.14",
     "babel-core": "^5.6.15",

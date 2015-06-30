@@ -1,9 +1,0 @@
-class ItemActions {
-  constructor() {
-    this.generateActions(
-      "fetchItem",
-      "updateItem",
-      "fetchError"
-    );
-  }
-}
