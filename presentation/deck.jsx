@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import {
   Appear, BlockQuote, Cite, CodePane, Code, Deck, Fill, Fit,
-  Heading, Image, Layout, ListItem, List, Quote, S, Slide, Text
+  Heading, Image, Layout, Link, ListItem, List, Quote, S, Slide, Text
 } from '../src/spectacle';
 
 import preloader from '../src/utils/preloader';
@@ -111,7 +111,7 @@ export default class extends React.Component {
           <Heading size={1} caps fit textColor="primary">
             Made with love in Seattle by
           </Heading>
-          <Image width="100%" src={images.logo}/>
+          <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
         </Slide>
       </Deck>
     )

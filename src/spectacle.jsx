@@ -9,6 +9,7 @@ import Fit from './fit';
 import Heading from './heading';
 import Image from './image';
 import Layout from './layout';
+import Link from './Link';
 import ListItem from './list-item';
 import List from './list';
 import Quote from './quote';
@@ -28,6 +29,7 @@ export {
   Heading,
   Image,
   Layout,
+  Link,
   ListItem,
   List,
   Quote,

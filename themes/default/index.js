@@ -124,6 +124,7 @@ module.exports = {
       display: 'block',
       margin: '0.5em auto'
     },
+    link: {},
     listItem: {
       fontSize: '2.66em'
     },
