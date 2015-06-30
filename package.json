@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "deploy": "npm run build && surge -p ./dist -d spectacle.surge.sh"
+    "deploy": "npm run build && surge -p ./dist"
   },
   "author": "",
   "license": "ISC",
