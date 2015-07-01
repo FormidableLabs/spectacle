@@ -48,7 +48,7 @@ class Deck extends React.Component {
     });
     if (this._checkFragments(slide, false)) {
       if (slide > 0) {
-        this.context.router.transitionTo('/' + (slide - 1));
+        this.context.router.replaceWith('/' + (slide - 1));
       }
     }
   }
@@ -60,7 +60,7 @@ class Deck extends React.Component {
     });
     if(this._checkFragments(slide, true)) {
       if (slide < this.props.children.length - 1) {
-        this.context.router.transitionTo('/' + (slide + 1));
+        this.context.router.replaceWith('/' + (slide + 1));
       }
     }
   }
