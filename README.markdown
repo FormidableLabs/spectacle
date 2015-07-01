@@ -72,7 +72,7 @@ var fonts = { // <--- Font variables used in the presentation
 module.exports = {
   colors: colors,
   fonts: fonts,
-  global: { // <--- Global styles added to a <style> tag in the bdoy
+  global: { // <--- Global styles added to a <style> tag in the body
     body: {
       background: colors.primary,
       fontFamily: fonts.primary,
