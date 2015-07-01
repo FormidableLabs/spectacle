@@ -1,5 +1,4 @@
 .spectacle-deck {
-  transform: perspective(1000px);
   transform-style: preserve-3d;
 
   -webkit-perspective: 1000;
@@ -7,7 +6,8 @@
 }
 
 .spectacle-slide {
-  backface-visibility: hidden;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
 
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
@@ -38,4 +38,14 @@
      -webkit-flex:  1;
          -ms-flex:  1;
              flex:  1;
+}
+
+/* Firefox */
+
+_:-moz-tree-row(hover), .spectacle-deck {
+  transform: perspective(1000px);
+}
+
+_:-moz-tree-row(hover), ul .appear {
+  display: inline;
 }
