@@ -39,9 +39,7 @@ const Slide = React.createClass({
         width: '100%',
         height: '100%',
         display: 'table',
-        tableLayout: 'fixed',
-        transformStyle: 'preserve-3d',
-        WebkitTransformStyle: 'preserve-3d'
+        tableLayout: 'fixed'
       },
       inner: {
         display: 'table-cell',
@@ -55,7 +53,8 @@ const Slide = React.createClass({
       }
     };
     return (
-      <div style={assign({}, styles.outer, this.getStyles(), this.getTransitionStyles())}>
+      <div className="spectacle-slide"
+        style={assign({}, styles.outer, this.getStyles(), this.getTransitionStyles())}>
         <div style={styles.inner}>
           <div ref="content"
             style={assign({}, styles.content, this.context.styles.components.content)}>

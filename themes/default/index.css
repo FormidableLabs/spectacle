@@ -1,0 +1,41 @@
+.spectacle-deck {
+  transform: perspective(1000px);
+  transform-style: preserve-3d;
+
+  -webkit-perspective: 1000;
+          perspective: 1000;
+}
+
+.spectacle-slide {
+  backface-visibility: hidden;
+
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.spectacle-layout {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+}
+
+.spectacle-fit {
+  -webkit-box-flex: 0;
+    -moz-box-flex:  0;
+    e-webkit-flex:  0;
+          ms-flex:  0;
+             flex:  0;
+}
+
+.spectacle-fill {
+  -webkit-box-flex: 1;
+    -moz-box-flex:  1;
+     -webkit-flex:  1;
+         -ms-flex:  1;
+             flex:  1;
+}
