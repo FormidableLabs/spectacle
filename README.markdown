@@ -37,7 +37,7 @@ export default class extends React.Component {
     return (
       <Deck>
         <Slide>
-          <Text>Hello</Hello>
+          <Text>Hello</Text>
         </Slide>
       </Deck>
     )
@@ -63,7 +63,7 @@ var colors = {  // <--- Color variables used in the presentation
   tertiary: 'white'
 };
 
-var fonts = { <--- Font variables used in the presentation
+var fonts = { // <--- Font variables used in the presentation
   primary: 'Open Sans Condensed',
   secondary: 'Lobster Two',
   tertiary: 'monospace'
@@ -72,7 +72,7 @@ var fonts = { <--- Font variables used in the presentation
 module.exports = {
   colors: colors,
   fonts: fonts,
-  global: { <--- Global styles added to a <style> tag in the bdoy
+  global: { // <--- Global styles added to a <style> tag in the bdoy
     body: {
       background: colors.primary,
       fontFamily: fonts.primary,
@@ -81,7 +81,7 @@ module.exports = {
       color: colors.secondary
     }
   },
-  components: { <--- Component specific style declarations
+  components: { // <--- Component specific style declarations
     blockquote: {
       textAlign: 'left',
       position: 'relative',
@@ -124,8 +124,8 @@ Presentation configuration live in `/presentation/config.js`. You can edit globa
 
 ```javascript
 module.exports = {
-  width: 1000, <-- Max width of presentation area
-  margin: 40, <-- Presentation area side padding
+  width: 1000, // <-- Max width of presentation area
+  margin: 40, // <-- Presentation area side padding
   theme: require('../themes/default/index'), // <- Theme Styles
   html: require('../themes/default/html') // <- Theme HTML
 }
