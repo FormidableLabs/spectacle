@@ -1,5 +1,3 @@
-require('./index.css');
-
 var colors = {
   primary: '#f9c300',
   secondary: 'black',

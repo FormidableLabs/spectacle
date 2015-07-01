@@ -12,6 +12,7 @@ import Deck from './presentation/deck';
 import config from './presentation/config';
 
 require('normalize.css');
+require('./themes/default/index.css');
 require('highlight.js/styles/monokai_sublime.css');
 
 const flux = new Flux();
