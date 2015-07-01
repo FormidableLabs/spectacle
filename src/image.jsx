@@ -10,7 +10,7 @@ class Image extends Base {
       display: this.props.display || ""
     };
     return (
-      <img src={this.props.src} style={assign({}, styles, this.context.styles.components.image, this.getStyles())}/>
+      <img src={this.props.src} style={assign({}, this.context.styles.components.image, this.getStyles(), styles)}/>
     );
   }
 }
