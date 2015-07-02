@@ -171,6 +171,7 @@ export default {
     this.routerCallback(cb);
   },
   getTransitionStyles() {
+    let transformValue = "";
     let styles = {
       zIndex: this.state.z || 100
     };
@@ -180,23 +181,17 @@ export default {
       });
     }
     if(this.props.transition.indexOf('zoom') !== -1) {
-      styles = assign(styles, {
-        transform: 'scale(' + this.getTweeningValue('scale') + ')',
-        WebkitTransform: 'scale(' + this.getTweeningValue('scale') + ')'
-      });
+      transformValue += ' scale(' + this.getTweeningValue('scale') + ')';
     }
     if(this.props.transition.indexOf('slide') !== -1) {
-      styles = assign(styles, {
-        left: this.getTweeningValue('left') + "%"
-      });
+      transformValue += ' translate3d(' + this.getTweeningValue('left') + "%, 0, 0)"
     }
     if(this.props.transition.indexOf('spin') !== -1) {
-      styles = assign(styles, {
-        transform:  'rotateY(' + this.getTweeningValue('x') + 'deg)',
-        WebkitTransform:  'rotateY(' + this.getTweeningValue('x') + 'deg)',
-        transformOrigin: 'center center'
-      });
+      transformValue += ' rotateY(' + this.getTweeningValue('x') + 'deg)';
     }
+    styles = assign(styles, {
+      transform: transformValue
+    });
     return styles;
   }
 }

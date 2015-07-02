@@ -10,6 +10,7 @@ const Style = Radium.Style;
 
 const TransitionGroup = React.addons.TransitionGroup;
 
+@Radium
 class Deck extends React.Component {
   constructor(props) {
     super(props);
@@ -205,12 +206,14 @@ class Deck extends React.Component {
       top: 0,
       left: 0,
       width: '100%',
-      height: '100%'
+      height: '100%',
+      perspective: 1000,
+      transformStyle: 'preserve-3d'
     };
     return (
       <div
         className="spectacle-deck"
-        style={styles}
+        style={[styles]}
         onClick={this._handleClick}
         {...this._getTouchEvents()}>
         <TransitionGroup component="div">

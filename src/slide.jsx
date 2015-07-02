@@ -4,6 +4,7 @@ import tweenState from 'react-tween-state';
 import Base from './base';
 import Transitions from './transitions';
 import config from '../presentation/config';
+import Radium from 'radium';
 
 const Slide = React.createClass({
   displayName: 'Slide',
@@ -54,10 +55,10 @@ const Slide = React.createClass({
     };
     return (
       <div className="spectacle-slide"
-        style={assign({}, styles.outer, this.getStyles(), this.getTransitionStyles())}>
-        <div style={styles.inner}>
+        style={[styles.outer, this.getStyles(), this.getTransitionStyles()]}>
+        <div style={[styles.inner]}>
           <div ref="content"
-            style={assign({}, styles.content, this.context.styles.components.content)}>
+            style={[styles.content, this.context.styles.components.content]}>
             {this.props.children}
           </div>
         </div>
@@ -66,4 +67,4 @@ const Slide = React.createClass({
   }
 });
 
-export default Slide;
+export default Radium(Slide);
