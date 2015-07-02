@@ -28,7 +28,7 @@ Presentation.contextTypes = {
   router: React.PropTypes.object
 }
 
-Presentation = Context(Presentation, {styles: config.theme, flux: flux});
+Presentation = Context(Presentation, {styles: config.theme, print: config.print, flux: flux});
 
 React.render(
   <Router history={new HashHistory}>

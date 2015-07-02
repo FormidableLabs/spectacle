@@ -30,7 +30,7 @@ export default class extends React.Component {
           <Heading size={2} fit caps textColor="black">
             Where You Can Write Your Decks In JSX
           </Heading>
-          <Link href="https://github.com/FormidableLabs/spectacle"><Text bold caps textColor="white">View on Github</Text></Link>
+          <Link href="https://github.com/FormidableLabs/spectacle"><Text bold caps textColor="tertiary">View on Github</Text></Link>
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
         <Slide transition={['slide']} bgColor="black">
@@ -67,12 +67,12 @@ export default class extends React.Component {
           <Heading caps fit>Flexible Layouts</Heading>
           <Layout>
             <Fill>
-              <Heading size={4} caps textColor="black" bgColor="white" margin={10}>
+              <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
                 Left
               </Heading>
             </Fill>
             <Fill>
-              <Heading size={4} caps textColor="black" bgColor="white" margin={10}>
+              <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
                 Right
               </Heading>
             </Fill>
@@ -85,14 +85,14 @@ export default class extends React.Component {
           </BlockQuote>
         </Slide>
         <Slide transition={['slide', 'spin']} bgColor="primary">
-          <Heading caps fit size={1} textColor="white">
+          <Heading caps fit size={1} textColor="tertiary">
             Smooth
           </Heading>
-          <Heading caps fit size={1} textColor="black">
+          <Heading caps fit size={1} textColor="secondary">
             Combinable Transitions
           </Heading>
         </Slide>
-        <Slide transition={['fade']} bgColor="black" textColor="primary" align="center middle">
+        <Slide transition={['fade']} bgColor="secondary" textColor="primary" align="center middle">
           <List>
             <ListItem><Appear>Inline style based theme system</Appear></ListItem>
             <ListItem><Appear>Autofit text</Appear></ListItem>
@@ -103,12 +103,12 @@ export default class extends React.Component {
           </List>
         </Slide>
         <Slide transition={['slide']} bgColor="primary">
-          <Heading size={1} caps fit textColor="white">
+          <Heading size={1} caps fit textColor="tertiary">
             Your presentations are interactive
           </Heading>
           <Interactive/>
         </Slide>
-        <Slide transition={['spin','slide']} bgColor="white">
+        <Slide transition={['spin','slide']} bgColor="tertiary">
           <Heading size={1} caps fit textColor="primary">
             Made with love in Seattle by
           </Heading>

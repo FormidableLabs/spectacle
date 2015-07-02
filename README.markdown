@@ -27,6 +27,8 @@ Exporting a totally sweet looking PDF from your totally sweet looking Spectacle 
 
 ![http://i.imgur.com/t6GL5Oc.png](http://i.imgur.com/t6GL5Oc.png)
 
+If you want to print your slides, and want a printer friendly version, simply repeat the above process but instead print from [http://localhost:3000/#/?export&print](http://localhost:3000/#/?export&print)
+
 ## Basic Concepts
 
 ### Main file

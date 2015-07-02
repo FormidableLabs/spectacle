@@ -33,10 +33,18 @@ const Slide = React.createClass({
   },
   render() {
     let exportMode = false;
+    let printMode = false;
     if (this.context.router.state.location.query &&
         'export' in this.context.router.state.location.query) {
       exportMode = true;
+      if ('print' in this.context.router.state.location.query) {
+        printMode = true;
+      }
     }
+    let printStyles = printMode ? {
+      backgroundColor: 'white',
+      backgroundImage: 'none'
+    } : {};
     let styles = {
       outer: {
         position: exportMode ? 'relative' : 'absolute',
@@ -60,7 +68,7 @@ const Slide = React.createClass({
     };
     return (
       <div className="spectacle-slide"
-        style={[styles.outer, this.getStyles(), this.getTransitionStyles()]}>
+        style={[styles.outer, this.getStyles(), this.getTransitionStyles(), printStyles]}>
         <div style={[styles.inner]}>
           <div ref="content"
             style={[styles.content, this.context.styles.components.content]}>

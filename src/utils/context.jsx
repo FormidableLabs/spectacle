@@ -10,7 +10,16 @@ function context(Component, params) {
     },
 
     getChildContext() {
-      return params;
+      let styles = {};
+      if (this.props.location.query && 'print' in this.props.location.query) {
+        styles = params.print;
+      } else {
+        styles = params.styles;
+      }
+      return {
+        styles: styles,
+        flux: params.flux
+      };
     },
 
     render: function render() {

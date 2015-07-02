@@ -1,7 +1,7 @@
 var colors = {
-  primary: '#f9c300',
+  primary: 'black',
   secondary: 'black',
-  tertiary: 'white'
+  tertiary: 'black'
 };
 
 var fonts = {
@@ -15,12 +15,19 @@ module.exports = {
   fonts: fonts,
   global: {
     body: {
-      background: colors.primary,
+      background: 'white',
       fontFamily: fonts.primary,
       fontWeight: 'normal',
       fontSize: '2em',
-      color: colors.secondary,
+      color: 'black',
       overflow: 'hidden'
+    },
+    '.hljs': {
+      background: 'white',
+      color: 'black'
+    },
+    '.hljs span': {
+      color: 'black !important'
     }
   },
   components: {
@@ -33,13 +40,13 @@ module.exports = {
       borderLeft: '1px solid ' + colors.primary,
       paddingLeft: 40,
       display: 'block',
-      color: colors.primary,
+      color: 'black',
       fontSize: '4.9em',
       lineHeight: 1,
       fontWeight: 'bold',
     },
     cite: {
-      color: colors.tertiary,
+      color: 'black',
       display: 'block',
       clear: 'left',
       fontSize: '2em',
@@ -73,7 +80,7 @@ module.exports = {
     },
     heading: {
       h1: {
-        color: colors.tertiary,
+        color: 'black',
         fontSize: '7.05em',
         fontFamily: fonts.primary,
         lineHeight: 1,
@@ -81,7 +88,7 @@ module.exports = {
         margin: 0
       },
       h2: {
-        color: colors.secondary,
+        color: 'black',
         fontSize: '5.88em',
         fontFamily: fonts.primary,
         lineHeight: 1,
