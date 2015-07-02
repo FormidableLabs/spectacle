@@ -32,9 +32,14 @@ const Slide = React.createClass({
     window.removeEventListener('resize', this.setZoom);
   },
   render() {
+    let exportMode = false;
+    if (this.context.router.state.location.query &&
+        'export' in this.context.router.state.location.query) {
+      exportMode = true;
+    }
     let styles = {
       outer: {
-        position: 'absolute',
+        position: exportMode ? 'relative' : 'absolute',
         top: 0,
         left: 0,
         width: '100%',

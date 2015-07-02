@@ -15,6 +15,18 @@ Building the dist version of the project is as easy as running `npm run build`
 
 If you want to deploy the slideshow to surge, run `npm run deploy`
 
+## PDF Export
+
+Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is asburdly easy.
+
+- Run `npm start`
+- Hit [http://localhost:3000/#/?export](http://localhost:3000/#/?export)
+- Bring up the print dialog `(ctrl or cmd + p)`
+- Check "Background Graphics" to on if you are about that life
+- Change destination to "Save as PDF", as shown below:
+
+![http://i.imgur.com/t6GL5Oc.png](http://i.imgur.com/t6GL5Oc.png)
+
 ## Basic Concepts
 
 ### Main file
@@ -268,7 +280,7 @@ Every component above that has `(Base)` after it has been extended from a common
 | bold | React.PropTypes.boolean | Set `fontWeight` to `bold ` |
 | caps | React.PropTypes.boolean | Set `textTransform` to `uppercase ` |
 | margin | React.PropTypes.number or string | Set `margin` value|
-| padding | React.PropTypes.number or string | Set `padding` value| 
+| padding | React.PropTypes.number or string | Set `padding` value|
 | textColor | React.PropTypes.string | Set `color` value|
 | textSize | React.PropTypes.string | Set `fontSize` value|
 | textAlign | React.PropTypes.string | Set `textAlign` value|

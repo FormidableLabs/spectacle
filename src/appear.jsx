@@ -40,10 +40,15 @@ const Appear = React.createClass({
       this.setState({
         active: state.fragments[slide][key].visible
       }, () => {
+        let endVal = this.state.active ? 1 : 0;
+        if (this.context.router.state.location.query &&
+            'export' in this.context.router.state.location.query) {
+          endVal = 1;
+        }
         this.tweenState('opacity', {
           easing: tweenState.easingTypes.easeInOutQuad,
           duration: 300,
-          endValue: this.state.active ? 1 : 0
+          endValue: endVal
         });
       });
     }

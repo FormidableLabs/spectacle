@@ -186,9 +186,23 @@ class Deck extends React.Component {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
     let child = this.props.children[slide];
-    return cloneWithProps(
-      child,
-      {
+    if (this.context.router.state.location.query &&
+        'export' in this.context.router.state.location.query) {
+      return this.props.children.map((child, index) => {
+        return cloneWithProps(child, {
+          key: index,
+          slideIndex: slide,
+          lastSlide: this.state.lastSlide,
+          transition: child.props.transition.length ?
+            child.props.transition :
+            this.props.transition,
+          transitionDuration: child.props.transition.transitionDuration ?
+            child.props.transitionDuration :
+            this.props.transitionDuration
+        });
+      });
+    } else {
+      return cloneWithProps(child, {
         key: slide,
         slideIndex: slide,
         lastSlide: this.state.lastSlide,
@@ -199,8 +213,24 @@ class Deck extends React.Component {
           child.props.transitionDuration :
           this.props.transitionDuration
       });
+    }
   }
   render() {
+    let exportMode = false;
+
+    if (this.context.router.state.location.query &&
+        'export' in this.context.router.state.location.query) {
+      exportMode = true;
+    }
+
+    let globals = exportMode ? {
+      body: {
+        minWidth: 1100,
+        minHeight: 850,
+        overflow: 'auto'
+      }
+    } : {};
+
     let styles = {
       position: 'absolute',
       top: 0,
@@ -210,16 +240,17 @@ class Deck extends React.Component {
       perspective: 1000,
       transformStyle: 'preserve-3d'
     };
+
     return (
       <div
         className="spectacle-deck"
         style={[styles]}
         onClick={this._handleClick}
         {...this._getTouchEvents()}>
-        <TransitionGroup component="div">
+        <TransitionGroup component="div" style={{height: '100%'}}>
           {this._renderSlide()}
         </TransitionGroup>
-        <Style rules={this.context.styles.global} />
+        <Style rules={assign(this.context.styles.global, globals)} />
       </div>
     )
   }
