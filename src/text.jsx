@@ -1,7 +1,9 @@
 import React from 'react/addons';
 import assign from 'object-assign';
 import Base from './base';
+import Radium from 'radium';
 
+@Radium
 class Text extends Base {
   constructor(props) {
     super(props);
@@ -53,7 +55,7 @@ class Text extends Base {
       }
     };
     return this.props.fit
-    ? <span style={assign({}, this.context.styles.components.text, this.getStyles())}>
+    ? <span style={[this.context.styles.components.text, this.getStyles()]}>
         <svg {...this.props}
           viewBox={viewBox}
           style={styles.svg}>
@@ -66,7 +68,7 @@ class Text extends Base {
           </text>
         </svg>
       </span>
-    : <p style={assign({}, this.context.styles.components.text, this.getStyles())}>
+    : <p style={[this.context.styles.components.text, this.getStyles()]}>
         {this.props.children}
       </p>
   }

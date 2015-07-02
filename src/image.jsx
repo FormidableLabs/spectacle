@@ -1,7 +1,9 @@
 import React from 'react/addons';
 import assign from 'object-assign';
 import Base from './base';
+import Radium from 'radium';
 
+@Radium
 class Image extends Base {
   render() {
     let styles = {
@@ -10,7 +12,7 @@ class Image extends Base {
       display: this.props.display || ""
     };
     return (
-      <img src={this.props.src} style={assign({}, this.context.styles.components.image, this.getStyles(), styles)}/>
+      <img src={this.props.src} style={[this.context.styles.components.image, this.getStyles()]} />
     );
   }
 }

@@ -1,7 +1,9 @@
 import React from 'react/addons';
 import assign from 'object-assign';
 import Base from './base';
+import Radium from 'radium';
 
+@Radium
 class Heading extends Base {
   constructor(props) {
     super(props);
@@ -54,7 +56,7 @@ class Heading extends Base {
       }
     };
     return this.props.fit
-    ? <div style={assign({}, this.context.styles.components.heading["h" + this.props.size], this.getStyles())}>
+    ? <div style={[this.context.styles.components.heading["h" + this.props.size], this.getStyles()]}>
         <svg {...this.props}
           viewBox={viewBox}
           style={styles.svg}>
@@ -68,7 +70,7 @@ class Heading extends Base {
         </svg>
       </div>
     : React.createElement(Tag, {
-        style: assign({}, this.context.styles.components.heading["h" + this.props.size], this.getStyles())
+        style: [this.context.styles.components.heading["h" + this.props.size], this.getStyles()]
       }, this.props.children)
   }
 }

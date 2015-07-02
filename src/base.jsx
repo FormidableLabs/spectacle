@@ -8,19 +8,19 @@ class Base extends React.Component {
   getStyles() {
     let styles = {};
     if (this.props.italic) {
-      styles = assign(styles, {fontStyle: 'italic'});
+      styles.fontStyle = 'italic';
     }
     if (this.props.bold) {
-      styles = assign(styles, {fontWeight: 'bold'});
+      styles.fontWeight = 'bold';
     }
     if (this.props.caps) {
-      styles = assign(styles, {textTransform: 'uppercase'});
+      styles.textTransform = 'uppercase';
     }
     if (this.props.margin) {
-      styles = assign(styles, {margin: this.props.margin});
+      styles.margin = this.props.margin;
     }
     if (this.props.padding) {
-      styles = assign(styles, {margin: this.props.padding});
+      styles.padding = this.props.padding;
     }
     if (this.props.textColor) {
       let color = "";
@@ -29,16 +29,22 @@ class Base extends React.Component {
       } else {
         color = this.context.styles.colors[this.props.textColor]
       }
-      styles = assign(styles, {color: color});
+      styles.color = color;
     }
     if (this.props.textFont) {
-      styles = assign(styles, {fontFamily: this.context.styles.fonts[this.props.textFont]});
+      let font = "";
+      if (!this.context.styles.fonts.hasOwnProperty(this.props.textFont)) {
+        font = this.props.textFont
+      } else {
+        font = this.context.styles.fonts[this.props.textFont]
+      }
+      styles.fontFamily = font;
     }
     if (this.props.textSize) {
-      styles = assign(styles, {fontSize: this.props.textSize});
+      styles.fontSize = this.props.textSize;
     }
     if (this.props.textAlign) {
-      styles = assign(styles, {textAlign: this.props.textAlign});
+      styles.textAlign = this.props.textAlign;
     }
     if (this.props.bgColor) {
       let color = "";
@@ -47,14 +53,14 @@ class Base extends React.Component {
       } else {
         color = this.context.styles.colors[this.props.bgColor]
       }
-      styles = assign(styles, {backgroundColor: color});
+      styles.backgroundColor = color;
     }
     if (this.props.bgImage) {
-      styles = assign(styles, {backgroundImage:
+      styles.backgroundImage =
         'linear-gradient( rgba(0, 0, 0, ' + this.props.bgDarken +
           '), rgba(0, 0, 0, ' + this.props.bgDarken +
-          ') ), url(' + this.props.bgImage + ')'});
-      styles = assign(styles, {backgroundSize: 'cover'});
+          ') ), url(' + this.props.bgImage + ')';
+      styles.backgroundSize = 'cover';
     }
     return styles;
   }
@@ -79,19 +85,19 @@ Base.Mixin = {
   getStyles() {
     let styles = {};
     if (this.props.italic) {
-      styles = assign(styles, {fontStyle: 'italic'});
+      styles.fontStyle = 'italic';
     }
     if (this.props.bold) {
-      styles = assign(styles, {fontWeight: 'bold'});
+      styles.fontWeight = 'bold';
     }
     if (this.props.caps) {
-      styles = assign(styles, {textTransform: 'uppercase'});
+      styles.textTransform = 'uppercase';
     }
     if (this.props.margin) {
-      styles = assign(styles, {margin: this.props.margin});
+      styles.margin = this.props.margin;
     }
     if (this.props.padding) {
-      styles = assign(styles, {margin: this.props.padding});
+      styles.padding = this.props.padding;
     }
     if (this.props.textColor) {
       let color = "";
@@ -100,16 +106,22 @@ Base.Mixin = {
       } else {
         color = this.context.styles.colors[this.props.textColor]
       }
-      styles = assign(styles, {color: color});
+      styles.color = color;
     }
     if (this.props.textFont) {
-      styles = assign(styles, {fontFamily: this.context.styles.fonts[this.props.textFont]});
+      let font = "";
+      if (!this.context.styles.fonts.hasOwnProperty(this.props.textFont)) {
+        font = this.props.textFont
+      } else {
+        font = this.context.styles.colors[this.props.textFont]
+      }
+      styles.fontFamily = font;
     }
     if (this.props.textSize) {
-      styles = assign(styles, {fontSize: this.props.textSize});
+      styles.fontSize = this.props.textSize;
     }
     if (this.props.textAlign) {
-      styles = assign(styles, {textAlign: this.props.textAlign});
+      styles.textAlign = this.props.textAlign;
     }
     if (this.props.bgColor) {
       let color = "";
@@ -118,14 +130,14 @@ Base.Mixin = {
       } else {
         color = this.context.styles.colors[this.props.bgColor]
       }
-      styles = assign(styles, {backgroundColor: color});
+      styles.backgroundColor = color;
     }
     if (this.props.bgImage) {
-      styles = assign(styles, {backgroundImage:
+      styles.backgroundImage =
         'linear-gradient( rgba(0, 0, 0, ' + this.props.bgDarken +
           '), rgba(0, 0, 0, ' + this.props.bgDarken +
-          ') ), url(' + this.props.bgImage + ')'});
-      styles = assign(styles, {backgroundSize: 'cover'});
+          ') ), url(' + this.props.bgImage + ')';
+      styles.backgroundSize = 'cover';
     }
     return styles;
   }

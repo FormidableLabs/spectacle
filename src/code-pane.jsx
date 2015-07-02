@@ -2,7 +2,9 @@ import React from 'react/addons';
 import assign from 'object-assign';
 import highlight from 'highlight.js';
 import Base from './base';
+import Radium from 'radium';
 
+@Radium
 class CodePane extends Base {
   createMarkup() {
     let markup = highlight.highlight(this.props.lang, this.props.source);
@@ -12,10 +14,10 @@ class CodePane extends Base {
   }
   render() {
     return (
-      <pre style={assign({}, this.context.styles.components.codePane.pre, this.getStyles())}>
+      <pre style={[this.context.styles.components.codePane.pre, this.getStyles()]}>
         <code
           className="hljs"
-          style={assign({}, this.context.styles.components.codePane.code)}
+          style={this.context.styles.components.codePane.code}
           dangerouslySetInnerHTML={this.createMarkup()}/>
       </pre>
     )

@@ -1,11 +1,13 @@
 import React from 'react/addons';
 import assign from 'object-assign';
 import Base from './base';
+import Radium from 'radium';
 
+@Radium
 class Code extends Base {
   render() {
     return (
-      <code style={assign({}, this.context.styles.components.code, this.getStyles())}>
+      <code style={[this.context.styles.components.code, this.getStyles()]}>
         {this.props.children}
       </code>
     )

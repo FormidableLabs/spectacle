@@ -1,6 +1,8 @@
 import React from 'react/addons';
 import assign from 'object-assign';
+import Radium from 'radium';
 
+@Radium
 class S extends React.Component {
   render() {
     let styles = {};
@@ -17,7 +19,7 @@ class S extends React.Component {
       styles = assign(styles, {fontStyle: 'italic'});
     }
     return (
-      <span style={assign({}, styles, this.context.styles.components.s[this.props.type])}>
+      <span style={[styles, this.context.styles.components.s[this.props.type]]}>
         {this.props.children}
       </span>
     )

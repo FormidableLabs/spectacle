@@ -67,12 +67,12 @@ export default class extends React.Component {
           <Heading caps fit>Flexible Layouts</Heading>
           <Layout>
             <Fill>
-              <Heading size={4} caps textColor="black" bgColor="white" padding={10}>
+              <Heading size={4} caps textColor="black" bgColor="white" margin={10}>
                 Left
               </Heading>
             </Fill>
             <Fill>
-              <Heading size={4} caps textColor="black" bgColor="white" padding={10}>
+              <Heading size={4} caps textColor="black" bgColor="white" margin={10}>
                 Right
               </Heading>
             </Fill>

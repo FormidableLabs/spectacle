@@ -1,11 +1,13 @@
 import React from 'react/addons';
 import assign from 'object-assign';
 import Base from './base';
+import Radium from 'radium';
 
+@Radium
 class BlockQuote extends Base {
   render() {
     return (
-      <blockquote style={assign({}, this.context.styles.components.blockquote, this.getStyles())}>
+      <blockquote style={[this.context.styles.components.blockquote, this.getStyles()]}>
         {this.props.children}
       </blockquote>
     )
