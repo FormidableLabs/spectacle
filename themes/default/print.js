@@ -53,7 +53,8 @@ module.exports = {
       marginTop: '1em'
     },
     content: {
-      margin: 'auto'
+      margin: 'auto',
+      textAlign: 'center'
     },
     codePane: {
       pre: {
