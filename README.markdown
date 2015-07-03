@@ -166,7 +166,7 @@ The slide tag represents each slide in the presentation. It supports the followi
 
 |Name|PropType|Description|
 |---|---|---|
-|align| React.PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `left`, `center`, or `right`. The second value can be `top`, `middle`, or `bottom`. You would provide this prop like `align="center middle"`, which is it's default.
+|align| React.PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (bottom). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center middle"`, which is it's default.
 |transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition.|
 |transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
 

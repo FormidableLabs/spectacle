@@ -21,7 +21,10 @@ module.exports = {
       fontSize: '2em',
       color: colors.secondary,
       overflow: 'hidden'
-    }
+    },
+    '*': {
+      boxSizing: 'border-box'
+    },
   },
   components: {
     blockquote: {
@@ -46,15 +49,17 @@ module.exports = {
       marginTop: '1em'
     },
     content: {
-      margin: 'auto'
+      margin: 'auto',
+      textAlign: 'center'
     },
     codePane: {
       pre: {
-        maxWidth: 800,
         margin: 'auto',
-        fontSize: '1.5em',
+        fontSize: '1em',
         fontWeight: 'normal',
-        fontFamily: fonts.tertiary
+        fontFamily: fonts.tertiary,
+        minWidth: '100%',
+        maxWidth: 800,
       },
       code: {
         textAlign: 'left',

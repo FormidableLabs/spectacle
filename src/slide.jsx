@@ -52,16 +52,17 @@ const Slide = React.createClass({
         left: 0,
         width: '100%',
         height: '100%',
-        display: 'table',
-        tableLayout: 'fixed'
+        display: 'flex'
       },
       inner: {
-        display: 'table-cell',
-        textAlign: this.props.align ? this.props.align.split(' ')[0] : 'center',
-        verticalAlign: this.props.align ? this.props.align.split(' ')[1] : 'middle',
+        display: 'flex',
+        flex: 1,
+        alignItems: this.props.align ? this.props.align.split(' ')[1] : 'center',
+        justifyContent: this.props.align ? this.props.align.split(' ')[0] : 'center',
         padding: this.state.zoom > 0.6 ? config.margin : 10
       },
       content: {
+        flex: 1,
         maxWidth: config.width,
         fontSize: 16 * this.state.zoom
       }
