@@ -9,6 +9,18 @@ import Radium from 'radium';
 const Slide = React.createClass({
   displayName: 'Slide',
   mixins: [tweenState.Mixin, Base.Mixin, Transitions],
+  getDefaultProps() {
+    return {
+      align: 'center center',
+      presenterStyle: {},
+      contentScale: React.PropTypes.number
+    }
+  },
+  propTypes: {
+    align: React.PropTypes.string,
+    presenterStyle: React.PropTypes.object,
+    contentScale: 1
+  },
   contextTypes: {
     styles: React.PropTypes.object
   },
@@ -64,12 +76,13 @@ const Slide = React.createClass({
       content: {
         flex: 1,
         maxWidth: config.width,
-        fontSize: 16 * this.state.zoom
+        fontSize: 16 * this.state.zoom,
+        transform: 'scale(' + this.props.contentScale + ')'
       }
     };
     return (
       <div className="spectacle-slide"
-        style={[styles.outer, this.getStyles(), this.getTransitionStyles(), printStyles]}>
+        style={[styles.outer, this.getStyles(), this.getTransitionStyles(), printStyles, this.props.presenterStyle]}>
         <div style={[styles.inner]}>
           <div ref="content"
             style={[styles.content, this.context.styles.components.content]}>

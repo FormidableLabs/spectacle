@@ -22,6 +22,9 @@ module.exports = {
       color: colors.secondary,
       overflow: 'hidden'
     },
+    'html, body': {
+      height: '100%'
+    },
     '*': {
       boxSizing: 'border-box'
     },

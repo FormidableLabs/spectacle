@@ -8,7 +8,7 @@ React.initializeTouchEvents(true);
 
 const Style = Radium.Style;
 
-const TransitionGroup = React.addons.TransitionGroup;
+const TransitionGroup = Radium(React.addons.TransitionGroup);
 
 @Radium
 class Deck extends React.Component {
@@ -16,24 +16,32 @@ class Deck extends React.Component {
     super(props);
     this._handleKeyPress = this._handleKeyPress.bind(this);
     this._handleClick = this._handleClick.bind(this);
+    this._goToSlide = this._goToSlide.bind(this);
     this.state = {
       lastSlide: null
     };
   }
   componentDidMount() {
+    let slide = 'slide' in this.context.router.state.params ?
+      parseInt(this.context.router.state.params.slide) : 0;
     this.setState({
-      lastSlide: 'slide' in this.context.router.state.params ?
-        parseInt(this.context.router.state.params.slide) : 0
+      lastSlide: slide,
+      presenter: this.context.router.state.location.query &&
+        'presenter' in this.context.router.state.location.query
     });
+    localStorage.setItem('spectacle-slide',
+      JSON.stringify({slide: slide, forward: false, time: Date.now()}));
     this._attachEvents();
   }
   componentWillUnmount() {
     this._detachEvents();
   }
   _attachEvents() {
+    window.addEventListener('storage', this._goToSlide);
     window.addEventListener('keydown', this._handleKeyPress);
   }
   _detachEvents() {
+    window.removeEventListener('storage', this._goToSlide);
     window.removeEventListener('keydown', this._handleKeyPress);
   }
   _handleKeyPress(e) {
@@ -41,27 +49,56 @@ class Deck extends React.Component {
     event.keyCode === 37 && this._prevSlide();
     event.keyCode === 39 && this._nextSlide();
   }
+  _goToSlide(e) {
+    if(e.key === 'spectacle-slide') {
+      let data = JSON.parse(e.newValue);
+      let slide = 'slide' in this.context.router.state.params ?
+        parseInt(this.context.router.state.params.slide) : 0;
+      this.setState({
+        lastSlide: slide || 0
+      });
+      if(this._checkFragments(slide, data.forward)) {
+        this.context.router.replaceWith('/' + (data.slide));
+      }
+    }
+  }
   _prevSlide() {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
+    let presenter = this.state.presenter ? '?presenter' : '';
     this.setState({
       lastSlide: slide
     });
     if (this._checkFragments(slide, false)) {
       if (slide > 0) {
-        this.context.router.replaceWith('/' + (slide - 1));
+        this.context.router.replaceWith('/' + (slide - 1) + presenter);
+        localStorage.setItem('spectacle-slide',
+          JSON.stringify({slide: slide - 1, forward: false, time: Date.now()}));
+      }
+    } else {
+      if (slide > 0) {
+        localStorage.setItem('spectacle-slide',
+          JSON.stringify({slide: slide, forward: false, time: Date.now()}));
       }
     }
   }
   _nextSlide() {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
+    let presenter = this.state.presenter ? '?presenter' : '';
     this.setState({
       lastSlide: slide
     });
     if(this._checkFragments(slide, true)) {
       if (slide < this.props.children.length - 1) {
-        this.context.router.replaceWith('/' + (slide + 1));
+        this.context.router.replaceWith('/' + (slide + 1) + presenter);
+        localStorage.setItem('spectacle-slide',
+          JSON.stringify({slide: slide + 1, forward: true, time: Date.now()}));
+      }
+    } else {
+      if (slide < this.props.children.length - 1) {
+        localStorage.setItem('spectacle-slide',
+          JSON.stringify({slide: slide, forward: true, time: Date.now()}));
       }
     }
   }
@@ -186,7 +223,31 @@ class Deck extends React.Component {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
     let child = this.props.children[slide];
-    if (this.context.router.state.location.query &&
+    if (this.state.presenter) {
+      return this.props.children.map((child, index) => {
+        if(index >= slide - 1 && index <= slide + 1) {
+          let presenterStyle = {
+            border: slide !== index ? '5px solid transparent' : '5px solid red',
+            width: '33%',
+            height: '50%',
+            position: '',
+            top: '',
+            left: '',
+            flex: 1,
+            zoom: 0.5
+          }
+          return cloneWithProps(child, {
+            key: index,
+            presenterStyle: presenterStyle,
+            contentScale: 0.5,
+            slideIndex: slide,
+            lastSlide: this.state.lastSlide,
+            transition: [],
+            transitionDuration: 0
+          });
+        }
+      });
+    } else if (this.context.router.state.location.query &&
         'export' in this.context.router.state.location.query) {
       return this.props.children.map((child, index) => {
         return cloneWithProps(child, {
@@ -232,22 +293,31 @@ class Deck extends React.Component {
     } : {};
 
     let styles = {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      perspective: 1000,
-      transformStyle: 'preserve-3d'
+      deck: {
+        backgroundColor: this.state.presenter ? 'black' : '',
+        display: 'flex',
+        width: '100%',
+        height: '100%',
+        perspective: 1000,
+        transformStyle: 'preserve-3d'
+      },
+      transition: {
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+      }
     };
 
     return (
       <div
         className="spectacle-deck"
-        style={[styles]}
+        style={[styles.deck]}
         onClick={this._handleClick}
         {...this._getTouchEvents()}>
-        <TransitionGroup component="div" style={{height: '100%'}}>
+        <TransitionGroup component="div" style={[styles.transition]}>
           {this._renderSlide()}
         </TransitionGroup>
         <Style rules={assign(this.context.styles.global, globals)} />
