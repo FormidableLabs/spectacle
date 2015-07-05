@@ -4,6 +4,8 @@ import cloneWithProps from 'react/lib/cloneWithProps';
 import Radium from 'radium';
 import _ from 'lodash';
 
+import Presenter from './presenter';
+
 React.initializeTouchEvents(true);
 
 const Style = Radium.Style;
@@ -25,9 +27,7 @@ class Deck extends React.Component {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
     this.setState({
-      lastSlide: slide,
-      presenter: this.context.router.state.location.query &&
-        'presenter' in this.context.router.state.location.query
+      lastSlide: slide
     });
     localStorage.setItem('spectacle-slide',
       JSON.stringify({slide: slide, forward: false, time: Date.now()}));
@@ -52,20 +52,21 @@ class Deck extends React.Component {
   _goToSlide(e) {
     if(e.key === 'spectacle-slide') {
       let data = JSON.parse(e.newValue);
+      let presenter = this.context.presenter ? '?presenter' : '';
       let slide = 'slide' in this.context.router.state.params ?
         parseInt(this.context.router.state.params.slide) : 0;
       this.setState({
         lastSlide: slide || 0
       });
       if(this._checkFragments(slide, data.forward)) {
-        this.context.router.replaceWith('/' + (data.slide));
+        this.context.router.replaceWith('/' + (data.slide) + presenter);
       }
     }
   }
   _prevSlide() {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
-    let presenter = this.state.presenter ? '?presenter' : '';
+    let presenter = this.context.presenter ? '?presenter' : '';
     this.setState({
       lastSlide: slide
     });
@@ -85,7 +86,7 @@ class Deck extends React.Component {
   _nextSlide() {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
-    let presenter = this.state.presenter ? '?presenter' : '';
+    let presenter = this.context.presenter ? '?presenter' : '';
     this.setState({
       lastSlide: slide
     });
@@ -105,6 +106,18 @@ class Deck extends React.Component {
   _checkFragments(slide, forward) {
     let store = this.context.flux.stores.SlideStore;
     let fragments = store.getState().fragments;
+    // Not proud of this at all. 0.14 Parent based contexts will fix this.
+    if(this.context.presenter) {
+      let main = document.querySelector('.spectacle-presenter-main');
+      if (main) {
+        let fragments = main.querySelectorAll('.appear');
+        if (!fragments.length) {
+          return true;
+        }
+      } else {
+        return true;
+      }
+    }
     if (slide in fragments) {
       let count = _.size(fragments[slide]);
       let visible = _.filter(fragments[slide], function(s){
@@ -223,31 +236,7 @@ class Deck extends React.Component {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
     let child = this.props.children[slide];
-    if (this.state.presenter) {
-      return this.props.children.map((child, index) => {
-        if(index >= slide - 1 && index <= slide + 1) {
-          let presenterStyle = {
-            border: slide !== index ? '5px solid transparent' : '5px solid red',
-            width: '33%',
-            height: '50%',
-            position: '',
-            top: '',
-            left: '',
-            flex: 1,
-            zoom: 0.5
-          }
-          return cloneWithProps(child, {
-            key: index,
-            presenterStyle: presenterStyle,
-            contentScale: 0.5,
-            slideIndex: slide,
-            lastSlide: this.state.lastSlide,
-            transition: [],
-            transitionDuration: 0
-          });
-        }
-      });
-    } else if (this.context.router.state.location.query &&
+    if (this.context.router.state.location.query &&
         'export' in this.context.router.state.location.query) {
       return this.props.children.map((child, index) => {
         return cloneWithProps(child, {
@@ -284,6 +273,9 @@ class Deck extends React.Component {
       exportMode = true;
     }
 
+    let slide ='slide' in this.context.router.state.params ?
+      parseInt(this.context.router.state.params.slide) : 0;
+
     let globals = exportMode ? {
       body: {
         minWidth: 1100,
@@ -294,8 +286,10 @@ class Deck extends React.Component {
 
     let styles = {
       deck: {
-        backgroundColor: this.state.presenter ? 'black' : '',
-        display: 'flex',
+        backgroundColor: this.context.presenter ? 'black' : '',
+        position: 'absolute',
+        top: 0,
+        left: 0,
         width: '100%',
         height: '100%',
         perspective: 1000,
@@ -303,11 +297,7 @@ class Deck extends React.Component {
       },
       transition: {
         height: '100%',
-        width: '100%',
-        display: 'flex',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        width: '100%'
       }
     };
 
@@ -317,9 +307,12 @@ class Deck extends React.Component {
         style={[styles.deck]}
         onClick={this._handleClick}
         {...this._getTouchEvents()}>
-        <TransitionGroup component="div" style={[styles.transition]}>
-          {this._renderSlide()}
-        </TransitionGroup>
+        {this.context.presenter ?
+          <Presenter slides={this.props.children}
+            slide={slide} lastSlide={this.state.lastSlide}/> :
+          <TransitionGroup component="div" style={[styles.transition]}>
+            {this._renderSlide()}
+          </TransitionGroup>}
         <Style rules={assign(this.context.styles.global, globals)} />
       </div>
     )
@@ -335,7 +328,8 @@ Deck.defaultProps = {
 Deck.contextTypes = {
   styles: React.PropTypes.object,
   router: React.PropTypes.object,
-  flux: React.PropTypes.object
+  flux: React.PropTypes.object,
+  presenter: React.PropTypes.bool
 };
 
 export default Deck;
