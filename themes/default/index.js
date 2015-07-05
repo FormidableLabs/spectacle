@@ -8,7 +8,7 @@ var fonts = {
   primary: 'Open Sans Condensed',
   secondary: 'Lobster Two',
   tertiary: 'monospace'
-}
+};
 
 module.exports = {
   colors: colors,
@@ -24,7 +24,52 @@ module.exports = {
     },
     '*': {
       boxSizing: 'border-box'
+    }
+  },
+  progress: {
+    container: {
+      position: 'absolute',
+      bottom: '5px',
+      left: '50%',
+      transition: 'all 1s ease-in-out 0.2s',
+      zIndex: 1000
     },
+    pacman: {
+      position: 'absolute',
+      transition: 'left 0.3s ease-in-out 0.2s',
+      width: '20px',
+      height: '20px',
+      transform: 'translate(-5px, -5px)'
+    },
+    pacmanTop: {
+      position: 'absolute',
+      content: ' ',
+      width: '20px',
+      height: '10px',
+      borderTopLeftRadius: '10px',
+      borderTopRightRadius: '10px',
+      background: colors.tertiary
+    },
+    pacmanBottom: {
+      position: 'absolute',
+      content: ' ',
+      width: '20px',
+      height: '10px',
+      borderBottomLeftRadius: '10px',
+      borderBottomRightRadius: '10px',
+      background: colors.tertiary,
+      top: '10px'
+    },
+    point: {
+      position: 'absolute',
+      float: 'left',
+      background: 'transparent',
+      width: '10px',
+      height: '10px',
+      border: '2px solid ' + colors.tertiary,
+      borderRadius: '50%',
+      transition: 'all 0.01s ease-out 0.4s'
+    }
   },
   components: {
     blockquote: {
@@ -39,7 +84,7 @@ module.exports = {
       color: colors.primary,
       fontSize: '4.9em',
       lineHeight: 1,
-      fontWeight: 'bold',
+      fontWeight: 'bold'
     },
     cite: {
       color: colors.tertiary,
@@ -59,7 +104,7 @@ module.exports = {
         fontWeight: 'normal',
         fontFamily: fonts.tertiary,
         minWidth: '100%',
-        maxWidth: 800,
+        maxWidth: 800
       },
       code: {
         textAlign: 'left',
@@ -73,7 +118,7 @@ module.exports = {
       fontFamily: fonts.tertiary,
       margin: '0.25em auto',
       backgroundColor: 'rgba(0,0,0,0.15)',
-      padding: "0 10px",
+      padding: '0 10px',
       borderRadius: 3
     },
     heading: {
@@ -151,4 +196,4 @@ module.exports = {
       margin: '0.25em auto'
     }
   }
-}
+};

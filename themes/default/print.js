@@ -8,7 +8,7 @@ var fonts = {
   primary: 'Open Sans Condensed',
   secondary: 'Lobster Two',
   tertiary: 'monospace'
-}
+};
 
 module.exports = {
   colors: colors,
@@ -43,7 +43,7 @@ module.exports = {
       color: 'black',
       fontSize: '4.9em',
       lineHeight: 1,
-      fontWeight: 'bold',
+      fontWeight: 'bold'
     },
     cite: {
       color: 'black',
@@ -75,7 +75,7 @@ module.exports = {
       fontFamily: fonts.tertiary,
       margin: '0.25em auto',
       backgroundColor: 'rgba(0,0,0,0.15)',
-      padding: "0 10px",
+      padding: '0 10px',
       borderRadius: 3
     },
     heading: {
@@ -153,4 +153,4 @@ module.exports = {
       margin: '0.25em auto'
     }
   }
-}
+};
