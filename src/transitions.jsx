@@ -58,7 +58,7 @@ export default {
     let direction = this.props.slideIndex > this.props.lastSlide;
 
     this.setState({
-      z: 200
+      z: 100
     });
 
     if(this.props.transition.indexOf('fade') !== -1) {
@@ -102,6 +102,10 @@ export default {
   },
   componentWillAppear(cb) {
 
+    this.setState({
+      z: 100
+    });
+
     if(this.props.transition.indexOf('fade') !== -1) {
       this.setState({
         opacity: 1
@@ -133,6 +137,10 @@ export default {
 
     let slide = parseInt(this.context.router.state.params.slide) || 0;
     let direction = this.props.slideIndex > slide;
+
+    this.setState({
+      z: 0
+    });
 
     if(this.props.transition.indexOf('fade') !== -1) {
       this.tweenState('opacity', {
@@ -166,10 +174,6 @@ export default {
       });
     }
 
-    this.setState({
-      z: 100
-    });
-
     this.routerCallback(cb);
   },
   getTransitionStyles() {
@@ -186,7 +190,7 @@ export default {
       transformValue += ' scale(' + this.getTweeningValue('scale') + ')';
     }
     if(this.props.transition.indexOf('slide') !== -1) {
-      transformValue += ' translate3d(' + this.getTweeningValue('left') + "%, 0, 0)"
+      transformValue += ' translate3d(' + this.getTweeningValue('left') + '%, 0, 0)';
     }
     if(this.props.transition.indexOf('spin') !== -1) {
       transformValue += ' rotateY(' + this.getTweeningValue('x') + 'deg)';
