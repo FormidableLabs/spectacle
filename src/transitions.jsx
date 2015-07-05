@@ -22,13 +22,13 @@ export default {
 
     if(this.props.transition.indexOf('fade') !== -1) {
       state = assign(state, {
-        opacity: 0
+        opacity: 1
       });
     }
 
     if(this.props.transition.indexOf('zoom') !== -1) {
       state = assign(state, {
-        scale: 0.1
+        scale: 1
       });
     }
 
@@ -57,10 +57,15 @@ export default {
     let slide = parseInt(this.context.router.state.params.slide) || 0;
     let direction = this.props.slideIndex > this.props.lastSlide;
 
+    this.setState({
+      z: 100
+    });
+
     if(this.props.transition.indexOf('fade') !== -1) {
       this.tweenState('opacity', {
         easing: tweenState.easingTypes.easeInOutQuad,
         duration: this.props.transitionDuration,
+        beginValue: 0,
         endValue: 1
       });
     }
@@ -69,6 +74,7 @@ export default {
       this.tweenState('scale', {
         easing: tweenState.easingTypes.easeInOutQuad,
         duration: this.props.transitionDuration,
+        beginValue: 0,
         endValue: 1
       });
     }
@@ -91,14 +97,14 @@ export default {
       });
     }
 
-    this.setState({
-      z: 200
-    });
-
     this.routerCallback(cb);
 
   },
   componentWillAppear(cb) {
+
+    this.setState({
+      z: 100
+    });
 
     if(this.props.transition.indexOf('fade') !== -1) {
       this.setState({
@@ -132,6 +138,10 @@ export default {
     let slide = parseInt(this.context.router.state.params.slide) || 0;
     let direction = this.props.slideIndex > slide;
 
+    this.setState({
+      z: 0
+    });
+
     if(this.props.transition.indexOf('fade') !== -1) {
       this.tweenState('opacity', {
         easing: tweenState.easingTypes.easeInOutQuad,
@@ -144,7 +154,7 @@ export default {
       this.tweenState('scale', {
         easing: tweenState.easingTypes.easeInOutQuad,
         duration: this.props.transitionDuration,
-        endValue: 0.1
+        endValue: 0
       });
     }
 
@@ -164,10 +174,6 @@ export default {
       });
     }
 
-    this.setState({
-      z: 100
-    });
-
     this.routerCallback(cb);
   },
   getTransitionStyles() {
@@ -184,7 +190,7 @@ export default {
       transformValue += ' scale(' + this.getTweeningValue('scale') + ')';
     }
     if(this.props.transition.indexOf('slide') !== -1) {
-      transformValue += ' translate3d(' + this.getTweeningValue('left') + "%, 0, 0)"
+      transformValue += ' translate3d(' + this.getTweeningValue('left') + '%, 0, 0)';
     }
     if(this.props.transition.indexOf('spin') !== -1) {
       transformValue += ' rotateY(' + this.getTweeningValue('x') + 'deg)';

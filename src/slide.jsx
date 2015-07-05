@@ -9,23 +9,37 @@ import Radium from 'radium';
 const Slide = React.createClass({
   displayName: 'Slide',
   mixins: [tweenState.Mixin, Base.Mixin, Transitions],
+  getDefaultProps() {
+    return {
+      align: 'center center',
+      presenterStyle: {}
+    }
+  },
+  propTypes: {
+    align: React.PropTypes.string,
+    presenterStyle: React.PropTypes.object
+  },
   contextTypes: {
     styles: React.PropTypes.object
   },
   getInitialState() {
     return {
-      zoom: 1
+      zoom: 1,
+      contentScale: 1
     }
   },
   setZoom() {
     let content = React.findDOMNode(this.refs.content);
     let zoom = (content.offsetWidth / config.width);
+    let contentScale = (content.parentNode.offsetHeight / config.height);
     this.setState({
-      zoom: zoom > 0.6 ? zoom : 0.6
+      zoom: zoom > 0.6 ? zoom : 0.6,
+      contentScale: contentScale < 1 ? contentScale : 1
     });
   },
   componentDidMount() {
     this.setZoom();
+    window.addEventListener('load', this.setZoom);
     window.addEventListener('resize', this.setZoom);
   },
   componentWillUnmount() {
@@ -56,22 +70,29 @@ const Slide = React.createClass({
       },
       inner: {
         display: 'flex',
+        position: 'relative',
         flex: 1,
         alignItems: this.props.align ? this.props.align.split(' ')[1] : 'center',
-        justifyContent: this.props.align ? this.props.align.split(' ')[0] : 'center',
-        padding: this.state.zoom > 0.6 ? config.margin : 10
+        justifyContent: this.props.align ? this.props.align.split(' ')[0] : 'center'
       },
       content: {
         flex: 1,
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        width: '100%',
         maxWidth: config.width,
-        fontSize: 16 * this.state.zoom
+        fontSize: 16 * this.state.zoom,
+        transform: ' translate(-50%,-50%) scale(' + this.state.contentScale + ')',
+        padding: this.state.zoom > 0.6 ? config.margin : 10
       }
     };
     return (
       <div className="spectacle-slide"
-        style={[styles.outer, this.getStyles(), this.getTransitionStyles(), printStyles]}>
+        style={[styles.outer, this.getStyles(), this.getTransitionStyles(), printStyles, this.props.presenterStyle]}>
         <div style={[styles.inner]}>
           <div ref="content"
+            className="spectacle-content"
             style={[styles.content, this.context.styles.components.content]}>
             {this.props.children}
           </div>

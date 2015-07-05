@@ -4,12 +4,14 @@ import cloneWithProps from 'react/lib/cloneWithProps';
 import Radium from 'radium';
 import _ from 'lodash';
 
+import Presenter from './presenter';
+
 React.initializeTouchEvents(true);
 
 const Style = Radium.Style;
 
-const TransitionGroup = React.addons.TransitionGroup;
 import Progress from './progress';
+const TransitionGroup = Radium(React.addons.TransitionGroup);
 
 @Radium
 class Deck extends React.Component {
@@ -17,24 +19,30 @@ class Deck extends React.Component {
     super(props);
     this._handleKeyPress = this._handleKeyPress.bind(this);
     this._handleClick = this._handleClick.bind(this);
+    this._goToSlide = this._goToSlide.bind(this);
     this.state = {
       lastSlide: null
     };
   }
   componentDidMount() {
+    let slide = 'slide' in this.context.router.state.params ?
+      parseInt(this.context.router.state.params.slide) : 0;
     this.setState({
-      lastSlide: 'slide' in this.context.router.state.params ?
-        parseInt(this.context.router.state.params.slide) : 0
+      lastSlide: slide
     });
+    localStorage.setItem('spectacle-slide',
+      JSON.stringify({slide: slide, forward: false, time: Date.now()}));
     this._attachEvents();
   }
   componentWillUnmount() {
     this._detachEvents();
   }
   _attachEvents() {
+    window.addEventListener('storage', this._goToSlide);
     window.addEventListener('keydown', this._handleKeyPress);
   }
   _detachEvents() {
+    window.removeEventListener('storage', this._goToSlide);
     window.removeEventListener('keydown', this._handleKeyPress);
   }
   _handleKeyPress(e) {
@@ -42,33 +50,75 @@ class Deck extends React.Component {
     event.keyCode === 37 && this._prevSlide();
     event.keyCode === 39 && this._nextSlide();
   }
+  _goToSlide(e) {
+    if(e.key === 'spectacle-slide') {
+      let data = JSON.parse(e.newValue);
+      let presenter = this.context.presenter ? '?presenter' : '';
+      let slide = 'slide' in this.context.router.state.params ?
+        parseInt(this.context.router.state.params.slide) : 0;
+      this.setState({
+        lastSlide: slide || 0
+      });
+      if(this._checkFragments(slide, data.forward)) {
+        this.context.router.replaceWith('/' + (data.slide) + presenter);
+      }
+    }
+  }
   _prevSlide() {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
+    let presenter = this.context.presenter ? '?presenter' : '';
     this.setState({
       lastSlide: slide
     });
     if (this._checkFragments(slide, false)) {
       if (slide > 0) {
-        this.context.router.replaceWith('/' + (slide - 1));
+        this.context.router.replaceWith('/' + (slide - 1) + presenter);
+        localStorage.setItem('spectacle-slide',
+          JSON.stringify({slide: slide - 1, forward: false, time: Date.now()}));
+      }
+    } else {
+      if (slide > 0) {
+        localStorage.setItem('spectacle-slide',
+          JSON.stringify({slide: slide, forward: false, time: Date.now()}));
       }
     }
   }
   _nextSlide() {
     let slide = 'slide' in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
+    let presenter = this.context.presenter ? '?presenter' : '';
     this.setState({
       lastSlide: slide
     });
     if(this._checkFragments(slide, true)) {
       if (slide < this.props.children.length - 1) {
-        this.context.router.replaceWith('/' + (slide + 1));
+        this.context.router.replaceWith('/' + (slide + 1) + presenter);
+        localStorage.setItem('spectacle-slide',
+          JSON.stringify({slide: slide + 1, forward: true, time: Date.now()}));
+      }
+    } else {
+      if (slide < this.props.children.length - 1) {
+        localStorage.setItem('spectacle-slide',
+          JSON.stringify({slide: slide, forward: true, time: Date.now()}));
       }
     }
   }
   _checkFragments(slide, forward) {
     let store = this.context.flux.stores.SlideStore;
     let fragments = store.getState().fragments;
+    // Not proud of this at all. 0.14 Parent based contexts will fix this.
+    if(this.context.presenter) {
+      let main = document.querySelector('.spectacle-presenter-main');
+      if (main) {
+        let fragments = main.querySelectorAll('.appear');
+        if (!fragments.length) {
+          return true;
+        }
+      } else {
+        return true;
+      }
+    }
     if (slide in fragments) {
       let count = _.size(fragments[slide]);
       let visible = _.filter(fragments[slide], function(s){
@@ -226,6 +276,9 @@ class Deck extends React.Component {
       showProgress = false;
     }
 
+    let slide ='slide' in this.context.router.state.params ?
+      parseInt(this.context.router.state.params.slide) : 0;
+
     let globals = exportMode ? {
       body: {
         minWidth: 1100,
@@ -235,13 +288,20 @@ class Deck extends React.Component {
     } : {};
 
     let styles = {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      perspective: 1000,
-      transformStyle: 'preserve-3d'
+      deck: {
+        backgroundColor: this.context.presenter ? 'black' : '',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        perspective: 1000,
+        transformStyle: 'preserve-3d'
+      },
+      transition: {
+        height: '100%',
+        width: '100%'
+      }
     };
 
     let currentSlide = 'slide' in this.context.router.state.params ?
@@ -251,12 +311,15 @@ class Deck extends React.Component {
     return (
       <div
         className="spectacle-deck"
-        style={[styles]}
+        style={[styles.deck]}
         onClick={this._handleClick}
         {...this._getTouchEvents()}>
-        <TransitionGroup component="div" style={{height: '100%'}}>
-          {this._renderSlide()}
-        </TransitionGroup>
+        {this.context.presenter ?
+          <Presenter slides={this.props.children}
+            slide={slide} lastSlide={this.state.lastSlide}/> :
+          <TransitionGroup component="div" style={[styles.transition]}>
+            {this._renderSlide()}
+          </TransitionGroup>}
         {showProgress ? <Progress items={slides} currentSlide={currentSlide} /> : ''}
         <Style rules={assign(this.context.styles.global, globals)} />
       </div>
@@ -274,7 +337,8 @@ Deck.defaultProps = {
 Deck.contextTypes = {
   styles: React.PropTypes.object,
   router: React.PropTypes.object,
-  flux: React.PropTypes.object
+  flux: React.PropTypes.object,
+  presenter: React.PropTypes.bool
 };
 
 export default Deck;

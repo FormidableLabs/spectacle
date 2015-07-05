@@ -45,8 +45,6 @@ class Progress extends Base {
 
   getPacmanStyle(side) {
     let animationName = 'pacman' + side + 'Frames' + (this.props.currentSlide % 2 ? '' : 'Bis');
-    console.log(animationName);
-    console.log(animations)
     return {
       animation: animations[animationName] + ' 0.12s linear 10 alternate both'
     }
