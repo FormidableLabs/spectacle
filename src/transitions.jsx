@@ -1,118 +1,87 @@
 import React from 'react/addons';
 import assign from 'object-assign';
-import tweenState from 'react-tween-state';
+import Base from './base';
 
-export default {
-  propTypes: {
-    transition: React.PropTypes.array,
-    transitionDuration: React.PropTypes.number
-  },
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-  getDefaultProps() {
-    return {
-      transition: []
-    }
-  },
-  getInitialState() {
-    let state = {
-      z: 1
-    };
+class BaseWithTransition extends Base {
+  constructor(props) {
+    super(props);
 
-    if(this.props.transition.indexOf('fade') !== -1) {
-      state.opacity = 1;
+    let direction = this.props.slideIndex > this.props.lastSlide;
+    let state = {};
+
+    if (this.props.transition.indexOf('fade') !== -1) {
+      state.opacity = 0;
     }
 
-    if(this.props.transition.indexOf('zoom') !== -1) {
-      state.scale = 1
+    if (this.props.transition.indexOf('zoom') !== -1) {
+      state.scale = 0;
     }
 
-    if(this.props.transition.indexOf('slide') !== -1) {
-      state.left = 0;
+    if (this.props.transition.indexOf('slide') !== -1) {
+      state.left = direction ? 100 : -100;
     }
 
-    if(this.props.transition.indexOf('spin') !== -1) {
-      state.x = 0;
+    if (this.props.transition.indexOf('spin') !== -1) {
+      state.x = direction ? 90 : -90;
     }
 
-    return state;
-  },
+    this.state = state;
+
+    this.routerCallback = this.routerCallback.bind(this);
+    this.componentWillAppear = this.componentWillAppear.bind(this);
+    this.componentWillLeave = this.componentWillLeave.bind(this);
+    this.getTransitionStyles = this.getTransitionStyles.bind(this);
+  }
+
   routerCallback(cb, immediate) {
-    if (this.props.transition.length > 0 && immediate !== true) {
-      setTimeout(cb,this.props.transitionDuration)
+    if (this.props.transition.length > 0 && !immediate) {
+      setTimeout(cb, this.props.transitionDuration);
     } else {
       cb();
     }
-  },
+  }
+
   componentWillEnter(cb) {
-    let slide = parseInt(this.context.router.state.params.slide) || 0;
-    let direction = this.props.slideIndex > this.props.lastSlide;
+    let state = {};
 
-    this.setState({
-      z: 1
-    }, ()=> {
-
-      if(this.props.transition.indexOf('fade') !== -1) {
-        this.tweenState('opacity', {
-          easing: tweenState.easingTypes.easeInOutQuad,
-          duration: this.props.transitionDuration,
-          beginValue: 0,
-          endValue: 1
-        });
-      }
-
-      if(this.props.transition.indexOf('zoom') !== -1) {
-        this.tweenState('scale', {
-          easing: tweenState.easingTypes.easeInOutQuad,
-          duration: this.props.transitionDuration,
-          beginValue: 0.1,
-          endValue: 1
-        });
-      }
-
-      if(this.props.transition.indexOf('slide') !== -1) {
-        this.tweenState('left', {
-          easing: tweenState.easingTypes.easeOutQuad,
-          duration: this.props.transitionDuration,
-          beginValue: direction ? 100 : -100,
-          endValue: 0
-        });
-      }
-
-      if(this.props.transition.indexOf('spin') !== -1) {
-        this.tweenState('x', {
-          easing: tweenState.easingTypes.easeOutQuad,
-          duration: this.props.transitionDuration,
-          beginValue: direction ? 90 : -90,
-          endValue: 0
-        });
-      }
-
-    });
-
-    this.routerCallback(cb);
-
-  },
-  componentWillAppear(cb) {
-
-    let state = {
-      z: 1
-    };
-
-    if(this.props.transition.indexOf('fade') !== -1) {
+    if (this.props.transition.indexOf('fade') !== -1) {
       state.opacity = 1;
     }
 
-    if(this.props.transition.indexOf('zoom') !== -1) {
+    if (this.props.transition.indexOf('zoom') !== -1) {
       state.scale = 1;
     }
 
-    if(this.props.transition.indexOf('slide') !== -1) {
+    if (this.props.transition.indexOf('slide') !== -1) {
       state.left = 0;
     }
 
-    if(this.props.transition.indexOf('spin') !== -1) {
+    if (this.props.transition.indexOf('spin') !== -1) {
+      state.x = 0;
+    }
+
+    this.setState(state);
+
+    this.routerCallback(cb);
+
+  }
+
+  componentWillAppear(cb) {
+    let state = {};
+
+    if (this.props.transition.indexOf('fade') !== -1) {
+      state.opacity = 1;
+    }
+
+    if (this.props.transition.indexOf('zoom') !== -1) {
+      state.scale = 1;
+    }
+
+    if (this.props.transition.indexOf('slide') !== -1) {
+      state.left = 0;
+    }
+
+    if (this.props.transition.indexOf('spin') !== -1) {
       state.x = 0;
     }
 
@@ -120,75 +89,81 @@ export default {
 
     this.routerCallback(cb, true);
 
-  },
-  componentWillLeave(cb) {
+  }
 
+  componentWillLeave(cb) {
     let slide = parseInt(this.context.router.state.params.slide) || 0;
     let direction = this.props.slideIndex > slide;
 
-    this.setState({
-      z: ''
-    }, () => {
+    let state = {};
 
-      if(this.props.transition.indexOf('fade') !== -1) {
-        this.tweenState('opacity', {
-          easing: tweenState.easingTypes.easeInOutQuad,
-          duration: this.props.transitionDuration,
-          endValue: 0
-        });
-      }
+    if (this.props.transition.indexOf('fade') !== -1) {
+      state.opacity = 0;
+    }
 
-      if(this.props.transition.indexOf('zoom') !== -1) {
-        this.tweenState('scale', {
-          easing: tweenState.easingTypes.easeInOutQuad,
-          duration: this.props.transitionDuration,
-          endValue: 0.1
-        });
-      }
+    if (this.props.transition.indexOf('zoom') !== -1) {
+      state.scale = 0;
+    }
 
-      if(this.props.transition.indexOf('slide') !== -1) {
-        this.tweenState('left', {
-          easing: tweenState.easingTypes.easeOutQuad,
-          duration: this.props.transitionDuration,
-          endValue: direction ? 100 : -100
-        });
-      }
+    if (this.props.transition.indexOf('slide') !== -1) {
+      state.left = direction ? 100 : -100;
+    }
 
-      if(this.props.transition.indexOf('spin') !== -1) {
-        this.tweenState('x', {
-          easing: tweenState.easingTypes.easeOutQuad,
-          duration: this.props.transitionDuration,
-          endValue: direction ? 90 : -90
-        });
-      }
+    if (this.props.transition.indexOf('spin') !== -1) {
+      state.x = direction ? 90 : -90;
+    }
 
-    });
+    this.setState(state);
 
     this.routerCallback(cb);
 
-  },
+  }
+
   getTransitionStyles() {
-    let transformValue = "";
-    let styles = {
-      zIndex: this.state.z || ''
-    };
-    if(this.props.transition.indexOf('fade') !== -1) {
+    let transformValue = '';
+    let styles = {zIndex: this.props.slideIndex + 1};
+    if (this.props.transition.indexOf('fade') !== -1) {
       styles = assign(styles, {
-        opacity: this.getTweeningValue('opacity')
+        opacity: this.state.opacity
       });
     }
-    if(this.props.transition.indexOf('zoom') !== -1) {
-      transformValue += ' scale(' + this.getTweeningValue('scale') + ')';
+
+    if (this.props.transition.indexOf('zoom') !== -1) {
+      transformValue += ' scale(' + this.state.scale + ')';
     }
-    if(this.props.transition.indexOf('slide') !== -1) {
-      transformValue += ' translate3d(' + this.getTweeningValue('left') + '%, 0, 0)';
+
+    if (this.props.transition.indexOf('slide') !== -1) {
+      transformValue += ' translate3d(' + this.state.left + '%, 0, 0)';
     }
-    if(this.props.transition.indexOf('spin') !== -1) {
-      transformValue += ' rotateY(' + this.getTweeningValue('x') + 'deg)';
+
+    if (this.props.transition.indexOf('spin') !== -1) {
+      transformValue += ' rotateY(' + this.state.x + 'deg)';
     }
+
+    const transitionDuration = this.props.transitionDuration || 300;
+    const transitionDelay = this.props.transitionDelay || 0;
+    const transitionEasing = this.props.transitionEasing || 'cubic-bezier(0.455, 0.030, 0.515, 0.955)';
     styles = assign(styles, {
-      transform: transformValue
+      transform: transformValue,
+      transition: 'all ' + transitionDuration + 'ms ' + transitionEasing + ' ' + transitionDelay + 'ms'
     });
     return styles;
   }
 }
+
+BaseWithTransition.propTypes = assign(Base.propTypes || {}, {
+  transition: React.PropTypes.array,
+  transitionDuration: React.PropTypes.number,
+  transitionDelay: React.PropTypes.number,
+  transitionEasing: React.PropTypes.string
+});
+
+BaseWithTransition.defaultProps = assign(Base.defaultProps || {}, {
+  transition: []
+});
+
+BaseWithTransition.contextTypes = assign(Base.contextTypes || {}, {
+  router: React.PropTypes.object
+});
+
+export default BaseWithTransition;
