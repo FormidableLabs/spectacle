@@ -17,31 +17,23 @@ export default {
   },
   getInitialState() {
     let state = {
-      z: 100
+      z: 1
     };
 
     if(this.props.transition.indexOf('fade') !== -1) {
-      state = assign(state, {
-        opacity: 1
-      });
+      state.opacity = 1;
     }
 
     if(this.props.transition.indexOf('zoom') !== -1) {
-      state = assign(state, {
-        scale: 1
-      });
+      state.scale = 1
     }
 
     if(this.props.transition.indexOf('slide') !== -1) {
-      state = assign(state, {
-        left: 0
-      });
+      state.left = 0;
     }
 
     if(this.props.transition.indexOf('spin') !== -1) {
-      state = assign(state, {
-        x: 0
-      });
+      state.x = 0;
     }
 
     return state;
@@ -58,77 +50,73 @@ export default {
     let direction = this.props.slideIndex > this.props.lastSlide;
 
     this.setState({
-      z: 100
+      z: 1
+    }, ()=> {
+
+      if(this.props.transition.indexOf('fade') !== -1) {
+        this.tweenState('opacity', {
+          easing: tweenState.easingTypes.easeInOutQuad,
+          duration: this.props.transitionDuration,
+          beginValue: 0,
+          endValue: 1
+        });
+      }
+
+      if(this.props.transition.indexOf('zoom') !== -1) {
+        this.tweenState('scale', {
+          easing: tweenState.easingTypes.easeInOutQuad,
+          duration: this.props.transitionDuration,
+          beginValue: 0.1,
+          endValue: 1
+        });
+      }
+
+      if(this.props.transition.indexOf('slide') !== -1) {
+        this.tweenState('left', {
+          easing: tweenState.easingTypes.easeOutQuad,
+          duration: this.props.transitionDuration,
+          beginValue: direction ? 100 : -100,
+          endValue: 0
+        });
+      }
+
+      if(this.props.transition.indexOf('spin') !== -1) {
+        this.tweenState('x', {
+          easing: tweenState.easingTypes.easeOutQuad,
+          duration: this.props.transitionDuration,
+          beginValue: direction ? 90 : -90,
+          endValue: 0
+        });
+      }
+
     });
-
-    if(this.props.transition.indexOf('fade') !== -1) {
-      this.tweenState('opacity', {
-        easing: tweenState.easingTypes.easeInOutQuad,
-        duration: this.props.transitionDuration,
-        beginValue: 0,
-        endValue: 1
-      });
-    }
-
-    if(this.props.transition.indexOf('zoom') !== -1) {
-      this.tweenState('scale', {
-        easing: tweenState.easingTypes.easeInOutQuad,
-        duration: this.props.transitionDuration,
-        beginValue: 0,
-        endValue: 1
-      });
-    }
-
-    if(this.props.transition.indexOf('slide') !== -1) {
-      this.tweenState('left', {
-        easing: tweenState.easingTypes.easeOutQuad,
-        duration: this.props.transitionDuration,
-        beginValue: direction ? 100 : -100,
-        endValue: 0
-      });
-    }
-
-    if(this.props.transition.indexOf('spin') !== -1) {
-      this.tweenState('x', {
-        easing: tweenState.easingTypes.easeOutQuad,
-        duration: this.props.transitionDuration,
-        beginValue: direction ? 90 : -90,
-        endValue: 0
-      });
-    }
 
     this.routerCallback(cb);
 
   },
   componentWillAppear(cb) {
 
-    this.setState({
-      z: 100
-    });
+    let state = {
+      z: 1
+    };
 
     if(this.props.transition.indexOf('fade') !== -1) {
-      this.setState({
-        opacity: 1
-      });
+      state.opacity = 1;
     }
 
     if(this.props.transition.indexOf('zoom') !== -1) {
-      this.setState({
-        scale: 1
-      });
+      state.scale = 1;
     }
 
     if(this.props.transition.indexOf('slide') !== -1) {
-      this.setState({
-        left: 0
-      });
+      state.left = 0;
     }
 
     if(this.props.transition.indexOf('spin') !== -1) {
-      this.setState({
-        x: 0
-      });
+      state.x = 0;
     }
+
+    this.setState(state);
 
     this.routerCallback(cb, true);
 
@@ -139,47 +127,50 @@ export default {
     let direction = this.props.slideIndex > slide;
 
     this.setState({
-      z: 0
+      z: ''
+    }, () => {
+
+      if(this.props.transition.indexOf('fade') !== -1) {
+        this.tweenState('opacity', {
+          easing: tweenState.easingTypes.easeInOutQuad,
+          duration: this.props.transitionDuration,
+          endValue: 0
+        });
+      }
+
+      if(this.props.transition.indexOf('zoom') !== -1) {
+        this.tweenState('scale', {
+          easing: tweenState.easingTypes.easeInOutQuad,
+          duration: this.props.transitionDuration,
+          endValue: 0.1
+        });
+      }
+
+      if(this.props.transition.indexOf('slide') !== -1) {
+        this.tweenState('left', {
+          easing: tweenState.easingTypes.easeOutQuad,
+          duration: this.props.transitionDuration,
+          endValue: direction ? 100 : -100
+        });
+      }
+
+      if(this.props.transition.indexOf('spin') !== -1) {
+        this.tweenState('x', {
+          easing: tweenState.easingTypes.easeOutQuad,
+          duration: this.props.transitionDuration,
+          endValue: direction ? 90 : -90
+        });
+      }
+
     });
 
-    if(this.props.transition.indexOf('fade') !== -1) {
-      this.tweenState('opacity', {
-        easing: tweenState.easingTypes.easeInOutQuad,
-        duration: this.props.transitionDuration,
-        endValue: 0
-      });
-    }
-
-    if(this.props.transition.indexOf('zoom') !== -1) {
-      this.tweenState('scale', {
-        easing: tweenState.easingTypes.easeInOutQuad,
-        duration: this.props.transitionDuration,
-        endValue: 0
-      });
-    }
-
-    if(this.props.transition.indexOf('slide') !== -1) {
-      this.tweenState('left', {
-        easing: tweenState.easingTypes.easeOutQuad,
-        duration: this.props.transitionDuration,
-        endValue: direction ? 100 : -100
-      });
-    }
-
-    if(this.props.transition.indexOf('spin') !== -1) {
-      this.tweenState('x', {
-        easing: tweenState.easingTypes.easeOutQuad,
-        duration: this.props.transitionDuration,
-        endValue: direction ? 90 : -90
-      });
-    }
-
     this.routerCallback(cb);
+
   },
   getTransitionStyles() {
     let transformValue = "";
     let styles = {
-      zIndex: this.state.z || 100
+      zIndex: this.state.z || ''
     };
     if(this.props.transition.indexOf('fade') !== -1) {
       styles = assign(styles, {

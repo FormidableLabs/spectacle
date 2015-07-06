@@ -19,8 +19,8 @@ preloader([images.city, images.kat]);
 export default class extends React.Component {
   render() {
     return (
-      <Deck transition={['slide']} transitionDuration={800}>
-        <Slide transition={['spin','slide']} bgColor="primary">
+      <Deck transition={['zoom','slide']} transitionDuration={800}>
+        <Slide transition={['zoom']} bgColor="primary">
           <Heading size={1} fit caps textColor="black">
             Spectacle
           </Heading>
@@ -62,7 +62,7 @@ export default class extends React.Component {
             </Heading>
           </Appear>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary">
+        <Slide transition={['zoom', 'fade']} bgColor="primary">
           <Heading caps fit>Flexible Layouts</Heading>
           <Layout>
             <Fill>
@@ -91,7 +91,7 @@ export default class extends React.Component {
             Combinable Transitions
           </Heading>
         </Slide>
-        <Slide transition={['zoom']} bgColor="secondary" textColor="primary">
+        <Slide transition={['fade']} bgColor="secondary" textColor="primary">
           <List>
             <ListItem><Appear>Inline style based theme system</Appear></ListItem>
             <ListItem><Appear>Autofit text</Appear></ListItem>
