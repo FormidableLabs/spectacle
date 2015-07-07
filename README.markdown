@@ -179,6 +179,7 @@ The deck tag is the top level tag and there should only be one of them. It suppo
 |---|---|---|
 |transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for global transition duration.
+|showProgress| React.PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`.
 
 ####\<Slide /> (Base)
 

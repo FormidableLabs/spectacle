@@ -13,7 +13,7 @@ React.initializeTouchEvents(true);
 
 const Style = Radium.Style;
 
-import Progress from './progress';
+import Progress from "./progress";
 const TransitionGroup = Radium(React.addons.TransitionGroup);
 
 @Radium
@@ -268,7 +268,7 @@ class Deck extends React.Component {
   }
   render() {
     let exportMode = false;
-    let showProgress = this.props.showProgress;
+    let showProgress = true;
 
     if (this.context.router.state.location.query &&
         "export" in this.context.router.state.location.query) {
@@ -304,9 +304,9 @@ class Deck extends React.Component {
       }
     };
 
-    let currentSlide = 'slide' in this.context.router.state.params ?
+    const currentSlide = "slide" in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
-    let slides = this.props.children;
+    const slides = this.props.children;
 
     return (
       <div
@@ -320,7 +320,8 @@ class Deck extends React.Component {
           <TransitionGroup component="div" style={[styles.transition]}>
             {this._renderSlide()}
           </TransitionGroup>}
-        {showProgress ? <Progress items={slides} currentSlide={currentSlide} /> : ''}
+        {showProgress ? <Progress items={slides} currentSlide={currentSlide}
+          type={this.props.showProgress}/> : ""}
         <Style rules={assign(this.context.styles.global, globals)} />
       </div>
     );
@@ -331,13 +332,14 @@ Deck.displayName = "Deck";
 
 Deck.defaultProps = {
   transitionDuration: 500,
-  showProgress: true
+  showProgress: "pacman"
 };
 
 Deck.propTypes = {
   children: React.PropTypes.node,
   transition: React.PropTypes.array,
-  transitionDuration: React.PropTypes.number
+  transitionDuration: React.PropTypes.number,
+  showProgress: React.PropTypes.oneOf(["pacman", "bar", "number", "none"])
 };
 
 Deck.contextTypes = {
