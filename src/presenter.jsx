@@ -163,9 +163,7 @@ Presenter.propTypes = {
 };
 
 Presenter.contextTypes = {
-  styles: React.PropTypes.object,
-  flux: React.PropTypes.object,
-  router: React.PropTypes.object
+  styles: React.PropTypes.object
 };
 
 export default Presenter;

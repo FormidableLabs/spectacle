@@ -9,7 +9,8 @@ const Appear = React.createClass({
   },
   contextTypes: {
     flux: React.PropTypes.object,
-    router: React.PropTypes.object,
+    export: React.PropTypes.bool,
+    overview: React.PropTypes.bool,
     slide: React.PropTypes.number
   },
   getInitialState() {
@@ -20,8 +21,7 @@ const Appear = React.createClass({
   },
   componentDidMount() {
     this.context.flux.stores.SlideStore.listen(this._storeChange);
-    const slide = "slide" in this.context.router.state.params ?
-      this.context.router.state.params.slide : 0;
+    const slide = this.context.slide;
     this.context.flux.actions.SlideActions.addFragment({
       slide,
       id: this._reactInternalInstance._rootNodeID,
@@ -32,8 +32,7 @@ const Appear = React.createClass({
     this.context.flux.stores.SlideStore.unlisten(this._storeChange);
   },
   _storeChange(state) {
-    const slide = "slide" in this.context.router.state.params ?
-      this.context.router.state.params.slide : 0;
+    const slide = this.context.slide;
     const key = _.findKey(state.fragments[slide], {
       "id": this._reactInternalInstance._rootNodeID
     });
@@ -42,8 +41,7 @@ const Appear = React.createClass({
         active: state.fragments[slide][key].visible
       }, () => {
         let endVal = this.state.active ? 1 : 0;
-        if (this.context.router.state.location.query &&
-            "export" in this.context.router.state.location.query) {
+        if (this.context.export || this.context.overview) {
           endVal = 1;
         }
         this.tweenState("opacity", {

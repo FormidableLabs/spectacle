@@ -22,7 +22,10 @@ const Slide = React.createClass({
     children: React.PropTypes.node
   },
   contextTypes: {
-    styles: React.PropTypes.object
+    styles: React.PropTypes.object,
+    export: React.PropTypes.bool,
+    print: React.PropTypes.bool,
+    overview: React.PropTypes.bool
   },
   getInitialState() {
     return {
@@ -33,10 +36,12 @@ const Slide = React.createClass({
   setZoom() {
     const content = React.findDOMNode(this.refs.content);
     const zoom = (content.offsetWidth / config.width);
-    const contentScale = (content.parentNode.offsetHeight / config.height);
+    const contentScaleY = (content.parentNode.offsetHeight / config.height);
+    const contentScaleX = (content.parentNode.offsetWidth / config.width);
     this.setState({
       zoom: zoom > 0.6 ? zoom : 0.6,
-      contentScale: contentScale < 1 ? contentScale : 1
+      contentScaleY: contentScaleY < 1 ? contentScaleY : 1,
+      contentScaleX: contentScaleX < 1 ? contentScaleX : 1
     });
   },
   componentDidMount() {
@@ -48,22 +53,13 @@ const Slide = React.createClass({
     window.removeEventListener("resize", this.setZoom);
   },
   render() {
-    let exportMode = false;
-    let printMode = false;
-    if (this.context.router.state.location.query &&
-        "export" in this.context.router.state.location.query) {
-      exportMode = true;
-      if ("print" in this.context.router.state.location.query) {
-        printMode = true;
-      }
-    }
-    const printStyles = printMode ? {
+    const printStyles = this.context.print ? {
       backgroundColor: "white",
       backgroundImage: "none"
     } : {};
     const styles = {
       outer: {
-        position: exportMode ? "relative" : "absolute",
+        position: this.context.export ? "relative" : "absolute",
         top: 0,
         left: 0,
         width: "100%",
@@ -83,9 +79,11 @@ const Slide = React.createClass({
         top: "50%",
         left: "50%",
         width: "100%",
+        maxHeight: config.height,
         maxWidth: config.width,
         fontSize: 16 * this.state.zoom,
-        transform: " translate(-50%,-50%) scale(" + this.state.contentScale + ")",
+        transform: " translate(-50%,-50%) scale(" + this.state.contentScaleX + "," +
+          this.state.contentScaleY + ")",
         padding: this.state.zoom > 0.6 ? config.margin : 10
       }
     };
