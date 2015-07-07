@@ -50,12 +50,26 @@ class Deck extends React.Component {
   }
   _handleKeyPress(e) {
     const event = window.event ? window.event : e;
-    if (event.keyCode === 37) {
+    if (event.keyCode === 37) { // left arrow
       this._prevSlide();
     }
-    if (event.keyCode === 39) {
+    if (event.keyCode === 39) { // right arrow
       this._nextSlide();
     }
+    if (event.keyCode === 79) { // o
+      this._toggleOverviewMode();
+    }
+    if (event.keyCode === 80) { // o
+      this._togglePresenterMode();
+    }
+  }
+  _toggleOverviewMode() {
+    const suffix = this.context.overview ? "" : "?overview";
+    this.context.router.replaceWith("/" + (this.context.slide) + suffix);
+  }
+  _togglePresenterMode() {
+    const suffix = this.context.presenter ? "" : "?presenter";
+    this.context.router.replaceWith("/" + (this.context.slide) + suffix);
   }
   _getSuffix() {
     if (this.context.presenter) {
