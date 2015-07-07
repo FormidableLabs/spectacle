@@ -1,10 +1,12 @@
-import React from 'react/addons';
-import assign from 'object-assign';
-import tweenState from 'react-tween-state';
-import _ from 'lodash';
+import React from "react/addons";
+import tweenState from "react-tween-state";
+import _ from "lodash";
 
 const Appear = React.createClass({
   mixins: [tweenState.Mixin],
+  propTypes: {
+    children: React.PropTypes.node
+  },
   contextTypes: {
     flux: React.PropTypes.object,
     router: React.PropTypes.object,
@@ -14,15 +16,14 @@ const Appear = React.createClass({
     return {
       active: false,
       opacity: 0
-    }
+    };
   },
   componentDidMount() {
-    let state = this.context.flux.stores.SlideStore.getState();
     this.context.flux.stores.SlideStore.listen(this._storeChange);
-    let slide = 'slide' in this.context.router.state.params ?
+    const slide = "slide" in this.context.router.state.params ?
       this.context.router.state.params.slide : 0;
     this.context.flux.actions.SlideActions.addFragment({
-      slide: slide,
+      slide,
       id: this._reactInternalInstance._rootNodeID,
       visible: false
     });
@@ -31,21 +32,21 @@ const Appear = React.createClass({
     this.context.flux.stores.SlideStore.unlisten(this._storeChange);
   },
   _storeChange(state) {
-    let slide = 'slide' in this.context.router.state.params ?
+    const slide = "slide" in this.context.router.state.params ?
       this.context.router.state.params.slide : 0;
-    let key = _.findKey(state.fragments[slide], {
-      'id': this._reactInternalInstance._rootNodeID
+    const key = _.findKey(state.fragments[slide], {
+      "id": this._reactInternalInstance._rootNodeID
     });
-    if(state.fragments[slide].hasOwnProperty(key)) {
+    if (state.fragments[slide].hasOwnProperty(key)) {
       this.setState({
         active: state.fragments[slide][key].visible
       }, () => {
         let endVal = this.state.active ? 1 : 0;
         if (this.context.router.state.location.query &&
-            'export' in this.context.router.state.location.query) {
+            "export" in this.context.router.state.location.query) {
           endVal = 1;
         }
-        this.tweenState('opacity', {
+        this.tweenState("opacity", {
           easing: tweenState.easingTypes.easeInOutQuad,
           duration: 300,
           endValue: endVal
@@ -54,14 +55,14 @@ const Appear = React.createClass({
     }
   },
   render() {
-    let styles = {
-      opacity: this.getTweeningValue('opacity')
-    }
+    const styles = {
+      opacity: this.getTweeningValue("opacity")
+    };
     return (
       <div style={styles} className="appear">
         {this.props.children}
       </div>
-    )
+    );
   }
 });
 
