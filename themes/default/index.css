@@ -1,15 +1,12 @@
 .spectacle-slide {
   -webkit-transform-origin: center center;
           transform-origin: center center;
-
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
 }
 
 /* Firefox */
 
 _:-moz-tree-row(hover), .spectacle-deck {
-  transform: perspective(1000px);
+  perspective: 1000px;
 }
 
 _:-moz-tree-row(hover), ul .appear {

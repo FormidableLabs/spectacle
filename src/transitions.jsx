@@ -169,7 +169,7 @@ export default {
   getTransitionStyles() {
     let transformValue = "";
     let styles = {
-      zIndex: this.state.z || ""
+      zIndex: this.state.z
     };
     if (this.props.transition.indexOf("fade") !== -1) {
       styles = assign(styles, {
@@ -181,6 +181,8 @@ export default {
     }
     if (this.props.transition.indexOf("slide") !== -1) {
       transformValue += " translate3d(" + this.getTweeningValue("left") + "%, 0, 0)";
+    } else {
+      transformValue += " translate3d(0px, 0px, 0px)";
     }
     if (this.props.transition.indexOf("spin") !== -1) {
       transformValue += " rotateY(" + this.getTweeningValue("x") + "deg)";
