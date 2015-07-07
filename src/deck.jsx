@@ -6,14 +6,13 @@ import assign from "object-assign";
 import cloneWithProps from "react/lib/cloneWithProps";
 import Radium from "radium";
 import _ from "lodash";
-import PatchedTransitionGroup from './utils/PatchedTransitionGroup';
 import Presenter from "./presenter";
 
 React.initializeTouchEvents(true);
 
 const Style = Radium.Style;
 
-let TransitionGroup = Radium(PatchedTransitionGroup);
+const TransitionGroup = Radium(React.addons.TransitionGroup);
 
 @Radium
 class Deck extends React.Component {
