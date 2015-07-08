@@ -99,7 +99,7 @@ class Deck extends React.Component {
     this.setState({
       lastSlide: slide
     });
-    if (this._checkFragments(slide, false)) {
+    if (this._checkFragments(slide, false) || this.context.overview) {
       if (slide > 0) {
         this.context.router.replaceWith("/" + (slide - 1) + this._getSuffix());
         localStorage.setItem("spectacle-slide",
@@ -115,7 +115,7 @@ class Deck extends React.Component {
     this.setState({
       lastSlide: slide
     });
-    if (this._checkFragments(slide, true)) {
+    if (this._checkFragments(slide, true) || this.context.overview) {
       if (slide < this.props.children.length - 1) {
         this.context.router.replaceWith("/" + (slide + 1) + this._getSuffix());
         localStorage.setItem("spectacle-slide",
@@ -130,7 +130,7 @@ class Deck extends React.Component {
     const store = this.context.flux.stores.SlideStore;
     const fragments = store.getState().fragments;
     // Not proud of this at all. 0.14 Parent based contexts will fix this.
-    if (this.context.presenter || this.context.overview) {
+    if (this.context.presenter) {
       const main = document.querySelector(".spectacle-presenter-main");
       if (main) {
         const frags = main.querySelectorAll(".fragment");
