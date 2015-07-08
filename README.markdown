@@ -35,6 +35,8 @@ Check it out:
 
 ![http://i.imgur.com/H7o2qHI.gif](http://i.imgur.com/H7o2qHI.gif_)
 
+You can toggle the presenter or overview mode by pressing respectively `p` and `o`.
+
 ## PDF Export
 
 Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is asburdly easy.
