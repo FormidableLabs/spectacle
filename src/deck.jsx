@@ -49,10 +49,12 @@ class Deck extends React.Component {
   }
   _handleKeyPress(e) {
     const event = window.event ? window.event : e;
-    if (event.keyCode === 37) {
+    // left, page down
+    if (event.keyCode === 37 || event.keyCode === 33) {
       this._prevSlide();
     }
-    if (event.keyCode === 39) {
+    // right, page up
+    if (event.keyCode === 39 || event.keyCode === 34) {
       this._nextSlide();
     }
   }
