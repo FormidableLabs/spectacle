@@ -38,10 +38,10 @@ const Slide = React.createClass({
     const zoom = (content.offsetWidth / config.width);
     const contentScaleY = (content.parentNode.offsetHeight / config.height);
     const contentScaleX = (content.parentNode.offsetWidth / config.width);
+    const contentScale = Math.min(contentScaleY, contentScaleX);
     this.setState({
       zoom: zoom > 0.6 ? zoom : 0.6,
-      contentScaleY: contentScaleY < 1 ? contentScaleY : 1,
-      contentScaleX: contentScaleX < 1 ? contentScaleX : 1
+      contentScale: contentScale < 1 ? contentScale : 1
     });
   },
   componentDidMount() {
@@ -78,12 +78,10 @@ const Slide = React.createClass({
         position: "absolute",
         top: "50%",
         left: "50%",
-        width: "100%",
         maxHeight: config.height,
-        maxWidth: config.width,
+        width: config.width,
         fontSize: 16 * this.state.zoom,
-        transform: " translate(-50%,-50%) scale(" + this.state.contentScaleX + "," +
-          this.state.contentScaleY + ")",
+        transform: " translate(-50%,-50%) scale(" + this.state.contentScale + ")",
         padding: this.state.zoom > 0.6 ? config.margin : 10
       }
     };
