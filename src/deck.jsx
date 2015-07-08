@@ -321,7 +321,7 @@ class Deck extends React.Component {
             {this._renderSlide()}
           </TransitionGroup>}
         {showProgress ? <Progress items={slides} currentSlide={currentSlide}
-          type={this.props.showProgress}/> : ""}
+          type={this.props.progress}/> : ""}
         <Style rules={assign(this.context.styles.global, globals)} />
       </div>
     );
@@ -332,14 +332,14 @@ Deck.displayName = "Deck";
 
 Deck.defaultProps = {
   transitionDuration: 500,
-  showProgress: "pacman"
+  progress: "pacman"
 };
 
 Deck.propTypes = {
   children: React.PropTypes.node,
   transition: React.PropTypes.array,
   transitionDuration: React.PropTypes.number,
-  showProgress: React.PropTypes.oneOf(["pacman", "bar", "number", "none"])
+  progress: React.PropTypes.oneOf(["pacman", "bar", "number", "none"])
 };
 
 Deck.contextTypes = {
