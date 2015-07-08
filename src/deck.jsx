@@ -3,7 +3,7 @@
 
 import React from "react/addons";
 import assign from "object-assign";
-import cloneWithProps from "react/lib/cloneWithProps";
+const cloneElement = React.cloneElement;
 import Radium from "radium";
 import _ from "lodash";
 
@@ -13,7 +13,7 @@ React.initializeTouchEvents(true);
 
 const Style = Radium.Style;
 
-const TransitionGroup = Radium(React.addons.TransitionGroup);
+const TransitionGroup = React.addons.TransitionGroup;
 
 @Radium
 class Deck extends React.Component {
@@ -235,34 +235,41 @@ class Deck extends React.Component {
   _renderSlide() {
     const slide = "slide" in this.context.router.state.params ?
       parseInt(this.context.router.state.params.slide) : 0;
+    const getProps = (child, key) => {
+      const props = child.props;
+      const dProps = child.defaultProps;
+      let transition;
+      if (props && props.transition && props.transition.length) {
+        transition = props.transition;
+      } else if (dProps && dProps.transition && dProps.transition.length) {
+        transition = dProps.transition;
+      } else {
+        transition = this.props.transition;
+      }
+      let transitionDuration;
+      if (props && props.transitionDuration) {
+        transitionDuration = child.props.transitionDuration;
+      } else if (dProps && dProps.transitionDuration) {
+        transitionDuration = dProps.transitionDuration;
+      } else {
+        transitionDuration = this.props.transitionDuration;
+      }
+      return {
+        lastSlide: this.state.lastSlide,
+        key,
+        slideIndex: slide,
+        transition,
+        transitionDuration
+      };
+    };
     if (this.context.router.state.location.query &&
         "export" in this.context.router.state.location.query) {
       return this.props.children.map((child, index) => {
-        return cloneWithProps(child, {
-          key: index,
-          slideIndex: slide,
-          lastSlide: this.state.lastSlide,
-          transition: child.props.transition.length ?
-            child.props.transition :
-            this.props.transition,
-          transitionDuration: child.props.transition.transitionDuration ?
-            child.props.transitionDuration :
-            this.props.transitionDuration
-        });
+        return cloneElement(child, getProps(child, index));
       });
     } else {
       const child = this.props.children[slide];
-      return cloneWithProps(child, {
-        key: slide,
-        slideIndex: slide,
-        lastSlide: this.state.lastSlide,
-        transition: child.props.transition.length ?
-          child.props.transition :
-          this.props.transition,
-        transitionDuration: child.props.transition.transitionDuration ?
-          child.props.transitionDuration :
-          this.props.transitionDuration
-      });
+      return cloneElement(child, getProps(child, slide));
     }
   }
   render() {
@@ -310,7 +317,7 @@ class Deck extends React.Component {
         {this.context.presenter ?
           <Presenter slides={this.props.children}
             slide={slide} lastSlide={this.state.lastSlide}/> :
-          <TransitionGroup component="div" style={[styles.transition]}>
+          <TransitionGroup component="div" style={styles.transition}>
             {this._renderSlide()}
           </TransitionGroup>}
         <Style rules={assign(this.context.styles.global, globals)} />

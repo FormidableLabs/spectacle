@@ -1,35 +1,23 @@
 /*global window*/
 
 import React from "react/addons";
-import tweenState from "react-tween-state";
-import Base from "./base";
-import Transitions from "./transitions";
+import assign from "object-assign";
+import BaseWithTransition from "./transitions";
 import config from "../presentation/config";
-import radium from "radium";
 
-const Slide = React.createClass({
-  displayName: "Slide",
-  mixins: [tweenState.Mixin, Base.Mixin, Transitions],
-  getDefaultProps() {
-    return {
-      align: "center center",
-      presenterStyle: {}
-    };
-  },
-  propTypes: {
-    align: React.PropTypes.string,
-    presenterStyle: React.PropTypes.object,
-    children: React.PropTypes.node
-  },
-  contextTypes: {
-    styles: React.PropTypes.object
-  },
-  getInitialState() {
-    return {
-      zoom: 1,
-      contentScale: 1
-    };
-  },
+class Slide extends BaseWithTransition {
+  constructor(props) {
+    super(props);
+
+    this.state.zoom = 1;
+    this.state.contentScale = 1;
+
+    this.setZoom = this.setZoom.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentWillUnmount = this.componentWillUnmount.bind(this);
+    this.getRenderFor = this.getRenderFor.bind(this);
+  }
+
   setZoom() {
     const content = React.findDOMNode(this.refs.content);
     const zoom = (content.offsetWidth / config.width);
@@ -38,16 +26,19 @@ const Slide = React.createClass({
       zoom: zoom > 0.6 ? zoom : 0.6,
       contentScale: contentScale < 1 ? contentScale : 1
     });
-  },
+  }
+
   componentDidMount() {
     this.setZoom();
     window.addEventListener("load", this.setZoom);
     window.addEventListener("resize", this.setZoom);
-  },
+  }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.setZoom);
-  },
-  render() {
+  }
+
+  getRenderFor(jsx) {
     let exportMode = false;
     let printMode = false;
     if (this.context.router.state.location.query &&
@@ -57,6 +48,7 @@ const Slide = React.createClass({
         printMode = true;
       }
     }
+
     const printStyles = printMode ? {
       backgroundColor: "white",
       backgroundImage: "none"
@@ -91,22 +83,39 @@ const Slide = React.createClass({
     };
     return (
       <div className="spectacle-slide"
-        style={[
-          styles.outer,
-          this.getStyles(),
-          this.getTransitionStyles(),
-          printStyles,
-          this.props.presenterStyle]}>
-        <div style={[styles.inner]}>
+        style={assign(styles.outer,
+                      this.getStyles(),
+                      this.getTransitionStyles(),
+                      printStyles,
+                      this.props.presenterStyle)}>
+        <div style={styles.inner}>
           <div ref="content"
             className="spectacle-content"
-            style={[styles.content, this.context.styles.components.content]}>
-            {this.props.children}
+            style={assign(styles.content, this.context.styles.components.content)}>
+            {jsx}
           </div>
         </div>
       </div>
     );
   }
+
+  render() {
+    return this.getRenderFor(this.props.children);
+  }
+}
+
+Slide.propTypes = assign({}, BaseWithTransition.propTypes, {
+  align: React.PropTypes.string,
+  presenterStyle: React.PropTypes.object
 });
 
-export default radium(Slide);
+Slide.defaultProps = assign({}, BaseWithTransition.defaultProps, {
+  align: "center center",
+  presenterStyle: {}
+});
+
+Slide.contextTypes = assign({}, BaseWithTransition.contextTypes, {
+  styles: React.PropTypes.object
+});
+
+export default Slide;
