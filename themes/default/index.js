@@ -70,7 +70,9 @@ module.exports = {
         background: "transparent",
         width: "10px",
         height: "10px",
-        border: "2px solid " + colors.tertiary,
+        borderWidth: 2,
+        borderStyle: "solid",
+        borderColor: colors.tertiary,
         borderRadius: "50%",
         transition: "all 0.01s ease-out 0.4s"
       }
