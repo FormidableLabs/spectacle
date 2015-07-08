@@ -1,17 +1,17 @@
-import React from 'react/addons';
-import assign from 'object-assign';
-import Radium from 'radium';
+import React from "react/addons";
+import assign from "object-assign";
+import Radium from "radium";
 import {
-  Slide, Heading, Link
-} from '../../src/spectacle';
+  Slide, Heading, Link, Image
+} from "../../src/spectacle";
 const images = {
-  city: require('../city.jpg'),
-  kat: require('../kat.png'),
-  logo: require('../formidable-logo.svg')
+  city: require("../city.jpg"),
+  kat: require("../kat.png"),
+  logo: require("../formidable-logo.svg")
 };
 
 @Radium
-class Slide1 extends Slide {
+class Slide10 extends Slide {
   render() {
     return this.getRenderFor([
       <Heading size={1} caps fit textColor="primary">
@@ -22,9 +22,9 @@ class Slide1 extends Slide {
   }
 }
 
-Slide1.defaultProps = assign({}, Slide.defaultProps, {
-  transition: ['spin', 'slide'],
-  bgColor: 'tertiary'
+Slide10.defaultProps = assign({}, Slide.defaultProps, {
+  transition: ["spin", "slide"],
+  bgColor: "tertiary"
 });
 
-export default Slide1;
+export default Slide10;

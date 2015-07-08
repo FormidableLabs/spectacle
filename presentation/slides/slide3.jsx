@@ -1,9 +1,9 @@
-import React from 'react/addons';
-import assign from 'object-assign';
-import Radium from 'radium';
+import React from "react/addons";
+import assign from "object-assign";
+import Radium from "radium";
 import {
   Slide, CodePane
-} from '../../src/spectacle';
+} from "../../src/spectacle";
 
 @Radium
 class Slide3 extends Slide {
@@ -18,8 +18,8 @@ class Slide3 extends Slide {
 }
 
 Slide3.defaultProps = assign({}, Slide.defaultProps, {
-  transition: ['zoom', 'fade'],
-  bgColor: 'primary'
+  transition: ["zoom", "fade"],
+  bgColor: "primary"
 });
 
 export default Slide3;

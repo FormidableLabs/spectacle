@@ -1,13 +1,13 @@
-import React from 'react/addons';
-import assign from 'object-assign';
-import Radium from 'radium';
+import React from "react/addons";
+import assign from "object-assign";
+import Radium from "radium";
 import {
   Slide, Heading, Appear
-} from '../../src/spectacle';
+} from "../../src/spectacle";
 const images = {
-  city: require('../city.jpg'),
-  kat: require('../kat.png'),
-  logo: require('../formidable-logo.svg')
+  city: require("../city.jpg"),
+  kat: require("../kat.png"),
+  logo: require("../formidable-logo.svg")
 };
 
 @Radium
@@ -34,8 +34,8 @@ class Slide4 extends Slide {
 }
 
 Slide4.defaultProps = assign({}, Slide.defaultProps, {
-  transition: ['slide'],
-  bgImage: images.city.replace('/', ''),
+  transition: ["slide"],
+  bgImage: images.city.replace("/", ""),
   bgDarken: 0.75
 });
 

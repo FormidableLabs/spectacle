@@ -1,9 +1,9 @@
-import React from 'react/addons';
-import assign from 'object-assign';
-import Radium from 'radium';
+import React from "react/addons";
+import assign from "object-assign";
+import Radium from "radium";
 import {
   Slide, Heading, Link, Text
-} from '../../src/spectacle';
+} from "../../src/spectacle";
 
 @Radium
 class Slide1 extends Slide {
@@ -18,15 +18,16 @@ class Slide1 extends Slide {
       <Heading size={2} fit caps textColor="black">
         Where You Can Write Your Decks In JSX
       </Heading>,
-      <Link href="https://github.com/FormidableLabs/spectacle"><Text bold caps textColor="tertiary">View on Github</Text></Link>,
+      <Link href="https://github.com/FormidableLabs/spectacle">
+        <Text bold caps textColor="tertiary">View on Github</Text></Link>,
       <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
     ]);
   }
 }
 
 Slide1.defaultProps = assign({}, Slide.defaultProps, {
-  transition: ['zoom'],
-  bgColor: 'primary'
+  transition: ["zoom"],
+  bgColor: "primary"
 });
 
 export default Slide1;

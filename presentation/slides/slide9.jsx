@@ -1,10 +1,10 @@
-import React from 'react/addons';
-import assign from 'object-assign';
-import Radium from 'radium';
+import React from "react/addons";
+import assign from "object-assign";
+import Radium from "radium";
 import {
   Slide, Heading, Link, Text
-} from '../../src/spectacle';
-import Interactive from '../interactive';
+} from "../../src/spectacle";
+import Interactive from "../interactive";
 
 @Radium
 class Slide1 extends Slide {
@@ -19,8 +19,8 @@ class Slide1 extends Slide {
 }
 
 Slide1.defaultProps = assign({}, Slide.defaultProps, {
-  transition: ['slide'],
-  bgColor: 'primary'
+  transition: ["slide"],
+  bgColor: "primary"
 });
 
 export default Slide1;

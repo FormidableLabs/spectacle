@@ -1,9 +1,9 @@
-import React from 'react/addons';
-import assign from 'object-assign';
-import Radium from 'radium';
+import React from "react/addons";
+import assign from "object-assign";
+import Radium from "radium";
 import {
   Slide, BlockQuote, Quote, Cite
-} from '../../src/spectacle';
+} from "../../src/spectacle";
 
 @Radium
 class Slide6 extends Slide {
@@ -18,8 +18,8 @@ class Slide6 extends Slide {
 }
 
 Slide6.defaultProps = assign({}, Slide.defaultProps, {
-  transition: ['slide'],
-  bgColor: 'black'
+  transition: ["slide"],
+  bgColor: "black"
 });
 
 export default Slide6;

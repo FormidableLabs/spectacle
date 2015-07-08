@@ -1,9 +1,9 @@
-import React from 'react/addons';
-import assign from 'object-assign';
-import Radium from 'radium';
+import React from "react/addons";
+import assign from "object-assign";
+import Radium from "radium";
 import {
   Slide, Heading, Layout, Fill
-} from '../../src/spectacle';
+} from "../../src/spectacle";
 
 @Radium
 class Slide5 extends Slide {
@@ -27,8 +27,8 @@ class Slide5 extends Slide {
 }
 
 Slide5.defaultProps = assign({}, Slide.defaultProps, {
-  transition: ['zoom', 'fade'],
-  bgColor: 'primary'
+  transition: ["zoom", "fade"],
+  bgColor: "primary"
 });
 
 export default Slide5;
