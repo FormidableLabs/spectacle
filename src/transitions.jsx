@@ -1,27 +1,30 @@
-import React from 'react/addons';
-import assign from 'object-assign';
-import Base from './base';
+/*eslint max-statements:0*/
+/*global setTimeout*/
+
+import React from "react/addons";
+import assign from "object-assign";
+import Base from "./base";
 
 class BaseWithTransition extends Base {
   constructor(props) {
     super(props);
 
-    let direction = this.props.slideIndex > this.props.lastSlide;
-    let state = {};
+    const direction = this.props.slideIndex > this.props.lastSlide;
+    const state = {};
 
-    if (this.props.transition.indexOf('fade') !== -1) {
+    if (this.props.transition.indexOf("fade") !== -1) {
       state.opacity = 0;
     }
 
-    if (this.props.transition.indexOf('zoom') !== -1) {
+    if (this.props.transition.indexOf("zoom") !== -1) {
       state.scale = 0;
     }
 
-    if (this.props.transition.indexOf('slide') !== -1) {
+    if (this.props.transition.indexOf("slide") !== -1) {
       state.left = direction ? 100 : -100;
     }
 
-    if (this.props.transition.indexOf('spin') !== -1) {
+    if (this.props.transition.indexOf("spin") !== -1) {
       state.x = direction ? 90 : -90;
     }
 
@@ -42,74 +45,72 @@ class BaseWithTransition extends Base {
   }
 
   componentWillEnter(cb) {
-    let state = {};
+    const state = {};
 
-    if (this.props.transition.indexOf('fade') !== -1) {
+    if (this.props.transition.indexOf("fade") !== -1) {
       state.opacity = 1;
     }
 
-    if (this.props.transition.indexOf('zoom') !== -1) {
+    if (this.props.transition.indexOf("zoom") !== -1) {
       state.scale = 1;
     }
 
-    if (this.props.transition.indexOf('slide') !== -1) {
+    if (this.props.transition.indexOf("slide") !== -1) {
       state.left = 0;
     }
 
-    if (this.props.transition.indexOf('spin') !== -1) {
+    if (this.props.transition.indexOf("spin") !== -1) {
       state.x = 0;
     }
 
     this.setState(state);
 
     this.routerCallback(cb);
-
   }
 
   componentWillAppear(cb) {
-    let state = {};
+    const state = {};
 
-    if (this.props.transition.indexOf('fade') !== -1) {
+    if (this.props.transition.indexOf("fade") !== -1) {
       state.opacity = 1;
     }
 
-    if (this.props.transition.indexOf('zoom') !== -1) {
+    if (this.props.transition.indexOf("zoom") !== -1) {
       state.scale = 1;
     }
 
-    if (this.props.transition.indexOf('slide') !== -1) {
+    if (this.props.transition.indexOf("slide") !== -1) {
       state.left = 0;
     }
 
-    if (this.props.transition.indexOf('spin') !== -1) {
+    if (this.props.transition.indexOf("spin") !== -1) {
       state.x = 0;
     }
 
     this.setState(state);
 
     this.routerCallback(cb, true);
-
   }
 
   componentWillLeave(cb) {
-    let slide = parseInt(this.context.router.state.params.slide) || 0;
-    let direction = this.props.slideIndex > slide;
+    const slide = parseInt(this.context.router.state.params.slide) || 0;
+    const direction = this.props.slideIndex > slide;
 
-    let state = {};
+    const state = {};
 
-    if (this.props.transition.indexOf('fade') !== -1) {
+    if (this.props.transition.indexOf("fade") !== -1) {
       state.opacity = 0;
     }
 
-    if (this.props.transition.indexOf('zoom') !== -1) {
+    if (this.props.transition.indexOf("zoom") !== -1) {
       state.scale = 0;
     }
 
-    if (this.props.transition.indexOf('slide') !== -1) {
+    if (this.props.transition.indexOf("slide") !== -1) {
       state.left = direction ? 100 : -100;
     }
 
-    if (this.props.transition.indexOf('spin') !== -1) {
+    if (this.props.transition.indexOf("spin") !== -1) {
       state.x = direction ? 90 : -90;
     }
 
@@ -120,32 +121,34 @@ class BaseWithTransition extends Base {
   }
 
   getTransitionStyles() {
-    let transformValue = '';
+    let transformValue = "";
     let styles = {zIndex: this.props.slideIndex + 1};
-    if (this.props.transition.indexOf('fade') !== -1) {
+    if (this.props.transition.indexOf("fade") !== -1) {
       styles = assign(styles, {
         opacity: this.state.opacity
       });
     }
 
-    if (this.props.transition.indexOf('zoom') !== -1) {
-      transformValue += ' scale(' + this.state.scale + ')';
+    if (this.props.transition.indexOf("zoom") !== -1) {
+      transformValue += " scale(" + this.state.scale + ")";
     }
 
-    if (this.props.transition.indexOf('slide') !== -1) {
-      transformValue += ' translate3d(' + this.state.left + '%, 0, 0)';
+    if (this.props.transition.indexOf("slide") !== -1) {
+      transformValue += " translate3d(" + this.state.left + "%, 0, 0)";
     }
 
-    if (this.props.transition.indexOf('spin') !== -1) {
-      transformValue += ' rotateY(' + this.state.x + 'deg)';
+    if (this.props.transition.indexOf("spin") !== -1) {
+      transformValue += " rotateY(" + this.state.x + "deg)";
     }
 
     const transitionDuration = this.props.transitionDuration || 300;
     const transitionDelay = this.props.transitionDelay || 0;
-    const transitionEasing = this.props.transitionEasing || 'cubic-bezier(0.455, 0.030, 0.515, 0.955)';
+    const transitionEasing = this.props.transitionEasing ||
+      "cubic-bezier(0.455, 0.030, 0.515, 0.955)";
     styles = assign(styles, {
       transform: transformValue,
-      transition: 'all ' + transitionDuration + 'ms ' + transitionEasing + ' ' + transitionDelay + 'ms'
+      transition: "all " + transitionDuration + "ms " +
+                    transitionEasing + " " + transitionDelay + "ms"
     });
     return styles;
   }
