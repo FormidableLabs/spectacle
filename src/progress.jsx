@@ -70,7 +70,7 @@ class Progress extends Base {
 
   getWidth() {
     return {
-      width: (100 * (this.props.currentSlide + 1) / this.props.items.length) + "%"
+      width: (100 * this.props.currentSlide / (this.props.items.length - 1)) + "%"
     };
   }
 
