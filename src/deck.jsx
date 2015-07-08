@@ -115,7 +115,7 @@ class Deck extends React.Component {
     if (this.context.presenter) {
       const main = document.querySelector(".spectacle-presenter-main");
       if (main) {
-        const frags = main.querySelectorAll(".appear");
+        const frags = main.querySelectorAll(".fragment");
         if (!frags.length) {
           return true;
         }

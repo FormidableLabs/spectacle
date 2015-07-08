@@ -59,7 +59,7 @@ const Appear = React.createClass({
       opacity: this.getTweeningValue("opacity")
     };
     return (
-      <div style={styles} className="appear">
+      <div style={styles} className="fragment">
         {this.props.children}
       </div>
     );

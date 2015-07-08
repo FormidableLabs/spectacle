@@ -1,4 +1,4 @@
-/*global setInterval*/
+/*global setInterval clearInterval*/
 
 import React from "react/addons";
 import cloneWithProps from "react/lib/cloneWithProps";
@@ -41,11 +41,14 @@ class Presenter extends Base {
     });
   }
   componentDidMount() {
-    setInterval(()=> {
+    this.time = setInterval(()=> {
       this.setState({
         time: startTime(new Date())
       });
     }, 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.time);
   }
   _renderNextSlide() {
     const presenterStyle = {
