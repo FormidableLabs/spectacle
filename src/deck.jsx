@@ -299,7 +299,7 @@ class Deck extends React.Component {
         height: "100%",
         width: "100%",
         perspective: 1000,
-        transformStyle: 'flat'
+        transformStyle: "flat"
       }
     };
 
@@ -316,7 +316,10 @@ class Deck extends React.Component {
         {this.context.presenter ?
           <Presenter slides={this.props.children}
             slide={slide} lastSlide={this.state.lastSlide}/> :
-          <TransitionGroup component="div" className="spectacle-transition" style={[styles.transition]}>
+          <TransitionGroup
+            component="div"
+            className="spectacle-transition"
+            style={[styles.transition]}>
             {this._renderSlide()}
           </TransitionGroup>}
         {showProgress ? <Progress items={slides} currentSlide={currentSlide}
