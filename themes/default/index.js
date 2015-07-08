@@ -29,6 +29,80 @@ module.exports = {
       boxSizing: "border-box"
     }
   },
+  progress: {
+    pacman: {
+      container: {
+        position: "absolute",
+        bottom: "5px",
+        left: "50%",
+        transition: "all 1s ease-in-out 0.2s",
+        zIndex: 1000
+      },
+      pacman: {
+        position: "absolute",
+        transition: "left 0.3s ease-in-out 0.2s",
+        width: "20px",
+        height: "20px",
+        transform: "translate(-5px, -5px)"
+      },
+      pacmanTop: {
+        position: "absolute",
+        content: " ",
+        width: "20px",
+        height: "10px",
+        borderTopLeftRadius: "10px",
+        borderTopRightRadius: "10px",
+        background: colors.tertiary
+      },
+      pacmanBottom: {
+        position: "absolute",
+        content: " ",
+        width: "20px",
+        height: "10px",
+        borderBottomLeftRadius: "10px",
+        borderBottomRightRadius: "10px",
+        background: colors.tertiary,
+        top: "10px"
+      },
+      point: {
+        position: "absolute",
+        float: "left",
+        background: "transparent",
+        width: "10px",
+        height: "10px",
+        borderWidth: 2,
+        borderStyle: "solid",
+        borderColor: colors.tertiary,
+        borderRadius: "50%",
+        transition: "all 0.01s ease-out 0.4s"
+      }
+    },
+    bar: {
+      container: {
+        position: "absolute",
+        height: '10px',
+        width: '100%',
+        bottom: 0,
+        left: 0,
+        transition: "all 1s ease-in-out 0.2s",
+        zIndex: 1000
+      },
+      bar: {
+        height: '100%',
+        background: colors.tertiary,
+        transition: "all 0.3s ease-out"
+      }
+    },
+    number: {
+      container: {
+        position: "absolute",
+        bottom: 10,
+        right: 10,
+        zIndex: 1000,
+        color: colors.tertiary
+      }
+    }
+  },
   components: {
     blockquote: {
       textAlign: "left",
