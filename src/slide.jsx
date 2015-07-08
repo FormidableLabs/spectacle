@@ -98,17 +98,17 @@ class Slide extends BaseWithTransition {
   }
 }
 
-Slide.propTypes = assign(BaseWithTransition.propTypes, {
+Slide.propTypes = assign({}, BaseWithTransition.propTypes, {
   align: React.PropTypes.string,
   presenterStyle: React.PropTypes.object
 });
 
-Slide.defaultProps = assign(BaseWithTransition.defaultProps, {
+Slide.defaultProps = assign({}, BaseWithTransition.defaultProps, {
   align: 'center center',
   presenterStyle: {}
 });
 
-Slide.contextTypes = assign(BaseWithTransition.contextTypes, {
+Slide.contextTypes = assign({}, BaseWithTransition.contextTypes, {
   styles: React.PropTypes.object
 });
 

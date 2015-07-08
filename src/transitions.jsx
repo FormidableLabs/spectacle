@@ -151,18 +151,18 @@ class BaseWithTransition extends Base {
   }
 }
 
-BaseWithTransition.propTypes = assign(Base.propTypes || {}, {
+BaseWithTransition.propTypes = assign({}, Base.propTypes || {}, {
   transition: React.PropTypes.array,
   transitionDuration: React.PropTypes.number,
   transitionDelay: React.PropTypes.number,
   transitionEasing: React.PropTypes.string
 });
 
-BaseWithTransition.defaultProps = assign(Base.defaultProps || {}, {
+BaseWithTransition.defaultProps = assign({}, Base.defaultProps || {}, {
   transition: []
 });
 
-BaseWithTransition.contextTypes = assign(Base.contextTypes || {}, {
+BaseWithTransition.contextTypes = assign({}, Base.contextTypes || {}, {
   router: React.PropTypes.object
 });
 

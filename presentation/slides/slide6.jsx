@@ -17,7 +17,7 @@ class Slide6 extends Slide {
   }
 }
 
-Slide6.defaultProps = assign(Slide.defaultProps, {
+Slide6.defaultProps = assign({}, Slide.defaultProps, {
   transition: ['slide'],
   bgColor: 'black'
 });

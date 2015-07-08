@@ -22,7 +22,7 @@ class Slide2 extends Slide {
   }
 }
 
-Slide2.defaultProps = assign(Slide.defaultProps, {
+Slide2.defaultProps = assign({}, Slide.defaultProps, {
   transition: ['slide'],
   bgColor: 'black'
 });

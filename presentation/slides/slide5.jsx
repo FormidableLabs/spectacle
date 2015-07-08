@@ -26,7 +26,7 @@ class Slide5 extends Slide {
   }
 }
 
-Slide5.defaultProps = assign(Slide.defaultProps, {
+Slide5.defaultProps = assign({}, Slide.defaultProps, {
   transition: ['zoom', 'fade'],
   bgColor: 'primary'
 });

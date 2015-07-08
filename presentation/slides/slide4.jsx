@@ -33,7 +33,7 @@ class Slide4 extends Slide {
   }
 }
 
-Slide4.defaultProps = assign(Slide.defaultProps, {
+Slide4.defaultProps = assign({}, Slide.defaultProps, {
   transition: ['slide'],
   bgImage: images.city.replace('/', ''),
   bgDarken: 0.75
