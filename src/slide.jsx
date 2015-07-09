@@ -20,7 +20,8 @@ const Slide = React.createClass({
     align: React.PropTypes.string,
     presenterStyle: React.PropTypes.object,
     children: React.PropTypes.node,
-    notes: React.PropTypes.string
+    notes: React.PropTypes.string,
+    slideIndex: React.PropTypes.number
   },
   contextTypes: {
     styles: React.PropTypes.object,
@@ -57,7 +58,7 @@ const Slide = React.createClass({
           id: frag.dataset.fid,
           visible: false
         });
-      })
+      });
     }
     window.addEventListener("load", this.setZoom);
     window.addEventListener("resize", this.setZoom);

@@ -5,7 +5,8 @@ import _ from "lodash";
 const Appear = React.createClass({
   mixins: [tweenState.Mixin],
   propTypes: {
-    children: React.PropTypes.node
+    children: React.PropTypes.node,
+    fid: React.PropTypes.string.isRequired
   },
   contextTypes: {
     flux: React.PropTypes.object,
@@ -21,7 +22,6 @@ const Appear = React.createClass({
   },
   componentDidMount() {
     this.context.flux.stores.SlideStore.listen(this._storeChange);
-    const slide = this.context.slide;
   },
   componentWillUnmount() {
     this.context.flux.stores.SlideStore.unlisten(this._storeChange);
