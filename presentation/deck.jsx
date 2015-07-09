@@ -49,17 +49,17 @@ export default class extends React.Component {
             margin="20px auto"/>
         </Slide>
         <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
-          <Appear>
+          <Appear fid="1">
             <Heading size={1} caps fit textColor="primary">
               Full Width
             </Heading>
           </Appear>
-          <Appear>
+          <Appear fid="2">
             <Heading size={1} caps fit textColor="tertiary">
               Adjustable Darkness
             </Heading>
           </Appear>
-          <Appear>
+          <Appear fid="3">
             <Heading size={1} caps fit textColor="primary">
               Background Imagery
             </Heading>
@@ -96,12 +96,12 @@ export default class extends React.Component {
         </Slide>
         <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
           <List>
-            <ListItem><Appear>Inline style based theme system</Appear></ListItem>
-            <ListItem><Appear>Autofit text</Appear></ListItem>
-            <ListItem><Appear>Flexbox layout system</Appear></ListItem>
-            <ListItem><Appear>React-Router navigation</Appear></ListItem>
-            <ListItem><Appear>PDF export</Appear></ListItem>
-            <ListItem><Appear>And...</Appear></ListItem>
+            <ListItem><Appear fid="1">Inline style based theme system</Appear></ListItem>
+            <ListItem><Appear fid="2">Autofit text</Appear></ListItem>
+            <ListItem><Appear fid="3">Flexbox layout system</Appear></ListItem>
+            <ListItem><Appear fid="4">React-Router navigation</Appear></ListItem>
+            <ListItem><Appear fid="5">PDF export</Appear></ListItem>
+            <ListItem><Appear fid="6">And...</Appear></ListItem>
           </List>
         </Slide>
         <Slide transition={["slide"]} bgColor="primary">

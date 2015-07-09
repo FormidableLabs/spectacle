@@ -16,17 +16,12 @@ const Appear = React.createClass({
   getInitialState() {
     return {
       active: false,
-      opacity: 0
+      opacity: this.context.export || this.context.overview ? 1 : 0
     };
   },
   componentDidMount() {
     this.context.flux.stores.SlideStore.listen(this._storeChange);
     const slide = this.context.slide;
-    this.context.flux.actions.SlideActions.addFragment({
-      slide,
-      id: this._reactInternalInstance._rootNodeID,
-      visible: false
-    });
   },
   componentWillUnmount() {
     this.context.flux.stores.SlideStore.unlisten(this._storeChange);
@@ -34,9 +29,9 @@ const Appear = React.createClass({
   _storeChange(state) {
     const slide = this.context.slide;
     const key = _.findKey(state.fragments[slide], {
-      "id": this._reactInternalInstance._rootNodeID
+      "id": this.props.fid
     });
-    if (state.fragments[slide].hasOwnProperty(key)) {
+    if (slide in state.fragments && state.fragments[slide].hasOwnProperty(key)) {
       this.setState({
         active: state.fragments[slide][key].visible
       }, () => {
@@ -57,7 +52,7 @@ const Appear = React.createClass({
       opacity: this.getTweeningValue("opacity")
     };
     return (
-      <div style={styles} className="fragment">
+      <div style={styles} className="fragment" data-fid={this.props.fid}>
         {this.props.children}
       </div>
     );

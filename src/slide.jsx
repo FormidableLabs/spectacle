@@ -26,7 +26,8 @@ const Slide = React.createClass({
     styles: React.PropTypes.object,
     export: React.PropTypes.bool,
     print: React.PropTypes.bool,
-    overview: React.PropTypes.bool
+    overview: React.PropTypes.bool,
+    flux: React.PropTypes.object
   },
   getInitialState() {
     return {
@@ -47,6 +48,17 @@ const Slide = React.createClass({
   },
   componentDidMount() {
     this.setZoom();
+    const slide = React.findDOMNode(this.refs.slide);
+    const frags = slide.querySelectorAll(".fragment");
+    if (frags && frags.length) {
+      Array.prototype.slice.call(frags, 0).forEach((frag) => {
+        this.context.flux.actions.SlideActions.addFragment({
+          slide: this.props.slideIndex,
+          id: frag.dataset.fid,
+          visible: false
+        });
+      })
+    }
     window.addEventListener("load", this.setZoom);
     window.addEventListener("resize", this.setZoom);
   },
@@ -88,6 +100,7 @@ const Slide = React.createClass({
     };
     return (
       <div className="spectacle-slide"
+        ref="slide"
         style={[
           styles.outer,
           this.getStyles(),
