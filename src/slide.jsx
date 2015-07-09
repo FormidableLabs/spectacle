@@ -52,10 +52,11 @@ const Slide = React.createClass({
     const slide = React.findDOMNode(this.refs.slide);
     const frags = slide.querySelectorAll(".fragment");
     if (frags && frags.length) {
-      Array.prototype.slice.call(frags, 0).forEach((frag) => {
+      Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
+        frag.dataset.fid = i;
         this.context.flux.actions.SlideActions.addFragment({
           slide: this.props.slideIndex,
-          id: frag.dataset.fid,
+          id: i,
           visible: false
         });
       });

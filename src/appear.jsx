@@ -5,8 +5,7 @@ import _ from "lodash";
 const Appear = React.createClass({
   mixins: [tweenState.Mixin],
   propTypes: {
-    children: React.PropTypes.node,
-    fid: React.PropTypes.string.isRequired
+    children: React.PropTypes.node
   },
   contextTypes: {
     flux: React.PropTypes.object,
@@ -28,8 +27,9 @@ const Appear = React.createClass({
   },
   _storeChange(state) {
     const slide = this.context.slide;
+    const fragment = React.findDOMNode(this.refs.fragment);
     const key = _.findKey(state.fragments[slide], {
-      "id": this.props.fid
+      "id": parseInt(fragment.dataset.fid)
     });
     if (slide in state.fragments && state.fragments[slide].hasOwnProperty(key)) {
       this.setState({
@@ -52,7 +52,7 @@ const Appear = React.createClass({
       opacity: this.getTweeningValue("opacity")
     };
     return (
-      <div style={styles} className="fragment" data-fid={this.props.fid}>
+      <div style={styles} className="fragment" ref="fragment">
         {this.props.children}
       </div>
     );

@@ -216,7 +216,7 @@ The element tags are the bread and butter of your slide content. Most of these t
 
 ####\<Appear />
 
-This tag does not extend from Base. It's special. Wrapping elements in the appear tag makes them appear/disappear in order in response to navigation. The Appear tag requires adding `fid` tags that are unique within a given slide. This requirement will go away in React 0.14.
+This tag does not extend from Base. It's special. Wrapping elements in the appear tag makes them appear/disappear in order in response to navigation.
 
 ####\<BlockQuote />, \<Quote/> and \<Cite /> (Base)
 
