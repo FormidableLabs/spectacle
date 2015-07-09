@@ -20,7 +20,8 @@ const Slide = React.createClass({
     align: React.PropTypes.string,
     presenterStyle: React.PropTypes.object,
     children: React.PropTypes.node,
-    notes: React.PropTypes.string
+    notes: React.PropTypes.string,
+    slideIndex: React.PropTypes.number
   },
   contextTypes: {
     styles: React.PropTypes.object,
@@ -51,13 +52,14 @@ const Slide = React.createClass({
     const slide = React.findDOMNode(this.refs.slide);
     const frags = slide.querySelectorAll(".fragment");
     if (frags && frags.length) {
-      Array.prototype.slice.call(frags, 0).forEach((frag) => {
+      Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
+        frag.dataset.fid = i;
         this.context.flux.actions.SlideActions.addFragment({
           slide: this.props.slideIndex,
-          id: frag.dataset.fid,
+          id: i,
           visible: false
         });
-      })
+      });
     }
     window.addEventListener("load", this.setZoom);
     window.addEventListener("resize", this.setZoom);
