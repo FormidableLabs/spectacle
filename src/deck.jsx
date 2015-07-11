@@ -269,11 +269,11 @@ class Deck extends React.Component {
   }
   render() {
     const globals = this.context.export ? {
-      body: {
+      body: assign(this.context.styles.global.body, {
         minWidth: 1100,
         minHeight: 850,
         overflow: "auto"
-      }
+      })
     } : {};
 
     const styles = {
