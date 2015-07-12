@@ -21,7 +21,8 @@ const Slide = React.createClass({
     presenterStyle: React.PropTypes.object,
     children: React.PropTypes.node,
     notes: React.PropTypes.string,
-    slideIndex: React.PropTypes.number
+    slideIndex: React.PropTypes.number,
+    lastSlide: React.PropTypes.number
   },
   contextTypes: {
     styles: React.PropTypes.object,
@@ -57,7 +58,7 @@ const Slide = React.createClass({
         this.context.flux.actions.SlideActions.addFragment({
           slide: this.props.slideIndex,
           id: i,
-          visible: false
+          visible: this.props.lastSlide > this.props.slideIndex
         });
       });
     }
