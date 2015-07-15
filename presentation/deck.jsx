@@ -8,6 +8,7 @@ import {
 import preloader from "../src/utils/preloader";
 
 import Interactive from "./interactive";
+import SpectacleMarkdown from "./markdownspectacle";
 
 const images = {
   city: require("./city.jpg"),
@@ -20,7 +21,7 @@ preloader([images.city, images.kat]);
 export default class extends React.Component {
   render() {
     return (
-      <Deck transition={["zoom", "slide"]} transitionDuration={800}>
+      <Deck  progress={"bar"} transition={["zoom", "slide"]} transitionDuration={800}>
         <Slide transition={["zoom"]} bgColor="primary">
           <Heading size={1} fit caps textColor="black">
             Spectacle
@@ -35,6 +36,9 @@ export default class extends React.Component {
             <Text bold caps textColor="tertiary">View on Github</Text>
           </Link>
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
+        </Slide>
+        <Slide>
+            <SpectacleMarkdown source={require("raw!./testmd.md")}></SpectacleMarkdown>
         </Slide>
         <Slide transition={['slide']} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
           <Image src={images.kat.replace('/','')} margin="0px auto 40px" height="293px"/>
