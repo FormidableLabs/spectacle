@@ -40,8 +40,8 @@ export default class extends React.Component {
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To <S type={["strikethrough"]}>Begin</S>!</Text>
         </Slide>
         <Slide>
-            <Text textSize="8rem">yeah <Math math="\int_0^\infty x^2 dx" /></Text>
-
+            <Text textSize="5rem"><Math displayMode={false} math="\KaTeX" /> based math rendering</Text>
+            <Math textSize="7rem" math="\int_0^\infty x^2 dx" />
         </Slide>
         <Slide transition={['slide']} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
           <Image src={images.kat.replace('/','')} margin="0px auto 40px" height="293px"/>

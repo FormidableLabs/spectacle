@@ -15,9 +15,16 @@ export class Math extends Base {
   }
 
   generateHtml(props) {
-    return katex.renderToString(props.math || props.children, {
-      displayMode: this.props.displayMode
-    });
+    let rendered;
+    try {
+      rendered = katex.renderToString(props.math || props.children, {
+        displayMode: this.props.displayMode
+      });
+    } catch (e) {
+      rendered = "<span>" + e.message + "</span>";
+    }
+
+    return rendered;
   }
 
   render() {
