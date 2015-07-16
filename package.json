@@ -24,7 +24,8 @@
     "react-tween-state": "0.0.5",
     "style-loader": "^0.12.3",
     "stylus-loader": "^1.2.1",
-    "tween-functions": "^1.0.2"
+    "tween-functions": "^1.0.2",
+    "katex": "^0.4.3"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
