@@ -2,8 +2,10 @@ import React from "react/addons";
 
 import {
   Appear, BlockQuote, Cite, CodePane, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Quote, Slide, Text
+  Heading, Image, Layout, Link, ListItem, List, Quote, Slide, Text, S
 } from "../src/spectacle";
+
+import Math from "../src/math";
 
 import preloader from "../src/utils/preloader";
 
@@ -35,10 +37,11 @@ export default class extends React.Component {
           <Link href="https://github.com/FormidableLabs/spectacle">
             <Text bold caps textColor="tertiary">View on Github</Text>
           </Link>
-          <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
+          <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To <S type={["strikethrough"]}>Begin</S>!</Text>
         </Slide>
         <Slide>
-            <SpectacleMarkdown source={require("raw!./testmd.md")}></SpectacleMarkdown>
+            <Text textSize="8rem">yeah <Math math="\int_0^\infty x^2 dx" /></Text>
+
         </Slide>
         <Slide transition={['slide']} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
           <Image src={images.kat.replace('/','')} margin="0px auto 40px" height="293px"/>
