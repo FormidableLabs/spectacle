@@ -13,7 +13,7 @@ class CodePane extends Base {
   }
   render() {
     return (
-      <pre style={[this.context.styles.components.codePane.pre, this.getStyles()]}>
+      <pre style={[this.context.styles.components.codePane.pre, this.getStyles(), this.props.style]}>
         <code
           className="hljs"
           style={this.context.styles.components.codePane.code}

@@ -6,7 +6,7 @@ import Radium from "radium";
 class ListItem extends Base {
   render() {
     return (
-      <li style={[this.context.styles.components.listItem, this.getStyles()]}>
+      <li style={[this.context.styles.components.listItem, this.getStyles(), this.props.style]}>
         {this.props.children}
       </li>
     );

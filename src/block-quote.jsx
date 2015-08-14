@@ -6,7 +6,7 @@ import Radium from "radium";
 class BlockQuote extends Base {
   render() {
     return (
-      <blockquote style={[this.context.styles.components.blockquote, this.getStyles()]}>
+      <blockquote style={[this.context.styles.components.blockquote, this.getStyles(), this.props.style]}>
         {this.props.children}
       </blockquote>
     );

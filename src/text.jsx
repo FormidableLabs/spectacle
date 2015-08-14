@@ -56,7 +56,7 @@ class Text extends Base {
       }
     };
     return this.props.fit
-    ? <span style={[this.context.styles.components.text, this.getStyles()]}>
+    ? <span style={[this.context.styles.components.text, this.getStyles(), this.props.style]}>
         <svg {...this.props}
           viewBox={viewBox}
           style={styles.svg}>
@@ -69,7 +69,7 @@ class Text extends Base {
           </text>
         </svg>
       </span>
-    : <p style={[this.context.styles.components.text, this.getStyles()]}>
+    : <p style={[this.context.styles.components.text, this.getStyles(), this.props.style]}>
         {this.props.children}
       </p>;
   }

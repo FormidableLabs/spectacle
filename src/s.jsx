@@ -19,7 +19,7 @@ class S extends React.Component {
       styles = assign(styles, {fontStyle: "italic"});
     }
     return (
-      <span style={[styles, this.context.styles.components.s[this.props.type]]}>
+      <span style={[styles, this.context.styles.components.s[this.props.type], this.props.style]}>
         {this.props.children}
       </span>
     );

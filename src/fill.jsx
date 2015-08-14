@@ -8,7 +8,7 @@ class Fill extends React.Component {
       flex: 1
     };
     return (
-      <div style={[styles]}>
+      <div style={[styles, this.props.style]}>
         {this.props.children}
       </div>
     );

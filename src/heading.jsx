@@ -60,7 +60,7 @@ class Heading extends Base {
     ? <div
         style={[
           this.context.styles.components.heading["h" + this.props.size],
-          this.getStyles()]}>
+          this.getStyles(), this.props.style]}>
         <svg {...this.props}
           viewBox={viewBox}
           style={styles.svg}>
@@ -74,7 +74,7 @@ class Heading extends Base {
         </svg>
       </div>
     : React.createElement(Tag, {
-        style: [this.context.styles.components.heading["h" + this.props.size], this.getStyles()]
+        style: [this.context.styles.components.heading["h" + this.props.size], this.getStyles(), this.props.style]
       }, this.props.children);
   }
 }

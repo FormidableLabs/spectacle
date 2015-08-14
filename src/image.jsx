@@ -16,7 +16,8 @@ class Image extends Base {
         style={[
           this.context.styles.components.image,
           this.getStyles(),
-          styles]} />
+          styles,
+          this.props.style]} />
     );
   }
 }

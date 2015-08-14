@@ -8,7 +8,7 @@ class Layout extends React.Component {
       display: "flex"
     };
     return (
-      <div style={[styles]}>
+      <div style={[styles, this.props.style]}>
         {this.props.children}
       </div>
     );
