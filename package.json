@@ -20,7 +20,7 @@
     "object-assign": "^3.0.0",
     "radium": "^0.13.2",
     "react": "^0.13.3",
-    "react-router": "^1.0.0-beta2",
+    "react-router": "1.0.0-beta2",
     "react-tween-state": "0.0.5",
     "style-loader": "^0.12.3",
     "stylus-loader": "^1.2.1",
