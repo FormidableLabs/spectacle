@@ -42,6 +42,9 @@ const getStyles = function getStyles() {
   if (this.props.textAlign) {
     styles.textAlign = this.props.textAlign;
   }
+  if (this.props.position) {
+    styles.position = this.props.position;
+  }
   if (this.props.bgColor) {
     let color = "";
     if (!this.context.styles.colors.hasOwnProperty(this.props.bgColor)) {

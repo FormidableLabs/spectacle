@@ -1,7 +1,7 @@
 import React from "react/addons";
 
 import {
-  Appear, BlockQuote, Cite, CodePane, Deck, Fill,
+  Appear, BlockQuote, Cite, CodePane, Deck, Fill, Morph,
   Heading, Image, Layout, Link, ListItem, List, Quote, Slide, Text
 } from "../src/spectacle";
 
@@ -12,10 +12,11 @@ import Interactive from "./interactive";
 const images = {
   city: require("./city.jpg"),
   kat: require("./kat.png"),
-  logo: require("./formidable-logo.svg")
+  logo: require("./formidable-logo.svg"),
+  doge: require("./Doge.png")
 };
 
-preloader([images.city, images.kat]);
+preloader([images.city, images.kat, images.doge]);
 
 export default class extends React.Component {
   render() {
@@ -36,13 +37,21 @@ export default class extends React.Component {
           </Link>
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
-        <Slide transition={['slide']} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-          <Image src={images.kat.replace('/','')} margin="0px auto 40px" height="293px"/>
+        <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
+          <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
           <Heading size={1} fit textColor="primary" textFont="secondary">
             Wait what?
           </Heading>
         </Slide>
-        <Slide transition={['zoom', 'fade']} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
+        <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
+          <Morph>
+            <Heading size={1} position="absolute">Crazy Animations</Heading>
+            <Heading size={1} position="absolute">So Clean</Heading>
+            <Heading size={1} position="absolute">Much Morphing</Heading>
+            <Image src={images.doge.replace("/", "")} margin="0px auto 40px" height="293px"/>
+          </Morph>
+        </Slide>
+        <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
           <CodePane
             lang="javascript"
             source={require("raw!./deck.example")}
