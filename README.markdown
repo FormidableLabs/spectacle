@@ -35,7 +35,7 @@ Check it out:
 
 ![http://i.imgur.com/H7o2qHI.gif](http://i.imgur.com/H7o2qHI.gif_)
 
-You can toggle the presenter or overview mode by pressing respectively `p` and `o`.
+You can toggle the presenter or overview mode by pressing respectively `alt+p` and `alt+o`.
 
 ## PDF Export
 
