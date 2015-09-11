@@ -1,6 +1,6 @@
 {
   "name": "spectacle",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "dependencies": {
     "alt": {
       "version": "0.16.10",
