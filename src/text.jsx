@@ -10,8 +10,8 @@ class Text extends Base {
     super(props);
     this.resize = this.resize.bind(this);
     this.state = {
-      width: 256,
-      height: 24
+      scale: 1,
+      height: 16
     };
   }
   componentDidMount() {
@@ -23,57 +23,61 @@ class Text extends Base {
   }
   resize() {
     if (this.props.fit) {
-      const el = React.findDOMNode(this.refs.text);
-      const state = this.state;
-      const width = el.offsetWidth || el.getComputedTextLength();
-      const height = el.offsetHeight || 24;
-      if (state.width !== width || state.height !== height) {
-        this.setState({
-          width,
-          height
-        });
-      }
+      const text = React.findDOMNode(this.refs.text);
+      const container = React.findDOMNode(this.refs.container);
+      text.style.display = "inline-block";
+      const scale = (container.offsetWidth / text.offsetWidth);
+      const height = text.offsetHeight * scale;
+      text.style.display = "block";
+      this.setState({
+        scale,
+        height
+      });
     }
   }
   render() {
-    const viewBox = [
-      0, 0,
-      this.state.width,
-      this.state.height - 8
-    ].join(" ");
     const styles = {
-      svg: {
-        width: "100%",
-        maxHeight: "100%",
-        fill: "currentcolor",
-        overflow: "visible"
+      container: {
+        display: 'block',
+        width: '100%',
+        height: this.state.height
       },
       text: {
-        fontFamily: "inherit",
-        fontSize: "1rem",
-        fontWeight: "inherit",
-        textAnchor: "middle"
+        fontSize: 16,
+        display: 'block',
+        margin: "0",
+        padding: "0",
+        lineHeight: this.props.lineHeight,
+        transform: "scale(" + this.state.scale + ")",
+        transformOrigin: 'center top'
       }
     };
     return this.props.fit
-    ? <span style={[this.context.styles.components.text, this.getStyles(), this.props.style]}>
-        <svg {...this.props}
-          viewBox={viewBox}
-          style={styles.svg}>
-          <text
-            ref='text'
-            x='50%'
-            y='13'
-            style={styles.text}>
-            {this.props.children}
-          </text>
-        </svg>
-      </span>
+    ? <div
+        ref="container"
+        style={[
+          this.context.styles.components.text,
+          this.getStyles(), styles.container]}>
+        <span
+          ref="text"
+          style={[styles.text, this.props.style]}>
+          {this.props.children}
+        </span>
+      </div>
     : <p style={[this.context.styles.components.text, this.getStyles(), this.props.style]}>
         {this.props.children}
       </p>;
   }
 }
+
+Text.defaultProps = {
+  lineHeight: 1
+};
+
+Text.propTypes = {
+  children: React.PropTypes.node,
+  lineHeight: React.PropTypes.number
+};
 
 Text.contextTypes = {
   styles: React.PropTypes.object

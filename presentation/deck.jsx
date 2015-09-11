@@ -22,13 +22,13 @@ export default class extends React.Component {
     return (
       <Deck transition={["zoom", "slide"]} transitionDuration={800}>
         <Slide transition={["zoom"]} bgColor="primary">
-          <Heading size={1} fit caps textColor="black">
+          <Heading size={1} fit caps lineHeight={1} textColor="black">
             Spectacle
           </Heading>
-          <Heading size={1} fit caps margin="-20px 0px">
+          <Heading size={1} fit caps>
             A ReactJS Presentation Library
           </Heading>
-          <Heading size={2} fit caps textColor="black">
+          <Heading size={1} fit caps textColor="black">
             Where You Can Write Your Decks In JSX
           </Heading>
           <Link href="https://github.com/FormidableLabs/spectacle">
@@ -111,7 +111,7 @@ export default class extends React.Component {
           <Interactive/>
         </Slide>
         <Slide transition={["spin", "slide"]} bgColor="tertiary">
-          <Heading size={1} caps fit textColor="primary">
+          <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
             Made with love in Seattle by
           </Heading>
           <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>

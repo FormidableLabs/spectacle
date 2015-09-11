@@ -60,7 +60,7 @@ module.exports = {
       pre: {
         maxWidth: 800,
         margin: "auto",
-        fontSize: "1.5em",
+        fontSize: "1em",
         fontWeight: "normal",
         fontFamily: fonts.tertiary
       },
