@@ -1,6 +1,7 @@
 import React from "react/addons";
 import tweenState from "react-tween-state";
 import _ from "lodash";
+import assign from "object-assign";
 
 const Appear = React.createClass({
   mixins: [tweenState.Mixin],
@@ -52,7 +53,7 @@ const Appear = React.createClass({
       opacity: this.getTweeningValue("opacity")
     };
     return (
-      <div style={styles} className="fragment" ref="fragment">
+      <div style={assign({}, this.props.style, styles)} className="fragment" ref="fragment">
         {this.props.children}
       </div>
     );

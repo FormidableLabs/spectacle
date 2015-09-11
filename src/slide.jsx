@@ -91,13 +91,10 @@ const Slide = React.createClass({
       },
       content: {
         flex: 1,
-        position: "absolute",
-        top: "50%",
-        left: "50%",
         maxHeight: config.height,
-        width: config.width,
+        maxWidth: config.width,
         fontSize: 16 * this.state.zoom,
-        transform: " translate(-50%,-50%) scale(" + this.state.contentScale + ")",
+        transform: "scale(" + this.state.contentScale + ")",
         padding: this.state.zoom > 0.6 ? config.margin : 10
       }
     };
