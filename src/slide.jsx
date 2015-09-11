@@ -73,6 +73,14 @@ const Slide = React.createClass({
       backgroundColor: "white",
       backgroundImage: "none"
     } : {};
+    const overViewStyles = {
+      inner: {
+        flexDirection: 'column'
+      },
+      content: {
+        width: "100%"
+      }
+    }
     const styles = {
       outer: {
         position: this.context.export ? "relative" : "absolute",
@@ -107,10 +115,10 @@ const Slide = React.createClass({
           this.getTransitionStyles(),
           printStyles,
           this.props.presenterStyle]}>
-        <div style={[styles.inner]}>
+        <div style={[styles.inner, this.context.overview && overViewStyles.inner]}>
           <div ref="content"
             className="spectacle-content"
-            style={[styles.content, this.context.styles.components.content]}>
+            style={[styles.content, this.context.styles.components.content, this.context.overview && overViewStyles.content]}>
             {this.props.children}
           </div>
         </div>

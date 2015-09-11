@@ -18,7 +18,7 @@ class Overview extends Base {
       const style = {
         position: "absolute",
         width: "15%",
-        height: "15%",
+        height: "20%",
         top: "50%",
         left,
         transform: " translate(-50%,-50%)",
