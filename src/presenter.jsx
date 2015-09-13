@@ -59,7 +59,8 @@ class Presenter extends Base {
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      margin: 0
+      margin: 0,
+      color: 'white'
     };
     const child = this.props.slides[parseInt(this.props.slide) + 1];
     return child ? cloneWithProps(child, {
@@ -139,8 +140,7 @@ class Presenter extends Base {
         border: "2px solid white",
         padding: 20,
         margin: 20,
-        position: "relative",
-        color: "white"
+        position: "relative"
       },
       notes: {
         position: "absolute",
