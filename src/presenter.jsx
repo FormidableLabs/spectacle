@@ -29,7 +29,7 @@ class Presenter extends Base {
   _renderMainSlide() {
     const child = this.props.slides[this.props.slide];
     const presenterStyle = {
-      position: "relative"
+      position: "relative",
     };
     return cloneWithProps(child, {
       key: this.props.slide,

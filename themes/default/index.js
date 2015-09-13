@@ -126,7 +126,7 @@ module.exports = {
       marginTop: "1em"
     },
     content: {
-      margin: "auto",
+      margin: "0 auto",
       textAlign: "center"
     },
     codePane: {

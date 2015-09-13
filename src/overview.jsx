@@ -14,11 +14,11 @@ class Overview extends Base {
     const slide = this.props.slide;
     return this.props.slides.map((child, index) => {
       if (index < slide - 3 || slide + 3 < index) { return false; }
-      const left = (50 + 16.6667 * (index - slide)) + "%";
+      const left = (50 + 30.6667 * (index - slide)) + "%";
       const style = {
         position: "absolute",
-        width: "15%",
-        height: "20%",
+        width: "25%",
+        height: "25%",
         top: "50%",
         left,
         transform: " translate(-50%,-50%)",

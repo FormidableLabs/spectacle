@@ -17,6 +17,11 @@ class Text extends Base {
   componentDidMount() {
     this.resize();
     window.addEventListener("load", this.resize);
+    window.addEventListener("resize", this.resize);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("load", this.resize);
+    window.removeEventListener("resize", this.resize);
   }
   componentWillReceiveProps() {
     this.resize();
