@@ -29,7 +29,7 @@ class Deck extends React.Component {
     };
   }
   componentDidMount() {
-    const slide = this.context.slide;
+    const slide = this._getSlideIndex();
     this.setState({
       lastSlide: slide
     });
@@ -85,7 +85,7 @@ class Deck extends React.Component {
   _goToSlide(e) {
     if (e.key === "spectacle-slide") {
       const data = JSON.parse(e.newValue);
-      const slide = this.context.slide;
+      const slide = this._getSlideIndex();
       this.setState({
         lastSlide: slide || 0
       });
@@ -95,13 +95,13 @@ class Deck extends React.Component {
     }
   }
   _prevSlide() {
-    const slide = this.context.slide;
+    const slide = this._getSlideIndex();
     this.setState({
       lastSlide: slide
     });
-    if (this._checkFragments(slide, false) || this.context.overview) {
+    if (this._checkFragments(this.context.slide, false) || this.context.overview) {
       if (slide > 0) {
-        this.context.router.replaceWith("/" + (slide - 1) + this._getSuffix());
+        this.context.router.replaceWith("/" + this._getHash(slide - 1) + this._getSuffix());
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: slide - 1, forward: false, time: Date.now()}));
       }
@@ -111,13 +111,13 @@ class Deck extends React.Component {
     }
   }
   _nextSlide() {
-    const slide = this.context.slide;
+    const slide = this._getSlideIndex();
     this.setState({
       lastSlide: slide
     });
-    if (this._checkFragments(slide, true) || this.context.overview) {
+    if (this._checkFragments(this.context.slide, true) || this.context.overview) {
       if (slide < this.props.children.length - 1) {
-        this.context.router.replaceWith("/" + (slide + 1) + this._getSuffix());
+        this.context.router.replaceWith("/" + this._getHash(slide + 1) + this._getSuffix());
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: slide + 1, forward: true, time: Date.now()}));
       }
@@ -125,6 +125,13 @@ class Deck extends React.Component {
       localStorage.setItem("spectacle-slide",
         JSON.stringify({slide, forward: true, time: Date.now()}));
     }
+  }
+  _getHash(slide) {
+    let hash = slide;
+    if ('id' in this.props.children[slide].props) {
+      hash = this.props.children[slide].props.id;
+    }
+    return hash;
   }
   _checkFragments(slide, forward) {
     const store = this.context.flux.stores.SlideStore;
@@ -252,11 +259,25 @@ class Deck extends React.Component {
 
     return 0;
   }
+  _getSlideIndex() {
+    let index = 0;
+    if (!parseInt(this.context.slide)) {
+      this.props.children.forEach((slide, i) => {
+        if (slide.props.id === this.context.slide) {
+          index = i;
+        }
+      });
+    } else {
+      index = parseInt(this.context.slide);
+    }
+    return index;
+  }
   _renderSlide() {
-    const slide = this.context.slide;
+    const slide = this._getSlideIndex();
     const child = this.props.children[slide];
     return cloneWithProps(child, {
       key: slide,
+      hash: this.context.slide,
       slideIndex: slide,
       lastSlide: this.state.lastSlide,
       transition: child.props.transition.length ?
@@ -296,11 +317,11 @@ class Deck extends React.Component {
     let componentToRender;
     if (this.context.presenter) {
       componentToRender = (<Presenter slides={this.props.children}
-        slide={this.context.slide} lastSlide={this.state.lastSlide} />);
+        slide={this._getSlideIndex()} lastSlide={this.state.lastSlide} />);
     } else if (this.context.export) {
       componentToRender = <Export slides={this.props.children} />;
     } else if (this.context.overview) {
-      componentToRender = <Overview slides={this.props.children} slide={this.context.slide} />;
+      componentToRender = <Overview slides={this.props.children} slide={this._getSlideIndex()} />;
     } else {
       componentToRender = (<TransitionGroup component="div" style={[styles.transition]}>
                             {this._renderSlide()}
@@ -316,7 +337,7 @@ class Deck extends React.Component {
         {componentToRender}
         {!this.context.export ? <Progress
           items={this.props.children}
-          currentSlide={this.context.slide}
+          currentSlide={this._getSlideIndex()}
           type={this.props.progress}/> : ""}
         <Style rules={assign(this.context.styles.global, globals)} />
       </div>

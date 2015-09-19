@@ -24,6 +24,10 @@ const context = function context(Component, params) {
       } else {
         styles = params.styles;
       }
+      let slide = 0;
+      if (this.props.params && "slide" in this.props.params) {
+        slide = this.props.params.slide;
+      }
       return {
         styles,
         flux: params.flux,
@@ -31,8 +35,7 @@ const context = function context(Component, params) {
         overview: location.query && "overview" in location.query,
         export: location.query && "export" in location.query,
         print: location.query && "print" in location.query,
-        slide: this.props.params && "slide" in this.props.params ?
-          parseInt(this.props.params.slide) : 0
+        slide: slide
       };
     },
 
