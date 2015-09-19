@@ -57,7 +57,7 @@ const Slide = React.createClass({
       Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
         frag.dataset.fid = i;
         this.context.flux.actions.SlideActions.addFragment({
-          slide: this.props.slideIndex,
+          slide: this.props.hash,
           id: i,
           visible: this.props.lastSlide > this.props.slideIndex
         });
