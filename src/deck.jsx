@@ -34,7 +34,7 @@ class Deck extends React.Component {
       lastSlide: slide
     });
     localStorage.setItem("spectacle-slide",
-      JSON.stringify({slide, forward: false, time: Date.now()}));
+      JSON.stringify({slide: this.context.slide, forward: false, time: Date.now()}));
     this._attachEvents();
   }
   componentWillUnmount() {
@@ -89,7 +89,7 @@ class Deck extends React.Component {
       this.setState({
         lastSlide: slide || 0
       });
-      if (this._checkFragments(slide, data.forward)) {
+      if (this._checkFragments(this.context.slide, data.forward)) {
         this.context.router.replaceWith("/" + (data.slide) + this._getSuffix());
       }
     }
@@ -103,11 +103,11 @@ class Deck extends React.Component {
       if (slide > 0) {
         this.context.router.replaceWith("/" + this._getHash(slide - 1) + this._getSuffix());
         localStorage.setItem("spectacle-slide",
-          JSON.stringify({slide: slide - 1, forward: false, time: Date.now()}));
+          JSON.stringify({slide: this._getHash(slide - 1), forward: false, time: Date.now()}));
       }
     } else if (slide > 0) {
       localStorage.setItem("spectacle-slide",
-        JSON.stringify({slide, forward: false, time: Date.now()}));
+        JSON.stringify({slide: this._getHash(slide), forward: false, time: Date.now()}));
     }
   }
   _nextSlide() {
@@ -119,11 +119,11 @@ class Deck extends React.Component {
       if (slide < this.props.children.length - 1) {
         this.context.router.replaceWith("/" + this._getHash(slide + 1) + this._getSuffix());
         localStorage.setItem("spectacle-slide",
-          JSON.stringify({slide: slide + 1, forward: true, time: Date.now()}));
+          JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }
     } else if (slide < this.props.children.length - 1) {
       localStorage.setItem("spectacle-slide",
-        JSON.stringify({slide, forward: true, time: Date.now()}));
+        JSON.stringify({slide: this._getHash(slide), forward: true, time: Date.now()}));
     }
   }
   _getHash(slide) {
@@ -317,7 +317,7 @@ class Deck extends React.Component {
     let componentToRender;
     if (this.context.presenter) {
       componentToRender = (<Presenter slides={this.props.children}
-        slide={this._getSlideIndex()} lastSlide={this.state.lastSlide} />);
+        slide={this._getSlideIndex()} hash={this.context.slide} lastSlide={this.state.lastSlide} />);
     } else if (this.context.export) {
       componentToRender = <Export slides={this.props.children} />;
     } else if (this.context.overview) {

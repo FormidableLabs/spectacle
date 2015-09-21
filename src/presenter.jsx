@@ -33,6 +33,7 @@ class Presenter extends Base {
     };
     return cloneWithProps(child, {
       key: this.props.slide,
+      hash: this.props.hash,
       slideIndex: this.props.slide,
       lastSlide: this.props.lastSlide,
       transition: [],
@@ -65,6 +66,7 @@ class Presenter extends Base {
     const child = this.props.slides[parseInt(this.props.slide) + 1];
     return child ? cloneWithProps(child, {
       key: this.props.slide + 1,
+      hash: child.props.id || this.props.slide + 1,
       slideIndex: this.props.slide + 1,
       lastSlide: this.props.lastSlide,
       transition: [],
