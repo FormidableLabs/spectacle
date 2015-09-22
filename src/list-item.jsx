@@ -14,7 +14,8 @@ class ListItem extends Base {
 }
 
 ListItem.propTypes = {
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  style: React.PropTypes.object
 };
 
 ListItem.contextTypes = {

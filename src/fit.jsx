@@ -16,7 +16,8 @@ class Fit extends React.Component {
 }
 
 Fit.propTypes = {
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  style: React.PropTypes.object
 };
 
 export default Fit;

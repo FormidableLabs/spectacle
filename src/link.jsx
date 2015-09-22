@@ -15,7 +15,8 @@ class Link extends Base {
 
 Link.propTypes = {
   children: React.PropTypes.node,
-  href: React.PropTypes.string
+  href: React.PropTypes.string,
+  style: React.PropTypes.object
 };
 
 Link.contextTypes = {

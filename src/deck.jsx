@@ -128,7 +128,7 @@ class Deck extends React.Component {
   }
   _getHash(slide) {
     let hash = slide;
-    if ('id' in this.props.children[slide].props) {
+    if ("id" in this.props.children[slide].props) {
       hash = this.props.children[slide].props.id;
     }
     return hash;

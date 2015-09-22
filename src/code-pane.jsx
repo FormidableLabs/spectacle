@@ -29,7 +29,8 @@ CodePane.contextTypes = {
 
 CodePane.propTypes = {
   lang: React.PropTypes.string,
-  source: React.PropTypes.string
+  source: React.PropTypes.string,
+  style: React.PropTypes.object
 };
 
 CodePane.defaultProps = {

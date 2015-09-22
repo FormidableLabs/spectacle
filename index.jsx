@@ -29,11 +29,11 @@ Presentation.contextTypes = {
   router: React.PropTypes.object
 };
 
-Presentation = context(Presentation, {styles: config.theme, print: config.print, flux});
+const PresentationContext = context(Presentation, {styles: config.theme, print: config.print, flux});
 
 React.render(
   <Router history={new HashHistory()}>
-    <Route path="/" component={Presentation} />
-    <Route path="/:slide" component={Presentation} />
+    <Route path="/" component={PresentationContext} />
+    <Route path="/:slide" component={PresentationContext} />
   </Router>
 , document.body);

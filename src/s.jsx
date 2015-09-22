@@ -28,6 +28,7 @@ class S extends React.Component {
 
 S.propTypes = {
   children: React.PropTypes.node,
+  style: React.PropTypes.object,
   type: React.PropTypes.array
 };
 

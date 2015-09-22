@@ -35,7 +35,7 @@ const context = function context(Component, params) {
         overview: location.query && "overview" in location.query,
         export: location.query && "export" in location.query,
         print: location.query && "print" in location.query,
-        slide: slide
+        slide
       };
     },
 

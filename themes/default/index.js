@@ -11,8 +11,8 @@ const fonts = {
 };
 
 module.exports = {
-  colors: colors,
-  fonts: fonts,
+  colors,
+  fonts,
   global: {
     body: {
       background: colors.primary,
@@ -80,15 +80,15 @@ module.exports = {
     bar: {
       container: {
         position: "absolute",
-        height: '10px',
-        width: '100%',
+        height: "10px",
+        width: "100%",
         bottom: 0,
         left: 0,
         transition: "all 1s ease-in-out 0.2s",
         zIndex: 1000
       },
       bar: {
-        height: '100%',
+        height: "100%",
         background: colors.tertiary,
         transition: "all 0.3s ease-out"
       }
