@@ -1,3 +1,4 @@
+/*eslint-disable object-shorthand*/
 const colors = {
   primary: "black",
   secondary: "black",
@@ -11,8 +12,8 @@ const fonts = {
 };
 
 module.exports = {
-  colors,
-  fonts,
+  colors: colors,
+  fonts: fonts,
   global: {
     body: {
       background: "white",
