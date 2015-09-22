@@ -52,7 +52,7 @@ export default {
 
     this.setState({
       z: 1
-    }, ()=> {
+    }, () => {
 
       if (this.props.transition.indexOf("fade") !== -1) {
         this.tweenState("opacity", {

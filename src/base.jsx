@@ -1,4 +1,4 @@
-/*eslint max-statements:0,complexity:0*/
+/*eslint max-statements:0,complexity:0,no-invalid-this:0*/
 import React from "react/addons";
 
 const getStyles = function getStyles() {

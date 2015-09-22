@@ -18,6 +18,7 @@ const Slide = React.createClass({
   },
   propTypes: {
     align: React.PropTypes.string,
+    hash: React.PropTypes.number,
     presenterStyle: React.PropTypes.object,
     children: React.PropTypes.node,
     notes: React.PropTypes.string,
@@ -76,12 +77,12 @@ const Slide = React.createClass({
     } : {};
     const overViewStyles = {
       inner: {
-        flexDirection: 'column'
+        flexDirection: "column"
       },
       content: {
         width: "100%"
       }
-    }
+    };
     const styles = {
       outer: {
         position: this.context.export ? "relative" : "absolute",

@@ -43,18 +43,18 @@ class Text extends Base {
   render() {
     const styles = {
       container: {
-        display: 'block',
-        width: '100%',
+        display: "block",
+        width: "100%",
         height: this.state.height
       },
       text: {
         fontSize: 16,
-        display: 'block',
+        display: "block",
         margin: "0",
         padding: "0",
         lineHeight: this.props.lineHeight,
         transform: "scale(" + this.state.scale + ")",
-        transformOrigin: 'center top'
+        transformOrigin: "center top"
       }
     };
     return this.props.fit

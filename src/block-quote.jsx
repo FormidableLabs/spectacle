@@ -14,7 +14,8 @@ class BlockQuote extends Base {
 }
 
 BlockQuote.propTypes = {
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  style: React.PropTypes.object
 };
 
 BlockQuote.contextTypes = {

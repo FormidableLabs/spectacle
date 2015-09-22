@@ -6,7 +6,8 @@ import assign from "object-assign";
 const Appear = React.createClass({
   mixins: [tweenState.Mixin],
   propTypes: {
-    children: React.PropTypes.node
+    children: React.PropTypes.node,
+    style: React.PropTypes.object
   },
   contextTypes: {
     flux: React.PropTypes.object,

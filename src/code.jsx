@@ -14,7 +14,8 @@ class Code extends Base {
 }
 
 Code.propTypes = {
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  style: React.PropTypes.object
 };
 
 Code.contextTypes = {

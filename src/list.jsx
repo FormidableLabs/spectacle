@@ -14,7 +14,8 @@ class List extends Base {
 }
 
 List.propTypes = {
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  style: React.PropTypes.object
 };
 
 List.contextTypes = {

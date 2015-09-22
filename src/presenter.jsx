@@ -29,7 +29,7 @@ class Presenter extends Base {
   _renderMainSlide() {
     const child = this.props.slides[this.props.slide];
     const presenterStyle = {
-      position: "relative",
+      position: "relative"
     };
     return cloneWithProps(child, {
       key: this.props.slide,
@@ -42,7 +42,7 @@ class Presenter extends Base {
     });
   }
   componentDidMount() {
-    this.time = setInterval(()=> {
+    this.time = setInterval(() => {
       this.setState({
         time: startTime(new Date())
       });
@@ -61,7 +61,7 @@ class Presenter extends Base {
       left: "50%",
       transform: "translate(-50%, -50%)",
       margin: 0,
-      color: 'white'
+      color: "white"
     };
     const child = this.props.slides[parseInt(this.props.slide) + 1];
     return child ? cloneWithProps(child, {
@@ -183,6 +183,7 @@ class Presenter extends Base {
 
 Presenter.propTypes = {
   lastSlide: React.PropTypes.number,
+  hash: React.PropTypes.number,
   slides: React.PropTypes.array,
   slide: React.PropTypes.number
 };

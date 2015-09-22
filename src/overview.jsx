@@ -1,5 +1,3 @@
-/*global setInterval*/
-
 import React from "react/addons";
 import cloneWithProps from "react/lib/cloneWithProps";
 import Base from "./base";

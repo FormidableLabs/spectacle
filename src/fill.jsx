@@ -16,7 +16,8 @@ class Fill extends React.Component {
 }
 
 Fill.propTypes = {
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  style: React.PropTypes.object
 };
 
 export default Fill;

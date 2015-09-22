@@ -44,18 +44,18 @@ class Heading extends Base {
     const Tag = "H" + this.props.size;
     const styles = {
       container: {
-        display: 'block',
-        width: '100%',
+        display: "block",
+        width: "100%",
         height: this.state.height
       },
       text: {
         fontSize: 16,
-        display: 'block',
+        display: "block",
         margin: "0",
         padding: "0",
         lineHeight: this.props.lineHeight,
         transform: "scale(" + this.state.scale + ")",
-        transformOrigin: 'center top'
+        transformOrigin: "center top"
       }
     };
     return this.props.fit
@@ -71,8 +71,8 @@ class Heading extends Base {
         </span>
       </div>
     : React.createElement(Tag, {
-        style: [this.context.styles.components.heading["h" + this.props.size], this.getStyles(), this.props.style]
-      }, this.props.children);
+      style: [this.context.styles.components.heading["h" + this.props.size], this.getStyles(), this.props.style]
+    }, this.props.children);
   }
 }
 

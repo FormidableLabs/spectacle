@@ -14,7 +14,8 @@ class Quote extends Base {
 }
 
 Quote.propTypes = {
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  style: React.PropTypes.object
 };
 
 Quote.contextTypes = {

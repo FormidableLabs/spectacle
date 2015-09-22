@@ -32,7 +32,8 @@ Image.propTypes = {
     React.PropTypes.number
   ]),
   display: React.PropTypes.string,
-  src: React.PropTypes.string
+  src: React.PropTypes.string,
+  style: React.PropTypes.object
 };
 
 Image.contextTypes = {
