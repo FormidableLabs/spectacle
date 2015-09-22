@@ -11,8 +11,8 @@ const fonts = {
 };
 
 module.exports = {
-  colors: colors,
-  fonts: fonts,
+  colors,
+  fonts,
   global: {
     body: {
       background: "white",

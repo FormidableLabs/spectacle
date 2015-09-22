@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "lint": "eslint --ext .js,.jsx src",
+    "lint": "eslint --ext .js,.jsx .",
     "build": "webpack",
     "deploy": "npm run build && surge -p ./dist"
   },
