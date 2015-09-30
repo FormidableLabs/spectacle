@@ -1,4 +1,5 @@
-import React from "react/addons";
+import React from "react";
+import ReactDOM from "react-dom";
 import tweenState from "react-tween-state";
 import _ from "lodash";
 import assign from "object-assign";
@@ -29,7 +30,7 @@ const Appear = React.createClass({
   },
   _storeChange(state) {
     const slide = this.context.slide;
-    const fragment = React.findDOMNode(this.refs.fragment);
+    const fragment = ReactDOM.findDOMNode(this.refs.fragment);
     const key = _.findKey(state.fragments[slide], {
       "id": parseInt(fragment.dataset.fid)
     });

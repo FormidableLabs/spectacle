@@ -1,7 +1,6 @@
 /*global setInterval clearInterval*/
 
-import React from "react/addons";
-import cloneWithProps from "react/lib/cloneWithProps";
+import React from "react";
 import Base from "./base";
 import Radium from "radium";
 
@@ -31,8 +30,7 @@ class Presenter extends Base {
     const presenterStyle = {
       position: "relative"
     };
-    return cloneWithProps(child, {
-      key: this.props.slide,
+    return React.cloneElement(child, {
       hash: this.props.hash,
       slideIndex: this.props.slide,
       lastSlide: this.props.lastSlide,
@@ -64,8 +62,7 @@ class Presenter extends Base {
       color: "white"
     };
     const child = this.props.slides[parseInt(this.props.slide) + 1];
-    return child ? cloneWithProps(child, {
-      key: this.props.slide + 1,
+    return child ? React.cloneElement(child, {
       hash: child.props.id || this.props.slide + 1,
       slideIndex: this.props.slide + 1,
       lastSlide: this.props.lastSlide,

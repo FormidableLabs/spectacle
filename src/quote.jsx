@@ -1,4 +1,4 @@
-import React from "react/addons";
+import React from "react";
 import Base from "./base";
 import Radium from "radium";
 

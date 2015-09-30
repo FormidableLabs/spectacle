@@ -1,4 +1,4 @@
-import React from "react/addons";
+import React from "react";
 import assign from "object-assign";
 import Radium from "radium";
 

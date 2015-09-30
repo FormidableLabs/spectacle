@@ -1,6 +1,7 @@
 /*global window*/
 
-import React from "react/addons";
+import React from "react";
+import ReactDOM from "react-dom";
 import Base from "./base";
 import Radium from "radium";
 

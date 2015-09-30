@@ -1,5 +1,4 @@
-import React from "react/addons";
-import cloneWithProps from "react/lib/cloneWithProps";
+import React from "react";
 import Base from "./base";
 import Radium from "radium";
 
@@ -23,8 +22,7 @@ class Overview extends Base {
         border: "1px solid #FFF",
         opacity: index === slide ? 1 : 0.5
       };
-      const el = cloneWithProps(child, {
-        key: index,
+      const el = React.cloneElement(child, {
         slideIndex: index,
         transition: [],
         transitionDuration: 0,

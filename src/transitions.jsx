@@ -1,6 +1,6 @@
 /*global setTimeout*/
 
-import React from "react/addons";
+import React from "react";
 import assign from "object-assign";
 import tweenState from "react-tween-state";
 
@@ -10,7 +10,7 @@ export default {
     transitionDuration: React.PropTypes.number
   },
   contextTypes: {
-    router: React.PropTypes.object
+    location: React.PropTypes.object
   },
   getDefaultProps() {
     return {
@@ -122,7 +122,7 @@ export default {
 
   },
   componentWillLeave(cb) {
-    const slide = parseInt(this.context.router.state.params.slide) || 0;
+    const slide = parseInt(this.context.location.params.slide) || 0;
     const direction = this.props.slideIndex > slide;
 
     this.setState({
