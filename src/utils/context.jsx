@@ -6,7 +6,8 @@ const context = function context(Component, params) {
     propTypes: {
       location: React.PropTypes.object,
       params: React.PropTypes.object,
-      history: React.PropTypes.object
+      history: React.PropTypes.object,
+      params: React.PropTypes.object
     },
     childContextTypes: {
       styles: React.PropTypes.object,

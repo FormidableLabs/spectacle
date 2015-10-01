@@ -23,6 +23,7 @@ class Overview extends Base {
         opacity: index === slide ? 1 : 0.5
       };
       const el = React.cloneElement(child, {
+        key: index,
         slideIndex: index,
         transition: [],
         transitionDuration: 0,

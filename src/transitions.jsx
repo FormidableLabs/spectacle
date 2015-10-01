@@ -122,7 +122,7 @@ export default {
 
   },
   componentWillLeave(cb) {
-    const slide = parseInt(this.context.location.params.slide) || 0;
+    const slide = parseInt(this.props.currentSlide) || 0;
     const direction = this.props.slideIndex > slide;
 
     this.setState({

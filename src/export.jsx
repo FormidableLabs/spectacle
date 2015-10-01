@@ -9,6 +9,7 @@ class Export extends React.Component {
   _renderSlides() {
     return this.props.slides.map((child, index) => {
       return React.cloneElement(child, {
+        key: index,
         slideIndex: index,
         transition: [],
         transitionDuration: 0

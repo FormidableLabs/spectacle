@@ -31,6 +31,7 @@ class Presenter extends Base {
       position: "relative"
     };
     return React.cloneElement(child, {
+      key: this.props.slide,
       hash: this.props.hash,
       slideIndex: this.props.slide,
       lastSlide: this.props.lastSlide,
@@ -63,6 +64,7 @@ class Presenter extends Base {
     };
     const child = this.props.slides[parseInt(this.props.slide) + 1];
     return child ? React.cloneElement(child, {
+      key: this.props.slide + 1,
       hash: child.props.id || this.props.slide + 1,
       slideIndex: this.props.slide + 1,
       lastSlide: this.props.lastSlide,

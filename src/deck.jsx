@@ -274,7 +274,9 @@ class Deck extends React.Component {
     const slide = this._getSlideIndex();
     const child = this.props.children[slide];
     return React.cloneElement(child, {
+      key: slide,
       hash: this.context.slide,
+      currentSlide: this.context.slide,
       slideIndex: slide,
       lastSlide: this.state.lastSlide,
       transition: child.props.transition.length ?
