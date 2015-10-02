@@ -1,6 +1,6 @@
 {
   "name": "@jimpick/spectacle",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "ReactJS Powered Presentation Framework",
   "main": "index.js",
   "scripts": {
