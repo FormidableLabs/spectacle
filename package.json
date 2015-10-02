@@ -1,6 +1,6 @@
 {
-  "name": "spectacle",
-  "version": "0.1.6",
+  "name": "@jimpick/spectacle",
+  "version": "0.1.7",
   "description": "ReactJS Powered Presentation Framework",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "alt": "0.16.10",
-    "highlight.js": "8.8.0",
     "history": "^1.11.1",
     "hjs-webpack": "2.8.1",
     "lodash": "3.9.3",
