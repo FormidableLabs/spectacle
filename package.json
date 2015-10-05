@@ -16,6 +16,8 @@
     "highlight.js": "8.8.0",
     "hjs-webpack": "2.8.1",
     "lodash": "3.9.3",
+    "mdast": "^2.1.0",
+    "mdast-react": "https://github.com/jjt/mdast-react#241f81f",
     "normalize.css": "3.0.3",
     "object-assign": "3.0.0",
     "radium": "0.13.2",
