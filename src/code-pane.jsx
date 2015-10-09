@@ -6,7 +6,8 @@ import Radium from "radium";
 @Radium
 class CodePane extends Base {
   createMarkup() {
-    const markup = highlight.highlight(this.props.lang, this.props.source);
+    const language = highlight.getLanguage(this.props.lang);
+    const markup = highlight.highlightAuto(this.props.source, language ? language.aliases : undefined);
     return {
       __html: markup.value
     };
@@ -34,7 +35,7 @@ CodePane.propTypes = {
 };
 
 CodePane.defaultProps = {
-  lang: "html",
+  lang: "",
   source: ""
 };
 
