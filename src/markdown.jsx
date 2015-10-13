@@ -39,7 +39,8 @@ export default class Markdown extends React.Component {
 
 Markdown.propTypes = {
   children: React.PropTypes.node,
-  source: React.PropTypes.string
+  source: React.PropTypes.string,
+  mdastConfig: React.PropTypes.object
 }
 
 Markdown.defaultProps = {
