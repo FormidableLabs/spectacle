@@ -86,7 +86,7 @@ export default class extends React.Component {
             <Quote>Cat ipsum dolor sit amet, hunt anything that moves or hopped up on goofballs hide when guests come over. Hide when guests come over intrigued by the shower, or stare at ceiling climb leg for stretch and use lap as chair.</Quote>
           </BlockQuote>
         </Slide>
-        <Slide>
+        <Slide transition={["fade"]}>
           <Markdown>
             {`
 ## Inline Markdown
@@ -99,8 +99,11 @@ export default class extends React.Component {
             `}
           </Markdown>
         </Slide>
-        <Slide>
-          <Markdown source={require("raw!./markdown-example.md")}/>
+        <Slide transition={["zoom", "fade"]}>
+          <Markdown source={require("raw!./markdown-code.md")}/>
+        </Slide>
+        <Slide transition={["zoom"]} bgColor="black">
+          <Markdown source={require("raw!./markdown-blockquote.md")}/>
         </Slide>
         <Slide transition={["slide", "spin"]} bgColor="primary">
           <Heading caps fit size={1} textColor="tertiary">

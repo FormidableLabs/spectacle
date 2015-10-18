@@ -3,6 +3,7 @@ import mdast from "mdast";
 import mdastReact from "mdast-react";
 import isUndefined from "lodash/lang/isundefined";
 
+import BlockQuote from "./block-quote";
 import CodePane from "./code-pane";
 import Heading from "./heading";
 import Image from "./image";
@@ -23,6 +24,37 @@ function spectacleComponent(component, boundProps = {}) {
     }
   });
 }
+
+// Spectacle requires a <Quote> inside a <BlockQuote>
+class CombinedBlockQuote extends React.Component {
+  render() {
+    return <BlockQuote><Quote>{this.props.children}</Quote></BlockQuote>;
+  }
+}
+
+// We export the default config so people can extend it themselves
+export const mdastConfigDefault = {
+  commonmark: true,
+  paragraphBlockquotes: false,
+  mdastReactComponents: {
+    a: Link,
+    blockquote: CombinedBlockQuote,
+    code: CodePane,
+    del: spectacleComponent(S, {type: "strikethrough"}),
+    em: spectacleComponent(S, {type: "italic"}),
+    h1: spectacleComponent(Heading, {size: 1}),
+    h2: spectacleComponent(Heading, {size: 2}),
+    h3: spectacleComponent(Heading, {size: 3}),
+    h4: spectacleComponent(Heading, {size: 4}),
+    h5: spectacleComponent(Heading, {size: 5}),
+    h6: spectacleComponent(Heading, {size: 6}),
+    img: Image,
+    li: ListItem,
+    p: Text,
+    strong: spectacleComponent(S, {type: "bold"}),
+    ul: List
+  }
+};
 
 export default class Markdown extends React.Component {
   render() {
@@ -45,24 +77,5 @@ Markdown.propTypes = {
 
 Markdown.defaultProps = {
   source: "",
-  mdastConfig: {
-    commonmark: true,
-    mdastReactComponents: {
-      a: Link,
-      code: CodePane,
-      del: spectacleComponent(S, {type: "strikethrough"}),
-      em: spectacleComponent(S, {type: "italic"}),
-      h1: spectacleComponent(Heading, {size: 1}),
-      h2: spectacleComponent(Heading, {size: 2}),
-      h3: spectacleComponent(Heading, {size: 3}),
-      h4: spectacleComponent(Heading, {size: 4}),
-      h5: spectacleComponent(Heading, {size: 5}),
-      h6: spectacleComponent(Heading, {size: 6}),
-      img: Image,
-      li: ListItem,
-      p: Text,
-      strong: spectacleComponent(S, {type: "bold"}),
-      ul: List
-    }
-  }
+  mdastConfig: mdastConfigDefault
 };
