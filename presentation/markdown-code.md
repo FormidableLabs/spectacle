@@ -1,6 +1,6 @@
-### Markdown from a file
+### Markdown code blocks
 
-With code blocks:
+Chose from `inline code` or code blocks:
 
 ```javascript
 // We export the default config so people can extend it themselves

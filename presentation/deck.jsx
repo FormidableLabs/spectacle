@@ -1,7 +1,7 @@
 import React from "react/addons";
 
 import {
-  Appear, BlockQuote, Cite, CodePane, Deck, Fill,
+  Appear, BlockQuote, Cite  CodePane, Deck, Fill,
   Heading, Image, Layout, Link, ListItem, List, Markdown, Quote, Slide, Text
 } from "../src/spectacle";
 
