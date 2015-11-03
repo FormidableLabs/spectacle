@@ -1,6 +1,6 @@
 /*global window*/
 
-import React from "react/addons";
+import React, { createElement, PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
 
@@ -28,8 +28,8 @@ class Heading extends Base {
   }
   resize() {
     if (this.props.fit) {
-      const text = React.findDOMNode(this.refs.text);
-      const container = React.findDOMNode(this.refs.container);
+      const text = this.refs.text;
+      const container = this.refs.container;
       text.style.display = "inline-block";
       const scale = (container.offsetWidth / text.offsetWidth);
       const height = text.offsetHeight * scale;
@@ -41,7 +41,7 @@ class Heading extends Base {
     }
   }
   render() {
-    const Tag = "H" + this.props.size;
+    const Tag = `H${this.props.size}`;
     const styles = {
       container: {
         display: "block",
@@ -54,25 +54,29 @@ class Heading extends Base {
         margin: "0",
         padding: "0",
         lineHeight: this.props.lineHeight,
-        transform: "scale(" + this.state.scale + ")",
+        transform: `scale(${this.state.scale})`,
         transformOrigin: "center top"
       }
     };
-    return this.props.fit
-    ? <div
-        ref="container"
-        style={[
-          this.context.styles.components.heading["h" + this.props.size],
-          this.getStyles(), styles.container]}>
-        <span
-          ref="text"
-          style={[styles.text, this.props.style]}>
-          {this.props.children}
-        </span>
-      </div>
-    : React.createElement(Tag, {
-      style: [this.context.styles.components.heading["h" + this.props.size], this.getStyles(), this.props.style]
-    }, this.props.children);
+    return (
+      this.props.fit ? (
+        <div
+          ref="container"
+          style={[
+            this.context.styles.components.heading[`h${this.props.size}`],
+            this.getStyles(), styles.container
+          ]}
+        >
+          <span ref="text" style={[styles.text, this.props.style]}>
+            {this.props.children}
+          </span>
+        </div>
+      ) : (
+        createElement(Tag, {
+          style: [this.context.styles.components.heading[`h${this.props.size}`], this.getStyles(), this.props.style]
+        }, this.props.children)
+      )
+    );
   }
 }
 
@@ -82,13 +86,13 @@ Heading.defaultProps = {
 };
 
 Heading.propTypes = {
-  children: React.PropTypes.node,
-  size: React.PropTypes.number,
-  lineHeight: React.PropTypes.number
+  children: PropTypes.node,
+  size: PropTypes.number,
+  lineHeight: PropTypes.number
 };
 
 Heading.contextTypes = {
-  styles: React.PropTypes.object
+  styles: PropTypes.object
 };
 
 export default Heading;

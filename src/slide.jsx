@@ -1,6 +1,6 @@
 /*global window*/
 
-import React from "react/addons";
+import React, { PropTypes } from "react";
 import tweenState from "react-tween-state";
 import Base from "./base";
 import Transitions from "./transitions";
@@ -17,20 +17,20 @@ const Slide = React.createClass({
     };
   },
   propTypes: {
-    align: React.PropTypes.string,
-    hash: React.PropTypes.number,
-    presenterStyle: React.PropTypes.object,
-    children: React.PropTypes.node,
-    notes: React.PropTypes.string,
-    slideIndex: React.PropTypes.number,
-    lastSlide: React.PropTypes.number
+    align: PropTypes.string,
+    hash: PropTypes.number,
+    presenterStyle: PropTypes.object,
+    children: PropTypes.node,
+    notes: PropTypes.string,
+    slideIndex: PropTypes.number,
+    lastSlide: PropTypes.number
   },
   contextTypes: {
-    styles: React.PropTypes.object,
-    export: React.PropTypes.bool,
-    print: React.PropTypes.bool,
-    overview: React.PropTypes.bool,
-    flux: React.PropTypes.object
+    styles: PropTypes.object,
+    export: PropTypes.bool,
+    print: PropTypes.bool,
+    overview: PropTypes.bool,
+    flux: PropTypes.object
   },
   getInitialState() {
     return {
@@ -40,7 +40,7 @@ const Slide = React.createClass({
   },
   setZoom() {
     const mobile = window.matchMedia("(max-width: 628px)").matches;
-    const content = React.findDOMNode(this.refs.content);
+    const content = this.refs.content;
     const zoom = (content.offsetWidth / config.width);
     const contentScaleY = (content.parentNode.offsetHeight / config.height);
     const contentScaleX = (content.parentNode.offsetWidth / config.width);
@@ -52,7 +52,7 @@ const Slide = React.createClass({
   },
   componentDidMount() {
     this.setZoom();
-    const slide = React.findDOMNode(this.refs.slide);
+    const slide = this.refs.slide;
     const frags = slide.querySelectorAll(".fragment");
     if (frags && frags.length) {
       Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
@@ -106,7 +106,7 @@ const Slide = React.createClass({
         maxHeight: config.height,
         maxWidth: config.width,
         fontSize: 16 * this.state.zoom,
-        transform: "scale(" + this.state.contentScale + ")",
+        transform: `scale(${this.state.contentScale})`,
         padding: this.state.zoom > 0.6 ? config.margin : 10
       }
     };
@@ -118,11 +118,18 @@ const Slide = React.createClass({
           this.getStyles(),
           this.getTransitionStyles(),
           printStyles,
-          this.props.presenterStyle]}>
+          this.props.presenterStyle
+        ]}
+      >
         <div style={[styles.inner, this.context.overview && overViewStyles.inner]}>
           <div ref="content"
             className="spectacle-content"
-            style={[styles.content, this.context.styles.components.content, this.context.overview && overViewStyles.content]}>
+            style={[
+              styles.content,
+              this.context.styles.components.content,
+              this.context.overview && overViewStyles.content
+            ]}
+          >
             {this.props.children}
           </div>
         </div>

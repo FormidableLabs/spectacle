@@ -1,7 +1,6 @@
 /*global setInterval clearInterval*/
 
-import React from "react/addons";
-import cloneWithProps from "react/lib/cloneWithProps";
+import React, { cloneElement, PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
 
@@ -12,9 +11,9 @@ const startTime = function startTime(date) {
   const ampm = hours >= 12 ? "PM" : "AM";
   hours %= 12;
   hours = hours ? hours : 12;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  seconds = seconds < 10 ? "0" + seconds : seconds;
-  const strTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+  minutes = minutes < 10 ? `0 ${minutes}` : minutes;
+  seconds = seconds < 10 ? `0 ${seconds}` : seconds;
+  const strTime = `${hours} : ${minutes} : ${seconds} ${ampm}`;
   return strTime;
 };
 
@@ -31,7 +30,7 @@ class Presenter extends Base {
     const presenterStyle = {
       position: "relative"
     };
-    return cloneWithProps(child, {
+    return cloneElement(child, {
       key: this.props.slide,
       hash: this.props.hash,
       slideIndex: this.props.slide,
@@ -41,7 +40,7 @@ class Presenter extends Base {
       presenterStyle
     });
   }
-  componentDidMount() {
+  componentWillMount() {
     this.time = setInterval(() => {
       this.setState({
         time: startTime(new Date())
@@ -64,7 +63,7 @@ class Presenter extends Base {
       color: "white"
     };
     const child = this.props.slides[parseInt(this.props.slide) + 1];
-    return child ? cloneWithProps(child, {
+    return child ? cloneElement(child, {
       key: this.props.slide + 1,
       hash: child.props.id || this.props.slide + 1,
       slideIndex: this.props.slide + 1,
@@ -182,14 +181,14 @@ class Presenter extends Base {
 }
 
 Presenter.propTypes = {
-  lastSlide: React.PropTypes.number,
-  hash: React.PropTypes.number,
-  slides: React.PropTypes.array,
-  slide: React.PropTypes.number
+  lastslide: PropTypes.number,
+  hash: PropTypes.number,
+  slides: PropTypes.array,
+  slide: PropTypes.number
 };
 
 Presenter.contextTypes = {
-  styles: React.PropTypes.object
+  styles: PropTypes.object
 };
 
 export default Presenter;

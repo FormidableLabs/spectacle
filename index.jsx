@@ -1,10 +1,11 @@
 /*global document*/
 
-import React from "react/addons";
+import React, { PropTypes } from "react";
+import { render } from "react-dom";
 import context from "./src/utils/context";
 
-import {Router, Route} from "react-router";
-import HashHistory from "react-router/lib/HashHistory";
+import { Router, Route } from "react-router";
+import createBrowserHistory from "history/lib/createBrowserHistory";
 
 import Alt from "alt";
 import Flux from "./src/flux/alt";
@@ -16,24 +17,23 @@ require("normalize.css");
 require("./themes/default/index.css");
 require("highlight.js/styles/monokai_sublime.css");
 
+const history = createBrowserHistory();
+
 const flux = new Flux();
 Alt.debug("flux", flux);
 
-class Presentation extends React.Component {
-  render() {
-    return <Deck/>;
-  }
-}
+const Presentation = () => <Deck />;
 
 Presentation.contextTypes = {
-  router: React.PropTypes.object
+  history: PropTypes.object,
+  location: PropTypes.object
 };
 
 const PresentationContext = context(Presentation, {styles: config.theme, print: config.print, flux});
 
-React.render(
-  <Router history={new HashHistory()}>
+render(
+  <Router history={history}>
     <Route path="/" component={PresentationContext} />
     <Route path="/:slide" component={PresentationContext} />
   </Router>
-, document.body);
+, document.getElementById("root"));

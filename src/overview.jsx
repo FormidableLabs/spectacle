@@ -1,5 +1,4 @@
-import React from "react/addons";
-import cloneWithProps from "react/lib/cloneWithProps";
+import React, { cloneElement, PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
 
@@ -12,7 +11,7 @@ class Overview extends Base {
     const slide = this.props.slide;
     return this.props.slides.map((child, index) => {
       if (index < slide - 3 || slide + 3 < index) { return false; }
-      const left = (50 + 30.6667 * (index - slide)) + "%";
+      const left = `${(50 + 30.6667 * (index - slide))}%`;
       const style = {
         position: "absolute",
         width: "25%",
@@ -23,7 +22,7 @@ class Overview extends Base {
         border: "1px solid #FFF",
         opacity: index === slide ? 1 : 0.5
       };
-      const el = cloneWithProps(child, {
+      const el = cloneElement(child, {
         key: index,
         slideIndex: index,
         transition: [],
@@ -53,12 +52,12 @@ class Overview extends Base {
 }
 
 Overview.propTypes = {
-  slides: React.PropTypes.array,
-  slide: React.PropTypes.number
+  slides: PropTypes.array,
+  slide: PropTypes.number
 };
 
 Overview.contextTypes = {
-  styles: React.PropTypes.object
+  styles: PropTypes.object
 };
 
 export default Overview;

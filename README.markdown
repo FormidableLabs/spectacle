@@ -62,13 +62,13 @@ The main `.jsx` file you write your deck in is `/presentation/deck.jsx`
 ```javascript
 // deck.jsx
 
-import React from 'react/addons';
+import React, { Component } from 'react';
 import {
   Appear, BlockQuote, Cite, CodePane, Code, Deck, Fill, Fit,
   Heading, Image, Layout, ListItem, List, Quote, S, Slide, Text
 } from '../src/spectacle';
 
-export default class extends React.Component {
+export default class extends Component {
   render() {
     return (
       <Deck>

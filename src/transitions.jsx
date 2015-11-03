@@ -1,16 +1,15 @@
 /*global setTimeout*/
 
-import React from "react/addons";
-import assign from "object-assign";
+import { PropTypes } from "react";
 import tweenState from "react-tween-state";
 
 export default {
   propTypes: {
-    transition: React.PropTypes.array,
-    transitionDuration: React.PropTypes.number
+    transition: PropTypes.array,
+    transitionDuration: PropTypes.number
   },
   contextTypes: {
-    router: React.PropTypes.object
+    location: PropTypes.object
   },
   getDefaultProps() {
     return {
@@ -122,7 +121,7 @@ export default {
 
   },
   componentWillLeave(cb) {
-    const slide = parseInt(this.context.router.state.params.slide) || 0;
+    const slide = parseInt(this.props.currentSlide) || 0;
     const direction = this.props.slideIndex > slide;
 
     this.setState({
@@ -172,22 +171,22 @@ export default {
       zIndex: this.state.z
     };
     if (this.props.transition.indexOf("fade") !== -1) {
-      styles = assign(styles, {
+      styles = Object.assign(styles, {
         opacity: this.getTweeningValue("opacity")
       });
     }
     if (this.props.transition.indexOf("zoom") !== -1) {
-      transformValue += " scale(" + this.getTweeningValue("scale") + ")";
+      transformValue += ` scale(${this.getTweeningValue("scale")})`;
     }
     if (this.props.transition.indexOf("slide") !== -1) {
-      transformValue += " translate3d(" + this.getTweeningValue("left") + "%, 0, 0)";
+      transformValue += ` translate3d(${this.getTweeningValue("left")}%, 0, 0)`;
     } else {
       transformValue += " translate3d(0px, 0px, 0px)";
     }
     if (this.props.transition.indexOf("spin") !== -1) {
-      transformValue += " rotateY(" + this.getTweeningValue("x") + "deg)";
+      transformValue += ` rotateY(${this.getTweeningValue("x")}deg)`;
     }
-    styles = assign(styles, {
+    styles = Object.assign(styles, {
       transform: transformValue
     });
     return styles;

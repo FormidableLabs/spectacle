@@ -1,26 +1,21 @@
 /*eslint new-cap:0, max-statements:0*/
 /*global window document localStorage*/
 
-import React from "react/addons";
-import assign from "object-assign";
-import cloneWithProps from "react/lib/cloneWithProps";
-import Radium from "radium";
+import React, { cloneElement, Component, PropTypes } from "react";
+import ReactTransitionGroup from "react-addons-transition-group";
+import Radium, { Style } from "radium";
 import _ from "lodash";
 import Presenter from "./presenter";
 import Export from "./export";
 import Overview from "./overview";
 
-React.initializeTouchEvents(true);
-
-const Style = Radium.Style;
-
 import Progress from "./progress";
-const TransitionGroup = Radium(React.addons.TransitionGroup);
+const TransitionGroup = Radium(ReactTransitionGroup);
 
 @Radium
-class Deck extends React.Component {
-  constructor(props) {
-    super(props);
+class Deck extends Component {
+  constructor() {
+    super();
     this._handleKeyPress = this._handleKeyPress.bind(this);
     this._handleClick = this._handleClick.bind(this);
     this._goToSlide = this._goToSlide.bind(this);
@@ -28,7 +23,7 @@ class Deck extends React.Component {
       lastSlide: null
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     const slide = this._getSlideIndex();
     this.setState({
       lastSlide: slide
@@ -67,11 +62,11 @@ class Deck extends React.Component {
   }
   _toggleOverviewMode() {
     const suffix = this.context.overview ? "" : "?overview";
-    this.context.router.replaceWith("/" + (this.context.slide) + suffix);
+    this.context.history.replaceState(null, `/${this.context.slide}${suffix}`);
   }
   _togglePresenterMode() {
     const suffix = this.context.presenter ? "" : "?presenter";
-    this.context.router.replaceWith("/" + (this.context.slide) + suffix);
+    this.context.history.replaceState(null, `/${this.context.slide}${suffix}`);
   }
   _getSuffix() {
     if (this.context.presenter) {
@@ -90,7 +85,7 @@ class Deck extends React.Component {
         lastSlide: slide || 0
       });
       if (this._checkFragments(this.context.slide, data.forward)) {
-        this.context.router.replaceWith("/" + (data.slide) + this._getSuffix());
+        this.context.history.replaceState(null, `/${data.slide}${this._getSuffix()}`);
       }
     }
   }
@@ -101,7 +96,7 @@ class Deck extends React.Component {
     });
     if (this._checkFragments(this.context.slide, false) || this.context.overview) {
       if (slide > 0) {
-        this.context.router.replaceWith("/" + this._getHash(slide - 1) + this._getSuffix());
+        this.context.history.replaceState(null, `/${this._getHash(slide - 1)}${this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide - 1), forward: false, time: Date.now()}));
       }
@@ -117,7 +112,7 @@ class Deck extends React.Component {
     });
     if (this._checkFragments(this.context.slide, true) || this.context.overview) {
       if (slide < this.props.children.length - 1) {
-        this.context.router.replaceWith("/" + this._getHash(slide + 1) + this._getSuffix());
+        this.context.history.replaceState(null, "/" + this._getHash(slide + 1) + this._getSuffix());
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }
@@ -150,12 +145,8 @@ class Deck extends React.Component {
     }
     if (slide in fragments) {
       const count = _.size(fragments[slide]);
-      const visible = _.filter(fragments[slide], function (s) {
-        return s.visible === true;
-      });
-      const hidden = _.filter(fragments[slide], function (s) {
-        return s.visible !== true;
-      });
+      const visible = _.filter(fragments[slide], (s) => s.visible === true);
+      const hidden = _.filter(fragments[slide], (s) => s.visible !== true);
       if (forward === true && visible.length !== count) {
         this.context.flux.actions.SlideActions.updateFragment({
           fragment: hidden[0],
@@ -275,7 +266,7 @@ class Deck extends React.Component {
   _renderSlide() {
     const slide = this._getSlideIndex();
     const child = this.props.children[slide];
-    return cloneWithProps(child, {
+    return cloneElement(child, {
       key: slide,
       hash: this.context.slide,
       slideIndex: slide,
@@ -290,7 +281,7 @@ class Deck extends React.Component {
   }
   render() {
     const globals = this.context.export ? {
-      body: assign(this.context.styles.global.body, {
+      body: Object.assign(this.context.styles.global.body, {
         minWidth: 1100,
         minHeight: 850,
         overflow: "auto"
@@ -316,16 +307,24 @@ class Deck extends React.Component {
 
     let componentToRender;
     if (this.context.presenter) {
-      componentToRender = (<Presenter slides={this.props.children}
-        slide={this._getSlideIndex()} hash={this.context.slide} lastSlide={this.state.lastSlide} />);
+      componentToRender = (
+        <Presenter
+          slides={this.props.children}
+          slide={this._getSlideIndex()}
+          hash={this.context.slide}
+          lastSlide={this.state.lastSlide}
+        />
+      );
     } else if (this.context.export) {
       componentToRender = <Export slides={this.props.children} />;
     } else if (this.context.overview) {
       componentToRender = <Overview slides={this.props.children} slide={this._getSlideIndex()} />;
     } else {
-      componentToRender = (<TransitionGroup component="div" style={[styles.transition]}>
-                            {this._renderSlide()}
-                          </TransitionGroup>);
+      componentToRender = (
+        <TransitionGroup component="div" style={[styles.transition]}>
+          {this._renderSlide()}
+        </TransitionGroup>);
+
     }
 
     return (
@@ -333,13 +332,19 @@ class Deck extends React.Component {
         className="spectacle-deck"
         style={[styles.deck]}
         onClick={this._handleClick}
-        {...this._getTouchEvents()}>
+        {...this._getTouchEvents()}
+      >
         {componentToRender}
-        {!this.context.export ? <Progress
-          items={this.props.children}
-          currentSlide={this._getSlideIndex()}
-          type={this.props.progress}/> : ""}
-        <Style rules={assign(this.context.styles.global, globals)} />
+
+        {
+          !this.context.export ?
+          <Progress
+            items={this.props.children}
+            currentSlide={this._getSlideIndex()}
+            type={this.props.progress}
+          /> : ""
+        }
+        <Style rules={Object.assign(this.context.styles.global, globals)} />
       </div>
     );
   }
@@ -353,20 +358,20 @@ Deck.defaultProps = {
 };
 
 Deck.propTypes = {
-  children: React.PropTypes.node,
-  transition: React.PropTypes.array,
-  transitionDuration: React.PropTypes.number,
-  progress: React.PropTypes.oneOf(["pacman", "bar", "number", "none"])
+  children: PropTypes.node,
+  transition: PropTypes.array,
+  transitionDuration: PropTypes.number,
+  progress: PropTypes.oneOf(["pacman", "bar", "number", "none"])
 };
 
 Deck.contextTypes = {
-  styles: React.PropTypes.object,
-  router: React.PropTypes.object,
-  flux: React.PropTypes.object,
-  presenter: React.PropTypes.bool,
-  export: React.PropTypes.bool,
-  overview: React.PropTypes.bool,
-  slide: React.PropTypes.number
+  styles: PropTypes.object,
+  history: PropTypes.object,
+  flux: PropTypes.object,
+  presenter: PropTypes.bool,
+  export: PropTypes.bool,
+  overview: PropTypes.bool,
+  slide: PropTypes.number
 };
 
 export default Deck;

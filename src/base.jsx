@@ -1,5 +1,5 @@
 /*eslint max-statements:0,complexity:0,no-invalid-this:0*/
-import React from "react/addons";
+import { Component, PropTypes } from "react";
 
 const getStyles = function getStyles() {
   const styles = {};
@@ -54,11 +54,9 @@ const getStyles = function getStyles() {
   if (this.props.bgImage) {
     if (this.props.bgDarken) {
       styles.backgroundImage =
-      "linear-gradient( rgba(0, 0, 0, " + this.props.bgDarken +
-        "), rgba(0, 0, 0, " + this.props.bgDarken +
-        ") ), url(" + this.props.bgImage + ")";
+      `linear-gradient( rgba(0, 0, 0, ${this.props.bgDarken}), rgba(0, 0, 0, ${this.props.bgDarken}) ), url(${this.props.bgImage})`;
     } else {
-      styles.backgroundImage = "url(" + this.props.bgImage + ")";
+      styles.backgroundImage = `url(${this.props.bgImage})`;
     }
     styles.backgroundSize = "cover";
     styles.backgroundPosition = "center center";
@@ -66,7 +64,7 @@ const getStyles = function getStyles() {
   return styles;
 };
 
-class Base extends React.Component {
+class Base extends Component {
   constructor(props) {
     super(props);
     this.getStyles = getStyles;
@@ -78,11 +76,11 @@ class Base extends React.Component {
 }
 
 Base.propTypes = {
-  textColor: React.PropTypes.string,
-  textFont: React.PropTypes.string,
-  bgColor: React.PropTypes.string,
-  bgImage: React.PropTypes.string,
-  bgDarken: React.PropTypes.number
+  textColor: PropTypes.string,
+  textFont: PropTypes.string,
+  bgColor: PropTypes.string,
+  bgImage: PropTypes.string,
+  bgDarken: PropTypes.number
 };
 
 Base.defaultProps = {
