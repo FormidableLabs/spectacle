@@ -44,7 +44,7 @@ const context = function context(Component, params) {
       };
     },
 
-    render: function render() {
+    render() {
       return <Component {...this.props} />;
     }
   });

@@ -112,7 +112,7 @@ class Deck extends Component {
     });
     if (this._checkFragments(this.context.slide, true) || this.context.overview) {
       if (slide < this.props.children.length - 1) {
-        this.context.history.replaceState(null, "/" + this._getHash(slide + 1) + this._getSuffix());
+        this.context.history.replaceState(null, `/${this._getHash(slide + 1) + this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }

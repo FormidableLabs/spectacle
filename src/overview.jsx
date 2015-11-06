@@ -30,7 +30,7 @@ class Overview extends Base {
         appearOff: true
       });
       return (
-        <div style={[style]}>
+        <div key={index} style={[style]}>
           {el}
         </div>
       );
