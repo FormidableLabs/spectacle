@@ -18,13 +18,15 @@
     "lodash": "3.9.3",
     "normalize.css": "3.0.3",
     "object-assign": "3.0.0",
+    "postcss-loader": "^0.7.0",
     "radium": "0.13.2",
     "react": "0.13.3",
     "react-router": "1.0.0-beta2",
     "react-tween-state": "0.0.5",
     "style-loader": "0.12.3",
     "stylus-loader": "1.2.1",
-    "tween-functions": "1.0.2"
+    "tween-functions": "1.0.2",
+    "yeticss": "^7.0.5"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
