@@ -1,5 +1,4 @@
-import React from "react/addons";
-import cloneWithProps from "react/lib/cloneWithProps";
+import React from "react";
 import Radium from "radium";
 
 @Radium
@@ -9,7 +8,7 @@ class Export extends React.Component {
   }
   _renderSlides() {
     return this.props.slides.map((child, index) => {
-      return cloneWithProps(child, {
+      return React.cloneElement(child, {
         key: index,
         slideIndex: index,
         transition: [],

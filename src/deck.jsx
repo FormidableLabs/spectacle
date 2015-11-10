@@ -1,21 +1,19 @@
 /*eslint new-cap:0, max-statements:0*/
 /*global window document localStorage*/
 
-import React from "react/addons";
+import React from "react";
+import ReactTransitionGroup from "react-addons-transition-group";
 import assign from "object-assign";
-import cloneWithProps from "react/lib/cloneWithProps";
 import Radium from "radium";
 import _ from "lodash";
 import Presenter from "./presenter";
 import Export from "./export";
 import Overview from "./overview";
 
-React.initializeTouchEvents(true);
-
 const Style = Radium.Style;
 
 import Progress from "./progress";
-const TransitionGroup = Radium(React.addons.TransitionGroup);
+const TransitionGroup = Radium(ReactTransitionGroup);
 
 @Radium
 class Deck extends React.Component {
@@ -67,11 +65,11 @@ class Deck extends React.Component {
   }
   _toggleOverviewMode() {
     const suffix = this.context.overview ? "" : "?overview";
-    this.context.router.replaceWith("/" + (this.context.slide) + suffix);
+    this.context.history.replaceState(null, "/" + (this.context.slide) + suffix);
   }
   _togglePresenterMode() {
     const suffix = this.context.presenter ? "" : "?presenter";
-    this.context.router.replaceWith("/" + (this.context.slide) + suffix);
+    this.context.history.replaceState(null, "/" + (this.context.slide) + suffix);
   }
   _getSuffix() {
     if (this.context.presenter) {
@@ -90,7 +88,7 @@ class Deck extends React.Component {
         lastSlide: slide || 0
       });
       if (this._checkFragments(this.context.slide, data.forward)) {
-        this.context.router.replaceWith("/" + (data.slide) + this._getSuffix());
+        this.context.history.replaceState(null, "/" + (data.slide) + this._getSuffix());
       }
     }
   }
@@ -101,7 +99,7 @@ class Deck extends React.Component {
     });
     if (this._checkFragments(this.context.slide, false) || this.context.overview) {
       if (slide > 0) {
-        this.context.router.replaceWith("/" + this._getHash(slide - 1) + this._getSuffix());
+        this.context.history.replaceState(null, "/" + this._getHash(slide - 1) + this._getSuffix());
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide - 1), forward: false, time: Date.now()}));
       }
@@ -117,7 +115,7 @@ class Deck extends React.Component {
     });
     if (this._checkFragments(this.context.slide, true) || this.context.overview) {
       if (slide < this.props.children.length - 1) {
-        this.context.router.replaceWith("/" + this._getHash(slide + 1) + this._getSuffix());
+        this.context.history.replaceState(null, "/" + this._getHash(slide + 1) + this._getSuffix());
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }
@@ -275,9 +273,10 @@ class Deck extends React.Component {
   _renderSlide() {
     const slide = this._getSlideIndex();
     const child = this.props.children[slide];
-    return cloneWithProps(child, {
+    return React.cloneElement(child, {
       key: slide,
       hash: this.context.slide,
+      currentSlide: this.context.slide,
       slideIndex: slide,
       lastSlide: this.state.lastSlide,
       transition: child.props.transition.length ?
@@ -361,8 +360,8 @@ Deck.propTypes = {
 
 Deck.contextTypes = {
   styles: React.PropTypes.object,
-  router: React.PropTypes.object,
   flux: React.PropTypes.object,
+  history: React.PropTypes.object,
   presenter: React.PropTypes.bool,
   export: React.PropTypes.bool,
   overview: React.PropTypes.bool,

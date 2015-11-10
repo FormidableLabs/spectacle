@@ -1,7 +1,6 @@
 import Appear from "./appear";
 import BlockQuote from "./block-quote";
 import Cite from "./cite";
-import CodePane from "./code-pane";
 import Code from "./code";
 import Deck from "./deck";
 import Fill from "./fill";
@@ -21,7 +20,6 @@ export {
   Appear,
   BlockQuote,
   Cite,
-  CodePane,
   Code,
   Deck,
   Fill,

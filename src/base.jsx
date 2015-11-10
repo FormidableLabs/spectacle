@@ -1,5 +1,5 @@
 /*eslint max-statements:0,complexity:0,no-invalid-this:0*/
-import React from "react/addons";
+import React from "react";
 
 const getStyles = function getStyles() {
   const styles = {};

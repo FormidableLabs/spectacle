@@ -1,6 +1,7 @@
 /*global window*/
 
-import React from "react/addons";
+import React from "react";
+import ReactDOM from "react-dom";
 import tweenState from "react-tween-state";
 import Base from "./base";
 import Transitions from "./transitions";
@@ -40,7 +41,7 @@ const Slide = React.createClass({
   },
   setZoom() {
     const mobile = window.matchMedia("(max-width: 628px)").matches;
-    const content = React.findDOMNode(this.refs.content);
+    const content = ReactDOM.findDOMNode(this.refs.content);
     const zoom = (content.offsetWidth / config.width);
     const contentScaleY = (content.parentNode.offsetHeight / config.height);
     const contentScaleX = (content.parentNode.offsetWidth / config.width);
@@ -52,7 +53,7 @@ const Slide = React.createClass({
   },
   componentDidMount() {
     this.setZoom();
-    const slide = React.findDOMNode(this.refs.slide);
+    const slide = ReactDOM.findDOMNode(this.refs.slide);
     const frags = slide.querySelectorAll(".fragment");
     if (frags && frags.length) {
       Array.prototype.slice.call(frags, 0).forEach((frag, i) => {

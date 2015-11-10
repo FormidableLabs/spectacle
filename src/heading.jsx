@@ -1,6 +1,7 @@
 /*global window*/
 
-import React from "react/addons";
+import React from "react";
+import ReactDOM from "react-dom";
 import Base from "./base";
 import Radium from "radium";
 
@@ -28,8 +29,8 @@ class Heading extends Base {
   }
   resize() {
     if (this.props.fit) {
-      const text = React.findDOMNode(this.refs.text);
-      const container = React.findDOMNode(this.refs.container);
+      const text = ReactDOM.findDOMNode(this.refs.text);
+      const container = ReactDOM.findDOMNode(this.refs.container);
       text.style.display = "inline-block";
       const scale = (container.offsetWidth / text.offsetWidth);
       const height = text.offsetHeight * scale;

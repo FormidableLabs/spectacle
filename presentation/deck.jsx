@@ -1,4 +1,4 @@
-import React from "react/addons";
+import React from "react";
 
 import {
   Appear, BlockQuote, Cite, CodePane, Deck, Fill,
