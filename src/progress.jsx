@@ -105,7 +105,7 @@ class Progress extends Base {
 
 Progress.propTypes = {
   items: PropTypes.array,
-  currentslide: PropTypes.number,
+  currentSlide: PropTypes.number,
   type: PropTypes.oneOf(["pacman", "bar", "number", "none"])
 };
 

@@ -23,7 +23,7 @@ class Deck extends Component {
       lastSlide: null
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     const slide = this._getSlideIndex();
     this.setState({
       lastSlide: slide
