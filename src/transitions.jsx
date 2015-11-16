@@ -9,7 +9,7 @@ export default {
     transitionDuration: PropTypes.number
   },
   contextTypes: {
-    location: PropTypes.object
+    slide: PropTypes.number
   },
   getDefaultProps() {
     return {
@@ -121,7 +121,7 @@ export default {
 
   },
   componentWillLeave(cb) {
-    const slide = parseInt(this.props.currentSlide) || 0;
+    const slide = this.context.slide || 0;
     const direction = this.props.slideIndex > slide;
 
     this.setState({
