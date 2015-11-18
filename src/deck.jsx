@@ -1,7 +1,7 @@
 /*eslint new-cap:0, max-statements:0*/
 /*global window document localStorage*/
 
-import React, { cloneElement, Component, PropTypes } from "react";
+import React, { Children, cloneElement, Component, PropTypes } from "react";
 import ReactTransitionGroup from "react-addons-transition-group";
 import Radium, { Style } from "radium";
 import _ from "lodash";
@@ -268,6 +268,7 @@ class Deck extends Component {
     const child = this.props.children[slide];
     return cloneElement(child, {
       key: slide,
+      children: Children.toArray(child.props.children),
       hash: this.context.slide,
       slideIndex: slide,
       lastSlide: this.state.lastSlide,
@@ -371,7 +372,7 @@ Deck.contextTypes = {
   presenter: PropTypes.bool,
   export: PropTypes.bool,
   overview: PropTypes.bool,
-  slide: PropTypes.number
+  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default Deck;

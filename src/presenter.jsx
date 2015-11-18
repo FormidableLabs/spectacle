@@ -182,9 +182,9 @@ class Presenter extends Base {
 
 Presenter.propTypes = {
   lastslide: PropTypes.number,
-  hash: PropTypes.number,
+  hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   slides: PropTypes.array,
-  slide: PropTypes.number
+  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 Presenter.contextTypes = {

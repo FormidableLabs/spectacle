@@ -9,7 +9,7 @@ export default {
     transitionDuration: PropTypes.number
   },
   contextTypes: {
-    slide: PropTypes.number
+    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   },
   getDefaultProps() {
     return {

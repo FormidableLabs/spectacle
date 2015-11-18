@@ -15,7 +15,7 @@ const context = function context(Component, params) {
       overview: PropTypes.bool,
       export: PropTypes.bool,
       print: PropTypes.bool,
-      slide: PropTypes.number,
+      slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       history: PropTypes.object,
       location: PropTypes.object
     },
@@ -29,7 +29,7 @@ const context = function context(Component, params) {
       }
       let slide = 0;
       if (this.props.params && "slide" in this.props.params) {
-        slide = Number(this.props.params.slide);
+        slide = this.props.params.slide;
       }
       return {
         styles,

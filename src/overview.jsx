@@ -53,7 +53,7 @@ class Overview extends Base {
 
 Overview.propTypes = {
   slides: PropTypes.array,
-  slide: PropTypes.number
+  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 Overview.contextTypes = {

@@ -12,7 +12,7 @@ const Appear = React.createClass({
     flux: PropTypes.object,
     export: PropTypes.bool,
     overview: PropTypes.bool,
-    slide: PropTypes.number
+    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   },
   getInitialState() {
     return {
