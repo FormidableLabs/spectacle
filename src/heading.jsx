@@ -46,7 +46,8 @@ class Heading extends Base {
       container: {
         display: "block",
         width: "100%",
-        height: this.state.height
+        height: this.state.height,
+        overflow: "hidden"
       },
       text: {
         fontSize: 16,

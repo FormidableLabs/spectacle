@@ -21,10 +21,10 @@ const Appear = React.createClass({
     };
   },
   componentWillMount() {
-    this.context.flux.stores.SlideStore.listen(this._storeChange);
+    this.context.export || this.context.flux.stores.SlideStore.listen(this._storeChange);
   },
   componentWillUnmount() {
-    this.context.flux.stores.SlideStore.unlisten(this._storeChange);
+    this.context.export || this.context.flux.stores.SlideStore.unlisten(this._storeChange);
   },
   _storeChange(state) {
     const slide = this.context.slide;
