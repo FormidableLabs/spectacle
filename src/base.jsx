@@ -3,14 +3,14 @@ import { Component, PropTypes } from "react";
 
 const getStyles = function getStyles() {
   const styles = {};
-  if (this.props.italic) {
-    styles.fontStyle = "italic";
+  if (typeof this.props.italic === "boolean") {
+    styles.fontStyle = this.props.italic ? "italic" : "normal";
   }
-  if (this.props.bold) {
-    styles.fontWeight = "bold";
+  if (typeof this.props.bold === "boolean") {
+    styles.fontWeight = this.props.bold ? "bold" : "normal";
   }
-  if (this.props.caps) {
-    styles.textTransform = "uppercase";
+  if (typeof this.props.caps === "boolean") {
+    styles.textTransform = this.props.caps ? "uppercase" : "none";
   }
   if (this.props.margin) {
     styles.margin = this.props.margin;

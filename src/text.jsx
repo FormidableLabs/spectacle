@@ -55,6 +55,9 @@ class Text extends Base {
         lineHeight: this.props.lineHeight,
         transform: "scale(" + this.state.scale + ")",
         transformOrigin: "center top"
+      },
+      nonFit: {
+        lineHeight: this.props.lineHeight
       }
     };
     return (
@@ -71,7 +74,7 @@ class Text extends Base {
           </span>
         </div>
       ) : (
-        <p style={[this.context.styles.components.text, this.getStyles(), this.props.style]}>
+        <p style={[this.context.styles.components.text, this.getStyles(), styles.nonFit, this.props.style]}>
           {this.props.children}
         </p>
       )

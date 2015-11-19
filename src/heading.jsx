@@ -57,6 +57,9 @@ class Heading extends Base {
         lineHeight: this.props.lineHeight,
         transform: `scale(${this.state.scale})`,
         transformOrigin: "center top"
+      },
+      nonFit: {
+        lineHeight: this.props.lineHeight
       }
     };
     return (
@@ -74,7 +77,7 @@ class Heading extends Base {
         </div>
       ) : (
         createElement(Tag, {
-          style: [this.context.styles.components.heading[`h${this.props.size}`], this.getStyles(), this.props.style]
+          style: [this.context.styles.components.heading[`h${this.props.size}`], this.getStyles(), styles.nonFit, this.props.style]
         }, this.props.children)
       )
     );
