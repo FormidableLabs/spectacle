@@ -1,4 +1,4 @@
-import React from "react/addons";
+import React, { PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
 
@@ -14,12 +14,12 @@ class List extends Base {
 }
 
 List.propTypes = {
-  children: React.PropTypes.node,
-  style: React.PropTypes.object
+  children: PropTypes.node,
+  style: PropTypes.object
 };
 
 List.contextTypes = {
-  styles: React.PropTypes.object
+  styles: PropTypes.object
 };
 
 export default List;

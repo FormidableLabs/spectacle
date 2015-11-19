@@ -1,8 +1,8 @@
-import React from "react/addons";
+import React, { Component, PropTypes } from "react";
 import Radium from "radium";
 
 @Radium
-class Fit extends React.Component {
+class Fit extends Component {
   render() {
     const styles = {
       flex: 0
@@ -16,8 +16,8 @@ class Fit extends React.Component {
 }
 
 Fit.propTypes = {
-  children: React.PropTypes.node,
-  style: React.PropTypes.object
+  children: PropTypes.node,
+  style: PropTypes.object
 };
 
 export default Fit;

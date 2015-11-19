@@ -38,7 +38,7 @@ module.exports = {
       display: "inline-block"
     },
     quote: {
-      borderLeft: "1px solid " + colors.primary,
+      borderLeft: `1px solid ${colors.primary}`,
       paddingLeft: 40,
       display: "block",
       color: "black",

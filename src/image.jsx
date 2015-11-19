@@ -1,4 +1,4 @@
-import React from "react/addons";
+import React, { PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
 
@@ -17,27 +17,29 @@ class Image extends Base {
           this.context.styles.components.image,
           this.getStyles(),
           styles,
-          this.props.style]} />
+          this.props.style
+        ]}
+      />
     );
   }
 }
 
 Image.propTypes = {
-  width: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
   ]),
-  height: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
+  height: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
   ]),
-  display: React.PropTypes.string,
-  src: React.PropTypes.string,
-  style: React.PropTypes.object
+  display: PropTypes.string,
+  src: PropTypes.string,
+  style: PropTypes.object
 };
 
 Image.contextTypes = {
-  styles: React.PropTypes.object
+  styles: PropTypes.object
 };
 
 export default Image;

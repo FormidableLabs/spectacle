@@ -13,7 +13,7 @@ webpackConfig.module.loaders[0] = {
   test: /(\.js$)|(\.jsx$)/,
   exclude: /node_modules/,
   loaders: [
-    "babel-loader?stage=1"
+    "babel-loader"
   ]
 };
 

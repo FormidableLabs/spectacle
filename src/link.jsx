@@ -1,4 +1,4 @@
-import React from "react/addons";
+import React, { PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
 
@@ -14,13 +14,13 @@ class Link extends Base {
 }
 
 Link.propTypes = {
-  children: React.PropTypes.node,
-  href: React.PropTypes.string,
-  style: React.PropTypes.object
+  children: PropTypes.node,
+  href: PropTypes.string,
+  style: PropTypes.object
 };
 
 Link.contextTypes = {
-  styles: React.PropTypes.object
+  styles: PropTypes.object
 };
 
 export default Link;

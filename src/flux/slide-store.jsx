@@ -6,7 +6,7 @@ export default class SlideStore {
 
   onAddFragment(payload) {
     const fragments = this.fragments;
-    const fid = "f" + payload.id;
+    const fid = `f${payload.id}`;
     if (!fragments.hasOwnProperty(payload.slide)) {
       fragments[payload.slide] = {};
       fragments[payload.slide][fid] = payload;
@@ -22,7 +22,7 @@ export default class SlideStore {
   }
   onUpdateFragment(payload) {
     const fragments = this.fragments;
-    fragments[payload.fragment.slide]["f" + payload.fragment.id].visible = payload.visible;
+    fragments[payload.fragment.slide][`f${payload.fragment.id}`].visible = payload.visible;
     this.setState({
       fragments
     });

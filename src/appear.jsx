@@ -1,19 +1,18 @@
-import React from "react/addons";
+import React, { PropTypes } from "react";
 import tweenState from "react-tween-state";
 import _ from "lodash";
-import assign from "object-assign";
 
 const Appear = React.createClass({
   mixins: [tweenState.Mixin],
   propTypes: {
-    children: React.PropTypes.node,
-    style: React.PropTypes.object
+    children: PropTypes.node,
+    style: PropTypes.object
   },
   contextTypes: {
-    flux: React.PropTypes.object,
-    export: React.PropTypes.bool,
-    overview: React.PropTypes.bool,
-    slide: React.PropTypes.number
+    flux: PropTypes.object,
+    export: PropTypes.bool,
+    overview: PropTypes.bool,
+    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   },
   getInitialState() {
     return {
@@ -21,15 +20,15 @@ const Appear = React.createClass({
       opacity: this.context.export || this.context.overview ? 1 : 0
     };
   },
-  componentDidMount() {
-    this.context.flux.stores.SlideStore.listen(this._storeChange);
+  componentWillMount() {
+    this.context.export || this.context.flux.stores.SlideStore.listen(this._storeChange);
   },
   componentWillUnmount() {
-    this.context.flux.stores.SlideStore.unlisten(this._storeChange);
+    this.context.export || this.context.flux.stores.SlideStore.unlisten(this._storeChange);
   },
   _storeChange(state) {
     const slide = this.context.slide;
-    const fragment = React.findDOMNode(this.refs.fragment);
+    const fragment = this.refs.fragment;
     const key = _.findKey(state.fragments[slide], {
       "id": parseInt(fragment.dataset.fid)
     });
@@ -54,7 +53,7 @@ const Appear = React.createClass({
       opacity: this.getTweeningValue("opacity")
     };
     return (
-      <div style={assign({}, this.props.style, styles)} className="fragment" ref="fragment">
+      <div style={Object.assign({}, this.props.style, styles)} className="fragment" ref="fragment">
         {this.props.children}
       </div>
     );

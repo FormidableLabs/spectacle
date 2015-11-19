@@ -1,4 +1,4 @@
-import React from "react/addons";
+import React, { PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
 
@@ -38,8 +38,12 @@ class Progress extends Base {
               <div style={[style.pacmanBottom, this.getPacmanStyle("Bottom")]} />
             </div>
             {this.props.items.map((item, i) => {
-              return (<div style={[style.point, this.getPointStyle(i)]}
-                        key={"presentation-progress-" + i} />);
+              return (
+                <div
+                  style={[style.point, this.getPointStyle(i)]}
+                  key={`presentation-progress-${i}`}
+                />
+              );
             })}
           </div>
         );
@@ -75,16 +79,16 @@ class Progress extends Base {
   }
 
   getPacmanStyle(side) {
-    const animationName = "pacman" + side + "Frames" + (this.props.currentSlide % 2 ? "" : "Bis");
+    const animationName = `pacman${side}Frames${(this.props.currentSlide % 2 ? "" : "Bis")}`;
     return {
-      animation: animations[animationName] + " 0.12s linear 10 alternate both"
+      animation: `${animations[animationName]} 0.12s linear 10 alternate both`
     };
   }
 
   getPointPosition(i) {
     return {
       top: "-20px",
-      left: (5 + 20 * (i - this.props.items.length / 2)) + "px"
+      left: `${(5 + 20 * (i - this.props.items.length / 2))}px`
     };
   }
 
@@ -100,13 +104,13 @@ class Progress extends Base {
 }
 
 Progress.propTypes = {
-  items: React.PropTypes.array,
-  currentSlide: React.PropTypes.number,
-  type: React.PropTypes.oneOf(["pacman", "bar", "number", "none"])
+  items: PropTypes.array,
+  currentSlide: PropTypes.number,
+  type: PropTypes.oneOf(["pacman", "bar", "number", "none"])
 };
 
 Progress.contextTypes = {
-  styles: React.PropTypes.object
+  styles: PropTypes.object
 };
 
 export default Progress;
