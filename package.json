@@ -17,7 +17,7 @@
     "hjs-webpack": "3.0.0",
     "lodash": "3.10.1",
     "normalize.css": "3.0.3",
-    "radium": "0.14.2",
+    "radium": "0.15.0",
     "react": "0.14.2",
     "react-dom": "0.14.2",
     "react-addons-transition-group": "0.14.2",

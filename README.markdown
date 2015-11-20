@@ -230,7 +230,7 @@ These tags create a styled blockquote. Use them as follows:
 </BlockQuote>
 ```
 
-####\<CodePane />
+####\<CodePane /> (Base)
 
 This tag displays a styled, highlighted code preview. I prefer putting my code samples in external `.example` files and requiring them using `raw-loader` as shown in the demo. Here are the props:
 
@@ -239,7 +239,7 @@ This tag displays a styled, highlighted code preview. I prefer putting my code s
 |lang|React.PropTypes.string| Highlight.js compatible language name. i.e: 'javascript' |
 |source| React.PropTypes.string| String of code to be shown |
 
-####\<Code />
+####\<Code /> (Base)
 
 A simple tag for wrapping inline text that you want lightly styled in a monospace font.
 

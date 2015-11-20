@@ -6,7 +6,7 @@ import Radium from "radium";
 class Cite extends Base {
   render() {
     return (
-      <cite style={[this.context.styles.components.cite, this.getStyles()]}>
+      <cite style={[this.context.styles.components.cite, this.getStyles(), this.props.style]}>
         - {this.props.children}
       </cite>
     );
@@ -14,7 +14,8 @@ class Cite extends Base {
 }
 
 Cite.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  style: PropTypes.object
 };
 
 Cite.contextTypes = {
