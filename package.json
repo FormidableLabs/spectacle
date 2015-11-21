@@ -10,7 +10,7 @@
     "deploy": "npm run build && surge -p ./dist"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "mdast": "^2.1.0",
     "mdast-react": "https://github.com/jjt/mdast-react#2ea3bcd",
