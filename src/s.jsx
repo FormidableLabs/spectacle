@@ -28,7 +28,10 @@ class S extends Component {
 S.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
-  type: PropTypes.array
+  type: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array
+  ])
 };
 
 S.contextTypes = {

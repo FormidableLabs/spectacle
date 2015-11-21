@@ -84,27 +84,24 @@ export default class extends Component {
         </Slide>
         <Slide transition={["slide"]} bgColor="black">
           <BlockQuote>
-            <Quote>Cat ipsum dolor sit amet, hunt anything that moves or hopped up on goofballs hide when guests come over. Hide when guests come over intrigued by the shower, or stare at ceiling climb leg for stretch and use lap as chair.</Quote>
+            <Quote>Wonderfully formatted quotes</Quote>
+            <Cite>Ken Wheeler</Cite>
           </BlockQuote>
         </Slide>
-        <Slide transition={["fade"]}>
+        <Slide transition={["spin", "zoom"]} bgColor="tertiary">
+          <Heading caps fit size={1} textColor="primary">
+            Inline Markdown
+          </Heading>
           <Markdown>
             {`
-## Inline Markdown
 ![Markdown Logo](${images.markdown.replace("/", "")})
 
-[Bacon ipsum](http://baconipsum.com) dolor amet jerky t-bone fatback, pork alcatra beef ribs bresaola swine pancetta rump shank kielbasa.
-* Lists!
-* ~~Prosciutto~~ shankle _sirloin_
-* Tenderloin **doner** short ribs
+You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
+* Lists too!
+* With ~~strikethrough~~ and _italic_
+* And lets not forget **bold**
             `}
           </Markdown>
-        </Slide>
-        <Slide transition={["zoom", "fade"]}>
-          <Markdown source={require("raw!./markdown-code.md")}/>
-        </Slide>
-        <Slide transition={["zoom"]} bgColor="black">
-          <Markdown source={require("raw!./markdown-blockquote.md")}/>
         </Slide>
         <Slide transition={["slide", "spin"]} bgColor="primary">
           <Heading caps fit size={1} textColor="tertiary">

@@ -1,4 +1,4 @@
-import React from "react/addons";
+import React, { PropTypes } from "react";
 import mdast from "mdast";
 import mdastReact from "mdast-react";
 import isUndefined from "lodash/lang/isundefined";
@@ -59,7 +59,7 @@ export const mdastConfigDefault = {
   }
 };
 
-export default class Markdown extends React.Component {
+class Markdown extends React.Component {
   render() {
     const { source, children, mdastConfig } = this.props;
     const content = (isUndefined(source) || source === "") ? children : source;
@@ -73,12 +73,15 @@ export default class Markdown extends React.Component {
 }
 
 Markdown.propTypes = {
-  children: React.PropTypes.node,
-  source: React.PropTypes.string,
-  mdastConfig: React.PropTypes.object
+  children: PropTypes.node,
+  source: PropTypes.string,
+  mdastConfig: PropTypes.object
 }
 
 Markdown.defaultProps = {
   source: "",
   mdastConfig: mdastConfigDefault
 };
+
+export default Markdown;
+
