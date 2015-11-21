@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import {
   Appear, BlockQuote, Cite, CodePane, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Quote, Slide, Text
+  Heading, Image, Layout, Link, ListItem, List, Markdown, Quote, Slide, Text
 } from "../src/spectacle";
 
 import preloader from "../src/utils/preloader";
@@ -12,7 +12,8 @@ import Interactive from "./interactive";
 const images = {
   city: require("./city.jpg"),
   kat: require("./kat.png"),
-  logo: require("./formidable-logo.svg")
+  logo: require("./formidable-logo.svg"),
+  markdown: require("./markdown.png")
 };
 
 preloader([images.city, images.kat]);
@@ -86,6 +87,21 @@ export default class extends Component {
             <Quote>Wonderfully formatted quotes</Quote>
             <Cite>Ken Wheeler</Cite>
           </BlockQuote>
+        </Slide>
+        <Slide transition={["spin", "zoom"]} bgColor="tertiary">
+          <Heading caps fit size={1} textColor="primary">
+            Inline Markdown
+          </Heading>
+          <Markdown>
+            {`
+![Markdown Logo](${images.markdown.replace("/", "")})
+
+You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
+* Lists too!
+* With ~~strikethrough~~ and _italic_
+* And lets not forget **bold**
+            `}
+          </Markdown>
         </Slide>
         <Slide transition={["slide", "spin"]} bgColor="primary">
           <Heading caps fit size={1} textColor="tertiary">

@@ -211,6 +211,20 @@ The fit tag only takes up as much space as its bounds provide.
 
 The fill tag takes up all the space available to it. For example, if you have a `Fill` tag next to a `Fit` tag, the `Fill` tag will take up the rest of the space. Adjacent `Fill` tags split the difference and form an equidistant grid.
 
+### Markdown Tag
+
+
+####\<Markdown/>
+
+The Markdown tag is used to add inline markdown to your slide. You can provide markdown source via the `source` prop, or as children. You can also provide a custom [mdast configuration](https://github.com/wooorm/mdast) via the `mdastConfig` prop. 
+
+Markdown generated tags aren't prop configurable, and instead render with your theme defaults.
+
+|Name|PropType|Description|
+|---|---|---|
+|source|React.PropTypes.string| Markdown source |
+|mdastConfig| React.PropTypes.object | Mdast configuration object |
+
 ### Element Tags
 
 The element tags are the bread and butter of your slide content. Most of these tags derive their props from the Base class, but the ones that have special options will have them listed:

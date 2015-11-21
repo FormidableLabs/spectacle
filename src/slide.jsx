@@ -91,6 +91,7 @@ const Slide = React.createClass({
         width: "100%",
         height: "100%",
         display: "flex",
+        overflow: "hidden",
         backgroundColor: this.context.styles.global.body.background ?
           this.context.styles.global.body.background : ""
       },
