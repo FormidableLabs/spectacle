@@ -6,7 +6,7 @@ import Radium from "radium";
 class Link extends Base {
   render() {
     return (
-      <a href={this.props.href} style={[this.context.styles.components.link, this.getStyles(), this.props.style]}>
+      <a href={this.props.href} target={this.props.target} style={[this.context.styles.components.link, this.getStyles(), this.props.style]}>
         {this.props.children}
       </a>
     );
@@ -16,6 +16,7 @@ class Link extends Base {
 Link.propTypes = {
   children: PropTypes.node,
   href: PropTypes.string,
+  target: PropTypes.string,
   style: PropTypes.object
 };
 
