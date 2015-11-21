@@ -53,10 +53,10 @@ class Deck extends Component {
     if (event.keyCode === 39 || event.keyCode === 34) {
       this._nextSlide();
     }
-    if (event.keyCode === 79 && !event.ctrlKey && !event.metaKey) { // o
+    if ((event.altKey && event.keyCode === 79) && !event.ctrlKey && !event.metaKey) { // o
       this._toggleOverviewMode();
     }
-    if (event.keyCode === 80 && !event.ctrlKey && !event.metaKey) { // o
+    if ((event.altKey && event.keyCode === 80) && !event.ctrlKey && !event.metaKey) { // p
       this._togglePresenterMode();
     }
   }
