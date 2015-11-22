@@ -1,5 +1,5 @@
-import React, { cloneElement, PropTypes } from "react";
-import Base from "./base";
+import React, { cloneElement, Component, PropTypes } from "react";
+import { getStyles } from "./utils/base";
 import Radium from "radium";
 
 const startTime = function startTime(date) {
@@ -16,7 +16,7 @@ const startTime = function startTime(date) {
 };
 
 @Radium
-export default class Presenter extends Base {
+export default class Presenter extends Component {
   constructor() {
     super();
     this.state = {

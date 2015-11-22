@@ -21,7 +21,7 @@ preloader([images.city, images.kat]);
 export default class extends Component {
   render() {
     return (
-      <Deck transition={["zoom", "slide"]} transitionDuration={800}>
+      <Deck transition={["zoom", "slide"]} transitionDuration={500}>
         <Slide transition={["zoom"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="black">
             Spectacle

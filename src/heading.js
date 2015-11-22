@@ -1,9 +1,9 @@
-import React, { createElement, PropTypes } from "react";
-import Base from "./base";
+import React, { Component, createElement, PropTypes } from "react";
+import { getStyles } from "./utils/base";
 import Radium from "radium";
 
 @Radium
-export default class Heading extends Base {
+export default class Heading extends Component {
   constructor() {
     super();
     this.resize = this.resize.bind(this);
@@ -66,7 +66,7 @@ export default class Heading extends Base {
           ref="container"
           style={[
             this.context.styles.components.heading[`h${size}`],
-            this.getStyles(), styles.container
+            getStyles.call(this), styles.container
           ]}
         >
           <span ref="text" style={[styles.text, style]}>
@@ -75,7 +75,7 @@ export default class Heading extends Base {
         </div>
       ) : (
         createElement(Tag, {
-          style: [this.context.styles.components.heading[`h${size}`], this.getStyles(), styles.nonFit, style]
+          style: [this.context.styles.components.heading[`h${size}`], getStyles.call(this), styles.nonFit, style]
         }, children)
       )
     );

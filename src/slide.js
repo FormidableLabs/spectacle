@@ -1,13 +1,13 @@
-import React, { PropTypes } from "react";
+import React, { Component, PropTypes } from "react";
 import tweenState from "react-tween-state";
-import Base from "./base";
+import { getStyles } from "./utils/base";
 import Transitions from "./transitions";
 import config from "../presentation/config";
 import radium from "radium";
 
 const Slide = React.createClass({
   displayName: "Slide",
-  mixins: [tweenState.Mixin, Base.Mixin, Transitions],
+  mixins: [tweenState.Mixin, Transitions],
   getDefaultProps() {
     return {
       align: "center center",
@@ -52,7 +52,7 @@ const Slide = React.createClass({
     this.setZoom();
     const slide = this.refs.slide;
     const frags = slide.querySelectorAll(".fragment");
-    if (frags && frags.length) {
+    if (frags && frags.length && !this.context.overview) {
       Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
         frag.dataset.fid = i;
         this.context.flux.actions.SlideActions.addFragment({
@@ -115,7 +115,7 @@ const Slide = React.createClass({
         ref="slide"
         style={[
           styles.outer,
-          this.getStyles(),
+          getStyles.call(this),
           this.getTransitionStyles(),
           printStyles,
           presenterStyle

@@ -1,12 +1,12 @@
-import React, { PropTypes } from "react";
-import Base from "./base";
+import React, { Component, PropTypes } from "react";
+import { getStyles } from "./utils/base";
 import Radium from "radium";
 
 @Radium
-export default class BlockQuote extends Base {
+export default class BlockQuote extends Component {
   render() {
     return (
-      <blockquote style={[this.context.styles.components.blockquote, this.getStyles(), this.props.style]}>
+      <blockquote style={[this.context.styles.components.blockquote, getStyles.call(this), this.props.style]}>
         {this.props.children}
       </blockquote>
     );

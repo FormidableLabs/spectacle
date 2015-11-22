@@ -1,12 +1,12 @@
-import React, { PropTypes } from "react";
-import Base from "./base";
+import React, { Component, PropTypes } from "react";
+import { getStyles } from "./utils/base";
 import Radium from "radium";
 
 @Radium
-export default class Quote extends Base {
+export default class Quote extends Component {
   render() {
     return (
-      <span style={[this.context.styles.components.quote, this.getStyles(), this.props.style]}>
+      <span style={[this.context.styles.components.quote, getStyles.call(this), this.props.style]}>
         {this.props.children}
       </span>
     );
