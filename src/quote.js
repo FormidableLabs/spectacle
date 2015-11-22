@@ -3,7 +3,7 @@ import Base from "./base";
 import Radium from "radium";
 
 @Radium
-class Quote extends Base {
+export default class Quote extends Base {
   render() {
     return (
       <span style={[this.context.styles.components.quote, this.getStyles(), this.props.style]}>
@@ -21,5 +21,3 @@ Quote.propTypes = {
 Quote.contextTypes = {
   styles: PropTypes.object
 };
-
-export default Quote;

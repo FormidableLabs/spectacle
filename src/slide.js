@@ -69,6 +69,7 @@ const Slide = React.createClass({
     window.removeEventListener("resize", this.setZoom);
   },
   render() {
+    const { align, presenterStyle, children } = this.props;
     const printStyles = this.context.print ? {
       backgroundColor: "white",
       backgroundImage: "none"
@@ -97,8 +98,8 @@ const Slide = React.createClass({
         display: "flex",
         position: "relative",
         flex: 1,
-        alignItems: this.props.align ? this.props.align.split(" ")[1] : "center",
-        justifyContent: this.props.align ? this.props.align.split(" ")[0] : "center"
+        alignItems: align ? align.split(" ")[1] : "center",
+        justifyContent: align ? align.split(" ")[0] : "center"
       },
       content: {
         flex: 1,
@@ -117,7 +118,7 @@ const Slide = React.createClass({
           this.getStyles(),
           this.getTransitionStyles(),
           printStyles,
-          this.props.presenterStyle
+          presenterStyle
         ]}
       >
         <div style={[styles.inner, this.context.overview && overViewStyles.inner]}>
@@ -129,7 +130,7 @@ const Slide = React.createClass({
               this.context.overview && overViewStyles.content
             ]}
           >
-            {this.props.children}
+            {children}
           </div>
         </div>
       </div>

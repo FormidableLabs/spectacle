@@ -15,8 +15,6 @@ require("normalize.css");
 require("./themes/default/index.css");
 require("highlight.js/styles/monokai_sublime.css");
 
-const history = createBrowserHistory();
-
 const flux = new Flux();
 Alt.debug("flux", flux);
 
@@ -30,7 +28,7 @@ Presentation.contextTypes = {
 const PresentationContext = context(Presentation, {styles: config.theme, print: config.print, flux});
 
 render(
-  <Router history={history}>
+  <Router history={createBrowserHistory()}>
     <Route path="/" component={PresentationContext} />
     <Route path="/:slide" component={PresentationContext} />
   </Router>

@@ -16,23 +16,24 @@ const startTime = function startTime(date) {
 };
 
 @Radium
-class Presenter extends Base {
-  constructor(props) {
-    super(props);
+export default class Presenter extends Base {
+  constructor() {
+    super();
     this.state = {
       time: startTime(new Date())
     };
   }
   _renderMainSlide() {
-    const child = this.props.slides[this.props.slide];
+    const { slides, slide, hash, lastSlide } = this.props;
+    const child = slides[slide];
     const presenterStyle = {
       position: "relative"
     };
     return cloneElement(child, {
-      key: this.props.slide,
-      hash: this.props.hash,
-      slideIndex: this.props.slide,
-      lastSlide: this.props.lastSlide,
+      key: slide,
+      hash,
+      slideIndex: slide,
+      lastSlide,
       transition: [],
       transitionDuration: 0,
       presenterStyle
@@ -49,6 +50,7 @@ class Presenter extends Base {
     clearInterval(this.time);
   }
   _renderNextSlide() {
+    const { slides, slide, lastSlide } = this.props;
     const presenterStyle = {
       position: "relative"
     };
@@ -60,12 +62,12 @@ class Presenter extends Base {
       margin: 0,
       color: "white"
     };
-    const child = this.props.slides[parseInt(this.props.slide) + 1];
+    const child = slides[parseInt(slide) + 1];
     return child ? cloneElement(child, {
-      key: this.props.slide + 1,
-      hash: child.props.id || this.props.slide + 1,
-      slideIndex: this.props.slide + 1,
-      lastSlide: this.props.lastSlide,
+      key: slide + 1,
+      hash: child.props.id || slide + 1,
+      slideIndex: slide + 1,
+      lastSlide,
       transition: [],
       transitionDuration: 0,
       presenterStyle,
@@ -179,7 +181,7 @@ class Presenter extends Base {
 }
 
 Presenter.propTypes = {
-  lastslide: PropTypes.number,
+  lastSlide: PropTypes.number,
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   slides: PropTypes.array,
   slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
@@ -188,5 +190,3 @@ Presenter.propTypes = {
 Presenter.contextTypes = {
   styles: PropTypes.object
 };
-
-export default Presenter;

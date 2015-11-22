@@ -13,7 +13,7 @@ import Progress from "./progress";
 const TransitionGroup = Radium(ReactTransitionGroup);
 
 @Radium
-class Deck extends Component {
+export default class Deck extends Component {
   constructor() {
     super();
     this._handleKeyPress = this._handleKeyPress.bind(this);
@@ -375,5 +375,3 @@ Deck.contextTypes = {
   overview: PropTypes.bool,
   slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
-
-export default Deck;

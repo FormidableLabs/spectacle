@@ -62,7 +62,7 @@ export const mdastConfigDefault = {
   }
 };
 
-class Markdown extends React.Component {
+export default class Markdown extends React.Component {
   render() {
     const { source, children, mdastConfig } = this.props;
     const content = (isUndefined(source) || source === "") ? children : source;
@@ -85,5 +85,3 @@ Markdown.defaultProps = {
   source: "",
   mdastConfig: mdastConfigDefault
 };
-
-export default Markdown;

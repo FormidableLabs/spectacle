@@ -3,7 +3,7 @@ import Base from "./base";
 import Radium from "radium";
 
 @Radium
-class Code extends Base {
+export default class Code extends Base {
   render() {
     return (
       <code style={[this.context.styles.components.code, this.getStyles(), this.props.style]}>
@@ -21,5 +21,3 @@ Code.propTypes = {
 Code.contextTypes = {
   styles: PropTypes.object
 };
-
-export default Code;

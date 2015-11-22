@@ -3,7 +3,7 @@ import Base from "./base";
 import Radium from "radium";
 
 @Radium
-class Image extends Base {
+export default class Image extends Base {
   render() {
     const styles = {
       width: this.props.width || "",
@@ -41,5 +41,3 @@ Image.propTypes = {
 Image.contextTypes = {
   styles: PropTypes.object
 };
-
-export default Image;

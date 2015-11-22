@@ -22,22 +22,23 @@ const animations = {
 };
 
 @Radium
-class Progress extends Base {
+export default class Progress extends Base {
   render() {
+    const { type, currentSlide, items } = this.props;
     let style = this.context.styles.progress;
     let markup;
-    switch (this.props.type) {
+    switch (type) {
       case "none":
         return false;
       case "pacman":
         style = style.pacman;
         markup = (
           <div>
-            <div style={[style.pacman, this.getPointPosition(this.props.currentSlide)]} >
+            <div style={[style.pacman, this.getPointPosition(currentSlide)]} >
               <div style={[style.pacmanTop, this.getPacmanStyle("Top")]} />
               <div style={[style.pacmanBottom, this.getPacmanStyle("Bottom")]} />
             </div>
-            {this.props.items.map((item, i) => {
+            {items.map((item, i) => {
               return (
                 <div
                   style={[style.point, this.getPointStyle(i)]}
@@ -51,7 +52,7 @@ class Progress extends Base {
       case "number":
         style = style.number;
         markup = (
-          <div>{this.props.currentSlide + 1} / {this.props.items.length}</div>
+          <div>{currentSlide + 1} / {items.length}</div>
         );
         break;
       case "bar":
@@ -112,5 +113,3 @@ Progress.propTypes = {
 Progress.contextTypes = {
   styles: PropTypes.object
 };
-
-export default Progress;

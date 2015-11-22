@@ -3,9 +3,9 @@ import Base from "./base";
 import Radium from "radium";
 
 @Radium
-class Text extends Base {
-  constructor(props) {
-    super(props);
+export default class Text extends Base {
+  constructor() {
+    super();
     this.resize = this.resize.bind(this);
     this.state = {
       scale: 1,
@@ -39,6 +39,7 @@ class Text extends Base {
     }
   }
   render() {
+    const { lineHeight, fit, style, children } = this.props;
     const styles = {
       container: {
         display: "block",
@@ -50,29 +51,29 @@ class Text extends Base {
         display: "block",
         margin: "0",
         padding: "0",
-        lineHeight: this.props.lineHeight,
+        lineHeight,
         transform: `scale(${this.state.scale})`,
         transformOrigin: "center top"
       },
       nonFit: {
-        lineHeight: this.props.lineHeight
+        lineHeight
       }
     };
     return (
-      this.props.fit ? (
+      fit ? (
         <div
           ref="container"
           style={[this.context.styles.components.text, this.getStyles(), styles.container]}
         >
           <span
             ref="text"
-            style={[styles.text, this.props.style]}
+            style={[styles.text, style]}
           >
-            {this.props.children}
+            {children}
           </span>
         </div>
       ) : (
-        <p style={[this.context.styles.components.text, this.getStyles(), styles.nonFit, this.props.style]}>
+        <p style={[this.context.styles.components.text, this.getStyles(), styles.nonFit, style]}>
           {this.props.children}
         </p>
       )
@@ -92,5 +93,3 @@ Text.propTypes = {
 Text.contextTypes = {
   styles: PropTypes.object
 };
-
-export default Text;

@@ -2,61 +2,76 @@
 import { Component, PropTypes } from "react";
 
 const getStyles = function getStyles() {
+  const {
+    italic,
+    bold,
+    caps,
+    margin,
+    padding,
+    textColor,
+    textFont,
+    textSize,
+    textAlign,
+    bgColor,
+    bgImage,
+    bgDarken
+  } = this.props;
+
   const styles = {};
-  if (typeof this.props.italic === "boolean") {
-    styles.fontStyle = this.props.italic ? "italic" : "normal";
+  if (typeof italic === "boolean") {
+    styles.fontStyle = italic ? "italic" : "normal";
   }
-  if (typeof this.props.bold === "boolean") {
-    styles.fontWeight = this.props.bold ? "bold" : "normal";
+  if (typeof bold === "boolean") {
+    styles.fontWeight = bold ? "bold" : "normal";
   }
-  if (typeof this.props.caps === "boolean") {
-    styles.textTransform = this.props.caps ? "uppercase" : "none";
+  if (typeof caps === "boolean") {
+    styles.textTransform = caps ? "uppercase" : "none";
   }
-  if (this.props.margin) {
-    styles.margin = this.props.margin;
+  if (margin) {
+    styles.margin = margin;
   }
-  if (this.props.padding) {
-    styles.padding = this.props.padding;
+  if (padding) {
+    styles.padding = padding;
   }
-  if (this.props.textColor) {
+  if (textColor) {
     let color = "";
-    if (!this.context.styles.colors.hasOwnProperty(this.props.textColor)) {
-      color = this.props.textColor;
+    if (!this.context.styles.colors.hasOwnProperty(textColor)) {
+      color = textColor;
     } else {
-      color = this.context.styles.colors[this.props.textColor];
+      color = this.context.styles.colors[textColor];
     }
     styles.color = color;
   }
-  if (this.props.textFont) {
+  if (textFont) {
     let font = "";
-    if (!this.context.styles.fonts.hasOwnProperty(this.props.textFont)) {
-      font = this.props.textFont;
+    if (!this.context.styles.fonts.hasOwnProperty(textFont)) {
+      font = textFont;
     } else {
-      font = this.context.styles.fonts[this.props.textFont];
+      font = this.context.styles.fonts[textFont];
     }
     styles.fontFamily = font;
   }
-  if (this.props.textSize) {
-    styles.fontSize = this.props.textSize;
+  if (textSize) {
+    styles.fontSize = textSize;
   }
-  if (this.props.textAlign) {
-    styles.textAlign = this.props.textAlign;
+  if (textAlign) {
+    styles.textAlign = textAlign;
   }
-  if (this.props.bgColor) {
+  if (bgColor) {
     let color = "";
-    if (!this.context.styles.colors.hasOwnProperty(this.props.bgColor)) {
-      color = this.props.bgColor;
+    if (!this.context.styles.colors.hasOwnProperty(bgColor)) {
+      color = bgColor;
     } else {
-      color = this.context.styles.colors[this.props.bgColor];
+      color = this.context.styles.colors[bgColor];
     }
     styles.backgroundColor = color;
   }
-  if (this.props.bgImage) {
-    if (this.props.bgDarken) {
+  if (bgImage) {
+    if (bgDarken) {
       styles.backgroundImage =
-      `linear-gradient( rgba(0, 0, 0, ${this.props.bgDarken}), rgba(0, 0, 0, ${this.props.bgDarken}) ), url(${this.props.bgImage})`;
+      `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
     } else {
-      styles.backgroundImage = `url(${this.props.bgImage})`;
+      styles.backgroundImage = `url(${bgImage})`;
     }
     styles.backgroundSize = "cover";
     styles.backgroundPosition = "center center";
@@ -64,9 +79,9 @@ const getStyles = function getStyles() {
   return styles;
 };
 
-class Base extends Component {
-  constructor(props) {
-    super(props);
+export default class Base extends Component {
+  constructor() {
+    super();
     this.getStyles = getStyles;
   }
 
@@ -90,5 +105,3 @@ Base.defaultProps = {
 Base.Mixin = {
   getStyles
 };
-
-export default Base;

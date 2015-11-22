@@ -15,73 +15,76 @@ export default {
     };
   },
   getInitialState() {
+    const { transition } = this.props;
     const state = {
       z: 1
     };
 
-    if (this.props.transition.indexOf("fade") !== -1) {
+    if (transition.indexOf("fade") !== -1) {
       state.opacity = 1;
     }
 
-    if (this.props.transition.indexOf("zoom") !== -1) {
+    if (transition.indexOf("zoom") !== -1) {
       state.scale = 1;
     }
 
-    if (this.props.transition.indexOf("slide") !== -1) {
+    if (transition.indexOf("slide") !== -1) {
       state.left = 0;
     }
 
-    if (this.props.transition.indexOf("spin") !== -1) {
+    if (transition.indexOf("spin") !== -1) {
       state.x = 0;
     }
 
     return state;
   },
   routerCallback(cb, immediate) {
-    if (this.props.transition.length > 0 && immediate !== true) {
-      setTimeout(cb, this.props.transitionDuration);
+    const { transition, transitionDuration } = this.props;
+    if (transition.length > 0 && immediate !== true) {
+      setTimeout(cb, transitionDuration);
     } else {
       cb();
     }
   },
   componentWillEnter(cb) {
-    const direction = this.props.slideIndex > this.props.lastSlide;
+    const { slideIndex, lastSlide, transition, transitionDuration } = this.props;
+    const direction = slideIndex > lastSlide;
 
     this.setState({
       z: 1
     }, () => {
 
-      if (this.props.transition.indexOf("fade") !== -1) {
+      if (transition.indexOf("fade") !== -1) {
         this.tweenState("opacity", {
           easing: tweenState.easingTypes.easeInOutQuad,
-          duration: this.props.transitionDuration,
+          duration: transitionDuration,
           beginValue: 0,
           endValue: 1
         });
       }
 
-      if (this.props.transition.indexOf("zoom") !== -1) {
+      if (transition.indexOf("zoom") !== -1) {
         this.tweenState("scale", {
           easing: tweenState.easingTypes.easeInOutQuad,
-          duration: this.props.transitionDuration,
+          duration: transitionDuration,
           beginValue: 0.1,
           endValue: 1
         });
       }
 
-      if (this.props.transition.indexOf("slide") !== -1) {
+      if (transition.indexOf("slide") !== -1) {
         this.tweenState("left", {
           easing: tweenState.easingTypes.easeOutQuad,
-          duration: this.props.transitionDuration,
+          duration: transitionDuration,
           beginValue: direction ? 100 : -100,
           endValue: 0
         });
       }
 
-      if (this.props.transition.indexOf("spin") !== -1) {
+      if (transition.indexOf("spin") !== -1) {
         this.tweenState("x", {
           easing: tweenState.easingTypes.easeOutQuad,
-          duration: this.props.transitionDuration,
+          duration: transitionDuration,
           beginValue: direction ? 90 : -90,
           endValue: 0
         });
@@ -93,23 +96,24 @@ export default {
 
   },
   componentWillAppear(cb) {
+    const { transition } = this.props;
     const state = {
       z: 1
     };
 
-    if (this.props.transition.indexOf("fade") !== -1) {
+    if (transition.indexOf("fade") !== -1) {
       state.opacity = 1;
     }
 
-    if (this.props.transition.indexOf("zoom") !== -1) {
+    if (transition.indexOf("zoom") !== -1) {
       state.scale = 1;
     }
 
-    if (this.props.transition.indexOf("slide") !== -1) {
+    if (transition.indexOf("slide") !== -1) {
       state.left = 0;
     }
 
-    if (this.props.transition.indexOf("spin") !== -1) {
+    if (transition.indexOf("spin") !== -1) {
       state.x = 0;
     }
 
@@ -119,41 +123,42 @@ export default {
 
   },
   componentWillLeave(cb) {
+    const { slideIndex, transition, transitionDuration } = this.props;
     const slide = this.context.slide || 0;
-    const direction = this.props.slideIndex > slide;
+    const direction = slideIndex > slide;
 
     this.setState({
       z: ""
     }, () => {
 
-      if (this.props.transition.indexOf("fade") !== -1) {
+      if (transition.indexOf("fade") !== -1) {
         this.tweenState("opacity", {
           easing: tweenState.easingTypes.easeInOutQuad,
-          duration: this.props.transitionDuration,
+          duration: transitionDuration,
           endValue: 0
         });
       }
 
-      if (this.props.transition.indexOf("zoom") !== -1) {
+      if (transition.indexOf("zoom") !== -1) {
         this.tweenState("scale", {
           easing: tweenState.easingTypes.easeInOutQuad,
-          duration: this.props.transitionDuration,
+          duration: transitionDuration,
           endValue: 0.1
         });
       }
 
-      if (this.props.transition.indexOf("slide") !== -1) {
+      if (transition.indexOf("slide") !== -1) {
         this.tweenState("left", {
           easing: tweenState.easingTypes.easeOutQuad,
-          duration: this.props.transitionDuration,
+          duration: transitionDuration,
           endValue: direction ? 100 : -100
         });
       }
 
-      if (this.props.transition.indexOf("spin") !== -1) {
+      if (transition.indexOf("spin") !== -1) {
         this.tweenState("x", {
           easing: tweenState.easingTypes.easeOutQuad,
-          duration: this.props.transitionDuration,
+          duration: transitionDuration,
           endValue: direction ? 90 : -90
         });
       }
@@ -164,24 +169,25 @@ export default {
 
   },
   getTransitionStyles() {
+    const { transition } = this.props;
     let transformValue = "";
     let styles = {
       zIndex: this.state.z
     };
-    if (this.props.transition.indexOf("fade") !== -1) {
+    if (transition.indexOf("fade") !== -1) {
       styles = Object.assign(styles, {
         opacity: this.getTweeningValue("opacity")
       });
     }
-    if (this.props.transition.indexOf("zoom") !== -1) {
+    if (transition.indexOf("zoom") !== -1) {
       transformValue += ` scale(${this.getTweeningValue("scale")})`;
     }
-    if (this.props.transition.indexOf("slide") !== -1) {
+    if (transition.indexOf("slide") !== -1) {
       transformValue += ` translate3d(${this.getTweeningValue("left")}%, 0, 0)`;
     } else {
       transformValue += " translate3d(0px, 0px, 0px)";
     }
-    if (this.props.transition.indexOf("spin") !== -1) {
+    if (transition.indexOf("spin") !== -1) {
       transformValue += ` rotateY(${this.getTweeningValue("x")}deg)`;
     }
     styles = Object.assign(styles, {

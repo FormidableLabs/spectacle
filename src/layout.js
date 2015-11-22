@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from "react";
 import Radium from "radium";
 
 @Radium
-class Layout extends Component {
+export default class Layout extends Component {
   render() {
     const styles = {
       display: "flex"
@@ -19,5 +19,3 @@ Layout.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object
 };
-
-export default Layout;

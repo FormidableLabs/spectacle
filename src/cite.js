@@ -3,7 +3,7 @@ import Base from "./base";
 import Radium from "radium";
 
 @Radium
-class Cite extends Base {
+export default class Cite extends Base {
   render() {
     return (
       <cite style={[this.context.styles.components.cite, this.getStyles(), this.props.style]}>
@@ -21,5 +21,3 @@ Cite.propTypes = {
 Cite.contextTypes = {
   styles: PropTypes.object
 };
-
-export default Cite;
