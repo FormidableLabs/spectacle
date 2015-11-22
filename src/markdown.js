@@ -1,10 +1,9 @@
-import React, { PropTypes } from "react";
+import React, { Component, PropTypes } from "react";
 import mdast from "mdast";
 import mdastReact from "mdast-react";
 import isUndefined from "lodash/lang/isundefined";
 
 import BlockQuote from "./block-quote";
-import Code from "./code";
 import CodePane from "./code-pane";
 import Heading from "./heading";
 import Image from "./image";
@@ -17,21 +16,25 @@ import Text from "./text";
 
 // We can't pass props into mdast-react directly, so we have to "bind" them
 // to spectacle components (ex. headings, strong/em/del)
-function spectacleComponent(component, boundProps = {}) {
+const spectacleComponent = (component, boundProps = {}) => {
   return React.createClass({
-    render(){
+    render() {
       const props = {...this.props, ...boundProps};
       return React.createElement(component, {...props}, this.props.children);
     }
   });
-}
+};
 
 // Spectacle requires a <Quote> inside a <BlockQuote>
-class CombinedBlockQuote extends React.Component {
+class CombinedBlockQuote extends Component {
   render() {
     return <BlockQuote><Quote>{this.props.children}</Quote></BlockQuote>;
   }
 }
+
+CombinedBlockQuote.propTypes = {
+  children: PropTypes.object
+};
 
 // We export the default config so people can extend it themselves
 export const mdastConfigDefault = {
@@ -76,7 +79,7 @@ Markdown.propTypes = {
   children: PropTypes.node,
   source: PropTypes.string,
   mdastConfig: PropTypes.object
-}
+};
 
 Markdown.defaultProps = {
   source: "",
@@ -84,4 +87,3 @@ Markdown.defaultProps = {
 };
 
 export default Markdown;
-

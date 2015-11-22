@@ -1,11 +1,9 @@
-/*global window*/
-
-import React, { createElement, PropTypes } from "react";
+import React, { PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
 
 @Radium
-class Heading extends Base {
+class Text extends Base {
   constructor(props) {
     super(props);
     this.resize = this.resize.bind(this);
@@ -41,7 +39,6 @@ class Heading extends Base {
     }
   }
   render() {
-    const Tag = `H${this.props.size}`;
     const styles = {
       container: {
         display: "block",
@@ -65,37 +62,35 @@ class Heading extends Base {
       this.props.fit ? (
         <div
           ref="container"
-          style={[
-            this.context.styles.components.heading[`h${this.props.size}`],
-            this.getStyles(), styles.container
-          ]}
+          style={[this.context.styles.components.text, this.getStyles(), styles.container]}
         >
-          <span ref="text" style={[styles.text, this.props.style]}>
+          <span
+            ref="text"
+            style={[styles.text, this.props.style]}
+          >
             {this.props.children}
           </span>
         </div>
       ) : (
-        createElement(Tag, {
-          style: [this.context.styles.components.heading[`h${this.props.size}`], this.getStyles(), styles.nonFit, this.props.style]
-        }, this.props.children)
+        <p style={[this.context.styles.components.text, this.getStyles(), styles.nonFit, this.props.style]}>
+          {this.props.children}
+        </p>
       )
     );
   }
 }
 
-Heading.defaultProps = {
-  size: 1,
+Text.defaultProps = {
   lineHeight: 1
 };
 
-Heading.propTypes = {
+Text.propTypes = {
   children: PropTypes.node,
-  size: PropTypes.number,
   lineHeight: PropTypes.number
 };
 
-Heading.contextTypes = {
+Text.contextTypes = {
   styles: PropTypes.object
 };
 
-export default Heading;
+export default Text;
