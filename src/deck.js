@@ -1,5 +1,5 @@
 /*eslint new-cap:0, max-statements:0*/
-/*global window document localStorage*/
+/* eslint react/no-did-mount-set-state: 0 */
 
 import React, { Children, cloneElement, Component, PropTypes } from "react";
 import ReactTransitionGroup from "react-addons-transition-group";

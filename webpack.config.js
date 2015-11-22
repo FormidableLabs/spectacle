@@ -1,24 +1,59 @@
-/*eslint-disable no-var*/
-var getConfig = require("hjs-webpack");
-var config = require("./presentation/config");
+/* eslint-disable */
 
-var webpackConfig = getConfig({
-  in: "./index.jsx",
-  out: "dist",
-  clearBeforeBuild: true,
-  html: config.html
-});
+var path = require('path');
+var webpack = require('webpack');
 
-webpackConfig.module.loaders[0] = {
-  test: /(\.js$)|(\.jsx$)/,
-  exclude: /node_modules/,
-  loaders: [
-    "babel-loader"
-  ]
+module.exports = {
+  devtool: 'eval',
+  entry: [
+    'webpack-hot-middleware/client',
+    './index'
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/dist/'
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel',
+      query: {
+        plugins: ['react-transform'],
+        extra: {
+          'react-transform': {
+            transforms: [{
+              transform: 'react-transform-hmr',
+              imports: ['react'],
+              locals: ['module']
+            }, {
+              transform: 'react-transform-catch-errors',
+              imports: ['react', 'redbox-react']
+            }]
+          }
+        }
+      },
+      exclude: /node_modules/,
+      include: __dirname
+    }, {
+      test: /\.css$/,
+      loaders: ['style', 'raw'],
+      include: __dirname
+    }, {
+      test: /\.svg$/,
+      loader: 'url?limit=10000&mimetype=image/svg+xml'
+    }, {
+      test: /\.png$/,
+      loader: 'url-loader?mimetype=image/png',
+      include: path.join(__dirname, 'presentation')
+    }, {
+      test: /\.jpg$/,
+      loader: 'url-loader?mimetype=image/jpg',
+      include: path.join(__dirname, 'presentation')
+    }]
+  }
 };
-
-if (process.argv[1].indexOf("webpack-dev-server") !== -1) {
-  webpackConfig.module.loaders[0].loaders.unshift("react-hot");
-}
-
-module.exports = webpackConfig;

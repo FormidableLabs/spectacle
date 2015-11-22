@@ -1,11 +1,9 @@
-/*global window*/
-
-import React, { PropTypes } from "react";
+import React, { createElement, PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
 
 @Radium
-class Text extends Base {
+class Heading extends Base {
   constructor(props) {
     super(props);
     this.resize = this.resize.bind(this);
@@ -41,6 +39,7 @@ class Text extends Base {
     }
   }
   render() {
+    const Tag = `H${this.props.size}`;
     const styles = {
       container: {
         display: "block",
@@ -53,7 +52,7 @@ class Text extends Base {
         margin: "0",
         padding: "0",
         lineHeight: this.props.lineHeight,
-        transform: "scale(" + this.state.scale + ")",
+        transform: `scale(${this.state.scale})`,
         transformOrigin: "center top"
       },
       nonFit: {
@@ -64,35 +63,37 @@ class Text extends Base {
       this.props.fit ? (
         <div
           ref="container"
-          style={[this.context.styles.components.text, this.getStyles(), styles.container]}
+          style={[
+            this.context.styles.components.heading[`h${this.props.size}`],
+            this.getStyles(), styles.container
+          ]}
         >
-          <span
-            ref="text"
-            style={[styles.text, this.props.style]}
-          >
+          <span ref="text" style={[styles.text, this.props.style]}>
             {this.props.children}
           </span>
         </div>
       ) : (
-        <p style={[this.context.styles.components.text, this.getStyles(), styles.nonFit, this.props.style]}>
-          {this.props.children}
-        </p>
+        createElement(Tag, {
+          style: [this.context.styles.components.heading[`h${this.props.size}`], this.getStyles(), styles.nonFit, this.props.style]
+        }, this.props.children)
       )
     );
   }
 }
 
-Text.defaultProps = {
+Heading.defaultProps = {
+  size: 1,
   lineHeight: 1
 };
 
-Text.propTypes = {
+Heading.propTypes = {
   children: PropTypes.node,
+  size: PropTypes.number,
   lineHeight: PropTypes.number
 };
 
-Text.contextTypes = {
+Heading.contextTypes = {
   styles: PropTypes.object
 };
 
-export default Text;
+export default Heading;

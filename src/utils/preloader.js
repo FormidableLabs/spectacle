@@ -1,5 +1,3 @@
-/*global Image*/
-
 const preload = function preload(imageArray) {
   const images = [];
   for (let i = 0; i < imageArray.length; i++) {

@@ -1,5 +1,3 @@
-/*global setTimeout*/
-
 import { PropTypes } from "react";
 import tweenState from "react-tween-state";
 

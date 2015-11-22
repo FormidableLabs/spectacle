@@ -1,5 +1,3 @@
-/*global setInterval clearInterval*/
-
 import React, { cloneElement, PropTypes } from "react";
 import Base from "./base";
 import Radium from "radium";
