@@ -16,6 +16,7 @@ import Markdown from "./components/markdown";
 import Quote from "./components/quote";
 import S from "./components/s";
 import Slide from "./components/slide";
+import Spectacle from "./components/spectacle";
 import Text from "./components/text";
 
 export {
@@ -37,5 +38,6 @@ export {
   Quote,
   S,
   Slide,
+  Spectacle,
   Text
 };
