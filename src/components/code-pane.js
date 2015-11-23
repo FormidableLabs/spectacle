@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from "react";
 import highlight from "highlight.js";
 import { getStyles } from "../utils/base";
 import Radium from "radium";
-import isUndefined from "lodash/lang/isundefined";
+import { isUndefined } from "lodash";
 
 @Radium
 export default class CodePane extends Component {

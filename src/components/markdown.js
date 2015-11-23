@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import mdast from "mdast";
 import mdastReact from "mdast-react";
-import isUndefined from "lodash/lang/isundefined";
+import { isUndefined } from "lodash";
 
 import BlockQuote from "./block-quote";
 import CodePane from "./code-pane";
