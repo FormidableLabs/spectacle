@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { getStyles } from "../utils/base";
 import Radium from "radium";
-import isUndefined from "lodash/lang/isundefined";
+import { isUndefined } from "lodash";
 
 const format = (str) => {
     return str.replace(/</g,'&lt;').replace(/>/g,'&gt;') ;
