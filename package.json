@@ -48,7 +48,6 @@
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.2.0",
-    "redux-logger": "^2.0.4",
     "style-loader": "^0.13.0",
     "surge": "latest",
     "url-loader": "^0.5.6",

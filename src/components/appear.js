@@ -55,4 +55,4 @@ const Appear = React.createClass({
   }
 });
 
-export default connect(state => state)(Appear);
+export default connect((state) => state)(Appear);

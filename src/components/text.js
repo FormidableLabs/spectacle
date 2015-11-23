@@ -86,8 +86,10 @@ Text.defaultProps = {
 };
 
 Text.propTypes = {
+  fit: PropTypes.bool,
   children: PropTypes.node,
-  lineHeight: PropTypes.number
+  lineHeight: PropTypes.number,
+  style: PropTypes.object
 };
 
 Text.contextTypes = {

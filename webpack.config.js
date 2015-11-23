@@ -4,7 +4,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
     './index'
@@ -45,15 +45,16 @@ module.exports = {
       include: __dirname
     }, {
       test: /\.svg$/,
-      loader: 'url?limit=10000&mimetype=image/svg+xml'
+      loader: 'url?limit=10000&mimetype=image/svg+xml',
+      include: path.join(__dirname, 'assets')
     }, {
       test: /\.png$/,
       loader: 'url-loader?mimetype=image/png',
-      include: path.join(__dirname, 'presentation')
+      include: path.join(__dirname, 'assets')
     }, {
       test: /\.jpg$/,
       loader: 'url-loader?mimetype=image/jpg',
-      include: path.join(__dirname, 'presentation')
+      include: path.join(__dirname, 'assets')
     }]
   }
 };

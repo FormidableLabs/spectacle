@@ -4,8 +4,7 @@ const reducer = handleActions({
   ADD_FRAGMENT: (state, action) => {
     const {
       id,
-      slide,
-      visible
+      slide
     } = action.payload;
     const s = Object.assign({}, state);
     s.fragments[slide] = s.fragments[slide] || {};
@@ -14,8 +13,7 @@ const reducer = handleActions({
   },
   UPDATE_FRAGMENT: (state, action) => {
     const {
-      fragment,
-      visible
+      fragment
     } = action.payload;
     const s = Object.assign({}, state);
     s.fragments[fragment.slide][fragment.id].visible = action.payload.visible;
