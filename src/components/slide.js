@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from "react";
 import tweenState from "react-tween-state";
 import { getStyles } from "../utils/base";
 import Transitions from "./transitions";
-import config from "../../presentation/config";
 import radium from "radium";
 import { addFragment } from "../actions";
 
@@ -39,9 +38,9 @@ const Slide = React.createClass({
   setZoom() {
     const mobile = window.matchMedia("(max-width: 628px)").matches;
     const content = this.refs.content;
-    const zoom = (content.offsetWidth / config.width);
-    const contentScaleY = (content.parentNode.offsetHeight / config.height);
-    const contentScaleX = (content.parentNode.offsetWidth / config.width);
+    const zoom = (content.offsetWidth / 1000);
+    const contentScaleY = (content.parentNode.offsetHeight / 700);
+    const contentScaleX = (content.parentNode.offsetWidth / 700);
     const contentScale = mobile ? 1 : Math.min(contentScaleY, contentScaleX);
     this.setState({
       zoom: zoom > 0.6 ? zoom : 0.6,
@@ -55,7 +54,7 @@ const Slide = React.createClass({
     if (frags && frags.length && !this.context.overview) {
       Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
         frag.dataset.fid = i;
-        this.props.dispatch(addFragment({
+        this.props.dispatch && this.props.dispatch(addFragment({
           slide: this.props.hash,
           id: i,
           visible: this.props.lastSlide > this.props.slideIndex
@@ -103,11 +102,11 @@ const Slide = React.createClass({
       },
       content: {
         flex: 1,
-        maxHeight: config.height,
-        maxWidth: config.width,
+        maxHeight: this.props.maxHeight || 700,
+        maxWidth: this.props.maxWidth || 1000,
         fontSize: 16 * this.state.zoom,
         transform: `scale(${this.state.contentScale})`,
-        padding: this.state.zoom > 0.6 ? config.margin : 10
+        padding: this.state.zoom > 0.6 ? this.props.margin || 40 : 10
       }
     };
     return (
