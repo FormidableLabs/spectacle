@@ -133,7 +133,7 @@ export default {
     codePane: {
       pre: {
         margin: "auto",
-        fontSize: "1rem",
+        fontSize: "0.8rem",
         fontWeight: "normal",
         fontFamily: fonts.tertiary,
         minWidth: "100%",
@@ -141,7 +141,6 @@ export default {
       },
       code: {
         textAlign: "left",
-        padding: 20,
         fontWeight: "normal"
       }
     },

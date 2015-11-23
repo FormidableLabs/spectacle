@@ -61,7 +61,7 @@ export default {
       pre: {
         maxWidth: 800,
         margin: "auto",
-        fontSize: "1rem",
+        fontSize: "0.8rem",
         fontWeight: "normal",
         fontFamily: fonts.tertiary
       },

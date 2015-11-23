@@ -1,26 +1,29 @@
 import React, { Component, PropTypes } from "react";
-import highlight from "highlight.js";
 import { getStyles } from "../utils/base";
 import Radium from "radium";
 import isUndefined from "lodash/lang/isundefined";
+
+const format = (str) => {
+    return str.replace(/</g,'&lt;').replace(/>/g,'&gt;') ;
+};
 
 @Radium
 export default class CodePane extends Component {
   createMarkup() {
     const { source, children, lang } = this.props;
-    // Allow code to come from source or from children, for markdown support
-    const language = highlight.getLanguage(lang);
     const code = (isUndefined(source) || source === "") ? children : source;
-    const markup = highlight.highlightAuto(code, language ? language.aliases : undefined);
     return {
-      __html: markup.value
+      __html: format(code)
     };
+  }
+  componentDidMount() {
+    return window.Prism && window.Prism.highlightAll();
   }
   render() {
     return (
       <pre style={[this.context.styles.components.codePane.pre, getStyles.call(this), this.props.style]}>
         <code
-          className="hljs"
+          className={`language-${this.props.lang}`}
           style={this.context.styles.components.codePane.code}
           dangerouslySetInnerHTML={this.createMarkup()}
         />
@@ -41,6 +44,6 @@ CodePane.propTypes = {
 };
 
 CodePane.defaultProps = {
-  lang: "",
+  lang: "markup",
   source: ""
 };

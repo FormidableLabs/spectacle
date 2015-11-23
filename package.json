@@ -12,7 +12,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "highlight.js": "8.9.1",
     "history": "1.13.1",
     "lodash": "3.10.1",
     "mdast": "^2.1.0",

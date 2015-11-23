@@ -11,7 +11,7 @@ import preloader from "./src/utils/preloader";
 import Interactive from "./assets/interactive";
 
 require("normalize.css");
-require("./themes/default/index.css");
+require("./src/themes/default/index.css");
 require("highlight.js/styles/monokai_sublime.css");
 
 const images = {
@@ -25,8 +25,8 @@ preloader([images.city, images.kat, images.markdown]);
 
 render(
   <Spectacle
-    theme={require("./themes/default/index")}
-    print={require("./themes/default/print")}
+    theme={require("./src/themes/default/index")}
+    print={require("./src/themes/default/print")}
   >
     <Deck transition={["zoom", "slide"]} transitionDuration={500}>
       <Slide transition={["zoom"]} bgColor="primary">
@@ -52,7 +52,7 @@ render(
       </Slide>
       <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
         <CodePane
-          lang="javascript"
+          lang="jsx"
           source={require("raw!./assets/deck.example")}
           margin="20px auto"
         />
