@@ -1,6 +1,8 @@
 #Spectacle
 ReactJS based Presentation Library
 
+>Note: master is out of sync with the documentation. Until 1.0.0 is released, use version [0.1.5](https://github.com/FormidableLabs/spectacle/releases/tag/0.1.5)
+
 ##Getting Started
 
 Your first order of business is to open terminal and run `npm install`
@@ -216,7 +218,7 @@ The fill tag takes up all the space available to it. For example, if you have a 
 
 ####\<Markdown/>
 
-The Markdown tag is used to add inline markdown to your slide. You can provide markdown source via the `source` prop, or as children. You can also provide a custom [mdast configuration](https://github.com/wooorm/mdast) via the `mdastConfig` prop. 
+The Markdown tag is used to add inline markdown to your slide. You can provide markdown source via the `source` prop, or as children. You can also provide a custom [mdast configuration](https://github.com/wooorm/mdast) via the `mdastConfig` prop.
 
 Markdown generated tags aren't prop configurable, and instead render with your theme defaults.
 
