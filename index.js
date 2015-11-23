@@ -4,6 +4,7 @@ import context from "./src/utils/context";
 
 import { Router, Route } from "react-router";
 import createBrowserHistory from "history/lib/createBrowserHistory";
+import createHashHistory from "history/lib/createHashHistory";
 
 import { Provider } from "react-redux";
 import configureStore from "./src/store";
@@ -18,7 +19,9 @@ require("./themes/default/index.css");
 require("highlight.js/styles/monokai_sublime.css");
 
 const store = configureStore()
-const history = createBrowserHistory();
+const history = process.env.NODE_ENV === "production" ?
+  createHashHistory() :
+  createBrowserHistory();
 
 syncReduxAndRouter(history, store, state => state.routeReducer);
 
