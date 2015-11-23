@@ -1,7 +1,7 @@
 /*eslint max-statements:0,complexity:0,no-invalid-this:0*/
 import { Component, PropTypes } from "react";
 
-const getStyles = function getStyles() {
+export const getStyles = function getStyles() {
   const {
     italic,
     bold,
@@ -79,29 +79,3 @@ const getStyles = function getStyles() {
   return styles;
 };
 
-export default class Base extends Component {
-  constructor() {
-    super();
-    this.getStyles = getStyles;
-  }
-
-  render() {
-    return null;
-  }
-}
-
-Base.propTypes = {
-  textColor: PropTypes.string,
-  textFont: PropTypes.string,
-  bgColor: PropTypes.string,
-  bgImage: PropTypes.string,
-  bgDarken: PropTypes.number
-};
-
-Base.defaultProps = {
-  bgDarken: 0
-};
-
-Base.Mixin = {
-  getStyles
-};

@@ -1,6 +1,7 @@
 import React, { PropTypes } from "react";
 import tweenState from "react-tween-state";
 import _ from "lodash";
+import { connect } from "react-redux";
 
 const Appear = React.createClass({
   mixins: [tweenState.Mixin],
@@ -9,7 +10,6 @@ const Appear = React.createClass({
     style: PropTypes.object
   },
   contextTypes: {
-    flux: PropTypes.object,
     export: PropTypes.bool,
     overview: PropTypes.bool,
     slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
@@ -20,13 +20,8 @@ const Appear = React.createClass({
       opacity: this.context.export || this.context.overview ? 1 : 0
     };
   },
-  componentWillMount() {
-    return this.context.export || this.context.flux.stores.SlideStore.listen(this._storeChange);
-  },
-  componentWillUnmount() {
-    return this.context.export || this.context.flux.stores.SlideStore.unlisten(this._storeChange);
-  },
-  _storeChange(state) {
+  componentWillReceiveProps(nextProps) {
+    const state = nextProps.fragment;
     const slide = this.context.slide;
     const fragment = this.refs.fragment;
     const key = _.findKey(state.fragments[slide], {
@@ -60,4 +55,4 @@ const Appear = React.createClass({
   }
 });
 
-export default Appear;
+export default connect(state => state)(Appear);

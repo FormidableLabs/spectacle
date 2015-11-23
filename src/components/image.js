@@ -1,9 +1,9 @@
-import React, { PropTypes } from "react";
-import Base from "./base";
+import React, { Component, PropTypes } from "react";
+import { getStyles } from "../utils/base";
 import Radium from "radium";
 
 @Radium
-export default class Image extends Base {
+export default class Image extends Component {
   render() {
     const styles = {
       width: this.props.width || "",
@@ -15,7 +15,7 @@ export default class Image extends Base {
         src={this.props.src}
         style={[
           this.context.styles.components.image,
-          this.getStyles(),
+          getStyles.call(this),
           styles,
           this.props.style
         ]}
