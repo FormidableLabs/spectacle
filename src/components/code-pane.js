@@ -36,7 +36,8 @@ CodePane.contextTypes = {
 CodePane.propTypes = {
   lang: PropTypes.string,
   source: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  children: PropTypes.node
 };
 
 CodePane.defaultProps = {

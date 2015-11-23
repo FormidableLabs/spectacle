@@ -1,5 +1,4 @@
 /*eslint max-statements:0,complexity:0,no-invalid-this:0*/
-import { Component, PropTypes } from "react";
 
 export const getStyles = function getStyles() {
   const {

@@ -1,12 +1,8 @@
-import { createStore, combineReducers, applyMiddleware } from "redux"
-import reducer from "../reducers"
-import createLogger from 'redux-logger';
+import { createStore, applyMiddleware } from "redux";
+import reducer from "../reducers";
 
-
-
-export default function configureStore(initialState) {
-  const logger = createLogger();
-  const createStoreWithMiddleware = applyMiddleware(logger)(createStore);
+const configureStore = () => {
+  const createStoreWithMiddleware = applyMiddleware()(createStore);
   const store = createStoreWithMiddleware(reducer);
 
   if (module.hot) {
@@ -14,8 +10,10 @@ export default function configureStore(initialState) {
     module.hot.accept("../reducers", () => {
       const nextReducer = require("../reducers");
       store.replaceReducer(nextReducer);
-    })
+    });
   }
 
   return store;
-}
+};
+
+export default configureStore;

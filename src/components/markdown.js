@@ -18,6 +18,11 @@ import Text from "./text";
 // to spectacle components (ex. headings, strong/em/del)
 const spectacleComponent = (component, boundProps = {}) => {
   return React.createClass({
+    propTypes() {
+      return {
+        children: PropTypes.children
+      };
+    },
     render() {
       const props = {...this.props, ...boundProps};
       return React.createElement(component, {...props}, this.props.children);

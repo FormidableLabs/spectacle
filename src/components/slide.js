@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { PropTypes } from "react";
 import tweenState from "react-tween-state";
 import { getStyles } from "../utils/base";
 import Transitions from "./transitions";
@@ -16,8 +16,12 @@ const Slide = React.createClass({
   },
   propTypes: {
     align: PropTypes.string,
+    dispatch: PropTypes.func,
     hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     presenterStyle: PropTypes.object,
+    maxHeight: PropTypes.number,
+    maxWidth: PropTypes.number,
+    margin: PropTypes.number,
     children: PropTypes.node,
     notes: PropTypes.string,
     slideIndex: PropTypes.number,
@@ -54,7 +58,7 @@ const Slide = React.createClass({
     if (frags && frags.length && !this.context.overview) {
       Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
         frag.dataset.fid = i;
-        this.props.dispatch && this.props.dispatch(addFragment({
+        return this.props.dispatch && this.props.dispatch(addFragment({
           slide: this.props.hash,
           id: i,
           visible: this.props.lastSlide > this.props.slideIndex

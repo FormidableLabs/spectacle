@@ -89,7 +89,9 @@ Heading.defaultProps = {
 
 Heading.propTypes = {
   children: PropTypes.node,
+  fit: PropTypes.bool,
   size: PropTypes.number,
+  style: PropTypes.object,
   lineHeight: PropTypes.number
 };
 

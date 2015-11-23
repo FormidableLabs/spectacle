@@ -1,5 +1,4 @@
-import React, { cloneElement, Component, PropTypes } from "react";
-import { render } from "react-dom";
+import React, { Component, PropTypes } from "react";
 import context from "../utils/context";
 
 import { Router, Route } from "react-router";
@@ -11,24 +10,29 @@ import configureStore from "../store";
 
 import { syncReduxAndRouter } from "redux-simple-router";
 
-const store = configureStore()
+const store = configureStore();
 const history = process.env.NODE_ENV === "production" ?
   createHashHistory() :
   createBrowserHistory();
 
-syncReduxAndRouter(history, store, state => state.routeReducer);
+syncReduxAndRouter(history, store, (state) => state.routeReducer);
 
-const Presentation = (props) => {
-  return class extends Component {
+const createChild = (props) => {
+  return class Presentation extends Component {
     render() {
       return props.children;
     }
-  }
-}
+  };
+};
 
 export default class Spectacle extends Component {
+  static propTypes = {
+    theme: PropTypes.object,
+    print: PropTypes.object
+  }
+
   render() {
-    const Deck = context(Presentation(this.props), {styles: this.props.theme, print: this.props.print});
+    const Deck = context(createChild(this.props), {styles: this.props.theme, print: this.props.print});
     return (
       <Provider store={store}>
         <Router history={history}>
@@ -36,7 +40,7 @@ export default class Spectacle extends Component {
           <Route path="/:slide" component={Deck}/>
         </Router>
       </Provider>
-    )
+    );
   }
 }
 

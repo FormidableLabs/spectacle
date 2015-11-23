@@ -1,4 +1,4 @@
-import React, { PropTypes } from "react";
+import React from "react";
 import { render } from "react-dom";
 
 import {
@@ -25,8 +25,9 @@ preloader([images.city, images.kat, images.markdown]);
 
 render(
   <Spectacle
-    theme={require('./themes/default/index')}
-    print={require('./themes/default/print')}>
+    theme={require("./themes/default/index")}
+    print={require("./themes/default/print")}
+  >
     <Deck transition={["zoom", "slide"]} transitionDuration={500}>
       <Slide transition={["zoom"]} bgColor="primary">
         <Heading size={1} fit caps lineHeight={1} textColor="black">

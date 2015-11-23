@@ -1,5 +1,4 @@
 import React, { cloneElement, Component, PropTypes } from "react";
-import { getStyles } from "../utils/base";
 import Radium from "radium";
 
 const startTime = function startTime(date) {

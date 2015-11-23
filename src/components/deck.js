@@ -17,7 +17,7 @@ import Overview from "./overview";
 import Progress from "./progress";
 const TransitionGroup = Radium(ReactTransitionGroup);
 
-@connect(state => state)
+@connect((state) => state)
 @Radium
 export default class Deck extends Component {
   static displayName = "Deck";
@@ -28,6 +28,8 @@ export default class Deck extends Component {
   }
 
   static propTypes = {
+    fragment: PropTypes.object,
+    dispatch: PropTypes.func,
     children: PropTypes.node,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number,
@@ -40,7 +42,7 @@ export default class Deck extends Component {
     presenter: PropTypes.bool,
     export: PropTypes.bool,
     overview: PropTypes.bool,
-    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   }
 
   constructor() {
