@@ -11,7 +11,7 @@ const fonts = {
   tertiary: "monospace"
 };
 
-module.exports = {
+export default {
   colors: colors,
   fonts: fonts,
   global: {

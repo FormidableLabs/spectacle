@@ -1,11 +1,10 @@
-/*global document*/
-
 import React, { PropTypes } from "react";
 import { render } from "react-dom";
 import context from "./src/utils/context";
 
 import { Router, Route } from "react-router";
 import createBrowserHistory from "history/lib/createBrowserHistory";
+import createHashHistory from "history/lib/createHashHistory";
 
 import Alt from "alt";
 import Flux from "./src/flux/alt";
@@ -17,7 +16,9 @@ require("normalize.css");
 require("./themes/default/index.css");
 require("highlight.js/styles/monokai_sublime.css");
 
-const history = createBrowserHistory();
+const history = process.env.NODE_ENV === "production" ?
+  createHashHistory() :
+  createBrowserHistory();
 
 const flux = new Flux();
 Alt.debug("flux", flux);

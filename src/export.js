@@ -2,10 +2,7 @@ import React, { cloneElement, Component, PropTypes } from "react";
 import Radium from "radium";
 
 @Radium
-class Export extends Component {
-  constructor(props) {
-    super(props);
-  }
+export default class Export extends Component {
   _renderSlides() {
     return this.props.slides.map((child, index) => {
       return cloneElement(child, {
@@ -38,5 +35,3 @@ Export.propTypes = {
 Export.contextTypes = {
   styles: PropTypes.object
 };
-
-export default Export;

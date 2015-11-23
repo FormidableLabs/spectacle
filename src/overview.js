@@ -3,10 +3,7 @@ import Base from "./base";
 import Radium from "radium";
 
 @Radium
-class Overview extends Base {
-  constructor(props) {
-    super(props);
-  }
+export default class Overview extends Base {
   _renderSlides() {
     const slide = this.props.slide;
     return this.props.slides.map((child, index) => {
@@ -59,5 +56,3 @@ Overview.propTypes = {
 Overview.contextTypes = {
   styles: PropTypes.object
 };
-
-export default Overview;

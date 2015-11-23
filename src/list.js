@@ -3,23 +3,21 @@ import Base from "./base";
 import Radium from "radium";
 
 @Radium
-class BlockQuote extends Base {
+export default class List extends Base {
   render() {
     return (
-      <blockquote style={[this.context.styles.components.blockquote, this.getStyles(), this.props.style]}>
+      <ul style={[this.context.styles.components.list, this.getStyles(), this.props.style]}>
         {this.props.children}
-      </blockquote>
+      </ul>
     );
   }
 }
 
-BlockQuote.propTypes = {
+List.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object
 };
 
-BlockQuote.contextTypes = {
+List.contextTypes = {
   styles: PropTypes.object
 };
-
-export default BlockQuote;

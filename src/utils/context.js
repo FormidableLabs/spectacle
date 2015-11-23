@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 
-const context = function context(Component, params) {
+const context = (Component, params) => {
   const wrapper = React.createClass({
     displayName: "ContextWrapper",
     propTypes: {
@@ -20,8 +20,8 @@ const context = function context(Component, params) {
       location: PropTypes.object
     },
     getChildContext() {
+      const { location, history } = this.props;
       let styles = {};
-      const location = this.props.location;
       if (location.query && "print" in location.query) {
         styles = params.print;
       } else {
@@ -33,7 +33,7 @@ const context = function context(Component, params) {
       }
       return {
         styles,
-        history: this.props.history,
+        history,
         location,
         flux: params.flux,
         presenter: location.query && "presenter" in location.query,

@@ -5,7 +5,7 @@ import Radium from "radium";
 import isUndefined from "lodash/lang/isundefined";
 
 @Radium
-class CodePane extends Base {
+export default class CodePane extends Base {
   createMarkup() {
     const { source, children, lang } = this.props;
     // Allow code to come from source or from children, for markdown support
@@ -43,5 +43,3 @@ CodePane.defaultProps = {
   lang: "",
   source: ""
 };
-
-export default CodePane;

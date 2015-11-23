@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Heading from "../src/heading";
 
-class Interactive extends Component {
-  constructor(props) {
-    super(props);
+export default class Interactive extends Component {
+  constructor() {
+    super();
     this.state = {
       count: 0
     };
@@ -42,5 +42,3 @@ class Interactive extends Component {
     );
   }
 }
-
-export default Interactive;
