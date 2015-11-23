@@ -1,23 +1,23 @@
 import React, { Component, PropTypes } from "react";
-import { getStyles } from "./utils/base";
+import { getStyles } from "../utils/base";
 import Radium from "radium";
 
 @Radium
-export default class Quote extends Component {
+export default class List extends Component {
   render() {
     return (
-      <span style={[this.context.styles.components.quote, getStyles.call(this), this.props.style]}>
+      <ul style={[this.context.styles.components.list, getStyles.call(this), this.props.style]}>
         {this.props.children}
-      </span>
+      </ul>
     );
   }
 }
 
-Quote.propTypes = {
+List.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object
 };
 
-Quote.contextTypes = {
+List.contextTypes = {
   styles: PropTypes.object
 };

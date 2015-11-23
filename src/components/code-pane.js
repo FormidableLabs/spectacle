@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import highlight from "highlight.js";
-import { getStyles } from "./utils/base";
+import { getStyles } from "../utils/base";
 import Radium from "radium";
 import isUndefined from "lodash/lang/isundefined";
 

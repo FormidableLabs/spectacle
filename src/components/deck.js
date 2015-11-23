@@ -5,6 +5,11 @@ import React, { Children, cloneElement, Component, PropTypes } from "react";
 import ReactTransitionGroup from "react-addons-transition-group";
 import Radium, { Style } from "radium";
 import _ from "lodash";
+import { connect } from "react-redux";
+import { updatePath } from "redux-simple-router";
+
+import { updateFragment } from "../actions";
+
 import Presenter from "./presenter";
 import Export from "./export";
 import Overview from "./overview";
@@ -12,8 +17,32 @@ import Overview from "./overview";
 import Progress from "./progress";
 const TransitionGroup = Radium(ReactTransitionGroup);
 
+@connect(state => state)
 @Radium
 export default class Deck extends Component {
+  static displayName = "Deck";
+
+  static defaultProps = {
+    transitionDuration: 500,
+    progress: "pacman"
+  }
+
+  static propTypes = {
+    children: PropTypes.node,
+    transition: PropTypes.array,
+    transitionDuration: PropTypes.number,
+    progress: PropTypes.oneOf(["pacman", "bar", "number", "none"])
+  }
+
+  static contextTypes = {
+    styles: PropTypes.object,
+    history: PropTypes.object,
+    presenter: PropTypes.bool,
+    export: PropTypes.bool,
+    overview: PropTypes.bool,
+    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  }
+
   constructor() {
     super();
     this._handleKeyPress = this._handleKeyPress.bind(this);
@@ -62,11 +91,11 @@ export default class Deck extends Component {
   }
   _toggleOverviewMode() {
     const suffix = this.context.overview ? "" : "?overview";
-    this.context.history.replaceState(null, `/${this.context.slide}${suffix}`);
+    this.props.dispatch(updatePath(`/${this.context.slide}${suffix}`));
   }
   _togglePresenterMode() {
     const suffix = this.context.presenter ? "" : "?presenter";
-    this.context.history.replaceState(null, `/${this.context.slide}${suffix}`);
+    this.props.dispatch(updatePath(`/${this.context.slide}${suffix}`));
   }
   _getSuffix() {
     if (this.context.presenter) {
@@ -85,7 +114,7 @@ export default class Deck extends Component {
         lastSlide: slide || 0
       });
       if (this._checkFragments(this.context.slide, data.forward)) {
-        this.context.history.replaceState(null, `/${data.slide}${this._getSuffix()}`);
+        this.props.dispatch(updatePath(`/${data.slide}${this._getSuffix()}`));
       }
     }
   }
@@ -96,7 +125,7 @@ export default class Deck extends Component {
     });
     if (this._checkFragments(this.context.slide, false) || this.context.overview) {
       if (slide > 0) {
-        this.context.history.replaceState(null, `/${this._getHash(slide - 1)}${this._getSuffix()}`);
+        this.props.dispatch(updatePath(`/${this._getHash(slide - 1)}${this._getSuffix()}`));
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide - 1), forward: false, time: Date.now()}));
       }
@@ -112,7 +141,7 @@ export default class Deck extends Component {
     });
     if (this._checkFragments(this.context.slide, true) || this.context.overview) {
       if (slide < this.props.children.length - 1) {
-        this.context.history.replaceState(null, `/${this._getHash(slide + 1) + this._getSuffix()}`);
+        this.props.dispatch(updatePath(`/${this._getHash(slide + 1) + this._getSuffix()}`));
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }
@@ -129,8 +158,7 @@ export default class Deck extends Component {
     return hash;
   }
   _checkFragments(slide, forward) {
-    const store = this.context.flux.stores.SlideStore;
-    const fragments = store.getState().fragments;
+    const fragments = this.props.fragment.fragments;
     // Not proud of this at all. 0.14 Parent based contexts will fix this.
     if (this.context.presenter) {
       const main = document.querySelector(".spectacle-presenter-main");
@@ -148,17 +176,17 @@ export default class Deck extends Component {
       const visible = _.filter(fragments[slide], (s) => s.visible === true);
       const hidden = _.filter(fragments[slide], (s) => s.visible !== true);
       if (forward === true && visible.length !== count) {
-        this.context.flux.actions.SlideActions.updateFragment({
+        this.props.dispatch(updateFragment({
           fragment: hidden[0],
           visible: true
-        });
+        }));
         return false;
       }
       if (forward === false && hidden.length !== count) {
-        this.context.flux.actions.SlideActions.updateFragment({
+        this.props.dispatch(updateFragment({
           fragment: visible[_.size(visible) - 1],
           visible: false
-        });
+        }));
         return false;
       }
       return true;
@@ -267,6 +295,8 @@ export default class Deck extends Component {
     const slide = this._getSlideIndex();
     const child = Children.toArray(this.props.children)[slide];
     return cloneElement(child, {
+      dispatch: this.props.dispatch,
+      fragments: this.props.fragment,
       key: slide,
       children: Children.toArray(child.props.children),
       hash: this.context.slide,
@@ -328,7 +358,6 @@ export default class Deck extends Component {
         </TransitionGroup>);
 
     }
-
     return (
       <div
         className="spectacle-deck"
@@ -351,27 +380,3 @@ export default class Deck extends Component {
     );
   }
 }
-
-Deck.displayName = "Deck";
-
-Deck.defaultProps = {
-  transitionDuration: 500,
-  progress: "pacman"
-};
-
-Deck.propTypes = {
-  children: PropTypes.node,
-  transition: PropTypes.array,
-  transitionDuration: PropTypes.number,
-  progress: PropTypes.oneOf(["pacman", "bar", "number", "none"])
-};
-
-Deck.contextTypes = {
-  styles: PropTypes.object,
-  history: PropTypes.object,
-  flux: PropTypes.object,
-  presenter: PropTypes.bool,
-  export: PropTypes.bool,
-  overview: PropTypes.bool,
-  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-};

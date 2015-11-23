@@ -1,5 +1,5 @@
 import React, { Component, createElement, PropTypes } from "react";
-import { getStyles } from "./utils/base";
+import { getStyles } from "../utils/base";
 import Radium from "radium";
 
 @Radium

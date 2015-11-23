@@ -6,11 +6,11 @@ const context = (Component, params) => {
     propTypes: {
       location: PropTypes.object,
       history: PropTypes.object,
-      params: PropTypes.object
+      params: PropTypes.object,
+      store: PropTypes.object
     },
     childContextTypes: {
       styles: PropTypes.object,
-      flux: PropTypes.object,
       presenter: PropTypes.bool,
       overview: PropTypes.bool,
       export: PropTypes.bool,
@@ -35,7 +35,6 @@ const context = (Component, params) => {
         styles,
         history,
         location,
-        flux: params.flux,
         presenter: location.query && "presenter" in location.query,
         overview: location.query && "overview" in location.query,
         export: location.query && "export" in location.query,
