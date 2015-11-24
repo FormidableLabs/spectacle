@@ -34,6 +34,9 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         boxSizing: "border-box"
       }
     },
+    fullscreen: {
+      fill: colors.tertiary
+    },
     progress: {
       pacman: {
         container: {

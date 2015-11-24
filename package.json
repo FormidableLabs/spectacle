@@ -9,7 +9,7 @@
     "clean:dist": "rimraf dist",
     "build:lib": "babel src -d lib",
     "build:dist": "NODE_ENV=production webpack --config webpack.config.production.js",
-    "lint": "eslint --ext .js,.jsx .",
+    "lint": "eslint --ext .js,.jsx src",
     "deploy": "npm run build:dist && surge -p .",
     "preversion": "npm run clean:lib && npm run lint",
     "version": "npm run build:lib",
