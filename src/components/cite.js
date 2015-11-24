@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from "react";
-import { getStyles } from "../utils/base";
 import Radium from "radium";
+import { styleBase } from "../utils/base";
 
 @Radium
 export default class Cite extends Component {
   render() {
     return (
-      <cite style={[this.context.styles.components.cite, getStyles.call(this), this.props.style]}>
+      <cite style={[this.context.styles.components.cite, styleBase(this.props, this.context), this.props.style]}>
         - {this.props.children}
       </cite>
     );
