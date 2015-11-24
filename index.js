@@ -24,10 +24,7 @@ const images = {
 preloader([images.city, images.kat, images.markdown]);
 
 render(
-  <Spectacle
-    theme={require("./src/themes/default/index")}
-    print={require("./src/themes/default/print")}
-  >
+  <Spectacle>
     <Deck transition={["zoom", "slide"]} transitionDuration={500}>
       <Slide transition={["zoom"]} bgColor="primary">
         <Heading size={1} fit caps lineHeight={1} textColor="black">

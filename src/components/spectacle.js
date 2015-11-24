@@ -10,6 +10,8 @@ import configureStore from "../store";
 
 import { syncReduxAndRouter } from "redux-simple-router";
 
+import theme from "../themes/default";
+
 const store = configureStore();
 const history = process.env.NODE_ENV === "production" ?
   createHashHistory() :
@@ -27,12 +29,13 @@ const createChild = (props) => {
 
 export default class Spectacle extends Component {
   static propTypes = {
-    theme: PropTypes.object,
-    print: PropTypes.object
+    theme: PropTypes.object
   }
 
   render() {
-    const Deck = context(createChild(this.props), {styles: this.props.theme, print: this.props.print});
+    console.log(theme())
+    const styles = this.props.theme ? this.props.theme : theme();
+    const Deck = context(createChild(this.props), {styles: styles.screen, print: styles.print});
     return (
       <Provider store={store}>
         <Router history={history}>

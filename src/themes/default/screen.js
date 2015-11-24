@@ -1,9 +1,9 @@
 /*eslint-disable object-shorthand*/
 
 const defaultColors = {
-  primary: "black",
+  primary: "#f9c300",
   secondary: "black",
-  tertiary: "black"
+  tertiary: "white"
 };
 
 const defaultFonts = {
@@ -12,7 +12,7 @@ const defaultFonts = {
   tertiary: "monospace"
 };
 
-const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
+const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
   const colors = Object.assign({}, defaultColors, colorArgs);
   const fonts = Object.assign({}, defaultFonts, fontArgs);
   return {
@@ -20,19 +20,92 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
     fonts: fonts,
     global: {
       body: {
-        background: "white",
+        background: colors.primary,
         fontFamily: fonts.primary,
         fontWeight: "normal",
         fontSize: "2em",
-        color: "black",
+        color: colors.secondary,
         overflow: "hidden"
       },
-      ".hljs": {
-        background: "white",
-        color: "black"
+      "html, body": {
+        height: "100%"
       },
-      ".hljs span": {
-        color: "black !important"
+      "*": {
+        boxSizing: "border-box"
+      }
+    },
+    progress: {
+      pacman: {
+        container: {
+          position: "absolute",
+          bottom: "5px",
+          left: "50%",
+          transition: "all 1s ease-in-out 0.2s",
+          zIndex: 1000
+        },
+        pacman: {
+          position: "absolute",
+          transition: "left 0.3s ease-in-out 0.2s",
+          width: "20px",
+          height: "20px",
+          transform: "translate(-5px, -5px)"
+        },
+        pacmanTop: {
+          position: "absolute",
+          content: " ",
+          width: "20px",
+          height: "10px",
+          borderTopLeftRadius: "10px",
+          borderTopRightRadius: "10px",
+          background: colors.tertiary
+        },
+        pacmanBottom: {
+          position: "absolute",
+          content: " ",
+          width: "20px",
+          height: "10px",
+          borderBottomLeftRadius: "10px",
+          borderBottomRightRadius: "10px",
+          background: colors.tertiary,
+          top: "10px"
+        },
+        point: {
+          position: "absolute",
+          float: "left",
+          background: "transparent",
+          width: "10px",
+          height: "10px",
+          borderWidth: 2,
+          borderStyle: "solid",
+          borderColor: colors.tertiary,
+          borderRadius: "50%",
+          transition: "all 0.01s ease-out 0.4s"
+        }
+      },
+      bar: {
+        container: {
+          position: "absolute",
+          height: "10px",
+          width: "100%",
+          bottom: 0,
+          left: 0,
+          transition: "all 1s ease-in-out 0.2s",
+          zIndex: 1000
+        },
+        bar: {
+          height: "100%",
+          background: colors.tertiary,
+          transition: "all 0.3s ease-out"
+        }
+      },
+      number: {
+        container: {
+          position: "absolute",
+          bottom: 10,
+          right: 10,
+          zIndex: 1000,
+          color: colors.tertiary
+        }
       }
     },
     components: {
@@ -45,33 +118,33 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         borderLeft: `1px solid ${colors.primary}`,
         paddingLeft: 40,
         display: "block",
-        color: "black",
+        color: colors.primary,
         fontSize: "4.9rem",
         lineHeight: 1,
         fontWeight: "bold"
       },
       cite: {
-        color: "black",
+        color: colors.tertiary,
         display: "block",
         clear: "left",
         fontSize: "2rem",
         marginTop: "1rem"
       },
       content: {
-        margin: "auto",
+        margin: "0 auto",
         textAlign: "center"
       },
       codePane: {
         pre: {
-          maxWidth: 800,
           margin: "auto",
           fontSize: "0.8rem",
           fontWeight: "normal",
-          fontFamily: fonts.tertiary
+          fontFamily: fonts.tertiary,
+          minWidth: "100%",
+          maxWidth: 800
         },
         code: {
           textAlign: "left",
-          padding: 20,
           fontWeight: "normal"
         }
       },
@@ -86,15 +159,16 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       },
       heading: {
         h1: {
-          color: "black",
+          color: colors.tertiary,
           fontSize: "7.05rem",
           fontFamily: fonts.primary,
           lineHeight: 1,
           fontWeight: "bold",
-          margin: 0
+          margin: 0,
+          zoom: 1
         },
         h2: {
-          color: "black",
+          color: colors.secondary,
           fontSize: "5.88rem",
           fontFamily: fonts.primary,
           lineHeight: 1,
@@ -162,4 +236,4 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
   };
 };
 
-export default print;
+export default screen;
