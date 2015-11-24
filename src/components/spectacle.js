@@ -33,7 +33,6 @@ export default class Spectacle extends Component {
   }
 
   render() {
-    console.log(theme())
     const styles = this.props.theme ? this.props.theme : theme();
     const Deck = context(createChild(this.props), {styles: styles.screen, print: styles.print});
     return (
