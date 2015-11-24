@@ -1,6 +1,6 @@
 {
   "name": "spectacle",
-  "version": "0.1.6",
+  "version": "1.0.0-rc1",
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
