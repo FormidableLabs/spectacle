@@ -12,7 +12,6 @@ import Interactive from "./assets/interactive";
 
 require("normalize.css");
 require("./src/themes/default/index.css");
-require("highlight.js/styles/monokai_sublime.css");
 
 const images = {
   city: require("./assets/city.jpg"),
