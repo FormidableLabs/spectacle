@@ -4,13 +4,13 @@ import Radium from "radium";
 import { isUndefined } from "lodash";
 
 const format = (str) => {
-    return str.replace(/</g,'&lt;').replace(/>/g,'&gt;') ;
+  return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 };
 
 @Radium
 export default class CodePane extends Component {
   createMarkup() {
-    const { source, children, lang } = this.props;
+    const { source, children } = this.props;
     const code = (isUndefined(source) || source === "") ? children : source;
     return {
       __html: format(code)
