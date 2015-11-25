@@ -29,6 +29,7 @@ export default class Presenter extends Component {
       position: "relative"
     };
     return cloneElement(child, {
+      dispatch: this.props.dispatch,
       key: slide,
       hash,
       slideIndex: slide,
@@ -63,6 +64,7 @@ export default class Presenter extends Component {
     };
     const child = slides[parseInt(slide) + 1];
     return child ? cloneElement(child, {
+      dispatch: this.props.dispatch,
       key: slide + 1,
       hash: child.props.id || slide + 1,
       slideIndex: slide + 1,

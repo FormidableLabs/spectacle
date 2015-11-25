@@ -344,6 +344,7 @@ export default class Deck extends Component {
     if (this.context.presenter) {
       componentToRender = (
         <Presenter
+          dispatch={this.props.dispatch}
           slides={children}
           slide={this._getSlideIndex()}
           hash={this.context.slide}
