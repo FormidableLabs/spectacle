@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
-import { styleBase } from "../utils/base";
 import Radium from "radium";
+import { styleBase, propTypesBase } from "../utils/base";
 
 @Radium
 export default class List extends Component {
@@ -13,10 +13,10 @@ export default class List extends Component {
   }
 }
 
-List.propTypes = {
-  children: PropTypes.node,
-  style: PropTypes.object
-};
+List.propTypes = Object.assign({}, propTypesBase, {
+  style: PropTypes.object,
+  children: PropTypes.node
+});
 
 List.contextTypes = {
   styles: PropTypes.object

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import Radium from "radium";
-import { styleBase } from "../utils/base";
+import { styleBase, propTypesBase } from "../utils/base";
 
 const animations = {
   pacmanTopFrames: Radium.keyframes({
@@ -104,11 +104,11 @@ export default class Progress extends Component {
 
 }
 
-Progress.propTypes = {
+Progress.propTypes = Object.assign({}, propTypesBase, {
   items: PropTypes.array,
   currentSlide: PropTypes.number,
   type: PropTypes.oneOf(["pacman", "bar", "number", "none"])
-};
+});
 
 Progress.contextTypes = {
   styles: PropTypes.object

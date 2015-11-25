@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import Radium from "radium";
-import { styleBase } from "../utils/base";
+import { styleBase, propTypesBase } from "../utils/base";
 
 @Radium
 export default class Link extends Component {
@@ -13,12 +13,12 @@ export default class Link extends Component {
   }
 }
 
-Link.propTypes = {
-  children: PropTypes.node,
+Link.propTypes = Object.assign({}, propTypesBase, {
   href: PropTypes.string,
   target: PropTypes.string,
-  style: PropTypes.object
-};
+  style: PropTypes.object,
+  children: PropTypes.node
+});
 
 Link.contextTypes = {
   styles: PropTypes.object

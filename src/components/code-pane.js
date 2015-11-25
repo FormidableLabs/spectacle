@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import Radium from "radium";
 import { isUndefined } from "lodash";
-import { styleBase } from "../utils/base";
+import { styleBase, propTypesBase } from "../utils/base";
 
 const format = (str) => {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -36,12 +36,12 @@ CodePane.contextTypes = {
   styles: PropTypes.object
 };
 
-CodePane.propTypes = {
+CodePane.propTypes = Object.assign({}, propTypesBase, {
   lang: PropTypes.string,
   source: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node
-};
+});
 
 CodePane.defaultProps = {
   lang: "markup",

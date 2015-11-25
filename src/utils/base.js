@@ -1,4 +1,5 @@
 /*eslint max-statements:0,complexity:0,no-invalid-this:0*/
+import { PropTypes } from "react";
 
 // render() { return (<tag style={[..., styleBase(this.props, this.context), ...]}></tag>); }
 export const styleBase = function styleBase({
@@ -77,4 +78,25 @@ export const styleBase = function styleBase({
     style.backgroundPosition = "center center";
   }
   return style;
+};
+
+export const propTypesBase = {
+  italic: PropTypes.bool,
+  bold: PropTypes.bool,
+  caps: PropTypes.bool,
+  margin: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]),
+  padding: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]),
+  textColor: PropTypes.string,
+  textFont: PropTypes.string,
+  textSize: PropTypes.string,
+  textAlign: PropTypes.string,
+  bgColor: PropTypes.string,
+  bgImage: PropTypes.string,
+  bgDarken: PropTypes.number
 };

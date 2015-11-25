@@ -1,6 +1,6 @@
 import React, { Component, createElement, PropTypes } from "react";
 import Radium from "radium";
-import { styleBase } from "../utils/base";
+import { styleBase, propTypesBase } from "../utils/base";
 
 @Radium
 export default class Heading extends Component {
@@ -87,13 +87,13 @@ Heading.defaultProps = {
   lineHeight: 1
 };
 
-Heading.propTypes = {
-  children: PropTypes.node,
+Heading.propTypes = Object.assign({}, propTypesBase, {
   fit: PropTypes.bool,
+  lineHeight: PropTypes.number,
   size: PropTypes.number,
   style: PropTypes.object,
-  lineHeight: PropTypes.number
-};
+  children: PropTypes.node
+});
 
 Heading.contextTypes = {
   styles: PropTypes.object

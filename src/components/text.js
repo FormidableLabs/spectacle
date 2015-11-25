@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import Radium from "radium";
-import { styleBase } from "../utils/base";
+import { styleBase, propTypesBase } from "../utils/base";
 
 @Radium
 export default class Text extends Component {
@@ -85,12 +85,12 @@ Text.defaultProps = {
   lineHeight: 1
 };
 
-Text.propTypes = {
+Text.propTypes = Object.assign({}, propTypesBase, {
   fit: PropTypes.bool,
-  children: PropTypes.node,
   lineHeight: PropTypes.number,
-  style: PropTypes.object
-};
+  style: PropTypes.object,
+  children: PropTypes.node
+});
 
 Text.contextTypes = {
   styles: PropTypes.object

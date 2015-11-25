@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 import tweenState from "react-tween-state";
-import { styleBase } from "../utils/base";
+import { styleBase /* , propTypesBase */ } from "../utils/base";
 import Transitions from "./transitions";
 import radium from "radium";
 import { addFragment } from "../actions";
@@ -14,18 +14,23 @@ const Slide = React.createClass({
       presenterStyle: {}
     };
   },
+  // TODO: Object.assign({}, propTypesBase, { ... })
   propTypes: {
     align: PropTypes.string,
+    transition: PropTypes.array,
+    transitionDuration: PropTypes.number,
+    notes: PropTypes.string,
+    id: PropTypes.string,
+    // TODO: elsewhere margin can be either number OR string
+    margin: PropTypes.number,
     dispatch: PropTypes.func,
     hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     presenterStyle: PropTypes.object,
     maxHeight: PropTypes.number,
     maxWidth: PropTypes.number,
-    margin: PropTypes.number,
-    children: PropTypes.node,
-    notes: PropTypes.string,
     slideIndex: PropTypes.number,
-    lastSlide: PropTypes.number
+    lastSlide: PropTypes.number,
+    children: PropTypes.node
   },
   contextTypes: {
     styles: PropTypes.object,
