@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
-import { getStyles } from "../utils/base";
 import Radium from "radium";
+import { styleBase, propTypesBase } from "../utils/base";
 
 const animations = {
   pacmanTopFrames: Radium.keyframes({
@@ -65,7 +65,7 @@ export default class Progress extends Component {
         return false;
     }
     return (
-      <div style={[getStyles.call(this)]}>
+      <div style={[styleBase(this.props, this.context)]}>
         <div style={[style.container]}>
           {markup}
         </div>
@@ -104,11 +104,11 @@ export default class Progress extends Component {
 
 }
 
-Progress.propTypes = {
+Progress.propTypes = Object.assign({}, propTypesBase, {
   items: PropTypes.array,
   currentSlide: PropTypes.number,
   type: PropTypes.oneOf(["pacman", "bar", "number", "none"])
-};
+});
 
 Progress.contextTypes = {
   styles: PropTypes.object

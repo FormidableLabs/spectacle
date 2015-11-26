@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
-import { getStyles } from "../utils/base";
 import Radium from "radium";
+import { styleBase, propTypesBase } from "../utils/base";
 
 @Radium
 export default class Image extends Component {
@@ -15,7 +15,7 @@ export default class Image extends Component {
         src={this.props.src}
         style={[
           this.context.styles.components.image,
-          getStyles.call(this),
+          styleBase(this.props, this.context),
           styles,
           this.props.style
         ]}
@@ -24,7 +24,7 @@ export default class Image extends Component {
   }
 }
 
-Image.propTypes = {
+Image.propTypes = Object.assign({}, propTypesBase, {
   width: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
@@ -36,7 +36,7 @@ Image.propTypes = {
   display: PropTypes.string,
   src: PropTypes.string,
   style: PropTypes.object
-};
+});
 
 Image.contextTypes = {
   styles: PropTypes.object

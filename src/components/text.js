@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
-import { getStyles } from "../utils/base";
 import Radium from "radium";
+import { styleBase, propTypesBase } from "../utils/base";
 
 @Radium
 export default class Text extends Component {
@@ -63,7 +63,7 @@ export default class Text extends Component {
       fit ? (
         <div
           ref="container"
-          style={[this.context.styles.components.text, getStyles.call(this), styles.container]}
+          style={[this.context.styles.components.text, styleBase(this.props, this.context), styles.container]}
         >
           <span
             ref="text"
@@ -73,7 +73,7 @@ export default class Text extends Component {
           </span>
         </div>
       ) : (
-        <p style={[this.context.styles.components.text, getStyles.call(this), styles.nonFit, style]}>
+        <p style={[this.context.styles.components.text, styleBase(this.props, this.context), styles.nonFit, style]}>
           {this.props.children}
         </p>
       )
@@ -85,12 +85,12 @@ Text.defaultProps = {
   lineHeight: 1
 };
 
-Text.propTypes = {
+Text.propTypes = Object.assign({}, propTypesBase, {
   fit: PropTypes.bool,
-  children: PropTypes.node,
   lineHeight: PropTypes.number,
-  style: PropTypes.object
-};
+  style: PropTypes.object,
+  children: PropTypes.node
+});
 
 Text.contextTypes = {
   styles: PropTypes.object

@@ -27,12 +27,12 @@ export default class S extends Component {
 }
 
 S.propTypes = {
-  children: PropTypes.node,
-  style: PropTypes.object,
   type: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array
-  ])
+  ]),
+  style: PropTypes.object,
+  children: PropTypes.node
 };
 
 S.contextTypes = {

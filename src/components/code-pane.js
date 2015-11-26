@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
-import { getStyles } from "../utils/base";
 import Radium from "radium";
 import { isUndefined } from "lodash";
+import { styleBase, propTypesBase } from "../utils/base";
 
 const format = (str) => {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -21,7 +21,7 @@ export default class CodePane extends Component {
   }
   render() {
     return (
-      <pre style={[this.context.styles.components.codePane.pre, getStyles.call(this), this.props.style]}>
+      <pre style={[this.context.styles.components.codePane.pre, styleBase(this.props, this.context), this.props.style]}>
         <code
           className={`language-${this.props.lang}`}
           style={this.context.styles.components.codePane.code}
@@ -36,12 +36,12 @@ CodePane.contextTypes = {
   styles: PropTypes.object
 };
 
-CodePane.propTypes = {
+CodePane.propTypes = Object.assign({}, propTypesBase, {
   lang: PropTypes.string,
   source: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.node
-};
+});
 
 CodePane.defaultProps = {
   lang: "markup",

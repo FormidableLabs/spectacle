@@ -16,6 +16,6 @@ export default class Fill extends Component {
 }
 
 Fill.propTypes = {
-  children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  children: PropTypes.node
 };
