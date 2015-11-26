@@ -42,14 +42,16 @@ const Slide = React.createClass({
   setZoom() {
     const mobile = window.matchMedia("(max-width: 628px)").matches;
     const content = this.refs.content;
-    const zoom = (content.offsetWidth / 1000);
-    const contentScaleY = (content.parentNode.offsetHeight / 700);
-    const contentScaleX = (content.parentNode.offsetWidth / 700);
-    const contentScale = mobile ? 1 : Math.min(contentScaleY, contentScaleX);
-    this.setState({
-      zoom: zoom > 0.6 ? zoom : 0.6,
-      contentScale: contentScale < 1 ? contentScale : 1
-    });
+    if (content) {
+      const zoom = (content.offsetWidth / 1000);
+      const contentScaleY = (content.parentNode.offsetHeight / 700);
+      const contentScaleX = (content.parentNode.offsetWidth / 700);
+      const contentScale = mobile ? 1 : Math.min(contentScaleY, contentScaleX);
+      this.setState({
+        zoom: zoom > 0.6 ? zoom : 0.6,
+        contentScale: contentScale < 1 ? contentScale : 1
+      });
+    }
   },
   componentDidMount() {
     this.setZoom();

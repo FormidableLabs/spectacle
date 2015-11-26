@@ -1,53 +1,27 @@
-import React, { PropTypes } from "react";
+import React, { cloneElement, Component, PropTypes } from "react";
 
-const context = (Component, params) => {
-  const wrapper = React.createClass({
-    displayName: "ContextWrapper",
-    propTypes: {
-      location: PropTypes.object,
-      history: PropTypes.object,
-      params: PropTypes.object,
+const context = (component, params, props) => {
+  return class Context extends Component {
+    static displayName = "ContextWrapper";
+    static propTypes = {
       store: PropTypes.object
-    },
-    childContextTypes: {
+    };
+    static childContextTypes = {
       styles: PropTypes.object,
-      presenter: PropTypes.bool,
-      overview: PropTypes.bool,
-      export: PropTypes.bool,
-      print: PropTypes.bool,
-      slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       history: PropTypes.object,
-      location: PropTypes.object
-    },
+      store: PropTypes.object
+    };
     getChildContext() {
-      const { location, history } = this.props;
-      let styles = {};
-      if (location.query && "print" in location.query) {
-        styles = params.print;
-      } else {
-        styles = params.styles;
-      }
-      let slide = 0;
-      if (this.props.params && "slide" in this.props.params) {
-        slide = this.props.params.slide;
-      }
+      let { history, styles } = params;
       return {
-        styles,
         history,
-        location,
-        presenter: location.query && "presenter" in location.query,
-        overview: location.query && "overview" in location.query,
-        export: location.query && "export" in location.query,
-        print: location.query && "print" in location.query,
-        slide
+        styles
       };
-    },
-
-    render() {
-      return <Component {...this.props} />;
     }
-  });
-  return wrapper;
+    render() {
+      return React.cloneElement(component, Object.assign({}, this.props, props));
+    }
+  }
 };
 
 export default context;

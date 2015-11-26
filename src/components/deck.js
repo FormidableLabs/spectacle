@@ -18,7 +18,6 @@ import Fullscreen from "./fullscreen";
 import Progress from "./progress";
 const TransitionGroup = Radium(ReactTransitionGroup);
 
-@connect((state) => state)
 @Radium
 export default class Deck extends Component {
   static displayName = "Deck";
@@ -43,6 +42,7 @@ export default class Deck extends Component {
     presenter: PropTypes.bool,
     export: PropTypes.bool,
     overview: PropTypes.bool,
+    store: PropTypes.object,
     slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   }
 
@@ -61,7 +61,7 @@ export default class Deck extends Component {
       lastSlide: slide
     });
     localStorage.setItem("spectacle-slide",
-      JSON.stringify({slide: this.context.slide, forward: false, time: Date.now()}));
+      JSON.stringify({slide: this.context.store.getState().route.slide, forward: false, time: Date.now()}));
     this._attachEvents();
   }
   componentWillUnmount() {
@@ -94,11 +94,11 @@ export default class Deck extends Component {
   }
   _toggleOverviewMode() {
     const suffix = this.context.overview ? "" : "?overview";
-    this.props.dispatch(updatePath(`/${this.context.slide}${suffix}`));
+    this.props.dispatch(updatePath(`/${this.context.store.getState().route.slide}${suffix}`));
   }
   _togglePresenterMode() {
     const suffix = this.context.presenter ? "" : "?presenter";
-    this.props.dispatch(updatePath(`/${this.context.slide}${suffix}`));
+    this.props.dispatch(updatePath(`/${this.context.store.getState().route.slide}${suffix}`));
   }
   _getSuffix() {
     if (this.context.presenter) {
@@ -116,7 +116,7 @@ export default class Deck extends Component {
       this.setState({
         lastSlide: slide || 0
       });
-      if (this._checkFragments(this.context.slide, data.forward)) {
+      if (this._checkFragments(this.context.store.getState().route.slide, data.forward)) {
         this.props.dispatch(updatePath(`/${data.slide}${this._getSuffix()}`));
       }
     }
@@ -126,9 +126,9 @@ export default class Deck extends Component {
     this.setState({
       lastSlide: slide
     });
-    if (this._checkFragments(this.context.slide, false) || this.context.overview) {
+    if (this._checkFragments(this.context.store.getState().route.slide, false) || this.context.overview) {
       if (slide > 0) {
-        this.props.dispatch(updatePath(`/${this._getHash(slide - 1)}${this._getSuffix()}`));
+        this.context.history.replaceState(null, `/${this._getHash(slide - 1)}${this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide - 1), forward: false, time: Date.now()}));
       }
@@ -142,9 +142,9 @@ export default class Deck extends Component {
     this.setState({
       lastSlide: slide
     });
-    if (this._checkFragments(this.context.slide, true) || this.context.overview) {
+    if (this._checkFragments(this.context.store.getState().route.slide, true) || this.context.overview) {
       if (slide < this.props.children.length - 1) {
-        this.props.dispatch(updatePath(`/${this._getHash(slide + 1) + this._getSuffix()}`));
+        this.context.history.replaceState(null, `/${this._getHash(slide + 1) + this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }
@@ -161,7 +161,8 @@ export default class Deck extends Component {
     return hash;
   }
   _checkFragments(slide, forward) {
-    const fragments = this.props.fragment.fragments;
+    const state = this.context.store.getState();
+    const fragments = state.fragment.fragments;
     // Not proud of this at all. 0.14 Parent based contexts will fix this.
     if (this.context.presenter) {
       const main = document.querySelector(".spectacle-presenter-main");
@@ -283,14 +284,14 @@ export default class Deck extends Component {
   }
   _getSlideIndex() {
     let index = 0;
-    if (!parseInt(this.context.slide)) {
+    if (!parseInt(this.context.store.getState().route.slide)) {
       Children.toArray(this.props.children).forEach((slide, i) => {
-        if (slide.props.id === this.context.slide) {
+        if (slide.props.id === this.context.store.getState().route.slide) {
           index = i;
         }
       });
     } else {
-      index = parseInt(this.context.slide);
+      index = parseInt(this.context.store.getState().route.slide);
     }
     return index;
   }
@@ -302,7 +303,7 @@ export default class Deck extends Component {
       fragments: this.props.fragment,
       key: slide,
       children: Children.toArray(child.props.children),
-      hash: this.context.slide,
+      hash: this.context.store.getState().route.slide,
       slideIndex: slide,
       lastSlide: this.state.lastSlide,
       transition: child.props.transition.length ?
@@ -347,7 +348,7 @@ export default class Deck extends Component {
           dispatch={this.props.dispatch}
           slides={children}
           slide={this._getSlideIndex()}
-          hash={this.context.slide}
+          hash={this.context.store.getState().route.slide}
           lastSlide={this.state.lastSlide}
         />
       );
