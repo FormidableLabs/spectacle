@@ -124,7 +124,7 @@ export default {
   },
   componentWillLeave(cb) {
     const { slideIndex, transition, transitionDuration } = this.props;
-    const slide = this.context.slide || 0;
+    const slide = this.context.store.getState().route.slide || 0;
     const direction = slideIndex > slide;
 
     this.setState({
