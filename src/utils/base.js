@@ -1,80 +1,80 @@
 /*eslint max-statements:0,complexity:0,no-invalid-this:0*/
 
-export const getStyles = function getStyles() {
-  const {
-    italic,
-    bold,
-    caps,
-    margin,
-    padding,
-    textColor,
-    textFont,
-    textSize,
-    textAlign,
-    bgColor,
-    bgImage,
-    bgDarken
-  } = this.props;
-
-  const styles = {};
+// render() { return (<tag style={[..., styleBase(this.props, this.context), ...]}></tag>); }
+export const styleBase = function styleBase({
+  italic,
+  bold,
+  caps,
+  margin,
+  padding,
+  textColor,
+  textFont,
+  textSize,
+  textAlign,
+  bgColor,
+  bgImage,
+  bgDarken
+}, {
+  styles
+}) {
+  const style = {};
   if (typeof italic === "boolean") {
-    styles.fontStyle = italic ? "italic" : "normal";
+    style.fontStyle = italic ? "italic" : "normal";
   }
   if (typeof bold === "boolean") {
-    styles.fontWeight = bold ? "bold" : "normal";
+    style.fontWeight = bold ? "bold" : "normal";
   }
   if (typeof caps === "boolean") {
-    styles.textTransform = caps ? "uppercase" : "none";
+    style.textTransform = caps ? "uppercase" : "none";
   }
   if (margin) {
-    styles.margin = margin;
+    style.margin = margin;
   }
   if (padding) {
-    styles.padding = padding;
+    style.padding = padding;
   }
   if (textColor) {
     let color = "";
-    if (!this.context.styles.colors.hasOwnProperty(textColor)) {
+    if (!styles.colors.hasOwnProperty(textColor)) {
       color = textColor;
     } else {
-      color = this.context.styles.colors[textColor];
+      color = styles.colors[textColor];
     }
-    styles.color = color;
+    style.color = color;
   }
   if (textFont) {
     let font = "";
-    if (!this.context.styles.fonts.hasOwnProperty(textFont)) {
+    if (!styles.fonts.hasOwnProperty(textFont)) {
       font = textFont;
     } else {
-      font = this.context.styles.fonts[textFont];
+      font = styles.fonts[textFont];
     }
-    styles.fontFamily = font;
+    style.fontFamily = font;
   }
   if (textSize) {
-    styles.fontSize = textSize;
+    style.fontSize = textSize;
   }
   if (textAlign) {
-    styles.textAlign = textAlign;
+    style.textAlign = textAlign;
   }
   if (bgColor) {
     let color = "";
-    if (!this.context.styles.colors.hasOwnProperty(bgColor)) {
+    if (!styles.colors.hasOwnProperty(bgColor)) {
       color = bgColor;
     } else {
-      color = this.context.styles.colors[bgColor];
+      color = styles.colors[bgColor];
     }
-    styles.backgroundColor = color;
+    style.backgroundColor = color;
   }
   if (bgImage) {
     if (bgDarken) {
-      styles.backgroundImage =
+      style.backgroundImage =
       `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
     } else {
-      styles.backgroundImage = `url(${bgImage})`;
+      style.backgroundImage = `url(${bgImage})`;
     }
-    styles.backgroundSize = "cover";
-    styles.backgroundPosition = "center center";
+    style.backgroundSize = "cover";
+    style.backgroundPosition = "center center";
   }
-  return styles;
+  return style;
 };
-

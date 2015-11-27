@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from "react";
-import { getStyles } from "../utils/base";
 import Radium from "radium";
+import { styleBase } from "../utils/base";
 
 @Radium
 export default class ListItem extends Component {
   render() {
     return (
-      <li style={[this.context.styles.components.listItem, getStyles.call(this), this.props.style]}>
+      <li style={[this.context.styles.components.listItem, styleBase(this.props, this.context), this.props.style]}>
         {this.props.children}
       </li>
     );

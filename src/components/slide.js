@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 import tweenState from "react-tween-state";
-import { getStyles } from "../utils/base";
+import { styleBase } from "../utils/base";
 import Transitions from "./transitions";
 import radium from "radium";
 import { addFragment } from "../actions";
@@ -118,7 +118,7 @@ const Slide = React.createClass({
         ref="slide"
         style={[
           styles.outer,
-          getStyles.call(this),
+          styleBase(this.props, this.context),
           this.getTransitionStyles(),
           printStyles,
           presenterStyle
