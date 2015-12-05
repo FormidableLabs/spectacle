@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { routeReducer } from "redux-simple-router";
 import fragment from "./fragment";
+import route from "./route";
 
 const rootReducer = combineReducers({
   fragment,
-  routeReducer
+  route
 });
 
 export default rootReducer;

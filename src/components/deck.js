@@ -6,8 +6,6 @@ import ReactTransitionGroup from "react-addons-transition-group";
 import Radium, { Style } from "radium";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { updatePath } from "redux-simple-router";
-
 import { updateFragment } from "../actions";
 
 import Presenter from "./presenter";
@@ -26,7 +24,7 @@ export default class Deck extends Component {
   static defaultProps = {
     transitionDuration: 500,
     progress: "pacman"
-  }
+  };
 
   static propTypes = {
     fragment: PropTypes.object,
@@ -35,16 +33,18 @@ export default class Deck extends Component {
     transition: PropTypes.array,
     transitionDuration: PropTypes.number,
     progress: PropTypes.oneOf(["pacman", "bar", "number", "none"])
-  }
+  };
 
   static contextTypes = {
     styles: PropTypes.object,
+    print: PropTypes.object,
     history: PropTypes.object,
     presenter: PropTypes.bool,
     export: PropTypes.bool,
     overview: PropTypes.bool,
+    store: PropTypes.object,
     slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  }
+  };
 
   constructor() {
     super();
@@ -55,13 +55,14 @@ export default class Deck extends Component {
       lastSlide: null
     };
   }
+
   componentDidMount() {
     const slide = this._getSlideIndex();
     this.setState({
       lastSlide: slide
     });
     localStorage.setItem("spectacle-slide",
-      JSON.stringify({slide: this.context.slide, forward: false, time: Date.now()}));
+      JSON.stringify({slide: this.props.route.slide, forward: false, time: Date.now()}));
     this._attachEvents();
   }
   componentWillUnmount() {
@@ -93,17 +94,17 @@ export default class Deck extends Component {
     }
   }
   _toggleOverviewMode() {
-    const suffix = this.context.overview ? "" : "?overview";
-    this.props.dispatch(updatePath(`/${this.context.slide}${suffix}`));
+    const suffix = this.props.route.params.indexOf("overview") !== -1 ? "" : "?overview";
+    this.context.history.replaceState(null, `/${this.props.route.slide}${suffix}`);
   }
   _togglePresenterMode() {
-    const suffix = this.context.presenter ? "" : "?presenter";
-    this.props.dispatch(updatePath(`/${this.context.slide}${suffix}`));
+    const suffix = this.props.route.params.indexOf("presenter") !== -1 ? "" : "?presenter";
+    this.context.history.replaceState(null, `/${this.props.route.slide}${suffix}`);
   }
   _getSuffix() {
-    if (this.context.presenter) {
+    if (this.props.route.params.indexOf("presenter") !== -1) {
       return "?presenter";
-    } else if (this.context.overview) {
+    } else if (this.props.route.params.indexOf("overview") !== -1) {
       return "?overview";
     } else {
       return "";
@@ -116,7 +117,7 @@ export default class Deck extends Component {
       this.setState({
         lastSlide: slide || 0
       });
-      if (this._checkFragments(this.context.slide, data.forward)) {
+      if (this._checkFragments(this.props.route.slide, data.forward)) {
         this.props.dispatch(updatePath(`/${data.slide}${this._getSuffix()}`));
       }
     }
@@ -126,9 +127,9 @@ export default class Deck extends Component {
     this.setState({
       lastSlide: slide
     });
-    if (this._checkFragments(this.context.slide, false) || this.context.overview) {
+    if (this._checkFragments(this.props.route.slide, false) || this.props.route.params.indexOf("overview") !== -1) {
       if (slide > 0) {
-        this.props.dispatch(updatePath(`/${this._getHash(slide - 1)}${this._getSuffix()}`));
+        this.context.history.replaceState(null, `/${this._getHash(slide - 1)}${this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide - 1), forward: false, time: Date.now()}));
       }
@@ -142,9 +143,9 @@ export default class Deck extends Component {
     this.setState({
       lastSlide: slide
     });
-    if (this._checkFragments(this.context.slide, true) || this.context.overview) {
+    if (this._checkFragments(this.props.route.slide, true) || this.props.route.params.indexOf("overview") !== -1) {
       if (slide < this.props.children.length - 1) {
-        this.props.dispatch(updatePath(`/${this._getHash(slide + 1) + this._getSuffix()}`));
+        this.context.history.replaceState(null, `/${this._getHash(slide + 1) + this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }
@@ -161,9 +162,10 @@ export default class Deck extends Component {
     return hash;
   }
   _checkFragments(slide, forward) {
-    const fragments = this.props.fragment.fragments;
+    const state = this.context.store.getState();
+    const fragments = state.fragment.fragments;
     // Not proud of this at all. 0.14 Parent based contexts will fix this.
-    if (this.context.presenter) {
+    if (this.props.route.params.indexOf("presenter") !== -1) {
       const main = document.querySelector(".spectacle-presenter-main");
       if (main) {
         const frags = main.querySelectorAll(".fragment");
@@ -283,14 +285,14 @@ export default class Deck extends Component {
   }
   _getSlideIndex() {
     let index = 0;
-    if (!parseInt(this.context.slide)) {
+    if (!parseInt(this.props.route.slide)) {
       Children.toArray(this.props.children).forEach((slide, i) => {
-        if (slide.props.id === this.context.slide) {
+        if (slide.props.id === this.props.route.slide) {
           index = i;
         }
       });
     } else {
-      index = parseInt(this.context.slide);
+      index = parseInt(this.props.route.slide);
     }
     return index;
   }
@@ -301,8 +303,9 @@ export default class Deck extends Component {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
       key: slide,
+      route: this.props.route,
       children: Children.toArray(child.props.children),
-      hash: this.context.slide,
+      hash: this.props.route.slide,
       slideIndex: slide,
       lastSlide: this.state.lastSlide,
       transition: child.props.transition.length ?
@@ -314,7 +317,7 @@ export default class Deck extends Component {
     });
   }
   render() {
-    const globals = this.context.export ? {
+    const globals = this.props.route.params.indexOf("export") !== -1 ? {
       body: Object.assign(this.context.styles.global.body, {
         minWidth: 1100,
         minHeight: 850,
@@ -324,7 +327,7 @@ export default class Deck extends Component {
 
     const styles = {
       deck: {
-        backgroundColor: this.context.presenter || this.context.overview ? "black" : "",
+        backgroundColor: this.props.route.params.indexOf("presenter") !== -1 || this.props.route.params.indexOf("overview") !== -1 ? "black" : "",
         position: "absolute",
         top: 0,
         left: 0,
@@ -341,20 +344,21 @@ export default class Deck extends Component {
 
     let componentToRender;
     const children = Children.toArray(this.props.children);
-    if (this.context.presenter) {
+    if (this.props.route.params.indexOf("presenter") !== -1) {
       componentToRender = (
         <Presenter
           dispatch={this.props.dispatch}
           slides={children}
           slide={this._getSlideIndex()}
-          hash={this.context.slide}
+          hash={this.props.route.slide}
+          route={this.props.route}
           lastSlide={this.state.lastSlide}
         />
       );
-    } else if (this.context.export) {
-      componentToRender = <Export slides={children} />;
-    } else if (this.context.overview) {
-      componentToRender = <Overview slides={children} slide={this._getSlideIndex()} />;
+    } else if (this.props.route.params.indexOf("export") !== -1) {
+      componentToRender = <Export slides={children} route={this.props.route} />;
+    } else if (this.props.route.params.indexOf("overview") !== -1) {
+      componentToRender = <Overview slides={children} slide={this._getSlideIndex()} route={this.props.route} />;
     } else {
       componentToRender = (
         <TransitionGroup component="div" style={[styles.transition]}>
@@ -372,7 +376,7 @@ export default class Deck extends Component {
         {componentToRender}
 
         {
-          !this.context.export ?
+          this.props.route.params.indexOf("export") === -1 ?
           <Progress
             items={children}
             currentSlide={this._getSlideIndex()}
@@ -381,7 +385,7 @@ export default class Deck extends Component {
         }
 
         {
-          !this.context.export ?
+          this.props.route.params.indexOf("export") === -1 ?
            <Fullscreen/> : ""
         }
 

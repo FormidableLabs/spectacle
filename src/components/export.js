@@ -8,6 +8,7 @@ export default class Export extends Component {
       return cloneElement(child, {
         key: index,
         slideIndex: index,
+        route: this.props.route,
         transition: [],
         transitionDuration: 0
       });

@@ -21,6 +21,7 @@ export default class Overview extends Component {
       const el = cloneElement(child, {
         key: index,
         slideIndex: index,
+        route: this.props.route,
         transition: [],
         transitionDuration: 0,
         appearOff: true
