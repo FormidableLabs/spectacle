@@ -41,7 +41,7 @@ You can toggle the presenter or overview mode by pressing respectively `alt+p` a
 
 ## PDF Export
 
-Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is asburdly easy.
+Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is absurdly easy.
 
 - Run `npm start`
 - Hit [http://localhost:3000/#/?export](http://localhost:3000/#/?export)
