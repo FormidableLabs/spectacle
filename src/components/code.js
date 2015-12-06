@@ -6,7 +6,7 @@ import Radium from "radium";
 export default class Code extends Component {
   render() {
     return (
-      <code style={[this.context.styles.components.code, getStyles.call(this), this.props.style]}>
+      <code className={this.props.className} style={[this.context.styles.components.code, getStyles.call(this), this.props.style]}>
         {this.props.children}
       </code>
     );

@@ -21,7 +21,7 @@ export default class CodePane extends Component {
   }
   render() {
     return (
-      <pre style={[this.context.styles.components.codePane.pre, getStyles.call(this), this.props.style]}>
+      <pre className={this.props.className} style={[this.context.styles.components.codePane.pre, getStyles.call(this), this.props.style]}>
         <code
           className={`language-${this.props.lang}`}
           style={this.context.styles.components.codePane.code}

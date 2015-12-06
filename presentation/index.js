@@ -117,12 +117,12 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
             <List>
-              <ListItem><Appear fid="1">Inline style based theme system</Appear></ListItem>
-              <ListItem><Appear fid="2">Autofit text</Appear></ListItem>
-              <ListItem><Appear fid="3">Flexbox layout system</Appear></ListItem>
-              <ListItem><Appear fid="4">React-Router navigation</Appear></ListItem>
-              <ListItem><Appear fid="5">PDF export</Appear></ListItem>
-              <ListItem><Appear fid="6">And...</Appear></ListItem>
+              <Appear><ListItem>Inline style based theme system</ListItem></Appear>
+              <Appear><ListItem>Autofit text</ListItem></Appear>
+              <Appear><ListItem>Flexbox layout system</ListItem></Appear>
+              <Appear><ListItem>React-Router navigation</ListItem></Appear>
+              <Appear><ListItem>PDF export</ListItem></Appear>
+              <Appear><ListItem>And...</ListItem></Appear>
             </List>
           </Slide>
           <Slide transition={["slide"]} bgColor="primary">

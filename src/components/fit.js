@@ -8,7 +8,7 @@ export default class Fit extends Component {
       flex: 0
     };
     return (
-      <div style={[styles, this.props.style]}>
+      <div className={this.props.className} style={[styles, this.props.style]}>
         {this.props.children}
       </div>
     );

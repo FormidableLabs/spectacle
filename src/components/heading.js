@@ -63,6 +63,7 @@ export default class Heading extends Component {
     return (
       fit ? (
         <div
+          className={this.props.className}
           ref="container"
           style={[
             this.context.styles.components.heading[`h${size}`],
@@ -75,6 +76,7 @@ export default class Heading extends Component {
         </div>
       ) : (
         createElement(Tag, {
+          className: this.props.className,
           style: [this.context.styles.components.heading[`h${size}`], getStyles.call(this), styles.nonFit, style]
         }, children)
       )

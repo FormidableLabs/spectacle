@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import { findDOMNode } from "react-dom";
 import tweenState from "react-tween-state";
 import _ from "lodash";
 import { connect } from "react-redux";
@@ -23,7 +24,7 @@ const Appear = React.createClass({
   componentWillReceiveProps(nextProps) {
     const state = nextProps.fragment;
     const slide = this.props.route.slide;
-    const fragment = this.refs.fragment;
+    const fragment = findDOMNode(this.refs.fragment);
     const key = _.findKey(state.fragments[slide], {
       "id": parseInt(fragment.dataset.fid)
     });
@@ -47,10 +48,14 @@ const Appear = React.createClass({
     const styles = {
       opacity: this.getTweeningValue("opacity")
     };
-    return (
-      <div style={Object.assign({}, this.props.style, styles)} className="fragment" ref="fragment">
-        {this.props.children}
-      </div>
+    const child = React.Children.only(this.props.children);
+    return React.cloneElement(
+      child,
+      {
+        style: Object.assign({}, this.props.style, styles),
+        className: "fragment",
+        ref: "fragment"
+      }
     );
   }
 });

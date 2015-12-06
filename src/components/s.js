@@ -19,7 +19,7 @@ export default class S extends Component {
       styles = Object.assign(styles, {fontStyle: "italic"});
     }
     return (
-      <span style={[styles, this.context.styles.components.s[type], style]}>
+      <span className={this.props.className} style={[styles, this.context.styles.components.s[type], style]}>
         {children}
       </span>
     );

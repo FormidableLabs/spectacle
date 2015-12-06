@@ -12,6 +12,7 @@ export default class Image extends Component {
     };
     return (
       <img
+        className={this.props.className}
         src={this.props.src}
         style={[
           this.context.styles.components.image,

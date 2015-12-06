@@ -6,7 +6,7 @@ import Radium from "radium";
 export default class Cite extends Component {
   render() {
     return (
-      <cite style={[this.context.styles.components.cite, getStyles.call(this), this.props.style]}>
+      <cite className={this.props.className} style={[this.context.styles.components.cite, getStyles.call(this), this.props.style]}>
         - {this.props.children}
       </cite>
     );

@@ -129,7 +129,7 @@ const Slide = React.createClass({
       >
         <div style={[styles.inner, this.context.overview && overViewStyles.inner]}>
           <div ref="content"
-            className="spectacle-content"
+            className={this.props.className + "spectacle-content"}
             style={[
               styles.content,
               this.context.styles.components.content,

@@ -62,6 +62,7 @@ export default class Text extends Component {
     return (
       fit ? (
         <div
+          className={this.props.className}
           ref="container"
           style={[this.context.styles.components.text, getStyles.call(this), styles.container]}
         >
@@ -73,7 +74,7 @@ export default class Text extends Component {
           </span>
         </div>
       ) : (
-        <p style={[this.context.styles.components.text, getStyles.call(this), styles.nonFit, style]}>
+        <p className={this.props.className} style={[this.context.styles.components.text, getStyles.call(this), styles.nonFit, style]}>
           {this.props.children}
         </p>
       )

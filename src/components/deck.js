@@ -322,8 +322,15 @@ export default class Deck extends Component {
         minWidth: 1100,
         minHeight: 850,
         overflow: "auto"
-      })
-    } : {};
+      }),
+      ".spectacle-presenter-next .fragment": {
+        display: "none !important"
+      }
+    } : {
+      ".spectacle-presenter-next .fragment": {
+        display: "none !important"
+      }
+    };
 
     const styles = {
       deck: {
