@@ -97,13 +97,12 @@ export default class Presentation extends React.Component {
             </Heading>
             <Markdown>
               {`
-    }
-    ![Markdown Logo](${images.markdown.replace("/", "")})
+![Markdown Logo](${images.markdown.replace("/", "")})
 
-    You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
-    * Lists too!
-    * With ~~strikethrough~~ and _italic_
-    * And lets not forget **bold**
+You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
+* Lists too!
+* With ~~strikethrough~~ and _italic_
+* And lets not forget **bold**
               `}
             </Markdown>
           </Slide>
