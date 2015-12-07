@@ -8,6 +8,7 @@ export default class Export extends Component {
       return cloneElement(child, {
         key: index,
         slideIndex: index,
+        route: this.props.route,
         transition: [],
         transitionDuration: 0
       });
@@ -29,7 +30,8 @@ export default class Export extends Component {
 }
 
 Export.propTypes = {
-  slides: PropTypes.array
+  slides: PropTypes.array,
+  route: PropTypes.object
 };
 
 Export.contextTypes = {

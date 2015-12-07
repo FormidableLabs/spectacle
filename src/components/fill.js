@@ -8,7 +8,7 @@ export default class Fill extends Component {
       flex: 1
     };
     return (
-      <div style={[styles, this.props.style]}>
+      <div className={this.props.className} style={[styles, this.props.style]}>
         {this.props.children}
       </div>
     );
@@ -17,5 +17,6 @@ export default class Fill extends Component {
 
 Fill.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };

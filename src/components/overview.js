@@ -3,40 +3,58 @@ import Radium from "radium";
 
 @Radium
 export default class Overview extends Component {
+  _slideClicked(index) {
+    this.context.history.replaceState(null, `/${this._getHash(index)}`);
+  }
+  _getHash(slide) {
+    let hash = slide;
+    if ("id" in this.props.slides[slide].props) {
+      hash = this.props.slides[slide].props.id;
+    }
+    return hash;
+  }
   _renderSlides() {
     const slide = this.props.slide;
     return this.props.slides.map((child, index) => {
-      if (index < slide - 3 || slide + 3 < index) { return false; }
-      const left = `${(50 + 30.6667 * (index - slide))}%`;
       const style = {
-        position: "absolute",
-        width: "25%",
-        height: "25%",
-        top: "50%",
-        left,
-        transform: " translate(-50%,-50%)",
-        border: "1px solid #FFF",
-        opacity: index === slide ? 1 : 0.5
+        position: "relative",
+        width: window.innerWidth / 3,
+        height: window.innerHeight / 3,
+        float: "left",
+        transform: "scale(0.8)",
+        border: "2px solid white",
+        opacity: index === slide ? 1 : 0.5,
+        cursor: "pointer",
+        ":hover": {
+          opacity: 1
+        }
       };
       const el = cloneElement(child, {
         key: index,
         slideIndex: index,
+        route: this.props.route,
         transition: [],
         transitionDuration: 0,
         appearOff: true
       });
       return (
-        <div key={index} style={[style]}>
+        <div key={index} style={[style]} onClick={this._slideClicked.bind(this, index)}>
           {el}
         </div>
       );
     });
   }
+  componentDidMount() {
+    window.onresize = () => {
+      this.forceUpdate()
+    };
+  }
   render() {
     const styles = {
       overview: {
         height: "100%",
-        width: "100%"
+        width: "100%",
+        overflow: "scroll"
       }
     };
     return (
@@ -48,10 +66,12 @@ export default class Overview extends Component {
 }
 
 Overview.propTypes = {
+  route: PropTypes.object,
   slides: PropTypes.array,
   slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 Overview.contextTypes = {
-  styles: PropTypes.object
+  styles: PropTypes.object,
+  history: PropTypes.object
 };

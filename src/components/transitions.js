@@ -41,9 +41,11 @@ export default {
   routerCallback(cb, immediate) {
     const { transition, transitionDuration } = this.props;
     if (transition.length > 0 && immediate !== true) {
-      setTimeout(cb, transitionDuration);
+      setTimeout(() => {
+        this.isMounted() && cb()
+      }, transitionDuration);
     } else {
-      cb();
+      this.isMounted() && cb();
     }
   },
   componentWillEnter(cb) {
@@ -124,7 +126,7 @@ export default {
   },
   componentWillLeave(cb) {
     const { slideIndex, transition, transitionDuration } = this.props;
-    const slide = this.context.slide || 0;
+    const slide = this.context.store.getState().route.slide || 0;
     const direction = slideIndex > slide;
 
     this.setState({

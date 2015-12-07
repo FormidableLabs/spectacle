@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from "react";
-import { getStyles } from "../utils/base";
 import Radium from "radium";
 
 const animations = {
@@ -65,10 +64,8 @@ export default class Progress extends Component {
         return false;
     }
     return (
-      <div style={[getStyles.call(this)]}>
-        <div style={[style.container]}>
-          {markup}
-        </div>
+      <div style={[style.container]}>
+        {markup}
       </div>
     );
   }

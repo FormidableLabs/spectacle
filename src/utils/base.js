@@ -17,6 +17,7 @@ export const getStyles = function getStyles() {
   } = this.props;
 
   const styles = {};
+
   if (typeof italic === "boolean") {
     styles.fontStyle = italic ? "italic" : "normal";
   }

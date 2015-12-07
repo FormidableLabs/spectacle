@@ -6,7 +6,7 @@ import Radium from "radium";
 export default class ListItem extends Component {
   render() {
     return (
-      <li style={[this.context.styles.components.listItem, getStyles.call(this), this.props.style]}>
+      <li className={this.props.className} style={[this.context.styles.components.listItem, getStyles.call(this), this.props.style]}>
         {this.props.children}
       </li>
     );
@@ -15,7 +15,8 @@ export default class ListItem extends Component {
 
 ListItem.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 ListItem.contextTypes = {

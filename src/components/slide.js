@@ -16,6 +16,7 @@ const Slide = React.createClass({
   },
   propTypes: {
     align: PropTypes.string,
+    className: PropTypes.string,
     dispatch: PropTypes.func,
     hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     presenterStyle: PropTypes.object,
@@ -25,13 +26,15 @@ const Slide = React.createClass({
     children: PropTypes.node,
     notes: PropTypes.string,
     slideIndex: PropTypes.number,
-    lastSlide: PropTypes.number
+    lastSlide: PropTypes.number,
+    route: PropTypes.object
   },
   contextTypes: {
     styles: PropTypes.object,
     export: PropTypes.bool,
-    print: PropTypes.bool,
-    overview: PropTypes.bool
+    print: PropTypes.object,
+    overview: PropTypes.bool,
+    store: PropTypes.object
   },
   getInitialState() {
     return {
@@ -42,14 +45,16 @@ const Slide = React.createClass({
   setZoom() {
     const mobile = window.matchMedia("(max-width: 628px)").matches;
     const content = this.refs.content;
-    const zoom = (content.offsetWidth / 1000);
-    const contentScaleY = (content.parentNode.offsetHeight / 700);
-    const contentScaleX = (content.parentNode.offsetWidth / 700);
-    const contentScale = mobile ? 1 : Math.min(contentScaleY, contentScaleX);
-    this.setState({
-      zoom: zoom > 0.6 ? zoom : 0.6,
-      contentScale: contentScale < 1 ? contentScale : 1
-    });
+    if (content) {
+      const zoom = (content.offsetWidth / 1000);
+      const contentScaleY = (content.parentNode.offsetHeight / 700);
+      const contentScaleX = (content.parentNode.offsetWidth / 700);
+      const contentScale = mobile ? 1 : Math.min(contentScaleY, contentScaleX);
+      this.setState({
+        zoom: zoom > 0.6 ? zoom : 0.6,
+        contentScale: contentScale < 1 ? contentScale : 1
+      });
+    }
   },
   componentDidMount() {
     this.setZoom();
@@ -73,7 +78,7 @@ const Slide = React.createClass({
   },
   render() {
     const { align, presenterStyle, children } = this.props;
-    const printStyles = this.context.print ? {
+    const printStyles = this.props.route.params.indexOf("print") !== -1 ? {
       backgroundColor: "white",
       backgroundImage: "none"
     } : {};
@@ -87,7 +92,7 @@ const Slide = React.createClass({
     };
     const styles = {
       outer: {
-        position: this.context.export ? "relative" : "absolute",
+        position: this.props.route.params.indexOf("export") !== -1 ? "relative" : "absolute",
         top: 0,
         left: 0,
         width: "100%",
@@ -126,7 +131,7 @@ const Slide = React.createClass({
       >
         <div style={[styles.inner, this.context.overview && overViewStyles.inner]}>
           <div ref="content"
-            className="spectacle-content"
+            className={`${this.props.className} spectacle-content`}
             style={[
               styles.content,
               this.context.styles.components.content,

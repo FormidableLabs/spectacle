@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import { findDOMNode } from "react-dom";
 import tweenState from "react-tween-state";
 import _ from "lodash";
 import { connect } from "react-redux";
@@ -7,7 +8,8 @@ const Appear = React.createClass({
   mixins: [tweenState.Mixin],
   propTypes: {
     children: PropTypes.node,
-    style: PropTypes.object
+    style: PropTypes.object,
+    route: PropTypes.object
   },
   contextTypes: {
     export: PropTypes.bool,
@@ -17,13 +19,13 @@ const Appear = React.createClass({
   getInitialState() {
     return {
       active: false,
-      opacity: this.context.export || this.context.overview ? 1 : 0
+      opacity: this.props.route.params.indexOf("export") !== -1 || this.props.route.params.indexOf("overview") !== -1 ? 1 : 0
     };
   },
   componentWillReceiveProps(nextProps) {
     const state = nextProps.fragment;
-    const slide = this.context.slide;
-    const fragment = this.refs.fragment;
+    const slide = this.props.route.slide;
+    const fragment = findDOMNode(this.refs.fragment);
     const key = _.findKey(state.fragments[slide], {
       "id": parseInt(fragment.dataset.fid)
     });
@@ -32,7 +34,7 @@ const Appear = React.createClass({
         active: state.fragments[slide][key].visible
       }, () => {
         let endVal = this.state.active ? 1 : 0;
-        if (this.context.export || this.context.overview) {
+        if (this.props.route.params.indexOf("export") !== -1 || this.props.route.params.indexOf("overview") !== -1) {
           endVal = 1;
         }
         this.tweenState("opacity", {
@@ -47,10 +49,14 @@ const Appear = React.createClass({
     const styles = {
       opacity: this.getTweeningValue("opacity")
     };
-    return (
-      <div style={Object.assign({}, this.props.style, styles)} className="fragment" ref="fragment">
-        {this.props.children}
-      </div>
+    const child = React.Children.only(this.props.children);
+    return React.cloneElement(
+      child,
+      {
+        style: Object.assign({}, this.props.style, styles),
+        className: "fragment",
+        ref: "fragment"
+      }
     );
   }
 });

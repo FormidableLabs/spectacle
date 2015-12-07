@@ -29,8 +29,10 @@ export default class Presenter extends Component {
       position: "relative"
     };
     return cloneElement(child, {
+      dispatch: this.props.dispatch,
       key: slide,
       hash,
+      route: this.props.route,
       slideIndex: slide,
       lastSlide,
       transition: [],
@@ -63,6 +65,8 @@ export default class Presenter extends Component {
     };
     const child = slides[parseInt(slide) + 1];
     return child ? cloneElement(child, {
+      dispatch: this.props.dispatch,
+      route: this.props.route,
       key: slide + 1,
       hash: child.props.id || slide + 1,
       slideIndex: slide + 1,
@@ -180,6 +184,8 @@ export default class Presenter extends Component {
 }
 
 Presenter.propTypes = {
+  dispatch: PropTypes.func,
+  route: PropTypes.object,
   lastSlide: PropTypes.number,
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   slides: PropTypes.array,
