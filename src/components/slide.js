@@ -16,6 +16,7 @@ const Slide = React.createClass({
   },
   propTypes: {
     align: PropTypes.string,
+    className: PropTypes.string,
     dispatch: PropTypes.func,
     hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     presenterStyle: PropTypes.object,
@@ -25,7 +26,8 @@ const Slide = React.createClass({
     children: PropTypes.node,
     notes: PropTypes.string,
     slideIndex: PropTypes.number,
-    lastSlide: PropTypes.number
+    lastSlide: PropTypes.number,
+    route: PropTypes.object
   },
   contextTypes: {
     styles: PropTypes.object,
@@ -129,7 +131,7 @@ const Slide = React.createClass({
       >
         <div style={[styles.inner, this.context.overview && overViewStyles.inner]}>
           <div ref="content"
-            className={this.props.className + "spectacle-content"}
+            className={`${this.props.className} spectacle-content`}
             style={[
               styles.content,
               this.context.styles.components.content,

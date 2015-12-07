@@ -30,6 +30,7 @@ export default class Deck extends Component {
     fragment: PropTypes.object,
     dispatch: PropTypes.func,
     children: PropTypes.node,
+    route: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number,
     progress: PropTypes.oneOf(["pacman", "bar", "number", "none"])
@@ -118,7 +119,7 @@ export default class Deck extends Component {
         lastSlide: slide || 0
       });
       if (this._checkFragments(this.props.route.slide, data.forward)) {
-        this.props.dispatch(updatePath(`/${data.slide}${this._getSuffix()}`));
+        this.context.history.replaceState(null, `/${data.slide}${this._getSuffix()}`);
       }
     }
   }

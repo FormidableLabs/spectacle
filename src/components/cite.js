@@ -15,7 +15,8 @@ export default class Cite extends Component {
 
 Cite.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 Cite.contextTypes = {

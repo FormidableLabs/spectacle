@@ -87,6 +87,7 @@ Text.defaultProps = {
 };
 
 Text.propTypes = {
+  className: PropTypes.string,
   fit: PropTypes.bool,
   children: PropTypes.node,
   lineHeight: PropTypes.number,

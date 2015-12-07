@@ -30,7 +30,8 @@ export default class Export extends Component {
 }
 
 Export.propTypes = {
-  slides: PropTypes.array
+  slides: PropTypes.array,
+  route: PropTypes.object
 };
 
 Export.contextTypes = {

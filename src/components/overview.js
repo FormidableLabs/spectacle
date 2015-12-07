@@ -49,6 +49,7 @@ export default class Overview extends Component {
 }
 
 Overview.propTypes = {
+  route: PropTypes.object,
   slides: PropTypes.array,
   slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };

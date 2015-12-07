@@ -1,4 +1,4 @@
-import React, { cloneElement, Component, PropTypes } from "react";
+import React, { Component, PropTypes } from "react";
 
 const context = (component, params) => {
   return class Context extends Component {
@@ -9,7 +9,7 @@ const context = (component, params) => {
       store: PropTypes.object
     };
     getChildContext() {
-      let { history, styles, print, store } = params;
+      const { history, styles, store } = params;
       return {
         history,
         styles,
@@ -19,7 +19,7 @@ const context = (component, params) => {
     render() {
       return React.cloneElement(component);
     }
-  }
+  };
 };
 
 export default context;

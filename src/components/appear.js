@@ -8,7 +8,8 @@ const Appear = React.createClass({
   mixins: [tweenState.Mixin],
   propTypes: {
     children: PropTypes.node,
-    style: PropTypes.object
+    style: PropTypes.object,
+    route: PropTypes.object
   },
   contextTypes: {
     export: PropTypes.bool,

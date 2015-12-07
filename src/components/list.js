@@ -15,7 +15,8 @@ export default class List extends Component {
 
 List.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 List.contextTypes = {

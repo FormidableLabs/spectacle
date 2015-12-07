@@ -184,6 +184,8 @@ export default class Presenter extends Component {
 }
 
 Presenter.propTypes = {
+  dispatch: PropTypes.func,
+  route: PropTypes.object,
   lastSlide: PropTypes.number,
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   slides: PropTypes.array,

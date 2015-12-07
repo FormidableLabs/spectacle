@@ -36,7 +36,8 @@ Image.propTypes = {
   ]),
   display: PropTypes.string,
   src: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 Image.contextTypes = {

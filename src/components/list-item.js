@@ -15,7 +15,8 @@ export default class ListItem extends Component {
 
 ListItem.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 ListItem.contextTypes = {

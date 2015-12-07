@@ -27,6 +27,7 @@ export default class S extends Component {
 }
 
 S.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node,
   style: PropTypes.object,
   type: PropTypes.oneOfType([

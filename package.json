@@ -1,19 +1,15 @@
 {
   "name": "spectacle",
-  "version": "1.0.0-rc1",
+  "version": "1.0.0-rc5",
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
-  "jsnext:main": "src/index.js",
   "scripts": {
     "clean:lib": "rimraf lib",
     "clean:dist": "rimraf dist",
-    "build:lib": "babel src -d lib",
+    "build:lib": "babel src -d lib --copy-files",
     "build:dist": "NODE_ENV=production webpack --config webpack.config.production.js",
     "lint": "eslint --ext .js,.jsx src",
     "deploy": "npm run build:dist && surge -p .",
-    "preversion": "npm run clean:lib && npm run lint",
-    "version": "npm run build:lib",
-    "prepublish": "npm run clean:lib && npm run build:lib",
     "start": "node server.js"
   },
   "author": "",

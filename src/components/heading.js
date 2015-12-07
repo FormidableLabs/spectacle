@@ -90,6 +90,7 @@ Heading.defaultProps = {
 };
 
 Heading.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node,
   fit: PropTypes.bool,
   size: PropTypes.number,

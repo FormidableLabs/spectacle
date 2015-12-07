@@ -17,7 +17,8 @@ Link.propTypes = {
   children: PropTypes.node,
   href: PropTypes.string,
   target: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 Link.contextTypes = {

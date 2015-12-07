@@ -15,7 +15,8 @@ export default class Quote extends Component {
 
 Quote.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 Quote.contextTypes = {

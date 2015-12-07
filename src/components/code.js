@@ -15,7 +15,8 @@ export default class Code extends Component {
 
 Code.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 Code.contextTypes = {

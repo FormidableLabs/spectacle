@@ -9,6 +9,7 @@ const store = configureStore();
 
 export default class Spectacle extends Component {
   static propTypes = {
+    children: PropTypes.node,
     theme: PropTypes.object
   }
 
