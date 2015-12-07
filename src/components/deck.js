@@ -382,7 +382,7 @@ export default class Deck extends Component {
         {componentToRender}
 
         {
-          this.props.route.params.indexOf("export") === -1 ?
+          this.props.route.params.indexOf("export") === -1 && this.props.route.params.indexOf("overview") === -1 ?
           <Progress
             items={children}
             currentSlide={this._getSlideIndex()}
