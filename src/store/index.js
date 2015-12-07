@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
 import reducer from "../reducers";
-import createLogger from "redux-logger";
 
 const configureStore = () => {
   const createStoreWithMiddleware = applyMiddleware()(createStore);
