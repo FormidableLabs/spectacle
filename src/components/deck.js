@@ -62,8 +62,6 @@ export default class Deck extends Component {
     this.setState({
       lastSlide: slide
     });
-    localStorage.setItem("spectacle-slide",
-      JSON.stringify({slide: this.props.route.slide, forward: false, time: Date.now()}));
     this._attachEvents();
   }
   componentWillUnmount() {
