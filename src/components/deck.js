@@ -77,12 +77,17 @@ export default class Deck extends Component {
   }
   _handleKeyPress(e) {
     const event = window.event ? window.event : e;
+
+    if (event.target instanceof HTMLInputElement || event.target.type === "textarea") {
+      return;
+    }
+
     // left, page down
-    if (event.keyCode === 37 || event.keyCode === 33) {
+    if (event.keyCode === 37 || event.keyCode === 33 || (event.keyCode === 32 && event.shiftKey)) {
       this._prevSlide();
     }
     // right, page up
-    if (event.keyCode === 39 || event.keyCode === 34) {
+    if (event.keyCode === 39 || event.keyCode === 34 || (event.keyCode === 32 && !event.shiftKey)) {
       this._nextSlide();
     }
     if ((event.altKey && event.keyCode === 79) && !event.ctrlKey && !event.metaKey) { // o
