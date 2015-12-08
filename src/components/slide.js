@@ -113,11 +113,13 @@ const Slide = React.createClass({
         flex: 1,
         maxHeight: this.props.maxHeight || 700,
         maxWidth: this.props.maxWidth || 1000,
-        fontSize: 16 * this.state.zoom,
         transform: `scale(${this.state.contentScale})`,
         padding: this.state.zoom > 0.6 ? this.props.margin || 40 : 10
       }
     };
+
+    document.documentElement.style.fontSize = `${16 * this.state.zoom}px`;
+
     return (
       <div className="spectacle-slide"
         ref="slide"

@@ -115,7 +115,8 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       blockquote: {
         textAlign: "left",
         position: "relative",
-        display: "inline-block"
+        display: "inline-block",
+        margin: 20
       },
       quote: {
         borderLeft: `1px solid ${colors.primary}`,
