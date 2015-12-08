@@ -13,7 +13,7 @@ _:-moz-tree-row(hover), ul .appear {
   display: inline;
 }
 
-html, body {
+html, body, #root {
   height: 100%;
   width: 100%;
   margin: 0;
