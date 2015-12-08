@@ -75,6 +75,19 @@ export default class Deck extends Component {
     window.removeEventListener("storage", this._goToSlide);
     window.removeEventListener("keydown", this._handleKeyPress);
   }
+  _handleEvent(e) {
+    const event = window.event ? window.event : e;
+
+    if (event.keyCode === 37 || event.keyCode === 33 || (event.keyCode === 32 && event.shiftKey)) {
+      this._prevSlide();
+    } else if (event.keyCode === 39 || event.keyCode === 34 || (event.keyCode === 32 && !event.shiftKey)) {
+      this._nextSlide();
+    } else if ((event.altKey && event.keyCode === 79) && !event.ctrlKey && !event.metaKey) { // o
+      this._toggleOverviewMode();
+    } else if ((event.altKey && event.keyCode === 80) && !event.ctrlKey && !event.metaKey) { // p
+      this._togglePresenterMode();
+    }
+  }
   _handleKeyPress(e) {
     const event = window.event ? window.event : e;
 
@@ -82,20 +95,7 @@ export default class Deck extends Component {
       return;
     }
 
-    // left, page down
-    if (event.keyCode === 37 || event.keyCode === 33 || (event.keyCode === 32 && event.shiftKey)) {
-      this._prevSlide();
-    }
-    // right, page up
-    if (event.keyCode === 39 || event.keyCode === 34 || (event.keyCode === 32 && !event.shiftKey)) {
-      this._nextSlide();
-    }
-    if ((event.altKey && event.keyCode === 79) && !event.ctrlKey && !event.metaKey) { // o
-      this._toggleOverviewMode();
-    }
-    if ((event.altKey && event.keyCode === 80) && !event.ctrlKey && !event.metaKey) { // p
-      this._togglePresenterMode();
-    }
+    this._handleEvent(e);
   }
   _toggleOverviewMode() {
     const suffix = this.props.route.params.indexOf("overview") !== -1 ? "" : "?overview";

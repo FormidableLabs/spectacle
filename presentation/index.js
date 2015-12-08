@@ -8,6 +8,8 @@ import {
 
 import preloader from "../src/utils/preloader";
 
+import createTheme from "../src/themes/default";
+
 import Interactive from "../assets/interactive";
 
 require("normalize.css");
@@ -20,10 +22,16 @@ const images = {
   markdown: require("../assets/markdown.png")
 };
 
+preloader(images);
+
+const theme = createTheme({
+  primary: "#ff4081"
+});
+
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Spectacle>
+      <Spectacle theme={theme}>
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
           <Slide transition={["zoom"]} bgColor="primary">
             <Heading size={1} fit caps lineHeight={1} textColor="black">
@@ -42,7 +50,7 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
             <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
-            <Heading size={1} fit textColor="primary" textFont="secondary">
+            <Heading size={2} caps fit textColor="primary" textFont="primary">
               Wait what?
             </Heading>
           </Slide>
