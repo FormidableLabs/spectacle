@@ -46,7 +46,7 @@ export default class Overview extends Component {
   }
   componentDidMount() {
     window.onresize = () => {
-      this.forceUpdate()
+      this.forceUpdate();
     };
   }
   render() {

@@ -42,10 +42,10 @@ export default {
     const { transition, transitionDuration } = this.props;
     if (transition.length > 0 && immediate !== true) {
       setTimeout(() => {
-        this.isMounted() && cb()
+        return this.isMounted() && cb();
       }, transitionDuration);
     } else {
-      this.isMounted() && cb();
+      return this.isMounted() && cb();
     }
   },
   componentWillEnter(cb) {
