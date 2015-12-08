@@ -1,22 +1,76 @@
-#Spectacle
+# Spectacle
 ReactJS based Presentation Library
 
->Note: master is out of sync with the documentation. Until 1.0.0 is released, use version [0.1.5](https://github.com/FormidableLabs/spectacle/releases/tag/0.1.5)
+## Contents
 
-##Getting Started
+<!-- MarkdownTOC depth=4 autolink=true bracket=round autoanchor=true -->
 
-Your first order of business is to open terminal and run `npm install`
+- [Getting Started](#getting-started)
+- [Development](#development)
+- [Build & Deployment](#build--deployment)
+- [Presenting](#presenting)
+- [Controls](#controls)
+- [Fullscreen](#fullscreen)
+- [PDF Export](#pdf-export)
+- [Basic Concepts](#basic-concepts)
+  - [Main file](#main-file)
+  - [Themes](#themes)
+    - [createTheme(colors, fonts)](#createthemecolors-fonts)
+- [Tag API](#tag-api)
+  - [Main Tags](#main-tags)
+    - [Spectacle](#spectacle)
+    - [Deck](#deck)
+    - [Slide (Base)](#slide-base)
+  - [Layout Tags](#layout-tags)
+    - [Layout](#layout)
+    - [Fit](#fit)
+    - [Fill](#fill)
+  - [Markdown Tag](#markdown-tag)
+    - [Markdown](#markdown)
+  - [Element Tags](#element-tags)
+    - [Appear](#appear)
+    - [BlockQuote, Quote and Cite (Base)](#blockquote-quote-and-cite-base)
+    - [CodePane (Base)](#codepane-base)
+    - [Code (Base)](#code-base)
+    - [Heading (Base)](#heading-base)
+    - [Image (Base)](#image-base)
+    - [Link (Base)](#link-base)
+    - [List & ListItem (Base)](#list--listitem-base)
+    - [S (Base)](#s-base)
+    - [Text (Base)](#text-base)
+  - [Base Props](#base-props)
+
+<!-- /MarkdownTOC -->
+
+
+<a name="getting-started"></a>
+## Getting Started
+
+The best way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
+
+Alternatively, you can `npm install spectacle` and write your own build configurations.
+
+But really, it is SO much easier to just use the boilerplate. Trust me.
+
+<a name="development"></a>
+## Development
+
+After downloading the boilerplate, your first order of business is to open terminal and run `npm install`
+
+Next run `rm -R .git` to remove the existing version control.
 
 Then, to start up the local server, run `npm start`
 
-Open a browser and hit `http://localhost:3000`, and we are ready to roll
+Open a browser and hit [http://localhost:3000](http://localhost:3000), and we are ready to roll
 
-## Build & Deploy
+<a name="build--deployment"></a>
+## Build & Deployment
 
 Building the dist version of the project is as easy as running `npm run build`
 
 If you want to deploy the slideshow to surge, run `npm run deploy`
 
+<a name="presenting"></a>
 ## Presenting
 
 Spectacle comes with a built in presenter mode. It shows you a slide lookahead, current time and your current slide:
@@ -39,6 +93,24 @@ Check it out:
 
 You can toggle the presenter or overview mode by pressing respectively `alt+p` and `alt+o`.
 
+<a name="controls"></a>
+## Controls
+
+|Key Combination|Function|
+|---|---|
+|Right Arrow|Next Slide|
+|Left Arrow|Previous Slide|
+|Space|Next Slide|
+|Shift+Space|Previous Slide|
+|Alt/Option + O|Toggle Overview Mode|
+|Alt/Option + P|Toggle Presenter Mode|
+
+<a name="fullscreen"></a>
+## Fullscreen
+
+Fullscreen can be toggled via browser options, or by **hovering over the bottom right corner of your window until the fullscreen icon appears and clicking it**.
+
+<a name="pdf-export"></a>
 ## PDF Export
 
 Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is absurdly easy.
@@ -53,31 +125,37 @@ Exporting a totally sweet looking PDF from your totally sweet looking Spectacle 
 
 If you want to print your slides, and want a printer friendly version, simply repeat the above process but instead print from [http://localhost:3000/#/?export&print](http://localhost:3000/#/?export&print)
 
+<a name="basic-concepts"></a>
 ## Basic Concepts
 
+<a name="main-file"></a>
 ### Main file
 
 Your presentation files & assets will live in the `presentation` folder.
 
-The main `.jsx` file you write your deck in is `/presentation/deck.jsx`
+The main `.js` file you write your deck in is `/presentation/index.js`
+
+Check it out [here](https://github.com/FormidableLabs/spectacle-boilerplate/blob/master/presentation/index.js) in the boilerplate.
 
 ```javascript
-// deck.jsx
+// index.js
 
 import React, { Component } from 'react';
 import {
   Appear, BlockQuote, Cite, CodePane, Code, Deck, Fill, Fit,
   Heading, Image, Layout, ListItem, List, Quote, S, Slide, Text
-} from '../src/spectacle';
+} from 'spectacle';
 
 export default class extends Component {
   render() {
     return (
-      <Deck>
-        <Slide>
-          <Text>Hello</Text>
-        </Slide>
-      </Deck>
+      <Spectacle>
+        <Deck>
+          <Slide>
+            <Text>Hello</Text>
+          </Slide>
+        </Deck>
+      </Spectacle>
     )
   }
 }
@@ -86,98 +164,61 @@ export default class extends Component {
 
 Here is where you can use the library's tags to compose your presentation. While you can use any JSX syntax here, building your presentation with the supplied tags allows for theming to work properly.
 
-The bare minimum you need to start is a `Deck` element and a `Slide` element. Each `Slide` element represents a slide inside of your slideshow.
+The bare minimum you need to start is a `Spectacle` element, a`Deck` element and a `Slide` element. Each `Slide` element represents a slide inside of your slideshow.
 
+<a name="themes"></a>
 ### Themes
 
-In Spectacle, themes live in the `themes` directory. They consist of `html.js` and `index.js`.
+In Spectacle, themes are functions that return style objects for `screen` & `print`.
+
+You can import the default theme from:
+
+```javascript
+import createTheme from "spectacle/lib/themes/default";
+```
+
+Or create your own based upon the source.
 
 `index.js` is what you would edit in order to create a custom theme of your own, using ReactJS style inline style objects.
 
-```javascript
-var colors = {  // <--- Color variables used in the presentation
-  primary: '#f9c300',
-  secondary: 'black',
-  tertiary: 'white'
-};
+You will want to edit `index.html` to include any web fonts or additional CSS that your theme requires.
 
-var fonts = { // <--- Font variables used in the presentation
-  primary: 'Open Sans Condensed',
-  secondary: 'Lobster Two',
-  tertiary: 'monospace'
-}
+<a name="createthemecolors-fonts"></a>
+#### createTheme(colors, fonts)
 
-module.exports = {
-  colors: colors,
-  fonts: fonts,
-  global: { // <--- Global styles added to a <style> tag in the body
-    body: {
-      background: colors.primary,
-      fontFamily: fonts.primary,
-      fontWeight: 'normal',
-      fontSize: '2em',
-      color: colors.secondary
-    }
-  },
-  components: { // <--- Component specific style declarations
-    blockquote: {
-      textAlign: 'left',
-      position: 'relative',
-      display: 'inline-block'
-    },
-    ...
-}
-```
-
-`html.js` is where you can define the HTML page that your presentation is rendered into. This allows you do to things like add stylesheets, libraries or webfonts for use in themes.
-
-```javascript
-module.exports = function(data) {
-  return {
-    '200.html': data.defaultTemplate(),
-    'index.html': [
-      '<!doctype html>',
-        '<html>',
-          '<head>',
-            '<meta charset="utf-8"/>',
-            '<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>',
-            '<link href="http://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">',
-            '<link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">',
-            '<link href="' + data.css + '" rel="stylesheet" type="text/css" />', // <-- Don't remove this
-          '</head>',
-          '<body>',
-            '<div id="root"></div>', // <-- or this
-            '<script src="' + data.main + '"></script>', // <-- or this
-          '</body>',
-        '</html>'
-    ].join('')
-  }
-}
+Spectacle's functional theme system allows you to pass in color and font variables that you can use on your elements. See the example below:
 
 ```
-
-###Configuration
-
-Presentation configuration live in `/presentation/config.js`. You can edit global configs here:
-
-```javascript
-module.exports = {
-  width: 1000, // <-- Max width of presentation area
-  margin: 40, // <-- Presentation area side padding
-  theme: require('../themes/default/index'), // <- Theme Styles
-  html: require('../themes/default/html') // <- Theme HTML
-}
+const theme = createTheme({
+  primary: "red"
+}, {
+  primary: "Helvetica"
+})
 ```
 
+The returned theme object can then be passed to the `Spectacle` tag via the `theme` prop, and will override the default styles.
+
+<a name="tag-api"></a>
 ## Tag API
 
 In Spectacle, presentations are composed of a set of base tags. We can separate these into three categories: Main tags, Layout tags & Element tags.
 
+<a name="main-tags"></a>
 ### Main Tags
 
-####\<Deck />
+<a name="spectacle"></a>
+#### Spectacle
 
-The deck tag is the top level tag and there should only be one of them. It supports the following props:
+The Spectacle tag is the root level tag for your presentation. It handles routing, flux and generally presenting your Deck & Slides. It supports the following props:
+
+|Name|PropType|Description|
+|---|---|---|
+|theme|React.PropTypes.object|Accepts a theme object for styling your presentation|
+
+<a name="deck"></a>
+#### Deck
+
+The deck tag wraps your slides. It supports the following props:
 
 |Name|PropType|Description|
 |---|---|---|
@@ -185,7 +226,8 @@ The deck tag is the top level tag and there should only be one of them. It suppo
 |transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for global transition duration.
 |progress| React.PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`.
 
-####\<Slide /> (Base)
+<a name="slide-base"></a>
+#### Slide (Base)
 
 The slide tag represents each slide in the presentation. Giving a slide tag an `id` attribute will replace its number based navigation hash with the `id` provided. It supports the following props, in addition to any of the props outlined in the Base class props listing:
 
@@ -197,26 +239,31 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |notes| React.PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |id| React.PropTypes.string | Used to create a string based hash.
 
-###Layout Tags
+<a name="layout-tags"></a>
+### Layout Tags
 
 Layout tags are used for layout using Flexbox within your slide. They are `Layout`, `Fit` & `Fill`.
 
-####\<Layout />
+<a name="layout"></a>
+#### Layout
 
 The layout tag is used to wrap `Fit` and `Fill` tags to provide a row.
 
-####\<Fit />
+<a name="fit"></a>
+#### Fit
 
 The fit tag only takes up as much space as its bounds provide.
 
-####\<Fill />
+<a name="fill"></a>
+#### Fill
 
 The fill tag takes up all the space available to it. For example, if you have a `Fill` tag next to a `Fit` tag, the `Fill` tag will take up the rest of the space. Adjacent `Fill` tags split the difference and form an equidistant grid.
 
+<a name="markdown-tag"></a>
 ### Markdown Tag
 
-
-####\<Markdown/>
+<a name="markdown"></a>
+#### Markdown
 
 The Markdown tag is used to add inline markdown to your slide. You can provide markdown source via the `source` prop, or as children. You can also provide a custom [mdast configuration](https://github.com/wooorm/mdast) via the `mdastConfig` prop.
 
@@ -227,15 +274,18 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 |source|React.PropTypes.string| Markdown source |
 |mdastConfig| React.PropTypes.object | Mdast configuration object |
 
+<a name="element-tags"></a>
 ### Element Tags
 
 The element tags are the bread and butter of your slide content. Most of these tags derive their props from the Base class, but the ones that have special options will have them listed:
 
-####\<Appear />
+<a name="appear"></a>
+#### Appear
 
 This tag does not extend from Base. It's special. Wrapping elements in the appear tag makes them appear/disappear in order in response to navigation.
 
-####\<BlockQuote />, \<Quote/> and \<Cite /> (Base)
+<a name="blockquote-quote-and-cite-base"></a>
+#### BlockQuote, Quote and Cite (Base)
 
 These tags create a styled blockquote. Use them as follows:
 
@@ -246,20 +296,25 @@ These tags create a styled blockquote. Use them as follows:
 </BlockQuote>
 ```
 
-####\<CodePane /> (Base)
+<a name="codepane-base"></a>
+#### CodePane (Base)
 
 This tag displays a styled, highlighted code preview. I prefer putting my code samples in external `.example` files and requiring them using `raw-loader` as shown in the demo. Here are the props:
 
 |Name|PropType|Description|
 |---|---|---|
-|lang|React.PropTypes.string| Highlight.js compatible language name. i.e: 'javascript' |
+|lang|React.PropTypes.string| Prism compatible language name. i.e: 'javascript' |
 |source| React.PropTypes.string| String of code to be shown |
 
-####\<Code /> (Base)
+You can change your syntax highlighting theme by swapping the prism.js CSS file in `index.html`
+
+<a name="code-base"></a>
+#### Code (Base)
 
 A simple tag for wrapping inline text that you want lightly styled in a monospace font.
 
-####\<Heading /> (Base)
+<a name="heading-base"></a>
+#### Heading (Base)
 
 Heading tags are special in that, when you specify a `size` prop, they generate the appropriate heading tag, and extend themselves with a style that is defined in the theme file for that heading. Line height can be adjusted via a numeric `lineHeight` prop.
 
@@ -268,7 +323,8 @@ Heading tags are special in that, when you specify a `size` prop, they generate 
 |fit|React.PropTypes.boolean| When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |
 |lineHeight|React.PropTypes.number| Sets the line height of your text.|
 
-####\<Image /> (Base)
+<a name="image-base"></a>
+#### Image (Base)
 
 |Name|PropType|Description|
 |---|---|---|
@@ -277,7 +333,8 @@ Heading tags are special in that, when you specify a `size` prop, they generate 
 |src|React.PropTypes.string| Image src |
 |width|React.PropTypes.string or React.PropTypes.number| Supply a width to the image |
 
-####\<Link /> (Base)
+<a name="link-base"></a>
+#### Link (Base)
 
 The link tag is used to render `<a>` tags. It accepts an `href` prop:
 
@@ -285,7 +342,8 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 |---|---|---|
 |href|React.PropTypes.string| String of url for `href` attribute |
 
-####\<List /> & \<ListItem /> (Base)
+<a name="list--listitem-base"></a>
+#### List & ListItem (Base)
 
 These tags create lists. Use them as follows:
 
@@ -298,7 +356,8 @@ These tags create lists. Use them as follows:
 </List>
 ```
 
-####\<S />
+<a name="s-base"></a>
+#### S (Base)
 
 The `S` tag is used to add inline styling to a piece of text, such as underline or strikethrough.
 
@@ -306,7 +365,8 @@ The `S` tag is used to add inline styling to a piece of text, such as underline 
 |---|---|---|
 |type|React.PropTypes.string| Accepts `strikethrough`, `underline`, `bold` or `italic`|
 
-####\<Text/> (Base)
+<a name="text-base"></a>
+#### Text (Base)
 
 The `Text` tag is used to add text to your slide. Line height can be adjusted via a numeric `lineHeight` prop.
 
@@ -315,6 +375,7 @@ The `Text` tag is used to add text to your slide. Line height can be adjusted vi
 |fit|React.PropTypes.boolean| When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |
 |lineHeight|React.PropTypes.number| Sets the line height of your text.|
 
+<a name="base-props"></a>
 ### Base Props
 
 Every component above that has `(Base)` after it has been extended from a common class that includes the following props:
