@@ -58,7 +58,7 @@ export default class Deck extends Component {
     this._goToSlide = this._goToSlide.bind(this);
     this.state = {
       lastSlide: null,
-      fullscreen: window.innerHeight == screen.height,
+      fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < 1000
     };
   }
@@ -105,9 +105,9 @@ export default class Deck extends Component {
 
     this._handleEvent(e);
   }
-  _handleScreenChange(e) {
+  _handleScreenChange() {
     this.setState({
-      fullscreen: window.innerHeight == screen.height,
+      fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < 1000
     });
   }
@@ -410,7 +410,8 @@ export default class Deck extends Component {
               currentSlide={this._getSlideIndex()}
               totalSlides={children.length}
               onPrev={this._prevSlide.bind(this)}
-              onNext={this._nextSlide.bind(this)}/>}
+              onNext={this._nextSlide.bind(this)}
+            />}
 
         {componentToRender}
 
