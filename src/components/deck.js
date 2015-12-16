@@ -14,6 +14,7 @@ import Overview from "./overview";
 
 import Fullscreen from "./fullscreen";
 import Progress from "./progress";
+import Controls from "./controls";
 const TransitionGroup = Radium(ReactTransitionGroup);
 
 @connect((state) => state)
@@ -23,10 +24,12 @@ export default class Deck extends Component {
 
   static defaultProps = {
     transitionDuration: 500,
-    progress: "pacman"
+    progress: "pacman",
+    controls: true
   };
 
   static propTypes = {
+    controls: PropTypes.bool,
     fragment: PropTypes.object,
     dispatch: PropTypes.func,
     children: PropTypes.node,
@@ -50,10 +53,13 @@ export default class Deck extends Component {
   constructor() {
     super();
     this._handleKeyPress = this._handleKeyPress.bind(this);
+    this._handleScreenChange = this._handleScreenChange.bind(this);
     this._handleClick = this._handleClick.bind(this);
     this._goToSlide = this._goToSlide.bind(this);
     this.state = {
-      lastSlide: null
+      lastSlide: null,
+      fullscreen: window.innerHeight == screen.height,
+      mobile: window.innerWidth < 1000
     };
   }
 
@@ -70,10 +76,12 @@ export default class Deck extends Component {
   _attachEvents() {
     window.addEventListener("storage", this._goToSlide);
     window.addEventListener("keydown", this._handleKeyPress);
+    window.addEventListener("resize", this._handleScreenChange);
   }
   _detachEvents() {
     window.removeEventListener("storage", this._goToSlide);
     window.removeEventListener("keydown", this._handleKeyPress);
+    window.removeEventListener("resize", this._handleScreenChange);
   }
   _handleEvent(e) {
     const event = window.event ? window.event : e;
@@ -96,6 +104,12 @@ export default class Deck extends Component {
     }
 
     this._handleEvent(e);
+  }
+  _handleScreenChange(e) {
+    this.setState({
+      fullscreen: window.innerHeight == screen.height,
+      mobile: window.innerWidth < 1000
+    });
   }
   _toggleOverviewMode() {
     const suffix = this.props.route.params.indexOf("overview") !== -1 ? "" : "?overview";
@@ -377,6 +391,13 @@ export default class Deck extends Component {
         </TransitionGroup>);
 
     }
+
+    const showControls = !this.state.fullscreen &&
+      !this.state.mobile &&
+      this.props.route.params.indexOf("export") === -1 &&
+      this.props.route.params.indexOf("overview") === -1 &&
+      this.props.route.params.indexOf("presenter") === -1;
+
     return (
       <div
         className="spectacle-deck"
@@ -384,6 +405,13 @@ export default class Deck extends Component {
         onClick={this._handleClick}
         {...this._getTouchEvents()}
       >
+        {this.props.controls && showControls &&
+            <Controls
+              currentSlide={this._getSlideIndex()}
+              totalSlides={children.length}
+              onPrev={this._prevSlide.bind(this)}
+              onNext={this._nextSlide.bind(this)}/>}
+
         {componentToRender}
 
         {

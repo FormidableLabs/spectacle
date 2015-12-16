@@ -225,6 +225,7 @@ The deck tag wraps your slides. It supports the following props:
 |transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for global transition duration.
 |progress| React.PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`.
+|controls| React.PropTypes.bool| Show control arrows when not in fullscreen
 
 <a name="slide-base"></a>
 #### Slide (Base)
