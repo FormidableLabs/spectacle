@@ -1,6 +1,6 @@
 {
   "name": "spectacle",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "scripts": {
@@ -29,7 +29,6 @@
     "react-tween-state": "0.1.3",
     "redux": "^3.0.4",
     "redux-actions": "^0.8.0",
-    "redux-simple-router": "0.0.8",
     "tween-functions": "1.1.0"
   },
   "devDependencies": {
