@@ -116,7 +116,7 @@ Fullscreen can be toggled via browser options, or by **hovering over the bottom 
 Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is absurdly easy.
 
 - Run `npm start`
-- Hit [http://localhost:3000/#/?export](http://localhost:3000/#/?export)
+- Append your URL with `?export` (e.g. [http://localhost:3000/#/?export](http://localhost:3000/#/?export) or [http://localhost:3000/?export](http://localhost:3000/?export))
 - Bring up the print dialog `(ctrl or cmd + p)`
 - Check "Background Graphics" to on if you are about that life
 - Change destination to "Save as PDF", as shown below:

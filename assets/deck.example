@@ -20,7 +20,6 @@ return (
       <List>
         <ListItem>Inline style based theme system</ListItem>
         <ListItem>Autofit Text</ListItem>
-        <ListItem>react-router navigation</ListItem>
         <ListItem>PDF Export</ListItem>
       </List>
     </Slide>
