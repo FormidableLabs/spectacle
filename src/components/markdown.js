@@ -5,6 +5,7 @@ import { isUndefined } from "lodash";
 
 import BlockQuote from "./block-quote";
 import CodePane from "./code-pane";
+import Code from "./code";
 import Heading from "./heading";
 import Image from "./image";
 import Link from "./link";
@@ -58,8 +59,7 @@ export const mdastConfigDefault = {
     h5: spectacleComponent(Heading, {size: 5}),
     h6: spectacleComponent(Heading, {size: 6}),
     img: Image,
-    // https://github.com/FormidableLabs/spectacle/issues/88
-    // inlineCode: Code,
+    inlineCode: Code,
     li: ListItem,
     p: Text,
     strong: spectacleComponent(S, {type: "bold"}),
