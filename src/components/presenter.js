@@ -81,7 +81,7 @@ export default class Presenter extends Component {
     const child = this.props.slides[this.props.slide];
     if (!child.props.notes) { return false; }
     if (typeof child.props.notes === "string") {
-      return <div dangerouslySetInnerHTML={{__html: child.props.notes}} />;  
+      return <div dangerouslySetInnerHTML={{__html: child.props.notes}} />;
     }
     return <div>{child.props.notes}</div>;
   }

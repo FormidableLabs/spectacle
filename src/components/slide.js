@@ -24,7 +24,7 @@ const Slide = React.createClass({
     maxWidth: PropTypes.number,
     margin: PropTypes.number,
     children: PropTypes.node,
-    notes: PropTypes.string,
+    notes: PropTypes.any,
     slideIndex: PropTypes.number,
     lastSlide: PropTypes.number,
     route: PropTypes.object

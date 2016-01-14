@@ -73,7 +73,7 @@ export default class Markdown extends React.Component {
     const content = (isUndefined(source) || source === "") ? children : source;
 
     return (
-      <div>
+      <div style={this.props.style}>
         {mdast().use(mdastReact, mdastConfig).process(content)}
       </div>
     );
@@ -81,12 +81,14 @@ export default class Markdown extends React.Component {
 }
 
 Markdown.propTypes = {
+  style: PropTypes.object,
   children: PropTypes.node,
   source: PropTypes.string,
   mdastConfig: PropTypes.object
 };
 
 Markdown.defaultProps = {
+  style: {},
   source: "",
   mdastConfig: mdastConfigDefault
 };
