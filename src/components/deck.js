@@ -167,7 +167,7 @@ export default class Deck extends Component {
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }
-    } else if (slide < this.props.children.length - 1) {
+    } else if (slide < this.props.children.length) {
       localStorage.setItem("spectacle-slide",
         JSON.stringify({slide: this._getHash(slide), forward: true, time: Date.now()}));
     }

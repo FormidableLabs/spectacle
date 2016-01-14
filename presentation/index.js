@@ -1,5 +1,4 @@
 import React from "react";
-import { render } from "react-dom";
 
 import {
   Appear, BlockQuote, Cite, CodePane, Deck, Fill,
@@ -145,6 +144,6 @@ You can write inline images, [Markdown Links](http://commonmark.org), paragraph 
           </Slide>
         </Deck>
       </Spectacle>
-    )
+    );
   }
 }
