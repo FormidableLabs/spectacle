@@ -109,7 +109,7 @@ export default class Presentation extends React.Component {
 You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
 * Lists too!
 * With ~~strikethrough~~ and _italic_
-* And lets not forget **bold**
+* And let's not forget **bold**
               `}
             </Markdown>
           </Slide>
