@@ -1,10 +1,16 @@
 {
   "presets": ["es2015", "stage-0", "react"],
+  "plugins": [
+    "transform-decorators-legacy",
+  ],
   "env": {
-    "development": {
+    "production": {
       "plugins": [
-        ["transform-decorators-legacy"],
-      ]
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements",
+        "transform-runtime",
+      ],
     }
   }
 }
