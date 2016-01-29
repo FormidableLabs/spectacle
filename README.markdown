@@ -1,6 +1,8 @@
 # Spectacle
 ReactJS based Presentation Library
 
+[Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate/)
+
 ## Contents
 
 <!-- MarkdownTOC depth=4 autolink=true bracket=round autoanchor=true -->
