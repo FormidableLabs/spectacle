@@ -10,7 +10,7 @@
     "build:dist": "NODE_ENV=production webpack --config webpack.config.production.js",
     "lint": "eslint --ext .js,.jsx src",
     "deploy": "npm run build:dist && surge -p .",
-    "start": "NODE_ENV=development node server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "MIT",
