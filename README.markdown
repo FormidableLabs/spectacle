@@ -83,7 +83,7 @@ To present:
 
 - Run `npm start`
 - Open two browser windows on two different screens
-- On your screen visit [http://localhost:3000/#/?presenter](http://localhost:3000/#/?presenter)
+- On your screen visit [http://localhost:3000/#/?presenter](http://localhost:3000/#/?presenter) or [http://localhost:3000/?presenter](http://localhost:3000/?presenter)
 - On the presentation screen visit [http://localhost:3000/#/](http://localhost:3000/#/)
 - Give an amazingly stylish presentation
 
