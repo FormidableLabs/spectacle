@@ -259,6 +259,16 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       s: {
         strikethrough: {}
       },
+      tableHeaderItem: {
+        fontSize: "2.66rem",
+        fontWeight: "bold"
+      },
+      tableItem: {
+        fontSize: "2.66rem"
+      },
+      table: {
+        width: "100%"
+      },
       text: {
         color: "black",
         fontSize: "2.66rem",
