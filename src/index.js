@@ -17,6 +17,10 @@ import Quote from "./components/quote";
 import S from "./components/s";
 import Slide from "./components/slide";
 import Spectacle from "./components/spectacle";
+import TableHeaderItem from "./components/table-header-item";
+import TableItem from "./components/table-item";
+import TableRow from "./components/table-row";
+import Table from "./components/table";
 import Text from "./components/text";
 
 export {
@@ -39,5 +43,9 @@ export {
   S,
   Slide,
   Spectacle,
+  TableHeaderItem,
+  TableItem,
+  TableRow,
+  Table,
   Text
 };
