@@ -140,7 +140,7 @@ The main `.js` file you write your deck in is `/presentation/index.js`
 
 Check it out [here](https://github.com/FormidableLabs/spectacle-boilerplate/blob/master/presentation/index.js) in the boilerplate.
 
-```javascript
+```jsx
 // index.js
 
 import React, { Component } from 'react';
@@ -159,7 +159,7 @@ export default class extends Component {
           </Slide>
         </Deck>
       </Spectacle>
-    )
+    );
   }
 }
 
@@ -176,7 +176,7 @@ In Spectacle, themes are functions that return style objects for `screen` & `pri
 
 You can import the default theme from:
 
-```javascript
+```jsx
 import createTheme from "spectacle/lib/themes/default";
 ```
 
@@ -191,12 +191,12 @@ You will want to edit `index.html` to include any web fonts or additional CSS th
 
 Spectacle's functional theme system allows you to pass in color and font variables that you can use on your elements. See the example below:
 
-```
+```jsx
 const theme = createTheme({
   primary: "red"
 }, {
   primary: "Helvetica"
-})
+});
 ```
 
 The returned theme object can then be passed to the `Spectacle` tag via the `theme` prop, and will override the default styles.
@@ -293,7 +293,7 @@ This tag does not extend from Base. It's special. Wrapping elements in the appea
 
 These tags create a styled blockquote. Use them as follows:
 
-```javascript
+```jsx
 <BlockQuote>
 	<Quote>Ken Wheeler is amazing</Quote>
 	<Cite>Everyone</Cite>
@@ -351,7 +351,7 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 
 These tags create lists. Use them as follows:
 
-```javascript
+```jsx
 <List>
 	<ListItem>Item 1</ListItem>
 	<ListItem>Item 2</ListItem>
@@ -374,7 +374,7 @@ The `S` tag is used to add inline styling to a piece of text, such as underline 
 
 The `Table` tag is used to add table to your slide. It is used with `TableRow`, `TableHeaderItem` and `TableItem`. Use them as follows:
 
-```javascript
+```jsx
 <Table>
   <TableRow>
     <TableHeaderItem></TableHeaderItem>
