@@ -146,7 +146,7 @@ Check it out [here](https://github.com/FormidableLabs/spectacle-boilerplate/blob
 import React, { Component } from 'react';
 import {
   Appear, BlockQuote, Cite, CodePane, Code, Deck, Fill, Fit,
-  Heading, Image, Layout, ListItem, List, Quote, S, Slide, Text
+  Heading, Image, Layout, ListItem, List, Quote, Spectacle, Slide, Text
 } from 'spectacle';
 
 export default class extends Component {
