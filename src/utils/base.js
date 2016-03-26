@@ -13,7 +13,10 @@ export const getStyles = function getStyles() {
     textAlign,
     bgColor,
     bgImage,
-    bgDarken
+    bgDarken,
+    bgSize,
+    bgPosition,
+    bgRepeat
   } = this.props;
 
   const styles = {};
@@ -73,8 +76,11 @@ export const getStyles = function getStyles() {
     } else {
       styles.backgroundImage = `url(${bgImage})`;
     }
-    styles.backgroundSize = "cover";
-    styles.backgroundPosition = "center center";
+    styles.backgroundSize = bgSize || "cover";
+    styles.backgroundPosition = bgPosition || "center center";
+    if (bgRepeat) {
+      styles.backgroundRepeat = bgRepeat;
+    }
   }
   return styles;
 };
