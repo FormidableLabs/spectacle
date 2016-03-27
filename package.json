@@ -20,7 +20,7 @@
     "mdast": "^2.1.0",
     "mdast-react": "git://github.com/jjt/mdast-react.git#2ea3bcd",
     "normalize.css": "3.0.3",
-    "radium": "0.15.0",
+    "radium": "^0.17.0",
     "react": "^0.14.3",
     "react-addons-transition-group": "^0.14.3",
     "react-dom": "^0.14.3",
