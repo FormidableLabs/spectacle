@@ -42,6 +42,7 @@ ReactJS based Presentation Library
     - [Table, TableRow, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
     - [Text (Base)](#text-base)
   - [Base Props](#base-props)
+- [Third Party Extensions] (#third-party) 
 
 <!-- /MarkdownTOC -->
 
@@ -420,3 +421,8 @@ Every component above that has `(Base)` after it has been extended from a common
 | bgColor | React.PropTypes.string | Set `backgroundColor` value|
 | bgImage | React.PropTypes.string | Set `backgroundImage` value|
 | bgDarken | React.PropTypes.number | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image|
+
+<a name="third-party"></a>
+## Third Party Extensions
+
+- [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @thejameskyle
