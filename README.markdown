@@ -238,7 +238,7 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 
 |Name|PropType|Description|
 |---|---|---|
-|align| React.PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (bottom). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center middle"`, which is it's default.
+|align| React.PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (bottom). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default.
 |transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
 |notes| React.PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
