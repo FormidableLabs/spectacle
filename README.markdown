@@ -42,7 +42,7 @@ ReactJS based Presentation Library
     - [Table, TableRow, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
     - [Text (Base)](#text-base)
   - [Base Props](#base-props)
-- [Third Party Extensions] (#third-party) 
+- [Third Party Extensions](#third-party) 
 
 <!-- /MarkdownTOC -->
 
