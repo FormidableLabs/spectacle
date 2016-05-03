@@ -1,24 +1,5 @@
 import React, { Component, PropTypes } from "react";
-import Radium from "radium";
-
-const animations = {
-  pacmanTopFrames: Radium.keyframes({
-    "0%": {transform: "rotateZ(0deg)"},
-    "100%": {transform: "rotateZ(-30deg)"}
-  }),
-  pacmanBottomFrames: Radium.keyframes({
-    "0%": {transform: "rotateZ(0deg)"},
-    "100%": {transform: "rotateZ(30deg)"}
-  }),
-  pacmanTopFramesBis: Radium.keyframes({
-    "0%": {transform: "rotateZ(0deg)"},
-    "100%": {transform: "rotateZ(-30deg)"}
-  }),
-  pacmanBottomFramesBis: Radium.keyframes({
-    "0%": {transform: "rotateZ(0deg)"},
-    "100%": {transform: "rotateZ(30deg)"}
-  })
-};
+import Radium, { Style } from "radium";
 
 @Radium
 export default class Progress extends Component {
@@ -79,7 +60,7 @@ export default class Progress extends Component {
   getPacmanStyle(side) {
     const animationName = `pacman${side}Frames${(this.props.currentSlide % 2 ? "" : "Bis")}`;
     return {
-      animation: `${animations[animationName]} 0.12s linear 10 alternate both`
+      animation: `${animationName} 0.12s linear 10 alternate both`
     };
   }
 

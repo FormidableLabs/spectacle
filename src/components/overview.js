@@ -15,14 +15,13 @@ export default class Overview extends Component {
   }
   _renderSlides() {
     const slide = this.props.slide;
+    const screen = this.refs.overview ? this.refs.overview.clientWidth : 1;
     return this.props.slides.map((child, index) => {
       const style = {
         position: "relative",
-        width: window.innerWidth / 3,
-        height: window.innerHeight / 3,
+        width: screen / 3,
+        height: (screen / 3) * 0.7,
         float: "left",
-        transform: "scale(0.8)",
-        border: "2px solid white",
         opacity: index === slide ? 1 : 0.5,
         cursor: "pointer",
         ":hover": {
@@ -45,6 +44,7 @@ export default class Overview extends Component {
     });
   }
   componentDidMount() {
+    this.forceUpdate();
     window.onresize = () => {
       this.forceUpdate();
     };
@@ -58,7 +58,7 @@ export default class Overview extends Component {
       }
     };
     return (
-      <div className="spectacle-overview" style={[styles.overview]}>
+      <div className="spectacle-overview" ref="overview" style={[styles.overview]}>
         {this._renderSlides()}
       </div>
     );
