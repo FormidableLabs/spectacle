@@ -14,7 +14,9 @@ export default class TableRow extends Component {
 }
 
 TableRow.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 TableRow.contextTypes = {

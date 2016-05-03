@@ -174,8 +174,9 @@ export default class Deck extends Component {
   }
   _getHash(slide) {
     let hash = slide;
-    if ("id" in this.props.children[slide].props) {
-      hash = this.props.children[slide].props.id;
+    const children = React.Children.toArray(this.props.children);
+    if ("id" in children[slide].props) {
+      hash = children[slide].props.id;
     }
     return hash;
   }

@@ -14,7 +14,9 @@ export default class TableItem extends Component {
 }
 
 TableItem.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 TableItem.contextTypes = {
