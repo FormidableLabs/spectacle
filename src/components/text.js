@@ -75,7 +75,7 @@ export default class Text extends Component {
         </div>
       ) : (
         <p className={this.props.className} style={[this.context.styles.components.text, getStyles.call(this), styles.nonFit, style]}>
-          {this.props.children}
+          {children}
         </p>
       )
     );
