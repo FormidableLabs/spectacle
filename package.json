@@ -15,7 +15,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "history": "1.13.1",
+    "history": "^2.1.1",
     "lodash": "3.10.1",
     "mdast": "^2.1.0",
     "mdast-react": "git://github.com/jjt/mdast-react.git#2ea3bcd",
