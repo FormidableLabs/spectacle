@@ -3,8 +3,15 @@ import Radium from "radium";
 
 @Radium
 export default class Overview extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      overviewWidth: document.documentElement.clientWidth
+    };
+    this.resizeHandler = this.resizeHandler.bind(this);
+  }
   _slideClicked(index) {
-    this.context.history.replaceState(null, `/${this._getHash(index)}`);
+    this.context.history.replace(`/${this._getHash(index)}`);
   }
   _getHash(slide) {
     let hash = slide;
@@ -15,7 +22,7 @@ export default class Overview extends Component {
   }
   _renderSlides() {
     const slide = this.props.slide;
-    const screen = this.refs.overview ? this.refs.overview.clientWidth : 1;
+    const screen = this.state.overviewWidth;
     return this.props.slides.map((child, index) => {
       const style = {
         position: "relative",
@@ -31,7 +38,8 @@ export default class Overview extends Component {
       const el = cloneElement(child, {
         key: index,
         slideIndex: index,
-        route: this.props.route,
+        export: this.props.route.params.indexOf("export") !== -1,
+        print: this.props.route.params.indexOf("print") !== -1,
         transition: [],
         transitionDuration: 0,
         appearOff: true
@@ -43,11 +51,17 @@ export default class Overview extends Component {
       );
     });
   }
+  resizeHandler() {
+    this.setState({
+      overviewWidth: this.refs.overview.clientWidth
+    });
+  }
   componentDidMount() {
-    this.forceUpdate();
-    window.onresize = () => {
-      this.forceUpdate();
-    };
+    this.resizeHandler();
+    window.addEventListener("resize", this.resizeHandler);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resizeHandler);
   }
   render() {
     const styles = {

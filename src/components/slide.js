@@ -27,7 +27,8 @@ const Slide = React.createClass({
     notes: PropTypes.any,
     slideIndex: PropTypes.number,
     lastSlide: PropTypes.number,
-    route: PropTypes.object
+    export: PropTypes.bool,
+    print: PropTypes.bool
   },
   contextTypes: {
     styles: PropTypes.object,
@@ -78,7 +79,7 @@ const Slide = React.createClass({
   },
   render() {
     const { align, presenterStyle, children } = this.props;
-    const printStyles = this.props.route.params.indexOf("print") !== -1 ? {
+    const printStyles = this.props.print ? {
       backgroundColor: "white",
       backgroundImage: "none"
     } : {};
@@ -92,7 +93,7 @@ const Slide = React.createClass({
     };
     const styles = {
       outer: {
-        position: this.props.route.params.indexOf("export") !== -1 ? "relative" : "absolute",
+        position: this.props.export ? "relative" : "absolute",
         top: 0,
         left: 0,
         width: "100%",

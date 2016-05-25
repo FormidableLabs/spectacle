@@ -113,11 +113,11 @@ export default class Deck extends Component {
   }
   _toggleOverviewMode() {
     const suffix = this.props.route.params.indexOf("overview") !== -1 ? "" : "?overview";
-    this.context.history.replaceState(null, `/${this.props.route.slide}${suffix}`);
+    this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _togglePresenterMode() {
     const suffix = this.props.route.params.indexOf("presenter") !== -1 ? "" : "?presenter";
-    this.context.history.replaceState(null, `/${this.props.route.slide}${suffix}`);
+    this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _getSuffix() {
     if (this.props.route.params.indexOf("presenter") !== -1) {
@@ -136,7 +136,7 @@ export default class Deck extends Component {
         lastSlide: slide || 0
       });
       if (this._checkFragments(this.props.route.slide, data.forward)) {
-        this.context.history.replaceState(null, `/${data.slide}${this._getSuffix()}`);
+        this.context.history.replace(`/${data.slide}${this._getSuffix()}`);
       }
     }
   }
@@ -147,7 +147,7 @@ export default class Deck extends Component {
     });
     if (this._checkFragments(this.props.route.slide, false) || this.props.route.params.indexOf("overview") !== -1) {
       if (slide > 0) {
-        this.context.history.replaceState(null, `/${this._getHash(slide - 1)}${this._getSuffix()}`);
+        this.context.history.replace(`/${this._getHash(slide - 1)}${this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide - 1), forward: false, time: Date.now()}));
       }
@@ -163,7 +163,7 @@ export default class Deck extends Component {
     });
     if (this._checkFragments(this.props.route.slide, true) || this.props.route.params.indexOf("overview") !== -1) {
       if (slide < this.props.children.length - 1) {
-        this.context.history.replaceState(null, `/${this._getHash(slide + 1) + this._getSuffix()}`);
+        this.context.history.replace(`/${this._getHash(slide + 1) + this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }
@@ -322,7 +322,8 @@ export default class Deck extends Component {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
       key: slide,
-      route: this.props.route,
+      export: this.props.route.params.indexOf("export") !== -1,
+      print: this.props.route.params.indexOf("print") !== -1,
       children: Children.toArray(child.props.children),
       hash: this.props.route.slide,
       slideIndex: slide,

@@ -32,7 +32,8 @@ export default class Presenter extends Component {
       dispatch: this.props.dispatch,
       key: slide,
       hash,
-      route: this.props.route,
+      export: this.props.route.params.indexOf("export") !== -1,
+      print: this.props.route.params.indexOf("print") !== -1,
       slideIndex: slide,
       lastSlide,
       transition: [],
@@ -66,7 +67,8 @@ export default class Presenter extends Component {
     const child = slides[parseInt(slide) + 1];
     return child ? cloneElement(child, {
       dispatch: this.props.dispatch,
-      route: this.props.route,
+      export: this.props.route.params.indexOf("export") !== -1,
+      print: this.props.route.params.indexOf("print") !== -1,
       key: slide + 1,
       hash: child.props.id || slide + 1,
       slideIndex: slide + 1,
