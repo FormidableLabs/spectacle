@@ -25,11 +25,13 @@ export default class Deck extends Component {
   static defaultProps = {
     transitionDuration: 500,
     progress: "pacman",
-    controls: true
+    controls: true,
+    globalStyles: true
   };
 
   static propTypes = {
     controls: PropTypes.bool,
+    globalStyles: PropTypes.bool,
     fragment: PropTypes.object,
     dispatch: PropTypes.func,
     children: PropTypes.node,
@@ -431,7 +433,7 @@ export default class Deck extends Component {
            <Fullscreen/> : ""
         }
 
-        <Style rules={Object.assign(this.context.styles.global, globals)} />
+        {this.props.globalStyles && <Style rules={Object.assign(this.context.styles.global, globals)} />}
       </div>
     );
   }
