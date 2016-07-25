@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from "react";
-import Radium, { Style } from "radium";
+import Radium from "radium";
 
 @Radium
 export default class Progress extends Component {

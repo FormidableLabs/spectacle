@@ -42,7 +42,7 @@ ReactJS based Presentation Library
     - [Table, TableRow, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
     - [Text (Base)](#text-base)
   - [Base Props](#base-props)
-- [Third Party Extensions](#third-party) 
+- [Third Party Extensions](#third-party)
 
 <!-- /MarkdownTOC -->
 
@@ -217,6 +217,7 @@ The Spectacle tag is the root level tag for your presentation. It handles routin
 
 |Name|PropType|Description|
 |---|---|---|
+|history|React.PropTypes.object|Accepts custom configuration for [history](https://github.com/ReactTraining/history)
 |theme|React.PropTypes.object|Accepts a theme object for styling your presentation|
 
 <a name="deck"></a>

@@ -84,7 +84,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         },
         pacmanTop: {
           position: "absolute",
-          content: " ",
+          content: "",
           width: "20px",
           height: "10px",
           borderTopLeftRadius: "10px",
@@ -93,7 +93,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         },
         pacmanBottom: {
           position: "absolute",
-          content: " ",
+          content: "",
           width: "20px",
           height: "10px",
           borderBottomLeftRadius: "10px",
