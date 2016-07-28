@@ -11,7 +11,8 @@ const Slide = React.createClass({
   getDefaultProps() {
     return {
       align: "center center",
-      presenterStyle: {}
+      presenterStyle: {},
+      style: {}
     };
   },
   propTypes: {
@@ -20,6 +21,7 @@ const Slide = React.createClass({
     dispatch: PropTypes.func,
     hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     presenterStyle: PropTypes.object,
+    style: PropTypes.object,
     maxHeight: PropTypes.number,
     maxWidth: PropTypes.number,
     margin: PropTypes.number,
@@ -101,7 +103,8 @@ const Slide = React.createClass({
         display: "flex",
         overflow: "hidden",
         backgroundColor: this.context.styles.global.body.background ?
-          this.context.styles.global.body.background : ""
+          this.context.styles.global.body.background : "",
+        ...this.props.style
       },
       inner: {
         display: "flex",
