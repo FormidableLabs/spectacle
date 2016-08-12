@@ -349,6 +349,7 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 |Name|PropType|Description|
 |---|---|---|
 |href|React.PropTypes.string| String of url for `href` attribute |
+|target|React.PropTypes.string| Set the `target` attribute |
 
 <a name="list--listitem-base"></a>
 #### List & ListItem (Base)
