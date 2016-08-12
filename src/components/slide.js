@@ -56,12 +56,12 @@ const Slide = React.createClass({
 
       const contentScaleY = (content.parentNode.offsetHeight / 700);
       const contentScaleX = this.props.viewerScaleMode ?
-        (content.parentNode.offsetWidth / 700) :
-        (content.parentNode.offsetWidth / 1000);
+        (content.parentNode.offsetWidth / 1000) :
+        (content.parentNode.offsetWidth / 700);
       const minScale = Math.min(contentScaleY, contentScaleX);
 
       let contentScale = minScale < 1 ? minScale : 1;
-      if (mobile && !this.props.viewerScaleMode) {
+      if (mobile && this.props.viewerScaleMode !== true) {
         contentScale = 1;
       }
 
