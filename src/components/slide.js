@@ -12,7 +12,8 @@ const Slide = React.createClass({
     return {
       align: "center center",
       presenterStyle: {},
-      style: {}
+      style: {},
+      viewerScaleMode: false
     };
   },
   propTypes: {
@@ -30,7 +31,8 @@ const Slide = React.createClass({
     slideIndex: PropTypes.number,
     lastSlide: PropTypes.number,
     export: PropTypes.bool,
-    print: PropTypes.bool
+    print: PropTypes.bool,
+    viewerScaleMode: PropTypes.bool
   },
   contextTypes: {
     styles: PropTypes.object,
@@ -49,13 +51,23 @@ const Slide = React.createClass({
     const mobile = window.matchMedia("(max-width: 628px)").matches;
     const content = this.refs.content;
     if (content) {
-      const zoom = (content.offsetWidth / 1000);
+      const zoom = this.props.viewerScaleMode ? 1
+        : (content.offsetWidth / 1000);
+
       const contentScaleY = (content.parentNode.offsetHeight / 700);
-      const contentScaleX = (content.parentNode.offsetWidth / 700);
-      const contentScale = mobile ? 1 : Math.min(contentScaleY, contentScaleX);
+      const contentScaleX = this.props.viewerScaleMode ?
+        (content.parentNode.offsetWidth / 700) :
+        (content.parentNode.offsetWidth / 1000);
+      const minScale = Math.min(contentScaleY, contentScaleX);
+
+      let contentScale = minScale < 1 ? minScale : 1;
+      if (mobile && !this.props.viewerScaleMode) {
+        contentScale = 1;
+      }
+
       this.setState({
         zoom: zoom > 0.6 ? zoom : 0.6,
-        contentScale: contentScale < 1 ? contentScale : 1
+        contentScale
       });
     }
   },
