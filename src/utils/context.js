@@ -1,25 +1,29 @@
-import React, { Component, PropTypes } from "react";
+import { Component, PropTypes } from "react";
 
-const context = (component, params) => {
-  return class Context extends Component {
-    static displayName = "ContextWrapper";
-    static childContextTypes = {
-      styles: PropTypes.object,
-      history: PropTypes.object,
-      store: PropTypes.object
-    };
-    getChildContext() {
-      const { history, styles, store } = params;
-      return {
-        history,
-        styles,
-        store
-      };
-    }
-    render() {
-      return React.cloneElement(component);
-    }
+class Context extends Component {
+  static displayName = "Context";
+  static propTypes = {
+    children: PropTypes.node,
+    styles: PropTypes.object,
+    history: PropTypes.object,
+    store: PropTypes.object
   };
-};
+  static childContextTypes = {
+    styles: PropTypes.object,
+    history: PropTypes.object,
+    store: PropTypes.object
+  };
+  getChildContext() {
+    const { history, styles, store } = this.props;
+    return {
+      history,
+      styles,
+      store
+    };
+  }
+  render() {
+    return this.props.children;
+  }
+}
 
-export default context;
+export default Context;
