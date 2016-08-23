@@ -14,6 +14,7 @@ export default class Controls extends Component {
             style={this.context.styles.controls.prev}
           >
             <svg
+              key="prevIcon"
               style={this.context.styles.controls.prevIcon}
               width="32px"
               height="32px"
@@ -30,6 +31,7 @@ export default class Controls extends Component {
             style={this.context.styles.controls.next}
           >
             <svg
+              key="nextIcon"
               style={this.context.styles.controls.nextIcon}
               width="32px"
               height="32px"
