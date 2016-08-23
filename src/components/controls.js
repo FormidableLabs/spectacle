@@ -9,6 +9,7 @@ export default class Controls extends Component {
         {this.props.currentSlide !== 0 &&
           <button
             type="button"
+            key="prev"
             onClick={this.props.onPrev}
             style={this.context.styles.controls.prev}
           >
@@ -24,6 +25,7 @@ export default class Controls extends Component {
         {this.props.currentSlide < (this.props.totalSlides - 1) &&
           <button
             type="button"
+            key="next"
             onClick={this.props.onNext}
             style={this.context.styles.controls.next}
           >
