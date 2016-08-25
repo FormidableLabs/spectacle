@@ -16,9 +16,33 @@ const startTime = function startTime(date) {
 
 @Radium
 export default class Presenter extends Component {
-  constructor() {
+  static childContextTypes = {
+    updateNotes: PropTypes.func
+  };
+
+  getChildContext() {
+    return {
+      updateNotes: this.updateNotes.bind(this)
+    };
+  }
+
+  getCurrentSlide() {
+    return this.context.store.getState().route.slide;
+  }
+
+  updateNotes(newNotes) {
+    var notes = Object.assign({}, this.state.notes);
+    notes[this.getCurrentSlide()] = newNotes;
+
+    this.setState({
+      notes: notes
+    });
+  }
+
+  constructor(props) {
     super();
     this.state = {
+      notes: {},
       time: startTime(new Date())
     };
   }
@@ -80,12 +104,22 @@ export default class Presenter extends Component {
     }) : <h1 style={[endStyle]}>END</h1>;
   }
   _renderNotes() {
-    const child = this.props.slides[this.props.slide];
-    if (!child.props.notes) { return false; }
-    if (typeof child.props.notes === "string") {
-      return <div dangerouslySetInnerHTML={{__html: child.props.notes}} />;
+    var notes;
+    var currentSlide = this.getCurrentSlide();
+
+    if (this.state.notes[currentSlide]) {
+      notes = this.state.notes[currentSlide];
+    } else {
+      const child = this.props.slides[this.props.slide];
+      notes = child.props.notes;
     }
-    return <div>{child.props.notes}</div>;
+
+    if (!notes) { return false; }
+
+    if (typeof notes === "string") {
+      return <div dangerouslySetInnerHTML={{__html: notes}} />;
+    }
+    return <div>{notes}</div>;
   }
   render() {
     const styles = {
@@ -198,5 +232,6 @@ Presenter.propTypes = {
 };
 
 Presenter.contextTypes = {
-  styles: PropTypes.object
+  styles: PropTypes.object,
+  store: PropTypes.object.isRequired,
 };
