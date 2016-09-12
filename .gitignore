@@ -1,5 +1,4 @@
 node_modules
 dist
 lib
-example/lib
 *.log
