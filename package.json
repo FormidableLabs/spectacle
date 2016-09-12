@@ -6,7 +6,7 @@
   "scripts": {
     "clean:lib": "rimraf lib",
     "clean:dist": "rimraf dist",
-    "build:lib": "babel src -d lib --copy-files",
+    "build:lib": "babel src -d lib --copy-files && babel example/src -d example/lib —copy-files",
     "build:dist": "NODE_ENV=production webpack --config webpack.config.production.js",
     "lint": "eslint --ext .js,.jsx src",
     "deploy": "npm run build:dist && surge -p .",
