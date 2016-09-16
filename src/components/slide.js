@@ -134,7 +134,9 @@ const Slide = React.createClass({
       }
     };
 
-    document.documentElement.style.fontSize = `${16 * this.state.zoom}px`;
+    if (!this.props.viewerScaleMode) {
+      document.documentElement.style.fontSize = `${16 * this.state.zoom}px`;
+    }
 
     return (
       <div className="spectacle-slide"
