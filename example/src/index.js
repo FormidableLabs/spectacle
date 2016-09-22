@@ -4,16 +4,16 @@ import {
   Appear, BlockQuote, Cite, CodePane, Deck, Fill,
   Heading, Image, Layout, Link, ListItem, List, Markdown, Quote, Slide, Spectacle,
   TableHeaderItem, TableItem, TableRow, Table, Text
-} from "../src";
+} from "../../src";
 
-import preloader from "../src/utils/preloader";
+import preloader from "../../src/utils/preloader";
 
-import createTheme from "../src/themes/default";
+import createTheme from "../../src/themes/default";
 
 import Interactive from "../assets/interactive";
 
 require("normalize.css");
-require("../src/themes/default/index.css");
+require("../../src/themes/default/index.css");
 
 const images = {
   city: require("../assets/city.jpg"),
