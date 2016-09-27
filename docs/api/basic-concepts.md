@@ -1,5 +1,5 @@
 <a name="basic-concepts"></a>
-## Basic Concepts
+# Basic Concepts
 
 <a name="main-file"></a>
 ### Main file
