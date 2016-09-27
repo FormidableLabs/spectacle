@@ -2,7 +2,7 @@
 # Basic Concepts
 
 <a name="main-file"></a>
-### Main file
+## Main file
 
 Your presentation files & assets will live in the `presentation` folder.
 
@@ -40,7 +40,7 @@ Here is where you can use the library's tags to compose your presentation. While
 The bare minimum you need to start is a `Spectacle` element, a`Deck` element and a `Slide` element. Each `Slide` element represents a slide inside of your slideshow.
 
 <a name="themes"></a>
-### Themes
+## Themes
 
 In Spectacle, themes are functions that return style objects for `screen` & `print`.
 
@@ -57,7 +57,7 @@ Or create your own based upon the source.
 You will want to edit `index.html` to include any web fonts or additional CSS that your theme requires.
 
 <a name="createthemecolors-fonts"></a>
-#### createTheme(colors, fonts)
+### createTheme(colors, fonts)
 
 Spectacle's functional theme system allows you to pass in color and font variables that you can use on your elements. See the example below:
 
