@@ -1,7 +1,7 @@
 <a name="base-props"></a>
 # Base Props
 
-Every component above that has `(Base)` after it has been extended from a common class that includes the following props:
+Every component in the Tag API that has `(Base)` after it has been extended from a common class that includes the following props:
 
 | Name | PropType | Description |
 | ---- | -------- | ----------- |
