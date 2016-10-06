@@ -354,8 +354,26 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 <a name="list--listitem-base"></a>
 #### List & ListItem (Base)
 
+|Name|PropType|Description|
+|---|---|---|
+|ordered|React.PropTypes.bool| Render as `<ol>`-tag|
+|reversed|React.PropTypes.bool| Set the `reversed` attribute |
+|start|React.PropTypes.bool| Set the `start` attribute, Default: 1 |
+|type|React.PropTypes.bool| Set the `type` attribute. Default: "1" |
+
 These tags create lists. Use them as follows:
 
+Ordered lists:
+```jsx
+<List ordered start={2} type="A">
+	<ListItem>Item 1</ListItem>
+	<ListItem>Item 2</ListItem>
+	<ListItem>Item 3</ListItem>
+	<ListItem>Item 4</ListItem>
+</List>
+```
+
+Unordered lists:
 ```jsx
 <List>
 	<ListItem>Item 1</ListItem>
