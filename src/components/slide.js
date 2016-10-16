@@ -6,7 +6,6 @@ import Transitions from "./transitions";
 import radium from "radium";
 import { addFragment } from "../actions";
 
-
 const Slide = React.createClass({
   displayName: "Slide",
   mixins: [tweenState.Mixin, Transitions],
