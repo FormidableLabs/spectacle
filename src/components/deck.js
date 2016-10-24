@@ -163,13 +163,14 @@ export default class Deck extends Component {
     this.setState({
       lastSlide: slide
     });
+    const children = Children.toArray(this.props.children);
     if (this._checkFragments(this.props.route.slide, true) || this.props.route.params.indexOf("overview") !== -1) {
-      if (slide < this.props.children.length - 1) {
+      if (slide < children.length - 1) {
         this.context.history.replace(`/${this._getHash(slide + 1) + this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
       }
-    } else if (slide < this.props.children.length) {
+    } else if (slide < children.length) {
       localStorage.setItem("spectacle-slide",
         JSON.stringify({slide: this._getHash(slide), forward: true, time: Date.now()}));
     }
