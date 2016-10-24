@@ -87,7 +87,8 @@ To present:
 
 - Run `npm start`
 - Open two browser windows on two different screens
-- On your screen visit [http://localhost:3000/?presenter](http://localhost:3000/?presenter)
+- On your screen visit [http://localhost:3000/](http://localhost:3000/). You will be redirected to a URL containing the slide id. 
+- Add `presenter&` immediately after the questionmark, e.g.: [http://localhost:3000/#/?presenter&_k=wbyhif](http://localhost:3000/#/?presenter&_k=wbyhif)
 - On the presentation screen visit [http://localhost:3000/](http://localhost:3000/)
 - Give an amazingly stylish presentation
 
@@ -122,7 +123,8 @@ Fullscreen can be toggled via browser options, or by **hovering over the bottom 
 Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is absurdly easy.
 
 - Run `npm start`
-- Append your URL with `?export` ([http://localhost:3000/?export](http://localhost:3000/?export))
+- Open [http://localhost:3000/](http://localhost:3000/)
+- Add `export&` after the `?` on the URL of page you are redirected to, e.g.: [http://localhost:3000/#/?export&_k=wbyhif](http://localhost:3000/#/?export&_k=wbyhif)
 - Bring up the print dialog `(ctrl or cmd + p)`
 - Check "Background Graphics" to on if you are about that life
 - Change destination to "Save as PDF", as shown below:
