@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import mdast from "mdast";
 import mdastReact from "mdast-react";
-import { isUndefined } from "lodash";
+import isUndefined from "lodash/isUndefined";
 
 import BlockQuote from "./block-quote";
 import CodePane from "./code-pane";
@@ -25,8 +25,8 @@ const spectacleComponent = (component, boundProps = {}) => {
       };
     },
     render() {
-      const props = {...this.props, ...boundProps};
-      return React.createElement(component, {...props}, this.props.children);
+      const props = { ...this.props, ...boundProps };
+      return React.createElement(component, { ...props }, this.props.children);
     }
   });
 };
@@ -50,19 +50,19 @@ export const mdastConfigDefault = {
     a: Link,
     blockquote: CombinedBlockQuote,
     code: CodePane,
-    del: spectacleComponent(S, {type: "strikethrough"}),
-    em: spectacleComponent(S, {type: "italic"}),
-    h1: spectacleComponent(Heading, {size: 1}),
-    h2: spectacleComponent(Heading, {size: 2}),
-    h3: spectacleComponent(Heading, {size: 3}),
-    h4: spectacleComponent(Heading, {size: 4}),
-    h5: spectacleComponent(Heading, {size: 5}),
-    h6: spectacleComponent(Heading, {size: 6}),
+    del: spectacleComponent(S, { type: "strikethrough" }),
+    em: spectacleComponent(S, { type: "italic" }),
+    h1: spectacleComponent(Heading, { size: 1 }),
+    h2: spectacleComponent(Heading, { size: 2 }),
+    h3: spectacleComponent(Heading, { size: 3 }),
+    h4: spectacleComponent(Heading, { size: 4 }),
+    h5: spectacleComponent(Heading, { size: 5 }),
+    h6: spectacleComponent(Heading, { size: 6 }),
     img: Image,
     inlineCode: Code,
     li: ListItem,
     p: Text,
-    strong: spectacleComponent(S, {type: "bold"}),
+    strong: spectacleComponent(S, { type: "bold" }),
     ul: List
   }
 };
@@ -81,10 +81,10 @@ export default class Markdown extends React.Component {
 }
 
 Markdown.propTypes = {
-  style: PropTypes.object,
   children: PropTypes.node,
+  mdastConfig: PropTypes.object,
   source: PropTypes.string,
-  mdastConfig: PropTypes.object
+  style: PropTypes.object
 };
 
 Markdown.defaultProps = {

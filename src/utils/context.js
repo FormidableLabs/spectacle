@@ -4,9 +4,9 @@ class Context extends Component {
   static displayName = "Context";
   static propTypes = {
     children: PropTypes.node,
-    styles: PropTypes.object,
     history: PropTypes.object,
-    store: PropTypes.object
+    store: PropTypes.object,
+    styles: PropTypes.object
   };
   static childContextTypes = {
     styles: PropTypes.object,

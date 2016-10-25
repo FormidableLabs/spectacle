@@ -15,8 +15,8 @@ export default class BlockQuote extends Component {
 
 BlockQuote.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object
 };
 
 BlockQuote.contextTypes = {

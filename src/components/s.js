@@ -7,16 +7,16 @@ export default class S extends Component {
     const { type, style, children } = this.props;
     let styles = {};
     if (type.indexOf("strikethrough") !== -1) {
-      styles = Object.assign(styles, {textDecoration: "line-through"});
+      styles = { ...styles, textDecoration: "line-through" };
     }
     if (type.indexOf("underline") !== -1) {
-      styles = Object.assign(styles, {textDecoration: "underline"});
+      styles = { ...styles, textDecoration: "underline" };
     }
     if (type.indexOf("bold") !== -1) {
-      styles = Object.assign(styles, {fontWeight: "bold"});
+      styles = { ...styles, fontWeight: "bold" };
     }
     if (type.indexOf("italic") !== -1) {
-      styles = Object.assign(styles, {fontStyle: "italic"});
+      styles = { ...styles, fontStyle: "italic" };
     }
     return (
       <span className={this.props.className} style={[styles, this.context.styles.components.s[type], style]}>
@@ -27,8 +27,8 @@ export default class S extends Component {
 }
 
 S.propTypes = {
-  className: PropTypes.string,
   children: PropTypes.node,
+  className: PropTypes.string,
   style: PropTypes.object,
   type: PropTypes.oneOfType([
     PropTypes.string,

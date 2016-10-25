@@ -17,6 +17,6 @@ export default class Fit extends Component {
 
 Fit.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object
 };

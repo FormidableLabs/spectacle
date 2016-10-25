@@ -10,6 +10,13 @@ export default class Overview extends Component {
     };
     this.resizeHandler = this.resizeHandler.bind(this);
   }
+  componentDidMount() {
+    this.resizeHandler();
+    window.addEventListener("resize", this.resizeHandler);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resizeHandler);
+  }
   _slideClicked(index) {
     this.context.history.replace(`/${this._getHash(index)}`);
   }
@@ -53,15 +60,8 @@ export default class Overview extends Component {
   }
   resizeHandler() {
     this.setState({
-      overviewWidth: this.refs.overview.clientWidth
+      overviewWidth: this.overviewRef.clientWidth
     });
-  }
-  componentDidMount() {
-    this.resizeHandler();
-    window.addEventListener("resize", this.resizeHandler);
-  }
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.resizeHandler);
   }
   render() {
     const styles = {
@@ -72,7 +72,7 @@ export default class Overview extends Component {
       }
     };
     return (
-      <div className="spectacle-overview" ref="overview" style={[styles.overview]}>
+      <div className="spectacle-overview" ref={(o) => { this.overviewRef = o; }} style={[styles.overview]}>
         {this._renderSlides()}
       </div>
     );
@@ -81,8 +81,8 @@ export default class Overview extends Component {
 
 Overview.propTypes = {
   route: PropTypes.object,
-  slides: PropTypes.array,
-  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  slides: PropTypes.array
 };
 
 Overview.contextTypes = {

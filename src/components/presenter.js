@@ -20,10 +20,27 @@ export default class Presenter extends Component {
     updateNotes: PropTypes.func
   };
 
+  state = {
+    notes: {},
+    time: startTime(new Date())
+  };
+
   getChildContext() {
     return {
       updateNotes: this.updateNotes.bind(this)
     };
+  }
+
+  componentWillMount() {
+    this.time = setInterval(() => {
+      this.setState({
+        time: startTime(new Date())
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.time);
   }
 
   getCurrentSlide() {
@@ -31,21 +48,12 @@ export default class Presenter extends Component {
   }
 
   updateNotes(newNotes) {
-    var notes = Object.assign({}, this.state.notes);
+    const notes = { ...this.state.notes };
     notes[this.getCurrentSlide()] = newNotes;
 
-    this.setState({
-      notes: notes
-    });
+    this.setState({ notes });
   }
 
-  constructor(props) {
-    super();
-    this.state = {
-      notes: {},
-      time: startTime(new Date())
-    };
-  }
   _renderMainSlide() {
     const { slides, slide, hash, lastSlide } = this.props;
     const child = slides[slide];
@@ -64,16 +72,6 @@ export default class Presenter extends Component {
       transitionDuration: 0,
       presenterStyle
     });
-  }
-  componentWillMount() {
-    this.time = setInterval(() => {
-      this.setState({
-        time: startTime(new Date())
-      });
-    }, 1000);
-  }
-  componentWillUnmount() {
-    clearInterval(this.time);
   }
   _renderNextSlide() {
     const { slides, slide, lastSlide } = this.props;
@@ -104,8 +102,8 @@ export default class Presenter extends Component {
     }) : <h1 style={[endStyle]}>END</h1>;
   }
   _renderNotes() {
-    var notes;
-    var currentSlide = this.getCurrentSlide();
+    let notes;
+    const currentSlide = this.getCurrentSlide();
 
     if (this.state.notes[currentSlide]) {
       notes = this.state.notes[currentSlide];
@@ -117,7 +115,7 @@ export default class Presenter extends Component {
     if (!notes) { return false; }
 
     if (typeof notes === "string") {
-      return <div dangerouslySetInnerHTML={{__html: notes}} />;
+      return <div dangerouslySetInnerHTML={{ __html: notes }} />;
     }
     return <div>{notes}</div>;
   }
@@ -224,14 +222,14 @@ export default class Presenter extends Component {
 
 Presenter.propTypes = {
   dispatch: PropTypes.func,
-  route: PropTypes.object,
-  lastSlide: PropTypes.number,
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  slides: PropTypes.array,
-  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  lastSlide: PropTypes.number,
+  route: PropTypes.object,
+  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  slides: PropTypes.array
 };
 
 Presenter.contextTypes = {
   styles: PropTypes.object,
-  store: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired
 };

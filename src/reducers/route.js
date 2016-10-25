@@ -7,6 +7,6 @@ const reducer = handleActions({
       params: action.payload.search.replace("?", "").split("&")
     });
   }
-}, { slide: 0, params: []});
+}, { slide: 0, params: [] });
 
 export default reducer;

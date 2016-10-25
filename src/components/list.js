@@ -17,11 +17,11 @@ export default class List extends Component {
 
 List.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object,
   className: PropTypes.string,
   ordered: PropTypes.bool,
   reversed: PropTypes.bool,
   start: PropTypes.number,
+  style: PropTypes.object,
   type: PropTypes.string
 };
 

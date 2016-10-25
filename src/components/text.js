@@ -17,17 +17,17 @@ export default class Text extends Component {
     window.addEventListener("load", this.resize);
     window.addEventListener("resize", this.resize);
   }
+  componentWillReceiveProps() {
+    this.resize();
+  }
   componentWillUnmount() {
     window.removeEventListener("load", this.resize);
     window.removeEventListener("resize", this.resize);
   }
-  componentWillReceiveProps() {
-    this.resize();
-  }
   resize() {
     if (this.props.fit) {
-      const text = this.refs.text;
-      const container = this.refs.container;
+      const text = this.textRef;
+      const container = this.containerRef;
       text.style.display = "inline-block";
       const scale = (container.offsetWidth / text.offsetWidth);
       const height = text.offsetHeight * scale;
@@ -63,11 +63,11 @@ export default class Text extends Component {
       fit ? (
         <div
           className={this.props.className}
-          ref="container"
+          ref={(c) => { this.containerRef = c; }}
           style={[this.context.styles.components.text, getStyles.call(this), styles.container]}
         >
           <span
-            ref="text"
+            ref={(t) => { this.textRef = t; }}
             style={[styles.text, style]}
           >
             {children}
@@ -87,9 +87,9 @@ Text.defaultProps = {
 };
 
 Text.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
   fit: PropTypes.bool,
-  children: PropTypes.node,
   lineHeight: PropTypes.number,
   style: PropTypes.object
 };

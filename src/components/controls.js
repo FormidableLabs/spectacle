@@ -47,9 +47,9 @@ export default class Controls extends Component {
 
 Controls.propTypes = {
   currentSlide: PropTypes.number,
-  totalSlides: PropTypes.number,
   onNext: PropTypes.func,
-  onPrev: PropTypes.func
+  onPrev: PropTypes.func,
+  totalSlides: PropTypes.number
 };
 
 Controls.contextTypes = {

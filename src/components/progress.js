@@ -3,6 +3,35 @@ import Radium from "radium";
 
 @Radium
 export default class Progress extends Component {
+  getWidth() {
+    return {
+      width: `${(100 * this.props.currentSlide / (this.props.items.length - 1))}%`
+    };
+  }
+
+  getPacmanStyle(side) {
+    const animationName = `pacman${side}Frames${(this.props.currentSlide % 2 ? "" : "Bis")}`;
+    return {
+      animation: `${animationName} 0.12s linear 10 alternate both`
+    };
+  }
+
+  getPointPosition(i) {
+    return {
+      top: "-20px",
+      left: `${(5 + 20 * (i - this.props.items.length / 2))}px`
+    };
+  }
+
+  getPointStyle(i) {
+    const style = this.getPointPosition(i);
+    if (this.props.currentSlide >= i) {
+      style.opacity = 0;
+    }
+
+    return style;
+  }
+
   render() {
     const { type, currentSlide, items } = this.props;
     let style = this.context.styles.progress;
@@ -50,41 +79,11 @@ export default class Progress extends Component {
       </div>
     );
   }
-
-  getWidth() {
-    return {
-      width: `${(100 * this.props.currentSlide / (this.props.items.length - 1))}%`
-    };
-  }
-
-  getPacmanStyle(side) {
-    const animationName = `pacman${side}Frames${(this.props.currentSlide % 2 ? "" : "Bis")}`;
-    return {
-      animation: `${animationName} 0.12s linear 10 alternate both`
-    };
-  }
-
-  getPointPosition(i) {
-    return {
-      top: "-20px",
-      left: `${(5 + 20 * (i - this.props.items.length / 2))}px`
-    };
-  }
-
-  getPointStyle(i) {
-    const style = this.getPointPosition(i);
-    if (this.props.currentSlide >= i) {
-      style.opacity = 0;
-    }
-
-    return style;
-  }
-
 }
 
 Progress.propTypes = {
-  items: PropTypes.array,
   currentSlide: PropTypes.number,
+  items: PropTypes.array,
   type: PropTypes.oneOf(["pacman", "bar", "number", "none"])
 };
 

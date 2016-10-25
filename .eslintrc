@@ -1,11 +1,14 @@
 ---
 "extends":
-  - "eslint-config-defaults/configurations/walmart/es6-react"
+  - "formidable/configurations/es6-react"
 
 "rules":
   "indent": [2, 2, {"SwitchCase": 1}]
   "max-len": 0
+  "no-magic-numbers": 0
+  "react/prefer-es6-class": 0
+  "react/no-multi-comp": 0
 
 "env":
-    "browser": true,
-    "node": true
+  "browser": true,
+  "node": true

@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 import tweenState from "react-tween-state";
-import { isUndefined } from "lodash";
+import isUndefined from "lodash/isUndefined";
 import { getStyles } from "../utils/base";
 import Transitions from "./transitions";
 import radium from "radium";
@@ -8,31 +8,22 @@ import { addFragment } from "../actions";
 
 const Slide = React.createClass({
   displayName: "Slide",
-  mixins: [tweenState.Mixin, Transitions],
-  getDefaultProps() {
-    return {
-      align: "center center",
-      presenterStyle: {},
-      style: {},
-      viewerScaleMode: false
-    };
-  },
   propTypes: {
     align: PropTypes.string,
+    children: PropTypes.node,
     className: PropTypes.string,
     dispatch: PropTypes.func,
+    export: PropTypes.bool,
     hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    presenterStyle: PropTypes.object,
-    style: PropTypes.object,
+    lastSlide: PropTypes.number,
+    margin: PropTypes.number,
     maxHeight: PropTypes.number,
     maxWidth: PropTypes.number,
-    margin: PropTypes.number,
-    children: PropTypes.node,
     notes: PropTypes.any,
-    slideIndex: PropTypes.number,
-    lastSlide: PropTypes.number,
-    export: PropTypes.bool,
+    presenterStyle: PropTypes.object,
     print: PropTypes.bool,
+    slideIndex: PropTypes.number,
+    style: PropTypes.object,
     viewerScaleMode: PropTypes.bool
   },
   contextTypes: {
@@ -42,15 +33,44 @@ const Slide = React.createClass({
     overview: PropTypes.bool,
     store: PropTypes.object
   },
+  mixins: [tweenState.Mixin, Transitions],
+  getDefaultProps() {
+    return {
+      align: "center center",
+      presenterStyle: {},
+      style: {},
+      viewerScaleMode: false
+    };
+  },
   getInitialState() {
     return {
       zoom: 1,
       contentScale: 1
     };
   },
+  componentDidMount() {
+    this.setZoom();
+    const slide = this.slideRef;
+    const frags = slide.querySelectorAll(".fragment");
+    if (frags && frags.length && !this.context.overview) {
+      Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
+        frag.dataset.fid = i;
+        return this.props.dispatch && this.props.dispatch(addFragment({
+          slide: this.props.hash,
+          id: i,
+          visible: this.props.lastSlide > this.props.slideIndex
+        }));
+      });
+    }
+    window.addEventListener("load", this.setZoom);
+    window.addEventListener("resize", this.setZoom);
+  },
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.setZoom);
+  },
   setZoom() {
     const mobile = window.matchMedia("(max-width: 628px)").matches;
-    const content = this.refs.content;
+    const content = this.contentRef;
     if (content) {
       const zoom = this.props.viewerScaleMode ? 1
         : (content.offsetWidth / 1000);
@@ -72,40 +92,10 @@ const Slide = React.createClass({
       });
     }
   },
-  componentDidMount() {
-    this.setZoom();
-    const slide = this.refs.slide;
-    const frags = slide.querySelectorAll(".fragment");
-    if (frags && frags.length && !this.context.overview) {
-      Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
-        frag.dataset.fid = i;
-        return this.props.dispatch && this.props.dispatch(addFragment({
-          slide: this.props.hash,
-          id: i,
-          visible: this.props.lastSlide > this.props.slideIndex
-        }));
-      });
-    }
-    window.addEventListener("load", this.setZoom);
-    window.addEventListener("resize", this.setZoom);
-  },
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.setZoom);
-  },
-  render() {
-    const { align, presenterStyle, children } = this.props;
-    const printStyles = this.props.print ? {
-      backgroundColor: "white",
-      backgroundImage: "none"
-    } : {};
-    const overViewStyles = {
-      inner: {
-        flexDirection: "column"
-      },
-      content: {
-        width: "100%"
-      }
-    };
+
+  allStyles() {
+    const { align, print } = this.props;
+
     const styles = {
       outer: {
         position: this.props.export ? "relative" : "absolute",
@@ -135,6 +125,27 @@ const Slide = React.createClass({
       }
     };
 
+    const overViewStyles = {
+      inner: {
+        flexDirection: "column"
+      },
+      content: {
+        width: "100%"
+      }
+    };
+
+    const printStyles = print ? {
+      backgroundColor: "white",
+      backgroundImage: "none"
+    } : {};
+
+    return { styles, overViewStyles, printStyles };
+  },
+
+  render() {
+    const { presenterStyle, children } = this.props;
+    const { styles, overViewStyles, printStyles } = this.allStyles();
+
     if (!this.props.viewerScaleMode) {
       document.documentElement.style.fontSize = `${16 * this.state.zoom}px`;
     }
@@ -142,7 +153,7 @@ const Slide = React.createClass({
     const contentClass = isUndefined(this.props.className) ? "" : this.props.className;
     return (
       <div className="spectacle-slide"
-        ref="slide"
+        ref={(s) => { this.slideRef = s; }}
         style={[
           styles.outer,
           getStyles.call(this),
@@ -152,7 +163,7 @@ const Slide = React.createClass({
         ]}
       >
         <div style={[styles.inner, this.context.overview && overViewStyles.inner]}>
-          <div ref="content"
+          <div ref={(c) => { this.contentRef = c; }}
             className={`${contentClass} spectacle-content`}
             style={[
               styles.content,
