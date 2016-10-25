@@ -4,7 +4,8 @@
 import React, { Children, cloneElement, Component, PropTypes } from "react";
 import ReactTransitionGroup from "react-addons-transition-group";
 import Radium, { Style } from "radium";
-import _ from "lodash";
+import filter from "lodash/filter";
+import size from "lodash/size";
 import { connect } from "react-redux";
 import { updateFragment } from "../actions";
 
@@ -30,15 +31,15 @@ export default class Deck extends Component {
   };
 
   static propTypes = {
-    controls: PropTypes.bool,
-    globalStyles: PropTypes.bool,
-    fragment: PropTypes.object,
-    dispatch: PropTypes.func,
     children: PropTypes.node,
+    controls: PropTypes.bool,
+    dispatch: PropTypes.func,
+    fragment: PropTypes.object,
+    globalStyles: PropTypes.bool,
+    progress: PropTypes.oneOf(["pacman", "bar", "number", "none"]),
     route: PropTypes.object,
     transition: PropTypes.array,
-    transitionDuration: PropTypes.number,
-    progress: PropTypes.oneOf(["pacman", "bar", "number", "none"])
+    transitionDuration: PropTypes.number
   };
 
   static contextTypes = {
@@ -56,7 +57,7 @@ export default class Deck extends Component {
     super();
     this._handleKeyPress = this._handleKeyPress.bind(this);
     this._handleScreenChange = this._handleScreenChange.bind(this);
-    this._handleClick = this._handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this._goToSlide = this._goToSlide.bind(this);
     this.state = {
       lastSlide: null,
@@ -151,11 +152,11 @@ export default class Deck extends Component {
       if (slide > 0) {
         this.context.history.replace(`/${this._getHash(slide - 1)}${this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
-          JSON.stringify({slide: this._getHash(slide - 1), forward: false, time: Date.now()}));
+          JSON.stringify({ slide: this._getHash(slide - 1), forward: false, time: Date.now() }));
       }
     } else if (slide > 0) {
       localStorage.setItem("spectacle-slide",
-        JSON.stringify({slide: this._getHash(slide), forward: false, time: Date.now()}));
+        JSON.stringify({ slide: this._getHash(slide), forward: false, time: Date.now() }));
     }
   }
   _nextSlide() {
@@ -168,11 +169,11 @@ export default class Deck extends Component {
       if (slide < children.length - 1) {
         this.context.history.replace(`/${this._getHash(slide + 1) + this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
-          JSON.stringify({slide: this._getHash(slide + 1), forward: true, time: Date.now()}));
+          JSON.stringify({ slide: this._getHash(slide + 1), forward: true, time: Date.now() }));
       }
     } else if (slide < children.length) {
       localStorage.setItem("spectacle-slide",
-        JSON.stringify({slide: this._getHash(slide), forward: true, time: Date.now()}));
+        JSON.stringify({ slide: this._getHash(slide), forward: true, time: Date.now() }));
     }
   }
   _getHash(slide) {
@@ -199,9 +200,9 @@ export default class Deck extends Component {
       }
     }
     if (slide in fragments) {
-      const count = _.size(fragments[slide]);
-      const visible = _.filter(fragments[slide], (s) => s.visible === true);
-      const hidden = _.filter(fragments[slide], (s) => s.visible !== true);
+      const count = size(fragments[slide]);
+      const visible = filter(fragments[slide], (s) => s.visible === true);
+      const hidden = filter(fragments[slide], (s) => s.visible !== true);
       if (forward === true && visible.length !== count) {
         this.props.dispatch(updateFragment({
           fragment: hidden[0],
@@ -211,7 +212,7 @@ export default class Deck extends Component {
       }
       if (forward === false && hidden.length !== count) {
         this.props.dispatch(updateFragment({
-          fragment: visible[_.size(visible) - 1],
+          fragment: visible[size(visible) - 1],
           visible: false
         }));
         return false;
@@ -260,7 +261,7 @@ export default class Deck extends Component {
       }
     };
   }
-  _handleClick(e) {
+  handleClick(e) {
     if (this.clickSafe === true) {
       e.preventDefault();
       e.stopPropagation();
@@ -407,7 +408,7 @@ export default class Deck extends Component {
       <div
         className="spectacle-deck"
         style={[styles.deck]}
-        onClick={this._handleClick}
+        onClick={this.handleClick}
         {...this._getTouchEvents()}
       >
         {this.props.controls && showControls &&

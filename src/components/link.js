@@ -15,10 +15,10 @@ export default class Link extends Component {
 
 Link.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   href: PropTypes.string,
-  target: PropTypes.string,
   style: PropTypes.object,
-  className: PropTypes.string
+  target: PropTypes.string
 };
 
 Link.contextTypes = {

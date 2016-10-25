@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 
-import createHashHistory from "history/lib/createHashHistory";
+import { createHashHistory } from "history";
 
 import theme from "../themes/default";
 import Context from "./context";
@@ -10,10 +10,10 @@ const history = createHashHistory();
 
 export default class Controller extends Component {
   static propTypes = {
-    theme: PropTypes.object,
     children: PropTypes.node,
+    history: PropTypes.object,
     store: PropTypes.object,
-    history: PropTypes.object
+    theme: PropTypes.object
   }
   constructor(props) {
     super(props);
@@ -22,21 +22,21 @@ export default class Controller extends Component {
     };
     this.history = props.history || history;
   }
+  componentDidMount() {
+    this.unlisten = this.history.listen(this._updateRoute.bind(this));
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props !== nextProps || this.state !== nextState;
+  }
+  componentWillUnmount() {
+    this.unlisten();
+  }
   _updateRoute(location) {
     this.setState({
       print: location.search.indexOf("print") !== -1
     }, () => {
       this.props.store.dispatch(updateRoute(location));
     });
-  }
-  componentDidMount() {
-    this.unlisten = this.history.listen(this._updateRoute.bind(this));
-  }
-  componentWillUnmount() {
-    this.unlisten();
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props !== nextProps || this.state !== nextState;
   }
   render() {
     const styles = this.props.theme ? this.props.theme : theme();
@@ -51,4 +51,3 @@ export default class Controller extends Component {
     );
   }
 }
-

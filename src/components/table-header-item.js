@@ -15,8 +15,8 @@ export default class TableHeaderItem extends Component {
 
 TableHeaderItem.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object
 };
 
 TableHeaderItem.contextTypes = {

@@ -1,21 +1,21 @@
 import React, { PropTypes } from "react";
 import { findDOMNode } from "react-dom";
 import tweenState from "react-tween-state";
-import _ from "lodash";
+import findKey from "lodash/findKey";
 import { connect } from "react-redux";
 
 const Appear = React.createClass({
-  mixins: [tweenState.Mixin],
   propTypes: {
     children: PropTypes.node,
-    style: PropTypes.object,
-    route: PropTypes.object
+    route: PropTypes.object,
+    style: PropTypes.object
   },
   contextTypes: {
     export: PropTypes.bool,
     overview: PropTypes.bool,
     slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   },
+  mixins: [tweenState.Mixin],
   getInitialState() {
     return {
       active: false,
@@ -25,8 +25,8 @@ const Appear = React.createClass({
   componentWillReceiveProps(nextProps) {
     const state = nextProps.fragment;
     const slide = this.props.route.slide;
-    const fragment = findDOMNode(this.refs.fragment);
-    const key = _.findKey(state.fragments[slide], {
+    const fragment = findDOMNode(this.fragmentRef);
+    const key = findKey(state.fragments[slide], {
       "id": parseInt(fragment.dataset.fid)
     });
     if (slide in state.fragments && state.fragments[slide].hasOwnProperty(key)) {
@@ -55,7 +55,7 @@ const Appear = React.createClass({
       {
         style: Object.assign({}, this.props.style, styles),
         className: "fragment",
-        ref: "fragment"
+        ref: (f) => { this.fragmentRef = f; }
       }
     );
   }

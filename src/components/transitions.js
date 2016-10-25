@@ -41,11 +41,9 @@ export default {
   routerCallback(cb, immediate) {
     const { transition, transitionDuration } = this.props;
     if (transition.length > 0 && immediate !== true) {
-      setTimeout(() => {
-        return this.isMounted() && cb();
-      }, transitionDuration);
+      setTimeout(() => cb(), transitionDuration);
     } else {
-      return this.isMounted() && cb();
+      cb();
     }
   },
   componentWillEnter(cb) {

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { getStyles } from "../utils/base";
 import Radium from "radium";
-import { isUndefined } from "lodash";
+import isUndefined from "lodash/isUndefined";
 
 const format = (str) => {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -9,15 +9,15 @@ const format = (str) => {
 
 @Radium
 export default class CodePane extends Component {
+  componentDidMount() {
+    return window.Prism && window.Prism.highlightAll();
+  }
   createMarkup() {
     const { source, children } = this.props;
     const code = (isUndefined(source) || source === "") ? children : source;
     return {
       __html: format(code)
     };
-  }
-  componentDidMount() {
-    return window.Prism && window.Prism.highlightAll();
   }
   render() {
     return (
@@ -37,11 +37,11 @@ CodePane.contextTypes = {
 };
 
 CodePane.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
   lang: PropTypes.string,
   source: PropTypes.string,
-  style: PropTypes.object,
-  children: PropTypes.node,
-  className: PropTypes.string
+  style: PropTypes.object
 };
 
 CodePane.defaultProps = {

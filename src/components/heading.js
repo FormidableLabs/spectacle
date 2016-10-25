@@ -17,17 +17,17 @@ export default class Heading extends Component {
     window.addEventListener("load", this.resize);
     window.addEventListener("resize", this.resize);
   }
+  componentWillReceiveProps() {
+    this.resize();
+  }
   componentWillUnmount() {
     window.removeEventListener("load", this.resize);
     window.removeEventListener("resize", this.resize);
   }
-  componentWillReceiveProps() {
-    this.resize();
-  }
   resize() {
     if (this.props.fit) {
-      const text = this.refs.text;
-      const container = this.refs.container;
+      const text = this.textRef;
+      const container = this.containerRef;
       text.style.display = "inline-block";
       const scale = (container.offsetWidth / text.offsetWidth);
       const height = text.offsetHeight * scale;
@@ -39,7 +39,7 @@ export default class Heading extends Component {
     }
   }
   render() {
-    const { size, lineHeight, fit, style, children} = this.props;
+    const { size, lineHeight, fit, style, children } = this.props;
     const Tag = `H${size}`;
     const styles = {
       container: {
@@ -64,13 +64,13 @@ export default class Heading extends Component {
       fit ? (
         <div
           className={this.props.className}
-          ref="container"
+          ref={(c) => { this.containerRef = c; }}
           style={[
             this.context.styles.components.heading[`h${size}`],
             getStyles.call(this), styles.container
           ]}
         >
-          <span ref="text" style={[styles.text, style]}>
+          <span ref={(t) => { this.textRef = t; }} style={[styles.text, style]}>
             {children}
           </span>
         </div>
@@ -90,12 +90,12 @@ Heading.defaultProps = {
 };
 
 Heading.propTypes = {
-  className: PropTypes.string,
   children: PropTypes.node,
+  className: PropTypes.string,
   fit: PropTypes.bool,
+  lineHeight: PropTypes.number,
   size: PropTypes.number,
-  style: PropTypes.object,
-  lineHeight: PropTypes.number
+  style: PropTypes.object
 };
 
 Heading.contextTypes = {

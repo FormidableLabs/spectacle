@@ -26,18 +26,18 @@ export default class Image extends Component {
 }
 
 Image.propTypes = {
-  width: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  className: PropTypes.string,
+  display: PropTypes.string,
   height: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
   ]),
-  display: PropTypes.string,
   src: PropTypes.string,
   style: PropTypes.object,
-  className: PropTypes.string
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 };
 
 Image.contextTypes = {
