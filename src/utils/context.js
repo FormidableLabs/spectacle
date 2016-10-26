@@ -1,4 +1,5 @@
 import { Component, PropTypes } from "react";
+import { updateRoute } from "../actions";
 
 class Context extends Component {
   static displayName = "Context";
@@ -13,6 +14,10 @@ class Context extends Component {
     history: PropTypes.object,
     store: PropTypes.object
   };
+  constructor() {
+    super(...arguments);
+    this._handleLocationChange = this._handleLocationChange.bind(this);
+  }
   getChildContext() {
     const { history, styles, store } = this.props;
     return {
@@ -20,6 +25,12 @@ class Context extends Component {
       styles,
       store
     };
+  }
+  componentWillReceiveProps(nextProps) {
+    this._handleLocationChange(nextProps);
+  }
+  _handleLocationChange({ history, store }) {
+    store.dispatch(updateRoute(history.location));
   }
   render() {
     return this.props.children;
