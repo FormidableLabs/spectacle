@@ -56,10 +56,10 @@ const regexIndexOf = function (str, regex, startpos = 0) {
 
 /**
  * Transforms any inline HTML from text to real HTML
- * 
- * @param {any} children
- * @param {any} props
- * @returns
+ *
+ * @param {array|object} children components children or child
+ * @param {object} props props that are passed to the children
+ * @returns {array} children and converted inline html tags
  */
 const makeChildren = function (children, props) {
   const result = [];
@@ -83,7 +83,7 @@ const makeChildren = function (children, props) {
   // ToDo: Handle tags without children: https://github.com/component/domify/blob/master/index.js
   // ToDo: Check if we something left on the stack and print an error message, that the user has input invalid HTML
 
-  for (let child of children) {
+  for (const child of children) {
     if (child.type && child.type === "htmlinline") {
       const groups = /<([\w:]+)/.exec(child.content);
       const elementTag = groups && groups.length === 2 ? groups[1] : null;
@@ -95,7 +95,7 @@ const makeChildren = function (children, props) {
         htmlContent.push(child.content);
       } else if (isEmptyElement) {
         // when we deal with an empty element, just add this and proceed
-        const {key, ...rest} = props; // Extract key from props
+        const { key, ...rest } = props; // Extract key from props
         keyCounter += 1;
         result.push(<MarkdownHTMLElement key={`${key}-inlinehtml-${keyCounter}`} {...rest} displayMode={false} content={child.content} />);
       } else {
@@ -105,7 +105,7 @@ const makeChildren = function (children, props) {
 
         // done
         if (openTags === 0) {
-          let {key, ...rest} = props; // Extract key from props
+          const { key, ...rest } = props; // Extract key from props
           result.push(<MarkdownHTMLElement key={`${key}-inlinehtml-${keyCounter}`} {...rest} displayMode={false} content={htmlContent.join("")} />);
           keyCounter += 1;
           htmlContent = []; // Reset
@@ -122,7 +122,7 @@ const makeChildren = function (children, props) {
   return result;
 };
 
-export function defaultOnIterate(tag, props, children) {
+export const defaultOnIterate = function (tag, componentProps, children) {
   /**
    * The onIterate function is doing the actual work. It transforms the Mardown Nodes
    * to React Nodes and passes in the props and children.
@@ -131,32 +131,32 @@ export function defaultOnIterate(tag, props, children) {
   let content;
   let source;
 
-  if (props.class != null) {
-    props.className = props.class;
+  if (componentProps.class !== null && componentProps.class !== undefined) {
+    componentProps.className = componentProps.class;
   }
 
   // Maybe we need here a more generic solution with a simple mapping
-  if (props["max-width"]) {
-    if (props.style == null) {
-      props.style = {};
+  if (componentProps["max-width"]) {
+    if (componentProps.style === null || componentProps.style === undefined) {
+      componentProps.style = {};
     }
 
-    props.style.maxWidth = props["max-width"];
+    componentProps.style.maxWidth = componentProps["max-width"];
   }
 
   // Remove propagated source prop
-  if (props.source) {
-    delete props.source;
+  if (componentProps.source) {
+    delete componentProps.source;
   }
 
   switch (tag) {
     case "a":
-      content = makeChildren(children, props);
-      return <Link href={props.href} target="_blank" {...props}>{content}</Link>;
+      content = makeChildren(children, componentProps);
+      return <Link href={componentProps.href} target="_blank" {...componentProps}>{content}</Link>;
 
     case "code":
       content = Array.isArray(children) ? children.join("") : children;
-      return <Code {...props}>{content}</Code>;
+      return <Code {...componentProps}>{content}</Code>;
 
     case "pre":
       if (isString(children[0])) {
@@ -170,64 +170,63 @@ export function defaultOnIterate(tag, props, children) {
       }
 
       lang = children[0].props["data-language"] || null;
-      return <CodePane lang={lang} source={source} {...props} />;
+      return <CodePane lang={lang} source={source} {...componentProps} />;
 
     case "p":
-      content = makeChildren(children, props);
-      return <Text lineHeight={1.2} {...props}>{content}</Text>;
+      content = makeChildren(children, componentProps);
+      return <Text lineHeight={1.2} {...componentProps}>{content}</Text>;
 
     case "img":
-      console.info('Markdown-Image', props);
-      return <Image {...props} />;
+      return <Image {...componentProps} />;
 
     case "h1":
-      content = makeChildren(children, props);
-      return <Heading size={1} {...props}>{content}</Heading>;
+      content = makeChildren(children, componentProps);
+      return <Heading size={1} {...componentProps}>{content}</Heading>;
     case "h2":
-      content = makeChildren(children, props);
-      return <Heading size={2} {...props}>{content}</Heading>;
+      content = makeChildren(children, componentProps);
+      return <Heading size={2} {...componentProps}>{content}</Heading>;
     case "h3":
-      content = makeChildren(children, props);
-      return <Heading size={3} {...props}>{content}</Heading>;
+      content = makeChildren(children, componentProps);
+      return <Heading size={3} {...componentProps}>{content}</Heading>;
     case "h4":
-      content = makeChildren(children, props);
-      return <Heading size={4} {...props}>{content}</Heading>;
+      content = makeChildren(children, componentProps);
+      return <Heading size={4} {...componentProps}>{content}</Heading>;
     case "h5":
-      content = makeChildren(children, props);
-      return <Heading size={5} {...props}>{content}</Heading>;
+      content = makeChildren(children, componentProps);
+      return <Heading size={5} {...componentProps}>{content}</Heading>;
     case "h6":
-      content = makeChildren(children, props);
-      return <Heading size={6} {...props}>{content}</Heading>;
+      content = makeChildren(children, componentProps);
+      return <Heading size={6} {...componentProps}>{content}</Heading>;
 
     case "em":
-      content = makeChildren(children, props);
-      return <S type="italic" {...props}>{content}</S>;
+      content = makeChildren(children, componentProps);
+      return <S type="italic" {...componentProps}>{content}</S>;
 
     case "del":
-      content = makeChildren(children, props);
-      return <S type="strikethrough" {...props}>{content}</S>;
+      content = makeChildren(children, componentProps);
+      return <S type="strikethrough" {...componentProps}>{content}</S>;
 
     case "strong":
-      content = makeChildren(children, props);
-      return <S type="bold" {...props}>{content}</S>;
+      content = makeChildren(children, componentProps);
+      return <S type="bold" {...componentProps}>{content}</S>;
 
     case "blockquote":
-      content = makeChildren(children, props);
+      content = makeChildren(children, componentProps);
       return <BlockQuote><Quote>{content}</Quote></BlockQuote>;
 
     case "li":
-      content = makeChildren(children, props);
-      return <ListItem {...props}>{content}</ListItem>;
+      content = makeChildren(children, componentProps);
+      return <ListItem {...componentProps}>{content}</ListItem>;
 
     case "ul":
-      return <List {...props}>{children}</List>;
+      return <List {...componentProps}>{children}</List>;
 
     case "ol":
-      return <List ordered {...props}>{children}</List>;
+      return <List ordered {...componentProps}>{children}</List>;
 
     case "htmlblock":
       content = Array.isArray(children) ? children.join("") : children;
-      return <MarkdownHTMLElement content={content} {...props} />;
+      return <MarkdownHTMLElement content={content} {...componentProps} />;
 
     /**
      * Special inline HTML treatment to embed the HTML as HTML-Nodes and not as escaped text.
@@ -241,12 +240,12 @@ export function defaultOnIterate(tag, props, children) {
       };
 
     case "wrapper":
-      return <MarkdownWrapper {...props}>{children}</MarkdownWrapper>;
+      return <MarkdownWrapper {...componentProps}>{children}</MarkdownWrapper>;
 
     default:
       return null; // now our factory is going to create the tag with React.createElement
   }
-}
+};
 
 export const defaultMarkdownOptions = {
   html: true,
@@ -336,10 +335,10 @@ const DEFAULT_RULES = {
 /**
  * Recursiv Markdown Tree converting function using the above rules and options.
  *
- * @param {any} tokens
- * @param {any} convertRules
- * @param {any} options
- * @returns
+ * @param {array} tokens nested array of tokens
+ * @param {object} convertRules map of convert rules (functions)
+ * @param {object} options markdown options like linkify/html
+ * @returns {array} converted tree with the given rules
  */
 const convertTree = function (tokens, convertRules, options) {
   const convertBranch = function (tkns, nested) {
@@ -400,8 +399,8 @@ const mdReactFactory = function (options = {}) {
   /**
    * Simple function to determine if we need to render children or not.
    *
-   * @param {any} tag
-   * @returns
+   * @param {any} tag html tag to check
+   * @returns {boolean} true if we neeed to render the children
    */
   const renderChildren = function (tag) {
     return ["img", "hr", "br"].indexOf(tag) < 0;
@@ -411,12 +410,12 @@ const mdReactFactory = function (options = {}) {
     let tag = tree.shift();
     const key = onGenerateKey(tag, index);
 
-    let props = (tree.length && isPlainObject(tree[0]))
+    let componentProps = (tree.length && isPlainObject(tree[0]))
       ? Object.assign(tree.shift(), { key })
       : { key };
 
     if (level === 0) {
-      props = { ...props, ...rootElementProps };
+      componentProps = { ...componentProps, ...rootElementProps };
     }
 
     const children = tree.map(
@@ -429,9 +428,9 @@ const mdReactFactory = function (options = {}) {
     tag = tags[tag] || tag;
 
     // Transform styles to react
-    if (isString(props.style)) {
-      props.style = zipObject(
-        props.style.split(";")
+    if (isString(componentProps.style)) {
+      componentProps.style = zipObject(
+        componentProps.style.split(";")
         .map((prop) => prop.split(":"))
         .map((keyVal) => [camelCase(keyVal[0].trim()), keyVal[1].trim()])
       );
@@ -439,12 +438,12 @@ const mdReactFactory = function (options = {}) {
 
     // Check for custom iterate function
     if ((typeof onIterate === "function")) {
-      const element = onIterate(tag, props, children, level);
+      const element = onIterate(tag, componentProps, children, level);
       if (element) {
         return element;
       }
     }
-    return React.createElement(tag, props, renderChildren(tag) ? children : undefined);
+    return React.createElement(tag, componentProps, renderChildren(tag) ? children : undefined);
   };
 
   return function (text) {
@@ -472,17 +471,17 @@ export default class Markdown extends React.Component {
 
 Markdown.propTypes = {
   children: PropTypes.node,
-  source: PropTypes.string.isRequired,
-  onIterate: PropTypes.func,
-  onGenerateKey: PropTypes.func,
-  tags: PropTypes.object,
-  presetName: PropTypes.string,
-  markdownOptions: PropTypes.object,
-  enableRules: PropTypes.array,
-  disableRules: PropTypes.array,
+  className: PropTypes.string,
   convertRules: PropTypes.object,
+  disableRules: PropTypes.array,
+  enableRules: PropTypes.array,
+  markdownOptions: PropTypes.object,
+  onGenerateKey: PropTypes.func,
+  onIterate: PropTypes.func,
   plugins: PropTypes.array,
-  className: PropTypes.string
+  presetName: PropTypes.string,
+  source: PropTypes.string.isRequired,
+  tags: PropTypes.object
 };
 
 Markdown.defaultProps = {

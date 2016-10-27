@@ -15,8 +15,8 @@ export default class MarkdownWrapper extends Component {
 
 MarkdownWrapper.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object
 };
 
 MarkdownWrapper.contextTypes = {
