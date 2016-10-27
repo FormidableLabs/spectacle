@@ -17,6 +17,7 @@ class Context extends Component {
   constructor() {
     super(...arguments);
     this._handleLocationChange = this._handleLocationChange.bind(this);
+    this._handleLocationChange(this.props);
   }
   getChildContext() {
     const { history, styles, store } = this.props;
@@ -29,8 +30,12 @@ class Context extends Component {
   componentWillReceiveProps(nextProps) {
     this._handleLocationChange(nextProps);
   }
-  _handleLocationChange({ history, store }) {
-    store.dispatch(updateRoute(history.location));
+  _handleLocationChange({ history, store, children: deck }) {
+    const slideCount = deck.props.children.length;
+    store.dispatch(updateRoute({
+      location: history.location,
+      slideCount
+    }));
   }
   render() {
     return this.props.children;
