@@ -7,7 +7,9 @@ export default class Table extends Component {
   render() {
     return (
       <table className={this.props.className} style={[this.context.styles.components.table, getStyles.call(this), this.props.style]}>
-        {this.props.children}
+        <tbody>
+          {this.props.children}
+        </tbody>
       </table>
     );
   }
