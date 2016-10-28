@@ -1,64 +1,72 @@
-import React, { PropTypes } from "react";
+import React, { Component, PropTypes } from "react";
 import { findDOMNode } from "react-dom";
-import tweenState from "react-tween-state";
 import findKey from "lodash/findKey";
 import { connect } from "react-redux";
+import { VictoryAnimation } from "victory-core";
 
-const Appear = React.createClass({
-  propTypes: {
-    children: PropTypes.node,
-    route: PropTypes.object,
-    style: PropTypes.object
-  },
-  contextTypes: {
-    export: PropTypes.bool,
-    overview: PropTypes.bool,
-    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  },
-  mixins: [tweenState.Mixin],
-  getInitialState() {
-    return {
-      active: false,
-      opacity: this.props.route.params.indexOf("export") !== -1 || this.props.route.params.indexOf("overview") !== -1 ? 1 : 0
-    };
-  },
+class Appear extends Component {
+  state = {
+    active: false
+  };
+
   componentWillReceiveProps(nextProps) {
     const state = nextProps.fragment;
     const slide = this.props.route.slide;
     const fragment = findDOMNode(this.fragmentRef);
     const key = findKey(state.fragments[slide], {
-      "id": parseInt(fragment.dataset.fid)
+      id: parseInt(fragment.dataset.fid)
     });
-    if (slide in state.fragments && state.fragments[slide].hasOwnProperty(key)) {
-      this.setState({
-        active: state.fragments[slide][key].visible
-      }, () => {
-        let endVal = this.state.active ? 1 : 0;
-        if (this.props.route.params.indexOf("export") !== -1 || this.props.route.params.indexOf("overview") !== -1) {
-          endVal = 1;
-        }
-        this.tweenState("opacity", {
-          easing: tweenState.easingTypes.easeInOutQuad,
-          duration: 300,
-          endValue: endVal
-        });
-      });
+
+    const shouldDisableAnimation = (
+      this.props.route.params.indexOf("export") !== -1 ||
+      this.props.route.params.indexOf("overview") !== -1
+    );
+
+    if (shouldDisableAnimation) {
+      this.setState({ active: true });
+      return;
     }
-  },
+
+    if (slide in state.fragments && state.fragments[slide].hasOwnProperty(key)) {
+      const active = state.fragments[slide][key].visible;
+      this.setState({ active });
+    }
+  }
+
   render() {
-    const styles = {
-      opacity: this.getTweeningValue("opacity")
-    };
     const child = React.Children.only(this.props.children);
-    return React.cloneElement(
-      child,
-      {
-        style: Object.assign({}, this.props.style, styles),
-        className: "fragment",
-        ref: (f) => { this.fragmentRef = f; }
-      }
+    const endValue = this.state.active ? 1 : 0;
+
+    return (
+      <VictoryAnimation
+        data={{ opacity: endValue }}
+        duration={300}
+        easing="quadInOut"
+      >
+        {({ opacity }) => (
+          React.cloneElement(child,
+            {
+              className: "fragment",
+              style: { opacity },
+              ref: (f) => { this.fragmentRef = f; }
+            }
+          )
+        )}
+      </VictoryAnimation>
     );
   }
-});
+}
+
+Appear.propTypes = {
+  children: PropTypes.node,
+  route: PropTypes.object,
+  style: PropTypes.object
+};
+
+Appear.contextTypes = {
+  export: PropTypes.bool,
+  overview: PropTypes.bool,
+  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+};
 
 export default connect((state) => state)(Appear);
