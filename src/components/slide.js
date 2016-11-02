@@ -1,53 +1,19 @@
-import React, { PropTypes } from "react";
-import tweenState from "react-tween-state";
+import React, { Component, PropTypes } from "react";
 import isUndefined from "lodash/isUndefined";
 import { getStyles } from "../utils/base";
-import Transitions from "./transitions";
 import radium from "radium";
 import { addFragment } from "../actions";
+import { Transitionable, renderTransition } from "./transitionable";
 
-const Slide = React.createClass({
-  displayName: "Slide",
-  propTypes: {
-    align: PropTypes.string,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    dispatch: PropTypes.func,
-    export: PropTypes.bool,
-    hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    lastSlide: PropTypes.number,
-    margin: PropTypes.number,
-    maxHeight: PropTypes.number,
-    maxWidth: PropTypes.number,
-    notes: PropTypes.any,
-    presenterStyle: PropTypes.object,
-    print: PropTypes.bool,
-    slideIndex: PropTypes.number,
-    style: PropTypes.object,
-    viewerScaleMode: PropTypes.bool
-  },
-  contextTypes: {
-    styles: PropTypes.object,
-    export: PropTypes.bool,
-    print: PropTypes.object,
-    overview: PropTypes.bool,
-    store: PropTypes.object
-  },
-  mixins: [tweenState.Mixin, Transitions],
-  getDefaultProps() {
-    return {
-      align: "center center",
-      presenterStyle: {},
-      style: {},
-      viewerScaleMode: false
-    };
-  },
-  getInitialState() {
-    return {
-      zoom: 1,
-      contentScale: 1
-    };
-  },
+@Transitionable
+class Slide extends Component {
+  state = {
+    contentScale: 1,
+    transitioning: true,
+    z: 1,
+    zoom: 1
+  };
+
   componentDidMount() {
     this.setZoom();
     const slide = this.slideRef;
@@ -64,10 +30,12 @@ const Slide = React.createClass({
     }
     window.addEventListener("load", this.setZoom);
     window.addEventListener("resize", this.setZoom);
-  },
+  }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.setZoom);
-  },
+  }
+
   setZoom() {
     const mobile = window.matchMedia("(max-width: 628px)").matches;
     const content = this.contentRef;
@@ -91,7 +59,7 @@ const Slide = React.createClass({
         contentScale
       });
     }
-  },
+  }
 
   allStyles() {
     const { align, print } = this.props;
@@ -140,8 +108,9 @@ const Slide = React.createClass({
     } : {};
 
     return { styles, overViewStyles, printStyles };
-  },
+  }
 
+  @renderTransition
   render() {
     const { presenterStyle, children } = this.props;
     const { styles, overViewStyles, printStyles } = this.allStyles();
@@ -157,7 +126,6 @@ const Slide = React.createClass({
         style={[
           styles.outer,
           getStyles.call(this),
-          this.getTransitionStyles(),
           printStyles,
           presenterStyle
         ]}
@@ -177,6 +145,40 @@ const Slide = React.createClass({
       </div>
     );
   }
-});
+}
+
+Slide.defaultProps = {
+  align: "center center",
+  presenterStyle: {},
+  style: {},
+  viewerScaleMode: false
+};
+
+Slide.propTypes = {
+  align: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  dispatch: PropTypes.func,
+  export: PropTypes.bool,
+  hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  lastSlide: PropTypes.number,
+  margin: PropTypes.number,
+  maxHeight: PropTypes.number,
+  maxWidth: PropTypes.number,
+  notes: PropTypes.any,
+  presenterStyle: PropTypes.object,
+  print: PropTypes.bool,
+  slideIndex: PropTypes.number,
+  style: PropTypes.object,
+  viewerScaleMode: PropTypes.bool
+};
+
+Slide.contextTypes = {
+  styles: PropTypes.object,
+  export: PropTypes.bool,
+  print: PropTypes.object,
+  overview: PropTypes.bool,
+  store: PropTypes.object
+};
 
 export default radium(Slide);
