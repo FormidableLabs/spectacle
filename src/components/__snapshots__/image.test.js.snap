@@ -1,0 +1,18 @@
+exports[`<Image /> should render correctly. 1`] = `
+<Image
+  display="inline-block"
+  height={1440}
+  src="foo.png"
+  width={2560}>
+  <img
+    data-radium={true}
+    src="foo.png"
+    style={
+      Object {
+        "display": "inline-block",
+        "height": 1440,
+        "width": 2560,
+      }
+    } />
+</Image>
+`;

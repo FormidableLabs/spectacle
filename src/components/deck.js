@@ -332,10 +332,10 @@ export default class Deck extends Component {
       hash: this.props.route.slide,
       slideIndex: slide,
       lastSlide: this.state.lastSlide,
-      transition: child.props.transition.length ?
+      transition: (child.props.transition || {}).length ?
         child.props.transition :
         this.props.transition,
-      transitionDuration: child.props.transition.transitionDuration ?
+      transitionDuration: (child.props.transition || {}).transitionDuration ?
         child.props.transitionDuration :
         this.props.transitionDuration
     });

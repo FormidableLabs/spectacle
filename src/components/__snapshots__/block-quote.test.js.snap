@@ -1,0 +1,13 @@
+exports[`<BlockQuote /> should render correctly. 1`] = `
+<BlockQuote>
+  <blockquote
+    data-radium={true}
+    style={
+      Object {
+        "fontStyle": "oblique",
+      }
+    }>
+    Some Quote
+  </blockquote>
+</BlockQuote>
+`;

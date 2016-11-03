@@ -1,0 +1,486 @@
+exports[`<Deck /> should render correctly. 1`] = `
+<Connect(Deck)
+  transition={
+    Array [
+      "zoom",
+      "slide",
+    ]
+  }
+  transitionDuration={500}>
+  <Deck
+    controls={true}
+    dispatch={[Function]}
+    globalStyles={true}
+    progress="pacman"
+    route={
+      Object {
+        "params": Array [],
+        "slide": 0,
+      }
+    }
+    transition={
+      Array [
+        "zoom",
+        "slide",
+      ]
+    }
+    transitionDuration={500}>
+    <div
+      className="spectacle-deck"
+      data-radium={true}
+      onClick={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "backgroundColor": "",
+          "height": "100%",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+        }
+      }>
+      <Controls
+        currentSlide={0}
+        onNext={[Function]}
+        onPrev={[Function]}
+        totalSlides={2}>
+        <div
+          data-radium={true}>
+          <button
+            onClick={[Function]}
+            type="button">
+            <svg
+              height="32px"
+              viewBox="0 0 512 828.586"
+              width="32px">
+              <path
+                d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z" />
+            </svg>
+          </button>
+        </div>
+      </Controls>
+      <ReactTransitionGroup
+        childFactory={[Function]}
+        component="div"
+        style={
+          Array [
+            Object {
+              "height": "100%",
+              "perspective": 1000,
+              "transformStyle": "flat",
+              "width": "100%",
+            },
+          ]
+        }>
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "height": "100%",
+              "perspective": 1000,
+              "transformStyle": "flat",
+              "width": "100%",
+            }
+          }>
+          <div
+            data-radium={true}
+            dispatch={[Function]}
+            export={false}
+            hash={0}
+            id={1}
+            lastSlide={0}
+            print={false}
+            slideIndex={0}
+            transition={
+              Array [
+                "zoom",
+                "slide",
+              ]
+            }
+            transitionDuration={500} />
+        </div>
+      </ReactTransitionGroup>
+      <Progress
+        currentSlide={0}
+        items={
+          Array [
+            <div
+              id={1}>
+              Slide 1
+          </div>,
+            <div
+              id={2}>
+              Slide 2
+          </div>,
+          ]
+        }
+        type="pacman">
+        <div
+          data-radium={true}
+          style={Object {}}>
+          <div
+            data-radium={true}>
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "left": "-15px",
+                  "top": "-20px",
+                }
+              }>
+              <div
+                data-radium={true}
+                style={
+                  Object {
+                    "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
+                  }
+                } />
+              <div
+                data-radium={true}
+                style={
+                  Object {
+                    "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
+                  }
+                } />
+            </div>
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "left": "-15px",
+                  "opacity": 0,
+                  "top": "-20px",
+                }
+              } />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "left": "5px",
+                  "top": "-20px",
+                }
+              } />
+          </div>
+        </div>
+      </Progress>
+      <Fullscreen>
+        <svg
+          data-radium={true}
+          height="30px"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          style={
+            Object {
+              "bottom": 20,
+              "cursor": "pointer",
+              "opacity": 0,
+              "position": "absolute",
+              "right": 20,
+              "transition": "300ms opacity ease",
+            }
+          }
+          viewBox="0 0 512 512"
+          width="30px">
+          <path
+            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z" />
+        </svg>
+      </Fullscreen>
+      <Style
+        rules={
+          Object {
+            ".spectacle-presenter-next .fragment": Object {
+              "display": "none !important",
+            },
+            "body": Array [],
+          }
+        }
+        scopeSelector="">
+        <style
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
+            }
+          } />
+      </Style>
+    </div>
+  </Deck>
+</Connect(Deck)>
+`;
+
+exports[`<Deck /> should render the export configuration when specified. 1`] = `
+<Connect(Deck)>
+  <Deck
+    controls={true}
+    dispatch={[Function]}
+    globalStyles={true}
+    progress="pacman"
+    route={
+      Object {
+        "params": Array [
+          "export",
+        ],
+        "slide": 0,
+      }
+    }
+    transitionDuration={500}>
+    <div
+      className="spectacle-deck"
+      data-radium={true}
+      onClick={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "backgroundColor": "",
+          "height": "100%",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+        }
+      }>
+      <Export
+        route={
+          Object {
+            "params": Array [
+              "export",
+            ],
+            "slide": 0,
+          }
+        }
+        slides={
+          Array [
+            <div
+              id={1}>
+              Slide 1
+          </div>,
+            <div
+              id={2}>
+              Slide 2
+          </div>,
+          ]
+        }>
+        <div
+          className="spectacle-export"
+          data-radium={true}
+          style={
+            Object {
+              "height": "100%",
+              "width": "100%",
+            }
+          }>
+          <div
+            export={true}
+            id={1}
+            print={false}
+            slideIndex={0}
+            transition={Array []}
+            transitionDuration={0}>
+            Slide 1
+          </div>
+          <div
+            export={true}
+            id={2}
+            print={false}
+            slideIndex={1}
+            transition={Array []}
+            transitionDuration={0}>
+            Slide 2
+          </div>
+        </div>
+      </Export>
+      <Style
+        rules={
+          Object {
+            ".spectacle-presenter-next .fragment": Object {
+              "display": "none !important",
+            },
+            "body": Array [],
+          }
+        }
+        scopeSelector="">
+        <style
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "body{min-width: 1100px;
+            min-height: 850px;
+            overflow: auto;}.spectacle-presenter-next .fragment{display: none !important;}",
+            }
+          } />
+      </Style>
+    </div>
+  </Deck>
+</Connect(Deck)>
+`;
+
+exports[`<Deck /> should render the overview configuration when specified. 1`] = `
+<Connect(Deck)>
+  <Deck
+    controls={true}
+    dispatch={[Function]}
+    globalStyles={true}
+    progress="pacman"
+    route={
+      Object {
+        "params": Array [
+          "overview",
+        ],
+        "slide": 0,
+      }
+    }
+    transitionDuration={500}>
+    <div
+      className="spectacle-deck"
+      data-radium={true}
+      onClick={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": "100%",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+        }
+      }>
+      <Overview
+        route={
+          Object {
+            "params": Array [
+              "overview",
+            ],
+            "slide": 0,
+          }
+        }
+        slide={0}
+        slides={
+          Array [
+            <div
+              id={1}>
+              Slide 1
+          </div>,
+            <div
+              id={2}>
+              Slide 2
+          </div>,
+          ]
+        }>
+        <div
+          className="spectacle-overview"
+          data-radium={true}
+          style={
+            Object {
+              "height": "100%",
+              "overflow": "scroll",
+              "width": "100%",
+            }
+          }>
+          <div
+            data-radium={true}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+                "float": "left",
+                "height": NaN,
+                "opacity": 1,
+                "position": "relative",
+                "width": NaN,
+              }
+            }>
+            <div
+              appearOff={true}
+              export={false}
+              id={1}
+              print={false}
+              slideIndex={0}
+              transition={Array []}
+              transitionDuration={0}>
+              Slide 1
+            </div>
+          </div>
+          <div
+            data-radium={true}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+                "float": "left",
+                "height": NaN,
+                "opacity": 0.5,
+                "position": "relative",
+                "width": NaN,
+              }
+            }>
+            <div
+              appearOff={true}
+              export={false}
+              id={2}
+              print={false}
+              slideIndex={1}
+              transition={Array []}
+              transitionDuration={0}>
+              Slide 2
+            </div>
+          </div>
+        </div>
+      </Overview>
+      <Fullscreen>
+        <svg
+          data-radium={true}
+          height="30px"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          style={
+            Object {
+              "bottom": 20,
+              "cursor": "pointer",
+              "opacity": 0,
+              "position": "absolute",
+              "right": 20,
+              "transition": "300ms opacity ease",
+            }
+          }
+          viewBox="0 0 512 512"
+          width="30px">
+          <path
+            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z" />
+        </svg>
+      </Fullscreen>
+      <Style
+        rules={
+          Object {
+            ".spectacle-presenter-next .fragment": Object {
+              "display": "none !important",
+            },
+            "body": Array [],
+          }
+        }
+        scopeSelector="">
+        <style
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
+            }
+          } />
+      </Style>
+    </div>
+  </Deck>
+</Connect(Deck)>
+`;

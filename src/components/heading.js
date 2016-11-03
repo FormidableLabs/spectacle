@@ -30,7 +30,7 @@ export default class Heading extends Component {
       const container = this.containerRef;
       text.style.display = "inline-block";
       const scale = (container.offsetWidth / text.offsetWidth);
-      const height = text.offsetHeight * scale;
+      const height = (text.offsetHeight * scale) || 0;
       text.style.display = "block";
       this.setState({
         scale,

@@ -1,0 +1,13 @@
+exports[`<Fit /> should render with style \`flex: 0\` 1`] = `
+<Fit>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "flex": 0,
+      }
+    }>
+    Hello
+  </div>
+</Fit>
+`;
