@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react";
+import { getStyles } from "../utils/base";
 import Radium from "radium";
 
 @Radium
@@ -19,7 +20,7 @@ export default class S extends Component {
       styles = { ...styles, fontStyle: "italic" };
     }
     return (
-      <span className={this.props.className} style={[styles, this.context.styles.components.s[type], style]}>
+      <span className={this.props.className} style={[styles, this.context.styles.components.s[type], getStyles.call(this), style]}>
         {children}
       </span>
     );
