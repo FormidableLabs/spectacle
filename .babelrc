@@ -10,6 +10,7 @@
   "env": {
     "production": {
       "plugins": [
+        "transform-es2015-modules-commonjs",
         "transform-react-remove-prop-types",
         "transform-react-constant-elements",
         "transform-react-inline-elements",
