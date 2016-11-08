@@ -51,7 +51,6 @@
     "babel-runtime": "^6.18.0",
     "css-loader": "^0.25.0",
     "eslint": "^3.8.0",
-    "eslint-config-defaults": "^9.0.0",
     "eslint-config-formidable": "^2.0.1",
     "eslint-plugin-filenames": "^1.1.0",
     "eslint-plugin-import": "^2.0.1",
