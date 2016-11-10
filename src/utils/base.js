@@ -112,10 +112,10 @@ export const getStyles = function getStyles() {
   }
   if (textSize) {
     styles.fontSize = textSize;
-    if (!this.warnedAboutFontSize && this.context.store.getState().style.globalStyleSet) {
+    if (process.env.NODE_ENV !== "production" && !this.warnedAboutFontSize && this.context.store.getState().style.globalStyleSet) {
       const fontSize = convertFontSizeToPx(textSize) || recommendedMinFontSizePx;
       if (fontSize < recommendedMinFontSizePx) {
-        console.warn(`Prop \`textSize="${textSize}"\` is below the recommended minimum of ${recommendedMinFontSizePx}px`); // eslint-disable-line
+        console.warn(`prop \`textSize="${textSize}"\` is below the recommended minimum of ${recommendedMinFontSizePx}px`); // eslint-disable-line
         this.warnedAboutFontSize = true;
       }
     }
