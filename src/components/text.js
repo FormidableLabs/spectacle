@@ -95,5 +95,6 @@ Text.propTypes = {
 };
 
 Text.contextTypes = {
-  styles: PropTypes.object
+  styles: PropTypes.object,
+  store: PropTypes.object
 };

@@ -7,7 +7,7 @@ import Radium, { Style } from "radium";
 import filter from "lodash/filter";
 import size from "lodash/size";
 import { connect } from "react-redux";
-import { updateFragment } from "../actions";
+import { setGlobalStyle, updateFragment } from "../actions";
 
 import Presenter from "./presenter";
 import Export from "./export";
@@ -75,6 +75,11 @@ export default class Deck extends Component {
   }
   componentWillUnmount() {
     this._detachEvents();
+  }
+  componentDidUpdate() {
+    if (this.props.globalStyles && !this.props.style.globalStyleSet) {
+      this.props.dispatch(setGlobalStyle());
+    }
   }
   _attachEvents() {
     window.addEventListener("storage", this._goToSlide);

@@ -41,5 +41,6 @@ Image.propTypes = {
 };
 
 Image.contextTypes = {
-  styles: PropTypes.object
+  styles: PropTypes.object,
+  store: PropTypes.object
 };

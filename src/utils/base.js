@@ -7,38 +7,43 @@ const parseFontSize = function (fontSize) {
   return { size, unit };
 };
 
+const getFontSizeFromElement = function (element) {
+  const fontSize = window.getComputedStyle ?
+    window.getComputedStyle(element).getPropertyValue("font-size") :
+    element.currentStyle.fontSize;
+  return fontSize ? parseFontSize(fontSize) : null;
+}
+
 const convertFontSizeToPx = function (fontSize) {
   let convertedFontSize;
 
   if (typeof textSize === "number") {
     convertedFontSize = fontSize;
   } else if (typeof fontSize === "string") {
-    const parsedFontSize = parseFontSize(fontSize);
-    const defaultFontSize = window.getComputedStyle ?
-      window.getComputedStyle(document.body).getPropertyValue("font-size") :
-      document.body.currentStyle.fontSize;
-    const parsedDefaultFont = defaultFontSize ? parseFontSize(defaultFontSize) : null;
+    const parsedFont = parseFontSize(fontSize);
+    const bodyFont = getFontSizeFromElement(document.body);
+    const htmlFont = getFontSizeFromElement(document.documentElement);
 
-    switch (parsedFontSize.unit) {
+    switch (parsedFont.unit) {
       case "px":
-        convertedFontSize = parsedFontSize.size;
+        convertedFontSize = parsedFont.size;
         break;
       case "pt":
-        convertedFontSize = parsedFontSize.size * 96 / 72;
+        convertedFontSize = parsedFont.size * 96 / 72;
         break;
       case "%":
-        if (parsedDefaultFont) {
-          convertedFontSize = parsedDefaultFont.size * parsedFontSize.size / 100;
+        if (bodyFont) {
+          convertedFontSize = bodyFont.size * parsedFont.size / 100;
         }
         break;
       case "em":
-        if (parsedDefaultFont) {
-          convertedFontSize = parsedDefaultFont.size * parsedFontSize.size;
+        if (bodyFont) {
+          convertedFontSize = bodyFont.size * parsedFont.size;
         }
         break;
       case "rem":
-        if (parsedDefaultFont) {
-          convertedFontSize = parsedDefaultFont.size * parsedFontSize.size;
+        if (htmlFont) {
+          convertedFontSize = htmlFont.size * parsedFont.size;
         }
         break;
     }
@@ -107,10 +112,10 @@ export const getStyles = function getStyles() {
   }
   if (textSize) {
     styles.fontSize = textSize;
-    if (!this.warnedAboutFontSize) {
+    if (!this.warnedAboutFontSize && this.context.store.getState().style.globalStyleSet) {
       const fontSize = convertFontSizeToPx(textSize) || recommendedMinFontSizePx;
       if (fontSize < recommendedMinFontSizePx) {
-        console.warn(`Your \`textSize\` is below the recommended minimum of ${recommendedMinFontSizePx}px`); // eslint-disable-line
+        console.warn(`Prop \`textSize="${textSize}"\` is below the recommended minimum of ${recommendedMinFontSizePx}px`); // eslint-disable-line
         this.warnedAboutFontSize = true;
       }
     }
