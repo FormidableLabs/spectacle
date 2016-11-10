@@ -12,7 +12,7 @@ const getFontSizeFromElement = function (element) {
     window.getComputedStyle(element).getPropertyValue("font-size") :
     element.currentStyle.fontSize;
   return fontSize ? parseFontSize(fontSize) : null;
-}
+};
 
 const convertFontSizeToPx = function (fontSize) {
   let convertedFontSize;

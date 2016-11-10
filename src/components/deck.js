@@ -73,13 +73,13 @@ export default class Deck extends Component {
     });
     this._attachEvents();
   }
-  componentWillUnmount() {
-    this._detachEvents();
-  }
   componentDidUpdate() {
-    if (this.props.globalStyles && !this.props.style.globalStyleSet) {
+    if (this.props.globalStyles && !this.context.store.getState().style.globalStyleSet) {
       this.props.dispatch(setGlobalStyle());
     }
+  }
+  componentWillUnmount() {
+    this._detachEvents();
   }
   _attachEvents() {
     window.addEventListener("storage", this._goToSlide);
