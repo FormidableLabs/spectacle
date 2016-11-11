@@ -60,6 +60,7 @@ export default class Heading extends Component {
         lineHeight
       }
     };
+    const typefaceStyle = this.context.typeface || {};
     return (
       fit ? (
         <div
@@ -70,14 +71,14 @@ export default class Heading extends Component {
             getStyles.call(this), styles.container
           ]}
         >
-          <span ref={(t) => { this.textRef = t; }} style={[styles.text, style]}>
+          <span ref={(t) => { this.textRef = t; }} style={[styles.text, style, typefaceStyle]}>
             {children}
           </span>
         </div>
       ) : (
         createElement(Tag, {
           className: this.props.className,
-          style: [this.context.styles.components.heading[`h${size}`], getStyles.call(this), styles.nonFit, style]
+          style: [this.context.styles.components.heading[`h${size}`], getStyles.call(this), styles.nonFit, style, typefaceStyle]
         }, children)
       )
     );
@@ -100,5 +101,6 @@ Heading.propTypes = {
 
 Heading.contextTypes = {
   styles: PropTypes.object,
-  store: PropTypes.object
+  store: PropTypes.object,
+  typeface: PropTypes.object
 };

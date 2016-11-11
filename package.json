@@ -24,6 +24,7 @@
     "react-addons-transition-group": "^15.3.2",
     "react-history": "^0.15.1",
     "react-redux": "^4.0.0",
+    "react-typography": "^0.15.0",
     "redux": "^3.0.4",
     "redux-actions": "^0.12.0",
     "tween-functions": "1.1.0",

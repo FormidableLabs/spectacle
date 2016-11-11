@@ -22,6 +22,7 @@ import TableItem from "./components/table-item";
 import TableRow from "./components/table-row";
 import Table from "./components/table";
 import Text from "./components/text";
+import Typeface from "./components/typeface";
 
 export {
   Appear,
@@ -47,5 +48,6 @@ export {
   TableItem,
   TableRow,
   Table,
-  Text
+  Text,
+  Typeface
 };
