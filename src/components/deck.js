@@ -8,6 +8,7 @@ import filter from "lodash/filter";
 import size from "lodash/size";
 import { connect } from "react-redux";
 import { setGlobalStyle, updateFragment } from "../actions";
+import Typeface from "./typeface";
 
 import Presenter from "./presenter";
 import Export from "./export";
@@ -409,6 +410,15 @@ export default class Deck extends Component {
       this.props.route.params.indexOf("overview") === -1 &&
       this.props.route.params.indexOf("presenter") === -1;
 
+    const { googleFonts = {} } = this.context.styles;
+    const googleFontsElements = Object.keys(googleFonts).map((key, index) => (
+      <Typeface
+        googleFont={googleFonts[key].name}
+        styles={googleFonts[key].styles}
+        key={`gFont-${index}`}
+      />
+    ));
+
     return (
       <div
         className="spectacle-deck"
@@ -424,6 +434,7 @@ export default class Deck extends Component {
               onNext={this._nextSlide.bind(this)}
             />}
 
+        {googleFontsElements}
         {componentToRender}
 
         {

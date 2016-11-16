@@ -21,7 +21,7 @@ describe("@renderTransition", () => {
 
 describe("@Transitionable", () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    jest.resetAllMocks();
   });
 
   it("should add ReactCSSTransitionGroup lifecycle functions to the decorated class.", () => {

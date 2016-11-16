@@ -43,6 +43,7 @@ ReactJS based Presentation Library
     - [S (Base)](#s-base)
     - [Table, TableRow, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
     - [Text (Base)](#text-base)
+    - [Typeface](#typeface)
   - [Base Props](#base-props)
 - [Third Party Extensions](#third-party)
 
@@ -87,7 +88,7 @@ To present:
 
 - Run `npm start`
 - Open two browser windows on two different screens
-- On your screen visit [http://localhost:3000/](http://localhost:3000/). You will be redirected to a URL containing the slide id. 
+- On your screen visit [http://localhost:3000/](http://localhost:3000/). You will be redirected to a URL containing the slide id.
 - Add `presenter&` immediately after the questionmark, e.g.: [http://localhost:3000/#/?presenter&_k=wbyhif](http://localhost:3000/#/?presenter&_k=wbyhif)
 - On the presentation screen visit [http://localhost:3000/](http://localhost:3000/)
 - Give an amazingly stylish presentation
@@ -194,13 +195,15 @@ You will want to edit `index.html` to include any web fonts or additional CSS th
 <a name="createthemecolors-fonts"></a>
 #### createTheme(colors, fonts)
 
-Spectacle's functional theme system allows you to pass in color and font variables that you can use on your elements. See the example below:
+Spectacle's functional theme system allows you to pass in color and font variables that you can use on your elements. The fonts configuration object can take a string for a system font or an object that specifies it‘s a Google Font. If you use a Google Font you can provide a styles array for loading different weights and variations. Google Font tags will be automatically created. See the example below:
 
 ```jsx
 const theme = createTheme({
-  primary: "red"
+  primary: "red",
+  secondary: "blue"
 }, {
-  primary: "Helvetica"
+  primary: "Helvetica",
+  secondary: { name: "Droid Serif", googleFont: true, styles: [ "400", "700i" ] }
 });
 ```
 
@@ -445,6 +448,30 @@ Every component above that has `(Base)` after it has been extended from a common
 | bgColor | React.PropTypes.string | Set `backgroundColor` value|
 | bgImage | React.PropTypes.string | Set `backgroundImage` value|
 | bgDarken | React.PropTypes.number | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image|
+
+<a name="typeface"></a>
+#### Typeface
+
+The `Typeface` tag is used to apply a specific font to text content. It can either use a font that exists on the system or load a font from the Google Fonts library. `Typeface` requires either `font` or `googleFont` to be defined.
+
+| Name | PropType | Description |
+| ---- | -------- | ----------- |
+| font | React.PropTypes.string | Use a font from the local system |
+| googleFont | React.PropTypes.string | Use a font from the Google Fonts library |
+| weight | React.PropTypes.number | Numeric weight value for the font. Default: `400`. |
+| italic | React.PropTypes.boolean | Use an italics variant of the font if it exists. Default: `false`. |
+
+```jsx
+<Typeface googleFont="Roboto Slab" weight={600}>
+  <Text>This text is using bold Roboto Slab from Google Fonts.</Text>
+</Typeface>
+```
+
+```jsx
+<Typeface font="SF Text" weight={400} italic={true}>
+  <Text>This text is using the San Francisco Text font from the system.</Text>
+</Typeface>
+```
 
 <a name="third-party"></a>
 ## Third Party Extensions

@@ -15,10 +15,21 @@ const defaultFonts = {
 
 const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
   const colors = Object.assign({}, defaultColors, colorArgs);
-  const fonts = Object.assign({}, defaultFonts, fontArgs);
+  let normalizedFontArgs = {};
+  let googleFonts = {};
+  Object.keys(fontArgs).forEach((key) => {
+    const value = fontArgs[key];
+    const fontName = value.hasOwnProperty("name") ? value.name : value;
+    normalizedFontArgs = { ...normalizedFontArgs, [key]: fontName };
+    if (value.hasOwnProperty("googleFont") && value.googleFont) {
+      googleFonts = { ...googleFonts, [key]: value };
+    }
+  });
+  const fonts = Object.assign({}, defaultFonts, normalizedFontArgs);
   return {
     colors: colors,
     fonts: fonts,
+    googleFonts,
     global: {
       body: {
         background: colors.primary,

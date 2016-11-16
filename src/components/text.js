@@ -59,6 +59,7 @@ export default class Text extends Component {
         lineHeight
       }
     };
+    const typefaceStyle = this.context.typeface || {};
     return (
       fit ? (
         <div
@@ -68,13 +69,13 @@ export default class Text extends Component {
         >
           <span
             ref={(t) => { this.textRef = t; }}
-            style={[styles.text, style]}
+            style={[styles.text, style, typefaceStyle]}
           >
             {children}
           </span>
         </div>
       ) : (
-        <p className={this.props.className} style={[this.context.styles.components.text, getStyles.call(this), styles.nonFit, style]}>
+        <p className={this.props.className} style={[this.context.styles.components.text, getStyles.call(this), styles.nonFit, style, typefaceStyle]}>
           {children}
         </p>
       )
@@ -96,5 +97,6 @@ Text.propTypes = {
 
 Text.contextTypes = {
   styles: PropTypes.object,
-  store: PropTypes.object
+  store: PropTypes.object,
+  typeface: PropTypes.object
 };
