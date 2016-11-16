@@ -41,7 +41,7 @@ const Transitionable = function (target) {
     },
 
     getTransitionStyles() {
-      const { transition } = this.props;
+      const { transition = [] } = this.props;
       const { transitioning, z } = this.state;
 
       let styles = { zIndex: z };

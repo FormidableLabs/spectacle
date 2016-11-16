@@ -1,0 +1,13 @@
+exports[`<Fill /> should render with style \`flex: 1\` 1`] = `
+<Fill>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }>
+    Spectacle
+  </div>
+</Fill>
+`;

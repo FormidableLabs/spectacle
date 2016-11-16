@@ -1,0 +1,128 @@
+exports[`<Progress /> should render PacMan correctly 1`] = `
+<Progress
+  currentSlide={2}
+  items={
+    Array [
+      <Slide />,
+      <Slide />,
+      <Slide />,
+    ]
+  }
+  type="pacman">
+  <div
+    data-radium={true}
+    style={Object {}}>
+    <div
+      data-radium={true}>
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "left": "15px",
+            "top": "-20px",
+          }
+        }>
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
+            }
+          } />
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
+            }
+          } />
+      </div>
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "left": "-25px",
+            "opacity": 0,
+            "top": "-20px",
+          }
+        } />
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "left": "-5px",
+            "opacity": 0,
+            "top": "-20px",
+          }
+        } />
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "left": "15px",
+            "opacity": 0,
+            "top": "-20px",
+          }
+        } />
+    </div>
+  </div>
+</Progress>
+`;
+
+exports[`<Progress /> should render nothing when none is provided. 1`] = `
+<Progress
+  currentSlide={3}
+  items={
+    Array [
+      <Slide />,
+      <Slide />,
+      <Slide />,
+    ]
+  }
+  type="none" />
+`;
+
+exports[`<Progress /> should render the bar style correctly 1`] = `
+<Progress
+  currentSlide={1}
+  items={
+    Array [
+      <Slide />,
+      <Slide />,
+      <Slide />,
+    ]
+  }
+  type="bar">
+  <div
+    data-radium={true}
+    style={Object {}}>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "width": "50%",
+        }
+      } />
+  </div>
+</Progress>
+`;
+
+exports[`<Progress /> should render the number style correctly 1`] = `
+<Progress
+  currentSlide={1}
+  items={
+    Array [
+      <Slide />,
+      <Slide />,
+      <Slide />,
+    ]
+  }
+  type="number">
+  <div
+    data-radium={true}
+    style={Object {}}>
+    <div
+      data-radium={true} />
+  </div>
+</Progress>
+`;

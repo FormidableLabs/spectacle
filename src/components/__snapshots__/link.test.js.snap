@@ -1,0 +1,17 @@
+exports[`<Link /> should render correctly 1`] = `
+<Link
+  href="https://www.formidable.com"
+  target="_blank">
+  <a
+    data-radium={true}
+    href="https://www.formidable.com"
+    style={
+      Object {
+        "color": "#345",
+      }
+    }
+    target="_blank">
+    Formidable Labs
+  </a>
+</Link>
+`;

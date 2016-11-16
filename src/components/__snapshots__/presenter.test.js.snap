@@ -1,0 +1,360 @@
+exports[`<Presenter /> should render correctly 1`] = `
+<Presenter
+  dispatch={[Function]}
+  hash={1}
+  lastSlide={0}
+  route={
+    Object {
+      "params": Array [],
+      "slide": 1,
+    }
+  }
+  slide={1}
+  slides={
+    Array [
+      <Slide />,
+      <Slide />,
+      <Slide />,
+    ]
+  }>
+  <div
+    className="spectacle-presenter"
+    data-radium={true}
+    style={
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "height": "100%",
+        "width": "100%",
+      }
+    }>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "color": "white",
+          "display": "block",
+          "height": "20%",
+          "padding": "20px 50px",
+          "position": "absolute",
+          "textAlign": "center",
+          "width": "100%",
+        }
+      }>
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "display": "inline-block",
+            "float": "left",
+            "fontSize": 28,
+            "lineHeight": 1,
+            "margin": 0,
+            "position": "relative",
+            "top": "50%",
+            "transform": "translateY(-50%)",
+          }
+        } />
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "display": "inline-block",
+            "float": "right",
+            "fontSize": 28,
+            "lineHeight": 1,
+            "margin": 0,
+            "position": "relative",
+            "top": "50%",
+            "transform": "translateY(-50%)",
+          }
+        }>
+        Mon Nov 07 2016 11:04:08 GMT-0600 (CST)
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flex": 1,
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        }
+      }>
+      <div
+        className="spectacle-presenter-main"
+        data-radium={true}
+        style={
+          Object {
+            "border": "2px solid white",
+            "display": "inline-block",
+            "height": "60%",
+            "margin": 20,
+            "padding": 20,
+            "position": "relative",
+            "width": "50%",
+          }
+        }>
+        <Slide
+          dispatch={[Function]}
+          export={false}
+          hash={1}
+          lastSlide={0}
+          presenterStyle={
+            Object {
+              "position": "relative",
+            }
+          }
+          print={false}
+          slideIndex={1}
+          transition={Array []}
+          transitionDuration={0}>
+          <div>
+            Slide Content
+          </div>
+        </Slide>
+      </div>
+      <div
+        className="spectacle-presenter-next"
+        data-radium={true}
+        style={
+          Object {
+            "border": "2px solid white",
+            "display": "inline-block",
+            "height": "50%",
+            "margin": 20,
+            "padding": 20,
+            "position": "relative",
+            "width": "40%",
+          }
+        }>
+        <Slide
+          appearOff={true}
+          dispatch={[Function]}
+          export={false}
+          hash={2}
+          lastSlide={0}
+          presenterStyle={
+            Object {
+              "position": "relative",
+            }
+          }
+          print={false}
+          slideIndex={2}
+          transition={Array []}
+          transitionDuration={0}>
+          <div>
+            Slide Content
+          </div>
+        </Slide>
+      </div>
+    </div>
+    <div
+      className="spectacle-presenter-notes"
+      data-radium={true}
+      style={
+        Object {
+          "bottom": "0px",
+          "color": "white",
+          "columnCount": "2",
+          "display": "block",
+          "fontSize": "0.8em",
+          "height": "20%",
+          "padding": "20px 50px",
+          "position": "absolute",
+          "textAlign": "left",
+          "width": "100%",
+        }
+      } />
+  </div>
+</Presenter>
+`;
+
+exports[`<Presenter /> should render with notes when slides have them. 1`] = `
+<Presenter
+  dispatch={[Function]}
+  hash={1}
+  lastSlide={0}
+  route={
+    Object {
+      "params": Array [],
+      "slide": 1,
+    }
+  }
+  slide={1}
+  slides={
+    Array [
+      <Slide />,
+      <Slide
+        notes="These are my slide notes!!" />,
+      <Slide />,
+    ]
+  }>
+  <div
+    className="spectacle-presenter"
+    data-radium={true}
+    style={
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "height": "100%",
+        "width": "100%",
+      }
+    }>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "color": "white",
+          "display": "block",
+          "height": "20%",
+          "padding": "20px 50px",
+          "position": "absolute",
+          "textAlign": "center",
+          "width": "100%",
+        }
+      }>
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "display": "inline-block",
+            "float": "left",
+            "fontSize": 28,
+            "lineHeight": 1,
+            "margin": 0,
+            "position": "relative",
+            "top": "50%",
+            "transform": "translateY(-50%)",
+          }
+        } />
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "display": "inline-block",
+            "float": "right",
+            "fontSize": 28,
+            "lineHeight": 1,
+            "margin": 0,
+            "position": "relative",
+            "top": "50%",
+            "transform": "translateY(-50%)",
+          }
+        }>
+        Mon Nov 07 2016 11:04:08 GMT-0600 (CST)
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flex": 1,
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        }
+      }>
+      <div
+        className="spectacle-presenter-main"
+        data-radium={true}
+        style={
+          Object {
+            "border": "2px solid white",
+            "display": "inline-block",
+            "height": "60%",
+            "margin": 20,
+            "padding": 20,
+            "position": "relative",
+            "width": "50%",
+          }
+        }>
+        <Slide
+          dispatch={[Function]}
+          export={false}
+          hash={1}
+          lastSlide={0}
+          notes="These are my slide notes!!"
+          presenterStyle={
+            Object {
+              "position": "relative",
+            }
+          }
+          print={false}
+          slideIndex={1}
+          transition={Array []}
+          transitionDuration={0}>
+          <div>
+            Slide Content
+          </div>
+        </Slide>
+      </div>
+      <div
+        className="spectacle-presenter-next"
+        data-radium={true}
+        style={
+          Object {
+            "border": "2px solid white",
+            "display": "inline-block",
+            "height": "50%",
+            "margin": 20,
+            "padding": 20,
+            "position": "relative",
+            "width": "40%",
+          }
+        }>
+        <Slide
+          appearOff={true}
+          dispatch={[Function]}
+          export={false}
+          hash={2}
+          lastSlide={0}
+          presenterStyle={
+            Object {
+              "position": "relative",
+            }
+          }
+          print={false}
+          slideIndex={2}
+          transition={Array []}
+          transitionDuration={0}>
+          <div>
+            Slide Content
+          </div>
+        </Slide>
+      </div>
+    </div>
+    <div
+      className="spectacle-presenter-notes"
+      data-radium={true}
+      style={
+        Object {
+          "bottom": "0px",
+          "color": "white",
+          "columnCount": "2",
+          "display": "block",
+          "fontSize": "0.8em",
+          "height": "20%",
+          "padding": "20px 50px",
+          "position": "absolute",
+          "textAlign": "left",
+          "width": "100%",
+        }
+      }>
+      <div
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "These are my slide notes!!",
+          }
+        } />
+    </div>
+  </div>
+</Presenter>
+`;

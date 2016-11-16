@@ -1,0 +1,13 @@
+exports[`<ListItem /> should render correctly 1`] = `
+<ListItem>
+  <li
+    data-radium={true}
+    style={
+      Object {
+        "color": "#ff0",
+      }
+    }>
+    Dog
+  </li>
+</ListItem>
+`;

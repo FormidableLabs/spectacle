@@ -1,0 +1,15 @@
+exports[`<Layout /> should render correctly 1`] = `
+<Layout>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "display": "flex",
+      }
+    }>
+    <div>
+      Content
+    </div>
+  </div>
+</Layout>
+`;

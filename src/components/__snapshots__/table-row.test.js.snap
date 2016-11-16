@@ -1,0 +1,15 @@
+exports[`<TableRow /> should render correctly 1`] = `
+<TableRow>
+  <tr
+    data-radium={true}
+    style={
+      Object {
+        "color": "#00f",
+      }
+    }>
+    <td>
+      Table Row Content
+    </td>
+  </tr>
+</TableRow>
+`;

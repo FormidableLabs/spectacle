@@ -1,0 +1,48 @@
+exports[`<Text /> should render a <div> with text for the \`fit\` configuration. 1`] = `
+<Text
+  fit={true}
+  lineHeight={1}>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "color": "#000",
+        "display": "block",
+        "height": 0,
+        "width": "100%",
+      }
+    }>
+    <span
+      data-radium={true}
+      style={
+        Object {
+          "display": "block",
+          "fontSize": 16,
+          "lineHeight": 1,
+          "margin": "0",
+          "padding": "0",
+          "transform": "scale(NaN)",
+          "transformOrigin": "center top",
+        }
+      }>
+      Spectacle Full Size!
+    </span>
+  </div>
+</Text>
+`;
+
+exports[`<Text /> should render a <p> with text for the default configuration. 1`] = `
+<Text
+  lineHeight={1}>
+  <p
+    data-radium={true}
+    style={
+      Object {
+        "color": "#000",
+        "lineHeight": 1,
+      }
+    }>
+    Spectacle!
+  </p>
+</Text>
+`;

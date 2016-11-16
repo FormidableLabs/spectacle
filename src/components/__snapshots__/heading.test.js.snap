@@ -1,0 +1,49 @@
+exports[`<Heading /> should render correctly. 1`] = `
+<Heading
+  lineHeight={1}
+  size={2}>
+  <H2
+    data-radium={true}
+    style={
+      Object {
+        "color": "#ff0",
+        "lineHeight": 1,
+      }
+    }>
+    Hi There!
+  </H2>
+</Heading>
+`;
+
+exports[`<Heading /> should render the fit configuration correctly. 1`] = `
+<Heading
+  fit={true}
+  lineHeight={1}
+  size={1}>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "display": "block",
+        "height": 0,
+        "width": "100%",
+      }
+    }>
+    <span
+      data-radium={true}
+      style={
+        Object {
+          "display": "block",
+          "fontSize": 16,
+          "lineHeight": 1,
+          "margin": "0",
+          "padding": "0",
+          "transform": "scale(NaN)",
+          "transformOrigin": "center top",
+        }
+      }>
+      This Header Fits!
+    </span>
+  </div>
+</Heading>
+`;

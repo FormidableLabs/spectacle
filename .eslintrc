@@ -12,3 +12,10 @@
 "env":
   "browser": true,
   "node": true
+"globals":
+  "afterEach": true,
+  "describe": true,
+  "expect": true,
+  "it": true,
+  "jest": true,
+  "test": true

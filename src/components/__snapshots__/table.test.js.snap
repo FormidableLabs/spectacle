@@ -1,0 +1,15 @@
+exports[`<Table /> should render correctly 1`] = `
+<Table>
+  <table
+    data-radium={true}
+    style={Object {}}>
+    <tbody>
+      <tr>
+        <td>
+          Table Content
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</Table>
+`;

@@ -1,0 +1,137 @@
+exports[`<Slide /> should render correctly with transitions. 1`] = `
+<Slide
+  align="center center"
+  presenterStyle={Object {}}
+  style={Object {}}
+  transition={
+    Array [
+      "slide",
+      "spin",
+    ]
+  }
+  viewerScaleMode={false}>
+  <VictoryAnimation
+    data={
+      Object {
+        "transform": " translate3d(-100%, 0, 0) rotateY(-90deg)",
+        "zIndex": 1,
+      }
+    }
+    delay={0}
+    duration={1000}
+    easing="quadInOut">
+    <div
+      className="spectacle-slide"
+      data-radium={true}
+      style={
+        Object {
+          "backgroundColor": "#eee",
+          "display": "flex",
+          "height": "100%",
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": 0,
+          "transform": " translate3d(-100%, 0, 0) rotateY(-90deg)",
+          "width": "100%",
+          "zIndex": 1,
+        }
+      }>
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flex": 1,
+            "justifyContent": "center",
+            "position": "relative",
+          }
+        }>
+        <div
+          className=" spectacle-content"
+          data-radium={true}
+          style={
+            Object {
+              "flex": 1,
+              "maxHeight": 700,
+              "maxWidth": 1000,
+              "padding": 10,
+              "transform": "scale(1)",
+            }
+          }>
+          <div>
+            Slide Content
+          </div>
+        </div>
+      </div>
+    </div>
+  </VictoryAnimation>
+</Slide>
+`;
+
+exports[`<Slide /> should render correctly without transitions. 1`] = `
+<Slide
+  align="center center"
+  presenterStyle={Object {}}
+  style={Object {}}
+  viewerScaleMode={false}>
+  <VictoryAnimation
+    data={
+      Object {
+        "transform": " translate3d(0px, 0px, 0px)",
+        "zIndex": 1,
+      }
+    }
+    delay={0}
+    duration={1000}
+    easing="quadInOut">
+    <div
+      className="spectacle-slide"
+      data-radium={true}
+      style={
+        Object {
+          "backgroundColor": "#eee",
+          "display": "flex",
+          "height": "100%",
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": 0,
+          "transform": " translate3d(0px, 0px, 0px)",
+          "width": "100%",
+          "zIndex": 1,
+        }
+      }>
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flex": 1,
+            "justifyContent": "center",
+            "position": "relative",
+          }
+        }>
+        <div
+          className=" spectacle-content"
+          data-radium={true}
+          style={
+            Object {
+              "flex": 1,
+              "maxHeight": 700,
+              "maxWidth": 1000,
+              "padding": 10,
+              "transform": "scale(1)",
+            }
+          }>
+          <div>
+            Slide Content
+          </div>
+        </div>
+      </div>
+    </div>
+  </VictoryAnimation>
+</Slide>
+`;

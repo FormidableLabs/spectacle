@@ -1,0 +1,63 @@
+exports[`<S /> should bold text when specified 1`] = `
+<S
+  type="bold">
+  <span
+    data-radium={true}
+    style={
+      Object {
+        "color": "#ff0",
+        "fontWeight": "bold",
+      }
+    }>
+    You should read this!
+  </span>
+</S>
+`;
+
+exports[`<S /> should italicize text when specified 1`] = `
+<S
+  type="italic">
+  <span
+    data-radium={true}
+    style={
+      Object {
+        "color": "#ff0",
+        "fontStyle": "italic",
+      }
+    }>
+    This text is italicized!
+  </span>
+</S>
+`;
+
+exports[`<S /> should underline text when specified 1`] = `
+<S
+  type="strikethrough">
+  <span
+    data-radium={true}
+    style={
+      Object {
+        "color": "#ff0",
+        "textDecoration": "line-through",
+      }
+    }>
+    Don’t read this!
+  </span>
+</S>
+`;
+
+exports[`<S /> should underline text when specified 2`] = `
+<S
+  type="underline">
+  <span
+    data-radium={true}
+    style={
+      Object {
+        "color": "#ff0",
+        "textDecoration": "underline",
+      }
+    }>
+    This text is underlined!
+  </span>
+</S>
+`;
