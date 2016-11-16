@@ -1,6 +1,61 @@
 /*eslint max-statements:0,complexity:0,no-invalid-this:0*/
 
+const parseFontSize = function (fontSize) {
+  const sizeComponents = fontSize.match(/\d*\.*\d+|\D+/g);
+  const size = parseFloat(sizeComponents[0]);
+  const unit = sizeComponents[1];
+  return { size, unit };
+};
+
+const getFontSizeFromElement = function (element) {
+  const fontSize = window.getComputedStyle ?
+    window.getComputedStyle(element).getPropertyValue("font-size") :
+    element.currentStyle.fontSize;
+  return fontSize ? parseFontSize(fontSize) : null;
+};
+
+const convertFontSizeToPx = function (fontSize) {
+  let convertedFontSize;
+
+  if (typeof textSize === "number") {
+    convertedFontSize = fontSize;
+  } else if (typeof fontSize === "string") {
+    const parsedFont = parseFontSize(fontSize);
+    const bodyFont = getFontSizeFromElement(document.body);
+    const htmlFont = getFontSizeFromElement(document.documentElement);
+
+    switch (parsedFont.unit) {
+      case "px":
+        convertedFontSize = parsedFont.size;
+        break;
+      case "pt":
+        convertedFontSize = parsedFont.size * 96 / 72;
+        break;
+      case "%":
+        if (bodyFont) {
+          convertedFontSize = bodyFont.size * parsedFont.size / 100;
+        }
+        break;
+      case "em":
+        if (bodyFont) {
+          convertedFontSize = bodyFont.size * parsedFont.size;
+        }
+        break;
+      case "rem":
+        if (htmlFont) {
+          convertedFontSize = htmlFont.size * parsedFont.size;
+        }
+        break;
+    }
+  }
+  return convertedFontSize;
+};
+
 export const getStyles = function getStyles() {
+  if (process.env.NODE_ENV !== "producion" && typeof this.warnedAboutFontSize === "undefined") {
+    this.warnedAboutFontSize = false;
+  }
+
   const {
     italic,
     bold,
@@ -20,6 +75,7 @@ export const getStyles = function getStyles() {
   } = this.props;
 
   const styles = {};
+  const recommendedMinFontSizePx = 24;
 
   if (typeof italic === "boolean") {
     styles.fontStyle = italic ? "italic" : "normal";
@@ -56,6 +112,13 @@ export const getStyles = function getStyles() {
   }
   if (textSize) {
     styles.fontSize = textSize;
+    if (process.env.NODE_ENV !== "production" && !this.warnedAboutFontSize && this.context.store.getState().style.globalStyleSet) {
+      const fontSize = convertFontSizeToPx(textSize) || recommendedMinFontSizePx;
+      if (fontSize < recommendedMinFontSizePx) {
+        console.warn(`prop \`textSize="${textSize}"\` is below the recommended minimum of ${recommendedMinFontSizePx}px`); // eslint-disable-line
+        this.warnedAboutFontSize = true;
+      }
+    }
   }
   if (textAlign) {
     styles.textAlign = textAlign;

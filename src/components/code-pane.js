@@ -33,7 +33,8 @@ export default class CodePane extends Component {
 }
 
 CodePane.contextTypes = {
-  styles: PropTypes.object
+  styles: PropTypes.object,
+  store: PropTypes.object
 };
 
 CodePane.propTypes = {
