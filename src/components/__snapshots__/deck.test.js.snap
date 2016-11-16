@@ -18,6 +18,11 @@ exports[`<Deck /> should render correctly. 1`] = `
         "slide": 0,
       }
     }
+    style={
+      Object {
+        "globalStyleSet": Array [],
+      }
+    }
     transition={
       Array [
         "zoom",
@@ -86,12 +91,10 @@ exports[`<Deck /> should render correctly. 1`] = `
               "width": "100%",
             }
           }>
-          <div
-            data-radium={true}
+          <MockSlide
             dispatch={[Function]}
             export={false}
             hash={0}
-            id={1}
             lastSlide={0}
             print={false}
             slideIndex={0}
@@ -101,21 +104,19 @@ exports[`<Deck /> should render correctly. 1`] = `
                 "slide",
               ]
             }
-            transitionDuration={500} />
+            transitionDuration={500}>
+            <div>
+              Slide Content
+            </div>
+          </MockSlide>
         </div>
       </ReactTransitionGroup>
       <Progress
         currentSlide={0}
         items={
           Array [
-            <div
-              id={1}>
-              Slide 1
-          </div>,
-            <div
-              id={2}>
-              Slide 2
-          </div>,
+            <MockSlide />,
+            <MockSlide />,
           ]
         }
         type="pacman">
@@ -227,6 +228,11 @@ exports[`<Deck /> should render the export configuration when specified. 1`] = `
         "slide": 0,
       }
     }
+    style={
+      Object {
+        "globalStyleSet": Array [],
+      }
+    }
     transitionDuration={500}>
     <div
       className="spectacle-deck"
@@ -257,14 +263,8 @@ exports[`<Deck /> should render the export configuration when specified. 1`] = `
         }
         slides={
           Array [
-            <div
-              id={1}>
-              Slide 1
-          </div>,
-            <div
-              id={2}>
-              Slide 2
-          </div>,
+            <MockSlide />,
+            <MockSlide />,
           ]
         }>
         <div
@@ -276,24 +276,26 @@ exports[`<Deck /> should render the export configuration when specified. 1`] = `
               "width": "100%",
             }
           }>
-          <div
+          <MockSlide
             export={true}
-            id={1}
             print={false}
             slideIndex={0}
             transition={Array []}
             transitionDuration={0}>
-            Slide 1
-          </div>
-          <div
+            <div>
+              Slide Content
+            </div>
+          </MockSlide>
+          <MockSlide
             export={true}
-            id={2}
             print={false}
             slideIndex={1}
             transition={Array []}
             transitionDuration={0}>
-            Slide 2
-          </div>
+            <div>
+              Slide Content
+            </div>
+          </MockSlide>
         </div>
       </Export>
       <Style
@@ -335,6 +337,11 @@ exports[`<Deck /> should render the overview configuration when specified. 1`] =
         "slide": 0,
       }
     }
+    style={
+      Object {
+        "globalStyleSet": Array [],
+      }
+    }
     transitionDuration={500}>
     <div
       className="spectacle-deck"
@@ -366,14 +373,8 @@ exports[`<Deck /> should render the overview configuration when specified. 1`] =
         slide={0}
         slides={
           Array [
-            <div
-              id={1}>
-              Slide 1
-          </div>,
-            <div
-              id={2}>
-              Slide 2
-          </div>,
+            <MockSlide />,
+            <MockSlide />,
           ]
         }>
         <div
@@ -401,16 +402,17 @@ exports[`<Deck /> should render the overview configuration when specified. 1`] =
                 "width": NaN,
               }
             }>
-            <div
+            <MockSlide
               appearOff={true}
               export={false}
-              id={1}
               print={false}
               slideIndex={0}
               transition={Array []}
               transitionDuration={0}>
-              Slide 1
-            </div>
+              <div>
+                Slide Content
+              </div>
+            </MockSlide>
           </div>
           <div
             data-radium={true}
@@ -427,16 +429,17 @@ exports[`<Deck /> should render the overview configuration when specified. 1`] =
                 "width": NaN,
               }
             }>
-            <div
+            <MockSlide
               appearOff={true}
               export={false}
-              id={2}
               print={false}
               slideIndex={1}
               transition={Array []}
               transitionDuration={0}>
-              Slide 2
-            </div>
+              <div>
+                Slide Content
+              </div>
+            </MockSlide>
           </div>
         </div>
       </Overview>
