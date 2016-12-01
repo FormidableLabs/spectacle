@@ -105,12 +105,13 @@ export default class Presentation extends React.Component {
             </Heading>
             <Markdown>
               {`
-![Markdown Logo](${images.markdown.replace("/", "")})
+![Markdown Logo](${images.markdown})
 
 You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
 * Lists too!
 * With ~~strikethrough~~ and _italic_
 * And let's not forget **bold**
+* And basic inline HTML support: <kbd style="vertical-align: middle; display: inline-block; padding: 3px 5px; border: solid 1px #ccc;, border-radius: 3px; border-bottom-color: #bbb; box-shadow: inset 0 -1px 0 #bbb">Ctrl</kbd> + <kbd style="vertical-align: middle; display: inline-block; padding: 3px 5px; border: solid 1px #ccc;, border-radius: 3px; border-bottom-color: #bbb; box-shadow: inset 0 -1px 0 #bbb">Yeah</kbd>
               `}
             </Markdown>
           </Slide>
