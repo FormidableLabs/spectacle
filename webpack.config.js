@@ -20,7 +20,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loader: "babel",
+      loader: "babel-loader",
       query: {
         plugins: [
           [
@@ -41,11 +41,11 @@ module.exports = {
       include: __dirname
     }, {
       test: /\.css$/,
-      loaders: ["style", "raw"],
+      loaders: ["style-loader", "raw-loader"],
       include: __dirname
     }, {
       test: /\.svg$/,
-      loader: "url?limit=10000&mimetype=image/svg+xml",
+      loader: "url-loader?limit=10000&mimetype=image/svg+xml",
       include: path.join(__dirname, "example/assets")
     }, {
       test: /\.png$/,
