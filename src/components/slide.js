@@ -20,12 +20,14 @@ class Slide extends Component {
     const slide = this.slideRef;
     const frags = slide.querySelectorAll(".fragment");
     if (frags && frags.length && !this.context.overview) {
+      const lastAction = this.context.store.getState().lastAction;
       Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
         frag.dataset.fid = i;
         return this.props.dispatch && this.props.dispatch(addFragment({
           slide: this.props.hash,
           id: i,
-          visible: this.props.lastSlide > this.props.slideIndex
+          visible: this.props.lastSlide > this.props.slideIndex,
+          remote: lastAction.type === "REMOTE_STATE"
         }));
       });
     }

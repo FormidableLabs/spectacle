@@ -6,6 +6,8 @@ import {
   TableHeaderItem, TableItem, TableRow, Table, Text
 } from "../../src";
 
+import Socket from "./socket";
+
 import preloader from "../../src/utils/preloader";
 
 import createTheme from "../../src/themes/default";
@@ -28,10 +30,12 @@ const theme = createTheme({
   primary: "#ff4081"
 });
 
+const socket = new Socket(`ws://${location.host}`);
+
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Deck transition={["zoom", "slide"]} theme={theme} transitionDuration={500}>
+      <Deck transition={["zoom", "slide"]} theme={theme} transitionDuration={500} remote={socket}>
         <Slide transition={["zoom"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="black">
             Spectacle

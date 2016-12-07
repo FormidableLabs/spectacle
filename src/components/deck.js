@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 
 import { Provider } from "react-redux";
-import configureStore from "../store";
+import configureStore, { subscribe, setupRemote } from "../store";
 
 import Controller from "../utils/controller";
 import Manager from "./manager";
@@ -17,10 +17,20 @@ export default class Deck extends Component {
     globalStyles: PropTypes.bool,
     history: PropTypes.object,
     progress: PropTypes.oneOf(["pacman", "bar", "number", "none"]),
+    remote: PropTypes.object,
     theme: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number
   };
+
+  componentWillMount() {
+    const { remote } = this.props;
+
+    if (remote) {
+      subscribe(remote);
+      setupRemote(remote);
+    }
+  }
 
   render() {
     return (
