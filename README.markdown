@@ -20,6 +20,7 @@ ReactJS based Presentation Library
   - [Main file](#main-file)
   - [Themes](#themes)
     - [createTheme(colors, fonts)](#createthemecolors-fonts)
+  - [Remote](#remote)
 - [Tag API](#tag-api)
   - [Main Tags](#main-tags)
     - [Spectacle](#spectacle)
@@ -209,6 +210,55 @@ const theme = createTheme({
 
 The returned theme object can then be passed to the `Spectacle` tag via the `theme` prop, and will override the default styles.
 
+<a name="remote"></a>
+### Remote
+
+Spectacle supports remote control and viewing of slides. You will need to create a socket class that has the following functions and events.
+|Name|Type|Payload|Description|
+|---|---|---|---|
+|setup|Function|uri|Setup socket with passed uri. Instantiates open and message events.|
+|send|Function|message|Called to send message to remote clients/viewers.|
+|open|Event||Emitted to indicate socket is now open and ready to send messages.|
+|message|Event||Emitted to send messages to clients/viewers.|
+
+An example of a socket class.
+```jsx
+import WebSocket from "reconnecting-websocket";
+import EventEmitter from "eventemitter3";
+
+export default class Socket extends EventEmitter {
+  socket;
+  connected = false;
+
+  constructor(uri) {
+    super();
+    if (uri) {
+      this.setup(uri);
+    }
+  }
+
+  setup(uri) {
+    this.socket = new WebSocket(uri);
+    this.socket.addEventListener("open", () => {
+      this.connected = true;
+      this.emit("open");
+    });
+
+    this.socket.onmessage = (event) => {
+      this.emit("message", event);
+    };
+  }
+
+  send(payload) {
+    if (this.connected) {
+      this.socket.send(payload);
+    }
+  }
+}
+```
+
+The returned socket object can then be passed to the `Spectacle` tag via the `remote` prop.
+
 <a name="tag-api"></a>
 ## Tag API
 
@@ -226,6 +276,7 @@ The Spectacle tag is the root level tag for your presentation. It handles routin
 |---|---|---|
 |history|React.PropTypes.object|Accepts custom configuration for [history](https://github.com/ReactTraining/history)
 |theme|React.PropTypes.object|Accepts a theme object for styling your presentation|
+|remote|React.PropTypes.object|Accepts a socket class that allows remote control or remote viewing of presentation|
 
 <a name="deck"></a>
 #### Deck
