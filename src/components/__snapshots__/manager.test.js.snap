@@ -1,5 +1,5 @@
-exports[`<Deck /> should render correctly. 1`] = `
-<Connect(Deck)
+exports[`<Manager /> should render correctly. 1`] = `
+<Connect(Manager)
   transition={
     Array [
       "zoom",
@@ -7,7 +7,7 @@ exports[`<Deck /> should render correctly. 1`] = `
     ]
   }
   transitionDuration={500}>
-  <Deck
+  <Manager
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
@@ -209,13 +209,13 @@ exports[`<Deck /> should render correctly. 1`] = `
           } />
       </Style>
     </div>
-  </Deck>
-</Connect(Deck)>
+  </Manager>
+</Connect(Manager)>
 `;
 
-exports[`<Deck /> should render the export configuration when specified. 1`] = `
-<Connect(Deck)>
-  <Deck
+exports[`<Manager /> should render the export configuration when specified. 1`] = `
+<Connect(Manager)>
+  <Manager
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
@@ -318,13 +318,13 @@ exports[`<Deck /> should render the export configuration when specified. 1`] = `
           } />
       </Style>
     </div>
-  </Deck>
-</Connect(Deck)>
+  </Manager>
+</Connect(Manager)>
 `;
 
-exports[`<Deck /> should render the overview configuration when specified. 1`] = `
-<Connect(Deck)>
-  <Deck
+exports[`<Manager /> should render the overview configuration when specified. 1`] = `
+<Connect(Manager)>
+  <Manager
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
@@ -484,6 +484,6 @@ exports[`<Deck /> should render the overview configuration when specified. 1`] =
           } />
       </Style>
     </div>
-  </Deck>
-</Connect(Deck)>
+  </Manager>
+</Connect(Manager)>
 `;

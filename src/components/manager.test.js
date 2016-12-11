@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { mount } from "enzyme";
 import { mountToJson } from "enzyme-to-json";
-import Deck from "./deck";
+import Manager from "./manager";
 
 const _mockContext = function (slide, routeParams) {
   return {
@@ -40,33 +40,33 @@ const _mockChildContext = function () {
   return { styles: () => {} };
 };
 
-describe("<Deck />", () => {
+describe("<Manager />", () => {
   test("should render correctly.", () => {
     const wrapper = mount((
-      <Deck transition={["zoom", "slide"]} transitionDuration={500}>
+      <Manager transition={["zoom", "slide"]} transitionDuration={500}>
         <MockSlide />
         <MockSlide />
-      </Deck>
+      </Manager>
     ), { context: _mockContext(0, []), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
   test("should render the export configuration when specified.", () => {
     const wrapper = mount((
-      <Deck>
+      <Manager>
         <MockSlide />
         <MockSlide />
-      </Deck>
+      </Manager>
     ), { context: _mockContext(0, [ "export" ]), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
   test("should render the overview configuration when specified.", () => {
     const wrapper = mount((
-      <Deck>
+      <Manager>
         <MockSlide />
         <MockSlide />
-      </Deck>
+      </Manager>
     ), { context: _mockContext(0, [ "overview" ]), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
