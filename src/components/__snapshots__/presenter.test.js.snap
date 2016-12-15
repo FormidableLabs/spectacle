@@ -55,7 +55,12 @@ exports[`<Presenter /> should render correctly 1`] = `
             "top": "50%",
             "transform": "translateY(-50%)",
           }
-        } />
+        }>
+        Slide 
+        2
+         of 
+        3
+      </h2>
       <h2
         data-radium={true}
         style={
@@ -232,7 +237,12 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
             "top": "50%",
             "transform": "translateY(-50%)",
           }
-        } />
+        }>
+        Slide 
+        2
+         of 
+        3
+      </h2>
       <h2
         data-radium={true}
         style={

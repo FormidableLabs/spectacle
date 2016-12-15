@@ -6,6 +6,9 @@ exports[`<Cite /> should render correctly. 1`] = `
       Object {
         "color": "#ee0",
       }
-    } />
+    }>
+    - 
+    Someone
+  </cite>
 </Cite>
 `;
