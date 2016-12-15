@@ -122,7 +122,11 @@ exports[`<Progress /> should render the number style correctly 1`] = `
     data-radium={true}
     style={Object {}}>
     <div
-      data-radium={true} />
+      data-radium={true}>
+      2
+       / 
+      3
+    </div>
   </div>
 </Progress>
 `;
