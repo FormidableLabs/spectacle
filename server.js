@@ -45,7 +45,6 @@ wss.on('connection', function connection(ws) {
   // or ws.upgradeReq.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.on('message', function incoming(message) {
     const payload = JSON.parse(message);
-    // console.log('received: ', util.inspect(message, false, null));
     state = payload;
     wss.clients.forEach(function (client) {
       if (client !== ws) client.send(message);
@@ -59,11 +58,6 @@ wss.on('connection', function connection(ws) {
   ws.send(
     JSON.stringify(state)
   );
-  /**
-  state.forEach(function (op) {
-    ws.send(op);
-  });
-  **/
 });
 
 server.on('request', app);
