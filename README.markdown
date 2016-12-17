@@ -219,7 +219,7 @@ Spectacle supports remote control and viewing of slides. You will need to create
 |setup|Function|uri|Setup socket with passed uri. Instantiates open and message events.|
 |send|Function|message|Called to send message to remote clients/viewers.|
 |open|Event||Emitted to indicate socket is now open and ready to send messages.|
-|message|Event||Emitted to send messages to clients/viewers.|
+|message|Event|message|Emitted to send messages to clients/viewers.|
 
 An example of a socket class.
 ```jsx
@@ -257,7 +257,9 @@ export default class Socket extends EventEmitter {
 }
 ```
 
-The returned socket object can then be passed to the `Spectacle` tag via the `remote` prop.
+The returned socket object can then be passed to the `Deck` tag via the `remote` prop.
+
+Remote control/viewing does not work with deploying slides to surge with `npm run deploy`.
 
 <a name="tag-api"></a>
 ## Tag API
