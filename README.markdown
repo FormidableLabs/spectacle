@@ -22,7 +22,6 @@ ReactJS based Presentation Library
     - [createTheme(colors, fonts)](#createthemecolors-fonts)
 - [Tag API](#tag-api)
   - [Main Tags](#main-tags)
-    - [Spectacle](#spectacle)
     - [Deck](#deck)
     - [Slide (Base)](#slide-base)
   - [Layout Tags](#layout-tags)
