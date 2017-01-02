@@ -52,7 +52,7 @@ const convertFontSizeToPx = function (fontSize) {
 };
 
 export const getStyles = function getStyles() {
-  if (process.env.NODE_ENV !== "producion" && typeof this.warnedAboutFontSize === "undefined") {
+  if (process.env.NODE_ENV !== "production" && typeof this.warnedAboutFontSize === "undefined") {
     this.warnedAboutFontSize = false;
   }
 
