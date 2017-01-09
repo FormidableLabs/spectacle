@@ -53,4 +53,20 @@ describe("<Controls />", () => {
       .simulate("click");
     expect(prevFunc).toHaveBeenCalledTimes(1);
   });
+  test("should render rtl properly", () => {
+    const context = { styles: { controls: {
+      prev: { background: "#f00" },
+      next: { background: "#f0f" }
+    } } };
+    const wrapper = mount((
+      <Controls
+        currentSlide={2}
+        totalSlides={5}
+        onPrev={() => {}}
+        onNext={() => {}}
+        rtl
+      />
+    ), { context });
+    expect(mountToJson(wrapper)).toMatchSnapshot();
+  });
 });

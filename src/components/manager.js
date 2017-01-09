@@ -30,7 +30,8 @@ export default class Manager extends Component {
     transitionDuration: 500,
     progress: "pacman",
     controls: true,
-    globalStyles: true
+    globalStyles: true,
+    rtl: false
   };
 
   static propTypes = {
@@ -41,6 +42,7 @@ export default class Manager extends Component {
     globalStyles: PropTypes.bool,
     progress: PropTypes.oneOf(["pacman", "bar", "number", "none"]),
     route: PropTypes.object,
+    rtl: PropTypes.bool,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number
   };
@@ -100,12 +102,21 @@ export default class Manager extends Component {
     window.removeEventListener("keydown", this._handleKeyPress);
     window.removeEventListener("resize", this._handleScreenChange);
   }
+  _getEventDirection(event) {
+    if (event.keyCode === 37 || event.keyCode === 33 || (event.keyCode === 32 && event.shiftKey)) {
+      return this.props.rtl ? "next" : "previous";
+    }
+    if (event.keyCode === 39 || event.keyCode === 34 || (event.keyCode === 32 && !event.shiftKey)) {
+      return this.props.rtl ? "previous" : "next";
+    }
+    return null;
+  }
   _handleEvent(e) {
     const event = window.event ? window.event : e;
-
-    if (event.keyCode === 37 || event.keyCode === 33 || (event.keyCode === 32 && event.shiftKey)) {
+    const direction = this._getEventDirection(event);
+    if (direction === "previous") {
       this._prevSlide();
-    } else if (event.keyCode === 39 || event.keyCode === 34 || (event.keyCode === 32 && !event.shiftKey)) {
+    } else if (direction === "next") {
       this._nextSlide();
     } else if ((event.altKey && event.keyCode === 79) && !event.ctrlKey && !event.metaKey) { // o
       this._toggleOverviewMode();
@@ -285,9 +296,9 @@ export default class Manager extends Component {
     }
 
     if (Math.abs(this.touchObject.length) > 20) {
-      if (this.touchObject.direction === 1) {
+      if ((this.touchObject.direction === 1 && !this.props.rtl) || (this.touchObject.direction === -1 && this.props.rtl)) {
         this._nextSlide();
-      } else if (this.touchObject.direction === -1) {
+      } else if ((this.touchObject.direction === -1 && !this.props.rtl) && (this.touchObject.direction === 1 && this.props.rtl)) {
         this._prevSlide();
       }
     }
@@ -368,6 +379,7 @@ export default class Manager extends Component {
       transition: (slide.props.transition || {}).length ?
         slide.props.transition :
         this.props.transition,
+      rtl: this.props.rtl,
       transitionDuration: (slide.props.transition || {}).transitionDuration ?
         slide.props.transitionDuration :
         this.props.transitionDuration
@@ -471,6 +483,7 @@ export default class Manager extends Component {
             <Controls
               currentSlideIndex={this._getSlideIndex()}
               totalSlides={this.state.slideReference.length}
+              rtl={this.props.rtl}
               onPrev={this._prevSlide.bind(this)}
               onNext={this._nextSlide.bind(this)}
             />}
@@ -483,6 +496,7 @@ export default class Manager extends Component {
           <Progress
             items={this.state.slideReference}
             currentSlideIndex={this._getSlideIndex()}
+            rtl={this.props.rtl}
             type={this.props.progress}
           /> : ""
         }
