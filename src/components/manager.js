@@ -104,10 +104,10 @@ export default class Manager extends Component {
   }
   _getEventDirection(event) {
     if (event.keyCode === 32 && event.shiftKey) {
-      return "next";
+      return "previous";
     }
     if (event.keyCode === 32 && !event.shiftKey) {
-      return "previous";
+      return "next";
     }
     if (event.keyCode === 37 || event.keyCode === 33) {
       return this.props.rtl ? "next" : "previous";
