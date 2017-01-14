@@ -103,10 +103,16 @@ export default class Manager extends Component {
     window.removeEventListener("resize", this._handleScreenChange);
   }
   _getEventDirection(event) {
-    if (event.keyCode === 37 || event.keyCode === 33 || (event.keyCode === 32 && event.shiftKey)) {
+    if (event.keyCode === 32 && event.shiftKey) {
+      return "next";
+    }
+    if (event.keyCode === 32 && !event.shiftKey) {
+      return "previous";
+    }
+    if (event.keyCode === 37 || event.keyCode === 33) {
       return this.props.rtl ? "next" : "previous";
     }
-    if (event.keyCode === 39 || event.keyCode === 34 || (event.keyCode === 32 && !event.shiftKey)) {
+    if (event.keyCode === 39 || event.keyCode === 34) {
       return this.props.rtl ? "previous" : "next";
     }
     return null;
