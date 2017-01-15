@@ -38,7 +38,7 @@ const Transitionable = function (target) {
       const { slideIndex, lastSlide } = this.props;
       const slide = this.context.store.getState().route.slide || 0;
       if (this.props.rtl) {
-        return this.state.reverse ? slideIndex > lastSlide : slideIndex > slide;
+        return this.state.reverse ? slideIndex < slide : slideIndex < lastSlide;
       }
       return this.state.reverse ? slideIndex > slide : slideIndex > lastSlide;
     },
