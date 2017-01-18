@@ -3,7 +3,7 @@ import React from "react";
 import {
   Appear, BlockQuote, Cite, CodePane, Deck, Fill,
   Heading, Image, Layout, Link, ListItem, List, Markdown, Quote, Slide,
-  TableHeaderItem, TableItem, TableRow, Table, Text
+  TableHeaderItem, TableItem, TableRow, Table, Text, ComponentPlayground
 } from "../../src";
 
 import preloader from "../../src/utils/preloader";
@@ -58,6 +58,11 @@ export default class Presentation extends React.Component {
             lang="jsx"
             source={require("raw-loader!../assets/deck.example")}
             margin="20px auto"
+          />
+        </Slide>
+        <Slide>
+          <ComponentPlayground
+            theme="dark"
           />
         </Slide>
         <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
