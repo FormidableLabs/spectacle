@@ -3,6 +3,7 @@ import BlockQuote from "./components/block-quote";
 import Cite from "./components/cite";
 import CodePane from "./components/code-pane";
 import Code from "./components/code";
+import ComponentPlayground from "./components/component-playground";
 import Deck from "./components/deck";
 import Fill from "./components/fill";
 import Fit from "./components/fit";
@@ -29,6 +30,7 @@ export {
   Cite,
   CodePane,
   Code,
+  ComponentPlayground,
   Deck,
   Fill,
   Fit,

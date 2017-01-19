@@ -1,0 +1,77 @@
+.playground {
+  display: flex;
+  align-items: center;
+  height: inherit;
+}
+
+.playground .playgroundCode {
+  flex: 1;
+  font-size: 1.25vw;
+  height: inherit;
+  margin: 0;
+  order: 2;
+  position: relative;
+}
+
+.playground .playgroundPreview:before,
+.playground .playgroundCode:before {
+  bottom: 100%;
+  display: block;
+  font-family: 'Roboto Mono', 'Menlo', 'Andale Mono', monospace;
+  font-size: 1.15vw;
+  left: 0;
+  padding: 0.4rem 0;
+  position: absolute;
+  right: 0;
+  text-transform: uppercase;
+  z-index: 5;
+}
+
+.theme-dark .playground .playgroundCode:before {
+  background: #272822;
+  border-bottom: 1px solid #000;
+  border-radius: 0 6px 0 0;
+  color: #fff;
+  content: "Source Code";
+}
+
+.theme-light .playground .playgroundCode:before,
+.playground .playgroundPreview:before {
+  background: #ddd;
+  border-bottom: 1px solid #999;
+  color: #424242;
+}
+
+.playground .playgroundPreview:before {
+  border-radius: 6px 0 0 0;
+  content: "Live Preview";
+}
+
+.theme-light .playground .playgroundCode:before {
+  border-radius: 0 6px 0 0;
+  border-left: 1px solid #999;
+  content: "Source Code";
+}
+
+.playground .playgroundCode .playgroundStage {
+  height: inherit;
+}
+
+.playground .playgroundCode .playgroundStage .CodeMirror {
+  height: 60vh;
+  padding: 0.5rem;
+  border-radius: 0 0 6px 0;
+}
+
+.theme-light .playground .playgroundCode .playgroundStage .CodeMirror {
+  border-left: 1px solid #999;
+}
+
+.playground .playgroundPreview {
+  flex: 1;
+  height: 60vh;
+  margin: 0;
+  order: 1;
+  padding: 0.5rem;
+  position: relative;
+}
