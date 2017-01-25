@@ -252,6 +252,8 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
 |notes| React.PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |id| React.PropTypes.string | Used to create a string based hash.
+|maxHeight| React.PropTypes.number | Used to set max dimensions of the Slide.
+|maxWidth| React.PropTypes.number | Used to set max dimentions of the Slide.
 
 <a name="layout-tags"></a>
 ### Layout Tags
