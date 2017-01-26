@@ -1,6 +1,6 @@
 exports[`<Controls /> should render correctly. 1`] = `
 <Controls
-  currentSlide={2}
+  currentSlideIndex={2}
   onNext={[Function]}
   onPrev={[Function]}
   totalSlides={5}>

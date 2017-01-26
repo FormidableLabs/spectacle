@@ -36,6 +36,15 @@ class MockSlide extends Component {
   }
 }
 
+class MockSlideSet extends Component {
+  render() {
+    return <div>{this.props.slides}</div>;
+  }
+}
+MockSlideSet.defaultProps = {
+  hasSlideChildren: true
+};
+
 const _mockChildContext = function () {
   return { styles: () => {} };
 };
@@ -68,6 +77,19 @@ describe("<Manager />", () => {
         <MockSlide />
       </Manager>
     ), { context: _mockContext(0, [ "overview" ]), childContextTypes: _mockChildContext() });
+    expect(mountToJson(wrapper)).toMatchSnapshot();
+  });
+
+  test("should render with slideset slides", () => {
+    const wrapper = mount((
+      <Manager>
+        <MockSlide />
+        <MockSlideSet slides={[
+          <MockSlide />,
+          <MockSlide />
+        ]} />
+      </Manager>
+    ), { context: _mockContext(1, []), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 });

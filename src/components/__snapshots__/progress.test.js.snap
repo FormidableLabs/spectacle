@@ -1,11 +1,17 @@
 exports[`<Progress /> should render PacMan correctly 1`] = `
 <Progress
-  currentSlide={2}
+  currentSlideIndex={2}
   items={
     Array [
-      <Slide />,
-      <Slide />,
-      <Slide />,
+      Object {
+        "id": 0,
+      },
+      Object {
+        "id": 1,
+      },
+      Object {
+        "id": "last",
+      },
     ]
   }
   type="pacman">
@@ -71,12 +77,18 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
 
 exports[`<Progress /> should render nothing when none is provided. 1`] = `
 <Progress
-  currentSlide={3}
+  currentSlideIndex={3}
   items={
     Array [
-      <Slide />,
-      <Slide />,
-      <Slide />,
+      Object {
+        "id": 0,
+      },
+      Object {
+        "id": 1,
+      },
+      Object {
+        "id": "last",
+      },
     ]
   }
   type="none" />
@@ -84,12 +96,18 @@ exports[`<Progress /> should render nothing when none is provided. 1`] = `
 
 exports[`<Progress /> should render the bar style correctly 1`] = `
 <Progress
-  currentSlide={1}
+  currentSlideIndex={1}
   items={
     Array [
-      <Slide />,
-      <Slide />,
-      <Slide />,
+      Object {
+        "id": 0,
+      },
+      Object {
+        "id": 1,
+      },
+      Object {
+        "id": "last",
+      },
     ]
   }
   type="bar">
@@ -109,12 +127,18 @@ exports[`<Progress /> should render the bar style correctly 1`] = `
 
 exports[`<Progress /> should render the number style correctly 1`] = `
 <Progress
-  currentSlide={1}
+  currentSlideIndex={1}
   items={
     Array [
-      <Slide />,
-      <Slide />,
-      <Slide />,
+      Object {
+        "id": 0,
+      },
+      Object {
+        "id": 1,
+      },
+      Object {
+        "id": "last",
+      },
     ]
   }
   type="number">

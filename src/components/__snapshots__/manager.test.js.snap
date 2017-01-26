@@ -49,7 +49,7 @@ exports[`<Manager /> should render correctly. 1`] = `
         }
       }>
       <Controls
-        currentSlide={0}
+        currentSlideIndex={0}
         onNext={[Function]}
         onPrev={[Function]}
         totalSlides={2}>
@@ -95,7 +95,7 @@ exports[`<Manager /> should render correctly. 1`] = `
             dispatch={[Function]}
             export={false}
             hash={0}
-            lastSlide={0}
+            lastSlideIndex={0}
             print={false}
             slideIndex={0}
             transition={
@@ -112,11 +112,17 @@ exports[`<Manager /> should render correctly. 1`] = `
         </div>
       </ReactTransitionGroup>
       <Progress
-        currentSlide={0}
+        currentSlideIndex={0}
         items={
           Array [
-            <MockSlide />,
-            <MockSlide />,
+            Object {
+              "id": 0,
+              "rootIndex": 0,
+            },
+            Object {
+              "id": 1,
+              "rootIndex": 1,
+            },
           ]
         }
         type="pacman">
