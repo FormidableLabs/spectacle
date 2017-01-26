@@ -36,6 +36,7 @@ ReactJS based Presentation Library
     - [BlockQuote, Quote and Cite (Base)](#blockquote-quote-and-cite-base)
     - [CodePane (Base)](#codepane-base)
     - [Code (Base)](#code-base)
+    - [ComponentPlayground](#component-playground)
     - [Heading (Base)](#heading-base)
     - [Image (Base)](#image-base)
     - [Link (Base)](#link-base)
@@ -251,6 +252,8 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
 |notes| React.PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |id| React.PropTypes.string | Used to create a string based hash.
+|maxHeight| React.PropTypes.number | Used to set max dimensions of the Slide.
+|maxWidth| React.PropTypes.number | Used to set max dimentions of the Slide.
 
 <a name="layout-tags"></a>
 ### Layout Tags
@@ -325,6 +328,38 @@ You can change your syntax highlighting theme by swapping the prism.js CSS file 
 #### Code (Base)
 
 A simple tag for wrapping inline text that you want lightly styled in a monospace font.
+
+<a name="component-playground"></a>
+#### Component Playground
+
+This tag displays a two-pane view with a ES6 source code editor on the right and a preview pane on the left for showing off custom React components. `React` and `render` from `ReactDOM` are supplied as variables. To render a component use the domContainer `mountNode`. Any `console` output will be forwarded to the main console in the browser.
+
+
+|Name|PropType|Description|
+|---|---|---|
+|code|React.PropTypes.string|The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed.|
+|previewBackgroundColor|React.PropTypes.string|The background color you want for the preview pane. Defaults to `#fff`.|
+|theme|React.PropTypes.string|Accepts `light` or `dark` for the source editor's syntax highlighting. Defaults to `light`.|
+
+Example code blocks:
+
+```jsx
+const Button = ({ title }) => (<button type="button">{ title }</button>);
+render(<Button title="My Button" />, mountNode);
+```
+
+```jsx
+class View extends React.Component {
+  componentDidMount() {
+    console.log("Hello");
+  }
+
+  render() {
+    return (<div>My View</div>);
+  }
+}
+render(<View />, mountNode);
+```
 
 <a name="heading-base"></a>
 #### Heading (Base)
