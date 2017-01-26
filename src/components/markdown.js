@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from "react";
-import mdast from "mdast";
-import mdastReact from "mdast-react";
-import isUndefined from "lodash/isUndefined";
+import markdownToReact from "markdown-to-react-components";
 
 import BlockQuote from "./block-quote";
 import CodePane from "./code-pane";
@@ -15,80 +13,57 @@ import Quote from "./quote";
 import S from "./s";
 import Text from "./text";
 
-// We can't pass props into mdast-react directly, so we have to "bind" them
-// to spectacle components (ex. headings, strong/em/del)
-const spectacleComponent = (component, boundProps = {}) => {
-  return React.createClass({
-    propTypes() {
-      return {
-        children: PropTypes.children
-      };
-    },
-    render() {
-      const props = { ...this.props, ...boundProps };
-      return React.createElement(component, { ...props }, this.props.children);
-    }
-  });
+const _Heading = (size) => {
+  const component = ({ children }) => <Heading size={size}>{children}</Heading>;
+  component.propTypes = { children: PropTypes.node };
+  return component;
 };
 
-// Spectacle requires a <Quote> inside a <BlockQuote>
-class CombinedBlockQuote extends Component {
+const _S = (type) => {
+  const component = ({ children }) => <S type={type}>{children}</S>;
+  component.propTypes = { children: PropTypes.node };
+  return component;
+};
+
+const _CombineBlockQuote = ({ children }) => <BlockQuote><Quote>{children}</Quote></BlockQuote>;
+_CombineBlockQuote.propTypes = { children: PropTypes.node };
+
+markdownToReact.configure({
+  a: Link,
+  blockquote: _CombineBlockQuote,
+  code: CodePane,
+  del: _S("strikethrough"),
+  em: _S("italic"),
+  h1: _Heading(1),
+  h2: _Heading(2),
+  h3: _Heading(3),
+  h4: _Heading(4),
+  h5: _Heading(5),
+  h6: _Heading(6),
+  img: Image,
+  inlineCode: Code,
+  li: ListItem,
+  p: Text,
+  strong: _S("bold"),
+  ul: List
+});
+
+export default class Markdown extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    style: PropTypes.object
+  };
+
+  static defaultProps = {
+    style: {}
+  };
+
   render() {
-    return <BlockQuote><Quote>{this.props.children}</Quote></BlockQuote>;
-  }
-}
-
-CombinedBlockQuote.propTypes = {
-  children: PropTypes.object
-};
-
-// We export the default config so people can extend it themselves
-export const mdastConfigDefault = {
-  commonmark: true,
-  paragraphBlockquotes: false,
-  mdastReactComponents: {
-    a: Link,
-    blockquote: CombinedBlockQuote,
-    code: CodePane,
-    del: spectacleComponent(S, { type: "strikethrough" }),
-    em: spectacleComponent(S, { type: "italic" }),
-    h1: spectacleComponent(Heading, { size: 1 }),
-    h2: spectacleComponent(Heading, { size: 2 }),
-    h3: spectacleComponent(Heading, { size: 3 }),
-    h4: spectacleComponent(Heading, { size: 4 }),
-    h5: spectacleComponent(Heading, { size: 5 }),
-    h6: spectacleComponent(Heading, { size: 6 }),
-    img: Image,
-    inlineCode: Code,
-    li: ListItem,
-    p: Text,
-    strong: spectacleComponent(S, { type: "bold" }),
-    ul: List
-  }
-};
-
-export default class Markdown extends React.Component {
-  render() {
-    const { source, children, mdastConfig } = this.props;
-    const content = (isUndefined(source) || source === "") ? children : source;
-
+    const { style, children } = this.props;
     return (
-      <div style={this.props.style}>
-        {mdast().use(mdastReact, mdastConfig).process(content)}
+      <div style={style}>
+        { markdownToReact(children).tree }
       </div>
     );
   }
 }
-
-Markdown.propTypes = {
-  children: PropTypes.node,
-  mdastConfig: PropTypes.object,
-  source: PropTypes.string,
-  style: PropTypes.object
-};
-
-Markdown.defaultProps = {
-  style: {},
-  source: "",
-  mdastConfig: mdastConfigDefault
-};

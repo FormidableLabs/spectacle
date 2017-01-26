@@ -25,6 +25,7 @@ ReactJS based Presentation Library
     - [Spectacle](#spectacle)
     - [Deck](#deck)
     - [Slide (Base)](#slide-base)
+    - [MarkdownSlides](#markdown-slides)
   - [Layout Tags](#layout-tags)
     - [Layout](#layout)
     - [Fit](#fit)
@@ -254,6 +255,35 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |id| React.PropTypes.string | Used to create a string based hash.
 |maxHeight| React.PropTypes.number | Used to set max dimensions of the Slide.
 |maxWidth| React.PropTypes.number | Used to set max dimentions of the Slide.
+
+<a name="markdown-slides"></a>
+### MarkdownSlides
+
+The MarkdownSlides function lets you create a single or multiple slides using Markdown. It can be used as a tagged template literal or a function. Three dashes (`---`) are used as a delimiter between slides.
+
+**Tagged Template Literal Usage**
+
+```jsx
+<Deck ...>
+  {MarkdownSlides`
+## Slide One Title
+Slide Content
+---
+## Slide Two Title
+Slide Content
+  `}
+</Deck>
+```
+
+**Function Usage**
+
+```jsx
+import slidesMarkdown from "raw!markdown.md";
+
+<Deck ...>
+  {MarkdownSlides(slidesMarkdown)}
+</Deck>
+```
 
 <a name="layout-tags"></a>
 ### Layout Tags

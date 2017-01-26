@@ -3,7 +3,7 @@ import React from "react";
 import {
   Appear, BlockQuote, Cite, CodePane, Deck, Fill,
   Heading, Image, Layout, Link, ListItem, List, Markdown, Quote, Slide,
-  TableHeaderItem, TableItem, TableRow, Table, Text, ComponentPlayground
+  TableHeaderItem, TableItem, TableRow, Table, Text, ComponentPlayground, MarkdownSlides
 } from "../../src";
 
 import preloader from "../../src/utils/preloader";
@@ -118,6 +118,16 @@ export default class Presentation extends React.Component {
             `}
           </Markdown>
         </Slide>
+        {
+          MarkdownSlides`
+#### Create Multiple Slides in Markdown
+All the same tags and elements supported in <Markdown /> are supported in MarkdownSlides.
+---
+Slides are separated with **three dashes** and can be used _anywhere_ in the deck. The markdown can either be:
+* A Tagged Template Literal
+* Imported Markdown from another file
+          `
+        }
         <Slide transition={["slide", "spin"]} bgColor="primary">
           <Heading caps fit size={1} textColor="tertiary">
             Smooth
