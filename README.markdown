@@ -22,7 +22,6 @@ ReactJS based Presentation Library
     - [createTheme(colors, fonts)](#createthemecolors-fonts)
 - [Tag API](#tag-api)
   - [Main Tags](#main-tags)
-    - [Spectacle](#spectacle)
     - [Deck](#deck)
     - [Slide (Base)](#slide-base)
     - [MarkdownSlides](#markdown-slides)
@@ -154,19 +153,17 @@ Check it out [here](https://github.com/FormidableLabs/spectacle-boilerplate/blob
 import React, { Component } from 'react';
 import {
   Appear, BlockQuote, Cite, CodePane, Code, Deck, Fill, Fit,
-  Heading, Image, Layout, ListItem, List, Quote, Spectacle, Slide, Text
+  Heading, Image, Layout, ListItem, List, Quote, Slide, Text
 } from 'spectacle';
 
 export default class extends Component {
   render() {
     return (
-      <Spectacle>
-        <Deck>
-          <Slide>
-            <Text>Hello</Text>
-          </Slide>
-        </Deck>
-      </Spectacle>
+      <Deck>
+        <Slide>
+          <Text>Hello</Text>
+        </Slide>
+      </Deck>
     );
   }
 }
@@ -175,7 +172,7 @@ export default class extends Component {
 
 Here is where you can use the library's tags to compose your presentation. While you can use any JSX syntax here, building your presentation with the supplied tags allows for theming to work properly.
 
-The bare minimum you need to start is a `Spectacle` element, a`Deck` element and a `Slide` element. Each `Slide` element represents a slide inside of your slideshow.
+The bare minimum you need to start is a`Deck` element and a `Slide` element. Each `Slide` element represents a slide inside of your slideshow.
 
 <a name="themes"></a>
 ### Themes
@@ -209,7 +206,7 @@ const theme = createTheme({
 });
 ```
 
-The returned theme object can then be passed to the `Spectacle` tag via the `theme` prop, and will override the default styles.
+The returned theme object can then be passed to the `Deck` tag via the `theme` prop, and will override the default styles.
 
 <a name="tag-api"></a>
 ## Tag API
@@ -219,27 +216,19 @@ In Spectacle, presentations are composed of a set of base tags. We can separate 
 <a name="main-tags"></a>
 ### Main Tags
 
-<a name="spectacle"></a>
-#### Spectacle
-
-The Spectacle tag is the root level tag for your presentation. It handles routing, flux and generally presenting your Deck & Slides. It supports the following props:
-
-|Name|PropType|Description|
-|---|---|---|
-|history|React.PropTypes.object|Accepts custom configuration for [history](https://github.com/ReactTraining/history)
-|theme|React.PropTypes.object|Accepts a theme object for styling your presentation|
-
 <a name="deck"></a>
 #### Deck
 
-The deck tag wraps your slides. It supports the following props:
+The Deck tag is the root level tag for your presentation. It supports the following props:
 
 |Name|PropType|Description|
 |---|---|---|
+|controls| React.PropTypes.bool| Show control arrows when not in fullscreen
+|history|React.PropTypes.object|Accepts custom configuration for [history](https://github.com/ReactTraining/history)
+|progress| React.PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`.
+|theme|React.PropTypes.object|Accepts a theme object for styling your presentation|
 |transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for global transition duration.
-|progress| React.PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`.
-|controls| React.PropTypes.bool| Show control arrows when not in fullscreen
 
 <a name="slide-base"></a>
 #### Slide (Base)
@@ -249,12 +238,12 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |Name|PropType|Description|
 |---|---|---|
 |align| React.PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (bottom). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default.
-|transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
-|transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
-|notes| React.PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |id| React.PropTypes.string | Used to create a string based hash.
 |maxHeight| React.PropTypes.number | Used to set max dimensions of the Slide.
 |maxWidth| React.PropTypes.number | Used to set max dimentions of the Slide.
+|notes| React.PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
+|transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
+|transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
 
 <a name="markdown-slides"></a>
 ### MarkdownSlides
@@ -337,8 +326,8 @@ These tags create a styled blockquote. Use them as follows:
 
 ```jsx
 <BlockQuote>
-	<Quote>Ken Wheeler is amazing</Quote>
-	<Cite>Everyone</Cite>
+  <Quote>Ken Wheeler is amazing</Quote>
+  <Cite>Everyone</Cite>
 </BlockQuote>
 ```
 
@@ -436,20 +425,20 @@ These tags create lists. Use them as follows:
 Ordered lists:
 ```jsx
 <List ordered start={2} type="A">
-	<ListItem>Item 1</ListItem>
-	<ListItem>Item 2</ListItem>
-	<ListItem>Item 3</ListItem>
-	<ListItem>Item 4</ListItem>
+  <ListItem>Item 1</ListItem>
+  <ListItem>Item 2</ListItem>
+  <ListItem>Item 3</ListItem>
+  <ListItem>Item 4</ListItem>
 </List>
 ```
 
 Unordered lists:
 ```jsx
 <List>
-	<ListItem>Item 1</ListItem>
-	<ListItem>Item 2</ListItem>
-	<ListItem>Item 3</ListItem>
-	<ListItem>Item 4</ListItem>
+  <ListItem>Item 1</ListItem>
+  <ListItem>Item 2</ListItem>
+  <ListItem>Item 3</ListItem>
+  <ListItem>Item 4</ListItem>
 </List>
 ```
 
