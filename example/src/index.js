@@ -1,9 +1,9 @@
 import React from "react";
 
 import {
-  Appear, BlockQuote, Cite, CodePane, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Markdown, Quote, Slide,
-  TableHeaderItem, TableItem, TableRow, Table, Text, ComponentPlayground, MarkdownSlides
+  Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
+  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide,
+  TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text
 } from "../../src";
 
 import preloader from "../../src/utils/preloader";
@@ -159,15 +159,15 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
           </Heading>
           <Layout>
             <Table>
-              <thead>
+              <TableHeader>
                 <TableRow>
                   <TableHeaderItem/>
                   <TableHeaderItem>2011</TableHeaderItem>
                   <TableHeaderItem>2013</TableHeaderItem>
                   <TableHeaderItem>2015</TableHeaderItem>
                 </TableRow>
-              </thead>
-              <tbody>
+              </TableHeader>
+              <TableBody>
                 <TableRow>
                   <TableItem>None</TableItem>
                   <TableItem>61.8%</TableItem>
@@ -192,7 +192,7 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
                   <TableItem>24.9%</TableItem>
                   <TableItem>55.9%</TableItem>
                 </TableRow>
-              </tbody>
+              </TableBody>
             </Table>
           </Layout>
         </Slide>
