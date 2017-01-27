@@ -4,13 +4,11 @@ exports[`<Table /> should render correctly 1`] = `
     data-radium={true}
     style={Object {}}>
     <tbody>
-      <tbody>
-        <tr>
-          <td>
-            Table Content
-          </td>
-        </tr>
-      </tbody>
+      <tr>
+        <td>
+          Table Content
+        </td>
+      </tr>
     </tbody>
   </table>
 </Table>

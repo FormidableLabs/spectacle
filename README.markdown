@@ -42,7 +42,7 @@ ReactJS based Presentation Library
     - [Link (Base)](#link-base)
     - [List & ListItem (Base)](#list--listitem-base)
     - [S (Base)](#s-base)
-    - [Table, TableRow, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
+    - [Table, TableRow, TableBody, TableHeader, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
     - [Text (Base)](#text-base)
     - [Typeface](#typeface)
   - [Base Props](#base-props)
@@ -454,22 +454,26 @@ The `S` tag is used to add inline styling to a piece of text, such as underline 
 <a name="table-tablerow-tableheaderitem-and-tableitem-base"></a>
 #### Table, TableRow, TableHeaderItem and TableItem (Base)
 
-The `Table` tag is used to add table to your slide. It is used with `TableRow`, `TableHeaderItem` and `TableItem`. Use them as follows:
+The `Table` tag is used to add table to your slide. It is used with `TableHeader`, `TableBody`, `TableRow`, `TableHeaderItem` and `TableItem`. Use them as follows:
 
 ```jsx
 <Table>
-  <TableRow>
-    <TableHeaderItem></TableHeaderItem>
-    <TableHeaderItem>2011</TableHeaderItem>
-  </TableRow>
-  <TableRow>
-    <TableItem>None</TableItem>
-    <TableItem>61.8%</TableItem>
-  </TableRow>
-  <TableRow>
-    <TableItem>jQuery</TableItem>
-    <TableItem>28.3%</TableItem>
-  </TableRow>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderItem></TableHeaderItem>
+      <TableHeaderItem>2011</TableHeaderItem>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableItem>None</TableItem>
+      <TableItem>61.8%</TableItem>
+    </TableRow>
+    <TableRow>
+      <TableItem>jQuery</TableItem>
+      <TableItem>28.3%</TableItem>
+    </TableRow>
+  </TableBody>
 </Table>
 ```
 

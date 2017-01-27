@@ -18,6 +18,8 @@ import MarkdownSlides from "./components/markdown-slides";
 import Quote from "./components/quote";
 import S from "./components/s";
 import Slide from "./components/slide";
+import TableBody from "./components/table-body";
+import TableHeader from "./components/table-header";
 import TableHeaderItem from "./components/table-header-item";
 import TableItem from "./components/table-item";
 import TableRow from "./components/table-row";
@@ -46,6 +48,8 @@ export {
   Quote,
   S,
   Slide,
+  TableBody,
+  TableHeader,
   TableHeaderItem,
   TableItem,
   TableRow,
