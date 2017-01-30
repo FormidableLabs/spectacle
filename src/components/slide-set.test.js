@@ -17,9 +17,10 @@ describe("<SlideSet />", () => {
   test("should render correctly", () => {
     const wrapper = mount((
       <SlideSet slides={[
-        <MockSlide />,
-        <MockSlide />
-      ]} />
+        <MockSlide key={0} />,
+        <MockSlide key={1} />
+      ]}
+      />
     ), { context: _mockContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });

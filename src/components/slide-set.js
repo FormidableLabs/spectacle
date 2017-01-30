@@ -7,11 +7,14 @@ class SlideSet extends Component {
 }
 
 SlideSet.defaultProps = {
-  hasSlideChildren: true
+  hasSlideChildren: true,
+  slides: []
 };
 
 SlideSet.propTypes = {
-  hasSlideChildren: PropTypes.bool
+  children: PropTypes.array,
+  hasSlideChildren: PropTypes.bool,
+  slides: PropTypes.array
 };
 
 SlideSet.contextTypes = {

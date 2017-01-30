@@ -235,8 +235,8 @@ Presenter.propTypes = {
   lastSlide: PropTypes.number,
   route: PropTypes.object,
   slideIndex: PropTypes.number,
-  slides: PropTypes.array,
-  slideReference: PropTypes.array
+  slideReference: PropTypes.array,
+  slides: PropTypes.array
 };
 
 Presenter.contextTypes = {

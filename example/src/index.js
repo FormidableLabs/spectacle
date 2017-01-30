@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   Appear, BlockQuote, Cite, CodePane, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Markdown, Quote, Slide, SlideSet
+  Heading, Image, Layout, Link, ListItem, List, Markdown, Quote, Slide, SlideSet,
   TableHeaderItem, TableItem, TableRow, Table, Text, ComponentPlayground
 } from "../../src";
 

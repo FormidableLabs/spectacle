@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { mount } from "enzyme";
 import { mountToJson } from "enzyme-to-json";
 import Manager from "./manager";
@@ -44,6 +44,10 @@ class MockSlideSet extends Component {
 MockSlideSet.defaultProps = {
   hasSlideChildren: true
 };
+MockSlideSet.propTypes = {
+  hasSlideChildren: PropTypes.bool,
+  slides: PropTypes.array
+};
 
 const _mockChildContext = function () {
   return { styles: () => {} };
@@ -85,9 +89,10 @@ describe("<Manager />", () => {
       <Manager>
         <MockSlide />
         <MockSlideSet slides={[
-          <MockSlide />,
-          <MockSlide />
-        ]} />
+          <MockSlide key={0} />,
+          <MockSlide key={1} />
+        ]}
+        />
       </Manager>
     ), { context: _mockContext(1, []), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
