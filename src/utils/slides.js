@@ -3,6 +3,7 @@ import isUndefined from "lodash/isUndefined";
 import reduce from "lodash/reduce";
 
 export const getSlideByIndex = (children, slideReference, index) => {
+  children = Children.toArray(children);
   const reference = slideReference[index];
   let slide;
   if (isUndefined(reference.setIndex)) {

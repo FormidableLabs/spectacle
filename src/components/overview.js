@@ -1,5 +1,6 @@
 import React, { cloneElement, Component, PropTypes } from "react";
 import Radium from "radium";
+import { getSlideByIndex } from "../utils/slides";
 
 @Radium
 export default class Overview extends Component {
@@ -20,29 +21,30 @@ export default class Overview extends Component {
   _slideClicked(index) {
     this.context.history.replace(`/${this._getHash(index)}`);
   }
-  _getHash(slide) {
-    let hash = slide;
-    if ("id" in this.props.slides[slide].props) {
-      hash = this.props.slides[slide].props.id;
-    }
-    return hash;
+  _getHash(slideIndex) {
+    return this.props.slideReference[slideIndex].id;
   }
   _renderSlides() {
-    const slide = this.props.slide;
+    const slideIndex = this.props.slideIndex;
     const screen = this.state.overviewWidth;
-    return this.props.slides.map((child, index) => {
+    return this.props.slideReference.map((reference, index) => {
       const style = {
         position: "relative",
         width: screen / 3,
         height: (screen / 3) * 0.7,
         float: "left",
-        opacity: index === slide ? 1 : 0.5,
+        opacity: index === slideIndex ? 1 : 0.5,
         cursor: "pointer",
         ":hover": {
           opacity: 1
         }
       };
-      const el = cloneElement(child, {
+      const slide = getSlideByIndex(
+        this.props.slides,
+        this.props.slideReference,
+        index
+      );
+      const el = cloneElement(slide, {
         key: index,
         slideIndex: index,
         export: this.props.route.params.indexOf("export") !== -1,
@@ -81,7 +83,8 @@ export default class Overview extends Component {
 
 Overview.propTypes = {
   route: PropTypes.object,
-  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  slideIndex: PropTypes.number,
+  slideReference: PropTypes.array,
   slides: PropTypes.array
 };
 

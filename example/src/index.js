@@ -188,7 +188,7 @@ export default class Presentation extends React.Component {
             </Table>
           </Layout>
         </Slide>
-        <Slide transition={["spin", "slide"]} bgColor="tertiary">
+        <Slide id="made-with-love" transition={["spin", "slide"]} bgColor="tertiary">
           <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
             Made with love in Seattle by
           </Heading>

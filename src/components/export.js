@@ -1,11 +1,17 @@
 import React, { cloneElement, Component, PropTypes } from "react";
 import Radium from "radium";
+import { getSlideByIndex } from "../utils/slides";
 
 @Radium
 export default class Export extends Component {
   _renderSlides() {
-    return this.props.slides.map((child, index) => {
-      return cloneElement(child, {
+    return this.props.slideReference.map((reference, index) => {
+      const slide = getSlideByIndex(
+        this.props.slides,
+        this.props.slideReference,
+        index
+      );
+      return cloneElement(slide, {
         key: index,
         slideIndex: index,
         export: this.props.route.params.indexOf("export") !== -1,
@@ -32,6 +38,7 @@ export default class Export extends Component {
 
 Export.propTypes = {
   route: PropTypes.object,
+  slideReference: PropTypes.array,
   slides: PropTypes.array
 };
 

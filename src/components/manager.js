@@ -180,21 +180,17 @@ export default class Manager extends Component {
     });
     const slideReference = this.state.slideReference;
     if (this._checkFragments(this.props.route.slide, true) || this.props.route.params.indexOf("overview") !== -1) {
-      console.log("fragment");
       if (slideIndex < slideReference.length - 1) {
-        console.log("good fragment");
         this.context.history.replace(`/${this._getHash(slideIndex + 1) + this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
           JSON.stringify({ slide: this._getHash(slideIndex + 1), forward: true, time: Date.now() }));
       }
     } else if (slideIndex < slideReference.length) {
-      console.log("not fragment");
       localStorage.setItem("spectacle-slide",
         JSON.stringify({ slide: this._getHash(slideIndex), forward: true, time: Date.now() }));
     }
   }
   _getHash(slideIndex) {
-    console.log("_getHash", this.state.slideReference, slideIndex);
     return this.state.slideReference[slideIndex].id;
   }
   _checkFragments(slide, forward) {
@@ -337,10 +333,10 @@ export default class Manager extends Component {
         });
       }
     });
-    console.log("slideReference", slideReference);
     return slideReference;
   }
   _getSlideIndex() {
+    console.log(this.props.route.slide);
     let index = 0;
     if (!parseInt(this.props.route.slide)) {
       index = findIndex(this.state.slideReference, (reference) => {
@@ -349,22 +345,18 @@ export default class Manager extends Component {
     } else {
       index = parseInt(this.props.route.slide);
     }
-    console.log("_getSlideIndex", this.props.route.slide, index);
     return index;
   }
   _getSlideByIndex(index) {
     return getSlideByIndex(
-      Children.toArray(this.props.children),
+      this.props.children,
       this.state.slideReference,
       index
     );
   }
   _renderSlide() {
     const slideIndex = this._getSlideIndex();
-    console.log("_renderSlide", slideIndex);
-    console.log(this.props.children);
     const slide = this._getSlideByIndex(slideIndex);
-    console.log(slide);
     return cloneElement(slide, {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
@@ -384,7 +376,6 @@ export default class Manager extends Component {
     });
   }
   render() {
-    console.log(this.props.route);
     const globals = this.props.route.params.indexOf("export") !== -1 ? {
       body: Object.assign(this.context.styles.global.body, {
         minWidth: 1100,
@@ -432,9 +423,22 @@ export default class Manager extends Component {
         />
       );
     } else if (this.props.route.params.indexOf("export") !== -1) {
-      componentToRender = <Export slides={children} route={this.props.route} />;
+      componentToRender = (
+        <Export
+          slides={children}
+          slideReference={this.state.slideReference}
+          route={this.props.route}
+        />
+      );
     } else if (this.props.route.params.indexOf("overview") !== -1) {
-      componentToRender = <Overview slides={children} slide={this._getSlideIndex()} route={this.props.route} />;
+      componentToRender = (
+        <Overview
+          slides={children}
+          slideReference={this.state.slideReference}
+          slideIndex={this._getSlideIndex()}
+          route={this.props.route}
+        />
+      );
     } else {
       componentToRender = (
         <TransitionGroup component="div" style={[styles.transition]}>
