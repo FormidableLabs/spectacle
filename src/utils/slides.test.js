@@ -14,11 +14,10 @@ describe("slides", () => {
     test("should count slide sets", () => {
       const children = [
         <div key={0} />,
-        <div key={1} hasSlideChildren slides={[
-          <div key={0} />,
+        <div key={1} hasSlideChildren>
+          <div key={0} />
           <div key={1} />
-        ]}
-        />
+        </div>
       ];
       expect(countSlides(children)).toBe(3);
     });

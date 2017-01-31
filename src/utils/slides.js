@@ -9,14 +9,15 @@ export const getSlideByIndex = (children, slideReference, index) => {
   if (isUndefined(reference.setIndex)) {
     slide = children[reference.rootIndex];
   } else {
-    slide = children[reference.rootIndex].props.children[reference.setIndex];
+    const setChildren = Children.toArray(children[reference.rootIndex].props.children);
+    slide = setChildren[reference.setIndex];
   }
   return slide;
 };
 
 export const countSlides = (children) => {
   return reduce(Children.toArray(children), (count, child) => {
-    count += child.props.hasSlideChildren ? child.props.slides.length : 1;
+    count += child.props.hasSlideChildren ? Children.toArray(child.props.children).length : 1;
     return count;
   }, 0);
 };
