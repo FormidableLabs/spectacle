@@ -38,15 +38,14 @@ class MockSlide extends Component {
 
 class MockSlideSet extends Component {
   render() {
-    return <div>{this.props.slides}</div>;
+    return <div>{this.props.children}</div>;
   }
 }
 MockSlideSet.defaultProps = {
   hasSlideChildren: true
 };
 MockSlideSet.propTypes = {
-  hasSlideChildren: PropTypes.bool,
-  slides: PropTypes.array
+  hasSlideChildren: PropTypes.bool
 };
 
 const _mockChildContext = function () {
