@@ -45,6 +45,7 @@ MockSlideSet.defaultProps = {
   hasSlideChildren: true
 };
 MockSlideSet.propTypes = {
+  children: PropTypes.array,
   hasSlideChildren: PropTypes.bool
 };
 
