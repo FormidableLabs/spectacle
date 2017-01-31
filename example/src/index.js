@@ -198,7 +198,7 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
             </Table>
           </Layout>
         </Slide>
-        <Slide id="made-with-love" transition={["spin", "slide"]} bgColor="tertiary">
+        <Slide transition={["spin", "slide"]} bgColor="tertiary">
           <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
             Made with love in Seattle by
           </Heading>

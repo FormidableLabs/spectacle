@@ -336,14 +336,12 @@ export default class Manager extends Component {
     return slideReference;
   }
   _getSlideIndex() {
-    console.log(this.props.route.slide);
-    let index = 0;
-    if (!parseInt(this.props.route.slide)) {
-      index = findIndex(this.state.slideReference, (reference) => {
+    let index = parseInt(this.props.route.slide);
+    if (!Number.isFinite(index)) {
+      const foundIndex = findIndex(this.state.slideReference, (reference) => {
         return this.props.route.slide === reference.id;
       });
-    } else {
-      index = parseInt(this.props.route.slide);
+      index = foundIndex >= 0 ? foundIndex : 0;
     }
     return index;
   }
