@@ -136,7 +136,7 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
             Combinable Transitions
           </Heading>
         </Slide>
-        <SlideSet slides={[
+        <SlideSet>
           <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
             <List>
               <Appear><ListItem>Inline style based theme system</ListItem></Appear>
@@ -145,14 +145,14 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
               <Appear><ListItem>PDF export</ListItem></Appear>
               <Appear><ListItem>And...</ListItem></Appear>
             </List>
-          </Slide>,
+          </Slide>
           <Slide transition={["slide"]} bgColor="primary">
             <Heading size={1} caps fit textColor="tertiary">
               Your presentations are interactive
             </Heading>
             <Interactive/>
           </Slide>
-        ]} />
+        </SlideSet>
         <Slide transition={["slide"]} bgColor="primary"
           notes="Hard to find cities without any pizza"
         >

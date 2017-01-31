@@ -88,11 +88,10 @@ describe("<Manager />", () => {
     const wrapper = mount((
       <Manager>
         <MockSlide />
-        <MockSlideSet slides={[
-          <MockSlide key={0} />,
-          <MockSlide key={1} />
-        ]}
-        />
+        <MockSlideSet>
+          <MockSlide />
+          <MockSlide />
+        </MockSlideSet>
       </Manager>
     ), { context: _mockContext(1, []), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();

@@ -9,7 +9,23 @@ exports[`<Presenter /> should render correctly 1`] = `
       "slide": 1,
     }
   }
-  slide={1}
+  slideIndex={1}
+  slideReference={
+    Array [
+      Object {
+        "id": 0,
+        "rootIndex": 0,
+      },
+      Object {
+        "id": 1,
+        "rootIndex": 1,
+      },
+      Object {
+        "id": 2,
+        "rootIndex": 2,
+      },
+    ]
+  }
   slides={
     Array [
       <Slide />,
@@ -197,7 +213,23 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
       "slide": 1,
     }
   }
-  slide={1}
+  slideIndex={1}
+  slideReference={
+    Array [
+      Object {
+        "id": 0,
+        "rootIndex": 0,
+      },
+      Object {
+        "id": 1,
+        "rootIndex": 1,
+      },
+      Object {
+        "id": 2,
+        "rootIndex": 2,
+      },
+    ]
+  }
   slides={
     Array [
       <Slide />,

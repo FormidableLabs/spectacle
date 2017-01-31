@@ -9,7 +9,7 @@ export const getSlideByIndex = (children, slideReference, index) => {
   if (isUndefined(reference.setIndex)) {
     slide = children[reference.rootIndex];
   } else {
-    slide = children[reference.rootIndex].props.slides[reference.setIndex];
+    slide = children[reference.rootIndex].props.children[reference.setIndex];
   }
   return slide;
 };

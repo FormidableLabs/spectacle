@@ -324,7 +324,7 @@ export default class Manager extends Component {
           rootIndex
         });
       } else {
-        child.props.slides.forEach((setSlide, setIndex) => {
+        child.props.children.forEach((setSlide, setIndex) => {
           slideReference.push({
             id: setSlide.props.id || slideReference.length,
             setIndex,

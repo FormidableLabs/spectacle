@@ -16,11 +16,10 @@ class MockSlide extends Component {
 describe("<SlideSet />", () => {
   test("should render correctly", () => {
     const wrapper = mount((
-      <SlideSet slides={[
-        <MockSlide key={0} />,
-        <MockSlide key={1} />
-      ]}
-      />
+      <SlideSet>
+        <MockSlide />
+        <MockSlide />
+      </SlideSet>
     ), { context: _mockContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
