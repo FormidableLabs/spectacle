@@ -26,13 +26,22 @@ const _mockSlidesWithNotes = function () {
   return [ <Slide key={0} />, <Slide key={1} notes={notes} />, <Slide key={2} /> ];
 };
 
+const _mockSlideReference = function () {
+  return [
+    { id: 0, rootIndex: 0 },
+    { id: 1, rootIndex: 1 },
+    { id: 2, rootIndex: 2 }
+  ];
+};
+
 describe("<Presenter />", () => {
   test("should render correctly", () => {
     const wrapper = mount((
       <Presenter
         dispatch={() => {}}
         slides={_mockSlides()}
-        slide={1}
+        slideIndex={1}
+        slideReference={_mockSlideReference()}
         hash={1}
         route={_mockRoute(1)}
         lastSlide={0}
@@ -48,7 +57,8 @@ describe("<Presenter />", () => {
       <Presenter
         dispatch={() => {}}
         slides={_mockSlidesWithNotes()}
-        slide={1}
+        slideIndex={1}
+        slideReference={_mockSlideReference()}
         hash={1}
         route={_mockRoute(1)}
         lastSlide={0}

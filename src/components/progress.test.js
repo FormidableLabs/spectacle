@@ -3,9 +3,8 @@ import React from "react";
 import { mount } from "enzyme";
 import { mountToJson } from "enzyme-to-json";
 
-const _mockSlides = function () {
-  const Slide = () => (<div>Slide Content</div>);
-  return [ <Slide key={0} />, <Slide key={1} />, <Slide key={2} /> ];
+const _mockSlideIndexReference = function () {
+  return [ { id: 0 }, { id: 1 }, { id: "last" } ];
 };
 
 describe("<Progress />", () => {
@@ -14,8 +13,8 @@ describe("<Progress />", () => {
     const wrapper = mount((
       <Progress
         type="pacman"
-        items={_mockSlides()}
-        currentSlide={2}
+        items={_mockSlideIndexReference()}
+        currentSlideIndex={2}
       />
     ), { context });
     expect(mountToJson(wrapper)).toMatchSnapshot();
@@ -26,8 +25,8 @@ describe("<Progress />", () => {
     const wrapper = mount((
       <Progress
         type="number"
-        items={_mockSlides()}
-        currentSlide={1}
+        items={_mockSlideIndexReference()}
+        currentSlideIndex={1}
       />
     ), { context });
     expect(mountToJson(wrapper)).toMatchSnapshot();
@@ -38,8 +37,8 @@ describe("<Progress />", () => {
     const wrapper = mount((
       <Progress
         type="bar"
-        items={_mockSlides()}
-        currentSlide={1}
+        items={_mockSlideIndexReference()}
+        currentSlideIndex={1}
       />
     ), { context });
     expect(mountToJson(wrapper)).toMatchSnapshot();
@@ -50,8 +49,8 @@ describe("<Progress />", () => {
     const wrapper = mount((
       <Progress
         type="none"
-        items={_mockSlides()}
-        currentSlide={3}
+        items={_mockSlideIndexReference()}
+        currentSlideIndex={3}
       />
     ), { context });
     expect(mountToJson(wrapper)).toMatchSnapshot();

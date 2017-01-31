@@ -6,9 +6,11 @@ import ReactTransitionGroup from "react-addons-transition-group";
 import Radium, { Style } from "radium";
 import filter from "lodash/filter";
 import size from "lodash/size";
+import findIndex from "lodash/findIndex";
 import { connect } from "react-redux";
 import { setGlobalStyle, updateFragment } from "../actions";
 import Typeface from "./typeface";
+import { getSlideByIndex } from "../utils/slides";
 
 import Presenter from "./presenter";
 import Export from "./export";
@@ -61,16 +63,22 @@ export default class Manager extends Component {
     this.handleClick = this.handleClick.bind(this);
     this._goToSlide = this._goToSlide.bind(this);
     this.state = {
-      lastSlide: null,
+      lastSlideIndex: null,
+      slideReference: [],
       fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < 1000
     };
   }
 
-  componentDidMount() {
-    const slide = this._getSlideIndex();
+  componentWillMount() {
     this.setState({
-      lastSlide: slide
+      slideReference: this._buildSlideReference()
+    });
+  }
+  componentDidMount() {
+    const slideIndex = this._getSlideIndex();
+    this.setState({
+      lastSlideIndex: slideIndex
     });
     this._attachEvents();
   }
@@ -140,9 +148,9 @@ export default class Manager extends Component {
   _goToSlide(e) {
     if (e.key === "spectacle-slide") {
       const data = JSON.parse(e.newValue);
-      const slide = this._getSlideIndex();
+      const slideIndex = this._getSlideIndex();
       this.setState({
-        lastSlide: slide || 0
+        lastSlideIndex: slideIndex || 0
       });
       if (this._checkFragments(this.props.route.slide, data.forward)) {
         this.context.history.replace(`/${data.slide}${this._getSuffix()}`);
@@ -150,45 +158,40 @@ export default class Manager extends Component {
     }
   }
   _prevSlide() {
-    const slide = this._getSlideIndex();
+    const slideIndex = this._getSlideIndex();
     this.setState({
-      lastSlide: slide
+      lastSlideIndex: slideIndex
     });
     if (this._checkFragments(this.props.route.slide, false) || this.props.route.params.indexOf("overview") !== -1) {
-      if (slide > 0) {
-        this.context.history.replace(`/${this._getHash(slide - 1)}${this._getSuffix()}`);
+      if (slideIndex > 0) {
+        this.context.history.replace(`/${this._getHash(slideIndex - 1)}${this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
-          JSON.stringify({ slide: this._getHash(slide - 1), forward: false, time: Date.now() }));
+          JSON.stringify({ slide: this._getHash(slideIndex - 1), forward: false, time: Date.now() }));
       }
-    } else if (slide > 0) {
+    } else if (slideIndex > 0) {
       localStorage.setItem("spectacle-slide",
-        JSON.stringify({ slide: this._getHash(slide), forward: false, time: Date.now() }));
+        JSON.stringify({ slide: this._getHash(slideIndex), forward: false, time: Date.now() }));
     }
   }
   _nextSlide() {
-    const slide = this._getSlideIndex();
+    const slideIndex = this._getSlideIndex();
     this.setState({
-      lastSlide: slide
+      lastSlideIndex: slideIndex
     });
-    const children = Children.toArray(this.props.children);
+    const slideReference = this.state.slideReference;
     if (this._checkFragments(this.props.route.slide, true) || this.props.route.params.indexOf("overview") !== -1) {
-      if (slide < children.length - 1) {
-        this.context.history.replace(`/${this._getHash(slide + 1) + this._getSuffix()}`);
+      if (slideIndex < slideReference.length - 1) {
+        this.context.history.replace(`/${this._getHash(slideIndex + 1) + this._getSuffix()}`);
         localStorage.setItem("spectacle-slide",
-          JSON.stringify({ slide: this._getHash(slide + 1), forward: true, time: Date.now() }));
+          JSON.stringify({ slide: this._getHash(slideIndex + 1), forward: true, time: Date.now() }));
       }
-    } else if (slide < children.length) {
+    } else if (slideIndex < slideReference.length) {
       localStorage.setItem("spectacle-slide",
-        JSON.stringify({ slide: this._getHash(slide), forward: true, time: Date.now() }));
+        JSON.stringify({ slide: this._getHash(slideIndex), forward: true, time: Date.now() }));
     }
   }
-  _getHash(slide) {
-    let hash = slide;
-    const children = React.Children.toArray(this.props.children);
-    if ("id" in children[slide].props) {
-      hash = children[slide].props.id;
-    }
-    return hash;
+  _getHash(slideIndex) {
+    return this.state.slideReference[slideIndex].id;
   }
   _checkFragments(slide, forward) {
     const state = this.context.store.getState();
@@ -312,37 +315,61 @@ export default class Manager extends Component {
 
     return 0;
   }
+  _buildSlideReference() {
+    const slideReference = [];
+    Children.toArray(this.props.children).forEach((child, rootIndex) => {
+      if (!child.props.hasSlideChildren) {
+        slideReference.push({
+          id: child.props.id || slideReference.length,
+          rootIndex
+        });
+      } else {
+        child.props.children.forEach((setSlide, setIndex) => {
+          slideReference.push({
+            id: setSlide.props.id || slideReference.length,
+            setIndex,
+            rootIndex
+          });
+        });
+      }
+    });
+    return slideReference;
+  }
   _getSlideIndex() {
-    let index = 0;
-    if (!parseInt(this.props.route.slide)) {
-      Children.toArray(this.props.children).forEach((slide, i) => {
-        if (slide.props.id === this.props.route.slide) {
-          index = i;
-        }
+    let index = parseInt(this.props.route.slide);
+    if (!Number.isFinite(index)) {
+      const foundIndex = findIndex(this.state.slideReference, (reference) => {
+        return this.props.route.slide === reference.id;
       });
-    } else {
-      index = parseInt(this.props.route.slide);
+      index = foundIndex >= 0 ? foundIndex : 0;
     }
     return index;
   }
+  _getSlideByIndex(index) {
+    return getSlideByIndex(
+      this.props.children,
+      this.state.slideReference,
+      index
+    );
+  }
   _renderSlide() {
-    const slide = this._getSlideIndex();
-    const child = Children.toArray(this.props.children)[slide];
-    return cloneElement(child, {
+    const slideIndex = this._getSlideIndex();
+    const slide = this._getSlideByIndex(slideIndex);
+    return cloneElement(slide, {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
-      key: slide,
+      key: slideIndex,
       export: this.props.route.params.indexOf("export") !== -1,
       print: this.props.route.params.indexOf("print") !== -1,
-      children: Children.toArray(child.props.children),
+      children: Children.toArray(slide.props.children),
       hash: this.props.route.slide,
-      slideIndex: slide,
-      lastSlide: this.state.lastSlide,
-      transition: (child.props.transition || {}).length ?
-        child.props.transition :
+      slideIndex,
+      lastSlideIndex: this.state.lastSlideIndex,
+      transition: (slide.props.transition || {}).length ?
+        slide.props.transition :
         this.props.transition,
-      transitionDuration: (child.props.transition || {}).transitionDuration ?
-        child.props.transitionDuration :
+      transitionDuration: (slide.props.transition || {}).transitionDuration ?
+        slide.props.transitionDuration :
         this.props.transitionDuration
     });
   }
@@ -386,16 +413,30 @@ export default class Manager extends Component {
         <Presenter
           dispatch={this.props.dispatch}
           slides={children}
-          slide={this._getSlideIndex()}
+          slideReference={this.state.slideReference}
+          slideIndex={this._getSlideIndex()}
           hash={this.props.route.slide}
           route={this.props.route}
-          lastSlide={this.state.lastSlide}
+          lastSlideIndex={this.state.lastSlideIndex}
         />
       );
     } else if (this.props.route.params.indexOf("export") !== -1) {
-      componentToRender = <Export slides={children} route={this.props.route} />;
+      componentToRender = (
+        <Export
+          slides={children}
+          slideReference={this.state.slideReference}
+          route={this.props.route}
+        />
+      );
     } else if (this.props.route.params.indexOf("overview") !== -1) {
-      componentToRender = <Overview slides={children} slide={this._getSlideIndex()} route={this.props.route} />;
+      componentToRender = (
+        <Overview
+          slides={children}
+          slideReference={this.state.slideReference}
+          slideIndex={this._getSlideIndex()}
+          route={this.props.route}
+        />
+      );
     } else {
       componentToRender = (
         <TransitionGroup component="div" style={[styles.transition]}>
@@ -428,8 +469,8 @@ export default class Manager extends Component {
       >
         {this.props.controls && showControls &&
             <Controls
-              currentSlide={this._getSlideIndex()}
-              totalSlides={children.length}
+              currentSlideIndex={this._getSlideIndex()}
+              totalSlides={this.state.slideReference.length}
               onPrev={this._prevSlide.bind(this)}
               onNext={this._nextSlide.bind(this)}
             />}
@@ -440,8 +481,8 @@ export default class Manager extends Component {
         {
           this.props.route.params.indexOf("export") === -1 && this.props.route.params.indexOf("overview") === -1 ?
           <Progress
-            items={children}
-            currentSlide={this._getSlideIndex()}
+            items={this.state.slideReference}
+            currentSlideIndex={this._getSlideIndex()}
             type={this.props.progress}
           /> : ""
         }

@@ -1,5 +1,6 @@
-import React, { cloneElement, Component, PropTypes } from "react";
+import React, { Children, cloneElement, Component, PropTypes } from "react";
 import Radium from "radium";
+import { getSlideByIndex } from "../utils/slides";
 
 const startTime = function startTime(date) {
   let hours = date.getHours();
@@ -54,19 +55,26 @@ export default class Presenter extends Component {
     this.setState({ notes });
   }
 
+  _getSlideByIndex(index) {
+    return getSlideByIndex(
+      Children.toArray(this.props.slides),
+      this.props.slideReference,
+      index
+    );
+  }
   _renderMainSlide() {
-    const { slides, slide, hash, lastSlide } = this.props;
-    const child = slides[slide];
+    const { slideIndex, hash, lastSlide } = this.props;
+    const child = this._getSlideByIndex(slideIndex);
     const presenterStyle = {
       position: "relative"
     };
     return cloneElement(child, {
       dispatch: this.props.dispatch,
-      key: slide,
+      key: slideIndex,
       hash,
       export: this.props.route.params.indexOf("export") !== -1,
       print: this.props.route.params.indexOf("print") !== -1,
-      slideIndex: slide,
+      slideIndex,
       lastSlide,
       transition: [],
       transitionDuration: 0,
@@ -74,7 +82,7 @@ export default class Presenter extends Component {
     });
   }
   _renderNextSlide() {
-    const { slides, slide, lastSlide } = this.props;
+    const { slideIndex, lastSlide } = this.props;
     const presenterStyle = {
       position: "relative"
     };
@@ -83,14 +91,14 @@ export default class Presenter extends Component {
       margin: 0,
       color: "white"
     };
-    const child = slides[parseInt(slide) + 1];
+    const child = this._getSlideByIndex(slideIndex + 1);
     return child ? cloneElement(child, {
       dispatch: this.props.dispatch,
       export: this.props.route.params.indexOf("export") !== -1,
       print: this.props.route.params.indexOf("print") !== -1,
-      key: slide + 1,
-      hash: child.props.id || slide + 1,
-      slideIndex: slide + 1,
+      key: slideIndex + 1,
+      hash: child.props.id || slideIndex + 1,
+      slideIndex: slideIndex + 1,
       lastSlide,
       transition: [],
       transitionDuration: 0,
@@ -105,7 +113,7 @@ export default class Presenter extends Component {
     if (this.state.notes[currentSlide]) {
       notes = this.state.notes[currentSlide];
     } else {
-      const child = this.props.slides[this.props.slide];
+      const child = this._getSlideByIndex(this.props.slideIndex);
       notes = child.props.notes;
     }
 
@@ -199,7 +207,7 @@ export default class Presenter extends Component {
       <div className="spectacle-presenter" style={[styles.presenter]}>
         <div style={styles.header}>
           <h2 style={styles.slideInfo}>
-            Slide {this.props.slide + 1} of {this.props.slides.length}
+            Slide {this.props.slideIndex + 1} of {this.props.slideReference.length}
           </h2>
           <h2 style={styles.clock}>{this.state.time}</h2>
         </div>
@@ -226,7 +234,8 @@ Presenter.propTypes = {
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   lastSlide: PropTypes.number,
   route: PropTypes.object,
-  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  slideIndex: PropTypes.number,
+  slideReference: PropTypes.array,
   slides: PropTypes.array
 };
 

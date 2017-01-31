@@ -18,6 +18,7 @@ import MarkdownSlides from "./components/markdown-slides";
 import Quote from "./components/quote";
 import S from "./components/s";
 import Slide from "./components/slide";
+import SlideSet from "./components/slide-set";
 import TableBody from "./components/table-body";
 import TableHeader from "./components/table-header";
 import TableHeaderItem from "./components/table-header-item";
@@ -48,6 +49,7 @@ export {
   Quote,
   S,
   Slide,
+  SlideSet,
   TableBody,
   TableHeader,
   TableHeaderItem,

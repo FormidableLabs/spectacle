@@ -11,7 +11,7 @@ describe("<Controls />", () => {
     } } };
     const wrapper = mount((
       <Controls
-        currentSlide={2}
+        currentSlideIndex={2}
         totalSlides={5}
         onPrev={() => {}}
         onNext={() => {}}
@@ -25,7 +25,7 @@ describe("<Controls />", () => {
     const nextFunc = jest.fn();
     const wrapper = mount((
       <Controls
-        currentSlide={2}
+        currentSlideIndex={2}
         totalSlides={5}
         onPrev={() => {}}
         onNext={nextFunc}
@@ -42,7 +42,7 @@ describe("<Controls />", () => {
     const prevFunc = jest.fn();
     const wrapper = mount((
       <Controls
-        currentSlide={3}
+        currentSlideIndex={3}
         totalSlides={5}
         onPrev={prevFunc}
         onNext={() => {}}

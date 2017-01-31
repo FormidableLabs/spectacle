@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide,
+  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
   TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text
 } from "../../src";
 
@@ -136,21 +136,23 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
             Combinable Transitions
           </Heading>
         </Slide>
-        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-          <List>
-            <Appear><ListItem>Inline style based theme system</ListItem></Appear>
-            <Appear><ListItem>Autofit text</ListItem></Appear>
-            <Appear><ListItem>Flexbox layout system</ListItem></Appear>
-            <Appear><ListItem>PDF export</ListItem></Appear>
-            <Appear><ListItem>And...</ListItem></Appear>
-          </List>
-        </Slide>
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} caps fit textColor="tertiary">
-            Your presentations are interactive
-          </Heading>
-          <Interactive/>
-        </Slide>
+        <SlideSet>
+          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+            <List>
+              <Appear><ListItem>Inline style based theme system</ListItem></Appear>
+              <Appear><ListItem>Autofit text</ListItem></Appear>
+              <Appear><ListItem>Flexbox layout system</ListItem></Appear>
+              <Appear><ListItem>PDF export</ListItem></Appear>
+              <Appear><ListItem>And...</ListItem></Appear>
+            </List>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="primary">
+            <Heading size={1} caps fit textColor="tertiary">
+              Your presentations are interactive
+            </Heading>
+            <Interactive/>
+          </Slide>
+        </SlideSet>
         <Slide transition={["slide"]} bgColor="primary"
           notes="Hard to find cities without any pizza"
         >

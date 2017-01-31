@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { mount } from "enzyme";
 import { mountToJson } from "enzyme-to-json";
 import Manager from "./manager";
@@ -36,6 +36,19 @@ class MockSlide extends Component {
   }
 }
 
+class MockSlideSet extends Component {
+  render() {
+    return <div>{this.props.children}</div>;
+  }
+}
+MockSlideSet.defaultProps = {
+  hasSlideChildren: true
+};
+MockSlideSet.propTypes = {
+  children: PropTypes.array,
+  hasSlideChildren: PropTypes.bool
+};
+
 const _mockChildContext = function () {
   return { styles: () => {} };
 };
@@ -68,6 +81,19 @@ describe("<Manager />", () => {
         <MockSlide />
       </Manager>
     ), { context: _mockContext(0, [ "overview" ]), childContextTypes: _mockChildContext() });
+    expect(mountToJson(wrapper)).toMatchSnapshot();
+  });
+
+  test("should render with slideset slides", () => {
+    const wrapper = mount((
+      <Manager>
+        <MockSlide />
+        <MockSlideSet>
+          <MockSlide />
+          <MockSlide />
+        </MockSlideSet>
+      </Manager>
+    ), { context: _mockContext(1, []), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 });
