@@ -14,10 +14,13 @@ import Link from "./components/link";
 import ListItem from "./components/list-item";
 import List from "./components/list";
 import Markdown from "./components/markdown";
+import MarkdownSlides from "./components/markdown-slides";
 import Quote from "./components/quote";
 import S from "./components/s";
 import Slide from "./components/slide";
 import SlideSet from "./components/slide-set";
+import TableBody from "./components/table-body";
+import TableHeader from "./components/table-header";
 import TableHeaderItem from "./components/table-header-item";
 import TableItem from "./components/table-item";
 import TableRow from "./components/table-row";
@@ -42,10 +45,13 @@ export {
   ListItem,
   List,
   Markdown,
+  MarkdownSlides,
   Quote,
   S,
   Slide,
   SlideSet,
+  TableBody,
+  TableHeader,
   TableHeaderItem,
   TableItem,
   TableRow,

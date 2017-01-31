@@ -1,9 +1,9 @@
 import React from "react";
 
 import {
-  Appear, BlockQuote, Cite, CodePane, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Markdown, Quote, Slide, SlideSet,
-  TableHeaderItem, TableItem, TableRow, Table, Text, ComponentPlayground
+  Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
+  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
+  TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text
 } from "../../src";
 
 import preloader from "../../src/utils/preloader";
@@ -47,7 +47,7 @@ export default class Presentation extends React.Component {
           </Link>
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
-        <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
+        <Slide id="wait-what" transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
           <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
           <Heading size={2} caps fit textColor="primary" textFont="primary">
             Wait what?
@@ -118,6 +118,16 @@ export default class Presentation extends React.Component {
             `}
           </Markdown>
         </Slide>
+        {
+          MarkdownSlides`
+#### Create Multiple Slides in Markdown
+All the same tags and elements supported in <Markdown /> are supported in MarkdownSlides.
+---
+Slides are separated with **three dashes** and can be used _anywhere_ in the deck. The markdown can either be:
+* A Tagged Template Literal
+* Imported Markdown from another file
+          `
+        }
         <Slide transition={["slide", "spin"]} bgColor="primary">
           <Heading caps fit size={1} textColor="tertiary">
             Smooth
@@ -151,15 +161,15 @@ export default class Presentation extends React.Component {
           </Heading>
           <Layout>
             <Table>
-              <thead>
+              <TableHeader>
                 <TableRow>
                   <TableHeaderItem/>
                   <TableHeaderItem>2011</TableHeaderItem>
                   <TableHeaderItem>2013</TableHeaderItem>
                   <TableHeaderItem>2015</TableHeaderItem>
                 </TableRow>
-              </thead>
-              <tbody>
+              </TableHeader>
+              <TableBody>
                 <TableRow>
                   <TableItem>None</TableItem>
                   <TableItem>61.8%</TableItem>
@@ -184,7 +194,7 @@ export default class Presentation extends React.Component {
                   <TableItem>24.9%</TableItem>
                   <TableItem>55.9%</TableItem>
                 </TableRow>
-              </tbody>
+              </TableBody>
             </Table>
           </Layout>
         </Slide>
