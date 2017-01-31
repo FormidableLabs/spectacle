@@ -4,13 +4,15 @@ import reduce from "lodash/reduce";
 
 export const getSlideByIndex = (children, slideReference, index) => {
   children = Children.toArray(children);
-  const reference = slideReference[index];
   let slide;
-  if (isUndefined(reference.setIndex)) {
-    slide = children[reference.rootIndex];
-  } else {
-    const setChildren = Children.toArray(children[reference.rootIndex].props.children);
-    slide = setChildren[reference.setIndex];
+  const reference = slideReference[index];
+  if (reference) {
+    if (isUndefined(reference.setIndex)) {
+      slide = children[reference.rootIndex];
+    } else {
+      const setChildren = Children.toArray(children[reference.rootIndex].props.children);
+      slide = setChildren[reference.setIndex];
+    }
   }
   return slide;
 };
