@@ -1,6 +1,10 @@
 import React, { Children, cloneElement, Component, PropTypes } from "react";
-import Radium from "radium";
 import { getSlideByIndex } from "../utils/slides";
+import {
+  HeaderContainer, EndHeader, PresenterContent, SlideInfo,
+  Clock, ContentContainer, PreviewPane, PreviewCurrentSlide,
+  PreviewNextSlide, Notes
+} from "./presenter-components";
 
 const startTime = function startTime(date) {
   let hours = date.getHours();
@@ -15,7 +19,6 @@ const startTime = function startTime(date) {
   return strTime;
 };
 
-@Radium
 export default class Presenter extends Component {
   static childContextTypes = {
     updateNotes: PropTypes.func
@@ -86,11 +89,6 @@ export default class Presenter extends Component {
     const presenterStyle = {
       position: "relative"
     };
-    const endStyle = {
-      display: "flex",
-      margin: 0,
-      color: "white"
-    };
     const child = this._getSlideByIndex(slideIndex + 1);
     return child ? cloneElement(child, {
       dispatch: this.props.dispatch,
@@ -104,7 +102,7 @@ export default class Presenter extends Component {
       transitionDuration: 0,
       presenterStyle,
       appearOff: true
-    }) : <h1 style={[endStyle]}>END</h1>;
+    }) : <EndHeader>END</EndHeader>;
   }
   _renderNotes() {
     let notes;
@@ -125,106 +123,28 @@ export default class Presenter extends Component {
     return <div>{notes}</div>;
   }
   render() {
-    const styles = {
-      presenter: {
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flex: 1,
-        flexDirection: "column"
-      },
-      header: {
-        position: "absolute",
-        display: "block",
-        color: "white",
-        width: "100%",
-        height: "10%",
-        textAlign: "center",
-        padding: "10px 50px"
-      },
-      slideInfo: {
-        position: "relative",
-        top: "50%",
-        transform: "translateY(-50%)",
-        float: "left",
-        margin: 0,
-        lineHeight: 1,
-        display: "inline-block",
-        fontSize: 28
-      },
-      clock: {
-        position: "relative",
-        top: "50%",
-        transform: "translateY(-50%)",
-        float: "right",
-        margin: 0,
-        lineHeight: 1,
-        display: "inline-block",
-        fontSize: 28
-      },
-      container: {
-        display: "flex",
-        flex: 1,
-        padding: "10px 50px 0 50px"
-      },
-      preview: {
-        position: "absolute",
-        top: "10%",
-        display: "flex",
-        width: "60%",
-        height: "90%",
-        flex: "1",
-        flexWrap: "wrap",
-        justifyContent: "center"
-      },
-      main: {
-        display: "flex",
-        flex: "0 0 100%",
-        height: "55%",
-        border: "2px solid white",
-        padding: 20
-      },
-      next: {
-        display: "flex",
-        flex: "0 0 68.75%",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "40%",
-        opacity: 0.4
-      },
-      notes: {
-        position: "absolute",
-        top: "10%",
-        left: "calc(60% + 50px)",
-        height: "90%",
-        width: "calc(40% - 100px)",
-        display: "block",
-        padding: "10px 30px",
-        color: "white"
-      }
-    };
     return (
-      <div className="spectacle-presenter" style={[styles.presenter]}>
-        <div style={styles.header}>
-          <h2 style={styles.slideInfo}>
+      <PresenterContent>
+        <HeaderContainer>
+          <SlideInfo>
             Slide {this.props.slideIndex + 1} of {this.props.slideReference.length}
-          </h2>
-          <h2 style={styles.clock}>{this.state.time}</h2>
-        </div>
-        <div style={styles.container}>
-          <div style={styles.preview}>
-            <div className="spectacle-presenter-main" style={[styles.main]}>
+          </SlideInfo>
+          <Clock>{this.state.time}</Clock>
+        </HeaderContainer>
+        <ContentContainer>
+          <PreviewPane>
+            <PreviewCurrentSlide>
               {this._renderMainSlide()}
-            </div>
-            <div className="spectacle-presenter-next" style={[styles.next]}>
+            </PreviewCurrentSlide>
+            <PreviewNextSlide>
               {this._renderNextSlide()}
-            </div>
-          </div>
-          <div className="spectacle-presenter-notes" style={[styles.notes]}>
+            </PreviewNextSlide>
+          </PreviewPane>
+          <Notes>
             {this._renderNotes()}
-          </div>
-        </div>
-      </div>
+          </Notes>
+        </ContentContainer>
+      </PresenterContent>
     );
   }
 }

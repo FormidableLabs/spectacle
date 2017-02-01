@@ -285,36 +285,31 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
             <MockSlide />,
           ]
         }>
-        <div
-          className="spectacle-export"
-          data-radium={true}
-          style={
-            Object {
-              "height": "100%",
-              "width": "100%",
-            }
-          }>
-          <MockSlide
-            export={true}
-            print={false}
-            slideIndex={0}
-            transition={Array []}
-            transitionDuration={0}>
-            <div>
-              Slide Content
-            </div>
-          </MockSlide>
-          <MockSlide
-            export={true}
-            print={false}
-            slideIndex={1}
-            transition={Array []}
-            transitionDuration={0}>
-            <div>
-              Slide Content
-            </div>
-          </MockSlide>
-        </div>
+        <styled.div>
+          <div
+            className="djkYse">
+            <MockSlide
+              export={true}
+              print={false}
+              slideIndex={0}
+              transition={Array []}
+              transitionDuration={0}>
+              <div>
+                Slide Content
+              </div>
+            </MockSlide>
+            <MockSlide
+              export={true}
+              print={false}
+              slideIndex={1}
+              transition={Array []}
+              transitionDuration={0}>
+              <div>
+                Slide Content
+              </div>
+            </MockSlide>
+          </div>
+        </styled.div>
       </Export>
       <Style
         rules={
@@ -407,71 +402,51 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
             <MockSlide />,
           ]
         }>
-        <div
-          className="spectacle-overview"
-          data-radium={true}
-          style={
-            Object {
-              "height": "100%",
-              "overflow": "scroll",
-              "width": "100%",
-            }
-          }>
+        <styled.div>
           <div
-            data-radium={true}
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            style={
-              Object {
-                "cursor": "pointer",
-                "float": "left",
-                "height": NaN,
-                "opacity": 1,
-                "position": "relative",
-                "width": NaN,
-              }
-            }>
-            <MockSlide
-              appearOff={true}
-              export={false}
-              print={false}
-              slideIndex={0}
-              transition={Array []}
-              transitionDuration={0}>
-              <div>
-                Slide Content
+            className="kxQqKR">
+            <styled.div
+              index={0}
+              onClick={[Function]}
+              slideIndex={0}>
+              <div
+                className="goGPmP"
+                onClick={[Function]}>
+                <MockSlide
+                  appearOff={true}
+                  export={false}
+                  print={false}
+                  slideIndex={0}
+                  transition={Array []}
+                  transitionDuration={0}>
+                  <div>
+                    Slide Content
+                  </div>
+                </MockSlide>
               </div>
-            </MockSlide>
-          </div>
-          <div
-            data-radium={true}
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            style={
-              Object {
-                "cursor": "pointer",
-                "float": "left",
-                "height": NaN,
-                "opacity": 0.5,
-                "position": "relative",
-                "width": NaN,
-              }
-            }>
-            <MockSlide
-              appearOff={true}
-              export={false}
-              print={false}
-              slideIndex={1}
-              transition={Array []}
-              transitionDuration={0}>
-              <div>
-                Slide Content
+            </styled.div>
+            <styled.div
+              index={1}
+              onClick={[Function]}
+              slideIndex={0}>
+              <div
+                className="gvZlT"
+                onClick={[Function]}>
+                <MockSlide
+                  appearOff={true}
+                  export={false}
+                  print={false}
+                  slideIndex={1}
+                  transition={Array []}
+                  transitionDuration={0}>
+                  <div>
+                    Slide Content
+                  </div>
+                </MockSlide>
               </div>
-            </MockSlide>
+            </styled.div>
           </div>
-        </div>
+        </styled.div>
       </Overview>
       <Fullscreen>
         <svg

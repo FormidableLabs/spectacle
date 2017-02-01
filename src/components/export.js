@@ -1,6 +1,12 @@
 import React, { cloneElement, Component, PropTypes } from "react";
 import Radium from "radium";
 import { getSlideByIndex } from "../utils/slides";
+import styled from "styled-components";
+
+const SpectacleExport = styled.div`
+  height: 100%;
+  width: 100%;
+`;
 
 @Radium
 export default class Export extends Component {
@@ -22,16 +28,10 @@ export default class Export extends Component {
     });
   }
   render() {
-    const styles = {
-      export: {
-        height: "100%",
-        width: "100%"
-      }
-    };
     return (
-      <div className="spectacle-export" style={[styles.export]}>
+      <SpectacleExport>
         {this._renderSlides()}
-      </div>
+      </SpectacleExport>
     );
   }
 }
