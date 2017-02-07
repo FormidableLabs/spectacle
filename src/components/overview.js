@@ -1,6 +1,7 @@
-import React, { cloneElement, Component, PropTypes } from "react";
+import React, { cloneElement, Children, Component, PropTypes } from "react";
 import Radium from "radium";
-import { getSlideByIndex } from "../utils/slides";
+
+const slidesPerWidth = 5;
 
 @Radium
 export default class Overview extends Component {
@@ -24,31 +25,53 @@ export default class Overview extends Component {
   _getHash(slideIndex) {
     return this.props.slideReference[slideIndex].id;
   }
-  _renderSlides() {
+  _renderSlideColumns() {
+    const screen = this.state.overviewWidth;
+    let startIndex = 0;
+    let nextStartIndex = 0;
+    return this.props.slides.map((slide, rootIndex) => {
+      startIndex = nextStartIndex;
+      const columnSlides = slide.props.hasSlideChildren ?
+        Children.toArray(slide.props.children) :
+        [ slide ];
+      nextStartIndex += columnSlides.length;
+      const style = {
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: "nowrap",
+        width: screen / slidesPerWidth
+      };
+      return (
+        <div key={`col${rootIndex}`} style={[style]}>
+          {this._renderSlides(columnSlides, startIndex)}
+        </div>
+      );
+    });
+  }
+  _renderSlides(columnSlides, startIndex) {
     const slideIndex = this.props.slideIndex;
     const screen = this.state.overviewWidth;
-    return this.props.slideReference.map((reference, index) => {
+    return columnSlides.map((slide, colSlideIndex) => {
+      const index = startIndex + colSlideIndex;
       const style = {
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: "nowrap",
+        width: screen / slidesPerWidth,
+        height: (screen / slidesPerWidth) * 0.7,
         position: "relative",
-        width: screen / 3,
-        height: (screen / 3) * 0.7,
-        float: "left",
         opacity: index === slideIndex ? 1 : 0.5,
         cursor: "pointer",
         ":hover": {
           opacity: 1
         }
       };
-      const slide = getSlideByIndex(
-        this.props.slides,
-        this.props.slideReference,
-        index
-      );
       const el = cloneElement(slide, {
         key: index,
         slideIndex: index,
         export: this.props.route.params.indexOf("export") !== -1,
         print: this.props.route.params.indexOf("print") !== -1,
+        overview: true,
         transition: [],
         transitionDuration: 0,
         appearOff: true
@@ -68,14 +91,15 @@ export default class Overview extends Component {
   render() {
     const styles = {
       overview: {
-        height: "100%",
-        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "nowrap",
         overflow: "scroll"
       }
     };
     return (
       <div className="spectacle-overview" ref={(o) => { this.overviewRef = o; }} style={[styles.overview]}>
-        {this._renderSlides()}
+        {this._renderSlideColumns()}
       </div>
     );
   }

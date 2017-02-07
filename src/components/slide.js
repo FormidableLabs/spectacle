@@ -19,7 +19,7 @@ class Slide extends Component {
     this.setZoom();
     const slide = this.slideRef;
     const frags = slide.querySelectorAll(".fragment");
-    if (frags && frags.length && !this.context.overview) {
+    if (frags && frags.length && !this.props.overview) {
       Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
         frag.dataset.fid = i;
         return this.props.dispatch && this.props.dispatch(addFragment({
@@ -95,11 +95,15 @@ class Slide extends Component {
     };
 
     const overViewStyles = {
+      outer: {
+        backgroundImage: "none"
+      },
       inner: {
         flexDirection: "column"
       },
       content: {
-        width: "100%"
+        width: "100%",
+        fontSize: "2px"
       }
     };
 
@@ -128,16 +132,17 @@ class Slide extends Component {
           styles.outer,
           getStyles.call(this),
           printStyles,
-          presenterStyle
+          presenterStyle,
+          this.props.overview && overViewStyles.outer
         ]}
       >
-        <div style={[styles.inner, this.context.overview && overViewStyles.inner]}>
+        <div style={[styles.inner, this.props.overview && overViewStyles.inner]}>
           <div ref={(c) => { this.contentRef = c; }}
             className={`${contentClass} spectacle-content`}
             style={[
               styles.content,
               this.context.styles.components.content,
-              this.context.overview && overViewStyles.content
+              this.props.overview && overViewStyles.content
             ]}
           >
             {children}
@@ -167,6 +172,7 @@ Slide.propTypes = {
   maxHeight: PropTypes.number,
   maxWidth: PropTypes.number,
   notes: PropTypes.any,
+  overview: PropTypes.bool,
   presenterStyle: PropTypes.object,
   print: PropTypes.bool,
   slideIndex: PropTypes.number,
@@ -178,7 +184,6 @@ Slide.contextTypes = {
   styles: PropTypes.object,
   export: PropTypes.bool,
   print: PropTypes.object,
-  overview: PropTypes.bool,
   store: PropTypes.object
 };
 

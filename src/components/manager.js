@@ -442,7 +442,6 @@ export default class Manager extends Component {
         <TransitionGroup component="div" style={[styles.transition]}>
           {this._renderSlide()}
         </TransitionGroup>);
-
     }
 
     const showControls = !this.state.fullscreen &&
