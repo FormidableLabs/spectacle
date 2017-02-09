@@ -1,5 +1,5 @@
 /*eslint new-cap:0, max-statements:0*/
-/* eslint react/no-did-mount-set-state: 0 */
+/* eslint react/no-did-mount-set-state: 0, complexity: [1, 16] */
 
 import React, { Children, cloneElement, Component, PropTypes } from "react";
 import ReactTransitionGroup from "react-addons-transition-group";
@@ -7,10 +7,13 @@ import Radium, { Style } from "radium";
 import filter from "lodash/filter";
 import size from "lodash/size";
 import findIndex from "lodash/findIndex";
+import findLastIndex from "lodash/findLastIndex";
+import isUndefined from "lodash/isUndefined";
 import { connect } from "react-redux";
 import { setGlobalStyle, updateFragment } from "../actions";
 import Typeface from "./typeface";
 import { getSlideByIndex } from "../utils/slides";
+import { codes } from "../utils/keycodes";
 
 import Presenter from "./presenter";
 import Export from "./export";
@@ -56,8 +59,8 @@ export default class Manager extends Component {
     slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this._handleKeyPress = this._handleKeyPress.bind(this);
     this._handleScreenChange = this._handleScreenChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -66,7 +69,11 @@ export default class Manager extends Component {
       lastSlideIndex: null,
       slideReference: [],
       fullscreen: window.innerHeight === screen.height,
-      mobile: window.innerWidth < 1000
+      mobile: window.innerWidth < 1000,
+      overview: props.route.params.indexOf("overview") !== -1,
+      presenter: props.route.params.indexOf("presenter") !== -1,
+      export: props.route.params.indexOf("export") !== -1,
+      print: props.route.params.indexOf("print") !== -1
     };
   }
 
@@ -81,6 +88,14 @@ export default class Manager extends Component {
       lastSlideIndex: slideIndex
     });
     this._attachEvents();
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      overview: nextProps.route.params.indexOf("overview") !== -1,
+      presenter: nextProps.route.params.indexOf("presenter") !== -1,
+      export: nextProps.route.params.indexOf("export") !== -1,
+      print: nextProps.route.params.indexOf("print") !== -1
+    });
   }
   componentDidUpdate() {
     if (this.props.globalStyles && !this.context.store.getState().style.globalStyleSet) {
@@ -103,23 +118,45 @@ export default class Manager extends Component {
   _handleEvent(e) {
     const event = window.event ? window.event : e;
 
-    if (event.keyCode === 37 || event.keyCode === 33 || (event.keyCode === 32 && event.shiftKey)) {
+    if (event.keyCode === codes.left) {
+      if (this.state.overview) {
+        this._leftSlide();
+      } else {
+        this._prevSlide();
+      }
+    } else if (event.keyCode === codes.pageUp || event.keyCode === codes.up) {
+      if (this.state.overview) {
+        this._upSlide();
+      } else {
+        this._prevSlide();
+      }
+    } else if (event.keyCode === codes.space && event.shiftKey) {
       this._prevSlide();
-    } else if (event.keyCode === 39 || event.keyCode === 34 || (event.keyCode === 32 && !event.shiftKey)) {
+    } else if (event.keyCode === codes.right) {
+      if (this.state.overview) {
+        this._rightSlide();
+      } else {
+        this._nextSlide();
+      }
+    } else if (event.keyCode === codes.pageDown || event.keyCode === codes.down) {
+      if (this.state.overview) {
+        this._downSlide();
+      } else {
+        this._nextSlide();
+      }
+    } else if (event.keyCode === codes.space && !event.shiftKey) {
       this._nextSlide();
-    } else if ((event.altKey && event.keyCode === 79) && !event.ctrlKey && !event.metaKey) { // o
+    } else if ((event.altKey && event.keyCode === codes.o) && !event.ctrlKey && !event.metaKey) {
       this._toggleOverviewMode();
-    } else if ((event.altKey && event.keyCode === 80) && !event.ctrlKey && !event.metaKey) { // p
+    } else if ((event.altKey && event.keyCode === codes.p) && !event.ctrlKey && !event.metaKey) {
       this._togglePresenterMode();
     }
   }
   _handleKeyPress(e) {
     const event = window.event ? window.event : e;
-
     if (event.target instanceof HTMLInputElement || event.target.type === "textarea") {
       return;
     }
-
     this._handleEvent(e);
   }
   _handleScreenChange() {
@@ -129,17 +166,17 @@ export default class Manager extends Component {
     });
   }
   _toggleOverviewMode() {
-    const suffix = this.props.route.params.indexOf("overview") !== -1 ? "" : "?overview";
+    const suffix = this.state.overview ? "" : "?overview";
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _togglePresenterMode() {
-    const suffix = this.props.route.params.indexOf("presenter") !== -1 ? "" : "?presenter";
+    const suffix = this.state.presenter ? "" : "?presenter";
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _getSuffix() {
-    if (this.props.route.params.indexOf("presenter") !== -1) {
+    if (this.state.presenter) {
       return "?presenter";
-    } else if (this.props.route.params.indexOf("overview") !== -1) {
+    } else if (this.state.overview) {
       return "?overview";
     } else {
       return "";
@@ -157,47 +194,122 @@ export default class Manager extends Component {
       }
     }
   }
+  _setLocalStorageSlide(slideIndex, forward) {
+    localStorage.setItem("spectacle-slide",
+        JSON.stringify({ slide: this._getHash(slideIndex), forward, time: Date.now() }));
+  }
+  _navigateToSlide(slideIndex, suffix) {
+    this.context.history.replace(`/${this._getHash(slideIndex)}${suffix}`);
+  }
+  // Goes to previous slide in series
+  // TODO: re-evaluate `slideIndex > 0` checks
   _prevSlide() {
     const slideIndex = this._getSlideIndex();
-    this.setState({
-      lastSlideIndex: slideIndex
-    });
-    if (this._checkFragments(this.props.route.slide, false) || this.props.route.params.indexOf("overview") !== -1) {
+    this.setState({ lastSlideIndex: slideIndex });
+    if (this.state.overview || this._checkFragments(this.props.route.slide, false)) {
       if (slideIndex > 0) {
-        this.context.history.replace(`/${this._getHash(slideIndex - 1)}${this._getSuffix()}`);
-        localStorage.setItem("spectacle-slide",
-          JSON.stringify({ slide: this._getHash(slideIndex - 1), forward: false, time: Date.now() }));
+        this._navigateToSlide(slideIndex - 1, this._getSuffix());
+        this._setLocalStorageSlide(slideIndex - 1, false);
       }
     } else if (slideIndex > 0) {
-      localStorage.setItem("spectacle-slide",
-        JSON.stringify({ slide: this._getHash(slideIndex), forward: false, time: Date.now() }));
+      this._setLocalStorageSlide(slideIndex, false);
     }
   }
+  // Goes to next slide in series
+  // TODO: re-evaluate `slideIndex < this.state.slideReference.length - 1` checks
   _nextSlide() {
     const slideIndex = this._getSlideIndex();
-    this.setState({
-      lastSlideIndex: slideIndex
-    });
-    const slideReference = this.state.slideReference;
-    if (this._checkFragments(this.props.route.slide, true) || this.props.route.params.indexOf("overview") !== -1) {
-      if (slideIndex < slideReference.length - 1) {
-        this.context.history.replace(`/${this._getHash(slideIndex + 1) + this._getSuffix()}`);
-        localStorage.setItem("spectacle-slide",
-          JSON.stringify({ slide: this._getHash(slideIndex + 1), forward: true, time: Date.now() }));
+    this.setState({ lastSlideIndex: slideIndex });
+    if (this.state.overview || this._checkFragments(this.props.route.slide, true)) {
+      if (slideIndex < this.state.slideReference.length - 1) {
+        this._navigateToSlide(slideIndex + 1, this._getSuffix());
+        this._setLocalStorageSlide(slideIndex + 1, true);
       }
-    } else if (slideIndex < slideReference.length) {
-      localStorage.setItem("spectacle-slide",
-        JSON.stringify({ slide: this._getHash(slideIndex), forward: true, time: Date.now() }));
+    } else if (slideIndex < this.state.slideReference.length - 1) {
+      this._setLocalStorageSlide(slideIndex, true);
     }
   }
+  /*
+    Goes to slide closest to the right in 2D grid of slides
+    * if not in a SlideSet, goes to next slide
+    * if in a SlideSet
+      * if next slide is a SlideSet, goes to slide with the same index within the next set
+      * if next slide is not a SlideSet, goes to next slide not in current set
+  */
+  _rightSlide() {
+    const slideIndex = this._getSlideIndex();
+    this.setState({ lastSlideIndex: slideIndex });
+    const reference = this.state.slideReference[slideIndex];
+    const nextRootSlideIndex = findIndex(
+      this.state.slideReference,
+      (r) => r.rootIndex === reference.rootIndex + 1,
+      slideIndex + 1
+    );
+    // if there's another root to jump to
+    if (nextRootSlideIndex > slideIndex) {
+      let nextSlideIndex = nextRootSlideIndex;
+      if (!isUndefined(reference.setIndex) &&
+          !isUndefined(this.state.slideReference[nextRootSlideIndex].setIndex)) {
+        nextSlideIndex = findLastIndex(
+          this.state.slideReference,
+          (r) => r.rootIndex === reference.rootIndex + 1 && r.setIndex <= reference.setIndex
+        );
+      }
+      this._navigateToSlide(nextSlideIndex, this._getSuffix());
+      this._setLocalStorageSlide(nextSlideIndex, true);
+    }
+  }
+  /*
+    Goes to slide closest to the left in 2D grid of slides
+    * if not in a SlideSet, goes to root of previous slide/set
+    * if in a SlideSet
+      * if prev slide is a SlideSet, goes to slide with the same index within the next set
+      * if prev slide is not a SlideSet, goes to prev slide not in current set
+  */
+  _leftSlide() {
+    const slideIndex = this._getSlideIndex();
+    this.setState({ lastSlideIndex: slideIndex });
+    const reference = this.state.slideReference[slideIndex];
+    if (reference.rootIndex > 0) {
+      const prevRootSlideIndex = findIndex(
+        this.state.slideReference,
+        (r) => r.rootIndex === reference.rootIndex - 1
+      );
+      let prevSlideIndex = prevRootSlideIndex;
+      if (!isUndefined(reference.setIndex) &&
+          !isUndefined(this.state.slideReference[prevRootSlideIndex].setIndex)) {
+        prevSlideIndex = findLastIndex(
+          this.state.slideReference,
+          (r) => r.rootIndex === reference.rootIndex - 1 && r.setIndex <= reference.setIndex,
+          slideIndex
+        );
+      }
+      this._navigateToSlide(prevSlideIndex, this._getSuffix());
+      this._setLocalStorageSlide(prevSlideIndex, true);
+    }
+  }
+  _upSlide() {}
+  _downSlide() {}
   _getHash(slideIndex) {
     return this.state.slideReference[slideIndex].id;
   }
+  /*
+    _checkFragments does two things when run:
+    1. Checks if there are fragments (navigable portions of slides) to show/hide as part of
+       navigation and returns true/false depending on whether we're clear to navigate.
+       * Note: by default slides have no fragments and will just return true
+    2. In the process of checking fragments, if a fragment requires updating, fragment visibility
+       for the next forward/backward fragment is updated in the redux store.
+
+    Returns:
+    * `true` if no fragments to modify and we're good to navigate to other slide
+    * `false` if fragments require updating as part of navigation
+  */
   _checkFragments(slide, forward) {
     const state = this.context.store.getState();
     const fragments = state.fragment.fragments;
     // Not proud of this at all. 0.14 Parent based contexts will fix this.
-    if (this.props.route.params.indexOf("presenter") !== -1) {
+    if (this.state.presenter) {
       const main = document.querySelector(".spectacle-presenter-main");
       if (main) {
         const frags = main.querySelectorAll(".fragment");
@@ -226,10 +338,8 @@ export default class Manager extends Component {
         }));
         return false;
       }
-      return true;
-    } else {
-      return true;
     }
+    return true;
   }
   _getTouchEvents() {
     const self = this;
@@ -359,8 +469,8 @@ export default class Manager extends Component {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
       key: slideIndex,
-      export: this.props.route.params.indexOf("export") !== -1,
-      print: this.props.route.params.indexOf("print") !== -1,
+      export: this.state.export,
+      print: this.state.print,
       children: Children.toArray(slide.props.children),
       hash: this.props.route.slide,
       slideIndex,
@@ -374,7 +484,7 @@ export default class Manager extends Component {
     });
   }
   render() {
-    const globals = this.props.route.params.indexOf("export") !== -1 ? {
+    const globals = this.state.export ? {
       body: Object.assign(this.context.styles.global.body, {
         minWidth: 1100,
         minHeight: 850,
@@ -391,7 +501,7 @@ export default class Manager extends Component {
 
     const styles = {
       deck: {
-        backgroundColor: this.props.route.params.indexOf("presenter") !== -1 || this.props.route.params.indexOf("overview") !== -1 ? "black" : "",
+        backgroundColor: this.state.presenter || this.state.overview ? "black" : "",
         position: "absolute",
         top: 0,
         left: 0,
@@ -408,7 +518,7 @@ export default class Manager extends Component {
 
     let componentToRender;
     const children = Children.toArray(this.props.children);
-    if (this.props.route.params.indexOf("presenter") !== -1) {
+    if (this.state.presenter) {
       componentToRender = (
         <Presenter
           dispatch={this.props.dispatch}
@@ -420,7 +530,7 @@ export default class Manager extends Component {
           lastSlideIndex={this.state.lastSlideIndex}
         />
       );
-    } else if (this.props.route.params.indexOf("export") !== -1) {
+    } else if (this.state.export) {
       componentToRender = (
         <Export
           slides={children}
@@ -428,7 +538,7 @@ export default class Manager extends Component {
           route={this.props.route}
         />
       );
-    } else if (this.props.route.params.indexOf("overview") !== -1) {
+    } else if (this.state.overview) {
       componentToRender = (
         <Overview
           slides={children}
@@ -446,9 +556,9 @@ export default class Manager extends Component {
 
     const showControls = !this.state.fullscreen &&
       !this.state.mobile &&
-      this.props.route.params.indexOf("export") === -1 &&
-      this.props.route.params.indexOf("overview") === -1 &&
-      this.props.route.params.indexOf("presenter") === -1;
+      !this.state.export &&
+      !this.state.overview &&
+      !this.state.presenter;
 
     const { googleFonts = {} } = this.context.styles;
     const googleFontsElements = Object.keys(googleFonts).map((key, index) => (
@@ -478,7 +588,7 @@ export default class Manager extends Component {
         {componentToRender}
 
         {
-          this.props.route.params.indexOf("export") === -1 && this.props.route.params.indexOf("overview") === -1 ?
+          !this.state.export && !this.state.overview ?
           <Progress
             items={this.state.slideReference}
             currentSlideIndex={this._getSlideIndex()}
@@ -487,7 +597,7 @@ export default class Manager extends Component {
         }
 
         {
-          this.props.route.params.indexOf("export") === -1 ?
+          !this.state.export ?
            <Fullscreen/> : ""
         }
 
