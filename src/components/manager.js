@@ -288,8 +288,29 @@ export default class Manager extends Component {
       this._setLocalStorageSlide(prevSlideIndex, true);
     }
   }
-  _upSlide() {}
-  _downSlide() {}
+  // If slide is in a SlideSet, go to previous in set. If not in a set, do nothing.
+  _upSlide() {
+    const slideIndex = this._getSlideIndex();
+    this.setState({ lastSlideIndex: slideIndex });
+    const reference = this.state.slideReference[slideIndex];
+    if (!isUndefined(reference.setIndex) && reference.setIndex > 0) {
+      this._navigateToSlide(slideIndex - 1, this._getSuffix());
+      this._setLocalStorageSlide(slideIndex - 1, true);
+    }
+  }
+  // If slide is in a SlideSet, go to next in set. If not in a set, do nothing.
+  _downSlide() {
+    const slideIndex = this._getSlideIndex();
+    this.setState({ lastSlideIndex: slideIndex });
+    const reference = this.state.slideReference[slideIndex];
+    if (!isUndefined(reference.setIndex)) {
+      const nextReference = this.state.slideReference[slideIndex + 1];
+      if (nextReference.rootIndex === reference.rootIndex) {
+        this._navigateToSlide(slideIndex + 1, this._getSuffix());
+        this._setLocalStorageSlide(slideIndex + 1, true);
+      }
+    }
+  }
   _getHash(slideIndex) {
     return this.state.slideReference[slideIndex].id;
   }
