@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "enzyme";
+import { render, shallow } from "enzyme";
 import { renderToJson } from "enzyme-to-json";
 import ComponentPlayground from "./component-playground";
 
@@ -41,5 +41,18 @@ describe("<ComponentPlayground />", () => {
         previewBackgroundColor="#ff0"
       />);
     expect(renderToJson(wrapper)).toMatchSnapshot();
+  });
+
+  test("Should render custom scoped components", () => {
+    const NewComponent = () => (
+      <div><h1>Hi!</h1></div>
+    );
+    const wrapper = shallow(
+      <ComponentPlayground
+        scope={{ NewComponent }}
+      />);
+
+    const scope = wrapper.find("ReactPlayground").prop("scope");
+    expect(scope.NewComponent).toEqual(NewComponent);
   });
 });
