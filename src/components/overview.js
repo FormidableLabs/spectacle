@@ -1,7 +1,9 @@
 import React, { cloneElement, Children, Component, PropTypes } from "react";
+import { findDOMNode } from "react-dom";
 import Radium from "radium";
+import scrollIntoView from "dom-scroll-into-view";
 
-const slidesPerWidth = 5;
+const slidesPerWidth = 3;
 
 @Radium
 export default class Overview extends Component {
@@ -15,6 +17,12 @@ export default class Overview extends Component {
   componentDidMount() {
     this.resizeHandler();
     window.addEventListener("resize", this.resizeHandler);
+    this._ensureActiveItemVisible();
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.slideIndex !== prevProps.slideIndex) {
+      this._ensureActiveItemVisible();
+    }
   }
   componentWillUnmount() {
     window.removeEventListener("resize", this.resizeHandler);
@@ -39,7 +47,8 @@ export default class Overview extends Component {
         display: "flex",
         flexDirection: "column",
         flexWrap: "nowrap",
-        width: screen / slidesPerWidth
+        width: screen / slidesPerWidth,
+        height: (screen / slidesPerWidth) * 0.7 * columnSlides.length
       };
       return (
         <div key={`col${rootIndex}`} style={[style]}>
@@ -77,11 +86,25 @@ export default class Overview extends Component {
         appearOff: true
       });
       return (
-        <div key={index} style={[style]} onClick={this._slideClicked.bind(this, index)}>
+        <div
+          ref={index === slideIndex ? (d) => { this.activeSlideRef = d; } : null}
+          key={index}
+          style={[style]}
+          onClick={this._slideClicked.bind(this, index)}
+        >
           {el}
         </div>
       );
     });
+  }
+  _ensureActiveItemVisible() {
+    if (this.activeSlideRef) {
+      scrollIntoView(
+        findDOMNode(this.activeSlideRef),
+        findDOMNode(this.overviewRef),
+        { onlyScrollIfNeeded: true, alignWithLeft: false, alightWithTop: false }
+      );
+    }
   }
   resizeHandler() {
     this.setState({
@@ -91,6 +114,8 @@ export default class Overview extends Component {
   render() {
     const styles = {
       overview: {
+        height: "100%",
+        width: "100%",
         display: "flex",
         flexDirection: "row",
         flexWrap: "nowrap",
