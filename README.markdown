@@ -359,6 +359,7 @@ This tag displays a two-pane view with a ES6 source code editor on the right and
 |code|React.PropTypes.string|The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed.|
 |previewBackgroundColor|React.PropTypes.string|The background color you want for the preview pane. Defaults to `#fff`.|
 |theme|React.PropTypes.string|Accepts `light` or `dark` for the source editor's syntax highlighting. Defaults to `light`.|
+|scope|React.PropTypes.object|Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.|
 
 Example code blocks:
 

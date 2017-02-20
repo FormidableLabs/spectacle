@@ -18,6 +18,7 @@ const ComponentPlaygroundContainer = styled.div`
 const ComponentPlayground = ({
   code,
   previewBackgroundColor,
+  scope = {},
   theme = "dark"
 }) => {
   const useDarkTheme = theme === "dark";
@@ -35,7 +36,7 @@ const ComponentPlayground = ({
     >
       <Playground
         codeText={(code || defaultCode).trim()}
-        scope={{ React, Component, render }}
+        scope={{ React, Component, render, ...scope }}
         noRender={false}
         theme={useDarkTheme ? "material" : "elegant"}
       />
@@ -46,6 +47,7 @@ const ComponentPlayground = ({
 ComponentPlayground.propTypes = {
   code: PropTypes.string,
   previewBackgroundColor: PropTypes.string,
+  scope: PropTypes.object,
   theme: PropTypes.string
 };
 
