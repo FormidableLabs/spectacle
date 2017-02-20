@@ -412,6 +412,9 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
           data-radium={true}
           style={
             Object {
+              "display": "flex",
+              "flexDirection": "row",
+              "flexWrap": "nowrap",
               "height": "100%",
               "overflow": "scroll",
               "width": "100%",
@@ -419,57 +422,87 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
           }>
           <div
             data-radium={true}
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
-                "cursor": "pointer",
-                "float": "left",
+                "display": "flex",
+                "flexDirection": "column",
+                "flexWrap": "nowrap",
                 "height": NaN,
-                "opacity": 1,
-                "position": "relative",
                 "width": NaN,
               }
             }>
-            <MockSlide
-              appearOff={true}
-              export={false}
-              print={false}
-              slideIndex={0}
-              transition={Array []}
-              transitionDuration={0}>
-              <div>
-                Slide Content
-              </div>
-            </MockSlide>
+            <div
+              data-radium={true}
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "flexWrap": "nowrap",
+                  "height": NaN,
+                  "opacity": 1,
+                  "position": "relative",
+                  "width": NaN,
+                }
+              }>
+              <MockSlide
+                appearOff={true}
+                export={false}
+                overview={true}
+                print={false}
+                slideIndex={0}
+                transition={Array []}
+                transitionDuration={0}>
+                <div>
+                  Slide Content
+                </div>
+              </MockSlide>
+            </div>
           </div>
           <div
             data-radium={true}
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
-                "cursor": "pointer",
-                "float": "left",
+                "display": "flex",
+                "flexDirection": "column",
+                "flexWrap": "nowrap",
                 "height": NaN,
-                "opacity": 0.5,
-                "position": "relative",
                 "width": NaN,
               }
             }>
-            <MockSlide
-              appearOff={true}
-              export={false}
-              print={false}
-              slideIndex={1}
-              transition={Array []}
-              transitionDuration={0}>
-              <div>
-                Slide Content
-              </div>
-            </MockSlide>
+            <div
+              data-radium={true}
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "flexWrap": "nowrap",
+                  "height": NaN,
+                  "opacity": 0.5,
+                  "position": "relative",
+                  "width": NaN,
+                }
+              }>
+              <MockSlide
+                appearOff={true}
+                export={false}
+                overview={true}
+                print={false}
+                slideIndex={1}
+                transition={Array []}
+                transitionDuration={0}>
+                <div>
+                  Slide Content
+                </div>
+              </MockSlide>
+            </div>
           </div>
         </div>
       </Overview>
