@@ -87,7 +87,7 @@ Spectacle comes with a built in presenter mode. It shows you a slide lookahead, 
 
 To present:
 
-- Run `npm start`
+- Run `npm start` (or `yarn start` if you prefer)
 - Open two browser windows on two different screens
 - On your screen visit [http://localhost:3000/](http://localhost:3000/). You will be redirected to a URL containing the slide id.
 - Add `presenter&` immediately after the questionmark, e.g.: [http://localhost:3000/#/?presenter&_k=wbyhif](http://localhost:3000/#/?presenter&_k=wbyhif)
