@@ -33,172 +33,92 @@ exports[`<Presenter /> should render correctly 1`] = `
       <Slide />,
     ]
   }>
-  <div
-    className="spectacle-presenter"
-    data-radium={true}
-    style={
-      Object {
-        "display": "flex",
-        "flex": 1,
-        "flexDirection": "column",
-        "height": "100%",
-        "width": "100%",
-      }
-    }>
+  <styled.div>
     <div
-      data-radium={true}
-      style={
-        Object {
-          "color": "white",
-          "display": "block",
-          "height": "10%",
-          "padding": "10px 50px",
-          "position": "absolute",
-          "textAlign": "center",
-          "width": "100%",
-        }
-      }>
-      <h2
-        data-radium={true}
-        style={
-          Object {
-            "display": "inline-block",
-            "float": "left",
-            "fontSize": 28,
-            "lineHeight": 1,
-            "margin": 0,
-            "position": "relative",
-            "top": "50%",
-            "transform": "translateY(-50%)",
-          }
-        }>
-        Slide 
-        2
-         of 
-        3
-      </h2>
-      <h2
-        data-radium={true}
-        style={
-          Object {
-            "display": "inline-block",
-            "float": "right",
-            "fontSize": 28,
-            "lineHeight": 1,
-            "margin": 0,
-            "position": "relative",
-            "top": "50%",
-            "transform": "translateY(-50%)",
-          }
-        }>
-        Mon Nov 07 2016 11:04:08 GMT-0600 (CST)
-      </h2>
-    </div>
-    <div
-      data-radium={true}
-      style={
-        Object {
-          "display": "flex",
-          "flex": 1,
-          "padding": "10px 50px 0 50px",
-        }
-      }>
-      <div
-        data-radium={true}
-        style={
-          Object {
-            "display": "flex",
-            "flex": "1",
-            "flexWrap": "wrap",
-            "height": "90%",
-            "justifyContent": "center",
-            "position": "absolute",
-            "top": "10%",
-            "width": "60%",
-          }
-        }>
+      className="iyCyxO">
+      <styled.div>
         <div
-          className="spectacle-presenter-main"
-          data-radium={true}
-          style={
-            Object {
-              "border": "2px solid white",
-              "display": "flex",
-              "flex": "0 0 100%",
-              "height": "55%",
-              "padding": 20,
-            }
-          }>
-          <Slide
-            dispatch={[Function]}
-            export={false}
-            hash={1}
-            lastSlide={0}
-            presenterStyle={
-              Object {
-                "position": "relative",
-              }
-            }
-            print={false}
-            slideIndex={1}
-            transition={Array []}
-            transitionDuration={0}>
-            <div>
-              Slide Content
-            </div>
-          </Slide>
+          className="gHgCes">
+          <styled.h2>
+            <h2
+              className="fztYwR">
+              Slide 
+              2
+               of 
+              3
+            </h2>
+          </styled.h2>
+          <styled.h2>
+            <h2
+              className="jryfWj">
+              Mon Nov 07 2016 11:04:08 GMT-0600 (CST)
+            </h2>
+          </styled.h2>
         </div>
+      </styled.div>
+      <styled.div>
         <div
-          className="spectacle-presenter-next"
-          data-radium={true}
-          style={
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flex": "0 0 68.75%",
-              "height": "40%",
-              "justifyContent": "center",
-              "opacity": 0.4,
-            }
-          }>
-          <Slide
-            appearOff={true}
-            dispatch={[Function]}
-            export={false}
-            hash={2}
-            lastSlide={0}
-            presenterStyle={
-              Object {
-                "position": "relative",
-              }
-            }
-            print={false}
-            slideIndex={2}
-            transition={Array []}
-            transitionDuration={0}>
-            <div>
-              Slide Content
+          className="jjzBZm">
+          <styled.div>
+            <div
+              className="gRyZKn">
+              <styled.div>
+                <div
+                  className="jmeTwE">
+                  <Slide
+                    dispatch={[Function]}
+                    export={false}
+                    hash={1}
+                    lastSlide={0}
+                    presenterStyle={
+                      Object {
+                        "position": "relative",
+                      }
+                    }
+                    print={false}
+                    slideIndex={1}
+                    transition={Array []}
+                    transitionDuration={0}>
+                    <div>
+                      Slide Content
+                    </div>
+                  </Slide>
+                </div>
+              </styled.div>
+              <styled.div>
+                <div
+                  className="gAvcJf">
+                  <Slide
+                    appearOff={true}
+                    dispatch={[Function]}
+                    export={false}
+                    hash={2}
+                    lastSlide={0}
+                    presenterStyle={
+                      Object {
+                        "position": "relative",
+                      }
+                    }
+                    print={false}
+                    slideIndex={2}
+                    transition={Array []}
+                    transitionDuration={0}>
+                    <div>
+                      Slide Content
+                    </div>
+                  </Slide>
+                </div>
+              </styled.div>
             </div>
-          </Slide>
+          </styled.div>
+          <styled.div>
+            <div
+              className="hiNnBp" />
+          </styled.div>
         </div>
-      </div>
-      <div
-        className="spectacle-presenter-notes"
-        data-radium={true}
-        style={
-          Object {
-            "color": "white",
-            "display": "block",
-            "height": "90%",
-            "left": "calc(60% + 50px)",
-            "padding": "10px 30px",
-            "position": "absolute",
-            "top": "10%",
-            "width": "calc(40% - 100px)",
-          }
-        } />
+      </styled.div>
     </div>
-  </div>
+  </styled.div>
 </Presenter>
 `;
 
@@ -238,179 +158,99 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
       <Slide />,
     ]
   }>
-  <div
-    className="spectacle-presenter"
-    data-radium={true}
-    style={
-      Object {
-        "display": "flex",
-        "flex": 1,
-        "flexDirection": "column",
-        "height": "100%",
-        "width": "100%",
-      }
-    }>
+  <styled.div>
     <div
-      data-radium={true}
-      style={
-        Object {
-          "color": "white",
-          "display": "block",
-          "height": "10%",
-          "padding": "10px 50px",
-          "position": "absolute",
-          "textAlign": "center",
-          "width": "100%",
-        }
-      }>
-      <h2
-        data-radium={true}
-        style={
-          Object {
-            "display": "inline-block",
-            "float": "left",
-            "fontSize": 28,
-            "lineHeight": 1,
-            "margin": 0,
-            "position": "relative",
-            "top": "50%",
-            "transform": "translateY(-50%)",
-          }
-        }>
-        Slide 
-        2
-         of 
-        3
-      </h2>
-      <h2
-        data-radium={true}
-        style={
-          Object {
-            "display": "inline-block",
-            "float": "right",
-            "fontSize": 28,
-            "lineHeight": 1,
-            "margin": 0,
-            "position": "relative",
-            "top": "50%",
-            "transform": "translateY(-50%)",
-          }
-        }>
-        Mon Nov 07 2016 11:04:08 GMT-0600 (CST)
-      </h2>
-    </div>
-    <div
-      data-radium={true}
-      style={
-        Object {
-          "display": "flex",
-          "flex": 1,
-          "padding": "10px 50px 0 50px",
-        }
-      }>
-      <div
-        data-radium={true}
-        style={
-          Object {
-            "display": "flex",
-            "flex": "1",
-            "flexWrap": "wrap",
-            "height": "90%",
-            "justifyContent": "center",
-            "position": "absolute",
-            "top": "10%",
-            "width": "60%",
-          }
-        }>
+      className="iyCyxO">
+      <styled.div>
         <div
-          className="spectacle-presenter-main"
-          data-radium={true}
-          style={
-            Object {
-              "border": "2px solid white",
-              "display": "flex",
-              "flex": "0 0 100%",
-              "height": "55%",
-              "padding": 20,
-            }
-          }>
-          <Slide
-            dispatch={[Function]}
-            export={false}
-            hash={1}
-            lastSlide={0}
-            notes="These are my slide notes!!"
-            presenterStyle={
-              Object {
-                "position": "relative",
-              }
-            }
-            print={false}
-            slideIndex={1}
-            transition={Array []}
-            transitionDuration={0}>
-            <div>
-              Slide Content
-            </div>
-          </Slide>
+          className="gHgCes">
+          <styled.h2>
+            <h2
+              className="fztYwR">
+              Slide 
+              2
+               of 
+              3
+            </h2>
+          </styled.h2>
+          <styled.h2>
+            <h2
+              className="jryfWj">
+              Mon Nov 07 2016 11:04:08 GMT-0600 (CST)
+            </h2>
+          </styled.h2>
         </div>
+      </styled.div>
+      <styled.div>
         <div
-          className="spectacle-presenter-next"
-          data-radium={true}
-          style={
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flex": "0 0 68.75%",
-              "height": "40%",
-              "justifyContent": "center",
-              "opacity": 0.4,
-            }
-          }>
-          <Slide
-            appearOff={true}
-            dispatch={[Function]}
-            export={false}
-            hash={2}
-            lastSlide={0}
-            presenterStyle={
-              Object {
-                "position": "relative",
-              }
-            }
-            print={false}
-            slideIndex={2}
-            transition={Array []}
-            transitionDuration={0}>
-            <div>
-              Slide Content
+          className="jjzBZm">
+          <styled.div>
+            <div
+              className="gRyZKn">
+              <styled.div>
+                <div
+                  className="jmeTwE">
+                  <Slide
+                    dispatch={[Function]}
+                    export={false}
+                    hash={1}
+                    lastSlide={0}
+                    notes="These are my slide notes!!"
+                    presenterStyle={
+                      Object {
+                        "position": "relative",
+                      }
+                    }
+                    print={false}
+                    slideIndex={1}
+                    transition={Array []}
+                    transitionDuration={0}>
+                    <div>
+                      Slide Content
+                    </div>
+                  </Slide>
+                </div>
+              </styled.div>
+              <styled.div>
+                <div
+                  className="gAvcJf">
+                  <Slide
+                    appearOff={true}
+                    dispatch={[Function]}
+                    export={false}
+                    hash={2}
+                    lastSlide={0}
+                    presenterStyle={
+                      Object {
+                        "position": "relative",
+                      }
+                    }
+                    print={false}
+                    slideIndex={2}
+                    transition={Array []}
+                    transitionDuration={0}>
+                    <div>
+                      Slide Content
+                    </div>
+                  </Slide>
+                </div>
+              </styled.div>
             </div>
-          </Slide>
+          </styled.div>
+          <styled.div>
+            <div
+              className="hiNnBp">
+              <div
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "These are my slide notes!!",
+                  }
+                } />
+            </div>
+          </styled.div>
         </div>
-      </div>
-      <div
-        className="spectacle-presenter-notes"
-        data-radium={true}
-        style={
-          Object {
-            "color": "white",
-            "display": "block",
-            "height": "90%",
-            "left": "calc(60% + 50px)",
-            "padding": "10px 30px",
-            "position": "absolute",
-            "top": "10%",
-            "width": "calc(40% - 100px)",
-          }
-        }>
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "These are my slide notes!!",
-            }
-          } />
-      </div>
+      </styled.div>
     </div>
-  </div>
+  </styled.div>
 </Presenter>
 `;

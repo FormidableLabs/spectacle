@@ -1,8 +1,27 @@
 import React, { cloneElement, Component, PropTypes } from "react";
-import Radium from "radium";
 import { getSlideByIndex } from "../utils/slides";
+import styled from "styled-components";
 
-@Radium
+const OverviewContainer = styled.div`
+  height: 100%;
+  overflow: scroll;
+  width: 100%;
+`;
+
+const SlideThumbnail = styled.div`
+  cursor: pointer;
+  position: relative;
+  float: left;
+  height: ${({ screen }) => (screen / 3) * 0.7}px;
+  opacity: ${({ index, slideIndex }) => index === slideIndex ? 1 : 0.5};
+  transition: opacity 333ms ease-in-out;
+  width: ${({ screen }) => (screen / 3)}px;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 export default class Overview extends Component {
   constructor(props) {
     super(props);
@@ -28,17 +47,6 @@ export default class Overview extends Component {
     const slideIndex = this.props.slideIndex;
     const screen = this.state.overviewWidth;
     return this.props.slideReference.map((reference, index) => {
-      const style = {
-        position: "relative",
-        width: screen / 3,
-        height: (screen / 3) * 0.7,
-        float: "left",
-        opacity: index === slideIndex ? 1 : 0.5,
-        cursor: "pointer",
-        ":hover": {
-          opacity: 1
-        }
-      };
       const slide = getSlideByIndex(
         this.props.slides,
         this.props.slideReference,
@@ -54,29 +62,28 @@ export default class Overview extends Component {
         appearOff: true
       });
       return (
-        <div key={index} style={[style]} onClick={this._slideClicked.bind(this, index)}>
+        <SlideThumbnail
+          index={index}
+          screen={screen}
+          slideIndex={slideIndex}
+          key={index}
+          onClick={this._slideClicked.bind(this, index)}
+        >
           {el}
-        </div>
+        </SlideThumbnail>
       );
     });
   }
   resizeHandler() {
     this.setState({
-      overviewWidth: this.overviewRef.clientWidth
+      overviewWidth: document.documentElement.clientWidth
     });
   }
   render() {
-    const styles = {
-      overview: {
-        height: "100%",
-        width: "100%",
-        overflow: "scroll"
-      }
-    };
     return (
-      <div className="spectacle-overview" ref={(o) => { this.overviewRef = o; }} style={[styles.overview]}>
+      <OverviewContainer>
         {this._renderSlides()}
-      </div>
+      </OverviewContainer>
     );
   }
 }
