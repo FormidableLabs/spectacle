@@ -6,6 +6,8 @@ import {
   PreviewNextSlide, Notes
 } from "./presenter-components";
 
+import Time from "./time"
+
 const startTime = function startTime(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -26,7 +28,7 @@ export default class Presenter extends Component {
 
   state = {
     notes: {},
-    time: startTime(new Date())
+    timer: true
   };
 
   getChildContext() {
@@ -36,15 +38,11 @@ export default class Presenter extends Component {
   }
 
   componentWillMount() {
-    this.time = setInterval(() => {
-      this.setState({
-        time: startTime(new Date())
-      });
-    }, 1000);
+    
   }
 
   componentWillUnmount() {
-    clearInterval(this.time);
+
   }
 
   getCurrentSlide() {
@@ -129,7 +127,7 @@ export default class Presenter extends Component {
           <SlideInfo>
             Slide {this.props.slideIndex + 1} of {this.props.slideReference.length}
           </SlideInfo>
-          <Clock>{this.state.time}</Clock>
+          <Time timer={this.state.timer} />
         </HeaderContainer>
         <ContentContainer>
           <PreviewPane>
