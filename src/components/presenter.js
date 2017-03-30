@@ -28,7 +28,7 @@ export default class Presenter extends Component {
 
   state = {
     notes: {},
-    timer: true
+    timer: false
   };
 
   getChildContext() {
@@ -38,7 +38,9 @@ export default class Presenter extends Component {
   }
 
   componentWillMount() {
-    
+    this.setState({
+      timer: (this.props.route.params.indexOf("timer") !== -1)
+    });
   }
 
   componentWillUnmount() {

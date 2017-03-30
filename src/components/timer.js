@@ -3,7 +3,7 @@ import React, {
     PropTypes
 } from "react";
 
-import {Timer as TimerStyle} from "./presenter-components";
+import {Clock as TimerHeader} from "./presenter-components";
 
 const timeCounter = (time) => {
 	let hours = Math.floor(time/3600);
@@ -64,7 +64,7 @@ export default class Timer extends Component {
     render() {
         return (
         	<div>
-	        	<TimerStyle>{timeCounter(this.state.elapsedTime)}</TimerStyle>
+	        	<TimerHeader>{timeCounter(this.state.elapsedTime)}</TimerHeader>
 	        	{this.state.paused ? (
 	        		<div>
 		        		<button
@@ -82,19 +82,7 @@ export default class Timer extends Component {
 		        		Stop
 		        	</button>
 	        	)}
-		        
-		        
-
         	</div>
-	        
         );
     }
-}
-
-Timer.propTypes = {
-	timer: PropTypes.bool
-}
-
-Timer.defaultProps = {
-	timer: false
 }
