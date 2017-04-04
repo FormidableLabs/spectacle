@@ -12,8 +12,16 @@ export const Clock = styled.h2`
 `;
 
 export const TimeContainer = styled.div`
-  padding: 20px 0 0;
+  padding: 20px 0;
 `;
+
+export const TButtonContainer = styled.div`
+  position: relative;
+  float: right;
+  padding-right: 20px;
+  -webkit-transform: translateY(-50%);
+`;
+
 
 export const ContentContainer = styled.div`
   display: flex;

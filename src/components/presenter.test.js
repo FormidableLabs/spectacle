@@ -3,8 +3,8 @@ import { mount } from "enzyme";
 import { mountToJson } from "enzyme-to-json";
 import Presenter from "./presenter";
 
-const _mockRoute = function (slide) {
-  return { params: [], slide };
+const _mockRoute = function (slide, params = null) {
+  return { params: [params], slide };
 };
 
 const _mockContext = function () {
@@ -26,6 +26,10 @@ const _mockSlidesWithNotes = function () {
   return [ <Slide key={0} />, <Slide key={1} notes={notes} />, <Slide key={2} /> ];
 };
 
+const mockDateFn = jest.fn();
+mockDateFn
+  .mockReturnValue("November 07, 2016 11:04:08");
+
 const _mockSlideReference = function () {
   return [
     { id: 0, rootIndex: 0 },
@@ -35,6 +39,10 @@ const _mockSlideReference = function () {
 };
 
 describe("<Presenter />", () => {
+  beforeAll(() => {
+    global.Date.now = mockDateFn;
+  });
+
   test("should render correctly", () => {
     const wrapper = mount((
       <Presenter
@@ -47,7 +55,7 @@ describe("<Presenter />", () => {
         lastSlide={0}
       />
     ), { context: _mockContext() });
-    wrapper.setState({ time: "Mon Nov 07 2016 11:04:08 GMT-0600 (CST)" });
+
     wrapper.instance().componentWillMount = jest.fn();
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
@@ -64,7 +72,23 @@ describe("<Presenter />", () => {
         lastSlide={0}
       />
     ), { context: _mockContext() });
-    wrapper.setState({ time: "Mon Nov 07 2016 11:04:08 GMT-0600 (CST)" });
+
+    wrapper.instance().componentWillMount = jest.fn();
+    expect(mountToJson(wrapper)).toMatchSnapshot();
+  });
+
+  test("should render timer when set in params.", () => {
+    const wrapper = mount((
+      <Presenter
+        dispatch={() => {}}
+        slides={_mockSlidesWithNotes()}
+        slideIndex={1}
+        slideReference={_mockSlideReference()}
+        hash={1}
+        route={_mockRoute(1, 'timer')}
+        lastSlide={0}
+      />
+    ), { context: _mockContext() });
     wrapper.instance().componentWillMount = jest.fn();
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
