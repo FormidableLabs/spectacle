@@ -8,7 +8,7 @@ export const Clock = styled.h2`
   margin: 0;
   line-height: 1;
   display: inline-block;
-  fontSize: 28px;
+  font-size: 28px;
 `;
 
 export const TimeContainer = styled.div`
@@ -19,9 +19,24 @@ export const TButtonContainer = styled.div`
   position: relative;
   float: right;
   padding-right: 20px;
-  -webkit-transform: translateY(-50%);
+  -webkit-transform: translateY(-45%);
+  font-size: 20.088px;
 `;
 
+export const TSingleButton = styled.button`
+  width: 68px;
+  font-size: 1em;
+  margin: 3px;
+  border: 2px solid gray;
+  border-radius: 3px;
+`;
+
+export const TDoubleButton = styled.button`
+  width: 139px;
+  margin: 3px;
+  border: 2px solid gray;
+  border-radius: 3px;
+`;
 
 export const ContentContainer = styled.div`
   display: flex;

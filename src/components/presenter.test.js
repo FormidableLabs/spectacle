@@ -3,8 +3,8 @@ import { mount } from "enzyme";
 import { mountToJson } from "enzyme-to-json";
 import Presenter from "./presenter";
 
-const _mockRoute = function (slide, params = null) {
-  return { params: [params], slide };
+const _mockRoute = function (slide) {
+  return { params: [], slide };
 };
 
 const _mockContext = function () {
@@ -85,8 +85,9 @@ describe("<Presenter />", () => {
         slideIndex={1}
         slideReference={_mockSlideReference()}
         hash={1}
-        route={_mockRoute(1, 'timer')}
+        route={_mockRoute(1)}
         lastSlide={0}
+        timer={true}
       />
     ), { context: _mockContext() });
     wrapper.instance().componentWillMount = jest.fn();

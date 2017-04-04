@@ -138,7 +138,8 @@ export default class Manager extends Component {
   }
   _getSuffix() {
     if (this.props.route.params.indexOf("presenter") !== -1) {
-      return "?presenter";
+      let isTimerMode = (this.props.route.params.indexOf("timer") !== -1);
+      return isTimerMode ? "?presenter&timer" : "presenter";
     } else if (this.props.route.params.indexOf("overview") !== -1) {
       return "?overview";
     } else {
@@ -409,6 +410,7 @@ export default class Manager extends Component {
     let componentToRender;
     const children = Children.toArray(this.props.children);
     if (this.props.route.params.indexOf("presenter") !== -1) {
+      let isTimerMode = this.props.route.params.indexOf("timer") !== -1;
       componentToRender = (
         <Presenter
           dispatch={this.props.dispatch}
@@ -418,6 +420,7 @@ export default class Manager extends Component {
           hash={this.props.route.slide}
           route={this.props.route}
           lastSlideIndex={this.state.lastSlideIndex}
+          timer={isTimerMode}
         />
       );
     } else if (this.props.route.params.indexOf("export") !== -1) {
