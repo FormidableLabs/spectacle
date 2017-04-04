@@ -27,8 +27,7 @@ export default class Presenter extends Component {
   };
 
   state = {
-    notes: {},
-    timer: false
+    notes: {}
   };
 
   getChildContext() {
@@ -38,9 +37,7 @@ export default class Presenter extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      timer: (this.props.route.params.indexOf("timer") !== -1)
-    });
+
   }
 
   componentWillUnmount() {
@@ -129,7 +126,7 @@ export default class Presenter extends Component {
           <SlideInfo>
             Slide {this.props.slideIndex + 1} of {this.props.slideReference.length}
           </SlideInfo>
-          <Time timer={this.state.timer} />
+          <Time timer={this.props.timer} />
         </HeaderContainer>
         <ContentContainer>
           <PreviewPane>
@@ -156,7 +153,8 @@ Presenter.propTypes = {
   route: PropTypes.object,
   slideIndex: PropTypes.number,
   slideReference: PropTypes.array,
-  slides: PropTypes.array
+  slides: PropTypes.array,
+  timer: PropTypes.bool
 };
 
 Presenter.contextTypes = {

@@ -5,9 +5,7 @@ exports[`<Presenter /> should render correctly 1`] = `
   lastSlide={0}
   route={
     Object {
-      "params": Array [
-        null,
-      ],
+      "params": Array [],
       "slide": 1,
     }
   }
@@ -50,15 +48,14 @@ exports[`<Presenter /> should render correctly 1`] = `
               3
             </h2>
           </styled.h2>
-          <Time
-            timer={false}>
+          <Time>
             <styled.div>
               <div
                 className="brepyG">
                 <Clock>
                   <styled.h2>
                     <h2
-                      className="jryfWj">
+                      className="hQnKlh">
                       11 : 04 : 08 AM
                     </h2>
                   </styled.h2>
@@ -141,9 +138,7 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
   lastSlide={0}
   route={
     Object {
-      "params": Array [
-        "timer",
-      ],
+      "params": Array [],
       "slide": 1,
     }
   }
@@ -171,7 +166,8 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
         notes="These are my slide notes!!" />,
       <Slide />,
     ]
-  }>
+  }
+  timer={true}>
   <styled.div>
     <div
       className="iyCyxO">
@@ -196,21 +192,21 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                   <div>
                     <styled.h2>
                       <h2
-                        className="jryfWj">
+                        className="hQnKlh">
                         00 : 00
                       </h2>
                     </styled.h2>
                     <styled.div>
                       <div
-                        className="gMWopl">
-                        <button
+                        className="kWjMOo">
+                        <styled.button
                           onClick={[Function]}>
-                          Start
-                        </button>
-                        <button
-                          onClick={[Function]}>
-                          Reset
-                        </button>
+                          <button
+                            className="dIfuqA"
+                            onClick={[Function]}>
+                            Start
+                          </button>
+                        </styled.button>
                       </div>
                     </styled.div>
                   </div>
@@ -301,9 +297,7 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
   lastSlide={0}
   route={
     Object {
-      "params": Array [
-        null,
-      ],
+      "params": Array [],
       "slide": 1,
     }
   }
@@ -347,15 +341,14 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
               3
             </h2>
           </styled.h2>
-          <Time
-            timer={false}>
+          <Time>
             <styled.div>
               <div
                 className="brepyG">
                 <Clock>
                   <styled.h2>
                     <h2
-                      className="jryfWj">
+                      className="hQnKlh">
                       11 : 04 : 08 AM
                     </h2>
                   </styled.h2>

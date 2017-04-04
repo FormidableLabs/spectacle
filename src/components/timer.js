@@ -3,7 +3,10 @@ import React, {
     PropTypes
 } from "react";
 
-import {Clock as TimerHeader, TButtonContainer} from "./presenter-components";
+import {
+	Clock as TimerHeader, TButtonContainer, TSingleButton,
+	TDoubleButton
+} from "./presenter-components";
 
 const timeCounter = (time) => {
 	let hours = Math.floor(time/3600);
@@ -61,29 +64,29 @@ export default class Timer extends Component {
     	});
     };
 
-    _renderStartButtons() {
+    _renderResetButton() {
     	return (
-    		<TButtonContainer>
-				<button
-				onClick={this.startTimer}>
-					Start
-				</button>
-				<button
-				onClick={this.resetTimer}>
-					Reset
-				</button>
-			</TButtonContainer>
+    		<TSingleButton
+			onClick={this.resetTimer}>
+				Reset
+			</TSingleButton>
+		);
+    }
+    _renderStartButton() {
+    	return (
+			<TSingleButton
+			onClick={this.startTimer}>
+				Start
+			</TSingleButton>
 		);
     }
 
     _renderStopButton() {
     	return (
-    		<TButtonContainer>
-	    		<button
-				onClick={this.stopTimer}>
-					Stop
-				</button>
-			</TButtonContainer>
+    		<TSingleButton
+			onClick={this.stopTimer}>
+				Stop
+			</TSingleButton>
     	);
     }
 
@@ -91,9 +94,14 @@ export default class Timer extends Component {
         return (
         	<div>
 	        	<TimerHeader>{timeCounter(this.state.elapsedTime)}</TimerHeader>
-        		{this.state.paused ? 	(this._renderStartButtons()) : 
-        								(this._renderStopButton())
-        		}        	
+	        	<TButtonContainer>
+		        	{(this.state.elapsedTime !== 0 && this.state.paused) ? (
+		        		this._renderResetButton() 
+		        		): null}
+	        		{this.state.paused ? 	(this._renderStartButton()) : 
+	        								(this._renderStopButton())
+	        		}
+        		</TButtonContainer>        	
         	</div>
         );
     }
