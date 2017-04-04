@@ -3,7 +3,7 @@ import React, {
     PropTypes
 } from "react";
 
-import {Clock as TimerHeader} from "./presenter-components";
+import {Clock as TimerHeader, TButtonContainer} from "./presenter-components";
 
 const timeCounter = (time) => {
 	let hours = Math.floor(time/3600);
@@ -12,9 +12,9 @@ const timeCounter = (time) => {
 
 	let areHours = hours > 0;
 
-	hours = hours < 10 ? `0 ${hours}` : hours;
-	minutes = minutes < 10 ? `0 ${minutes}` : minutes;
-  	seconds = seconds < 10 ? `0 ${seconds}` : seconds;
+	hours = hours < 10 ? `0${hours}` : hours;
+	minutes = minutes < 10 ? `0${minutes}` : minutes;
+  	seconds = seconds < 10 ? `0${seconds}` : seconds;
 
   	const noHrTime = `${minutes} : ${seconds}`;
   	const hrTime = `${hours} : ${noHrTime}`
@@ -30,7 +30,7 @@ export default class Timer extends Component {
 		paused: true
 	};
     componentDidMount() {
-    	this.startTimer();
+    	// this.stopTimer();
     }
     componentWillUnmount() {
         clearInterval(this.interval);
@@ -61,27 +61,39 @@ export default class Timer extends Component {
     	});
     };
 
+    _renderStartButtons() {
+    	return (
+    		<TButtonContainer>
+				<button
+				onClick={this.startTimer}>
+					Start
+				</button>
+				<button
+				onClick={this.resetTimer}>
+					Reset
+				</button>
+			</TButtonContainer>
+		);
+    }
+
+    _renderStopButton() {
+    	return (
+    		<TButtonContainer>
+	    		<button
+				onClick={this.stopTimer}>
+					Stop
+				</button>
+			</TButtonContainer>
+    	);
+    }
+
     render() {
         return (
         	<div>
 	        	<TimerHeader>{timeCounter(this.state.elapsedTime)}</TimerHeader>
-	        	{this.state.paused ? (
-	        		<div>
-		        		<button
-			        	onClick={this.startTimer}>
-			        		Start
-			        	</button>
-		        		<button
-			        	onClick={this.resetTimer}>
-			        		Reset
-			        	</button>
-			        </div>
-	        	) : (
-	        		<button
-		        	onClick={this.stopTimer}>
-		        		Stop
-		        	</button>
-	        	)}
+        		{this.state.paused ? 	(this._renderStartButtons()) : 
+        								(this._renderStopButton())
+        		}        	
         	</div>
         );
     }

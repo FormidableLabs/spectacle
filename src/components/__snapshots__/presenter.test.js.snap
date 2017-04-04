@@ -5,7 +5,9 @@ exports[`<Presenter /> should render correctly 1`] = `
   lastSlide={0}
   route={
     Object {
-      "params": Array [],
+      "params": Array [
+        null,
+      ],
       "slide": 1,
     }
   }
@@ -48,12 +50,22 @@ exports[`<Presenter /> should render correctly 1`] = `
               3
             </h2>
           </styled.h2>
-          <styled.h2>
-            <h2
-              className="jryfWj">
-              Mon Nov 07 2016 11:04:08 GMT-0600 (CST)
-            </h2>
-          </styled.h2>
+          <Time
+            timer={false}>
+            <styled.div>
+              <div
+                className="brepyG">
+                <Clock>
+                  <styled.h2>
+                    <h2
+                      className="jryfWj">
+                      11 : 04 : 08 AM
+                    </h2>
+                  </styled.h2>
+                </Clock>
+              </div>
+            </styled.div>
+          </Time>
         </div>
       </styled.div>
       <styled.div>
@@ -122,14 +134,16 @@ exports[`<Presenter /> should render correctly 1`] = `
 </Presenter>
 `;
 
-exports[`<Presenter /> should render with notes when slides have them. 1`] = `
+exports[`<Presenter /> should render timer when set in params. 1`] = `
 <Presenter
   dispatch={[Function]}
   hash={1}
   lastSlide={0}
   route={
     Object {
-      "params": Array [],
+      "params": Array [
+        "timer",
+      ],
       "slide": 1,
     }
   }
@@ -173,12 +187,182 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
               3
             </h2>
           </styled.h2>
+          <Time
+            timer={true}>
+            <styled.div>
+              <div
+                className="brepyG">
+                <Timer>
+                  <div>
+                    <styled.h2>
+                      <h2
+                        className="jryfWj">
+                        00 : 00
+                      </h2>
+                    </styled.h2>
+                    <styled.div>
+                      <div
+                        className="gMWopl">
+                        <button
+                          onClick={[Function]}>
+                          Start
+                        </button>
+                        <button
+                          onClick={[Function]}>
+                          Reset
+                        </button>
+                      </div>
+                    </styled.div>
+                  </div>
+                </Timer>
+              </div>
+            </styled.div>
+          </Time>
+        </div>
+      </styled.div>
+      <styled.div>
+        <div
+          className="jjzBZm">
+          <styled.div>
+            <div
+              className="gRyZKn">
+              <styled.div>
+                <div
+                  className="jmeTwE">
+                  <Slide
+                    dispatch={[Function]}
+                    export={false}
+                    hash={1}
+                    lastSlide={0}
+                    notes="These are my slide notes!!"
+                    presenterStyle={
+                      Object {
+                        "position": "relative",
+                      }
+                    }
+                    print={false}
+                    slideIndex={1}
+                    transition={Array []}
+                    transitionDuration={0}>
+                    <div>
+                      Slide Content
+                    </div>
+                  </Slide>
+                </div>
+              </styled.div>
+              <styled.div>
+                <div
+                  className="gAvcJf">
+                  <Slide
+                    appearOff={true}
+                    dispatch={[Function]}
+                    export={false}
+                    hash={2}
+                    lastSlide={0}
+                    presenterStyle={
+                      Object {
+                        "position": "relative",
+                      }
+                    }
+                    print={false}
+                    slideIndex={2}
+                    transition={Array []}
+                    transitionDuration={0}>
+                    <div>
+                      Slide Content
+                    </div>
+                  </Slide>
+                </div>
+              </styled.div>
+            </div>
+          </styled.div>
+          <styled.div>
+            <div
+              className="hiNnBp">
+              <div
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "These are my slide notes!!",
+                  }
+                } />
+            </div>
+          </styled.div>
+        </div>
+      </styled.div>
+    </div>
+  </styled.div>
+</Presenter>
+`;
+
+exports[`<Presenter /> should render with notes when slides have them. 1`] = `
+<Presenter
+  dispatch={[Function]}
+  hash={1}
+  lastSlide={0}
+  route={
+    Object {
+      "params": Array [
+        null,
+      ],
+      "slide": 1,
+    }
+  }
+  slideIndex={1}
+  slideReference={
+    Array [
+      Object {
+        "id": 0,
+        "rootIndex": 0,
+      },
+      Object {
+        "id": 1,
+        "rootIndex": 1,
+      },
+      Object {
+        "id": 2,
+        "rootIndex": 2,
+      },
+    ]
+  }
+  slides={
+    Array [
+      <Slide />,
+      <Slide
+        notes="These are my slide notes!!" />,
+      <Slide />,
+    ]
+  }>
+  <styled.div>
+    <div
+      className="iyCyxO">
+      <styled.div>
+        <div
+          className="gHgCes">
           <styled.h2>
             <h2
-              className="jryfWj">
-              Mon Nov 07 2016 11:04:08 GMT-0600 (CST)
+              className="fztYwR">
+              Slide 
+              2
+               of 
+              3
             </h2>
           </styled.h2>
+          <Time
+            timer={false}>
+            <styled.div>
+              <div
+                className="brepyG">
+                <Clock>
+                  <styled.h2>
+                    <h2
+                      className="jryfWj">
+                      11 : 04 : 08 AM
+                    </h2>
+                  </styled.h2>
+                </Clock>
+              </div>
+            </styled.div>
+          </Time>
         </div>
       </styled.div>
       <styled.div>
