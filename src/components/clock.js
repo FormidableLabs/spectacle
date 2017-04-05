@@ -3,7 +3,7 @@ import React, {
     PropTypes
 } from "react";
 
-import {Clock as ClockStyle} from "./presenter-components";
+import {Clock as ClockStyle} from "./time-components";
 
 const startTime = function startTime(date) {
   let hours = date.getHours();

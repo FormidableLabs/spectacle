@@ -1,43 +1,5 @@
 import styled from "styled-components";
 
-export const Clock = styled.h2`
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  float: right;
-  margin: 0;
-  line-height: 1;
-  display: inline-block;
-  font-size: 28px;
-`;
-
-export const TimeContainer = styled.div`
-  padding: 20px 0;
-`;
-
-export const TButtonContainer = styled.div`
-  position: relative;
-  float: right;
-  padding-right: 20px;
-  -webkit-transform: translateY(-45%);
-  font-size: 20.088px;
-`;
-
-export const TSingleButton = styled.button`
-  width: 68px;
-  font-size: 1em;
-  margin: 3px;
-  border: 2px solid gray;
-  border-radius: 3px;
-`;
-
-export const TDoubleButton = styled.button`
-  width: 139px;
-  margin: 3px;
-  border: 2px solid gray;
-  border-radius: 3px;
-`;
-
 export const ContentContainer = styled.div`
   display: flex;
   flex: 1;
