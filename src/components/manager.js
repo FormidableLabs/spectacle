@@ -111,6 +111,8 @@ export default class Manager extends Component {
       this._toggleOverviewMode();
     } else if ((event.altKey && event.keyCode === 80) && !event.ctrlKey && !event.metaKey) { // p
       this._togglePresenterMode();
+    } else if ((event.altKey && event.keyCode === 84) && !event.ctrlKey && !event.metaKey) { // t
+      this._toggleTimerMode();
     }
   }
   _handleKeyPress(e) {
@@ -134,6 +136,12 @@ export default class Manager extends Component {
   }
   _togglePresenterMode() {
     const suffix = this.props.route.params.indexOf("presenter") !== -1 ? "" : "?presenter";
+    this.context.history.replace(`/${this.props.route.slide}${suffix}`);
+  }
+  _toggleTimerMode() {
+    let isTimer = (this.props.route.params.indexOf("presenter") !== -1) &&
+                  (this.props.route.params.indexOf("timer") !== -1);
+    const suffix = isTimer ? "?presenter" : "?presenter&timer";
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _getSuffix() {
