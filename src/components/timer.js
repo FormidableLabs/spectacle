@@ -6,7 +6,7 @@ import React, {
 import {
 	Clock as TimerHeader, TButtonContainer, TSingleButton,
 	TDoubleButton
-} from "./presenter-components";
+} from "./time-components";
 
 const timeCounter = (time) => {
 	let hours = Math.floor(time/3600);
@@ -75,7 +75,8 @@ export default class Timer extends Component {
     _renderStartButton() {
     	return (
 			<TSingleButton
-			onClick={this.startTimer}>
+			onClick={this.startTimer}
+			start>
 				Start
 			</TSingleButton>
 		);
@@ -84,7 +85,8 @@ export default class Timer extends Component {
     _renderStopButton() {
     	return (
     		<TSingleButton
-			onClick={this.stopTimer}>
+			onClick={this.stopTimer}
+			stop>
 				Stop
 			</TSingleButton>
     	);

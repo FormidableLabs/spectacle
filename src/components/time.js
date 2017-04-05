@@ -6,7 +6,7 @@ import React, {
 import Clock from "./clock";
 import Timer from "./timer";
 
-import {TimeContainer} from "./presenter-components";
+import {TimeContainer} from "./time-components";
 
 export default class Time extends Component {
 
