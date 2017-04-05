@@ -85,7 +85,7 @@ Spectacle comes with a built in presenter mode. It shows you a slide lookahead, 
 
 ![http://i.imgur.com/jW8uMYY.png](http://i.imgur.com/jW8uMYY.png)
 
-Otherwise, it can also show you the elapsed time:
+Otherwise, it can also show you a stopwatch to count the elapsed time:
 
 ![http://i.imgur.com/VDltgmZ.png](http://i.imgur.com/VDltgmZ.png)
 
@@ -117,7 +117,7 @@ You can toggle the presenter or overview mode by pressing respectively `alt+p` a
 |Shift+Space|Previous Slide|
 |Alt/Option + O|Toggle Overview Mode|
 |Alt/Option + P|Toggle Presenter Mode|
-|Alt/Option + P|Toggle Timer in Presenter|
+|Alt/Option + T|Toggle Timer in Presenter Mode|
 
 <a name="fullscreen"></a>
 ## Fullscreen
