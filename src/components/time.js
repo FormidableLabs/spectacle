@@ -6,35 +6,34 @@ import React, {
 import Clock from "./clock";
 import Timer from "./timer";
 
-import {TimeContainer} from "./time-components";
+import { TimeContainer } from "./time-components";
 
 export default class Time extends Component {
 
-	state = {
-		timer: false
-	};
+  state = { timer: false };
 
-	componentWillMount() {
+  componentWillMount() {
 
-	}
-	componentWillUnmount() {
+  }
+  componentWillUnmount() {
 
-	}
-	_renderClock() {
-	    if (this.state.timer)
-	      return <Timer/>
-	    else
-	      return <Clock/>
-	}
-	render() {
-		return (
-			<TimeContainer>
-				{this.props.timer ? (<Timer/>) : <Clock/>}
-			</TimeContainer>
-		);
-	}
+  }
+  _renderClock() {
+    if (this.state.timer) {
+      return <Timer/>;
+    } else {
+      return <Clock/>;
+    }
+  }
+  render() {
+    return (
+      <TimeContainer>
+        { this.props.timer ? (<Timer/>) : <Clock/> }
+      </TimeContainer>
+    );
+  }
 }
 
 Time.propTypes = {
-  timer: PropTypes.bool,
-}
+  timer: PropTypes.bool
+};

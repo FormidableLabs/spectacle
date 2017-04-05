@@ -54,11 +54,17 @@ export const TSingleButton = styled.button`
   margin: 3px;
   border: 0;
   border-radius: 15px;
-  background: ${props => {
-    if (props.stop) return '#e23d3d'
-    else if (props.start) return '#42a53c'
-    else return '#darkgrey'}};
-  
+  background: ${
+    (props) => {
+      if (props.stop) {
+        return "#e23d3d";
+      } else if (props.start) {
+        return "#42a53c";
+      } else {
+        return "#darkgrey";
+      }
+    }};
+    
   &:focus{
     outline:0px;
   }

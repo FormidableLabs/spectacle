@@ -87,7 +87,7 @@ describe("<Presenter />", () => {
         hash={1}
         route={_mockRoute(1)}
         lastSlide={0}
-        timer={true}
+        timer
       />
     ), { context: _mockContext() });
     wrapper.instance().componentWillMount = jest.fn();

@@ -1,9 +1,8 @@
 import React, {
-    Component,
-    PropTypes
+    Component
 } from "react";
 
-import {Clock as ClockStyle} from "./time-components";
+import { Clock as ClockStyle } from "./time-components";
 
 const startTime = function startTime(date) {
   let hours = date.getHours();
@@ -20,9 +19,7 @@ const startTime = function startTime(date) {
 
 export default class Clock extends Component {
 
-  state = {
-    time: new Date(Date.now())  
-  };
+  state = { time: new Date(Date.now()) };
   componentDidMount() {
     this.interval = setInterval(() => {
       this.setState({
@@ -31,11 +28,11 @@ export default class Clock extends Component {
     }, 1000);
   }
   componentWillUnmount() {
-      clearInterval(this.interval);
+    clearInterval(this.interval);
   }
   render() {
-      return (
-        <ClockStyle>{startTime(this.state.time)}</ClockStyle>
-      );
+    return (
+      <ClockStyle>{startTime(this.state.time)}</ClockStyle>
+    );
   }
 }

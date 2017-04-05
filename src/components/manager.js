@@ -139,14 +139,14 @@ export default class Manager extends Component {
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _toggleTimerMode() {
-    let isTimer = (this.props.route.params.indexOf("presenter") !== -1) &&
+    const isTimer = (this.props.route.params.indexOf("presenter") !== -1) &&
                   (this.props.route.params.indexOf("timer") !== -1);
     const suffix = isTimer ? "?presenter" : "?presenter&timer";
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _getSuffix() {
     if (this.props.route.params.indexOf("presenter") !== -1) {
-      let isTimerMode = (this.props.route.params.indexOf("timer") !== -1);
+      const isTimerMode = (this.props.route.params.indexOf("timer") !== -1);
       return isTimerMode ? "?presenter&timer" : "presenter";
     } else if (this.props.route.params.indexOf("overview") !== -1) {
       return "?overview";
@@ -418,7 +418,7 @@ export default class Manager extends Component {
     let componentToRender;
     const children = Children.toArray(this.props.children);
     if (this.props.route.params.indexOf("presenter") !== -1) {
-      let isTimerMode = this.props.route.params.indexOf("timer") !== -1;
+      const isTimerMode = this.props.route.params.indexOf("timer") !== -1;
       componentToRender = (
         <Presenter
           dispatch={this.props.dispatch}

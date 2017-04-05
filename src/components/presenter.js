@@ -2,24 +2,11 @@ import React, { Children, cloneElement, Component, PropTypes } from "react";
 import { getSlideByIndex } from "../utils/slides";
 import {
   HeaderContainer, EndHeader, PresenterContent, SlideInfo,
-  Clock, ContentContainer, PreviewPane, PreviewCurrentSlide,
+  ContentContainer, PreviewPane, PreviewCurrentSlide,
   PreviewNextSlide, Notes
 } from "./presenter-components";
 
-import Time from "./time"
-
-const startTime = function startTime(date) {
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let seconds = date.getSeconds();
-  const ampm = hours >= 12 ? "PM" : "AM";
-  hours %= 12;
-  hours = hours ? hours : 12;
-  minutes = minutes < 10 ? `0 ${minutes}` : minutes;
-  seconds = seconds < 10 ? `0 ${seconds}` : seconds;
-  const strTime = `${hours} : ${minutes} : ${seconds} ${ampm}`;
-  return strTime;
-};
+import Time from "./time";
 
 export default class Presenter extends Component {
   static childContextTypes = {
