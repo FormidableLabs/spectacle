@@ -83,14 +83,18 @@ If you want to deploy the slideshow to surge, run `npm run deploy`
 
 Spectacle comes with a built in presenter mode. It shows you a slide lookahead, current time and your current slide:
 
-![http://i.imgur.com/csPXbjM.png](http://i.imgur.com/csPXbjM.png)
+![http://i.imgur.com/jW8uMYY.png](http://i.imgur.com/jW8uMYY.png)
+
+Otherwise, it can also show you the elapsed time:
+
+![http://i.imgur.com/VDltgmZ.png](http://i.imgur.com/VDltgmZ.png)
 
 To present:
 
 - Run `npm start`
 - Open two browser windows on two different screens
 - On your screen visit [http://localhost:3000/](http://localhost:3000/). You will be redirected to a URL containing the slide id.
-- Add `presenter&` immediately after the questionmark, e.g.: [http://localhost:3000/#/?presenter&_k=wbyhif](http://localhost:3000/#/?presenter&_k=wbyhif)
+- Add `presenter&` or `presenter&timer` immediately after the questionmark, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/0?presenter&timer](http://localhost:3000/#/?presenter&timer&_k=wbyhif)
 - On the presentation screen visit [http://localhost:3000/](http://localhost:3000/)
 - Give an amazingly stylish presentation
 
@@ -113,6 +117,7 @@ You can toggle the presenter or overview mode by pressing respectively `alt+p` a
 |Shift+Space|Previous Slide|
 |Alt/Option + O|Toggle Overview Mode|
 |Alt/Option + P|Toggle Presenter Mode|
+|Alt/Option + P|Toggle Timer in Presenter|
 
 <a name="fullscreen"></a>
 ## Fullscreen
