@@ -9,14 +9,9 @@ import Timer from "./timer";
 import { TimeContainer } from "./time-components";
 
 export default class Time extends Component {
-
-  state = { timer: false };
-
-  componentWillMount() {
-
-  }
-  componentWillUnmount() {
-
+  constructor() {
+    super();
+    this.state = { timer: false };
   }
   _renderClock() {
     if (this.state.timer) {
@@ -33,7 +28,6 @@ export default class Time extends Component {
     );
   }
 }
-
 Time.propTypes = {
   timer: PropTypes.bool
 };

@@ -32,9 +32,6 @@ export default class Timer extends Component {
     this.handleStopTimer = this.handleStopTimer.bind(this);
     this.handleResetTimer = this.handleResetTimer.bind(this);
   }
-  componentDidMount() {
-
-  }
   componentWillUnmount() {
     clearInterval(this.interval);
   }

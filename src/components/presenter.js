@@ -23,14 +23,6 @@ export default class Presenter extends Component {
     };
   }
 
-  componentWillMount() {
-
-  }
-
-  componentWillUnmount() {
-
-  }
-
   getCurrentSlide() {
     return this.context.store.getState().route.slide;
   }
