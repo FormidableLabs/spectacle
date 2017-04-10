@@ -51,7 +51,7 @@ exports[`<Manager /> should render RTL correctly. 1`] = `
         }
       }>
       <Controls
-        currentSlide={0}
+        currentSlideIndex={0}
         onNext={[Function]}
         onPrev={[Function]}
         rtl={true}
@@ -98,7 +98,7 @@ exports[`<Manager /> should render RTL correctly. 1`] = `
             dispatch={[Function]}
             export={false}
             hash={0}
-            lastSlide={0}
+            lastSlideIndex={0}
             print={false}
             rtl={true}
             slideIndex={0}
@@ -116,11 +116,17 @@ exports[`<Manager /> should render RTL correctly. 1`] = `
         </div>
       </ReactTransitionGroup>
       <Progress
-        currentSlide={0}
+        currentSlideIndex={0}
         items={
           Array [
-            <MockSlide />,
-            <MockSlide />,
+            Object {
+              "id": 0,
+              "rootIndex": 0,
+            },
+            Object {
+              "id": 1,
+              "rootIndex": 1,
+            },
           ]
         }
         rtl={true}
@@ -732,6 +738,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
         "slide": 1,
       }
     }
+    rtl={false}
     style={
       Object {
         "globalStyleSet": Array [],
@@ -760,6 +767,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
         currentSlideIndex={1}
         onNext={[Function]}
         onPrev={[Function]}
+        rtl={false}
         totalSlides={3}>
         <div
           data-radium={true}>
@@ -816,6 +824,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             hash={1}
             lastSlideIndex={1}
             print={false}
+            rtl={false}
             slideIndex={1}
             transitionDuration={500}>
             <div>
@@ -844,6 +853,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             },
           ]
         }
+        rtl={false}
         type="pacman">
         <div
           data-radium={true}

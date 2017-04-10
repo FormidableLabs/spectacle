@@ -60,7 +60,7 @@ describe("<Controls />", () => {
     } } };
     const wrapper = mount((
       <Controls
-        currentSlide={2}
+        currentSlideIndex={2}
         totalSlides={5}
         onPrev={() => {}}
         onNext={() => {}}
