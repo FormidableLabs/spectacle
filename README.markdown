@@ -536,3 +536,4 @@ The `Typeface` tag is used to apply a specific font to text content. It can eith
 ## Third Party Extensions
 
 - [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @thejameskyle
+- [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
