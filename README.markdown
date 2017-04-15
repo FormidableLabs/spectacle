@@ -237,7 +237,7 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 
 |Name|PropType|Description|
 |---|---|---|
-|align| React.PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (bottom). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default.
+|align| React.PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (right). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default.
 |id| React.PropTypes.string | Used to create a string based hash.
 |maxHeight| React.PropTypes.number | Used to set max dimensions of the Slide.
 |maxWidth| React.PropTypes.number | Used to set max dimentions of the Slide.
