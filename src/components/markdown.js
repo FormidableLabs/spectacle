@@ -28,10 +28,13 @@ const _S = (type) => {
 const _CombineBlockQuote = ({ children }) => <BlockQuote><Quote>{children}</Quote></BlockQuote>;
 _CombineBlockQuote.propTypes = { children: PropTypes.node };
 
+const _CodePane = ({ language, code }) => <CodePane lang={language} source={code}/>;
+_CodePane.propTypes = { code: PropTypes.string, language: PropTypes.string };
+
 markdownToReact.configure({
   a: Link,
   blockquote: _CombineBlockQuote,
-  code: CodePane,
+  code: _CodePane,
   del: _S("strikethrough"),
   em: _S("italic"),
   h1: _Heading(1),
