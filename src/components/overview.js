@@ -1,4 +1,5 @@
-import React, { cloneElement, Component, PropTypes } from "react";
+import React, { cloneElement, Component } from "react";
+import PropTypes from "prop-types";
 import { getSlideByIndex } from "../utils/slides";
 import styled from "styled-components";
 

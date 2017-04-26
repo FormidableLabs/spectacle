@@ -1,4 +1,5 @@
-import { Component, PropTypes } from "react";
+import { Component } from "react";
+import PropTypes from "prop-types";
 import { updateRoute } from "../actions";
 import { countSlides } from "./slides";
 

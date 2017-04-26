@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { mount } from "enzyme";
 import { mountToJson } from "enzyme-to-json";
 import Manager from "./manager";

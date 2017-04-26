@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import markdownToReact from "markdown-to-react-components";
 
 import BlockQuote from "./block-quote";
