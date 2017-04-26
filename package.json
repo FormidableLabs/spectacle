@@ -35,6 +35,7 @@
     "victory-core": "^9.1.1"
   },
   "peerDependencies": {
+    "prop-types": "^15.5.8",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
