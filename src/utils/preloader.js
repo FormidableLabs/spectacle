@@ -1,9 +1,10 @@
-const preload = (imageArray) => {
-  const images = [];
-  for (let i = 0; i < imageArray.length; i++) {
-    images[i] = new Image();
-    images[i].src = imageArray[i];
-  }
+import forEach from "lodash/forEach";
+
+const preload = (imageCollection) => {
+  forEach(imageCollection, (src) => {
+    const image = new Image();
+    image.src = src;
+  });
 };
 
 export default preload;
