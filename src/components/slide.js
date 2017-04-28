@@ -26,7 +26,7 @@ class Slide extends Component {
         return this.props.dispatch && this.props.dispatch(addFragment({
           slide: this.props.hash,
           id: i,
-          visible: this.props.lastSlide > this.props.slideIndex
+          visible: this.props.lastSlideIndex > this.props.slideIndex
         }));
       });
     }
@@ -163,7 +163,7 @@ Slide.propTypes = {
   dispatch: PropTypes.func,
   export: PropTypes.bool,
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  lastSlide: PropTypes.number,
+  lastSlideIndex: PropTypes.number,
   margin: PropTypes.number,
   maxHeight: PropTypes.number,
   maxWidth: PropTypes.number,

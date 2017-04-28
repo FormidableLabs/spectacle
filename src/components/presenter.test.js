@@ -44,7 +44,7 @@ describe("<Presenter />", () => {
         slideReference={_mockSlideReference()}
         hash={1}
         route={_mockRoute(1)}
-        lastSlide={0}
+        lastSlideIndex={0}
       />
     ), { context: _mockContext() });
     wrapper.setState({ time: "Mon Nov 07 2016 11:04:08 GMT-0600 (CST)" });
@@ -61,7 +61,7 @@ describe("<Presenter />", () => {
         slideReference={_mockSlideReference()}
         hash={1}
         route={_mockRoute(1)}
-        lastSlide={0}
+        lastSlideIndex={0}
       />
     ), { context: _mockContext() });
     wrapper.setState({ time: "Mon Nov 07 2016 11:04:08 GMT-0600 (CST)" });

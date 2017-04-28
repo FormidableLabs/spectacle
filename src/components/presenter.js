@@ -67,7 +67,7 @@ export default class Presenter extends Component {
     );
   }
   _renderMainSlide() {
-    const { slideIndex, hash, lastSlide } = this.props;
+    const { slideIndex, hash, lastSlideIndex } = this.props;
     const child = this._getSlideByIndex(slideIndex);
     const presenterStyle = {
       position: "relative"
@@ -79,14 +79,14 @@ export default class Presenter extends Component {
       export: this.props.route.params.indexOf("export") !== -1,
       print: this.props.route.params.indexOf("print") !== -1,
       slideIndex,
-      lastSlide,
+      lastSlideIndex,
       transition: [],
       transitionDuration: 0,
       presenterStyle
     });
   }
   _renderNextSlide() {
-    const { slideIndex, lastSlide } = this.props;
+    const { slideIndex, lastSlideIndex } = this.props;
     const presenterStyle = {
       position: "relative"
     };
@@ -98,7 +98,7 @@ export default class Presenter extends Component {
       key: slideIndex + 1,
       hash: child.props.id || slideIndex + 1,
       slideIndex: slideIndex + 1,
-      lastSlide,
+      lastSlideIndex,
       transition: [],
       transitionDuration: 0,
       presenterStyle,
@@ -153,7 +153,7 @@ export default class Presenter extends Component {
 Presenter.propTypes = {
   dispatch: PropTypes.func,
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  lastSlide: PropTypes.number,
+  lastSlideIndex: PropTypes.number,
   route: PropTypes.object,
   slideIndex: PropTypes.number,
   slideReference: PropTypes.array,
