@@ -96,4 +96,14 @@ describe("<Manager />", () => {
     ), { context: _mockContext(1, []), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
+
+  test("should render RTL correctly.", () => {
+    const wrapper = mount((
+      <Manager transition={["zoom", "slide"]} transitionDuration={500} rtl>
+        <MockSlide />
+        <MockSlide />
+      </Manager>
+    ), { context: _mockContext(0, []), childContextTypes: _mockChildContext() });
+    expect(mountToJson(wrapper)).toMatchSnapshot();
+  });
 });

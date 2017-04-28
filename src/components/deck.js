@@ -17,6 +17,7 @@ export default class Deck extends Component {
     globalStyles: PropTypes.bool,
     history: PropTypes.object,
     progress: PropTypes.oneOf(["pacman", "bar", "number", "none"]),
+    rtl: PropTypes.bool,
     theme: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number
@@ -26,7 +27,7 @@ export default class Deck extends Component {
     return (
       <Provider store={store}>
         <Controller theme={this.props.theme} store={store} history={this.props.history}>
-          <Manager {...this.props}>
+          <Manager {...this.props} rtl={this.props.rtl}>
             {this.props.children}
           </Manager>
         </Controller>

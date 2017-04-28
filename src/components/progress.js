@@ -17,6 +17,12 @@ export default class Progress extends Component {
   }
 
   getPointPosition(i) {
+    if (this.props.rtl) {
+      return {
+        top: "-20px",
+        left: `${(5 + 20 * (this.props.items.length / 2 - i))}px`
+      };
+    }
     return {
       top: "-20px",
       left: `${(5 + 20 * (i - this.props.items.length / 2))}px`
@@ -84,6 +90,7 @@ export default class Progress extends Component {
 Progress.propTypes = {
   currentSlideIndex: PropTypes.number,
   items: PropTypes.array,
+  rtl: PropTypes.bool,
   type: PropTypes.oneOf(["pacman", "bar", "number", "none"])
 };
 

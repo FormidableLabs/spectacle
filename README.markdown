@@ -46,6 +46,7 @@ ReactJS based Presentation Library
     - [Text (Base)](#text-base)
     - [Typeface](#typeface)
   - [Base Props](#base-props)
+- [Right-to-left](#rtl)
 - [Third Party Extensions](#third-party)
 
 <!-- /MarkdownTOC -->
@@ -229,6 +230,7 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 |theme|React.PropTypes.object|Accepts a theme object for styling your presentation|
 |transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for global transition duration.
+|rtl| React.PropTypes.bool| Makes the deck direction right-to-left, for rtl languages like Arabic and Hebrew. **Note: works only with rtl themes like 'default-rtl'.**
 
 <a name="slide-base"></a>
 #### Slide (Base)
@@ -530,6 +532,47 @@ The `Typeface` tag is used to apply a specific font to text content. It can eith
 <Typeface font="SF Text" weight={400} italic={true}>
   <Text>This text is using the San Francisco Text font from the system.</Text>
 </Typeface>
+```
+
+<a name="rtl"></a>
+## Right-to-left
+If you deck is in a right-to-left language and you need the deck to flow accordingly you need to:
+* set the 'rtl' property to true on the 'Deck' tag
+* use a right-to-left theme
+for example:
+
+```jsx
+// index.js
+
+import React, { Component } from 'react';
+import {
+  Appear, BlockQuote, Cite, CodePane, Code, Deck, Fill, Fit,
+  Heading, Image, Layout, ListItem, List, Quote, Slide, Text
+} from 'spectacle';
+import createTheme from "spectacle/lib/themes/default-rtl";
+
+require("spectacle/lib/themes/default-rtl/index.css");
+
+const theme = createTheme({
+  primary: "red",
+  secondary: "blue"
+}, {
+  primary: "Helvetica",
+  secondary: { name: "Droid Serif", googleFont: true, styles: [ "400", "700i" ] }
+});
+
+export default class extends Component {
+  render() {
+    return (
+      <Deck theme={theme} rtl>
+        <Slide>
+          <Text>مرحبا</Text>
+        </Slide>
+      </Deck>
+    );
+  }
+}
+
 ```
 
 <a name="third-party"></a>
