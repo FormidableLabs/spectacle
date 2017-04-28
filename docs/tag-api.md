@@ -13,8 +13,8 @@ The Spectacle tag is the root level tag for your presentation. It handles routin
 
 |Name|PropType|Description|
 |---|---|---|
-|history|React.PropTypes.object|Accepts custom configuration for [history](https://github.com/ReactTraining/history)
-|theme|React.PropTypes.object|Accepts a theme object for styling your presentation|
+|history|PropTypes.object|Accepts custom configuration for [history](https://github.com/ReactTraining/history)
+|theme|PropTypes.object|Accepts a theme object for styling your presentation|
 
 <a name="deck"></a>
 ### Deck
@@ -23,10 +23,10 @@ The deck tag wraps your slides. It supports the following props:
 
 |Name|PropType|Description|
 |---|---|---|
-|transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
-|transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for global transition duration.
-|progress| React.PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`.
-|controls| React.PropTypes.bool| Show control arrows when not in fullscreen
+|transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
+|transitionDuration| PropTypes.number| Accepts integer value in milliseconds for global transition duration.
+|progress| PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`.
+|controls| PropTypes.bool| Show control arrows when not in fullscreen
 
 <a name="slide-base"></a>
 ### Slide (Base)
@@ -35,11 +35,11 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 
 |Name|PropType|Description|
 |---|---|---|
-|align| React.PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (bottom). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default.
-|transition|React.PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
-|transitionDuration| React.PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
-|notes| React.PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
-|id| React.PropTypes.string | Used to create a string based hash.
+|align| PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (bottom). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default.
+|transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
+|transitionDuration| PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
+|notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
+|id| PropTypes.string | Used to create a string based hash.
 
 <a name="layout-tags"></a>
 ## Layout Tags
@@ -73,8 +73,8 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 
 |Name|PropType|Description|
 |---|---|---|
-|source|React.PropTypes.string| Markdown source |
-|mdastConfig| React.PropTypes.object | Mdast configuration object |
+|source|PropTypes.string| Markdown source |
+|mdastConfig| PropTypes.object | Mdast configuration object |
 
 <a name="element-tags"></a>
 ## Element Tags
@@ -105,8 +105,8 @@ This tag displays a styled, highlighted code preview. I prefer putting my code s
 
 |Name|PropType|Description|
 |---|---|---|
-|lang|React.PropTypes.string| Prism compatible language name. i.e: 'javascript' |
-|source| React.PropTypes.string| String of code to be shown |
+|lang|PropTypes.string| Prism compatible language name. i.e: 'javascript' |
+|source| PropTypes.string| String of code to be shown |
 
 You can change your syntax highlighting theme by swapping the prism.js CSS file in `index.html`
 
@@ -122,18 +122,18 @@ Heading tags are special in that, when you specify a `size` prop, they generate 
 
 |Name|PropType|Description|
 |---|---|---|
-|fit|React.PropTypes.boolean| When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |
-|lineHeight|React.PropTypes.number| Sets the line height of your text.|
+|fit|PropTypes.boolean| When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |
+|lineHeight|PropTypes.number| Sets the line height of your text.|
 
 <a name="image-base"></a>
 ### Image (Base)
 
 |Name|PropType|Description|
 |---|---|---|
-|display|React.PropTypes.string| Set the display style property of the image |
-|height|React.PropTypes.string or React.PropTypes.number| Supply a height to the image |
-|src|React.PropTypes.string| Image src |
-|width|React.PropTypes.string or React.PropTypes.number| Supply a width to the image |
+|display|PropTypes.string| Set the display style property of the image |
+|height|PropTypes.string or PropTypes.number| Supply a height to the image |
+|src|PropTypes.string| Image src |
+|width|PropTypes.string or PropTypes.number| Supply a width to the image |
 
 <a name="link-base"></a>
 ### Link (Base)
@@ -142,8 +142,8 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 
 |Name|PropType|Description|
 |---|---|---|
-|href|React.PropTypes.string| String of url for `href` attribute |
-|target|React.PropTypes.string| Set the `target` attribute |
+|href|PropTypes.string| String of url for `href` attribute |
+|target|PropTypes.string| Set the `target` attribute |
 
 <a name="list--listitem-base"></a>
 ### List & ListItem (Base)
@@ -166,7 +166,7 @@ The `S` tag is used to add inline styling to a piece of text, such as underline 
 
 |Name|PropType|Description|
 |---|---|---|
-|type|React.PropTypes.string| Accepts `strikethrough`, `underline`, `bold` or `italic`|
+|type|PropTypes.string| Accepts `strikethrough`, `underline`, `bold` or `italic`|
 
 <a name="table-tablerow-tableheaderitem-and-tableitem-base"></a>
 ### Table, TableRow, TableHeaderItem and TableItem (Base)
@@ -197,5 +197,5 @@ The `Text` tag is used to add text to your slide. Line height can be adjusted vi
 
 |Name|PropType|Description|
 |---|---|---|
-|fit|React.PropTypes.boolean| When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |
-|lineHeight|React.PropTypes.number| Sets the line height of your text.|
+|fit|PropTypes.boolean| When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |
+|lineHeight|PropTypes.number| Sets the line height of your text.|
