@@ -1,7 +1,4 @@
-import React, {
-    Component
-} from "react";
-
+import React, { Component } from "react";
 import { Clock as ClockStyle } from "./time-components";
 
 const startTime = function startTime(date) {
@@ -18,7 +15,6 @@ const startTime = function startTime(date) {
 };
 
 export default class Clock extends Component {
-
   state = { time: new Date(Date.now()) };
   componentDidMount() {
     this.interval = setInterval(() => {

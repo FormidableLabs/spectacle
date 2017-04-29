@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import {
   Clock as TimerHeader, TButtonContainer, TSingleButton
 } from "./time-components";
@@ -62,7 +61,7 @@ export default class Timer extends Component {
       <TSingleButton
         onClick={this.handleResetTimer}
       >
-      Reset
+        Reset
       </TSingleButton>
     );
   }
@@ -83,8 +82,8 @@ export default class Timer extends Component {
         onClick={this.handleStopTimer}
         stop
       >
-      Stop
-    </TSingleButton>
+        Stop
+      </TSingleButton>
     );
   }
 

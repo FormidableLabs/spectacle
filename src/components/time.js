@@ -1,11 +1,6 @@
-import React, {
-    Component,
-    PropTypes
-} from "react";
-
+import React, { Component, PropTypes } from "react";
 import Clock from "./clock";
 import Timer from "./timer";
-
 import { TimeContainer } from "./time-components";
 
 export default class Time extends Component {
