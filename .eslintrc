@@ -14,6 +14,7 @@
   "node": true
 "globals":
   "afterEach": true,
+  "beforeAll": true,
   "describe": true,
   "expect": true,
   "it": true,

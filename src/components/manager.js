@@ -112,6 +112,8 @@ export default class Manager extends Component {
       this._toggleOverviewMode();
     } else if ((event.altKey && event.keyCode === 80) && !event.ctrlKey && !event.metaKey) { // p
       this._togglePresenterMode();
+    } else if ((event.altKey && event.keyCode === 84) && !event.ctrlKey && !event.metaKey) { // t
+      this._toggleTimerMode();
     }
   }
   _handleKeyPress(e) {
@@ -137,9 +139,16 @@ export default class Manager extends Component {
     const suffix = this.props.route.params.indexOf("presenter") !== -1 ? "" : "?presenter";
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
+  _toggleTimerMode() {
+    const isTimer = (this.props.route.params.indexOf("presenter") !== -1) &&
+                  (this.props.route.params.indexOf("timer") !== -1);
+    const suffix = isTimer ? "?presenter" : "?presenter&timer";
+    this.context.history.replace(`/${this.props.route.slide}${suffix}`);
+  }
   _getSuffix() {
     if (this.props.route.params.indexOf("presenter") !== -1) {
-      return "?presenter";
+      const isTimerMode = (this.props.route.params.indexOf("timer") !== -1);
+      return isTimerMode ? "?presenter&timer" : "presenter";
     } else if (this.props.route.params.indexOf("overview") !== -1) {
       return "?overview";
     } else {
@@ -410,6 +419,7 @@ export default class Manager extends Component {
     let componentToRender;
     const children = Children.toArray(this.props.children);
     if (this.props.route.params.indexOf("presenter") !== -1) {
+      const isTimerMode = this.props.route.params.indexOf("timer") !== -1;
       componentToRender = (
         <Presenter
           dispatch={this.props.dispatch}
@@ -419,6 +429,7 @@ export default class Manager extends Component {
           hash={this.props.route.slide}
           route={this.props.route}
           lastSlideIndex={this.state.lastSlideIndex}
+          timer={isTimerMode}
         />
       );
     } else if (this.props.route.params.indexOf("export") !== -1) {

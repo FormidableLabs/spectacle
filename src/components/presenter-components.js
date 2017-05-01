@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-export const Clock = styled.h2`
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  float: right;
-  margin: 0;
-  line-height: 1;
-  display: inline-block;
-  fontSize: 28px;
-`;
-
 export const ContentContainer = styled.div`
   display: flex;
   flex: 1;
