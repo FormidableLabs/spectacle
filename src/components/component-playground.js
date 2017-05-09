@@ -12,9 +12,6 @@ import styled, { css } from "styled-components";
 import { defaultCode } from "../utils/playground.default-code";
 
 const PlaygroundProvider = styled(LiveProvider)`
-  background: ${(props) => (
-    props.previewBackgroundColor || "#fff"
-  )};
   border-radius: 0 0 6px 6px;
   height: 100%;
   width: 100%;
@@ -24,11 +21,17 @@ const PlaygroundProvider = styled(LiveProvider)`
 
 const PlaygroundPreview = styled(LivePreview)`
   padding: 0.5rem;
+  min-height: 100%;
+
+  background: ${(props) => (
+    props.previewBackgroundColor || "#fff"
+  )};
 `;
 
 const PlaygroundEditor = styled(LiveEditor)`
   padding: 0.5rem;
   margin: 0;
+  min-height: 100%;
 
   white-space: pre-wrap;
   box-sizing: border-box;
@@ -116,7 +119,6 @@ const ComponentPlayground = ({
 
   return (
     <PlaygroundProvider
-      previewBackgroundColor={previewBackgroundColor}
       mountStylesheet={false}
       code={code.trim()}
       scope={{ Component, ...scope }}
@@ -129,12 +131,14 @@ const ComponentPlayground = ({
 
       <PlaygroundRow>
         <PlaygroundColumn>
-          <PlaygroundPreview />
+          <PlaygroundPreview
+            previewBackgroundColor={previewBackgroundColor}
+          />
+          <PlaygroundError />
         </PlaygroundColumn>
 
         <PlaygroundColumn>
           <PlaygroundEditor useDarkTheme={useDarkTheme} />
-          <PlaygroundError />
         </PlaygroundColumn>
       </PlaygroundRow>
     </PlaygroundProvider>
