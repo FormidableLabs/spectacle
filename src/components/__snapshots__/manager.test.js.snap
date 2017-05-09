@@ -287,7 +287,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
         }>
         <styled.div>
           <div
-            className="djkYse">
+            className="sc-VigVT cQrJjb">
             <MockSlide
               export={true}
               print={false}
@@ -404,13 +404,13 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
         }>
         <styled.div>
           <div
-            className="kxQqKR">
+            className="sc-jTzLTM inQkRw">
             <styled.div
               index={0}
               onClick={[Function]}
               slideIndex={0}>
               <div
-                className="goGPmP"
+                className="sc-fjdhpX jGwsVR"
                 onClick={[Function]}>
                 <MockSlide
                   appearOff={true}
@@ -430,7 +430,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
               onClick={[Function]}
               slideIndex={0}>
               <div
-                className="gvZlT"
+                className="sc-fjdhpX bTuDft"
                 onClick={[Function]}>
                 <MockSlide
                   appearOff={true}

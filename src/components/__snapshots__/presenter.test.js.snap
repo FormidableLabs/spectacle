@@ -35,13 +35,13 @@ exports[`<Presenter /> should render correctly 1`] = `
   }>
   <styled.div>
     <div
-      className="iyCyxO">
+      className="sc-htpNat fRLcwV">
       <styled.div>
         <div
-          className="gHgCes">
+          className="sc-bZQynM iOAbYn">
           <styled.h2>
             <h2
-              className="fztYwR">
+              className="sc-htoDjs kFIwxN">
               Slide 
               2
                of 
@@ -51,11 +51,11 @@ exports[`<Presenter /> should render correctly 1`] = `
           <Time>
             <styled.div>
               <div
-                className="brepyG">
+                className="sc-iwsKbI iRLepQ">
                 <Clock>
                   <styled.h2>
                     <h2
-                      className="hQnKlh">
+                      className="sc-dnqmqq eGDBrA">
                       11 : 04 : 08 AM
                     </h2>
                   </styled.h2>
@@ -67,13 +67,13 @@ exports[`<Presenter /> should render correctly 1`] = `
       </styled.div>
       <styled.div>
         <div
-          className="jjzBZm">
+          className="sc-bdVaJa cBqlhQ">
           <styled.div>
             <div
-              className="gRyZKn">
+              className="sc-bxivhb kMdPqE">
               <styled.div>
                 <div
-                  className="jmeTwE">
+                  className="sc-ifAKCX eFCOrc">
                   <Slide
                     dispatch={[Function]}
                     export={false}
@@ -96,7 +96,7 @@ exports[`<Presenter /> should render correctly 1`] = `
               </styled.div>
               <styled.div>
                 <div
-                  className="gAvcJf">
+                  className="sc-EHOje kuhIVK">
                   <Slide
                     appearOff={true}
                     dispatch={[Function]}
@@ -122,7 +122,7 @@ exports[`<Presenter /> should render correctly 1`] = `
           </styled.div>
           <styled.div>
             <div
-              className="hiNnBp" />
+              className="sc-gzVnrw fdGSgx" />
           </styled.div>
         </div>
       </styled.div>
@@ -170,13 +170,13 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
   timer={true}>
   <styled.div>
     <div
-      className="iyCyxO">
+      className="sc-htpNat fRLcwV">
       <styled.div>
         <div
-          className="gHgCes">
+          className="sc-bZQynM iOAbYn">
           <styled.h2>
             <h2
-              className="fztYwR">
+              className="sc-htoDjs kFIwxN">
               Slide 
               2
                of 
@@ -187,23 +187,23 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
             timer={true}>
             <styled.div>
               <div
-                className="brepyG">
+                className="sc-iwsKbI iRLepQ">
                 <Timer>
                   <div>
                     <styled.h2>
                       <h2
-                        className="hQnKlh">
+                        className="sc-dnqmqq eGDBrA">
                         00 : 00
                       </h2>
                     </styled.h2>
                     <styled.div>
                       <div
-                        className="kWjMOo">
+                        className="sc-gZMcBi kXgPpP">
                         <styled.button
                           onClick={[Function]}
                           start={true}>
                           <button
-                            className="cmEomM"
+                            className="sc-gqjmRU dazZrr"
                             onClick={[Function]}
                             start={true}>
                             Start
@@ -220,13 +220,13 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
       </styled.div>
       <styled.div>
         <div
-          className="jjzBZm">
+          className="sc-bdVaJa cBqlhQ">
           <styled.div>
             <div
-              className="gRyZKn">
+              className="sc-bxivhb kMdPqE">
               <styled.div>
                 <div
-                  className="jmeTwE">
+                  className="sc-ifAKCX eFCOrc">
                   <Slide
                     dispatch={[Function]}
                     export={false}
@@ -250,7 +250,7 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
               </styled.div>
               <styled.div>
                 <div
-                  className="gAvcJf">
+                  className="sc-EHOje kuhIVK">
                   <Slide
                     appearOff={true}
                     dispatch={[Function]}
@@ -276,7 +276,7 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
           </styled.div>
           <styled.div>
             <div
-              className="hiNnBp">
+              className="sc-gzVnrw fdGSgx">
               <div
                 dangerouslySetInnerHTML={
                   Object {
@@ -330,13 +330,13 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
   }>
   <styled.div>
     <div
-      className="iyCyxO">
+      className="sc-htpNat fRLcwV">
       <styled.div>
         <div
-          className="gHgCes">
+          className="sc-bZQynM iOAbYn">
           <styled.h2>
             <h2
-              className="fztYwR">
+              className="sc-htoDjs kFIwxN">
               Slide 
               2
                of 
@@ -346,11 +346,11 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
           <Time>
             <styled.div>
               <div
-                className="brepyG">
+                className="sc-iwsKbI iRLepQ">
                 <Clock>
                   <styled.h2>
                     <h2
-                      className="hQnKlh">
+                      className="sc-dnqmqq eGDBrA">
                       11 : 04 : 08 AM
                     </h2>
                   </styled.h2>
@@ -362,13 +362,13 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
       </styled.div>
       <styled.div>
         <div
-          className="jjzBZm">
+          className="sc-bdVaJa cBqlhQ">
           <styled.div>
             <div
-              className="gRyZKn">
+              className="sc-bxivhb kMdPqE">
               <styled.div>
                 <div
-                  className="jmeTwE">
+                  className="sc-ifAKCX eFCOrc">
                   <Slide
                     dispatch={[Function]}
                     export={false}
@@ -392,7 +392,7 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
               </styled.div>
               <styled.div>
                 <div
-                  className="gAvcJf">
+                  className="sc-EHOje kuhIVK">
                   <Slide
                     appearOff={true}
                     dispatch={[Function]}
@@ -418,7 +418,7 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
           </styled.div>
           <styled.div>
             <div
-              className="hiNnBp">
+              className="sc-gzVnrw fdGSgx">
               <div
                 dangerouslySetInnerHTML={
                   Object {

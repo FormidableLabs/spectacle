@@ -1,7 +1,6 @@
 export const defaultCode = `
 /**
- * Sample React Component 
- * Output domContainerNode is 'mountNode'
+ * Sample React Component
  */
 
 const styles = {
@@ -26,6 +25,6 @@ const HelloWorld = ({ name }) => (
 )
 
 render(
-  <HelloWorld name="Spectacle" />, 
-  mountNode)
+  <HelloWorld name="Spectacle" />
+)
 `;
