@@ -1,3 +1,18 @@
+exports[`<S /> should allow custom styling 1`] = `
+<S
+  textColor="magenta">
+  <span
+    data-radium={true}
+    style={
+      Object {
+        "color": "#ff00ff",
+      }
+    }>
+    This text is magenta!
+  </span>
+</S>
+`;
+
 exports[`<S /> should bold text when specified 1`] = `
 <S
   type="bold">

@@ -35,4 +35,22 @@ describe("<S />", () => {
     const wrapper = mount(<S type="italic">This text is italicized!</S>, { context });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
+
+  test("should not require a type", () => {
+    const context = { styles: { components: { s: {} } } };
+    expect(() => {
+      const wrapper = mount(<S>This text is normal.</S>, { context });
+    }).not.toThrow();
+  });
+
+  test("should allow custom styling", () => {
+    const context = { styles: {
+      colors: {
+        magenta: "#ff00ff"
+      },
+      components: { s: {} }
+    } };
+    const wrapper = mount(<S textColor="magenta">This text is magenta!</S>, { context });
+    expect(mountToJson(wrapper)).toMatchSnapshot();
+  });
 });
