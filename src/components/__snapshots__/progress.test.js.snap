@@ -14,6 +14,11 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
       },
     ]
   }
+  onPacmanClick={
+    Array [
+      [Function],
+    ]
+  }
   type="pacman">
   <div
     data-radium={true}
@@ -45,6 +50,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
       </div>
       <div
         data-radium={true}
+        onClick={[Function]}
         style={
           Object {
             "left": "-25px",
@@ -54,6 +60,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
         } />
       <div
         data-radium={true}
+        onClick={[Function]}
         style={
           Object {
             "left": "-5px",
@@ -63,6 +70,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
         } />
       <div
         data-radium={true}
+        onClick={[Function]}
         style={
           Object {
             "left": "15px",

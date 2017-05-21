@@ -125,6 +125,7 @@ exports[`<Manager /> should render correctly. 1`] = `
             },
           ]
         }
+        onPacmanClick={[Function]}
         type="pacman">
         <div
           data-radium={true}
@@ -156,6 +157,7 @@ exports[`<Manager /> should render correctly. 1`] = `
             </div>
             <div
               data-radium={true}
+              onClick={[Function]}
               style={
                 Object {
                   "left": "-15px",
@@ -165,6 +167,7 @@ exports[`<Manager /> should render correctly. 1`] = `
               } />
             <div
               data-radium={true}
+              onClick={[Function]}
               style={
                 Object {
                   "left": "5px",
@@ -618,6 +621,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             },
           ]
         }
+        onPacmanClick={[Function]}
         type="pacman">
         <div
           data-radium={true}
@@ -649,6 +653,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             </div>
             <div
               data-radium={true}
+              onClick={[Function]}
               style={
                 Object {
                   "left": "-25px",
@@ -658,6 +663,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               } />
             <div
               data-radium={true}
+              onClick={[Function]}
               style={
                 Object {
                   "left": "-5px",
@@ -667,6 +673,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               } />
             <div
               data-radium={true}
+              onClick={[Function]}
               style={
                 Object {
                   "left": "15px",
