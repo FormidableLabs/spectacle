@@ -15,6 +15,7 @@ describe("<Progress />", () => {
         type="pacman"
         items={_mockSlideIndexReference()}
         currentSlideIndex={2}
+        onPacmanClick={[Function]}
       />
     ), { context });
     expect(mountToJson(wrapper)).toMatchSnapshot();
