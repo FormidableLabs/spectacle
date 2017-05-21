@@ -53,6 +53,7 @@ export default class Progress extends Component {
                 <div
                   style={[style.point, this.getPointStyle(i)]}
                   key={`presentation-progress-${i}`}
+                  onClick={() => this.props.onPacmanClick(i)}
                 />
               );
             })}

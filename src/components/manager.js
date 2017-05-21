@@ -167,6 +167,18 @@ export default class Manager extends Component {
       }
     }
   }
+  _jumpToSlide(i) {
+    const slideIndex = i;
+    this.setState({
+      lastSlideIndex: slideIndex
+    });
+    const slideReference = this.state.slideReference;
+    if (slideIndex < slideReference.length - 1) {
+      this.context.history.replace(`/${this._getHash(i) + this._getSuffix()}`);
+      localStorage.setItem("spectacle-slide",
+        JSON.stringify({ slide: this._getHash(i), forward: true, time: Date.now() }));
+    }
+  }
   _prevSlide() {
     const slideIndex = this._getSlideIndex();
     this.setState({
@@ -496,6 +508,7 @@ export default class Manager extends Component {
             items={this.state.slideReference}
             currentSlideIndex={this._getSlideIndex()}
             type={this.props.progress}
+            onPacmanClick={(i) => this._jumpToSlide(i)}
           /> : ""
         }
 

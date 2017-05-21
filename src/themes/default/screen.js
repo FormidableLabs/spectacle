@@ -113,6 +113,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           top: "10px"
         },
         point: {
+          cursor: "pointer",
           position: "absolute",
           float: "left",
           background: "transparent",
