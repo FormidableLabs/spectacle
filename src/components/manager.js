@@ -148,7 +148,7 @@ export default class Manager extends Component {
   _getSuffix() {
     if (this.props.route.params.indexOf("presenter") !== -1) {
       const isTimerMode = (this.props.route.params.indexOf("timer") !== -1);
-      return isTimerMode ? "?presenter&timer" : "presenter";
+      return isTimerMode ? "?presenter&timer" : "?presenter";
     } else if (this.props.route.params.indexOf("overview") !== -1) {
       return "?overview";
     } else {
