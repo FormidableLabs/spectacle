@@ -1,5 +1,5 @@
-import screen from "./screen";
-import print from "./print";
+import screen from './screen';
+import print from './print';
 
 const styles = (colors, fonts) => ({
   screen: screen(colors, fonts),

@@ -1,4 +1,4 @@
-import { handleActions } from "redux-actions";
+import { handleActions } from 'redux-actions';
 
 const reducer = handleActions({
   SET_GLOBAL_STYLE: () => {

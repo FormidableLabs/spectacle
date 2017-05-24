@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 export const Clock = styled.h2`
   position: relative;
@@ -57,11 +57,11 @@ export const TSingleButton = styled.button`
   background: ${
     (props) => {
       if (props.stop) {
-        return "#e23d3d";
+        return '#e23d3d';
       } else if (props.start) {
-        return "#42a53c";
+        return '#42a53c';
       } else {
-        return "#darkgrey";
+        return '#darkgrey';
       }
     }};
     

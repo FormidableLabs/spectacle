@@ -75,18 +75,18 @@ export default class Presenter extends Component {
     const child = this._getSlideByIndex(slideIndex + 1);
     return child
       ? cloneElement(child, {
-          dispatch: this.props.dispatch,
-          export: this.props.route.params.indexOf('export') !== -1,
-          print: this.props.route.params.indexOf('print') !== -1,
-          key: slideIndex + 1,
-          hash: child.props.id || slideIndex + 1,
-          slideIndex: slideIndex + 1,
-          lastSlide,
-          transition: [],
-          transitionDuration: 0,
-          presenterStyle,
-          appearOff: true,
-        })
+        dispatch: this.props.dispatch,
+        export: this.props.route.params.indexOf('export') !== -1,
+        print: this.props.route.params.indexOf('print') !== -1,
+        key: slideIndex + 1,
+        hash: child.props.id || slideIndex + 1,
+        slideIndex: slideIndex + 1,
+        lastSlide,
+        transition: [],
+        transitionDuration: 0,
+        presenterStyle,
+        appearOff: true,
+      })
       : <EndHeader>END</EndHeader>;
   }
   _renderNotes() {

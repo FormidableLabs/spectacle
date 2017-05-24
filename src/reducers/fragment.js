@@ -1,4 +1,4 @@
-import { handleActions } from "redux-actions";
+import { handleActions } from 'redux-actions';
 
 const reducer = handleActions({
   ADD_FRAGMENT: (state, action) => {

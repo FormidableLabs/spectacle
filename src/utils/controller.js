@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import History from "react-history/HashHistory";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import History from 'react-history/HashHistory';
 
-import theme from "../themes/default";
-import Context from "./context";
+import theme from '../themes/default';
+import Context from './context';
 
 export default class Controller extends Component {
   static propTypes = {
@@ -16,7 +16,7 @@ export default class Controller extends Component {
     return (
       <History>
         {({ history, location }) => {
-          const printEnabled = location.search.indexOf("print") !== -1;
+          const printEnabled = location.search.indexOf('print') !== -1;
           return (
             <Context
               store={this.props.store}

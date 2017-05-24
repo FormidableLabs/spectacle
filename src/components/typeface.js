@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { GoogleFont } from "react-typography";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { GoogleFont } from 'react-typography';
 
 class Typeface extends Component {
   getChildContext() {
     return {
       typeface: {
-        fontFamily: this.props.googleFont || this.props.font || "",
+        fontFamily: this.props.googleFont || this.props.font || '',
         fontWeight: this.props.weight,
-        fontStyle: this.props.italic ? "italic" : "normal"
+        fontStyle: this.props.italic ? 'italic' : 'normal'
       }
     };
   }
 
   render() {
     const { children, googleFont, weight = 400, italic = false, styles } = this.props;
-    if (typeof googleFont !== "undefined" && googleFont.length > 0) {
-      const styleSuffix = italic ? "i" : "";
+    if (typeof googleFont !== 'undefined' && googleFont.length > 0) {
+      const styleSuffix = italic ? 'i' : '';
       const config = {
         title: `${googleFont}`,
         options: {

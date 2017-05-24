@@ -1,10 +1,10 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
-import { updateRoute } from "../actions";
-import { countSlides } from "./slides";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import { updateRoute } from '../actions';
+import { countSlides } from './slides';
 
 class Context extends Component {
-  static displayName = "Context";
+  static displayName = 'Context';
   static propTypes = {
     children: PropTypes.node,
     history: PropTypes.object,

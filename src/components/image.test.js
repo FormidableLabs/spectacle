@@ -1,10 +1,10 @@
-import React from "react";
-import { mount } from "enzyme";
-import { mountToJson } from "enzyme-to-json";
-import Image from "./image";
+import React from 'react';
+import { mount } from 'enzyme';
+import { mountToJson } from 'enzyme-to-json';
+import Image from './image';
 
-describe("<Image />", () => {
-  test("should render correctly.", () => {
+describe('<Image />', () => {
+  test('should render correctly.', () => {
     const context = { styles: { components: { image: {} } } };
     const wrapper = mount(
       <Image

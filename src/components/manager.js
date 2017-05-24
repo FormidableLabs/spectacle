@@ -1,35 +1,35 @@
 /*eslint new-cap:0, max-statements:0*/
 /* eslint react/no-did-mount-set-state: 0 */
 
-import React, { Children, cloneElement, Component } from "react";
-import PropTypes from "prop-types";
-import ReactTransitionGroup from "react-addons-transition-group";
-import Radium, { Style } from "radium";
-import filter from "lodash/filter";
-import size from "lodash/size";
-import findIndex from "lodash/findIndex";
-import { connect } from "react-redux";
-import { setGlobalStyle, updateFragment } from "../actions";
-import Typeface from "./typeface";
-import { getSlideByIndex } from "../utils/slides";
+import React, { Children, cloneElement, Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import Radium, { Style } from 'radium';
+import filter from 'lodash/filter';
+import size from 'lodash/size';
+import findIndex from 'lodash/findIndex';
+import { connect } from 'react-redux';
+import { setGlobalStyle, updateFragment } from '../actions';
+import Typeface from './typeface';
+import { getSlideByIndex } from '../utils/slides';
 
-import Presenter from "./presenter";
-import Export from "./export";
-import Overview from "./overview";
+import Presenter from './presenter';
+import Export from './export';
+import Overview from './overview';
 
-import Fullscreen from "./fullscreen";
-import Progress from "./progress";
-import Controls from "./controls";
+import Fullscreen from './fullscreen';
+import Progress from './progress';
+import Controls from './controls';
 const TransitionGroup = Radium(ReactTransitionGroup);
 
 @connect((state) => state)
 @Radium
 export default class Manager extends Component {
-  static displayName = "Manager";
+  static displayName = 'Manager';
 
   static defaultProps = {
     transitionDuration: 500,
-    progress: "pacman",
+    progress: 'pacman',
     controls: true,
     globalStyles: true
   };
@@ -40,7 +40,7 @@ export default class Manager extends Component {
     dispatch: PropTypes.func,
     fragment: PropTypes.object,
     globalStyles: PropTypes.bool,
-    progress: PropTypes.oneOf(["pacman", "bar", "number", "none"]),
+    progress: PropTypes.oneOf(['pacman', 'bar', 'number', 'none']),
     route: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number
@@ -92,14 +92,14 @@ export default class Manager extends Component {
     this._detachEvents();
   }
   _attachEvents() {
-    window.addEventListener("storage", this._goToSlide);
-    window.addEventListener("keydown", this._handleKeyPress);
-    window.addEventListener("resize", this._handleScreenChange);
+    window.addEventListener('storage', this._goToSlide);
+    window.addEventListener('keydown', this._handleKeyPress);
+    window.addEventListener('resize', this._handleScreenChange);
   }
   _detachEvents() {
-    window.removeEventListener("storage", this._goToSlide);
-    window.removeEventListener("keydown", this._handleKeyPress);
-    window.removeEventListener("resize", this._handleScreenChange);
+    window.removeEventListener('storage', this._goToSlide);
+    window.removeEventListener('keydown', this._handleKeyPress);
+    window.removeEventListener('resize', this._handleScreenChange);
   }
   _handleEvent(e) {
     const event = window.event ? window.event : e;
@@ -119,7 +119,7 @@ export default class Manager extends Component {
   _handleKeyPress(e) {
     const event = window.event ? window.event : e;
 
-    if (event.target instanceof HTMLInputElement || event.target.type === "textarea") {
+    if (event.target instanceof HTMLInputElement || event.target.type === 'textarea') {
       return;
     }
 
@@ -132,31 +132,31 @@ export default class Manager extends Component {
     });
   }
   _toggleOverviewMode() {
-    const suffix = this.props.route.params.indexOf("overview") !== -1 ? "" : "?overview";
+    const suffix = this.props.route.params.indexOf('overview') !== -1 ? '' : '?overview';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _togglePresenterMode() {
-    const suffix = this.props.route.params.indexOf("presenter") !== -1 ? "" : "?presenter";
+    const suffix = this.props.route.params.indexOf('presenter') !== -1 ? '' : '?presenter';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _toggleTimerMode() {
-    const isTimer = (this.props.route.params.indexOf("presenter") !== -1) &&
-                  (this.props.route.params.indexOf("timer") !== -1);
-    const suffix = isTimer ? "?presenter" : "?presenter&timer";
+    const isTimer = (this.props.route.params.indexOf('presenter') !== -1) &&
+                  (this.props.route.params.indexOf('timer') !== -1);
+    const suffix = isTimer ? '?presenter' : '?presenter&timer';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _getSuffix() {
-    if (this.props.route.params.indexOf("presenter") !== -1) {
-      const isTimerMode = (this.props.route.params.indexOf("timer") !== -1);
-      return isTimerMode ? "?presenter&timer" : "?presenter";
-    } else if (this.props.route.params.indexOf("overview") !== -1) {
-      return "?overview";
+    if (this.props.route.params.indexOf('presenter') !== -1) {
+      const isTimerMode = (this.props.route.params.indexOf('timer') !== -1);
+      return isTimerMode ? '?presenter&timer' : '?presenter';
+    } else if (this.props.route.params.indexOf('overview') !== -1) {
+      return '?overview';
     } else {
-      return "";
+      return '';
     }
   }
   _goToSlide(e) {
-    if (e.key === "spectacle-slide") {
+    if (e.key === 'spectacle-slide') {
       const data = JSON.parse(e.newValue);
       const slideIndex = this._getSlideIndex();
       this.setState({
@@ -172,14 +172,14 @@ export default class Manager extends Component {
     this.setState({
       lastSlideIndex: slideIndex
     });
-    if (this._checkFragments(this.props.route.slide, false) || this.props.route.params.indexOf("overview") !== -1) {
+    if (this._checkFragments(this.props.route.slide, false) || this.props.route.params.indexOf('overview') !== -1) {
       if (slideIndex > 0) {
         this.context.history.replace(`/${this._getHash(slideIndex - 1)}${this._getSuffix()}`);
-        localStorage.setItem("spectacle-slide",
+        localStorage.setItem('spectacle-slide',
           JSON.stringify({ slide: this._getHash(slideIndex - 1), forward: false, time: Date.now() }));
       }
     } else if (slideIndex > 0) {
-      localStorage.setItem("spectacle-slide",
+      localStorage.setItem('spectacle-slide',
         JSON.stringify({ slide: this._getHash(slideIndex), forward: false, time: Date.now() }));
     }
   }
@@ -189,14 +189,14 @@ export default class Manager extends Component {
       lastSlideIndex: slideIndex
     });
     const slideReference = this.state.slideReference;
-    if (this._checkFragments(this.props.route.slide, true) || this.props.route.params.indexOf("overview") !== -1) {
+    if (this._checkFragments(this.props.route.slide, true) || this.props.route.params.indexOf('overview') !== -1) {
       if (slideIndex < slideReference.length - 1) {
         this.context.history.replace(`/${this._getHash(slideIndex + 1) + this._getSuffix()}`);
-        localStorage.setItem("spectacle-slide",
+        localStorage.setItem('spectacle-slide',
           JSON.stringify({ slide: this._getHash(slideIndex + 1), forward: true, time: Date.now() }));
       }
     } else if (slideIndex < slideReference.length) {
-      localStorage.setItem("spectacle-slide",
+      localStorage.setItem('spectacle-slide',
         JSON.stringify({ slide: this._getHash(slideIndex), forward: true, time: Date.now() }));
     }
   }
@@ -207,10 +207,10 @@ export default class Manager extends Component {
     const state = this.context.store.getState();
     const fragments = state.fragment.fragments;
     // Not proud of this at all. 0.14 Parent based contexts will fix this.
-    if (this.props.route.params.indexOf("presenter") !== -1) {
-      const main = document.querySelector(".spectacle-presenter-main");
+    if (this.props.route.params.indexOf('presenter') !== -1) {
+      const main = document.querySelector('.spectacle-presenter-main');
       if (main) {
-        const frags = main.querySelectorAll(".fragment");
+        const frags = main.querySelectorAll('.fragment');
         if (!frags.length) {
           return true;
         }
@@ -288,7 +288,7 @@ export default class Manager extends Component {
     }
   }
   _handleSwipe() {
-    if (typeof (this.touchObject.length) !== "undefined" && this.touchObject.length > 44) {
+    if (typeof (this.touchObject.length) !== 'undefined' && this.touchObject.length > 44) {
       this.clickSafe = true;
     } else {
       this.clickSafe = false;
@@ -369,8 +369,8 @@ export default class Manager extends Component {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
       key: slideIndex,
-      export: this.props.route.params.indexOf("export") !== -1,
-      print: this.props.route.params.indexOf("print") !== -1,
+      export: this.props.route.params.indexOf('export') !== -1,
+      print: this.props.route.params.indexOf('print') !== -1,
       children: Children.toArray(slide.props.children),
       hash: this.props.route.slide,
       slideIndex,
@@ -384,42 +384,42 @@ export default class Manager extends Component {
     });
   }
   render() {
-    const globals = this.props.route.params.indexOf("export") !== -1 ? {
+    const globals = this.props.route.params.indexOf('export') !== -1 ? {
       body: Object.assign(this.context.styles.global.body, {
         minWidth: 1100,
         minHeight: 850,
-        overflow: "auto"
+        overflow: 'auto'
       }),
-      ".spectacle-presenter-next .fragment": {
-        display: "none !important"
+      '.spectacle-presenter-next .fragment': {
+        display: 'none !important'
       }
     } : {
-      ".spectacle-presenter-next .fragment": {
-        display: "none !important"
+      '.spectacle-presenter-next .fragment': {
+        display: 'none !important'
       }
     };
 
     const styles = {
       deck: {
-        backgroundColor: this.props.route.params.indexOf("presenter") !== -1 || this.props.route.params.indexOf("overview") !== -1 ? "black" : "",
-        position: "absolute",
+        backgroundColor: this.props.route.params.indexOf('presenter') !== -1 || this.props.route.params.indexOf('overview') !== -1 ? 'black' : '',
+        position: 'absolute',
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%"
+        width: '100%',
+        height: '100%'
       },
       transition: {
-        height: "100%",
-        width: "100%",
+        height: '100%',
+        width: '100%',
         perspective: 1000,
-        transformStyle: "flat"
+        transformStyle: 'flat'
       }
     };
 
     let componentToRender;
     const children = Children.toArray(this.props.children);
-    if (this.props.route.params.indexOf("presenter") !== -1) {
-      const isTimerMode = this.props.route.params.indexOf("timer") !== -1;
+    if (this.props.route.params.indexOf('presenter') !== -1) {
+      const isTimerMode = this.props.route.params.indexOf('timer') !== -1;
       componentToRender = (
         <Presenter
           dispatch={this.props.dispatch}
@@ -432,7 +432,7 @@ export default class Manager extends Component {
           timer={isTimerMode}
         />
       );
-    } else if (this.props.route.params.indexOf("export") !== -1) {
+    } else if (this.props.route.params.indexOf('export') !== -1) {
       componentToRender = (
         <Export
           slides={children}
@@ -440,7 +440,7 @@ export default class Manager extends Component {
           route={this.props.route}
         />
       );
-    } else if (this.props.route.params.indexOf("overview") !== -1) {
+    } else if (this.props.route.params.indexOf('overview') !== -1) {
       componentToRender = (
         <Overview
           slides={children}
@@ -459,9 +459,9 @@ export default class Manager extends Component {
 
     const showControls = !this.state.fullscreen &&
       !this.state.mobile &&
-      this.props.route.params.indexOf("export") === -1 &&
-      this.props.route.params.indexOf("overview") === -1 &&
-      this.props.route.params.indexOf("presenter") === -1;
+      this.props.route.params.indexOf('export') === -1 &&
+      this.props.route.params.indexOf('overview') === -1 &&
+      this.props.route.params.indexOf('presenter') === -1;
 
     const { googleFonts = {} } = this.context.styles;
     const googleFontsElements = Object.keys(googleFonts).map((key, index) => (
@@ -491,17 +491,17 @@ export default class Manager extends Component {
         {componentToRender}
 
         {
-          this.props.route.params.indexOf("export") === -1 && this.props.route.params.indexOf("overview") === -1 ?
+          this.props.route.params.indexOf('export') === -1 && this.props.route.params.indexOf('overview') === -1 ?
           <Progress
             items={this.state.slideReference}
             currentSlideIndex={this._getSlideIndex()}
             type={this.props.progress}
-          /> : ""
+          /> : ''
         }
 
         {
-          this.props.route.params.indexOf("export") === -1 ?
-           <Fullscreen/> : ""
+          this.props.route.params.indexOf('export') === -1 ?
+           <Fullscreen/> : ''
         }
 
         {this.props.globalStyles && <Style rules={Object.assign(this.context.styles.global, globals)} />}

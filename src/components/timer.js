@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Clock as TimerHeader, TButtonContainer, TSingleButton
-} from "./time-components";
+} from './time-components';
 
 const timeCounter = (time) => {
   let hours = Math.floor(time / 3600);

@@ -1,7 +1,7 @@
-import React, { cloneElement, Component } from "react";
-import PropTypes from "prop-types";
-import { getSlideByIndex } from "../utils/slides";
-import styled from "styled-components";
+import React, { cloneElement, Component } from 'react';
+import PropTypes from 'prop-types';
+import { getSlideByIndex } from '../utils/slides';
+import styled from 'styled-components';
 
 const OverviewContainer = styled.div`
   height: 100%;
@@ -33,10 +33,10 @@ export default class Overview extends Component {
   }
   componentDidMount() {
     this.resizeHandler();
-    window.addEventListener("resize", this.resizeHandler);
+    window.addEventListener('resize', this.resizeHandler);
   }
   componentWillUnmount() {
-    window.removeEventListener("resize", this.resizeHandler);
+    window.removeEventListener('resize', this.resizeHandler);
   }
   _slideClicked(index) {
     this.context.history.replace(`/${this._getHash(index)}`);
@@ -56,8 +56,8 @@ export default class Overview extends Component {
       const el = cloneElement(slide, {
         key: index,
         slideIndex: index,
-        export: this.props.route.params.indexOf("export") !== -1,
-        print: this.props.route.params.indexOf("print") !== -1,
+        export: this.props.route.params.indexOf('export') !== -1,
+        print: this.props.route.params.indexOf('print') !== -1,
         transition: [],
         transitionDuration: 0,
         appearOff: true

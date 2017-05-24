@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { findDOMNode } from "react-dom";
-import findKey from "lodash/findKey";
-import { connect } from "react-redux";
-import { VictoryAnimation } from "victory-core";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { findDOMNode } from 'react-dom';
+import findKey from 'lodash/findKey';
+import { connect } from 'react-redux';
+import { VictoryAnimation } from 'victory-core';
 
 class Appear extends Component {
   state = {
@@ -19,8 +19,8 @@ class Appear extends Component {
     });
 
     const shouldDisableAnimation = (
-      this.props.route.params.indexOf("export") !== -1 ||
-      this.props.route.params.indexOf("overview") !== -1
+      this.props.route.params.indexOf('export') !== -1 ||
+      this.props.route.params.indexOf('overview') !== -1
     );
 
     if (shouldDisableAnimation) {
@@ -47,7 +47,7 @@ class Appear extends Component {
         {({ opacity }) => (
           React.cloneElement(child,
             {
-              className: "fragment",
+              className: 'fragment',
               style: { opacity },
               ref: (f) => { this.fragmentRef = f; }
             }

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Radium from "radium";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Radium from 'radium';
 
 @Radium
 export default class Layout extends Component {
   render() {
     const styles = {
-      display: "flex"
+      display: 'flex'
     };
     return (
       <div style={[styles, this.props.style]}>

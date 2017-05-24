@@ -42,9 +42,12 @@ exports[`<Presenter /> should render correctly 1`] = `
           <styled.h2>
             <h2
               className="fztYwR">
-              Slide 
+              Slide
+               
               2
-               of 
+               
+              of
+               
               3
             </h2>
           </styled.h2>
@@ -71,9 +74,10 @@ exports[`<Presenter /> should render correctly 1`] = `
           <styled.div>
             <div
               className="gRyZKn">
-              <styled.div>
+              <styled.div
+                className="spectacle-presenter-main">
                 <div
-                  className="jmeTwE">
+                  className="spectacle-presenter-main jmeTwE">
                   <Slide
                     dispatch={[Function]}
                     export={false}
@@ -177,9 +181,12 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
           <styled.h2>
             <h2
               className="fztYwR">
-              Slide 
+              Slide
+               
               2
-               of 
+               
+              of
+               
               3
             </h2>
           </styled.h2>
@@ -224,9 +231,10 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
           <styled.div>
             <div
               className="gRyZKn">
-              <styled.div>
+              <styled.div
+                className="spectacle-presenter-main">
                 <div
-                  className="jmeTwE">
+                  className="spectacle-presenter-main jmeTwE">
                   <Slide
                     dispatch={[Function]}
                     export={false}
@@ -337,9 +345,12 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
           <styled.h2>
             <h2
               className="fztYwR">
-              Slide 
+              Slide
+               
               2
-               of 
+               
+              of
+               
               3
             </h2>
           </styled.h2>
@@ -366,9 +377,10 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
           <styled.div>
             <div
               className="gRyZKn">
-              <styled.div>
+              <styled.div
+                className="spectacle-presenter-main">
                 <div
-                  className="jmeTwE">
+                  className="spectacle-presenter-main jmeTwE">
                   <Slide
                     dispatch={[Function]}
                     export={false}
