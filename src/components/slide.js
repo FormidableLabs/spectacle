@@ -180,7 +180,7 @@ Slide.propTypes = {
   dispatch: PropTypes.func,
   export: PropTypes.bool,
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  lastSlide: PropTypes.number,
+  lastSlideIndex: PropTypes.number,
   margin: PropTypes.number,
   maxHeight: PropTypes.number,
   maxWidth: PropTypes.number,

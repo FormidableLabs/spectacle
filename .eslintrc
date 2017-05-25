@@ -30,6 +30,8 @@
       }
     ],
     "comma-dangle": "off",
+    "indent": "off",
+    "react/jsx-indent-props": "off",
     "max-len": 0,
     "no-magic-numbers": "off",
     "func-style": "off",
