@@ -28,6 +28,7 @@ export default class Manager extends Component {
   static displayName = 'Manager';
 
   static defaultProps = {
+    transition: [],
     transitionDuration: 500,
     progress: 'pacman',
     controls: true,
