@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { mountToJson } from 'enzyme-to-json';
 import TableBody from './table-header';
 
 describe('<TableBody />', () => {
@@ -10,6 +9,6 @@ describe('<TableBody />', () => {
         <tr><td>Table Content</td></tr>
       </TableBody>
     );
-    expect(mountToJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });

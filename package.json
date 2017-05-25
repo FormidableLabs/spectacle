@@ -54,7 +54,6 @@
     "babel-runtime": "^6.23.0",
     "css-loader": "^0.28.2",
     "enzyme": "^2.8.2",
-    "enzyme-to-json": "^1.5.1",
     "eslint": "^3.19.0",
     "eslint-config-formidable": "^3.0.0",
     "eslint-plugin-filenames": "^1.2.0",
@@ -63,6 +62,7 @@
     "express": "^4.15.3",
     "file-loader": "^0.11.1",
     "jest": "^20.0.4",
+    "jest-serializer-enzyme": "^1.0.0",
     "node-libs-browser": "^2.0.0",
     "prop-types": "^15.5.10",
     "raw-loader": "^0.5.1",
@@ -83,6 +83,9 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-enzyme"
+    ]
   }
 }

@@ -4,20 +4,20 @@ const defaultColors = {
   primary: '#f9c300',
   secondary: 'black',
   tertiary: 'white',
-  quartenary: 'white'
+  quarternary: 'white',
 };
 
 const defaultFonts = {
   primary: 'Open Sans Condensed',
   secondary: 'Lobster Two',
-  tertiary: 'monospace'
+  tertiary: 'monospace',
 };
 
 const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
   const colors = Object.assign({}, defaultColors, colorArgs);
   let normalizedFontArgs = {};
   let googleFonts = {};
-  Object.keys(fontArgs).forEach((key) => {
+  Object.keys(fontArgs).forEach(key => {
     const value = fontArgs[key];
     const fontName = value.hasOwnProperty('name') ? value.name : value;
     normalizedFontArgs = { ...normalizedFontArgs, [key]: fontName };
@@ -37,17 +37,17 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         fontWeight: 'normal',
         fontSize: '2em',
         color: colors.secondary,
-        overflow: 'hidden'
+        overflow: 'hidden',
       },
       'html, body': {
-        height: '100%'
+        height: '100%',
       },
       '*': {
-        boxSizing: 'border-box'
-      }
+        boxSizing: 'border-box',
+      },
     },
     fullscreen: {
-      fill: colors.tertiary
+      fill: colors.tertiary,
     },
     controls: {
       prev: {
@@ -58,10 +58,10 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         zIndex: 9999,
         background: 'none',
         border: 'none',
-        outline: 0
+        outline: 0,
       },
       prevIcon: {
-        fill: colors.quartenary
+        fill: colors.quarternary,
       },
       next: {
         position: 'absolute',
@@ -71,11 +71,11 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         zIndex: 9999,
         background: 'none',
         border: 'none',
-        outline: 0
+        outline: 0,
       },
       nextIcon: {
-        fill: colors.quartenary
-      }
+        fill: colors.quarternary,
+      },
     },
     progress: {
       pacman: {
@@ -84,14 +84,14 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           bottom: '5px',
           left: '50%',
           transition: 'all 1s ease-in-out 0.2s',
-          zIndex: 1000
+          zIndex: 1000,
         },
         pacman: {
           position: 'absolute',
           transition: 'left 0.3s ease-in-out 0.2s',
           width: '20px',
           height: '20px',
-          transform: 'translate(-5px, -5px)'
+          transform: 'translate(-5px, -5px)',
         },
         pacmanTop: {
           position: 'absolute',
@@ -100,7 +100,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           height: '10px',
           borderTopLeftRadius: '10px',
           borderTopRightRadius: '10px',
-          background: colors.quartenary
+          background: colors.quarternary,
         },
         pacmanBottom: {
           position: 'absolute',
@@ -109,8 +109,8 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           height: '10px',
           borderBottomLeftRadius: '10px',
           borderBottomRightRadius: '10px',
-          background: colors.quartenary,
-          top: '10px'
+          background: colors.quarternary,
+          top: '10px',
         },
         point: {
           position: 'absolute',
@@ -120,10 +120,10 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           height: '10px',
           borderWidth: 2,
           borderStyle: 'solid',
-          borderColor: colors.quartenary,
+          borderColor: colors.quarternary,
           borderRadius: '50%',
-          transition: 'all 0.01s ease-out 0.4s'
-        }
+          transition: 'all 0.01s ease-out 0.4s',
+        },
       },
       bar: {
         container: {
@@ -133,13 +133,13 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           bottom: 0,
           left: 0,
           transition: 'all 1s ease-in-out 0.2s',
-          zIndex: 1000
+          zIndex: 1000,
         },
         bar: {
           height: '100%',
-          background: colors.quartenary,
-          transition: 'all 0.3s ease-out'
-        }
+          background: colors.quarternary,
+          transition: 'all 0.3s ease-out',
+        },
       },
       number: {
         container: {
@@ -147,16 +147,16 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           bottom: 10,
           right: 10,
           zIndex: 1000,
-          color: colors.quartenary
-        }
-      }
+          color: colors.quarternary,
+        },
+      },
     },
     components: {
       blockquote: {
         textAlign: 'left',
         position: 'relative',
         display: 'inline-block',
-        margin: 20
+        margin: 20,
       },
       quote: {
         borderLeft: `1px solid ${colors.primary}`,
@@ -165,18 +165,18 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         color: colors.primary,
         fontSize: '4.9rem',
         lineHeight: 1,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       cite: {
         color: colors.tertiary,
         display: 'block',
         clear: 'left',
         fontSize: '2rem',
-        marginTop: '1rem'
+        marginTop: '1rem',
       },
       content: {
         margin: '0 auto',
-        textAlign: 'center'
+        textAlign: 'center',
       },
       codePane: {
         pre: {
@@ -185,12 +185,12 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           fontWeight: 'normal',
           fontFamily: fonts.tertiary,
           minWidth: '100%',
-          maxWidth: 800
+          maxWidth: 800,
         },
         code: {
           textAlign: 'left',
-          fontWeight: 'normal'
-        }
+          fontWeight: 'normal',
+        },
       },
       code: {
         color: 'black',
@@ -199,7 +199,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         margin: '0.25rem auto',
         backgroundColor: 'rgba(0,0,0,0.15)',
         padding: '0 10px',
-        borderRadius: 3
+        borderRadius: 3,
       },
       heading: {
         h1: {
@@ -209,7 +209,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           lineHeight: 1,
           fontWeight: 'bold',
           margin: 0,
-          zoom: 1
+          zoom: 1,
         },
         h2: {
           color: colors.secondary,
@@ -217,7 +217,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           fontFamily: fonts.primary,
           lineHeight: 1,
           fontWeight: 'bold',
-          margin: 0
+          margin: 0,
         },
         h3: {
           color: 'black',
@@ -225,7 +225,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           fontFamily: fonts.secondary,
           lineHeight: 1,
           fontWeight: 'bold',
-          margin: '0.5rem auto'
+          margin: '0.5rem auto',
         },
         h4: {
           color: 'black',
@@ -233,7 +233,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           fontFamily: fonts.primary,
           lineHeight: 1,
           fontWeight: 'bold',
-          margin: '0.5rem auto'
+          margin: '0.5rem auto',
         },
         h5: {
           color: 'black',
@@ -241,7 +241,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           fontFamily: fonts.primary,
           lineHeight: 1,
           fontWeight: 'bold',
-          margin: '0.5rem auto'
+          margin: '0.5rem auto',
         },
         h6: {
           color: 'black',
@@ -249,44 +249,44 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           fontFamily: fonts.primary,
           lineHeight: 1,
           fontWeight: 'bold',
-          margin: '0.5rem auto'
-        }
+          margin: '0.5rem auto',
+        },
       },
       image: {
         display: 'block',
-        margin: '0.5rem auto'
+        margin: '0.5rem auto',
       },
       link: {
-        textDecoration: 'none'
+        textDecoration: 'none',
       },
       listItem: {
-        fontSize: '2.66rem'
+        fontSize: '2.66rem',
       },
       list: {
         textAlign: 'left',
         listStylePosition: 'inside',
-        padding: 0
+        padding: 0,
       },
       s: {
-        strikethrough: {}
+        strikethrough: {},
       },
       tableHeaderItem: {
         fontSize: '2.66rem',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       tableItem: {
-        fontSize: '2.66rem'
+        fontSize: '2.66rem',
       },
       table: {
-        width: '100%'
+        width: '100%',
       },
       text: {
         color: 'black',
         fontSize: '2.66rem',
         fontFamily: fonts.primary,
-        margin: '0.25rem auto'
-      }
-    }
+        margin: '0.25rem auto',
+      },
+    },
   };
 };
 

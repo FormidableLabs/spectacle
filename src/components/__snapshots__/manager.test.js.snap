@@ -264,6 +264,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
         "globalStyleSet": Array [],
       }
     }
+    transition={Array []}
     transitionDuration={500}
   >
     <div
@@ -388,6 +389,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
         "globalStyleSet": Array [],
       }
     }
+    transition={Array []}
     transitionDuration={500}
   >
     <div
@@ -560,6 +562,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
         "globalStyleSet": Array [],
       }
     }
+    transition={Array []}
     transitionDuration={500}
   >
     <div
@@ -652,6 +655,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             lastSlideIndex={1}
             print={false}
             slideIndex={1}
+            transition={Array []}
             transitionDuration={500}
           >
             <div>

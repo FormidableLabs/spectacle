@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { mountToJson } from 'enzyme-to-json';
 import CodePane from './code-pane';
 
 describe('<CodePane />', () => {
@@ -16,12 +15,7 @@ describe('<CodePane />', () => {
         </CustomButton>
       );
     `;
-    const wrapper = mount(
-      <CodePane
-        lang="jsx"
-        source={source}
-      />,
-    { context });
-    expect(mountToJson(wrapper)).toMatchSnapshot();
+    const wrapper = mount(<CodePane lang="jsx" source={source} />, { context });
+    expect(wrapper).toMatchSnapshot();
   });
 });
