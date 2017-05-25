@@ -1,4 +1,4 @@
-import forEach from "lodash/forEach";
+import forEach from 'lodash/forEach';
 
 const preload = (imageCollection) => {
   forEach(imageCollection, (src) => {
