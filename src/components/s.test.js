@@ -1,7 +1,6 @@
 import S from './s';
 import React from 'react';
 import { mount } from 'enzyme';
-import { mountToJson } from 'enzyme-to-json';
 
 describe('<S />', () => {
   test('should underline text when specified', () => {

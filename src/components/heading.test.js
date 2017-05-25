@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { mountToJson } from 'enzyme-to-json';
 import Heading from './heading';
 
 describe('<Heading />', () => {
