@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   entry: ['webpack-hot-middleware/client', './index'],
   output: {
     path: path.join(__dirname, 'dist'),
