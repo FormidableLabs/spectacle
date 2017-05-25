@@ -1,8 +1,8 @@
-import { createAction } from "redux-actions";
+import { createAction } from 'redux-actions';
 
-export const addFragment = createAction("ADD_FRAGMENT");
-export const updateFragment = createAction("UPDATE_FRAGMENT");
+export const addFragment = createAction('ADD_FRAGMENT');
+export const updateFragment = createAction('UPDATE_FRAGMENT');
 
-export const updateRoute = createAction("UPDATE_ROUTE");
+export const updateRoute = createAction('UPDATE_ROUTE');
 
-export const setGlobalStyle = createAction("SET_GLOBAL_STYLE");
+export const setGlobalStyle = createAction('SET_GLOBAL_STYLE');

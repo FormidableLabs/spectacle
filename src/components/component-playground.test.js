@@ -1,10 +1,10 @@
-import React from "react";
-import { render, shallow } from "enzyme";
-import { renderToJson } from "enzyme-to-json";
-import ComponentPlayground from "./component-playground";
+import React from 'react';
+import { render, shallow } from 'enzyme';
+import { renderToJson } from 'enzyme-to-json';
+import ComponentPlayground from './component-playground';
 
-describe("<ComponentPlayground />", () => {
-  test("Should render the dark theme correctly", () => {
+describe('<ComponentPlayground />', () => {
+  test('Should render the dark theme correctly', () => {
     const wrapper = render(
       <ComponentPlayground
         theme="dark"
@@ -12,7 +12,7 @@ describe("<ComponentPlayground />", () => {
     expect(renderToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("Should render the light theme correctly", () => {
+  test('Should render the light theme correctly', () => {
     const wrapper = render(
       <ComponentPlayground
         theme="light"
@@ -20,7 +20,7 @@ describe("<ComponentPlayground />", () => {
     expect(renderToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("Should render with a custom background color", () => {
+  test('Should render with a custom background color', () => {
     const wrapper = render(
       <ComponentPlayground
         theme="light"
@@ -29,7 +29,7 @@ describe("<ComponentPlayground />", () => {
     expect(renderToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("Should render with a custom code block", () => {
+  test('Should render with a custom code block', () => {
     const code = `
       const Button = ({ title }) => (<button type="button">{ title }</button>);
       render(<Button title="My Button" />, mountNode);
@@ -43,7 +43,7 @@ describe("<ComponentPlayground />", () => {
     expect(renderToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("Should render custom scoped components", () => {
+  test('Should render custom scoped components', () => {
     const NewComponent = () => (
       <div><h1>Hi!</h1></div>
     );
@@ -52,7 +52,7 @@ describe("<ComponentPlayground />", () => {
         scope={{ NewComponent }}
       />);
 
-    const scope = wrapper.find("ReactPlayground").prop("scope");
+    const scope = wrapper.find('ReactPlayground').prop('scope');
     expect(scope.NewComponent).toEqual(NewComponent);
   });
 });

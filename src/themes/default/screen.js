@@ -1,16 +1,16 @@
 /*eslint-disable object-shorthand*/
 
 const defaultColors = {
-  primary: "#f9c300",
-  secondary: "black",
-  tertiary: "white",
-  quartenary: "white"
+  primary: '#f9c300',
+  secondary: 'black',
+  tertiary: 'white',
+  quartenary: 'white'
 };
 
 const defaultFonts = {
-  primary: "Open Sans Condensed",
-  secondary: "Lobster Two",
-  tertiary: "monospace"
+  primary: 'Open Sans Condensed',
+  secondary: 'Lobster Two',
+  tertiary: 'monospace'
 };
 
 const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
@@ -19,9 +19,9 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
   let googleFonts = {};
   Object.keys(fontArgs).forEach((key) => {
     const value = fontArgs[key];
-    const fontName = value.hasOwnProperty("name") ? value.name : value;
+    const fontName = value.hasOwnProperty('name') ? value.name : value;
     normalizedFontArgs = { ...normalizedFontArgs, [key]: fontName };
-    if (value.hasOwnProperty("googleFont") && value.googleFont) {
+    if (value.hasOwnProperty('googleFont') && value.googleFont) {
       googleFonts = { ...googleFonts, [key]: value };
     }
   });
@@ -34,16 +34,16 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       body: {
         background: colors.primary,
         fontFamily: fonts.primary,
-        fontWeight: "normal",
-        fontSize: "2em",
+        fontWeight: 'normal',
+        fontSize: '2em',
         color: colors.secondary,
-        overflow: "hidden"
+        overflow: 'hidden'
       },
-      "html, body": {
-        height: "100%"
+      'html, body': {
+        height: '100%'
       },
-      "*": {
-        boxSizing: "border-box"
+      '*': {
+        boxSizing: 'border-box'
       }
     },
     fullscreen: {
@@ -51,26 +51,26 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
     },
     controls: {
       prev: {
-        position: "absolute",
-        top: "50%",
+        position: 'absolute',
+        top: '50%',
         left: 20,
-        transform: "translateY(-50%)",
+        transform: 'translateY(-50%)',
         zIndex: 9999,
-        background: "none",
-        border: "none",
+        background: 'none',
+        border: 'none',
         outline: 0
       },
       prevIcon: {
         fill: colors.quartenary
       },
       next: {
-        position: "absolute",
-        top: "50%",
+        position: 'absolute',
+        top: '50%',
         right: 20,
-        transform: "translateY(-50%)",
+        transform: 'translateY(-50%)',
         zIndex: 9999,
-        background: "none",
-        border: "none",
+        background: 'none',
+        border: 'none',
         outline: 0
       },
       nextIcon: {
@@ -80,70 +80,70 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
     progress: {
       pacman: {
         container: {
-          position: "absolute",
-          bottom: "5px",
-          left: "50%",
-          transition: "all 1s ease-in-out 0.2s",
+          position: 'absolute',
+          bottom: '5px',
+          left: '50%',
+          transition: 'all 1s ease-in-out 0.2s',
           zIndex: 1000
         },
         pacman: {
-          position: "absolute",
-          transition: "left 0.3s ease-in-out 0.2s",
-          width: "20px",
-          height: "20px",
-          transform: "translate(-5px, -5px)"
+          position: 'absolute',
+          transition: 'left 0.3s ease-in-out 0.2s',
+          width: '20px',
+          height: '20px',
+          transform: 'translate(-5px, -5px)'
         },
         pacmanTop: {
-          position: "absolute",
-          content: "",
-          width: "20px",
-          height: "10px",
-          borderTopLeftRadius: "10px",
-          borderTopRightRadius: "10px",
+          position: 'absolute',
+          content: '',
+          width: '20px',
+          height: '10px',
+          borderTopLeftRadius: '10px',
+          borderTopRightRadius: '10px',
           background: colors.quartenary
         },
         pacmanBottom: {
-          position: "absolute",
-          content: "",
-          width: "20px",
-          height: "10px",
-          borderBottomLeftRadius: "10px",
-          borderBottomRightRadius: "10px",
+          position: 'absolute',
+          content: '',
+          width: '20px',
+          height: '10px',
+          borderBottomLeftRadius: '10px',
+          borderBottomRightRadius: '10px',
           background: colors.quartenary,
-          top: "10px"
+          top: '10px'
         },
         point: {
-          position: "absolute",
-          float: "left",
-          background: "transparent",
-          width: "10px",
-          height: "10px",
+          position: 'absolute',
+          float: 'left',
+          background: 'transparent',
+          width: '10px',
+          height: '10px',
           borderWidth: 2,
-          borderStyle: "solid",
+          borderStyle: 'solid',
           borderColor: colors.quartenary,
-          borderRadius: "50%",
-          transition: "all 0.01s ease-out 0.4s"
+          borderRadius: '50%',
+          transition: 'all 0.01s ease-out 0.4s'
         }
       },
       bar: {
         container: {
-          position: "absolute",
-          height: "10px",
-          width: "100%",
+          position: 'absolute',
+          height: '10px',
+          width: '100%',
           bottom: 0,
           left: 0,
-          transition: "all 1s ease-in-out 0.2s",
+          transition: 'all 1s ease-in-out 0.2s',
           zIndex: 1000
         },
         bar: {
-          height: "100%",
+          height: '100%',
           background: colors.quartenary,
-          transition: "all 0.3s ease-out"
+          transition: 'all 0.3s ease-out'
         }
       },
       number: {
         container: {
-          position: "absolute",
+          position: 'absolute',
           bottom: 10,
           right: 10,
           zIndex: 1000,
@@ -153,138 +153,138 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
     },
     components: {
       blockquote: {
-        textAlign: "left",
-        position: "relative",
-        display: "inline-block",
+        textAlign: 'left',
+        position: 'relative',
+        display: 'inline-block',
         margin: 20
       },
       quote: {
         borderLeft: `1px solid ${colors.primary}`,
         paddingLeft: 40,
-        display: "block",
+        display: 'block',
         color: colors.primary,
-        fontSize: "4.9rem",
+        fontSize: '4.9rem',
         lineHeight: 1,
-        fontWeight: "bold"
+        fontWeight: 'bold'
       },
       cite: {
         color: colors.tertiary,
-        display: "block",
-        clear: "left",
-        fontSize: "2rem",
-        marginTop: "1rem"
+        display: 'block',
+        clear: 'left',
+        fontSize: '2rem',
+        marginTop: '1rem'
       },
       content: {
-        margin: "0 auto",
-        textAlign: "center"
+        margin: '0 auto',
+        textAlign: 'center'
       },
       codePane: {
         pre: {
-          margin: "auto",
-          fontSize: "0.8rem",
-          fontWeight: "normal",
+          margin: 'auto',
+          fontSize: '0.8rem',
+          fontWeight: 'normal',
           fontFamily: fonts.tertiary,
-          minWidth: "100%",
+          minWidth: '100%',
           maxWidth: 800
         },
         code: {
-          textAlign: "left",
-          fontWeight: "normal"
+          textAlign: 'left',
+          fontWeight: 'normal'
         }
       },
       code: {
-        color: "black",
-        fontSize: "2.66rem",
+        color: 'black',
+        fontSize: '2.66rem',
         fontFamily: fonts.tertiary,
-        margin: "0.25rem auto",
-        backgroundColor: "rgba(0,0,0,0.15)",
-        padding: "0 10px",
+        margin: '0.25rem auto',
+        backgroundColor: 'rgba(0,0,0,0.15)',
+        padding: '0 10px',
         borderRadius: 3
       },
       heading: {
         h1: {
           color: colors.tertiary,
-          fontSize: "7.05rem",
+          fontSize: '7.05rem',
           fontFamily: fonts.primary,
           lineHeight: 1,
-          fontWeight: "bold",
+          fontWeight: 'bold',
           margin: 0,
           zoom: 1
         },
         h2: {
           color: colors.secondary,
-          fontSize: "5.88rem",
+          fontSize: '5.88rem',
           fontFamily: fonts.primary,
           lineHeight: 1,
-          fontWeight: "bold",
+          fontWeight: 'bold',
           margin: 0
         },
         h3: {
-          color: "black",
-          fontSize: "4.9rem",
+          color: 'black',
+          fontSize: '4.9rem',
           fontFamily: fonts.secondary,
           lineHeight: 1,
-          fontWeight: "bold",
-          margin: "0.5rem auto"
+          fontWeight: 'bold',
+          margin: '0.5rem auto'
         },
         h4: {
-          color: "black",
-          fontSize: "3.82rem",
+          color: 'black',
+          fontSize: '3.82rem',
           fontFamily: fonts.primary,
           lineHeight: 1,
-          fontWeight: "bold",
-          margin: "0.5rem auto"
+          fontWeight: 'bold',
+          margin: '0.5rem auto'
         },
         h5: {
-          color: "black",
-          fontSize: "3.19rem",
+          color: 'black',
+          fontSize: '3.19rem',
           fontFamily: fonts.primary,
           lineHeight: 1,
-          fontWeight: "bold",
-          margin: "0.5rem auto"
+          fontWeight: 'bold',
+          margin: '0.5rem auto'
         },
         h6: {
-          color: "black",
-          fontSize: "2.66rem",
+          color: 'black',
+          fontSize: '2.66rem',
           fontFamily: fonts.primary,
           lineHeight: 1,
-          fontWeight: "bold",
-          margin: "0.5rem auto"
+          fontWeight: 'bold',
+          margin: '0.5rem auto'
         }
       },
       image: {
-        display: "block",
-        margin: "0.5rem auto"
+        display: 'block',
+        margin: '0.5rem auto'
       },
       link: {
-        textDecoration: "none"
+        textDecoration: 'none'
       },
       listItem: {
-        fontSize: "2.66rem"
+        fontSize: '2.66rem'
       },
       list: {
-        textAlign: "left",
-        listStylePosition: "inside",
+        textAlign: 'left',
+        listStylePosition: 'inside',
         padding: 0
       },
       s: {
         strikethrough: {}
       },
       tableHeaderItem: {
-        fontSize: "2.66rem",
-        fontWeight: "bold"
+        fontSize: '2.66rem',
+        fontWeight: 'bold'
       },
       tableItem: {
-        fontSize: "2.66rem"
+        fontSize: '2.66rem'
       },
       table: {
-        width: "100%"
+        width: '100%'
       },
       text: {
-        color: "black",
-        fontSize: "2.66rem",
+        color: 'black',
+        fontSize: '2.66rem',
         fontFamily: fonts.primary,
-        margin: "0.25rem auto"
+        margin: '0.25rem auto'
       }
     }
   };

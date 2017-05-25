@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Fullscreen /> should render correctly. 1`] = `
 <Fullscreen>
   <svg
@@ -17,9 +19,11 @@ exports[`<Fullscreen /> should render correctly. 1`] = `
       }
     }
     viewBox="0 0 512 512"
-    width="30px">
+    width="30px"
+  >
     <path
-      d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z" />
+      d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
+    />
   </svg>
 </Fullscreen>
 `;

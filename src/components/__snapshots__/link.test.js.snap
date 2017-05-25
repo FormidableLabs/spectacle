@@ -1,7 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Link /> should render correctly 1`] = `
 <Link
   href="https://www.formidable.com"
-  target="_blank">
+  target="_blank"
+>
   <a
     data-radium={true}
     href="https://www.formidable.com"
@@ -10,7 +13,8 @@ exports[`<Link /> should render correctly 1`] = `
         "color": "#345",
       }
     }
-    target="_blank">
+    target="_blank"
+  >
     Formidable Labs
   </a>
 </Link>

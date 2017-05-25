@@ -1,6 +1,6 @@
 /*eslint new-cap:0, max-statements:0*/
-import React, { cloneElement } from "react";
-import { VictoryAnimation } from "victory-core";
+import React, { cloneElement } from 'react';
+import { VictoryAnimation } from 'victory-core';
 
 /**
  * Decorator for adding Spectacle transition support
@@ -21,7 +21,7 @@ const Transitionable = function (target) {
     },
 
     componentWillLeave(callback) {
-      this.setState({ transitioning: true, reverse: true, z: "" });
+      this.setState({ transitioning: true, reverse: true, z: '' });
       this.routerCallback(callback);
     },
 
@@ -45,24 +45,24 @@ const Transitionable = function (target) {
       const { transitioning, z } = this.state;
 
       let styles = { zIndex: z };
-      let transformValue = "";
+      let transformValue = '';
 
-      if (transition.indexOf("fade") !== -1) {
+      if (transition.indexOf('fade') !== -1) {
         styles = { ...styles, opacity: transitioning ? 0 : 1 };
       }
 
-      if (transition.indexOf("zoom") !== -1) {
+      if (transition.indexOf('zoom') !== -1) {
         transformValue += ` scale(${transitioning ? 0.1 : 1.0})`;
       }
 
-      if (transition.indexOf("slide") !== -1) {
+      if (transition.indexOf('slide') !== -1) {
         const offset = this.transitionDirection() ? 100 : -100;
         transformValue += ` translate3d(${transitioning ? offset : 0}%, 0, 0)`;
       } else {
-        transformValue += " translate3d(0px, 0px, 0px)";
+        transformValue += ' translate3d(0px, 0px, 0px)';
       }
 
-      if (transition.indexOf("spin") !== -1) {
+      if (transition.indexOf('spin') !== -1) {
         const angle = this.transitionDirection() ? 90 : -90;
         transformValue += ` rotateY(${transitioning ? angle : 0}deg)`;
       }

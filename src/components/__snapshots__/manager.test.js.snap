@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Manager /> should render correctly. 1`] = `
 <Connect(Manager)
   transition={
@@ -6,7 +8,8 @@ exports[`<Manager /> should render correctly. 1`] = `
       "slide",
     ]
   }
-  transitionDuration={500}>
+  transitionDuration={500}
+>
   <Manager
     controls={true}
     dispatch={[Function]}
@@ -29,7 +32,8 @@ exports[`<Manager /> should render correctly. 1`] = `
         "slide",
       ]
     }
-    transitionDuration={500}>
+    transitionDuration={500}
+  >
     <div
       className="spectacle-deck"
       data-radium={true}
@@ -47,28 +51,34 @@ exports[`<Manager /> should render correctly. 1`] = `
           "top": 0,
           "width": "100%",
         }
-      }>
+      }
+    >
       <Controls
         currentSlideIndex={0}
         onNext={[Function]}
         onPrev={[Function]}
-        totalSlides={2}>
+        totalSlides={2}
+      >
         <div
-          data-radium={true}>
+          data-radium={true}
+        >
           <button
             onClick={[Function]}
-            type="button">
+            type="button"
+          >
             <svg
               height="32px"
               viewBox="0 0 512 828.586"
-              width="32px">
+              width="32px"
+            >
               <path
-                d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z" />
+                d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z"
+              />
             </svg>
           </button>
         </div>
       </Controls>
-      <ReactTransitionGroup
+      <TransitionGroup
         childFactory={[Function]}
         component="div"
         style={
@@ -80,7 +90,8 @@ exports[`<Manager /> should render correctly. 1`] = `
               "width": "100%",
             },
           ]
-        }>
+        }
+      >
         <div
           data-radium={true}
           style={
@@ -90,7 +101,8 @@ exports[`<Manager /> should render correctly. 1`] = `
               "transformStyle": "flat",
               "width": "100%",
             }
-          }>
+          }
+        >
           <MockSlide
             dispatch={[Function]}
             export={false}
@@ -104,13 +116,14 @@ exports[`<Manager /> should render correctly. 1`] = `
                 "slide",
               ]
             }
-            transitionDuration={500}>
+            transitionDuration={500}
+          >
             <div>
               Slide Content
             </div>
           </MockSlide>
         </div>
-      </ReactTransitionGroup>
+      </TransitionGroup>
       <Progress
         currentSlideIndex={0}
         items={
@@ -125,12 +138,15 @@ exports[`<Manager /> should render correctly. 1`] = `
             },
           ]
         }
-        type="pacman">
+        type="pacman"
+      >
         <div
           data-radium={true}
-          style={Object {}}>
+          style={Object {}}
+        >
           <div
-            data-radium={true}>
+            data-radium={true}
+          >
             <div
               data-radium={true}
               style={
@@ -138,21 +154,24 @@ exports[`<Manager /> should render correctly. 1`] = `
                   "left": "-15px",
                   "top": "-20px",
                 }
-              }>
+              }
+            >
               <div
                 data-radium={true}
                 style={
                   Object {
                     "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
                   }
-                } />
+                }
+              />
               <div
                 data-radium={true}
                 style={
                   Object {
                     "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
                   }
-                } />
+                }
+              />
             </div>
             <div
               data-radium={true}
@@ -162,7 +181,8 @@ exports[`<Manager /> should render correctly. 1`] = `
                   "opacity": 0,
                   "top": "-20px",
                 }
-              } />
+              }
+            />
             <div
               data-radium={true}
               style={
@@ -170,7 +190,8 @@ exports[`<Manager /> should render correctly. 1`] = `
                   "left": "5px",
                   "top": "-20px",
                 }
-              } />
+              }
+            />
           </div>
         </div>
       </Progress>
@@ -192,9 +213,11 @@ exports[`<Manager /> should render correctly. 1`] = `
             }
           }
           viewBox="0 0 512 512"
-          width="30px">
+          width="30px"
+        >
           <path
-            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z" />
+            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
+          />
         </svg>
       </Fullscreen>
       <Style
@@ -206,13 +229,15 @@ exports[`<Manager /> should render correctly. 1`] = `
             "body": Array [],
           }
         }
-        scopeSelector="">
+        scopeSelector=""
+      >
         <style
           dangerouslySetInnerHTML={
             Object {
               "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
             }
-          } />
+          }
+        />
       </Style>
     </div>
   </Manager>
@@ -239,7 +264,8 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
         "globalStyleSet": Array [],
       }
     }
-    transitionDuration={500}>
+    transitionDuration={500}
+  >
     <div
       className="spectacle-deck"
       data-radium={true}
@@ -257,7 +283,8 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
           "top": 0,
           "width": "100%",
         }
-      }>
+      }
+    >
       <Export
         route={
           Object {
@@ -284,16 +311,19 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
             <MockSlide />,
             <MockSlide />,
           ]
-        }>
+        }
+      >
         <styled.div>
           <div
-            className="djkYse">
+            className="djkYse"
+          >
             <MockSlide
               export={true}
               print={false}
               slideIndex={0}
               transition={Array []}
-              transitionDuration={0}>
+              transitionDuration={0}
+            >
               <div>
                 Slide Content
               </div>
@@ -303,7 +333,8 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
               print={false}
               slideIndex={1}
               transition={Array []}
-              transitionDuration={0}>
+              transitionDuration={0}
+            >
               <div>
                 Slide Content
               </div>
@@ -320,7 +351,8 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
             "body": Array [],
           }
         }
-        scopeSelector="">
+        scopeSelector=""
+      >
         <style
           dangerouslySetInnerHTML={
             Object {
@@ -328,7 +360,8 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
             min-height: 850px;
             overflow: auto;}.spectacle-presenter-next .fragment{display: none !important;}",
             }
-          } />
+          }
+        />
       </Style>
     </div>
   </Manager>
@@ -355,7 +388,8 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
         "globalStyleSet": Array [],
       }
     }
-    transitionDuration={500}>
+    transitionDuration={500}
+  >
     <div
       className="spectacle-deck"
       data-radium={true}
@@ -373,7 +407,8 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
           "top": 0,
           "width": "100%",
         }
-      }>
+      }
+    >
       <Overview
         route={
           Object {
@@ -401,24 +436,30 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
             <MockSlide />,
             <MockSlide />,
           ]
-        }>
+        }
+      >
         <styled.div>
           <div
-            className="kxQqKR">
+            className="kxQqKR"
+          >
             <styled.div
               index={0}
               onClick={[Function]}
-              slideIndex={0}>
+              screen={0}
+              slideIndex={0}
+            >
               <div
-                className="goGPmP"
-                onClick={[Function]}>
+                className="cAopeV"
+                onClick={[Function]}
+              >
                 <MockSlide
                   appearOff={true}
                   export={false}
                   print={false}
                   slideIndex={0}
                   transition={Array []}
-                  transitionDuration={0}>
+                  transitionDuration={0}
+                >
                   <div>
                     Slide Content
                   </div>
@@ -428,17 +469,21 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
             <styled.div
               index={1}
               onClick={[Function]}
-              slideIndex={0}>
+              screen={0}
+              slideIndex={0}
+            >
               <div
-                className="gvZlT"
-                onClick={[Function]}>
+                className="gtMIIo"
+                onClick={[Function]}
+              >
                 <MockSlide
                   appearOff={true}
                   export={false}
                   print={false}
                   slideIndex={1}
                   transition={Array []}
-                  transitionDuration={0}>
+                  transitionDuration={0}
+                >
                   <div>
                     Slide Content
                   </div>
@@ -466,9 +511,11 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
             }
           }
           viewBox="0 0 512 512"
-          width="30px">
+          width="30px"
+        >
           <path
-            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z" />
+            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
+          />
         </svg>
       </Fullscreen>
       <Style
@@ -480,13 +527,15 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
             "body": Array [],
           }
         }
-        scopeSelector="">
+        scopeSelector=""
+      >
         <style
           dangerouslySetInnerHTML={
             Object {
               "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
             }
-          } />
+          }
+        />
       </Style>
     </div>
   </Manager>
@@ -511,7 +560,8 @@ exports[`<Manager /> should render with slideset slides 1`] = `
         "globalStyleSet": Array [],
       }
     }
-    transitionDuration={500}>
+    transitionDuration={500}
+  >
     <div
       className="spectacle-deck"
       data-radium={true}
@@ -529,39 +579,48 @@ exports[`<Manager /> should render with slideset slides 1`] = `
           "top": 0,
           "width": "100%",
         }
-      }>
+      }
+    >
       <Controls
         currentSlideIndex={1}
         onNext={[Function]}
         onPrev={[Function]}
-        totalSlides={3}>
+        totalSlides={3}
+      >
         <div
-          data-radium={true}>
+          data-radium={true}
+        >
           <button
             onClick={[Function]}
-            type="button">
+            type="button"
+          >
             <svg
               height="32px"
               viewBox="0 0 512 828.586"
-              width="32px">
+              width="32px"
+            >
               <path
-                d="M512,97.707L414.293,0L0,414.293l414.293,414.293L512,730.88L195.414,414.293L512,97.707z" />
+                d="M512,97.707L414.293,0L0,414.293l414.293,414.293L512,730.88L195.414,414.293L512,97.707z"
+              />
             </svg>
           </button>
           <button
             onClick={[Function]}
-            type="button">
+            type="button"
+          >
             <svg
               height="32px"
               viewBox="0 0 512 828.586"
-              width="32px">
+              width="32px"
+            >
               <path
-                d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z" />
+                d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z"
+              />
             </svg>
           </button>
         </div>
       </Controls>
-      <ReactTransitionGroup
+      <TransitionGroup
         childFactory={[Function]}
         component="div"
         style={
@@ -573,7 +632,8 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               "width": "100%",
             },
           ]
-        }>
+        }
+      >
         <div
           data-radium={true}
           style={
@@ -583,7 +643,8 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               "transformStyle": "flat",
               "width": "100%",
             }
-          }>
+          }
+        >
           <MockSlide
             dispatch={[Function]}
             export={false}
@@ -591,13 +652,14 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             lastSlideIndex={1}
             print={false}
             slideIndex={1}
-            transitionDuration={500}>
+            transitionDuration={500}
+          >
             <div>
               Slide Content
             </div>
           </MockSlide>
         </div>
-      </ReactTransitionGroup>
+      </TransitionGroup>
       <Progress
         currentSlideIndex={1}
         items={
@@ -618,12 +680,15 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             },
           ]
         }
-        type="pacman">
+        type="pacman"
+      >
         <div
           data-radium={true}
-          style={Object {}}>
+          style={Object {}}
+        >
           <div
-            data-radium={true}>
+            data-radium={true}
+          >
             <div
               data-radium={true}
               style={
@@ -631,21 +696,24 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                   "left": "-5px",
                   "top": "-20px",
                 }
-              }>
+              }
+            >
               <div
                 data-radium={true}
                 style={
                   Object {
                     "animation": "pacmanTopFrames 0.12s linear 10 alternate both",
                   }
-                } />
+                }
+              />
               <div
                 data-radium={true}
                 style={
                   Object {
                     "animation": "pacmanBottomFrames 0.12s linear 10 alternate both",
                   }
-                } />
+                }
+              />
             </div>
             <div
               data-radium={true}
@@ -655,7 +723,8 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                   "opacity": 0,
                   "top": "-20px",
                 }
-              } />
+              }
+            />
             <div
               data-radium={true}
               style={
@@ -664,7 +733,8 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                   "opacity": 0,
                   "top": "-20px",
                 }
-              } />
+              }
+            />
             <div
               data-radium={true}
               style={
@@ -672,7 +742,8 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                   "left": "15px",
                   "top": "-20px",
                 }
-              } />
+              }
+            />
           </div>
         </div>
       </Progress>
@@ -694,9 +765,11 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             }
           }
           viewBox="0 0 512 512"
-          width="30px">
+          width="30px"
+        >
           <path
-            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z" />
+            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
+          />
         </svg>
       </Fullscreen>
       <Style
@@ -708,13 +781,15 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             "body": Array [],
           }
         }
-        scopeSelector="">
+        scopeSelector=""
+      >
         <style
           dangerouslySetInnerHTML={
             Object {
               "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
             }
-          } />
+          }
+        />
       </Style>
     </div>
   </Manager>

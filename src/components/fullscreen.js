@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from "react";
-import Radium from "radium";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Radium from 'radium';
 
 @Radium
 export default class Fullscreen extends Component {
@@ -31,13 +32,13 @@ export default class Fullscreen extends Component {
   }
   render() {
     const styles = {
-      position: "absolute",
+      position: 'absolute',
       bottom: 20,
       right: 20,
       opacity: 0,
-      cursor: "pointer",
-      transition: "300ms opacity ease",
-      ":hover": {
+      cursor: 'pointer',
+      transition: '300ms opacity ease',
+      ':hover': {
         opacity: 1
       }
     };
