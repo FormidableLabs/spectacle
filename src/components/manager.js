@@ -465,6 +465,7 @@ export default class Manager extends Component {
     });
   }
   render() {
+    if (this.props.route.slide === null) return false;
     const globals = this.props.route.params.indexOf('export') !== -1
       ? {
           body: Object.assign(this.context.styles.global.body, {
