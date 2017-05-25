@@ -1,12 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`MarkdownSlides should render correctly when using function syntax 1`] = `
 <div>
   <Slide
     align="center center"
     presenterStyle={Object {}}
     style={Object {}}
-    viewerScaleMode={false}>
+    viewerScaleMode={false}
+  >
     <Markdown
-      style={Object {}}>
+      style={Object {}}
+    >
       
       ## Slide A Title
       
@@ -16,9 +20,11 @@ exports[`MarkdownSlides should render correctly when using function syntax 1`] =
     align="center center"
     presenterStyle={Object {}}
     style={Object {}}
-    viewerScaleMode={false}>
+    viewerScaleMode={false}
+  >
     <Markdown
-      style={Object {}}>
+      style={Object {}}
+    >
       
       ## Slide B Title
           
@@ -33,9 +39,11 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
     align="center center"
     presenterStyle={Object {}}
     style={Object {}}
-    viewerScaleMode={false}>
+    viewerScaleMode={false}
+  >
     <Markdown
-      style={Object {}}>
+      style={Object {}}
+    >
       ## Slide 1 Title
       
     </Markdown>
@@ -44,9 +52,11 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
     align="center center"
     presenterStyle={Object {}}
     style={Object {}}
-    viewerScaleMode={false}>
+    viewerScaleMode={false}
+  >
     <Markdown
-      style={Object {}}>
+      style={Object {}}
+    >
       
       ## Slide 2 Title
     </Markdown>
@@ -60,9 +70,11 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
     align="center center"
     presenterStyle={Object {}}
     style={Object {}}
-    viewerScaleMode={false}>
+    viewerScaleMode={false}
+  >
     <Markdown
-      style={Object {}}>
+      style={Object {}}
+    >
       ## Slide 1 Title
       This text is **bold**.
       
@@ -72,9 +84,11 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
     align="center center"
     presenterStyle={Object {}}
     style={Object {}}
-    viewerScaleMode={false}>
+    viewerScaleMode={false}
+  >
     <Markdown
-      style={Object {}}>
+      style={Object {}}
+    >
       
       ## Slide 2 Title
     </Markdown>

@@ -1,7 +1,7 @@
-import React from "react";
-import { mount } from "enzyme";
-import { mountToJson } from "enzyme-to-json";
-import Presenter from "./presenter";
+import React from 'react';
+import { mount } from 'enzyme';
+import { mountToJson } from 'enzyme-to-json';
+import Presenter from './presenter';
 
 const _mockRoute = function (slide) {
   return { params: [], slide };
@@ -10,7 +10,7 @@ const _mockRoute = function (slide) {
 const _mockContext = function () {
   return {
     store: {
-      getState: () => ({ route: "" })
+      getState: () => ({ route: '' })
     }
   };
 };
@@ -21,14 +21,14 @@ const _mockSlides = function () {
 };
 
 const _mockSlidesWithNotes = function () {
-  const notes = "These are my slide notes!!";
+  const notes = 'These are my slide notes!!';
   const Slide = () => (<div>Slide Content</div>);
   return [ <Slide key={0} />, <Slide key={1} notes={notes} />, <Slide key={2} /> ];
 };
 
 const mockDateFn = jest.fn();
 mockDateFn
-  .mockReturnValue("November 07, 2016 11:04:08");
+  .mockReturnValue('November 07, 2016 11:04:08');
 
 const _mockSlideReference = function () {
   return [
@@ -38,12 +38,12 @@ const _mockSlideReference = function () {
   ];
 };
 
-describe("<Presenter />", () => {
+describe('<Presenter />', () => {
   beforeAll(() => {
     global.Date.now = mockDateFn;
   });
 
-  test("should render correctly", () => {
+  test('should render correctly', () => {
     const wrapper = mount((
       <Presenter
         dispatch={() => {}}
@@ -60,7 +60,7 @@ describe("<Presenter />", () => {
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render with notes when slides have them.", () => {
+  test('should render with notes when slides have them.', () => {
     const wrapper = mount((
       <Presenter
         dispatch={() => {}}
@@ -77,7 +77,7 @@ describe("<Presenter />", () => {
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render timer when set in params.", () => {
+  test('should render timer when set in params.', () => {
     const wrapper = mount((
       <Presenter
         dispatch={() => {}}

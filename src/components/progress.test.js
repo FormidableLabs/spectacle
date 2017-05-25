@@ -1,14 +1,14 @@
-import Progress from "./progress";
-import React from "react";
-import { mount } from "enzyme";
-import { mountToJson } from "enzyme-to-json";
+import Progress from './progress';
+import React from 'react';
+import { mount } from 'enzyme';
+import { mountToJson } from 'enzyme-to-json';
 
 const _mockSlideIndexReference = function () {
-  return [ { id: 0 }, { id: 1 }, { id: "last" } ];
+  return [ { id: 0 }, { id: 1 }, { id: 'last' } ];
 };
 
-describe("<Progress />", () => {
-  test("should render PacMan correctly", () => {
+describe('<Progress />', () => {
+  test('should render PacMan correctly', () => {
     const context = { styles: { progress: { pacman: [] } } };
     const wrapper = mount((
       <Progress
@@ -20,7 +20,7 @@ describe("<Progress />", () => {
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render the number style correctly", () => {
+  test('should render the number style correctly', () => {
     const context = { styles: { progress: { number: [] } } };
     const wrapper = mount((
       <Progress
@@ -32,7 +32,7 @@ describe("<Progress />", () => {
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render the bar style correctly", () => {
+  test('should render the bar style correctly', () => {
     const context = { styles: { progress: { bar: [] } } };
     const wrapper = mount((
       <Progress
@@ -44,7 +44,7 @@ describe("<Progress />", () => {
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render nothing when none is provided.", () => {
+  test('should render nothing when none is provided.', () => {
     const context = { styles: { progress: {} } };
     const wrapper = mount((
       <Progress

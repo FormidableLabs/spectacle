@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware } from "redux";
-import reducer from "../reducers";
+import { createStore, applyMiddleware } from 'redux';
+import reducer from '../reducers';
 
 const configureStore = () => {
   const createStoreWithMiddleware = applyMiddleware()(createStore);
@@ -7,8 +7,8 @@ const configureStore = () => {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept("../reducers", () => {
-      const nextReducer = require("../reducers");
+    module.hot.accept('../reducers', () => {
+      const nextReducer = require('../reducers');
       store.replaceReducer(nextReducer);
     });
   }

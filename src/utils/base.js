@@ -9,7 +9,7 @@ const parseFontSize = function (fontSize) {
 
 const getFontSizeFromElement = function (element) {
   const fontSize = window.getComputedStyle ?
-    window.getComputedStyle(element).getPropertyValue("font-size") :
+    window.getComputedStyle(element).getPropertyValue('font-size') :
     element.currentStyle.fontSize;
   return fontSize ? parseFontSize(fontSize) : null;
 };
@@ -17,42 +17,42 @@ const getFontSizeFromElement = function (element) {
 const convertFontSizeToPx = function (fontSize) {
   let convertedFontSize;
 
-  if (typeof textSize === "number") {
+  if (typeof textSize === 'number') {
     convertedFontSize = fontSize;
-  } else if (typeof fontSize === "string") {
+  } else if (typeof fontSize === 'string') {
     const parsedFont = parseFontSize(fontSize);
     const bodyFont = getFontSizeFromElement(document.body);
     const htmlFont = getFontSizeFromElement(document.documentElement);
 
     switch (parsedFont.unit) {
-      case "px":
-        convertedFontSize = parsedFont.size;
-        break;
-      case "pt":
-        convertedFontSize = parsedFont.size * 96 / 72;
-        break;
-      case "%":
-        if (bodyFont) {
-          convertedFontSize = bodyFont.size * parsedFont.size / 100;
-        }
-        break;
-      case "em":
-        if (bodyFont) {
-          convertedFontSize = bodyFont.size * parsedFont.size;
-        }
-        break;
-      case "rem":
-        if (htmlFont) {
-          convertedFontSize = htmlFont.size * parsedFont.size;
-        }
-        break;
+    case 'px':
+      convertedFontSize = parsedFont.size;
+      break;
+    case 'pt':
+      convertedFontSize = parsedFont.size * 96 / 72;
+      break;
+    case '%':
+      if (bodyFont) {
+        convertedFontSize = bodyFont.size * parsedFont.size / 100;
+      }
+      break;
+    case 'em':
+      if (bodyFont) {
+        convertedFontSize = bodyFont.size * parsedFont.size;
+      }
+      break;
+    case 'rem':
+      if (htmlFont) {
+        convertedFontSize = htmlFont.size * parsedFont.size;
+      }
+      break;
     }
   }
   return convertedFontSize;
 };
 
 export const getStyles = function getStyles() {
-  if (process.env.NODE_ENV !== "production" && typeof this.warnedAboutFontSize === "undefined") {
+  if (process.env.NODE_ENV !== 'production' && typeof this.warnedAboutFontSize === 'undefined') {
     this.warnedAboutFontSize = false;
   }
 
@@ -77,14 +77,14 @@ export const getStyles = function getStyles() {
   const styles = {};
   const recommendedMinFontSizePx = 24;
 
-  if (typeof italic === "boolean") {
-    styles.fontStyle = italic ? "italic" : "normal";
+  if (typeof italic === 'boolean') {
+    styles.fontStyle = italic ? 'italic' : 'normal';
   }
-  if (typeof bold === "boolean") {
-    styles.fontWeight = bold ? "bold" : "normal";
+  if (typeof bold === 'boolean') {
+    styles.fontWeight = bold ? 'bold' : 'normal';
   }
-  if (typeof caps === "boolean") {
-    styles.textTransform = caps ? "uppercase" : "none";
+  if (typeof caps === 'boolean') {
+    styles.textTransform = caps ? 'uppercase' : 'none';
   }
   if (margin) {
     styles.margin = margin;
@@ -93,7 +93,7 @@ export const getStyles = function getStyles() {
     styles.padding = padding;
   }
   if (textColor) {
-    let color = "";
+    let color = '';
     if (!this.context.styles.colors.hasOwnProperty(textColor)) {
       color = textColor;
     } else {
@@ -102,7 +102,7 @@ export const getStyles = function getStyles() {
     styles.color = color;
   }
   if (textFont) {
-    let font = "";
+    let font = '';
     if (!this.context.styles.fonts.hasOwnProperty(textFont)) {
       font = textFont;
     } else {
@@ -112,7 +112,7 @@ export const getStyles = function getStyles() {
   }
   if (textSize) {
     styles.fontSize = textSize;
-    if (process.env.NODE_ENV !== "production" && !this.warnedAboutFontSize && this.context.store.getState().style.globalStyleSet) {
+    if (process.env.NODE_ENV !== 'production' && !this.warnedAboutFontSize && this.context.store.getState().style.globalStyleSet) {
       const fontSize = convertFontSizeToPx(textSize) || recommendedMinFontSizePx;
       if (fontSize < recommendedMinFontSizePx) {
         console.warn(`prop \`textSize="${textSize}"\` is below the recommended minimum of ${recommendedMinFontSizePx}px`); // eslint-disable-line
@@ -124,7 +124,7 @@ export const getStyles = function getStyles() {
     styles.textAlign = textAlign;
   }
   if (bgColor) {
-    let color = "";
+    let color = '';
     if (!this.context.styles.colors.hasOwnProperty(bgColor)) {
       color = bgColor;
     } else {
@@ -139,8 +139,8 @@ export const getStyles = function getStyles() {
     } else {
       styles.backgroundImage = `url(${bgImage})`;
     }
-    styles.backgroundSize = bgSize || "cover";
-    styles.backgroundPosition = bgPosition || "center center";
+    styles.backgroundSize = bgSize || 'cover';
+    styles.backgroundPosition = bgPosition || 'center center';
     if (bgRepeat) {
       styles.backgroundRepeat = bgRepeat;
     }

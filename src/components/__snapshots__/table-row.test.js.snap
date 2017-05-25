@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<TableRow /> should render correctly 1`] = `
 <TableRow>
   <tr
@@ -6,7 +8,8 @@ exports[`<TableRow /> should render correctly 1`] = `
       Object {
         "color": "#00f",
       }
-    }>
+    }
+  >
     <td>
       Table Row Content
     </td>

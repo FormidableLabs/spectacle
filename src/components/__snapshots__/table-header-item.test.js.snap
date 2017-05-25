@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<TableHeaderItem /> should render correctly 1`] = `
 <TableHeaderItem>
   <td
@@ -6,7 +8,8 @@ exports[`<TableHeaderItem /> should render correctly 1`] = `
       Object {
         "color": "#e01",
       }
-    }>
+    }
+  >
     Header Text
   </td>
 </TableHeaderItem>

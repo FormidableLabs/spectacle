@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Progress /> should render PacMan correctly 1`] = `
 <Progress
   currentSlideIndex={2}
@@ -14,12 +16,15 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
       },
     ]
   }
-  type="pacman">
+  type="pacman"
+>
   <div
     data-radium={true}
-    style={Object {}}>
+    style={Object {}}
+  >
     <div
-      data-radium={true}>
+      data-radium={true}
+    >
       <div
         data-radium={true}
         style={
@@ -27,21 +32,24 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
             "left": "15px",
             "top": "-20px",
           }
-        }>
+        }
+      >
         <div
           data-radium={true}
           style={
             Object {
               "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
             }
-          } />
+          }
+        />
         <div
           data-radium={true}
           style={
             Object {
               "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
             }
-          } />
+          }
+        />
       </div>
       <div
         data-radium={true}
@@ -51,7 +59,8 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
             "opacity": 0,
             "top": "-20px",
           }
-        } />
+        }
+      />
       <div
         data-radium={true}
         style={
@@ -60,7 +69,8 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
             "opacity": 0,
             "top": "-20px",
           }
-        } />
+        }
+      />
       <div
         data-radium={true}
         style={
@@ -69,7 +79,8 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
             "opacity": 0,
             "top": "-20px",
           }
-        } />
+        }
+      />
     </div>
   </div>
 </Progress>
@@ -91,7 +102,8 @@ exports[`<Progress /> should render nothing when none is provided. 1`] = `
       },
     ]
   }
-  type="none" />
+  type="none"
+/>
 `;
 
 exports[`<Progress /> should render the bar style correctly 1`] = `
@@ -110,17 +122,20 @@ exports[`<Progress /> should render the bar style correctly 1`] = `
       },
     ]
   }
-  type="bar">
+  type="bar"
+>
   <div
     data-radium={true}
-    style={Object {}}>
+    style={Object {}}
+  >
     <div
       data-radium={true}
       style={
         Object {
           "width": "50%",
         }
-      } />
+      }
+    />
   </div>
 </Progress>
 `;
@@ -141,12 +156,15 @@ exports[`<Progress /> should render the number style correctly 1`] = `
       },
     ]
   }
-  type="number">
+  type="number"
+>
   <div
     data-radium={true}
-    style={Object {}}>
+    style={Object {}}
+  >
     <div
-      data-radium={true}>
+      data-radium={true}
+    >
       2
        / 
       3

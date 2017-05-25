@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { mount } from "enzyme";
-import { mountToJson } from "enzyme-to-json";
-import Manager from "./manager";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { mount } from 'enzyme';
+import { mountToJson } from 'enzyme-to-json';
+import Manager from './manager';
 
 const _mockContext = function (slide, routeParams) {
   return {
@@ -54,10 +54,10 @@ const _mockChildContext = function () {
   return { styles: () => {} };
 };
 
-describe("<Manager />", () => {
-  test("should render correctly.", () => {
+describe('<Manager />', () => {
+  test('should render correctly.', () => {
     const wrapper = mount((
-      <Manager transition={["zoom", "slide"]} transitionDuration={500}>
+      <Manager transition={['zoom', 'slide']} transitionDuration={500}>
         <MockSlide />
         <MockSlide />
       </Manager>
@@ -65,27 +65,27 @@ describe("<Manager />", () => {
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render the export configuration when specified.", () => {
+  test('should render the export configuration when specified.', () => {
     const wrapper = mount((
       <Manager>
         <MockSlide />
         <MockSlide />
       </Manager>
-    ), { context: _mockContext(0, [ "export" ]), childContextTypes: _mockChildContext() });
+    ), { context: _mockContext(0, [ 'export' ]), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render the overview configuration when specified.", () => {
+  test('should render the overview configuration when specified.', () => {
     const wrapper = mount((
       <Manager>
         <MockSlide />
         <MockSlide />
       </Manager>
-    ), { context: _mockContext(0, [ "overview" ]), childContextTypes: _mockChildContext() });
+    ), { context: _mockContext(0, [ 'overview' ]), childContextTypes: _mockChildContext() });
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render with slideset slides", () => {
+  test('should render with slideset slides', () => {
     const wrapper = mount((
       <Manager>
         <MockSlide />

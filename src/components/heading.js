@@ -1,7 +1,7 @@
-import React, { Component, createElement } from "react";
-import PropTypes from "prop-types";
-import { getStyles } from "../utils/base";
-import Radium from "radium";
+import React, { Component, createElement } from 'react';
+import PropTypes from 'prop-types';
+import { getStyles } from '../utils/base';
+import Radium from 'radium';
 
 @Radium
 export default class Heading extends Component {
@@ -15,24 +15,24 @@ export default class Heading extends Component {
   }
   componentDidMount() {
     this.resize();
-    window.addEventListener("load", this.resize);
-    window.addEventListener("resize", this.resize);
+    window.addEventListener('load', this.resize);
+    window.addEventListener('resize', this.resize);
   }
   componentWillReceiveProps() {
     this.resize();
   }
   componentWillUnmount() {
-    window.removeEventListener("load", this.resize);
-    window.removeEventListener("resize", this.resize);
+    window.removeEventListener('load', this.resize);
+    window.removeEventListener('resize', this.resize);
   }
   resize() {
     if (this.props.fit) {
       const text = this.textRef;
       const container = this.containerRef;
-      text.style.display = "inline-block";
+      text.style.display = 'inline-block';
       const scale = (container.offsetWidth / text.offsetWidth);
       const height = (text.offsetHeight * scale) || 0;
-      text.style.display = "block";
+      text.style.display = 'block';
       this.setState({
         scale,
         height
@@ -44,18 +44,18 @@ export default class Heading extends Component {
     const Tag = `H${size}`;
     const styles = {
       container: {
-        display: "block",
-        width: "100%",
+        display: 'block',
+        width: '100%',
         height: this.state.height
       },
       text: {
         fontSize: 16,
-        display: "block",
-        margin: "0",
-        padding: "0",
+        display: 'block',
+        margin: '0',
+        padding: '0',
         lineHeight,
         transform: `scale(${this.state.scale})`,
-        transformOrigin: "center top"
+        transformOrigin: 'center top'
       },
       nonFit: {
         lineHeight

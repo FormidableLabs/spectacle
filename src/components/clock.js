@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Clock as ClockStyle } from "./time-components";
+import React, { Component } from 'react';
+import { Clock as ClockStyle } from './time-components';
 
 const startTime = function startTime(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   let seconds = date.getSeconds();
-  const ampm = hours >= 12 ? "PM" : "AM";
+  const ampm = hours >= 12 ? 'PM' : 'AM';
   hours %= 12;
   hours = hours ? hours : 12;
   minutes = minutes < 10 ? `0${minutes}` : minutes;

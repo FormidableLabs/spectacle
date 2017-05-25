@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Presenter /> should render correctly 1`] = `
 <Presenter
   dispatch={[Function]}
@@ -32,30 +34,39 @@ exports[`<Presenter /> should render correctly 1`] = `
       <Slide />,
       <Slide />,
     ]
-  }>
+  }
+>
   <styled.div>
     <div
-      className="iyCyxO">
+      className="iyCyxO"
+    >
       <styled.div>
         <div
-          className="gHgCes">
+          className="gHgCes"
+        >
           <styled.h2>
             <h2
-              className="fztYwR">
-              Slide 
+              className="fztYwR"
+            >
+              Slide
+               
               2
-               of 
+               
+              of
+               
               3
             </h2>
           </styled.h2>
           <Time>
             <styled.div>
               <div
-                className="brepyG">
+                className="brepyG"
+              >
                 <Clock>
                   <styled.h2>
                     <h2
-                      className="hQnKlh">
+                      className="hQnKlh"
+                    >
                       11 : 04 : 08 AM
                     </h2>
                   </styled.h2>
@@ -67,13 +78,18 @@ exports[`<Presenter /> should render correctly 1`] = `
       </styled.div>
       <styled.div>
         <div
-          className="jjzBZm">
+          className="jjzBZm"
+        >
           <styled.div>
             <div
-              className="gRyZKn">
-              <styled.div>
+              className="gRyZKn"
+            >
+              <styled.div
+                className="spectacle-presenter-main"
+              >
                 <div
-                  className="jmeTwE">
+                  className="spectacle-presenter-main jmeTwE"
+                >
                   <Slide
                     dispatch={[Function]}
                     export={false}
@@ -87,7 +103,8 @@ exports[`<Presenter /> should render correctly 1`] = `
                     print={false}
                     slideIndex={1}
                     transition={Array []}
-                    transitionDuration={0}>
+                    transitionDuration={0}
+                  >
                     <div>
                       Slide Content
                     </div>
@@ -96,7 +113,8 @@ exports[`<Presenter /> should render correctly 1`] = `
               </styled.div>
               <styled.div>
                 <div
-                  className="gAvcJf">
+                  className="gAvcJf"
+                >
                   <Slide
                     appearOff={true}
                     dispatch={[Function]}
@@ -111,7 +129,8 @@ exports[`<Presenter /> should render correctly 1`] = `
                     print={false}
                     slideIndex={2}
                     transition={Array []}
-                    transitionDuration={0}>
+                    transitionDuration={0}
+                  >
                     <div>
                       Slide Content
                     </div>
@@ -122,7 +141,8 @@ exports[`<Presenter /> should render correctly 1`] = `
           </styled.div>
           <styled.div>
             <div
-              className="hiNnBp" />
+              className="hiNnBp"
+            />
           </styled.div>
         </div>
       </styled.div>
@@ -163,49 +183,63 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
     Array [
       <Slide />,
       <Slide
-        notes="These are my slide notes!!" />,
+        notes="These are my slide notes!!"
+    />,
       <Slide />,
     ]
   }
-  timer={true}>
+  timer={true}
+>
   <styled.div>
     <div
-      className="iyCyxO">
+      className="iyCyxO"
+    >
       <styled.div>
         <div
-          className="gHgCes">
+          className="gHgCes"
+        >
           <styled.h2>
             <h2
-              className="fztYwR">
-              Slide 
+              className="fztYwR"
+            >
+              Slide
+               
               2
-               of 
+               
+              of
+               
               3
             </h2>
           </styled.h2>
           <Time
-            timer={true}>
+            timer={true}
+          >
             <styled.div>
               <div
-                className="brepyG">
+                className="brepyG"
+              >
                 <Timer>
                   <div>
                     <styled.h2>
                       <h2
-                        className="hQnKlh">
+                        className="hQnKlh"
+                      >
                         00 : 00
                       </h2>
                     </styled.h2>
                     <styled.div>
                       <div
-                        className="kWjMOo">
+                        className="kWjMOo"
+                      >
                         <styled.button
                           onClick={[Function]}
-                          start={true}>
+                          start={true}
+                        >
                           <button
                             className="cmEomM"
                             onClick={[Function]}
-                            start={true}>
+                            start={true}
+                          >
                             Start
                           </button>
                         </styled.button>
@@ -220,13 +254,18 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
       </styled.div>
       <styled.div>
         <div
-          className="jjzBZm">
+          className="jjzBZm"
+        >
           <styled.div>
             <div
-              className="gRyZKn">
-              <styled.div>
+              className="gRyZKn"
+            >
+              <styled.div
+                className="spectacle-presenter-main"
+              >
                 <div
-                  className="jmeTwE">
+                  className="spectacle-presenter-main jmeTwE"
+                >
                   <Slide
                     dispatch={[Function]}
                     export={false}
@@ -241,7 +280,8 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     print={false}
                     slideIndex={1}
                     transition={Array []}
-                    transitionDuration={0}>
+                    transitionDuration={0}
+                  >
                     <div>
                       Slide Content
                     </div>
@@ -250,7 +290,8 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
               </styled.div>
               <styled.div>
                 <div
-                  className="gAvcJf">
+                  className="gAvcJf"
+                >
                   <Slide
                     appearOff={true}
                     dispatch={[Function]}
@@ -265,7 +306,8 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     print={false}
                     slideIndex={2}
                     transition={Array []}
-                    transitionDuration={0}>
+                    transitionDuration={0}
+                  >
                     <div>
                       Slide Content
                     </div>
@@ -276,13 +318,15 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
           </styled.div>
           <styled.div>
             <div
-              className="hiNnBp">
+              className="hiNnBp"
+            >
               <div
                 dangerouslySetInnerHTML={
                   Object {
                     "__html": "These are my slide notes!!",
                   }
-                } />
+                }
+              />
             </div>
           </styled.div>
         </div>
@@ -324,33 +368,43 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
     Array [
       <Slide />,
       <Slide
-        notes="These are my slide notes!!" />,
+        notes="These are my slide notes!!"
+    />,
       <Slide />,
     ]
-  }>
+  }
+>
   <styled.div>
     <div
-      className="iyCyxO">
+      className="iyCyxO"
+    >
       <styled.div>
         <div
-          className="gHgCes">
+          className="gHgCes"
+        >
           <styled.h2>
             <h2
-              className="fztYwR">
-              Slide 
+              className="fztYwR"
+            >
+              Slide
+               
               2
-               of 
+               
+              of
+               
               3
             </h2>
           </styled.h2>
           <Time>
             <styled.div>
               <div
-                className="brepyG">
+                className="brepyG"
+              >
                 <Clock>
                   <styled.h2>
                     <h2
-                      className="hQnKlh">
+                      className="hQnKlh"
+                    >
                       11 : 04 : 08 AM
                     </h2>
                   </styled.h2>
@@ -362,13 +416,18 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
       </styled.div>
       <styled.div>
         <div
-          className="jjzBZm">
+          className="jjzBZm"
+        >
           <styled.div>
             <div
-              className="gRyZKn">
-              <styled.div>
+              className="gRyZKn"
+            >
+              <styled.div
+                className="spectacle-presenter-main"
+              >
                 <div
-                  className="jmeTwE">
+                  className="spectacle-presenter-main jmeTwE"
+                >
                   <Slide
                     dispatch={[Function]}
                     export={false}
@@ -383,7 +442,8 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     print={false}
                     slideIndex={1}
                     transition={Array []}
-                    transitionDuration={0}>
+                    transitionDuration={0}
+                  >
                     <div>
                       Slide Content
                     </div>
@@ -392,7 +452,8 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
               </styled.div>
               <styled.div>
                 <div
-                  className="gAvcJf">
+                  className="gAvcJf"
+                >
                   <Slide
                     appearOff={true}
                     dispatch={[Function]}
@@ -407,7 +468,8 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     print={false}
                     slideIndex={2}
                     transition={Array []}
-                    transitionDuration={0}>
+                    transitionDuration={0}
+                  >
                     <div>
                       Slide Content
                     </div>
@@ -418,13 +480,15 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
           </styled.div>
           <styled.div>
             <div
-              className="hiNnBp">
+              className="hiNnBp"
+            >
               <div
                 dangerouslySetInnerHTML={
                   Object {
                     "__html": "These are my slide notes!!",
                   }
-                } />
+                }
+              />
             </div>
           </styled.div>
         </div>
