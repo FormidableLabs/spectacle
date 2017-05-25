@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Slide /> should render correctly with transitions. 1`] = `
 <Slide
   align="center center"
@@ -9,7 +11,8 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
       "spin",
     ]
   }
-  viewerScaleMode={false}>
+  viewerScaleMode={false}
+>
   <VictoryAnimation
     data={
       Object {
@@ -19,7 +22,8 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
     }
     delay={0}
     duration={1000}
-    easing="quadInOut">
+    easing="quadInOut"
+  >
     <div
       className="spectacle-slide"
       data-radium={true}
@@ -36,7 +40,8 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
           "width": "100%",
           "zIndex": 1,
         }
-      }>
+      }
+    >
       <div
         data-radium={true}
         style={
@@ -47,7 +52,8 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
             "justifyContent": "center",
             "position": "relative",
           }
-        }>
+        }
+      >
         <div
           className=" spectacle-content"
           data-radium={true}
@@ -59,7 +65,8 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
               "padding": 10,
               "transform": "scale(1)",
             }
-          }>
+          }
+        >
           <div>
             Slide Content
           </div>
@@ -75,7 +82,8 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
   align="center center"
   presenterStyle={Object {}}
   style={Object {}}
-  viewerScaleMode={false}>
+  viewerScaleMode={false}
+>
   <VictoryAnimation
     data={
       Object {
@@ -85,7 +93,8 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
     }
     delay={0}
     duration={1000}
-    easing="quadInOut">
+    easing="quadInOut"
+  >
     <div
       className="spectacle-slide"
       data-radium={true}
@@ -102,7 +111,8 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
           "width": "100%",
           "zIndex": 1,
         }
-      }>
+      }
+    >
       <div
         data-radium={true}
         style={
@@ -113,7 +123,8 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
             "justifyContent": "center",
             "position": "relative",
           }
-        }>
+        }
+      >
         <div
           className=" spectacle-content"
           data-radium={true}
@@ -125,7 +136,8 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
               "padding": 10,
               "transform": "scale(1)",
             }
-          }>
+          }
+        >
           <div>
             Slide Content
           </div>

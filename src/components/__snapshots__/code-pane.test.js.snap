@@ -1,19 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<CodePane /> should render correctly. 1`] = `
 <CodePane
   lang="jsx"
   source="
       const myButton = (
         <CustomButton
-          style={{ background: \'#f00\' }}
+          style={{ background: '#f00' }}
           onClick={this.action}
         >
          Click Me
         </CustomButton>
       );
-    ">
+    "
+>
   <pre
     data-radium={true}
-    style={Object {}}>
+    style={Object {}}
+  >
     <code
       className="language-jsx"
       dangerouslySetInnerHTML={
@@ -21,7 +25,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
           "__html": "
               const myButton = (
                 &lt;CustomButton
-                  style={{ background: \'#f00\' }}
+                  style={{ background: '#f00' }}
                   onClick={this.action}
                 &gt;
                  Click Me
@@ -29,7 +33,8 @@ exports[`<CodePane /> should render correctly. 1`] = `
               );
             ",
         }
-      } />
+      }
+    />
   </pre>
 </CodePane>
 `;

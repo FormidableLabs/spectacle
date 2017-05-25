@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from "react";
-import { getStyles } from "../utils/base";
-import Radium from "radium";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { getStyles } from '../utils/base';
+import Radium from 'radium';
 
 @Radium
 export default class TableHeaderItem extends Component {

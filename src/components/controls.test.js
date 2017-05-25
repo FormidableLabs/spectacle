@@ -1,13 +1,13 @@
-import React from "react";
-import { mount } from "enzyme";
-import { mountToJson } from "enzyme-to-json";
-import Controls from "./controls";
+import React from 'react';
+import { mount } from 'enzyme';
+import { mountToJson } from 'enzyme-to-json';
+import Controls from './controls';
 
-describe("<Controls />", () => {
-  test("should render correctly.", () => {
+describe('<Controls />', () => {
+  test('should render correctly.', () => {
     const context = { styles: { controls: {
-      prev: { background: "#f00" },
-      next: { background: "#f0f" }
+      prev: { background: '#f00' },
+      next: { background: '#f0f' }
     } } };
     const wrapper = mount((
       <Controls
@@ -20,7 +20,7 @@ describe("<Controls />", () => {
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should call the next function when the next button is selected", () => {
+  test('should call the next function when the next button is selected', () => {
     const context = { styles: { controls: {} } };
     const nextFunc = jest.fn();
     const wrapper = mount((
@@ -32,12 +32,12 @@ describe("<Controls />", () => {
       />
     ), { context });
     wrapper
-      .findWhere((node) => node.name() === "button" && node.key() === ".$next")
-      .simulate("click");
+      .findWhere((node) => node.name() === 'button' && node.key() === '.$next')
+      .simulate('click');
     expect(nextFunc).toHaveBeenCalledTimes(1);
   });
 
-  test("should call the prev function when the previous button is selected", () => {
+  test('should call the prev function when the previous button is selected', () => {
     const context = { styles: { controls: {} } };
     const prevFunc = jest.fn();
     const wrapper = mount((
@@ -49,8 +49,8 @@ describe("<Controls />", () => {
       />
     ), { context });
     wrapper
-      .findWhere((node) => node.name() === "button" && node.key() === ".$prev")
-      .simulate("click");
+      .findWhere((node) => node.name() === 'button' && node.key() === '.$prev')
+      .simulate('click');
     expect(prevFunc).toHaveBeenCalledTimes(1);
   });
 });
