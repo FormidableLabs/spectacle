@@ -1,22 +1,47 @@
----
-"extends":
-  - "formidable/configurations/es6-react"
-
-"rules":
-  "indent": [2, 2, {"SwitchCase": 1}]
-  "max-len": 0
-  "no-magic-numbers": 0
-  "react/prefer-es6-class": 0
-  "react/no-multi-comp": 0
-
-"env":
-  "browser": true,
-  "node": true
-"globals":
-  "afterEach": true,
-  "beforeAll": true,
-  "describe": true,
-  "expect": true,
-  "it": true,
-  "jest": true,
-  "test": true
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": "formidable/configurations/es6-react",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "expect": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "generators": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "quotes": [
+      2,
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "comma-dangle": "off",
+    "indent": "off",
+    "react/jsx-indent-props": "off",
+    "max-len": 0,
+    "no-magic-numbers": "off",
+    "func-style": "off",
+    "arrow-parens": "off",
+    "no-use-before-define": "off",
+    "react/jsx-filename-extension": "off",
+    "react/require-extension": "off",
+    "react/no-multi-comp": "off",
+    "react/prop-types": "warn",
+    "react/sort-comp": "warn",
+    "react/sort-prop-types": "warn"
+  }
+}

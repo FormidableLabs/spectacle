@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Radium from "radium";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Radium from 'radium';
 
 @Radium
 export default class Controls extends Component {

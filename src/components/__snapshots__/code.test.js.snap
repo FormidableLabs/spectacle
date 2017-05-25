@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Code /> should render correctly. 1`] = `
 <Code>
   <code
@@ -11,6 +13,7 @@ exports[`<Code /> should render correctly. 1`] = `
       Object {
         "fontWeight": 500,
       }
-    } />
+    }
+  />
 </Code>
 `;

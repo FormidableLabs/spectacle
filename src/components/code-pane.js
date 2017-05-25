@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { getStyles } from "../utils/base";
-import Radium from "radium";
-import isUndefined from "lodash/isUndefined";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { getStyles } from '../utils/base';
+import Radium from 'radium';
+import isUndefined from 'lodash/isUndefined';
 
 const format = (str) => {
-  return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 };
 
 @Radium
@@ -15,7 +15,7 @@ export default class CodePane extends Component {
   }
   createMarkup() {
     const { source, children } = this.props;
-    const code = (isUndefined(source) || source === "") ? children : source;
+    const code = (isUndefined(source) || source === '') ? children : source;
     return {
       __html: format(code)
     };
@@ -47,6 +47,6 @@ CodePane.propTypes = {
 };
 
 CodePane.defaultProps = {
-  lang: "markup",
-  source: ""
+  lang: 'markup',
+  source: ''
 };

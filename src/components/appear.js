@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { findDOMNode } from "react-dom";
-import findKey from "lodash/findKey";
-import { connect } from "react-redux";
-import { VictoryAnimation } from "victory-core";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { findDOMNode } from 'react-dom';
+import findKey from 'lodash/findKey';
+import { connect } from 'react-redux';
+import { VictoryAnimation } from 'victory-core';
 
 class Appear extends Component {
   state = {
-    active: false
+    active: false,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -15,20 +15,22 @@ class Appear extends Component {
     const slide = this.props.route.slide;
     const fragment = findDOMNode(this.fragmentRef);
     const key = findKey(state.fragments[slide], {
-      id: parseInt(fragment.dataset.fid)
+      id: parseInt(fragment.dataset.fid),
     });
 
-    const shouldDisableAnimation = (
-      this.props.route.params.indexOf("export") !== -1 ||
-      this.props.route.params.indexOf("overview") !== -1
-    );
+    const shouldDisableAnimation =
+      this.props.route.params.indexOf('export') !== -1 ||
+      this.props.route.params.indexOf('overview') !== -1;
 
     if (shouldDisableAnimation) {
       this.setState({ active: true });
       return;
     }
 
-    if (slide in state.fragments && state.fragments[slide].hasOwnProperty(key)) {
+    if (
+      slide in state.fragments &&
+      state.fragments[slide].hasOwnProperty(key)
+    ) {
       const active = state.fragments[slide][key].visible;
       this.setState({ active });
     }
@@ -44,15 +46,14 @@ class Appear extends Component {
         duration={300}
         easing="quadInOut"
       >
-        {({ opacity }) => (
-          React.cloneElement(child,
-            {
-              className: "fragment",
-              style: { opacity },
-              ref: (f) => { this.fragmentRef = f; }
-            }
-          )
-        )}
+        {({ opacity }) =>
+          React.cloneElement(child, {
+            className: 'fragment',
+            style: { opacity },
+            ref: f => {
+              this.fragmentRef = f;
+            },
+          })}
       </VictoryAnimation>
     );
   }
@@ -60,14 +61,15 @@ class Appear extends Component {
 
 Appear.propTypes = {
   children: PropTypes.node,
+  fragment: PropTypes.object,
   route: PropTypes.object,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 Appear.contextTypes = {
   export: PropTypes.bool,
   overview: PropTypes.bool,
-  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-export default connect((state) => state)(Appear);
+export default connect(state => state)(Appear);

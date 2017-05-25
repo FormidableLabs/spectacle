@@ -1,10 +1,10 @@
-import React from "react";
-import { mount } from "enzyme";
-import { mountToJson } from "enzyme-to-json";
-import CodePane from "./code-pane";
+import React from 'react';
+import { mount } from 'enzyme';
+import { mountToJson } from 'enzyme-to-json';
+import CodePane from './code-pane';
 
-describe("<CodePane />", () => {
-  test("should render correctly.", () => {
+describe('<CodePane />', () => {
+  test('should render correctly.', () => {
     const context = { styles: { components: { codePane: { pre: {} } } } };
     const source = `
       const myButton = (

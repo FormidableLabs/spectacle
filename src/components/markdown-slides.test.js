@@ -1,10 +1,10 @@
-import MarkdownSlides from "./markdown-slides";
-import React from "react";
-import { shallow } from "enzyme";
-import { shallowToJson } from "enzyme-to-json";
+import MarkdownSlides from './markdown-slides';
+import React from 'react';
+import { shallow } from 'enzyme';
+import { shallowToJson } from 'enzyme-to-json';
 
-describe("MarkdownSlides", () => {
-  test("should render correctly when using tagged template literals", () => {
+describe('MarkdownSlides', () => {
+  test('should render correctly when using tagged template literals', () => {
     const wrapper = shallow((
       <div>
         {MarkdownSlides`
@@ -17,8 +17,8 @@ describe("MarkdownSlides", () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render correctly when using tagged template literals and string interpolation", () => {
-    const content = "**bold**";
+  test('should render correctly when using tagged template literals and string interpolation', () => {
+    const content = '**bold**';
     const wrapper = shallow((
       <div>
         {MarkdownSlides`
@@ -32,7 +32,7 @@ This text is ${content}.
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render correctly when using function syntax", () => {
+  test('should render correctly when using function syntax', () => {
     const markdownContent = `
 ## Slide A Title
 ---

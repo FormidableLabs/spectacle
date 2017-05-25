@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { mount } from "enzyme";
-import { mountToJson } from "enzyme-to-json";
-import Typeface from "./typeface";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { mount } from 'enzyme';
+import { mountToJson } from 'enzyme-to-json';
+import Typeface from './typeface';
 
 class MockComponent extends Component {
   static propTypes = {
@@ -24,8 +24,8 @@ class MockComponent extends Component {
   }
 }
 
-describe("<Typeface />", () => {
-  test("should render the children when using a system font.", () => {
+describe('<Typeface />', () => {
+  test('should render the children when using a system font.', () => {
     const wrapper = mount(
       <Typeface
         font="SF UI Text"
@@ -37,7 +37,7 @@ describe("<Typeface />", () => {
     expect(mountToJson(wrapper)).toMatchSnapshot();
   });
 
-  test("should render the children when using a Google font.", () => {
+  test('should render the children when using a Google font.', () => {
     const wrapper = mount(
       <Typeface
         googleFont="Roboto Slab"

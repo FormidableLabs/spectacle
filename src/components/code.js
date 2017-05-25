@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { getStyles } from "../utils/base";
-import Radium from "radium";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { getStyles } from '../utils/base';
+import Radium from 'radium';
 
 const format = (str) => {
-  return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 };
 
 @Radium

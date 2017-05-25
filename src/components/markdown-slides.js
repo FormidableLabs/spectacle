@@ -1,10 +1,10 @@
-import React from "react";
-import Slide from "./slide";
-import Markdown from "./markdown";
+import React from 'react';
+import Slide from './slide';
+import Markdown from './markdown';
 
 const transformStringsIntoJSX = function (strings) {
   return strings
-    .split("---")
+    .split('---')
     .map((markdown, index) => (
       <Slide key={`md-slide-${index}`}>
         <Markdown>{ markdown }</Markdown>
@@ -21,7 +21,7 @@ export default function MarkdownSlides(stringOrStrings, ...interpolations) {
         }
         return string.trim();
       })
-      .join("");
+      .join('');
     return transformStringsIntoJSX(strings);
   }
   return transformStringsIntoJSX(stringOrStrings);
