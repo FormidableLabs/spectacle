@@ -39,11 +39,12 @@ class Appear extends Component {
   render() {
     const child = React.Children.only(this.props.children);
     const endValue = this.state.active ? 1 : 0;
+    const transitionDuration = this.props.transitionDuration;
 
     return (
       <VictoryAnimation
         data={{ opacity: endValue }}
-        duration={300}
+        duration={transitionDuration}
         easing="quadInOut"
       >
         {({ opacity }) =>
@@ -59,11 +60,16 @@ class Appear extends Component {
   }
 }
 
+Appear.defaultProps = {
+  transitionDuration: 300
+};
+
 Appear.propTypes = {
   children: PropTypes.node,
   fragment: PropTypes.object,
   route: PropTypes.object,
   style: PropTypes.object,
+  transitionDuration: PropTypes.number
 };
 
 Appear.contextTypes = {
