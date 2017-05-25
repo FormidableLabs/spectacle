@@ -4,6 +4,7 @@ node_js:
   - 4
   - 5
   - 6
+  - 7
 
 # Use container-based Travis infrastructure.
 sudo: false

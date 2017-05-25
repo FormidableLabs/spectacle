@@ -1,7 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Text /> should render a <div> with text for the \`fit\` configuration. 1`] = `
 <Text
   fit={true}
-  lineHeight={1}>
+  lineHeight={1}
+>
   <div
     data-radium={true}
     style={
@@ -11,7 +14,8 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
         "height": 0,
         "width": "100%",
       }
-    }>
+    }
+  >
     <span
       data-radium={true}
       style={
@@ -24,7 +28,8 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
           "transform": "scale(NaN)",
           "transformOrigin": "center top",
         }
-      }>
+      }
+    >
       Spectacle Full Size!
     </span>
   </div>
@@ -33,7 +38,8 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
 
 exports[`<Text /> should render a <p> with text for the default configuration. 1`] = `
 <Text
-  lineHeight={1}>
+  lineHeight={1}
+>
   <p
     data-radium={true}
     style={
@@ -41,7 +47,8 @@ exports[`<Text /> should render a <p> with text for the default configuration. 1
         "color": "#000",
         "lineHeight": 1,
       }
-    }>
+    }
+  >
     Spectacle!
   </p>
 </Text>

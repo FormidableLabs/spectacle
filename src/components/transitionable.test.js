@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { shallow, mount } from "enzyme";
-import { Transitionable, renderTransition } from "./transitionable";
-import { VictoryAnimation } from "victory-core";
+import React, { Component } from 'react';
+import { shallow, mount } from 'enzyme';
+import { Transitionable, renderTransition } from './transitionable';
+import { VictoryAnimation } from 'victory-core';
 
 @Transitionable
 class ViewMock extends Component {
@@ -12,25 +12,25 @@ class ViewMock extends Component {
   }
 }
 
-describe("@renderTransition", () => {
-  it("should wrap the view component in a VictoryAnimation component", () => {
+describe('@renderTransition', () => {
+  it('should wrap the view component in a VictoryAnimation component', () => {
     const wrapper = shallow(<ViewMock transition={[]} />);
     expect(wrapper.type()).toBe(VictoryAnimation);
   });
 });
 
-describe("@Transitionable", () => {
+describe('@Transitionable', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
 
-  it("should add ReactCSSTransitionGroup lifecycle functions to the decorated class.", () => {
+  it('should add ReactCSSTransitionGroup lifecycle functions to the decorated class.', () => {
     expect(ViewMock.prototype.componentWillEnter).toBeDefined();
     expect(ViewMock.prototype.componentWillAppear).toBeDefined();
     expect(ViewMock.prototype.componentWillLeave).toBeDefined();
   });
 
-  it("should call getTransitionStyles to get the transition styles when rendered.", () => {
+  it('should call getTransitionStyles to get the transition styles when rendered.', () => {
     const wrapper = mount(<ViewMock transition={[]} />);
     wrapper.instance().getTransitionStyles = jest.fn();
     wrapper.update();

@@ -1,13 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Fill /> should render with style \`flex: 1\` 1`] = `
-<Fill>
+<styled.div>
   <div
-    data-radium={true}
-    style={
-      Object {
-        "flex": 1,
-      }
-    }>
+    className="fSVTfK"
+  >
     Spectacle
   </div>
-</Fill>
+</styled.div>
 `;

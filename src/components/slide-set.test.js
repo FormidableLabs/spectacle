@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { mount } from "enzyme";
-import { mountToJson } from "enzyme-to-json";
-import SlideSet from "./slide-set";
+import React, { Component } from 'react';
+import { mount } from 'enzyme';
+import { mountToJson } from 'enzyme-to-json';
+import SlideSet from './slide-set';
 
 const _mockContext = function () {
   return {};
@@ -13,8 +13,8 @@ class MockSlide extends Component {
   }
 }
 
-describe("<SlideSet />", () => {
-  test("should render correctly", () => {
+describe('<SlideSet />', () => {
+  test('should render correctly', () => {
     const wrapper = mount((
       <SlideSet>
         <MockSlide />

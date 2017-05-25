@@ -1,9 +1,9 @@
-import React from "react";
-import { countSlides } from "./slides";
+import React from 'react';
+import { countSlides } from './slides';
 
-describe("slides", () => {
-  describe("countSlides", () => {
-    test("should count standard slides", () => {
+describe('slides', () => {
+  describe('countSlides', () => {
+    test('should count standard slides', () => {
       const children = [
         <div key={0} />,
         <div key={1} />
@@ -11,7 +11,7 @@ describe("slides", () => {
       expect(countSlides(children)).toBe(2);
     });
 
-    test("should count slide sets", () => {
+    test('should count slide sets', () => {
       const children = [
         <div key={0} />,
         <div key={1} hasSlideChildren>
