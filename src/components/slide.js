@@ -30,7 +30,7 @@ class Slide extends React.PureComponent {
             addFragment({
               slide: this.props.hash,
               id: i,
-              visible: this.props.lastSlide > this.props.slideIndex,
+              visible: this.props.lastSlideIndex > this.props.slideIndex,
             })
           )
         );
@@ -112,9 +112,9 @@ class Slide extends React.PureComponent {
 
     const printStyles = print
       ? {
-        backgroundColor: 'white',
-        backgroundImage: 'none',
-      }
+          backgroundColor: 'white',
+          backgroundImage: 'none',
+        }
       : {};
 
     return { styles, overViewStyles, printStyles };

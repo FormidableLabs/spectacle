@@ -1,6 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<S /> should bold text when specified 1`] = `
 <S
-  type="bold">
+  type="bold"
+>
   <span
     data-radium={true}
     style={
@@ -8,7 +11,8 @@ exports[`<S /> should bold text when specified 1`] = `
         "color": "#ff0",
         "fontWeight": "bold",
       }
-    }>
+    }
+  >
     You should read this!
   </span>
 </S>
@@ -16,7 +20,8 @@ exports[`<S /> should bold text when specified 1`] = `
 
 exports[`<S /> should italicize text when specified 1`] = `
 <S
-  type="italic">
+  type="italic"
+>
   <span
     data-radium={true}
     style={
@@ -24,7 +29,8 @@ exports[`<S /> should italicize text when specified 1`] = `
         "color": "#ff0",
         "fontStyle": "italic",
       }
-    }>
+    }
+  >
     This text is italicized!
   </span>
 </S>
@@ -32,7 +38,8 @@ exports[`<S /> should italicize text when specified 1`] = `
 
 exports[`<S /> should underline text when specified 1`] = `
 <S
-  type="strikethrough">
+  type="strikethrough"
+>
   <span
     data-radium={true}
     style={
@@ -40,7 +47,8 @@ exports[`<S /> should underline text when specified 1`] = `
         "color": "#ff0",
         "textDecoration": "line-through",
       }
-    }>
+    }
+  >
     Don’t read this!
   </span>
 </S>
@@ -48,7 +56,8 @@ exports[`<S /> should underline text when specified 1`] = `
 
 exports[`<S /> should underline text when specified 2`] = `
 <S
-  type="underline">
+  type="underline"
+>
   <span
     data-radium={true}
     style={
@@ -56,7 +65,8 @@ exports[`<S /> should underline text when specified 2`] = `
         "color": "#ff0",
         "textDecoration": "underline",
       }
-    }>
+    }
+  >
     This text is underlined!
   </span>
 </S>

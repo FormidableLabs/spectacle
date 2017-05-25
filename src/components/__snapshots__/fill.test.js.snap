@@ -1,7 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Fill /> should render with style \`flex: 1\` 1`] = `
 <styled.div>
   <div
-    className="fSVTfK">
+    className="fSVTfK"
+  >
     Spectacle
   </div>
 </styled.div>

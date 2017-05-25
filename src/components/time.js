@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Clock from './clock';
 import Timer from './timer';
 import { TimeContainer } from './time-components';
@@ -10,19 +11,19 @@ export default class Time extends Component {
   }
   _renderClock() {
     if (this.state.timer) {
-      return <Timer/>;
+      return <Timer />;
     } else {
-      return <Clock/>;
+      return <Clock />;
     }
   }
   render() {
     return (
       <TimeContainer>
-        { this.props.timer ? (<Timer/>) : <Clock/> }
+        {this.props.timer ? <Timer /> : <Clock />}
       </TimeContainer>
     );
   }
 }
 Time.propTypes = {
-  timer: PropTypes.bool
+  timer: PropTypes.bool,
 };
