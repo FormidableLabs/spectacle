@@ -94,7 +94,6 @@ exports[`<Presenter /> should render correctly 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={1}
-                    lastSlide={0}
                     presenterStyle={
                       Object {
                         "position": "relative",
@@ -120,7 +119,6 @@ exports[`<Presenter /> should render correctly 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={2}
-                    lastSlide={0}
                     presenterStyle={
                       Object {
                         "position": "relative",
@@ -270,7 +268,6 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={1}
-                    lastSlide={0}
                     notes="These are my slide notes!!"
                     presenterStyle={
                       Object {
@@ -297,7 +294,6 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={2}
-                    lastSlide={0}
                     presenterStyle={
                       Object {
                         "position": "relative",
@@ -432,7 +428,6 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={1}
-                    lastSlide={0}
                     notes="These are my slide notes!!"
                     presenterStyle={
                       Object {
@@ -459,7 +454,6 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={2}
-                    lastSlide={0}
                     presenterStyle={
                       Object {
                         "position": "relative",
