@@ -14,8 +14,12 @@ class Slide extends React.PureComponent {
     contentScale: 1,
     transitioning: true,
     z: 1,
-    zoom: 1,
+    zoom: 1
   };
+
+  getChildContext() {
+    return { slideHash: this.props.hash };
+  }
 
   componentDidMount() {
     this.setZoom();
@@ -197,7 +201,11 @@ Slide.contextTypes = {
   export: PropTypes.bool,
   print: PropTypes.object,
   overview: PropTypes.bool,
-  store: PropTypes.object,
+  store: PropTypes.object
+};
+
+Slide.childContextTypes = {
+  slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default Slide;
