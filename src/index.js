@@ -15,6 +15,7 @@ import ListItem from './components/list-item';
 import List from './components/list';
 import Markdown from './components/markdown';
 import MarkdownSlides from './components/markdown-slides';
+import Notes from './components/notes';
 import Quote from './components/quote';
 import S from './components/s';
 import Slide from './components/slide';
@@ -46,6 +47,7 @@ export {
   List,
   Markdown,
   MarkdownSlides,
+  Notes,
   Quote,
   S,
   Slide,

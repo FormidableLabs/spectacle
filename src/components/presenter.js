@@ -34,9 +34,9 @@ export default class Presenter extends Component {
     return this.context.store.getState().route.slide;
   }
 
-  updateNotes(newNotes) {
+  updateNotes(newNotes, slide = null) {
     const notes = { ...this.state.notes };
-    notes[this.getCurrentSlide()] = newNotes;
+    notes[slide || this.getCurrentSlide()] = newNotes;
 
     this.setState({ notes });
   }

@@ -24,6 +24,7 @@ ReactJS based Presentation Library
   - [Main Tags](#main-tags)
     - [Deck](#deck)
     - [Slide (Base)](#slide-base)
+    - [Notes](#notes)
     - [MarkdownSlides](#markdown-slides)
   - [Layout Tags](#layout-tags)
     - [Layout](#layout)
@@ -249,6 +250,24 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
+
+<a name="notes"></a>
+#### Notes
+
+The notes tag allows to use any tree of react elements as the notes of a slide. It is used as a child node of a slide tag and its children override any value given as the `notes` attribute of its parent slide.
+
+```jsx
+<Slide ...>
+  <Notes>
+    <h4>Slide notes</h4>
+    <ol>
+      <li>First note</li>
+      <li>Second note</li>
+    </ol>
+  </Notes>
+  {/* Slide content */}
+</Slide>
+```
 
 <a name="markdown-slides"></a>
 ### MarkdownSlides
