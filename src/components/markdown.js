@@ -32,23 +32,25 @@ const _CombineBlockQuote = ({ children }) => (
 _CombineBlockQuote.propTypes = { children: PropTypes.node };
 
 const compile = marksy({
-  a: Link,
-  blockquote: _CombineBlockQuote,
-  code: CodePane,
-  del: _S('strikethrough'),
-  em: _S('italic'),
-  h1: _Heading(1),
-  h2: _Heading(2),
-  h3: _Heading(3),
-  h4: _Heading(4),
-  h5: _Heading(5),
-  h6: _Heading(6),
-  img: Image,
-  codespan: Code,
-  li: ListItem,
-  p: Text,
-  strong: _S('bold'),
-  ul: List,
+  elements: {
+    a: Link,
+    blockquote: _CombineBlockQuote,
+    code: CodePane,
+    del: _S('strikethrough'),
+    em: _S('italic'),
+    h1: _Heading(1),
+    h2: _Heading(2),
+    h3: _Heading(3),
+    h4: _Heading(4),
+    h5: _Heading(5),
+    h6: _Heading(6),
+    img: Image,
+    codespan: Code,
+    li: ListItem,
+    p: Text,
+    strong: _S('bold'),
+    ul: List,
+  }
 });
 
 export default class Markdown extends Component {
