@@ -4,7 +4,7 @@ import Markdown from './markdown';
 
 const transformStringsIntoJSX = function (strings) {
   return strings
-    .split('---')
+    .split(/\n---\n/)
     .map((markdown, index) => (
       <Slide key={`md-slide-${index}`}>
         <Markdown>{ markdown }</Markdown>
