@@ -14,6 +14,14 @@ import Quote from './quote';
 import S from './s';
 import Text from './text';
 
+import Table from './table';
+import TableHeader from './table-header';
+import TableRow from './table-row';
+import TableHeaderItem from './table-header-item';
+import TableBody from './table-body';
+import TableItem from './table-item';
+
+
 const _Heading = size => {
   const component = ({ children }) => <Heading size={size}>{children}</Heading>;
   component.propTypes = { children: PropTypes.node };
@@ -50,6 +58,12 @@ const compile = marksy({
     p: Text,
     strong: _S('bold'),
     ul: List,
+    table: Table,
+    thead: TableHeader,
+    th: TableHeaderItem,
+    tbody: TableBody,
+    tr: TableRow,
+    td: TableItem,
   }
 });
 
