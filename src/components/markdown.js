@@ -39,11 +39,17 @@ const _CombineBlockQuote = ({ children }) => (
 );
 _CombineBlockQuote.propTypes = { children: PropTypes.node };
 
+const _CodePane = ({ language, code }) => <CodePane lang={language} source={code}/>;
+_CodePane.propTypes = { code: PropTypes.string, language: PropTypes.string };
+
+const _Code = ({ code }) => <Code>{code}</Code>;
+_Code.propTypes = { code: PropTypes.string };
+
 const compile = marksy({
   elements: {
     a: Link,
     blockquote: _CombineBlockQuote,
-    code: CodePane,
+    code: _CodePane,
     del: _S('strikethrough'),
     em: _S('italic'),
     h1: _Heading(1),
@@ -53,7 +59,7 @@ const compile = marksy({
     h5: _Heading(5),
     h6: _Heading(6),
     img: Image,
-    codespan: Code,
+    codespan: _Code,
     li: ListItem,
     p: Text,
     strong: _S('bold'),
