@@ -112,7 +112,7 @@ This tag displays a styled, highlighted code preview. I prefer putting my code s
 |lang|PropTypes.string| Prism compatible language name. i.e: 'javascript' |
 |source| PropTypes.string| String of code to be shown |
 
-You can change your syntax highlighting theme by swapping the prism.js CSS file in `index.html`
+You can change your syntax highlighting theme by swapping the prism.js CSS file in `index.html`. Prism.js supports `Markup`, `CSS`, `C-like`and `Javascript` languages out of the box. To add more [supported languages](http://prismjs.com/#languages-list), you have to load the respective language's prism.js plugin in your index.html. 
 
 <a name="code-base"></a>
 ### Code (Base)
