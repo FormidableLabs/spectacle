@@ -13,7 +13,6 @@ exports[`MarkdownSlides should render correctly when using function syntax 1`] =
     >
       
       ## Slide A Title
-      
     </Markdown>
   </Slide>
   <Slide
@@ -25,7 +24,6 @@ exports[`MarkdownSlides should render correctly when using function syntax 1`] =
     <Markdown
       style={Object {}}
     >
-      
       ## Slide B Title
           
     </Markdown>
@@ -45,7 +43,6 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
       style={Object {}}
     >
       ## Slide 1 Title
-      
     </Markdown>
   </Slide>
   <Slide
@@ -57,7 +54,6 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
     <Markdown
       style={Object {}}
     >
-      
       ## Slide 2 Title
     </Markdown>
   </Slide>
@@ -77,7 +73,6 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
     >
       ## Slide 1 Title
       This text is **bold**.
-      
     </Markdown>
   </Slide>
   <Slide
@@ -89,7 +84,6 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
     <Markdown
       style={Object {}}
     >
-      
       ## Slide 2 Title
     </Markdown>
   </Slide>

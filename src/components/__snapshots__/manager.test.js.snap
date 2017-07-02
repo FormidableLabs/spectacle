@@ -110,6 +110,18 @@ exports[`<Manager /> should render correctly. 1`] = `
             lastSlideIndex={0}
             print={false}
             slideIndex={0}
+            slideReference={
+              Array [
+                Object {
+                  "id": 0,
+                  "rootIndex": 0,
+                },
+                Object {
+                  "id": 1,
+                  "rootIndex": 1,
+                },
+              ]
+            }
             transition={
               Array [
                 "zoom",
@@ -655,6 +667,24 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             lastSlideIndex={1}
             print={false}
             slideIndex={1}
+            slideReference={
+              Array [
+                Object {
+                  "id": 0,
+                  "rootIndex": 0,
+                },
+                Object {
+                  "id": 1,
+                  "rootIndex": 1,
+                  "setIndex": 0,
+                },
+                Object {
+                  "id": 2,
+                  "rootIndex": 1,
+                  "setIndex": 1,
+                },
+              ]
+            }
             transition={Array []}
             transitionDuration={500}
           >

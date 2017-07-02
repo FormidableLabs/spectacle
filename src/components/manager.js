@@ -462,6 +462,7 @@ export default class Manager extends Component {
       transitionDuration: (slide.props.transition || {}).transitionDuration
         ? slide.props.transitionDuration
         : this.props.transitionDuration,
+      slideReference: this.state.slideReference
     });
   }
   render() {
