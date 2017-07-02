@@ -333,7 +333,6 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 |Name|PropType|Description|
 |---|---|---|
 |source|PropTypes.string| Markdown source |
-|mdastConfig| PropTypes.object | Mdast configuration object |
 
 <a name="element-tags"></a>
 ### Element Tags
