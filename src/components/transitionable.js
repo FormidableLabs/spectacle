@@ -1,6 +1,7 @@
 /*eslint new-cap:0, max-statements:0*/
 import React, { cloneElement } from 'react';
 import { VictoryAnimation } from 'victory-core';
+import findIndex from 'lodash/findIndex';
 
 /**
  * Decorator for adding Spectacle transition support
@@ -36,8 +37,8 @@ const Transitionable = function (target) {
 
     transitionDirection() {
       const { slideIndex, lastSlideIndex } = this.props;
-      const slide = this.context.store.getState().route.slide || 0;
-      return this.state.reverse ? slideIndex > slide : slideIndex > lastSlideIndex;
+      const routeSlideIndex = this._getRouteSlideIndex();
+      return this.state.reverse ? slideIndex > routeSlideIndex : slideIndex > lastSlideIndex;
     },
 
     getTransitionStyles() {
@@ -68,7 +69,16 @@ const Transitionable = function (target) {
       }
 
       return { ...styles, transform: transformValue };
-    }
+    },
+
+    _getRouteSlideIndex() {
+      const { slideReference } = this.props;
+      const slide = this.context.store.getState().route.slide;
+      const slideIndex = findIndex(slideReference, reference => {
+         return slide === String(reference.id);
+      });
+      return Math.max(0, slideIndex);
+    },
   };
 
   Object.assign(target.prototype, transitionable);
