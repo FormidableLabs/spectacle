@@ -70,7 +70,8 @@ const compile = marksy({
 export default class Markdown extends Component {
   static propTypes = {
     children: PropTypes.node,
-    style: PropTypes.object,
+    source: PropTypes.string,
+    style: PropTypes.object
   };
 
   static defaultProps = {
@@ -78,7 +79,14 @@ export default class Markdown extends Component {
   };
 
   render() {
-    const { style, children } = this.props;
+    const { style, children, source } = this.props;
+    if (source) {
+      return (
+        <div style={style}>
+          {compile(source).tree}
+        </div>
+      );
+    }
     return (
       <div style={style}>
         {compile(children).tree}
