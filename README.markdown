@@ -94,7 +94,7 @@ Otherwise, it can also show you a stopwatch to count the elapsed time:
 
 To present:
 
-- Run `npm start`
+- Run `npm start` (or `yarn start` if you prefer)
 - Open two browser windows on two different screens
 - On your screen visit [http://localhost:3000/](http://localhost:3000/). You will be redirected to a URL containing the slide id.
 - Add `presenter&` or `presenter&timer` immediately after the questionmark, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/0?presenter&timer](http://localhost:3000/#/?presenter&timer&_k=wbyhif)
