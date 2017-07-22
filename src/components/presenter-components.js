@@ -67,6 +67,7 @@ export const Notes = styled.div`
   position: absolute;
   top: 10%;
   width: (40% - 100px);
+  overflow: auto;
 `;
 
 export const SlideInfo = styled.h2`
