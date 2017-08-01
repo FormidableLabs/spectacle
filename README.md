@@ -1,6 +1,7 @@
 # Spectacle
 
 [![Join the chat at https://gitter.im/FormidableLabs/spectacle](https://badges.gitter.im/FormidableLabs/spectacle.svg)](https://gitter.im/FormidableLabs/spectacle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Travis Status][trav_img]][trav_site]
 ReactJS based Presentation Library
 
 [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate/)
@@ -57,7 +58,7 @@ ReactJS based Presentation Library
 
 The best way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
-Alternatively, you can `npm install spectacle` and write your own build configurations.
+Alternatively, you can `npm install spectacle` and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
 But really, it is SO much easier to just use the boilerplate. Trust me.
 
@@ -75,7 +76,7 @@ Open a browser and hit [http://localhost:3000](http://localhost:3000), and we ar
 <a name="build--deployment"></a>
 ## Build & Deployment
 
-Building the dist version of the project is as easy as running `npm run build`
+Building the dist version of the slides is as easy as running `npm run build:dist`
 
 If you want to deploy the slideshow to surge, run `npm run deploy`
 
@@ -563,3 +564,6 @@ The `Typeface` tag is used to apply a specific font to text content. It can eith
 - [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @thejameskyle
 - [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
 - [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
+
+[trav_img]: https://api.travis-ci.org/FormidableLabs/spectacle.svg
+[trav_site]: https://travis-ci.org/FormidableLabs/spectacle

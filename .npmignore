@@ -1,3 +1,9 @@
-node_modules
-src
-*.log
+/*
+!/dist/spectacle*
+dist/*.map
+!/docs
+!/lib
+!/src
+!LICENSE
+!README.md
+!package.json
