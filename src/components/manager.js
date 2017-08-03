@@ -399,11 +399,6 @@ export default class Manager extends Component {
     };
   }
   handleClick(e) {
-    if (this.state.autoplaying) {
-      this._stopAutoplay();
-    } else {
-      this._startAutoplay();
-    }
     if (this.clickSafe === true) {
       e.preventDefault();
       e.stopPropagation();
