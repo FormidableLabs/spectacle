@@ -28,16 +28,18 @@ export default class Manager extends Component {
   static displayName = 'Manager';
 
   static defaultProps = {
+    autoplay: false,
+    autoplayDuration: 7000,
     transition: [],
     transitionDuration: 500,
     progress: 'pacman',
     controls: true,
     globalStyles: true,
-    autoplay: false,
-    autoplayDuration: 7000,
   };
 
   static propTypes = {
+    autoplay: PropTypes.bool,
+    autoplayDuration: PropTypes.number,
     children: PropTypes.node,
     controls: PropTypes.bool,
     dispatch: PropTypes.func,
@@ -47,8 +49,6 @@ export default class Manager extends Component {
     route: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number,
-    autoplay: PropTypes.bool,
-    autoplayDuration: PropTypes.number,
   };
 
   static contextTypes = {
@@ -123,7 +123,7 @@ export default class Manager extends Component {
     this.setState({ autoplaying: false });
     clearInterval(this.autoplayInterval);
   }
-  _handleEvent(e) {
+  _handleEvent(e) { // eslint-disable-line complexity
     const event = window.event ? window.event : e;
 
     if (
@@ -276,7 +276,7 @@ export default class Manager extends Component {
       this.props.route.params.indexOf('overview') !== -1
     ) {
       if (slideIndex === slideReference.length - 1) {
-        // On last slide, loop to first slide 
+        // On last slide, loop to first slide
         if (this.props.autoplay && this.state.autoplaying) {
           this._stopAutoplay();
         }
@@ -391,7 +391,11 @@ export default class Manager extends Component {
     };
   }
   handleClick(e) {
-    this.state.autoplaying ? this._stopAutoplay() : this._startAutoplay();
+    if (this.state.autoplaying) {
+      this._stopAutoplay();
+    } else {
+      this._startAutoplay();
+    }
     if (this.clickSafe === true) {
       e.preventDefault();
       e.stopPropagation();

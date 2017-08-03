@@ -13,6 +13,8 @@ export default class Deck extends Component {
   static displayName = 'Deck';
 
   static propTypes = {
+    autoplay: PropTypes.bool,
+    autoplayDuration: PropTypes.number,
     children: PropTypes.node,
     controls: PropTypes.bool,
     globalStyles: PropTypes.bool,
@@ -21,7 +23,6 @@ export default class Deck extends Component {
     theme: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number,
-    autoplay: PropTypes.bool,
   };
 
   render() {
