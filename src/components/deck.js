@@ -20,7 +20,8 @@ export default class Deck extends Component {
     progress: PropTypes.oneOf(['pacman', 'bar', 'number', 'none']),
     theme: PropTypes.object,
     transition: PropTypes.array,
-    transitionDuration: PropTypes.number
+    transitionDuration: PropTypes.number,
+    autoplay: PropTypes.bool,
   };
 
   render() {

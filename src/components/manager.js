@@ -33,6 +33,8 @@ export default class Manager extends Component {
     progress: 'pacman',
     controls: true,
     globalStyles: true,
+    autoplay: false,
+    autoplayDuration: 7000,
   };
 
   static propTypes = {
@@ -45,6 +47,8 @@ export default class Manager extends Component {
     route: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number,
+    autoplay: PropTypes.bool,
+    autoplayDuration: PropTypes.number,
   };
 
   static contextTypes = {
@@ -69,6 +73,7 @@ export default class Manager extends Component {
       slideReference: [],
       fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < 1000,
+      autoplaying: false,
     };
   }
 
@@ -83,6 +88,9 @@ export default class Manager extends Component {
       lastSlideIndex: slideIndex,
     });
     this._attachEvents();
+    if (this.props.autoplay) {
+      this._startAutoplay();
+    }
   }
   componentDidUpdate() {
     if (
@@ -105,6 +113,16 @@ export default class Manager extends Component {
     window.removeEventListener('keydown', this._handleKeyPress);
     window.removeEventListener('resize', this._handleScreenChange);
   }
+  _startAutoplay() {
+    this.setState({ autoplaying: true });
+    this.autoplayInterval = setInterval(() => {
+      this._nextSlide();
+    }, this.props.autoplayDuration);
+  }
+  _stopAutoplay() {
+    this.setState({ autoplaying: false });
+    clearInterval(this.autoplayInterval);
+  }
   _handleEvent(e) {
     const event = window.event ? window.event : e;
 
@@ -114,12 +132,14 @@ export default class Manager extends Component {
       (event.keyCode === 32 && event.shiftKey)
     ) {
       this._prevSlide();
+      this._stopAutoplay();
     } else if (
       event.keyCode === 39 ||
       event.keyCode === 34 ||
       (event.keyCode === 32 && !event.shiftKey)
     ) {
       this._nextSlide();
+      this._stopAutoplay();
     } else if (
       event.altKey &&
       event.keyCode === 79 &&
@@ -144,6 +164,13 @@ export default class Manager extends Component {
     ) {
       // t
       this._toggleTimerMode();
+    } else if (
+      event.keyCode === 13
+    ) {
+      // press enter to continue autoplaying
+      if (this.props.autoplay) {
+        this._startAutoplay();
+      }
     }
   }
   _handleKeyPress(e) {
@@ -248,7 +275,12 @@ export default class Manager extends Component {
       this._checkFragments(this.props.route.slide, true) ||
       this.props.route.params.indexOf('overview') !== -1
     ) {
-      if (slideIndex < slideReference.length - 1) {
+      if (slideIndex === slideReference.length - 1) {
+        // On last slide, loop to first slide 
+        if (this.props.autoplay && this.state.autoplaying) {
+          this._stopAutoplay();
+        }
+      } else if (slideIndex < slideReference.length - 1) {
         this.context.history.replace(
           `/${this._getHash(slideIndex + 1) + this._getSuffix()}`
         );
@@ -359,6 +391,7 @@ export default class Manager extends Component {
     };
   }
   handleClick(e) {
+    this.state.autoplaying ? this._stopAutoplay() : this._startAutoplay();
     if (this.clickSafe === true) {
       e.preventDefault();
       e.stopPropagation();
