@@ -121,6 +121,7 @@ You can toggle the presenter or overview mode by pressing respectively `alt+p` a
 |Alt/Option + O|Toggle Overview Mode|
 |Alt/Option + P|Toggle Presenter Mode|
 |Alt/Option + T|Toggle Timer in Presenter Mode|
+|Enter|Start autoplay (if enabled)|
 
 <a name="fullscreen"></a>
 ## Fullscreen
@@ -237,6 +238,8 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 |theme|PropTypes.object|Accepts a theme object for styling your presentation|
 |transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| PropTypes.number| Accepts integer value in milliseconds for global transition duration.
+|autoplay|PropTypes.bool| Automatically advance slides.
+|autoplayDuration|PropTypes.number| Accepts integer value in milliseconds for global autoplay duration, defaults to 7000.
 
 <a name="slide-base"></a>
 #### Slide (Base)
