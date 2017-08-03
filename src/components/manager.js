@@ -17,6 +17,7 @@ import Presenter from './presenter';
 import Export from './export';
 import Overview from './overview';
 
+import AutoplayControls from './autoplay-controls';
 import Fullscreen from './fullscreen';
 import Progress from './progress';
 import Controls from './controls';
@@ -62,18 +63,20 @@ export default class Manager extends Component {
     slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this._handleKeyPress = this._handleKeyPress.bind(this);
     this._handleScreenChange = this._handleScreenChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this._goToSlide = this._goToSlide.bind(this);
+    this._startAutoplay = this._startAutoplay.bind(this);
+    this._stopAutoplay = this._stopAutoplay.bind(this);
     this.state = {
       lastSlideIndex: null,
       slideReference: [],
       fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < 1000,
-      autoplaying: false,
+      autoplaying: props.autoplay,
     };
   }
 
@@ -114,6 +117,7 @@ export default class Manager extends Component {
     window.removeEventListener('resize', this._handleScreenChange);
   }
   _startAutoplay() {
+    clearInterval(this.autoplayInterval);
     this.setState({ autoplaying: true });
     this.autoplayInterval = setInterval(() => {
       this._nextSlide();
@@ -634,6 +638,14 @@ export default class Manager extends Component {
           : ''}
 
         {this.props.route.params.indexOf('export') === -1 ? <Fullscreen /> : ''}
+
+        {this.props.autoplay
+          ? <AutoplayControls
+              autoplaying={this.state.autoplaying}
+              onPlay={this._startAutoplay}
+              onPause={this._stopAutoplay}
+            />
+          : ''}
 
         {this.props.globalStyles &&
           <Style rules={Object.assign(this.context.styles.global, globals)} />}

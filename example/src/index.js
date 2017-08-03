@@ -31,7 +31,7 @@ const theme = createTheme({
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Deck autoplay transition={["zoom", "slide"]} theme={theme} transitionDuration={500}>
+      <Deck autoplay autoplayDuration={1000} transition={["zoom", "slide"]} theme={theme} transitionDuration={500}>
         <Slide transition={["zoom"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="black">
             Spectacle
