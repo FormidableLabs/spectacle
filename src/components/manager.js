@@ -165,9 +165,12 @@ export default class Manager extends Component {
       // t
       this._toggleTimerMode();
     } else if (
-      event.keyCode === 13
+      event.altKey &&
+      event.keyCode === 65 &&
+      !event.ctrlKey &&
+      !event.metaKey
     ) {
-      // press enter to continue autoplaying
+      // a
       if (this.props.autoplay) {
         this._startAutoplay();
       }
@@ -278,7 +281,8 @@ export default class Manager extends Component {
       if (slideIndex === slideReference.length - 1) {
         // On last slide, loop to first slide
         if (this.props.autoplay && this.state.autoplaying) {
-          this._stopAutoplay();
+          const slideData = '{ "slide": "0", "forward": "false" }';
+          this._goToSlide({key: 'spectacle-slide', newValue: slideData});
         }
       } else if (slideIndex < slideReference.length - 1) {
         this.context.history.replace(
