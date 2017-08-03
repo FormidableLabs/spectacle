@@ -286,7 +286,7 @@ export default class Manager extends Component {
         // On last slide, loop to first slide
         if (this.props.autoplay && this.state.autoplaying) {
           const slideData = '{ "slide": "0", "forward": "false" }';
-          this._goToSlide({key: 'spectacle-slide', newValue: slideData});
+          this._goToSlide({ key: 'spectacle-slide', newValue: slideData });
         }
       } else if (slideIndex < slideReference.length - 1) {
         this.context.history.replace(

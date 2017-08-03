@@ -20,10 +20,10 @@ export default class AutoplayControls extends Component {
         key="pause"
         onClick={this.props.onPause}
         style={[styles, this.context.styles.autoplay.pause]}
-        >
+      >
         <svg
           style={this.context.styles.autoplay.pauseIcon}
-          xmlns="http://www.w3.org/2000/svg" 
+          xmlns="http://www.w3.org/2000/svg"
           width="30px"
           height="30px"
           viewBox="0 0 30 30"
@@ -39,7 +39,7 @@ export default class AutoplayControls extends Component {
         key="play"
         onClick={this.props.onPlay}
         style={[styles, this.context.styles.autoplay.play]}
-        >
+      >
         <svg
           style={this.context.styles.autoplay.playIcon}
           xmlns="http://www.w3.org/2000/svg"
