@@ -129,8 +129,8 @@ We can start with this projet's sample at [`one-page.html`](./one-page.html). It
     <script src="https://unpkg.com/react@15/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="./dist/spectacle.js"></script>
-    <script src="./lib/one-page.js"></script>
+    <script src="https://unpkg.com/spectacle/dist/spectacle.js"></script>
+    <script src="https://unpkg.com/spectacle/lib/one-page.js"></script>
     <script type="text/spectacle">
       () => {
         // Your JS Code goes here

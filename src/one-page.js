@@ -4,11 +4,6 @@
 /*global Babel:false*/
 
 // Template for taking a render function and turning it into a presentation.
-//
-// TODO: Reconsider the API/interface for bringing in the presentation.
-//       Pure JSX? (but then how to do JS stuff).
-// TODO: Document limitations. Maybe consider a `SpectacleOnePage.FOO()` or
-//       something to allow kickout to full access / do the page root directly.
 const template = (renderFn) => `
   (() => {
     const { render } = ReactDOM;
@@ -66,6 +61,7 @@ const loadSpectacleScript = () => {
     const script = scripts.item(i);
 
     // Load first spectacle script.
+    // (Mirrors the subset of `.babelrc` we expect to use in live presentations).
     if (script.type === 'text/spectacle') {
       const renderFn = script.innerHTML;
       const input = template(renderFn);
