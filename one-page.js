@@ -1,19 +1,44 @@
 // TODO: Place this in standalone script in `dist`
 // TODO: Consistent quotes.
-(function () {
-  var loadSpectacleScript = function () {
+(() => {
+  // Template for taking a render function and turning it into a presentation.
+  // TODO: createTheme / theme from example not supported because not exported.
+  const template = (renderFn) => `
+    (() => {
+      const { render } = ReactDOM;
+      const {
+        Deck,
+        Slide,
+        Heading,
+        Link,
+        Text
+      } = Spectacle;
+
+      const renderFn = ${renderFn};
+
+      class Presentation extends React.Component {
+        render() {
+          return renderFn();
+        }
+      }
+
+      render(<Presentation/>, document.getElementById('root'));
+    })();
+  `;
+
+  const loadSpectacleScript = () => {
     // Adapted from https://github.com/babel/babel-standalone/blob/master/src/transformScriptTags.js
-    var scripts = document.getElementsByTagName('script');
-    var script, input, output;
+    const scripts = document.getElementsByTagName('script');
 
     // Load only our bespoke "text/spectacle" tags.
-    for (var i = 0; i < scripts.length; i++) {
-      script = scripts.item(i);
+    for (let i = 0; i < scripts.length; i++) {
+      const script = scripts.item(i);
 
       // Load first spectacle script.
       if (script.type === 'text/spectacle') {
-        input = script.innerHTML;
-        output = Babel.transform(input, {
+        const renderFn = script.innerHTML;
+        const input = template(renderFn);
+        const output = Babel.transform(input, {
           presets: [
             [ "es2015", { "loose": true, "modules" : false } ],
             "stage-0",
