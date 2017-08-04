@@ -60,6 +60,8 @@ The best way to get started is by using the [Spectacle Boilerplate](https://gith
 
 Alternatively, you can `npm install spectacle` and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
+Note that we have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tages in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`.
+
 But really, it is SO much easier to just use the boilerplate. Trust me.
 
 <a name="development"></a>
