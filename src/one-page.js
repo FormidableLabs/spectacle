@@ -9,11 +9,36 @@ const template = (renderFn) => `
   (() => {
     const { render } = ReactDOM;
     const {
+      Appear,
+      BlockQuote,
+      Cite,
+      CodePane,
+      Code,
+      ComponentPlayground,
       Deck,
-      Slide,
+      Fill,
+      Fit,
       Heading,
+      Image,
+      Layout,
       Link,
-      Text
+      ListItem,
+      List,
+      Markdown,
+      MarkdownSlides,
+      Notes,
+      Quote,
+      S,
+      Slide,
+      SlideSet,
+      TableBody,
+      TableHeader,
+      TableHeaderItem,
+      TableItem,
+      TableRow,
+      Table,
+      Text,
+      Typeface
     } = Spectacle;
 
     const renderFn = ${renderFn};
