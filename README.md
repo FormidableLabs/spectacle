@@ -61,14 +61,14 @@ The best way to get started is by using the [Spectacle Boilerplate](https://gith
 
 Alternatively, you can `npm install spectacle` and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
-Note that we have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tages in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`.
+Note that we have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tags in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`.
 
 But really, it is SO much easier to just use the boilerplate. Trust me.
 
 <a name="one-page"></a>
 ## One Page
 
-To aid with speedy development / kicking the tires on spectacle, we suuport using a simple boilerplate HTML page with a bespoke script tage that contains your entire presentation. The rest of the setup will take care of transpiling your React/ESnext code, providing Spectacle, React, and ReactDOM libraries, and being raring to go with a minimum of effort.
+To aid with speedy development / kicking the tires on spectacle, we suuport using a simple boilerplate HTML page with a bespoke script tag that contains your entire presentation. The rest of the setup will take care of transpiling your React/ESnext code, providing Spectacle, React, and ReactDOM libraries, and being raring to go with a minimum of effort.
 
 We can start with this projet's sample at [`one-page.html`](./one-page.html). It's essentially, the same presentation as the fully-built-from-source version, with a few notable exceptions:
 
