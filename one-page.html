@@ -38,7 +38,7 @@
             <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
           </Slide>
           <Slide id="wait-what" transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-            {/* TODO IMAGES: <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/> */}
+            <Image src={"https://github.com/FormidableLabs/spectacle/raw/master/example/assets/kat.png"} margin="0px auto 40px" height="293px"/>
             <Heading size={2} caps fit textColor="primary" textFont="primary">
               Wait what?
             </Heading>
@@ -55,8 +55,7 @@
               theme="dark"
             />
           </Slide>
-          {/* TODO IMAGES: bgImage={images.city.replace("/", "")} */}
-          <Slide transition={["slide"]} bgDarken={0.75}>
+          <Slide transition={["slide"]} bgImage={"https://github.com/FormidableLabs/spectacle/raw/master/example/assets/city.jpg"} bgDarken={0.75}>
             <Appear fid="1">
               <Heading size={1} caps fit textColor="primary">
                 Full Width
@@ -98,10 +97,9 @@
             <Heading caps fit size={1} textColor="primary">
               Inline Markdown
             </Heading>
-            {/* TODO IMAGES ![Markdown Logo](${images.markdown.replace("/", "")}) */}
             <Markdown>
               {`
-TODO_MARKDOWN_LOGO_IMAGE
+![Markdown Logo](https://raw.githubusercontent.com/FormidableLabs/spectacle/master/example/assets/markdown.png)
 
 You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
 * Lists too!
@@ -194,7 +192,9 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
             <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
               Made with love in Seattle by
             </Heading>
-            {/* TODO: IMAGE <Link href="http://www.formidable.com"><Image width="100%" src={images.logo}/></Link>*/}
+            <Link href="http://www.formidable.com">
+              <Image width="100%" src={"https://rawgit.com/FormidableLabs/spectacle/master/example/assets/formidable-logo.svg"}/>
+            </Link>
           </Slide>
         </Deck>
       );

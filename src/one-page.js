@@ -4,7 +4,11 @@
 /*global Babel:false*/
 
 // Template for taking a render function and turning it into a presentation.
-// TODO: createTheme / theme from example not supported because not exported.
+//
+// TODO: Reconsider the API/interface for bringing in the presentation.
+//       Pure JSX? (but then how to do JS stuff).
+// TODO: Document limitations. Maybe consider a `SpectacleOnePage.FOO()` or
+//       something to allow kickout to full access / do the page root directly.
 const template = (renderFn) => `
   (() => {
     const { render } = ReactDOM;
@@ -53,8 +57,8 @@ const template = (renderFn) => `
   })();
 `;
 
+// Adapted from https://github.com/babel/babel-standalone/blob/master/src/transformScriptTags.js
 const loadSpectacleScript = () => {
-  // Adapted from https://github.com/babel/babel-standalone/blob/master/src/transformScriptTags.js
   const scripts = document.getElementsByTagName('script');
 
   // Load only our bespoke "text/spectacle" tags.
