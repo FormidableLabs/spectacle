@@ -73,7 +73,9 @@ To aid with speedy development / kicking the tires on spectacle, we suuport usin
 We can start with this projet's sample at [`one-page.html`](./one-page.html). It's essentially, the same presentation as the fully-built-from-source version, with a few notable exceptions:
 
 1. There are no `import`s or `require`s. Everything must come from the global namespace. This includes `Spectacle`, `React`, `ReactDOM` and all the Spectacle exports from [`./src/index.js`](./src/index.js) -- `Deck`, `Slide`, `themes`, etc.
-2. The presentation must include exaclty **one** script tag with the type `text/spectacle` that is a function. Presently, that function is directly inserted into a wrapper code boilerplate and transpiled, so there should not be any extraneous content around it like outer variables or comments. **Good** examples:
+2. The presentation must include exaclty **one** script tag with the type `text/spectacle` that is a function. Presently, that function is directly inserted inline into a wrapper code boilerplate as a React Component `render` function. The wrapper is transpiled. There should not be any extraneous content around it like outer variables or comments.
+
+    **Good** examples:
 
     ```html
     <script type="text/spectacle">
