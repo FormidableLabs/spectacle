@@ -139,7 +139,7 @@ exports[`<Presenter /> should render correctly 1`] = `
           </styled.div>
           <styled.div>
             <div
-              className="hiNnBp"
+              className="haajbE"
             />
           </styled.div>
         </div>
@@ -314,7 +314,7 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
           </styled.div>
           <styled.div>
             <div
-              className="hiNnBp"
+              className="haajbE"
             >
               <div
                 dangerouslySetInnerHTML={
@@ -474,7 +474,7 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
           </styled.div>
           <styled.div>
             <div
-              className="hiNnBp"
+              className="haajbE"
             >
               <div
                 dangerouslySetInnerHTML={
