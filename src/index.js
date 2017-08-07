@@ -29,6 +29,13 @@ import Table from './components/table';
 import Text from './components/text';
 import Typeface from './components/typeface';
 
+import defaultTheme from './themes/default';
+
+const themes = {
+  // Rename from `default` to `defaultTheme` to avoid keyword issues.
+  defaultTheme
+};
+
 export {
   Appear,
   BlockQuote,
@@ -59,5 +66,6 @@ export {
   TableRow,
   Table,
   Text,
-  Typeface
+  Typeface,
+  themes
 };

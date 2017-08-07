@@ -11,6 +11,7 @@ ReactJS based Presentation Library
 <!-- MarkdownTOC depth=4 autolink=true bracket=round autoanchor=true -->
 
 - [Getting Started](#getting-started)
+- [One Page](#one-page)
 - [Development](#development)
 - [Build & Deployment](#build--deployment)
 - [Presenting](#presenting)
@@ -60,9 +61,94 @@ The best way to get started is by using the [Spectacle Boilerplate](https://gith
 
 Alternatively, you can `npm install spectacle` and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
-Note that we have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tages in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`.
+Note that we have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tags in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`.
 
 But really, it is SO much easier to just use the boilerplate. Trust me.
+
+<a name="one-page"></a>
+## One Page
+
+To aid with speedy development / kicking the tires on spectacle, we suuport using a simple boilerplate HTML page with a bespoke script tag that contains your entire presentation. The rest of the setup will take care of transpiling your React/ESnext code, providing Spectacle, React, and ReactDOM libraries, and being raring to go with a minimum of effort.
+
+We can start with this projet's sample at [`one-page.html`](./one-page.html). It's essentially, the same presentation as the fully-built-from-source version, with a few notable exceptions:
+
+1. There are no `import`s or `require`s. Everything must come from the global namespace. This includes `Spectacle`, `React`, `ReactDOM` and all the Spectacle exports from [`./src/index.js`](./src/index.js) -- `Deck`, `Slide`, `themes`, etc.
+2. The presentation must include exaclty **one** script tag with the type `text/spectacle` that is a function. Presently, that function is directly inserted inline into a wrapper code boilerplate as a React Component `render` function. The wrapper is transpiled. There should not be any extraneous content around it like outer variables or comments.
+
+    **Good** examples:
+
+    ```html
+    <script type="text/spectacle">
+      () => (
+        <Deck>{/* SLIDES */}</Deck>
+      )
+    </script>
+    ```
+
+    ```html
+    <script type="text/spectacle">
+      () => {
+        // Code-y code stuff in JS...
+
+        return (
+          <Deck>{/* SLIDES */}</Deck>
+        );
+      }
+    </script>
+    ```
+
+    **Bad** examples of what not to do:
+
+    ```html
+    <script type="text/spectacle">
+      // Outer comment (BAD)
+      const outerVariable = "BAD";
+
+      () => (
+        <Deck>{/* SLIDES */}</Deck>
+      )
+    </script>
+    ```
+
+... with those guidelines in mind, here's the boilerplate that you can literally copy-and-paste into an HTML file and start a Spectacle presentation that works from the get go!
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
+    <title>Spectacle</title>
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/prismjs@1/themes/prism-tomorrow.css" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/normalize.css@7/normalize.css" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/spectacle/lib/themes/default/index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/prismjs@1/prism.js"></script>
+    <script src="https://unpkg.com/prismjs@1/components/prism-jsx.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15/prop-types.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+    <script src="https://unpkg.com/spectacle/dist/spectacle.js"></script>
+    <script src="https://unpkg.com/spectacle/lib/one-page.js"></script>
+    <script type="text/spectacle">
+      () => {
+        // Your JS Code goes here
+
+        return (
+          <Deck>
+          {/* Throw in some slides here! */}
+          </Deck>
+        );
+      }
+    </script>
+</body>
+</html>
+```
 
 <a name="development"></a>
 ## Development
