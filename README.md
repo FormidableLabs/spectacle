@@ -68,12 +68,12 @@ But really, it is SO much easier to just use the boilerplate. Trust me.
 <a name="one-page"></a>
 ## One Page
 
-To aid with speedy development / kicking the tires on spectacle, we suuport using a simple boilerplate HTML page with a bespoke script tag that contains your entire presentation. The rest of the setup will take care of transpiling your React/ESnext code, providing Spectacle, React, and ReactDOM libraries, and being raring to go with a minimum of effort.
+To aid with speedy development / kicking the tires on spectacle, we support using a simple boilerplate HTML page with a bespoke script tag that contains your entire presentation. The rest of the setup will take care of transpiling your React/ESnext code, providing Spectacle, React, and ReactDOM libraries, and being raring to go with a minimum of effort.
 
-We can start with this projet's sample at [`one-page.html`](./one-page.html). It's essentially, the same presentation as the fully-built-from-source version, with a few notable exceptions:
+We can start with this project's sample at [`one-page.html`](./one-page.html). It's essentially, the same presentation as the fully-built-from-source version, with a few notable exceptions:
 
 1. There are no `import`s or `require`s. Everything must come from the global namespace. This includes `Spectacle`, `React`, `ReactDOM` and all the Spectacle exports from [`./src/index.js`](./src/index.js) -- `Deck`, `Slide`, `themes`, etc.
-2. The presentation must include exaclty **one** script tag with the type `text/spectacle` that is a function. Presently, that function is directly inserted inline into a wrapper code boilerplate as a React Component `render` function. The wrapper is transpiled. There should not be any extraneous content around it like outer variables or comments.
+2. The presentation must include exactly **one** script tag with the type `text/spectacle` that is a function. Presently, that function is directly inserted inline into a wrapper code boilerplate as a React Component `render` function. The wrapper is transpiled. There should not be any extraneous content around it like outer variables or comments.
 
     **Good** examples:
 
@@ -337,7 +337,7 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |align| PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (right). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default.
 |id| PropTypes.string | Used to create a string based hash.
 |maxHeight| PropTypes.number | Used to set max dimensions of the Slide.
-|maxWidth| PropTypes.number | Used to set max dimentions of the Slide.
+|maxWidth| PropTypes.number | Used to set max dimensions of the Slide.
 |notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
