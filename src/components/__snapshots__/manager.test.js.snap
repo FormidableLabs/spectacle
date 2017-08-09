@@ -11,6 +11,8 @@ exports[`<Manager /> should render correctly. 1`] = `
   transitionDuration={500}
 >
   <Manager
+    autoplay={false}
+    autoplayDuration={7000}
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
@@ -259,6 +261,8 @@ exports[`<Manager /> should render correctly. 1`] = `
 exports[`<Manager /> should render the export configuration when specified. 1`] = `
 <Connect(Manager)>
   <Manager
+    autoplay={false}
+    autoplayDuration={7000}
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
@@ -384,6 +388,8 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
 exports[`<Manager /> should render the overview configuration when specified. 1`] = `
 <Connect(Manager)>
   <Manager
+    autoplay={false}
+    autoplayDuration={7000}
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
@@ -559,6 +565,8 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
 exports[`<Manager /> should render with slideset slides 1`] = `
 <Connect(Manager)>
   <Manager
+    autoplay={false}
+    autoplayDuration={7000}
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
