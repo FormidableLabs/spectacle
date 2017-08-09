@@ -13,6 +13,8 @@ export default class Deck extends Component {
   static displayName = 'Deck';
 
   static propTypes = {
+    autoplay: PropTypes.bool,
+    autoplayDuration: PropTypes.number,
     children: PropTypes.node,
     controls: PropTypes.bool,
     globalStyles: PropTypes.bool,
@@ -20,7 +22,7 @@ export default class Deck extends Component {
     progress: PropTypes.oneOf(['pacman', 'bar', 'number', 'none']),
     theme: PropTypes.object,
     transition: PropTypes.array,
-    transitionDuration: PropTypes.number
+    transitionDuration: PropTypes.number,
   };
 
   render() {
