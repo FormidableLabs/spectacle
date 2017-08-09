@@ -1,6 +1,7 @@
 # Spectacle
 
 [![Join the chat at https://gitter.im/FormidableLabs/spectacle](https://badges.gitter.im/FormidableLabs/spectacle.svg)](https://gitter.im/FormidableLabs/spectacle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Travis Status][trav_img]][trav_site]
 ReactJS based Presentation Library
 
 [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate/)
@@ -10,6 +11,7 @@ ReactJS based Presentation Library
 <!-- MarkdownTOC depth=4 autolink=true bracket=round autoanchor=true -->
 
 - [Getting Started](#getting-started)
+- [One Page](#one-page)
 - [Development](#development)
 - [Build & Deployment](#build--deployment)
 - [Presenting](#presenting)
@@ -57,9 +59,96 @@ ReactJS based Presentation Library
 
 The best way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
-Alternatively, you can `npm install spectacle` and write your own build configurations.
+Alternatively, you can `npm install spectacle` and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
+
+Note that we have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tags in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`.
 
 But really, it is SO much easier to just use the boilerplate. Trust me.
+
+<a name="one-page"></a>
+## One Page
+
+To aid with speedy development / kicking the tires on spectacle, we support using a simple boilerplate HTML page with a bespoke script tag that contains your entire presentation. The rest of the setup will take care of transpiling your React/ESnext code, providing Spectacle, React, and ReactDOM libraries, and being raring to go with a minimum of effort.
+
+We can start with this project's sample at [`one-page.html`](./one-page.html). It's essentially, the same presentation as the fully-built-from-source version, with a few notable exceptions:
+
+1. There are no `import`s or `require`s. Everything must come from the global namespace. This includes `Spectacle`, `React`, `ReactDOM` and all the Spectacle exports from [`./src/index.js`](./src/index.js) -- `Deck`, `Slide`, `themes`, etc.
+2. The presentation must include exactly **one** script tag with the type `text/spectacle` that is a function. Presently, that function is directly inserted inline into a wrapper code boilerplate as a React Component `render` function. The wrapper is transpiled. There should not be any extraneous content around it like outer variables or comments.
+
+    **Good** examples:
+
+    ```html
+    <script type="text/spectacle">
+      () => (
+        <Deck>{/* SLIDES */}</Deck>
+      )
+    </script>
+    ```
+
+    ```html
+    <script type="text/spectacle">
+      () => {
+        // Code-y code stuff in JS...
+
+        return (
+          <Deck>{/* SLIDES */}</Deck>
+        );
+      }
+    </script>
+    ```
+
+    **Bad** examples of what not to do:
+
+    ```html
+    <script type="text/spectacle">
+      // Outer comment (BAD)
+      const outerVariable = "BAD";
+
+      () => (
+        <Deck>{/* SLIDES */}</Deck>
+      )
+    </script>
+    ```
+
+... with those guidelines in mind, here's the boilerplate that you can literally copy-and-paste into an HTML file and start a Spectacle presentation that works from the get go!
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
+    <title>Spectacle</title>
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/prismjs@1/themes/prism-tomorrow.css" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/normalize.css@7/normalize.css" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/spectacle/lib/themes/default/index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/prismjs@1/prism.js"></script>
+    <script src="https://unpkg.com/prismjs@1/components/prism-jsx.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15/prop-types.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+    <script src="https://unpkg.com/spectacle/dist/spectacle.js"></script>
+    <script src="https://unpkg.com/spectacle/lib/one-page.js"></script>
+    <script type="text/spectacle">
+      () => {
+        // Your JS Code goes here
+
+        return (
+          <Deck>
+          {/* Throw in some slides here! */}
+          </Deck>
+        );
+      }
+    </script>
+</body>
+</html>
+```
 
 <a name="development"></a>
 ## Development
@@ -75,7 +164,7 @@ Open a browser and hit [http://localhost:3000](http://localhost:3000), and we ar
 <a name="build--deployment"></a>
 ## Build & Deployment
 
-Building the dist version of the project is as easy as running `npm run build`
+Building the dist version of the slides is as easy as running `npm run build:dist`
 
 If you want to deploy the slideshow to surge, run `npm run deploy`
 
@@ -251,7 +340,7 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |align| PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (right). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default.
 |id| PropTypes.string | Used to create a string based hash.
 |maxHeight| PropTypes.number | Used to set max dimensions of the Slide.
-|maxWidth| PropTypes.number | Used to set max dimentions of the Slide.
+|maxWidth| PropTypes.number | Used to set max dimensions of the Slide.
 |notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
@@ -566,3 +655,6 @@ The `Typeface` tag is used to apply a specific font to text content. It can eith
 - [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @thejameskyle
 - [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
 - [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
+
+[trav_img]: https://api.travis-ci.org/FormidableLabs/spectacle.svg
+[trav_site]: https://travis-ci.org/FormidableLabs/spectacle

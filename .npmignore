@@ -1,3 +1,11 @@
-node_modules
-src
-*.log
+/*
+!/dist/spectacle*
+dist/*.map
+!/docs
+!/lib
+!/src
+__snapshots__
+*.test.js
+!LICENSE
+!README.md
+!package.json
