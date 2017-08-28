@@ -82,6 +82,26 @@ export default class Presentation extends React.Component {
             </Heading>
           </Appear>
         </Slide>
+        <Slide transition={["fade"]}>
+          <Layout>
+            <Fill width="100%">
+              <Image src={images.city.replace("/", "")} style={{width: '100%'}} />
+            </Fill>
+            <Appear fid="1" transitionDuration={500}>
+              <Fill width="100%" style={{position: 'absolute', top:40, height: 575, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                <Heading size={3} caps fit textColor="primary">
+                  Overlay Text
+                </Heading>
+                <Heading size={3} caps fit textColor="primary">
+                  <Image src={images.logo} style={{position: 'relative', width: 920}} />
+                </Heading>
+                <Heading size={3} caps fit textColor="primary">
+                  and Images
+                </Heading>
+              </Fill>
+            </Appear>
+          </Layout>
+        </Slide>
         <Slide transition={["zoom", "fade"]} bgColor="primary">
           <Heading caps fit>Flexible Layouts</Heading>
           <Layout>
