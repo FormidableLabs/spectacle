@@ -57,7 +57,9 @@ ReactJS based Presentation Library
 <a name="getting-started"></a>
 ## Getting Started
 
-The best way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
+The new best way to get started is by running `create-react-app my-presentation --scripts-version spectacle-scripts`. This will use `create-react-app` to create almost everything you need. This however, doesn't include publish scripts, and ejecting is required for fancy stuff.
+
+The second best way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
 Alternatively, you can `npm install spectacle` and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
