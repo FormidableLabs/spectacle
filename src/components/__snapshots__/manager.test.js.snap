@@ -13,6 +13,8 @@ exports[`<Manager /> should render correctly. 1`] = `
   <Manager
     autoplay={false}
     autoplayDuration={7000}
+    contentHeight={700}
+    contentWidth={1000}
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
@@ -263,6 +265,8 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
   <Manager
     autoplay={false}
     autoplayDuration={7000}
+    contentHeight={700}
+    contentWidth={1000}
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
@@ -373,7 +377,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
         <style
           dangerouslySetInnerHTML={
             Object {
-              "__html": "body{min-width: 1100px;
+              "__html": "body{min-width: 1150px;
             min-height: 850px;
             overflow: auto;}.spectacle-presenter-next .fragment{display: none !important;}",
             }
@@ -390,6 +394,8 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
   <Manager
     autoplay={false}
     autoplayDuration={7000}
+    contentHeight={700}
+    contentWidth={1000}
     controls={true}
     dispatch={[Function]}
     globalStyles={true}
@@ -567,6 +573,8 @@ exports[`<Manager /> should render with slideset slides 1`] = `
   <Manager
     autoplay={false}
     autoplayDuration={7000}
+    contentHeight={700}
+    contentWidth={1000}
     controls={true}
     dispatch={[Function]}
     globalStyles={true}

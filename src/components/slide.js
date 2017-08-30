@@ -98,8 +98,8 @@ class Slide extends React.PureComponent {
       },
       content: {
         flex: 1,
-        maxHeight: this.context.contentHeight,
-        maxWidth: this.context.contentWidth,
+        maxHeight: this.context.contentHeight || 700,
+        maxWidth: this.context.contentWidth || 1000,
         transform: `scale(${this.state.contentScale})`,
         padding: this.state.zoom > 0.6 ? this.props.margin || 40 : 10,
       },
