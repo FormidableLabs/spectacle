@@ -324,6 +324,8 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 |Name|PropType|Description|
 |---|---|---|
 |controls| PropTypes.bool| Show control arrows when not in fullscreen
+|contentHeight| PropTypes.numbers| Baseline content area height (default: 700)
+|contentWidth| PropTypes.numbers| Baseline content area width (default: 1000)
 |history|PropTypes.object|Accepts custom configuration for [history](https://github.com/ReactTraining/history)
 |progress| PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quarternary' color in the theme.
 |theme|PropTypes.object|Accepts a theme object for styling your presentation|
