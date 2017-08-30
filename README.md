@@ -323,7 +323,7 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 |---|---|---|
 |controls| PropTypes.bool| Show control arrows when not in fullscreen
 |history|PropTypes.object|Accepts custom configuration for [history](https://github.com/ReactTraining/history)
-|progress| PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`.
+|progress| PropTypes.string|Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quarternary' color in the theme.
 |theme|PropTypes.object|Accepts a theme object for styling your presentation|
 |transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionDuration| PropTypes.number| Accepts integer value in milliseconds for global transition duration.
