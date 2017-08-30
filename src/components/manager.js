@@ -31,6 +31,8 @@ export default class Manager extends Component {
   static defaultProps = {
     autoplay: false,
     autoplayDuration: 7000,
+    contentWidth: 1000,
+    contentHeight: 700,
     transition: [],
     transitionDuration: 500,
     progress: 'pacman',
@@ -42,6 +44,8 @@ export default class Manager extends Component {
     autoplay: PropTypes.bool,
     autoplayDuration: PropTypes.number,
     children: PropTypes.node,
+    contentHeight: PropTypes.number,
+    contentWidth: PropTypes.number,
     controls: PropTypes.bool,
     dispatch: PropTypes.func,
     fragment: PropTypes.object,
@@ -63,6 +67,11 @@ export default class Manager extends Component {
     slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
+  static childContextTypes = {
+    contentWidth: PropTypes.number,
+    contentHeight: PropTypes.number,
+  };
+
   constructor(props) {
     super(props);
     this._handleKeyPress = this._handleKeyPress.bind(this);
@@ -75,8 +84,15 @@ export default class Manager extends Component {
       lastSlideIndex: null,
       slideReference: [],
       fullscreen: window.innerHeight === screen.height,
-      mobile: window.innerWidth < 1000,
+      mobile: window.innerWidth < props.contentWidth,
       autoplaying: props.autoplay,
+    };
+  }
+
+  getChildContext() {
+    return {
+      contentWidth: this.props.contentWidth,
+      contentHeight: this.props.contentHeight,
     };
   }
 
@@ -195,7 +211,7 @@ export default class Manager extends Component {
   _handleScreenChange() {
     this.setState({
       fullscreen: window.innerHeight === screen.height,
-      mobile: window.innerWidth < 1000,
+      mobile: window.innerWidth < this.props.contentWidth,
     });
   }
   _toggleOverviewMode() {
@@ -513,8 +529,8 @@ export default class Manager extends Component {
     const globals = this.props.route.params.indexOf('export') !== -1
       ? {
           body: Object.assign(this.context.styles.global.body, {
-            minWidth: 1100,
-            minHeight: 850,
+            minWidth: this.props.contentWidth + 150,
+            minHeight: this.props.contentHeight + 150,
             overflow: 'auto',
           }),
           '.spectacle-presenter-next .fragment': {

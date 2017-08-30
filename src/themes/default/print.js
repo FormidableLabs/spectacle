@@ -210,7 +210,7 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         h3: {
           color: 'black',
           fontSize: '4.9rem',
-          fontFamily: fonts.secondary,
+          fontFamily: fonts.primary,
           lineHeight: 1,
           fontWeight: 'bold',
           margin: '0.5rem auto',

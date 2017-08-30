@@ -52,12 +52,12 @@ class Slide extends React.PureComponent {
     const mobile = window.matchMedia('(max-width: 628px)').matches;
     const content = this.contentRef;
     if (content) {
-      const zoom = this.props.viewerScaleMode ? 1 : content.offsetWidth / 1000;
+      const zoom = this.props.viewerScaleMode ? 1 : content.offsetWidth / this.context.contentWidth;
 
-      const contentScaleY = content.parentNode.offsetHeight / 700;
+      const contentScaleY = content.parentNode.offsetHeight / this.context.contentHeight;
       const contentScaleX = this.props.viewerScaleMode
-        ? content.parentNode.offsetWidth / 1000
-        : content.parentNode.offsetWidth / 700;
+        ? content.parentNode.offsetWidth / this.context.contentWidth
+        : content.parentNode.offsetWidth / this.context.contentHeight;
       const minScale = Math.min(contentScaleY, contentScaleX);
 
       let contentScale = minScale < 1 ? minScale : 1;
@@ -98,8 +98,8 @@ class Slide extends React.PureComponent {
       },
       content: {
         flex: 1,
-        maxHeight: this.props.maxHeight || 700,
-        maxWidth: this.props.maxWidth || 1000,
+        maxHeight: this.context.contentHeight,
+        maxWidth: this.context.contentWidth,
         transform: `scale(${this.state.contentScale})`,
         padding: this.state.zoom > 0.6 ? this.props.margin || 40 : 10,
       },
@@ -186,8 +186,6 @@ Slide.propTypes = {
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   lastSlideIndex: PropTypes.number,
   margin: PropTypes.number,
-  maxHeight: PropTypes.number,
-  maxWidth: PropTypes.number,
   notes: PropTypes.any,
   presenterStyle: PropTypes.object,
   print: PropTypes.bool,
@@ -198,6 +196,8 @@ Slide.propTypes = {
 
 Slide.contextTypes = {
   styles: PropTypes.object,
+  contentWidth: PropTypes.number,
+  contentHeight: PropTypes.number,
   export: PropTypes.bool,
   print: PropTypes.object,
   overview: PropTypes.bool,

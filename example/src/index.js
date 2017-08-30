@@ -31,7 +31,7 @@ const theme = createTheme({
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Deck autoplay transition={["zoom", "slide"]} theme={theme} transitionDuration={500}>
+      <Deck transition={["zoom", "slide"]} theme={theme} transitionDuration={500}>
         <Slide transition={["zoom"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="black">
             Spectacle
@@ -81,26 +81,6 @@ export default class Presentation extends React.Component {
               Background Imagery
             </Heading>
           </Appear>
-        </Slide>
-        <Slide transition={["fade"]}>
-          <Layout style={{position: 'relative', width: '100%'}}>
-            <Fill width="100%">
-              <Image src={images.city.replace("/", "")} style={{width: '100%'}} />
-            </Fill>
-            <Appear fid="1" transitionDuration={500}>
-              <Fill style={{position: 'absolute', maxHeight: 700, maxWidth: 1000, width: '100%', height: '100%'}}>
-                <Heading size={3} caps fit textColor="primary">
-                  Overlay Text
-                </Heading>
-                <Heading size={3} caps fit textColor="primary">
-                  <Image src={images.logo} />
-                </Heading>
-                <Heading size={3} caps fit textColor="primary">
-                  and Images
-                </Heading>
-              </Fill>
-            </Appear>
-          </Layout>
         </Slide>
         <Slide transition={["zoom", "fade"]} bgColor="primary">
           <Heading caps fit>Flexible Layouts</Heading>
