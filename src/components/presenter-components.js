@@ -36,6 +36,7 @@ export const PreviewCurrentSlide = styled.div`
   display: flex;
   flex: 0 0 100%;
   height: 55%;
+  width: 55%;
   padding: 20px;
 `;
 
