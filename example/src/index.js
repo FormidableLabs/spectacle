@@ -29,6 +29,16 @@ const theme = createTheme({
 });
 
 export default class Presentation extends React.Component {
+  state = {
+    steps: 0
+  }
+
+  updateSteps = steps => {
+    if (this.state.steps !== steps) { // eslint-disable-line no-invalid-this
+      this.setState({ steps }); // eslint-disable-line no-invalid-this
+    }
+  }
+
   render() {
     return (
       <Deck transition={['zoom', 'slide']} theme={theme} transitionDuration={500}>
@@ -81,6 +91,26 @@ export default class Presentation extends React.Component {
               Background Imagery
             </Heading>
           </Appear>
+        </Slide>
+        <Slide transition={['slide']} bgDarken={0.75} getAppearStep={this.updateSteps}>
+          <Appear>
+            <Heading size={1} caps textColor="tertiary">
+              Can
+            </Heading>
+          </Appear>
+          <Appear>
+            <Heading size={1} caps textColor="secondary">
+              Count
+            </Heading>
+          </Appear>
+          <Appear>
+            <Heading size={1} caps textColor="tertiary">
+              Steps
+            </Heading>
+          </Appear>
+            <Heading size={1} caps fit textColor="secondary">
+              Steps: {this.state.steps}
+            </Heading>
         </Slide>
         <Slide transition={['zoom', 'fade']} bgColor="primary">
           <Heading caps fit>Flexible Layouts</Heading>
