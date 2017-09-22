@@ -32,6 +32,7 @@ class Appear extends Component {
       state.fragments[slide].hasOwnProperty(key)
     ) {
       const active = state.fragments[slide][key].visible;
+      this.context.stepCounter.setFragments(state.fragments[slide], slide);
       this.setState({ active });
     }
   }
@@ -76,6 +77,9 @@ Appear.contextTypes = {
   export: PropTypes.bool,
   overview: PropTypes.bool,
   slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  stepCounter: PropTypes.shape({
+    setFragments: PropTypes.func
+  })
 };
 
 export default connect(state => state)(Appear);
