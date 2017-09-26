@@ -196,8 +196,8 @@ Slide.propTypes = {
 
 Slide.contextTypes = {
   styles: PropTypes.object,
-  contentWidth: PropTypes.number,
-  contentHeight: PropTypes.number,
+  contentWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  contentHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   export: PropTypes.bool,
   print: PropTypes.object,
   overview: PropTypes.bool,
