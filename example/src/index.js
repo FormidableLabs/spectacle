@@ -1,38 +1,48 @@
-import React from "react";
+import React from 'react';
 
 import {
   Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
   Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
   TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text
-} from "../../src";
+} from '../../src';
 
-import preloader from "../../src/utils/preloader";
+import preloader from '../../src/utils/preloader';
 
-import createTheme from "../../src/themes/default";
+import createTheme from '../../src/themes/default';
 
-import Interactive from "../assets/interactive";
+import Interactive from '../assets/interactive';
 
-require("normalize.css");
-require("../../src/themes/default/index.css");
+require('normalize.css');
+require('../../src/themes/default/index.css');
 
 const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png")
+  city: require('../assets/city.jpg'),
+  kat: require('../assets/kat.png'),
+  logo: require('../assets/formidable-logo.svg'),
+  markdown: require('../assets/markdown.png')
 };
 
 preloader(images);
 
 const theme = createTheme({
-  primary: "#ff4081"
+  primary: '#ff4081'
 });
 
 export default class Presentation extends React.Component {
+  state = {
+    steps: 0
+  }
+
+  updateSteps = steps => {
+    if (this.state.steps !== steps) { // eslint-disable-line no-invalid-this
+      this.setState({ steps }); // eslint-disable-line no-invalid-this
+    }
+  }
+
   render() {
     return (
-      <Deck transition={["zoom", "slide"]} theme={theme} transitionDuration={500}>
-        <Slide transition={["zoom"]} bgColor="primary">
+      <Deck transition={['zoom', 'slide']} theme={theme} transitionDuration={500}>
+        <Slide transition={['zoom']} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="black">
             Spectacle
           </Heading>
@@ -47,16 +57,16 @@ export default class Presentation extends React.Component {
           </Link>
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
-        <Slide id="wait-what" transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-          <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
+        <Slide id="wait-what" transition={['slide']} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
+          <Image src={images.kat.replace('/', '')} margin="0px auto 40px" height="293px"/>
           <Heading size={2} caps fit textColor="primary" textFont="primary">
             Wait what?
           </Heading>
         </Slide>
-        <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
+        <Slide transition={['zoom', 'fade']} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
           <CodePane
             lang="jsx"
-            source={require("raw-loader!../assets/deck.example")}
+            source={require('raw-loader!../assets/deck.example')}
             margin="20px auto"
             overflow = "overflow"
             height = "80vh"
@@ -67,7 +77,7 @@ export default class Presentation extends React.Component {
             theme="dark"
           />
         </Slide>
-        <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
+        <Slide transition={['slide']} bgImage={images.city.replace('/', '')} bgDarken={0.75}>
           <Appear fid="1">
             <Heading size={1} caps fit textColor="primary">
               Full Width
@@ -84,7 +94,27 @@ export default class Presentation extends React.Component {
             </Heading>
           </Appear>
         </Slide>
-        <Slide transition={["zoom", "fade"]} bgColor="primary">
+        <Slide transition={['slide']} bgDarken={0.75} getAppearStep={this.updateSteps}>
+          <Appear>
+            <Heading size={1} caps textColor="tertiary">
+              Can
+            </Heading>
+          </Appear>
+          <Appear>
+            <Heading size={1} caps textColor="secondary">
+              Count
+            </Heading>
+          </Appear>
+          <Appear>
+            <Heading size={1} caps textColor="tertiary">
+              Steps
+            </Heading>
+          </Appear>
+            <Heading size={1} caps fit textColor="secondary">
+              Steps: {this.state.steps}
+            </Heading>
+        </Slide>
+        <Slide transition={['zoom', 'fade']} bgColor="primary">
           <Heading caps fit>Flexible Layouts</Heading>
           <Layout>
             <Fill>
@@ -99,19 +129,19 @@ export default class Presentation extends React.Component {
             </Fill>
           </Layout>
         </Slide>
-        <Slide transition={["slide"]} bgColor="black">
+        <Slide transition={['slide']} bgColor="black">
           <BlockQuote>
             <Quote>Wonderfully formatted quotes</Quote>
             <Cite>Ken Wheeler</Cite>
           </BlockQuote>
         </Slide>
-        <Slide transition={["spin", "zoom"]} bgColor="tertiary">
+        <Slide transition={['spin', 'zoom']} bgColor="tertiary">
           <Heading caps fit size={1} textColor="primary">
             Inline Markdown
           </Heading>
           <Markdown>
             {`
-  ![Markdown Logo](${images.markdown.replace("/", "")})
+  ![Markdown Logo](${images.markdown.replace('/', '')})
 
   You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
   * Lists too!
@@ -130,7 +160,7 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
 * Imported Markdown from another file
           `
         }
-        <Slide transition={["slide", "spin"]} bgColor="primary">
+        <Slide transition={['slide', 'spin']} bgColor="primary">
           <Heading caps fit size={1} textColor="tertiary">
             Smooth
           </Heading>
@@ -139,7 +169,7 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
           </Heading>
         </Slide>
         <SlideSet>
-          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+          <Slide transition={['fade']} bgColor="secondary" textColor="primary">
             <List>
               <Appear><ListItem>Inline style based theme system</ListItem></Appear>
               <Appear><ListItem>Autofit text</ListItem></Appear>
@@ -148,14 +178,14 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
               <Appear><ListItem>And...</ListItem></Appear>
             </List>
           </Slide>
-          <Slide transition={["slide"]} bgColor="primary">
+          <Slide transition={['slide']} bgColor="primary">
             <Heading size={1} caps fit textColor="tertiary">
               Your presentations are interactive
             </Heading>
             <Interactive/>
           </Slide>
         </SlideSet>
-        <Slide transition={["slide"]} bgColor="primary"
+        <Slide transition={['slide']} bgColor="primary"
           notes="Hard to find cities without any pizza"
         >
           <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
@@ -200,7 +230,7 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
             </Table>
           </Layout>
         </Slide>
-        <Slide transition={["spin", "slide"]} bgColor="tertiary">
+        <Slide transition={['spin', 'slide']} bgColor="tertiary">
           <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
             Made with love in Seattle by
           </Heading>

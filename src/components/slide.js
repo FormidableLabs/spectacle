@@ -6,10 +6,16 @@ import { getStyles } from '../utils/base';
 import Radium from 'radium';
 import { addFragment } from '../actions';
 import { Transitionable, renderTransition } from './transitionable';
+import stepCounter from '../utils/step-counter';
 
 @Transitionable
 @Radium
 class Slide extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.stepCounter = stepCounter();
+  }
+
   state = {
     contentScale: 1,
     transitioning: true,
@@ -18,7 +24,12 @@ class Slide extends React.PureComponent {
   };
 
   getChildContext() {
-    return { slideHash: this.props.hash };
+    return {
+      stepCounter: {
+        setFragments: this.stepCounter.setFragments
+      },
+      slideHash: this.props.hash
+    };
   }
 
   componentDidMount() {
@@ -42,6 +53,13 @@ class Slide extends React.PureComponent {
     }
     window.addEventListener('load', this.setZoom);
     window.addEventListener('resize', this.setZoom);
+  }
+
+  componentDidUpdate() {
+    const { steps, slideIndex } = this.stepCounter.getSteps();
+    if (this.props.getAppearStep) {
+      if (slideIndex === this.props.slideIndex) {this.props.getAppearStep(steps);}
+    }
   }
 
   componentWillUnmount() {
@@ -183,6 +201,7 @@ Slide.propTypes = {
   className: PropTypes.string,
   dispatch: PropTypes.func,
   export: PropTypes.bool,
+  getAppearStep: PropTypes.func,
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   lastSlideIndex: PropTypes.number,
   margin: PropTypes.number,
@@ -205,7 +224,10 @@ Slide.contextTypes = {
 };
 
 Slide.childContextTypes = {
-  slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  stepCounter: PropTypes.shape({
+    setFragments: PropTypes.func
+  })
 };
 
 export default Slide;
