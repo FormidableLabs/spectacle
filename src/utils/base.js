@@ -71,7 +71,9 @@ export const getStyles = function getStyles() {
     bgDarken,
     bgSize,
     bgPosition,
-    bgRepeat
+    bgRepeat,
+    overflow,
+    height
   } = this.props;
 
   const styles = {};
@@ -145,6 +147,11 @@ export const getStyles = function getStyles() {
       styles.backgroundRepeat = bgRepeat;
     }
   }
+  if (overflow) {
+    styles.overflow = overflow;
+  }
+  if (height) {
+    styles.height = height;
+  }
   return styles;
 };
-
