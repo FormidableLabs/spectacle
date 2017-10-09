@@ -88,7 +88,7 @@ exports[`<Presenter /> should render correctly 1`] = `
                 className="spectacle-presenter-main"
               >
                 <div
-                  className="spectacle-presenter-main jmeTwE"
+                  className="spectacle-presenter-main eNGgOD"
                 >
                   <Slide
                     dispatch={[Function]}
@@ -262,7 +262,7 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                 className="spectacle-presenter-main"
               >
                 <div
-                  className="spectacle-presenter-main jmeTwE"
+                  className="spectacle-presenter-main eNGgOD"
                 >
                   <Slide
                     dispatch={[Function]}
@@ -422,7 +422,7 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                 className="spectacle-presenter-main"
               >
                 <div
-                  className="spectacle-presenter-main jmeTwE"
+                  className="spectacle-presenter-main eNGgOD"
                 >
                   <Slide
                     dispatch={[Function]}
