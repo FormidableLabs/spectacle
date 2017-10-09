@@ -38,6 +38,7 @@ export const PreviewCurrentSlide = styled.div`
   height: 55%;
   width: 55%;
   padding: 20px;
+  width: 60%;
 `;
 
 export const PreviewNextSlide = styled.div`
