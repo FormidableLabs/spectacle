@@ -9,6 +9,8 @@ export default class Image extends Component {
     const styles = {
       width: this.props.width || '',
       height: this.props.height || '',
+      maxWidth: '100%',
+      maxHeight: '100%',
       display: this.props.display || ''
     };
     return (
