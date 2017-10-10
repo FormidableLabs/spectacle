@@ -14,6 +14,8 @@ exports[`<Image /> should render correctly. 1`] = `
       Object {
         "display": "inline-block",
         "height": 1440,
+        "maxHeight": "100%",
+        "maxWidth": "100%",
         "width": 2560,
       }
     }
