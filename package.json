@@ -93,9 +93,7 @@
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/__mocks__/styleMock.js"
     },
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/jest-setup.js"
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "setupFiles": ["raf/polyfill", "<rootDir>/jest-setup.js"]
   }
 }
