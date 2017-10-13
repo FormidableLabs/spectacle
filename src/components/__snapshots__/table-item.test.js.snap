@@ -3,6 +3,7 @@
 exports[`<TableItem /> should render correctly 1`] = `
 <TableItem>
   <td
+    className={undefined}
     data-radium={true}
     style={
       Object {

@@ -3,6 +3,7 @@
 exports[`<ListItem /> should render correctly 1`] = `
 <ListItem>
   <li
+    className={undefined}
     data-radium={true}
     style={
       Object {

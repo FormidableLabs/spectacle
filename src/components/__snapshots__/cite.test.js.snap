@@ -3,6 +3,7 @@
 exports[`<Cite /> should render correctly. 1`] = `
 <Cite>
   <cite
+    className={undefined}
     data-radium={true}
     style={
       Object {

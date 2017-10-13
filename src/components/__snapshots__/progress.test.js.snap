@@ -27,6 +27,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
     >
       <div
         data-radium={true}
+        key=".0"
         style={
           Object {
             "left": "15px",
@@ -36,6 +37,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
       >
         <div
           data-radium={true}
+          key=".0"
           style={
             Object {
               "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
@@ -44,6 +46,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
         />
         <div
           data-radium={true}
+          key=".1"
           style={
             Object {
               "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
@@ -53,6 +56,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
       </div>
       <div
         data-radium={true}
+        key=".1:$presentation-progress-0"
         style={
           Object {
             "left": "-25px",
@@ -63,6 +67,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
       />
       <div
         data-radium={true}
+        key=".1:$presentation-progress-1"
         style={
           Object {
             "left": "-5px",
@@ -73,6 +78,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
       />
       <div
         data-radium={true}
+        key=".1:$presentation-progress-2"
         style={
           Object {
             "left": "15px",

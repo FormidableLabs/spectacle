@@ -6,6 +6,7 @@ exports[`<Heading /> should render correctly. 1`] = `
   size={2}
 >
   <H2
+    className={undefined}
     data-radium={true}
     style={
       Object {
@@ -26,6 +27,7 @@ exports[`<Heading /> should render the fit configuration correctly. 1`] = `
   size={1}
 >
   <div
+    className={undefined}
     data-radium={true}
     style={
       Object {

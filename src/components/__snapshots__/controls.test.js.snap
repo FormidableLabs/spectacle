@@ -12,6 +12,7 @@ exports[`<Controls /> should render correctly. 1`] = `
   >
     <button
       data-radium={true}
+      key=".$prev"
       onClick={[Function]}
       style={
         Object {
@@ -22,6 +23,8 @@ exports[`<Controls /> should render correctly. 1`] = `
     >
       <svg
         height="32px"
+        key="prevIcon"
+        style={undefined}
         viewBox="0 0 512 828.586"
         width="32px"
       >
@@ -32,6 +35,7 @@ exports[`<Controls /> should render correctly. 1`] = `
     </button>
     <button
       data-radium={true}
+      key=".$next"
       onClick={[Function]}
       style={
         Object {
@@ -42,6 +46,8 @@ exports[`<Controls /> should render correctly. 1`] = `
     >
       <svg
         height="32px"
+        key="nextIcon"
+        style={undefined}
         viewBox="0 0 512 828.586"
         width="32px"
       >

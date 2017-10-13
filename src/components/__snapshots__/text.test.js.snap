@@ -6,6 +6,7 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
   lineHeight={1}
 >
   <div
+    className={undefined}
     data-radium={true}
     style={
       Object {
@@ -41,6 +42,7 @@ exports[`<Text /> should render a <p> with text for the default configuration. 1
   lineHeight={1}
 >
   <p
+    className={undefined}
     data-radium={true}
     style={
       Object {

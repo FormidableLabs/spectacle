@@ -57,7 +57,9 @@ exports[`<Presenter /> should render correctly 1`] = `
               3
             </h2>
           </styled.h2>
-          <Time>
+          <Time
+            timer={undefined}
+          >
             <styled.div>
               <div
                 className="brepyG"
@@ -94,6 +96,8 @@ exports[`<Presenter /> should render correctly 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={1}
+                    key="1"
+                    lastSlideIndex={undefined}
                     presenterStyle={
                       Object {
                         "position": "relative",
@@ -119,6 +123,8 @@ exports[`<Presenter /> should render correctly 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={2}
+                    key="2"
+                    lastSlideIndex={undefined}
                     presenterStyle={
                       Object {
                         "position": "relative",
@@ -140,7 +146,9 @@ exports[`<Presenter /> should render correctly 1`] = `
           <styled.div>
             <div
               className="haajbE"
-            />
+            >
+              <undefined />
+            </div>
           </styled.div>
         </div>
       </styled.div>
@@ -268,6 +276,8 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={1}
+                    key="1"
+                    lastSlideIndex={undefined}
                     notes="These are my slide notes!!"
                     presenterStyle={
                       Object {
@@ -294,6 +304,8 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={2}
+                    key="2"
+                    lastSlideIndex={undefined}
                     presenterStyle={
                       Object {
                         "position": "relative",
@@ -391,7 +403,9 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
               3
             </h2>
           </styled.h2>
-          <Time>
+          <Time
+            timer={undefined}
+          >
             <styled.div>
               <div
                 className="brepyG"
@@ -428,6 +442,8 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={1}
+                    key="1"
+                    lastSlideIndex={undefined}
                     notes="These are my slide notes!!"
                     presenterStyle={
                       Object {
@@ -454,6 +470,8 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     dispatch={[Function]}
                     export={false}
                     hash={2}
+                    key="2"
+                    lastSlideIndex={undefined}
                     presenterStyle={
                       Object {
                         "position": "relative",
