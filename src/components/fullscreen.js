@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 
-@Radium
-export default class Fullscreen extends Component {
+export class Fullscreen extends Component {
   constructor() {
     super(...arguments);
     this.handleToggleFullScreen = this.handleToggleFullScreen.bind(this);
@@ -61,3 +60,5 @@ export default class Fullscreen extends Component {
 Fullscreen.contextTypes = {
   styles: PropTypes.object
 };
+
+export default Radium(Fullscreen);

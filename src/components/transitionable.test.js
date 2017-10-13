@@ -31,9 +31,10 @@ describe('@Transitionable', () => {
   });
 
   it('should call getTransitionStyles to get the transition styles when rendered.', () => {
+    const stub = jest.fn();
+    ViewMock.prototype.getTransitionStyles = stub;
     const wrapper = mount(<ViewMock transition={[]} />);
-    wrapper.instance().getTransitionStyles = jest.fn();
     wrapper.update();
-    expect(wrapper.instance().getTransitionStyles).toHaveBeenCalled();
+    expect(stub).toHaveBeenCalled();
   });
 });
