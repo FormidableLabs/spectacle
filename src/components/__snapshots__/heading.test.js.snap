@@ -5,7 +5,7 @@ exports[`<Heading /> should render correctly. 1`] = `
   lineHeight={1}
   size={2}
 >
-  <H2
+  <h2
     className={undefined}
     data-radium={true}
     style={
@@ -16,7 +16,7 @@ exports[`<Heading /> should render correctly. 1`] = `
     }
   >
     Hi There!
-  </H2>
+  </h2>
 </Heading>
 `;
 
