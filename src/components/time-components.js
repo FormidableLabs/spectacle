@@ -24,11 +24,11 @@ export const TButtonContainer = styled.div`
 `;
 
 const fadeIn = keyframes`
-  from { 
-    opacity:0; 
-  } 
-  to { 
-    opacity:1; 
+  from {
+    opacity:0;
+  }
+  to {
+    opacity:1;
   }
 `;
 
@@ -64,7 +64,7 @@ export const TSingleButton = styled.button`
         return '#darkgrey';
       }
     }};
-    
+
   &:focus{
     outline:0px;
   }

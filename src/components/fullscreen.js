@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Radium from 'radium';
+import radium from 'radium';
 
 export class Fullscreen extends Component {
   constructor() {
@@ -61,4 +61,4 @@ Fullscreen.contextTypes = {
   styles: PropTypes.object
 };
 
-export default Radium(Fullscreen);
+export default radium(Fullscreen);
