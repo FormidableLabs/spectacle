@@ -242,7 +242,7 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                           start={true}
                         >
                           <button
-                            className="cmEomM"
+                            className="hdxNXu"
                             onClick={[Function]}
                             start={true}
                           >
