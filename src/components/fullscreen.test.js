@@ -1,6 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import Fullscreen from './fullscreen';
+import { mount, shallow } from 'enzyme';
+import Fullscreen, { Fullscreen as Component } from './fullscreen';
 
 describe('<Fullscreen />', () => {
   test('should render correctly.', () => {
@@ -11,10 +11,10 @@ describe('<Fullscreen />', () => {
 
   test('should toggle fullscreen when the button is selected.', () => {
     const context = { styles: { styles: { fullscreen: {} } } };
-    const wrapper = mount(<Fullscreen />, { context });
-    wrapper.instance().handleToggleFullScreen = jest.fn();
-    wrapper.update();
+    const stub = jest.fn();
+    Component.prototype.handleToggleFullScreen = stub;
+    const wrapper = shallow(<Component />, { context });
     wrapper.find('svg').simulate('click');
-    expect(wrapper.instance().handleToggleFullScreen).toHaveBeenCalledTimes(1);
+    expect(stub).toHaveBeenCalledTimes(1);
   });
 });

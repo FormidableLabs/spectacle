@@ -11,41 +11,9 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
       class="playgroundCode"
     >
       <div
-        class="ReactCodeMirror playgroundStage"
+        class="react-codemirror2 playgroundStage"
       >
-        <textarea
-          autocomplete="off"
-        >
-          /**
-           * Sample React Component 
-           * Output domContainerNode is 'mountNode'
-           */
-          
-          const styles = {
-            heading: {
-              fontSize: "2.25rem",
-              fontWeight: "bold"
-            },
-            copy: {
-              fontSize: "1.5rem"
-            }
-          }
-          
-          const HelloWorld = ({ name }) =&gt; (
-            &lt;div&gt;
-              &lt;h1 style={styles.heading}&gt;
-                Create Live Code Examples in {name}!
-              &lt;/h1&gt;
-              &lt;p style={styles.copy}&gt;
-                Supports Light and Dark Syntax Themes
-              &lt;/p&gt;
-            &lt;/div&gt;
-          )
-          
-          render(
-            &lt;HelloWorld name="Spectacle" /&gt;, 
-            mountNode)
-        </textarea>
+        
       </div>
     </div>
     <div
@@ -54,7 +22,9 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
       <div>
         <div
           class="previewArea"
-        />
+        >
+          
+        </div>
       </div>
     </div>
   </div>
@@ -72,41 +42,9 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
       class="playgroundCode"
     >
       <div
-        class="ReactCodeMirror playgroundStage"
+        class="react-codemirror2 playgroundStage"
       >
-        <textarea
-          autocomplete="off"
-        >
-          /**
-           * Sample React Component 
-           * Output domContainerNode is 'mountNode'
-           */
-          
-          const styles = {
-            heading: {
-              fontSize: "2.25rem",
-              fontWeight: "bold"
-            },
-            copy: {
-              fontSize: "1.5rem"
-            }
-          }
-          
-          const HelloWorld = ({ name }) =&gt; (
-            &lt;div&gt;
-              &lt;h1 style={styles.heading}&gt;
-                Create Live Code Examples in {name}!
-              &lt;/h1&gt;
-              &lt;p style={styles.copy}&gt;
-                Supports Light and Dark Syntax Themes
-              &lt;/p&gt;
-            &lt;/div&gt;
-          )
-          
-          render(
-            &lt;HelloWorld name="Spectacle" /&gt;, 
-            mountNode)
-        </textarea>
+        
       </div>
     </div>
     <div
@@ -115,7 +53,9 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
       <div>
         <div
           class="previewArea"
-        />
+        >
+          
+        </div>
       </div>
     </div>
   </div>
@@ -133,41 +73,9 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
       class="playgroundCode"
     >
       <div
-        class="ReactCodeMirror playgroundStage"
+        class="react-codemirror2 playgroundStage"
       >
-        <textarea
-          autocomplete="off"
-        >
-          /**
-           * Sample React Component 
-           * Output domContainerNode is 'mountNode'
-           */
-          
-          const styles = {
-            heading: {
-              fontSize: "2.25rem",
-              fontWeight: "bold"
-            },
-            copy: {
-              fontSize: "1.5rem"
-            }
-          }
-          
-          const HelloWorld = ({ name }) =&gt; (
-            &lt;div&gt;
-              &lt;h1 style={styles.heading}&gt;
-                Create Live Code Examples in {name}!
-              &lt;/h1&gt;
-              &lt;p style={styles.copy}&gt;
-                Supports Light and Dark Syntax Themes
-              &lt;/p&gt;
-            &lt;/div&gt;
-          )
-          
-          render(
-            &lt;HelloWorld name="Spectacle" /&gt;, 
-            mountNode)
-        </textarea>
+        
       </div>
     </div>
     <div
@@ -176,7 +84,9 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
       <div>
         <div
           class="previewArea"
-        />
+        >
+          
+        </div>
       </div>
     </div>
   </div>
@@ -194,14 +104,9 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
       class="playgroundCode"
     >
       <div
-        class="ReactCodeMirror playgroundStage"
+        class="react-codemirror2 playgroundStage"
       >
-        <textarea
-          autocomplete="off"
-        >
-          const Button = ({ title }) =&gt; (&lt;button type="button"&gt;{ title }&lt;/button&gt;);
-                render(&lt;Button title="My Button" /&gt;, mountNode);
-        </textarea>
+        
       </div>
     </div>
     <div
@@ -210,7 +115,9 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
       <div>
         <div
           class="previewArea"
-        />
+        >
+          
+        </div>
       </div>
     </div>
   </div>

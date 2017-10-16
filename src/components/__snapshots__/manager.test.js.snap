@@ -59,6 +59,7 @@ exports[`<Manager /> should render correctly. 1`] = `
     >
       <Controls
         currentSlideIndex={0}
+        key=".0"
         onNext={[Function]}
         onPrev={[Function]}
         totalSlides={2}
@@ -67,11 +68,15 @@ exports[`<Manager /> should render correctly. 1`] = `
           data-radium={true}
         >
           <button
+            key=".$next"
             onClick={[Function]}
+            style={undefined}
             type="button"
           >
             <svg
               height="32px"
+              key="nextIcon"
+              style={undefined}
               viewBox="0 0 512 828.586"
               width="32px"
             >
@@ -85,6 +90,7 @@ exports[`<Manager /> should render correctly. 1`] = `
       <TransitionGroup
         childFactory={[Function]}
         component="div"
+        key=".2"
         style={
           Array [
             Object {
@@ -110,7 +116,9 @@ exports[`<Manager /> should render correctly. 1`] = `
           <MockSlide
             dispatch={[Function]}
             export={false}
+            fragments={undefined}
             hash={0}
+            key=".$.$0"
             lastSlideIndex={0}
             print={false}
             slideIndex={0}
@@ -154,6 +162,7 @@ exports[`<Manager /> should render correctly. 1`] = `
             },
           ]
         }
+        key=".3"
         type="pacman"
       >
         <div
@@ -165,6 +174,7 @@ exports[`<Manager /> should render correctly. 1`] = `
           >
             <div
               data-radium={true}
+              key=".0"
               style={
                 Object {
                   "left": "-15px",
@@ -174,6 +184,7 @@ exports[`<Manager /> should render correctly. 1`] = `
             >
               <div
                 data-radium={true}
+                key=".0"
                 style={
                   Object {
                     "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
@@ -182,6 +193,7 @@ exports[`<Manager /> should render correctly. 1`] = `
               />
               <div
                 data-radium={true}
+                key=".1"
                 style={
                   Object {
                     "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
@@ -191,6 +203,7 @@ exports[`<Manager /> should render correctly. 1`] = `
             </div>
             <div
               data-radium={true}
+              key=".1:$presentation-progress-0"
               style={
                 Object {
                   "left": "-15px",
@@ -201,6 +214,7 @@ exports[`<Manager /> should render correctly. 1`] = `
             />
             <div
               data-radium={true}
+              key=".1:$presentation-progress-1"
               style={
                 Object {
                   "left": "5px",
@@ -211,7 +225,9 @@ exports[`<Manager /> should render correctly. 1`] = `
           </div>
         </div>
       </Progress>
-      <Fullscreen>
+      <Fullscreen
+        key=".4"
+      >
         <svg
           data-radium={true}
           height="30px"
@@ -237,6 +253,7 @@ exports[`<Manager /> should render correctly. 1`] = `
         </svg>
       </Fullscreen>
       <Style
+        key=".6"
         rules={
           Object {
             ".spectacle-presenter-next .fragment": Object {
@@ -307,6 +324,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
       }
     >
       <Export
+        key=".2"
         route={
           Object {
             "params": Array [
@@ -340,6 +358,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
           >
             <MockSlide
               export={true}
+              key=".$0"
               print={false}
               slideIndex={0}
               transition={Array []}
@@ -351,6 +370,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
             </MockSlide>
             <MockSlide
               export={true}
+              key=".$1"
               print={false}
               slideIndex={1}
               transition={Array []}
@@ -364,6 +384,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
         </styled.div>
       </Export>
       <Style
+        key=".6"
         rules={
           Object {
             ".spectacle-presenter-next .fragment": Object {
@@ -436,6 +457,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
       }
     >
       <Overview
+        key=".2"
         route={
           Object {
             "params": Array [
@@ -470,6 +492,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
           >
             <styled.div
               index={0}
+              key="0"
               onClick={[Function]}
               screen={0}
               slideIndex={0}
@@ -481,6 +504,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
                 <MockSlide
                   appearOff={true}
                   export={false}
+                  key="0"
                   print={false}
                   slideIndex={0}
                   transition={Array []}
@@ -494,6 +518,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
             </styled.div>
             <styled.div
               index={1}
+              key="1"
               onClick={[Function]}
               screen={0}
               slideIndex={0}
@@ -505,6 +530,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
                 <MockSlide
                   appearOff={true}
                   export={false}
+                  key="1"
                   print={false}
                   slideIndex={1}
                   transition={Array []}
@@ -519,7 +545,9 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
           </div>
         </styled.div>
       </Overview>
-      <Fullscreen>
+      <Fullscreen
+        key=".4"
+      >
         <svg
           data-radium={true}
           height="30px"
@@ -545,6 +573,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
         </svg>
       </Fullscreen>
       <Style
+        key=".6"
         rules={
           Object {
             ".spectacle-presenter-next .fragment": Object {
@@ -614,6 +643,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
     >
       <Controls
         currentSlideIndex={1}
+        key=".0"
         onNext={[Function]}
         onPrev={[Function]}
         totalSlides={3}
@@ -622,11 +652,15 @@ exports[`<Manager /> should render with slideset slides 1`] = `
           data-radium={true}
         >
           <button
+            key=".$prev"
             onClick={[Function]}
+            style={undefined}
             type="button"
           >
             <svg
               height="32px"
+              key="prevIcon"
+              style={undefined}
               viewBox="0 0 512 828.586"
               width="32px"
             >
@@ -636,11 +670,15 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             </svg>
           </button>
           <button
+            key=".$next"
             onClick={[Function]}
+            style={undefined}
             type="button"
           >
             <svg
               height="32px"
+              key="nextIcon"
+              style={undefined}
               viewBox="0 0 512 828.586"
               width="32px"
             >
@@ -654,6 +692,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
       <TransitionGroup
         childFactory={[Function]}
         component="div"
+        key=".2"
         style={
           Array [
             Object {
@@ -679,7 +718,9 @@ exports[`<Manager /> should render with slideset slides 1`] = `
           <MockSlide
             dispatch={[Function]}
             export={false}
+            fragments={undefined}
             hash={1}
+            key=".$.$1"
             lastSlideIndex={1}
             print={false}
             slideIndex={1}
@@ -730,6 +771,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             },
           ]
         }
+        key=".3"
         type="pacman"
       >
         <div
@@ -741,6 +783,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
           >
             <div
               data-radium={true}
+              key=".0"
               style={
                 Object {
                   "left": "-5px",
@@ -750,6 +793,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             >
               <div
                 data-radium={true}
+                key=".0"
                 style={
                   Object {
                     "animation": "pacmanTopFrames 0.12s linear 10 alternate both",
@@ -758,6 +802,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               />
               <div
                 data-radium={true}
+                key=".1"
                 style={
                   Object {
                     "animation": "pacmanBottomFrames 0.12s linear 10 alternate both",
@@ -767,6 +812,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             </div>
             <div
               data-radium={true}
+              key=".1:$presentation-progress-0"
               style={
                 Object {
                   "left": "-25px",
@@ -777,6 +823,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             />
             <div
               data-radium={true}
+              key=".1:$presentation-progress-1"
               style={
                 Object {
                   "left": "-5px",
@@ -787,6 +834,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             />
             <div
               data-radium={true}
+              key=".1:$presentation-progress-2"
               style={
                 Object {
                   "left": "15px",
@@ -797,7 +845,9 @@ exports[`<Manager /> should render with slideset slides 1`] = `
           </div>
         </div>
       </Progress>
-      <Fullscreen>
+      <Fullscreen
+        key=".4"
+      >
         <svg
           data-radium={true}
           height="30px"
@@ -823,6 +873,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
         </svg>
       </Fullscreen>
       <Style
+        key=".6"
         rules={
           Object {
             ".spectacle-presenter-next .fragment": Object {

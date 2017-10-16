@@ -3,6 +3,7 @@
 exports[`<Code /> should render correctly. 1`] = `
 <Code>
   <code
+    className={undefined}
     dangerouslySetInnerHTML={
       Object {
         "__html": "const [a, ...b] = [1, 2, 3, 4]",

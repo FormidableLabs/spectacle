@@ -6,6 +6,7 @@ exports[`<Link /> should render correctly 1`] = `
   target="_blank"
 >
   <a
+    className={undefined}
     data-radium={true}
     href="https://www.formidable.com"
     style={

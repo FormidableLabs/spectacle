@@ -8,6 +8,7 @@ exports[`<Image /> should render correctly. 1`] = `
   width={2560}
 >
   <img
+    className={undefined}
     data-radium={true}
     src="foo.png"
     style={

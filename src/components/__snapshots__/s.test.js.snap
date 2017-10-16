@@ -5,6 +5,7 @@ exports[`<S /> should bold text when specified 1`] = `
   type="bold"
 >
   <span
+    className={undefined}
     data-radium={true}
     style={
       Object {
@@ -23,6 +24,7 @@ exports[`<S /> should italicize text when specified 1`] = `
   type="italic"
 >
   <span
+    className={undefined}
     data-radium={true}
     style={
       Object {
@@ -41,6 +43,7 @@ exports[`<S /> should underline text when specified 1`] = `
   type="strikethrough"
 >
   <span
+    className={undefined}
     data-radium={true}
     style={
       Object {
@@ -59,6 +62,7 @@ exports[`<S /> should underline text when specified 2`] = `
   type="underline"
 >
   <span
+    className={undefined}
     data-radium={true}
     style={
       Object {

@@ -3,6 +3,7 @@
 exports[`<Quote /> should render correctly 1`] = `
 <Quote>
   <span
+    className={undefined}
     data-radium={true}
     style={
       Object {

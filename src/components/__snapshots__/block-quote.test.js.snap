@@ -3,6 +3,7 @@
 exports[`<BlockQuote /> should render correctly. 1`] = `
 <BlockQuote>
   <blockquote
+    className={undefined}
     data-radium={true}
     style={
       Object {
