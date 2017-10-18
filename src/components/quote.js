@@ -8,7 +8,7 @@ export default class Quote extends Component {
   render() {
     const typefaceStyle = this.context.typeface || {};
     return (
-      <span className={this.props.className} style={[this.context.styles.components.quote, getStyles.call(this), this.props.style, typefaceStyle]}>
+      <span className={this.props.className} style={[this.context.styles.components.quote, getStyles.call(this), typefaceStyle, this.props.style]}>
         {this.props.children}
       </span>
     );

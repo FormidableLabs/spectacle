@@ -20,8 +20,8 @@ export default class Image extends Component {
         style={[
           this.context.styles.components.image,
           getStyles.call(this),
-          styles,
-          this.props.style
+          this.props.style,
+          styles
         ]}
       />
     );

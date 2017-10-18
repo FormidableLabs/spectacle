@@ -8,7 +8,7 @@ export default class ListItem extends Component {
   render() {
     const typefaceStyle = this.context.typeface || {};
     return (
-      <li className={this.props.className} style={[this.context.styles.components.listItem, getStyles.call(this), this.props.style, typefaceStyle]}>
+      <li className={this.props.className} style={[this.context.styles.components.listItem, getStyles.call(this), typefaceStyle, this.props.style]}>
         {this.props.children}
       </li>
     );

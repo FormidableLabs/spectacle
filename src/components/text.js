@@ -76,7 +76,7 @@ export default class Text extends Component {
           </span>
         </div>
       ) : (
-        <p className={this.props.className} style={[this.context.styles.components.text, getStyles.call(this), styles.nonFit, style, typefaceStyle]}>
+        <p className={this.props.className} style={[this.context.styles.components.text, getStyles.call(this), styles.nonFit, typefaceStyle, style]}>
           {children}
         </p>
       )

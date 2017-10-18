@@ -8,7 +8,7 @@ export default class Cite extends Component {
   render() {
     const typefaceStyle = this.context.typeface || {};
     return (
-      <cite className={this.props.className} style={[this.context.styles.components.cite, getStyles.call(this), this.props.style, typefaceStyle]}>
+      <cite className={this.props.className} style={[this.context.styles.components.cite, getStyles.call(this), typefaceStyle, this.props.style]}>
         - {this.props.children}
       </cite>
     );

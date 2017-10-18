@@ -8,7 +8,7 @@ export default class BlockQuote extends Component {
   render() {
     const typefaceStyle = this.context.typeface || {};
     return (
-      <blockquote className={this.props.className} style={[this.context.styles.components.blockquote, getStyles.call(this), this.props.style, typefaceStyle]}>
+      <blockquote className={this.props.className} style={[this.context.styles.components.blockquote, getStyles.call(this), typefaceStyle, this.props.style]}>
         {this.props.children}
       </blockquote>
     );
