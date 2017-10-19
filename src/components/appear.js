@@ -19,8 +19,8 @@ class Appear extends Component {
     });
 
     const shouldDisableAnimation =
-      this.props.route.params.indexOf('export') !== -1 ||
-      this.props.route.params.indexOf('overview') !== -1;
+    nextProps.route.params.indexOf('export') !== -1 ||
+    nextProps.route.params.indexOf('overview') !== -1;
 
     if (shouldDisableAnimation) {
       this.setState({ active: true });
@@ -34,6 +34,17 @@ class Appear extends Component {
       const active = state.fragments[slide][key].visible;
       this.context.stepCounter.setFragments(state.fragments[slide], slide);
       this.setState({ active });
+    }
+  }
+
+  componentDidMount() {
+    const shouldDisableAnimation =
+      this.props.route.params.indexOf('export') !== -1 ||
+      this.props.route.params.indexOf('overview') !== -1;
+
+    if (shouldDisableAnimation) {
+      this.setState({ active: true });
+      return;
     }
   }
 
