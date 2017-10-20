@@ -2,17 +2,16 @@
 
 exports[`<Layout /> should render correctly 1`] = `
 <Layout>
-  <div
-    data-radium={true}
-    style={
-      Object {
-        "display": "flex",
-      }
-    }
+  <Styled(div)
+    styles={undefined}
   >
-    <div>
-      Content
+    <div
+      className="css-k008qs"
+    >
+      <div>
+        Content
+      </div>
     </div>
-  </div>
+  </Styled(div)>
 </Layout>
 `;

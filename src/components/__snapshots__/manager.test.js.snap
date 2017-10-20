@@ -38,241 +38,240 @@ exports[`<Manager /> should render correctly. 1`] = `
     }
     transitionDuration={500}
   >
-    <div
+    <Styled(div)
       className="spectacle-deck"
-      data-radium={true}
       onClick={[Function]}
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      style={
+      route={
         Object {
-          "backgroundColor": "",
-          "height": "100%",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
+          "params": Array [],
+          "slide": 0,
         }
       }
     >
-      <Controls
-        currentSlideIndex={0}
-        key=".0"
-        onNext={[Function]}
-        onPrev={[Function]}
-        totalSlides={2}
+      <div
+        className="spectacle-deck css-1w702dy"
+        onClick={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
       >
-        <div
-          data-radium={true}
+        <Controls
+          currentSlideIndex={0}
+          onNext={[Function]}
+          onPrev={[Function]}
+          totalSlides={2}
         >
-          <button
-            key=".$next"
-            onClick={[Function]}
-            style={undefined}
-            type="button"
-          >
-            <svg
-              height="32px"
-              key="nextIcon"
+          <div>
+            <button
+              key="next"
+              onClick={[Function]}
               style={undefined}
-              viewBox="0 0 512 828.586"
-              width="32px"
+              type="button"
             >
-              <path
-                d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z"
-              />
-            </svg>
-          </button>
-        </div>
-      </Controls>
-      <TransitionGroup
-        childFactory={[Function]}
-        component="div"
-        key=".2"
-        style={
-          Array [
-            Object {
-              "height": "100%",
-              "perspective": 1000,
-              "transformStyle": "flat",
-              "width": "100%",
-            },
-          ]
-        }
-      >
-        <div
-          data-radium={true}
-          style={
-            Object {
-              "height": "100%",
-              "perspective": 1000,
-              "transformStyle": "flat",
-              "width": "100%",
-            }
-          }
-        >
-          <MockSlide
-            dispatch={[Function]}
-            export={false}
-            fragments={undefined}
-            hash={0}
-            key=".$.$0"
-            lastSlideIndex={0}
-            print={false}
-            slideIndex={0}
-            slideReference={
-              Array [
-                Object {
-                  "id": 0,
-                  "rootIndex": 0,
-                },
-                Object {
-                  "id": 1,
-                  "rootIndex": 1,
-                },
-              ]
-            }
-            transition={
-              Array [
-                "zoom",
-                "slide",
-              ]
-            }
-            transitionDuration={500}
-          >
-            <div>
-              Slide Content
-            </div>
-          </MockSlide>
-        </div>
-      </TransitionGroup>
-      <Progress
-        currentSlideIndex={0}
-        items={
-          Array [
-            Object {
-              "id": 0,
-              "rootIndex": 0,
-            },
-            Object {
-              "id": 1,
-              "rootIndex": 1,
-            },
-          ]
-        }
-        key=".3"
-        type="pacman"
-      >
-        <div
-          data-radium={true}
-          style={Object {}}
-        >
-          <div
-            data-radium={true}
-          >
-            <div
-              data-radium={true}
-              key=".0"
-              style={
-                Object {
-                  "left": "-15px",
-                  "top": "-20px",
-                }
-              }
-            >
-              <div
-                data-radium={true}
-                key=".0"
-                style={
-                  Object {
-                    "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
-                  }
-                }
-              />
-              <div
-                data-radium={true}
-                key=".1"
-                style={
-                  Object {
-                    "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
-                  }
-                }
-              />
-            </div>
-            <div
-              data-radium={true}
-              key=".1:$presentation-progress-0"
-              style={
-                Object {
-                  "left": "-15px",
-                  "opacity": 0,
-                  "top": "-20px",
-                }
-              }
-            />
-            <div
-              data-radium={true}
-              key=".1:$presentation-progress-1"
-              style={
-                Object {
-                  "left": "5px",
-                  "top": "-20px",
-                }
-              }
-            />
+              <svg
+                height="32px"
+                key="nextIcon"
+                style={undefined}
+                viewBox="0 0 512 828.586"
+                width="32px"
+              >
+                <path
+                  d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z"
+                />
+              </svg>
+            </button>
           </div>
-        </div>
-      </Progress>
-      <Fullscreen
-        key=".4"
-      >
-        <svg
-          data-radium={true}
-          height="30px"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          style={
-            Object {
-              "bottom": 20,
-              "cursor": "pointer",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 20,
-              "transition": "300ms opacity ease",
-            }
-          }
-          viewBox="0 0 512 512"
-          width="30px"
+        </Controls>
+        <Styled(TransitionGroup)
+          component="div"
         >
-          <path
-            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
-          />
-        </svg>
-      </Fullscreen>
-      <Style
-        key=".6"
-        rules={
-          Object {
-            ".spectacle-presenter-next .fragment": Object {
-              "display": "none !important",
-            },
-            "body": Array [],
+          <TransitionGroup
+            childFactory={[Function]}
+            className="css-r8ywg3"
+            component="div"
+          >
+            <div
+              className="css-r8ywg3"
+            >
+              <MockSlide
+                dispatch={[Function]}
+                export={false}
+                fragments={undefined}
+                hash={0}
+                key=".$0"
+                lastSlideIndex={0}
+                print={false}
+                slideIndex={0}
+                slideReference={
+                  Array [
+                    Object {
+                      "id": 0,
+                      "rootIndex": 0,
+                    },
+                    Object {
+                      "id": 1,
+                      "rootIndex": 1,
+                    },
+                  ]
+                }
+                transition={
+                  Array [
+                    "zoom",
+                    "slide",
+                  ]
+                }
+                transitionDuration={500}
+              >
+                <div>
+                  Slide Content
+                </div>
+              </MockSlide>
+            </div>
+          </TransitionGroup>
+        </Styled(TransitionGroup)>
+        <Progress
+          currentSlideIndex={0}
+          items={
+            Array [
+              Object {
+                "id": 0,
+                "rootIndex": 0,
+              },
+              Object {
+                "id": 1,
+                "rootIndex": 1,
+              },
+            ]
           }
-        }
-        scopeSelector=""
-      >
-        <style
-          dangerouslySetInnerHTML={
+          type="pacman"
+        >
+          <Styled(div)
+            styles={undefined}
+          >
+            <div
+              className="css-0"
+            >
+              <div>
+                <Styled(div)
+                  position={
+                    Object {
+                      "left": "-15px",
+                      "top": "-20px",
+                    }
+                  }
+                  styles={undefined}
+                >
+                  <div
+                    className="css-ro10dn"
+                  >
+                    <Styled(div)
+                      styles={
+                        Array [
+                          undefined,
+                          Object {
+                            "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
+                          },
+                        ]
+                      }
+                    >
+                      <div
+                        className="css-13kse6y"
+                      />
+                    </Styled(div)>
+                    <Styled(div)
+                      styles={
+                        Array [
+                          undefined,
+                          Object {
+                            "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
+                          },
+                        ]
+                      }
+                    >
+                      <div
+                        className="css-9ev9ib"
+                      />
+                    </Styled(div)>
+                  </div>
+                </Styled(div)>
+                <Styled(div)
+                  key="presentation-progress-0"
+                  position={
+                    Object {
+                      "left": "-15px",
+                      "opacity": 0,
+                      "top": "-20px",
+                    }
+                  }
+                  styles={undefined}
+                >
+                  <div
+                    className="css-16u37i9"
+                  />
+                </Styled(div)>
+                <Styled(div)
+                  key="presentation-progress-1"
+                  position={
+                    Object {
+                      "left": "5px",
+                      "top": "-20px",
+                    }
+                  }
+                  styles={undefined}
+                >
+                  <div
+                    className="css-1qz1mlg"
+                  />
+                </Styled(div)>
+              </div>
+            </div>
+          </Styled(div)>
+        </Progress>
+        <Fullscreen>
+          <Styled(div)>
+            <div
+              className="css-1j4mcul"
+            >
+              <svg
+                height="30px"
+                onClick={[Function]}
+                style={undefined}
+                viewBox="0 0 512 512"
+                width="30px"
+              >
+                <path
+                  d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
+                />
+              </svg>
+            </div>
+          </Styled(div)>
+        </Fullscreen>
+        <Style
+          rules={
             Object {
-              "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
+              ".spectacle-presenter-next .fragment": Object {
+                "display": "none !important",
+              },
+              "body": Array [],
             }
           }
-        />
-      </Style>
-    </div>
+          scopeSelector=""
+        >
+          <style
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
+              }
+            }
+          />
+        </Style>
+      </div>
+    </Styled(div)>
   </Manager>
 </Connect(Manager)>
 `;
@@ -304,108 +303,112 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
     transition={Array []}
     transitionDuration={500}
   >
-    <div
+    <Styled(div)
       className="spectacle-deck"
-      data-radium={true}
       onClick={[Function]}
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      style={
+      route={
         Object {
-          "backgroundColor": "",
-          "height": "100%",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
+          "params": Array [
+            "export",
+          ],
+          "slide": 0,
         }
       }
     >
-      <Export
-        key=".2"
-        route={
-          Object {
-            "params": Array [
-              "export",
-            ],
-            "slide": 0,
-          }
-        }
-        slideReference={
-          Array [
-            Object {
-              "id": 0,
-              "rootIndex": 0,
-            },
-            Object {
-              "id": 1,
-              "rootIndex": 1,
-            },
-          ]
-        }
-        slides={
-          Array [
-            <MockSlide />,
-            <MockSlide />,
-          ]
-        }
+      <div
+        className="spectacle-deck css-1w702dy"
+        onClick={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
       >
-        <Styled(div)>
-          <div
-            className="css-v2kfba"
-          >
-            <MockSlide
-              export={true}
-              key=".$0"
-              print={false}
-              slideIndex={0}
-              transition={Array []}
-              transitionDuration={0}
-            >
-              <div>
-                Slide Content
-              </div>
-            </MockSlide>
-            <MockSlide
-              export={true}
-              key=".$1"
-              print={false}
-              slideIndex={1}
-              transition={Array []}
-              transitionDuration={0}
-            >
-              <div>
-                Slide Content
-              </div>
-            </MockSlide>
-          </div>
-        </Styled(div)>
-      </Export>
-      <Style
-        key=".6"
-        rules={
-          Object {
-            ".spectacle-presenter-next .fragment": Object {
-              "display": "none !important",
-            },
-            "body": Array [],
-          }
-        }
-        scopeSelector=""
-      >
-        <style
-          dangerouslySetInnerHTML={
+        <Export
+          route={
             Object {
-              "__html": "body{min-width: 1150px;
-            min-height: 850px;
-            overflow: auto;}.spectacle-presenter-next .fragment{display: none !important;}",
+              "params": Array [
+                "export",
+              ],
+              "slide": 0,
             }
           }
-        />
-      </Style>
-    </div>
+          slideReference={
+            Array [
+              Object {
+                "id": 0,
+                "rootIndex": 0,
+              },
+              Object {
+                "id": 1,
+                "rootIndex": 1,
+              },
+            ]
+          }
+          slides={
+            Array [
+              <MockSlide />,
+              <MockSlide />,
+            ]
+          }
+        >
+          <Styled(div)>
+            <div
+              className="css-v2kfba"
+            >
+              <MockSlide
+                export={true}
+                key="0"
+                print={false}
+                slideIndex={0}
+                transition={Array []}
+                transitionDuration={0}
+              >
+                <div>
+                  Slide Content
+                </div>
+              </MockSlide>
+              <MockSlide
+                export={true}
+                key="1"
+                print={false}
+                slideIndex={1}
+                transition={Array []}
+                transitionDuration={0}
+              >
+                <div>
+                  Slide Content
+                </div>
+              </MockSlide>
+            </div>
+          </Styled(div)>
+        </Export>
+        <Style
+          rules={
+            Object {
+              ".spectacle-presenter-next .fragment": Object {
+                "display": "none !important",
+              },
+              "body": Array [],
+            }
+          }
+          scopeSelector=""
+        >
+          <style
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "body{min-width: 1150px;
+              min-height: 850px;
+              overflow: auto;}.spectacle-presenter-next .fragment{display: none !important;}",
+              }
+            }
+          />
+        </Style>
+      </div>
+    </Styled(div)>
   </Manager>
 </Connect(Manager)>
 `;
@@ -437,162 +440,158 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
     transition={Array []}
     transitionDuration={500}
   >
-    <div
+    <Styled(div)
       className="spectacle-deck"
-      data-radium={true}
       onClick={[Function]}
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      style={
+      route={
         Object {
-          "backgroundColor": "black",
-          "height": "100%",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
+          "params": Array [
+            "overview",
+          ],
+          "slide": 0,
         }
       }
     >
-      <Overview
-        key=".2"
-        route={
-          Object {
-            "params": Array [
-              "overview",
-            ],
-            "slide": 0,
-          }
-        }
-        slideIndex={0}
-        slideReference={
-          Array [
-            Object {
-              "id": 0,
-              "rootIndex": 0,
-            },
-            Object {
-              "id": 1,
-              "rootIndex": 1,
-            },
-          ]
-        }
-        slides={
-          Array [
-            <MockSlide />,
-            <MockSlide />,
-          ]
-        }
+      <div
+        className="spectacle-deck css-1pplrs6"
+        onClick={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
       >
-        <Styled(div)>
-          <div
-            className="css-gv2ckq"
-          >
-            <Styled(div)
-              index={0}
-              key="0"
-              onClick={[Function]}
-              screen={0}
-              slideIndex={0}
-            >
-              <div
-                className="css-13mtebb"
-                onClick={[Function]}
-              >
-                <MockSlide
-                  appearOff={true}
-                  export={false}
-                  key="0"
-                  print={false}
-                  slideIndex={0}
-                  transition={Array []}
-                  transitionDuration={0}
-                >
-                  <div>
-                    Slide Content
-                  </div>
-                </MockSlide>
-              </div>
-            </Styled(div)>
-            <Styled(div)
-              index={1}
-              key="1"
-              onClick={[Function]}
-              screen={0}
-              slideIndex={0}
-            >
-              <div
-                className="css-13d6elb"
-                onClick={[Function]}
-              >
-                <MockSlide
-                  appearOff={true}
-                  export={false}
-                  key="1"
-                  print={false}
-                  slideIndex={1}
-                  transition={Array []}
-                  transitionDuration={0}
-                >
-                  <div>
-                    Slide Content
-                  </div>
-                </MockSlide>
-              </div>
-            </Styled(div)>
-          </div>
-        </Styled(div)>
-      </Overview>
-      <Fullscreen
-        key=".4"
-      >
-        <svg
-          data-radium={true}
-          height="30px"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          style={
+        <Overview
+          route={
             Object {
-              "bottom": 20,
-              "cursor": "pointer",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 20,
-              "transition": "300ms opacity ease",
+              "params": Array [
+                "overview",
+              ],
+              "slide": 0,
             }
           }
-          viewBox="0 0 512 512"
-          width="30px"
+          slideIndex={0}
+          slideReference={
+            Array [
+              Object {
+                "id": 0,
+                "rootIndex": 0,
+              },
+              Object {
+                "id": 1,
+                "rootIndex": 1,
+              },
+            ]
+          }
+          slides={
+            Array [
+              <MockSlide />,
+              <MockSlide />,
+            ]
+          }
         >
-          <path
-            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
-          />
-        </svg>
-      </Fullscreen>
-      <Style
-        key=".6"
-        rules={
-          Object {
-            ".spectacle-presenter-next .fragment": Object {
-              "display": "none !important",
-            },
-            "body": Array [],
-          }
-        }
-        scopeSelector=""
-      >
-        <style
-          dangerouslySetInnerHTML={
+          <Styled(div)>
+            <div
+              className="css-gv2ckq"
+            >
+              <Styled(div)
+                index={0}
+                key="0"
+                onClick={[Function]}
+                screen={0}
+                slideIndex={0}
+              >
+                <div
+                  className="css-13mtebb"
+                  onClick={[Function]}
+                >
+                  <MockSlide
+                    appearOff={true}
+                    export={false}
+                    key="0"
+                    print={false}
+                    slideIndex={0}
+                    transition={Array []}
+                    transitionDuration={0}
+                  >
+                    <div>
+                      Slide Content
+                    </div>
+                  </MockSlide>
+                </div>
+              </Styled(div)>
+              <Styled(div)
+                index={1}
+                key="1"
+                onClick={[Function]}
+                screen={0}
+                slideIndex={0}
+              >
+                <div
+                  className="css-13d6elb"
+                  onClick={[Function]}
+                >
+                  <MockSlide
+                    appearOff={true}
+                    export={false}
+                    key="1"
+                    print={false}
+                    slideIndex={1}
+                    transition={Array []}
+                    transitionDuration={0}
+                  >
+                    <div>
+                      Slide Content
+                    </div>
+                  </MockSlide>
+                </div>
+              </Styled(div)>
+            </div>
+          </Styled(div)>
+        </Overview>
+        <Fullscreen>
+          <Styled(div)>
+            <div
+              className="css-1j4mcul"
+            >
+              <svg
+                height="30px"
+                onClick={[Function]}
+                style={undefined}
+                viewBox="0 0 512 512"
+                width="30px"
+              >
+                <path
+                  d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
+                />
+              </svg>
+            </div>
+          </Styled(div)>
+        </Fullscreen>
+        <Style
+          rules={
             Object {
-              "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
+              ".spectacle-presenter-next .fragment": Object {
+                "display": "none !important",
+              },
+              "body": Array [],
             }
           }
-        />
-      </Style>
-    </div>
+          scopeSelector=""
+        >
+          <style
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
+              }
+            }
+          />
+        </Style>
+      </div>
+    </Styled(div)>
   </Manager>
 </Connect(Manager)>
 `;
@@ -622,277 +621,280 @@ exports[`<Manager /> should render with slideset slides 1`] = `
     transition={Array []}
     transitionDuration={500}
   >
-    <div
+    <Styled(div)
       className="spectacle-deck"
-      data-radium={true}
       onClick={[Function]}
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      style={
+      route={
         Object {
-          "backgroundColor": "",
-          "height": "100%",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
+          "params": Array [],
+          "slide": 1,
         }
       }
     >
-      <Controls
-        currentSlideIndex={1}
-        key=".0"
-        onNext={[Function]}
-        onPrev={[Function]}
-        totalSlides={3}
+      <div
+        className="spectacle-deck css-1w702dy"
+        onClick={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
       >
-        <div
-          data-radium={true}
+        <Controls
+          currentSlideIndex={1}
+          onNext={[Function]}
+          onPrev={[Function]}
+          totalSlides={3}
         >
-          <button
-            key=".$prev"
-            onClick={[Function]}
-            style={undefined}
-            type="button"
-          >
-            <svg
-              height="32px"
-              key="prevIcon"
+          <div>
+            <button
+              key="prev"
+              onClick={[Function]}
               style={undefined}
-              viewBox="0 0 512 828.586"
-              width="32px"
+              type="button"
             >
-              <path
-                d="M512,97.707L414.293,0L0,414.293l414.293,414.293L512,730.88L195.414,414.293L512,97.707z"
-              />
-            </svg>
-          </button>
-          <button
-            key=".$next"
-            onClick={[Function]}
-            style={undefined}
-            type="button"
-          >
-            <svg
-              height="32px"
-              key="nextIcon"
+              <svg
+                height="32px"
+                key="prevIcon"
+                style={undefined}
+                viewBox="0 0 512 828.586"
+                width="32px"
+              >
+                <path
+                  d="M512,97.707L414.293,0L0,414.293l414.293,414.293L512,730.88L195.414,414.293L512,97.707z"
+                />
+              </svg>
+            </button>
+            <button
+              key="next"
+              onClick={[Function]}
               style={undefined}
-              viewBox="0 0 512 828.586"
-              width="32px"
+              type="button"
             >
-              <path
-                d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z"
-              />
-            </svg>
-          </button>
-        </div>
-      </Controls>
-      <TransitionGroup
-        childFactory={[Function]}
-        component="div"
-        key=".2"
-        style={
-          Array [
-            Object {
-              "height": "100%",
-              "perspective": 1000,
-              "transformStyle": "flat",
-              "width": "100%",
-            },
-          ]
-        }
-      >
-        <div
-          data-radium={true}
-          style={
-            Object {
-              "height": "100%",
-              "perspective": 1000,
-              "transformStyle": "flat",
-              "width": "100%",
-            }
-          }
-        >
-          <MockSlide
-            dispatch={[Function]}
-            export={false}
-            fragments={undefined}
-            hash={1}
-            key=".$.$1"
-            lastSlideIndex={1}
-            print={false}
-            slideIndex={1}
-            slideReference={
-              Array [
-                Object {
-                  "id": 0,
-                  "rootIndex": 0,
-                },
-                Object {
-                  "id": 1,
-                  "rootIndex": 1,
-                  "setIndex": 0,
-                },
-                Object {
-                  "id": 2,
-                  "rootIndex": 1,
-                  "setIndex": 1,
-                },
-              ]
-            }
-            transition={Array []}
-            transitionDuration={500}
-          >
-            <div>
-              Slide Content
-            </div>
-          </MockSlide>
-        </div>
-      </TransitionGroup>
-      <Progress
-        currentSlideIndex={1}
-        items={
-          Array [
-            Object {
-              "id": 0,
-              "rootIndex": 0,
-            },
-            Object {
-              "id": 1,
-              "rootIndex": 1,
-              "setIndex": 0,
-            },
-            Object {
-              "id": 2,
-              "rootIndex": 1,
-              "setIndex": 1,
-            },
-          ]
-        }
-        key=".3"
-        type="pacman"
-      >
-        <div
-          data-radium={true}
-          style={Object {}}
-        >
-          <div
-            data-radium={true}
-          >
-            <div
-              data-radium={true}
-              key=".0"
-              style={
-                Object {
-                  "left": "-5px",
-                  "top": "-20px",
-                }
-              }
-            >
-              <div
-                data-radium={true}
-                key=".0"
-                style={
-                  Object {
-                    "animation": "pacmanTopFrames 0.12s linear 10 alternate both",
-                  }
-                }
-              />
-              <div
-                data-radium={true}
-                key=".1"
-                style={
-                  Object {
-                    "animation": "pacmanBottomFrames 0.12s linear 10 alternate both",
-                  }
-                }
-              />
-            </div>
-            <div
-              data-radium={true}
-              key=".1:$presentation-progress-0"
-              style={
-                Object {
-                  "left": "-25px",
-                  "opacity": 0,
-                  "top": "-20px",
-                }
-              }
-            />
-            <div
-              data-radium={true}
-              key=".1:$presentation-progress-1"
-              style={
-                Object {
-                  "left": "-5px",
-                  "opacity": 0,
-                  "top": "-20px",
-                }
-              }
-            />
-            <div
-              data-radium={true}
-              key=".1:$presentation-progress-2"
-              style={
-                Object {
-                  "left": "15px",
-                  "top": "-20px",
-                }
-              }
-            />
+              <svg
+                height="32px"
+                key="nextIcon"
+                style={undefined}
+                viewBox="0 0 512 828.586"
+                width="32px"
+              >
+                <path
+                  d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z"
+                />
+              </svg>
+            </button>
           </div>
-        </div>
-      </Progress>
-      <Fullscreen
-        key=".4"
-      >
-        <svg
-          data-radium={true}
-          height="30px"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          style={
-            Object {
-              "bottom": 20,
-              "cursor": "pointer",
-              "opacity": 0,
-              "position": "absolute",
-              "right": 20,
-              "transition": "300ms opacity ease",
-            }
-          }
-          viewBox="0 0 512 512"
-          width="30px"
+        </Controls>
+        <Styled(TransitionGroup)
+          component="div"
         >
-          <path
-            d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
-          />
-        </svg>
-      </Fullscreen>
-      <Style
-        key=".6"
-        rules={
-          Object {
-            ".spectacle-presenter-next .fragment": Object {
-              "display": "none !important",
-            },
-            "body": Array [],
+          <TransitionGroup
+            childFactory={[Function]}
+            className="css-r8ywg3"
+            component="div"
+          >
+            <div
+              className="css-r8ywg3"
+            >
+              <MockSlide
+                dispatch={[Function]}
+                export={false}
+                fragments={undefined}
+                hash={1}
+                key=".$1"
+                lastSlideIndex={1}
+                print={false}
+                slideIndex={1}
+                slideReference={
+                  Array [
+                    Object {
+                      "id": 0,
+                      "rootIndex": 0,
+                    },
+                    Object {
+                      "id": 1,
+                      "rootIndex": 1,
+                      "setIndex": 0,
+                    },
+                    Object {
+                      "id": 2,
+                      "rootIndex": 1,
+                      "setIndex": 1,
+                    },
+                  ]
+                }
+                transition={Array []}
+                transitionDuration={500}
+              >
+                <div>
+                  Slide Content
+                </div>
+              </MockSlide>
+            </div>
+          </TransitionGroup>
+        </Styled(TransitionGroup)>
+        <Progress
+          currentSlideIndex={1}
+          items={
+            Array [
+              Object {
+                "id": 0,
+                "rootIndex": 0,
+              },
+              Object {
+                "id": 1,
+                "rootIndex": 1,
+                "setIndex": 0,
+              },
+              Object {
+                "id": 2,
+                "rootIndex": 1,
+                "setIndex": 1,
+              },
+            ]
           }
-        }
-        scopeSelector=""
-      >
-        <style
-          dangerouslySetInnerHTML={
+          type="pacman"
+        >
+          <Styled(div)
+            styles={undefined}
+          >
+            <div
+              className="css-0"
+            >
+              <div>
+                <Styled(div)
+                  position={
+                    Object {
+                      "left": "-5px",
+                      "top": "-20px",
+                    }
+                  }
+                  styles={undefined}
+                >
+                  <div
+                    className="css-p4obic"
+                  >
+                    <Styled(div)
+                      styles={
+                        Array [
+                          undefined,
+                          Object {
+                            "animation": "pacmanTopFrames 0.12s linear 10 alternate both",
+                          },
+                        ]
+                      }
+                    >
+                      <div
+                        className="css-1cs01s8"
+                      />
+                    </Styled(div)>
+                    <Styled(div)
+                      styles={
+                        Array [
+                          undefined,
+                          Object {
+                            "animation": "pacmanBottomFrames 0.12s linear 10 alternate both",
+                          },
+                        ]
+                      }
+                    >
+                      <div
+                        className="css-7iidye"
+                      />
+                    </Styled(div)>
+                  </div>
+                </Styled(div)>
+                <Styled(div)
+                  key="presentation-progress-0"
+                  position={
+                    Object {
+                      "left": "-25px",
+                      "opacity": 0,
+                      "top": "-20px",
+                    }
+                  }
+                  styles={undefined}
+                >
+                  <div
+                    className="css-1xucvt"
+                  />
+                </Styled(div)>
+                <Styled(div)
+                  key="presentation-progress-1"
+                  position={
+                    Object {
+                      "left": "-5px",
+                      "opacity": 0,
+                      "top": "-20px",
+                    }
+                  }
+                  styles={undefined}
+                >
+                  <div
+                    className="css-ci3gz3"
+                  />
+                </Styled(div)>
+                <Styled(div)
+                  key="presentation-progress-2"
+                  position={
+                    Object {
+                      "left": "15px",
+                      "top": "-20px",
+                    }
+                  }
+                  styles={undefined}
+                >
+                  <div
+                    className="css-tyaqbb"
+                  />
+                </Styled(div)>
+              </div>
+            </div>
+          </Styled(div)>
+        </Progress>
+        <Fullscreen>
+          <Styled(div)>
+            <div
+              className="css-1j4mcul"
+            >
+              <svg
+                height="30px"
+                onClick={[Function]}
+                style={undefined}
+                viewBox="0 0 512 512"
+                width="30px"
+              >
+                <path
+                  d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
+                />
+              </svg>
+            </div>
+          </Styled(div)>
+        </Fullscreen>
+        <Style
+          rules={
             Object {
-              "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
+              ".spectacle-presenter-next .fragment": Object {
+                "display": "none !important",
+              },
+              "body": Array [],
             }
           }
-        />
-      </Style>
-    </div>
+          scopeSelector=""
+        >
+          <style
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
+              }
+            }
+          />
+        </Style>
+      </div>
+    </Styled(div)>
   </Manager>
 </Connect(Manager)>
 `;

@@ -3,7 +3,7 @@ import React from 'react';
 import {
   Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
   Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
-  TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text
+  TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text, S
 } from '../../src';
 
 import preloader from '../../src/utils/preloader';

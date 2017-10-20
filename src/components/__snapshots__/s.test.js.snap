@@ -4,18 +4,26 @@ exports[`<S /> should bold text when specified 1`] = `
 <S
   type="bold"
 >
-  <span
+  <Styled(span)
     className={undefined}
-    data-radium={true}
-    style={
+    styles={
       Object {
-        "color": "#ff0",
-        "fontWeight": "bold",
+        "base": Object {},
+        "context": Object {
+          "color": "#ff0",
+        },
+        "user": undefined,
       }
     }
+    type="bold"
   >
-    You should read this!
-  </span>
+    <span
+      className="css-1oz8dr5"
+      type="bold"
+    >
+      You should read this!
+    </span>
+  </Styled(span)>
 </S>
 `;
 
@@ -23,18 +31,26 @@ exports[`<S /> should italicize text when specified 1`] = `
 <S
   type="italic"
 >
-  <span
+  <Styled(span)
     className={undefined}
-    data-radium={true}
-    style={
+    styles={
       Object {
-        "color": "#ff0",
-        "fontStyle": "italic",
+        "base": Object {},
+        "context": Object {
+          "color": "#ff0",
+        },
+        "user": undefined,
       }
     }
+    type="italic"
   >
-    This text is italicized!
-  </span>
+    <span
+      className="css-1cx0df8"
+      type="italic"
+    >
+      This text is italicized!
+    </span>
+  </Styled(span)>
 </S>
 `;
 
@@ -42,18 +58,26 @@ exports[`<S /> should underline text when specified 1`] = `
 <S
   type="strikethrough"
 >
-  <span
+  <Styled(span)
     className={undefined}
-    data-radium={true}
-    style={
+    styles={
       Object {
-        "color": "#ff0",
-        "textDecoration": "line-through",
+        "base": Object {},
+        "context": Object {
+          "color": "#ff0",
+        },
+        "user": undefined,
       }
     }
+    type="strikethrough"
   >
-    Don’t read this!
-  </span>
+    <span
+      className="css-1vlogow"
+      type="strikethrough"
+    >
+      Don’t read this!
+    </span>
+  </Styled(span)>
 </S>
 `;
 
@@ -61,17 +85,25 @@ exports[`<S /> should underline text when specified 2`] = `
 <S
   type="underline"
 >
-  <span
+  <Styled(span)
     className={undefined}
-    data-radium={true}
-    style={
+    styles={
       Object {
-        "color": "#ff0",
-        "textDecoration": "underline",
+        "base": Object {},
+        "context": Object {
+          "color": "#ff0",
+        },
+        "user": undefined,
       }
     }
+    type="underline"
   >
-    This text is underlined!
-  </span>
+    <span
+      className="css-xt7dpi"
+      type="underline"
+    >
+      This text is underlined!
+    </span>
+  </Styled(span)>
 </S>
 `;

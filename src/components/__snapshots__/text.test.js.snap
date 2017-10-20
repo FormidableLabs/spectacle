@@ -5,35 +5,42 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
   fit={true}
   lineHeight={1}
 >
-  <div
+  <Styled(div)
     className={undefined}
-    data-radium={true}
-    style={
+    height={0}
+    innerRef={[Function]}
+    styles={
       Object {
-        "color": "#000",
-        "display": "block",
-        "height": 0,
-        "width": "100%",
+        "base": Object {},
+        "context": Object {
+          "color": "#000",
+        },
       }
     }
   >
-    <span
-      data-radium={true}
-      style={
-        Object {
-          "display": "block",
-          "fontSize": 16,
-          "lineHeight": 1,
-          "margin": "0",
-          "padding": "0",
-          "transform": "scale(NaN)",
-          "transformOrigin": "center top",
-        }
-      }
+    <div
+      className="css-1rapqq0"
+      height={0}
     >
-      Spectacle Full Size!
-    </span>
-  </div>
+      <Styled(span)
+        innerRef={[Function]}
+        lineHeight={1}
+        scale={NaN}
+        styles={
+          Object {
+            "typeface": Object {},
+            "user": undefined,
+          }
+        }
+      >
+        <span
+          className="css-piqx9m"
+        >
+          Spectacle Full Size!
+        </span>
+      </Styled(span)>
+    </div>
+  </Styled(div)>
 </Text>
 `;
 
@@ -41,17 +48,24 @@ exports[`<Text /> should render a <p> with text for the default configuration. 1
 <Text
   lineHeight={1}
 >
-  <p
+  <Styled(p)
     className={undefined}
-    data-radium={true}
-    style={
+    styles={
       Object {
-        "color": "#000",
-        "lineHeight": 1,
+        "base": Object {},
+        "context": Object {
+          "color": "#000",
+        },
+        "typeface": Object {},
+        "user": undefined,
       }
     }
   >
-    Spectacle!
-  </p>
+    <p
+      className="css-cmzp7u"
+    >
+      Spectacle!
+    </p>
+  </Styled(p)>
 </Text>
 `;

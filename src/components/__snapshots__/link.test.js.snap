@@ -5,18 +5,28 @@ exports[`<Link /> should render correctly 1`] = `
   href="https://www.formidable.com"
   target="_blank"
 >
-  <a
+  <Styled(a)
     className={undefined}
-    data-radium={true}
     href="https://www.formidable.com"
-    style={
-      Object {
-        "color": "#345",
-      }
+    styles={
+      Array [
+        Object {
+          "color": "#345",
+        },
+        Object {},
+        Object {},
+        undefined,
+      ]
     }
     target="_blank"
   >
-    Formidable Labs
-  </a>
+    <a
+      className="css-qjaoxy"
+      href="https://www.formidable.com"
+      target="_blank"
+    >
+      Formidable Labs
+    </a>
+  </Styled(a)>
 </Link>
 `;

@@ -2,19 +2,31 @@
 
 exports[`<Code /> should render correctly. 1`] = `
 <Code>
-  <code
+  <Styled(code)
     className={undefined}
     dangerouslySetInnerHTML={
       Object {
         "__html": "const [a, ...b] = [1, 2, 3, 4]",
       }
     }
-    data-radium={true}
-    style={
-      Object {
-        "fontWeight": 500,
-      }
+    styles={
+      Array [
+        Object {
+          "fontWeight": 500,
+        },
+        Object {},
+        undefined,
+      ]
     }
-  />
+  >
+    <code
+      className="css-10rvbm3"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "const [a, ...b] = [1, 2, 3, 4]",
+        }
+      }
+    />
+  </Styled(code)>
 </Code>
 `;

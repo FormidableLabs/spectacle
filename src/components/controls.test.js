@@ -37,7 +37,7 @@ describe('<Controls />', () => {
       { context }
     );
     wrapper
-      .findWhere(node => node.name() === 'button' && node.key() === '.$next')
+      .findWhere(node => node.name() === 'button' && node.key() === 'next')
       .simulate('click');
     expect(nextFunc).toHaveBeenCalledTimes(1);
   });
@@ -55,7 +55,7 @@ describe('<Controls />', () => {
       { context }
     );
     wrapper
-      .findWhere(node => node.name() === 'button' && node.key() === '.$prev')
+      .findWhere(node => node.name() === 'button' && node.key() === 'prev')
       .simulate('click');
     expect(prevFunc).toHaveBeenCalledTimes(1);
   });

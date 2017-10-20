@@ -2,16 +2,34 @@
 
 exports[`<TableHeaderItem /> should render correctly 1`] = `
 <TableHeaderItem>
-  <td
+  <Styled(td)
     className={undefined}
-    data-radium={true}
     style={
-      Object {
-        "color": "#e01",
-      }
+      Array [
+        Object {
+          "color": "#e01",
+        },
+        Object {},
+        Object {},
+        undefined,
+      ]
     }
   >
-    Header Text
-  </td>
+    <td
+      className="css-0"
+      style={
+        Array [
+          Object {
+            "color": "#e01",
+          },
+          Object {},
+          Object {},
+          undefined,
+        ]
+      }
+    >
+      Header Text
+    </td>
+  </Styled(td)>
 </TableHeaderItem>
 `;

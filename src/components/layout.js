@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const StyledLayout = styled.div(props => [
+  { display: 'flex' },
+  props.styles
+]);
+
 export default class Layout extends Component {
   render() {
-    const styles = {
-      display: 'flex'
-    };
     return (
-      <div style={[styles, this.props.style]}>
+      <StyledLayout styles={this.props.style}>
         {this.props.children}
-      </div>
+      </StyledLayout>
     );
   }
 }

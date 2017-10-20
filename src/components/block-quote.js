@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const StyledBlockQuote = styled.blockquote(props => props.styles);
+
 export default class BlockQuote extends Component {
   render() {
-    const typefaceStyle = this.context.typeface || {};
+    const styles = [
+      this.context.styles.components.blockquote,
+      getStyles.call(this),
+      this.context.typeface || {},
+      this.props.style
+    ];
     return (
-      <blockquote className={this.props.className} style={[this.context.styles.components.blockquote, getStyles.call(this), typefaceStyle, this.props.style]}>
+      <StyledBlockQuote
+        className={this.props.className}
+        styles={styles}
+      >
         {this.props.children}
-      </blockquote>
+      </StyledBlockQuote>
     );
   }
 }

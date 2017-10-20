@@ -2,16 +2,34 @@
 
 exports[`<TableItem /> should render correctly 1`] = `
 <TableItem>
-  <td
+  <Styled(td)
     className={undefined}
-    data-radium={true}
     style={
-      Object {
-        "color": "#444",
-      }
+      Array [
+        Object {
+          "color": "#444",
+        },
+        Object {},
+        Object {},
+        undefined,
+      ]
     }
   >
-    Table Item Content
-  </td>
+    <td
+      className="css-0"
+      style={
+        Array [
+          Object {
+            "color": "#444",
+          },
+          Object {},
+          Object {},
+          undefined,
+        ]
+      }
+    >
+      Table Item Content
+    </td>
+  </Styled(td)>
 </TableItem>
 `;

@@ -2,18 +2,27 @@
 
 exports[`<Table /> should render correctly 1`] = `
 <Table>
-  <table
+  <Styled(table)
     className={undefined}
-    data-radium={true}
-    style={Object {}}
+    styles={
+      Array [
+        Object {},
+        Object {},
+        undefined,
+      ]
+    }
   >
-    <tbody>
-      <tr>
-        <td>
-          Table Content
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <table
+      className="css-0"
+    >
+      <tbody>
+        <tr>
+          <td>
+            Table Content
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </Styled(table)>
 </Table>
 `;

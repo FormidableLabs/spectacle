@@ -1,9 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const FitText = styled.div(({ height, styles }) => [
+  styles.context,
+  styles.base,
+  {
+    display: 'block',
+    width: '100%',
+    height
+  },
+]);
+
+const FitTextContent = styled.span(({ lineHeight, scale, styles }) => [
+  {
+    fontSize: 16,
+    display: 'block',
+    margin: '0',
+    padding: '0',
+    lineHeight,
+    transform: `scale(${scale})`,
+    transformOrigin: 'center top'
+  },
+  styles.typeface,
+  styles.user
+]);
+
+const UnfitText = styled.p(({ lineHeight, styles }) => [
+  styles.context,
+  styles.base,
+  { lineHeight },
+  styles.typeface,
+  styles.user
+]);
+
 export default class Text extends Component {
   constructor() {
     super();
@@ -41,44 +72,39 @@ export default class Text extends Component {
   }
   render() {
     const { lineHeight, fit, style, children } = this.props;
-    const styles = {
-      container: {
-        display: 'block',
-        width: '100%',
-        height: this.state.height
-      },
-      text: {
-        fontSize: 16,
-        display: 'block',
-        margin: '0',
-        padding: '0',
-        lineHeight,
-        transform: `scale(${this.state.scale})`,
-        transformOrigin: 'center top'
-      },
-      nonFit: {
-        lineHeight
-      }
-    };
     const typefaceStyle = this.context.typeface || {};
     return (
       fit ? (
-        <div
+        <FitText
           className={this.props.className}
-          ref={(c) => { this.containerRef = c; }}
-          style={[this.context.styles.components.text, getStyles.call(this), styles.container]}
+          innerRef={(c) => { this.containerRef = c; }}
+          height={this.state.height}
+          styles={{
+            context: this.context.styles.components.text,
+            base: getStyles.call(this)
+          }}
         >
-          <span
-            ref={(t) => { this.textRef = t; }}
-            style={[styles.text, style, typefaceStyle]}
+          <FitTextContent
+            innerRef={(t) => { this.textRef = t; }}
+            lineHeight={lineHeight}
+            scale={this.state.scale}
+            styles={{ user: style, typeface: typefaceStyle }}
           >
             {children}
-          </span>
-        </div>
+          </FitTextContent>
+        </FitText>
       ) : (
-        <p className={this.props.className} style={[this.context.styles.components.text, getStyles.call(this), styles.nonFit, typefaceStyle, style]}>
+        <UnfitText
+          className={this.props.className}
+          styles={{
+            context: this.context.styles.components.text,
+            base: getStyles.call(this),
+            typeface: typefaceStyle,
+            user: style
+          }}
+        >
           {children}
-        </p>
+        </UnfitText>
       )
     );
   }

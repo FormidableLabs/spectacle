@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const StyledTableRow = styled.tr(props => props.styles);
+
+
 export default class TableRow extends Component {
   render() {
     return (
-      <tr className={this.props.className} style={[this.context.styles.components.tableRow, getStyles.call(this), this.props.style]}>
+      <StyledTableRow
+        className={this.props.className}
+        style={[
+          this.context.styles.components.tableRow,
+          getStyles.call(this),
+          this.props.style
+        ]}
+      >
         {this.props.children}
-      </tr>
+      </StyledTableRow>
     );
   }
 }

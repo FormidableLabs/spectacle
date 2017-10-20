@@ -7,12 +7,9 @@ exports[`<Controls /> should render correctly. 1`] = `
   onPrev={[Function]}
   totalSlides={5}
 >
-  <div
-    data-radium={true}
-  >
+  <div>
     <button
-      data-radium={true}
-      key=".$prev"
+      key="prev"
       onClick={[Function]}
       style={
         Object {
@@ -34,8 +31,7 @@ exports[`<Controls /> should render correctly. 1`] = `
       </svg>
     </button>
     <button
-      data-radium={true}
-      key=".$next"
+      key="next"
       onClick={[Function]}
       style={
         Object {
