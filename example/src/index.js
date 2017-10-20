@@ -69,7 +69,6 @@ export default class Presentation extends React.Component {
             source={require('raw-loader!../assets/deck.example')}
             margin="20px auto"
             overflow = "overflow"
-            height = "80vh"
           />
         </Slide>
         <Slide>

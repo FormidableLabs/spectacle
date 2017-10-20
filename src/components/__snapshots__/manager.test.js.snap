@@ -352,9 +352,9 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
           ]
         }
       >
-        <styled.div>
+        <Styled(div)>
           <div
-            className="djkYse"
+            className="css-v2kfba"
           >
             <MockSlide
               export={true}
@@ -381,7 +381,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
               </div>
             </MockSlide>
           </div>
-        </styled.div>
+        </Styled(div)>
       </Export>
       <Style
         key=".6"
@@ -486,11 +486,11 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
           ]
         }
       >
-        <styled.div>
+        <Styled(div)>
           <div
-            className="kxQqKR"
+            className="css-gv2ckq"
           >
-            <styled.div
+            <Styled(div)
               index={0}
               key="0"
               onClick={[Function]}
@@ -498,7 +498,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
               slideIndex={0}
             >
               <div
-                className="cAopeV"
+                className="css-13mtebb"
                 onClick={[Function]}
               >
                 <MockSlide
@@ -515,8 +515,8 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
                   </div>
                 </MockSlide>
               </div>
-            </styled.div>
-            <styled.div
+            </Styled(div)>
+            <Styled(div)
               index={1}
               key="1"
               onClick={[Function]}
@@ -524,7 +524,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
               slideIndex={0}
             >
               <div
-                className="gtMIIo"
+                className="css-13d6elb"
                 onClick={[Function]}
               >
                 <MockSlide
@@ -541,9 +541,9 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
                   </div>
                 </MockSlide>
               </div>
-            </styled.div>
+            </Styled(div)>
           </div>
-        </styled.div>
+        </Styled(div)>
       </Overview>
       <Fullscreen
         key=".4"

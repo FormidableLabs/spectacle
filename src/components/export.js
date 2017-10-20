@@ -2,7 +2,7 @@ import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { getSlideByIndex } from '../utils/slides';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 
 const SpectacleExport = styled.div`
   height: 100%;

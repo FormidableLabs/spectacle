@@ -1,7 +1,7 @@
 import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import { getSlideByIndex } from '../utils/slides';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 
 const OverviewContainer = styled.div`
   height: 100%;

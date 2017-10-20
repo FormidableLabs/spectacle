@@ -2,7 +2,7 @@
 
 exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 <div
-  class="theme-dark jELORc"
+  class="theme-dark css-4o0hkq"
 >
   <div
     class="playground"
@@ -33,7 +33,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 <div
-  class="theme-light jELORc"
+  class="theme-light css-4o0hkq"
 >
   <div
     class="playground"
@@ -64,7 +64,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render with a custom background color 1`] = `
 <div
-  class="theme-light TlFwj"
+  class="theme-light css-13q1kal"
 >
   <div
     class="playground"
@@ -95,7 +95,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
 
 exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
 <div
-  class="theme-light TlFwj"
+  class="theme-light css-13q1kal"
 >
   <div
     class="playground"

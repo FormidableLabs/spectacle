@@ -5,7 +5,8 @@
     "react"
   ],
   "plugins": [
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
+    "emotion"
   ],
   "env": {
     "production": {
@@ -15,7 +16,8 @@
         "transform-react-constant-elements",
         "transform-react-inline-elements",
         "transform-runtime",
-        "transform-decorators-legacy"
+        "transform-decorators-legacy",
+        "emotion"
       ]
     },
     "test": {
