@@ -175,9 +175,9 @@ class Slide extends React.PureComponent {
             }}
             className={`${contentClass} spectacle-content`}
             style={[
-              styles.content,
               this.context.styles.components.content,
               this.context.overview && overViewStyles.content,
+              styles.content,
             ]}
           >
             {children}
