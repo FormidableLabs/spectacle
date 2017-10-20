@@ -1,3 +1,5 @@
+/* eslint-disable react/no-did-mount-set-state */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
@@ -10,6 +12,17 @@ class Appear extends Component {
     active: false,
   };
 
+  componentDidMount() {
+    const shouldDisableAnimation =
+      this.props.route.params.indexOf('export') !== -1 ||
+      this.props.route.params.indexOf('overview') !== -1;
+
+    if (shouldDisableAnimation) {
+      this.setState({ active: true });
+      return;
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     const state = nextProps.fragment;
     const slide = this.props.route.slide;
@@ -19,8 +32,8 @@ class Appear extends Component {
     });
 
     const shouldDisableAnimation =
-      this.props.route.params.indexOf('export') !== -1 ||
-      this.props.route.params.indexOf('overview') !== -1;
+    nextProps.route.params.indexOf('export') !== -1 ||
+    nextProps.route.params.indexOf('overview') !== -1;
 
     if (shouldDisableAnimation) {
       this.setState({ active: true });
