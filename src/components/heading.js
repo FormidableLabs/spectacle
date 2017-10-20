@@ -41,7 +41,7 @@ export default class Heading extends Component {
   }
   render() {
     const { size, lineHeight, fit, style, children } = this.props;
-    const Tag = `H${size}`;
+    const Tag = `h${size}`;
     const styles = {
       container: {
         display: 'block',

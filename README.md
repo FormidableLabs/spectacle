@@ -272,7 +272,7 @@ export default class extends Component {
 
 Here is where you can use the library's tags to compose your presentation. While you can use any JSX syntax here, building your presentation with the supplied tags allows for theming to work properly.
 
-The bare minimum you need to start is a`Deck` element and a `Slide` element. Each `Slide` element represents a slide inside of your slideshow.
+The bare minimum you need to start is a `Deck` element and a `Slide` element. Each `Slide` element represents a slide inside of your slideshow.
 
 <a name="themes"></a>
 ### Themes
