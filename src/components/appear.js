@@ -64,7 +64,7 @@ class Appear extends Component {
         {({ opacity }) =>
           React.cloneElement(child, {
             className: 'fragment',
-            style: [child.props.style, this.props.style, opacity],
+            style: { ...child.props.style, ...this.props.style, opacity },
             ref: f => {
               this.fragmentRef = f;
             },
