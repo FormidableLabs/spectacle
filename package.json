@@ -1,6 +1,6 @@
 {
   "name": "spectacle",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "scripts": {
