@@ -1,9 +1,44 @@
 import React, { Component, createElement } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const StyledHeader = styled.div(({ height, styles }) => [
+  styles.context,
+  styles.base,
+  {
+    display: 'block',
+    width: '100%',
+    height
+  }
+]);
+
+const StyledSpan = styled.span(({ scale, lineHeight, styles }) => [
+  {
+    fontSize: 16,
+    display: 'block',
+    margin: '0',
+    padding: '0',
+    lineHeight,
+    transform: `scale(${scale})`,
+    transformOrigin: 'center top'
+  },
+  styles.typeface,
+  styles.user
+]);
+
+const dynamicHeaderStyles = ({ lineHeight, styles }) => [
+  styles.context,
+  styles.base,
+  { lineHeight },
+  styles.typeface,
+  styles.user
+];
+const dynamicStyledHeaders = [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ]
+  .reduce((memo, tag) => ({
+    ...memo, [tag]: styled(tag)(dynamicHeaderStyles)
+  }), {});
+
 export default class Heading extends Component {
   constructor() {
     super();
@@ -42,47 +77,41 @@ export default class Heading extends Component {
   render() {
     const { size, lineHeight, fit, style, children } = this.props;
     const Tag = `h${size}`;
-    const styles = {
-      container: {
-        display: 'block',
-        width: '100%',
-        height: this.state.height
-      },
-      text: {
-        fontSize: 16,
-        display: 'block',
-        margin: '0',
-        padding: '0',
-        lineHeight,
-        transform: `scale(${this.state.scale})`,
-        transformOrigin: 'center top'
-      },
-      nonFit: {
-        lineHeight
-      }
-    };
     const typefaceStyle = this.context.typeface || {};
-    return (
-      fit ? (
-        <div
+
+    if (fit) {
+      return (
+        <StyledHeader
           className={this.props.className}
-          ref={(c) => { this.containerRef = c; }}
-          style={[
-            this.context.styles.components.heading[`h${size}`],
-            getStyles.call(this), styles.container
-          ]}
+          innerRef={(c) => { this.containerRef = c; }}
+          height={this.state.height}
+          styles={{
+            context: this.context.styles.components.heading[`h${size}`],
+            base: getStyles.call(this)
+          }}
         >
-          <span ref={(t) => { this.textRef = t; }} style={[styles.text, style, typefaceStyle]}>
+          <StyledSpan
+            innerRef={(t) => { this.textRef = t; }}
+            scale={this.state.scale}
+            lineHeight={lineHeight}
+            styles={{ user: style, typeface: typefaceStyle }}
+          >
             {children}
-          </span>
-        </div>
-      ) : (
-        createElement(Tag, {
-          className: this.props.className,
-          style: [this.context.styles.components.heading[`h${size}`], getStyles.call(this), styles.nonFit, typefaceStyle, style]
-        }, children)
-      )
-    );
+          </StyledSpan>
+        </StyledHeader>
+      );
+    }
+
+    return createElement(dynamicStyledHeaders[Tag], {
+      className: this.props.className,
+      lineHeight,
+      styles: {
+        context: this.context.styles.components.heading[`h${size}`],
+        base: getStyles.call(this),
+        user: style,
+        typeface: typefaceStyle
+      }
+    }, children);
   }
 }
 

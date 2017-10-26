@@ -5,18 +5,26 @@ exports[`<Heading /> should render correctly. 1`] = `
   lineHeight={1}
   size={2}
 >
-  <h2
+  <Styled(h2)
     className={undefined}
-    data-radium={true}
-    style={
+    lineHeight={1}
+    styles={
       Object {
-        "color": "#ff0",
-        "lineHeight": 1,
+        "base": Object {},
+        "context": Object {
+          "color": "#ff0",
+        },
+        "typeface": Object {},
+        "user": undefined,
       }
     }
   >
-    Hi There!
-  </h2>
+    <h2
+      className="css-xb8aa1"
+    >
+      Hi There!
+    </h2>
+  </Styled(h2)>
 </Heading>
 `;
 
@@ -26,33 +34,39 @@ exports[`<Heading /> should render the fit configuration correctly. 1`] = `
   lineHeight={1}
   size={1}
 >
-  <div
+  <Styled(div)
     className={undefined}
-    data-radium={true}
-    style={
+    height={0}
+    innerRef={[Function]}
+    styles={
       Object {
-        "display": "block",
-        "height": 0,
-        "width": "100%",
+        "base": Object {},
+        "context": undefined,
       }
     }
   >
-    <span
-      data-radium={true}
-      style={
-        Object {
-          "display": "block",
-          "fontSize": 16,
-          "lineHeight": 1,
-          "margin": "0",
-          "padding": "0",
-          "transform": "scale(NaN)",
-          "transformOrigin": "center top",
-        }
-      }
+    <div
+      className="css-1449yoq"
+      height={0}
     >
-      This Header Fits!
-    </span>
-  </div>
+      <Styled(span)
+        innerRef={[Function]}
+        lineHeight={1}
+        scale={NaN}
+        styles={
+          Object {
+            "typeface": Object {},
+            "user": undefined,
+          }
+        }
+      >
+        <span
+          className="css-piqx9m"
+        >
+          This Header Fits!
+        </span>
+      </Styled(span)>
+    </div>
+  </Styled(div)>
 </Heading>
 `;

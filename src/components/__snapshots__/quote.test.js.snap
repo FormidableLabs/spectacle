@@ -2,16 +2,24 @@
 
 exports[`<Quote /> should render correctly 1`] = `
 <Quote>
-  <span
+  <Styled(span)
     className={undefined}
-    data-radium={true}
-    style={
-      Object {
-        "color": "#ff0",
-      }
+    styles={
+      Array [
+        Object {
+          "color": "#ff0",
+        },
+        Object {},
+        Object {},
+        undefined,
+      ]
     }
   >
-    Hello There!
-  </span>
+    <span
+      className="css-tr63ps"
+    >
+      Hello There!
+    </span>
+  </Styled(span)>
 </Quote>
 `;

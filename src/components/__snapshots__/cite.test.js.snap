@@ -2,17 +2,25 @@
 
 exports[`<Cite /> should render correctly. 1`] = `
 <Cite>
-  <cite
+  <Styled(cite)
     className={undefined}
-    data-radium={true}
-    style={
-      Object {
-        "color": "#ee0",
-      }
+    styles={
+      Array [
+        Object {
+          "color": "#ee0",
+        },
+        Object {},
+        Object {},
+        undefined,
+      ]
     }
   >
-    - 
-    Someone
-  </cite>
+    <cite
+      className="css-1j6fsf6"
+    >
+      - 
+      Someone
+    </cite>
+  </Styled(cite)>
 </Cite>
 `;

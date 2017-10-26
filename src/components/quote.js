@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const StyledQuote = styled.span(props => props.styles);
+
 export default class Quote extends Component {
   render() {
     const typefaceStyle = this.context.typeface || {};
     return (
-      <span className={this.props.className} style={[this.context.styles.components.quote, getStyles.call(this), typefaceStyle, this.props.style]}>
+      <StyledQuote
+        className={this.props.className}
+        styles={[
+          this.context.styles.components.quote,
+          getStyles.call(this),
+          typefaceStyle,
+          this.props.style
+        ]}
+      >
         {this.props.children}
-      </span>
+      </StyledQuote>
     );
   }
 }

@@ -7,19 +7,28 @@ exports[`<Image /> should render correctly. 1`] = `
   src="foo.png"
   width={2560}
 >
-  <img
+  <Styled(img)
     className={undefined}
-    data-radium={true}
     src="foo.png"
-    style={
+    styles={
       Object {
-        "display": "inline-block",
-        "height": 1440,
-        "maxHeight": "100%",
-        "maxWidth": "100%",
-        "width": 2560,
+        "base": Object {
+          "height": 1440,
+        },
+        "context": Object {},
+        "props": Object {
+          "display": "inline-block",
+          "height": 1440,
+          "width": 2560,
+        },
+        "user": undefined,
       }
     }
-  />
+  >
+    <img
+      className="css-17as7hl"
+      src="foo.png"
+    />
+  </Styled(img)>
 </Image>
 `;

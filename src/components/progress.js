@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const Pacman = {
+  Base: styled.div(({ styles, position }) => [ styles, position ]),
+  Body: styled.div(props => props.styles)
+};
+
+const Point = styled.div(({ styles, position }) => [ styles, position ]);
+const Bar = styled.div(({ styles, width }) => [ styles, width ]);
+const Container = styled.div(props => props.styles);
+
 export default class Progress extends Component {
   getWidth() {
     return {
@@ -44,14 +52,18 @@ export default class Progress extends Component {
       style = style.pacman;
       markup = (
           <div>
-            <div style={[style.pacman, this.getPointPosition(currentSlideIndex)]} >
-              <div style={[style.pacmanTop, this.getPacmanStyle('Top')]} />
-              <div style={[style.pacmanBottom, this.getPacmanStyle('Bottom')]} />
-            </div>
+            <Pacman.Base
+              styles={style.pacman}
+              position={this.getPointPosition(currentSlideIndex)}
+            >
+              <Pacman.Body styles={[style.pacmanTop, this.getPacmanStyle('Top')]} />
+              <Pacman.Body styles={[style.pacmanBottom, this.getPacmanStyle('Bottom')]} />
+            </Pacman.Base>
             {items.map((item, i) => {
               return (
-                <div
-                  style={[style.point, this.getPointStyle(i)]}
+                <Point
+                  styles={style.point}
+                  position={this.getPointStyle(i)}
                   key={`presentation-progress-${i}`}
                 />
               );
@@ -68,16 +80,16 @@ export default class Progress extends Component {
     case 'bar':
       style = style.bar;
       markup = (
-          <div style={[style.bar, this.getWidth()]} />
+          <Bar styles={style.bar} width={this.getWidth()} />
         );
       break;
     default:
       return false;
     }
     return (
-      <div style={[style.container]}>
+      <Container styles={style.container}>
         {markup}
-      </div>
+      </Container>
     );
   }
 }

@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const StyledImg = styled.img(({ styles }) => [
+  styles.context,
+  styles.base,
+  {
+    maxWidth: '100%',
+    maxHeight: '100%'
+  },
+  styles.props,
+  styles.user
+]);
+
 export default class Image extends Component {
   render() {
     const styles = {
-      width: this.props.width || '',
-      height: this.props.height || '',
-      maxWidth: '100%',
-      maxHeight: '100%',
-      display: this.props.display || ''
+      context: this.context.styles.components.image,
+      base: getStyles.call(this),
+      props: {
+        width: this.props.width,
+        height: this.props.height,
+        display: this.props.display
+      },
+      user: this.props.style
     };
     return (
-      <img
+      <StyledImg
         className={this.props.className}
         src={this.props.src}
-        style={[
-          this.context.styles.components.image,
-          getStyles.call(this),
-          this.props.style,
-          styles
-        ]}
+        styles={styles}
       />
     );
   }

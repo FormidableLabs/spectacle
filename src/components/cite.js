@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const StyledCite = styled.cite(props => props.styles);
+
 export default class Cite extends Component {
   render() {
-    const typefaceStyle = this.context.typeface || {};
+    const styles = [
+      this.context.styles.components.cite,
+      getStyles.call(this),
+      this.context.typeface || {},
+      this.props.style
+    ];
     return (
-      <cite className={this.props.className} style={[this.context.styles.components.cite, getStyles.call(this), typefaceStyle, this.props.style]}>
+      <StyledCite
+        className={this.props.className}
+        styles={styles}
+      >
         - {this.props.children}
-      </cite>
+      </StyledCite>
     );
   }
 }

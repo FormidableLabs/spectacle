@@ -4,7 +4,6 @@
 import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
-import Radium, { Style } from 'radium';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
 import findIndex from 'lodash/findIndex';
@@ -12,6 +11,8 @@ import { connect } from 'react-redux';
 import { setGlobalStyle, updateFragment } from '../actions';
 import Typeface from './typeface';
 import { getSlideByIndex } from '../utils/slides';
+import styled from 'react-emotion';
+import { Style } from 'radium';
 
 import Presenter from './presenter';
 import Export from './export';
@@ -21,11 +22,28 @@ import AutoplayControls from './autoplay-controls';
 import Fullscreen from './fullscreen';
 import Progress from './progress';
 import Controls from './controls';
-const TransitionGroup = Radium(ReactTransitionGroup);
 
-@connect(state => state)
-@Radium
-export default class Manager extends Component {
+
+const StyledDeck = styled.div(props => ({
+  backgroundColor:
+    props.route.params.indexOf('presenter') !== -1 ||
+    props.route.params.indexOf('overview') !== -1
+    ? 'black' : '',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%'
+}));
+
+const StyledTransition = styled(ReactTransitionGroup)({
+  height: '100%',
+  width: '100%',
+  perspective: 1000,
+  transformStyle: 'flat'
+});
+
+export class Manager extends Component {
   static displayName = 'Manager';
 
   static defaultProps = {
@@ -543,26 +561,6 @@ export default class Manager extends Component {
           },
         };
 
-    const styles = {
-      deck: {
-        backgroundColor: this.props.route.params.indexOf('presenter') !== -1 ||
-          this.props.route.params.indexOf('overview') !== -1
-          ? 'black'
-          : '',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-      },
-      transition: {
-        height: '100%',
-        width: '100%',
-        perspective: 1000,
-        transformStyle: 'flat',
-      },
-    };
-
     let componentToRender;
     const children = Children.toArray(this.props.children);
     if (this.props.route.params.indexOf('presenter') !== -1) {
@@ -598,9 +596,9 @@ export default class Manager extends Component {
       );
     } else {
       componentToRender = (
-        <TransitionGroup component="div" style={[styles.transition]}>
+        <StyledTransition component="div">
           {this._renderSlide()}
-        </TransitionGroup>
+        </StyledTransition>
       );
     }
 
@@ -621,9 +619,9 @@ export default class Manager extends Component {
     ));
 
     return (
-      <div
+      <StyledDeck
         className="spectacle-deck"
-        style={[styles.deck]}
+        route={this.props.route}
         onClick={this.handleClick}
         {...this._getTouchEvents()}
       >
@@ -660,7 +658,9 @@ export default class Manager extends Component {
 
         {this.props.globalStyles &&
           <Style rules={Object.assign({}, this.context.styles.global, globals)} />}
-      </div>
+      </StyledDeck>
     );
   }
 }
+
+export default connect(state => state)(Manager);

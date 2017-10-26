@@ -1,15 +1,13 @@
 import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
-import Radium from 'radium';
 import { getSlideByIndex } from '../utils/slides';
 import styled from 'react-emotion';
 
-const SpectacleExport = styled.div`
+const StyledExport = styled.div`
   height: 100%;
   width: 100%;
 `;
 
-@Radium
 export default class Export extends Component {
   _renderSlides() {
     return this.props.slideReference.map((reference, index) => {
@@ -30,9 +28,9 @@ export default class Export extends Component {
   }
   render() {
     return (
-      <SpectacleExport>
+      <StyledExport>
         {this._renderSlides()}
-      </SpectacleExport>
+      </StyledExport>
     );
   }
 }

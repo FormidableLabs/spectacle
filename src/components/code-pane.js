@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
 import isUndefined from 'lodash/isUndefined';
+import styled from 'react-emotion';
 
 const format = (str) => {
   return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 };
 
-@Radium
+const StyledPre = styled.pre(props => props.styles);
+const StyledCode = styled.code(props => props.styles);
+
 export default class CodePane extends Component {
   componentDidMount() {
     return window.Prism && window.Prism.highlightAll();
@@ -21,14 +23,22 @@ export default class CodePane extends Component {
     };
   }
   render() {
+    const preStyles = [
+      this.context.styles.components.codePane.pre,
+      getStyles.call(this),
+      this.props.style
+    ];
     return (
-      <pre className={this.props.className} style={[this.context.styles.components.codePane.pre, getStyles.call(this), this.props.style]}>
-        <code
+      <StyledPre
+        className={this.props.className}
+        styles={preStyles}
+      >
+        <StyledCode
           className={`language-${this.props.lang}`}
-          style={this.context.styles.components.codePane.code}
+          styles={this.context.styles.components.codePane.code}
           dangerouslySetInnerHTML={this.createMarkup()}
         />
-      </pre>
+      </StyledPre>
     );
   }
 }

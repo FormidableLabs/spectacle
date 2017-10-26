@@ -3,24 +3,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
 import { addFragment } from '../actions';
-import { Transitionable, renderTransition } from './transitionable';
 import stepCounter from '../utils/step-counter';
+import { SlideContainer, SlideContent, SlideContentWrapper } from './slide-components';
+import { VictoryAnimation } from 'victory-core';
+import findIndex from 'lodash/findIndex';
 
-@Transitionable
-@Radium
 class Slide extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.stepCounter = stepCounter();
-  }
-
   state = {
     contentScale: 1,
+    reverse: false,
     transitioning: true,
     z: 1,
-    zoom: 1
+    zoom: 1,
   };
 
   getChildContext() {
@@ -44,7 +39,7 @@ class Slide extends React.PureComponent {
           this.props.dispatch(
             addFragment({
               slide: this.props.hash,
-              id: i,
+              id: `${this.props.slideIndex}-${i}`,
               visible: this.props.lastSlideIndex > this.props.slideIndex,
             })
           )
@@ -63,8 +58,35 @@ class Slide extends React.PureComponent {
   }
 
   componentWillUnmount() {
+    window.removeEventListener('load', this.setZoom);
     window.removeEventListener('resize', this.setZoom);
   }
+
+  componentWillEnter(callback) {
+    this.setState({ transitioning: false, reverse: false, z: 1 });
+    this.routerCallback(callback);
+  }
+
+  componentWillAppear(callback) {
+    this.setState({ transitioning: false, reverse: false, z: 1 });
+    this.routerCallback(callback);
+  }
+
+  componentWillLeave(callback) {
+    this.setState({ transitioning: true, reverse: true, z: '' });
+    this.routerCallback(callback);
+  }
+
+  routerCallback = (callback) => {
+    const { transition, transitionDuration } = this.props;
+    if (transition.length > 0) {
+      setTimeout(() => callback(), transitionDuration);
+    } else {
+      callback();
+    }
+  }
+
+  stepCounter = stepCounter();
 
   setZoom = () => {
     const mobile = window.matchMedia('(max-width: 628px)').matches;
@@ -88,102 +110,102 @@ class Slide extends React.PureComponent {
         contentScale,
       });
     }
-  };
-
-  allStyles() {
-    const { align, print } = this.props;
-
-    const styles = {
-      outer: {
-        position: this.props.export ? 'relative' : 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        overflow: 'hidden',
-        backgroundColor: this.context.styles.global.body.background
-          ? this.context.styles.global.body.background
-          : '',
-        ...this.props.style,
-      },
-      inner: {
-        display: 'flex',
-        position: 'relative',
-        flex: 1,
-        alignItems: align ? align.split(' ')[1] : 'center',
-        justifyContent: align ? align.split(' ')[0] : 'center',
-      },
-      content: {
-        flex: 1,
-        maxHeight: this.context.contentHeight || 700,
-        maxWidth: this.context.contentWidth || 1000,
-        transform: `scale(${this.state.contentScale})`,
-        padding: this.state.zoom > 0.6 ? this.props.margin || 40 : 10,
-      },
-    };
-
-    const overViewStyles = {
-      inner: {
-        flexDirection: 'column',
-      },
-      content: {
-        width: '100%',
-      },
-    };
-
-    const printStyles = print
-      ? {
-          backgroundColor: 'white',
-          backgroundImage: 'none',
-        }
-      : {};
-
-    return { styles, overViewStyles, printStyles };
   }
 
-  @renderTransition render() {
-    const { presenterStyle, children } = this.props;
-    const { styles, overViewStyles, printStyles } = this.allStyles();
+  transitionDirection = () => {
+    const { slideIndex, lastSlideIndex } = this.props;
+    const routeSlideIndex = this.getRouteSlideIndex();
+    return this.state.reverse ? slideIndex > routeSlideIndex : slideIndex > lastSlideIndex;
+  }
+
+  getTransitionStyles = () => {
+    const { props: { transition = [] }, state: { transitioning, z } } = this;
+    let styles = { zIndex: z };
+    let transformValue = '';
+
+    if (transition.indexOf('fade') !== -1) {
+      styles = { ...styles, opacity: transitioning ? 0 : 1 };
+    }
+
+    if (transition.indexOf('zoom') !== -1) {
+      transformValue += ` scale(${transitioning ? 0.1 : 1.0})`;
+    }
+
+    if (transition.indexOf('slide') !== -1) {
+      const offset = this.transitionDirection() ? 100 : -100;
+      transformValue += ` translate3d(${transitioning ? offset : 0}%, 0, 0)`;
+    } else {
+      transformValue += ' translate3d(0px, 0px, 0px)';
+    }
+
+    if (transition.indexOf('spin') !== -1) {
+      const angle = this.transitionDirection() ? 90 : -90;
+      transformValue += ` rotateY(${transitioning ? angle : 0}deg)`;
+    }
+
+    return { ...styles, transform: transformValue };
+  }
+
+  getRouteSlideIndex = () => {
+    const { slideReference } = this.props;
+    const { route } = this.context.store.getState();
+    const { slide } = route;
+    const slideIndex = findIndex(slideReference, reference => {
+       return slide === String(reference.id);
+    });
+    return Math.max(0, slideIndex);
+  }
+
+  render() {
+    const { presenterStyle, children, transitionDuration } = this.props;
 
     if (!this.props.viewerScaleMode) {
       document.documentElement.style.fontSize = `${16 * this.state.zoom}px`;
     }
 
     const contentClass = isUndefined(this.props.className)
-      ? ''
-      : this.props.className;
+      ? '' : this.props.className;
+
     return (
-      <div
-        className="spectacle-slide"
-        ref={s => {
-          this.slideRef = s;
-        }}
-        style={[
-          styles.outer,
-          getStyles.call(this),
-          printStyles,
-          presenterStyle,
-        ]}
+      <VictoryAnimation
+        data={this.getTransitionStyles()}
+        duration={transitionDuration}
+        easing="quadInOut"
       >
-        <div
-          style={[styles.inner, this.context.overview && overViewStyles.inner]}
-        >
-          <div
-            ref={c => {
-              this.contentRef = c;
+        {animatedStyles => (
+          <SlideContainer
+            className="spectacle-slide"
+            innerRef={s => { this.slideRef = s; }}
+            exportMode={this.props.export}
+            printMode={this.props.print}
+            background={this.context.styles.global.body.background}
+            styles={{
+              base: getStyles.call(this),
+              presenter: presenterStyle,
             }}
-            className={`${contentClass} spectacle-content`}
-            style={[
-              this.context.styles.components.content,
-              this.context.overview && overViewStyles.content,
-              styles.content,
-            ]}
+            style={{ ...animatedStyles }}
           >
-            {children}
-          </div>
-        </div>
-      </div>
+            <SlideContentWrapper
+              align={this.props.align}
+              overviewMode={this.context.overview}
+            >
+              <SlideContent
+                innerRef={c => { this.contentRef = c; }}
+                className={`${contentClass} spectacle-content`}
+                overviewMode={this.context.overview}
+                width={this.context.contentWidth}
+                height={this.context.contentHeight}
+                scale={this.state.contentScale}
+                zoom={this.state.zoom}
+                margin={this.props.margin}
+                styles={{ context: this.context.styles.components.content }}
+              >
+                {children}
+              </SlideContent>
+            </SlideContentWrapper>
+          </SlideContainer>
+        )}
+      </VictoryAnimation>
     );
   }
 }
@@ -209,7 +231,10 @@ Slide.propTypes = {
   presenterStyle: PropTypes.object,
   print: PropTypes.bool,
   slideIndex: PropTypes.number,
+  slideReference: PropTypes.array,
   style: PropTypes.object,
+  transition: PropTypes.array,
+  transitionDuration: PropTypes.number,
   viewerScaleMode: PropTypes.bool,
 };
 

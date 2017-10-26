@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const StyledLink = styled.a(props => props.styles);
+
 export default class Link extends Component {
   render() {
     const typefaceStyle = this.context.typeface || {};
     return (
-      <a className={this.props.className} href={this.props.href} target={this.props.target} style={[this.context.styles.components.link, getStyles.call(this), typefaceStyle, this.props.style]}>
+      <StyledLink
+        className={this.props.className}
+        href={this.props.href}
+        target={this.props.target}
+        styles={[
+          this.context.styles.components.link,
+          getStyles.call(this),
+          typefaceStyle,
+          this.props.style
+        ]}
+      >
         {this.props.children}
-      </a>
+      </StyledLink>
     );
   }
 }

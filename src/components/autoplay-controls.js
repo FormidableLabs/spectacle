@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const AutoplayButton = styled.button(({ styles }) => [
+  {
+    opacity: 0,
+    cursor: 'pointer',
+    transition: '300ms opacity ease',
+    ':hover': {
+      opacity: 1
+    }
+  },
+  styles.context
+]);
+
 export default class AutoplayControls extends Component {
   render() {
-    const styles = {
-      opacity: 0,
-      cursor: 'pointer',
-      transition: '300ms opacity ease',
-      ':hover': {
-        opacity: 1
-      }
-    };
-
     const pauseBtn = (
-      <button
+      <AutoplayButton
         type="button"
         key="pause"
         onClick={this.props.onPause}
-        style={[styles, this.context.styles.autoplay.pause]}
+        styles={{
+          context: this.context.styles.autoplay.pause
+        }}
       >
         <svg
           style={this.context.styles.autoplay.pauseIcon}
@@ -30,15 +34,17 @@ export default class AutoplayControls extends Component {
         >
           <path d="M23.5,4V26h-6V4ZM6.5,26h6V4h-6Z"/>
         </svg>
-      </button>
+      </AutoplayButton>
     );
 
     const playBtn = (
-      <button
+      <AutoplayButton
         type="button"
         key="play"
         onClick={this.props.onPlay}
-        style={[styles, this.context.styles.autoplay.play]}
+        styles={{
+          context: this.context.styles.autoplay.play
+        }}
       >
         <svg
           style={this.context.styles.autoplay.playIcon}
@@ -49,7 +55,7 @@ export default class AutoplayControls extends Component {
         >
           <path d="M26,15,6,25V5Z"/>
         </svg>
-      </button>
+      </AutoplayButton>
     );
 
     return this.props.autoplaying ? pauseBtn : playBtn;

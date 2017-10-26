@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
-import Radium from 'radium';
+import styled from 'react-emotion';
 
-@Radium
+const StyledTable = styled.table(props => props.styles);
+
 export default class Table extends Component {
   render() {
     return (
-      <table className={this.props.className} style={[this.context.styles.components.table, getStyles.call(this), this.props.style]}>
+      <StyledTable
+        className={this.props.className}
+        styles={[
+          this.context.styles.components.table,
+          getStyles.call(this),
+          this.props.style
+        ]}
+      >
         {this.props.children}
-      </table>
+      </StyledTable>
     );
   }
 }

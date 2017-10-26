@@ -2,16 +2,24 @@
 
 exports[`<BlockQuote /> should render correctly. 1`] = `
 <BlockQuote>
-  <blockquote
+  <Styled(blockquote)
     className={undefined}
-    data-radium={true}
-    style={
-      Object {
-        "fontStyle": "oblique",
-      }
+    styles={
+      Array [
+        Object {
+          "fontStyle": "oblique",
+        },
+        Object {},
+        Object {},
+        undefined,
+      ]
     }
   >
-    Some Quote
-  </blockquote>
+    <blockquote
+      className="css-1220ekt"
+    >
+      Some Quote
+    </blockquote>
+  </Styled(blockquote)>
 </BlockQuote>
 `;

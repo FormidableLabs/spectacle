@@ -2,16 +2,24 @@
 
 exports[`<ListItem /> should render correctly 1`] = `
 <ListItem>
-  <li
+  <Styled(li)
     className={undefined}
-    data-radium={true}
-    style={
-      Object {
-        "color": "#ff0",
-      }
+    styles={
+      Array [
+        Object {
+          "color": "#ff0",
+        },
+        Object {},
+        Object {},
+        undefined,
+      ]
     }
   >
-    Dog
-  </li>
+    <li
+      className="css-tr63ps"
+    >
+      Dog
+    </li>
+  </Styled(li)>
 </ListItem>
 `;

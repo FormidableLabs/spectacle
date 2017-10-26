@@ -18,77 +18,103 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
   }
   type="pacman"
 >
-  <div
-    data-radium={true}
-    style={Object {}}
+  <Styled(div)
+    styles={undefined}
   >
     <div
-      data-radium={true}
+      className="css-0"
     >
-      <div
-        data-radium={true}
-        key=".0"
-        style={
-          Object {
-            "left": "15px",
-            "top": "-20px",
-          }
-        }
-      >
-        <div
-          data-radium={true}
-          key=".0"
-          style={
+      <div>
+        <Styled(div)
+          position={
             Object {
-              "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
+              "left": "15px",
+              "top": "-20px",
             }
           }
-        />
-        <div
-          data-radium={true}
-          key=".1"
-          style={
+          styles={undefined}
+        >
+          <div
+            className="css-tyaqbb"
+          >
+            <Styled(div)
+              styles={
+                Array [
+                  undefined,
+                  Object {
+                    "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
+                  },
+                ]
+              }
+            >
+              <div
+                className="css-13kse6y"
+              />
+            </Styled(div)>
+            <Styled(div)
+              styles={
+                Array [
+                  undefined,
+                  Object {
+                    "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
+                  },
+                ]
+              }
+            >
+              <div
+                className="css-9ev9ib"
+              />
+            </Styled(div)>
+          </div>
+        </Styled(div)>
+        <Styled(div)
+          key="presentation-progress-0"
+          position={
             Object {
-              "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
+              "left": "-25px",
+              "opacity": 0,
+              "top": "-20px",
             }
           }
-        />
+          styles={undefined}
+        >
+          <div
+            className="css-1xucvt"
+          />
+        </Styled(div)>
+        <Styled(div)
+          key="presentation-progress-1"
+          position={
+            Object {
+              "left": "-5px",
+              "opacity": 0,
+              "top": "-20px",
+            }
+          }
+          styles={undefined}
+        >
+          <div
+            className="css-ci3gz3"
+          />
+        </Styled(div)>
+        <Styled(div)
+          key="presentation-progress-2"
+          position={
+            Object {
+              "left": "15px",
+              "opacity": 0,
+              "top": "-20px",
+            }
+          }
+          styles={undefined}
+        >
+          <div
+            className="css-41ffu3"
+          />
+        </Styled(div)>
       </div>
-      <div
-        data-radium={true}
-        key=".1:$presentation-progress-0"
-        style={
-          Object {
-            "left": "-25px",
-            "opacity": 0,
-            "top": "-20px",
-          }
-        }
-      />
-      <div
-        data-radium={true}
-        key=".1:$presentation-progress-1"
-        style={
-          Object {
-            "left": "-5px",
-            "opacity": 0,
-            "top": "-20px",
-          }
-        }
-      />
-      <div
-        data-radium={true}
-        key=".1:$presentation-progress-2"
-        style={
-          Object {
-            "left": "15px",
-            "opacity": 0,
-            "top": "-20px",
-          }
-        }
-      />
     </div>
-  </div>
+  </Styled(div)>
 </Progress>
 `;
 
@@ -130,19 +156,31 @@ exports[`<Progress /> should render the bar style correctly 1`] = `
   }
   type="bar"
 >
-  <div
-    data-radium={true}
-    style={Object {}}
+  <Styled(div)
+    styles={undefined}
   >
     <div
-      data-radium={true}
-      style={
-        Object {
-          "width": "50%",
+      className="css-0"
+    >
+      <Styled(div)
+        styles={undefined}
+        width={
+          Object {
+            "width": "50%",
+          }
         }
-      }
-    />
-  </div>
+      >
+        <div
+          className="css-11ze7cv"
+          width={
+            Object {
+              "width": "50%",
+            }
+          }
+        />
+      </Styled(div)>
+    </div>
+  </Styled(div)>
 </Progress>
 `;
 
@@ -164,17 +202,18 @@ exports[`<Progress /> should render the number style correctly 1`] = `
   }
   type="number"
 >
-  <div
-    data-radium={true}
-    style={Object {}}
+  <Styled(div)
+    styles={undefined}
   >
     <div
-      data-radium={true}
+      className="css-0"
     >
-      2
-       / 
-      3
+      <div>
+        2
+         / 
+        3
+      </div>
     </div>
-  </div>
+  </Styled(div)>
 </Progress>
 `;
