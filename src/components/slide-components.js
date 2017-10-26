@@ -41,13 +41,13 @@ export const SlideContentWrapper = styled.div(({ align, overviewMode }) => {
 
 export const SlideContent = styled.div(props => {
   const {
-    overviewMode, contentScale, zoom, margin, width, height, styles
+    overviewMode, scale, zoom, margin, width, height, styles
   } = props;
   const contentStyles = {
     flex: 1,
     maxHeight: height || 700,
     maxWidth: width || 1000,
-    transform: `scale(${contentScale})`,
+    transform: `scale(${scale})`,
     padding: zoom > 0.6 ? margin || 40 : 10,
   };
   const overviewStyles = {
