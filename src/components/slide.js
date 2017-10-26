@@ -39,7 +39,7 @@ class Slide extends React.PureComponent {
           this.props.dispatch(
             addFragment({
               slide: this.props.hash,
-              id: i,
+              id: `${this.props.slideIndex}-${i}`,
               visible: this.props.lastSlideIndex > this.props.slideIndex,
             })
           )

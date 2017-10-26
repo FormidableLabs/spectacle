@@ -27,8 +27,9 @@ class Appear extends Component {
     const state = nextProps.fragment;
     const slide = this.props.route.slide;
     const fragment = findDOMNode(this.fragmentRef);
+    const slideHash = parseInt(this.context.slideHash);
     const key = findKey(state.fragments[slide], {
-      id: parseInt(fragment.dataset.fid),
+      id: `${slideHash}-${parseInt(fragment.dataset.fid)}`,
     });
 
     const shouldDisableAnimation =
@@ -90,6 +91,7 @@ Appear.contextTypes = {
   export: PropTypes.bool,
   overview: PropTypes.bool,
   slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   stepCounter: PropTypes.shape({
     setFragments: PropTypes.func
   })

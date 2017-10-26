@@ -75,7 +75,7 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
               zoom={0.6}
             >
               <div
-                className=" spectacle-content css-1pbow09"
+                className=" spectacle-content css-1wqnfch"
                 height={undefined}
                 width={undefined}
               >
@@ -161,7 +161,7 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
               zoom={0.6}
             >
               <div
-                className=" spectacle-content css-1pbow09"
+                className=" spectacle-content css-1wqnfch"
                 height={undefined}
                 width={undefined}
               >
