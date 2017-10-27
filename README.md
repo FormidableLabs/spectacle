@@ -346,7 +346,9 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |maxHeight| PropTypes.number | Used to set max dimensions of the Slide.
 |maxWidth| PropTypes.number | Used to set max dimensions of the Slide.
 |notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
-|transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
+|transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. This will affect both enter and exit transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
+|transitionIn|PropTypes.array|Specifies the slide transition when the slide comes into view. Accepts the same values as transition.|
+|transitionOut|PropTypes.array|Specifies the slide transition when the slide exits. Accepts the same values as transition.|
 |transitionDuration| PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
 
 <a name="notes"></a>

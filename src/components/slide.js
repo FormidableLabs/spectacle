@@ -1,4 +1,4 @@
-/* eslint-disable no-invalid-this */
+/* eslint-disable no-invalid-this, max-statements */
 import React from 'react';
 import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
@@ -118,8 +118,22 @@ class Slide extends React.PureComponent {
     return this.state.reverse ? slideIndex > routeSlideIndex : slideIndex > lastSlideIndex;
   }
 
+  getTransitionKeys = () => {
+    const {
+      props: { transition = [], transitionIn = [], transitionOut = [] },
+      state: { reverse }
+    } = this;
+    if (reverse && transitionOut.length > 0) {
+      return transitionOut;
+    } else if (transitionIn.length > 0) {
+      return transitionIn;
+    }
+    return transition;
+  }
+
   getTransitionStyles = () => {
-    const { props: { transition = [] }, state: { transitioning, z } } = this;
+    const { transitioning, z } = this.state;
+    const transition = this.getTransitionKeys();
     let styles = { zIndex: z };
     let transformValue = '';
 
@@ -235,6 +249,8 @@ Slide.propTypes = {
   style: PropTypes.object,
   transition: PropTypes.array,
   transitionDuration: PropTypes.number,
+  transitionIn: PropTypes.array,
+  transitionOut: PropTypes.array,
   viewerScaleMode: PropTypes.bool,
 };
 

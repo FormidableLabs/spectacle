@@ -57,13 +57,13 @@ export default class Presentation extends React.Component {
           </Link>
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
-        <Slide id="wait-what" transition={['slide']} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
+        <Slide id="wait-what" transitionIn={['slide']} transitionOut={['zoom']} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
           <Image src={images.kat.replace('/', '')} margin="0px auto 40px" />
           <Heading size={2} caps fit textColor="primary" textFont="primary">
             Wait what?
           </Heading>
         </Slide>
-        <Slide transition={['zoom', 'fade']} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
+        <Slide transitionIn={['zoom', 'fade']} transitionOut={['slide', 'fade']} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
           <CodePane
             lang="jsx"
             source={require('raw-loader!../assets/deck.example')}
