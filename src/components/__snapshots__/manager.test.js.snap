@@ -251,25 +251,13 @@ exports[`<Manager /> should render correctly. 1`] = `
             </div>
           </Styled(div)>
         </Fullscreen>
-        <Style
-          rules={
+        <style
+          dangerouslySetInnerHTML={
             Object {
-              ".spectacle-presenter-next .fragment": Object {
-                "display": "none !important",
-              },
-              "body": Array [],
+              "__html": "body { } .spectacle-presenter-next .fragment { display: none !important} ",
             }
           }
-          scopeSelector=""
-        >
-          <style
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
-              }
-            }
-          />
-        </Style>
+        />
       </div>
     </Styled(div)>
   </Manager>
@@ -386,27 +374,13 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
             </div>
           </Styled(div)>
         </Export>
-        <Style
-          rules={
+        <style
+          dangerouslySetInnerHTML={
             Object {
-              ".spectacle-presenter-next .fragment": Object {
-                "display": "none !important",
-              },
-              "body": Array [],
+              "__html": "body { min-width: 1150px; min-height: 850px; overflow: auto} .spectacle-presenter-next .fragment { display: none !important} ",
             }
           }
-          scopeSelector=""
-        >
-          <style
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "body{min-width: 1150px;
-              min-height: 850px;
-              overflow: auto;}.spectacle-presenter-next .fragment{display: none !important;}",
-              }
-            }
-          />
-        </Style>
+        />
       </div>
     </Styled(div)>
   </Manager>
@@ -571,25 +545,13 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
             </div>
           </Styled(div)>
         </Fullscreen>
-        <Style
-          rules={
+        <style
+          dangerouslySetInnerHTML={
             Object {
-              ".spectacle-presenter-next .fragment": Object {
-                "display": "none !important",
-              },
-              "body": Array [],
+              "__html": "body { } .spectacle-presenter-next .fragment { display: none !important} ",
             }
           }
-          scopeSelector=""
-        >
-          <style
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
-              }
-            }
-          />
-        </Style>
+        />
       </div>
     </Styled(div)>
   </Manager>
@@ -874,25 +836,13 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             </div>
           </Styled(div)>
         </Fullscreen>
-        <Style
-          rules={
+        <style
+          dangerouslySetInnerHTML={
             Object {
-              ".spectacle-presenter-next .fragment": Object {
-                "display": "none !important",
-              },
-              "body": Array [],
+              "__html": "body { } .spectacle-presenter-next .fragment { display: none !important} ",
             }
           }
-          scopeSelector=""
-        >
-          <style
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "body{}.spectacle-presenter-next .fragment{display: none !important;}",
-              }
-            }
-          />
-        </Style>
+        />
       </div>
     </Styled(div)>
   </Manager>
