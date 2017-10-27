@@ -12,7 +12,8 @@ import { setGlobalStyle, updateFragment } from '../actions';
 import Typeface from './typeface';
 import { getSlideByIndex } from '../utils/slides';
 import styled from 'react-emotion';
-import { Style } from 'radium';
+import { string as toStringStyle } from 'to-style';
+import memoize from 'lodash/memoize';
 
 import Presenter from './presenter';
 import Export from './export';
@@ -23,6 +24,13 @@ import Fullscreen from './fullscreen';
 import Progress from './progress';
 import Controls from './controls';
 
+let convertStyle = styles => {
+  return Object.keys(styles).map(key => {
+    return `${key} { ${toStringStyle(styles[key])}} `;
+  }).join('');
+};
+
+convertStyle = memoize(convertStyle);
 
 const StyledDeck = styled.div(props => ({
   backgroundColor:
@@ -657,7 +665,7 @@ export class Manager extends Component {
           : ''}
 
         {this.props.globalStyles &&
-          <Style rules={Object.assign({}, this.context.styles.global, globals)} />}
+          <style dangerouslySetInnerHTML={{ __html: convertStyle(Object.assign({}, this.context.styles.global, globals)) }}/>}
       </StyledDeck>
     );
   }
