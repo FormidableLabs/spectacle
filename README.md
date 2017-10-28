@@ -389,7 +389,7 @@ Slide Content
 **Function Usage**
 
 ```jsx
-import slidesMarkdown from "raw!markdown.md";
+import slidesMarkdown from "raw-loader!markdown.md";
 
 <Deck ...>
   {MarkdownSlides(slidesMarkdown)}
