@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
+  Heading, Image, Layout, Link, ListItem, List, Math, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
   TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text, S
 } from '../../src';
 
@@ -159,6 +159,11 @@ Slides are separated with **three dashes** and can be used _anywhere_ in the dec
 * Imported Markdown from another file
           `
         }
+        <Slide>
+          <Text textSize="5rem"><Math>\KaTeX</Math> based math rendering</Text>
+          <Math math="\int_0^\infty x^2 dx" />
+          <Math displayMode >{'\\text{and } \\pm\\sqrt{a^2 + b^2} \\text{ set in display mode}'}</Math>
+        </Slide>
         <Slide transition={['slide', 'spin']} bgColor="primary">
           <Heading caps fit size={1} textColor="tertiary">
             Smooth

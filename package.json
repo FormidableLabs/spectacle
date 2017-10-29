@@ -26,6 +26,7 @@
     "component-playground": "^3.0.0",
     "emotion": "^8.0.8",
     "history": "^4.6.1",
+    "katex": "^0.9.0-alpha1",
     "lodash": "^4.17.4",
     "marksy": "^0.4.2",
     "normalize.css": "^7.0.0",
