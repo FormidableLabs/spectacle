@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
+import isFunction from 'lodash/isFunction';
 import { getStyles } from '../utils/base';
 import { addFragment } from '../actions';
 import stepCounter from '../utils/step-counter';
@@ -157,7 +158,17 @@ class Slide extends React.PureComponent {
       transformValue += ` rotateY(${transitioning ? angle : 0}deg)`;
     }
 
-    return { ...styles, transform: transformValue };
+    const functionStyles = transition.reduce((memo, current) => {
+      if (isFunction(current)) {
+        return {
+          ...memo,
+          ...(current(transitioning, this.transitionDirection()))
+        };
+      }
+      return memo;
+    }, {});
+
+    return { ...styles, transform: transformValue, ...functionStyles };
   }
 
   getRouteSlideIndex = () => {
