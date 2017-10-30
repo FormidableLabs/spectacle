@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+/*
+Name: Duotone Dark
+Author: Simurai, adapted from DuoTone themes for Atom (http://simurai.com/projects/2016/01/01/duotone-themes)
+Conversion: Bram de Haan (http://atelierbram.github.io/Base2Tone-prism/output/prism/prism-base2tone-evening-dark.css)
+Generated with Base16 Builder (https://github.com/base16-builder/base16-builder)
+
+Spectacle NOTE: This syntax theme was modified to work with react-live
+*/
+
+.react-live-dark pre.prism-code {
+  font-family: 'Roboto Mono', monospace;
+  font-size: inherit;
+  line-height: 1.5;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+  background: #2a2734;
+  color: #9a86fd;
+
+  /* React Live modifications: */
+  white-space: pre-wrap;
+}
+
+.react-live-dark pre.prism-code::-moz-selection, pre.prism-code ::-moz-selection {
+  text-shadow: none;
+  background: #6a51e6;
+}
+
+.react-live-dark pre.prism-code::selection, pre.prism-code ::selection {
+  text-shadow: none;
+  background: #6a51e6;
+}
+
+.react-live-dark .token.comment,
+.react-live-dark .token.prolog,
+.react-live-dark .token.doctype,
+.react-live-dark .token.cdata {
+  color: #6c6783;
+}
+
+.react-live-dark .token.punctuation {
+  color: #6c6783;
+}
+
+.react-live-dark .token.namespace {
+  opacity: .7;
+}
+
+.react-live-dark .token.tag,
+.react-live-dark .token.operator,
+.react-live-dark .token.number {
+  color: #e09142;
+}
+
+.react-live-dark .token.property,
+.react-live-dark .token.function {
+  color: #9a86fd;
+}
+
+.react-live-dark .token.tag-id,
+.react-live-dark .token.selector,
+.react-live-dark .token.atrule-id {
+  color: #eeebff;
+}
+
+.react-live-dark .token.attr-name {
+  color: #c4b9fe;
+}
+
+.react-live-dark .token.boolean,
+.react-live-dark .token.string,
+.react-live-dark .token.entity,
+.react-live-dark .token.url,
+.react-live-dark .language-css .token.string,
+.react-live-dark .language-scss .token.string,
+.react-live-dark .style .token.string,
+.react-live-dark .token.attr-value,
+.react-live-dark .token.keyword,
+.react-live-dark .token.control,
+.react-live-dark .token.directive,
+.react-live-dark .token.unit,
+.react-live-dark .token.statement,
+.react-live-dark .token.regex,
+.react-live-dark .token.atrule {
+  color: #ffcc99;
+}
+
+.react-live-dark .token.placeholder,
+.react-live-dark .token.variable {
+  color: #ffcc99;
+}
+
+.react-live-dark .token.deleted {
+  text-decoration: line-through;
+}
+
+.react-live-dark .token.inserted {
+  border-bottom: 1px dotted #eeebff;
+  text-decoration: none;
+}
+
+.react-live-dark .token.italic {
+  font-style: italic;
+}
+
+.react-live-dark .token.important,
+.react-live-dark .token.bold {
+  font-weight: bold;
+}
+
+.react-live-dark .token.important {
+  color: #c4b9fe;
+}
+
+.react-live-dark .token.entity {
+  cursor: help;
+}

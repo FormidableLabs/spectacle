@@ -1,6 +1,6 @@
 export const defaultCode = `
 /**
- * Sample React Component 
+ * Sample React Component
  * Output domContainerNode is 'mountNode'
  */
 
@@ -25,7 +25,5 @@ const HelloWorld = ({ name }) => (
   </div>
 )
 
-render(
-  <HelloWorld name="Spectacle" />, 
-  mountNode)
+render(<HelloWorld name="Spectacle" />)
 `;

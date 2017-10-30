@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
-import ComponentPlayground from './component-playground';
+import ComponentPlayground, { PlaygroundProvider } from './component-playground';
 
 describe('<ComponentPlayground />', () => {
   test('Should render the dark theme correctly', () => {
@@ -39,7 +39,8 @@ describe('<ComponentPlayground />', () => {
     const NewComponent = () => <div><h1>Hi!</h1></div>;
     const wrapper = shallow(<ComponentPlayground scope={{ NewComponent }} />);
 
-    const scope = wrapper.find('ReactPlayground').prop('scope');
+    const scope = wrapper.find(PlaygroundProvider).prop('scope');
+
     expect(scope.NewComponent).toEqual(NewComponent);
   });
 });
