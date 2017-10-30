@@ -346,8 +346,32 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |maxHeight| PropTypes.number | Used to set max dimensions of the Slide.
 |maxWidth| PropTypes.number | Used to set max dimensions of the Slide.
 |notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
-|transition|PropTypes.array|Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets the slide transition. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
+|transition|PropTypes.array|Accepts `slide`, `zoom`, `fade`, `spin`, or a [function](#transition-function), and can be combined. Sets the slide transition. This will affect both enter and exit transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
+|transitionIn|PropTypes.array|Specifies the slide transition when the slide comes into view. Accepts the same values as transition.|
+|transitionOut|PropTypes.array|Specifies the slide transition when the slide exits. Accepts the same values as transition.|
 |transitionDuration| PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
+
+<a name="transition-function"></a>
+##### Transition Function
+Spectacle now supports defining custom transitions. The function prototype is `(transitioning: boolean, forward: boolean) => Object`. The `transitioning` param is true when the slide enters and exits. The `forward` param is `true` when the slide is entering, `false` when the slide is exiting. The function returns a style object. You can mix string-based transitions and functions. Styles provided when `transitioning` is `false` will appear during the lifecyle of the slide. An example is shown below:
+
+```jsx
+<Slide
+  transition={[
+    'fade',
+    (transitioning, forward) => {
+      const angle = forward ? -180 : 180;
+      return {
+        transform: `
+          translate3d(0%, ${transitioning ? 100 : 0}%, 0)
+          rotate(${transitioning ? angle : 0}deg)
+        `,
+        backgroundColor: transitioning ? '#26afff' : '#000'
+      };
+    }
+  ]}
+>
+```
 
 <a name="notes"></a>
 #### Notes

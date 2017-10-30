@@ -1,7 +1,8 @@
-/* eslint-disable no-invalid-this */
+/* eslint-disable no-invalid-this, max-statements */
 import React from 'react';
 import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
+import isFunction from 'lodash/isFunction';
 import { getStyles } from '../utils/base';
 import { addFragment } from '../actions';
 import stepCounter from '../utils/step-counter';
@@ -118,8 +119,22 @@ class Slide extends React.PureComponent {
     return this.state.reverse ? slideIndex > routeSlideIndex : slideIndex > lastSlideIndex;
   }
 
+  getTransitionKeys = () => {
+    const {
+      props: { transition = [], transitionIn = [], transitionOut = [] },
+      state: { reverse }
+    } = this;
+    if (reverse && transitionOut.length > 0) {
+      return transitionOut;
+    } else if (transitionIn.length > 0) {
+      return transitionIn;
+    }
+    return transition;
+  }
+
   getTransitionStyles = () => {
-    const { props: { transition = [] }, state: { transitioning, z } } = this;
+    const { transitioning, z } = this.state;
+    const transition = this.getTransitionKeys();
     let styles = { zIndex: z };
     let transformValue = '';
 
@@ -143,7 +158,17 @@ class Slide extends React.PureComponent {
       transformValue += ` rotateY(${transitioning ? angle : 0}deg)`;
     }
 
-    return { ...styles, transform: transformValue };
+    const functionStyles = transition.reduce((memo, current) => {
+      if (isFunction(current)) {
+        return {
+          ...memo,
+          ...(current(transitioning, this.transitionDirection()))
+        };
+      }
+      return memo;
+    }, {});
+
+    return { ...styles, transform: transformValue, ...functionStyles };
   }
 
   getRouteSlideIndex = () => {
@@ -235,6 +260,8 @@ Slide.propTypes = {
   style: PropTypes.object,
   transition: PropTypes.array,
   transitionDuration: PropTypes.number,
+  transitionIn: PropTypes.array,
+  transitionOut: PropTypes.array,
   viewerScaleMode: PropTypes.bool,
 };
 
