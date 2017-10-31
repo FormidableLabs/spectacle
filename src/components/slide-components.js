@@ -35,8 +35,7 @@ export const SlideContentWrapper = styled.div(({ align, overviewMode }) => {
   const overviewStyles = {
     flexDirection: 'column'
   };
-  return [ innerStyles, overviewMode && overviewStyles ]
-    .filter(Boolean);
+  return [ innerStyles, overviewMode && overviewStyles ];
 });
 
 export const SlideContent = styled.div(props => {
@@ -53,6 +52,5 @@ export const SlideContent = styled.div(props => {
   const overviewStyles = {
     width: '100%'
   };
-  return [ styles.context, overviewMode && overviewStyles, contentStyles ]
-    .filter(Boolean);
+  return [ styles.context, overviewMode && overviewStyles, contentStyles ];
 });
