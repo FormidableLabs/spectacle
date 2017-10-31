@@ -295,6 +295,8 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         listStylePosition: 'inside',
         padding: 0,
       },
+      math: {
+      },
       s: {
         strikethrough: {},
       },
