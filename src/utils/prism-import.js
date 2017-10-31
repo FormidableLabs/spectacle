@@ -1,5 +1,3 @@
-/* eslint-disable filenames/match-regex */
-
 import 'prismjs/components/prism-core';
 
 // NOTE: This includes a "slim" list of some components of prism, but not all

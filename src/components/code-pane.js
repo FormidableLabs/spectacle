@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
 import styled from 'react-emotion';
 
-import '../utils/prismImport';
+import '../utils/prism-import';
 import { Editor } from 'react-live';
 
 const StyledWrapper = styled.div(props => props.styles);
