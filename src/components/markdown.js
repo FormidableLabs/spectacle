@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { getStyles } from '../utils/base';
 import marksy from 'marksy';
+import styled from 'react-emotion';
 
 import BlockQuote from './block-quote';
 import CodePane from './code-pane';
@@ -21,6 +23,8 @@ import TableHeaderItem from './table-header-item';
 import TableBody from './table-body';
 import TableItem from './table-item';
 
+
+const Container = styled.div(props => props.styles);
 
 const _Heading = size => {
   const component = ({ children }) => <Heading size={size}>{children}</Heading>;
@@ -74,23 +78,34 @@ export default class Markdown extends Component {
     style: PropTypes.object
   };
 
+  static contextTypes = {
+    styles: PropTypes.object,
+    store: PropTypes.object,
+    typeface: PropTypes.object
+  };
+
   static defaultProps = {
     style: {},
   };
 
   render() {
     const { style, children, source } = this.props;
+    const styleComputed = [
+      getStyles.call(this),
+      style
+    ];
+
     if (source) {
       return (
-        <div style={style}>
+        <Container styles={styleComputed}>
           {compile(source).tree}
-        </div>
+        </Container>
       );
     }
     return (
-      <div style={style}>
+      <Container styles={styleComputed}>
         {compile(children).tree}
-      </div>
+      </Container>
     );
   }
 }
