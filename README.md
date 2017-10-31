@@ -123,14 +123,11 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
     <title>Spectacle</title>
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
-    <link href="https://unpkg.com/prismjs@1/themes/prism-tomorrow.css" rel="stylesheet" type="text/css">
     <link href="https://unpkg.com/normalize.css@7/normalize.css" rel="stylesheet" type="text/css">
     <link href="https://unpkg.com/spectacle/lib/themes/default/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="root"></div>
-    <script src="https://unpkg.com/prismjs@1/prism.js"></script>
-    <script src="https://unpkg.com/prismjs@1/components/prism-jsx.min.js"></script>
     <script src="https://unpkg.com/prop-types@15/prop-types.js"></script>
     <script src="https://unpkg.com/react@15/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
@@ -485,8 +482,6 @@ This tag displays a styled, highlighted code preview. I prefer putting my code s
 |---|---|---|
 |lang|PropTypes.string| Prism compatible language name. i.e: 'javascript' |
 |source| PropTypes.string| String of code to be shown |
-
-You can change your syntax highlighting theme by swapping the prism.js CSS file in `index.html`
 
 <a name="code-base"></a>
 #### Code (Base)
