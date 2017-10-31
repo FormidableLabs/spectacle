@@ -4915,9 +4915,9 @@ react-emotion@^8.0.8:
     babel-plugin-emotion "^8.0.6"
     emotion-utils "^8.0.6"
 
-react-live@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/react-live/-/react-live-1.7.1.tgz#a4fc7a4d23c2596cf7d4ed10f62dca9a02915e26"
+react-live@^1.8.0-1:
+  version "1.8.0-1"
+  resolved "https://registry.yarnpkg.com/react-live/-/react-live-1.8.0-1.tgz#9ee81589e6ae2e728ef0d993e517af133de27c5b"
   dependencies:
     buble "^0.15.2"
     core-js "^2.4.1"
