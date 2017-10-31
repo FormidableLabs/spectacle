@@ -444,7 +444,7 @@ The fill tag takes up all the space available to it. For example, if you have a 
 ### Markdown Tag
 
 <a name="markdown"></a>
-#### Markdown
+#### Markdown (Base)
 
 The Markdown tag is used to add inline markdown to your slide. You can provide markdown source via the `source` prop, or as children. You can also provide a custom [mdast configuration](https://github.com/wooorm/mdast) via the `mdastConfig` prop.
 
