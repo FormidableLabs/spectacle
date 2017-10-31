@@ -1,19 +1,89 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { render } from 'react-dom';
-import Playground from 'component-playground';
-import styled from 'react-emotion';
-import '../themes/default/playground.css';
-import '../themes/default/codemirror.css';
+import styled, { css } from 'react-emotion';
 import { defaultCode } from '../utils/playground.default-code';
 
-const ComponentPlaygroundContainer = styled.div`
-  background: ${(props) => (
-    props.previewBackgroundColor || '#fff'
-  )};
+import {
+  LiveProvider,
+  LiveEditor,
+  LiveError,
+  LivePreview
+} from 'react-live';
+
+export const PlaygroundProvider = styled(LiveProvider)`
   border-radius: 0 0 6px 6px;
   height: 100%;
   width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+`;
+
+const PlaygroundPreview = styled(LivePreview)`
+  padding: 0.5rem;
+  min-height: 100%;
+
+  background: ${(props) => (
+    props.previewBackgroundColor || '#fff'
+  )};
+`;
+
+const PlaygroundEditor = styled(LiveEditor)`
+  padding: 0.5rem;
+  margin: 0;
+  min-height: 100%;
+  font-size: 1.25vw;
+`;
+
+const PlaygroundRow = styled.div`
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  width: 100%;
+`;
+
+const Title = styled.div`
+  flex: 1;
+  background: #ddd;
+  border-bottom: 1px solid #999;
+  color: #424242;
+  display: block;
+  font-family: 'Roboto Mono', 'Menlo', 'Andale Mono', monospace;
+  font-size: 1.15vw;
+  padding: 0.4rem 0;
+  text-transform: uppercase;
+
+  &:last-child {
+    border-left: 1px solid #999;
+  }
+
+  ${props => props.useDarkTheme && css`
+    background: #272822;
+    border-bottom: 1px solid #000;
+    color: #fff;
+  `}
+`;
+
+const PlaygroundColumn = styled.div`
+  flex: 1;
+  font-size: 1.25vw;
+  margin: 0;
+  position: relative;
+  height: 60vh;
+  overflow-y: scroll;
+  &:last-child {
+    border-left: 1px solid #999;
+  }
+`;
+
+const PlaygroundError = styled(LiveError)`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+  white-space: pre-wrap;
+  background: rgba(255, 35, 36, 0.8);
+  color: white;
+  padding: 0.5rem;
 `;
 
 const ComponentPlayground = ({
@@ -25,23 +95,37 @@ const ComponentPlayground = ({
   const useDarkTheme = theme === 'dark';
 
   if (useDarkTheme) {
-    require('../themes/default/dark.codemirror.css');
+    require('../themes/default/prism.dark.css');
   } else {
-    require('../themes/default/light.codemirror.css');
+    require('../themes/default/prism.light.css');
   }
 
   return (
-    <ComponentPlaygroundContainer
-      className={`theme-${theme}`}
-      previewBackgroundColor={previewBackgroundColor}
+    <PlaygroundProvider
+      className={`react-live-${useDarkTheme ? 'dark' : 'light'}`}
+      mountStylesheet={false}
+      code={(code || defaultCode).trim()}
+      scope={{ Component, ...scope }}
+      noInline
     >
-      <Playground
-        codeText={(code || defaultCode).trim()}
-        scope={{ React, Component, render, ...scope }}
-        noRender={false}
-        theme={useDarkTheme ? 'material' : 'elegant'}
-      />
-    </ComponentPlaygroundContainer>
+      <PlaygroundRow>
+        <Title>Live Preview</Title>
+        <Title useDarkTheme={useDarkTheme}>Source Code</Title>
+      </PlaygroundRow>
+
+      <PlaygroundRow>
+        <PlaygroundColumn>
+          <PlaygroundPreview
+            previewBackgroundColor={previewBackgroundColor}
+          />
+          <PlaygroundError />
+        </PlaygroundColumn>
+
+        <PlaygroundColumn>
+          <PlaygroundEditor useDarkTheme={useDarkTheme} />
+        </PlaygroundColumn>
+      </PlaygroundRow>
+    </PlaygroundProvider>
   );
 };
 

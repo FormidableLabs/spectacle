@@ -496,8 +496,9 @@ A simple tag for wrapping inline text that you want lightly styled in a monospac
 <a name="component-playground"></a>
 #### Component Playground
 
-This tag displays a two-pane view with a ES6 source code editor on the right and a preview pane on the left for showing off custom React components. `React` and `render` from `ReactDOM` are supplied as variables. To render a component use the domContainer `mountNode`. Any `console` output will be forwarded to the main console in the browser.
+This tag displays a two-pane view with a ES6 source code editor on the right and a preview pane on the left for showing off custom React components. `React` and `render` are supplied as variables. To render a component call `render` with some JSX code. Any `console` output will be forwarded to the main console in the browser.
 
+For more information on the playground read the docs over at [react-live](https://github.com/FormidableLabs/react-live).
 
 |Name|PropType|Description|
 |---|---|---|
@@ -523,7 +524,7 @@ class View extends React.Component {
     return (<div>My View</div>);
   }
 }
-render(<View />, mountNode);
+render(<View />);
 ```
 
 <a name="heading-base"></a>

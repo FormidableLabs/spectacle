@@ -2,30 +2,520 @@
 
 exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 <div
-  class="theme-dark css-4o0hkq"
+  class="react-live react-live-dark css-o32omv"
+  scope="[object Object]"
 >
   <div
-    class="playground"
+    class="css-60wkrg"
   >
     <div
-      class="playgroundCode"
+      class="css-55vg9w"
+    >
+      Live Preview
+    </div>
+    <div
+      class="css-1x4bol9"
+    >
+      Source Code
+    </div>
+  </div>
+  <div
+    class="css-60wkrg"
+  >
+    <div
+      class="css-1fc71w4"
     >
       <div
-        class="react-codemirror2 playgroundStage"
+        class="react-live-preview css-zwvp9g"
       >
-        
+        <div>
+          <h1
+            style="font-size:2.25rem;font-weight:bold"
+          >
+            Create Live Code Examples in Spectacle!
+          </h1>
+          <p
+            style="font-size:1.5rem"
+          >
+            Supports Light and Dark Syntax Themes
+          </p>
+        </div>
       </div>
     </div>
     <div
-      class="playgroundPreview"
+      class="css-1fc71w4"
     >
-      <div>
-        <div
-          class="previewArea"
+      <pre
+        class="prism-code css-egp0ia"
+        contenteditable="true"
+        spellcheck="false"
+      >
+        <span
+          class="token comment"
+          spellcheck="true"
         >
-          
-        </div>
-      </div>
+          /**
+           * Sample React Component
+           * Output domContainerNode is 'mountNode'
+           */
+        </span>
+        
+        
+        
+        <span
+          class="token keyword"
+        >
+          const
+        </span>
+         styles 
+        <span
+          class="token operator"
+        >
+          =
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+        	heading
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+        		fontSize
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token string"
+        >
+          "2.25rem"
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+        
+        		fontWeight
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token string"
+        >
+          "bold"
+        </span>
+        
+        	
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+        
+        	copy
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+        		fontSize
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token string"
+        >
+          "1.5rem"
+        </span>
+        
+        	
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        
+        
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        
+        
+        
+        <span
+          class="token keyword"
+        >
+          const
+        </span>
+         
+        <span
+          class="token function-variable function"
+        >
+          HelloWorld
+        </span>
+         
+        <span
+          class="token operator"
+        >
+          =
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+         name 
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+         
+        <span
+          class="token operator"
+        >
+          =&gt;
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        
+        	
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            div
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            h1
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            style
+          </span>
+          <span
+            class="token script language-javascript"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              {
+            </span>
+            styles
+            <span
+              class="token punctuation"
+            >
+              .
+            </span>
+            heading
+            <span
+              class="token punctuation"
+            >
+              }
+            </span>
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        			Create Live Code Examples 
+        <span
+          class="token keyword"
+        >
+          in
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        name
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token operator"
+        >
+          !
+        </span>
+        
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            h1
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            p
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            style
+          </span>
+          <span
+            class="token script language-javascript"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              {
+            </span>
+            styles
+            <span
+              class="token punctuation"
+            >
+              .
+            </span>
+            copy
+            <span
+              class="token punctuation"
+            >
+              }
+            </span>
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        			Supports Light and Dark Syntax Themes
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            p
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        	
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            div
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        
+        
+        
+        <span
+          class="token function"
+        >
+          render
+        </span>
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            HelloWorld
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            name
+          </span>
+          <span
+            class="token attr-value"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+            Spectacle
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+          </span>
+           
+          <span
+            class="token punctuation"
+          >
+            /&gt;
+          </span>
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+      </pre>
     </div>
   </div>
 </div>
@@ -33,30 +523,520 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 <div
-  class="theme-light css-4o0hkq"
+  class="react-live react-live-light css-o32omv"
+  scope="[object Object]"
 >
   <div
-    class="playground"
+    class="css-60wkrg"
   >
     <div
-      class="playgroundCode"
+      class="css-55vg9w"
+    >
+      Live Preview
+    </div>
+    <div
+      class="css-55vg9w"
+    >
+      Source Code
+    </div>
+  </div>
+  <div
+    class="css-60wkrg"
+  >
+    <div
+      class="css-1fc71w4"
     >
       <div
-        class="react-codemirror2 playgroundStage"
+        class="react-live-preview css-zwvp9g"
       >
-        
+        <div>
+          <h1
+            style="font-size:2.25rem;font-weight:bold"
+          >
+            Create Live Code Examples in Spectacle!
+          </h1>
+          <p
+            style="font-size:1.5rem"
+          >
+            Supports Light and Dark Syntax Themes
+          </p>
+        </div>
       </div>
     </div>
     <div
-      class="playgroundPreview"
+      class="css-1fc71w4"
     >
-      <div>
-        <div
-          class="previewArea"
+      <pre
+        class="prism-code css-egp0ia"
+        contenteditable="true"
+        spellcheck="false"
+      >
+        <span
+          class="token comment"
+          spellcheck="true"
         >
-          
-        </div>
-      </div>
+          /**
+           * Sample React Component
+           * Output domContainerNode is 'mountNode'
+           */
+        </span>
+        
+        
+        
+        <span
+          class="token keyword"
+        >
+          const
+        </span>
+         styles 
+        <span
+          class="token operator"
+        >
+          =
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+        	heading
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+        		fontSize
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token string"
+        >
+          "2.25rem"
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+        
+        		fontWeight
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token string"
+        >
+          "bold"
+        </span>
+        
+        	
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+        
+        	copy
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+        		fontSize
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token string"
+        >
+          "1.5rem"
+        </span>
+        
+        	
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        
+        
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        
+        
+        
+        <span
+          class="token keyword"
+        >
+          const
+        </span>
+         
+        <span
+          class="token function-variable function"
+        >
+          HelloWorld
+        </span>
+         
+        <span
+          class="token operator"
+        >
+          =
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+         name 
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+         
+        <span
+          class="token operator"
+        >
+          =&gt;
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        
+        	
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            div
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            h1
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            style
+          </span>
+          <span
+            class="token script language-javascript"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              {
+            </span>
+            styles
+            <span
+              class="token punctuation"
+            >
+              .
+            </span>
+            heading
+            <span
+              class="token punctuation"
+            >
+              }
+            </span>
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        			Create Live Code Examples 
+        <span
+          class="token keyword"
+        >
+          in
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        name
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token operator"
+        >
+          !
+        </span>
+        
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            h1
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            p
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            style
+          </span>
+          <span
+            class="token script language-javascript"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              {
+            </span>
+            styles
+            <span
+              class="token punctuation"
+            >
+              .
+            </span>
+            copy
+            <span
+              class="token punctuation"
+            >
+              }
+            </span>
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        			Supports Light and Dark Syntax Themes
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            p
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        	
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            div
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        
+        
+        
+        <span
+          class="token function"
+        >
+          render
+        </span>
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            HelloWorld
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            name
+          </span>
+          <span
+            class="token attr-value"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+            Spectacle
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+          </span>
+           
+          <span
+            class="token punctuation"
+          >
+            /&gt;
+          </span>
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+      </pre>
     </div>
   </div>
 </div>
@@ -64,30 +1044,521 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render with a custom background color 1`] = `
 <div
-  class="theme-light css-13q1kal"
+  class="react-live react-live-light css-o32omv"
+  scope="[object Object]"
 >
   <div
-    class="playground"
+    class="css-60wkrg"
   >
     <div
-      class="playgroundCode"
+      class="css-55vg9w"
+    >
+      Live Preview
+    </div>
+    <div
+      class="css-55vg9w"
+    >
+      Source Code
+    </div>
+  </div>
+  <div
+    class="css-60wkrg"
+  >
+    <div
+      class="css-1fc71w4"
     >
       <div
-        class="react-codemirror2 playgroundStage"
+        class="react-live-preview css-cv4xj2"
+        previewbackgroundcolor="#ff0"
       >
-        
+        <div>
+          <h1
+            style="font-size:2.25rem;font-weight:bold"
+          >
+            Create Live Code Examples in Spectacle!
+          </h1>
+          <p
+            style="font-size:1.5rem"
+          >
+            Supports Light and Dark Syntax Themes
+          </p>
+        </div>
       </div>
     </div>
     <div
-      class="playgroundPreview"
+      class="css-1fc71w4"
     >
-      <div>
-        <div
-          class="previewArea"
+      <pre
+        class="prism-code css-egp0ia"
+        contenteditable="true"
+        spellcheck="false"
+      >
+        <span
+          class="token comment"
+          spellcheck="true"
         >
-          
-        </div>
-      </div>
+          /**
+           * Sample React Component
+           * Output domContainerNode is 'mountNode'
+           */
+        </span>
+        
+        
+        
+        <span
+          class="token keyword"
+        >
+          const
+        </span>
+         styles 
+        <span
+          class="token operator"
+        >
+          =
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+        	heading
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+        		fontSize
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token string"
+        >
+          "2.25rem"
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+        
+        		fontWeight
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token string"
+        >
+          "bold"
+        </span>
+        
+        	
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+        
+        	copy
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        
+        		fontSize
+        <span
+          class="token punctuation"
+        >
+          :
+        </span>
+         
+        <span
+          class="token string"
+        >
+          "1.5rem"
+        </span>
+        
+        	
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        
+        
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        
+        
+        
+        <span
+          class="token keyword"
+        >
+          const
+        </span>
+         
+        <span
+          class="token function-variable function"
+        >
+          HelloWorld
+        </span>
+         
+        <span
+          class="token operator"
+        >
+          =
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+         name 
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+         
+        <span
+          class="token operator"
+        >
+          =&gt;
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        
+        	
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            div
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            h1
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            style
+          </span>
+          <span
+            class="token script language-javascript"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              {
+            </span>
+            styles
+            <span
+              class="token punctuation"
+            >
+              .
+            </span>
+            heading
+            <span
+              class="token punctuation"
+            >
+              }
+            </span>
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        			Create Live Code Examples 
+        <span
+          class="token keyword"
+        >
+          in
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+        name
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token operator"
+        >
+          !
+        </span>
+        
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            h1
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            p
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            style
+          </span>
+          <span
+            class="token script language-javascript"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              {
+            </span>
+            styles
+            <span
+              class="token punctuation"
+            >
+              .
+            </span>
+            copy
+            <span
+              class="token punctuation"
+            >
+              }
+            </span>
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        			Supports Light and Dark Syntax Themes
+        		
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            p
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        	
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            div
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        
+        
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        
+        
+        
+        <span
+          class="token function"
+        >
+          render
+        </span>
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            HelloWorld
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            name
+          </span>
+          <span
+            class="token attr-value"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+            Spectacle
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+          </span>
+           
+          <span
+            class="token punctuation"
+          >
+            /&gt;
+          </span>
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+      </pre>
     </div>
   </div>
 </div>
@@ -95,30 +1566,260 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
 
 exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
 <div
-  class="theme-light css-13q1kal"
+  class="react-live react-live-light css-o32omv"
+  scope="[object Object]"
 >
   <div
-    class="playground"
+    class="css-60wkrg"
   >
     <div
-      class="playgroundCode"
+      class="css-55vg9w"
+    >
+      Live Preview
+    </div>
+    <div
+      class="css-55vg9w"
+    >
+      Source Code
+    </div>
+  </div>
+  <div
+    class="css-60wkrg"
+  >
+    <div
+      class="css-1fc71w4"
     >
       <div
-        class="react-codemirror2 playgroundStage"
+        class="react-live-preview css-cv4xj2"
+        previewbackgroundcolor="#ff0"
       >
         
       </div>
+      <div
+        class="react-live-error css-1qmf1kp"
+      >
+        ReferenceError: mountNode is not defined
+      </div>
     </div>
     <div
-      class="playgroundPreview"
+      class="css-1fc71w4"
     >
-      <div>
-        <div
-          class="previewArea"
+      <pre
+        class="prism-code css-egp0ia"
+        contenteditable="true"
+        spellcheck="false"
+      >
+        <span
+          class="token keyword"
         >
-          
-        </div>
-      </div>
+          const
+        </span>
+         
+        <span
+          class="token function-variable function"
+        >
+          Button
+        </span>
+         
+        <span
+          class="token operator"
+        >
+          =
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+         title 
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+         
+        <span
+          class="token operator"
+        >
+          =&gt;
+        </span>
+         
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            button
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            type
+          </span>
+          <span
+            class="token attr-value"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+            button
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        <span
+          class="token punctuation"
+        >
+          {
+        </span>
+         title 
+        <span
+          class="token punctuation"
+        >
+          }
+        </span>
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;/
+            </span>
+            button
+          </span>
+          <span
+            class="token punctuation"
+          >
+            &gt;
+          </span>
+        </span>
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ;
+        </span>
+        
+        			
+        <span
+          class="token function"
+        >
+          render
+        </span>
+        <span
+          class="token punctuation"
+        >
+          (
+        </span>
+        <span
+          class="token tag"
+        >
+          <span
+            class="token tag"
+          >
+            <span
+              class="token punctuation"
+            >
+              &lt;
+            </span>
+            Button
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            title
+          </span>
+          <span
+            class="token attr-value"
+          >
+            <span
+              class="token punctuation"
+            >
+              =
+            </span>
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+            My Button
+            <span
+              class="token punctuation"
+            >
+              "
+            </span>
+          </span>
+           
+          <span
+            class="token punctuation"
+          >
+            /&gt;
+          </span>
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ,
+        </span>
+         mountNode
+        <span
+          class="token punctuation"
+        >
+          )
+        </span>
+        <span
+          class="token punctuation"
+        >
+          ;
+        </span>
+      </pre>
     </div>
   </div>
 </div>
