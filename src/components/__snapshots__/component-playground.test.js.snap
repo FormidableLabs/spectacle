@@ -1069,7 +1069,6 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
     >
       <div
         class="react-live-preview css-cv4xj2"
-        previewbackgroundcolor="#ff0"
       >
         <div>
           <h1
@@ -1591,7 +1590,6 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
     >
       <div
         class="react-live-preview css-cv4xj2"
-        previewbackgroundcolor="#ff0"
       >
         
       </div>
