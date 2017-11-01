@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { defaultCode } from '../utils/playground.default-code';
 
+import FullscreenButton from './fullscreen-button';
+
 import {
   LiveProvider,
   LiveEditor,
@@ -39,9 +41,22 @@ const PlaygroundRow = styled.div`
   justify-content: stretch;
   align-items: center;
   width: 100%;
+
+  /* NOTE: Comma separation doesn't seem to work here */
+
+  &:-webkit-full-screen { height: 100%; }
+  &:-moz-full-screen { height: 100%; }
+  &:-ms-fullscreen { height: 100%; }
+  &:fullscreen { height: 100%; }
+
+  &:-webkit-full-screen > * { height: 100%; }
+  &:-moz-full-screen > * { height: 100%; }
+  &:-ms-fullscreen > * { height: 100%; }
+  &:fullscreen > * { height: 100%; }
 `;
 
 const Title = styled.div`
+  position: relative;
   flex: 1;
   background: #ddd;
   border-bottom: 1px solid #999;
@@ -89,10 +104,36 @@ const PlaygroundError = styled(LiveError)`
 class ComponentPlayground extends Component {
   onKeyUp = evt => {
     evt.stopPropagation();
+
+    // Esc: When entering the editor or an input element the default esc-to-exit might not work anymore
+    if (evt.keyCode === 27 && document.fullscreenElement) {
+      const exit = (document.exitFullscreen || document.mozCancelFullScreen);
+
+      if (typeof exit === 'function') {
+        exit.call(document);
+      }
+    }
   };
 
   onKeyDown = evt => {
     evt.stopPropagation();
+  };
+
+  onRef = node => {
+    this.node = node;
+  };
+
+  requestFullscreen = () => {
+    const requestFullscreen = (
+      this.node.requestFullscreen ||
+      this.node.webkitRequestFullscreen ||
+      this.node.mozRequestFullScreen ||
+      this.node.mozRequestFullScreen
+    );
+
+    if (typeof requestFullscreen === 'function') {
+      requestFullscreen.call(this.node);
+    }
   };
 
   render() {
@@ -121,10 +162,17 @@ class ComponentPlayground extends Component {
       >
         <PlaygroundRow>
           <Title>Live Preview</Title>
-          <Title useDarkTheme={useDarkTheme}>Source Code</Title>
+          <Title useDarkTheme={useDarkTheme}>
+            Source Code
+            <FullscreenButton onClick={this.requestFullscreen} />
+          </Title>
         </PlaygroundRow>
 
-        <PlaygroundRow>
+        <PlaygroundRow
+          innerRef={this.onRef}
+          onKeyUp={this.onKeyUp}
+          onKeyDown={this.onKeyDown}
+        >
           <PlaygroundColumn>
             <PlaygroundPreview
               previewBackgroundColor={previewBackgroundColor}
@@ -133,10 +181,7 @@ class ComponentPlayground extends Component {
           </PlaygroundColumn>
 
           <PlaygroundColumn>
-            <PlaygroundEditor
-              onKeyUp={this.onKeyUp}
-              onKeyDown={this.onKeyDown}
-            />
+            <PlaygroundEditor />
           </PlaygroundColumn>
         </PlaygroundRow>
       </PlaygroundProvider>

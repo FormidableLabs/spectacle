@@ -6,21 +6,41 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
   scope="[object Object]"
 >
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
-      class="css-55vg9w"
+      class="css-12ijxqn"
     >
       Live Preview
     </div>
     <div
-      class="css-1x4bol9"
+      class="css-h4hzi8"
     >
       Source Code
+      <button
+        class="css-1ashtcx"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          >
+            
+          </path>
+          <path
+            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+            fill="currentColor"
+          >
+            
+          </path>
+        </svg>
+      </button>
     </div>
   </div>
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
       class="css-1fc71w4"
@@ -528,21 +548,41 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
   scope="[object Object]"
 >
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
-      class="css-55vg9w"
+      class="css-12ijxqn"
     >
       Live Preview
     </div>
     <div
-      class="css-55vg9w"
+      class="css-12ijxqn"
     >
       Source Code
+      <button
+        class="css-1ashtcx"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          >
+            
+          </path>
+          <path
+            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+            fill="currentColor"
+          >
+            
+          </path>
+        </svg>
+      </button>
     </div>
   </div>
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
       class="css-1fc71w4"
@@ -1050,21 +1090,41 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
   scope="[object Object]"
 >
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
-      class="css-55vg9w"
+      class="css-12ijxqn"
     >
       Live Preview
     </div>
     <div
-      class="css-55vg9w"
+      class="css-12ijxqn"
     >
       Source Code
+      <button
+        class="css-1ashtcx"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          >
+            
+          </path>
+          <path
+            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+            fill="currentColor"
+          >
+            
+          </path>
+        </svg>
+      </button>
     </div>
   </div>
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
       class="css-1fc71w4"
@@ -1572,21 +1632,41 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
   scope="[object Object]"
 >
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
-      class="css-55vg9w"
+      class="css-12ijxqn"
     >
       Live Preview
     </div>
     <div
-      class="css-55vg9w"
+      class="css-12ijxqn"
     >
       Source Code
+      <button
+        class="css-1ashtcx"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          >
+            
+          </path>
+          <path
+            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+            fill="currentColor"
+          >
+            
+          </path>
+        </svg>
+      </button>
     </div>
   </div>
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
       class="css-1fc71w4"
