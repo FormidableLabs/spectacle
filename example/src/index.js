@@ -59,6 +59,7 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide
           id="wait-what"
+          goTo={4}
           transition={[
             'fade',
             (transitioning, forward) => {
@@ -93,7 +94,7 @@ export default class Presentation extends React.Component {
             overflow = "overflow"
           />
         </Slide>
-        <Slide>
+        <Slide goTo={3}>
           <ComponentPlayground
             theme="dark"
           />
