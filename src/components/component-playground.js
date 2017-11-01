@@ -102,7 +102,14 @@ const PlaygroundError = styled(LiveError)`
 `;
 
 class ComponentPlayground extends Component {
-  onKeyUp = evt => {
+  constructor() {
+    super();
+
+    this.onRef = this.onRef.bind(this);
+    this.requestFullscreen = this.requestFullscreen.bind(this);
+  }
+
+  onKeyUp(evt) {
     evt.stopPropagation();
 
     // Esc: When entering the editor or an input element the default esc-to-exit might not work anymore
@@ -113,17 +120,17 @@ class ComponentPlayground extends Component {
         exit.call(document);
       }
     }
-  };
+  }
 
-  onKeyDown = evt => {
+  onKeyDown(evt) {
     evt.stopPropagation();
-  };
+  }
 
-  onRef = node => {
+  onRef(node) {
     this.node = node;
-  };
+  }
 
-  requestFullscreen = () => {
+  requestFullscreen() {
     const requestFullscreen = (
       this.node.requestFullscreen ||
       this.node.webkitRequestFullscreen ||
@@ -134,7 +141,7 @@ class ComponentPlayground extends Component {
     if (typeof requestFullscreen === 'function') {
       requestFullscreen.call(this.node);
     }
-  };
+  }
 
   render() {
     const {
