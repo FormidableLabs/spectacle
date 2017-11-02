@@ -2,6 +2,8 @@
 
 exports[`<CodePane /> should render correctly. 1`] = `
 <CodePane
+  className=""
+  contentEditable={false}
   lang="jsx"
   source="
       const myButton = (
@@ -13,57 +15,80 @@ exports[`<CodePane /> should render correctly. 1`] = `
         </CustomButton>
       );
     "
+  theme="dark"
 >
-  <Styled(pre)
-    className={undefined}
+  <Styled(div)
+    className="react-live react-live-dark "
     styles={
       Array [
-        Object {},
+        undefined,
         Object {},
         undefined,
       ]
     }
   >
-    <pre
-      className="css-0"
+    <div
+      className="react-live react-live-dark  css-0"
     >
-      <Styled(code)
-        className="language-jsx"
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "
-                const myButton = (
-                  &lt;CustomButton
-                    style={{ background: '#f00' }}
-                    onClick={this.action}
-                  &gt;
-                   Click Me
-                  &lt;/CustomButton&gt;
-                );
-              ",
-          }
-        }
+      <Styled(Editor)
+        code="
+            const myButton = (
+              <CustomButton
+                style={{ background: '#f00' }}
+                onClick={this.action}
+              >
+               Click Me
+              </CustomButton>
+            );
+          "
+        contentEditable={false}
+        language="jsx"
         styles={undefined}
       >
-        <code
-          className="language-jsx css-0"
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "
-                  const myButton = (
-                    &lt;CustomButton
-                      style={{ background: '#f00' }}
-                      onClick={this.action}
-                    &gt;
-                     Click Me
-                    &lt;/CustomButton&gt;
-                  );
-                ",
+        <Editor
+          className="css-0"
+          code="
+              const myButton = (
+                <CustomButton
+                  style={{ background: '#f00' }}
+                  onClick={this.action}
+                >
+                 Click Me
+                </CustomButton>
+              );
+            "
+          contentEditable={false}
+          language="jsx"
+          styles={undefined}
+        >
+          <pre
+            className="prism-code css-0"
+            contentEditable={false}
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "
+                    <span class=\\"token keyword\\">const</span> myButton <span class=\\"token operator\\">=</span> <span class=\\"token punctuation\\">(</span>
+                      <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>CustomButton</span>
+                        <span class=\\"token attr-name\\">style</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token punctuation\\">{</span> background<span class=\\"token punctuation\\">:</span> <span class=\\"token string\\">'#f00'</span> <span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">}</span></span>
+                        <span class=\\"token attr-name\\">onClick</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token keyword\\">this</span><span class=\\"token punctuation\\">.</span>action<span class=\\"token punctuation\\">}</span></span>
+                      <span class=\\"token punctuation\\">></span></span>
+                       Click Me
+                      <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>CustomButton</span><span class=\\"token punctuation\\">></span></span>
+                    <span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+                  ",
+              }
             }
-          }
-        />
-      </Styled(code)>
-    </pre>
-  </Styled(pre)>
+            language="jsx"
+            onClick={undefined}
+            onKeyDown={undefined}
+            onKeyUp={undefined}
+            spellCheck="false"
+            style={undefined}
+            styles={undefined}
+          />
+        </Editor>
+      </Styled(Editor)>
+    </div>
+  </Styled(div)>
 </CodePane>
 `;

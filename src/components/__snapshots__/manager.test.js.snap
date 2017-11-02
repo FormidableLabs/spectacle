@@ -17,6 +17,11 @@ exports[`<Manager /> should render correctly. 1`] = `
     contentWidth={1000}
     controls={true}
     dispatch={[Function]}
+    fragment={
+      Object {
+        "fragments": Array [],
+      }
+    }
     globalStyles={true}
     progress="pacman"
     route={
@@ -101,7 +106,11 @@ exports[`<Manager /> should render correctly. 1`] = `
               <MockSlide
                 dispatch={[Function]}
                 export={false}
-                fragments={undefined}
+                fragments={
+                  Object {
+                    "fragments": Array [],
+                  }
+                }
                 hash={0}
                 key=".$0"
                 lastSlideIndex={0}
@@ -273,6 +282,11 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
     contentWidth={1000}
     controls={true}
     dispatch={[Function]}
+    fragment={
+      Object {
+        "fragments": Array [],
+      }
+    }
     globalStyles={true}
     progress="pacman"
     route={
@@ -396,6 +410,11 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
     contentWidth={1000}
     controls={true}
     dispatch={[Function]}
+    fragment={
+      Object {
+        "fragments": Array [],
+      }
+    }
     globalStyles={true}
     progress="pacman"
     route={
@@ -567,6 +586,11 @@ exports[`<Manager /> should render with slideset slides 1`] = `
     contentWidth={1000}
     controls={true}
     dispatch={[Function]}
+    fragment={
+      Object {
+        "fragments": Array [],
+      }
+    }
     globalStyles={true}
     progress="pacman"
     route={
@@ -664,7 +688,11 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               <MockSlide
                 dispatch={[Function]}
                 export={false}
-                fragments={undefined}
+                fragments={
+                  Object {
+                    "fragments": Array [],
+                  }
+                }
                 hash={1}
                 key=".$1"
                 lastSlideIndex={1}
