@@ -28,8 +28,6 @@ const theme = createTheme({
   primary: '#ff4081'
 });
 
-console.log(theme)
-
 export default class Presentation extends React.Component {
   state = {
     steps: 0
