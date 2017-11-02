@@ -3,10 +3,6 @@ import styled from 'react-emotion';
 
 const Button = styled.button`
   display: inline-block;
-  position: absolute;
-  right: 1em;
-  margin-top: -0.1em;
-
   appearance: none;
   background: none;
   border: none;

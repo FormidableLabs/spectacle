@@ -9,16 +9,16 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
     class="css-wx5pb5"
   >
     <div
-      class="css-12ijxqn"
+      class="css-1j4k5g3"
     >
       Live Preview
     </div>
     <div
-      class="css-h4hzi8"
+      class="css-1qi44w1"
     >
       Source Code
       <button
-        class="css-1ashtcx"
+        class="css-1a7vuu6"
       >
         <svg
           viewBox="0 0 24 24"
@@ -551,16 +551,16 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
     class="css-wx5pb5"
   >
     <div
-      class="css-12ijxqn"
+      class="css-1j4k5g3"
     >
       Live Preview
     </div>
     <div
-      class="css-12ijxqn"
+      class="css-1j4k5g3"
     >
       Source Code
       <button
-        class="css-1ashtcx"
+        class="css-1a7vuu6"
       >
         <svg
           viewBox="0 0 24 24"
@@ -1093,16 +1093,16 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
     class="css-wx5pb5"
   >
     <div
-      class="css-12ijxqn"
+      class="css-1j4k5g3"
     >
       Live Preview
     </div>
     <div
-      class="css-12ijxqn"
+      class="css-1j4k5g3"
     >
       Source Code
       <button
-        class="css-1ashtcx"
+        class="css-1a7vuu6"
       >
         <svg
           viewBox="0 0 24 24"
@@ -1635,16 +1635,16 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
     class="css-wx5pb5"
   >
     <div
-      class="css-12ijxqn"
+      class="css-1j4k5g3"
     >
       Live Preview
     </div>
     <div
-      class="css-12ijxqn"
+      class="css-1j4k5g3"
     >
       Source Code
       <button
-        class="css-1ashtcx"
+        class="css-1a7vuu6"
       >
         <svg
           viewBox="0 0 24 24"

@@ -6,6 +6,11 @@ import { defaultCode } from '../utils/playground.default-code';
 import FullscreenButton from './fullscreen-button';
 
 import {
+  requestFullscreen,
+  exitFullscreen
+} from '../utils/fullscreen';
+
+import {
   LiveProvider,
   LiveEditor,
   LiveError,
@@ -71,6 +76,12 @@ const Title = styled.div`
     border-left: 1px solid #999;
   }
 
+  > button {
+    position: absolute;
+    right: 1em;
+    margin-top: -0.1em;
+  }
+
   ${props => props.useDarkTheme && css`
     background: #272822;
     border-bottom: 1px solid #000;
@@ -114,11 +125,7 @@ class ComponentPlayground extends Component {
 
     // Esc: When entering the editor or an input element the default esc-to-exit might not work anymore
     if (evt.keyCode === 27 && document.fullscreenElement) {
-      const exit = (document.exitFullscreen || document.mozCancelFullScreen);
-
-      if (typeof exit === 'function') {
-        exit.call(document);
-      }
+      exitFullscreen();
     }
   }
 
@@ -131,16 +138,7 @@ class ComponentPlayground extends Component {
   }
 
   requestFullscreen() {
-    const requestFullscreen = (
-      this.node.requestFullscreen ||
-      this.node.webkitRequestFullscreen ||
-      this.node.mozRequestFullScreen ||
-      this.node.mozRequestFullScreen
-    );
-
-    if (typeof requestFullscreen === 'function') {
-      requestFullscreen.call(this.node);
-    }
+    requestFullscreen(this.node);
   }
 
   render() {
