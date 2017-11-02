@@ -1,4 +1,4 @@
-import { Children } from 'react';
+import { cloneElement, Children } from 'react';
 import isUndefined from 'lodash/isUndefined';
 import reduce from 'lodash/reduce';
 
@@ -7,7 +7,9 @@ export const getSlideByIndex = (children, slideReference, index) => {
   let slide;
   const reference = slideReference[index];
   if (reference) {
-    if (isUndefined(reference.setIndex)) {
+    if (!isUndefined(reference.magicIndex)) {
+      slide = cloneElement(children[reference.rootIndex], { magicIndex: reference.magicIndex });
+    } else if (isUndefined(reference.setIndex)) {
       slide = children[reference.rootIndex];
     } else {
       const setChildren = Children.toArray(children[reference.rootIndex].props.children);

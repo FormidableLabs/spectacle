@@ -18,6 +18,7 @@ import memoize from 'lodash/memoize';
 import Presenter from './presenter';
 import Export from './export';
 import Overview from './overview';
+import Magic from './magic';
 
 import AutoplayControls from './autoplay-controls';
 import Fullscreen from './fullscreen';
@@ -491,7 +492,15 @@ export class Manager extends Component {
   _buildSlideReference() {
     const slideReference = [];
     Children.toArray(this.props.children).forEach((child, rootIndex) => {
-      if (!child.props.hasSlideChildren) {
+      if (child.type.name === 'Magic') {
+        child.props.children.forEach((setSlide, magicIndex) => {
+          slideReference.push({
+            id: setSlide.props.id || slideReference.length,
+            magicIndex,
+            rootIndex,
+          });
+        });
+      } else if (!child.props.hasSlideChildren) {
         slideReference.push({
           id: child.props.id || slideReference.length,
           rootIndex,
@@ -506,6 +515,7 @@ export class Manager extends Component {
         });
       }
     });
+    console.log(slideReference)
     return slideReference;
   }
   _getSlideIndex() {
