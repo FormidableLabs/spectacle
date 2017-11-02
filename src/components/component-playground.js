@@ -7,7 +7,8 @@ import FullscreenButton from './fullscreen-button';
 
 import {
   requestFullscreen,
-  exitFullscreen
+  exitFullscreen,
+  getFullscreenElement
 } from '../utils/fullscreen';
 
 import {
@@ -124,7 +125,7 @@ class ComponentPlayground extends Component {
     evt.stopPropagation();
 
     // Esc: When entering the editor or an input element the default esc-to-exit might not work anymore
-    if (evt.keyCode === 27 && document.fullscreenElement) {
+    if (evt.keyCode === 27 && getFullscreenElement()) {
       exitFullscreen();
     }
   }
