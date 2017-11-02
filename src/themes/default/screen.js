@@ -230,6 +230,18 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         padding: '0 10px',
         borderRadius: 3,
       },
+      goToAction: {
+        borderRadius: '6px',
+        fontFamily: fonts.primary,
+        padding: '0.25em 1em',
+        border: 'none',
+        background: '#000',
+        color: '#fff',
+        '&:hover': {
+          background: colors.tertiary,
+          color: '#000'
+        }
+      },
       heading: {
         h1: {
           color: colors.tertiary,

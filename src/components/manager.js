@@ -96,6 +96,7 @@ export class Manager extends Component {
   static childContextTypes = {
     contentWidth: PropTypes.number,
     contentHeight: PropTypes.number,
+    goToSlide: PropTypes.func
   };
 
   constructor(props) {
@@ -119,6 +120,7 @@ export class Manager extends Component {
     return {
       contentWidth: this.props.contentWidth,
       contentHeight: this.props.contentHeight,
+      goToSlide: slide => this._goToSlide({ slide })
     };
   }
 
@@ -273,15 +275,26 @@ export class Manager extends Component {
     }
   }
   _goToSlide(e) {
+    let data = null;
+    let canNavigate = true;
     if (e.key === 'spectacle-slide') {
-      const data = JSON.parse(e.newValue);
-      const slideIndex = this._getSlideIndex();
-      this.setState({
-        lastSlideIndex: slideIndex || 0,
-      });
-      if (this._checkFragments(this.props.route.slide, data.forward)) {
-        this.context.history.replace(`/${data.slide}${this._getSuffix()}`);
+      canNavigate = this._checkFragments(this.props.route.slide, data.forward);
+      data = JSON.parse(e.newValue);
+    } else if (e.slide) {
+      data = e;
+    } else {
+      return;
+    }
+    const slideIndex = this._getSlideIndex();
+    this.setState({
+      lastSlideIndex: slideIndex || 0,
+    });
+    if (canNavigate) {
+      let slide = data.slide;
+      if (typeof slide === 'number') {
+        slide -= 1;
       }
+      this.context.history.replace(`/${slide}${this._getSuffix()}`);
     }
   }
   _prevSlide() {
