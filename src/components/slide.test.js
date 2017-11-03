@@ -63,4 +63,16 @@ describe('<Slide />', () => {
     wrapper.setState({ reverse: true });
     expect(wrapper.instance().getTransitionKeys()).toEqual(['fade']);
   });
+
+  test('should call optional callback when slide becomes active', () => {
+    const spy = jest.fn();
+    mount(
+      <Slide onActive={spy} slideIndex={5}>
+        <div>Slide Content</div>
+      </Slide>,
+      { context: _mockContext() }
+    );
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toBeCalledWith(5);
+  });
 });
