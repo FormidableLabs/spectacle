@@ -58,6 +58,9 @@ export default class Presentation extends React.Component {
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
         <Slide
+          onActive={slideIndex => {
+            console.info(`Viewing slide index: ${slideIndex}.`); // eslint-disable-line no-console
+          }}
           id="wait-what"
           goTo={4}
           transition={[

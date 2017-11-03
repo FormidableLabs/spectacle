@@ -49,6 +49,10 @@ class Slide extends React.PureComponent {
     }
     window.addEventListener('load', this.setZoom);
     window.addEventListener('resize', this.setZoom);
+
+    if (isFunction(this.props.onActive)) {
+      this.props.onActive(this.props.slideIndex);
+    }
   }
 
   componentDidUpdate() {
@@ -253,6 +257,7 @@ Slide.propTypes = {
   lastSlideIndex: PropTypes.number,
   margin: PropTypes.number,
   notes: PropTypes.any,
+  onActive: PropTypes.func,
   presenterStyle: PropTypes.object,
   print: PropTypes.bool,
   slideIndex: PropTypes.number,
