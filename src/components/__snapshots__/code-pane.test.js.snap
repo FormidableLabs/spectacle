@@ -43,6 +43,9 @@ exports[`<CodePane /> should render correctly. 1`] = `
           "
         contentEditable={false}
         language="jsx"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
         styles={undefined}
       >
         <Editor
@@ -59,6 +62,9 @@ exports[`<CodePane /> should render correctly. 1`] = `
             "
           contentEditable={false}
           language="jsx"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
           styles={undefined}
         >
           <pre
@@ -78,7 +84,6 @@ exports[`<CodePane /> should render correctly. 1`] = `
                   ",
               }
             }
-            language="jsx"
             onClick={undefined}
             onKeyDown={undefined}
             onKeyUp={undefined}

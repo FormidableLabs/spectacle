@@ -2,22 +2,43 @@
 
 exports[`<Fullscreen /> should render correctly. 1`] = `
 <Fullscreen>
-  <Styled(div)>
-    <div
-      className="css-1j4mcul"
+  <Styled(FullscreenButton)
+    onClick={[Function]}
+    style={undefined}
+    viewBox="0 0 512 512"
+  >
+    <FullscreenButton
+      className="css-12n5ud"
+      onClick={[Function]}
+      style={undefined}
+      viewBox="0 0 512 512"
     >
-      <svg
-        height="30px"
+      <Styled(button)
+        className="css-12n5ud"
         onClick={[Function]}
         style={undefined}
         viewBox="0 0 512 512"
-        width="30px"
       >
-        <path
-          d="M73.143,329.143H0V512h182.857v-73.143H73.143V329.143z M0,182.857h73.143V73.143h109.715V0H0V182.857z M438.857,438.857 H329.143V512H512V329.143h-73.143V438.857z M329.143,0v73.143h109.715v109.715H512V0H329.143z"
-        />
-      </svg>
-    </div>
-  </Styled(div)>
+        <button
+          className="css-1hv29sw"
+          onClick={[Function]}
+          style={undefined}
+        >
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </Styled(button)>
+    </FullscreenButton>
+  </Styled(FullscreenButton)>
 </Fullscreen>
 `;

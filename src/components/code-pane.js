@@ -10,6 +10,10 @@ const StyledWrapper = styled.div(props => props.styles);
 const StyledEditor = styled(Editor)(props => props.styles);
 
 export default class CodePane extends Component {
+  handleEditorEvent(evt) {
+    evt.stopPropagation();
+  }
+
   render() {
     const useDarkTheme = this.props.theme === 'dark';
 
@@ -35,6 +39,9 @@ export default class CodePane extends Component {
           language={this.props.lang}
           contentEditable={this.props.contentEditable}
           styles={this.context.styles.components.codePane.editor}
+          onKeyDown={this.handleEditorEvent}
+          onKeyUp={this.handleEditorEvent}
+          onClick={this.handleEditorEvent}
         />
       </StyledWrapper>
     );
