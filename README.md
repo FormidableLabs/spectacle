@@ -40,6 +40,7 @@ ReactJS based Presentation Library
     - [CodePane (Base)](#codepane-base)
     - [Code (Base)](#code-base)
     - [ComponentPlayground](#component-playground)
+    - [GoToAction (Base)](#go-to-action)
     - [Heading (Base)](#heading-base)
     - [Image (Base)](#image-base)
     - [Link (Base)](#link-base)
@@ -522,6 +523,34 @@ class View extends React.Component {
 }
 render(<View />);
 ```
+
+<a name="go-to-action"></a>
+#### Go To Action (Base)
+
+The GoToAction tag lets you jump to another slide in your deck. The GoToAction can be used a simple button that supports `Base` styling or accept a render prop with a callback to support custom components.
+
+|Name|PropType|Description|
+|---|---|---|
+|slide|PropTypes.string or PropTypes.number|The string identifier or number of the side the button should jump to. Slide numbers start at `1`. This is only used in the simple button configuration.
+|render|PropTypes.func|A function with a `goToSlide` param that should return a React element to render. This is only used in the custom component configuration.
+
+##### Simple Button Configuration Example
+```jsx
+<GoToAction slide={3}>Jump to 3</GoToAction>
+```
+
+##### Custom Component Configuration Example
+```jsx
+<GoToAction
+  render={goToSlide => (
+    <CustomComponent onClick={() => goToSlide("wait-wut")}>
+      WAIT WUT!?
+    </CustomComponent>
+  )}
+/>
+```
+
+
 
 <a name="heading-base"></a>
 #### Heading (Base)
