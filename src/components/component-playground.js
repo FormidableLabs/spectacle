@@ -180,7 +180,8 @@ class ComponentPlayground extends Component {
               styles={[
                 this.context.styles.prism.base,
                 this.context.styles.prism[useDarkTheme ? 'dark' : 'light']
-              ]} />
+              ]}
+            />
           </PlaygroundColumn>
         </PlaygroundRow>
       </PlaygroundProvider>
