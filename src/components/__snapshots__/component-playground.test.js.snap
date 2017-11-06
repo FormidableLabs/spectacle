@@ -66,10 +66,10 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-c1352l"
+        class="prism-code css-gj8is5"
         contenteditable="true"
         spellcheck="false"
-        styles="dark"
+        styles="base;,dark;"
       >
         <span
           class="token comment"
@@ -608,10 +608,10 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-11dy4w1"
+        class="prism-code css-1mzox58"
         contenteditable="true"
         spellcheck="false"
-        styles="light"
+        styles="base;,light;"
       >
         <span
           class="token comment"
@@ -1150,10 +1150,10 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-11dy4w1"
+        class="prism-code css-1mzox58"
         contenteditable="true"
         spellcheck="false"
-        styles="light"
+        styles="base;,light;"
       >
         <span
           class="token comment"
@@ -1686,10 +1686,10 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-11dy4w1"
+        class="prism-code css-1mzox58"
         contenteditable="true"
         spellcheck="false"
-        styles="light"
+        styles="base;,light;"
       >
         <span
           class="token keyword"

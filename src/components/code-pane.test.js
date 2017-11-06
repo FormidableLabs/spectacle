@@ -6,7 +6,7 @@ describe('<CodePane />', () => {
   test('should render correctly.', () => {
     const context = { styles: {
       components: { codePane: { pre: {} } },
-      prism: { light: 'light', dark: 'dark' }
+      prism: { base: 'base;', light: 'light;', dark: 'dark;' }
     } };
     const source = `
       const myButton = (

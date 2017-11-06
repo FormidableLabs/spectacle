@@ -49,12 +49,13 @@ exports[`<CodePane /> should render correctly. 1`] = `
         styles={
           Array [
             undefined,
-            "dark",
+            "base;",
+            "dark;",
           ]
         }
       >
         <Editor
-          className="css-1jzmi26"
+          className="css-sz0c5i"
           code="
               const myButton = (
                 <CustomButton
@@ -73,12 +74,13 @@ exports[`<CodePane /> should render correctly. 1`] = `
           styles={
             Array [
               undefined,
-              "dark",
+              "base;",
+              "dark;",
             ]
           }
         >
           <pre
-            className="prism-code css-1jzmi26"
+            className="prism-code css-sz0c5i"
             contentEditable={false}
             dangerouslySetInnerHTML={
               Object {
@@ -102,7 +104,8 @@ exports[`<CodePane /> should render correctly. 1`] = `
             styles={
               Array [
                 undefined,
-                "dark",
+                "base;",
+                "dark;",
               ]
             }
           />

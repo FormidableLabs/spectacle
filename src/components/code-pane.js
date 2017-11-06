@@ -34,6 +34,7 @@ export default class CodePane extends Component {
           contentEditable={this.props.contentEditable}
           styles={[
             this.context.styles.components.codePane.editor,
+            this.context.styles.prism.base,
             this.context.styles.prism[useDarkTheme ? 'dark' : 'light']
           ]}
           onKeyDown={this.handleEditorEvent}

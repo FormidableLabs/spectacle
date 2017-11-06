@@ -1,5 +1,6 @@
 /*eslint-disable object-shorthand*/
 
+import prismBase from './prism.base';
 import prismLight from './prism.light';
 import prismDark from './prism.dark';
 
@@ -118,6 +119,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       },
     },
     prism: {
+      base: prismBase,
       light: prismLight,
       dark: prismDark,
     },

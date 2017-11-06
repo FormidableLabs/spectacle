@@ -153,7 +153,6 @@ class ComponentPlayground extends Component {
     } = this.props;
 
     const useDarkTheme = theme === 'dark';
-    const editorStyle = this.context.styles.prism[useDarkTheme ? 'dark' : 'light'];
 
     return (
       <PlaygroundProvider
@@ -183,7 +182,10 @@ class ComponentPlayground extends Component {
           </PlaygroundColumn>
 
           <PlaygroundColumn>
-            <PlaygroundEditor styles={[ editorStyle ]} />
+            <PlaygroundEditor styles={[
+              this.context.styles.prism.base,
+              this.context.styles.prism[useDarkTheme ? 'dark' : 'light']
+            ]} />
           </PlaygroundColumn>
         </PlaygroundRow>
       </PlaygroundProvider>

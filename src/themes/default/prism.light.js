@@ -9,41 +9,9 @@ Generated with Base16 Builder (https://github.com/base16-builder/base16-builder)
 Spectacle NOTE: This syntax theme was modified to work with react-live and emotion
 */
 
-// TODO: @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-
 export default css`
-  font-family: 'Roboto Mono', monospace;
-  font-size: inherit;
-  line-height: 1.5;
-  direction: ltr;
-  text-align: left;
-  word-spacing: normal;
-  word-break: normal;
-
-  -moz-tab-size: 2;
-  -o-tab-size: 2;
-  tab-size: 2;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-
   background: #faf8f5;
   color: #728fcb;
-
-  /* React Live modifications: */
-  white-space: pre-wrap;
-
-  &::-moz-selection, & ::-moz-selection {
-    text-shadow: none;
-    background: #faf8f5;
-  }
-
-  &::selection, & ::selection {
-    text-shadow: none;
-    background: #faf8f5;
-  }
 
   & .token.comment,
   & .token.prolog,

@@ -4,7 +4,7 @@ import ComponentPlayground, { PlaygroundProvider } from './component-playground'
 
 describe('<ComponentPlayground />', () => {
   const context = { styles: {
-    prism: { light: 'light', dark: 'dark' }
+    prism: { base: 'base;', light: 'light;', dark: 'dark;' }
   } };
 
   test('Should render the dark theme correctly', () => {
