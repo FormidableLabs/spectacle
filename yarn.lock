@@ -3867,9 +3867,9 @@ marked@^0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
 
-marksy@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/marksy/-/marksy-0.4.2.tgz#c2ad4ecf0d47d6e2565e88ce7c33013e07620126"
+marksy@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/marksy/-/marksy-5.0.0.tgz#70e9015154994df339528c43511f71540f6559fe"
   dependencies:
     babel-standalone "^6.24.0"
     he "^1.1.1"

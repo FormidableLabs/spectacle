@@ -26,7 +26,7 @@
     "emotion": "^8.0.8",
     "history": "^4.6.1",
     "lodash": "^4.17.4",
-    "marksy": "^0.4.2",
+    "marksy": "^5.0.0",
     "normalize.css": "^7.0.0",
     "prismjs": "^1.6.0",
     "react-emotion": "^8.0.8",
