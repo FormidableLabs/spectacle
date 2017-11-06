@@ -7,7 +7,13 @@ import '../utils/prism-import';
 import { Editor } from 'react-live';
 
 const StyledWrapper = styled.div(props => props.styles);
-const StyledEditor = styled(Editor)(props => props.styles);
+const StyledEditor = styled(Editor)`
+  && {
+    ${props => props.syntaxStyles}
+  }
+
+  ${props => props.prismTheme}
+`;
 
 export default class CodePane extends Component {
   handleEditorEvent(evt) {
@@ -18,25 +24,23 @@ export default class CodePane extends Component {
     const useDarkTheme = this.props.theme === 'dark';
 
     const wrapperStyles = [
-      this.context.styles.components.codePane.wrapper,
+      this.context.styles.components.codePane,
       getStyles.call(this),
       this.props.style
     ];
 
     return (
       <StyledWrapper
-        className={`${this.props.className} language-prism`}
+        className={this.props.className}
         styles={wrapperStyles}
       >
         <StyledEditor
+          className="language-prism"
           code={this.props.source}
           language={this.props.lang}
           contentEditable={this.props.contentEditable}
-          styles={[
-            this.context.styles.components.codePane.editor,
-            this.context.styles.prism.base,
-            this.context.styles.prism[useDarkTheme ? 'dark' : 'light']
-          ]}
+          syntaxStyles={this.context.styles.components.syntax}
+          prismTheme={this.context.styles.prism[useDarkTheme ? 'dark' : 'light']}
           onKeyDown={this.handleEditorEvent}
           onKeyUp={this.handleEditorEvent}
           onClick={this.handleEditorEvent}

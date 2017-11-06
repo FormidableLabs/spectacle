@@ -5,8 +5,8 @@ import CodePane from './code-pane';
 describe('<CodePane />', () => {
   test('should render correctly.', () => {
     const context = { styles: {
-      components: { codePane: { pre: {} } },
-      prism: { base: 'base;', light: 'light;', dark: 'dark;' }
+      components: { codePane: {}, syntax: {} },
+      prism: { light: 'light;', dark: 'dark;' }
     } };
     const source = `
       const myButton = (

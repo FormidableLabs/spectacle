@@ -18,19 +18,20 @@ exports[`<CodePane /> should render correctly. 1`] = `
   theme="dark"
 >
   <Styled(div)
-    className=" language-prism"
+    className=""
     styles={
       Array [
-        undefined,
+        Object {},
         Object {},
         undefined,
       ]
     }
   >
     <div
-      className=" language-prism css-0"
+      className="css-0"
     >
       <Styled(Editor)
+        className="language-prism"
         code="
             const myButton = (
               <CustomButton
@@ -46,16 +47,11 @@ exports[`<CodePane /> should render correctly. 1`] = `
         onClick={[Function]}
         onKeyDown={[Function]}
         onKeyUp={[Function]}
-        styles={
-          Array [
-            undefined,
-            "base;",
-            "dark;",
-          ]
-        }
+        prismTheme="dark;"
+        syntaxStyles={Object {}}
       >
         <Editor
-          className="css-sz0c5i"
+          className="language-prism css-1i53um3"
           code="
               const myButton = (
                 <CustomButton
@@ -71,16 +67,11 @@ exports[`<CodePane /> should render correctly. 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
-          styles={
-            Array [
-              undefined,
-              "base;",
-              "dark;",
-            ]
-          }
+          prismTheme="dark;"
+          syntaxStyles={Object {}}
         >
           <pre
-            className="prism-code css-sz0c5i"
+            className="prism-code language-prism css-1i53um3"
             contentEditable={false}
             dangerouslySetInnerHTML={
               Object {
@@ -99,15 +90,10 @@ exports[`<CodePane /> should render correctly. 1`] = `
             onClick={undefined}
             onKeyDown={undefined}
             onKeyUp={undefined}
+            prismTheme="dark;"
             spellCheck="false"
             style={undefined}
-            styles={
-              Array [
-                undefined,
-                "base;",
-                "dark;",
-              ]
-            }
+            syntaxStyles={Object {}}
           />
         </Editor>
       </Styled(Editor)>
