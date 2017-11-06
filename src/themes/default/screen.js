@@ -42,8 +42,17 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         color: colors.secondary,
         overflow: 'hidden',
       },
+      '_:-moz-tree-row(hover), .spectacle-deck': {
+        perspective: '1000px'
+      },
+      '_:-moz-tree-row(hover), ul .appear': {
+        display: 'inline'
+      },
       'html, body': {
+        width: '100%',
         height: '100%',
+        margin: 0,
+        padding: 0
       },
       '*': {
         boxSizing: 'border-box',

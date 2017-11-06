@@ -31,6 +31,12 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         color: 'black',
         overflow: 'hidden',
       },
+      'html, body': {
+        width: '100%',
+        height: '100%',
+        margin: 0,
+        padding: 0
+      },
       '.hljs': {
         background: 'white',
         color: 'black',

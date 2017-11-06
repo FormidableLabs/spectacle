@@ -7,6 +7,7 @@ export const SlideContainer = styled.div(({ printMode, exportMode, styles, backg
       backgroundImage: 'none',
     } : {};
   const outerStyles = {
+    transformOrigin: 'center center',
     position: exportMode ? 'relative' : 'absolute',
     top: 0,
     left: 0,
