@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import { detailedDiff } from 'deep-object-diff';
-import { addKeys, buildStyleMap, wrapChildren } from '../utils/magic';
+import { buildStyleMap, updateChildren } from '../utils/magic';
 
-const Deck = styled.div(props => ({
+const Deck = styled.div(() => ({
   position: 'absolute',
   top: 0,
   left: 0,
@@ -32,6 +32,10 @@ class Context extends React.Component {
     store: PropTypes.object,
     styles: PropTypes.object,
   };
+  static propTypes = {
+    children: PropTypes.node,
+    context: PropTypes.object,
+  };
   getChildContext() {
     return {
       contentHeight: this.props.context.contentHeight,
@@ -52,6 +56,10 @@ export default class MagicText extends React.Component {
   static contextTypes = {
     styles: PropTypes.object,
   };
+  static propTypes = {
+    children: PropTypes.node,
+    magicIndex: PropTypes.number,
+  };
   constructor(props) {
     super(props);
     this.container = null;
@@ -61,15 +69,68 @@ export default class MagicText extends React.Component {
     this.diffs = {};
     this.lastDiffs = null;
     this.state = {
-      renderedChildren: wrapChildren(React.Children.toArray(props.children), 0),
+      renderedChildren: props.children,
     };
+  }
+  componentDidMount() {
+    this.mounted = true;
+    this.portal = document.getElementById('portal');
+    if (!this.portal) {
+      this.portal = this.makePortal();
+    }
+    ReactDOM.render(
+      <Context context={this.context}>
+        <Deck>{this.props.children}</Deck>
+      </Context>,
+      this.portal,
+      () => {
+        this.timeout = setTimeout(() => {
+          updateChildren(this.container.childNodes[0]);
+          updateChildren(this.portal.childNodes[0].childNodes[0]);
+          buildStyleMap(
+            this.portalMap,
+            this.portal.childNodes[0].childNodes[0]
+          );
+        }, 300);
+      }
+    );
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.magicIndex === nextProps.magicIndex) {
+      return;
+    }
+    ReactDOM.render(
+      <Context context={this.context}>
+        <Deck>{nextProps.children}</Deck>
+      </Context>,
+      this.portal,
+      () => {
+        const styles = {};
+        updateChildren(this.portal.childNodes[0].childNodes[0]);
+        buildStyleMap(styles, this.portal.childNodes[0].childNodes[0]);
+        this.diffs = detailedDiff(this.portalMap, styles);
+        this.lastPortalMap = this.portalMap;
+        this.portalMap = styles;
+        if (this.mounted) {
+          this.setState(
+            {
+              renderedChildren: nextProps.children,
+            },
+            () => {
+              this.forceUpdate();
+            }
+          );
+        }
+      }
+    );
   }
   shouldComponentUpdate() {
     return false;
   }
   componentDidUpdate() {
+    updateChildren(this.container.childNodes[0]);
     Object.keys(this.diffs.added).forEach(m => {
-      let el = document.querySelector(`[data-key='${m}']`);
+      const el = document.querySelector(`[data-key='${m}']`);
       if (el) {
         el.animate([{ opacity: 0 }, { opacity: 1 }], {
           duration: 500,
@@ -77,7 +138,6 @@ export default class MagicText extends React.Component {
         });
       }
     });
-
     Object.keys(this.diffs.updated).forEach(m => {
       const props = {
         ...(this.diffs.added[m] || {}),
@@ -87,16 +147,13 @@ export default class MagicText extends React.Component {
         ...(this.lastPortalMap[m] || {}),
       };
       if (last) {
-        let start = {};
-        let end = {};
-
-        let xdiff = props['x'] - last['x'] || 0;
-        let ydiff = props['y'] - last['y'] || 0;
-
-        start['transform'] = `translate(${xdiff * -1}px, ${ydiff * -1}px)`;
-        end['transform'] = `translate(0, 0)`;
-
-        let el = document.querySelector(`[data-key='${m}']`);
+        const start = {};
+        const end = {};
+        const xdiff = props.x - last.x || 0;
+        const ydiff = props.y - last.y || 0;
+        start.transform = `translate(${xdiff * -1}px, ${ydiff * -1}px)`;
+        end.transform = `translate(0, 0)`;
+        const el = document.querySelector(`[data-key='${m}']`);
         if (el) {
           el.animate([start, end], {
             duration: 500,
@@ -105,65 +162,14 @@ export default class MagicText extends React.Component {
         }
       }
     });
-
     this.lastDiffs = this.diffs;
-  }
-  componentWillReceiveProps(nextProps) {
-    const children = wrapChildren(
-      React.Children.toArray(nextProps.children),
-      0
-    );
-    ReactDOM.render(
-      <Context context={this.context}>
-        <Deck>{children}</Deck>
-      </Context>,
-      this.portal,
-      () => {
-        const styles = {};
-        buildStyleMap(styles, this.portal);
-        this.diffs = detailedDiff(this.portalMap, styles);
-        this.lastPortalMap = this.portalMap;
-        this.portalMap = styles;
-        this.mounted === true &&
-          this.setState(
-            {
-              renderedChildren: children,
-            },
-            () => {
-              this.forceUpdate();
-            }
-          );
-      }
-    );
-  }
-  componentDidMount() {
-    this.mounted = true;
-    this.portal = document.getElementById('portal');
-    if (!this.portal) {
-      this.portal = this.makePortal();
-    }
-    const children = wrapChildren(
-      React.Children.toArray(this.props.children),
-      0
-    );
-    ReactDOM.render(
-      <Context context={this.context}>
-        <Deck>{children}</Deck>
-      </Context>,
-      this.portal,
-      () => {
-        this.timeout = setTimeout(() => {
-          buildStyleMap(this.portalMap, this.portal);
-        }, 100);
-      }
-    );
   }
   componentWillUnmount() {
     clearTimeout(this.timeout);
     this.mounted = false;
   }
   makePortal = () => {
-    let p = document.createElement('div');
+    const p = document.createElement('div');
     p.id = 'portal';
     p.style.position = 'absolute';
     p.style.width = '100%';
@@ -175,10 +181,6 @@ export default class MagicText extends React.Component {
     return p;
   };
   render() {
-    const children = wrapChildren(
-      React.Children.toArray(this.props.children),
-      0
-    );
     return (
       <div
         ref={c => {

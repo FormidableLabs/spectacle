@@ -1,35 +1,7 @@
-import React from 'react';
-
-export function wrapChildren(children, key) {
-  if (!children) return null;
-  return children.map((child, i) => {
-    if (!child) return null;
-    let newKey = key ? `${key}${child.key || i}` : child.key || i;
-    let classProps = {
-      ...child.props,
-      'data-key': newKey,
-    };
-    if (typeof child !== 'object') {
-      return addKeys(child.toString(), newKey);
-    } else if (typeof child.props.children === 'string') {
-      return React.cloneElement(
-        child,
-        classProps,
-        addKeys(child.props.children.toString(), newKey)
-      );
-    } else {
-      return React.cloneElement(
-        child,
-        classProps,
-        wrapChildren(React.Children.toArray(child.props.children), newKey)
-      );
-    }
-  });
-}
-
-export function addKeys(text, key) {
-  let charCountMap = {};
-  return text.split('').map((s, i2) => {
+/* eslint-disable max-statements */
+function wrapTextChildren(child, valMap) {
+  const frag = document.createDocumentFragment();
+  child.textContent.split('').map(s => {
     let char = s;
     if (s.charCodeAt(0) === 10) {
       char = 'CR';
@@ -37,34 +9,70 @@ export function addKeys(text, key) {
     if (s.charCodeAt(0) === 32) {
       char = 'SP';
     }
-    if (char in charCountMap) {
-      charCountMap[char] += 1;
-    } else {
-      charCountMap[char] = 0;
-    }
+    updateMap(valMap, char);
 
-    let elKey = `${key}.${char}${charCountMap[char]}`;
+    const elKey = `${char}-${valMap[char]}`;
 
     if (char === 'CR') {
-      return <span style={{ display: 'block' }} data-key={elKey} key={elKey} />;
+      const el = document.createElement('span');
+      el.style.display = 'block';
+      el.setAttribute('data-key', elKey);
+      el.setAttribute('wrapped', true);
+      frag.appendChild(el);
+    } else if (s === ' ') {
+      const el = document.createElement('span');
+      el.style.display = 'inline-block';
+      el.setAttribute('data-key', elKey);
+      el.setAttribute('wrapped', true);
+      el.innerHTML = '&nbsp;';
+      frag.appendChild(el);
+    } else {
+      const el = document.createElement('span');
+      el.style.display = 'inline-flex';
+      el.setAttribute('data-key', elKey);
+      el.setAttribute('wrapped', true);
+      el.innerText = s;
+      frag.appendChild(el);
+    }
+  });
+  return frag;
+}
+
+function updateMap(valMap, val) {
+  if (val in valMap) {
+    valMap[val] += 1;
+  } else {
+    valMap[val] = 0;
+  }
+}
+
+export function updateChildren(root, valMap = {}) {
+  return Array.prototype.slice.call(root.childNodes, 0).map(child => {
+    if (child.nodeType !== 3 && child.getAttribute('wrapped')) {
+      return;
     }
 
-    return s === ' ' ? (
-      <span style={{ display: 'inline-block' }} data-key={elKey} key={elKey}>
-        &nbsp;
-      </span>
-    ) : (
-      <span style={{ display: 'inline-flex' }} data-key={elKey} key={elKey}>
-        {s}
-      </span>
-    );
+    if (child.nodeType === 1) {
+      updateMap(valMap, child.nodeName);
+      child.setAttribute(
+        'data-key',
+        `${child.nodeName}-${valMap[child.nodeName]}`
+      );
+    }
+    if (child.nodeType === 3) {
+      const replaced = wrapTextChildren(child, valMap);
+      child.replaceWith(replaced);
+    }
+    if (child.childNodes) {
+      updateChildren(child, valMap);
+    }
   });
 }
 
 export function buildStyleMap(map, root) {
   root.childNodes.forEach(child => {
     if (child.nodeType !== 3) {
-      let rect = child.getBoundingClientRect();
+      const rect = child.getBoundingClientRect();
       map[child.dataset.key] = {
         x: rect.x,
         y: rect.y,

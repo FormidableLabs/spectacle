@@ -99,9 +99,9 @@ class Slide extends React.PureComponent {
     const mobile = window.matchMedia('(max-width: 628px)').matches;
     const content = this.contentRef;
     if (content) {
-      const zoom = this.props.viewerScaleMode
-        ? 1
-        : content.offsetWidth / this.context.contentWidth;
+      // const zoom = this.props.viewerScaleMode
+      //   ? 1
+      //   : content.offsetWidth / this.context.contentWidth;
 
       const contentScaleY =
         content.parentNode.offsetHeight / this.context.contentHeight;
