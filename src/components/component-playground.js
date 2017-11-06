@@ -35,14 +35,7 @@ const PlaygroundPreview = styled(({ className }) => (
   background: ${p => p.previewBackgroundColor || '#fff'};
 `;
 
-const PlaygroundEditor = styled(LiveEditor)`
-  padding: 0.5rem;
-  margin: 0;
-  min-height: 100%;
-  font-size: 1.25vw;
-
-  ${p => p.styles}
-`;
+const PlaygroundEditor = styled(LiveEditor)(p => p.styles);
 
 const PlaygroundRow = styled.div`
   display: flex;
@@ -182,10 +175,12 @@ class ComponentPlayground extends Component {
           </PlaygroundColumn>
 
           <PlaygroundColumn>
-            <PlaygroundEditor styles={[
-              this.context.styles.prism.base,
-              this.context.styles.prism[useDarkTheme ? 'dark' : 'light']
-            ]} />
+            <PlaygroundEditor
+              className="language-prism"
+              styles={[
+                this.context.styles.prism.base,
+                this.context.styles.prism[useDarkTheme ? 'dark' : 'light']
+              ]} />
           </PlaygroundColumn>
         </PlaygroundRow>
       </PlaygroundProvider>

@@ -66,7 +66,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-gj8is5"
+        class="prism-code language-prism css-sz0c5i"
         contenteditable="true"
         spellcheck="false"
         styles="base;,dark;"
@@ -608,7 +608,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-1mzox58"
+        class="prism-code language-prism css-92xbs1"
         contenteditable="true"
         spellcheck="false"
         styles="base;,light;"
@@ -1150,7 +1150,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-1mzox58"
+        class="prism-code language-prism css-92xbs1"
         contenteditable="true"
         spellcheck="false"
         styles="base;,light;"
@@ -1686,7 +1686,7 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-1mzox58"
+        class="prism-code language-prism css-92xbs1"
         contenteditable="true"
         spellcheck="false"
         styles="base;,light;"

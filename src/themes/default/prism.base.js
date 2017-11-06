@@ -19,4 +19,11 @@ export default css`
   hyphens: none;
 
   white-space: pre-wrap;
+
+  &.language-prism.language-prism {
+    padding: 0.5rem;
+    margin: 0;
+    min-height: 100%;
+    font-size: 1.25vw;
+  }
 `;

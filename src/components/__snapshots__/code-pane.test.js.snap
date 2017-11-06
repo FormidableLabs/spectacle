@@ -18,7 +18,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
   theme="dark"
 >
   <Styled(div)
-    className=""
+    className=" language-prism"
     styles={
       Array [
         undefined,
@@ -28,7 +28,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
     }
   >
     <div
-      className="css-0"
+      className=" language-prism css-0"
     >
       <Styled(Editor)
         code="

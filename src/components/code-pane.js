@@ -25,7 +25,7 @@ export default class CodePane extends Component {
 
     return (
       <StyledWrapper
-        className={this.props.className}
+        className={`${this.props.className} language-prism`}
         styles={wrapperStyles}
       >
         <StyledEditor
