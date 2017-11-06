@@ -99,9 +99,9 @@ class Slide extends React.PureComponent {
     const mobile = window.matchMedia('(max-width: 628px)').matches;
     const content = this.contentRef;
     if (content) {
-      // const zoom = this.props.viewerScaleMode
-      //   ? 1
-      //   : content.offsetWidth / this.context.contentWidth;
+      const zoom = this.props.viewerScaleMode
+        ? 1
+        : content.offsetWidth / this.context.contentWidth;
 
       const contentScaleY =
         content.parentNode.offsetHeight / this.context.contentHeight;
@@ -114,9 +114,8 @@ class Slide extends React.PureComponent {
       if (mobile && this.props.viewerScaleMode !== true) {
         contentScale = 1;
       }
-
       this.setState({
-        //zoom: zoom > 0.6 ? zoom : 0.6,
+        zoom: zoom > 0.6 ? zoom : 0.6,
         contentScale,
       });
     }

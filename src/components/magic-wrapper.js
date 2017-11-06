@@ -54,6 +54,12 @@ class Context extends React.Component {
 
 export default class MagicText extends React.Component {
   static contextTypes = {
+    contentHeight: PropTypes.number,
+    contentWidth: PropTypes.number,
+    export: PropTypes.bool,
+    overview: PropTypes.bool,
+    print: PropTypes.bool,
+    store: PropTypes.object,
     styles: PropTypes.object,
   };
   static propTypes = {
@@ -72,6 +78,7 @@ export default class MagicText extends React.Component {
       renderedChildren: props.children,
     };
   }
+
   componentDidMount() {
     this.mounted = true;
     this.portal = document.getElementById('portal');
@@ -154,7 +161,7 @@ export default class MagicText extends React.Component {
         start.transform = `translate(${xdiff * -1}px, ${ydiff * -1}px)`;
         end.transform = `translate(0, 0)`;
         const el = document.querySelector(`[data-key='${m}']`);
-        if (el) {
+        if (el && !el.classList.contains('spectacle-content')) {
           el.animate([start, end], {
             duration: 500,
             easing: 'ease-in',
