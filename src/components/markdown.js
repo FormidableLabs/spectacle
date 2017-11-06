@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { createElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
 import marksy from 'marksy';
@@ -44,6 +44,7 @@ const _CombineBlockQuote = ({ children }) => (
 _CombineBlockQuote.propTypes = { children: PropTypes.node };
 
 const compile = marksy({
+  createElement,
   elements: {
     a: Link,
     blockquote: _CombineBlockQuote,
