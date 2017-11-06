@@ -1,5 +1,8 @@
 /*eslint-disable object-shorthand*/
 
+import prismLight from './prism.light';
+import prismDark from './prism.dark';
+
 const defaultColors = {
   primary: 'black',
   secondary: 'black',
@@ -66,6 +69,10 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       nextIcon: {
         fill: colors.quarternary,
       },
+    },
+    prism: {
+      light: prismLight,
+      dark: prismDark,
     },
     progress: {
       pacman: {

@@ -17,12 +17,6 @@ export default class CodePane extends Component {
   render() {
     const useDarkTheme = this.props.theme === 'dark';
 
-    if (useDarkTheme) {
-      require('../themes/default/prism.dark.css');
-    } else {
-      require('../themes/default/prism.light.css');
-    }
-
     const wrapperStyles = [
       this.context.styles.components.codePane.wrapper,
       getStyles.call(this),
@@ -31,14 +25,17 @@ export default class CodePane extends Component {
 
     return (
       <StyledWrapper
-        className={`react-live react-live-${useDarkTheme ? 'dark' : 'light'} ${this.props.className}`}
+        className={this.props.className}
         styles={wrapperStyles}
       >
         <StyledEditor
           code={this.props.source}
           language={this.props.lang}
           contentEditable={this.props.contentEditable}
-          styles={this.context.styles.components.codePane.editor}
+          styles={[
+            this.context.styles.components.codePane.editor,
+            this.context.styles.prism[useDarkTheme ? 'dark' : 'light']
+          ]}
           onKeyDown={this.handleEditorEvent}
           onKeyUp={this.handleEditorEvent}
           onClick={this.handleEditorEvent}

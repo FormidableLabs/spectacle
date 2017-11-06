@@ -40,6 +40,8 @@ const PlaygroundEditor = styled(LiveEditor)`
   margin: 0;
   min-height: 100%;
   font-size: 1.25vw;
+
+  ${p => p.styles}
 `;
 
 const PlaygroundRow = styled.div`
@@ -151,16 +153,10 @@ class ComponentPlayground extends Component {
     } = this.props;
 
     const useDarkTheme = theme === 'dark';
-
-    if (useDarkTheme) {
-      require('../themes/default/prism.dark.css');
-    } else {
-      require('../themes/default/prism.light.css');
-    }
+    const editorStyle = this.context.styles.prism[useDarkTheme ? 'dark' : 'light'];
 
     return (
       <PlaygroundProvider
-        className={`react-live-${useDarkTheme ? 'dark' : 'light'}`}
         mountStylesheet={false}
         code={(code || defaultCode).trim()}
         scope={{ Component, ...scope }}
@@ -187,13 +183,18 @@ class ComponentPlayground extends Component {
           </PlaygroundColumn>
 
           <PlaygroundColumn>
-            <PlaygroundEditor />
+            <PlaygroundEditor styles={[ editorStyle ]} />
           </PlaygroundColumn>
         </PlaygroundRow>
       </PlaygroundProvider>
     );
   }
 }
+
+ComponentPlayground.contextTypes = {
+  styles: PropTypes.object,
+  store: PropTypes.object
+};
 
 ComponentPlayground.propTypes = {
   code: PropTypes.string,
