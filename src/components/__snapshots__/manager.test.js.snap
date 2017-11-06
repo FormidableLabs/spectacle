@@ -183,13 +183,13 @@ exports[`<Manager /> should render correctly. 1`] = `
                         Array [
                           undefined,
                           Object {
-                            "animation": "pacmanTopFramesBis 0.12s linear 10 alternate both",
+                            "animation": "animation-vwhb3c 0.12s linear 10 alternate both",
                           },
                         ]
                       }
                     >
                       <div
-                        className="css-13kse6y"
+                        className="css-1la23zo"
                       />
                     </Styled(div)>
                     <Styled(div)
@@ -197,13 +197,13 @@ exports[`<Manager /> should render correctly. 1`] = `
                         Array [
                           undefined,
                           Object {
-                            "animation": "pacmanBottomFramesBis 0.12s linear 10 alternate both",
+                            "animation": "animation-1p18wsg 0.12s linear 10 alternate both",
                           },
                         ]
                       }
                     >
                       <div
-                        className="css-9ev9ib"
+                        className="css-1yi33k2"
                       />
                     </Styled(div)>
                   </div>
@@ -814,13 +814,13 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                         Array [
                           undefined,
                           Object {
-                            "animation": "pacmanTopFrames 0.12s linear 10 alternate both",
+                            "animation": "animation-v6s9vi 0.12s linear 10 alternate both",
                           },
                         ]
                       }
                     >
                       <div
-                        className="css-1cs01s8"
+                        className="css-172vklz"
                       />
                     </Styled(div)>
                     <Styled(div)
@@ -828,13 +828,13 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                         Array [
                           undefined,
                           Object {
-                            "animation": "pacmanBottomFrames 0.12s linear 10 alternate both",
+                            "animation": "animation-9hbgqx 0.12s linear 10 alternate both",
                           },
                         ]
                       }
                     >
                       <div
-                        className="css-7iidye"
+                        className="css-5id854"
                       />
                     </Styled(div)>
                   </div>

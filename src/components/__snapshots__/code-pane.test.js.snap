@@ -18,7 +18,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
   theme="dark"
 >
   <Styled(div)
-    className="react-live react-live-dark "
+    className=""
     styles={
       Array [
         undefined,
@@ -28,7 +28,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
     }
   >
     <div
-      className="react-live react-live-dark  css-0"
+      className="css-0"
     >
       <Styled(Editor)
         code="
@@ -46,10 +46,15 @@ exports[`<CodePane /> should render correctly. 1`] = `
         onClick={[Function]}
         onKeyDown={[Function]}
         onKeyUp={[Function]}
-        styles={undefined}
+        styles={
+          Array [
+            undefined,
+            "dark",
+          ]
+        }
       >
         <Editor
-          className="css-0"
+          className="css-1jzmi26"
           code="
               const myButton = (
                 <CustomButton
@@ -65,10 +70,15 @@ exports[`<CodePane /> should render correctly. 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
-          styles={undefined}
+          styles={
+            Array [
+              undefined,
+              "dark",
+            ]
+          }
         >
           <pre
-            className="prism-code css-0"
+            className="prism-code css-1jzmi26"
             contentEditable={false}
             dangerouslySetInnerHTML={
               Object {
@@ -89,7 +99,12 @@ exports[`<CodePane /> should render correctly. 1`] = `
             onKeyUp={undefined}
             spellCheck="false"
             style={undefined}
-            styles={undefined}
+            styles={
+              Array [
+                undefined,
+                "dark",
+              ]
+            }
           />
         </Editor>
       </Styled(Editor)>

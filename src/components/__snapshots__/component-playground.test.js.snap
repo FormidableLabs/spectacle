@@ -2,7 +2,7 @@
 
 exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 <div
-  class="react-live react-live-dark css-o32omv"
+  class="react-live css-o32omv"
   scope="[object Object]"
 >
   <div
@@ -66,9 +66,10 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-egp0ia"
+        class="prism-code css-c1352l"
         contenteditable="true"
         spellcheck="false"
+        styles="dark"
       >
         <span
           class="token comment"
@@ -543,7 +544,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 <div
-  class="react-live react-live-light css-o32omv"
+  class="react-live css-o32omv"
   scope="[object Object]"
 >
   <div
@@ -607,9 +608,10 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-egp0ia"
+        class="prism-code css-11dy4w1"
         contenteditable="true"
         spellcheck="false"
+        styles="light"
       >
         <span
           class="token comment"
@@ -1084,7 +1086,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render with a custom background color 1`] = `
 <div
-  class="react-live react-live-light css-o32omv"
+  class="react-live css-o32omv"
   scope="[object Object]"
 >
   <div
@@ -1148,9 +1150,10 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-egp0ia"
+        class="prism-code css-11dy4w1"
         contenteditable="true"
         spellcheck="false"
+        styles="light"
       >
         <span
           class="token comment"
@@ -1625,7 +1628,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
 
 exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
 <div
-  class="react-live react-live-light css-o32omv"
+  class="react-live css-o32omv"
   scope="[object Object]"
 >
   <div
@@ -1683,9 +1686,10 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-egp0ia"
+        class="prism-code css-11dy4w1"
         contenteditable="true"
         spellcheck="false"
+        styles="light"
       >
         <span
           class="token keyword"
