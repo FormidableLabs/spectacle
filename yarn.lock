@@ -1902,6 +1902,10 @@ deep-is@~0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
 
+deep-object-diff@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/deep-object-diff/-/deep-object-diff-1.0.4.tgz#ee4c93b4a9da2962a568964c935a1989a416f9c4"
+
 default-require-extensions@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/default-require-extensions/-/default-require-extensions-1.0.0.tgz#f37ea15d3e13ffd9b437d33e1a75b5fb97874cb8"

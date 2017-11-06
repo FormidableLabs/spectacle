@@ -9,8 +9,8 @@ const StyledHeader = styled.div(({ height, styles }) => [
   {
     display: 'block',
     width: '100%',
-    height
-  }
+    height,
+  },
 ]);
 
 const StyledSpan = styled.span(({ scale, lineHeight, styles }) => [
@@ -21,10 +21,10 @@ const StyledSpan = styled.span(({ scale, lineHeight, styles }) => [
     padding: '0',
     lineHeight,
     transform: `scale(${scale})`,
-    transformOrigin: 'center top'
+    transformOrigin: 'center top',
   },
   styles.typeface,
-  styles.user
+  styles.user,
 ]);
 
 const dynamicHeaderStyles = ({ lineHeight, styles }) => [
@@ -32,12 +32,15 @@ const dynamicHeaderStyles = ({ lineHeight, styles }) => [
   styles.base,
   { lineHeight },
   styles.typeface,
-  styles.user
+  styles.user,
 ];
-const dynamicStyledHeaders = [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ]
-  .reduce((memo, tag) => ({
-    ...memo, [tag]: styled(tag)(dynamicHeaderStyles)
-  }), {});
+const dynamicStyledHeaders = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce(
+  (memo, tag) => ({
+    ...memo,
+    [tag]: styled(tag)(dynamicHeaderStyles),
+  }),
+  {}
+);
 
 export default class Heading extends Component {
   constructor() {
@@ -45,7 +48,7 @@ export default class Heading extends Component {
     this.resize = this.resize.bind(this);
     this.state = {
       scale: 1,
-      height: 16
+      height: 16,
     };
   }
   componentDidMount() {
@@ -65,12 +68,12 @@ export default class Heading extends Component {
       const text = this.textRef;
       const container = this.containerRef;
       text.style.display = 'inline-block';
-      const scale = (container.offsetWidth / text.offsetWidth);
-      const height = (text.offsetHeight * scale) || 0;
+      const scale = container.offsetWidth / text.offsetWidth;
+      const height = text.offsetHeight * scale || 0;
       text.style.display = 'block';
       this.setState({
         scale,
-        height
+        height,
       });
     }
   }
@@ -83,15 +86,19 @@ export default class Heading extends Component {
       return (
         <StyledHeader
           className={this.props.className}
-          innerRef={(c) => { this.containerRef = c; }}
+          innerRef={c => {
+            this.containerRef = c;
+          }}
           height={this.state.height}
           styles={{
             context: this.context.styles.components.heading[`h${size}`],
-            base: getStyles.call(this)
+            base: getStyles.call(this),
           }}
         >
           <StyledSpan
-            innerRef={(t) => { this.textRef = t; }}
+            innerRef={t => {
+              this.textRef = t;
+            }}
             scale={this.state.scale}
             lineHeight={lineHeight}
             styles={{ user: style, typeface: typefaceStyle }}
@@ -102,22 +109,26 @@ export default class Heading extends Component {
       );
     }
 
-    return createElement(dynamicStyledHeaders[Tag], {
-      className: this.props.className,
-      lineHeight,
-      styles: {
-        context: this.context.styles.components.heading[`h${size}`],
-        base: getStyles.call(this),
-        user: style,
-        typeface: typefaceStyle
-      }
-    }, children);
+    return createElement(
+      dynamicStyledHeaders[Tag],
+      {
+        className: this.props.className,
+        lineHeight,
+        styles: {
+          context: this.context.styles.components.heading[`h${size}`],
+          base: getStyles.call(this),
+          user: style,
+          typeface: typefaceStyle,
+        },
+      },
+      children
+    );
   }
 }
 
 Heading.defaultProps = {
   size: 1,
-  lineHeight: 1
+  lineHeight: 1,
 };
 
 Heading.propTypes = {
@@ -126,11 +137,11 @@ Heading.propTypes = {
   fit: PropTypes.bool,
   lineHeight: PropTypes.number,
   size: PropTypes.number,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 Heading.contextTypes = {
   styles: PropTypes.object,
   store: PropTypes.object,
-  typeface: PropTypes.object
+  typeface: PropTypes.object,
 };

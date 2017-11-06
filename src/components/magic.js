@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import MagicWrapper from './magic-wrapper';
+
 export default class Magic extends Component {
-  componentDidMount() {
-    console.log('mount')
-  }
-  componentWillReceiveProps() {
-    console.log('props')
-  }
   render() {
-    return this.props.children[this.props.magicIndex] || null;
+    return (
+      <MagicWrapper>
+        {this.props.children[this.props.magicIndex] || null}
+      </MagicWrapper>
+    );
   }
 }
 
 Magic.propTypes = {
   children: PropTypes.node,
-  magicIndex: PropTypes.number
+  magicIndex: PropTypes.number,
 };
 
 Magic.defaultProps = {
-  magicIndex: 0
+  magicIndex: 0,
 };

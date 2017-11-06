@@ -23,6 +23,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "deep-object-diff": "^1.0.4",
     "emotion": "^8.0.8",
     "history": "^4.6.1",
     "lodash": "^4.17.4",
