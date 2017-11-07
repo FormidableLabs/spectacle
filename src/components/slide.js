@@ -32,20 +32,24 @@ class Slide extends React.PureComponent {
     this.setZoom();
     const slide = this.slideRef;
     const frags = slide.querySelectorAll('.fragment');
+    let currentOrder = 0;
     if (frags && frags.length && !this.context.overview) {
-      Array.prototype.slice.call(frags, 0).forEach((frag, i) => {
-        frag.dataset.fid = i;
-        return (
-          this.props.dispatch &&
-          this.props.dispatch(
-            addFragment({
-              slide: this.props.hash,
-              id: `${this.props.slideIndex}-${i}`,
-              visible: this.props.lastSlideIndex > this.props.slideIndex,
-            })
-          )
-        );
-      });
+      Array.prototype.slice.call(frags, 0)
+        .sort((lhs, rhs) => parseInt(lhs.dataset.order, 10) - parseInt(rhs.dataset.order, 10))
+        .forEach(frag => {
+          frag.dataset.fid = currentOrder;
+          if (this.props.dispatch) {
+            this.props.dispatch(
+              addFragment({
+                className: frag.className || '',
+                slide: this.props.hash,
+                id: `${this.props.slideIndex}-${currentOrder}`,
+                visible: this.props.lastSlideIndex > this.props.slideIndex,
+              })
+            );
+          }
+          currentOrder += 1;
+        });
     }
     window.addEventListener('load', this.setZoom);
     window.addEventListener('resize', this.setZoom);
