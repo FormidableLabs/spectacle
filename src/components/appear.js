@@ -21,6 +21,13 @@ class Appear extends Component {
       this.setState({ active: true });
       return;
     }
+
+    const order = this.props.order || 0;
+    const node = findDOMNode(this.fragmentRef);
+    if (!node.dataset) {
+      node.dataset = {};
+    }
+    node.dataset.order = order;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,7 +62,6 @@ class Appear extends Component {
     const child = React.Children.only(this.props.children);
     const endValue = this.state.active ? 1 : 0;
     const transitionDuration = this.props.transitionDuration;
-
     return (
       <VictoryAnimation
         data={{ opacity: endValue }}
@@ -64,7 +70,7 @@ class Appear extends Component {
       >
         {({ opacity }) =>
           React.cloneElement(child, {
-            className: 'fragment',
+            className: `fragment ${child.props.className}`.trim(),
             style: { ...child.props.style, ...this.props.style, opacity },
             ref: f => {
               this.fragmentRef = f;
@@ -82,6 +88,7 @@ Appear.defaultProps = {
 Appear.propTypes = {
   children: PropTypes.node,
   fragment: PropTypes.object,
+  order: PropTypes.number,
   route: PropTypes.object,
   style: PropTypes.object,
   transitionDuration: PropTypes.number
