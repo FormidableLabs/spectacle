@@ -13,7 +13,6 @@ import createTheme from '../../src/themes/default';
 import Interactive from '../assets/interactive';
 
 require('normalize.css');
-require('../../src/themes/default/index.css');
 
 const images = {
   city: require('../assets/city.jpg'),

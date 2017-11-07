@@ -44,7 +44,7 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
       }
     >
       <div
-        className="spectacle-slide css-1kmub7p"
+        className="spectacle-slide css-1w0uyvd"
         style={
           Object {
             "transform": " translate3d(-100%, 0, 0) rotateY(-90deg)",
@@ -130,7 +130,7 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
       }
     >
       <div
-        className="spectacle-slide css-1kmub7p"
+        className="spectacle-slide css-1w0uyvd"
         style={
           Object {
             "transform": " translate3d(0px, 0px, 0px)",
