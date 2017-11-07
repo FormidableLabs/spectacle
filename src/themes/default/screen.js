@@ -240,7 +240,6 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         tabSize: 2,
         hyphens: 'none',
         whiteSpace: 'pre-wrap',
-
         padding: '0.5rem',
         margin: 0,
       },
