@@ -18,6 +18,7 @@ import memoize from 'lodash/memoize';
 import Presenter from './presenter';
 import Export from './export';
 import Overview from './overview';
+import Magic from './magic';
 
 import AutoplayControls from './autoplay-controls';
 import Fullscreen from './fullscreen';
@@ -128,9 +129,10 @@ export class Manager extends Component {
 
   componentWillMount() {
     this.setState({
-      slideReference: this._buildSlideReference(),
+      slideReference: this._buildSlideReference(this.props),
     });
   }
+
   componentDidMount() {
     const slideIndex = this._getSlideIndex();
     this.setState({
@@ -141,6 +143,13 @@ export class Manager extends Component {
       this._startAutoplay();
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      slideReference: this._buildSlideReference(nextProps),
+    });
+  }
+
   componentDidUpdate() {
     if (
       this.props.globalStyles &&
@@ -518,11 +527,13 @@ export class Manager extends Component {
 
     return 0;
   }
-  _buildSlideReference() {
+  _buildSlideReference(props) {
     const slideReference = [];
-    Children.toArray(this.props.children).forEach((child, rootIndex) => {
-      if (child.type.name === 'Magic') {
-        child.props.children.forEach((setSlide, magicIndex) => {
+    Children.toArray(props.children).forEach((child, rootIndex) => {
+      if (child.type === Magic) {
+        Children.toArray(
+          child.props.children
+        ).forEach((setSlide, magicIndex) => {
           const reference = {
             id: setSlide.props.id || slideReference.length,
             magicIndex,

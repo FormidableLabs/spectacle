@@ -28,10 +28,12 @@ export default class Deck extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Controller theme={this.props.theme} store={store} history={this.props.history}>
-          <Manager {...this.props}>
-            {this.props.children}
-          </Manager>
+        <Controller
+          theme={this.props.theme}
+          store={store}
+          history={this.props.history}
+        >
+          <Manager {...this.props}>{this.props.children}</Manager>
         </Controller>
       </Provider>
     );

@@ -65,6 +65,7 @@ export default class MagicText extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     magicIndex: PropTypes.number,
+    exitSubscription: PropTypes.func,
   };
   constructor(props) {
     super(props);
@@ -82,6 +83,16 @@ export default class MagicText extends React.Component {
   componentDidMount() {
     this.mounted = true;
     this.portal = document.getElementById('portal');
+    this.container.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 500,
+      easing: 'ease-in',
+    });
+    this.props.exitSubscription(() => {
+      this.container.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: 500,
+        easing: 'ease-in',
+      });
+    });
     if (!this.portal) {
       this.portal = this.makePortal();
     }
@@ -136,39 +147,43 @@ export default class MagicText extends React.Component {
   }
   componentDidUpdate() {
     updateChildren(this.container.childNodes[0]);
-    Object.keys(this.diffs.added).forEach(m => {
-      const el = document.querySelector(`[data-key='${m}']`);
-      if (el) {
-        el.animate([{ opacity: 0 }, { opacity: 1 }], {
-          duration: 500,
-          easing: 'ease-in',
-        });
-      }
-    });
-    Object.keys(this.diffs.updated).forEach(m => {
-      const props = {
-        ...(this.diffs.added[m] || {}),
-        ...(this.diffs.updated[m] || {}),
-      };
-      const last = {
-        ...(this.lastPortalMap[m] || {}),
-      };
-      if (last) {
-        const start = {};
-        const end = {};
-        const xdiff = props.x - last.x || 0;
-        const ydiff = props.y - last.y || 0;
-        start.transform = `translate(${xdiff * -1}px, ${ydiff * -1}px)`;
-        end.transform = `translate(0, 0)`;
+    if (this.diffs.added) {
+      Object.keys(this.diffs.added).forEach(m => {
         const el = document.querySelector(`[data-key='${m}']`);
-        if (el && !el.classList.contains('spectacle-content')) {
-          el.animate([start, end], {
+        if (el) {
+          el.animate([{ opacity: 0 }, { opacity: 1 }], {
             duration: 500,
             easing: 'ease-in',
           });
         }
-      }
-    });
+      });
+    }
+    if (this.diffs.updated) {
+      Object.keys(this.diffs.updated).forEach(m => {
+        const props = {
+          ...(this.diffs.added[m] || {}),
+          ...(this.diffs.updated[m] || {}),
+        };
+        const last = {
+          ...(this.lastPortalMap[m] || {}),
+        };
+        if (last) {
+          const start = {};
+          const end = {};
+          const xdiff = props.x - last.x || 0;
+          const ydiff = props.y - last.y || 0;
+          start.transform = `translate(${xdiff * -1}px, ${ydiff * -1}px)`;
+          end.transform = `translate(0, 0)`;
+          const el = document.querySelector(`[data-key='${m}']`);
+          if (el && !el.classList.contains('spectacle-content')) {
+            el.animate([start, end], {
+              duration: 500,
+              easing: 'ease-in',
+            });
+          }
+        }
+      });
+    }
     this.lastDiffs = this.diffs;
   }
   componentWillUnmount() {
@@ -190,6 +205,10 @@ export default class MagicText extends React.Component {
   render() {
     return (
       <div
+        style={{
+          transition: '500ms opacity linear',
+          opacity: this.props.opacity,
+        }}
         ref={c => {
           this.container = c;
         }}

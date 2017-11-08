@@ -9,6 +9,12 @@ function wrapTextChildren(child, valMap) {
     if (s.charCodeAt(0) === 32) {
       char = 'SP';
     }
+    if (s.charCodeAt(0) === 39) {
+      char = 'QT';
+    }
+    if (s.charCodeAt(0) === 34) {
+      char = 'DQT';
+    }
     updateMap(valMap, char);
 
     const elKey = `${char}-${valMap[char]}`;
