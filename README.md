@@ -40,6 +40,7 @@ ReactJS based Presentation Library
     - [CodePane (Base)](#codepane-base)
     - [Code (Base)](#code-base)
     - [ComponentPlayground](#component-playground)
+    - [GoToAction (Base)](#go-to-action)
     - [Heading (Base)](#heading-base)
     - [Image (Base)](#image-base)
     - [Link (Base)](#link-base)
@@ -124,7 +125,6 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
     <link href="https://unpkg.com/normalize.css@7/normalize.css" rel="stylesheet" type="text/css">
-    <link href="https://unpkg.com/spectacle/lib/themes/default/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="root"></div>
@@ -344,6 +344,7 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |maxHeight| PropTypes.number | Used to set max dimensions of the Slide.
 |maxWidth| PropTypes.number | Used to set max dimensions of the Slide.
 |notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
+|onActive|PropTypes.func| Optional function that is called with the slide index when the slide comes into view.
 |transition|PropTypes.array|Accepts `slide`, `zoom`, `fade`, `spin`, or a [function](#transition-function), and can be combined. Sets the slide transition. This will affect both enter and exit transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionIn|PropTypes.array|Specifies the slide transition when the slide comes into view. Accepts the same values as transition.|
 |transitionOut|PropTypes.array|Specifies the slide transition when the slide exits. Accepts the same values as transition.|
@@ -462,6 +463,11 @@ The element tags are the bread and butter of your slide content. Most of these t
 
 This tag does not extend from Base. It's special. Wrapping elements in the appear tag makes them appear/disappear in order in response to navigation.
 
+|Name|PropType|Description|
+|---|---|---|
+|order|PropTypes.number| An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.
+
+
 <a name="blockquote-quote-and-cite-base"></a>
 #### BlockQuote, Quote and Cite (Base)
 
@@ -522,6 +528,34 @@ class View extends React.Component {
 }
 render(<View />);
 ```
+
+<a name="go-to-action"></a>
+#### Go To Action (Base)
+
+The GoToAction tag lets you jump to another slide in your deck. The GoToAction can be used a simple button that supports `Base` styling or accept a render prop with a callback to support custom components.
+
+|Name|PropType|Description|
+|---|---|---|
+|slide|PropTypes.string or PropTypes.number|The string identifier or number of the side the button should jump to. Slide numbers start at `1`. This is only used in the simple button configuration.
+|render|PropTypes.func|A function with a `goToSlide` param that should return a React element to render. This is only used in the custom component configuration.
+
+##### Simple Button Configuration Example
+```jsx
+<GoToAction slide={3}>Jump to 3</GoToAction>
+```
+
+##### Custom Component Configuration Example
+```jsx
+<GoToAction
+  render={goToSlide => (
+    <CustomComponent onClick={() => goToSlide("wait-wut")}>
+      WAIT WUT!?
+    </CustomComponent>
+  )}
+/>
+```
+
+
 
 <a name="heading-base"></a>
 #### Heading (Base)

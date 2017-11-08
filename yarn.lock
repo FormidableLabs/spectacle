@@ -3871,9 +3871,9 @@ marked@^0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
 
-marksy@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/marksy/-/marksy-0.4.2.tgz#c2ad4ecf0d47d6e2565e88ce7c33013e07620126"
+marksy@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/marksy/-/marksy-5.0.0.tgz#70e9015154994df339528c43511f71540f6559fe"
   dependencies:
     babel-standalone "^6.24.0"
     he "^1.1.1"
@@ -4919,9 +4919,9 @@ react-emotion@^8.0.8:
     babel-plugin-emotion "^8.0.6"
     emotion-utils "^8.0.6"
 
-react-live@^1.8.0-1:
-  version "1.8.0-1"
-  resolved "https://registry.yarnpkg.com/react-live/-/react-live-1.8.0-1.tgz#9ee81589e6ae2e728ef0d993e517af133de27c5b"
+react-live@^1.8.0-2:
+  version "1.8.0-2"
+  resolved "https://registry.yarnpkg.com/react-live/-/react-live-1.8.0-2.tgz#0207113212fb5cc4ebb33080219c2feb29ea3398"
   dependencies:
     buble "^0.15.2"
     core-js "^2.4.1"

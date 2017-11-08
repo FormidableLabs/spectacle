@@ -13,9 +13,9 @@ describe('<Fullscreen />', () => {
     const context = { styles: { styles: { fullscreen: {} } } };
     const wrapper = mount(<Fullscreen />, { context });
     const stub = jest.fn();
-    wrapper.instance().handleToggleFullScreen = stub;
+    wrapper.instance().toggleFullscreen = stub;
     wrapper.update();
-    wrapper.find('svg').simulate('click');
+    wrapper.children().first().simulate('click');
     expect(stub).toHaveBeenCalledTimes(1);
   });
 });

@@ -2,8 +2,8 @@ import React from 'react';
 
 import {
   Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Magic, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
-  TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text, S
+  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
+  TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text, GoToAction
 } from '../../src';
 
 import preloader from '../../src/utils/preloader';
@@ -13,7 +13,6 @@ import createTheme from '../../src/themes/default';
 import Interactive from '../assets/interactive';
 
 require('normalize.css');
-require('../../src/themes/default/index.css');
 
 const images = {
   city: require('../assets/city.jpg'),
@@ -58,6 +57,9 @@ export default class Presentation extends React.Component {
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
         <Slide
+          onActive={slideIndex => {
+            console.info(`Viewing slide index: ${slideIndex}.`); // eslint-disable-line no-console
+          }}
           id="wait-what"
           goTo={4}
           transition={[
@@ -115,6 +117,38 @@ export default class Presentation extends React.Component {
               Background Imagery
             </Heading>
           </Appear>
+        </Slide>
+        <Slide>
+          <Heading size={2} textColor="secondary" margin="0.25em">
+           Mix it up!
+          </Heading>
+          <Heading size={6} textColor="tertiary">
+            You can even jump to different slides with a standard button or custom component!
+          </Heading>
+          <GoToAction
+            margin="1em"
+            slide={8}
+          >
+            Jump to Slide 8
+          </GoToAction>
+          <GoToAction
+            render={goToSlide => (
+              <select
+                defaultValue=""
+                style={{
+                  background: '#000',
+                  color: '#fff',
+                  fontFamily: theme.print.fonts.primary,
+                  fontSize: '1.1em'
+                }}
+                onChange={({ target }) => goToSlide(target.value)}
+              >
+                <option value="" disabled>Custom Slide Picker</option>
+                <option value="wait-what">Wait What!? Slide</option>
+                <option value={2}>Slide 2</option>
+              </select>
+            )}
+          />
         </Slide>
         <Slide transition={['slide']} bgDarken={0.75} getAppearStep={this.updateSteps}>
           <Appear>

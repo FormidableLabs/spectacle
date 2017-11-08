@@ -2,25 +2,45 @@
 
 exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 <div
-  class="react-live react-live-dark css-o32omv"
+  class="react-live css-o32omv"
   scope="[object Object]"
 >
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
-      class="css-55vg9w"
+      class="css-1j4k5g3"
     >
       Live Preview
     </div>
     <div
-      class="css-1x4bol9"
+      class="css-1qi44w1"
     >
       Source Code
+      <button
+        class="css-1a7vuu6"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          >
+            
+          </path>
+          <path
+            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+            fill="currentColor"
+          >
+            
+          </path>
+        </svg>
+      </button>
     </div>
   </div>
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
       class="css-1fc71w4"
@@ -46,10 +66,11 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-egp0ia"
+        class="prism-code language-prism css-1y25kh4"
         contenteditable="true"
-        language="jsx"
+        prismtheme="dark;"
         spellcheck="false"
+        syntaxstyles="[object Object]"
       >
         <span
           class="token comment"
@@ -524,25 +545,45 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 <div
-  class="react-live react-live-light css-o32omv"
+  class="react-live css-o32omv"
   scope="[object Object]"
 >
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
-      class="css-55vg9w"
+      class="css-1j4k5g3"
     >
       Live Preview
     </div>
     <div
-      class="css-55vg9w"
+      class="css-1j4k5g3"
     >
       Source Code
+      <button
+        class="css-1a7vuu6"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          >
+            
+          </path>
+          <path
+            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+            fill="currentColor"
+          >
+            
+          </path>
+        </svg>
+      </button>
     </div>
   </div>
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
       class="css-1fc71w4"
@@ -568,10 +609,11 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-egp0ia"
+        class="prism-code language-prism css-x6ttwb"
         contenteditable="true"
-        language="jsx"
+        prismtheme="light;"
         spellcheck="false"
+        syntaxstyles="[object Object]"
       >
         <span
           class="token comment"
@@ -1046,32 +1088,51 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render with a custom background color 1`] = `
 <div
-  class="react-live react-live-light css-o32omv"
+  class="react-live css-o32omv"
   scope="[object Object]"
 >
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
-      class="css-55vg9w"
+      class="css-1j4k5g3"
     >
       Live Preview
     </div>
     <div
-      class="css-55vg9w"
+      class="css-1j4k5g3"
     >
       Source Code
+      <button
+        class="css-1a7vuu6"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          >
+            
+          </path>
+          <path
+            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+            fill="currentColor"
+          >
+            
+          </path>
+        </svg>
+      </button>
     </div>
   </div>
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
       class="css-1fc71w4"
     >
       <div
         class="react-live-preview css-cv4xj2"
-        previewbackgroundcolor="#ff0"
       >
         <div>
           <h1
@@ -1091,10 +1152,11 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-egp0ia"
+        class="prism-code language-prism css-x6ttwb"
         contenteditable="true"
-        language="jsx"
+        prismtheme="light;"
         spellcheck="false"
+        syntaxstyles="[object Object]"
       >
         <span
           class="token comment"
@@ -1569,32 +1631,51 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
 
 exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
 <div
-  class="react-live react-live-light css-o32omv"
+  class="react-live css-o32omv"
   scope="[object Object]"
 >
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
-      class="css-55vg9w"
+      class="css-1j4k5g3"
     >
       Live Preview
     </div>
     <div
-      class="css-55vg9w"
+      class="css-1j4k5g3"
     >
       Source Code
+      <button
+        class="css-1a7vuu6"
+      >
+        <svg
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          >
+            
+          </path>
+          <path
+            d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+            fill="currentColor"
+          >
+            
+          </path>
+        </svg>
+      </button>
     </div>
   </div>
   <div
-    class="css-60wkrg"
+    class="css-wx5pb5"
   >
     <div
       class="css-1fc71w4"
     >
       <div
         class="react-live-preview css-cv4xj2"
-        previewbackgroundcolor="#ff0"
       >
         
       </div>
@@ -1608,10 +1689,11 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code css-egp0ia"
+        class="prism-code language-prism css-x6ttwb"
         contenteditable="true"
-        language="jsx"
+        prismtheme="light;"
         spellcheck="false"
+        syntaxstyles="[object Object]"
       >
         <span
           class="token keyword"

@@ -1,5 +1,8 @@
 /*eslint-disable object-shorthand*/
 
+import prismLight from './prism.light';
+import prismDark from './prism.dark';
+
 const defaultColors = {
   primary: 'black',
   secondary: 'black',
@@ -27,6 +30,12 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         fontSize: '2em',
         color: 'black',
         overflow: 'hidden',
+      },
+      'html, body': {
+        width: '100%',
+        height: '100%',
+        margin: 0,
+        padding: 0
       },
       '.hljs': {
         background: 'white',
@@ -66,6 +75,10 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       nextIcon: {
         fill: colors.quarternary,
       },
+    },
+    prism: {
+      light: prismLight,
+      dark: prismDark,
     },
     progress: {
       pacman: {
@@ -168,18 +181,25 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         textAlign: 'center',
       },
       codePane: {
-        wrapper: {
-          maxWidth: 800,
-          margin: 'auto',
-          fontSize: '0.8rem',
-          fontWeight: 'normal',
-          fontFamily: fonts.tertiary,
-        },
-        editor: {
-          textAlign: 'left',
-          padding: 20,
-          fontWeight: 'normal',
-        }
+        margin: 'auto',
+        fontSize: '0.8rem',
+        fontWeight: 'normal',
+        minWidth: '100%',
+        maxWidth: 800,
+      },
+      syntax: {
+        fontFamily: fonts.tertiary,
+        fontSize: 'inherit',
+        lineHeight: 1.5,
+        direction: 'ltr',
+        textAlign: 'left',
+        wordSpacing: 'normal',
+        wordBreak: 'normal',
+        tabSize: 2,
+        hyphens: 'none',
+        whiteSpace: 'pre-wrap',
+        padding: '0.5rem',
+        margin: 0,
       },
       code: {
         color: 'black',

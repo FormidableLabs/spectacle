@@ -18,19 +18,20 @@ exports[`<CodePane /> should render correctly. 1`] = `
   theme="dark"
 >
   <Styled(div)
-    className="react-live react-live-dark "
+    className=""
     styles={
       Array [
-        undefined,
+        Object {},
         Object {},
         undefined,
       ]
     }
   >
     <div
-      className="react-live react-live-dark  css-0"
+      className="css-0"
     >
       <Styled(Editor)
+        className="language-prism"
         code="
             const myButton = (
               <CustomButton
@@ -43,10 +44,14 @@ exports[`<CodePane /> should render correctly. 1`] = `
           "
         contentEditable={false}
         language="jsx"
-        styles={undefined}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        prismTheme="dark;"
+        syntaxStyles={Object {}}
       >
         <Editor
-          className="css-0"
+          className="language-prism css-1i53um3"
           code="
               const myButton = (
                 <CustomButton
@@ -59,10 +64,14 @@ exports[`<CodePane /> should render correctly. 1`] = `
             "
           contentEditable={false}
           language="jsx"
-          styles={undefined}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          prismTheme="dark;"
+          syntaxStyles={Object {}}
         >
           <pre
-            className="prism-code css-0"
+            className="prism-code language-prism css-1i53um3"
             contentEditable={false}
             dangerouslySetInnerHTML={
               Object {
@@ -78,13 +87,13 @@ exports[`<CodePane /> should render correctly. 1`] = `
                   ",
               }
             }
-            language="jsx"
             onClick={undefined}
             onKeyDown={undefined}
             onKeyUp={undefined}
+            prismTheme="dark;"
             spellCheck="false"
             style={undefined}
-            styles={undefined}
+            syntaxStyles={Object {}}
           />
         </Editor>
       </Styled(Editor)>
