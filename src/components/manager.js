@@ -10,7 +10,7 @@ import findIndex from 'lodash/findIndex';
 import { connect } from 'react-redux';
 import { setGlobalStyle, updateFragment } from '../actions';
 import Typeface from './typeface';
-import { getSlideByIndex, isMagicSlide } from '../utils/slides';
+import { getSlideByIndex } from '../utils/slides';
 import styled from 'react-emotion';
 import { string as toStringStyle } from 'to-style';
 import memoize from 'lodash/memoize';

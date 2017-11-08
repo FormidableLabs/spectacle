@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import MagicWrapper from './magic-wrapper';
 
 export default class Magic extends Component {
-  subscription = null;
-
   shouldComponentUpdate(nextProps) {
     return this.props.magicIndex !== nextProps.magicIndex;
   }
+
+  subscription = null;
 
   componentWillLeave(callback) {
     this.exitSubscription();
@@ -24,7 +24,7 @@ export default class Magic extends Component {
   };
 
   render() {
-    const { children, transition, transitionDuration, ...props } = this.props;
+    const { children, transition, transitionDuration, ...props } = this.props; // eslint-disable-line no-unused-vars
     return (
       <MagicWrapper
         magicIndex={this.props.magicIndex}
@@ -41,6 +41,8 @@ export default class Magic extends Component {
 Magic.propTypes = {
   children: PropTypes.node,
   magicIndex: PropTypes.number,
+  transition: PropTypes.array,
+  transitionDuration: PropTypes.number
 };
 
 Magic.defaultProps = {

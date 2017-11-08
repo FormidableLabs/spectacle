@@ -64,8 +64,9 @@ export default class MagicText extends React.Component {
   };
   static propTypes = {
     children: PropTypes.node,
-    magicIndex: PropTypes.number,
     exitSubscription: PropTypes.func,
+    magicIndex: PropTypes.number,
+    presenter: PropTypes.bool
   };
   constructor(props) {
     super(props);
