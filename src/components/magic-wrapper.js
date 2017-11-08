@@ -83,16 +83,18 @@ export default class MagicText extends React.Component {
   componentDidMount() {
     this.mounted = true;
     this.portal = document.getElementById('portal');
-    this.container.animate([{ opacity: 0 }, { opacity: 1 }], {
-      duration: 500,
-      easing: 'ease-in',
-    });
-    this.props.exitSubscription(() => {
-      this.container.animate([{ opacity: 1 }, { opacity: 0 }], {
+    if (!this.props.presenter) {
+      this.container.animate([{ opacity: 0 }, { opacity: 1 }], {
         duration: 500,
         easing: 'ease-in',
       });
-    });
+      this.props.exitSubscription(() => {
+        this.container.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 500,
+          easing: 'ease-in',
+        });
+      });
+    }
     if (!this.portal) {
       this.portal = this.makePortal();
     }
@@ -206,8 +208,8 @@ export default class MagicText extends React.Component {
     return (
       <div
         style={{
-          transition: '500ms opacity linear',
-          opacity: this.props.opacity,
+          height: '100%',
+          width: '100%',
         }}
         ref={c => {
           this.container = c;

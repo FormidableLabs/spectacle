@@ -24,12 +24,15 @@ export default class Magic extends Component {
   };
 
   render() {
+    const { children, transition, transitionDuration, ...props } = this.props;
     return (
       <MagicWrapper
         magicIndex={this.props.magicIndex}
         exitSubscription={this.exitSubscriber}
+        presenter={props.presenter}
       >
-        {this.props.children[this.props.magicIndex] || null}
+        {cloneElement(this.props.children[this.props.magicIndex], props) ||
+          null}
       </MagicWrapper>
     );
   }
