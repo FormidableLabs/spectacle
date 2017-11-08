@@ -107,6 +107,8 @@ exports[`<Presenter /> should render correctly 1`] = `
                     slideIndex={1}
                     transition={Array []}
                     transitionDuration={0}
+                    transitionIn={Array []}
+                    transitionOut={Array []}
                   >
                     <div>
                       Slide Content
@@ -134,6 +136,8 @@ exports[`<Presenter /> should render correctly 1`] = `
                     slideIndex={2}
                     transition={Array []}
                     transitionDuration={0}
+                    transitionIn={Array []}
+                    transitionOut={Array []}
                   >
                     <div>
                       Slide Content
@@ -288,6 +292,8 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     slideIndex={1}
                     transition={Array []}
                     transitionDuration={0}
+                    transitionIn={Array []}
+                    transitionOut={Array []}
                   >
                     <div>
                       Slide Content
@@ -315,6 +321,8 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     slideIndex={2}
                     transition={Array []}
                     transitionDuration={0}
+                    transitionIn={Array []}
+                    transitionOut={Array []}
                   >
                     <div>
                       Slide Content
@@ -454,6 +462,8 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     slideIndex={1}
                     transition={Array []}
                     transitionDuration={0}
+                    transitionIn={Array []}
+                    transitionOut={Array []}
                   >
                     <div>
                       Slide Content
@@ -481,6 +491,8 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     slideIndex={2}
                     transition={Array []}
                     transitionDuration={0}
+                    transitionIn={Array []}
+                    transitionOut={Array []}
                   >
                     <div>
                       Slide Content

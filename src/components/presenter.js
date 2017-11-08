@@ -63,6 +63,8 @@ export default class Presenter extends Component {
       slideIndex,
       lastSlideIndex,
       transition: [],
+      transitionIn: [],
+      transitionOut: [],
       transitionDuration: 0,
       presenterStyle,
     });
@@ -83,6 +85,8 @@ export default class Presenter extends Component {
           slideIndex: slideIndex + 1,
           lastSlideIndex,
           transition: [],
+          transitionIn: [],
+          transitionOut: [],
           transitionDuration: 0,
           presenterStyle,
           appearOff: true,
