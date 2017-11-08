@@ -57,14 +57,6 @@ export default class Presentation extends React.Component {
           </Link>
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
-        <Magic key="ayyy">
-          {
-            [
-              <Slide key="1"><Heading>Ay</Heading></Slide>,
-              <Slide key="2"><Heading>Oh</Heading></Slide>
-            ]
-          }
-        </Magic>
         <Slide
           id="wait-what"
           goTo={4}
