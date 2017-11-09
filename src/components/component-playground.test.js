@@ -2,13 +2,15 @@ import React from 'react';
 import { render, shallow } from 'enzyme';
 import ComponentPlayground, { PlaygroundProvider } from './component-playground';
 
+const origLocalStorage = window.localStorage;
+
 describe('<ComponentPlayground />', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     window.localStorage = { setItem: () => {} };
   });
 
-  afterEach(() => {
-    window.localStorage = undefined;
+  afterAll(() => {
+    window.localStorage = origLocalStorage;
   });
 
   const context = { styles: {
