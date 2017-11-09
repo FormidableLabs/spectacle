@@ -44,6 +44,9 @@
     "react/prop-types": "warn",
     "react/sort-comp": "warn",
     "react/sort-prop-types": "warn",
-    "react/jsx-handler-names": "off"
+    "react/jsx-handler-names": "off",
+    "react/no-find-dom-node": "off",
+    "no-invalid-this": "off",
+    "complexity": "off"
   }
 }

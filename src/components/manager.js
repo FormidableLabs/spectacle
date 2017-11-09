@@ -18,6 +18,7 @@ import memoize from 'lodash/memoize';
 import Presenter from './presenter';
 import Export from './export';
 import Overview from './overview';
+import Magic from './magic';
 
 import AutoplayControls from './autoplay-controls';
 import Fullscreen from './fullscreen';
@@ -25,9 +26,11 @@ import Progress from './progress';
 import Controls from './controls';
 
 let convertStyle = styles => {
-  return Object.keys(styles).map(key => {
-    return `${key} { ${toStringStyle(styles[key])}} `;
-  }).join('');
+  return Object.keys(styles)
+    .map(key => {
+      return `${key} { ${toStringStyle(styles[key])}} `;
+    })
+    .join('');
 };
 
 convertStyle = memoize(convertStyle);
@@ -36,19 +39,20 @@ const StyledDeck = styled.div(props => ({
   backgroundColor:
     props.route.params.indexOf('presenter') !== -1 ||
     props.route.params.indexOf('overview') !== -1
-    ? 'black' : '',
+      ? 'black'
+      : '',
   position: 'absolute',
   top: 0,
   left: 0,
   width: '100%',
-  height: '100%'
+  height: '100%',
 }));
 
 const StyledTransition = styled(ReactTransitionGroup)({
   height: '100%',
   width: '100%',
   perspective: 1000,
-  transformStyle: 'flat'
+  transformStyle: 'flat',
 });
 
 export class Manager extends Component {
@@ -112,8 +116,9 @@ export class Manager extends Component {
       slideReference: [],
       fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < props.contentWidth,
-      autoplaying: props.autoplay
+      autoplaying: props.autoplay,
     };
+    this.slideCache = null;
   }
 
   getChildContext() {
@@ -126,9 +131,10 @@ export class Manager extends Component {
 
   componentWillMount() {
     this.setState({
-      slideReference: this._buildSlideReference(),
+      slideReference: this._buildSlideReference(this.props),
     });
   }
+
   componentDidMount() {
     const slideIndex = this._getSlideIndex();
     this.setState({
@@ -139,6 +145,13 @@ export class Manager extends Component {
       this._startAutoplay();
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      slideReference: this._buildSlideReference(nextProps),
+    });
+  }
+
   componentDidUpdate() {
     if (
       this.props.globalStyles &&
@@ -174,7 +187,8 @@ export class Manager extends Component {
     this.setState({ autoplaying: false });
     clearInterval(this.autoplayInterval);
   }
-  _handleEvent(e) { // eslint-disable-line complexity
+  _handleEvent(e) {
+    // eslint-disable-line complexity
     const event = window.event ? window.event : e;
 
     if (
@@ -246,15 +260,13 @@ export class Manager extends Component {
     });
   }
   _toggleOverviewMode() {
-    const suffix = this.props.route.params.indexOf('overview') !== -1
-      ? ''
-      : '?overview';
+    const suffix =
+      this.props.route.params.indexOf('overview') !== -1 ? '' : '?overview';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _togglePresenterMode() {
-    const suffix = this.props.route.params.indexOf('presenter') !== -1
-      ? ''
-      : '?presenter';
+    const suffix =
+      this.props.route.params.indexOf('presenter') !== -1 ? '' : '?presenter';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _toggleTimerMode() {
@@ -528,13 +540,24 @@ export class Manager extends Component {
 
     return 0;
   }
-  _buildSlideReference() {
+  _buildSlideReference(props) {
     const slideReference = [];
-    Children.toArray(this.props.children).forEach((child, rootIndex) => {
-      if (!child.props.hasSlideChildren) {
+    Children.toArray(props.children).forEach((child, rootIndex) => {
+      if (child.type === Magic) {
+        Children.toArray(
+          child.props.children
+        ).forEach((setSlide, magicIndex) => {
+          const reference = {
+            id: setSlide.props.id || slideReference.length,
+            magicIndex,
+            rootIndex,
+          };
+          slideReference.push(reference);
+        });
+      } else if (!child.props.hasSlideChildren) {
         const reference = {
           id: child.props.id || slideReference.length,
-          rootIndex
+          rootIndex,
         };
         if (child.props.goTo) {
           reference.goTo = child.props.goTo;
@@ -576,13 +599,12 @@ export class Manager extends Component {
   _renderSlide() {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
+
     return cloneElement(slide, {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
-      key: slideIndex,
       export: this.props.route.params.indexOf('export') !== -1,
       print: this.props.route.params.indexOf('print') !== -1,
-      children: Children.toArray(slide.props.children),
       hash: this.props.route.slide,
       slideIndex,
       lastSlideIndex: this.state.lastSlideIndex,
@@ -592,7 +614,7 @@ export class Manager extends Component {
       transitionDuration: (slide.props.transition || {}).transitionDuration
         ? slide.props.transitionDuration
         : this.props.transitionDuration,
-      slideReference: this.state.slideReference
+      slideReference: this.state.slideReference,
     });
   }
   render() {
@@ -600,22 +622,23 @@ export class Manager extends Component {
       return false;
     }
 
-    const globals = this.props.route.params.indexOf('export') !== -1
-      ? {
-          body: Object.assign(this.context.styles.global.body, {
-            minWidth: this.props.contentWidth + 150,
-            minHeight: this.props.contentHeight + 150,
-            overflow: 'auto',
-          }),
-          '.spectacle-presenter-next .fragment': {
-            display: 'none !important',
-          },
-        }
-      : {
-          '.spectacle-presenter-next .fragment': {
-            display: 'none !important',
-          },
-        };
+    const globals =
+      this.props.route.params.indexOf('export') !== -1
+        ? {
+            body: Object.assign(this.context.styles.global.body, {
+              minWidth: this.props.contentWidth + 150,
+              minHeight: this.props.contentHeight + 150,
+              overflow: 'auto',
+            }),
+            '.spectacle-presenter-next .fragment': {
+              display: 'none !important',
+            },
+          }
+        : {
+            '.spectacle-presenter-next .fragment': {
+              display: 'none !important',
+            },
+          };
 
     let componentToRender;
     const children = Children.toArray(this.props.children);
@@ -682,38 +705,50 @@ export class Manager extends Component {
         {...this._getTouchEvents()}
       >
         {this.props.controls &&
-          showControls &&
-          <Controls
-            currentSlideIndex={this._getSlideIndex()}
-            totalSlides={this.state.slideReference.length}
-            onPrev={this._prevSlide.bind(this)}
-            onNext={this._nextSlide.bind(this)}
-          />}
+          showControls && (
+            <Controls
+              currentSlideIndex={this._getSlideIndex()}
+              totalSlides={this.state.slideReference.length}
+              onPrev={this._prevSlide.bind(this)}
+              onNext={this._nextSlide.bind(this)}
+            />
+          )}
 
         {googleFontsElements}
         {componentToRender}
 
         {this.props.route.params.indexOf('export') === -1 &&
-          this.props.route.params.indexOf('overview') === -1
-          ? <Progress
-              items={this.state.slideReference}
-              currentSlideIndex={this._getSlideIndex()}
-              type={this.props.progress}
-            />
-          : ''}
+        this.props.route.params.indexOf('overview') === -1 ? (
+          <Progress
+            items={this.state.slideReference}
+            currentSlideIndex={this._getSlideIndex()}
+            type={this.props.progress}
+          />
+        ) : (
+          ''
+        )}
 
         {this.props.route.params.indexOf('export') === -1 ? <Fullscreen /> : ''}
 
-        {this.props.autoplay
-          ? <AutoplayControls
-              autoplaying={this.state.autoplaying}
-              onPlay={this._startAutoplay}
-              onPause={this._stopAutoplay}
-            />
-          : ''}
+        {this.props.autoplay ? (
+          <AutoplayControls
+            autoplaying={this.state.autoplaying}
+            onPlay={this._startAutoplay}
+            onPause={this._stopAutoplay}
+          />
+        ) : (
+          ''
+        )}
 
-        {this.props.globalStyles &&
-          <style dangerouslySetInnerHTML={{ __html: convertStyle(Object.assign({}, this.context.styles.global, globals)) }}/>}
+        {this.props.globalStyles && (
+          <style
+            dangerouslySetInnerHTML={{
+              __html: convertStyle(
+                Object.assign({}, this.context.styles.global, globals)
+              ),
+            }}
+          />
+        )}
       </StyledDeck>
     );
   }

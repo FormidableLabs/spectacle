@@ -112,7 +112,7 @@ exports[`<Manager /> should render correctly. 1`] = `
                   }
                 }
                 hash={0}
-                key=".$0"
+                key=".$.0"
                 lastSlideIndex={0}
                 print={false}
                 slideIndex={0}
@@ -740,7 +740,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                   }
                 }
                 hash={1}
-                key=".$1"
+                key=".$.0"
                 lastSlideIndex={1}
                 print={false}
                 slideIndex={1}

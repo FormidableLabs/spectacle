@@ -6,7 +6,11 @@ import isFunction from 'lodash/isFunction';
 import { getStyles } from '../utils/base';
 import { addFragment } from '../actions';
 import stepCounter from '../utils/step-counter';
-import { SlideContainer, SlideContent, SlideContentWrapper } from './slide-components';
+import {
+  SlideContainer,
+  SlideContent,
+  SlideContentWrapper,
+} from './slide-components';
 import { VictoryAnimation } from 'victory-core';
 import findIndex from 'lodash/findIndex';
 
@@ -22,9 +26,9 @@ class Slide extends React.PureComponent {
   getChildContext() {
     return {
       stepCounter: {
-        setFragments: this.stepCounter.setFragments
+        setFragments: this.stepCounter.setFragments,
       },
-      slideHash: this.props.hash
+      slideHash: this.props.hash,
     };
   }
 
@@ -62,7 +66,9 @@ class Slide extends React.PureComponent {
   componentDidUpdate() {
     const { steps, slideIndex } = this.stepCounter.getSteps();
     if (this.props.getAppearStep) {
-      if (slideIndex === this.props.slideIndex) {this.props.getAppearStep(steps);}
+      if (slideIndex === this.props.slideIndex) {
+        this.props.getAppearStep(steps);
+      }
     }
   }
 
@@ -86,14 +92,14 @@ class Slide extends React.PureComponent {
     this.routerCallback(callback);
   }
 
-  routerCallback = (callback) => {
+  routerCallback = callback => {
     const { transition, transitionDuration } = this.props;
     if (transition.length > 0) {
       setTimeout(() => callback(), transitionDuration);
     } else {
       callback();
     }
-  }
+  };
 
   stepCounter = stepCounter();
 
@@ -101,9 +107,12 @@ class Slide extends React.PureComponent {
     const mobile = window.matchMedia('(max-width: 628px)').matches;
     const content = this.contentRef;
     if (content) {
-      const zoom = this.props.viewerScaleMode ? 1 : content.offsetWidth / this.context.contentWidth;
+      const zoom = this.props.viewerScaleMode
+        ? 1
+        : content.offsetWidth / this.context.contentWidth;
 
-      const contentScaleY = content.parentNode.offsetHeight / this.context.contentHeight;
+      const contentScaleY =
+        content.parentNode.offsetHeight / this.context.contentHeight;
       const contentScaleX = this.props.viewerScaleMode
         ? content.parentNode.offsetWidth / this.context.contentWidth
         : content.parentNode.offsetWidth / this.context.contentHeight;
@@ -113,24 +122,25 @@ class Slide extends React.PureComponent {
       if (mobile && this.props.viewerScaleMode !== true) {
         contentScale = 1;
       }
-
       this.setState({
         zoom: zoom > 0.6 ? zoom : 0.6,
         contentScale,
       });
     }
-  }
+  };
 
   transitionDirection = () => {
     const { slideIndex, lastSlideIndex } = this.props;
     const routeSlideIndex = this.getRouteSlideIndex();
-    return this.state.reverse ? slideIndex > routeSlideIndex : slideIndex > lastSlideIndex;
-  }
+    return this.state.reverse
+      ? slideIndex > routeSlideIndex
+      : slideIndex > lastSlideIndex;
+  };
 
   getTransitionKeys = () => {
     const {
       props: { transition = [], transitionIn = [], transitionOut = [] },
-      state: { reverse }
+      state: { reverse },
     } = this;
     if (reverse && transitionOut.length > 0) {
       return transitionOut;
@@ -138,7 +148,7 @@ class Slide extends React.PureComponent {
       return transitionIn;
     }
     return transition;
-  }
+  };
 
   getTransitionStyles = () => {
     const { transitioning, z } = this.state;
@@ -170,24 +180,24 @@ class Slide extends React.PureComponent {
       if (isFunction(current)) {
         return {
           ...memo,
-          ...(current(transitioning, this.transitionDirection()))
+          ...current(transitioning, this.transitionDirection()),
         };
       }
       return memo;
     }, {});
 
     return { ...styles, transform: transformValue, ...functionStyles };
-  }
+  };
 
   getRouteSlideIndex = () => {
     const { slideReference } = this.props;
     const { route } = this.context.store.getState();
     const { slide } = route;
     const slideIndex = findIndex(slideReference, reference => {
-       return slide === String(reference.id);
+      return slide === String(reference.id);
     });
     return Math.max(0, slideIndex);
-  }
+  };
 
   render() {
     const { presenterStyle, children, transitionDuration } = this.props;
@@ -197,7 +207,8 @@ class Slide extends React.PureComponent {
     }
 
     const contentClass = isUndefined(this.props.className)
-      ? '' : this.props.className;
+      ? ''
+      : this.props.className;
 
     return (
       <VictoryAnimation
@@ -208,7 +219,9 @@ class Slide extends React.PureComponent {
         {animatedStyles => (
           <SlideContainer
             className="spectacle-slide"
-            innerRef={s => { this.slideRef = s; }}
+            innerRef={s => {
+              this.slideRef = s;
+            }}
             exportMode={this.props.export}
             printMode={this.props.print}
             background={this.context.styles.global.body.background}
@@ -223,7 +236,9 @@ class Slide extends React.PureComponent {
               overviewMode={this.context.overview}
             >
               <SlideContent
-                innerRef={c => { this.contentRef = c; }}
+                innerRef={c => {
+                  this.contentRef = c;
+                }}
                 className={`${contentClass} spectacle-content`}
                 overviewMode={this.context.overview}
                 width={this.context.contentWidth}
@@ -281,14 +296,14 @@ Slide.contextTypes = {
   export: PropTypes.bool,
   print: PropTypes.object,
   overview: PropTypes.bool,
-  store: PropTypes.object
+  store: PropTypes.object,
 };
 
 Slide.childContextTypes = {
   slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   stepCounter: PropTypes.shape({
-    setFragments: PropTypes.func
-  })
+    setFragments: PropTypes.func,
+  }),
 };
 
 export default Slide;

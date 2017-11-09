@@ -66,6 +66,7 @@ export default class Presenter extends Component {
       transitionIn: [],
       transitionOut: [],
       transitionDuration: 0,
+      presenter: true,
       presenterStyle,
     });
   }
@@ -75,23 +76,26 @@ export default class Presenter extends Component {
       position: 'relative',
     };
     const child = this._getSlideByIndex(slideIndex + 1);
-    return child
-      ? cloneElement(child, {
-          dispatch: this.props.dispatch,
-          export: this.props.route.params.indexOf('export') !== -1,
-          print: this.props.route.params.indexOf('print') !== -1,
-          key: slideIndex + 1,
-          hash: child.props.id || slideIndex + 1,
-          slideIndex: slideIndex + 1,
-          lastSlideIndex,
-          transition: [],
-          transitionIn: [],
-          transitionOut: [],
-          transitionDuration: 0,
-          presenterStyle,
-          appearOff: true,
-        })
-      : <EndHeader>END</EndHeader>;
+    return child ? (
+      cloneElement(child, {
+        dispatch: this.props.dispatch,
+        export: this.props.route.params.indexOf('export') !== -1,
+        print: this.props.route.params.indexOf('print') !== -1,
+        key: slideIndex + 1,
+        hash: child.props.id || slideIndex + 1,
+        slideIndex: slideIndex + 1,
+        lastSlideIndex,
+        transition: [],
+        transitionIn: [],
+        transitionOut: [],
+        transitionDuration: 0,
+        presenterStyle,
+        presenter: true,
+        appearOff: true,
+      })
+    ) : (
+      <EndHeader>END</EndHeader>
+    );
   }
   _renderNotes() {
     let notes;
@@ -118,12 +122,7 @@ export default class Presenter extends Component {
       <PresenterContent>
         <HeaderContainer>
           <SlideInfo>
-            Slide
-            {' '}
-            {this.props.slideIndex + 1}
-            {' '}
-            of
-            {' '}
+            Slide {this.props.slideIndex + 1} of{' '}
             {this.props.slideReference.length}
           </SlideInfo>
           <Time timer={this.props.timer} />
@@ -133,13 +132,9 @@ export default class Presenter extends Component {
             <PreviewCurrentSlide className="spectacle-presenter-main">
               {this._renderMainSlide()}
             </PreviewCurrentSlide>
-            <PreviewNextSlide>
-              {this._renderNextSlide()}
-            </PreviewNextSlide>
+            <PreviewNextSlide>{this._renderNextSlide()}</PreviewNextSlide>
           </PreviewPane>
-          <Notes>
-            {this._renderNotes()}
-          </Notes>
+          <Notes>{this._renderNotes()}</Notes>
         </ContentContainer>
       </PresenterContent>
     );

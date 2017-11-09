@@ -14,6 +14,7 @@ import Layout from './components/layout';
 import Link from './components/link';
 import ListItem from './components/list-item';
 import List from './components/list';
+import Magic from './components/magic';
 import Markdown from './components/markdown';
 import MarkdownSlides from './components/markdown-slides';
 import Notes from './components/notes';
@@ -54,6 +55,7 @@ export {
   Link,
   ListItem,
   List,
+  Magic,
   Markdown,
   MarkdownSlides,
   Notes,
