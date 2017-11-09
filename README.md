@@ -222,7 +222,21 @@ Fullscreen can be toggled via browser options, or by **hovering over the bottom 
 <a name="pdf-export"></a>
 ## PDF Export
 
-Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is absurdly easy.
+Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is absurdly easy. You can either do this via the browser, or from the command line:
+
+#### CLI
+
+- Run `npm install spectacle-renderer -g`
+- Run `npm start` on your project and wait for it to build and be available
+- Run `spectacle-renderer`
+- A totally cool PDF is created in your project directory
+
+For more options and configuration of this tool, check out:
+
+[https://github.com/FormidableLabs/spectacle-renderer](https://github.com/FormidableLabs/spectacle-renderer)
+
+
+#### Browser
 
 - Run `npm start`
 - Open [http://localhost:3000/](http://localhost:3000/)
