@@ -22,6 +22,8 @@ export default class Export extends Component {
         export: this.props.route.params.indexOf('export') !== -1,
         print: this.props.route.params.indexOf('print') !== -1,
         transition: [],
+        transitionIn: [],
+        transitionOut: [],
         transitionDuration: 0
       });
     });

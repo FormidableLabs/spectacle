@@ -389,6 +389,8 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
                 slideIndex={0}
                 transition={Array []}
                 transitionDuration={0}
+                transitionIn={Array []}
+                transitionOut={Array []}
               >
                 <div>
                   Slide Content
@@ -401,6 +403,8 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
                 slideIndex={1}
                 transition={Array []}
                 transitionDuration={0}
+                transitionIn={Array []}
+                transitionOut={Array []}
               >
                 <div>
                   Slide Content
