@@ -597,7 +597,7 @@ Example code blocks:
 
 ```jsx
 const Button = ({ title }) => (<button type="button">{ title }</button>);
-render(<Button title="My Button" />, mountNode);
+render(<Button title="My Button" />);
 ```
 
 ```jsx
