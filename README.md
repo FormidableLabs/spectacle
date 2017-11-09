@@ -22,6 +22,7 @@ ReactJS based Presentation Library
   - [Main file](#main-file)
   - [Themes](#themes)
     - [createTheme(colors, fonts)](#createthemecolors-fonts)
+- [FAQ](#faq)
 - [Tag API](#tag-api)
   - [Main Tags](#main-tags)
     - [Deck](#deck)
@@ -34,6 +35,8 @@ ReactJS based Presentation Library
     - [Fill](#fill)
   - [Markdown Tag](#markdown-tag)
     - [Markdown](#markdown)
+  - [Magic Tag](#magic-tag)
+    - [Magic](#magic)
   - [Element Tags](#element-tags)
     - [Appear](#appear)
     - [BlockQuote, Quote and Cite (Base)](#blockquote-quote-and-cite-base)
@@ -284,7 +287,7 @@ import createTheme from "spectacle/lib/themes/default";
 
 Or create your own based upon the source.
 
-`index.js` is what you would edit in order to create a custom theme of your own, using ReactJS style inline style objects.
+`index.js` is what you would edit in order to create a custom theme of your own, using object based styles.
 
 You will want to edit `index.html` to include any web fonts or additional CSS that your theme requires.
 
@@ -304,6 +307,43 @@ const theme = createTheme({
 ```
 
 The returned theme object can then be passed to the `Deck` tag via the `theme` prop, and will override the default styles.
+
+<a name="faq"></a>
+## FAQ
+
+_How can I easily style the base components for my presentation?_
+
+Historically, custom styling in Spectacle has meant screwing with a theme file, or using gross `!important` overrides. We fixed that. Spectacle is now driven by [emotion](github.com/emotion-js/emotion), so you can bring your own styling library, whether its emotion itself, or something like styled-components or glamorous. For example, if you want to create a custom Heading style:
+
+```javascript
+import styled from 'styled-components';
+import { Heading } from 'spectacle';
+
+const CustomHeading = styled(Heading)`
+  font-size: 1.2em;
+  color: papayawhip;
+`;
+```
+
+_How can I separate my slides into other files?_
+
+Until this release, you would have to do some array shenanigans, but now you can just wrap those slides with an element that has a special prop:
+
+```javascript
+// mySlides.js
+export default class mySlides extends Component {
+  render() {
+    return (
+      <div hasSlideChildren>
+        <Slide>1</Slide>
+        <Slide>2</Slide>
+        <Slide>3</Slide>
+      </div>
+    )
+  }
+}
+
+```
 
 <a name="tag-api"></a>
 ## Tag API
@@ -349,6 +389,11 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |transitionIn|PropTypes.array|Specifies the slide transition when the slide comes into view. Accepts the same values as transition.|
 |transitionOut|PropTypes.array|Specifies the slide transition when the slide exits. Accepts the same values as transition.|
 |transitionDuration| PropTypes.number| Accepts integer value in milliseconds for slide transition duration.
+
+<a name="wrapping-slides"></a>
+##### Wrapping Slides
+
+If you author your slides in another file or want any kind of grouping that requires one additional level of nesting, you can add a `hasSlideChildren` prop to their parent element. This lets Spectacle identify that it is a wrapper, and will disregard the heirarchy instead opting to read the child slides as if the wrapper was not present.
 
 <a name="transition-function"></a>
 ##### Transition Function
@@ -453,6 +498,29 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 |---|---|---|
 |source|PropTypes.string| Markdown source |
 
+<a name="magic-tag"></a>
+### Magic Tag
+
+<a name="Magic"></a>
+#### Magic
+
+> NOTE: The Magic tag uses the Web Animations API. If you use the Magic tag and want it to work places other than Chrome, you will need to include the polyfill [https://github.com/web-animations/web-animations-js](https://github.com/web-animations/web-animations-js)
+
+The Magic Tag is a new experimental feature that attempts to recreate Magic Move behavior that slide authors might be accustomed to coming from Keynote. It wraps slides, and transitions between positional values for child elements. This means that if you have two similar strings, we will transition common characters to their new positions. This does not transition on non positional values such as slide background color or font size.
+
+Using Magic is pretty simple, you just wrap your slides with it, and it transitions between them:
+
+```javascript
+<Magic>
+  <Slide><Heading>First Heading</Heading></Slide>
+  <Slide><Heading>Second Heading</Heading></Slide>
+</Magic>
+```
+
+Transitioning between similar states will vary based upon the input content. It will look better when there are more common elements. An upcoming patch will allow for custom keys, which will provide greater control over which elements are identified as common for reuse.
+
+Until then, feedback is very welcome, as this is a non-trivial feature and we anticipate iterating on the behind the scenes mechanics of how it works, so that we can accommodate most use cases.
+
 <a name="element-tags"></a>
 ### Element Tags
 
@@ -489,6 +557,8 @@ This tag displays a styled, highlighted code preview. I prefer putting my code s
 |---|---|---|
 |lang|PropTypes.string| Prism compatible language name. i.e: 'javascript' |
 |source| PropTypes.string| String of code to be shown |
+
+If you want to change the theme used here, you can include a prism theme in index.html via a script tag. CodePane and Playground both use the prism library under the hood, which has several themes that are available to include.
 
 <a name="code-base"></a>
 #### Code (Base)
@@ -622,7 +692,7 @@ Unordered lists:
 <a name="s-base"></a>
 #### S (Base)
 
-The `S` tag is used to add inline styling to a piece of text, such as underline or strikethrough.
+The `S` tag is used to add styling to a piece of text, such as underline or strikethrough.
 
 |Name|PropType|Description|
 |---|---|---|
