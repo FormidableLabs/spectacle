@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import { detailedDiff } from 'deep-object-diff';
 import { buildStyleMap, updateChildren } from '../utils/magic';
+import get from 'lodash/get';
 
 const Deck = styled.div(() => ({
   position: 'absolute',
@@ -106,12 +107,16 @@ export default class MagicText extends React.Component {
       this.portal,
       () => {
         this.timeout = setTimeout(() => {
-          updateChildren(this.container.childNodes[0]);
-          updateChildren(this.portal.childNodes[0].childNodes[0]);
-          buildStyleMap(
-            this.portalMap,
-            this.portal.childNodes[0].childNodes[0]
-          );
+          const containerRoot = get(this.container, 'childNodes[0]');
+          const portalRoot = get(this.portal, 'childNodes[0].childNodes[0]');
+          if (containerRoot && portalRoot) {
+            updateChildren(containerRoot);
+            updateChildren(portalRoot);
+            buildStyleMap(
+              this.portalMap,
+              portalRoot
+            );
+          }
         }, 300);
       }
     );
@@ -127,20 +132,23 @@ export default class MagicText extends React.Component {
       this.portal,
       () => {
         const styles = {};
-        updateChildren(this.portal.childNodes[0].childNodes[0]);
-        buildStyleMap(styles, this.portal.childNodes[0].childNodes[0]);
-        this.diffs = detailedDiff(this.portalMap, styles);
-        this.lastPortalMap = this.portalMap;
-        this.portalMap = styles;
-        if (this.mounted) {
-          this.setState(
-            {
-              renderedChildren: nextProps.children,
-            },
-            () => {
-              this.forceUpdate();
-            }
-          );
+        const portalRoot = get(this.portal, 'childNodes[0].childNodes[0]');
+        if (portalRoot) {
+          updateChildren(portalRoot);
+          buildStyleMap(styles, portalRoot);
+          this.diffs = detailedDiff(this.portalMap, styles);
+          this.lastPortalMap = this.portalMap;
+          this.portalMap = styles;
+          if (this.mounted) {
+            this.setState(
+              {
+                renderedChildren: nextProps.children,
+              },
+              () => {
+                this.forceUpdate();
+              }
+            );
+          }
         }
       }
     );
@@ -149,7 +157,10 @@ export default class MagicText extends React.Component {
     return false;
   }
   componentDidUpdate() {
-    updateChildren(this.container.childNodes[0]);
+    const containerRoot = get(this.container, 'childNodes[0]');
+    if (containerRoot) {
+      updateChildren(containerRoot);
+    }
     if (this.diffs.added) {
       Object.keys(this.diffs.added).forEach(m => {
         const el = document.querySelector(`[data-key='${m}']`);
