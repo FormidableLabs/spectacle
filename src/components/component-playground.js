@@ -116,12 +116,36 @@ const PlaygroundError = styled(LiveError)`
   padding: 0.5rem;
 `;
 
+const STORAGE_KEY = 'spectacle-playground';
+
 class ComponentPlayground extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.onRef = this.onRef.bind(this);
+    this.onEditorChange = this.onEditorChange.bind(this);
     this.requestFullscreen = this.requestFullscreen.bind(this);
+    this.syncCode = this.syncCode.bind(this);
+
+    this.state = {
+      code: (this.props.code || defaultCode).trim()
+    };
+  }
+
+  componentDidMount() {
+    localStorage.setItem(STORAGE_KEY, this.state.code);
+    window.addEventListener('storage', this.syncCode);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.code !== this.props.code) {
+      const code = (this.props.code || defaultCode).trim();
+      this.setState({ code });
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('storage', this.syncCode);
   }
 
   onKeyUp(evt) {
@@ -141,13 +165,23 @@ class ComponentPlayground extends Component {
     this.node = node;
   }
 
+  onEditorChange(code) {
+    this.setState({ code });
+    localStorage.setItem(STORAGE_KEY, code);
+  }
+
   requestFullscreen() {
     requestFullscreen(this.node);
   }
 
+  syncCode({ key, newValue }) {
+    if (key === STORAGE_KEY) {
+      this.setState({ code: newValue });
+    }
+  }
+
   render() {
     const {
-      code,
       previewBackgroundColor,
       scope = {},
       theme = 'dark'
@@ -158,7 +192,7 @@ class ComponentPlayground extends Component {
     return (
       <PlaygroundProvider
         mountStylesheet={false}
-        code={(code || defaultCode).trim()}
+        code={this.state.code}
         scope={{ Component, ...scope }}
         noInline
       >
@@ -188,6 +222,7 @@ class ComponentPlayground extends Component {
               syntaxStyles={this.context.styles.components.syntax}
               baseTheme={this.context.styles.prism.base}
               prismTheme={this.context.styles.prism[useDarkTheme ? 'dark' : 'light']}
+              onChange={this.onEditorChange}
             />
           </PlaygroundColumn>
         </PlaygroundRow>

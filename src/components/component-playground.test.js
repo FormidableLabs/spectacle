@@ -3,6 +3,14 @@ import { render, shallow } from 'enzyme';
 import ComponentPlayground, { PlaygroundProvider } from './component-playground';
 
 describe('<ComponentPlayground />', () => {
+  beforeEach(() => {
+    window.localStorage = { setItem: () => {} };
+  });
+
+  afterEach(() => {
+    window.localStorage = undefined;
+  });
+
   const context = { styles: {
     components: { syntax: {} },
     prism: { light: 'light;', dark: 'dark;' }
