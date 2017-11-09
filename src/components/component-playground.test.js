@@ -2,7 +2,17 @@ import React from 'react';
 import { render, shallow } from 'enzyme';
 import ComponentPlayground, { PlaygroundProvider } from './component-playground';
 
+const origLocalStorage = window.localStorage;
+
 describe('<ComponentPlayground />', () => {
+  beforeAll(() => {
+    window.localStorage = { setItem: () => {} };
+  });
+
+  afterAll(() => {
+    window.localStorage = origLocalStorage;
+  });
+
   const context = { styles: {
     components: { syntax: {} },
     prism: { light: 'light;', dark: 'dark;' }

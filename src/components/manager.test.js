@@ -57,13 +57,17 @@ const _mockChildContext = function() {
   return { styles: () => {} };
 };
 
+const origLocalStorage = window.localStorage;
+
 describe('<Manager />', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     window.localStorage = { setItem: () => {} };
   });
-  afterEach(() => {
-    window.localStorage = undefined;
+
+  afterAll(() => {
+    window.localStorage = origLocalStorage;
   });
+
   test('should render correctly.', () => {
     const wrapper = mount(
       <Manager transition={['zoom', 'slide']} transitionDuration={500}>
