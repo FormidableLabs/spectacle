@@ -47,6 +47,9 @@
     "react/jsx-handler-names": "off",
     "react/no-find-dom-node": "off",
     "no-invalid-this": "off",
-    "complexity": "off"
+    "complexity": "off",
+    "no-unused-vars": ["error", {
+      "argsIgnorePattern": "^_+$"
+    }]
   }
 }

@@ -30,7 +30,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
     <div
       className="css-0"
     >
-      <Styled(Editor)
+      <Styled(Component)
         className="language-prism"
         code="
             const myButton = (
@@ -50,7 +50,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
         prismTheme="dark;"
         syntaxStyles={Object {}}
       >
-        <Editor
+        <Component
           className="language-prism css-1i53um3"
           code="
               const myButton = (
@@ -70,33 +70,50 @@ exports[`<CodePane /> should render correctly. 1`] = `
           prismTheme="dark;"
           syntaxStyles={Object {}}
         >
-          <pre
-            className="prism-code language-prism css-1i53um3"
+          <Editor
+            className="language-prism css-1i53um3"
+            code="
+                const myButton = (
+                  <CustomButton
+                    style={{ background: '#f00' }}
+                    onClick={this.action}
+                  >
+                   Click Me
+                  </CustomButton>
+                );
+              "
             contentEditable={false}
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "
-                    <span class=\\"token keyword\\">const</span> myButton <span class=\\"token operator\\">=</span> <span class=\\"token punctuation\\">(</span>
-                      <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>CustomButton</span>
-                        <span class=\\"token attr-name\\">style</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token punctuation\\">{</span> background<span class=\\"token punctuation\\">:</span> <span class=\\"token string\\">'#f00'</span> <span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">}</span></span>
-                        <span class=\\"token attr-name\\">onClick</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token keyword\\">this</span><span class=\\"token punctuation\\">.</span>action<span class=\\"token punctuation\\">}</span></span>
-                      <span class=\\"token punctuation\\">></span></span>
-                       Click Me
-                      <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>CustomButton</span><span class=\\"token punctuation\\">></span></span>
-                    <span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
-                  ",
+            language="jsx"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+          >
+            <pre
+              className="prism-code language-prism css-1i53um3"
+              contentEditable={false}
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "
+                      <span class=\\"token keyword\\">const</span> myButton <span class=\\"token operator\\">=</span> <span class=\\"token punctuation\\">(</span>
+                        <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>CustomButton</span>
+                          <span class=\\"token attr-name\\">style</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token punctuation\\">{</span> background<span class=\\"token punctuation\\">:</span> <span class=\\"token string\\">'#f00'</span> <span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">}</span></span>
+                          <span class=\\"token attr-name\\">onClick</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token keyword\\">this</span><span class=\\"token punctuation\\">.</span>action<span class=\\"token punctuation\\">}</span></span>
+                        <span class=\\"token punctuation\\">></span></span>
+                         Click Me
+                        <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>CustomButton</span><span class=\\"token punctuation\\">></span></span>
+                      <span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+                    ",
+                }
               }
-            }
-            onClick={undefined}
-            onKeyDown={undefined}
-            onKeyUp={undefined}
-            prismTheme="dark;"
-            spellCheck="false"
-            style={undefined}
-            syntaxStyles={Object {}}
-          />
-        </Editor>
-      </Styled(Editor)>
+              onClick={undefined}
+              onKeyDown={undefined}
+              onKeyUp={undefined}
+              spellCheck="false"
+              style={undefined}
+            />
+          </Editor>
+        </Component>
+      </Styled(Component)>
     </div>
   </Styled(div)>
 </CodePane>
