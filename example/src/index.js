@@ -145,7 +145,7 @@ export default class Presentation extends React.Component {
               >
                 <option value="" disabled>Custom Slide Picker</option>
                 <option value="wait-what">Wait What!? Slide</option>
-                <option value={2}>Slide 2</option>
+                <option value={3}>Slide 3</option>
               </select>
             )}
           />
