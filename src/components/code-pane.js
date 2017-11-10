@@ -7,9 +7,7 @@ import '../utils/prism-import';
 import { Editor } from 'react-live';
 
 const StyledWrapper = styled.div(props => props.styles);
-const StyledEditor = styled(({ syntaxStyles: _, prismTheme: __, ...rest }) => {
-  return <Editor {...rest} />;
-})`
+const StyledEditor = styled(({ syntaxStyles: _, prismTheme: __, ...rest }) => <Editor {...rest} />)`
   && {
     ${props => props.syntaxStyles}
   }
