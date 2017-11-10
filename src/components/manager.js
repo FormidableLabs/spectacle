@@ -7,6 +7,7 @@ import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
 import findIndex from 'lodash/findIndex';
+import get from 'lodash/get';
 import { connect } from 'react-redux';
 import { setGlobalStyle, updateFragment } from '../actions';
 import Typeface from './typeface';
@@ -289,11 +290,27 @@ export class Manager extends Component {
   _goToSlide(e) {
     let data = null;
     let canNavigate = true;
+    let offset = 0;
     if (e.key === 'spectacle-slide') {
-      canNavigate = this._checkFragments(this.props.route.slide, data.forward);
       data = JSON.parse(e.newValue);
+      canNavigate = this._checkFragments(this.props.route.slide, data.forward);
     } else if (e.slide) {
       data = e;
+      offset = 1;
+
+      const index = isNaN(parseInt(data.slide, 10)) ?
+        get(this.state.slideReference.find(slide => slide.id === data.slide), 'rootIndex', 0) :
+        data.slide - 1;
+
+      localStorage.setItem(
+        'spectacle-slide',
+        JSON.stringify({
+          slide: this._getHash(index),
+          forward: false,
+          time: Date.now(),
+        })
+      );
+
     } else {
       return;
     }
@@ -303,8 +320,8 @@ export class Manager extends Component {
     });
     if (canNavigate) {
       let slide = data.slide;
-      if (typeof slide === 'number') {
-        slide -= 1;
+      if (!isNaN(parseInt(slide, 10))) {
+        slide = parseInt(slide, 10) - offset;
       }
       this.context.history.replace(`/${slide}${this._getSuffix()}`);
     }
