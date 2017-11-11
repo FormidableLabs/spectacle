@@ -70,7 +70,7 @@ export default class Controller extends Component {
     return (
       <Context
         store={this.props.store}
-        history={history}
+        history={this.history}
         styles={this.state.print ? styles.print : styles.screen}
       >
         {this.props.children}
