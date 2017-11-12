@@ -14,7 +14,7 @@ const StyledFullscreen = styled(FullscreenButton)`
   position: absolute;
   bottom: 10px;
   right: 20px;
-  opacity: 0;
+  opacity: 0.45
   transition: 300ms opacity ease;
   font-size: 30px;
   color: #fff;
