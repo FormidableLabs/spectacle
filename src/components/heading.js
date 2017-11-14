@@ -13,7 +13,7 @@ const StyledHeader = styled.div(({ height, styles }) => [
   },
 ]);
 
-const StyledSpan = styled.span(({ scale, lineHeight, styles }) => [
+const dynamicHeaderFitStyles = ({ scale, lineHeight, styles }) => [
   {
     fontSize: 16,
     display: 'block',
@@ -25,7 +25,15 @@ const StyledSpan = styled.span(({ scale, lineHeight, styles }) => [
   },
   styles.typeface,
   styles.user,
-]);
+];
+
+const dynamicStyledFitHeaders = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce(
+  (memo, tag) => ({
+    ...memo,
+    [tag]: styled(tag)(dynamicHeaderFitStyles),
+  }),
+  {}
+);
 
 const dynamicHeaderStyles = ({ lineHeight, styles }) => [
   styles.context,
@@ -34,6 +42,7 @@ const dynamicHeaderStyles = ({ lineHeight, styles }) => [
   styles.typeface,
   styles.user,
 ];
+
 const dynamicStyledHeaders = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce(
   (memo, tag) => ({
     ...memo,
@@ -95,16 +104,22 @@ export default class Heading extends Component {
             base: getStyles.call(this),
           }}
         >
-          <StyledSpan
-            innerRef={t => {
-              this.textRef = t;
-            }}
-            scale={this.state.scale}
-            lineHeight={lineHeight}
-            styles={{ user: style, typeface: typefaceStyle }}
-          >
-            {children}
-          </StyledSpan>
+          {
+            createElement(
+              dynamicStyledFitHeaders[Tag],
+              {
+                innerRef: t => {
+                  this.textRef = t;
+                },
+                scale: this.state.scale,
+                lineHeight,
+                styles: {
+                  user: style,
+                  typeface: typefaceStyle
+                }
+              }, children
+            )
+          }
         </StyledHeader>
       );
     }

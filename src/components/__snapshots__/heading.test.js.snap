@@ -49,7 +49,7 @@ exports[`<Heading /> should render the fit configuration correctly. 1`] = `
       className="css-1449yoq"
       height={0}
     >
-      <Styled(span)
+      <Styled(h1)
         innerRef={[Function]}
         lineHeight={1}
         scale={NaN}
@@ -60,12 +60,12 @@ exports[`<Heading /> should render the fit configuration correctly. 1`] = `
           }
         }
       >
-        <span
+        <h1
           className="css-piqx9m"
         >
           This Header Fits!
-        </span>
-      </Styled(span)>
+        </h1>
+      </Styled(h1)>
     </div>
   </Styled(div)>
 </Heading>
