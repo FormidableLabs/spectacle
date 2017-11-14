@@ -9,6 +9,7 @@ exports[`<Controls /> should render correctly. 1`] = `
 >
   <div>
     <button
+      aria-label="Previous slide"
       key="prev"
       onClick={[Function]}
       style={
@@ -19,8 +20,10 @@ exports[`<Controls /> should render correctly. 1`] = `
       type="button"
     >
       <svg
+        focusable="false"
         height="32px"
         key="prevIcon"
+        role="presentation"
         style={undefined}
         viewBox="0 0 512 828.586"
         width="32px"
@@ -31,6 +34,7 @@ exports[`<Controls /> should render correctly. 1`] = `
       </svg>
     </button>
     <button
+      aria-label="Next slide"
       key="next"
       onClick={[Function]}
       style={
@@ -41,8 +45,10 @@ exports[`<Controls /> should render correctly. 1`] = `
       type="button"
     >
       <svg
+        focusable="false"
         height="32px"
         key="nextIcon"
+        role="presentation"
         style={undefined}
         viewBox="0 0 512 828.586"
         width="32px"
