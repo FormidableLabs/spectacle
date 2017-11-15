@@ -102,6 +102,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       },
       prevIcon: {
         fill: colors.quarternary,
+        transition: 'fill 1s ease-in-out 0.2s',
       },
       next: {
         position: 'absolute',
@@ -115,6 +116,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       },
       nextIcon: {
         fill: colors.quarternary,
+        transition: 'fill 1s ease-in-out 0.2s',
       },
     },
     prism: {
@@ -144,6 +146,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           height: '10px',
           borderTopLeftRadius: '10px',
           borderTopRightRadius: '10px',
+          transition: 'all 0.3s ease-out',
           background: colors.quarternary,
         },
         pacmanBottom: {
@@ -154,6 +157,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           borderBottomLeftRadius: '10px',
           borderBottomRightRadius: '10px',
           background: colors.quarternary,
+          transition: 'all 0.3s ease-out',
           top: '10px',
         },
         point: {
@@ -166,7 +170,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           borderStyle: 'solid',
           borderColor: colors.quarternary,
           borderRadius: '50%',
-          transition: 'all 0.01s ease-out 0.4s',
+          transition: 'all 0.3s ease-out',
         },
       },
       bar: {
@@ -192,6 +196,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           right: 10,
           zIndex: 1000,
           color: colors.quarternary,
+          transition: 'all 0.3s ease-out',
         },
       },
     },

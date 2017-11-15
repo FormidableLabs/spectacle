@@ -634,6 +634,24 @@ export class Manager extends Component {
       slideReference: this.state.slideReference,
     });
   }
+  _getProgressStyles = () => {
+    const slideIndex = this._getSlideIndex();
+    const slide = this._getSlideByIndex(slideIndex);
+
+    if (slide.props.progressColor) {
+      return slide.props.progressColor;
+    }
+    return null;
+  }
+  _getControlStyles = () => {
+    const slideIndex = this._getSlideIndex();
+    const slide = this._getSlideByIndex(slideIndex);
+
+    if (slide.props.controlColor) {
+      return slide.props.controlColor;
+    }
+    return null;
+  }
   render() {
     if (this.props.route.slide === null) {
       return false;
@@ -728,6 +746,7 @@ export class Manager extends Component {
               totalSlides={this.state.slideReference.length}
               onPrev={this._prevSlide.bind(this)}
               onNext={this._nextSlide.bind(this)}
+              controlColor={this._getControlStyles()}
             />
           )}
 
@@ -740,6 +759,7 @@ export class Manager extends Component {
             items={this.state.slideReference}
             currentSlideIndex={this._getSlideIndex()}
             type={this.props.progress}
+            progressColor={this._getProgressStyles()}
           />
         ) : (
           ''

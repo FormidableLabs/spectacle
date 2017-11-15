@@ -66,6 +66,7 @@ exports[`<Manager /> should render correctly. 1`] = `
         onTouchStart={[Function]}
       >
         <Controls
+          controlColor={null}
           currentSlideIndex={0}
           onNext={[Function]}
           onPrev={[Function]}
@@ -160,10 +161,16 @@ exports[`<Manager /> should render correctly. 1`] = `
               },
             ]
           }
+          progressColor={null}
           type="pacman"
         >
           <Styled(div)
-            styles={undefined}
+            styles={
+              Array [
+                undefined,
+                null,
+              ]
+            }
           >
             <div
               className="css-0"
@@ -188,6 +195,7 @@ exports[`<Manager /> should render correctly. 1`] = `
                           Object {
                             "animation": "animation-vwhb3c 0.12s linear 10 alternate both",
                           },
+                          null,
                         ]
                       }
                     >
@@ -202,6 +210,7 @@ exports[`<Manager /> should render correctly. 1`] = `
                           Object {
                             "animation": "animation-1p18wsg 0.12s linear 10 alternate both",
                           },
+                          null,
                         ]
                       }
                     >
@@ -220,7 +229,12 @@ exports[`<Manager /> should render correctly. 1`] = `
                       "top": "-20px",
                     }
                   }
-                  styles={undefined}
+                  styles={
+                    Array [
+                      undefined,
+                      null,
+                    ]
+                  }
                 >
                   <div
                     className="css-16u37i9"
@@ -234,7 +248,12 @@ exports[`<Manager /> should render correctly. 1`] = `
                       "top": "-20px",
                     }
                   }
-                  styles={undefined}
+                  styles={
+                    Array [
+                      undefined,
+                      null,
+                    ]
+                  }
                 >
                   <div
                     className="css-1qz1mlg"
@@ -679,6 +698,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
         onTouchStart={[Function]}
       >
         <Controls
+          controlColor={null}
           currentSlideIndex={1}
           onNext={[Function]}
           onPrev={[Function]}
@@ -801,10 +821,16 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               },
             ]
           }
+          progressColor={null}
           type="pacman"
         >
           <Styled(div)
-            styles={undefined}
+            styles={
+              Array [
+                undefined,
+                null,
+              ]
+            }
           >
             <div
               className="css-0"
@@ -829,6 +855,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                           Object {
                             "animation": "animation-v6s9vi 0.12s linear 10 alternate both",
                           },
+                          null,
                         ]
                       }
                     >
@@ -843,6 +870,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                           Object {
                             "animation": "animation-9hbgqx 0.12s linear 10 alternate both",
                           },
+                          null,
                         ]
                       }
                     >
@@ -861,7 +889,12 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                       "top": "-20px",
                     }
                   }
-                  styles={undefined}
+                  styles={
+                    Array [
+                      undefined,
+                      null,
+                    ]
+                  }
                 >
                   <div
                     className="css-1xucvt"
@@ -876,7 +909,12 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                       "top": "-20px",
                     }
                   }
-                  styles={undefined}
+                  styles={
+                    Array [
+                      undefined,
+                      null,
+                    ]
+                  }
                 >
                   <div
                     className="css-ci3gz3"
@@ -890,7 +928,12 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                       "top": "-20px",
                     }
                   }
-                  styles={undefined}
+                  styles={
+                    Array [
+                      undefined,
+                      null,
+                    ]
+                  }
                 >
                   <div
                     className="css-tyaqbb"

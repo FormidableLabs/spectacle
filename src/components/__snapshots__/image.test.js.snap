@@ -8,6 +8,7 @@ exports[`<Image /> should render correctly. 1`] = `
   width={2560}
 >
   <Styled(img)
+    alt={undefined}
     className={undefined}
     src="foo.png"
     styles={
@@ -26,6 +27,7 @@ exports[`<Image /> should render correctly. 1`] = `
     }
   >
     <img
+      alt={undefined}
       className="css-17as7hl"
       src="foo.png"
     />

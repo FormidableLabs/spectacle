@@ -393,12 +393,14 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |Name|PropType|Description|
 |---|---|---|
 |align| PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (right). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default.
+|controlColor| PropTypes.string | Used to override color of control arrows on a per slide basis, accepts color aliases, or valid color values.
 |goTo| PropTypes.number | Used to navigate to a slide for out-of-order presenting. Slide numbers start at `1`. This can also be used to skip slides as well.
 |id| PropTypes.string | Used to create a string based hash.
 |maxHeight| PropTypes.number | Used to set max dimensions of the Slide.
 |maxWidth| PropTypes.number | Used to set max dimensions of the Slide.
 |notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |onActive|PropTypes.func| Optional function that is called with the slide index when the slide comes into view.
+|progressColor| PropTypes.string | Used to override color of progress elements on a per slide basis, accepts color aliases, or valid color values.
 |transition|PropTypes.array|Accepts `slide`, `zoom`, `fade`, `spin`, or a [function](#transition-function), and can be combined. Sets the slide transition. This will affect both enter and exit transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**|
 |transitionIn|PropTypes.array|Specifies the slide transition when the slide comes into view. Accepts the same values as transition.|
 |transitionOut|PropTypes.array|Specifies the slide transition when the slide exits. Accepts the same values as transition.|
@@ -656,6 +658,7 @@ Heading tags are special in that, when you specify a `size` prop, they generate 
 
 |Name|PropType|Description|
 |---|---|---|
+|alt|PropTypes.string| Set the `alt` property of the image|
 |display|PropTypes.string| Set the display style property of the image |
 |height|PropTypes.string or PropTypes.number| Supply a height to the image |
 |src|PropTypes.string| Image src |
@@ -761,12 +764,18 @@ Every component above that has `(Base)` after it has been extended from a common
 | margin | PropTypes.number or string | Set `margin` value|
 | padding | PropTypes.number or string | Set `padding` value|
 | textColor | PropTypes.string | Set `color` value|
+| textFont | PropTypes.string | Set `fontFamily` value|
 | textSize | PropTypes.string | Set `fontSize` value|
 | textAlign | PropTypes.string | Set `textAlign` value|
 | textFont | PropTypes.string | Set `textFont` value|
 | bgColor | PropTypes.string | Set `backgroundColor` value|
 | bgImage | PropTypes.string | Set `backgroundImage` value|
+| bgSize | PropTypes.string | Set `backgroundSize` value|
+| bgPosition | PropTypes.string | Set `backgroundPosition` value|
+| bgRepeat | PropTypes.string | Set `backgroundRepeat` value|
 | bgDarken | PropTypes.number | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image|
+| overflow | PropTypes.string | Set `overflow` value|
+| height | PropTypes.string | Set `height` value|
 
 <a name="typeface"></a>
 #### Typeface
