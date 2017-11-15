@@ -191,7 +191,7 @@ export default class Presentation extends React.Component {
             <Cite>Ken Wheeler</Cite>
           </BlockQuote>
         </Slide>
-        <Slide transition={['spin', 'zoom']} bgColor="tertiary">
+        <Slide transition={['spin', 'zoom']} bgColor="tertiary" controlColor="primary" progressColor="primary">
           <Heading caps fit size={1} textColor="primary">
             Inline Markdown
           </Heading>

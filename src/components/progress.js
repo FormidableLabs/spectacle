@@ -34,6 +34,27 @@ const Bar = styled.div(({ styles, width }) => [ styles, width ]);
 const Container = styled.div(props => props.styles);
 
 export default class Progress extends Component {
+  resolveProgressStyles = (field) => {
+    const { progressColor } = this.props;
+
+    if (!this.props.progressColor) {
+      return null;
+    }
+
+    const style = {};
+    let color;
+
+    if (!this.context.styles.colors.hasOwnProperty(progressColor)) {
+      color = progressColor;
+    } else {
+      color = this.context.styles.colors[progressColor];
+    }
+
+    style[field] = color;
+
+    return style;
+  }
+
   getWidth() {
     return {
       width: `${(100 * this.props.currentSlideIndex / (this.props.items.length - 1))}%`
@@ -86,13 +107,13 @@ export default class Progress extends Component {
               styles={style.pacman}
               position={this.getPointPosition(currentSlideIndex)}
             >
-              <Pacman.Body styles={[style.pacmanTop, this.getPacmanStyle('top')]} />
-              <Pacman.Body styles={[style.pacmanBottom, this.getPacmanStyle('bottom')]} />
+              <Pacman.Body styles={[style.pacmanTop, this.getPacmanStyle('top'), this.resolveProgressStyles('background')]} />
+              <Pacman.Body styles={[style.pacmanBottom, this.getPacmanStyle('bottom'), this.resolveProgressStyles('background')]} />
             </Pacman.Base>
             {items.map((item, i) => {
               return (
                 <Point
-                  styles={style.point}
+                  styles={[style.point, this.resolveProgressStyles('borderColor')]}
                   position={this.getPointStyle(i)}
                   key={`presentation-progress-${i}`}
                 />
@@ -110,14 +131,14 @@ export default class Progress extends Component {
     case 'bar':
       style = style.bar;
       markup = (
-          <Bar styles={style.bar} width={this.getWidth()} />
+          <Bar styles={[style.bar, this.resolveProgressStyles('background')]} width={this.getWidth()} />
         );
       break;
     default:
       return false;
     }
     return (
-      <Container styles={style.container}>
+      <Container styles={[style.container, this.resolveProgressStyles('color')]}>
         {markup}
       </Container>
     );
@@ -127,6 +148,7 @@ export default class Progress extends Component {
 Progress.propTypes = {
   currentSlideIndex: PropTypes.number,
   items: PropTypes.array,
+  progressColor: PropTypes.string,
   type: PropTypes.oneOf(['pacman', 'bar', 'number', 'none'])
 };
 

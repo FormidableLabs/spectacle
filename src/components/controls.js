@@ -2,6 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Controls extends Component {
+  resolveFillStyle = (name) => {
+    let color;
+    const { controlColor } = this.props;
+    if (controlColor) {
+      if (!this.context.styles.colors.hasOwnProperty(controlColor)) {
+        color = controlColor;
+      } else {
+        color = this.context.styles.colors[controlColor];
+      }
+      return {
+        fill: color
+      };
+    }
+    return this.context.styles.controls[name];
+  }
   render() {
     return (
       <div>
@@ -15,7 +30,7 @@ export default class Controls extends Component {
           >
             <svg
               key="prevIcon"
-              style={this.context.styles.controls.prevIcon}
+              style={this.resolveFillStyle('prevIcon')}
               width="32px"
               height="32px"
               viewBox="0 0 512 828.586"
@@ -35,7 +50,7 @@ export default class Controls extends Component {
           >
             <svg
               key="nextIcon"
-              style={this.context.styles.controls.nextIcon}
+              style={this.resolveFillStyle('nextIcon')}
               width="32px"
               height="32px"
               viewBox="0 0 512 828.586"
@@ -51,6 +66,7 @@ export default class Controls extends Component {
 }
 
 Controls.propTypes = {
+  controlColor: PropTypes.string,
   currentSlideIndex: PropTypes.number,
   onNext: PropTypes.func,
   onPrev: PropTypes.func,

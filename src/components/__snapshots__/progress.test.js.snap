@@ -19,7 +19,12 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
   type="pacman"
 >
   <Styled(div)
-    styles={undefined}
+    styles={
+      Array [
+        undefined,
+        null,
+      ]
+    }
   >
     <div
       className="css-0"
@@ -44,6 +49,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
                   Object {
                     "animation": "animation-vwhb3c 0.12s linear 10 alternate both",
                   },
+                  null,
                 ]
               }
             >
@@ -58,6 +64,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
                   Object {
                     "animation": "animation-1p18wsg 0.12s linear 10 alternate both",
                   },
+                  null,
                 ]
               }
             >
@@ -76,7 +83,12 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
               "top": "-20px",
             }
           }
-          styles={undefined}
+          styles={
+            Array [
+              undefined,
+              null,
+            ]
+          }
         >
           <div
             className="css-1xucvt"
@@ -91,7 +103,12 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
               "top": "-20px",
             }
           }
-          styles={undefined}
+          styles={
+            Array [
+              undefined,
+              null,
+            ]
+          }
         >
           <div
             className="css-ci3gz3"
@@ -106,7 +123,12 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
               "top": "-20px",
             }
           }
-          styles={undefined}
+          styles={
+            Array [
+              undefined,
+              null,
+            ]
+          }
         >
           <div
             className="css-41ffu3"
@@ -157,13 +179,23 @@ exports[`<Progress /> should render the bar style correctly 1`] = `
   type="bar"
 >
   <Styled(div)
-    styles={undefined}
+    styles={
+      Array [
+        undefined,
+        null,
+      ]
+    }
   >
     <div
       className="css-0"
     >
       <Styled(div)
-        styles={undefined}
+        styles={
+          Array [
+            undefined,
+            null,
+          ]
+        }
         width={
           Object {
             "width": "50%",
@@ -203,7 +235,12 @@ exports[`<Progress /> should render the number style correctly 1`] = `
   type="number"
 >
   <Styled(div)
-    styles={undefined}
+    styles={
+      Array [
+        undefined,
+        null,
+      ]
+    }
   >
     <div
       className="css-0"

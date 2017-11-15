@@ -30,6 +30,7 @@ export default class Image extends Component {
       <StyledImg
         className={this.props.className}
         src={this.props.src}
+        alt={this.props.alt}
         styles={styles}
       />
     );
@@ -37,6 +38,7 @@ export default class Image extends Component {
 }
 
 Image.propTypes = {
+  alt: PropTypes.string,
   className: PropTypes.string,
   display: PropTypes.string,
   height: PropTypes.oneOfType([
