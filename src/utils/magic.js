@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-function wrapTextChildren(child, valMap) {
+function wrapTextChildren(child, valMap, classes) {
   const frag = document.createDocumentFragment();
   child.textContent.split('').map(s => {
     let char = s;
@@ -24,12 +24,14 @@ function wrapTextChildren(child, valMap) {
       el.style.display = 'block';
       el.setAttribute('data-key', elKey);
       el.setAttribute('wrapped', true);
+      el.className = classes;
       frag.appendChild(el);
     } else if (s === ' ') {
       const el = document.createElement('span');
       el.style.display = 'inline-block';
       el.setAttribute('data-key', elKey);
       el.setAttribute('wrapped', true);
+      el.className = classes;
       el.innerHTML = '&nbsp;';
       frag.appendChild(el);
     } else {
@@ -37,6 +39,7 @@ function wrapTextChildren(child, valMap) {
       el.style.display = 'inline-flex';
       el.setAttribute('data-key', elKey);
       el.setAttribute('wrapped', true);
+      el.className = classes;
       el.innerText = s;
       frag.appendChild(el);
     }
@@ -59,6 +62,10 @@ export function updateChildren(root, valMap = {}) {
     }
 
     if (child.nodeType === 1) {
+      if (child.parentNode.classList.contains('prism-code') && child.tagName === 'SPAN') {
+        const replaced = wrapTextChildren(child, valMap, child.classList.value);
+        child.replaceWith(replaced);
+      }
       updateMap(valMap, child.nodeName);
       child.setAttribute(
         'data-key',
@@ -75,20 +82,30 @@ export function updateChildren(root, valMap = {}) {
   });
 }
 
-export function buildStyleMap(map, root) {
+export function buildStyleMap(map, root, coords) {
   root.childNodes.forEach(child => {
     if (child.nodeType !== 3) {
       const rect = child.getBoundingClientRect();
+
+      let x = rect.x;
+      let y = rect.y;
+
+      if (coords && !root.classList.contains('spectacle-content')) {
+        x = rect.x - coords.x;
+        y = rect.y - coords.y;
+      }
+
       map[child.dataset.key] = {
-        x: rect.x,
-        y: rect.y,
+        x,
+        y,
         left: rect.top,
         top: rect.top,
         height: rect.height,
         width: rect.width,
       };
+
       if (child.childNodes) {
-        buildStyleMap(map, child);
+        buildStyleMap(map, child, { x, y });
       }
     }
   });
