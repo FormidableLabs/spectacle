@@ -15,17 +15,12 @@ exports[`<Markdown> should render correctly when using inline code 1`] = `
     lineHeight={1}
   >
     This should 
-    <CodePane
-      className=""
-      contentEditable={false}
+    <Code
       context={Object {}}
       key="0"
-      lang="markup"
-      source=""
-      theme="dark"
     >
       work
-    </CodePane>
+    </Code>
   </Text>
 </Styled(div)>
 `;
