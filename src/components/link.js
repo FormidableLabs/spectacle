@@ -16,7 +16,7 @@ export default class Link extends Component {
         styles={[
           this.context.styles.components.link,
           getStyles.call(this),
-          typefaceStyle,
+          typefaceStyle,}
           this.props.style
         ]}
       >
