@@ -29,7 +29,7 @@ export default class Controls extends Component {
             key="prev"
             aria-label="Previous slide"
             onClick={this.props.onPrev}
-            style={this.context.styles.controls.prev}
+            styles={[this.context.styles.controls.prev]}
           >
             <svg
               key="prevIcon"
@@ -49,7 +49,7 @@ export default class Controls extends Component {
             key="next"
             aria-label="Next slide"
             onClick={this.props.onNext}
-            style={this.context.styles.controls.next}
+            styles={[this.context.styles.controls.next]}
           >
             <svg
               key="nextIcon"
