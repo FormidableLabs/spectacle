@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'react-emotion';
+
+const StyledButton = styled.button(props => props.styles);
 
 export default class Controls extends Component {
   resolveFillStyle = (name) => {
@@ -19,9 +22,9 @@ export default class Controls extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={this.context.styles.controls.container}>
         {this.props.currentSlideIndex !== 0 &&
-          <button
+          <StyledButton
             type="button"
             key="prev"
             aria-label="Previous slide"
@@ -39,9 +42,9 @@ export default class Controls extends Component {
             >
               <path d="M512,97.707L414.293,0L0,414.293l414.293,414.293L512,730.88L195.414,414.293L512,97.707z"/>
             </svg>
-          </button>}
+          </StyledButton>}
         {this.props.currentSlideIndex < (this.props.totalSlides - 1) &&
-          <button
+          <StyledButton
             type="button"
             key="next"
             aria-label="Next slide"
@@ -59,7 +62,7 @@ export default class Controls extends Component {
             >
               <path d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z"/>
             </svg>
-          </button>}
+          </StyledButton>}
       </div>
     );
   }
