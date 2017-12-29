@@ -69,6 +69,7 @@ export const getStyles = function getStyles() {
     bgColor,
     bgImage,
     bgDarken,
+    bgLighten,
     bgSize,
     bgPosition,
     bgRepeat,
@@ -138,6 +139,9 @@ export const getStyles = function getStyles() {
     if (bgDarken) {
       styles.backgroundImage =
       `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
+    } else if (bgLighten) {
+      styles.backgroundImage =
+      `linear-gradient( rgba(255, 255, 255, ${bgLighten}), rgba(255, 255, 255, ${bgLighten}) ), url(${bgImage})`;
     } else {
       styles.backgroundImage = `url(${bgImage})`;
     }
