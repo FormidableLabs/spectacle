@@ -203,6 +203,7 @@ export default class Presentation extends React.Component {
   * Lists too!
   * With ~~strikethrough~~ and _italic_
   * And let's not forget **bold**
+  * Add some \`inline code\` to your sldes!
             `}
           </Markdown>
         </Slide>
@@ -214,6 +215,12 @@ All the same tags and elements supported in <Markdown /> are supported in Markdo
 Slides are separated with **three dashes** and can be used _anywhere_ in the deck. The markdown can either be:
 * A Tagged Template Literal
 * Imported Markdown from another file
+---
+Add some inline code to your markdown!
+
+\`\`\`js
+const myCode = (is, great) => 'for' + 'sharing';
+\`\`\`
           `
         }
         <Slide transition={['slide', 'spin']} bgColor="primary">
