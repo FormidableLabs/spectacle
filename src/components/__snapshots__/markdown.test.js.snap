@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Markdown> should render correctly when using inline code 1`] = `
+<Styled(div)
+  styles={
+    Array [
+      Object {},
+      Object {},
+    ]
+  }
+>
+  <Text
+    context={Object {}}
+    key="1"
+    lineHeight={1}
+  >
+    This should 
+    <Code
+      context={Object {}}
+      key="0"
+    >
+      work
+    </Code>
+  </Text>
+</Styled(div)>
+`;

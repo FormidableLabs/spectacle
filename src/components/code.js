@@ -12,7 +12,7 @@ const StyledCode = styled.code(props => props.styles);
 export default class Code extends Component {
   createMarkup() {
     return {
-      __html: format(this.props.children)
+      __html: Array.isArray(this.props.children) ? this.props.children.map(format) : format(this.props.children)
     };
   }
   render() {
