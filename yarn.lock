@@ -3867,17 +3867,17 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
-marked@^0.3.6:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
+marked@^0.3.9:
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.9.tgz#54ce6a57e720c3ac6098374ec625fcbcc97ff290"
 
-marksy@^6.0.0:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/marksy/-/marksy-6.0.1.tgz#ea05f170a5f8a3f935b2ef51a9b7847c947b7402"
+marksy@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/marksy/-/marksy-6.0.2.tgz#2c7b54b43652144cfddc8d674f88d61aee9fc63e"
   dependencies:
     babel-standalone "^6.24.0"
     he "^1.1.1"
-    marked "^0.3.6"
+    marked "^0.3.9"
 
 math-expression-evaluator@^1.2.14:
   version "1.2.14"
