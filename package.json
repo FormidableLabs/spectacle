@@ -22,6 +22,10 @@
   },
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FormidableLabs/spectacle.git"
+  },
   "dependencies": {
     "deep-object-diff": "^1.0.4",
     "emotion": "^8.0.8",
