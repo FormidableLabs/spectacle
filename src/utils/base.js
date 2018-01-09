@@ -51,6 +51,15 @@ const convertFontSizeToPx = function (fontSize) {
   return convertedFontSize;
 };
 
+const hexToRGB = function (hex) {
+  hex = (hex.charAt(0) === '#') ? hex.substring(1, 7) : hex;
+  const RGB = [];
+  RGB.push(parseInt(hex.substring(0, 2), 16)); // R
+  RGB.push(parseInt(hex.substring(2, 4), 16)); // G
+  RGB.push(parseInt(hex.substring(4, 6), 16)); // B
+  return RGB;
+};
+
 export const getStyles = function getStyles() {
   if (process.env.NODE_ENV !== 'production' && typeof this.warnedAboutFontSize === 'undefined') {
     this.warnedAboutFontSize = false;
@@ -68,8 +77,8 @@ export const getStyles = function getStyles() {
     textAlign,
     bgColor,
     bgImage,
-    bgDarken,
-    bgLighten,
+    bgOverlayColour,
+    bgOverlayIntensity,
     bgSize,
     bgPosition,
     bgRepeat,
@@ -136,12 +145,11 @@ export const getStyles = function getStyles() {
     styles.backgroundColor = color;
   }
   if (bgImage) {
-    if (bgDarken) {
+    if (bgOverlayColour) {
+      const rgbOverlay = hexToRGB(bgOverlayColour);
+      const bi = bgOverlayIntensity || 0.5; //default intensity - 0.5
       styles.backgroundImage =
-      `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
-    } else if (bgLighten) {
-      styles.backgroundImage =
-      `linear-gradient( rgba(255, 255, 255, ${bgLighten}), rgba(255, 255, 255, ${bgLighten}) ), url(${bgImage})`;
+      `linear-gradient( rgba(${rgbOverlay.join(',')}, ${bi}), rgba(${rgbOverlay.join(',')}, ${bi}) ), url(${bgImage})`;
     } else {
       styles.backgroundImage = `url(${bgImage})`;
     }
