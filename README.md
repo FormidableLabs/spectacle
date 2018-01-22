@@ -522,7 +522,7 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 
 > NOTE: The Magic tag uses the Web Animations API. If you use the Magic tag and want it to work places other than Chrome, you will need to include the polyfill [https://github.com/web-animations/web-animations-js](https://github.com/web-animations/web-animations-js)
 
-The Magic Tag is a new experimental feature that attempts to recreate Magic Move behavior that slide authors might be accustomed to coming from Keynote. It wraps slides, and transitions between positional values for child elements. This means that if you have two similar strings, we will transition common characters to their new positions. This does not transition on non positional values such as slide background color or font size.
+The Magic Tag is a new experimental feature that attempts to recreate Magic Move behavior that slide authors might be accustomed to coming from Keynote. It wraps slides, and transitions between positional values for child elements. This means that if you have two similar strings, we will transition common characters to their new positions. This does not transition on non positional values such as slide background color or font size. Do not use a `transition` prop on your slides if you are wrapping them with a Magic tag since it will take care of the transition for you.
 
 Using Magic is pretty simple, you just wrap your slides with it, and it transitions between them:
 
