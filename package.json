@@ -109,5 +109,6 @@
       "raf/polyfill",
       "<rootDir>/jest-setup.js"
     ]
-  }
+  },
+  "sideEffects": false
 }
