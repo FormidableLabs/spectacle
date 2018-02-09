@@ -2,8 +2,9 @@ import React from 'react';
 
 import {
   Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
-  TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text, GoToAction
+  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Notes, 
+  Quote, Slide, SlideSet, TableBody, TableHeader, TableHeaderItem, TableItem, 
+  TableRow, Table, Text, GoToAction
 } from '../../src';
 
 import preloader from '../../src/utils/preloader';
@@ -76,8 +77,8 @@ export default class Presentation extends React.Component {
             }
           ]}
           bgColor="black"
-          notes="You can even put notes on your slide. How awesome is that?"
         >
+          <Notes>You can even put notes on your slide. How awesome is that?</Notes>
           <Image src={images.kat.replace('/', '')} margin="0px auto 40px" />
           <Heading size={2} caps fit textColor="primary" textFont="primary">
             Wait what?
@@ -87,8 +88,8 @@ export default class Presentation extends React.Component {
           transitionIn={['zoom', 'fade']}
           transitionOut={['slide', 'fade']}
           bgColor="primary"
-          notes="<ul><li>talk about that</li><li>and that</li></ul>"
         >
+          <Notes><ul><li>talk about that</li><li>and that</li></ul></Notes>
           <CodePane
             lang="jsx"
             source={require('raw-loader!../assets/deck.example')}
@@ -249,8 +250,8 @@ const myCode = (is, great) => 'for' + 'sharing';
           </Slide>
         </SlideSet>
         <Slide transition={['slide']} bgColor="primary"
-          notes="Hard to find cities without any pizza"
         >
+          <Notes>Hard to find cities without any pizza</Notes>
           <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
             Pizza Toppings
           </Heading>
