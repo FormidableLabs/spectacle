@@ -592,7 +592,7 @@ For more information on the playground read the docs over at [react-live](https:
 |---|---|---|
 |code|PropTypes.string|The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed.|
 |previewBackgroundColor|PropTypes.string|The background color you want for the preview pane. Defaults to `#fff`.|
-|theme|PropTypes.string|Accepts `light` or `dark` for the source editor's syntax highlighting. Defaults to `light`.|
+|theme|PropTypes.string|Accepts `light` or `dark` for the source editor's syntax highlighting. Defaults to `dark`.|
 |scope|PropTypes.object|Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.|
 
 Example code blocks:
