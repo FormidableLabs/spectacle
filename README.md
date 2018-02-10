@@ -573,8 +573,15 @@ This tag displays a styled, highlighted code preview. I prefer putting my code s
 |---|---|---|
 |lang|PropTypes.string| Prism compatible language name. i.e: 'javascript' |
 |source| PropTypes.string| String of code to be shown |
+|className| PropTypes.string| String of a className to be appended to the CodePane |
+|theme| PropTypes.string| Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. Defaults to `dark`. |
 
-If you want to change the theme used here, you can include a prism theme in index.html via a script tag. CodePane and Playground both use the prism library under the hood, which has several themes that are available to include.
+If you want to change the theme used here, you can include a prism theme in index.html via a style or a link tag. For your theme to be actually applied
+correctly you need to set the `theme` prop to `"external"`, which disables our builtin light and dark themes.
+Please note that including a theme can actually influence all CodePane and Playground components, even if you don't set this prop, since some Prism
+themes use very generic CSS selectors.
+
+CodePane and Playground both use the prism library under the hood, which has several themes that are available to include.
 
 <a name="code-base"></a>
 #### Code (Base)
@@ -592,7 +599,7 @@ For more information on the playground read the docs over at [react-live](https:
 |---|---|---|
 |code|PropTypes.string|The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed.|
 |previewBackgroundColor|PropTypes.string|The background color you want for the preview pane. Defaults to `#fff`.|
-|theme|PropTypes.string|Accepts `light` or `dark` for the source editor's syntax highlighting. Defaults to `light`.|
+|theme| PropTypes.string| Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. Defaults to `dark`. |
 |scope|PropTypes.object|Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.|
 
 Example code blocks:
@@ -614,6 +621,8 @@ class View extends React.Component {
 }
 render(<View />);
 ```
+
+If you want to change the theme used here, please refer to the instructions above in the [CodePane's API reference](#codepane-base).
 
 <a name="go-to-action"></a>
 #### Go To Action (Base)

@@ -40,9 +40,11 @@ const PlaygroundEditor = styled(({ syntaxStyles: _, prismTheme: __, ...rest }) =
     ${props => props.syntaxStyles}
     min-height: 100%;
     font-size: 1.25vw;
-  }
 
-  ${props => props.prismTheme}
+    &.builtin-prism-theme {
+      ${props => props.prismTheme}
+    }
+  }
 `;
 
 const PlaygroundRow = styled.div`
@@ -188,6 +190,8 @@ class ComponentPlayground extends Component {
     } = this.props;
 
     const useDarkTheme = theme === 'dark';
+    const externalPrismTheme = this.props.theme === 'external';
+    const className = `language-jsx ${externalPrismTheme ? '' : 'builtin-prism-theme'}`;
 
     return (
       <PlaygroundProvider
@@ -218,7 +222,7 @@ class ComponentPlayground extends Component {
 
           <PlaygroundColumn>
             <PlaygroundEditor
-              className="language-prism"
+              className={className}
               syntaxStyles={this.context.styles.components.syntax}
               prismTheme={this.context.styles.prism[useDarkTheme ? 'dark' : 'light']}
               onChange={this.onEditorChange}
@@ -239,7 +243,11 @@ ComponentPlayground.propTypes = {
   code: PropTypes.string,
   previewBackgroundColor: PropTypes.string,
   scope: PropTypes.object,
-  theme: PropTypes.string
+  theme: PropTypes.oneOf(['dark', 'light', 'external']),
+};
+
+ComponentPlayground.defaultProps = {
+  theme: 'dark',
 };
 
 export default ComponentPlayground;

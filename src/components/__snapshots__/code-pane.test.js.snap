@@ -31,7 +31,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
       className="css-0"
     >
       <Styled(Component)
-        className="language-prism"
+        className="language-jsx builtin-prism-theme "
         code="
             const myButton = (
               <CustomButton
@@ -51,7 +51,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
         syntaxStyles={Object {}}
       >
         <Component
-          className="language-prism css-1i53um3"
+          className="language-jsx builtin-prism-theme  css-3w3gcf"
           code="
               const myButton = (
                 <CustomButton
@@ -71,7 +71,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
           syntaxStyles={Object {}}
         >
           <Editor
-            className="language-prism css-1i53um3"
+            className="language-jsx builtin-prism-theme  css-3w3gcf"
             code="
                 const myButton = (
                   <CustomButton
@@ -89,7 +89,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
             onKeyUp={[Function]}
           >
             <pre
-              className="prism-code language-prism css-1i53um3"
+              className="prism-code language-jsx builtin-prism-theme  css-3w3gcf"
               contentEditable={false}
               dangerouslySetInnerHTML={
                 Object {
