@@ -18,6 +18,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
     >
       Source Code
       <button
+        aria-label="Toggle full screen"
         class="css-1a7vuu6"
       >
         <svg
@@ -559,6 +560,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
     >
       Source Code
       <button
+        aria-label="Toggle full screen"
         class="css-1a7vuu6"
       >
         <svg
@@ -1100,6 +1102,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
     >
       Source Code
       <button
+        aria-label="Toggle full screen"
         class="css-1a7vuu6"
       >
         <svg
@@ -1641,6 +1644,7 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
     >
       Source Code
       <button
+        aria-label="Toggle full screen"
         class="css-1a7vuu6"
       >
         <svg
