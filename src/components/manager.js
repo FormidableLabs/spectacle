@@ -20,6 +20,7 @@ import Presenter from './presenter';
 import Export from './export';
 import Overview from './overview';
 import Magic from './magic';
+// import Blog from './blog';
 
 import AutoplayControls from './autoplay-controls';
 import Fullscreen from './fullscreen';
@@ -92,6 +93,7 @@ export class Manager extends Component {
     print: PropTypes.object,
     history: PropTypes.object,
     presenter: PropTypes.bool,
+    blog: PropTypes.bool,
     export: PropTypes.bool,
     overview: PropTypes.bool,
     store: PropTypes.object,
@@ -270,6 +272,11 @@ export class Manager extends Component {
       this.props.route.params.indexOf('presenter') !== -1 ? '' : '?presenter';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
+  __toggleBlogMode() {
+    const suffix = 
+      this.props.route.params.indexOf('blog') !== -1 ? '' : '?blog';
+    this.context.history.replace(`/${this.props.route.slide}${suffix}`)
+  }
   _toggleTimerMode() {
     const isTimer =
       this.props.route.params.indexOf('presenter') !== -1 &&
@@ -283,6 +290,8 @@ export class Manager extends Component {
       return isTimerMode ? '?presenter&timer' : '?presenter';
     } else if (this.props.route.params.indexOf('overview') !== -1) {
       return '?overview';
+    } else if (this.props.route.params.indexOf('blog') !== -1) {
+      return '?blog';
     } else {
       return '';
     }
