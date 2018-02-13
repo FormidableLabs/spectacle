@@ -721,6 +721,21 @@ The `S` tag is used to add styling to a piece of text, such as underline or stri
 |---|---|---|
 |type|PropTypes.string| Accepts `strikethrough`, `underline`, `bold` or `italic`|
 
+<a name="slideset"></a>
+### SlideSet (Base)
+
+Import an entirely separate `Deck` component and wrap it in `SlideSet` tags to include it in another presentation. Easy.
+
+```jsx
+<Deck>
+  <Slide>
+  </Slide>
+  <SlideSet>
+    <ImportedDeck/>
+  </SlideSet>
+</Deck>
+```
+
 <a name="table-tablerow-tableheaderitem-and-tableitem-base"></a>
 #### Table, TableRow, TableHeaderItem and TableItem (Base)
 
