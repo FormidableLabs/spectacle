@@ -480,6 +480,12 @@ import slidesMarkdown from "raw-loader!markdown.md";
 </Deck>
 ```
 
+All markdown files, by our webpack configuration, are sent through an `html-loader!`. If you run into formatting issues when sourcing your markdown files, supplememt the import with a `!raw-loader!` declaration. This will override the config that is breaking your markdown format. For example:
+
+```jsx
+<Markdown source={require("!raw-loader!../assets/stuff.md")} />
+```
+
 <a name="layout-tags"></a>
 ### Layout Tags
 
@@ -723,6 +729,21 @@ The `S` tag is used to add styling to a piece of text, such as underline or stri
 |Name|PropType|Description|
 |---|---|---|
 |type|PropTypes.string| Accepts `strikethrough`, `underline`, `bold` or `italic`|
+
+<a name="slideset"></a>
+### SlideSet (Base)
+
+Import an entirely separate `Deck` component and wrap it in `SlideSet` tags to include it in another presentation. Easy.
+
+```jsx
+<Deck>
+  <Slide>
+  </Slide>
+  <SlideSet>
+    <ImportedDeck/>
+  </SlideSet>
+</Deck>
+```
 
 <a name="table-tablerow-tableheaderitem-and-tableitem-base"></a>
 #### Table, TableRow, TableHeaderItem and TableItem (Base)

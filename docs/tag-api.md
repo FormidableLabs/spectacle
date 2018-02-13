@@ -41,6 +41,24 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |id| PropTypes.string | Used to create a string based hash.
 
+<a name="notes"></a>
+#### Notes
+
+The notes tag allows to use any tree of react elements as the notes of a slide. It is used as a child node of a slide tag and its children override any value given as the `notes` attribute of its parent slide.
+
+```jsx
+<Slide ...>
+  <Notes>
+    <h4>Slide notes</h4>
+    <ol>
+      <li>First note</li>
+      <li>Second note</li>
+    </ol>
+  </Notes>
+  {/* Slide content */}
+</Slide>
+```
+
 <a name="layout-tags"></a>
 ## Layout Tags
 
@@ -75,6 +93,11 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 |---|---|---|
 |source|PropTypes.string| Markdown source |
 |mdastConfig| PropTypes.object | Mdast configuration object |
+
+All markdown files, by our webpack configuration, are sent through an `html-loader!`. If you run into formatting issues when sourcing your markdown files, supplememt the import with a `!raw-loader!` declaration. This will override the config that is breaking your markdown format. For example:
+```jsx
+<Markdown source={require("!raw-loader!../assets/stuff.md")} />
+```
 
 <a name="element-tags"></a>
 ## Element Tags
@@ -171,6 +194,21 @@ The `S` tag is used to add inline styling to a piece of text, such as underline 
 |Name|PropType|Description|
 |---|---|---|
 |type|PropTypes.string| Accepts `strikethrough`, `underline`, `bold` or `italic`|
+
+<a name="slideset"></a>
+### SlideSet (Base)
+
+Import an entirely separate `Deck` component and wrap it in `SlideSet` tags to include it in another presentation. Easy.
+
+```jsx
+<Deck>
+  <Slide>
+  </Slide>
+  <SlideSet>
+    <ImportedDeck/>
+  </SlideSet>
+</Deck>
+```
 
 <a name="table-tablerow-tableheaderitem-and-tableitem-base"></a>
 ### Table, TableRow, TableHeaderItem and TableItem (Base)
