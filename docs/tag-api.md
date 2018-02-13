@@ -76,6 +76,11 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 |source|PropTypes.string| Markdown source |
 |mdastConfig| PropTypes.object | Mdast configuration object |
 
+All markdown files, by our webpack configuration, are sent through an `html-loader!`. If you run into formatting issues when sourcing your markdown files, supplememt the import with a `!raw-loader!` declaration. This will override the config that is breaking your markdown format. For example:
+```
+<Markdown source={require("!raw-loader!../assets/stuff.md")} />
+```
+
 <a name="element-tags"></a>
 ## Element Tags
 
