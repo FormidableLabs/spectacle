@@ -18,7 +18,7 @@ export const SlideWrapper = styled.div`
   position: relative;
 `;
 
-export const SlideNotes = styled.div`
+export const BlogNotes = styled.div`
   background-color: white;
   display: flex;
   justify-content: center;

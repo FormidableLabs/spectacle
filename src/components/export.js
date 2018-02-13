@@ -4,7 +4,7 @@ import { getSlideByIndex, getNotesForSlide } from '../utils/slides';
 import styled from 'react-emotion';
 import {
   BlogSlide,
-  SlideNotes
+  BlogNotes
 } from './blog-components';
 
 const StandardExport = styled.div`
@@ -70,7 +70,7 @@ export default class Export extends Component {
       return (
         <StyledExport key={index}>
           <BlogSlide>{el}</BlogSlide>
-          <SlideNotes>{notes}</SlideNotes>
+          <BlogNotes>{notes}</BlogNotes>
         </StyledExport>
       );
     });
