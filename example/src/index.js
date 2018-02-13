@@ -51,6 +51,7 @@ export default class Presentation extends React.Component {
           <Heading size={1} fit caps textColor="black">
             Where You Can Write Your Decks In JSX
           </Heading>
+          <Notes>... as well as annotate your decks in JSX!</Notes>
           <Link href="https://github.com/FormidableLabs/spectacle">
             <Text bold caps textColor="tertiary">View on Github</Text>
           </Link>
@@ -76,8 +77,8 @@ export default class Presentation extends React.Component {
             }
           ]}
           bgColor="black"
-          notes="You can even put notes on your slide. How awesome is that?"
         >
+          <Notes>You can even put notes on your slide. How awesome is that?</Notes>
           <Image src={images.kat.replace('/', '')} margin="0px auto 40px" />
           <Heading size={2} caps fit textColor="primary" textFont="primary">
             Wait what?
@@ -87,8 +88,8 @@ export default class Presentation extends React.Component {
           transitionIn={['zoom', 'fade']}
           transitionOut={['slide', 'fade']}
           bgColor="primary"
-          notes="<ul><li>talk about that</li><li>and that</li></ul>"
         >
+          <Notes><ul><li>talk about that</li><li>and that</li></ul></Notes>
           <CodePane
             lang="jsx"
             source={require('raw-loader!../assets/deck.example')}
@@ -248,9 +249,8 @@ const myCode = (is, great) => 'for' + 'sharing';
             <Interactive/>
           </Slide>
         </SlideSet>
-        <Slide transition={['slide']} bgColor="primary"
-          notes="Hard to find cities without any pizza"
-        >
+        <Slide transition={['slide']} bgColor="primary">
+          <Notes>Hard to find cities without any pizza</Notes>
           <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
             Pizza Toppings
           </Heading>
@@ -294,6 +294,7 @@ const myCode = (is, great) => 'for' + 'sharing';
           </Layout>
         </Slide>
         <Slide transition={['spin', 'slide']} bgColor="tertiary">
+          <Notes>Click on the Formidalogo to check out some of the other stuff we've built</Notes>
           <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
             Made with love in Seattle by
           </Heading>
