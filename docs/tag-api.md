@@ -41,6 +41,24 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 |notes| PropTypes.string| Text which will appear in the presenter mode. Can be HTML.
 |id| PropTypes.string | Used to create a string based hash.
 
+<a name="notes"></a>
+#### Notes
+
+The notes tag allows to use any tree of react elements as the notes of a slide. It is used as a child node of a slide tag and its children override any value given as the `notes` attribute of its parent slide.
+
+```jsx
+<Slide ...>
+  <Notes>
+    <h4>Slide notes</h4>
+    <ol>
+      <li>First note</li>
+      <li>Second note</li>
+    </ol>
+  </Notes>
+  {/* Slide content */}
+</Slide>
+```
+
 <a name="layout-tags"></a>
 ## Layout Tags
 
@@ -77,7 +95,7 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 |mdastConfig| PropTypes.object | Mdast configuration object |
 
 All markdown files, by our webpack configuration, are sent through an `html-loader!`. If you run into formatting issues when sourcing your markdown files, supplememt the import with a `!raw-loader!` declaration. This will override the config that is breaking your markdown format. For example:
-```
+```jsx
 <Markdown source={require("!raw-loader!../assets/stuff.md")} />
 ```
 

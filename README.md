@@ -480,6 +480,12 @@ import slidesMarkdown from "raw-loader!markdown.md";
 </Deck>
 ```
 
+All markdown files, by our webpack configuration, are sent through an `html-loader!`. If you run into formatting issues when sourcing your markdown files, supplememt the import with a `!raw-loader!` declaration. This will override the config that is breaking your markdown format. For example:
+
+```jsx
+<Markdown source={require("!raw-loader!../assets/stuff.md")} />
+```
+
 <a name="layout-tags"></a>
 ### Layout Tags
 
