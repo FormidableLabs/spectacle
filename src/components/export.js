@@ -3,13 +3,20 @@ import PropTypes from 'prop-types';
 import { getSlideByIndex, getNotesForSlide } from '../utils/slides';
 import styled from 'react-emotion';
 import {
-  SlideWrapper,
+  BlogSlide,
   SlideNotes
 } from './blog-components';
+
+const StandardExport = styled.div`
+  height: 100%;
+  width: 100%;
+`;
 
 const StyledExport = styled.div`
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const BlogExport = styled.div`
@@ -40,7 +47,7 @@ export default class Export extends Component {
       });
 
       return el;
-    }); 
+    });
   }
 
   _renderBlog() {
@@ -67,26 +74,26 @@ export default class Export extends Component {
       });
 
       return (
-        <div key={index}>
-          <SlideWrapper>{el}</SlideWrapper>
+        <StyledExport key={index}>
+          <BlogSlide>{el}</BlogSlide>
           <SlideNotes>{notes}</SlideNotes>
-        </div>
+        </StyledExport>
       );
-    }); 
+    });
   }
 
   render() {
     if (this.props.route.params.indexOf('blog') !== -1) {
       return (
-          <BlogExport>
-              {this._renderBlog()}
-          </BlogExport>
+        <BlogExport>
+            {this._renderBlog()}
+        </BlogExport>
       );
     } else {
       return (
-        <StyledExport>
+        <StandardExport>
           {this._renderSlides()}
-        </StyledExport>
+        </StandardExport>
       );
     }
   }

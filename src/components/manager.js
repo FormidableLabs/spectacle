@@ -273,9 +273,9 @@ export class Manager extends Component {
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   __toggleBlogMode() {
-    const suffix = 
+    const suffix =
       this.props.route.params.indexOf('blog') !== -1 ? '' : '?blog';
-    this.context.history.replace(`/${this.props.route.slide}${suffix}`)
+    this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _toggleTimerMode() {
     const isTimer =
@@ -719,25 +719,23 @@ export class Manager extends Component {
         />
       );
     } else if (this.props.route.params.indexOf('blog') !== -1) {
-      componentToRender = (
-        <Blog
-          {...this.props} 
-          lastSlideIndex={this.state.lastSlideIndex}
-          slides={children}
-          slideReference={this.state.slideReference}
-          slideIndex={this._getSlideIndex()}
-          route={this.props.route}
-        />
-      )
-    }
-    
-    else {
-      componentToRender = (
-        <StyledTransition component="div">
-          {this._renderSlide()}
-        </StyledTransition>
-      );
-    }
+        componentToRender = (
+          <Blog
+            {...this.props}
+            lastSlideIndex={this.state.lastSlideIndex}
+            slides={children}
+            slideReference={this.state.slideReference}
+            slideIndex={this._getSlideIndex()}
+            route={this.props.route}
+          />
+        );
+      } else {
+        componentToRender = (
+          <StyledTransition component="div">
+            {this._renderSlide()}
+          </StyledTransition>
+        );
+      }
 
     const showControls =
       !this.state.fullscreen &&
