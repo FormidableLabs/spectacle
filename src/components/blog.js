@@ -1,5 +1,6 @@
 import React, { cloneElement, Component } from 'react';
 import { getSlideByIndex, getNotesForSlide } from '../utils/slides';
+import PropTypes from 'prop-types';
 import {
   BlogContainer,
   SlideWrapper,
@@ -51,3 +52,10 @@ export default class Blog extends Component {
     );
   }
 }
+
+Blog.propTypes = {
+  route: PropTypes.object,
+  slideIndex: PropTypes.array,
+  slideReference: PropTypes.array,
+  slides: PropTypes.array
+};
