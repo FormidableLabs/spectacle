@@ -75,7 +75,7 @@ export default class Export extends Component {
     }); 
   }
 
-  _renderExport() {
+  render() {
     if (this.props.route.params.indexOf('blog') !== -1) {
       return (
           <BlogExport>
@@ -89,10 +89,6 @@ export default class Export extends Component {
         </StyledExport>
       );
     }
-  }
-  
-  render() {
-    return <div>{this._renderExport()}</div>;
   }
 }
 
