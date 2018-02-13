@@ -19,12 +19,6 @@ const StyledExport = styled.div`
   flex-direction: column;
 `;
 
-const BlogExport = styled.div`
-  height: 100%;
-  width: 100%;
-  background-color: white;
-`;
-
 export default class Export extends Component {
   _renderSlides() {
     return this.props.slideReference.map((reference, index) => {
@@ -85,9 +79,9 @@ export default class Export extends Component {
   render() {
     if (this.props.route.params.indexOf('blog') !== -1) {
       return (
-        <BlogExport>
+        <StandardExport>
             {this._renderBlog()}
-        </BlogExport>
+        </StandardExport>
       );
     } else {
       return (
