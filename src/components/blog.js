@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   BlogContainer,
   SlideWrapper,
-  SlideNotes
+  BlogNotes
 } from './blog-components';
 
 export default class Blog extends Component {
@@ -45,9 +45,9 @@ export default class Blog extends Component {
         <SlideWrapper>
           {this._renderSlide()}
         </SlideWrapper>
-        <SlideNotes>
+        <BlogNotes>
           {this._renderNote()}
-        </SlideNotes>
+        </BlogNotes>
       </BlogContainer>
     );
   }
@@ -55,7 +55,7 @@ export default class Blog extends Component {
 
 Blog.propTypes = {
   route: PropTypes.object,
-  slideIndex: PropTypes.array,
+  slideIndex: PropTypes.number,
   slideReference: PropTypes.array,
   slides: PropTypes.array
 };
