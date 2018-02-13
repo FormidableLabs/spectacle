@@ -1,6 +1,4 @@
 import React, { cloneElement, Component } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'react-emotion';
 import { getSlideByIndex, getNotesForSlide } from '../utils/slides';
 import {
   BlogContainer,
@@ -36,7 +34,7 @@ export default class Blog extends Component {
       this.props.slideIndex
     );
 
-    let notes = getNotesForSlide(slide);
+    const notes = getNotesForSlide(slide);
     return notes;
   }
 
