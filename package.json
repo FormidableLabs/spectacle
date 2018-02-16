@@ -18,7 +18,9 @@
     "deploy": "npm run build:dist && surge -p .",
     "start": "node server.js",
     "test": "jest --verbose",
-    "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
+    "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "test-dev": "jest --verbose --watch",
+    "blog": "node ./bin/render-to-blog.js"
   },
   "author": "",
   "license": "MIT",
@@ -67,7 +69,9 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.23.0",
+    "commander": "^2.14.1",
     "cross-env": "^5.0.0",
+    "cross-spawn": "^6.0.4",
     "css-loader": "^0.28.2",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
