@@ -1,6 +1,6 @@
 const program = require('commander');
 const pkg = require('../package.json');
-const { createPost } = require('./files');
+const { createPost, writeGatsbyStream } = require('./files');
 
 program
   .version(pkg.version)
@@ -14,17 +14,20 @@ const slides = [{
   deckTitle: "Spectacle is Great",
   slideTitle: "simple cool presentations",
   notes: "<li><ul>Things</ul><ul>Things</ul></li>",
-  date: "MM-DD-YYYY"
+  date: "01-16-2018"
 },{
   deckTitle: "Spectacle is Great",
   slideTitle: "custom presentations",
   notes: "<li><ul>Other things</ul><ul>Other things</ul></li>",
-  date: "MM-DD-YYYY"
-}]
+  date: "01-31-2018"
+},{
+  deckTitle: "Spectacle is Great",
+  slideTitle: "special styles in your presentations",
+  notes: "<li><ul>Other things</ul><ul>Other things</ul></li>",
+  date: "02-13-2018"
+}];
 
-if (program.gatsby){
-  console.log('Gatsby blog comin');
-  slides.forEach(function (slide, i) {
-    createPost(slide);
-  })
-};
+if (program.gatsby) {
+  Promise.all(slides.map(slide => createPost(slide).then(() => writeGatsbyStream(slide))))
+    .then(console.log(`An index has been written`)).catch(err => console.log(err));
+}

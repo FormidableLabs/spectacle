@@ -55,6 +55,7 @@ export default class Presentation extends React.Component {
           <Link href="https://github.com/FormidableLabs/spectacle">
             <Text bold caps textColor="tertiary">View on Github</Text>
           </Link>
+          <Notes>This is slide numero uno! Aenean leo ligula, porttitor eu, pibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. </Notes>
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
         <Slide
@@ -78,7 +79,7 @@ export default class Presentation extends React.Component {
           ]}
           bgColor="black"
         >
-          <Notes>You can even put notes on your slide. How awesome is that?</Notes>
+          <Notes>&& here is Number Two. You can even put notes on your slide. How awesome is that?</Notes>
           <Image src={images.kat.replace('/', '')} margin="0px auto 40px" />
           <Heading size={2} caps fit textColor="primary" textFont="primary">
             Wait what?
@@ -89,7 +90,7 @@ export default class Presentation extends React.Component {
           transitionOut={['slide', 'fade']}
           bgColor="primary"
         >
-          <Notes><ul><li>talk about that</li><li>and that</li></ul></Notes>
+          <Notes><ul><li>Number THREE</li><li>talk about that</li><li>and that</li></ul></Notes>
           <CodePane
             lang="jsx"
             source={require('raw-loader!../assets/deck.example')}
@@ -101,6 +102,7 @@ export default class Presentation extends React.Component {
           <ComponentPlayground
             theme="dark"
           />
+          <Notes>Aenean 4 leo ligula, nuuuuuuumber four porttitor eu, 4 consequat vitae, 4 eleifend ac, enim. Aliquam lorem 4 ante, dapibus in, 4 viverra quis, feugiat a, 4 tellus. Phasellus viverra imperdiet. Etiam 4 ultricies nisi vel 4 augue. Curabitur ullamcorper 4 ultricies 4 nisi. Nam eget dui. Etiam rhoncus. sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. </Notes>
         </Slide>
         <Slide transition={['slide']} bgImage={images.city.replace('/', '')} bgDarken={0.75}>
           <Appear fid="1">
@@ -108,6 +110,7 @@ export default class Presentation extends React.Component {
               Full Width
             </Heading>
           </Appear>
+          <Notes>Da fif etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. </Notes>
           <Appear fid="2">
             <Heading size={1} caps fit textColor="tertiary">
               Adjustable Darkness
@@ -126,6 +129,7 @@ export default class Presentation extends React.Component {
           <Heading size={6} textColor="tertiary">
             You can even jump to different slides with a standard button or custom component!
           </Heading>
+          <Notes>Siiiiiiiix Aenean leo ligula, porttitor eu, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam, lorem. </Notes>
           <GoToAction
             margin="1em"
             slide={8}
@@ -151,153 +155,18 @@ export default class Presentation extends React.Component {
             )}
           />
         </Slide>
-        <Slide transition={['slide']} bgDarken={0.75} getAppearStep={this.updateSteps}>
-          <Appear>
-            <Heading size={1} caps textColor="tertiary">
-              Can
-            </Heading>
-          </Appear>
-          <Appear>
-            <Heading size={1} caps textColor="secondary">
-              Count
-            </Heading>
-          </Appear>
-          <Appear>
-            <Heading size={1} caps textColor="tertiary">
-              Steps
-            </Heading>
-          </Appear>
-            <Heading size={1} caps fit textColor="secondary">
-              Steps: {this.state.steps}
-            </Heading>
-        </Slide>
-        <Slide transition={['zoom', 'fade']} bgColor="primary">
-          <Heading caps fit>Flexible Layouts</Heading>
-          <Layout>
-            <Fill>
-              <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                Left
-              </Heading>
-            </Fill>
-            <Fill>
-              <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                Right
-              </Heading>
-            </Fill>
-          </Layout>
-        </Slide>
         <Slide transition={['slide']} bgColor="black">
           <BlockQuote>
             <Quote>Wonderfully formatted quotes</Quote>
             <Cite>Ken Wheeler</Cite>
           </BlockQuote>
-        </Slide>
-        <Slide transition={['spin', 'zoom']} bgColor="tertiary" controlColor="primary" progressColor="primary">
-          <Heading caps fit size={1} textColor="primary">
-            Inline Markdown
-          </Heading>
-          <Markdown>
-            {`
-  ![Markdown Logo](${images.markdown.replace('/', '')})
-
-  You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
-  * Lists too!
-  * With ~~strikethrough~~ and _italic_
-  * And let's not forget **bold**
-  * Add some \`inline code\` to your sldes!
-            `}
-          </Markdown>
-        </Slide>
-        {
-          MarkdownSlides`
-#### Create Multiple Slides in Markdown
-All the same tags and elements supported in <Markdown /> are supported in MarkdownSlides.
----
-Slides are separated with **three dashes** and can be used _anywhere_ in the deck. The markdown can either be:
-* A Tagged Template Literal
-* Imported Markdown from another file
----
-Add some inline code to your markdown!
-
-\`\`\`js
-const myCode = (is, great) => 'for' + 'sharing';
-\`\`\`
-          `
-        }
-        <Slide transition={['slide', 'spin']} bgColor="primary">
-          <Heading caps fit size={1} textColor="tertiary">
-            Smooth
-          </Heading>
-          <Heading caps fit size={1} textColor="secondary">
-            Combinable Transitions
-          </Heading>
-        </Slide>
-        <SlideSet>
-          <Slide transition={['fade']} bgColor="secondary" textColor="primary">
-            <List>
-              <Appear><ListItem>Inline style based theme system</ListItem></Appear>
-              <Appear><ListItem>Autofit text</ListItem></Appear>
-              <Appear><ListItem>Flexbox layout system</ListItem></Appear>
-              <Appear><ListItem>PDF export</ListItem></Appear>
-              <Appear><ListItem>And...</ListItem></Appear>
-            </List>
-          </Slide>
-          <Slide transition={['slide']} bgColor="primary">
-            <Heading size={1} caps fit textColor="tertiary">
-              Your presentations are interactive
-            </Heading>
-            <Interactive/>
-          </Slide>
-        </SlideSet>
-        <Slide transition={['slide']} bgColor="primary"
-        >
-          <Notes>Hard to find cities without any pizza</Notes>
-          <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-            Pizza Toppings
-          </Heading>
-          <Layout>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHeaderItem/>
-                  <TableHeaderItem>2011</TableHeaderItem>
-                  <TableHeaderItem>2013</TableHeaderItem>
-                  <TableHeaderItem>2015</TableHeaderItem>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableItem>None</TableItem>
-                  <TableItem>61.8%</TableItem>
-                  <TableItem>39.6%</TableItem>
-                  <TableItem>35.0%</TableItem>
-                </TableRow>
-                <TableRow>
-                  <TableItem>Pineapple</TableItem>
-                  <TableItem>28.3%</TableItem>
-                  <TableItem>54.5%</TableItem>
-                  <TableItem>61.5%</TableItem>
-                </TableRow>
-                <TableRow>
-                  <TableItem>Pepperoni</TableItem>
-                  <TableItem/>
-                  <TableItem>50.2%</TableItem>
-                  <TableItem>77.2%</TableItem>
-                </TableRow>
-                <TableRow>
-                  <TableItem>Olives</TableItem>
-                  <TableItem/>
-                  <TableItem>24.9%</TableItem>
-                  <TableItem>55.9%</TableItem>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Layout>
+          <Notes>SEVEN! Etiam ultricies nisi vel augue. 7 Curabitur ullamcorper ultricies nisi. 7 Nam eget dui. 7 Etiam rhoncus. 7 Maecenas tempus, tellus eget condimentum rhoncus, 7 sem quam semper libero, sit amet adipiscing 7 sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. </Notes>
         </Slide>
         <Slide transition={['spin', 'slide']} bgColor="tertiary">
           <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
             Made with love in Seattle by
           </Heading>
+          <Notes>Aenean leo ligula, 8 porttitor eu, 8 Quisque rutrum. Aenean imperdiet. Etiam 8 ultricies nisi vel augue. Curabitur 8 ullamcorper ultricies nisi. 8 Nam eget dui. Etiam rhoncus. Maecenas tempus, 8 tellus eget condimentum rhoncus, sem quam semper libero, 8 sit amet adipiscing sem neque sed ipsum. 8 Nam quam nunc, blandit 8 vel, luctus 8 pulvinar, hendrerit id, lorem. </Notes>
           <Link href="http://www.formidable.com"><Image width="100%" src={images.logo}/></Link>
         </Slide>
       </Deck>

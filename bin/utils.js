@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-exports.mkDirByPathSync = function mkDirByPathSync(targetDir) {
+exports.mkDirByPathSync = function mkDirByPathSync(targetDir, cb) {
   const sep = path.sep;
   const initDir = path.isAbsolute(targetDir) ? sep : '';
 
@@ -13,8 +13,7 @@ exports.mkDirByPathSync = function mkDirByPathSync(targetDir) {
       if (err.code !== 'EEXIST') {
         throw err;
       }
-
-      console.log(`Sorry -- directory ${curDir} already exists!`);
+      // console.log(`Sorry -- directory ${curDir} already exists!`);
     }
 
     return curDir;
