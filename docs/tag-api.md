@@ -163,6 +163,26 @@ These tags create lists. Use them as follows:
 </List>
 ```
 
+<a name="notes"></a>
+### Notes
+
+Wrap amnotations within each `Slide` in a pair of `Notes` tags to render visible notes in presenter or blog mode. These notes can be any tree of React elements. `Notes` are used as a child node of the `Slide` tag and its children override any value given as the notes attribute of its parent slide.
+
+```jsx
+<Slide ...>
+  <Notes>
+    <h4>Slide notes</h4>
+    <ol>
+      <li>First note</li>
+      <li>Second note</li>
+    </ol>
+  </Notes>
+  {/* Slide content */}
+</Slide>
+```
+
+Note: `Notes` are used as the main content in `npm run blog`, not the slide content. Each individual slide is rendered a an image (in `.png` format) in the directory created by the blog script.
+
 <a name="s-base"></a>
 ### S (Base)
 
