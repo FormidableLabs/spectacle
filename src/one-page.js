@@ -67,7 +67,7 @@ const loadSpectacleScript = () => {
       const input = template(renderFn);
       const output = Babel.transform(input, {
         presets: [
-          [ 'es2015', { 'loose': true, 'modules': false } ],
+          [ 'env', { 'loose': true, 'modules': false } ],
           'stage-0',
           'react'
         ]
