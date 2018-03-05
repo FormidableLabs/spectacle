@@ -186,7 +186,8 @@ class ComponentPlayground extends Component {
     const {
       previewBackgroundColor,
       scope = {},
-      theme = 'dark'
+      theme = 'dark',
+      transformCode
     } = this.props;
 
     const useDarkTheme = theme === 'dark';
@@ -198,6 +199,7 @@ class ComponentPlayground extends Component {
         mountStylesheet={false}
         code={this.state.code}
         scope={{ Component, ...scope }}
+        transformCode={transformCode}
         noInline
       >
         <PlaygroundRow>
