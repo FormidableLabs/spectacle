@@ -59,19 +59,26 @@ class Appear extends Component {
   }
 
   render() {
-    const child = React.Children.only(this.props.children);
-    const endValue = this.state.active ? 1 : 0;
-    const transitionDuration = this.props.transitionDuration;
+    const {
+      children,
+      startValue,
+      endValue,
+      transitionDuration,
+      easing,
+      style
+    } = this.props;
+    const child = React.Children.only(children);
+    const tweenData = this.state.active ? endValue : startValue;
     return (
       <VictoryAnimation
-        data={{ opacity: endValue }}
+        data={tweenData}
         duration={transitionDuration}
-        easing="quadInOut"
+        easing={easing}
       >
-        {({ opacity }) =>
+        {(tweenStyle) =>
           React.cloneElement(child, {
             className: `fragment ${child.props.className}`.trim(),
-            style: { ...child.props.style, ...this.props.style, opacity },
+            style: { ...child.props.style, ...style, ...tweenStyle },
             ref: f => {
               this.fragmentRef = f;
             },
@@ -82,14 +89,31 @@ class Appear extends Component {
 }
 
 Appear.defaultProps = {
-  transitionDuration: 300
+  transitionDuration: 300,
+  startValue: { opacity: 0 },
+  endValue: { opacity: 1 },
+  easing: 'quadInOut'
 };
 
 Appear.propTypes = {
   children: PropTypes.node,
+  easing: PropTypes.oneOf([
+    'back', 'backIn', 'backOut', 'backInOut',
+    'bounce', 'bounceIn', 'bounceOut', 'bounceInOut',
+    'circle', 'circleIn', 'circleOut', 'circleInOut',
+    'linear', 'linearIn', 'linearOut', 'linearInOut',
+    'cubic', 'cubicIn', 'cubicOut', 'cubicInOut',
+    'elastic', 'elasticIn', 'elasticOut', 'elasticInOut',
+    'exp', 'expIn', 'expOut', 'expInOut',
+    'poly', 'polyIn', 'polyOut', 'polyInOut',
+    'quad', 'quadIn', 'quadOut', 'quadInOut',
+    'sin', 'sinIn', 'sinOut', 'sinInOut'
+  ]),
+  endValue: PropTypes.object,
   fragment: PropTypes.object,
   order: PropTypes.number,
   route: PropTypes.object,
+  startValue: PropTypes.object,
   style: PropTypes.object,
   transitionDuration: PropTypes.number
 };
