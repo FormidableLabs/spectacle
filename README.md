@@ -550,6 +550,10 @@ This tag does not extend from Base. It's special. Wrapping elements in the appea
 |Name|PropType|Description|
 |---|---|---|
 |order|PropTypes.number| An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.
+|transitionDuration|PropTypes.number|An optional duration (in milliseconds) for the Appear animation. Default value is `300`.
+|startValue|Proptypes.object|An optional style object that defines the starting, inactive state of the Appear tag. The default animation is a simple fade-in, so the default `startValue` value is `{ opacity: 0 }`.
+|endValue|Proptypes.object|An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in, so the default `endValue` value is `{ opacity: 1 }`.
+|easing|PropTypes.string|An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). Default value is `quadInOut`
 
 
 <a name="blockquote-quote-and-cite-base"></a>
