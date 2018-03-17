@@ -426,6 +426,9 @@ export class Manager extends Component {
   _getHash(slideIndex) {
     return this.state.slideReference[slideIndex].id;
   }
+  _updateFragment(fragData) {
+    return updateFragment(fragData);
+  }
   _checkFragments(slide, forward) {
     const state = this.context.store.getState();
     const fragments = state.fragment.fragments;
@@ -457,7 +460,7 @@ export class Manager extends Component {
         const target = notFullyAnimated[0];
         target.animations[target.animations.indexOf(false)] = true;
         this.props.dispatch(
-          updateFragment({
+          this._updateFragment({
             fragment: target,
             animations: target.animations
           })
@@ -485,7 +488,7 @@ export class Manager extends Component {
         }
         target.animations[target.animations.lastIndexOf(true)] = false;
         this.props.dispatch(
-          updateFragment({
+          this._updateFragment({
             fragment: target,
             animations: target.animations,
           })

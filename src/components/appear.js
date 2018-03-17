@@ -1,8 +1,5 @@
-/* eslint-disable react/no-did-mount-set-state */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Anim from './anim';
 import { victoryEases } from '../utils/types';
 
@@ -17,6 +14,7 @@ class Appear extends Component {
     } = this.props;
     return (
       <Anim
+        {...this.props}
         transitionDuration={transitionDuration}
         fromStyle={startValue}
         toStyle={[endValue]}
@@ -43,20 +41,9 @@ Appear.propTypes = {
   endValue: PropTypes.object,
   fragment: PropTypes.object,
   order: PropTypes.number,
-  route: PropTypes.object,
   startValue: PropTypes.object,
   style: PropTypes.object,
   transitionDuration: PropTypes.number
 };
 
-Appear.contextTypes = {
-  export: PropTypes.bool,
-  overview: PropTypes.bool,
-  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  stepCounter: PropTypes.shape({
-    setFragments: PropTypes.func
-  })
-};
-
-export default connect(state => state)(Appear);
+export default Appear;
