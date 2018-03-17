@@ -442,23 +442,35 @@ export class Manager extends Component {
       }
     }
     if (slide in fragments) {
-      const count = size(fragments[slide]);
-      const visible = filter(fragments[slide], s => s.visible === true);
-      const hidden = filter(fragments[slide], s => s.visible !== true);
-      if (forward === true && visible.length !== count) {
+      const currentSlideFragments = fragments[slide];
+      const count = size(currentSlideFragments);
+      const fullyAnimated = filter(
+        currentSlideFragments,
+        frag => frag.animations.every(anim => anim === true)
+      );
+      const notFullyAnimated = filter(
+        currentSlideFragments,
+        frag => !frag.animations.every(anim => anim === true)
+      );
+
+      if (forward === true && fullyAnimated.length !== count) {
+        const target = notFullyAnimated[0];
+        target.animations[target.animations.indexOf(false)] = true;
         this.props.dispatch(
           updateFragment({
-            fragment: hidden[0],
-            visible: true,
+            fragment: target,
+            animations: target.animations
           })
         );
         return false;
       }
-      if (forward === false && hidden.length !== count) {
+      if (forward === false && notFullyAnimated.length !== count) {
+        const target = fullyAnimated[size(fullyAnimated) - 1];
+        target.animations[target.animations.indexOf(true)] = false;
         this.props.dispatch(
           updateFragment({
-            fragment: visible[size(visible) - 1],
-            visible: false,
+            fragment: target,
+            animations: target.animations,
           })
         );
         return false;

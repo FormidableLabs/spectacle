@@ -9,7 +9,8 @@ import { VictoryAnimation } from 'victory-core';
 
 class Appear extends Component {
   state = {
-    active: false,
+    // active: false,
+    activeAnimation: -1
   };
 
   componentDidMount() {
@@ -18,7 +19,8 @@ class Appear extends Component {
       this.props.route.params.indexOf('overview') !== -1;
 
     if (shouldDisableAnimation) {
-      this.setState({ active: true });
+      // this.setState({ active: true });
+      this.setState({ activeAnimation: this.props.endValue.length - 1 });
       return;
     }
 
@@ -44,7 +46,8 @@ class Appear extends Component {
     nextProps.route.params.indexOf('overview') !== -1;
 
     if (shouldDisableAnimation) {
-      this.setState({ active: true });
+      // this.setState({ active: true });
+      this.setState({ activeAnimation: this.props.endValue.length - 1 });
       return;
     }
 
@@ -52,9 +55,10 @@ class Appear extends Component {
       slide in state.fragments &&
       state.fragments[slide].hasOwnProperty(key)
     ) {
-      const active = state.fragments[slide][key].visible;
+      // const active = state.fragments[slide][key].visible;
+      const animationStatus = state.fragments[slide][key].animations;
       this.context.stepCounter.setFragments(state.fragments[slide], slide);
-      this.setState({ active });
+      this.setState({ activeAnimation: animationStatus.indexOf(false) - 1 });
     }
   }
 
@@ -68,7 +72,7 @@ class Appear extends Component {
       style
     } = this.props;
     const child = React.Children.only(children);
-    const tweenData = this.state.active ? endValue : startValue;
+    const tweenData = this.state.activeAnimation === -1 ? startValue : endValue[this.state.activeAnimation];
     return (
       <VictoryAnimation
         data={tweenData}
@@ -82,6 +86,7 @@ class Appear extends Component {
             ref: f => {
               this.fragmentRef = f;
             },
+            'data-animation-count': this.props.endValue.length
           })}
       </VictoryAnimation>
     );
