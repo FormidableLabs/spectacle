@@ -42,66 +42,20 @@ export default class Presentation extends React.Component {
     return (
       <Deck transition={['zoom', 'slide']} theme={theme} transitionDuration={500}>
         <Slide transition={['zoom']} bgColor="primary">
-          <Heading>Hi</Heading>
+          <Heading size={1} fit caps lineHeight={1} textColor="black">
+            Spectacle
+          </Heading>
+          <Heading size={1} fit caps>
+            A ReactJS Presentation Library
+          </Heading>
+          <Heading size={1} fit caps textColor="black">
+            Where You Can Write Your Decks In JSX
+          </Heading>
+          <Link href="https://github.com/FormidableLabs/spectacle">
+            <Text bold caps textColor="tertiary">View on Github</Text>
+          </Link>
+          <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
-        <Slide transition={['zoom']} bgColor="primary">
-          <Anim
-            order={2}
-            fromStyle={{
-              opacity: 0.2,
-              transform: 'translateY(-100px) translateX(0px)'
-            }}
-            toStyle={[
-              {
-                opacity: 1,
-                transform: 'translateY(0px) translateX(0px)'
-              },
-              {
-                opacity: 1,
-                transform: 'translateY(100px) translateX(0px)'
-              },
-              {
-                opacity: 1,
-                transform: 'translateY(100px) translateX(100px)'
-              }
-          ]}
-            easing="bounceOut"
-            transitionDuration={300}
-          >
-            <div>hey friend</div>
-          </Anim>
-          <Anim
-            order={1}
-            fromStyle={{
-              opacity: 0.2,
-              transform: 'translateY(-100px) translateX(0px)'
-            }}
-            toStyle={[
-              {
-                opacity: 1,
-                transform: 'translateY(0px) translateX(0px)'
-              },
-              {
-                opacity: 1,
-                transform: 'translateY(100px) translateX(0px)'
-              },
-              {
-                opacity: 1,
-                transform: 'translateY(100px) translateX(100px)'
-              }
-            ]}
-            easing="bounceOut"
-            transitionDuration={300}
-          >
-            <div>hey friend no 2</div>
-          </Anim>
-        </Slide>
-
-        <Slide>
-          <Appear><span>oh hey der</span></Appear>
-          <Appear><span>hi gain</span></Appear>
-        </Slide>
-
         <Slide
           onActive={slideIndex => {
             console.info(`Viewing slide index: ${slideIndex}.`); // eslint-disable-line no-console
@@ -139,7 +93,7 @@ export default class Presentation extends React.Component {
             lang="jsx"
             source={require('raw-loader!../assets/deck.example')}
             margin="20px auto"
-            overflow = "overflow"
+            overflow="overflow"
           />
         </Slide>
         <Slide goTo={3}>
@@ -192,7 +146,7 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Heading size={2} textColor="secondary" margin="0.25em">
-           Mix it up!
+            Mix it up!
           </Heading>
           <Heading size={6} textColor="tertiary">
             You can even jump to different slides with a standard button or custom component!
@@ -238,9 +192,9 @@ export default class Presentation extends React.Component {
               Steps
             </Heading>
           </Appear>
-            <Heading size={1} caps fit textColor="secondary">
-              Steps: {this.state.steps}
-            </Heading>
+          <Heading size={1} caps fit textColor="secondary">
+            Steps: {this.state.steps}
+          </Heading>
         </Slide>
         <Slide transition={['zoom', 'fade']} bgColor="primary">
           <Heading caps fit>Flexible Layouts</Heading>
@@ -317,7 +271,7 @@ const myCode = (is, great) => 'for' + 'sharing';
             <Heading size={1} caps fit textColor="tertiary">
               Your presentations are interactive
             </Heading>
-            <Interactive/>
+            <Interactive />
           </Slide>
         </SlideSet>
         <Slide transition={['slide']} bgColor="primary"
@@ -330,7 +284,7 @@ const myCode = (is, great) => 'for' + 'sharing';
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHeaderItem/>
+                  <TableHeaderItem />
                   <TableHeaderItem>2011</TableHeaderItem>
                   <TableHeaderItem>2013</TableHeaderItem>
                   <TableHeaderItem>2015</TableHeaderItem>
@@ -351,13 +305,13 @@ const myCode = (is, great) => 'for' + 'sharing';
                 </TableRow>
                 <TableRow>
                   <TableItem>Pepperoni</TableItem>
-                  <TableItem/>
+                  <TableItem />
                   <TableItem>50.2%</TableItem>
                   <TableItem>77.2%</TableItem>
                 </TableRow>
                 <TableRow>
                   <TableItem>Olives</TableItem>
-                  <TableItem/>
+                  <TableItem />
                   <TableItem>24.9%</TableItem>
                   <TableItem>55.9%</TableItem>
                 </TableRow>
@@ -369,7 +323,7 @@ const myCode = (is, great) => 'for' + 'sharing';
           <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
             Made with love in Seattle by
           </Heading>
-          <Link href="http://www.formidable.com"><Image width="100%" src={images.logo}/></Link>
+          <Link href="http://www.formidable.com"><Image width="100%" src={images.logo} /></Link>
         </Slide>
       </Deck>
     );
