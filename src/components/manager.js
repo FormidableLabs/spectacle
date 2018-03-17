@@ -464,9 +464,26 @@ export class Manager extends Component {
         );
         return false;
       }
-      if (forward === false && notFullyAnimated.length !== count) {
-        const target = fullyAnimated[size(fullyAnimated) - 1];
-        target.animations[target.animations.indexOf(true)] = false;
+      if (forward === false) {
+        if (
+          notFullyAnimated.length === count &&
+          notFullyAnimated.every(frag => frag.animations.every(anim => anim === false))
+        ) {
+          // If every fragment is animated back to square one, then switch slides
+          return true;
+        }
+
+        let target;
+        const lastFullyAnimatedFragment = fullyAnimated[size(fullyAnimated) - 1];
+        const lastNotFullyAnimatedFragment = notFullyAnimated[0];
+        if (fullyAnimated.length === count || lastNotFullyAnimatedFragment.animations.every(a => a === false)) {
+          // if all fragments are fully animated, target the last fully animated fragment
+          target = lastFullyAnimatedFragment;
+        } else if (notFullyAnimated !== count) {
+          // if some fragments are not fully animated, continue targeting that fragment
+          target = lastNotFullyAnimatedFragment;
+        }
+        target.animations[target.animations.lastIndexOf(true)] = false;
         this.props.dispatch(
           updateFragment({
             fragment: target,
@@ -475,7 +492,6 @@ export class Manager extends Component {
         );
         return false;
       }
-      return true;
     } else {
       return true;
     }

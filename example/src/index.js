@@ -46,6 +46,7 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide transition={['zoom']} bgColor="primary">
           <Appear
+            order={2}
             startValue={{
               opacity: 0.2,
               transform: 'translateY(-100px) translateX(0px)'
@@ -65,6 +66,27 @@ export default class Presentation extends React.Component {
               }
           ]}
           ><div>hey friend</div></Appear>
+          <Appear
+            order={1}
+            startValue={{
+              opacity: 0.2,
+              transform: 'translateY(-100px) translateX(0px)'
+            }}
+            endValue={[
+              {
+                opacity: 1,
+                transform: 'translateY(0px) translateX(0px)'
+              },
+              {
+                opacity: 1,
+                transform: 'translateY(100px) translateX(0px)'
+              },
+              {
+                opacity: 1,
+                transform: 'translateY(100px) translateX(100px)'
+              }
+            ]}
+          ><div>hey friend no 2</div></Appear>
         </Slide>
         <Slide
           onActive={slideIndex => {

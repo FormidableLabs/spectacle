@@ -58,7 +58,11 @@ class Appear extends Component {
       // const active = state.fragments[slide][key].visible;
       const animationStatus = state.fragments[slide][key].animations;
       this.context.stepCounter.setFragments(state.fragments[slide], slide);
-      this.setState({ activeAnimation: animationStatus.indexOf(false) - 1 });
+      this.setState({
+        activeAnimation: animationStatus.every(a => a === true) ?
+          animationStatus.length - 1 :
+          animationStatus.indexOf(false) - 1
+      });
     }
   }
 
