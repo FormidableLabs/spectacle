@@ -133,6 +133,26 @@ export default class Presentation extends React.Component {
                 opacity: 1,
                 transform: 'translate3d(0px, 0px, 0px) scale(1.6) rotate(-15deg)'
               },
+              {
+                opacity: 1,
+                transform: 'translate3d(0px, 0px, 0px)  scale(0.8) rotate(0deg)'
+              },
+              {
+                opacity: 1,
+                transform: 'translate3d(0px, -200px, 0px)  scale(0.8) rotate(0deg)'
+              },
+              {
+                opacity: 1,
+                transform: 'translate3d(200px, 0px, 0px)  scale(0.8) rotate(0deg)'
+              },
+              {
+                opacity: 1,
+                transform: 'translate3d(0px, 200px, 0px)  scale(0.8) rotate(0deg)'
+              },
+              {
+                opacity: 1,
+                transform: 'translate3d(-200px, 0px, 0px)  scale(0.8) rotate(0deg)'
+              }
             ]}
             easing={'bounceOut'}
             transitionDuration={500}
