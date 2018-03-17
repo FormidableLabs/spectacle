@@ -492,6 +492,7 @@ export class Manager extends Component {
         );
         return false;
       }
+      return true;
     } else {
       return true;
     }

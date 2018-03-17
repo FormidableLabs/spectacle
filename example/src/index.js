@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
+  Anim, Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
   Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
   TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text, GoToAction
 } from '../../src';
@@ -45,13 +45,13 @@ export default class Presentation extends React.Component {
           <Heading>Hi</Heading>
         </Slide>
         <Slide transition={['zoom']} bgColor="primary">
-          <Appear
+          <Anim
             order={2}
-            startValue={{
+            fromStyle={{
               opacity: 0.2,
               transform: 'translateY(-100px) translateX(0px)'
             }}
-            endValue={[
+            toStyle={[
               {
                 opacity: 1,
                 transform: 'translateY(0px) translateX(0px)'
@@ -65,14 +65,18 @@ export default class Presentation extends React.Component {
                 transform: 'translateY(100px) translateX(100px)'
               }
           ]}
-          ><div>hey friend</div></Appear>
-          <Appear
+            easing="bounceOut"
+            transitionDuration={300}
+          >
+            <div>hey friend</div>
+          </Anim>
+          <Anim
             order={1}
-            startValue={{
+            fromStyle={{
               opacity: 0.2,
               transform: 'translateY(-100px) translateX(0px)'
             }}
-            endValue={[
+            toStyle={[
               {
                 opacity: 1,
                 transform: 'translateY(0px) translateX(0px)'
@@ -86,8 +90,18 @@ export default class Presentation extends React.Component {
                 transform: 'translateY(100px) translateX(100px)'
               }
             ]}
-          ><div>hey friend no 2</div></Appear>
+            easing="bounceOut"
+            transitionDuration={300}
+          >
+            <div>hey friend no 2</div>
+          </Anim>
         </Slide>
+
+        <Slide>
+          <Appear><span>oh hey der</span></Appear>
+          <Appear><span>hi gain</span></Appear>
+        </Slide>
+
         <Slide
           onActive={slideIndex => {
             console.info(`Viewing slide index: ${slideIndex}.`); // eslint-disable-line no-console
