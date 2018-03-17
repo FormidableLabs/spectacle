@@ -20,6 +20,7 @@ import Presenter from './presenter';
 import Export from './export';
 import Overview from './overview';
 import Magic from './magic';
+import Blog from './blog';
 
 import AutoplayControls from './autoplay-controls';
 import Fullscreen from './fullscreen';
@@ -92,6 +93,7 @@ export class Manager extends Component {
     print: PropTypes.object,
     history: PropTypes.object,
     presenter: PropTypes.bool,
+    blog: PropTypes.bool,
     export: PropTypes.bool,
     overview: PropTypes.bool,
     store: PropTypes.object,
@@ -270,6 +272,11 @@ export class Manager extends Component {
       this.props.route.params.indexOf('presenter') !== -1 ? '' : '?presenter';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
+  __toggleBlogMode() {
+    const suffix =
+      this.props.route.params.indexOf('blog') !== -1 ? '' : '?blog';
+    this.context.history.replace(`/${this.props.route.slide}${suffix}`);
+  }
   _toggleTimerMode() {
     const isTimer =
       this.props.route.params.indexOf('presenter') !== -1 &&
@@ -283,6 +290,8 @@ export class Manager extends Component {
       return isTimerMode ? '?presenter&timer' : '?presenter';
     } else if (this.props.route.params.indexOf('overview') !== -1) {
       return '?overview';
+    } else if (this.props.route.params.indexOf('blog') !== -1) {
+      return '?blog';
     } else {
       return '';
     }
@@ -620,6 +629,7 @@ export class Manager extends Component {
     return cloneElement(slide, {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
+      blog: this.props.route.params.indexOf('blog') !== -1,
       export: this.props.route.params.indexOf('export') !== -1,
       print: this.props.route.params.indexOf('print') !== -1,
       hash: this.props.route.slide,
@@ -708,18 +718,30 @@ export class Manager extends Component {
           route={this.props.route}
         />
       );
-    } else {
-      componentToRender = (
-        <StyledTransition component="div">
-          {this._renderSlide()}
-        </StyledTransition>
-      );
-    }
+    } else if (this.props.route.params.indexOf('blog') !== -1) {
+        componentToRender = (
+          <Blog
+            {...this.props}
+            lastSlideIndex={this.state.lastSlideIndex}
+            slides={children}
+            slideReference={this.state.slideReference}
+            slideIndex={this._getSlideIndex()}
+            route={this.props.route}
+          />
+        );
+      } else {
+        componentToRender = (
+          <StyledTransition component="div">
+            {this._renderSlide()}
+          </StyledTransition>
+        );
+      }
 
     const showControls =
       !this.state.fullscreen &&
       !this.state.mobile &&
       this.props.route.params.indexOf('export') === -1 &&
+      this.props.route.params.indexOf('blog') !== -1 &&
       this.props.route.params.indexOf('overview') === -1 &&
       this.props.route.params.indexOf('presenter') === -1;
 
@@ -754,6 +776,7 @@ export class Manager extends Component {
         {componentToRender}
 
         {this.props.route.params.indexOf('export') === -1 &&
+        this.props.route.params.indexOf('blog') !== -1 &&
         this.props.route.params.indexOf('overview') === -1 ? (
           <Progress
             items={this.state.slideReference}

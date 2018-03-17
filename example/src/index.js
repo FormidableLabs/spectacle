@@ -2,8 +2,9 @@ import React from 'react';
 
 import {
   Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
-  TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text, GoToAction
+  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Notes, 
+  Quote, Slide, SlideSet, TableBody, TableHeader, TableHeaderItem, TableItem, 
+  TableRow, Table, Text, GoToAction
 } from '../../src';
 
 import preloader from '../../src/utils/preloader';
@@ -54,6 +55,7 @@ export default class Presentation extends React.Component {
           <Link href="https://github.com/FormidableLabs/spectacle">
             <Text bold caps textColor="tertiary">View on Github</Text>
           </Link>
+          <Notes>Welcome to _Spectacle_!</Notes>
           <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
         </Slide>
         <Slide
@@ -76,8 +78,8 @@ export default class Presentation extends React.Component {
             }
           ]}
           bgColor="black"
-          notes="You can even put notes on your slide. How awesome is that?"
         >
+          <Notes>You can even put notes on your slide. How awesome is that?</Notes>
           <Image src={images.kat.replace('/', '')} margin="0px auto 40px" />
           <Heading size={2} caps fit textColor="primary" textFont="primary">
             Wait what?
@@ -87,7 +89,6 @@ export default class Presentation extends React.Component {
           transitionIn={['zoom', 'fade']}
           transitionOut={['slide', 'fade']}
           bgColor="primary"
-          notes="<ul><li>talk about that</li><li>and that</li></ul>"
         >
           <CodePane
             lang="jsx"
@@ -125,6 +126,7 @@ export default class Presentation extends React.Component {
           <Heading size={6} textColor="tertiary">
             You can even jump to different slides with a standard button or custom component!
           </Heading>
+          <Notes>So many cool options!<ul><li>Like this!</li><li>And this!</li></ul></Notes>
           <GoToAction
             margin="1em"
             slide={8}
@@ -248,9 +250,8 @@ const myCode = (is, great) => 'for' + 'sharing';
             <Interactive/>
           </Slide>
         </SlideSet>
-        <Slide transition={['slide']} bgColor="primary"
-          notes="Hard to find cities without any pizza"
-        >
+        <Slide transition={['slide']} bgColor="primary">
+          <Notes>Hard to find cities without any pizza</Notes>
           <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
             Pizza Toppings
           </Heading>
@@ -298,6 +299,7 @@ const myCode = (is, great) => 'for' + 'sharing';
             Made with love in Seattle by
           </Heading>
           <Link href="http://www.formidable.com"><Image width="100%" src={images.logo}/></Link>
+          <Notes>Click on our logo to check out all the other cool stuff Formidable builds!</Notes>
         </Slide>
       </Deck>
     );

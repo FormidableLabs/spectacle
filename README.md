@@ -27,7 +27,6 @@ ReactJS based Presentation Library
   - [Main Tags](#main-tags)
     - [Deck](#deck)
     - [Slide (Base)](#slide-base)
-    - [Notes](#notes)
     - [MarkdownSlides](#markdown-slides)
   - [Layout Tags](#layout-tags)
     - [Layout](#layout)
@@ -48,6 +47,7 @@ ReactJS based Presentation Library
     - [Image (Base)](#image-base)
     - [Link (Base)](#link-base)
     - [List & ListItem (Base)](#list--listitem-base)
+    - [Notes](#notes)
     - [S (Base)](#s-base)
     - [Table, TableRow, TableBody, TableHeader, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
     - [Text (Base)](#text-base)
@@ -433,24 +433,6 @@ Spectacle now supports defining custom transitions. The function prototype is `(
 >
 ```
 
-<a name="notes"></a>
-#### Notes
-
-The notes tag allows to use any tree of react elements as the notes of a slide. It is used as a child node of a slide tag and its children override any value given as the `notes` attribute of its parent slide.
-
-```jsx
-<Slide ...>
-  <Notes>
-    <h4>Slide notes</h4>
-    <ol>
-      <li>First note</li>
-      <li>Second note</li>
-    </ol>
-  </Notes>
-  {/* Slide content */}
-</Slide>
-```
-
 <a name="markdown-slides"></a>
 ### MarkdownSlides
 
@@ -718,6 +700,26 @@ Unordered lists:
   <ListItem>Item 4</ListItem>
 </List>
 ```
+
+<a name="notes"></a>
+### Notes
+
+Wrap amnotations within each `Slide` in a pair of `Notes` tags to render visible notes in presenter or blog mode. These notes can be any tree of React elements. `Notes` are used as a child node of the `Slide` tag and its children override any value given as the notes attribute of its parent slide.
+
+```jsx
+<Slide ...>
+  <Notes>
+    <h4>Slide notes</h4>
+    <ol>
+      <li>First note</li>
+      <li>Second note</li>
+    </ol>
+  </Notes>
+  {/* Slide content */}
+</Slide>
+```
+
+Note: `Notes` are used as the main content in `npm run blog`, not the slide content. Each individual slide is rendered a an image (in `.png` format) in the directory created by the blog script.
 
 <a name="s-base"></a>
 #### S (Base)

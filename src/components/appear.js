@@ -15,7 +15,8 @@ class Appear extends Component {
   componentDidMount() {
     const shouldDisableAnimation =
       this.props.route.params.indexOf('export') !== -1 ||
-      this.props.route.params.indexOf('overview') !== -1;
+      this.props.route.params.indexOf('overview') !== -1 ||
+      this.props.route.params.indexOf('blog') !== -1;
 
     if (shouldDisableAnimation) {
       this.setState({ active: true });
@@ -40,8 +41,9 @@ class Appear extends Component {
     });
 
     const shouldDisableAnimation =
-    nextProps.route.params.indexOf('export') !== -1 ||
-    nextProps.route.params.indexOf('overview') !== -1;
+      nextProps.route.params.indexOf('export') !== -1 ||
+      nextProps.route.params.indexOf('overview') !== -1 ||
+      nextProps.route.params.indexOf('blog') !== -1;
 
     if (shouldDisableAnimation) {
       this.setState({ active: true });
@@ -121,6 +123,7 @@ Appear.propTypes = {
 Appear.contextTypes = {
   export: PropTypes.bool,
   overview: PropTypes.bool,
+  blog: PropTypes.bool,
   slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   stepCounter: PropTypes.shape({

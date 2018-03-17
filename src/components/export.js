@@ -1,11 +1,22 @@
 import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
-import { getSlideByIndex } from '../utils/slides';
+import { getSlideByIndex, getNotesForSlide } from '../utils/slides';
 import styled from 'react-emotion';
+import {
+  BlogSlide,
+  BlogNotes
+} from './blog-components';
+
+const StandardExport = styled.div`
+  height: 100%;
+  width: 100%;
+`;
 
 const StyledExport = styled.div`
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default class Export extends Component {
@@ -16,9 +27,11 @@ export default class Export extends Component {
         this.props.slideReference,
         index
       );
-      return cloneElement(slide, {
+
+      const el = cloneElement(slide, {
         key: index,
         slideIndex: index,
+        blog: this.props.route.params.indexOf('blog') !== -1,
         export: this.props.route.params.indexOf('export') !== -1,
         print: this.props.route.params.indexOf('print') !== -1,
         transition: [],
@@ -26,14 +39,57 @@ export default class Export extends Component {
         transitionOut: [],
         transitionDuration: 0
       });
+
+      return el;
     });
   }
+
+  _renderBlog() {
+    return this.props.slideReference.map((reference, index) => {
+      const slide = getSlideByIndex(
+        this.props.slides,
+        this.props.slideReference,
+        index
+      );
+
+      const notes = getNotesForSlide(slide);
+
+      const el = cloneElement(slide, {
+        key: index,
+        slideIndex: index,
+        blog: this.props.route.params.indexOf('blog') !== -1,
+        export: this.props.route.params.indexOf('export') !== -1,
+        print: this.props.route.params.indexOf('print') !== -1,
+        notes,
+        transition: [],
+        transitionIn: [],
+        transitionOut: [],
+        transitionDuration: 0
+      });
+
+      return (
+        <StyledExport key={index}>
+          <BlogSlide>{el}</BlogSlide>
+          <BlogNotes>{notes}</BlogNotes>
+        </StyledExport>
+      );
+    });
+  }
+
   render() {
-    return (
-      <StyledExport>
-        {this._renderSlides()}
-      </StyledExport>
-    );
+    if (this.props.route.params.indexOf('blog') !== -1) {
+      return (
+        <StandardExport>
+            {this._renderBlog()}
+        </StandardExport>
+      );
+    } else {
+      return (
+        <StandardExport>
+          {this._renderSlides()}
+        </StandardExport>
+      );
+    }
   }
 }
 
