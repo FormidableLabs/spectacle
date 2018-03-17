@@ -164,6 +164,32 @@ export default class Presentation extends React.Component {
             </Heading>
           </Appear>
         </Slide>
+        <Slide transition={['slide']}>
+          <Anim
+            fromStyle={{
+              opacity: 0,
+              transform: 'translate3d(0px, -100px, 0px)  scale(1) rotate(0deg)'
+            }}
+            toStyle={[
+              {
+                opacity: 1,
+                transform: 'translate3d(0px, 0px, 0px)  scale(1) rotate(0deg)'
+              },
+              {
+                opacity: 1,
+                transform: 'translate3d(0px, 0px, 0px) scale(1.6) rotate(-15deg)'
+              },
+            ]}
+            easing={'bounceOut'}
+            transitionDuration={500}
+          >
+            <div>
+              <Heading size={6} caps fit textColor="secondary">
+                Flexible<br />animations
+              </Heading>
+            </div>
+          </Anim>
+        </Slide>
         <Slide>
           <Heading size={2} textColor="secondary" margin="0.25em">
            Mix it up!

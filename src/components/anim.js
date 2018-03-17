@@ -29,6 +29,7 @@ class Anim extends Component {
       node.dataset = {};
     }
     node.dataset.order = order;
+    node.dataset.animCount = this.props.toStyle.length;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -86,8 +87,7 @@ class Anim extends Component {
             style: { ...child.props.style, ...style, ...tweenStyle },
             ref: f => {
               this.fragmentRef = f;
-            },
-            'data-animation-count': this.props.toStyle.length
+            }
           })}
       </VictoryAnimation>
     );

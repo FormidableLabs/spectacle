@@ -43,13 +43,12 @@ class Slide extends React.PureComponent {
         .forEach(frag => {
           frag.dataset.fid = currentOrder;
           if (this.props.dispatch) {
-            const animCount = frag.getAttribute('data-animation-count');
             this.props.dispatch(
               addFragment({
                 className: frag.className || '',
                 slide: this.props.hash,
                 id: `${this.props.slideIndex}-${currentOrder}`,
-                animations: Array.from({ length: animCount })
+                animations: Array.from({ length: frag.dataset.animCount })
                   .fill(this.props.lastSlideIndex > this.props.slideIndex)
               })
             );
