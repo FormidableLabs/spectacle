@@ -28,8 +28,11 @@ const theme = createTheme({
 });
 
 export default class Presentation extends React.Component {
-  state = {
-    steps: 0
+  constructor() {
+    super();
+    this.state = {
+      count: 0
+    };
   }
 
   updateSteps = steps => {

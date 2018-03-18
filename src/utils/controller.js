@@ -20,12 +20,11 @@ export default class Controller extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      print: false,
+    };
     this.history = props.history || history;
   }
-
-  state = {
-    print: false,
-  };
 
   componentDidMount() {
     this.unlisten = this.history.listen(this._updateRoute.bind(this));

@@ -2,6 +2,7 @@
 !/dist/spectacle*
 dist/*.map
 !/docs
+!/es
 !/lib
 !/src
 __snapshots__

@@ -20,9 +20,12 @@ export default class Presenter extends Component {
     updateNotes: PropTypes.func,
   };
 
-  state = {
-    notes: {},
-  };
+  constructor() {
+    super();
+    this.state = {
+      notes: {},
+    };
+  }
 
   getChildContext() {
     return {
