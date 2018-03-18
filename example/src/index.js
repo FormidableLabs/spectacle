@@ -33,11 +33,13 @@ export default class Presentation extends React.Component {
     this.state = {
       count: 0
     };
+
+    this.updateSteps = this.updateSteps.bind(this);
   }
 
-  updateSteps = steps => {
-    if (this.state.steps !== steps) { // eslint-disable-line no-invalid-this
-      this.setState({ steps }); // eslint-disable-line no-invalid-this
+  updateSteps(steps) {
+    if (this.state.steps !== steps) {
+      this.setState({ steps });
     }
   }
 

@@ -80,6 +80,7 @@ export default class MagicText extends React.Component {
     this.state = {
       renderedChildren: props.children,
     };
+    this.makePortal = this.makePortal.bind(this);
   }
 
   componentDidMount() {
@@ -204,7 +205,7 @@ export default class MagicText extends React.Component {
     clearTimeout(this.timeout);
     this.mounted = false;
   }
-  makePortal = () => {
+  makePortal() {
     const p = document.createElement('div');
     p.id = 'portal';
     p.style.position = 'absolute';

@@ -106,6 +106,8 @@ export class Manager extends Component {
 
   constructor(props) {
     super(props);
+    this._getProgressStyles = this._getProgressStyles.bind(this);
+    this._getControlStyles = this._getControlStyles.bind(this);
     this._handleKeyPress = this._handleKeyPress.bind(this);
     this._handleScreenChange = this._handleScreenChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -634,7 +636,7 @@ export class Manager extends Component {
       slideReference: this.state.slideReference,
     });
   }
-  _getProgressStyles = () => {
+  _getProgressStyles() {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 
@@ -643,7 +645,7 @@ export class Manager extends Component {
     }
     return null;
   }
-  _getControlStyles = () => {
+  _getControlStyles() {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 

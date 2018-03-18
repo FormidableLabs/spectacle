@@ -17,6 +17,7 @@ import findIndex from 'lodash/findIndex';
 class Slide extends React.PureComponent {
   constructor() {
     super();
+    this.stepCounter = stepCounter();
     this.state = {
       contentScale: 1,
       reverse: false,
@@ -24,6 +25,12 @@ class Slide extends React.PureComponent {
       z: 1,
       zoom: 1,
     };
+    this.routerCallback = this.routerCallback.bind(this);
+    this.setZoom = this.setZoom.bind(this);
+    this.transitionDirection = this.transitionDirection.bind(this);
+    this.getTransitionKeys = this.getTransitionKeys.bind(this);
+    this.getTransitionStyles = this.getTransitionStyles.bind(this);
+    this.getRouteSlideIndex = this.getRouteSlideIndex.bind(this);
   }
 
   getChildContext() {
@@ -95,7 +102,7 @@ class Slide extends React.PureComponent {
     this.routerCallback(callback);
   }
 
-  routerCallback = callback => {
+  routerCallback(callback) {
     const { transition, transitionDuration } = this.props;
     if (transition.length > 0) {
       setTimeout(() => callback(), transitionDuration);
@@ -104,9 +111,7 @@ class Slide extends React.PureComponent {
     }
   };
 
-  stepCounter = stepCounter();
-
-  setZoom = () => {
+  setZoom() {
     const mobile = window.matchMedia('(max-width: 628px)').matches;
     const content = this.contentRef;
     if (content) {
@@ -132,7 +137,7 @@ class Slide extends React.PureComponent {
     }
   };
 
-  transitionDirection = () => {
+  transitionDirection() {
     const { slideIndex, lastSlideIndex } = this.props;
     const routeSlideIndex = this.getRouteSlideIndex();
     return this.state.reverse
@@ -140,7 +145,7 @@ class Slide extends React.PureComponent {
       : slideIndex > lastSlideIndex;
   };
 
-  getTransitionKeys = () => {
+  getTransitionKeys() {
     const {
       props: { transition = [], transitionIn = [], transitionOut = [] },
       state: { reverse },
@@ -153,7 +158,7 @@ class Slide extends React.PureComponent {
     return transition;
   };
 
-  getTransitionStyles = () => {
+  getTransitionStyles() {
     const { transitioning, z } = this.state;
     const transition = this.getTransitionKeys();
     let styles = { zIndex: z };
@@ -192,7 +197,7 @@ class Slide extends React.PureComponent {
     return { ...styles, transform: transformValue, ...functionStyles };
   };
 
-  getRouteSlideIndex = () => {
+  getRouteSlideIndex() {
     const { slideReference } = this.props;
     const { route } = this.context.store.getState();
     const { slide } = route;
