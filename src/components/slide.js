@@ -112,7 +112,7 @@ class Slide extends React.PureComponent {
     } else {
       callback();
     }
-  };
+  }
 
   setZoom() {
     const mobile = window.matchMedia('(max-width: 628px)').matches;
@@ -138,7 +138,7 @@ class Slide extends React.PureComponent {
         contentScale,
       });
     }
-  };
+  }
 
   transitionDirection() {
     const { slideIndex, lastSlideIndex } = this.props;
@@ -146,7 +146,7 @@ class Slide extends React.PureComponent {
     return this.state.reverse
       ? slideIndex > routeSlideIndex
       : slideIndex > lastSlideIndex;
-  };
+  }
 
   getTransitionKeys() {
     const {
@@ -159,7 +159,7 @@ class Slide extends React.PureComponent {
       return transitionIn;
     }
     return transition;
-  };
+  }
 
   getTransitionStyles() {
     const { transitioning, z } = this.state;
@@ -198,7 +198,7 @@ class Slide extends React.PureComponent {
     }, {});
 
     return { ...styles, transform: transformValue, ...functionStyles };
-  };
+  }
 
   getRouteSlideIndex() {
     const { slideReference } = this.props;
@@ -208,7 +208,7 @@ class Slide extends React.PureComponent {
       return slide === String(reference.id);
     });
     return Math.max(0, slideIndex);
-  };
+  }
 
   render() {
     const { presenterStyle, children, transitionDuration } = this.props;

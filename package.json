@@ -23,7 +23,8 @@
     "deploy": "npm run build:dist && surge -p .",
     "start": "node server.js",
     "test": "jest --verbose",
-    "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
+    "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "check": "npm run lint && npm run test"
   },
   "author": "",
   "license": "MIT",

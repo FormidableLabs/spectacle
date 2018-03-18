@@ -215,7 +215,7 @@ export default class MagicText extends Component {
     p.style.visibility = 'hidden';
     document.body.append(p);
     return p;
-  };
+  }
   render() {
     return (
       <div

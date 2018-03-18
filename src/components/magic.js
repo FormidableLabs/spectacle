@@ -21,11 +21,11 @@ export default class Magic extends Component {
 
   routerCallback(callback) {
     setTimeout(() => callback(), 490);
-  };
+  }
 
   exitSubscriber(subscription) {
     this.exitSubscription = subscription;
-  };
+  }
 
   render() {
     const { children, transition, transitionDuration, ...props } = this.props; // eslint-disable-line no-unused-vars
