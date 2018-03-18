@@ -5,10 +5,7 @@ import Timer from './timer';
 import { TimeContainer } from './time-components';
 
 export default class Time extends Component {
-  constructor() {
-    super();
-    this.state = { timer: false };
-  }
+  state = { timer: false };
   _renderClock() {
     if (this.state.timer) {
       return <Timer />;

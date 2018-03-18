@@ -104,6 +104,14 @@ export class Manager extends Component {
     goToSlide: PropTypes.func
   };
 
+  state = {
+    lastSlideIndex: null,
+    slideReference: [],
+    fullscreen: window.innerHeight === screen.height,
+    mobile: window.innerWidth < props.contentWidth,
+    autoplaying: props.autoplay,
+  };
+
   constructor(props) {
     super(props);
     this._getProgressStyles = this._getProgressStyles.bind(this);
@@ -114,13 +122,8 @@ export class Manager extends Component {
     this._goToSlide = this._goToSlide.bind(this);
     this._startAutoplay = this._startAutoplay.bind(this);
     this._stopAutoplay = this._stopAutoplay.bind(this);
-    this.state = {
-      lastSlideIndex: null,
-      slideReference: [],
-      fullscreen: window.innerHeight === screen.height,
-      mobile: window.innerWidth < props.contentWidth,
-      autoplaying: props.autoplay,
-    };
+
+    this.viewedIndexes = new Set();
     this.slideCache = null;
   }
 
@@ -166,8 +169,6 @@ export class Manager extends Component {
   componentWillUnmount() {
     this._detachEvents();
   }
-
-  viewedIndexes = new Set();
 
   _attachEvents() {
     window.addEventListener('storage', this._goToSlide);

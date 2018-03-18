@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
@@ -14,7 +14,7 @@ const Deck = styled.div(() => ({
   height: '100%',
 }));
 
-class Context extends React.Component {
+class Context extends Component {
   static contextTypes = {
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
@@ -53,7 +53,7 @@ class Context extends React.Component {
   }
 }
 
-export default class MagicText extends React.Component {
+export default class MagicText extends Component {
   static contextTypes = {
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
@@ -69,6 +69,9 @@ export default class MagicText extends React.Component {
     magicIndex: PropTypes.number,
     presenter: PropTypes.bool
   };
+  state = {
+    renderedChildren: props.children,
+  };
   constructor(props) {
     super(props);
     this.container = null;
@@ -77,12 +80,8 @@ export default class MagicText extends React.Component {
     this.portalMap = {};
     this.diffs = {};
     this.lastDiffs = null;
-    this.state = {
-      renderedChildren: props.children,
-    };
     this.makePortal = this.makePortal.bind(this);
   }
-
   componentDidMount() {
     this.mounted = true;
     this.portal = document.getElementById('portal');

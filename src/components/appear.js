@@ -8,12 +8,9 @@ import { connect } from 'react-redux';
 import { VictoryAnimation } from 'victory-core';
 
 class Appear extends Component {
-  constructor() {
-    super();
-    this.state = {
-      active: false,
-    };
-  }
+  state = {
+    active: false,
+  };
 
   componentDidMount() {
     const shouldDisableAnimation =

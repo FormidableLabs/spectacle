@@ -15,13 +15,9 @@ const startTime = function startTime(date) {
 };
 
 export default class Clock extends Component {
-  constructor() {
-    super();
-    this.state = {
-      time: new Date(Date.now())
-    };
+  state = {
+    time: new Date(Date.now())
   }
-
   componentDidMount() {
     this.interval = setInterval(() => {
       this.setState({

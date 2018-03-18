@@ -4,8 +4,10 @@
 /*global Babel:false*/
 
 // Template for taking a render function and turning it into a presentation.
+// TODO(RYAN): UPDATE THIS LIST ON OUTPUT OF ACTUAL LIB.
 const template = (renderFn) => `
   (() => {
+    const { Component } = React;
     const { render } = ReactDOM;
     const {
       Appear,
@@ -42,7 +44,7 @@ const template = (renderFn) => `
 
     const renderFn = ${renderFn};
 
-    class Presentation extends React.Component {
+    class Presentation extends Component {
       render() {
         return renderFn();
       }
@@ -66,6 +68,8 @@ const loadSpectacleScript = () => {
       const renderFn = script.innerHTML;
       const input = template(renderFn);
       const output = Babel.transform(input, {
+        // TODO(RYAN): THIS NEEDS TO CHANGE AND BE VERIFIED
+        // TODO(RYAN): IMPORT???
         presets: [
           [ 'es2015', { 'loose': true, 'modules': false } ],
           'stage-0',

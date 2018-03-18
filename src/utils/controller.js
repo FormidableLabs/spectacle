@@ -17,12 +17,13 @@ export default class Controller extends Component {
     theme: PropTypes.object,
   };
 
+  state = {
+    print: false,
+  };
+
   constructor(props) {
     super(props);
 
-    this.state = {
-      print: false,
-    };
     this.history = props.history || history;
   }
 

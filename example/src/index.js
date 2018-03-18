@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import {
   Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
@@ -27,12 +27,13 @@ const theme = createTheme({
   primary: '#ff4081'
 });
 
-export default class Presentation extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      count: 0
-    };
+export default class Presentation extends Component {
+  state = {
+    count: 0
+  };
+
+  constructor(props) {
+    super(props);
 
     this.updateSteps = this.updateSteps.bind(this);
   }
