@@ -69,9 +69,6 @@ export default class MagicText extends Component {
     magicIndex: PropTypes.number,
     presenter: PropTypes.bool
   };
-  state = {
-    renderedChildren: props.children,
-  };
   constructor(props) {
     super(props);
     this.container = null;
@@ -81,6 +78,9 @@ export default class MagicText extends Component {
     this.diffs = {};
     this.lastDiffs = null;
     this.makePortal = this.makePortal.bind(this);
+    this.state = {
+      renderedChildren: props.children,
+    };
   }
   componentDidMount() {
     this.mounted = true;

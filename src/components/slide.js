@@ -15,14 +15,6 @@ import { VictoryAnimation } from 'victory-core';
 import findIndex from 'lodash/findIndex';
 
 class Slide extends React.PureComponent {
-  state = {
-    contentScale: 1,
-    reverse: false,
-    transitioning: true,
-    z: 1,
-    zoom: 1,
-  };
-
   constructor(props) {
     super(props);
 
@@ -35,6 +27,14 @@ class Slide extends React.PureComponent {
 
     this.stepCounter = stepCounter();
   }
+
+  state = {
+    contentScale: 1,
+    reverse: false,
+    transitioning: true,
+    z: 1,
+    zoom: 1,
+  };
 
   getChildContext() {
     return {

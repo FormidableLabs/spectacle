@@ -121,10 +121,6 @@ const PlaygroundError = styled(LiveError)`
 const STORAGE_KEY = 'spectacle-playground';
 
 class ComponentPlayground extends Component {
-  state = {
-    code: (this.props.code || defaultCode).trim()
-  };
-
   constructor(props) {
     super(props);
     this.onRef = this.onRef.bind(this);
@@ -132,6 +128,10 @@ class ComponentPlayground extends Component {
     this.requestFullscreen = this.requestFullscreen.bind(this);
     this.syncCode = this.syncCode.bind(this);
   }
+
+  state = {
+    code: (this.props.code || defaultCode).trim()
+  };
 
   componentDidMount() {
     localStorage.setItem(STORAGE_KEY, this.state.code);
@@ -245,6 +245,7 @@ ComponentPlayground.propTypes = {
   previewBackgroundColor: PropTypes.string,
   scope: PropTypes.object,
   theme: PropTypes.oneOf(['dark', 'light', 'external']),
+  transformCode: PropTypes.func,
 };
 
 ComponentPlayground.defaultProps = {

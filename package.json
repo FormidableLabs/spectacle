@@ -64,9 +64,9 @@
     "@babel/preset-env": "^7.0.0-beta.42",
     "@babel/preset-react": "^7.0.0-beta.42",
     "babel-eslint": "^7.2.3",
-    "babel-jest": "^20.0.3",
+    "babel-jest": "^22.1.0",
     "babel-loader": "^7.0.0",
-    "babel-plugin-emotion": "^8.0.6",
+    "babel-plugin-emotion": "^9.0.1",
     "babel-polyfill": "^6.23.0",
     "builder": "^4.0.0",
     "css-loader": "^0.28.2",
@@ -80,7 +80,7 @@
     "eslint-plugin-react": "^7.0.1",
     "express": "^4.15.3",
     "file-loader": "^0.11.1",
-    "jest": "^20.0.4",
+    "jest": "^22.4.2",
     "jest-serializer-enzyme": "^1.0.0",
     "node-libs-browser": "^2.0.0",
     "prop-types": "^15.5.10",
@@ -98,6 +98,9 @@
     "webpack": "^2.6.0",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-hot-middleware": "^2.18.0"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-beta.42"
   },
   "jest": {
     "moduleNameMapper": {

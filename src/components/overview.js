@@ -24,13 +24,13 @@ const SlideThumbnail = styled.div`
 `;
 
 export default class Overview extends Component {
-  state = {
-    overviewWidth: document.documentElement.clientWidth
-  };
   constructor(props) {
     super(props);
     this.resizeHandler = this.resizeHandler.bind(this);
   }
+  state = {
+    overviewWidth: document.documentElement.clientWidth
+  };
   componentDidMount() {
     this.resizeHandler();
     window.addEventListener('resize', this.resizeHandler);

@@ -17,15 +17,15 @@ export default class Controller extends Component {
     theme: PropTypes.object,
   };
 
-  state = {
-    print: false,
-  };
-
   constructor(props) {
     super(props);
 
     this.history = props.history || history;
   }
+
+  state = {
+    print: false,
+  };
 
   componentDidMount() {
     this.unlisten = this.history.listen(this._updateRoute.bind(this));

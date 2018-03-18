@@ -21,16 +21,16 @@ const timeCounter = (time) => {
 };
 
 export default class Timer extends Component {
-  state = {
-    elapsedTime: 0,
-    paused: true
-  };
   constructor(props) {
     super(props);
     this.handleStartTimer = this.handleStartTimer.bind(this);
     this.handleStopTimer = this.handleStopTimer.bind(this);
     this.handleResetTimer = this.handleResetTimer.bind(this);
   }
+  state = {
+    elapsedTime: 0,
+    paused: true
+  };
   componentWillUnmount() {
     clearInterval(this.interval);
   }

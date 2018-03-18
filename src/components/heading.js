@@ -52,14 +52,14 @@ const dynamicStyledHeaders = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce(
 );
 
 export default class Heading extends Component {
-  state = {
-    scale: 1,
-    height: 16,
-  };
   constructor(props) {
     super(props);
     this.resize = this.resize.bind(this);
   }
+  state = {
+    scale: 1,
+    height: 16,
+  };
   componentDidMount() {
     this.resize();
     window.addEventListener('load', this.resize);
