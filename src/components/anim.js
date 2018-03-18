@@ -33,14 +33,6 @@ class Anim extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const state = nextProps.fragment;
-    const slide = this.props.route.slide;
-    const fragment = findDOMNode(this.fragmentRef);
-    const slideHash = parseInt(this.context.slideHash);
-    const key = findKey(state.fragments[slide], {
-      id: `${slideHash}-${parseInt(fragment.dataset.fid)}`,
-    });
-
     const shouldDisableAnimation =
       nextProps.route.params.indexOf('export') !== -1 ||
       nextProps.route.params.indexOf('overview') !== -1;
@@ -50,11 +42,10 @@ class Anim extends Component {
       return;
     }
 
-    if (
-      slide in state.fragments &&
-      state.fragments[slide].hasOwnProperty(key)
-    ) {
-      const animationStatus = state.fragments[slide][key].animations;
+    const animationStatus = this.getAnimationStatus();
+    if (animationStatus) {
+      const state = nextProps.fragment;
+      const { slide } = this.props.route;
       this.context.stepCounter.setFragments(state.fragments[slide], slide);
       this.setState({
         activeAnimation: animationStatus.every(a => a === true) ?
@@ -62,6 +53,23 @@ class Anim extends Component {
           animationStatus.indexOf(false) - 1
       });
     }
+  }
+
+  getAnimationStatus() {
+    const state = this.props.fragment;
+    const { slide } = this.props.route;
+    const fragment = findDOMNode(this.fragmentRef);
+    const slideHash = parseInt(this.context.slideHash, 10);
+    const key = findKey(state.fragments[slide], {
+      id: `${slideHash}-${parseInt(fragment.dataset.fid, 10)}`,
+    });
+    if (
+      slide in state.fragments &&
+      state.fragments[slide].hasOwnProperty(key)
+    ) {
+      return state.fragments[slide][key].animations;
+    }
+    return null;
   }
 
   render() {
