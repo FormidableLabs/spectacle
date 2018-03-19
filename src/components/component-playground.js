@@ -127,11 +127,11 @@ class ComponentPlayground extends Component {
     this.onEditorChange = this.onEditorChange.bind(this);
     this.requestFullscreen = this.requestFullscreen.bind(this);
     this.syncCode = this.syncCode.bind(this);
-  }
 
-  state = {
-    code: (this.props.code || defaultCode).trim()
-  };
+    this.state = {
+      code: (this.props.code || defaultCode).trim()
+    };
+  }
 
   componentDidMount() {
     localStorage.setItem(STORAGE_KEY, this.state.code);

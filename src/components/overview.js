@@ -27,10 +27,10 @@ export default class Overview extends Component {
   constructor(props) {
     super(props);
     this.resizeHandler = this.resizeHandler.bind(this);
+    this.state = {
+      overviewWidth: document.documentElement.clientWidth
+    };
   }
-  state = {
-    overviewWidth: document.documentElement.clientWidth
-  };
   componentDidMount() {
     this.resizeHandler();
     window.addEventListener('resize', this.resizeHandler);

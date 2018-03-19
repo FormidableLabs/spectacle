@@ -26,11 +26,12 @@ export default class Timer extends Component {
     this.handleStartTimer = this.handleStartTimer.bind(this);
     this.handleStopTimer = this.handleStopTimer.bind(this);
     this.handleResetTimer = this.handleResetTimer.bind(this);
+    this.state = {
+      elapsedTime: 0,
+      paused: true
+    };
   }
-  state = {
-    elapsedTime: 0,
-    paused: true
-  };
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }

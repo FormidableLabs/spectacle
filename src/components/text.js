@@ -39,11 +39,12 @@ export default class Text extends Component {
   constructor(props) {
     super(props);
     this.resize = this.resize.bind(this);
+    this.state = {
+      scale: 1,
+      height: 16
+    };
   }
-  state = {
-    scale: 1,
-    height: 16
-  };
+
   componentDidMount() {
     this.resize();
     window.addEventListener('load', this.resize);

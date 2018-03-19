@@ -29,7 +29,7 @@ const theme = createTheme({
 
 export default class Presentation extends Component {
   state = {
-    count: 0
+    steps: 0
   };
 
   constructor(props) {
