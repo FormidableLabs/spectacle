@@ -1,29 +1,49 @@
 /* eslint-disable */
 
 var path = require("path");
+var ip = require("ip");
+var http = require("http");
 var express = require("express");
 var webpack = require("webpack");
 var config = require("./webpack.config");
 
 var app = express();
 var compiler = webpack(config);
+var webpackDev = require("webpack-dev-middleware");
+var webpackHot = require("webpack-hot-middleware");
 
-app.use(require("webpack-dev-middleware")(compiler, {
+app.use(webpackDev(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath
 }));
 
-app.use(require("webpack-hot-middleware")(compiler));
+app.use(webpackHot(compiler));
 
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.listen(3000, "localhost", function (err) {
+const server = http.createServer(app);
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(data) {
+    // Broadcast to everyone else
+    wss.clients.forEach(function each(client) {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
+        client.send(data);
+      }
+    });
+  });
+});
+
+const port = 3000;
+server.listen(port, function listening(err) {
   if (err) {
     console.log(err);
     return;
   }
-
-  console.log("Listening at http://localhost:3000");
+  console.log("Listening at http://" + "localhost" + ":" + port);
+  console.log("Listening at http://" + ip.address() + ":" + port);
 });
