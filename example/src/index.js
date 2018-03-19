@@ -28,15 +28,15 @@ const theme = createTheme({
 });
 
 export default class Presentation extends Component {
-  state = {
-    steps: 0
-  };
-
   constructor(props) {
     super(props);
 
     this.updateSteps = this.updateSteps.bind(this);
   }
+
+  state = {
+    steps: 0
+  };
 
   updateSteps(steps) {
     if (this.state.steps !== steps) {

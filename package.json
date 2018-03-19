@@ -19,7 +19,7 @@
     "build:dist-umd-prod": "echo TODO",
     "build": "builder concurrent --buffer build:es build:lib build:dist build:dist-umd build:dist-umd-prod",
     "build:publish": "npm run clean && npm run build",
-    "lint": "eslint src *.js",
+    "lint": "eslint src example *.js",
     "deploy": "npm run build:dist && surge -p .",
     "start": "node server.js",
     "test": "jest --verbose",
