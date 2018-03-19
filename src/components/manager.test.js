@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { mount } from 'enzyme';
-import Manager from './manager';
 import range from 'lodash/range';
+
+import Manager from './manager';
+jest.mock('../sync');
 
 const _mockContext = function(slide, routeParams) {
   return {
