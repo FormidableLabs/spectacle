@@ -44,14 +44,21 @@ class Anim extends Component {
 
     const animationStatus = this.getAnimationStatus();
     if (animationStatus) {
-      const state = nextProps.fragment;
-      const { slide } = this.props.route;
-      this.context.stepCounter.setFragments(state.fragments[slide], slide);
-      this.setState({
-        activeAnimation: animationStatus.every(a => a === true) ?
-          animationStatus.length - 1 :
-          animationStatus.indexOf(false) - 1
-      });
+      const nextAnimation = animationStatus.every(a => a === true) ?
+        animationStatus.length - 1 :
+        animationStatus.indexOf(false) - 1;
+      if (this.state.activeAnimation !== nextAnimation) {
+        const state = nextProps.fragment;
+        const { slide } = this.props.route;
+        this.context.stepCounter.setFragments(state.fragments[slide], slide);
+        if (this.props.onAnim) {
+          const forward = this.state.activeAnimation < nextAnimation;
+          this.props.onAnim(forward, nextAnimation);
+        }
+        this.setState({
+          activeAnimation: nextAnimation
+        });
+      }
     }
   }
 
@@ -111,6 +118,7 @@ Anim.propTypes = {
   easing: PropTypes.oneOf(victoryEases).isRequired,
   fragment: PropTypes.object,
   fromStyle: PropTypes.object.isRequired,
+  onAnim: PropTypes.func,
   order: PropTypes.number,
   route: PropTypes.object,
   style: PropTypes.object,

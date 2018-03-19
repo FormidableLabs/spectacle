@@ -120,6 +120,12 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide transition={['slide']}>
           <Anim
+            onAnim={(forwards, animIndex) => {
+              /* eslint-disable */
+              console.log('forwards ', forwards)
+              console.log('animIndex ', animIndex)
+              /* eslint-enable */
+            }}
             fromStyle={{
               opacity: 0,
               transform: 'translate3d(0px, -100px, 0px)  scale(1) rotate(0deg)'
@@ -196,7 +202,7 @@ export default class Presentation extends React.Component {
             )}
           />
         </Slide>
-        <Slide transition={['slide']} bgDarken={0.75} getAppearStep={this.updateSteps}>
+        <Slide transition={['slide']} bgDarken={0.75} getAnimStep={this.updateSteps}>
           <Appear>
             <Heading size={1} caps textColor="tertiary">
               Can

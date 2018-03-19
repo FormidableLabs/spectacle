@@ -571,7 +571,7 @@ For best performance, wrap the contents of this tag in a native DOM element like
 |fromStyle|Proptypes.object|A style object that defines the starting, inactive state of the Anim tag.
 |toStyle|Proptypes.array|An array of style objects that define each step in the animation. They will step from one toStyle object to another, until that fragment is finished with its animations.
 |easing|PropTypes.string|A victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing).
-
+|onAnim|PropTypes.fun|This function is called every time the Anim component plays an animation. It'll be called with two arguments, forwards, a boolean indicating if it was stepped forwards or backwards, and the index of the animation that was just played.
 
 <a name="blockquote-quote-and-cite-base"></a>
 #### BlockQuote, Quote and Cite (Base)
