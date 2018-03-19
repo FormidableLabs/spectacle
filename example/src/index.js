@@ -28,8 +28,8 @@ const theme = createTheme({
 });
 
 export default class Presentation extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
 
     this.updateSteps = this.updateSteps.bind(this);
   }

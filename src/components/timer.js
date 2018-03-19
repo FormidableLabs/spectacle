@@ -21,8 +21,8 @@ const timeCounter = (time) => {
 };
 
 export default class Timer extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
     this.handleStartTimer = this.handleStartTimer.bind(this);
     this.handleStopTimer = this.handleStopTimer.bind(this);
     this.handleResetTimer = this.handleResetTimer.bind(this);

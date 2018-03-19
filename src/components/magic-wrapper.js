@@ -70,7 +70,7 @@ export default class MagicText extends Component {
     presenter: PropTypes.bool
   };
   constructor(props) {
-    super(props);
+    super(...arguments);
     this.container = null;
     this.styleMap = {};
     this.lastPortalMap = {};

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import MagicWrapper from './magic-wrapper';
 
 export default class Magic extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
     this.routerCallback = this.routerCallback.bind(this);
     this.exitSubscriber = this.exitSubscriber.bind(this);
   }

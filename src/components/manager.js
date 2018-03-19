@@ -105,7 +105,7 @@ export class Manager extends Component {
   };
 
   constructor(props) {
-    super(props);
+    super(...arguments);
     this._getProgressStyles = this._getProgressStyles.bind(this);
     this._getControlStyles = this._getControlStyles.bind(this);
     this._handleKeyPress = this._handleKeyPress.bind(this);

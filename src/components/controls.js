@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Controls extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
     this.resolveFillStyle = this.resolveFillStyle.bind(this);
   }
 

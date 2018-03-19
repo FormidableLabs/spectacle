@@ -121,8 +121,8 @@ const PlaygroundError = styled(LiveError)`
 const STORAGE_KEY = 'spectacle-playground';
 
 class ComponentPlayground extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
     this.onRef = this.onRef.bind(this);
     this.onEditorChange = this.onEditorChange.bind(this);
     this.requestFullscreen = this.requestFullscreen.bind(this);

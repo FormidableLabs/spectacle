@@ -15,8 +15,8 @@ import { VictoryAnimation } from 'victory-core';
 import findIndex from 'lodash/findIndex';
 
 class Slide extends React.PureComponent {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
 
     this.routerCallback = this.routerCallback.bind(this);
     this.setZoom = this.setZoom.bind(this);
