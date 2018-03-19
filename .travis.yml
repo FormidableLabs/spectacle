@@ -18,4 +18,5 @@ notifications:
     on_failure: always
 
 script:
+  - yarn run build
   - yarn run check
