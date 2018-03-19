@@ -4,7 +4,6 @@
 /*global Babel:false*/
 
 // Template for taking a render function and turning it into a presentation.
-// TODO(RYAN): UPDATE THIS LIST ON OUTPUT OF ACTUAL LIB.
 const template = (renderFn) => `
   (() => {
     const { Component } = React;
@@ -21,10 +20,12 @@ const template = (renderFn) => `
       Fit,
       Heading,
       Image,
+      GoToAction,
       Layout,
       Link,
       ListItem,
       List,
+      Magic,
       Markdown,
       MarkdownSlides,
       Notes,
@@ -39,7 +40,8 @@ const template = (renderFn) => `
       TableRow,
       Table,
       Text,
-      Typeface
+      Typeface,
+      themes
     } = Spectacle;
 
     const renderFn = ${renderFn};
@@ -68,12 +70,10 @@ const loadSpectacleScript = () => {
       const renderFn = script.innerHTML;
       const input = template(renderFn);
       const output = Babel.transform(input, {
-        // TODO(RYAN): THIS NEEDS TO CHANGE AND BE VERIFIED
-        // TODO(RYAN): IMPORT???
-        presets: [
-          [ 'es2015', { 'loose': true, 'modules': false } ],
-          'stage-0',
-          'react'
+        'presets': ['@babel/preset-env', '@babel/preset-react'],
+        'plugins': [
+          '@babel/plugin-proposal-object-rest-spread',
+          '@babel/plugin-proposal-class-properties'
         ]
       }).code;
 

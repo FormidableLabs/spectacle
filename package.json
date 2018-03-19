@@ -68,7 +68,6 @@
     "babel-jest": "^22.1.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-emotion": "^9.0.1",
-    "babel-polyfill": "^6.23.0",
     "builder": "^4.0.0",
     "css-loader": "^0.28.2",
     "enzyme": "^3.1.0",

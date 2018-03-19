@@ -132,11 +132,11 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
 <body>
     <div id="root"></div>
     <script src="https://unpkg.com/prop-types@15/prop-types.js"></script>
-    <script src="https://unpkg.com/react@15/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="https://unpkg.com/spectacle/dist/spectacle.js"></script>
-    <script src="https://unpkg.com/spectacle/lib/one-page.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://unpkg.com/spectacle@^4/dist/spectacle.js"></script>
+    <script src="https://unpkg.com/spectacle@^4/lib/one-page.js"></script>
     <script type="text/spectacle">
       () => {
         // Your JS Code goes here
