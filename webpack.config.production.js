@@ -5,12 +5,12 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     '@babel/polyfill',
-    './index'
+    './index',
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/dist/',
   },
   module: {
     rules: [{
@@ -19,18 +19,18 @@ module.exports = {
         'index.js',
         'src',
         'example/assets',
-        'example/src'
+        'example/src',
       ].map((name) => path.resolve(__dirname, name)),
-      loader: 'babel-loader'
+      loader: 'babel-loader',
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      loader: 'style-loader!css-loader',
     }, {
       test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=8192'
+      loader: 'url-loader?limit=8192',
     }, {
       test: /\.svg$/,
-      loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-    }]
-  }
+      loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+    }, ],
+  },
 };

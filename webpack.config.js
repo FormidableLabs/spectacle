@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: ['webpack-hot-middleware/client', './index'],
+  entry: ['webpack-hot-middleware/client', './index', ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'raw-loader'],
+        loaders: ['style-loader', 'raw-loader', ],
         include: __dirname,
       },
       {
