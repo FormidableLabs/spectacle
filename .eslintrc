@@ -23,7 +23,7 @@
   },
   "rules": {
     "quotes": [
-      2,
+      "error",
       "single",
       {
         "allowTemplateLiterals": true
@@ -33,7 +33,7 @@
     "indent": "off",
     "space-before-function-paren": "off",
     "react/jsx-indent-props": "off",
-    "max-len": 0,
+    "max-len": "off",
     "no-magic-numbers": "off",
     "func-style": "off",
     "arrow-parens": "off",
