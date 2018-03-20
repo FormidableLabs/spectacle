@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  mode: 'production',
   devtool: 'source-map',
   entry: [
     '@babel/polyfill',
@@ -12,23 +13,15 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/dist/'
   },
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    })
-  ],
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      exclude: /node_modules/,
+      include: [
+        path.resolve(__dirname, 'index.js'),
+        path.resolve(__dirname, 'src'),
+        path.resolve(__dirname, 'example/assets'),
+        path.resolve(__dirname, 'example/src')
+      ],
       loader: 'babel-loader'
     }, {
       test: /\.css$/,
