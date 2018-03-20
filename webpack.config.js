@@ -28,10 +28,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'raw-loader' },
-        ],
+        loader: 'style-loader!raw-loader',
       },
       {
         test: /\.svg$/,
