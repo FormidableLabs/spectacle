@@ -8,7 +8,7 @@ module.exports = {
     './index'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/dist/'
   },
@@ -16,11 +16,11 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       include: [
-        path.resolve(__dirname, 'index.js'),
-        path.resolve(__dirname, 'src'),
-        path.resolve(__dirname, 'example/assets'),
-        path.resolve(__dirname, 'example/src')
-      ],
+        'index.js',
+        'src',
+        'example/assets',
+        'example/src'
+      ].map((name) => path.resolve(__dirname, name)),
       loader: 'babel-loader'
     }, {
       test: /\.css$/,

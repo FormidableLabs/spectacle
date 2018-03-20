@@ -18,7 +18,7 @@
     "build-webpack": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-webpack-base",
     "build:dist": "builder run build-webpack -- --config webpack.config.production.js",
     "build:dist-umd": "builder run build-webpack -- --config webpack.config.umd.js",
-    "build:dist-umd-prod": "builder run build-webpack --env \"{\\\"NODE_ENV\\\":\\\"production\\\"}\" -- --config webpack.config.umd.production.js",
+    "build:dist-umd-prod": "builder run build-webpack -- --config webpack.config.umd.production.js",
     "build": "builder concurrent --buffer build:es build:lib build:dist build:dist-umd build:dist-umd-prod",
     "build:publish": "npm run clean && npm run build",
     "lint": "eslint src example *.js",

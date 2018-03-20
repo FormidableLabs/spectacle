@@ -1,7 +1,8 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
+  mode: 'development',
+  devtool: 'source-map',
   entry: {
     spectacle: './src/index.js'
   },
@@ -38,16 +39,10 @@ module.exports = {
       }
     }
   ],
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.SourceMapDevToolPlugin({
-      filename: '[file].map'
-    })
-  ],
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      exclude: /node_modules/,
+      include: path.resolve(__dirname, 'src'),
       loader: 'babel-loader'
     }, {
       test: /\.css$/,
