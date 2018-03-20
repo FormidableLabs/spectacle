@@ -40,19 +40,24 @@ module.exports = {
     },
   ],
   module: {
-    rules: [{
-      test: /\.js$/,
-      include: path.resolve(__dirname, 'src'),
-      loader: 'babel-loader',
-    }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader',
-    }, {
-      test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=8192',
-    }, {
-      test: /\.svg$/,
-      loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
-    }, ],
+    rules: [
+      {
+        test: /\.js$/,
+        include: path.resolve(__dirname, 'src'),
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192',
+      },
+      {
+        test: /\.svg$/,
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+      },
+    ],
   },
 };

@@ -13,24 +13,29 @@ module.exports = {
     publicPath: '/dist/',
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      include: [
-        'index.js',
-        'src',
-        'example/assets',
-        'example/src',
-      ].map((name) => path.resolve(__dirname, name)),
-      loader: 'babel-loader',
-    }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader',
-    }, {
-      test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=8192',
-    }, {
-      test: /\.svg$/,
-      loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
-    }, ],
+    rules: [
+      {
+        test: /\.js$/,
+        include: [
+          'index.js',
+          'src',
+          'example/assets',
+          'example/src',
+        ].map((name) => path.resolve(__dirname, name)),
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192',
+      },
+      {
+        test: /\.svg$/,
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+      },
+    ],
   },
 };
