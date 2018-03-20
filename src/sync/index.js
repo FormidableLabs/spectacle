@@ -1,26 +1,27 @@
 let ws = null;
-if (!ws) {
-  ws = new WebSocket(`ws://${self.location.host}`);
-}
-
 let ready = false;
 
-const wrapper = {
-    send: (msg) => {
-			if (ws && ready) {
-				ws.send(msg);
+if (!ws) {
+	ws = new WebSocket(`ws://${self.location.host}`);
+
+	ws.onopen = function () {
+		ready = true;
+		ws.onmessage = function (ev) {
+			if (publicWrapper.receiveHandler) {
+				publicWrapper.receiveHandler(ev);
 			}
-    },
-    receiveHandler: null
+		};
+	};
+}
+
+const publicWrapper = {
+	send: (msg) => {
+		if (ws && ready) {
+			ws.send(msg);
+		}
+	},
+	receiveHandler: null
 };
 
-ws.onopen = function () {
-    ready = true;
-    ws.onmessage = function (ev) {
-			if (wrapper.receiveHandler) {
-				wrapper.receiveHandler(ev);
-			}
-    };
-};
+export default publicWrapper;
 
-export default wrapper;

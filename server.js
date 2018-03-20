@@ -4,6 +4,7 @@ var path = require("path");
 var ip = require("ip");
 var http = require("http");
 var express = require("express");
+const WebSocket = require('ws');
 var webpack = require("webpack");
 var config = require("./webpack.config");
 
@@ -24,7 +25,6 @@ app.get("*", function(req, res) {
 });
 
 const server = http.createServer(app);
-const WebSocket = require('ws');
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', function connection(ws) {

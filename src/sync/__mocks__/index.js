@@ -1,7 +1,6 @@
-const wrapper = {
+export default {
     send: () => {
     },
     receiveHandler: null
 };
 
-export default wrapper;
