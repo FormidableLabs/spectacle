@@ -107,13 +107,16 @@ export class Manager extends Component {
   };
 
   constructor(props) {
-    super(props);
+    super(...arguments);
+    this._getProgressStyles = this._getProgressStyles.bind(this);
+    this._getControlStyles = this._getControlStyles.bind(this);
     this._handleKeyPress = this._handleKeyPress.bind(this);
     this._handleScreenChange = this._handleScreenChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this._goToSlide = this._goToSlide.bind(this);
     this._startAutoplay = this._startAutoplay.bind(this);
     this._stopAutoplay = this._stopAutoplay.bind(this);
+
     this.state = {
       lastSlideIndex: null,
       slideReference: [],
@@ -121,6 +124,8 @@ export class Manager extends Component {
       mobile: window.innerWidth < props.contentWidth,
       autoplaying: props.autoplay,
     };
+
+    this.viewedIndexes = new Set();
     this.slideCache = null;
   }
 
@@ -166,8 +171,6 @@ export class Manager extends Component {
   componentWillUnmount() {
     this._detachEvents();
   }
-
-  viewedIndexes = new Set();
 
   _attachEvents() {
     wsync.receiveHandler = (msg) => {
@@ -631,7 +634,7 @@ export class Manager extends Component {
       slideReference: this.state.slideReference,
     });
   }
-  _getProgressStyles = () => {
+  _getProgressStyles() {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 
@@ -640,7 +643,7 @@ export class Manager extends Component {
     }
     return null;
   }
-  _getControlStyles = () => {
+  _getControlStyles() {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 

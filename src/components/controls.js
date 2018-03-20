@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Controls extends Component {
-  resolveFillStyle = (name) => {
+  constructor() {
+    super(...arguments);
+    this.resolveFillStyle = this.resolveFillStyle.bind(this);
+  }
+
+  resolveFillStyle(name) {
     let color;
     const { controlColor } = this.props;
     if (controlColor) {
@@ -17,6 +22,7 @@ export default class Controls extends Component {
     }
     return this.context.styles.controls[name];
   }
+
   render() {
     return (
       <div>
