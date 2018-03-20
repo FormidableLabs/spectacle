@@ -5343,6 +5343,10 @@ safe-buffer@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
 
+safe-buffer@~5.1.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
+
 sane@~1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/sane/-/sane-1.6.0.tgz#9610c452307a135d29c1fdfe2547034180c46775"
@@ -6211,15 +6215,16 @@ write@^0.2.1:
   dependencies:
     mkdirp "^0.5.1"
 
-ws@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-5.1.0.tgz#ad7f95a65c625d47c24f2b8e5928018cf965e2a6"
+ws@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-4.1.0.tgz#a979b5d7d4da68bf54efe0408967c324869a7289"
   dependencies:
     async-limiter "~1.0.0"
+    safe-buffer "~5.1.0"
 
-xml-name-validator@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-2.0.1.tgz#4d8b8f1eccd3419aa362061becef515e1e559635"
+xml-name-validator@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
 
 "xtend@>=4.0.0 <4.1.0-0", xtend@^4.0.0:
   version "4.0.1"
