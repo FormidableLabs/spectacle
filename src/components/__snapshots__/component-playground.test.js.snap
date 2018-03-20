@@ -27,15 +27,11 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           <path
             d="M0 0h24v24H0z"
             fill="none"
-          >
-            
-          </path>
+          />
           <path
             d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
             fill="currentColor"
-          >
-            
-          </path>
+          />
         </svg>
       </button>
     </div>
@@ -76,13 +72,13 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           spellcheck="true"
         >
           /**
-           * Sample React Component
-           * Output domContainerNode is 'mountNode'
-           */
+ * Sample React Component
+ * Output domContainerNode is 'mountNode'
+ */
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
@@ -101,7 +97,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           {
         </span>
         
-          heading
+  heading
         <span
           class="token punctuation"
         >
@@ -114,7 +110,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -132,7 +128,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           ,
         </span>
         
-            fontWeight
+    fontWeight
         <span
           class="token punctuation"
         >
@@ -145,7 +141,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           "bold"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
@@ -157,7 +153,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           ,
         </span>
         
-          copy
+  copy
         <span
           class="token punctuation"
         >
@@ -170,7 +166,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -183,22 +179,22 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           "1.5rem"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
@@ -251,7 +247,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           (
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -272,7 +268,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -325,7 +321,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-              Create Live Code Examples 
+      Create Live Code Examples 
         <span
           class="token keyword"
         >
@@ -349,7 +345,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           !
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -370,7 +366,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -423,8 +419,8 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-              Supports Light and Dark Syntax Themes
-            
+      Supports Light and Dark Syntax Themes
+    
         <span
           class="token tag"
         >
@@ -445,7 +441,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -466,15 +462,15 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           )
         </span>
         
-        
-        
+
+
         <span
           class="token function"
         >
@@ -569,15 +565,11 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           <path
             d="M0 0h24v24H0z"
             fill="none"
-          >
-            
-          </path>
+          />
           <path
             d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
             fill="currentColor"
-          >
-            
-          </path>
+          />
         </svg>
       </button>
     </div>
@@ -618,13 +610,13 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           spellcheck="true"
         >
           /**
-           * Sample React Component
-           * Output domContainerNode is 'mountNode'
-           */
+ * Sample React Component
+ * Output domContainerNode is 'mountNode'
+ */
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
@@ -643,7 +635,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           {
         </span>
         
-          heading
+  heading
         <span
           class="token punctuation"
         >
@@ -656,7 +648,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -674,7 +666,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           ,
         </span>
         
-            fontWeight
+    fontWeight
         <span
           class="token punctuation"
         >
@@ -687,7 +679,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           "bold"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
@@ -699,7 +691,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           ,
         </span>
         
-          copy
+  copy
         <span
           class="token punctuation"
         >
@@ -712,7 +704,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -725,22 +717,22 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           "1.5rem"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
@@ -793,7 +785,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           (
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -814,7 +806,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -867,7 +859,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-              Create Live Code Examples 
+      Create Live Code Examples 
         <span
           class="token keyword"
         >
@@ -891,7 +883,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           !
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -912,7 +904,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -965,8 +957,8 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-              Supports Light and Dark Syntax Themes
-            
+      Supports Light and Dark Syntax Themes
+    
         <span
           class="token tag"
         >
@@ -987,7 +979,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -1008,15 +1000,15 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           )
         </span>
         
-        
-        
+
+
         <span
           class="token function"
         >
@@ -1111,15 +1103,11 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           <path
             d="M0 0h24v24H0z"
             fill="none"
-          >
-            
-          </path>
+          />
           <path
             d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
             fill="currentColor"
-          >
-            
-          </path>
+          />
         </svg>
       </button>
     </div>
@@ -1160,13 +1148,13 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           spellcheck="true"
         >
           /**
-           * Sample React Component
-           * Output domContainerNode is 'mountNode'
-           */
+ * Sample React Component
+ * Output domContainerNode is 'mountNode'
+ */
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
@@ -1185,7 +1173,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           {
         </span>
         
-          heading
+  heading
         <span
           class="token punctuation"
         >
@@ -1198,7 +1186,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -1216,7 +1204,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           ,
         </span>
         
-            fontWeight
+    fontWeight
         <span
           class="token punctuation"
         >
@@ -1229,7 +1217,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           "bold"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
@@ -1241,7 +1229,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           ,
         </span>
         
-          copy
+  copy
         <span
           class="token punctuation"
         >
@@ -1254,7 +1242,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -1267,22 +1255,22 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           "1.5rem"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
@@ -1335,7 +1323,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           (
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -1356,7 +1344,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -1409,7 +1397,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-              Create Live Code Examples 
+      Create Live Code Examples 
         <span
           class="token keyword"
         >
@@ -1433,7 +1421,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           !
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -1454,7 +1442,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -1507,8 +1495,8 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-              Supports Light and Dark Syntax Themes
-            
+      Supports Light and Dark Syntax Themes
+    
         <span
           class="token tag"
         >
@@ -1529,7 +1517,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -1550,15 +1538,15 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           )
         </span>
         
-        
-        
+
+
         <span
           class="token function"
         >
@@ -1653,15 +1641,11 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
           <path
             d="M0 0h24v24H0z"
             fill="none"
-          >
-            
-          </path>
+          />
           <path
             d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
             fill="currentColor"
-          >
-            
-          </path>
+          />
         </svg>
       </button>
     </div>
@@ -1674,9 +1658,7 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
     >
       <div
         class="react-live-preview css-cv4xj2"
-      >
-        
-      </div>
+      />
       <div
         class="react-live-error css-1qmf1kp"
       >
@@ -1828,7 +1810,7 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
           ;
         </span>
         
-              
+      
         <span
           class="token function"
         >

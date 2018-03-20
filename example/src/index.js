@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import {
   Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
@@ -27,14 +27,20 @@ const theme = createTheme({
   primary: '#ff4081'
 });
 
-export default class Presentation extends React.Component {
-  state = {
-    steps: 0
+export default class Presentation extends Component {
+  constructor() {
+    super(...arguments);
+
+    this.updateSteps = this.updateSteps.bind(this);
   }
 
-  updateSteps = steps => {
-    if (this.state.steps !== steps) { // eslint-disable-line no-invalid-this
-      this.setState({ steps }); // eslint-disable-line no-invalid-this
+  state = {
+    steps: 0
+  };
+
+  updateSteps(steps) {
+    if (this.state.steps !== steps) {
+      this.setState({ steps });
     }
   }
 

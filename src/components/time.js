@@ -6,7 +6,7 @@ import { TimeContainer } from './time-components';
 
 export default class Time extends Component {
   constructor() {
-    super();
+    super(...arguments);
     this.state = { timer: false };
   }
   _renderClock() {

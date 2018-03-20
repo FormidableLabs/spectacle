@@ -194,7 +194,7 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
       <Slide />,
       <Slide
         notes="These are my slide notes!!"
-    />,
+      />,
       <Slide />,
     ]
   }
@@ -385,7 +385,7 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
       <Slide />,
       <Slide
         notes="These are my slide notes!!"
-    />,
+      />,
       <Slide />,
     ]
   }
