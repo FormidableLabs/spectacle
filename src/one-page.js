@@ -70,10 +70,17 @@ const loadSpectacleScript = () => {
       const renderFn = script.innerHTML;
       const input = template(renderFn);
       const output = Babel.transform(input, {
-        'presets': ['@babel/preset-env', '@babel/preset-react'],
+        'presets': [
+          // Simulate '@babel/preset-env' from what's available in:
+          // https://unpkg.com/@babel/standalone/package.json
+          'es2015',
+          'es2016',
+          'es2017',
+          'react'
+        ],
         'plugins': [
-          '@babel/plugin-proposal-object-rest-spread',
-          '@babel/plugin-proposal-class-properties'
+          'syntax-object-rest-spread',
+          'syntax-class-properties'
         ]
       }).code;
 
