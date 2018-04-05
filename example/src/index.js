@@ -107,7 +107,7 @@ export default class Presentation extends Component {
             theme="dark"
           />
         </Slide>
-        <Slide transition={['slide']} bgImage={images.city.replace('/', '')} bgDarken={0.75}>
+        <Slide transition={['slide']} bgImage={images.city.replace('/', '')}  bgOverlayColour={'#FFA500'} bgTransparentize="0.8">
           <Appear fid="1">
             <Heading size={1} caps fit textColor="primary">
               Full Width

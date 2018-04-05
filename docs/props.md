@@ -17,3 +17,4 @@ Every component in the Tag API that has `(Base)` after it has been extended from
 | bgColor | PropTypes.string | Set `backgroundColor` value|
 | bgImage | PropTypes.string | Set `backgroundImage` value|
 | bgDarken | PropTypes.number | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image|
+| bgLighten | PropTypes.number | Float value from 0.0 to 1.0 specifying how much to lighten the bgImage image|

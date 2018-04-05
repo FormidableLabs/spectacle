@@ -787,6 +787,7 @@ Every component above that has `(Base)` after it has been extended from a common
 | bgPosition | PropTypes.string | Set `backgroundPosition` value|
 | bgRepeat | PropTypes.string | Set `backgroundRepeat` value|
 | bgDarken | PropTypes.number | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image|
+| bgLighten | PropTypes.number | Float value from 0.0 to 1.0 specifying how much to lighten the bgImage image|
 | overflow | PropTypes.string | Set `overflow` value|
 | height | PropTypes.string | Set `height` value|
 
