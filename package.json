@@ -12,21 +12,32 @@
     "clean:dist": "rimraf dist",
     "clean": "npm run clean:lib && npm run clean:dist",
     "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.js/\"",
-    "build:es": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-babel -- -d es",
+    "build:es":
+      "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-babel -- -d es",
     "build:lib": "builder run build-babel -- -d lib",
     "build-wds-base": "webpack-dev-server",
     "build-webpack-base": "webpack",
-    "build-webpack": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-webpack-base",
-    "build:dist": "builder run build-webpack -- --config webpack.config.production.js",
-    "build:dist-umd": "builder run build-webpack -- --config webpack.config.umd.js",
-    "build:dist-umd-prod": "builder run build-webpack -- --config webpack.config.umd.production.js",
-    "build": "builder concurrent --buffer build:es build:lib build:dist build:dist-umd build:dist-umd-prod",
+    "build-webpack":
+      "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-webpack-base",
+    "build:dist":
+      "builder run build-webpack -- --config webpack.config.production.js",
+    "build:dist-umd":
+      "builder run build-webpack -- --config webpack.config.umd.js",
+    "build:dist-umd-prod":
+      "builder run build-webpack -- --config webpack.config.umd.production.js",
+    "build":
+      "builder concurrent --buffer build:es build:lib build:dist build:dist-umd build:dist-umd-prod",
     "build:publish": "npm run clean && npm run build",
     "lint": "eslint src example *.js",
+    "eslint-check":
+      "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "precommit": "lint-staged",
     "deploy": "npm run build:dist && surge -p .",
-    "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
+    "start":
+      "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
     "test": "jest --verbose",
-    "test-debug": "node --inspect-brk node_modules/jest/bin/jest.js --runInBand",
+    "test-debug":
+      "node --inspect-brk node_modules/jest/bin/jest.js --runInBand",
     "check": "npm run lint && npm run test"
   },
   "author": "",
@@ -77,12 +88,16 @@
     "enzyme-to-json": "3.1.2",
     "eslint": "^4.19.0",
     "eslint-config-formidable": "^3.0.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-filenames": "^1.2.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.11",
+    "husky": "^0.14.3",
     "jest": "^22.4.2",
     "jest-serializer-enzyme": "^1.0.0",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.11.1",
     "prop-types": "^15.5.10",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
@@ -104,13 +119,11 @@
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/__mocks__/styleMock.js"
     },
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/jest-setup.js"
-    ]
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "setupFiles": ["raf/polyfill", "<rootDir>/jest-setup.js"]
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "lint-staged": {
+    "*.{js,json,css,md}": ["prettier --write", "git add"]
+  }
 }
