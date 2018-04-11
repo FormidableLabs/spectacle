@@ -29,8 +29,8 @@
       "builder concurrent --buffer build:es build:lib build:dist build:dist-umd build:dist-umd-prod",
     "build:publish": "npm run clean && npm run build",
     "lint": "eslint src example *.js",
-    "eslint-check":
-      "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "prettier-check": "lint-staged",
+    "prettier": "prettier",
     "deploy": "npm run build:dist && surge -p .",
     "start":
       "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
@@ -128,6 +128,7 @@
     }
   },
   "lint-staged": {
+    "*.js": ["eslint"],
     "*.{js,json,css,md}": ["prettier --list-different"]
   }
 }

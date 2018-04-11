@@ -43,7 +43,7 @@
     "arrow-parens": "off",
     "no-use-before-define": "off",
     "react/jsx-filename-extension": "off",
-    "react/require-extension": "off",
+    "react/require-extension": "on",
     "react/no-multi-comp": "off",
     "react/prop-types": "warn",
     "react/sort-comp": "warn",
