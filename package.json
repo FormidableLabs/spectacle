@@ -12,31 +12,23 @@
     "clean:dist": "rimraf dist",
     "clean": "npm run clean:lib && npm run clean:dist",
     "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.js/\"",
-    "build:es":
-      "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-babel -- -d es",
+    "build:es": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-babel -- -d es",
     "build:lib": "builder run build-babel -- -d lib",
     "build-wds-base": "webpack-dev-server",
     "build-webpack-base": "webpack",
-    "build-webpack":
-      "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-webpack-base",
-    "build:dist":
-      "builder run build-webpack -- --config webpack.config.production.js",
-    "build:dist-umd":
-      "builder run build-webpack -- --config webpack.config.umd.js",
-    "build:dist-umd-prod":
-      "builder run build-webpack -- --config webpack.config.umd.production.js",
-    "build":
-      "builder concurrent --buffer build:es build:lib build:dist build:dist-umd build:dist-umd-prod",
+    "build-webpack": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-webpack-base",
+    "build:dist": "builder run build-webpack -- --config webpack.config.production.js",
+    "build:dist-umd": "builder run build-webpack -- --config webpack.config.umd.js",
+    "build:dist-umd-prod": "builder run build-webpack -- --config webpack.config.umd.production.js",
+    "build": "builder concurrent --buffer build:es build:lib build:dist build:dist-umd build:dist-umd-prod",
     "build:publish": "npm run clean && npm run build",
     "lint": "eslint src example *.js",
     "prettier-check": "lint-staged",
     "prettier": "prettier",
     "deploy": "npm run build:dist && surge -p .",
-    "start":
-      "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
+    "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
     "test": "jest --verbose",
-    "test-debug":
-      "node --inspect-brk node_modules/jest/bin/jest.js --runInBand",
+    "test-debug": "node --inspect-brk node_modules/jest/bin/jest.js --runInBand",
     "check": "npm run lint && npm run test"
   },
   "author": "",
