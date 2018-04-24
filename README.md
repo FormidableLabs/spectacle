@@ -547,6 +547,8 @@ The element tags are the bread and butter of your slide content. Most of these t
 
 This tag does not extend from Base. It's special. Wrapping elements in the appear tag makes them appear/disappear in order in response to navigation.
 
+For best performance, wrap the contents of this tag in a native DOM element like a `<div>` or `<span>`.
+
 |Name|PropType|Description|
 |---|---|---|
 |order|PropTypes.number| An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.
@@ -555,6 +557,21 @@ This tag does not extend from Base. It's special. Wrapping elements in the appea
 |endValue|Proptypes.object|An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in, so the default `endValue` value is `{ opacity: 1 }`.
 |easing|PropTypes.string|An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). Default value is `quadInOut`
 
+<a name="anim"></a>
+#### Anim
+
+If you want extra flexibility with animated animation, you can use the Anim component instead of Appear. It will let you have multi-step animations for each individual fragment. You can use this to create fancy animated intros, in-slide carousels, and many other fancy things. This tag does not extend from Base. It's special. 
+
+For best performance, wrap the contents of this tag in a native DOM element like a `<div>` or `<span>`.
+
+|Name|PropType|Description|
+|---|---|---|
+|order|PropTypes.number| An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.
+|transitionDuration|PropTypes.number|A duration (in milliseconds) for the animation. Default value is `300`.
+|fromStyle|Proptypes.object|A style object that defines the starting, inactive state of the Anim tag.
+|toStyle|Proptypes.array|An array of style objects that define each step in the animation. They will step from one toStyle object to another, until that fragment is finished with its animations.
+|easing|PropTypes.string|A victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing).
+|onAnim|PropTypes.fun|This function is called every time the Anim component plays an animation. It'll be called with two arguments, forwards, a boolean indicating if it was stepped forwards or backwards, and the index of the animation that was just played.
 
 <a name="blockquote-quote-and-cite-base"></a>
 #### BlockQuote, Quote and Cite (Base)
