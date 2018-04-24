@@ -1,21 +1,9 @@
-const webpack = require('webpack');
 const config = require('./webpack.config.umd');
 
-// Mutate dev config to production.
-config.output.pathinfo = false;
-config.output.filename = '[name].min.js';
-config.plugins = config.plugins.concat([
-  new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
+module.exports = Object.assign({}, config, {
+  mode: 'production',
+  output: Object.assign({}, config.output, {
+    pathinfo: false,
+    filename: '[name].min.js',
   }),
-  new webpack.optimize.UglifyJsPlugin({
-    sourceMap: true,
-    compressor: {
-      warnings: false
-    }
-  })
-]);
-
-module.exports = config;
+});

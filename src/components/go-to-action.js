@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
 import styled from 'react-emotion';
@@ -10,7 +10,7 @@ const GoToActionButton = styled.button(({ styles }) => [
   styles.user
 ]);
 
-class GoToAction extends React.Component {
+class GoToAction extends Component {
   render() {
     const {
       props: { render, children, style, slide },

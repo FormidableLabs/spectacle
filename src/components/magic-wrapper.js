@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
@@ -14,7 +14,7 @@ const Deck = styled.div(() => ({
   height: '100%',
 }));
 
-class Context extends React.Component {
+class Context extends Component {
   static contextTypes = {
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
@@ -53,7 +53,7 @@ class Context extends React.Component {
   }
 }
 
-export default class MagicText extends React.Component {
+export default class MagicText extends Component {
   static contextTypes = {
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
@@ -70,18 +70,18 @@ export default class MagicText extends React.Component {
     presenter: PropTypes.bool
   };
   constructor(props) {
-    super(props);
+    super(...arguments);
     this.container = null;
     this.styleMap = {};
     this.lastPortalMap = {};
     this.portalMap = {};
     this.diffs = {};
     this.lastDiffs = null;
+    this.makePortal = this.makePortal.bind(this);
     this.state = {
       renderedChildren: props.children,
     };
   }
-
   componentDidMount() {
     this.mounted = true;
     this.portal = document.getElementById('portal');
@@ -204,7 +204,7 @@ export default class MagicText extends React.Component {
     clearTimeout(this.timeout);
     this.mounted = false;
   }
-  makePortal = () => {
+  makePortal() {
     const p = document.createElement('div');
     p.id = 'portal';
     p.style.position = 'absolute';
@@ -215,7 +215,7 @@ export default class MagicText extends React.Component {
     p.style.visibility = 'hidden';
     document.body.append(p);
     return p;
-  };
+  }
   render() {
     return (
       <div

@@ -2,64 +2,48 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  mode: 'development',
   devtool: 'cheap-module-source-map',
-  entry: ['webpack-hot-middleware/client', './index'],
+  entry: './index',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/dist/',
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
+        include: [
+          'index.js',
+          'src',
+          'example/assets',
+          'example/src',
+        ].map((name) => path.resolve(__dirname, name)),
         loader: 'babel-loader',
-        query: {
-          plugins: [
-            [
-              'react-transform',
-              {
-                transforms: [
-                  {
-                    transform: 'react-transform-hmr',
-                    imports: ['react'],
-                    locals: ['module'],
-                  },
-                  {
-                    transform: 'react-transform-catch-errors',
-                    imports: ['react', 'redbox-react'],
-                  },
-                ],
-              },
-            ],
-          ],
-        },
-        exclude: /node_modules/,
-        include: __dirname,
       },
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'raw-loader'],
-        include: __dirname,
+        loader: 'style-loader!raw-loader',
       },
       {
         test: /\.svg$/,
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
         include: path.join(__dirname, 'example/assets'),
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
       },
       {
         test: /\.png$/,
-        loader: 'url-loader?mimetype=image/png',
         include: path.join(__dirname, 'example/assets'),
+        loader: 'url-loader?mimetype=image/png',
       },
       {
         test: /\.jpg$/,
-        loader: 'url-loader?mimetype=image/jpg',
         include: path.join(__dirname, 'example/assets'),
+        loader: 'url-loader?mimetype=image/jpg',
       },
     ],
   },

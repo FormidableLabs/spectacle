@@ -1,7 +1,8 @@
 /*
+/dist/*
 !/dist/spectacle*
-dist/*.map
-!/docs
+/dist/*.map
+!/es
 !/lib
 !/src
 __snapshots__

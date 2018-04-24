@@ -1,8 +1,9 @@
 language: node_js
 
 node_js:
-  - 6
-  - 8
+  - "6"
+  - "8"
+  - "9"
 
 # Use container-based Travis infrastructure.
 sudo: false
@@ -16,10 +17,6 @@ notifications:
     on_success: change
     on_failure: always
 
-before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
 script:
-  - yarn run lint
-  - yarn run test
+  - yarn run build
+  - yarn run check

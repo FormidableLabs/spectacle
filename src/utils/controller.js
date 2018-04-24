@@ -18,7 +18,7 @@ export default class Controller extends Component {
   };
 
   constructor(props) {
-    super(props);
+    super(...arguments);
 
     this.history = props.history || history;
   }

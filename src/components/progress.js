@@ -34,7 +34,12 @@ const Bar = styled.div(({ styles, width }) => [ styles, width ]);
 const Container = styled.div(props => props.styles);
 
 export default class Progress extends Component {
-  resolveProgressStyles = (field) => {
+  constructor() {
+    super(...arguments);
+    this.resolveProgressStyles = this.resolveProgressStyles.bind(this);
+  }
+
+  resolveProgressStyles(field) {
     const { progressColor } = this.props;
 
     if (!this.props.progressColor) {

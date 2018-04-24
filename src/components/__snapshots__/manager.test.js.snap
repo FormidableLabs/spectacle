@@ -276,12 +276,14 @@ exports[`<Manager /> should render correctly. 1`] = `
               viewBox="0 0 512 512"
             >
               <Styled(button)
+                aria-label="Toggle full screen"
                 className="css-12n5ud"
                 onClick={[Function]}
                 style={undefined}
                 viewBox="0 0 512 512"
               >
                 <button
+                  aria-label="Toggle full screen"
                   className="css-1hv29sw"
                   onClick={[Function]}
                   style={undefined}
@@ -605,12 +607,14 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
               viewBox="0 0 512 512"
             >
               <Styled(button)
+                aria-label="Toggle full screen"
                 className="css-12n5ud"
                 onClick={[Function]}
                 style={undefined}
                 viewBox="0 0 512 512"
               >
                 <button
+                  aria-label="Toggle full screen"
                   className="css-1hv29sw"
                   onClick={[Function]}
                   style={undefined}
@@ -956,12 +960,14 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               viewBox="0 0 512 512"
             >
               <Styled(button)
+                aria-label="Toggle full screen"
                 className="css-12n5ud"
                 onClick={[Function]}
                 style={undefined}
                 viewBox="0 0 512 512"
               >
                 <button
+                  aria-label="Toggle full screen"
                   className="css-1hv29sw"
                   onClick={[Function]}
                   style={undefined}

@@ -5,7 +5,12 @@ import styled from 'react-emotion';
 const StyledButton = styled.button(props => props.styles);
 
 export default class Controls extends Component {
-  resolveFillStyle = (name) => {
+  constructor() {
+    super(...arguments);
+    this.resolveFillStyle = this.resolveFillStyle.bind(this);
+  }
+
+  resolveFillStyle(name) {
     let color;
     const { controlColor } = this.props;
     if (controlColor) {
@@ -20,6 +25,7 @@ export default class Controls extends Component {
     }
     return this.context.styles.controls[name];
   }
+
   render() {
     return (
       <div style={this.context.styles.controls.container}>

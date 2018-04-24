@@ -10,9 +10,11 @@ const StyledWrapper = styled.div(props => props.styles);
 const StyledEditor = styled(({ syntaxStyles: _, prismTheme: __, ...rest }) => <Editor {...rest} />)`
   && {
     ${props => props.syntaxStyles}
-  }
 
-  ${props => props.prismTheme}
+    &.builtin-prism-theme {
+      ${props => props.prismTheme}
+    }
+  }
 `;
 
 export default class CodePane extends Component {
@@ -22,6 +24,8 @@ export default class CodePane extends Component {
 
   render() {
     const useDarkTheme = this.props.theme === 'dark';
+    const externalPrismTheme = this.props.theme === 'external';
+    const className = `language-${this.props.lang} ${externalPrismTheme ? '' : 'builtin-prism-theme'} ${this.props.className}`;
 
     const wrapperStyles = [
       this.context.styles.components.codePane,
@@ -35,7 +39,7 @@ export default class CodePane extends Component {
         styles={wrapperStyles}
       >
         <StyledEditor
-          className="language-prism"
+          className={className}
           code={this.props.source}
           language={this.props.lang}
           contentEditable={this.props.contentEditable}
@@ -62,13 +66,13 @@ CodePane.propTypes = {
   lang: PropTypes.string,
   source: PropTypes.string,
   style: PropTypes.object,
-  theme: PropTypes.string,
+  theme: PropTypes.oneOf(['dark', 'light', 'external']),
 };
 
 CodePane.defaultProps = {
-  theme: 'dark',
   className: '',
   contentEditable: false,
   lang: 'markup',
   source: '',
+  theme: 'dark',
 };

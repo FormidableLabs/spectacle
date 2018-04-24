@@ -40,9 +40,11 @@ const PlaygroundEditor = styled(({ syntaxStyles: _, prismTheme: __, ...rest }) =
     ${props => props.syntaxStyles}
     min-height: 100%;
     font-size: 1.25vw;
-  }
 
-  ${props => props.prismTheme}
+    &.builtin-prism-theme {
+      ${props => props.prismTheme}
+    }
+  }
 `;
 
 const PlaygroundRow = styled.div`
@@ -119,9 +121,8 @@ const PlaygroundError = styled(LiveError)`
 const STORAGE_KEY = 'spectacle-playground';
 
 class ComponentPlayground extends Component {
-  constructor(props) {
-    super(props);
-
+  constructor() {
+    super(...arguments);
     this.onRef = this.onRef.bind(this);
     this.onEditorChange = this.onEditorChange.bind(this);
     this.requestFullscreen = this.requestFullscreen.bind(this);
@@ -184,16 +185,20 @@ class ComponentPlayground extends Component {
     const {
       previewBackgroundColor,
       scope = {},
-      theme = 'dark'
+      theme = 'dark',
+      transformCode
     } = this.props;
 
     const useDarkTheme = theme === 'dark';
+    const externalPrismTheme = this.props.theme === 'external';
+    const className = `language-jsx ${externalPrismTheme ? '' : 'builtin-prism-theme'}`;
 
     return (
       <PlaygroundProvider
         mountStylesheet={false}
         code={this.state.code}
         scope={{ Component, ...scope }}
+        transformCode={transformCode}
         noInline
       >
         <PlaygroundRow>
@@ -218,7 +223,7 @@ class ComponentPlayground extends Component {
 
           <PlaygroundColumn>
             <PlaygroundEditor
-              className="language-prism"
+              className={className}
               syntaxStyles={this.context.styles.components.syntax}
               prismTheme={this.context.styles.prism[useDarkTheme ? 'dark' : 'light']}
               onChange={this.onEditorChange}
@@ -239,7 +244,12 @@ ComponentPlayground.propTypes = {
   code: PropTypes.string,
   previewBackgroundColor: PropTypes.string,
   scope: PropTypes.object,
-  theme: PropTypes.string
+  theme: PropTypes.oneOf(['dark', 'light', 'external']),
+  transformCode: PropTypes.func,
+};
+
+ComponentPlayground.defaultProps = {
+  theme: 'dark',
 };
 
 export default ComponentPlayground;

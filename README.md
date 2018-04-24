@@ -132,11 +132,11 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
 <body>
     <div id="root"></div>
     <script src="https://unpkg.com/prop-types@15/prop-types.js"></script>
-    <script src="https://unpkg.com/react@15/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="https://unpkg.com/spectacle/dist/spectacle.js"></script>
-    <script src="https://unpkg.com/spectacle/lib/one-page.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://unpkg.com/spectacle@^4/dist/spectacle.js"></script>
+    <script src="https://unpkg.com/spectacle@^4/lib/one-page.js"></script>
     <script type="text/spectacle">
       () => {
         // Your JS Code goes here
@@ -327,7 +327,7 @@ The returned theme object can then be passed to the `Deck` tag via the `theme` p
 
 _How can I easily style the base components for my presentation?_
 
-Historically, custom styling in Spectacle has meant screwing with a theme file, or using gross `!important` overrides. We fixed that. Spectacle is now driven by [emotion](github.com/emotion-js/emotion), so you can bring your own styling library, whether its emotion itself, or something like styled-components or glamorous. For example, if you want to create a custom Heading style:
+Historically, custom styling in Spectacle has meant screwing with a theme file, or using gross `!important` overrides. We fixed that. Spectacle is now driven by [emotion](https://github.com/emotion-js/emotion), so you can bring your own styling library, whether its emotion itself, or something like styled-components or glamorous. For example, if you want to create a custom Heading style:
 
 ```javascript
 import styled from 'styled-components';
@@ -522,7 +522,7 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 
 > NOTE: The Magic tag uses the Web Animations API. If you use the Magic tag and want it to work places other than Chrome, you will need to include the polyfill [https://github.com/web-animations/web-animations-js](https://github.com/web-animations/web-animations-js)
 
-The Magic Tag is a new experimental feature that attempts to recreate Magic Move behavior that slide authors might be accustomed to coming from Keynote. It wraps slides, and transitions between positional values for child elements. This means that if you have two similar strings, we will transition common characters to their new positions. This does not transition on non positional values such as slide background color or font size.
+The Magic Tag is a new experimental feature that attempts to recreate Magic Move behavior that slide authors might be accustomed to coming from Keynote. It wraps slides, and transitions between positional values for child elements. This means that if you have two similar strings, we will transition common characters to their new positions. This does not transition on non positional values such as slide background color or font size. Do not use a `transition` prop on your slides if you are wrapping them with a Magic tag since it will take care of the transition for you.
 
 Using Magic is pretty simple, you just wrap your slides with it, and it transitions between them:
 
@@ -547,10 +547,31 @@ The element tags are the bread and butter of your slide content. Most of these t
 
 This tag does not extend from Base. It's special. Wrapping elements in the appear tag makes them appear/disappear in order in response to navigation.
 
+For best performance, wrap the contents of this tag in a native DOM element like a `<div>` or `<span>`.
+
 |Name|PropType|Description|
 |---|---|---|
 |order|PropTypes.number| An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.
+|transitionDuration|PropTypes.number|An optional duration (in milliseconds) for the Appear animation. Default value is `300`.
+|startValue|Proptypes.object|An optional style object that defines the starting, inactive state of the Appear tag. The default animation is a simple fade-in, so the default `startValue` value is `{ opacity: 0 }`.
+|endValue|Proptypes.object|An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in, so the default `endValue` value is `{ opacity: 1 }`.
+|easing|PropTypes.string|An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). Default value is `quadInOut`
 
+<a name="anim"></a>
+#### Anim
+
+If you want extra flexibility with animated animation, you can use the Anim component instead of Appear. It will let you have multi-step animations for each individual fragment. You can use this to create fancy animated intros, in-slide carousels, and many other fancy things. This tag does not extend from Base. It's special. 
+
+For best performance, wrap the contents of this tag in a native DOM element like a `<div>` or `<span>`.
+
+|Name|PropType|Description|
+|---|---|---|
+|order|PropTypes.number| An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.
+|transitionDuration|PropTypes.number|A duration (in milliseconds) for the animation. Default value is `300`.
+|fromStyle|Proptypes.object|A style object that defines the starting, inactive state of the Anim tag.
+|toStyle|Proptypes.array|An array of style objects that define each step in the animation. They will step from one toStyle object to another, until that fragment is finished with its animations.
+|easing|PropTypes.string|A victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing).
+|onAnim|PropTypes.fun|This function is called every time the Anim component plays an animation. It'll be called with two arguments, forwards, a boolean indicating if it was stepped forwards or backwards, and the index of the animation that was just played.
 
 <a name="blockquote-quote-and-cite-base"></a>
 #### BlockQuote, Quote and Cite (Base)
@@ -573,8 +594,15 @@ This tag displays a styled, highlighted code preview. I prefer putting my code s
 |---|---|---|
 |lang|PropTypes.string| Prism compatible language name. i.e: 'javascript' |
 |source| PropTypes.string| String of code to be shown |
+|className| PropTypes.string| String of a className to be appended to the CodePane |
+|theme| PropTypes.string| Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. Defaults to `dark`. |
 
-If you want to change the theme used here, you can include a prism theme in index.html via a script tag. CodePane and Playground both use the prism library under the hood, which has several themes that are available to include.
+If you want to change the theme used here, you can include a prism theme in index.html via a style or a link tag. For your theme to be actually applied
+correctly you need to set the `theme` prop to `"external"`, which disables our builtin light and dark themes.
+Please note that including a theme can actually influence all CodePane and Playground components, even if you don't set this prop, since some Prism
+themes use very generic CSS selectors.
+
+CodePane and Playground both use the prism library under the hood, which has several themes that are available to include.
 
 <a name="code-base"></a>
 #### Code (Base)
@@ -592,7 +620,7 @@ For more information on the playground read the docs over at [react-live](https:
 |---|---|---|
 |code|PropTypes.string|The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed.|
 |previewBackgroundColor|PropTypes.string|The background color you want for the preview pane. Defaults to `#fff`.|
-|theme|PropTypes.string|Accepts `light` or `dark` for the source editor's syntax highlighting. Defaults to `light`.|
+|theme| PropTypes.string| Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. Defaults to `dark`. |
 |scope|PropTypes.object|Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.|
 
 Example code blocks:
@@ -614,6 +642,8 @@ class View extends React.Component {
 }
 render(<View />);
 ```
+
+If you want to change the theme used here, please refer to the instructions above in the [CodePane's API reference](#codepane-base).
 
 <a name="go-to-action"></a>
 #### Go To Action (Base)
