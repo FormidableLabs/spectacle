@@ -48,7 +48,7 @@ export const SlideContent = styled.div(props => {
     maxHeight: height || 700,
     maxWidth: width || 1000,
     transform: `scale(${scale})`,
-    padding: zoom > 0.6 ? margin || 40 : 10,
+    padding: zoom > 0.6 ? margin === undefined ? 40 : margin : 10,
   };
   const overviewStyles = {
     width: '100%'
