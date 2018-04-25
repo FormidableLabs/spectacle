@@ -97,6 +97,7 @@ export default class Text extends Component {
       ) : (
         <UnfitText
           className={this.props.className}
+          lineHeight={lineHeight}
           styles={{
             context: this.context.styles.components.text,
             base: getStyles.call(this),
