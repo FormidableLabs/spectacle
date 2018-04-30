@@ -88,6 +88,9 @@ export default class Heading extends Component {
   }
   render() {
     const { size, lineHeight, fit, style, children } = this.props;
+    if (size > 6) {
+      throw new Error('Heading size must be between 1 and 6');
+    }
     const Tag = `h${size}`;
     const typefaceStyle = this.context.typeface || {};
 
