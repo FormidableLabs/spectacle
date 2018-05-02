@@ -88,7 +88,7 @@
     "jest": "^22.4.2",
     "jest-serializer-enzyme": "^1.0.0",
     "lint-staged": "^7.0.4",
-    "prettier": "^1.11.1",
+    "prettier": "^1.12.1",
     "prop-types": "^15.5.10",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
@@ -110,8 +110,13 @@
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/__mocks__/styleMock.js"
     },
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "setupFiles": ["raf/polyfill", "<rootDir>/jest-setup.js"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/jest-setup.js"
+    ]
   },
   "sideEffects": false,
   "husky": {
@@ -120,7 +125,11 @@
     }
   },
   "lint-staged": {
-    "*.js": ["eslint"],
-    "*.{js,json,css,md}": ["prettier --list-different"]
+    "*.js": [
+      "eslint"
+    ],
+    "*.{js,json,css,md}": [
+      "prettier --list-different"
+    ]
   }
 }
