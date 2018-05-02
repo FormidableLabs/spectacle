@@ -429,6 +429,9 @@ export class Manager extends Component {
   _getHash(slideIndex) {
     return this.state.slideReference[slideIndex].id;
   }
+  _updateFragment(fragData) {
+    return updateFragment(fragData);
+  }
   _checkFragments(slide, forward) {
     const state = this.context.store.getState();
     const fragments = state.fragment.fragments;
@@ -445,23 +448,52 @@ export class Manager extends Component {
       }
     }
     if (slide in fragments) {
-      const count = size(fragments[slide]);
-      const visible = filter(fragments[slide], s => s.visible === true);
-      const hidden = filter(fragments[slide], s => s.visible !== true);
-      if (forward === true && visible.length !== count) {
+      const currentSlideFragments = fragments[slide];
+      const count = size(currentSlideFragments);
+      const fullyAnimated = filter(
+        currentSlideFragments,
+        frag => frag.animations.every(anim => anim === true)
+      );
+      const notFullyAnimated = filter(
+        currentSlideFragments,
+        frag => !frag.animations.every(anim => anim === true)
+      );
+
+      if (forward === true && fullyAnimated.length !== count) {
+        const target = notFullyAnimated[0];
+        target.animations[target.animations.indexOf(false)] = true;
         this.props.dispatch(
-          updateFragment({
-            fragment: hidden[0],
-            visible: true,
+          this._updateFragment({
+            fragment: target,
+            animations: target.animations
           })
         );
         return false;
       }
-      if (forward === false && hidden.length !== count) {
+      if (forward === false) {
+        if (
+          notFullyAnimated.length === count &&
+          notFullyAnimated.every(frag => frag.animations.every(anim => anim === false))
+        ) {
+          // If every fragment is animated back to square one, then switch slides
+          return true;
+        }
+
+        let target;
+        const lastFullyAnimatedFragment = fullyAnimated[size(fullyAnimated) - 1];
+        const lastNotFullyAnimatedFragment = notFullyAnimated[0];
+        if (fullyAnimated.length === count || lastNotFullyAnimatedFragment.animations.every(a => a === false)) {
+          // if all fragments are fully animated, target the last fully animated fragment
+          target = lastFullyAnimatedFragment;
+        } else if (notFullyAnimated !== count) {
+          // if some fragments are not fully animated, continue targeting that fragment
+          target = lastNotFullyAnimatedFragment;
+        }
+        target.animations[target.animations.lastIndexOf(true)] = false;
         this.props.dispatch(
-          updateFragment({
-            fragment: visible[size(visible) - 1],
-            visible: false,
+          this._updateFragment({
+            fragment: target,
+            animations: target.animations,
           })
         );
         return false;

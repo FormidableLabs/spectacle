@@ -16,7 +16,7 @@ const reducer = handleActions({
       fragment
     } = action.payload;
     const s = Object.assign({}, state);
-    s.fragments[fragment.slide][fragment.id].visible = action.payload.visible;
+    s.fragments[fragment.slide][fragment.id].animations = action.payload.animations;
     return s;
   }
 }, { fragments: {} });
