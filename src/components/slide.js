@@ -169,6 +169,7 @@ class Slide extends React.PureComponent {
     return transition;
   }
 
+  // eslint-disable-next-line
   getTransitionStyles() {
     const { transitioning, z } = this.state;
     const transition = this.getTransitionKeys();
