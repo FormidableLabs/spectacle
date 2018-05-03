@@ -5,6 +5,7 @@
 !/es
 !/lib
 !/src
+!/docs
 __snapshots__
 *.test.js
 !LICENSE
