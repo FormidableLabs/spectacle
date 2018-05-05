@@ -11,14 +11,11 @@ var config = require("./webpack.config");
 var app = express();
 var compiler = webpack(config);
 var webpackDev = require("webpack-dev-middleware");
-var webpackHot = require("webpack-hot-middleware");
 
 app.use(webpackDev(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath
 }));
-
-app.use(webpackHot(compiler));
 
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
