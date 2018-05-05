@@ -20,7 +20,9 @@ If you are adding a new feature or some extra functionality, you should also mak
 
 Before commiting any changes, be sure to do `yarn run lint`; this will lint all relevant files using [ESLint](http://eslint.org/) and report on any changes that you need to make.
 
-You will also want to ensure your code meets the prettier formating guidelines by running `yarn run prettier -l <filename>` or install the prettier editor plugin.
+You will also want to ensure your code meets the prettier formating guidelines by running `yarn run prettier -l <filename>` on a specific file. If there are differences the script errors out. You can also speciify a glob `yarn run prettier -l "src/**/*.js"` which will return a list of files that do not conform.
+
+Alternitivley install the Prettier [editor plugin](https://prettier.io/docs/en/editors.html) in your favorite editor. This is the perfered method.
 
 There is also a pre-commit hook in place to lint all staged files. If any of the staged files do not conform to the eslint rules or the [prettier](https://prettier.io/) formating guidelines, your commit will fail until you resolve all outstanding issues.
 
