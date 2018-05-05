@@ -23,6 +23,8 @@
     "build": "builder concurrent --buffer build:es build:lib build:dist build:dist-umd build:dist-umd-prod",
     "build:publish": "npm run clean && npm run build",
     "lint": "eslint src example *.js",
+    "prettier-check": "lint-staged",
+    "prettier": "prettier",
     "deploy": "npm run build:dist && surge -p .",
     "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
     "test": "jest --verbose",
@@ -77,12 +79,16 @@
     "enzyme-to-json": "3.1.2",
     "eslint": "^4.19.0",
     "eslint-config-formidable": "^3.0.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-filenames": "^1.2.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.11",
+    "husky": "^1.0.0-rc.1",
     "jest": "^22.4.2",
     "jest-serializer-enzyme": "^1.0.0",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.12.1",
     "prop-types": "^15.5.10",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
@@ -112,5 +118,18 @@
       "<rootDir>/jest-setup.js"
     ]
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ],
+    "*.{js,json,css,md}": [
+      "prettier --list-different"
+    ]
+  }
 }

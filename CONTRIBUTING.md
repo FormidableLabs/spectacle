@@ -16,22 +16,43 @@ You will find tests for files colocated with `*.test.js` suffixes. Whenever maki
 
 If you are adding a new feature or some extra functionality, you should also make sure to accompany those changes with appropriate tests.
 
-### Linting
+### Linting and Formating
 
 Before commiting any changes, be sure to do `yarn run lint`; this will lint all relevant files using [ESLint](http://eslint.org/) and report on any changes that you need to make.
+
+You will also want to ensure your code meets the prettier formating guidelines by running `yarn run prettier -l <filename>` or install the prettier editor plugin.
+
+There is also a pre-commit hook in place to lint all staged files. If any of the staged files do not conform to the eslint rules or the [prettier](https://prettier.io/) formating guidelines, your commit will fail until you resolve all outstanding issues.
+
+To resolve/fix prettier formating problems from the CLI:
+
+```
+yarn run prettier --write <filename>
+```
+
+This will modify your file in place. You will need to `git add` the file again and re-commit.
+
+Example
+
+```
+$ yarn run prettier --write src/components/time.js
+...
+src/components/time.js 93ms
+✨  Done in 0.58s.
+```
 
 ### Before submitting a PR...
 
 Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
 
-- Run the tests using `yarn run test`.
-- Run lint and flow using `yarn run lint`
+* Run the tests using `yarn run test`.
+* Run lint and flow using `yarn run lint`
 
 ## Releasing a new version to NPM (only for project administrators):
 
-1. Run `npm version patch` (or `minor`, `major` as appropriate) to run tests and lint, build the `lib` ands `dist` directories, , then update `package.json` and add a git tag.
-2. Run `npm publish` and publish to npm if all is well.
-3. Run `git push && git push --tags`
+1.  Run `npm version patch` (or `minor`, `major` as appropriate) to run tests and lint, build the `lib` ands `dist` directories, , then update `package.json` and add a git tag.
+2.  Run `npm publish` and publish to npm if all is well.
+3.  Run `git push && git push --tags`
 
 ## Contributor Covenant Code of Conduct
 
@@ -58,7 +79,7 @@ include:
 Examples of unacceptable behavior by participants include:
 
 * The use of sexualized language or imagery and unwelcome sexual attention or
-advances
+  advances
 * Trolling, insulting/derogatory comments, and personal or political attacks
 * Public or private harassment
 * Publishing others' private information, such as a physical or electronic

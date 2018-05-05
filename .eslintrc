@@ -1,7 +1,11 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": "formidable/configurations/es6-react",
+  "extends": [
+    "formidable/configurations/es6-react",
+    "prettier",
+    "prettier/react"
+  ],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -48,8 +52,11 @@
     "react/no-find-dom-node": "off",
     "no-invalid-this": "off",
     "complexity": "off",
-    "no-unused-vars": ["error", {
-      "argsIgnorePattern": "^_+$"
-    }]
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_+$"
+      }
+    ]
   }
 }
