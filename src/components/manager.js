@@ -26,6 +26,8 @@ import Fullscreen from './fullscreen';
 import Progress from './progress';
 import Controls from './controls';
 
+import wsync from '../sync';
+
 let convertStyle = styles => {
   return Object.keys(styles)
     .map(key => {
@@ -171,12 +173,17 @@ export class Manager extends Component {
   }
 
   _attachEvents() {
-    window.addEventListener('storage', this._goToSlide);
+    wsync.receiveHandler = (msg) => {
+      this._goToSlide({
+        key: 'spectacle-slide',
+        newValue: msg.data
+      });
+    };
     window.addEventListener('keydown', this._handleKeyPress);
     window.addEventListener('resize', this._handleScreenChange);
   }
   _detachEvents() {
-    window.removeEventListener('storage', this._goToSlide);
+    wsync.receiveHandler = null;
     window.removeEventListener('keydown', this._handleKeyPress);
     window.removeEventListener('resize', this._handleScreenChange);
   }
@@ -305,19 +312,17 @@ export class Manager extends Component {
         get(this.state.slideReference.find(slide => slide.id === data.slide), 'rootIndex', 0) :
         data.slide - 1;
 
-      localStorage.setItem(
-        'spectacle-slide',
+      wsync.send(
         JSON.stringify({
           slide: this._getHash(index),
           forward: false,
-          time: Date.now(),
-        })
-      );
-
+          time: Date.now()
+        }));
     } else {
       return;
     }
     const slideIndex = this._getSlideIndex();
+
     this.setState({
       lastSlideIndex: slideIndex || 0,
     });
@@ -343,24 +348,20 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex - 1)}${this._getSuffix()}`
         );
-        localStorage.setItem(
-          'spectacle-slide',
-          JSON.stringify({
-            slide: this._getHash(slideIndex - 1),
-            forward: false,
-            time: Date.now(),
-          })
-        );
+        wsync.send(
+        JSON.stringify({
+          slide: this._getHash(slideIndex - 1),
+          forward: false,
+          time: Date.now()
+        }));
       }
     } else if (slideIndex > 0) {
-      localStorage.setItem(
-        'spectacle-slide',
+      wsync.send(
         JSON.stringify({
           slide: this._getHash(slideIndex),
           forward: false,
-          time: Date.now(),
-        })
-      );
+          time: Date.now()
+        }));
     }
   }
   _nextUnviewedIndex() {
@@ -406,24 +407,20 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex + offset) + this._getSuffix()}`
         );
-        localStorage.setItem(
-          'spectacle-slide',
-          JSON.stringify({
-            slide: this._getHash(slideIndex + offset),
-            forward: true,
-            time: Date.now(),
-          })
-        );
+        wsync.send(
+        JSON.stringify({
+          slide: this._getHash(slideIndex + offset),
+          forward: true,
+          time: Date.now()
+        }));
       }
     } else if (slideIndex < slideReference.length) {
-      localStorage.setItem(
-        'spectacle-slide',
+      wsync.send(
         JSON.stringify({
           slide: this._getHash(slideIndex),
           forward: true,
-          time: Date.now(),
-        })
-      );
+          time: Date.now()
+        }));
     }
   }
   _getHash(slideIndex) {
