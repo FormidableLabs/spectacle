@@ -400,6 +400,7 @@ export class Manager extends Component {
         if (this.props.autoplay && this.state.autoplaying) {
           const slideData = '{ "slide": "0", "forward": "false" }';
           this._goToSlide({ key: 'spectacle-slide', newValue: slideData });
+          this.viewedIndexes = new Set();
         }
       } else if (slideIndex < slideReference.length - 1) {
         this.viewedIndexes.add(slideIndex);
