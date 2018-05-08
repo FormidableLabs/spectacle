@@ -330,7 +330,7 @@ _How can I easily style the base components for my presentation?_
 Historically, custom styling in Spectacle has meant screwing with a theme file, or using gross `!important` overrides. We fixed that. Spectacle is now driven by [emotion](https://github.com/emotion-js/emotion), so you can bring your own styling library, whether its emotion itself, or something like styled-components or glamorous. For example, if you want to create a custom Heading style:
 
 ```javascript
-import styled from 'styled-components';
+import styled from 'react-emotion';
 import { Heading } from 'spectacle';
 
 const CustomHeading = styled(Heading)`
