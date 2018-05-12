@@ -69,7 +69,9 @@ export function updateChildren(root, valMap = {}) {
       updateMap(valMap, child.nodeName);
       child.setAttribute(
         'data-key',
-        `${child.nodeName}-${valMap[child.nodeName]}`
+        'key' in child.dataset
+          ? child.dataset.key
+          : `${child.nodeName}-${valMap[child.nodeName]}`
       );
     }
     if (child.nodeType === 3) {

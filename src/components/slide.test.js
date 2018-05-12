@@ -98,15 +98,15 @@ describe('<Slide />', () => {
     expect(spy).toHaveBeenCalledTimes(3);
     expect(spy.mock.calls).toEqual([
       [{
-        payload: { slide: 4, id: '4-0', visible: false, className: 'fragment first' },
+        payload: { slide: 4, id: '4-0', animations: [false], className: 'fragment first' },
         type: 'ADD_FRAGMENT'
       }],
       [{
-        payload: { slide: 4, id: '4-1', visible: false, className: 'fragment second' },
+        payload: { slide: 4, id: '4-1', animations: [false], className: 'fragment second' },
         type: 'ADD_FRAGMENT'
       }],
       [{
-        payload: { slide: 4, id: '4-2', visible: false, className: 'fragment third' },
+        payload: { slide: 4, id: '4-2', animations: [false], className: 'fragment third' },
         type: 'ADD_FRAGMENT'
       }]
     ]);
@@ -131,15 +131,15 @@ describe('<Slide />', () => {
     expect(spy).toHaveBeenCalledTimes(3);
     expect(spy.mock.calls).toEqual([
       [{
-        payload: { slide: 7, id: '7-0', visible: false, className: 'fragment no-order' },
+        payload: { slide: 7, id: '7-0', animations: [false], className: 'fragment no-order' },
         type: 'ADD_FRAGMENT'
       }],
       [{
-        payload: { slide: 7, id: '7-1', visible: false, className: 'fragment first' },
+        payload: { slide: 7, id: '7-1', animations: [false], className: 'fragment first' },
         type: 'ADD_FRAGMENT'
       }],
       [{
-        payload: { slide: 7, id: '7-2', visible: false, className: 'fragment second' },
+        payload: { slide: 7, id: '7-2', animations: [false], className: 'fragment second' },
         type: 'ADD_FRAGMENT'
       }]
     ]);

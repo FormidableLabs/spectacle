@@ -1,3 +1,4 @@
+import Anim from './components/anim';
 import Appear from './components/appear';
 import BlockQuote from './components/block-quote';
 import Cite from './components/cite';
@@ -39,6 +40,7 @@ const themes = {
 };
 
 export {
+  Anim,
   Appear,
   BlockQuote,
   Cite,
