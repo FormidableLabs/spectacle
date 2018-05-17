@@ -1,5 +1,3 @@
-import 'prismjs/components/prism-core';
-
 // NOTE: This includes a "slim" list of some components of prism, but not all
 // For more, see: https://github.com/PrismJS/prism/blob/1fd690dd8a652dee375acb78b6034c3fc2db687c/components.js
 // and: https://github.com/PrismJS/prism/tree/gh-pages/components
