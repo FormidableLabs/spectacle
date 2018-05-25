@@ -603,6 +603,7 @@ Slide Content
   `;
 
   ....
+import slidesMarkdown from "!raw-loader!markdown.md";
 
 <Deck ...>
   {MarkdownSlides(slidesMarkdown)}
