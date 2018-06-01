@@ -58,6 +58,12 @@ export const getStyles = function getStyles() {
   ) {
     this.warnedAboutFontSize = false;
   }
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    typeof this.warnedAboutLightenAndDarken === 'undefined'
+  ) {
+    this.warnedAboutLightenAndDarken = false;
+  }
 
   const {
     italic,
@@ -72,6 +78,7 @@ export const getStyles = function getStyles() {
     bgColor,
     bgImage,
     bgDarken,
+    bgLighten,
     bgSize,
     bgPosition,
     bgRepeat,
@@ -146,8 +153,24 @@ export const getStyles = function getStyles() {
     styles.backgroundColor = color;
   }
   if (bgImage) {
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      !this.warnedAboutLightenAndDarken &&
+      this.context.store.getState().style.globalStyleSet
+    ) {
+      if (bgDarken && bgLighten) {
+        // eslint-disable-next-line
+        console.warn(
+          `prop \`bgDarken="${bgDarken}"\` and prop \`bgLighten=${bgLighten}\` are both present. Only bgDarken will be applied.`
+        );
+        this.warnedAboutLightenAndDarken = true;
+      }
+    }
     if (bgDarken) {
       styles.backgroundImage = `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
+    } else if (bgLighten) {
+      styles.backgroundImage = `linear-gradient( rgba(255, 255, 255, ${bgLighten}), rgba(255, 255, 255, ${bgLighten}) ),
+      url(${bgImage})`;
     } else {
       styles.backgroundImage = `url(${bgImage})`;
     }
