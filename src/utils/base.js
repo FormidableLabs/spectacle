@@ -1,20 +1,20 @@
 /*eslint max-statements:0,complexity:0,no-invalid-this:0*/
 
-const parseFontSize = function (fontSize) {
+const parseFontSize = function(fontSize) {
   const sizeComponents = fontSize.match(/\d*\.*\d+|\D+/g);
   const size = parseFloat(sizeComponents[0]);
   const unit = sizeComponents[1];
   return { size, unit };
 };
 
-const getFontSizeFromElement = function (element) {
-  const fontSize = window.getComputedStyle ?
-    window.getComputedStyle(element).getPropertyValue('font-size') :
-    element.currentStyle.fontSize;
+const getFontSizeFromElement = function(element) {
+  const fontSize = window.getComputedStyle
+    ? window.getComputedStyle(element).getPropertyValue('font-size')
+    : element.currentStyle.fontSize;
   return fontSize ? parseFontSize(fontSize) : null;
 };
 
-const convertFontSizeToPx = function (fontSize) {
+const convertFontSizeToPx = function(fontSize) {
   let convertedFontSize;
 
   if (typeof textSize === 'number') {
@@ -25,34 +25,37 @@ const convertFontSizeToPx = function (fontSize) {
     const htmlFont = getFontSizeFromElement(document.documentElement);
 
     switch (parsedFont.unit) {
-    case 'px':
-      convertedFontSize = parsedFont.size;
-      break;
-    case 'pt':
-      convertedFontSize = parsedFont.size * 96 / 72;
-      break;
-    case '%':
-      if (bodyFont) {
-        convertedFontSize = bodyFont.size * parsedFont.size / 100;
-      }
-      break;
-    case 'em':
-      if (bodyFont) {
-        convertedFontSize = bodyFont.size * parsedFont.size;
-      }
-      break;
-    case 'rem':
-      if (htmlFont) {
-        convertedFontSize = htmlFont.size * parsedFont.size;
-      }
-      break;
+      case 'px':
+        convertedFontSize = parsedFont.size;
+        break;
+      case 'pt':
+        convertedFontSize = parsedFont.size * 96 / 72;
+        break;
+      case '%':
+        if (bodyFont) {
+          convertedFontSize = bodyFont.size * parsedFont.size / 100;
+        }
+        break;
+      case 'em':
+        if (bodyFont) {
+          convertedFontSize = bodyFont.size * parsedFont.size;
+        }
+        break;
+      case 'rem':
+        if (htmlFont) {
+          convertedFontSize = htmlFont.size * parsedFont.size;
+        }
+        break;
     }
   }
   return convertedFontSize;
 };
 
 export const getStyles = function getStyles() {
-  if (process.env.NODE_ENV !== 'production' && typeof this.warnedAboutFontSize === 'undefined') {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    typeof this.warnedAboutFontSize === 'undefined'
+  ) {
     this.warnedAboutFontSize = false;
   }
 
@@ -114,10 +117,18 @@ export const getStyles = function getStyles() {
   }
   if (textSize) {
     styles.fontSize = textSize;
-    if (process.env.NODE_ENV !== 'production' && !this.warnedAboutFontSize && this.context.store.getState().style.globalStyleSet) {
-      const fontSize = convertFontSizeToPx(textSize) || recommendedMinFontSizePx;
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      !this.warnedAboutFontSize &&
+      this.context.store.getState().style.globalStyleSet
+    ) {
+      const fontSize =
+        convertFontSizeToPx(textSize) || recommendedMinFontSizePx;
       if (fontSize < recommendedMinFontSizePx) {
-        console.warn(`prop \`textSize="${textSize}"\` is below the recommended minimum of ${recommendedMinFontSizePx}px`); // eslint-disable-line
+        // eslint-disable-next-line
+        console.warn(
+          `prop \`textSize="${textSize}"\` is below the recommended minimum of ${recommendedMinFontSizePx}px`
+        );
         this.warnedAboutFontSize = true;
       }
     }
@@ -136,8 +147,7 @@ export const getStyles = function getStyles() {
   }
   if (bgImage) {
     if (bgDarken) {
-      styles.backgroundImage =
-      `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
+      styles.backgroundImage = `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
     } else {
       styles.backgroundImage = `url(${bgImage})`;
     }
