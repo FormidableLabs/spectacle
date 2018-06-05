@@ -29,11 +29,7 @@ export default class Export extends Component {
     });
   }
   render() {
-    return (
-      <StyledExport>
-        {this._renderSlides()}
-      </StyledExport>
-    );
+    return <StyledExport>{this._renderSlides()}</StyledExport>;
   }
 }
 

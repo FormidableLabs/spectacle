@@ -23,7 +23,6 @@ import TableHeaderItem from './table-header-item';
 import TableBody from './table-body';
 import TableItem from './table-item';
 
-
 const Container = styled.div(props => props.styles);
 
 const _Heading = size => {
@@ -39,11 +38,15 @@ const _S = type => {
 };
 
 const _CombineBlockQuote = ({ children }) => (
-  <BlockQuote><Quote>{children}</Quote></BlockQuote>
+  <BlockQuote>
+    <Quote>{children}</Quote>
+  </BlockQuote>
 );
 _CombineBlockQuote.propTypes = { children: PropTypes.node };
 
-const _CodePane = ({ language, code }) => <CodePane lang={language} source={code}/>;
+const _CodePane = ({ language, code }) => (
+  <CodePane lang={language} source={code} />
+);
 _CodePane.propTypes = { code: PropTypes.string, language: PropTypes.string };
 
 const compile = marksy({
@@ -71,7 +74,7 @@ const compile = marksy({
     th: TableHeaderItem,
     tbody: TableBody,
     tr: TableRow,
-    td: TableItem,
+    td: TableItem
   }
 });
 
@@ -89,27 +92,20 @@ export default class Markdown extends Component {
   };
 
   static defaultProps = {
-    style: {},
+    style: {}
   };
 
   render() {
     const { style, children, source } = this.props;
-    const styleComputed = [
-      getStyles.call(this),
-      style
-    ];
+    const styleComputed = [getStyles.call(this), style];
 
     if (source) {
       return (
-        <Container styles={styleComputed}>
-          {compile(source).tree}
-        </Container>
+        <Container styles={styleComputed}>{compile(source).tree}</Container>
       );
     }
     return (
-      <Container styles={styleComputed}>
-        {compile(children).tree}
-      </Container>
+      <Container styles={styleComputed}>{compile(children).tree}</Container>
     );
   }
 }

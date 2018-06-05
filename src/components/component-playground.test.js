@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
-import ComponentPlayground, { PlaygroundProvider } from './component-playground';
+import ComponentPlayground, {
+  PlaygroundProvider
+} from './component-playground';
 
 const origLocalStorage = window.localStorage;
 
@@ -13,10 +15,12 @@ describe('<ComponentPlayground />', () => {
     window.localStorage = origLocalStorage;
   });
 
-  const context = { styles: {
-    components: { syntax: {} },
-    prism: { light: 'light;', dark: 'dark;' }
-  } };
+  const context = {
+    styles: {
+      components: { syntax: {} },
+      prism: { light: 'light;', dark: 'dark;' }
+    }
+  };
 
   test('Should render the dark theme correctly', () => {
     const wrapper = render(<ComponentPlayground theme="dark" />, { context });
@@ -54,8 +58,14 @@ describe('<ComponentPlayground />', () => {
   });
 
   test('Should render custom scoped components', () => {
-    const NewComponent = () => <div><h1>Hi!</h1></div>;
-    const wrapper = shallow(<ComponentPlayground scope={{ NewComponent }} />, { context });
+    const NewComponent = () => (
+      <div>
+        <h1>Hi!</h1>
+      </div>
+    );
+    const wrapper = shallow(<ComponentPlayground scope={{ NewComponent }} />, {
+      context
+    });
 
     const scope = wrapper.find(PlaygroundProvider).prop('scope');
 

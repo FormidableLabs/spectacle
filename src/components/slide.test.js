@@ -8,18 +8,18 @@ const _mockContext = function() {
     styles: {
       global: {
         body: {
-          background: '#eee',
-        },
+          background: '#eee'
+        }
       },
       components: {
-        content: {},
-      },
+        content: {}
+      }
     },
     store: {
       getState: () => ({ route: { params: '', slide: 0 } }),
       subscribe: () => {},
       dispatch: () => {}
-    },
+    }
   };
 };
 
@@ -97,18 +97,39 @@ describe('<Slide />', () => {
     );
     expect(spy).toHaveBeenCalledTimes(3);
     expect(spy.mock.calls).toEqual([
-      [{
-        payload: { slide: 4, id: '4-0', animations: [false], className: 'fragment first' },
-        type: 'ADD_FRAGMENT'
-      }],
-      [{
-        payload: { slide: 4, id: '4-1', animations: [false], className: 'fragment second' },
-        type: 'ADD_FRAGMENT'
-      }],
-      [{
-        payload: { slide: 4, id: '4-2', animations: [false], className: 'fragment third' },
-        type: 'ADD_FRAGMENT'
-      }]
+      [
+        {
+          payload: {
+            slide: 4,
+            id: '4-0',
+            animations: [false],
+            className: 'fragment first'
+          },
+          type: 'ADD_FRAGMENT'
+        }
+      ],
+      [
+        {
+          payload: {
+            slide: 4,
+            id: '4-1',
+            animations: [false],
+            className: 'fragment second'
+          },
+          type: 'ADD_FRAGMENT'
+        }
+      ],
+      [
+        {
+          payload: {
+            slide: 4,
+            id: '4-2',
+            animations: [false],
+            className: 'fragment third'
+          },
+          type: 'ADD_FRAGMENT'
+        }
+      ]
     ]);
   });
 
@@ -130,18 +151,39 @@ describe('<Slide />', () => {
     );
     expect(spy).toHaveBeenCalledTimes(3);
     expect(spy.mock.calls).toEqual([
-      [{
-        payload: { slide: 7, id: '7-0', animations: [false], className: 'fragment no-order' },
-        type: 'ADD_FRAGMENT'
-      }],
-      [{
-        payload: { slide: 7, id: '7-1', animations: [false], className: 'fragment first' },
-        type: 'ADD_FRAGMENT'
-      }],
-      [{
-        payload: { slide: 7, id: '7-2', animations: [false], className: 'fragment second' },
-        type: 'ADD_FRAGMENT'
-      }]
+      [
+        {
+          payload: {
+            slide: 7,
+            id: '7-0',
+            animations: [false],
+            className: 'fragment no-order'
+          },
+          type: 'ADD_FRAGMENT'
+        }
+      ],
+      [
+        {
+          payload: {
+            slide: 7,
+            id: '7-1',
+            animations: [false],
+            className: 'fragment first'
+          },
+          type: 'ADD_FRAGMENT'
+        }
+      ],
+      [
+        {
+          payload: {
+            slide: 7,
+            id: '7-2',
+            animations: [false],
+            className: 'fragment second'
+          },
+          type: 'ADD_FRAGMENT'
+        }
+      ]
     ]);
   });
 });

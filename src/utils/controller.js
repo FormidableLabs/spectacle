@@ -14,7 +14,7 @@ export default class Controller extends Component {
     children: PropTypes.node,
     history: PropTypes.object,
     store: PropTypes.object,
-    theme: PropTypes.object,
+    theme: PropTypes.object
   };
 
   constructor(props) {
@@ -24,7 +24,7 @@ export default class Controller extends Component {
   }
 
   state = {
-    print: false,
+    print: false
   };
 
   componentDidMount() {
@@ -34,7 +34,7 @@ export default class Controller extends Component {
     this.props.store.dispatch(
       updateRoute({
         location,
-        slideCount,
+        slideCount
       })
     );
   }
@@ -50,14 +50,14 @@ export default class Controller extends Component {
   _updateRoute(location) {
     this.setState(
       {
-        print: location.search.indexOf('print') !== -1,
+        print: location.search.indexOf('print') !== -1
       },
       () => {
         const slideCount = countSlides(this.props.children.props.children);
         this.props.store.dispatch(
           updateRoute({
             location,
-            slideCount,
+            slideCount
           })
         );
       }

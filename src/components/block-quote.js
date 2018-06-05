@@ -14,10 +14,7 @@ export default class BlockQuote extends Component {
       this.props.style
     ];
     return (
-      <StyledBlockQuote
-        className={this.props.className}
-        styles={styles}
-      >
+      <StyledBlockQuote className={this.props.className} styles={styles}>
         {this.props.children}
       </StyledBlockQuote>
     );

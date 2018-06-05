@@ -5,19 +5,15 @@ import Typeface from './typeface';
 
 class MockComponent extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node
   };
 
   static contextTypes = {
-    typeface: PropTypes.object,
+    typeface: PropTypes.object
   };
 
   render() {
-    return (
-      <div style={this.context.typeface}>
-        {this.props.children}
-      </div>
-    );
+    return <div style={this.context.typeface}>{this.props.children}</div>;
   }
 }
 

@@ -9,7 +9,7 @@ export const getSlideByIndex = (children, slideReference, index) => {
   if (reference) {
     if (!isUndefined(reference.magicIndex)) {
       slide = cloneElement(children[reference.rootIndex], {
-        magicIndex: reference.magicIndex,
+        magicIndex: reference.magicIndex
       });
     } else if (isUndefined(reference.setIndex)) {
       slide = children[reference.rootIndex];

@@ -8,13 +8,13 @@ describe('<TableHeaderItem />', () => {
       styles: {
         components: {
           tableHeaderItem: {
-            color: '#e01',
-          },
-        },
-      },
+            color: '#e01'
+          }
+        }
+      }
     };
     const wrapper = mount(<TableHeaderItem>Header Text</TableHeaderItem>, {
-      context,
+      context
     });
     expect(wrapper).toMatchSnapshot();
   });

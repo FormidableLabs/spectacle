@@ -8,10 +8,10 @@ describe('<ListItem />', () => {
       styles: {
         components: {
           listItem: {
-            color: '#ff0',
-          },
-        },
-      },
+            color: '#ff0'
+          }
+        }
+      }
     };
     const wrapper = mount(<ListItem>Dog</ListItem>, { context });
     expect(wrapper).toMatchSnapshot();

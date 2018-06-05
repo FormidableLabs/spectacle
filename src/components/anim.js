@@ -8,6 +8,10 @@ import { connect } from 'react-redux';
 import { VictoryAnimation } from 'victory-core';
 import { victoryEases } from '../utils/types';
 
+// TODO(540): Refactor to non-deprecated lifecycle methods.
+// https://github.com/FormidableLabs/spectacle/issues/540
+// - componentWillReceiveProps
+// eslint-disable-next-line react/no-deprecated
 class Anim extends Component {
   state = {
     activeAnimation: -1
@@ -44,9 +48,9 @@ class Anim extends Component {
 
     const animationStatus = this.getAnimationStatus();
     if (animationStatus) {
-      const nextAnimation = animationStatus.every(a => a === true) ?
-        animationStatus.length - 1 :
-        animationStatus.indexOf(false) - 1;
+      const nextAnimation = animationStatus.every(a => a === true)
+        ? animationStatus.length - 1
+        : animationStatus.indexOf(false) - 1;
       if (this.state.activeAnimation !== nextAnimation) {
         const state = nextProps.fragment;
         const { slide } = this.props.route;
@@ -68,7 +72,7 @@ class Anim extends Component {
     const fragment = findDOMNode(this.fragmentRef);
     const slideHash = parseInt(this.context.slideHash, 10);
     const key = findKey(state.fragments[slide], {
-      id: `${slideHash}-${parseInt(fragment.dataset.fid, 10)}`,
+      id: `${slideHash}-${parseInt(fragment.dataset.fid, 10)}`
     });
     if (
       slide in state.fragments &&
@@ -89,21 +93,25 @@ class Anim extends Component {
       style
     } = this.props;
     const child = React.Children.only(children);
-    const tweenData = this.state.activeAnimation === -1 ? fromStyle : toStyle[this.state.activeAnimation];
+    const tweenData =
+      this.state.activeAnimation === -1
+        ? fromStyle
+        : toStyle[this.state.activeAnimation];
     return (
       <VictoryAnimation
         data={tweenData}
         duration={transitionDuration}
         easing={easing}
       >
-        {(tweenStyle) =>
+        {tweenStyle =>
           React.cloneElement(child, {
             className: `fragment ${child.props.className}`.trim(),
             style: { ...child.props.style, ...style, ...tweenStyle },
             ref: f => {
               this.fragmentRef = f;
             }
-          })}
+          })
+        }
       </VictoryAnimation>
     );
   }

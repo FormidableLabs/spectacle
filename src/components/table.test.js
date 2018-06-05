@@ -7,7 +7,11 @@ describe('<Table />', () => {
     const context = { styles: { components: { table: {} } } };
     const wrapper = mount(
       <Table>
-        <tbody><tr><td>Table Content</td></tr></tbody>
+        <tbody>
+          <tr>
+            <td>Table Content</td>
+          </tr>
+        </tbody>
       </Table>,
       { context }
     );

@@ -6,7 +6,7 @@ describe('<Code />', () => {
   test('should render correctly.', () => {
     const context = { styles: { components: { code: { fontWeight: 500 } } } };
     const wrapper = mount(<Code>const [a, ...b] = [1, 2, 3, 4]</Code>, {
-      context,
+      context
     });
     expect(wrapper).toMatchSnapshot();
   });

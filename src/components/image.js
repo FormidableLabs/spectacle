@@ -41,16 +41,10 @@ Image.propTypes = {
   alt: PropTypes.string,
   className: PropTypes.string,
   display: PropTypes.string,
-  height: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   src: PropTypes.string,
   style: PropTypes.object,
-  width: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ])
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 Image.contextTypes = {

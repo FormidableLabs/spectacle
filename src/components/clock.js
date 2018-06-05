@@ -17,7 +17,7 @@ const startTime = function startTime(date) {
 export default class Clock extends Component {
   state = {
     time: new Date(Date.now())
-  }
+  };
   componentDidMount() {
     this.interval = setInterval(() => {
       this.setState({
@@ -29,8 +29,6 @@ export default class Clock extends Component {
     clearInterval(this.interval);
   }
   render() {
-    return (
-      <ClockStyle>{startTime(this.state.time)}</ClockStyle>
-    );
+    return <ClockStyle>{startTime(this.state.time)}</ClockStyle>;
   }
 }

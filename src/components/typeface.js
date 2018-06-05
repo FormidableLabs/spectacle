@@ -14,7 +14,13 @@ class Typeface extends Component {
   }
 
   render() {
-    const { children, googleFont, weight = 400, italic = false, styles } = this.props;
+    const {
+      children,
+      googleFont,
+      weight = 400,
+      italic = false,
+      styles
+    } = this.props;
     if (typeof googleFont !== 'undefined' && googleFont.length > 0) {
       const styleSuffix = italic ? 'i' : '';
       const config = {
@@ -23,7 +29,7 @@ class Typeface extends Component {
           googleFonts: [
             {
               name: googleFont,
-              styles: styles || [ `${weight}${styleSuffix}` ]
+              styles: styles || [`${weight}${styleSuffix}`]
             }
           ]
         }
@@ -31,13 +37,11 @@ class Typeface extends Component {
       return (
         <div>
           <GoogleFont typography={config} />
-          { children }
+          {children}
         </div>
       );
     } else {
-      return (
-        <div>{ children }</div>
-      );
+      return <div>{children}</div>;
     }
   }
 }
