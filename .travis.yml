@@ -12,6 +12,11 @@ branches:
   only:
     - master
 
+install:
+  # Fail if lockfile outdated.
+  # https://yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-frozen-lockfile
+  - yarn install --frozen-lockfile
+
 notifications:
   email:
     on_success: change

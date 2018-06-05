@@ -26,8 +26,6 @@ import Fullscreen from './fullscreen';
 import Progress from './progress';
 import Controls from './controls';
 
-import wsync from '../sync';
-
 let convertStyle = styles => {
   return Object.keys(styles)
     .map(key => {
@@ -178,17 +176,12 @@ export class Manager extends Component {
   }
 
   _attachEvents() {
-    wsync.receiveHandler = msg => {
-      this._goToSlide({
-        key: 'spectacle-slide',
-        newValue: msg.data
-      });
-    };
+    window.addEventListener('storage', this._goToSlide);
     window.addEventListener('keydown', this._handleKeyPress);
     window.addEventListener('resize', this._handleScreenChange);
   }
   _detachEvents() {
-    wsync.receiveHandler = null;
+    window.removeEventListener('storage', this._goToSlide);
     window.removeEventListener('keydown', this._handleKeyPress);
     window.removeEventListener('resize', this._handleScreenChange);
   }
@@ -321,7 +314,8 @@ export class Manager extends Component {
           )
         : data.slide - 1;
 
-      wsync.send(
+      localStorage.setItem(
+        'spectacle-slide',
         JSON.stringify({
           slide: this._getHash(index),
           forward: false,
@@ -331,11 +325,12 @@ export class Manager extends Component {
     } else {
       return;
     }
-    const slideIndex = this._getSlideIndex();
 
+    const slideIndex = this._getSlideIndex();
     this.setState({
       lastSlideIndex: slideIndex || 0
     });
+
     if (canNavigate) {
       let slide = data.slide;
       if (!isNaN(parseInt(slide, 10))) {
@@ -358,7 +353,8 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex - 1)}${this._getSuffix()}`
         );
-        wsync.send(
+        localStorage.setItem(
+          'spectacle-slide',
           JSON.stringify({
             slide: this._getHash(slideIndex - 1),
             forward: false,
@@ -367,7 +363,8 @@ export class Manager extends Component {
         );
       }
     } else if (slideIndex > 0) {
-      wsync.send(
+      localStorage.setItem(
+        'spectacle-slide',
         JSON.stringify({
           slide: this._getHash(slideIndex),
           forward: false,
@@ -420,7 +417,8 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex + offset) + this._getSuffix()}`
         );
-        wsync.send(
+        localStorage.setItem(
+          'spectacle-slide',
           JSON.stringify({
             slide: this._getHash(slideIndex + offset),
             forward: true,
@@ -429,7 +427,8 @@ export class Manager extends Component {
         );
       }
     } else if (slideIndex < slideReference.length) {
-      wsync.send(
+      localStorage.setItem(
+        'spectacle-slide',
         JSON.stringify({
           slide: this._getHash(slideIndex),
           forward: true,
