@@ -2,7 +2,7 @@ let ws = null;
 let ready = false;
 
 if (!ws) {
-  ws = new WebSocket(`ws://${self.location.host}`);
+	ws = new WebSocket(`wss://${self.location.host}`);
 
   ws.onopen = function() {
     ready = true;
