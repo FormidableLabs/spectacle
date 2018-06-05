@@ -8,43 +8,40 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/',
+    publicPath: '/dist/'
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: [
-          'index.js',
-          'src',
-          'example/assets',
-          'example/src',
-        ].map((name) => path.resolve(__dirname, name)),
-        loader: 'babel-loader',
+        include: ['index.js', 'src', 'example/assets', 'example/src'].map(
+          name => path.resolve(__dirname, name)
+        ),
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!raw-loader',
+        loader: 'style-loader!raw-loader'
       },
       {
         test: /\.svg$/,
         include: path.join(__dirname, 'example/assets'),
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
       },
       {
         test: /\.png$/,
         include: path.join(__dirname, 'example/assets'),
-        loader: 'url-loader?mimetype=image/png',
+        loader: 'url-loader?mimetype=image/png'
       },
       {
         test: /\.jpg$/,
         include: path.join(__dirname, 'example/assets'),
-        loader: 'url-loader?mimetype=image/jpg',
-      },
-    ],
-  },
+        loader: 'url-loader?mimetype=image/jpg'
+      }
+    ]
+  }
 };

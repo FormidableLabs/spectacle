@@ -1,9 +1,33 @@
 import React, { Component } from 'react';
 
 import {
-  Anim, Appear, BlockQuote, Cite, CodePane, ComponentPlayground, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Markdown, MarkdownSlides, Quote, Slide, SlideSet,
-  TableBody, TableHeader, TableHeaderItem, TableItem, TableRow, Table, Text, GoToAction
+  Anim,
+  Appear,
+  BlockQuote,
+  Cite,
+  CodePane,
+  ComponentPlayground,
+  Deck,
+  Fill,
+  Heading,
+  Image,
+  Layout,
+  Link,
+  ListItem,
+  List,
+  Markdown,
+  MarkdownSlides,
+  Quote,
+  Slide,
+  SlideSet,
+  TableBody,
+  TableHeader,
+  TableHeaderItem,
+  TableItem,
+  TableRow,
+  Table,
+  Text,
+  GoToAction
 } from '../../src';
 
 import preloader from '../../src/utils/preloader';
@@ -46,7 +70,11 @@ export default class Presentation extends Component {
 
   render() {
     return (
-      <Deck transition={['zoom', 'slide']} theme={theme} transitionDuration={500}>
+      <Deck
+        transition={['zoom', 'slide']}
+        theme={theme}
+        transitionDuration={500}
+      >
         <Slide transition={['zoom']} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="black">
             Spectacle
@@ -58,9 +86,13 @@ export default class Presentation extends Component {
             Where You Can Write Your Decks In JSX
           </Heading>
           <Link href="https://github.com/FormidableLabs/spectacle">
-            <Text bold caps textColor="tertiary">View on Github</Text>
+            <Text bold caps textColor="tertiary">
+              View on Github
+            </Text>
           </Link>
-          <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
+          <Text textSize="1.5em" margin="20px 0px 0px" bold>
+            Hit Your Right Arrow To Begin!
+          </Text>
         </Slide>
         <Slide
           onActive={slideIndex => {
@@ -103,11 +135,13 @@ export default class Presentation extends Component {
           />
         </Slide>
         <Slide goTo={3}>
-          <ComponentPlayground
-            theme="dark"
-          />
+          <ComponentPlayground theme="dark" />
         </Slide>
-        <Slide transition={['slide']} bgImage={images.city.replace('/', '')} bgDarken={0.75}>
+        <Slide
+          transition={['slide']}
+          bgImage={images.city.replace('/', '')}
+          bgDarken={0.75}
+        >
           <Appear fid="1">
             <Heading size={1} caps fit textColor="primary">
               Full Width
@@ -128,8 +162,8 @@ export default class Presentation extends Component {
           <Anim
             onAnim={(forwards, animIndex) => {
               /* eslint-disable */
-              console.log('forwards ', forwards)
-              console.log('animIndex ', animIndex)
+              console.log('forwards ', forwards);
+              console.log('animIndex ', animIndex);
               /* eslint-enable */
             }}
             fromStyle={{
@@ -143,7 +177,8 @@ export default class Presentation extends Component {
               },
               {
                 opacity: 1,
-                transform: 'translate3d(0px, 0px, 0px) scale(1.6) rotate(-15deg)'
+                transform:
+                  'translate3d(0px, 0px, 0px) scale(1.6) rotate(-15deg)'
               },
               {
                 opacity: 1,
@@ -151,19 +186,23 @@ export default class Presentation extends Component {
               },
               {
                 opacity: 1,
-                transform: 'translate3d(0px, -200px, 0px)  scale(0.8) rotate(0deg)'
+                transform:
+                  'translate3d(0px, -200px, 0px)  scale(0.8) rotate(0deg)'
               },
               {
                 opacity: 1,
-                transform: 'translate3d(200px, 0px, 0px)  scale(0.8) rotate(0deg)'
+                transform:
+                  'translate3d(200px, 0px, 0px)  scale(0.8) rotate(0deg)'
               },
               {
                 opacity: 1,
-                transform: 'translate3d(0px, 200px, 0px)  scale(0.8) rotate(0deg)'
+                transform:
+                  'translate3d(0px, 200px, 0px)  scale(0.8) rotate(0deg)'
               },
               {
                 opacity: 1,
-                transform: 'translate3d(-200px, 0px, 0px)  scale(0.8) rotate(0deg)'
+                transform:
+                  'translate3d(-200px, 0px, 0px)  scale(0.8) rotate(0deg)'
               }
             ]}
             easing={'bounceOut'}
@@ -181,12 +220,10 @@ export default class Presentation extends Component {
             Mix it up!
           </Heading>
           <Heading size={6} textColor="tertiary">
-            You can even jump to different slides with a standard button or custom component!
+            You can even jump to different slides with a standard button or
+            custom component!
           </Heading>
-          <GoToAction
-            margin="1em"
-            slide={8}
-          >
+          <GoToAction margin="1em" slide={8}>
             Jump to Slide 8
           </GoToAction>
           <GoToAction
@@ -201,14 +238,20 @@ export default class Presentation extends Component {
                 }}
                 onChange={({ target }) => goToSlide(target.value)}
               >
-                <option value="" disabled>Custom Slide Picker</option>
+                <option value="" disabled>
+                  Custom Slide Picker
+                </option>
                 <option value="wait-what">Wait What!? Slide</option>
                 <option value={3}>Slide 3</option>
               </select>
             )}
           />
         </Slide>
-        <Slide transition={['slide']} bgDarken={0.75} getAnimStep={this.updateSteps}>
+        <Slide
+          transition={['slide']}
+          bgDarken={0.75}
+          getAnimStep={this.updateSteps}
+        >
           <Appear>
             <Heading size={1} caps textColor="tertiary">
               Can
@@ -229,15 +272,29 @@ export default class Presentation extends Component {
           </Heading>
         </Slide>
         <Slide transition={['zoom', 'fade']} bgColor="primary">
-          <Heading caps fit>Flexible Layouts</Heading>
+          <Heading caps fit>
+            Flexible Layouts
+          </Heading>
           <Layout>
             <Fill>
-              <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
+              <Heading
+                size={4}
+                caps
+                textColor="secondary"
+                bgColor="white"
+                margin={10}
+              >
                 Left
               </Heading>
             </Fill>
             <Fill>
-              <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
+              <Heading
+                size={4}
+                caps
+                textColor="secondary"
+                bgColor="white"
+                margin={10}
+              >
                 Right
               </Heading>
             </Fill>
@@ -249,7 +306,12 @@ export default class Presentation extends Component {
             <Cite>Ken Wheeler</Cite>
           </BlockQuote>
         </Slide>
-        <Slide transition={['spin', 'zoom']} bgColor="tertiary" controlColor="primary" progressColor="primary">
+        <Slide
+          transition={['spin', 'zoom']}
+          bgColor="tertiary"
+          controlColor="primary"
+          progressColor="primary"
+        >
           <Heading caps fit size={1} textColor="primary">
             Inline Markdown
           </Heading>
@@ -265,8 +327,7 @@ export default class Presentation extends Component {
             `}
           </Markdown>
         </Slide>
-        {
-          MarkdownSlides`
+        {MarkdownSlides`
 #### Create Multiple Slides in Markdown
 All the same tags and elements supported in <Markdown /> are supported in MarkdownSlides.
 ---
@@ -279,8 +340,7 @@ Add some inline code to your markdown!
 \`\`\`js
 const myCode = (is, great) => 'for' + 'sharing';
 \`\`\`
-          `
-        }
+          `}
         <Slide transition={['slide', 'spin']} bgColor="primary">
           <Heading caps fit size={1} textColor="tertiary">
             Smooth
@@ -292,11 +352,21 @@ const myCode = (is, great) => 'for' + 'sharing';
         <SlideSet>
           <Slide transition={['fade']} bgColor="secondary" textColor="primary">
             <List>
-              <Appear><ListItem>Inline style based theme system</ListItem></Appear>
-              <Appear><ListItem>Autofit text</ListItem></Appear>
-              <Appear><ListItem>Flexbox layout system</ListItem></Appear>
-              <Appear><ListItem>PDF export</ListItem></Appear>
-              <Appear><ListItem>And...</ListItem></Appear>
+              <Appear>
+                <ListItem>Inline style based theme system</ListItem>
+              </Appear>
+              <Appear>
+                <ListItem>Autofit text</ListItem>
+              </Appear>
+              <Appear>
+                <ListItem>Flexbox layout system</ListItem>
+              </Appear>
+              <Appear>
+                <ListItem>PDF export</ListItem>
+              </Appear>
+              <Appear>
+                <ListItem>And...</ListItem>
+              </Appear>
             </List>
           </Slide>
           <Slide transition={['slide']} bgColor="primary">
@@ -306,10 +376,18 @@ const myCode = (is, great) => 'for' + 'sharing';
             <Interactive />
           </Slide>
         </SlideSet>
-        <Slide transition={['slide']} bgColor="primary"
+        <Slide
+          transition={['slide']}
+          bgColor="primary"
           notes="Hard to find cities without any pizza"
         >
-          <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
+          <Heading
+            size={4}
+            caps
+            textColor="secondary"
+            bgColor="white"
+            margin={10}
+          >
             Pizza Toppings
           </Heading>
           <Layout>
@@ -355,7 +433,9 @@ const myCode = (is, great) => 'for' + 'sharing';
           <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
             Made with love in Seattle by
           </Heading>
-          <Link href="http://www.formidable.com"><Image width="100%" src={images.logo} /></Link>
+          <Link href="http://www.formidable.com">
+            <Image width="100%" src={images.logo} />
+          </Link>
         </Slide>
       </Deck>
     );

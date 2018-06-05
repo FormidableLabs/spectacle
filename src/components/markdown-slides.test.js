@@ -38,11 +38,7 @@ This text is ${content}.
 ## Slide B Title
     `;
     const markdownSlides = MarkdownSlides;
-    const wrapper = shallow(
-      <div>
-        {markdownSlides(markdownContent)}
-      </div>
-    );
+    const wrapper = shallow(<div>{markdownSlides(markdownContent)}</div>);
     expect(wrapper).toMatchSnapshot();
   });
 });

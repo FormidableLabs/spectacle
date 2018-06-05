@@ -18,12 +18,10 @@ export default class Time extends Component {
   }
   render() {
     return (
-      <TimeContainer>
-        {this.props.timer ? <Timer /> : <Clock />}
-      </TimeContainer>
+      <TimeContainer>{this.props.timer ? <Timer /> : <Clock />}</TimeContainer>
     );
   }
 }
 Time.propTypes = {
-  timer: PropTypes.bool,
+  timer: PropTypes.bool
 };

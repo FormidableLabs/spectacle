@@ -9,7 +9,7 @@ import stepCounter from '../utils/step-counter';
 import {
   SlideContainer,
   SlideContent,
-  SlideContentWrapper,
+  SlideContentWrapper
 } from './slide-components';
 import { VictoryAnimation } from 'victory-core';
 import findIndex from 'lodash/findIndex';
@@ -33,15 +33,15 @@ class Slide extends React.PureComponent {
     reverse: false,
     transitioning: true,
     z: 1,
-    zoom: 1,
+    zoom: 1
   };
 
   getChildContext() {
     return {
       stepCounter: {
-        setFragments: this.stepCounter.setFragments,
+        setFragments: this.stepCounter.setFragments
       },
-      slideHash: this.props.hash,
+      slideHash: this.props.hash
     };
   }
 
@@ -51,8 +51,12 @@ class Slide extends React.PureComponent {
     const frags = slide.querySelectorAll('.fragment');
     let currentOrder = 0;
     if (frags && frags.length && !this.context.overview) {
-      Array.prototype.slice.call(frags, 0)
-        .sort((lhs, rhs) => parseInt(lhs.dataset.order, 10) - parseInt(rhs.dataset.order, 10))
+      Array.prototype.slice
+        .call(frags, 0)
+        .sort(
+          (lhs, rhs) =>
+            parseInt(lhs.dataset.order, 10) - parseInt(rhs.dataset.order, 10)
+        )
         .forEach(frag => {
           frag.dataset.fid = currentOrder;
           if (this.props.dispatch) {
@@ -61,8 +65,9 @@ class Slide extends React.PureComponent {
                 className: frag.className || '',
                 slide: this.props.hash,
                 id: `${this.props.slideIndex}-${currentOrder}`,
-                animations: Array.from({ length: frag.dataset.animCount })
-                  .fill(this.props.lastSlideIndex > this.props.slideIndex)
+                animations: Array.from({ length: frag.dataset.animCount }).fill(
+                  this.props.lastSlideIndex > this.props.slideIndex
+                )
               })
             );
           }
@@ -78,7 +83,9 @@ class Slide extends React.PureComponent {
 
     if (this.props.getAppearStep) {
       /* eslint-disable no-console */
-      console.warn('getAppearStep has been deprecated, use getAnimStep instead');
+      console.warn(
+        'getAppearStep has been deprecated, use getAnimStep instead'
+      );
       /* eslint-enable */
     }
   }
@@ -143,7 +150,7 @@ class Slide extends React.PureComponent {
       }
       this.setState({
         zoom: zoom > 0.6 ? zoom : 0.6,
-        contentScale,
+        contentScale
       });
     }
   }
@@ -159,7 +166,7 @@ class Slide extends React.PureComponent {
   getTransitionKeys() {
     const {
       props: { transition = [], transitionIn = [], transitionOut = [] },
-      state: { reverse },
+      state: { reverse }
     } = this;
     if (reverse && transitionOut.length > 0) {
       return transitionOut;
@@ -200,7 +207,7 @@ class Slide extends React.PureComponent {
       if (isFunction(current)) {
         return {
           ...memo,
-          ...current(transitioning, this.transitionDirection()),
+          ...current(transitioning, this.transitionDirection())
         };
       }
       return memo;
@@ -247,7 +254,7 @@ class Slide extends React.PureComponent {
             background={this.context.styles.global.body.background}
             styles={{
               base: getStyles.call(this),
-              presenter: presenterStyle,
+              presenter: presenterStyle
             }}
             style={{ ...animatedStyles }}
           >
@@ -282,7 +289,7 @@ Slide.defaultProps = {
   align: 'center center',
   presenterStyle: {},
   style: {},
-  viewerScaleMode: false,
+  viewerScaleMode: false
 };
 
 Slide.propTypes = {
@@ -307,7 +314,7 @@ Slide.propTypes = {
   transitionDuration: PropTypes.number,
   transitionIn: PropTypes.array,
   transitionOut: PropTypes.array,
-  viewerScaleMode: PropTypes.bool,
+  viewerScaleMode: PropTypes.bool
 };
 
 Slide.contextTypes = {
@@ -317,14 +324,14 @@ Slide.contextTypes = {
   export: PropTypes.bool,
   print: PropTypes.object,
   overview: PropTypes.bool,
-  store: PropTypes.object,
+  store: PropTypes.object
 };
 
 Slide.childContextTypes = {
   slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   stepCounter: PropTypes.shape({
-    setFragments: PropTypes.func,
-  }),
+    setFragments: PropTypes.func
+  })
 };
 
 export default Slide;

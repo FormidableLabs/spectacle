@@ -7,6 +7,7 @@
 !/src
 !/docs
 __snapshots__
+__mocks__
 *.test.js
 !LICENSE
 !README.md

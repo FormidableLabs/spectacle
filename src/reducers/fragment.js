@@ -1,24 +1,23 @@
 import { handleActions } from 'redux-actions';
 
-const reducer = handleActions({
-  ADD_FRAGMENT: (state, action) => {
-    const {
-      id,
-      slide
-    } = action.payload;
-    const s = Object.assign({}, state);
-    s.fragments[slide] = s.fragments[slide] || {};
-    s.fragments[slide][id] = action.payload;
-    return s;
+const reducer = handleActions(
+  {
+    ADD_FRAGMENT: (state, action) => {
+      const { id, slide } = action.payload;
+      const s = Object.assign({}, state);
+      s.fragments[slide] = s.fragments[slide] || {};
+      s.fragments[slide][id] = action.payload;
+      return s;
+    },
+    UPDATE_FRAGMENT: (state, action) => {
+      const { fragment } = action.payload;
+      const s = Object.assign({}, state);
+      s.fragments[fragment.slide][fragment.id].animations =
+        action.payload.animations;
+      return s;
+    }
   },
-  UPDATE_FRAGMENT: (state, action) => {
-    const {
-      fragment
-    } = action.payload;
-    const s = Object.assign({}, state);
-    s.fragments[fragment.slide][fragment.id].animations = action.payload.animations;
-    return s;
-  }
-}, { fragments: {} });
+  { fragments: {} }
+);
 
 export default reducer;

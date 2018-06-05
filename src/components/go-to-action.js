@@ -41,15 +41,13 @@ class GoToAction extends Component {
 GoToAction.propTypes = {
   children: PropTypes.node,
   render: PropTypes.func,
-  slide: PropTypes.oneOfType([
-    PropTypes.number, PropTypes.string
-  ]),
-  style: PropTypes.object,
+  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  style: PropTypes.object
 };
 
 GoToAction.contextTypes = {
   styles: PropTypes.object,
-  goToSlide: PropTypes.func,
+  goToSlide: PropTypes.func
 };
 
 export default GoToAction;

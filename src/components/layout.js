@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
-const StyledLayout = styled.div(props => [
-  { display: 'flex' },
-  props.styles
-]);
+const StyledLayout = styled.div(props => [{ display: 'flex' }, props.styles]);
 
 export default class Layout extends Component {
   render() {
