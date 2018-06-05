@@ -6,15 +6,15 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
   scope="[object Object]"
 >
   <div
-    class="css-wx5pb5"
+    class="css-qtztkt"
   >
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz"
     >
       Live Preview
     </div>
     <div
-      class="css-1qi44w1"
+      class="css-1oja9er"
     >
       Source Code
       <button
@@ -37,7 +37,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
     </div>
   </div>
   <div
-    class="css-wx5pb5"
+    class="css-qtztkt"
   >
     <div
       class="css-1fc71w4"
@@ -63,7 +63,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code language-jsx builtin-prism-theme css-1tqequ7"
+        class="prism-code language-jsx builtin-prism-theme css-o6dmj"
         contenteditable="true"
         spellcheck="false"
       >
@@ -544,15 +544,15 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
   scope="[object Object]"
 >
   <div
-    class="css-wx5pb5"
+    class="css-qtztkt"
   >
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz"
     >
       Live Preview
     </div>
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz"
     >
       Source Code
       <button
@@ -575,7 +575,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
     </div>
   </div>
   <div
-    class="css-wx5pb5"
+    class="css-qtztkt"
   >
     <div
       class="css-1fc71w4"
@@ -601,7 +601,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code language-jsx builtin-prism-theme css-62ms6n"
+        class="prism-code language-jsx builtin-prism-theme css-spmpyg"
         contenteditable="true"
         spellcheck="false"
       >
@@ -1082,15 +1082,15 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
   scope="[object Object]"
 >
   <div
-    class="css-wx5pb5"
+    class="css-qtztkt"
   >
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz"
     >
       Live Preview
     </div>
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz"
     >
       Source Code
       <button
@@ -1113,7 +1113,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
     </div>
   </div>
   <div
-    class="css-wx5pb5"
+    class="css-qtztkt"
   >
     <div
       class="css-1fc71w4"
@@ -1139,7 +1139,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code language-jsx builtin-prism-theme css-62ms6n"
+        class="prism-code language-jsx builtin-prism-theme css-spmpyg"
         contenteditable="true"
         spellcheck="false"
       >
@@ -1620,15 +1620,15 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
   scope="[object Object]"
 >
   <div
-    class="css-wx5pb5"
+    class="css-qtztkt"
   >
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz"
     >
       Live Preview
     </div>
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz"
     >
       Source Code
       <button
@@ -1651,7 +1651,7 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
     </div>
   </div>
   <div
-    class="css-wx5pb5"
+    class="css-qtztkt"
   >
     <div
       class="css-1fc71w4"
@@ -1669,7 +1669,7 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
       class="css-1fc71w4"
     >
       <pre
-        class="prism-code language-jsx builtin-prism-theme css-62ms6n"
+        class="prism-code language-jsx builtin-prism-theme css-spmpyg"
         contenteditable="true"
         spellcheck="false"
       >
