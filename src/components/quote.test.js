@@ -8,10 +8,10 @@ describe('<Quote />', () => {
       styles: {
         components: {
           quote: {
-            color: '#ff0',
-          },
-        },
-      },
+            color: '#ff0'
+          }
+        }
+      }
     };
     const wrapper = mount(<Quote>Hello There!</Quote>, { context });
     expect(wrapper).toMatchSnapshot();

@@ -25,7 +25,6 @@ class Appear extends Component {
       </Anim>
     );
   }
-
 }
 
 Appear.defaultProps = {

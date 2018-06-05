@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function TableHeader({ children }) {
-  return <thead>{ children }</thead>;
+  return <thead>{children}</thead>;
 }
 
 TableHeader.propTypes = {

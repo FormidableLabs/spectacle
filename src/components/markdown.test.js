@@ -4,9 +4,7 @@ import { shallow } from 'enzyme';
 
 describe('<Markdown>', () => {
   test('should render correctly when using inline code', () => {
-    const wrapper = shallow(
-      <Markdown>This should `work`</Markdown>
-    );
+    const wrapper = shallow(<Markdown>This should `work`</Markdown>);
 
     expect(wrapper).toMatchSnapshot();
   });

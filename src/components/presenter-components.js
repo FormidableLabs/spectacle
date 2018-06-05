@@ -79,5 +79,5 @@ export const SlideInfo = styled.h2`
   margin: 0;
   line-height: 1;
   display: inline-block;
-  fontSize: 28px;
+  fontsize: 28px;
 `;

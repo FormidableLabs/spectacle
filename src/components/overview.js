@@ -13,10 +13,10 @@ const SlideThumbnail = styled.div`
   cursor: pointer;
   position: relative;
   float: left;
-  height: ${({ screen }) => (screen / 3) * 0.7}px;
-  opacity: ${({ index, slideIndex }) => index === slideIndex ? 1 : 0.5};
+  height: ${({ screen }) => screen / 3 * 0.7}px;
+  opacity: ${({ index, slideIndex }) => (index === slideIndex ? 1 : 0.5)};
   transition: opacity 333ms ease-in-out;
-  width: ${({ screen }) => (screen / 3)}px;
+  width: ${({ screen }) => screen / 3}px;
 
   &:hover {
     opacity: 1;
@@ -81,11 +81,7 @@ export default class Overview extends Component {
     });
   }
   render() {
-    return (
-      <OverviewContainer>
-        {this._renderSlides()}
-      </OverviewContainer>
-    );
+    return <OverviewContainer>{this._renderSlides()}</OverviewContainer>;
   }
 }
 

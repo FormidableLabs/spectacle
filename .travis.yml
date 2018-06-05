@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - "6"
   - "8"
-  - "9"
+  - "10"
 
 # Use container-based Travis infrastructure.
 sudo: false
@@ -19,4 +19,4 @@ notifications:
 
 script:
   - yarn run build
-  - yarn run check
+  - yarn run check-ci

@@ -2,14 +2,12 @@ import React from 'react';
 import Slide from './slide';
 import Markdown from './markdown';
 
-const transformStringsIntoJSX = function (strings) {
-  return strings
-    .split(/\n---\n/)
-    .map((markdown, index) => (
-      <Slide key={`md-slide-${index}`}>
-        <Markdown>{ markdown }</Markdown>
-      </Slide>
-    ));
+const transformStringsIntoJSX = function(strings) {
+  return strings.split(/\n---\n/).map((markdown, index) => (
+    <Slide key={`md-slide-${index}`}>
+      <Markdown>{markdown}</Markdown>
+    </Slide>
+  ));
 };
 
 export default function MarkdownSlides(stringOrStrings, ...interpolations) {

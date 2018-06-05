@@ -1,6 +1,4 @@
 export default {
-    send: () => {
-    },
-    receiveHandler: null
+  send: () => {},
+  receiveHandler: null
 };
-

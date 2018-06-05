@@ -7,12 +7,12 @@ import '../utils/prism-import';
 import { Editor } from 'react-live';
 
 const StyledWrapper = styled.div(props => props.styles);
-const StyledEditor = styled(({ syntaxStyles: _, prismTheme: __, ...rest }) => <Editor {...rest} />)`
+const StyledEditor = styled(({ syntaxStyles: _, prismTheme: __, ...rest }) => (
+  <Editor {...rest} />
+))`
   && {
-    ${props => props.syntaxStyles}
-
-    &.builtin-prism-theme {
-      ${props => props.prismTheme}
+    ${props => props.syntaxStyles} &.builtin-prism-theme {
+      ${props => props.prismTheme};
     }
   }
 `;
@@ -25,7 +25,9 @@ export default class CodePane extends Component {
   render() {
     const useDarkTheme = this.props.theme === 'dark';
     const externalPrismTheme = this.props.theme === 'external';
-    const className = `language-${this.props.lang} ${externalPrismTheme ? '' : 'builtin-prism-theme'} ${this.props.className}`;
+    const className = `language-${this.props.lang} ${
+      externalPrismTheme ? '' : 'builtin-prism-theme'
+    } ${this.props.className}`;
 
     const wrapperStyles = [
       this.context.styles.components.codePane,
@@ -34,17 +36,16 @@ export default class CodePane extends Component {
     ];
 
     return (
-      <StyledWrapper
-        className={this.props.className}
-        styles={wrapperStyles}
-      >
+      <StyledWrapper className={this.props.className} styles={wrapperStyles}>
         <StyledEditor
           className={className}
           code={this.props.source}
           language={this.props.lang}
           contentEditable={this.props.contentEditable}
           syntaxStyles={this.context.styles.components.syntax}
-          prismTheme={this.context.styles.prism[useDarkTheme ? 'dark' : 'light']}
+          prismTheme={
+            this.context.styles.prism[useDarkTheme ? 'dark' : 'light']
+          }
           onKeyDown={this.handleEditorEvent}
           onKeyUp={this.handleEditorEvent}
           onClick={this.handleEditorEvent}
@@ -66,7 +67,7 @@ CodePane.propTypes = {
   lang: PropTypes.string,
   source: PropTypes.string,
   style: PropTypes.object,
-  theme: PropTypes.oneOf(['dark', 'light', 'external']),
+  theme: PropTypes.oneOf(['dark', 'light', 'external'])
 };
 
 CodePane.defaultProps = {
@@ -74,5 +75,5 @@ CodePane.defaultProps = {
   contentEditable: false,
   lang: 'markup',
   source: '',
-  theme: 'dark',
+  theme: 'dark'
 };

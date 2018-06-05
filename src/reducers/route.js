@@ -22,10 +22,10 @@ const reducer = handleActions(
         {},
         {
           slide,
-          params: location.search.replace('?', '').split('&'),
+          params: location.search.replace('?', '').split('&')
         }
       );
-    },
+    }
   },
   { slide: null, params: [] }
 );

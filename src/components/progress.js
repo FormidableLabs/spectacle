@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { keyframes } from 'react-emotion';
 
 const Pacman = {
-  Base: styled.div(({ styles, position }) => [ styles, position ]),
+  Base: styled.div(({ styles, position }) => [styles, position]),
   Body: styled.div(props => props.styles)
 };
 
@@ -29,8 +29,8 @@ const pacmanBottomFramesBis = keyframes`
   100% { transform: rotateZ(30deg) }
 `;
 
-const Point = styled.div(({ styles, position }) => [ styles, position ]);
-const Bar = styled.div(({ styles, width }) => [ styles, width ]);
+const Point = styled.div(({ styles, position }) => [styles, position]);
+const Bar = styled.div(({ styles, width }) => [styles, width]);
 const Container = styled.div(props => props.styles);
 
 export default class Progress extends Component {
@@ -62,7 +62,9 @@ export default class Progress extends Component {
 
   getWidth() {
     return {
-      width: `${(100 * this.props.currentSlideIndex / (this.props.items.length - 1))}%`
+      width: `${100 *
+        this.props.currentSlideIndex /
+        (this.props.items.length - 1)}%`
     };
   }
 
@@ -84,7 +86,7 @@ export default class Progress extends Component {
   getPointPosition(i) {
     return {
       top: '-20px',
-      left: `${(5 + 20 * (i - this.props.items.length / 2))}px`
+      left: `${5 + 20 * (i - this.props.items.length / 2)}px`
     };
   }
 
@@ -102,23 +104,38 @@ export default class Progress extends Component {
     let style = this.context.styles.progress;
     let markup;
     switch (type) {
-    case 'none':
-      return false;
-    case 'pacman':
-      style = style.pacman;
-      markup = (
+      case 'none':
+        return false;
+      case 'pacman':
+        style = style.pacman;
+        markup = (
           <div>
             <Pacman.Base
               styles={style.pacman}
               position={this.getPointPosition(currentSlideIndex)}
             >
-              <Pacman.Body styles={[style.pacmanTop, this.getPacmanStyle('top'), this.resolveProgressStyles('background')]} />
-              <Pacman.Body styles={[style.pacmanBottom, this.getPacmanStyle('bottom'), this.resolveProgressStyles('background')]} />
+              <Pacman.Body
+                styles={[
+                  style.pacmanTop,
+                  this.getPacmanStyle('top'),
+                  this.resolveProgressStyles('background')
+                ]}
+              />
+              <Pacman.Body
+                styles={[
+                  style.pacmanBottom,
+                  this.getPacmanStyle('bottom'),
+                  this.resolveProgressStyles('background')
+                ]}
+              />
             </Pacman.Base>
             {items.map((item, i) => {
               return (
                 <Point
-                  styles={[style.point, this.resolveProgressStyles('borderColor')]}
+                  styles={[
+                    style.point,
+                    this.resolveProgressStyles('borderColor')
+                  ]}
                   position={this.getPointStyle(i)}
                   key={`presentation-progress-${i}`}
                 />
@@ -126,24 +143,31 @@ export default class Progress extends Component {
             })}
           </div>
         );
-      break;
-    case 'number':
-      style = style.number;
-      markup = (
-          <div>{currentSlideIndex + 1} / {items.length}</div>
+        break;
+      case 'number':
+        style = style.number;
+        markup = (
+          <div>
+            {currentSlideIndex + 1} / {items.length}
+          </div>
         );
-      break;
-    case 'bar':
-      style = style.bar;
-      markup = (
-          <Bar styles={[style.bar, this.resolveProgressStyles('background')]} width={this.getWidth()} />
+        break;
+      case 'bar':
+        style = style.bar;
+        markup = (
+          <Bar
+            styles={[style.bar, this.resolveProgressStyles('background')]}
+            width={this.getWidth()}
+          />
         );
-      break;
-    default:
-      return false;
+        break;
+      default:
+        return false;
     }
     return (
-      <Container styles={[style.container, this.resolveProgressStyles('color')]}>
+      <Container
+        styles={[style.container, this.resolveProgressStyles('color')]}
+      >
         {markup}
       </Container>
     );

@@ -8,13 +8,13 @@ describe('<TableItem />', () => {
       styles: {
         components: {
           tableItem: {
-            color: '#444',
-          },
-        },
-      },
+            color: '#444'
+          }
+        }
+      }
     };
     const wrapper = mount(<TableItem>Table Item Content</TableItem>, {
-      context,
+      context
     });
     expect(wrapper).toMatchSnapshot();
   });

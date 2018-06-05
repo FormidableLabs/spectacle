@@ -1,24 +1,26 @@
 /* eslint-disable */
 
-var path = require("path");
-var ip = require("ip");
-var http = require("http");
-var express = require("express");
+var path = require('path');
+var ip = require('ip');
+var http = require('http');
+var express = require('express');
 const WebSocket = require('ws');
-var webpack = require("webpack");
-var config = require("./webpack.config");
+var webpack = require('webpack');
+var config = require('./webpack.config');
 
 var app = express();
 var compiler = webpack(config);
-var webpackDev = require("webpack-dev-middleware");
+var webpackDev = require('webpack-dev-middleware');
 
-app.use(webpackDev(compiler, {
+app.use(
+  webpackDev(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath
-}));
+  })
+);
 
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 const server = http.createServer(app);
@@ -41,6 +43,6 @@ server.listen(port, function listening(err) {
     console.log(err);
     return;
   }
-  console.log("Listening at http://" + "localhost" + ":" + port);
-  console.log("Listening at http://" + ip.address() + ":" + port);
+  console.log('Listening at http://' + 'localhost' + ':' + port);
+  console.log('Listening at http://' + ip.address() + ':' + port);
 });

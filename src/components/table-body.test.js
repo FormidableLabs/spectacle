@@ -6,7 +6,9 @@ describe('<TableBody />', () => {
   test('should render correctly', () => {
     const wrapper = mount(
       <TableBody>
-        <tr><td>Table Content</td></tr>
+        <tr>
+          <td>Table Content</td>
+        </tr>
       </TableBody>
     );
     expect(wrapper).toMatchSnapshot();

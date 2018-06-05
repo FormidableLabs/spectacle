@@ -10,23 +10,23 @@ import {
   PreviewPane,
   PreviewCurrentSlide,
   PreviewNextSlide,
-  Notes,
+  Notes
 } from './presenter-components';
 
 import Time from './time';
 
 export default class Presenter extends Component {
   static childContextTypes = {
-    updateNotes: PropTypes.func,
+    updateNotes: PropTypes.func
   };
 
   state = {
-    notes: {},
+    notes: {}
   };
 
   getChildContext() {
     return {
-      updateNotes: this.updateNotes.bind(this),
+      updateNotes: this.updateNotes.bind(this)
     };
   }
 
@@ -52,7 +52,7 @@ export default class Presenter extends Component {
     const { slideIndex, hash, lastSlideIndex } = this.props;
     const child = this._getSlideByIndex(slideIndex);
     const presenterStyle = {
-      position: 'relative',
+      position: 'relative'
     };
     return cloneElement(child, {
       dispatch: this.props.dispatch,
@@ -67,13 +67,13 @@ export default class Presenter extends Component {
       transitionOut: [],
       transitionDuration: 0,
       presenter: true,
-      presenterStyle,
+      presenterStyle
     });
   }
   _renderNextSlide() {
     const { slideIndex, lastSlideIndex } = this.props;
     const presenterStyle = {
-      position: 'relative',
+      position: 'relative'
     };
     const child = this._getSlideByIndex(slideIndex + 1);
     return child ? (
@@ -91,7 +91,7 @@ export default class Presenter extends Component {
         transitionDuration: 0,
         presenterStyle,
         presenter: true,
-        appearOff: true,
+        appearOff: true
       })
     ) : (
       <EndHeader>END</EndHeader>
@@ -149,10 +149,10 @@ Presenter.propTypes = {
   slideIndex: PropTypes.number,
   slideReference: PropTypes.array,
   slides: PropTypes.array,
-  timer: PropTypes.bool,
+  timer: PropTypes.bool
 };
 
 Presenter.contextTypes = {
   styles: PropTypes.object,
-  store: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired
 };

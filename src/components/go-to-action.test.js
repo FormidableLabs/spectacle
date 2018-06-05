@@ -9,9 +9,9 @@ describe('<GoToAction />', () => {
       styles: { components: { goToAction: {} } },
       goToSlide: stub
     };
-    const wrapper = mount(
-      <GoToAction slide={2}>Slide 2</GoToAction>, { context }
-    );
+    const wrapper = mount(<GoToAction slide={2}>Slide 2</GoToAction>, {
+      context
+    });
     wrapper.simulate('click');
     expect(stub).toHaveBeenCalledTimes(1);
     expect(stub).toHaveBeenCalledWith(2);
@@ -30,7 +30,8 @@ describe('<GoToAction />', () => {
             WAIT WUT
           </button>
         )}
-      />, { context }
+      />,
+      { context }
     );
     wrapper.find('button#inner-btn').simulate('click');
     expect(stub).toHaveBeenCalledTimes(1);
@@ -42,9 +43,7 @@ describe('<GoToAction />', () => {
       styles: { components: { goToAction: {} } },
       goToSlide: () => {}
     };
-    const wrapper = mount(
-      <GoToAction />, { context }
-    );
+    const wrapper = mount(<GoToAction />, { context });
     expect(wrapper).toMatchSnapshot();
   });
 });
