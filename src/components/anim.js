@@ -70,9 +70,8 @@ class Anim extends Component {
     const state = this.props.fragment;
     const { slide } = this.props.route;
     const fragment = findDOMNode(this.fragmentRef);
-    const slideHash = parseInt(this.context.slideHash, 10);
     const key = findKey(state.fragments[slide], {
-      id: `${slideHash}-${parseInt(fragment.dataset.fid, 10)}`
+      id: `${this.context.slideHash}-${parseInt(fragment.dataset.fid, 10)}`
     });
     if (
       slide in state.fragments &&

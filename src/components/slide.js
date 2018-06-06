@@ -64,7 +64,7 @@ class Slide extends React.PureComponent {
               addFragment({
                 className: frag.className || '',
                 slide: this.props.hash,
-                id: `${this.props.slideIndex}-${currentOrder}`,
+                id: `${this.props.hash}-${currentOrder}`,
                 animations: Array.from({ length: frag.dataset.animCount }).fill(
                   this.props.lastSlideIndex > this.props.slideIndex
                 )
