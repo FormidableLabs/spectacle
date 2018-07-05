@@ -281,7 +281,6 @@ class Slide extends React.PureComponent {
                 scale={this.state.contentScale}
                 zoom={this.state.zoom}
                 margin={this.props.margin}
-                maxWidth={this.props.maxWidth}
                 styles={{ context: this.context.styles.components.content }}
               >
                 {children}
