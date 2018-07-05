@@ -35,10 +35,10 @@ const dynamicStyledFitHeaders = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce(
   {}
 );
 
-const dynamicHeaderStyles = ({ lineHeight, styles }) => [
+const dynamicHeaderStyles = ({ lineHeight, wordWrap, styles }) => [
   styles.context,
   styles.base,
-  { lineHeight },
+  { lineHeight, wordWrap },
   styles.typeface,
   styles.user
 ];
@@ -91,7 +91,7 @@ export default class Heading extends Component {
     }
   }
   render() {
-    const { size, lineHeight, fit, style, children } = this.props;
+    const { size, lineHeight, wordWrap, fit, style, children } = this.props;
     if (size > 6) {
       throw new Error('Heading size must be between 1 and 6');
     }
@@ -135,6 +135,7 @@ export default class Heading extends Component {
       {
         className: this.props.className,
         lineHeight,
+        wordWrap,
         styles: {
           context: this.context.styles.components.heading[`h${size}`],
           base: getStyles.call(this),
@@ -149,7 +150,8 @@ export default class Heading extends Component {
 
 Heading.defaultProps = {
   size: 1,
-  lineHeight: 1
+  lineHeight: 1,
+  wordWrap: 'break-word'
 };
 
 Heading.propTypes = {
@@ -157,6 +159,7 @@ Heading.propTypes = {
   className: PropTypes.string,
   fit: PropTypes.bool,
   lineHeight: PropTypes.number,
+  wordWrap: PropTypes.string,
   size: PropTypes.number,
   style: PropTypes.object
 };

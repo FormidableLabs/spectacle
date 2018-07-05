@@ -268,11 +268,20 @@ class Slide extends React.PureComponent {
                 }}
                 className={`${contentClass} spectacle-content`}
                 overviewMode={this.context.overview}
-                width={this.context.contentWidth}
-                height={this.context.contentHeight}
+                width={
+                  this.props.maxWidth
+                    ? this.props.maxWidth
+                    : this.context.contentWidth
+                }
+                height={
+                  this.props.maxHeight
+                    ? this.props.maxHeight
+                    : this.context.contentHeight
+                }
                 scale={this.state.contentScale}
                 zoom={this.state.zoom}
                 margin={this.props.margin}
+                maxWidth={this.props.maxWidth}
                 styles={{ context: this.context.styles.components.content }}
               >
                 {children}
@@ -303,6 +312,8 @@ Slide.propTypes = {
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   lastSlideIndex: PropTypes.number,
   margin: PropTypes.number,
+  maxHeight: PropTypes.number,
+  maxWidth: PropTypes.number,
   notes: PropTypes.any,
   onActive: PropTypes.func,
   presenterStyle: PropTypes.object,

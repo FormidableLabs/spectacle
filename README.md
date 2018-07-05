@@ -742,6 +742,7 @@ Heading tags are special in that, when you specify a `size` prop, they generate 
 | ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | fit        | PropTypes.boolean | When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |
 | lineHeight | PropTypes.number  | Sets the line height of your text.                                                                                        |
+| wordWrap   | PropTypes.string  | Sets the word wrap of your text.                                                                                          |
 
 <a name="image-base"></a>
 
