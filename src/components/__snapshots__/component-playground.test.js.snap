@@ -3,7 +3,6 @@
 exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 <div
   class="react-live css-o32omv"
-  scope="[object Object]"
 >
   <div
     class="css-qtztkt"
@@ -200,13 +199,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
         >
           const
         </span>
-         
-        <span
-          class="token function-variable function"
-        >
-          HelloWorld
-        </span>
-         
+         HelloWorld 
         <span
           class="token operator"
         >
@@ -238,7 +231,12 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
         <span
           class="token operator"
         >
-          =&gt;
+          =
+        </span>
+        <span
+          class="token operator"
+        >
+          &gt;
         </span>
          
         <span
@@ -541,7 +539,6 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 <div
   class="react-live css-o32omv"
-  scope="[object Object]"
 >
   <div
     class="css-qtztkt"
@@ -738,13 +735,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
         >
           const
         </span>
-         
-        <span
-          class="token function-variable function"
-        >
-          HelloWorld
-        </span>
-         
+         HelloWorld 
         <span
           class="token operator"
         >
@@ -776,7 +767,12 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
         <span
           class="token operator"
         >
-          =&gt;
+          =
+        </span>
+        <span
+          class="token operator"
+        >
+          &gt;
         </span>
          
         <span
@@ -1079,7 +1075,6 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 exports[`<ComponentPlayground /> Should render with a custom background color 1`] = `
 <div
   class="react-live css-o32omv"
-  scope="[object Object]"
 >
   <div
     class="css-qtztkt"
@@ -1276,13 +1271,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
         >
           const
         </span>
-         
-        <span
-          class="token function-variable function"
-        >
-          HelloWorld
-        </span>
-         
+         HelloWorld 
         <span
           class="token operator"
         >
@@ -1314,7 +1303,12 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
         <span
           class="token operator"
         >
-          =&gt;
+          =
+        </span>
+        <span
+          class="token operator"
+        >
+          &gt;
         </span>
          
         <span
@@ -1617,7 +1611,6 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
 exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
 <div
   class="react-live css-o32omv"
-  scope="[object Object]"
 >
   <div
     class="css-qtztkt"
@@ -1678,13 +1671,7 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
         >
           const
         </span>
-         
-        <span
-          class="token function-variable function"
-        >
-          Button
-        </span>
-         
+         Button 
         <span
           class="token operator"
         >
@@ -1716,7 +1703,12 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
         <span
           class="token operator"
         >
-          =&gt;
+          =
+        </span>
+        <span
+          class="token operator"
+        >
+          &gt;
         </span>
          
         <span
@@ -1853,12 +1845,13 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
             >
               "
             </span>
-            My Button
-            <span
-              class="token punctuation"
-            >
-              "
-            </span>
+            My
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            Button"
           </span>
            
           <span
