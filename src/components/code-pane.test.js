@@ -23,4 +23,17 @@ describe('<CodePane />', () => {
     const wrapper = mount(<CodePane lang="jsx" source={source} />, { context });
     expect(wrapper).toMatchSnapshot();
   });
+
+  test('should handle languages', () => {
+    const context = {
+      styles: {
+        components: { codePane: {}, syntax: {} },
+        prism: { light: 'light;', dark: 'dark;' }
+      }
+    };
+    const source = `import org.apache.commons.lang3.StringUtils;`;
+    expect(() => {
+      mount(<CodePane lang="java" source={source} />, { context });
+    }).not.toThrow();
+  });
 });
