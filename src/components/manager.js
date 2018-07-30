@@ -181,9 +181,7 @@ export class Manager extends Component {
     window.addEventListener('keydown', this._handleKeyPress);
     window.addEventListener('resize', this._handleScreenChange);
     if (
-      navigator &&
-      navigator.presentation &&
-      navigator.presentation.receiver
+      (((navigator || {}).presentation || {}).receiver || {}).connectionList
     ) {
       navigator.presentation.receiver.connectionList.then(list => {
         list.connections.map(connection => {
