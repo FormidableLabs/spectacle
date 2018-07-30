@@ -180,7 +180,11 @@ export class Manager extends Component {
     window.addEventListener('storage', this._goToSlide);
     window.addEventListener('keydown', this._handleKeyPress);
     window.addEventListener('resize', this._handleScreenChange);
-    if (navigator.presentation.receiver) {
+    if (
+      navigator &&
+      navigator.presentation &&
+      navigator.presentation.receiver
+    ) {
       navigator.presentation.receiver.connectionList.then(list => {
         list.connections.map(connection => {
           this.presentationConnection = connection;
@@ -295,7 +299,7 @@ export class Manager extends Component {
     const suffix = presenting ? '' : '?presenter';
     const originalLocation = location.href;
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
-    if (presenting === false) {
+    if (presenting === false && window.PresentationRequest) {
       const presentationRequest = new PresentationRequest([
         `${originalLocation}`
       ]);
