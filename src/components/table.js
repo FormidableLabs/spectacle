@@ -10,11 +10,12 @@ export default class Table extends Component {
     return (
       <StyledTable
         className={this.props.className}
-        styles={[
+        styles={Object.assign(
+          {},
           this.context.styles.components.table,
           getStyles.call(this),
           this.props.style
-        ]}
+        )}
       >
         {this.props.children}
       </StyledTable>

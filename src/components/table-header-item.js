@@ -11,12 +11,13 @@ export default class TableHeaderItem extends Component {
     return (
       <StyledTableHeaderItem
         className={this.props.className}
-        style={[
+        style={Object.assign(
+          {},
           this.context.styles.components.tableHeaderItem,
           getStyles.call(this),
           typefaceStyle,
           this.props.style
-        ]}
+        )}
       >
         {this.props.children}
       </StyledTableHeaderItem>

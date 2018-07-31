@@ -5,27 +5,17 @@ exports[`<TableHeaderItem /> should render correctly 1`] = `
   <Styled(td)
     className={undefined}
     style={
-      Array [
-        Object {
-          "color": "#e01",
-        },
-        Object {},
-        Object {},
-        undefined,
-      ]
+      Object {
+        "color": "#e01",
+      }
     }
   >
     <td
       className="css-0"
       style={
-        Array [
-          Object {
-            "color": "#e01",
-          },
-          Object {},
-          Object {},
-          undefined,
-        ]
+        Object {
+          "color": "#e01",
+        }
       }
     >
       Header Text
