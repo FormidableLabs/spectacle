@@ -10,11 +10,14 @@ export default class TableRow extends Component {
     return (
       <StyledTableRow
         className={this.props.className}
-        style={[
-          this.context.styles.components.tableRow,
-          getStyles.call(this),
-          this.props.style
-        ]}
+        style={
+          Object.assign(
+            {},
+            this.context.styles.components.tableRow,
+            getStyles.call(this),
+            this.props.style
+          )
+        }
       >
         {this.props.children}
       </StyledTableRow>

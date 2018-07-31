@@ -11,12 +11,15 @@ export default class TableItem extends Component {
     return (
       <StyledTableItem
         className={this.props.className}
-        style={[
-          this.context.styles.components.tableItem,
-          getStyles.call(this),
-          typefaceStyle,
-          this.props.style
-        ]}
+        style={
+          Object.assign(
+            {},
+            this.context.styles.components.tableItem,
+            getStyles.call(this),
+            typefaceStyle,
+            this.props.style
+          )
+        }
       >
         {this.props.children}
       </StyledTableItem>
