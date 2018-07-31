@@ -190,7 +190,7 @@ export class Manager extends Component {
             this._goToSlide({ key: 'spectacle-slide', newValue: event.data });
           });
         });
-        list.addEventListener('connectionavailable', function(e) {
+        list.addEventListener('connectionavailable', e => {
           this.presentationConnection = e.connection;
           e.connection.addEventListener('message', event => {
             this._goToSlide({ key: 'spectacle-slide', newValue: event.data });
@@ -302,23 +302,6 @@ export class Manager extends Component {
         `${originalLocation}`
       ]);
       navigator.presentation.defaultRequest = presentationRequest;
-      presentationRequest
-        .getAvailability()
-        .then(availability => {
-          console.log(`Available presentation displays: ${availability.value}`);
-          availability.addEventListener('change', () => {
-            console.log(
-              `> Available presentation displays: ${availability.value}`
-            );
-          });
-        })
-        .catch(error => {
-          console.log(
-            `Presentation availability not supported, ${error.name}: ${
-              error.message
-            }`
-          );
-        });
       presentationRequest.start().then(connection => {
         this.presentationConnection = connection;
         this.presentationConnection.addEventListener('message', data => {
@@ -659,7 +642,7 @@ export class Manager extends Component {
     const xDist = touch.x1 - touch.x2;
     const yDist = touch.y1 - touch.y2;
     const r = Math.atan2(yDist, xDist);
-    let swipeAngle = Math.round(r * 180 / Math.PI);
+    let swipeAngle = Math.round((r * 180) / Math.PI);
 
     if (swipeAngle < 0) {
       swipeAngle = 360 - Math.abs(swipeAngle);
@@ -910,4 +893,9 @@ export class Manager extends Component {
   }
 }
 
-export default connect(state => state, null, null, { withRef: true })(Manager);
+export default connect(
+  state => state,
+  null,
+  null,
+  { withRef: true }
+)(Manager);

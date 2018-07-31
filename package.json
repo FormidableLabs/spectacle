@@ -73,7 +73,7 @@
     "@babel/preset-react": "^7.0.0-beta.42",
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.1.0",
-    "babel-loader": "^7.1.4",
+    "babel-loader": "^8.0.0-beta.2",
     "babel-plugin-emotion": "^9.0.1",
     "builder": "^4.0.0",
     "css-loader": "^0.28.11",
