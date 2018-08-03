@@ -44,7 +44,7 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
       }
     >
       <div
-        className="spectacle-slide css-1w0uyvd"
+        className="spectacle-slide css-1w0uyvd e1s7evq10"
         style={
           Object {
             "transform": " translate3d(-100%, 0, 0) rotateY(-90deg)",
@@ -57,7 +57,7 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
           overviewMode={undefined}
         >
           <div
-            className="css-13fut6c"
+            className="css-13fut6c e1s7evq11"
           >
             <Styled(div)
               className=" spectacle-content"
@@ -75,8 +75,9 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
               zoom={0.6}
             >
               <div
-                className=" spectacle-content css-1wqnfch"
+                className=" spectacle-content css-1wqnfch e1s7evq12"
                 height={undefined}
+                scale={1}
                 width={undefined}
               >
                 <div>
@@ -130,7 +131,7 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
       }
     >
       <div
-        className="spectacle-slide css-1w0uyvd"
+        className="spectacle-slide css-1w0uyvd e1s7evq10"
         style={
           Object {
             "transform": " translate3d(0px, 0px, 0px)",
@@ -143,7 +144,7 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
           overviewMode={undefined}
         >
           <div
-            className="css-13fut6c"
+            className="css-13fut6c e1s7evq11"
           >
             <Styled(div)
               className=" spectacle-content"
@@ -161,8 +162,9 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
               zoom={0.6}
             >
               <div
-                className=" spectacle-content css-1wqnfch"
+                className=" spectacle-content css-1wqnfch e1s7evq12"
                 height={undefined}
+                scale={1}
                 width={undefined}
               >
                 <div>

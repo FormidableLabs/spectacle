@@ -15,7 +15,7 @@ exports[`<TableRow /> should render correctly 1`] = `
     }
   >
     <tr
-      className="css-0"
+      className="css-0 emir1a80"
       style={
         Array [
           Object {

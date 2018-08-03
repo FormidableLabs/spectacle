@@ -2,23 +2,23 @@
 
 exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 <div
-  class="react-live css-o32omv"
+  class="react-live css-o32omv e177gi4f0"
 >
   <div
-    class="css-qtztkt"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1xrujsz"
+      class="css-1xrujsz e177gi4f4"
     >
       Live Preview
     </div>
     <div
-      class="css-1oja9er"
+      class="css-1oja9er e177gi4f4"
     >
       Source Code
       <button
         aria-label="Toggle full screen"
-        class="css-1a7vuu6"
+        class="css-1a7vuu6 ev51h780"
       >
         <svg
           viewBox="0 0 24 24"
@@ -36,13 +36,13 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
     </div>
   </div>
   <div
-    class="css-qtztkt"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <div
-        class="react-live-preview css-zwvp9g"
+        class="react-live-preview css-zwvp9g e177gi4f1"
       >
         <div>
           <h1
@@ -59,10 +59,10 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
       </div>
     </div>
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <pre
-        class="prism-code language-jsx builtin-prism-theme css-o6dmj"
+        class="prism-code language-jsx builtin-prism-theme css-o6dmj e177gi4f2"
         contenteditable="true"
         spellcheck="false"
       >
@@ -538,23 +538,23 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 <div
-  class="react-live css-o32omv"
+  class="react-live css-o32omv e177gi4f0"
 >
   <div
-    class="css-qtztkt"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1xrujsz"
+      class="css-1xrujsz e177gi4f4"
     >
       Live Preview
     </div>
     <div
-      class="css-1xrujsz"
+      class="css-1xrujsz e177gi4f4"
     >
       Source Code
       <button
         aria-label="Toggle full screen"
-        class="css-1a7vuu6"
+        class="css-1a7vuu6 ev51h780"
       >
         <svg
           viewBox="0 0 24 24"
@@ -572,13 +572,13 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
     </div>
   </div>
   <div
-    class="css-qtztkt"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <div
-        class="react-live-preview css-zwvp9g"
+        class="react-live-preview css-zwvp9g e177gi4f1"
       >
         <div>
           <h1
@@ -595,10 +595,10 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
       </div>
     </div>
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <pre
-        class="prism-code language-jsx builtin-prism-theme css-spmpyg"
+        class="prism-code language-jsx builtin-prism-theme css-spmpyg e177gi4f2"
         contenteditable="true"
         spellcheck="false"
       >
@@ -1074,23 +1074,23 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render with a custom background color 1`] = `
 <div
-  class="react-live css-o32omv"
+  class="react-live css-o32omv e177gi4f0"
 >
   <div
-    class="css-qtztkt"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1xrujsz"
+      class="css-1xrujsz e177gi4f4"
     >
       Live Preview
     </div>
     <div
-      class="css-1xrujsz"
+      class="css-1xrujsz e177gi4f4"
     >
       Source Code
       <button
         aria-label="Toggle full screen"
-        class="css-1a7vuu6"
+        class="css-1a7vuu6 ev51h780"
       >
         <svg
           viewBox="0 0 24 24"
@@ -1108,13 +1108,13 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
     </div>
   </div>
   <div
-    class="css-qtztkt"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <div
-        class="react-live-preview css-cv4xj2"
+        class="react-live-preview css-cv4xj2 e177gi4f1"
       >
         <div>
           <h1
@@ -1131,10 +1131,10 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
       </div>
     </div>
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <pre
-        class="prism-code language-jsx builtin-prism-theme css-spmpyg"
+        class="prism-code language-jsx builtin-prism-theme css-spmpyg e177gi4f2"
         contenteditable="true"
         spellcheck="false"
       >
@@ -1610,23 +1610,23 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
 
 exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
 <div
-  class="react-live css-o32omv"
+  class="react-live css-o32omv e177gi4f0"
 >
   <div
-    class="css-qtztkt"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1xrujsz"
+      class="css-1xrujsz e177gi4f4"
     >
       Live Preview
     </div>
     <div
-      class="css-1xrujsz"
+      class="css-1xrujsz e177gi4f4"
     >
       Source Code
       <button
         aria-label="Toggle full screen"
-        class="css-1a7vuu6"
+        class="css-1a7vuu6 ev51h780"
       >
         <svg
           viewBox="0 0 24 24"
@@ -1644,25 +1644,25 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
     </div>
   </div>
   <div
-    class="css-qtztkt"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <div
-        class="react-live-preview css-cv4xj2"
+        class="react-live-preview css-cv4xj2 e177gi4f1"
       />
       <div
-        class="react-live-error css-1qmf1kp"
+        class="react-live-error css-1qmf1kp e177gi4f6"
       >
         ReferenceError: mountNode is not defined
       </div>
     </div>
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <pre
-        class="prism-code language-jsx builtin-prism-theme css-spmpyg"
+        class="prism-code language-jsx builtin-prism-theme css-spmpyg e177gi4f2"
         contenteditable="true"
         spellcheck="false"
       >

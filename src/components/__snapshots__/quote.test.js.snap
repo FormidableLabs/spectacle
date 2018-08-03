@@ -16,7 +16,7 @@ exports[`<Quote /> should render correctly 1`] = `
     }
   >
     <span
-      className="css-tr63ps"
+      className="css-tr63ps e17e9dpw0"
     >
       Hello There!
     </span>
