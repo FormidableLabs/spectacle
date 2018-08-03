@@ -108,7 +108,8 @@
     "webpack-dev-server": "^3.1.1"
   },
   "resolutions": {
-    "babel-core": "7.0.0-bridge.0"
+    "babel-core": "7.0.0-bridge.0",
+    "source-map": "0.6.1"
   },
   "jest": {
     "moduleNameMapper": {
