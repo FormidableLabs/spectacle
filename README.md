@@ -10,50 +10,50 @@ ReactJS based Presentation Library
 
 <!-- MarkdownTOC depth=4 autolink=true bracket=round autoanchor=true -->
 
-* [Getting Started](#getting-started)
-* [One Page](#one-page)
-* [Development](#development)
-* [Build & Deployment](#build--deployment)
-* [Presenting](#presenting)
-* [Controls](#controls)
-* [Fullscreen](#fullscreen)
-* [PDF Export](#pdf-export)
-* [Basic Concepts](#basic-concepts)
-  * [Main file](#main-file)
-  * [Themes](#themes)
-    * [createTheme(colors, fonts)](#createthemecolors-fonts)
-* [FAQ](#faq)
-* [Tag API](#tag-api)
-  * [Main Tags](#main-tags)
-    * [Deck](#deck)
-    * [Slide (Base)](#slide-base)
-    * [Notes](#notes)
-    * [MarkdownSlides](#markdown-slides)
-  * [Layout Tags](#layout-tags)
-    * [Layout](#layout)
-    * [Fit](#fit)
-    * [Fill](#fill)
-  * [Markdown Tag](#markdown-tag)
-    * [Markdown](#markdown)
-  * [Magic Tag](#magic-tag)
-    * [Magic](#magic)
-  * [Element Tags](#element-tags)
-    * [Appear](#appear)
-    * [BlockQuote, Quote and Cite (Base)](#blockquote-quote-and-cite-base)
-    * [CodePane (Base)](#codepane-base)
-    * [Code (Base)](#code-base)
-    * [ComponentPlayground](#component-playground)
-    * [GoToAction (Base)](#go-to-action)
-    * [Heading (Base)](#heading-base)
-    * [Image (Base)](#image-base)
-    * [Link (Base)](#link-base)
-    * [List & ListItem (Base)](#list--listitem-base)
-    * [S (Base)](#s-base)
-    * [Table, TableRow, TableBody, TableHeader, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
-    * [Text (Base)](#text-base)
-    * [Typeface](#typeface)
-  * [Base Props](#base-props)
-* [Third Party Extensions](#third-party)
+- [Getting Started](#getting-started)
+- [One Page](#one-page)
+- [Development](#development)
+- [Build & Deployment](#build--deployment)
+- [Presenting](#presenting)
+- [Controls](#controls)
+- [Fullscreen](#fullscreen)
+- [PDF Export](#pdf-export)
+- [Basic Concepts](#basic-concepts)
+  - [Main file](#main-file)
+  - [Themes](#themes)
+    - [createTheme(colors, fonts)](#createthemecolors-fonts)
+- [FAQ](#faq)
+- [Tag API](#tag-api)
+  - [Main Tags](#main-tags)
+    - [Deck](#deck)
+    - [Slide (Base)](#slide-base)
+    - [Notes](#notes)
+    - [MarkdownSlides](#markdown-slides)
+  - [Layout Tags](#layout-tags)
+    - [Layout](#layout)
+    - [Fit](#fit)
+    - [Fill](#fill)
+  - [Markdown Tag](#markdown-tag)
+    - [Markdown](#markdown)
+  - [Magic Tag](#magic-tag)
+    - [Magic](#magic)
+  - [Element Tags](#element-tags)
+    - [Appear](#appear)
+    - [BlockQuote, Quote and Cite (Base)](#blockquote-quote-and-cite-base)
+    - [CodePane (Base)](#codepane-base)
+    - [Code (Base)](#code-base)
+    - [ComponentPlayground](#component-playground)
+    - [GoToAction (Base)](#go-to-action)
+    - [Heading (Base)](#heading-base)
+    - [Image (Base)](#image-base)
+    - [Link (Base)](#link-base)
+    - [List & ListItem (Base)](#list--listitem-base)
+    - [S (Base)](#s-base)
+    - [Table, TableRow, TableBody, TableHeader, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
+    - [Text (Base)](#text-base)
+    - [Typeface](#typeface)
+  - [Base Props](#base-props)
+- [Third Party Extensions](#third-party)
 
 <!-- /MarkdownTOC -->
 
@@ -189,12 +189,12 @@ Otherwise, it can also show you a stopwatch to count the elapsed time:
 
 To present:
 
-* Run `npm start`
-* Open two browser windows on two different screens
-* On your screen visit [http://localhost:3000/](http://localhost:3000/). You will be redirected to a URL containing the slide id.
-* Add `presenter&` or `presenter&timer` immediately after the questionmark, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/0?presenter&timer](http://localhost:3000/#/?presenter&timer&_k=wbyhif)
-* On the presentation screen visit [http://localhost:3000/](http://localhost:3000/)
-* Give an amazingly stylish presentation
+- Run `npm start`
+- Open two browser windows on two different screens
+- On your screen visit [http://localhost:3000/](http://localhost:3000/). You will be redirected to a URL containing the slide id.
+- Add `presenter&` or `presenter&timer` immediately after the questionmark, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/0?presenter&timer](http://localhost:3000/#/?presenter&timer&_k=wbyhif)
+- On the presentation screen visit [http://localhost:3000/](http://localhost:3000/)
+- Give an amazingly stylish presentation
 
 _Note: Any windows/tabs in the same browser that are running Spectacle will sync to one another, even if you don't want to use presentation mode_
 
@@ -233,10 +233,10 @@ Exporting a totally sweet looking PDF from your totally sweet looking Spectacle 
 
 #### CLI
 
-* Run `npm install spectacle-renderer -g`
-* Run `npm start` on your project and wait for it to build and be available
-* Run `spectacle-renderer`
-* A totally cool PDF is created in your project directory
+- Run `npm install spectacle-renderer -g`
+- Run `npm start` on your project and wait for it to build and be available
+- Run `spectacle-renderer`
+- A totally cool PDF is created in your project directory
 
 For more options and configuration of this tool, check out:
 
@@ -244,12 +244,12 @@ For more options and configuration of this tool, check out:
 
 #### Browser
 
-* Run `npm start`
-* Open [http://localhost:3000/](http://localhost:3000/)
-* Add `export&` after the `?` on the URL of page you are redirected to, e.g.: [http://localhost:3000/#/?export&\_k=wbyhif](http://localhost:3000/#/?export&_k=wbyhif)
-* Bring up the print dialog `(ctrl or cmd + p)`
-* Check "Background Graphics" to on if you are about that life
-* Change destination to "Save as PDF", as shown below:
+- Run `npm start`
+- Open [http://localhost:3000/](http://localhost:3000/)
+- Add `export&` after the `?` on the URL of page you are redirected to, e.g.: [http://localhost:3000/#/?export&\_k=wbyhif](http://localhost:3000/#/?export&_k=wbyhif)
+- Bring up the print dialog `(ctrl or cmd + p)`
+- Check "Background Graphics" to on if you are about that life
+- Change destination to "Save as PDF", as shown below:
 
 ![http://i.imgur.com/t6GL5Oc.png](http://i.imgur.com/t6GL5Oc.png)
 
@@ -905,9 +905,9 @@ The `Typeface` tag is used to apply a specific font to text content. It can eith
 
 ## Third Party Extensions
 
-* [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @thejameskyle
-* [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
-* [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
+- [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @thejameskyle
+- [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
+- [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
 
 [trav_img]: https://api.travis-ci.org/FormidableLabs/spectacle.svg
 [trav_site]: https://travis-ci.org/FormidableLabs/spectacle

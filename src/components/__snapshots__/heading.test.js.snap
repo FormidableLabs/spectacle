@@ -20,7 +20,7 @@ exports[`<Heading /> should render correctly. 1`] = `
     }
   >
     <h2
-      className="css-xb8aa1"
+      className="css-xb8aa1 e134u50i4"
     >
       Hi There!
     </h2>
@@ -46,7 +46,7 @@ exports[`<Heading /> should render the fit configuration correctly. 1`] = `
     }
   >
     <div
-      className="css-1449yoq"
+      className="css-1449yoq e134u50i0"
       height={0}
     >
       <Styled(h1)
@@ -61,7 +61,8 @@ exports[`<Heading /> should render the fit configuration correctly. 1`] = `
         }
       >
         <h1
-          className="css-piqx9m"
+          className="css-piqx9m e134u50i2"
+          scale={NaN}
         >
           This Header Fits!
         </h1>

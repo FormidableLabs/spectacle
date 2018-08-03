@@ -16,7 +16,7 @@ exports[`<TableItem /> should render correctly 1`] = `
     }
   >
     <td
-      className="css-0"
+      className="css-0 eaiy41g0"
       style={
         Array [
           Object {
