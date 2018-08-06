@@ -19,7 +19,7 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
     }
   >
     <div
-      className="css-1rapqq0"
+      className="css-1rapqq0 e1kfncg50"
       height={0}
     >
       <Styled(span)
@@ -34,7 +34,8 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
         }
       >
         <span
-          className="css-piqx9m"
+          className="css-piqx9m e1kfncg51"
+          scale={NaN}
         >
           Spectacle Full Size!
         </span>
@@ -62,7 +63,7 @@ exports[`<Text /> should render a <p> with text for the default configuration. 1
     }
   >
     <p
-      className="css-cmzp7u"
+      className="css-cmzp7u e1kfncg52"
     >
       Spectacle!
     </p>

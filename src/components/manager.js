@@ -1,4 +1,4 @@
-/*eslint new-cap:0, max-statements:0*/
+/*eslint new-cap:0, max-statements:0, no-console:0*/
 /* eslint react/no-did-mount-set-state: 0 */
 
 import React, { Children, cloneElement, Component } from 'react';
@@ -119,6 +119,7 @@ export class Manager extends Component {
     this._goToSlide = this._goToSlide.bind(this);
     this._startAutoplay = this._startAutoplay.bind(this);
     this._stopAutoplay = this._stopAutoplay.bind(this);
+    this.presentationConnection = null;
 
     this.state = {
       lastSlideIndex: null,
@@ -179,6 +180,24 @@ export class Manager extends Component {
     window.addEventListener('storage', this._goToSlide);
     window.addEventListener('keydown', this._handleKeyPress);
     window.addEventListener('resize', this._handleScreenChange);
+    if (
+      (((navigator || {}).presentation || {}).receiver || {}).connectionList
+    ) {
+      navigator.presentation.receiver.connectionList.then(list => {
+        list.connections.map(connection => {
+          this.presentationConnection = connection;
+          connection.addEventListener('message', event => {
+            this._goToSlide({ key: 'spectacle-slide', newValue: event.data });
+          });
+        });
+        list.addEventListener('connectionavailable', e => {
+          this.presentationConnection = e.connection;
+          e.connection.addEventListener('message', event => {
+            this._goToSlide({ key: 'spectacle-slide', newValue: event.data });
+          });
+        });
+      });
+    }
   }
   _detachEvents() {
     window.removeEventListener('storage', this._goToSlide);
@@ -274,9 +293,24 @@ export class Manager extends Component {
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _togglePresenterMode() {
-    const suffix =
-      this.props.route.params.indexOf('presenter') !== -1 ? '' : '?presenter';
+    const presenting = this.props.route.params.indexOf('presenter') !== -1;
+    const suffix = presenting ? '' : '?presenter';
+    const originalLocation = location.href;
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
+    if (presenting === false && window.PresentationRequest) {
+      const presentationRequest = new PresentationRequest([
+        `${originalLocation}`
+      ]);
+      navigator.presentation.defaultRequest = presentationRequest;
+      presentationRequest.start().then(connection => {
+        this.presentationConnection = connection;
+        this.presentationConnection.addEventListener('message', data => {
+          this._goToSlide({ key: 'spectacle-slide', newValue: data.data });
+        });
+      });
+    } else if (this.presentationConnection) {
+      this.presentationConnection.terminate();
+    }
   }
   _toggleTimerMode() {
     const isTimer =
@@ -314,14 +348,17 @@ export class Manager extends Component {
           )
         : data.slide - 1;
 
-      localStorage.setItem(
-        'spectacle-slide',
-        JSON.stringify({
-          slide: this._getHash(index),
-          forward: false,
-          time: Date.now()
-        })
-      );
+      const msgData = JSON.stringify({
+        slide: this._getHash(index),
+        forward: false,
+        time: Date.now()
+      });
+
+      localStorage.setItem('spectacle-slide', msgData);
+
+      if (this.presentationConnection) {
+        this.presentationConnection.send(msgData);
+      }
     } else {
       return;
     }
@@ -353,24 +390,31 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex - 1)}${this._getSuffix()}`
         );
-        localStorage.setItem(
-          'spectacle-slide',
-          JSON.stringify({
-            slide: this._getHash(slideIndex - 1),
-            forward: false,
-            time: Date.now()
-          })
-        );
-      }
-    } else if (slideIndex > 0) {
-      localStorage.setItem(
-        'spectacle-slide',
-        JSON.stringify({
-          slide: this._getHash(slideIndex),
+
+        const msgData = JSON.stringify({
+          slide: this._getHash(slideIndex - 1),
           forward: false,
           time: Date.now()
-        })
-      );
+        });
+
+        localStorage.setItem('spectacle-slide', msgData);
+
+        if (this.presentationConnection) {
+          this.presentationConnection.send(msgData);
+        }
+      }
+    } else if (slideIndex > 0) {
+      const msgData = JSON.stringify({
+        slide: this._getHash(slideIndex),
+        forward: false,
+        time: Date.now()
+      });
+
+      localStorage.setItem('spectacle-slide', msgData);
+
+      if (this.presentationConnection) {
+        this.presentationConnection.send(msgData);
+      }
     }
   }
   _nextUnviewedIndex() {
@@ -417,24 +461,31 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex + offset) + this._getSuffix()}`
         );
-        localStorage.setItem(
-          'spectacle-slide',
-          JSON.stringify({
-            slide: this._getHash(slideIndex + offset),
-            forward: true,
-            time: Date.now()
-          })
-        );
-      }
-    } else if (slideIndex < slideReference.length) {
-      localStorage.setItem(
-        'spectacle-slide',
-        JSON.stringify({
-          slide: this._getHash(slideIndex),
+
+        const msgData = JSON.stringify({
+          slide: this._getHash(slideIndex + offset),
           forward: true,
           time: Date.now()
-        })
-      );
+        });
+
+        localStorage.setItem('spectacle-slide', msgData);
+
+        if (this.presentationConnection) {
+          this.presentationConnection.send(msgData);
+        }
+      }
+    } else if (slideIndex < slideReference.length) {
+      const msgData = JSON.stringify({
+        slide: this._getHash(slideIndex),
+        forward: true,
+        time: Date.now()
+      });
+
+      localStorage.setItem('spectacle-slide', msgData);
+
+      if (this.presentationConnection) {
+        this.presentationConnection.send(msgData);
+      }
     }
   }
   _getHash(slideIndex) {
@@ -591,7 +642,7 @@ export class Manager extends Component {
     const xDist = touch.x1 - touch.x2;
     const yDist = touch.y1 - touch.y2;
     const r = Math.atan2(yDist, xDist);
-    let swipeAngle = Math.round(r * 180 / Math.PI);
+    let swipeAngle = Math.round((r * 180) / Math.PI);
 
     if (swipeAngle < 0) {
       swipeAngle = 360 - Math.abs(swipeAngle);
@@ -842,4 +893,9 @@ export class Manager extends Component {
   }
 }
 
-export default connect(state => state, null, null, { withRef: true })(Manager);
+export default connect(
+  state => state,
+  null,
+  null,
+  { withRef: true }
+)(Manager);

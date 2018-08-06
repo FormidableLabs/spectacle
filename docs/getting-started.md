@@ -38,11 +38,11 @@ Spectacle comes with a built in presenter mode. It shows you a slide lookahead, 
 
 To present:
 
-* Run `npm start`
-* Open two browser windows on two different screens
-* On your screen visit [http://localhost:3000/?presenter](http://localhost:3000/?presenter)
-* On the presentation screen visit [http://localhost:3000/](http://localhost:3000/)
-* Give an amazingly stylish presentation
+- Run `npm start`
+- Open two browser windows on two different screens
+- On your screen visit [http://localhost:3000/?presenter](http://localhost:3000/?presenter)
+- On the presentation screen visit [http://localhost:3000/](http://localhost:3000/)
+- Give an amazingly stylish presentation
 
 _Note: Any windows/tabs in the same browser that are running Spectacle will sync to one another, even if you don't want to use presentation mode_
 
@@ -77,11 +77,11 @@ Fullscreen can be toggled via browser options, or by **hovering over the bottom 
 
 Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is absurdly easy.
 
-* Run `npm start`
-* Append your URL with `?export` ([http://localhost:3000/?export](http://localhost:3000/?export))
-* Bring up the print dialog `(ctrl or cmd + p)`
-* Check "Background Graphics" to on if you are about that life
-* Change destination to "Save as PDF", as shown below:
+- Run `npm start`
+- Append your URL with `?export` ([http://localhost:3000/?export](http://localhost:3000/?export))
+- Bring up the print dialog `(ctrl or cmd + p)`
+- Check "Background Graphics" to on if you are about that life
+- Change destination to "Save as PDF", as shown below:
 
 ![http://i.imgur.com/t6GL5Oc.png](http://i.imgur.com/t6GL5Oc.png)
 
