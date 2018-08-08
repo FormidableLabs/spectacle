@@ -13,83 +13,61 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
   }
   viewerScaleMode={false}
 >
-  <VictoryAnimation
-    data={
+  <Styled(div)
+    background="#eee"
+    className="spectacle-slide"
+    exportMode={undefined}
+    innerRef={[Function]}
+    printMode={undefined}
+    styles={
       Object {
-        "transform": " translate3d(-100%, 0, 0) rotateY(-90deg)",
-        "zIndex": 1,
+        "base": Object {},
+        "presenter": Object {},
       }
     }
-    delay={0}
-    duration={1000}
-    easing="quadInOut"
   >
-    <Styled(div)
-      background="#eee"
-      className="spectacle-slide"
-      exportMode={undefined}
-      innerRef={[Function]}
-      printMode={undefined}
-      style={
-        Object {
-          "transform": " translate3d(-100%, 0, 0) rotateY(-90deg)",
-          "zIndex": 1,
-        }
-      }
-      styles={
-        Object {
-          "base": Object {},
-          "presenter": Object {},
-        }
-      }
+    <div
+      className="spectacle-slide css-1w0uyvd e1s7evq10"
     >
-      <div
-        className="spectacle-slide css-1w0uyvd e1s7evq10"
-        style={
-          Object {
-            "transform": " translate3d(-100%, 0, 0) rotateY(-90deg)",
-            "zIndex": 1,
-          }
-        }
+      <Styled(div)
+        align="center center"
+        overviewMode={undefined}
       >
-        <Styled(div)
-          align="center center"
-          overviewMode={undefined}
+        <div
+          className="css-13fut6c e1s7evq11"
         >
-          <div
-            className="css-13fut6c e1s7evq11"
-          >
-            <Styled(div)
-              className=" spectacle-content"
-              height={undefined}
-              innerRef={[Function]}
-              margin={undefined}
-              overviewMode={undefined}
-              scale={1}
-              styles={
-                Object {
-                  "context": Object {},
-                }
+          <Styled(div)
+            className=" spectacle-content"
+            height={undefined}
+            innerRef={[Function]}
+            margin={undefined}
+            overviewMode={undefined}
+            scale={1}
+            style={Object {}}
+            styles={
+              Object {
+                "context": Object {},
               }
+            }
+            width={undefined}
+            zoom={0.6}
+          >
+            <div
+              className=" spectacle-content css-1wqnfch e1s7evq12"
+              height={undefined}
+              scale={1}
+              style={Object {}}
               width={undefined}
-              zoom={0.6}
             >
-              <div
-                className=" spectacle-content css-1wqnfch e1s7evq12"
-                height={undefined}
-                scale={1}
-                width={undefined}
-              >
-                <div>
-                  Slide Content
-                </div>
+              <div>
+                Slide Content
               </div>
-            </Styled(div)>
-          </div>
-        </Styled(div)>
-      </div>
-    </Styled(div)>
-  </VictoryAnimation>
+            </div>
+          </Styled(div)>
+        </div>
+      </Styled(div)>
+    </div>
+  </Styled(div)>
 </Slide>
 `;
 
@@ -100,82 +78,60 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
   style={Object {}}
   viewerScaleMode={false}
 >
-  <VictoryAnimation
-    data={
+  <Styled(div)
+    background="#eee"
+    className="spectacle-slide"
+    exportMode={undefined}
+    innerRef={[Function]}
+    printMode={undefined}
+    styles={
       Object {
-        "transform": " translate3d(0px, 0px, 0px)",
-        "zIndex": 1,
+        "base": Object {},
+        "presenter": Object {},
       }
     }
-    delay={0}
-    duration={1000}
-    easing="quadInOut"
   >
-    <Styled(div)
-      background="#eee"
-      className="spectacle-slide"
-      exportMode={undefined}
-      innerRef={[Function]}
-      printMode={undefined}
-      style={
-        Object {
-          "transform": " translate3d(0px, 0px, 0px)",
-          "zIndex": 1,
-        }
-      }
-      styles={
-        Object {
-          "base": Object {},
-          "presenter": Object {},
-        }
-      }
+    <div
+      className="spectacle-slide css-1w0uyvd e1s7evq10"
     >
-      <div
-        className="spectacle-slide css-1w0uyvd e1s7evq10"
-        style={
-          Object {
-            "transform": " translate3d(0px, 0px, 0px)",
-            "zIndex": 1,
-          }
-        }
+      <Styled(div)
+        align="center center"
+        overviewMode={undefined}
       >
-        <Styled(div)
-          align="center center"
-          overviewMode={undefined}
+        <div
+          className="css-13fut6c e1s7evq11"
         >
-          <div
-            className="css-13fut6c e1s7evq11"
-          >
-            <Styled(div)
-              className=" spectacle-content"
-              height={undefined}
-              innerRef={[Function]}
-              margin={undefined}
-              overviewMode={undefined}
-              scale={1}
-              styles={
-                Object {
-                  "context": Object {},
-                }
+          <Styled(div)
+            className=" spectacle-content"
+            height={undefined}
+            innerRef={[Function]}
+            margin={undefined}
+            overviewMode={undefined}
+            scale={1}
+            style={Object {}}
+            styles={
+              Object {
+                "context": Object {},
               }
+            }
+            width={undefined}
+            zoom={0.6}
+          >
+            <div
+              className=" spectacle-content css-1wqnfch e1s7evq12"
+              height={undefined}
+              scale={1}
+              style={Object {}}
               width={undefined}
-              zoom={0.6}
             >
-              <div
-                className=" spectacle-content css-1wqnfch e1s7evq12"
-                height={undefined}
-                scale={1}
-                width={undefined}
-              >
-                <div>
-                  Slide Content
-                </div>
+              <div>
+                Slide Content
               </div>
-            </Styled(div)>
-          </div>
-        </Styled(div)>
-      </div>
-    </Styled(div)>
-  </VictoryAnimation>
+            </div>
+          </Styled(div)>
+        </div>
+      </Styled(div)>
+    </div>
+  </Styled(div)>
 </Slide>
 `;

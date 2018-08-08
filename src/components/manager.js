@@ -18,6 +18,7 @@ import memoize from 'lodash/memoize';
 
 import Presenter from './presenter';
 import Export from './export';
+import SlideWrapper from './slide-wrapper';
 import Overview from './overview';
 import Magic from './magic';
 
@@ -64,18 +65,6 @@ const StyledTransition = styled(ReactTransitionGroup)({
 export class Manager extends Component {
   static displayName = 'Manager';
 
-  static defaultProps = {
-    autoplay: false,
-    autoplayDuration: 7000,
-    contentWidth: 1000,
-    contentHeight: 700,
-    transition: [],
-    transitionDuration: 500,
-    progress: 'pacman',
-    controls: true,
-    globalStyles: true
-  };
-
   static propTypes = {
     autoplay: PropTypes.bool,
     autoplayDuration: PropTypes.number,
@@ -107,6 +96,18 @@ export class Manager extends Component {
     contentWidth: PropTypes.number,
     contentHeight: PropTypes.number,
     goToSlide: PropTypes.func
+  };
+
+  static defaultProps = {
+    autoplay: false,
+    autoplayDuration: 7000,
+    contentWidth: 1000,
+    contentHeight: 700,
+    transition: [],
+    transitionDuration: 500,
+    progress: 'pacman',
+    controls: true,
+    globalStyles: true
   };
 
   constructor(props) {
@@ -719,7 +720,7 @@ export class Manager extends Component {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 
-    return cloneElement(slide, {
+    const targetProps = {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
       export: this.props.route.params.indexOf('export') !== -1,
@@ -734,7 +735,13 @@ export class Manager extends Component {
         ? slide.props.transitionDuration
         : this.props.transitionDuration,
       slideReference: this.state.slideReference
-    });
+    };
+
+    return (
+      <SlideWrapper key={slideIndex} {...slide.props} {...targetProps}>
+        {cloneElement(slide, { ...slide.props, ...targetProps })}
+      </SlideWrapper>
+    );
   }
   _getProgressStyles() {
     const slideIndex = this._getSlideIndex();

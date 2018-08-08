@@ -107,7 +107,8 @@ exports[`<Manager /> should render correctly. 1`] = `
             <div
               className="css-r8ywg3 eaa55an1"
             >
-              <MockSlide
+              <SlideWrapper
+                align="center center"
                 dispatch={[Function]}
                 export={false}
                 fragments={
@@ -116,8 +117,9 @@ exports[`<Manager /> should render correctly. 1`] = `
                   }
                 }
                 hash={0}
-                key=".$.0"
+                key=".$0"
                 lastSlideIndex={0}
+                presenterStyle={Object {}}
                 print={false}
                 slideIndex={0}
                 slideReference={
@@ -132,6 +134,7 @@ exports[`<Manager /> should render correctly. 1`] = `
                     },
                   ]
                 }
+                style={Object {}}
                 transition={
                   Array [
                     "zoom",
@@ -139,11 +142,76 @@ exports[`<Manager /> should render correctly. 1`] = `
                   ]
                 }
                 transitionDuration={500}
+                viewerScaleMode={false}
               >
-                <div>
-                  Slide Content
-                </div>
-              </MockSlide>
+                <VictoryAnimation
+                  data={
+                    Object {
+                      "transform": " scale(1) translate3d(0%, 0, 0)",
+                      "zIndex": 1,
+                    }
+                  }
+                  delay={0}
+                  duration={500}
+                  easing="quadInOut"
+                >
+                  <div
+                    style={
+                      Object {
+                        "backgroundColor": "",
+                        "display": "flex",
+                        "height": "100%",
+                        "left": 0,
+                        "overflow": "hidden",
+                        "position": "absolute",
+                        "top": 0,
+                        "transform": " scale(0.1) translate3d(-100%, 0, 0)",
+                        "transformOrigin": "center center",
+                        "width": "100%",
+                        "zIndex": 1,
+                      }
+                    }
+                  >
+                    <MockSlide
+                      dispatch={[Function]}
+                      export={false}
+                      fragments={
+                        Object {
+                          "fragments": Array [],
+                        }
+                      }
+                      hash={0}
+                      key=".0"
+                      lastSlideIndex={0}
+                      print={false}
+                      slideIndex={0}
+                      slideReference={
+                        Array [
+                          Object {
+                            "id": 0,
+                            "rootIndex": 0,
+                          },
+                          Object {
+                            "id": 1,
+                            "rootIndex": 1,
+                          },
+                        ]
+                      }
+                      transition={
+                        Array [
+                          "zoom",
+                          "slide",
+                        ]
+                      }
+                      transitionDuration={500}
+                    >
+                      <div>
+                        Slide Content
+                      </div>
+                    </MockSlide>
+                  </div>
+                </VictoryAnimation>
+              </SlideWrapper>
             </div>
           </TransitionGroup>
         </Styled(TransitionGroup)>
@@ -766,7 +834,8 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             <div
               className="css-r8ywg3 eaa55an1"
             >
-              <MockSlide
+              <SlideWrapper
+                align="center center"
                 dispatch={[Function]}
                 export={false}
                 fragments={
@@ -775,8 +844,9 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                   }
                 }
                 hash={1}
-                key=".$.0"
+                key=".$1"
                 lastSlideIndex={1}
+                presenterStyle={Object {}}
                 print={false}
                 slideIndex={1}
                 slideReference={
@@ -797,13 +867,80 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                     },
                   ]
                 }
+                style={Object {}}
                 transition={Array []}
                 transitionDuration={500}
+                viewerScaleMode={false}
               >
-                <div>
-                  Slide Content
-                </div>
-              </MockSlide>
+                <VictoryAnimation
+                  data={
+                    Object {
+                      "transform": " translate3d(0px, 0px, 0px)",
+                      "zIndex": 1,
+                    }
+                  }
+                  delay={0}
+                  duration={500}
+                  easing="quadInOut"
+                >
+                  <div
+                    style={
+                      Object {
+                        "backgroundColor": "",
+                        "display": "flex",
+                        "height": "100%",
+                        "left": 0,
+                        "overflow": "hidden",
+                        "position": "absolute",
+                        "top": 0,
+                        "transform": " translate3d(0px, 0px, 0px)",
+                        "transformOrigin": "center center",
+                        "width": "100%",
+                        "zIndex": 1,
+                      }
+                    }
+                  >
+                    <MockSlide
+                      dispatch={[Function]}
+                      export={false}
+                      fragments={
+                        Object {
+                          "fragments": Array [],
+                        }
+                      }
+                      hash={1}
+                      key=".0"
+                      lastSlideIndex={1}
+                      print={false}
+                      slideIndex={1}
+                      slideReference={
+                        Array [
+                          Object {
+                            "id": 0,
+                            "rootIndex": 0,
+                          },
+                          Object {
+                            "id": 1,
+                            "rootIndex": 1,
+                            "setIndex": 0,
+                          },
+                          Object {
+                            "id": 2,
+                            "rootIndex": 1,
+                            "setIndex": 1,
+                          },
+                        ]
+                      }
+                      transition={Array []}
+                      transitionDuration={500}
+                    >
+                      <div>
+                        Slide Content
+                      </div>
+                    </MockSlide>
+                  </div>
+                </VictoryAnimation>
+              </SlideWrapper>
             </div>
           </TransitionGroup>
         </Styled(TransitionGroup)>
