@@ -19,7 +19,6 @@ import memoize from 'lodash/memoize';
 import Presenter from './presenter';
 import Export from './export';
 import SlideWrapper from './slide-wrapper';
-import Slide from './slide';
 import Overview from './overview';
 import Magic from './magic';
 
@@ -40,8 +39,8 @@ convertStyle = memoize(convertStyle);
 
 const StyledDeck = styled.div(props => ({
   backgroundColor:
-    (props.route.params.indexOf('presenter') !== -1 ||
-      props.route.params.indexOf('overview') !== -1)
+    props.route.params.indexOf('presenter') !== -1 ||
+    props.route.params.indexOf('overview') !== -1
       ? 'black'
       : '',
   position: 'absolute',
@@ -65,18 +64,6 @@ const StyledTransition = styled(ReactTransitionGroup)({
 // eslint-disable-next-line react/no-deprecated
 export class Manager extends Component {
   static displayName = 'Manager';
-
-  static defaultProps = {
-    autoplay: false,
-    autoplayDuration: 7000,
-    contentWidth: 1000,
-    contentHeight: 700,
-    transition: [],
-    transitionDuration: 500,
-    progress: 'pacman',
-    controls: true,
-    globalStyles: true
-  };
 
   static propTypes = {
     autoplay: PropTypes.bool,
@@ -109,6 +96,18 @@ export class Manager extends Component {
     contentWidth: PropTypes.number,
     contentHeight: PropTypes.number,
     goToSlide: PropTypes.func
+  };
+
+  static defaultProps = {
+    autoplay: false,
+    autoplayDuration: 7000,
+    contentWidth: 1000,
+    contentHeight: 700,
+    transition: [],
+    transitionDuration: 500,
+    progress: 'pacman',
+    controls: true,
+    globalStyles: true
   };
 
   constructor(props) {
@@ -344,10 +343,10 @@ export class Manager extends Component {
 
       const index = isNaN(parseInt(data.slide, 10))
         ? get(
-          this.state.slideReference.find(slide => slide.id === data.slide),
-          'rootIndex',
-          0
-        )
+            this.state.slideReference.find(slide => slide.id === data.slide),
+            'rootIndex',
+            0
+          )
         : data.slide - 1;
 
       const msgData = JSON.stringify({
@@ -739,11 +738,7 @@ export class Manager extends Component {
     };
 
     return (
-      <SlideWrapper
-        key={slideIndex}
-        {...slide.props}
-        {...targetProps}
-      >
+      <SlideWrapper key={slideIndex} {...slide.props} {...targetProps}>
         {cloneElement(slide, { ...slide.props, ...targetProps })}
       </SlideWrapper>
     );
@@ -774,20 +769,20 @@ export class Manager extends Component {
     const globals =
       this.props.route.params.indexOf('export') !== -1
         ? {
-          body: Object.assign(this.context.styles.global.body, {
-            minWidth: this.props.contentWidth + 150,
-            minHeight: this.props.contentHeight + 150,
-            overflow: 'auto'
-          }),
-          '.spectacle-presenter-next .fragment': {
-            display: 'none !important'
+            body: Object.assign(this.context.styles.global.body, {
+              minWidth: this.props.contentWidth + 150,
+              minHeight: this.props.contentHeight + 150,
+              overflow: 'auto'
+            }),
+            '.spectacle-presenter-next .fragment': {
+              display: 'none !important'
+            }
           }
-        }
         : {
-          '.spectacle-presenter-next .fragment': {
-            display: 'none !important'
-          }
-        };
+            '.spectacle-presenter-next .fragment': {
+              display: 'none !important'
+            }
+          };
 
     let componentToRender;
     const children = Children.toArray(this.props.children);
@@ -868,16 +863,16 @@ export class Manager extends Component {
         {componentToRender}
 
         {this.props.route.params.indexOf('export') === -1 &&
-          this.props.route.params.indexOf('overview') === -1 ? (
-            <Progress
-              items={this.state.slideReference}
-              currentSlideIndex={this._getSlideIndex()}
-              type={this.props.progress}
-              progressColor={this._getProgressStyles()}
-            />
-          ) : (
-            ''
-          )}
+        this.props.route.params.indexOf('overview') === -1 ? (
+          <Progress
+            items={this.state.slideReference}
+            currentSlideIndex={this._getSlideIndex()}
+            type={this.props.progress}
+            progressColor={this._getProgressStyles()}
+          />
+        ) : (
+          ''
+        )}
 
         {this.props.route.params.indexOf('export') === -1 ? <Fullscreen /> : ''}
 
@@ -888,8 +883,8 @@ export class Manager extends Component {
             onPause={this._stopAutoplay}
           />
         ) : (
-            ''
-          )}
+          ''
+        )}
 
         {this.props.globalStyles && (
           <style

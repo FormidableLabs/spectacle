@@ -1,20 +1,20 @@
 /*eslint max-statements:0,complexity:0,no-invalid-this:0*/
 
-const parseFontSize = function (fontSize) {
+const parseFontSize = function(fontSize) {
   const sizeComponents = fontSize.match(/\d*\.*\d+|\D+/g);
   const size = parseFloat(sizeComponents[0]);
   const unit = sizeComponents[1];
   return { size, unit };
 };
 
-const getFontSizeFromElement = function (element) {
+const getFontSizeFromElement = function(element) {
   const fontSize = window.getComputedStyle
     ? window.getComputedStyle(element).getPropertyValue('font-size')
     : element.currentStyle.fontSize;
   return fontSize ? parseFontSize(fontSize) : null;
 };
 
-const convertFontSizeToPx = function (fontSize) {
+const convertFontSizeToPx = function(fontSize) {
   let convertedFontSize;
 
   if (typeof fontSize === 'number') {

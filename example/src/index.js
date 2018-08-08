@@ -94,9 +94,6 @@ export default class Presentation extends Component {
             Hit Your Right Arrow To Begin!
           </Text>
         </Slide>
-        <BlackSlide>
-          <Heading>Test</Heading>
-        </BlackSlide>
         <Slide
           onActive={slideIndex => {
             console.info(`Viewing slide index: ${slideIndex}.`); // eslint-disable-line no-console

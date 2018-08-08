@@ -216,7 +216,7 @@ Slide.childContextTypes = {
   slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   stepCounter: PropTypes.shape({
     setFragments: PropTypes.func
-  }),
+  })
 };
 
 export default Slide;

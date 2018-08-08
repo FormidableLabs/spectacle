@@ -1,11 +1,7 @@
 /* eslint-disable no-invalid-this, max-statements */
 import React from 'react';
 import PropTypes from 'prop-types';
-import isUndefined from 'lodash/isUndefined';
 import isFunction from 'lodash/isFunction';
-import { getStyles } from '../utils/base';
-import stepCounter from '../utils/step-counter';
-import { addFragment } from '../actions';
 
 import { VictoryAnimation } from 'victory-core';
 import findIndex from 'lodash/findIndex';
@@ -24,7 +20,7 @@ class SlideWrapper extends React.PureComponent {
   state = {
     reverse: false,
     transitioning: true,
-    z: 1,
+    z: 1
   };
 
   componentWillEnter(callback) {
@@ -128,10 +124,6 @@ class SlideWrapper extends React.PureComponent {
     if (!this.props.viewerScaleMode) {
       document.documentElement.style.fontSize = `${16 * this.state.zoom}px`;
     }
-
-    const contentClass = isUndefined(this.props.className)
-      ? ''
-      : this.props.className;
 
     return (
       <VictoryAnimation
