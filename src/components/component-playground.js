@@ -163,6 +163,12 @@ class ComponentPlayground extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.code !== prevState.code && this.props.onCodeChange) {
+      this.props.onCodeChange(this.state.code);
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener('storage', this.syncCode);
   }
@@ -219,6 +225,7 @@ class ComponentPlayground extends Component {
         code={this.state.code}
         scope={{ Component, ...scope }}
         transformCode={transformCode}
+        onError={this.props.onError}
         noInline
       >
         <PlaygroundRow>
@@ -264,6 +271,8 @@ ComponentPlayground.contextTypes = {
 
 ComponentPlayground.propTypes = {
   code: PropTypes.string,
+  onCodeChange: PropTypes.func,
+  onError: PropTypes.func,
   previewBackgroundColor: PropTypes.string,
   scope: PropTypes.object,
   theme: PropTypes.oneOf(['dark', 'light', 'external']),

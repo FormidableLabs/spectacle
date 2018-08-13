@@ -674,12 +674,14 @@ This tag displays a two-pane view with a ES6 source code editor on the right and
 
 For more information on the playground read the docs over at [react-live](https://github.com/FormidableLabs/react-live).
 
-| Name                   | PropType         | Description                                                                                                                      |
-| ---------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| code                   | PropTypes.string | The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed. |
-| previewBackgroundColor | PropTypes.string | The background color you want for the preview pane. Defaults to `#fff`.                                                          |
-| theme                  | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. Defaults to `dark`.                          |
-| scope                  | PropTypes.object | Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.        |
+| Name                   | PropType         | Description                                                                                                                                                                             |
+| ---------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code                   | PropTypes.string | The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed.                                                        |
+| previewBackgroundColor | PropTypes.string | The background color you want for the preview pane. Defaults to `#fff`.                                                                                                                 |
+| theme                  | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. Defaults to `dark`.                                                                                 |
+| scope                  | PropTypes.object | Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.                                                               |
+| onCodeChange           | PropTypes.func   | Called whenever the code changes after the initial render with the new code as its argument.                                                                                            |
+| onError                | PropTypes.func   | Called whenever a new transpilation/execution error occurs in the code, or when the code becomes error-free again. The only argument will be either the caught error object, or `null`. |
 
 Example code blocks:
 
