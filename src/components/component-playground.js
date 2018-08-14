@@ -152,7 +152,7 @@ class ComponentPlayground extends Component {
 
     this.state = {
       code: (this.props.code || defaultCode).trim(),
-      scope: getEnhancedScope(this.props.scope),
+      scope: getEnhancedScope(this.props.scope)
     };
   }
 
