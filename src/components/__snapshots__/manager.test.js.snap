@@ -16,6 +16,7 @@ exports[`<Manager /> should render correctly. 1`] = `
     contentHeight={700}
     contentWidth={1000}
     controls={true}
+    disableKeyboardControls={false}
     dispatch={[Function]}
     fragment={
       Object {
@@ -395,6 +396,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
     contentHeight={700}
     contentWidth={1000}
     controls={true}
+    disableKeyboardControls={false}
     dispatch={[Function]}
     fragment={
       Object {
@@ -527,6 +529,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
     contentHeight={700}
     contentWidth={1000}
     controls={true}
+    disableKeyboardControls={false}
     dispatch={[Function]}
     fragment={
       Object {
@@ -727,6 +730,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
     contentHeight={700}
     contentWidth={1000}
     controls={true}
+    disableKeyboardControls={false}
     dispatch={[Function]}
     fragment={
       Object {
