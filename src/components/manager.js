@@ -72,6 +72,7 @@ export class Manager extends Component {
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
     controls: PropTypes.bool,
+    disableKeyboardControls: PropTypes.bool,
     dispatch: PropTypes.func,
     fragment: PropTypes.object,
     globalStyles: PropTypes.bool,
@@ -103,6 +104,7 @@ export class Manager extends Component {
     autoplayDuration: 7000,
     contentWidth: 1000,
     contentHeight: 700,
+    disableKeyboardControls: false,
     transition: [],
     transitionDuration: 500,
     progress: 'pacman',
@@ -275,7 +277,9 @@ export class Manager extends Component {
 
     if (
       event.target instanceof HTMLInputElement ||
-      event.target.type === 'textarea'
+      event.target.type === 'textarea' ||
+      event.target.contentEditable === 'true' ||
+      this.props.disableKeyboardControls
     ) {
       return;
     }
