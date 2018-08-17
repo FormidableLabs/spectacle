@@ -13,6 +13,9 @@ export default class Link extends Component {
         className={this.props.className}
         href={this.props.href}
         target={this.props.target}
+        {...(this.props.target === '_blank'
+          ? { rel: 'noopener noreferrer' }
+          : {})}
         styles={[
           this.context.styles.components.link,
           getStyles.call(this),
@@ -31,7 +34,11 @@ Link.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string,
   style: PropTypes.object,
-  target: PropTypes.string
+  target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top'])
+};
+
+Link.defaultProps = {
+  target: '_self'
 };
 
 Link.contextTypes = {
