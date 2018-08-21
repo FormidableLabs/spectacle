@@ -8,6 +8,7 @@ exports[`<Link /> should render correctly 1`] = `
   <Styled(a)
     className={undefined}
     href="https://www.formidable.com"
+    rel="noopener noreferrer"
     styles={
       Array [
         Object {
@@ -23,6 +24,7 @@ exports[`<Link /> should render correctly 1`] = `
     <a
       className="css-qjaoxy e1wojnuz0"
       href="https://www.formidable.com"
+      rel="noopener noreferrer"
       target="_blank"
     >
       Formidable Labs
