@@ -32,7 +32,7 @@ export default class AutoplayControls extends Component {
           height="30px"
           viewBox="0 0 30 30"
         >
-          <path d="M23.5,4V26h-6V4ZM6.5,26h6V4h-6Z"/>
+          <path d="M23.5,4V26h-6V4ZM6.5,26h6V4h-6Z" />
         </svg>
       </AutoplayButton>
     );
@@ -53,7 +53,7 @@ export default class AutoplayControls extends Component {
           height="30px"
           viewBox="0 0 30 30"
         >
-          <path d="M26,15,6,25V5Z"/>
+          <path d="M26,15,6,25V5Z" />
         </svg>
       </AutoplayButton>
     );
@@ -65,7 +65,7 @@ export default class AutoplayControls extends Component {
 AutoplayControls.propTypes = {
   autoplaying: PropTypes.bool,
   onPause: PropTypes.func,
-  onPlay: PropTypes.func,
+  onPlay: PropTypes.func
 };
 
 AutoplayControls.contextTypes = {

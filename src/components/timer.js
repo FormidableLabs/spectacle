@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import {
-  Clock as TimerHeader, TButtonContainer, TSingleButton
+  Clock as TimerHeader,
+  TButtonContainer,
+  TSingleButton
 } from './time-components';
 
-const timeCounter = (time) => {
+const timeCounter = time => {
   let hours = Math.floor(time / 3600);
   let minutes = Math.floor(time / 60);
   let seconds = time % 60;
 
-  const areHours = (hours > 0);
+  const areHours = hours > 0;
 
   hours = hours < 10 ? `0${hours}` : hours;
   minutes = minutes < 10 ? `0${minutes}` : minutes;
@@ -58,20 +60,11 @@ export default class Timer extends Component {
     });
   }
   _renderResetButton() {
-    return (
-      <TSingleButton
-        onClick={this.handleResetTimer}
-      >
-        Reset
-      </TSingleButton>
-    );
+    return <TSingleButton onClick={this.handleResetTimer}>Reset</TSingleButton>;
   }
   _renderStartButton() {
     return (
-      <TSingleButton
-        onClick={this.handleStartTimer}
-        start
-      >
+      <TSingleButton onClick={this.handleStartTimer} start>
         Start
       </TSingleButton>
     );
@@ -79,10 +72,7 @@ export default class Timer extends Component {
 
   _renderStopButton() {
     return (
-      <TSingleButton
-        onClick={this.handleStopTimer}
-        stop
-      >
+      <TSingleButton onClick={this.handleStopTimer} stop>
         Stop
       </TSingleButton>
     );
@@ -93,8 +83,12 @@ export default class Timer extends Component {
       <div>
         <TimerHeader>{timeCounter(this.state.elapsedTime)}</TimerHeader>
         <TButtonContainer>
-          { (this.state.elapsedTime !== 0 && this.state.paused) ? (this._renderResetButton()) : null }
-          { this.state.paused ? (this._renderStartButton()) : (this._renderStopButton()) }
+          {this.state.elapsedTime !== 0 && this.state.paused
+            ? this._renderResetButton()
+            : null}
+          {this.state.paused
+            ? this._renderStartButton()
+            : this._renderStopButton()}
         </TButtonContainer>
       </div>
     );

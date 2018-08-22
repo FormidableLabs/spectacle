@@ -1,6 +1,10 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+// TODO(540): Refactor to non-deprecated lifecycle methods.
+// https://github.com/FormidableLabs/spectacle/issues/540
+// - componentWillMount
+// eslint-disable-next-line react/no-deprecated
 export default class Notes extends Component {
   static contextTypes = {
     store: PropTypes.object,

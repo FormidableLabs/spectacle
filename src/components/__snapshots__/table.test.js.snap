@@ -13,7 +13,7 @@ exports[`<Table /> should render correctly 1`] = `
     }
   >
     <table
-      className="css-0"
+      className="css-0 e1hp5cxg0"
     >
       <tbody>
         <tr>

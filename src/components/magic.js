@@ -50,5 +50,5 @@ Magic.propTypes = {
 };
 
 Magic.defaultProps = {
-  magicIndex: 0,
+  magicIndex: 0
 };

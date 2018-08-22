@@ -4,35 +4,34 @@ import { mount } from 'enzyme';
 import range from 'lodash/range';
 
 import Manager from './manager';
-jest.mock('../sync');
 
 const _mockContext = function(slide, routeParams) {
   return {
     styles: {
       global: {
-        body: [],
+        body: []
       },
       controls: {},
       progress: {
-        pacman: [],
-      },
+        pacman: []
+      }
     },
     store: {
       getState: () => ({
         route: {
           params: routeParams,
-          slide,
+          slide
         },
         style: {
-          globalStyleSet: [],
+          globalStyleSet: []
         },
         fragment: {
           fragments: []
         }
       }),
       dispatch: () => {},
-      subscribe: () => {},
-    },
+      subscribe: () => {}
+    }
   };
 };
 
@@ -48,11 +47,11 @@ class MockSlideSet extends Component {
   }
 }
 MockSlideSet.defaultProps = {
-  hasSlideChildren: true,
+  hasSlideChildren: true
 };
 MockSlideSet.propTypes = {
   children: PropTypes.array,
-  hasSlideChildren: PropTypes.bool,
+  hasSlideChildren: PropTypes.bool
 };
 
 const _mockChildContext = function() {
@@ -89,7 +88,7 @@ describe('<Manager />', () => {
       </Manager>,
       {
         context: _mockContext(0, ['export']),
-        childContextTypes: _mockChildContext(),
+        childContextTypes: _mockChildContext()
       }
     );
     expect(wrapper).toMatchSnapshot();
@@ -103,7 +102,7 @@ describe('<Manager />', () => {
       </Manager>,
       {
         context: _mockContext(0, ['overview']),
-        childContextTypes: _mockChildContext(),
+        childContextTypes: _mockChildContext()
       }
     );
     expect(wrapper).toMatchSnapshot();
@@ -126,7 +125,9 @@ describe('<Manager />', () => {
   test('should get the next index when using out-of-order viewing', () => {
     const wrapper = mount(
       <Manager>
-        {range(0, 10).map(value => <MockSlide key={value} />)}
+        {range(0, 10).map(value => (
+          <MockSlide key={value} />
+        ))}
       </Manager>,
       { context: _mockContext(5, []), childContextTypes: _mockChildContext() }
     );
@@ -140,7 +141,9 @@ describe('<Manager />', () => {
   test('should not exceed the maximum number of slides for next index', () => {
     const wrapper = mount(
       <Manager>
-        {range(0, 11).map(value => <MockSlide key={value} />)}
+        {range(0, 11).map(value => (
+          <MockSlide key={value} />
+        ))}
       </Manager>,
       { context: _mockContext(10, []), childContextTypes: _mockChildContext() }
     );

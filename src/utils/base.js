@@ -17,7 +17,7 @@ const getFontSizeFromElement = function(element) {
 const convertFontSizeToPx = function(fontSize) {
   let convertedFontSize;
 
-  if (typeof textSize === 'number') {
+  if (typeof fontSize === 'number') {
     convertedFontSize = fontSize;
   } else if (typeof fontSize === 'string') {
     const parsedFont = parseFontSize(fontSize);
@@ -29,11 +29,11 @@ const convertFontSizeToPx = function(fontSize) {
         convertedFontSize = parsedFont.size;
         break;
       case 'pt':
-        convertedFontSize = parsedFont.size * 96 / 72;
+        convertedFontSize = (parsedFont.size * 96) / 72;
         break;
       case '%':
         if (bodyFont) {
-          convertedFontSize = bodyFont.size * parsedFont.size / 100;
+          convertedFontSize = (bodyFont.size * parsedFont.size) / 100;
         }
         break;
       case 'em':
@@ -46,6 +46,8 @@ const convertFontSizeToPx = function(fontSize) {
           convertedFontSize = htmlFont.size * parsedFont.size;
         }
         break;
+      default:
+        convertedFontSize = parsedFont.size;
     }
   }
   return convertedFontSize;

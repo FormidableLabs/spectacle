@@ -1,4 +1,4 @@
-/*eslint new-cap:0, max-statements:0*/
+/*eslint new-cap:0, max-statements:0, no-console:0*/
 /* eslint react/no-did-mount-set-state: 0 */
 
 import React, { Children, cloneElement, Component } from 'react';
@@ -18,6 +18,7 @@ import memoize from 'lodash/memoize';
 
 import Presenter from './presenter';
 import Export from './export';
+import SlideWrapper from './slide-wrapper';
 import Overview from './overview';
 import Magic from './magic';
 
@@ -25,8 +26,6 @@ import AutoplayControls from './autoplay-controls';
 import Fullscreen from './fullscreen';
 import Progress from './progress';
 import Controls from './controls';
-
-import wsync from '../sync';
 
 let convertStyle = styles => {
   return Object.keys(styles)
@@ -48,30 +47,23 @@ const StyledDeck = styled.div(props => ({
   top: 0,
   left: 0,
   width: '100%',
-  height: '100%',
+  height: '100%'
 }));
 
 const StyledTransition = styled(ReactTransitionGroup)({
   height: '100%',
   width: '100%',
   perspective: 1000,
-  transformStyle: 'flat',
+  transformStyle: 'flat'
 });
 
+// TODO(540): Refactor to non-deprecated lifecycle methods.
+// https://github.com/FormidableLabs/spectacle/issues/540
+// - componentWillMount
+// - componentWillReceiveProps
+// eslint-disable-next-line react/no-deprecated
 export class Manager extends Component {
   static displayName = 'Manager';
-
-  static defaultProps = {
-    autoplay: false,
-    autoplayDuration: 7000,
-    contentWidth: 1000,
-    contentHeight: 700,
-    transition: [],
-    transitionDuration: 500,
-    progress: 'pacman',
-    controls: true,
-    globalStyles: true,
-  };
 
   static propTypes = {
     autoplay: PropTypes.bool,
@@ -80,13 +72,14 @@ export class Manager extends Component {
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
     controls: PropTypes.bool,
+    disableKeyboardControls: PropTypes.bool,
     dispatch: PropTypes.func,
     fragment: PropTypes.object,
     globalStyles: PropTypes.bool,
     progress: PropTypes.oneOf(['pacman', 'bar', 'number', 'none']),
     route: PropTypes.object,
     transition: PropTypes.array,
-    transitionDuration: PropTypes.number,
+    transitionDuration: PropTypes.number
   };
 
   static contextTypes = {
@@ -97,13 +90,26 @@ export class Manager extends Component {
     export: PropTypes.bool,
     overview: PropTypes.bool,
     store: PropTypes.object,
-    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   };
 
   static childContextTypes = {
     contentWidth: PropTypes.number,
     contentHeight: PropTypes.number,
     goToSlide: PropTypes.func
+  };
+
+  static defaultProps = {
+    autoplay: false,
+    autoplayDuration: 7000,
+    contentWidth: 1000,
+    contentHeight: 700,
+    disableKeyboardControls: false,
+    transition: [],
+    transitionDuration: 500,
+    progress: 'pacman',
+    controls: true,
+    globalStyles: true
   };
 
   constructor(props) {
@@ -116,13 +122,14 @@ export class Manager extends Component {
     this._goToSlide = this._goToSlide.bind(this);
     this._startAutoplay = this._startAutoplay.bind(this);
     this._stopAutoplay = this._stopAutoplay.bind(this);
+    this.presentationConnection = null;
 
     this.state = {
       lastSlideIndex: null,
       slideReference: [],
       fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < props.contentWidth,
-      autoplaying: props.autoplay,
+      autoplaying: props.autoplay
     };
 
     this.viewedIndexes = new Set();
@@ -139,14 +146,14 @@ export class Manager extends Component {
 
   componentWillMount() {
     this.setState({
-      slideReference: this._buildSlideReference(this.props),
+      slideReference: this._buildSlideReference(this.props)
     });
   }
 
   componentDidMount() {
     const slideIndex = this._getSlideIndex();
     this.setState({
-      lastSlideIndex: slideIndex,
+      lastSlideIndex: slideIndex
     });
     this._attachEvents();
     if (this.props.autoplay) {
@@ -156,7 +163,7 @@ export class Manager extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      slideReference: this._buildSlideReference(nextProps),
+      slideReference: this._buildSlideReference(nextProps)
     });
   }
 
@@ -173,17 +180,30 @@ export class Manager extends Component {
   }
 
   _attachEvents() {
-    wsync.receiveHandler = (msg) => {
-      this._goToSlide({
-        key: 'spectacle-slide',
-        newValue: msg.data
-      });
-    };
+    window.addEventListener('storage', this._goToSlide);
     window.addEventListener('keydown', this._handleKeyPress);
     window.addEventListener('resize', this._handleScreenChange);
+    if (
+      (((navigator || {}).presentation || {}).receiver || {}).connectionList
+    ) {
+      navigator.presentation.receiver.connectionList.then(list => {
+        list.connections.map(connection => {
+          this.presentationConnection = connection;
+          connection.addEventListener('message', event => {
+            this._goToSlide({ key: 'spectacle-slide', newValue: event.data });
+          });
+        });
+        list.addEventListener('connectionavailable', e => {
+          this.presentationConnection = e.connection;
+          e.connection.addEventListener('message', event => {
+            this._goToSlide({ key: 'spectacle-slide', newValue: event.data });
+          });
+        });
+      });
+    }
   }
   _detachEvents() {
-    wsync.receiveHandler = null;
+    window.removeEventListener('storage', this._goToSlide);
     window.removeEventListener('keydown', this._handleKeyPress);
     window.removeEventListener('resize', this._handleScreenChange);
   }
@@ -257,7 +277,9 @@ export class Manager extends Component {
 
     if (
       event.target instanceof HTMLInputElement ||
-      event.target.type === 'textarea'
+      event.target.type === 'textarea' ||
+      event.target.contentEditable === 'true' ||
+      this.props.disableKeyboardControls
     ) {
       return;
     }
@@ -267,7 +289,7 @@ export class Manager extends Component {
   _handleScreenChange() {
     this.setState({
       fullscreen: window.innerHeight === screen.height,
-      mobile: window.innerWidth < this.props.contentWidth,
+      mobile: window.innerWidth < this.props.contentWidth
     });
   }
   _toggleOverviewMode() {
@@ -276,9 +298,24 @@ export class Manager extends Component {
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _togglePresenterMode() {
-    const suffix =
-      this.props.route.params.indexOf('presenter') !== -1 ? '' : '?presenter';
+    const presenting = this.props.route.params.indexOf('presenter') !== -1;
+    const suffix = presenting ? '' : '?presenter';
+    const originalLocation = location.href;
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
+    if (presenting === false && window.PresentationRequest) {
+      const presentationRequest = new PresentationRequest([
+        `${originalLocation}`
+      ]);
+      navigator.presentation.defaultRequest = presentationRequest;
+      presentationRequest.start().then(connection => {
+        this.presentationConnection = connection;
+        this.presentationConnection.addEventListener('message', data => {
+          this._goToSlide({ key: 'spectacle-slide', newValue: data.data });
+        });
+      });
+    } else if (this.presentationConnection) {
+      this.presentationConnection.terminate();
+    }
   }
   _toggleTimerMode() {
     const isTimer =
@@ -308,24 +345,34 @@ export class Manager extends Component {
       data = e;
       offset = 1;
 
-      const index = isNaN(parseInt(data.slide, 10)) ?
-        get(this.state.slideReference.find(slide => slide.id === data.slide), 'rootIndex', 0) :
-        data.slide - 1;
+      const index = isNaN(parseInt(data.slide, 10))
+        ? get(
+            this.state.slideReference.find(slide => slide.id === data.slide),
+            'rootIndex',
+            0
+          )
+        : data.slide - 1;
 
-      wsync.send(
-        JSON.stringify({
-          slide: this._getHash(index),
-          forward: false,
-          time: Date.now()
-        }));
+      const msgData = JSON.stringify({
+        slide: this._getHash(index),
+        forward: false,
+        time: Date.now()
+      });
+
+      localStorage.setItem('spectacle-slide', msgData);
+
+      if (this.presentationConnection) {
+        this.presentationConnection.send(msgData);
+      }
     } else {
       return;
     }
-    const slideIndex = this._getSlideIndex();
 
+    const slideIndex = this._getSlideIndex();
     this.setState({
-      lastSlideIndex: slideIndex || 0,
+      lastSlideIndex: slideIndex || 0
     });
+
     if (canNavigate) {
       let slide = data.slide;
       if (!isNaN(parseInt(slide, 10))) {
@@ -337,7 +384,7 @@ export class Manager extends Component {
   _prevSlide() {
     const slideIndex = this._getSlideIndex();
     this.setState({
-      lastSlideIndex: slideIndex,
+      lastSlideIndex: slideIndex
     });
     this.viewedIndexes.delete(slideIndex);
     if (
@@ -348,20 +395,31 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex - 1)}${this._getSuffix()}`
         );
-        wsync.send(
-        JSON.stringify({
+
+        const msgData = JSON.stringify({
           slide: this._getHash(slideIndex - 1),
           forward: false,
           time: Date.now()
-        }));
+        });
+
+        localStorage.setItem('spectacle-slide', msgData);
+
+        if (this.presentationConnection) {
+          this.presentationConnection.send(msgData);
+        }
       }
     } else if (slideIndex > 0) {
-      wsync.send(
-        JSON.stringify({
-          slide: this._getHash(slideIndex),
-          forward: false,
-          time: Date.now()
-        }));
+      const msgData = JSON.stringify({
+        slide: this._getHash(slideIndex),
+        forward: false,
+        time: Date.now()
+      });
+
+      localStorage.setItem('spectacle-slide', msgData);
+
+      if (this.presentationConnection) {
+        this.presentationConnection.send(msgData);
+      }
     }
   }
   _nextUnviewedIndex() {
@@ -388,7 +446,7 @@ export class Manager extends Component {
   _nextSlide() {
     const slideIndex = this._getSlideIndex();
     this.setState({
-      lastSlideIndex: slideIndex,
+      lastSlideIndex: slideIndex
     });
     const slideReference = this.state.slideReference;
     if (
@@ -408,20 +466,31 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex + offset) + this._getSuffix()}`
         );
-        wsync.send(
-        JSON.stringify({
+
+        const msgData = JSON.stringify({
           slide: this._getHash(slideIndex + offset),
           forward: true,
           time: Date.now()
-        }));
+        });
+
+        localStorage.setItem('spectacle-slide', msgData);
+
+        if (this.presentationConnection) {
+          this.presentationConnection.send(msgData);
+        }
       }
     } else if (slideIndex < slideReference.length) {
-      wsync.send(
-        JSON.stringify({
-          slide: this._getHash(slideIndex),
-          forward: true,
-          time: Date.now()
-        }));
+      const msgData = JSON.stringify({
+        slide: this._getHash(slideIndex),
+        forward: true,
+        time: Date.now()
+      });
+
+      localStorage.setItem('spectacle-slide', msgData);
+
+      if (this.presentationConnection) {
+        this.presentationConnection.send(msgData);
+      }
     }
   }
   _getHash(slideIndex) {
@@ -448,9 +517,8 @@ export class Manager extends Component {
     if (slide in fragments) {
       const currentSlideFragments = fragments[slide];
       const count = size(currentSlideFragments);
-      const fullyAnimated = filter(
-        currentSlideFragments,
-        frag => frag.animations.every(anim => anim === true)
+      const fullyAnimated = filter(currentSlideFragments, frag =>
+        frag.animations.every(anim => anim === true)
       );
       const notFullyAnimated = filter(
         currentSlideFragments,
@@ -471,16 +539,22 @@ export class Manager extends Component {
       if (forward === false) {
         if (
           notFullyAnimated.length === count &&
-          notFullyAnimated.every(frag => frag.animations.every(anim => anim === false))
+          notFullyAnimated.every(frag =>
+            frag.animations.every(anim => anim === false)
+          )
         ) {
           // If every fragment is animated back to square one, then switch slides
           return true;
         }
 
         let target;
-        const lastFullyAnimatedFragment = fullyAnimated[size(fullyAnimated) - 1];
+        const lastFullyAnimatedFragment =
+          fullyAnimated[size(fullyAnimated) - 1];
         const lastNotFullyAnimatedFragment = notFullyAnimated[0];
-        if (fullyAnimated.length === count || lastNotFullyAnimatedFragment.animations.every(a => a === false)) {
+        if (
+          fullyAnimated.length === count ||
+          lastNotFullyAnimatedFragment.animations.every(a => a === false)
+        ) {
           // if all fragments are fully animated, target the last fully animated fragment
           target = lastFullyAnimatedFragment;
         } else if (notFullyAnimated !== count) {
@@ -491,7 +565,7 @@ export class Manager extends Component {
         this.props.dispatch(
           this._updateFragment({
             fragment: target,
-            animations: target.animations,
+            animations: target.animations
           })
         );
         return false;
@@ -508,7 +582,7 @@ export class Manager extends Component {
       onTouchStart(e) {
         self.touchObject = {
           startX: e.touches[0].pageX,
-          startY: e.touches[0].pageY,
+          startY: e.touches[0].pageY
         };
       },
       onTouchMove(e) {
@@ -516,7 +590,7 @@ export class Manager extends Component {
           x1: self.touchObject.startX,
           x2: e.touches[0].pageX,
           y1: self.touchObject.startY,
-          y2: e.touches[0].pageY,
+          y2: e.touches[0].pageY
         });
 
         self.touchObject = {
@@ -527,7 +601,7 @@ export class Manager extends Component {
           length: Math.round(
             Math.sqrt(Math.pow(e.touches[0].pageX - self.touchObject.startX, 2))
           ),
-          direction,
+          direction
         };
 
         if (direction !== 0) {
@@ -539,7 +613,7 @@ export class Manager extends Component {
       },
       onTouchCancel(e) {
         self._handleSwipe(e);
-      },
+      }
     };
   }
   handleClick(e) {
@@ -573,7 +647,7 @@ export class Manager extends Component {
     const xDist = touch.x1 - touch.x2;
     const yDist = touch.y1 - touch.y2;
     const r = Math.atan2(yDist, xDist);
-    let swipeAngle = Math.round(r * 180 / Math.PI);
+    let swipeAngle = Math.round((r * 180) / Math.PI);
 
     if (swipeAngle < 0) {
       swipeAngle = 360 - Math.abs(swipeAngle);
@@ -594,20 +668,20 @@ export class Manager extends Component {
     const slideReference = [];
     Children.toArray(props.children).forEach((child, rootIndex) => {
       if (child.type === Magic) {
-        Children.toArray(
-          child.props.children
-        ).forEach((setSlide, magicIndex) => {
-          const reference = {
-            id: setSlide.props.id || slideReference.length,
-            magicIndex,
-            rootIndex,
-          };
-          slideReference.push(reference);
-        });
+        Children.toArray(child.props.children).forEach(
+          (setSlide, magicIndex) => {
+            const reference = {
+              id: setSlide.props.id || slideReference.length,
+              magicIndex,
+              rootIndex
+            };
+            slideReference.push(reference);
+          }
+        );
       } else if (!child.props.hasSlideChildren) {
         const reference = {
           id: child.props.id || slideReference.length,
-          rootIndex,
+          rootIndex
         };
         if (child.props.goTo) {
           reference.goTo = child.props.goTo;
@@ -618,7 +692,7 @@ export class Manager extends Component {
           const reference = {
             id: setSlide.props.id || slideReference.length,
             setIndex,
-            rootIndex,
+            rootIndex
           };
           if (child.props.goTo) {
             reference.goTo = child.props.goTo;
@@ -650,7 +724,7 @@ export class Manager extends Component {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 
-    return cloneElement(slide, {
+    const targetProps = {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
       export: this.props.route.params.indexOf('export') !== -1,
@@ -664,8 +738,14 @@ export class Manager extends Component {
       transitionDuration: (slide.props.transition || {}).transitionDuration
         ? slide.props.transitionDuration
         : this.props.transitionDuration,
-      slideReference: this.state.slideReference,
-    });
+      slideReference: this.state.slideReference
+    };
+
+    return (
+      <SlideWrapper key={slideIndex} {...slide.props} {...targetProps}>
+        {cloneElement(slide, { ...slide.props, ...targetProps })}
+      </SlideWrapper>
+    );
   }
   _getProgressStyles() {
     const slideIndex = this._getSlideIndex();
@@ -696,16 +776,16 @@ export class Manager extends Component {
             body: Object.assign(this.context.styles.global.body, {
               minWidth: this.props.contentWidth + 150,
               minHeight: this.props.contentHeight + 150,
-              overflow: 'auto',
+              overflow: 'auto'
             }),
             '.spectacle-presenter-next .fragment': {
-              display: 'none !important',
-            },
+              display: 'none !important'
+            }
           }
         : {
             '.spectacle-presenter-next .fragment': {
-              display: 'none !important',
-            },
+              display: 'none !important'
+            }
           };
 
     let componentToRender;
@@ -815,7 +895,7 @@ export class Manager extends Component {
             dangerouslySetInnerHTML={{
               __html: convertStyle(
                 Object.assign({}, this.context.styles.global, globals)
-              ),
+              )
             }}
           />
         )}
@@ -824,4 +904,9 @@ export class Manager extends Component {
   }
 }
 
-export default connect(state => state, null, null, { withRef: true })(Manager);
+export default connect(
+  state => state,
+  null,
+  null,
+  { withRef: true }
+)(Manager);
