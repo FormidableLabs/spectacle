@@ -17,7 +17,7 @@ const StyledFullscreen = styled(FullscreenButton)`
   opacity: 0;
   transition: 300ms opacity ease;
   font-size: 30px;
-  fill: #fff;
+  color: #fff;
 
   &:hover {
     opacity: 1;
