@@ -339,21 +339,21 @@ exports[`<Manager /> should render correctly. 1`] = `
             viewBox="0 0 512 512"
           >
             <FullscreenButton
-              className="css-1do7l3k e4v3eea0"
+              className="css-12n5ud e4v3eea0"
               onClick={[Function]}
               styles={undefined}
               viewBox="0 0 512 512"
             >
               <Styled(button)
                 aria-label="Toggle full screen"
-                className="css-1do7l3k e4v3eea0"
+                className="css-12n5ud e4v3eea0"
                 onClick={[Function]}
                 styles={undefined}
                 viewBox="0 0 512 512"
               >
                 <button
                   aria-label="Toggle full screen"
-                  className="e4v3eea0 css-11noi9c ev51h780"
+                  className="e4v3eea0 css-1hv29sw ev51h780"
                   onClick={[Function]}
                   viewBox="0 0 512 512"
                 >
@@ -672,21 +672,21 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
             viewBox="0 0 512 512"
           >
             <FullscreenButton
-              className="css-1do7l3k e4v3eea0"
+              className="css-12n5ud e4v3eea0"
               onClick={[Function]}
               styles={undefined}
               viewBox="0 0 512 512"
             >
               <Styled(button)
                 aria-label="Toggle full screen"
-                className="css-1do7l3k e4v3eea0"
+                className="css-12n5ud e4v3eea0"
                 onClick={[Function]}
                 styles={undefined}
                 viewBox="0 0 512 512"
               >
                 <button
                   aria-label="Toggle full screen"
-                  className="e4v3eea0 css-11noi9c ev51h780"
+                  className="e4v3eea0 css-1hv29sw ev51h780"
                   onClick={[Function]}
                   viewBox="0 0 512 512"
                 >
@@ -1095,21 +1095,21 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             viewBox="0 0 512 512"
           >
             <FullscreenButton
-              className="css-1do7l3k e4v3eea0"
+              className="css-12n5ud e4v3eea0"
               onClick={[Function]}
               styles={undefined}
               viewBox="0 0 512 512"
             >
               <Styled(button)
                 aria-label="Toggle full screen"
-                className="css-1do7l3k e4v3eea0"
+                className="css-12n5ud e4v3eea0"
                 onClick={[Function]}
                 styles={undefined}
                 viewBox="0 0 512 512"
               >
                 <button
                   aria-label="Toggle full screen"
-                  className="e4v3eea0 css-11noi9c ev51h780"
+                  className="e4v3eea0 css-1hv29sw ev51h780"
                   onClick={[Function]}
                   viewBox="0 0 512 512"
                 >
