@@ -59,7 +59,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       }
     },
     fullscreen: {
-      fill: colors.secondary
+      fill: colors.tertiary
     },
     autoplay: {
       pause: {
