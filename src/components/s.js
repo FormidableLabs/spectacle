@@ -46,10 +46,7 @@ S.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   style: PropTypes.object,
-  type: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array
-  ])
+  type: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 };
 
 S.contextTypes = {

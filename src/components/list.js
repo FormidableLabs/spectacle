@@ -21,7 +21,8 @@ export default class List extends Component {
         ]}
       >
         {this.props.children}
-      </StyledOrderedList>) : (
+      </StyledOrderedList>
+    ) : (
       <StyledList
         className={this.props.className}
         styles={[
@@ -31,7 +32,8 @@ export default class List extends Component {
         ]}
       >
         {this.props.children}
-      </StyledList>);
+      </StyledList>
+    );
   }
 }
 

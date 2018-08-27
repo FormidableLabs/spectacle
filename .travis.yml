@@ -1,8 +1,9 @@
 language: node_js
 
 node_js:
-  - 6
-  - 8
+  - "6"
+  - "8"
+  - "10"
 
 # Use container-based Travis infrastructure.
 sudo: false
@@ -11,15 +12,16 @@ branches:
   only:
     - master
 
+install:
+  # Fail if lockfile outdated.
+  # https://yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-frozen-lockfile
+  - yarn install --frozen-lockfile
+
 notifications:
   email:
     on_success: change
     on_failure: always
 
-before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
 script:
-  - yarn run lint
-  - yarn run test
+  - yarn run build
+  - yarn run check-ci

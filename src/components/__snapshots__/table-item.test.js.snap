@@ -16,7 +16,7 @@ exports[`<TableItem /> should render correctly 1`] = `
     }
   >
     <td
-      className="css-11os9ew"
+      className="css-11os9ew eaiy41g0"
     >
       Table Item Content
     </td>

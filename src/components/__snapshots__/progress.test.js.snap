@@ -27,7 +27,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
     }
   >
     <div
-      className="css-0"
+      className="css-0 e12weced4"
     >
       <div>
         <Styled(div)
@@ -40,7 +40,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
           styles={undefined}
         >
           <div
-            className="css-tyaqbb"
+            className="css-tyaqbb e12weced0"
           >
             <Styled(div)
               styles={
@@ -54,7 +54,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
               }
             >
               <div
-                className="css-1la23zo"
+                className="css-1la23zo e12weced1"
               />
             </Styled(div)>
             <Styled(div)
@@ -69,7 +69,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
               }
             >
               <div
-                className="css-1yi33k2"
+                className="css-1yi33k2 e12weced1"
               />
             </Styled(div)>
           </div>
@@ -91,7 +91,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
           }
         >
           <div
-            className="css-1xucvt"
+            className="css-1xucvt e12weced2"
           />
         </Styled(div)>
         <Styled(div)
@@ -111,7 +111,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
           }
         >
           <div
-            className="css-ci3gz3"
+            className="css-ci3gz3 e12weced2"
           />
         </Styled(div)>
         <Styled(div)
@@ -131,7 +131,7 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
           }
         >
           <div
-            className="css-41ffu3"
+            className="css-41ffu3 e12weced2"
           />
         </Styled(div)>
       </div>
@@ -187,7 +187,7 @@ exports[`<Progress /> should render the bar style correctly 1`] = `
     }
   >
     <div
-      className="css-0"
+      className="css-0 e12weced4"
     >
       <Styled(div)
         styles={
@@ -203,7 +203,7 @@ exports[`<Progress /> should render the bar style correctly 1`] = `
         }
       >
         <div
-          className="css-11ze7cv"
+          className="css-11ze7cv e12weced3"
           width={
             Object {
               "width": "50%",
@@ -243,7 +243,7 @@ exports[`<Progress /> should render the number style correctly 1`] = `
     }
   >
     <div
-      className="css-0"
+      className="css-0 e12weced4"
     >
       <div>
         2

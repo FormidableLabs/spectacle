@@ -1,7 +1,11 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": "formidable/configurations/es6-react",
+  "extends": [
+    "formidable/configurations/es6-react",
+    "prettier",
+    "prettier/react"
+  ],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -23,7 +27,7 @@
   },
   "rules": {
     "quotes": [
-      2,
+      "error",
       "single",
       {
         "allowTemplateLiterals": true
@@ -33,7 +37,7 @@
     "indent": "off",
     "space-before-function-paren": "off",
     "react/jsx-indent-props": "off",
-    "max-len": 0,
+    "max-len": "off",
     "no-magic-numbers": "off",
     "func-style": "off",
     "arrow-parens": "off",
@@ -48,8 +52,11 @@
     "react/no-find-dom-node": "off",
     "no-invalid-this": "off",
     "complexity": "off",
-    "no-unused-vars": ["error", {
-      "argsIgnorePattern": "^_+$"
-    }]
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_+$"
+      }
+    ]
   }
 }

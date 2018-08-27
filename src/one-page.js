@@ -4,8 +4,9 @@
 /*global Babel:false*/
 
 // Template for taking a render function and turning it into a presentation.
-const template = (renderFn) => `
+const template = renderFn => `
   (() => {
+    const { Component } = React;
     const { render } = ReactDOM;
     const {
       Appear,
@@ -19,10 +20,12 @@ const template = (renderFn) => `
       Fit,
       Heading,
       Image,
+      GoToAction,
       Layout,
       Link,
       ListItem,
       List,
+      Magic,
       Markdown,
       MarkdownSlides,
       Notes,
@@ -37,12 +40,13 @@ const template = (renderFn) => `
       TableRow,
       Table,
       Text,
-      Typeface
+      Typeface,
+      themes
     } = Spectacle;
 
     const renderFn = ${renderFn};
 
-    class Presentation extends React.Component {
+    class Presentation extends Component {
       render() {
         return renderFn();
       }
@@ -67,10 +71,14 @@ const loadSpectacleScript = () => {
       const input = template(renderFn);
       const output = Babel.transform(input, {
         presets: [
-          [ 'es2015', { 'loose': true, 'modules': false } ],
-          'stage-0',
+          // Simulate '@babel/preset-env' from what's available in:
+          // https://unpkg.com/@babel/standalone/package.json
+          'es2015',
+          'es2016',
+          'es2017',
           'react'
-        ]
+        ],
+        plugins: ['syntax-object-rest-spread', 'syntax-class-properties']
       }).code;
 
       eval(output); // eslint-disable-line no-eval

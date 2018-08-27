@@ -4,7 +4,11 @@ import Layout from './layout';
 
 describe('<Layout />', () => {
   test('should render correctly', () => {
-    const wrapper = mount(<Layout><div>Content</div></Layout>);
+    const wrapper = mount(
+      <Layout>
+        <div>Content</div>
+      </Layout>
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

@@ -62,14 +62,19 @@ export function updateChildren(root, valMap = {}) {
     }
 
     if (child.nodeType === 1) {
-      if (child.parentNode.classList.contains('prism-code') && child.tagName === 'SPAN') {
+      if (
+        child.parentNode.classList.contains('prism-code') &&
+        child.tagName === 'SPAN'
+      ) {
         const replaced = wrapTextChildren(child, valMap, child.classList.value);
         child.replaceWith(replaced);
       }
       updateMap(valMap, child.nodeName);
       child.setAttribute(
         'data-key',
-        `${child.nodeName}-${valMap[child.nodeName]}`
+        'key' in child.dataset
+          ? child.dataset.key
+          : `${child.nodeName}-${valMap[child.nodeName]}`
       );
     }
     if (child.nodeType === 3) {
@@ -101,7 +106,7 @@ export function buildStyleMap(map, root, coords) {
         left: rect.top,
         top: rect.top,
         height: rect.height,
-        width: rect.width,
+        width: rect.width
       };
 
       if (child.childNodes) {

@@ -28,20 +28,20 @@ exports[`<CodePane /> should render correctly. 1`] = `
     }
   >
     <div
-      className="css-0"
+      className="css-0 ep9ila60"
     >
       <Styled(Component)
-        className="language-prism"
+        className="language-jsx builtin-prism-theme "
         code="
-            const myButton = (
-              <CustomButton
-                style={{ background: '#f00' }}
-                onClick={this.action}
-              >
-               Click Me
-              </CustomButton>
-            );
-          "
+      const myButton = (
+        <CustomButton
+          style={{ background: '#f00' }}
+          onClick={this.action}
+        >
+         Click Me
+        </CustomButton>
+      );
+    "
         contentEditable={false}
         language="jsx"
         onClick={[Function]}
@@ -51,17 +51,17 @@ exports[`<CodePane /> should render correctly. 1`] = `
         syntaxStyles={Object {}}
       >
         <Component
-          className="language-prism css-1i53um3"
+          className="language-jsx builtin-prism-theme  css-1rm1mht ep9ila61"
           code="
-              const myButton = (
-                <CustomButton
-                  style={{ background: '#f00' }}
-                  onClick={this.action}
-                >
-                 Click Me
-                </CustomButton>
-              );
-            "
+      const myButton = (
+        <CustomButton
+          style={{ background: '#f00' }}
+          onClick={this.action}
+        >
+         Click Me
+        </CustomButton>
+      );
+    "
           contentEditable={false}
           language="jsx"
           onClick={[Function]}
@@ -71,17 +71,17 @@ exports[`<CodePane /> should render correctly. 1`] = `
           syntaxStyles={Object {}}
         >
           <Editor
-            className="language-prism css-1i53um3"
+            className="language-jsx builtin-prism-theme  css-1rm1mht ep9ila61"
             code="
-                const myButton = (
-                  <CustomButton
-                    style={{ background: '#f00' }}
-                    onClick={this.action}
-                  >
-                   Click Me
-                  </CustomButton>
-                );
-              "
+      const myButton = (
+        <CustomButton
+          style={{ background: '#f00' }}
+          onClick={this.action}
+        >
+         Click Me
+        </CustomButton>
+      );
+    "
             contentEditable={false}
             language="jsx"
             onClick={[Function]}
@@ -89,23 +89,25 @@ exports[`<CodePane /> should render correctly. 1`] = `
             onKeyUp={[Function]}
           >
             <pre
-              className="prism-code language-prism css-1i53um3"
+              className="prism-code language-jsx builtin-prism-theme  css-1rm1mht ep9ila61"
               contentEditable={false}
               dangerouslySetInnerHTML={
                 Object {
                   "__html": "
-                      <span class=\\"token keyword\\">const</span> myButton <span class=\\"token operator\\">=</span> <span class=\\"token punctuation\\">(</span>
-                        <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>CustomButton</span>
-                          <span class=\\"token attr-name\\">style</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token punctuation\\">{</span> background<span class=\\"token punctuation\\">:</span> <span class=\\"token string\\">'#f00'</span> <span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">}</span></span>
-                          <span class=\\"token attr-name\\">onClick</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token keyword\\">this</span><span class=\\"token punctuation\\">.</span>action<span class=\\"token punctuation\\">}</span></span>
-                        <span class=\\"token punctuation\\">></span></span>
-                         Click Me
-                        <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>CustomButton</span><span class=\\"token punctuation\\">></span></span>
-                      <span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
-                    ",
+      <span class=\\"token keyword\\">const</span> myButton <span class=\\"token operator\\">=</span> <span class=\\"token punctuation\\">(</span>
+        <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>CustomButton</span>
+          <span class=\\"token attr-name\\">style</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token punctuation\\">{</span> background<span class=\\"token punctuation\\">:</span> <span class=\\"token string\\">'#f00'</span> <span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">}</span></span>
+          <span class=\\"token attr-name\\">onClick</span><span class=\\"token script language-javascript\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">{</span><span class=\\"token keyword\\">this</span><span class=\\"token punctuation\\">.</span>action<span class=\\"token punctuation\\">}</span></span>
+        <span class=\\"token punctuation\\">></span></span>
+         Click Me
+        <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>CustomButton</span><span class=\\"token punctuation\\">></span></span>
+      <span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+    ",
                 }
               }
               onClick={undefined}
+              onCompositionEnd={undefined}
+              onCompositionStart={undefined}
               onKeyDown={undefined}
               onKeyUp={undefined}
               spellCheck="false"

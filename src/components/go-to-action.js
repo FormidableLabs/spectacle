@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
 import styled from 'react-emotion';
@@ -10,7 +10,7 @@ const GoToActionButton = styled.button(({ styles }) => [
   styles.user
 ]);
 
-class GoToAction extends React.Component {
+class GoToAction extends Component {
   render() {
     const {
       props: { render, children, style, slide },
@@ -41,15 +41,13 @@ class GoToAction extends React.Component {
 GoToAction.propTypes = {
   children: PropTypes.node,
   render: PropTypes.func,
-  slide: PropTypes.oneOfType([
-    PropTypes.number, PropTypes.string
-  ]),
-  style: PropTypes.object,
+  slide: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  style: PropTypes.object
 };
 
 GoToAction.contextTypes = {
   styles: PropTypes.object,
-  goToSlide: PropTypes.func,
+  goToSlide: PropTypes.func
 };
 
 export default GoToAction;

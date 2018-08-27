@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Controls extends Component {
-  resolveFillStyle = (name) => {
+  constructor() {
+    super(...arguments);
+    this.resolveFillStyle = this.resolveFillStyle.bind(this);
+  }
+
+  resolveFillStyle(name) {
     let color;
     const { controlColor } = this.props;
     if (controlColor) {
@@ -17,10 +22,11 @@ export default class Controls extends Component {
     }
     return this.context.styles.controls[name];
   }
+
   render() {
     return (
       <div>
-        {this.props.currentSlideIndex !== 0 &&
+        {this.props.currentSlideIndex !== 0 && (
           <button
             type="button"
             key="prev"
@@ -37,10 +43,11 @@ export default class Controls extends Component {
               role="presentation"
               focusable="false"
             >
-              <path d="M512,97.707L414.293,0L0,414.293l414.293,414.293L512,730.88L195.414,414.293L512,97.707z"/>
+              <path d="M512,97.707L414.293,0L0,414.293l414.293,414.293L512,730.88L195.414,414.293L512,97.707z" />
             </svg>
-          </button>}
-        {this.props.currentSlideIndex < (this.props.totalSlides - 1) &&
+          </button>
+        )}
+        {this.props.currentSlideIndex < this.props.totalSlides - 1 && (
           <button
             type="button"
             key="next"
@@ -57,9 +64,10 @@ export default class Controls extends Component {
               role="presentation"
               focusable="false"
             >
-              <path d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z"/>
+              <path d="M97.707,0L0,97.707l316.586,316.586L0,730.88l97.707,97.706L512,414.293L97.707,0z" />
             </svg>
-          </button>}
+          </button>
+        )}
       </div>
     );
   }

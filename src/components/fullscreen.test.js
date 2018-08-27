@@ -15,7 +15,10 @@ describe('<Fullscreen />', () => {
     const stub = jest.fn();
     wrapper.instance().toggleFullscreen = stub;
     wrapper.update();
-    wrapper.children().first().simulate('click');
+    wrapper
+      .children()
+      .first()
+      .simulate('click');
     expect(stub).toHaveBeenCalledTimes(1);
   });
 });

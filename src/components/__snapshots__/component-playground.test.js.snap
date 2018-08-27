@@ -2,23 +2,23 @@
 
 exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 <div
-  class="react-live css-o32omv"
-  scope="[object Object]"
+  class="react-live css-o32omv e177gi4f0"
 >
   <div
-    class="css-wx5pb5"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz e177gi4f4"
     >
       Live Preview
     </div>
     <div
-      class="css-1qi44w1"
+      class="css-1oja9er e177gi4f4"
     >
       Source Code
       <button
-        class="css-1a7vuu6"
+        aria-label="Toggle full screen"
+        class="css-1a7vuu6 ev51h780"
       >
         <svg
           viewBox="0 0 24 24"
@@ -26,27 +26,23 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           <path
             d="M0 0h24v24H0z"
             fill="none"
-          >
-            
-          </path>
+          />
           <path
             d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
             fill="currentColor"
-          >
-            
-          </path>
+          />
         </svg>
       </button>
     </div>
   </div>
   <div
-    class="css-wx5pb5"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <div
-        class="react-live-preview css-zwvp9g"
+        class="react-live-preview css-zwvp9g e177gi4f1"
       >
         <div>
           <h1
@@ -63,10 +59,10 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
       </div>
     </div>
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <pre
-        class="prism-code language-prism css-1y25kh4"
+        class="prism-code language-jsx builtin-prism-theme css-o6dmj e177gi4f2"
         contenteditable="true"
         spellcheck="false"
       >
@@ -75,13 +71,13 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           spellcheck="true"
         >
           /**
-           * Sample React Component
-           * Output domContainerNode is 'mountNode'
-           */
+ * Sample React Component
+ * Output domContainerNode is 'mountNode'
+ */
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
@@ -100,7 +96,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           {
         </span>
         
-          heading
+  heading
         <span
           class="token punctuation"
         >
@@ -113,7 +109,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -131,7 +127,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           ,
         </span>
         
-            fontWeight
+    fontWeight
         <span
           class="token punctuation"
         >
@@ -144,7 +140,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           "bold"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
@@ -156,7 +152,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           ,
         </span>
         
-          copy
+  copy
         <span
           class="token punctuation"
         >
@@ -169,7 +165,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -182,34 +178,28 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           "1.5rem"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
           const
         </span>
-         
-        <span
-          class="token function-variable function"
-        >
-          HelloWorld
-        </span>
-         
+         HelloWorld 
         <span
           class="token operator"
         >
@@ -241,7 +231,12 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
         <span
           class="token operator"
         >
-          =&gt;
+          =
+        </span>
+        <span
+          class="token operator"
+        >
+          &gt;
         </span>
          
         <span
@@ -250,7 +245,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           (
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -271,7 +266,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -324,7 +319,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-              Create Live Code Examples 
+      Create Live Code Examples 
         <span
           class="token keyword"
         >
@@ -348,7 +343,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           !
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -369,7 +364,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -422,8 +417,8 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-              Supports Light and Dark Syntax Themes
-            
+      Supports Light and Dark Syntax Themes
+    
         <span
           class="token tag"
         >
@@ -444,7 +439,7 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -465,15 +460,15 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
           </span>
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           )
         </span>
         
-        
-        
+
+
         <span
           class="token function"
         >
@@ -543,23 +538,23 @@ exports[`<ComponentPlayground /> Should render the dark theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 <div
-  class="react-live css-o32omv"
-  scope="[object Object]"
+  class="react-live css-o32omv e177gi4f0"
 >
   <div
-    class="css-wx5pb5"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz e177gi4f4"
     >
       Live Preview
     </div>
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz e177gi4f4"
     >
       Source Code
       <button
-        class="css-1a7vuu6"
+        aria-label="Toggle full screen"
+        class="css-1a7vuu6 ev51h780"
       >
         <svg
           viewBox="0 0 24 24"
@@ -567,27 +562,23 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           <path
             d="M0 0h24v24H0z"
             fill="none"
-          >
-            
-          </path>
+          />
           <path
             d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
             fill="currentColor"
-          >
-            
-          </path>
+          />
         </svg>
       </button>
     </div>
   </div>
   <div
-    class="css-wx5pb5"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <div
-        class="react-live-preview css-zwvp9g"
+        class="react-live-preview css-zwvp9g e177gi4f1"
       >
         <div>
           <h1
@@ -604,10 +595,10 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
       </div>
     </div>
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <pre
-        class="prism-code language-prism css-x6ttwb"
+        class="prism-code language-jsx builtin-prism-theme css-spmpyg e177gi4f2"
         contenteditable="true"
         spellcheck="false"
       >
@@ -616,13 +607,13 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           spellcheck="true"
         >
           /**
-           * Sample React Component
-           * Output domContainerNode is 'mountNode'
-           */
+ * Sample React Component
+ * Output domContainerNode is 'mountNode'
+ */
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
@@ -641,7 +632,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           {
         </span>
         
-          heading
+  heading
         <span
           class="token punctuation"
         >
@@ -654,7 +645,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -672,7 +663,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           ,
         </span>
         
-            fontWeight
+    fontWeight
         <span
           class="token punctuation"
         >
@@ -685,7 +676,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           "bold"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
@@ -697,7 +688,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           ,
         </span>
         
-          copy
+  copy
         <span
           class="token punctuation"
         >
@@ -710,7 +701,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -723,34 +714,28 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           "1.5rem"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
           const
         </span>
-         
-        <span
-          class="token function-variable function"
-        >
-          HelloWorld
-        </span>
-         
+         HelloWorld 
         <span
           class="token operator"
         >
@@ -782,7 +767,12 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
         <span
           class="token operator"
         >
-          =&gt;
+          =
+        </span>
+        <span
+          class="token operator"
+        >
+          &gt;
         </span>
          
         <span
@@ -791,7 +781,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           (
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -812,7 +802,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -865,7 +855,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-              Create Live Code Examples 
+      Create Live Code Examples 
         <span
           class="token keyword"
         >
@@ -889,7 +879,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           !
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -910,7 +900,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -963,8 +953,8 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-              Supports Light and Dark Syntax Themes
-            
+      Supports Light and Dark Syntax Themes
+    
         <span
           class="token tag"
         >
@@ -985,7 +975,7 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -1006,15 +996,15 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
           </span>
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           )
         </span>
         
-        
-        
+
+
         <span
           class="token function"
         >
@@ -1084,23 +1074,23 @@ exports[`<ComponentPlayground /> Should render the light theme correctly 1`] = `
 
 exports[`<ComponentPlayground /> Should render with a custom background color 1`] = `
 <div
-  class="react-live css-o32omv"
-  scope="[object Object]"
+  class="react-live css-o32omv e177gi4f0"
 >
   <div
-    class="css-wx5pb5"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz e177gi4f4"
     >
       Live Preview
     </div>
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz e177gi4f4"
     >
       Source Code
       <button
-        class="css-1a7vuu6"
+        aria-label="Toggle full screen"
+        class="css-1a7vuu6 ev51h780"
       >
         <svg
           viewBox="0 0 24 24"
@@ -1108,27 +1098,23 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           <path
             d="M0 0h24v24H0z"
             fill="none"
-          >
-            
-          </path>
+          />
           <path
             d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
             fill="currentColor"
-          >
-            
-          </path>
+          />
         </svg>
       </button>
     </div>
   </div>
   <div
-    class="css-wx5pb5"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <div
-        class="react-live-preview css-cv4xj2"
+        class="react-live-preview css-cv4xj2 e177gi4f1"
       >
         <div>
           <h1
@@ -1145,10 +1131,10 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
       </div>
     </div>
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <pre
-        class="prism-code language-prism css-x6ttwb"
+        class="prism-code language-jsx builtin-prism-theme css-spmpyg e177gi4f2"
         contenteditable="true"
         spellcheck="false"
       >
@@ -1157,13 +1143,13 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           spellcheck="true"
         >
           /**
-           * Sample React Component
-           * Output domContainerNode is 'mountNode'
-           */
+ * Sample React Component
+ * Output domContainerNode is 'mountNode'
+ */
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
@@ -1182,7 +1168,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           {
         </span>
         
-          heading
+  heading
         <span
           class="token punctuation"
         >
@@ -1195,7 +1181,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -1213,7 +1199,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           ,
         </span>
         
-            fontWeight
+    fontWeight
         <span
           class="token punctuation"
         >
@@ -1226,7 +1212,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           "bold"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
@@ -1238,7 +1224,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           ,
         </span>
         
-          copy
+  copy
         <span
           class="token punctuation"
         >
@@ -1251,7 +1237,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           {
         </span>
         
-            fontSize
+    fontSize
         <span
           class="token punctuation"
         >
@@ -1264,34 +1250,28 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           "1.5rem"
         </span>
         
-          
+  
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           }
         </span>
         
-        
-        
+
+
         <span
           class="token keyword"
         >
           const
         </span>
-         
-        <span
-          class="token function-variable function"
-        >
-          HelloWorld
-        </span>
-         
+         HelloWorld 
         <span
           class="token operator"
         >
@@ -1323,7 +1303,12 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
         <span
           class="token operator"
         >
-          =&gt;
+          =
+        </span>
+        <span
+          class="token operator"
+        >
+          &gt;
         </span>
          
         <span
@@ -1332,7 +1317,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           (
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -1353,7 +1338,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -1406,7 +1391,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-              Create Live Code Examples 
+      Create Live Code Examples 
         <span
           class="token keyword"
         >
@@ -1430,7 +1415,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           !
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -1451,7 +1436,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-            
+    
         <span
           class="token tag"
         >
@@ -1504,8 +1489,8 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-              Supports Light and Dark Syntax Themes
-            
+      Supports Light and Dark Syntax Themes
+    
         <span
           class="token tag"
         >
@@ -1526,7 +1511,7 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-          
+  
         <span
           class="token tag"
         >
@@ -1547,15 +1532,15 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
           </span>
         </span>
         
-        
+
         <span
           class="token punctuation"
         >
           )
         </span>
         
-        
-        
+
+
         <span
           class="token function"
         >
@@ -1625,23 +1610,23 @@ exports[`<ComponentPlayground /> Should render with a custom background color 1`
 
 exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
 <div
-  class="react-live css-o32omv"
-  scope="[object Object]"
+  class="react-live css-o32omv e177gi4f0"
 >
   <div
-    class="css-wx5pb5"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz e177gi4f4"
     >
       Live Preview
     </div>
     <div
-      class="css-1j4k5g3"
+      class="css-1xrujsz e177gi4f4"
     >
       Source Code
       <button
-        class="css-1a7vuu6"
+        aria-label="Toggle full screen"
+        class="css-1a7vuu6 ev51h780"
       >
         <svg
           viewBox="0 0 24 24"
@@ -1649,41 +1634,35 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
           <path
             d="M0 0h24v24H0z"
             fill="none"
-          >
-            
-          </path>
+          />
           <path
             d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
             fill="currentColor"
-          >
-            
-          </path>
+          />
         </svg>
       </button>
     </div>
   </div>
   <div
-    class="css-wx5pb5"
+    class="css-1ms9r5c e177gi4f3"
   >
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <div
-        class="react-live-preview css-cv4xj2"
-      >
-        
-      </div>
+        class="react-live-preview css-cv4xj2 e177gi4f1"
+      />
       <div
-        class="react-live-error css-1qmf1kp"
+        class="react-live-error css-1qmf1kp e177gi4f6"
       >
         ReferenceError: mountNode is not defined
       </div>
     </div>
     <div
-      class="css-1fc71w4"
+      class="css-1fc71w4 e177gi4f5"
     >
       <pre
-        class="prism-code language-prism css-x6ttwb"
+        class="prism-code language-jsx builtin-prism-theme css-spmpyg e177gi4f2"
         contenteditable="true"
         spellcheck="false"
       >
@@ -1692,13 +1671,7 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
         >
           const
         </span>
-         
-        <span
-          class="token function-variable function"
-        >
-          Button
-        </span>
-         
+         Button 
         <span
           class="token operator"
         >
@@ -1730,7 +1703,12 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
         <span
           class="token operator"
         >
-          =&gt;
+          =
+        </span>
+        <span
+          class="token operator"
+        >
+          &gt;
         </span>
          
         <span
@@ -1824,7 +1802,7 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
           ;
         </span>
         
-              
+      
         <span
           class="token function"
         >
@@ -1867,12 +1845,13 @@ exports[`<ComponentPlayground /> Should render with a custom code block 1`] = `
             >
               "
             </span>
-            My Button
-            <span
-              class="token punctuation"
-            >
-              "
-            </span>
+            My
+          </span>
+           
+          <span
+            class="token attr-name"
+          >
+            Button"
           </span>
            
           <span

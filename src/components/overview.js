@@ -14,9 +14,9 @@ const SlideThumbnail = styled.div`
   position: relative;
   float: left;
   height: ${({ screen }) => (screen / 3) * 0.7}px;
-  opacity: ${({ index, slideIndex }) => index === slideIndex ? 1 : 0.5};
+  opacity: ${({ index, slideIndex }) => (index === slideIndex ? 1 : 0.5)};
   transition: opacity 333ms ease-in-out;
-  width: ${({ screen }) => (screen / 3)}px;
+  width: ${({ screen }) => screen / 3}px;
 
   &:hover {
     opacity: 1;
@@ -24,12 +24,12 @@ const SlideThumbnail = styled.div`
 `;
 
 export default class Overview extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
+    this.resizeHandler = this.resizeHandler.bind(this);
     this.state = {
       overviewWidth: document.documentElement.clientWidth
     };
-    this.resizeHandler = this.resizeHandler.bind(this);
   }
   componentDidMount() {
     this.resizeHandler();
@@ -81,11 +81,7 @@ export default class Overview extends Component {
     });
   }
   render() {
-    return (
-      <OverviewContainer>
-        {this._renderSlides()}
-      </OverviewContainer>
-    );
+    return <OverviewContainer>{this._renderSlides()}</OverviewContainer>;
   }
 }
 

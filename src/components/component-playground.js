@@ -11,12 +11,7 @@ import {
   getFullscreenElement
 } from '../utils/fullscreen';
 
-import {
-  LiveProvider,
-  LiveEditor,
-  LiveError,
-  LivePreview
-} from 'react-live';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
 export const PlaygroundProvider = styled(LiveProvider)`
   border-radius: 0 0 6px 6px;
@@ -35,14 +30,17 @@ const PlaygroundPreview = styled(({ className }) => (
   background: ${p => p.previewBackgroundColor || '#fff'};
 `;
 
-const PlaygroundEditor = styled(({ syntaxStyles: _, prismTheme: __, ...rest }) => <LiveEditor {...rest} />)`
+const PlaygroundEditor = styled(
+  ({ syntaxStyles: _, prismTheme: __, ...rest }) => <LiveEditor {...rest} />
+)`
   && {
-    ${props => props.syntaxStyles}
-    min-height: 100%;
+    ${props => props.syntaxStyles} min-height: 100%;
     font-size: 1.25vw;
-  }
 
-  ${props => props.prismTheme}
+    &.builtin-prism-theme {
+      ${props => props.prismTheme};
+    }
+  }
 `;
 
 const PlaygroundRow = styled.div`
@@ -53,15 +51,31 @@ const PlaygroundRow = styled.div`
 
   /* NOTE: Comma separation doesn't seem to work here */
 
-  &:-webkit-full-screen { height: 100%; }
-  &:-moz-full-screen { height: 100%; }
-  &:-ms-fullscreen { height: 100%; }
-  &:fullscreen { height: 100%; }
+  &:-webkit-full-screen {
+    height: 100%;
+  }
+  &:-moz-full-screen {
+    height: 100%;
+  }
+  &:-ms-fullscreen {
+    height: 100%;
+  }
+  &:fullscreen {
+    height: 100%;
+  }
 
-  &:-webkit-full-screen > * { height: 100%; }
-  &:-moz-full-screen > * { height: 100%; }
-  &:-ms-fullscreen > * { height: 100%; }
-  &:fullscreen > * { height: 100%; }
+  &:-webkit-full-screen > * {
+    height: 100%;
+  }
+  &:-moz-full-screen > * {
+    height: 100%;
+  }
+  &:-ms-fullscreen > * {
+    height: 100%;
+  }
+  &:fullscreen > * {
+    height: 100%;
+  }
 `;
 
 const Title = styled.div`
@@ -86,11 +100,13 @@ const Title = styled.div`
     margin-top: -0.1em;
   }
 
-  ${props => props.useDarkTheme && css`
-    background: #272822;
-    border-bottom: 1px solid #000;
-    color: #fff;
-  `}
+  ${props =>
+    props.useDarkTheme &&
+    css`
+      background: #272822;
+      border-bottom: 1px solid #000;
+      color: #fff;
+    `};
 `;
 
 const PlaygroundColumn = styled.div`
@@ -118,17 +134,25 @@ const PlaygroundError = styled(LiveError)`
 
 const STORAGE_KEY = 'spectacle-playground';
 
-class ComponentPlayground extends Component {
-  constructor(props) {
-    super(props);
+function getEnhancedScope(scope = {}) {
+  return { Component, ...scope };
+}
 
+// TODO(540): Refactor to non-deprecated lifecycle methods.
+// https://github.com/FormidableLabs/spectacle/issues/540
+// - componentWillReceiveProps
+// eslint-disable-next-line react/no-deprecated
+class ComponentPlayground extends Component {
+  constructor() {
+    super(...arguments);
     this.onRef = this.onRef.bind(this);
     this.onEditorChange = this.onEditorChange.bind(this);
     this.requestFullscreen = this.requestFullscreen.bind(this);
     this.syncCode = this.syncCode.bind(this);
 
     this.state = {
-      code: (this.props.code || defaultCode).trim()
+      code: (this.props.code || defaultCode).trim(),
+      scope: getEnhancedScope(this.props.scope)
     };
   }
 
@@ -141,6 +165,10 @@ class ComponentPlayground extends Component {
     if (nextProps.code !== this.props.code) {
       const code = (this.props.code || defaultCode).trim();
       this.setState({ code });
+    }
+    if (nextProps.scope !== this.props.scope) {
+      const scope = getEnhancedScope(nextProps.scope);
+      this.setState({ scope });
     }
   }
 
@@ -183,17 +211,22 @@ class ComponentPlayground extends Component {
   render() {
     const {
       previewBackgroundColor,
-      scope = {},
-      theme = 'dark'
+      theme = 'dark',
+      transformCode
     } = this.props;
 
     const useDarkTheme = theme === 'dark';
+    const externalPrismTheme = this.props.theme === 'external';
+    const className = `language-jsx ${
+      externalPrismTheme ? '' : 'builtin-prism-theme'
+    }`;
 
     return (
       <PlaygroundProvider
         mountStylesheet={false}
         code={this.state.code}
-        scope={{ Component, ...scope }}
+        scope={this.state.scope}
+        transformCode={transformCode}
         noInline
       >
         <PlaygroundRow>
@@ -218,9 +251,11 @@ class ComponentPlayground extends Component {
 
           <PlaygroundColumn>
             <PlaygroundEditor
-              className="language-prism"
+              className={className}
               syntaxStyles={this.context.styles.components.syntax}
-              prismTheme={this.context.styles.prism[useDarkTheme ? 'dark' : 'light']}
+              prismTheme={
+                this.context.styles.prism[useDarkTheme ? 'dark' : 'light']
+              }
               onChange={this.onEditorChange}
             />
           </PlaygroundColumn>
@@ -239,7 +274,12 @@ ComponentPlayground.propTypes = {
   code: PropTypes.string,
   previewBackgroundColor: PropTypes.string,
   scope: PropTypes.object,
-  theme: PropTypes.string
+  theme: PropTypes.oneOf(['dark', 'light', 'external']),
+  transformCode: PropTypes.func
+};
+
+ComponentPlayground.defaultProps = {
+  theme: 'dark'
 };
 
 export default ComponentPlayground;

@@ -5,7 +5,6 @@ import styled from 'react-emotion';
 
 const StyledTableRow = styled.tr(props => props.styles);
 
-
 export default class TableRow extends Component {
   render() {
     return (
