@@ -17,7 +17,7 @@ const StyledFullscreen = styled(FullscreenButton)`
   opacity: 0;
   transition: 300ms opacity ease;
   font-size: 30px;
-  color: #fff;
+  fill: #fff;
 
   &:hover {
     opacity: 1;
@@ -37,7 +37,7 @@ export class Fullscreen extends Component {
     return (
       <StyledFullscreen
         onClick={() => this.toggleFullscreen()}
-        style={this.context.styles.fullscreen}
+        styles={this.context.styles.fullscreen}
         viewBox="0 0 512 512"
       />
     );
