@@ -38,9 +38,7 @@ class Anim extends Component {
       this.props.route.params.indexOf('overview') !== -1;
 
     if (shouldDisableAnimation) {
-      // setState in componentDidUpdate OK if wrapped in a condition according to docs
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ activeAnimation: this.props.toStyle.length - 1 });
+      this.disableAnimation();
     }
 
     const animationStatus = this.getAnimationStatus();
@@ -56,14 +54,28 @@ class Anim extends Component {
           const forward = prevState.activeAnimation < nextAnimation;
           prevProps.onAnim(forward, nextAnimation);
         }
-        // setState in componentDidUpdate OK if wrapped in a condition according to docs
-        // eslint-disable-next-line react/no-did-update-set-state
-        this.setState({
-          activeAnimation: nextAnimation
-        });
+        this.updateAnimation(nextAnimation);
       }
     }
   }
+
+  disableAnimation = () => {
+    if (this.state.activeAnimation !== this.props.toStyle.length - 1) {
+      this.setState({ activeAnimation: this.props.toStyle.length - 1 });
+    }
+
+    return;
+  };
+
+  updateAnimation = nextAnimation => {
+    if (this.state.activeAnimation !== nextAnimation) {
+      this.setState({
+        activeAnimation: nextAnimation
+      });
+    }
+
+    return;
+  };
 
   getAnimationStatus() {
     const state = this.props.fragment;
