@@ -4,7 +4,7 @@ exports[`<TableRow /> should render correctly 1`] = `
 <TableRow>
   <Styled(tr)
     className={undefined}
-    style={
+    styles={
       Array [
         Object {
           "color": "#00f",
@@ -15,16 +15,7 @@ exports[`<TableRow /> should render correctly 1`] = `
     }
   >
     <tr
-      className="css-0 emir1a80"
-      style={
-        Array [
-          Object {
-            "color": "#00f",
-          },
-          Object {},
-          undefined,
-        ]
-      }
+      className="css-1jziecw emir1a80"
     >
       <td>
         Table Row Content

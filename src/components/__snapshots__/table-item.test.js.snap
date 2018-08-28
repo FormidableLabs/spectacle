@@ -4,7 +4,7 @@ exports[`<TableItem /> should render correctly 1`] = `
 <TableItem>
   <Styled(td)
     className={undefined}
-    style={
+    styles={
       Array [
         Object {
           "color": "#444",
@@ -16,17 +16,7 @@ exports[`<TableItem /> should render correctly 1`] = `
     }
   >
     <td
-      className="css-0 eaiy41g0"
-      style={
-        Array [
-          Object {
-            "color": "#444",
-          },
-          Object {},
-          Object {},
-          undefined,
-        ]
-      }
+      className="css-11os9ew eaiy41g0"
     >
       Table Item Content
     </td>
