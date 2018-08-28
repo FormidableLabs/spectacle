@@ -8,10 +8,6 @@ import { connect } from 'react-redux';
 import { VictoryAnimation } from 'victory-core';
 import { victoryEases } from '../utils/types';
 
-// TODO(540): Refactor to non-deprecated lifecycle methods.
-// https://github.com/FormidableLabs/spectacle/issues/540
-// - componentWillReceiveProps
-// eslint-disable-next-line react/no-deprecated
 class Anim extends Component {
   state = {
     activeAnimation: -1
@@ -36,14 +32,15 @@ class Anim extends Component {
     node.dataset.animCount = this.props.toStyle.length;
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps, prevState) {
     const shouldDisableAnimation =
-      nextProps.route.params.indexOf('export') !== -1 ||
-      nextProps.route.params.indexOf('overview') !== -1;
+      this.props.route.params.indexOf('export') !== -1 ||
+      this.props.route.params.indexOf('overview') !== -1;
 
     if (shouldDisableAnimation) {
+      // setState in componentDidUpdate OK if wrapped in a condition according to docs
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ activeAnimation: this.props.toStyle.length - 1 });
-      return;
     }
 
     const animationStatus = this.getAnimationStatus();
@@ -51,14 +48,16 @@ class Anim extends Component {
       const nextAnimation = animationStatus.every(a => a === true)
         ? animationStatus.length - 1
         : animationStatus.indexOf(false) - 1;
-      if (this.state.activeAnimation !== nextAnimation) {
-        const state = nextProps.fragment;
-        const { slide } = this.props.route;
+      if (prevState.activeAnimation !== nextAnimation) {
+        const state = this.props.fragment;
+        const { slide } = prevProps.route;
         this.context.stepCounter.setFragments(state.fragments[slide], slide);
-        if (this.props.onAnim) {
-          const forward = this.state.activeAnimation < nextAnimation;
-          this.props.onAnim(forward, nextAnimation);
+        if (prevProps.onAnim) {
+          const forward = prevState.activeAnimation < nextAnimation;
+          prevProps.onAnim(forward, nextAnimation);
         }
+        // setState in componentDidUpdate OK if wrapped in a condition according to docs
+        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           activeAnimation: nextAnimation
         });
