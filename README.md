@@ -418,6 +418,7 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 | transitionDuration      | PropTypes.number  | Accepts integer value in milliseconds for global transition duration.                                                                                                         |
 | autoplay                | PropTypes.bool    | Automatically advance slides.                                                                                                                                                 |
 | autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration, defaults to 7000.                                                                                         |
+| autoplayLoop            | PropTypes.bool    | Keep slides in loop.                                                                                                                                                          |
 
 <a name="slide-base"></a>
 
