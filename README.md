@@ -412,17 +412,17 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 
 | Name                    | PropType          | Description                                                                                                                                                                   |
 | ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| controls                | PropTypes.bool    | Show control arrows when not in fullscreen                                                                                                                                    |
-| contentHeight           | PropTypes.numbers | Baseline content area height (default: 700)                                                                                                                                   |
-| contentWidth            | PropTypes.numbers | Baseline content area width (default: 1000)                                                                                                                                   |
-| disableKeyboardControls | PropTypes.bool    | Toggle keyboard control (default: false)                                                                                                                                      |
-| history                 | PropTypes.object  | Accepts custom configuration for [history](https://github.com/ReactTraining/history)                                                                                          |
-| progress                | PropTypes.string  | Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quaternary' color in the theme.                                                               |
-| theme                   | PropTypes.object  | Accepts a theme object for styling your presentation                                                                                                                          |
+| autoplay                | PropTypes.bool    | Automatically advance slides. (default: `false`)                                                                                                                                                 |
+| autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration. (default: `7000`)                                                                                         |
+| controls                | PropTypes.bool    | Show control arrows when not in fullscreen. (default: `true`)                                                                                                                                    |
+| contentHeight           | PropTypes.numbers | Baseline content area height. (default: `700px`)                                                                                                                                   |
+| contentWidth            | PropTypes.numbers | Baseline content area width. (default: `1000px`)                                                                                                                                   |
+| disableKeyboardControls | PropTypes.bool    | Toggle keyboard control. (default: `false`)                                                                                                                                      |
+| history                 | PropTypes.object  | Accepts custom configuration for [history](https://github.com/ReactTraining/history).                                                                                          |
+| progress                | PropTypes.string  | Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quaternary' color in the theme. (default: `pacman`)                                                               |
+| theme                   | PropTypes.object  | Accepts a theme object for styling your presentation.                                                                                                                          |
 | transition              | PropTypes.array   | Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.** |
-| transitionDuration      | PropTypes.number  | Accepts integer value in milliseconds for global transition duration.                                                                                                         |
-| autoplay                | PropTypes.bool    | Automatically advance slides.                                                                                                                                                 |
-| autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration, defaults to 7000.                                                                                         |
+| transitionDuration      | PropTypes.number  | Accepts integer value in milliseconds for global transition duration. (default: `500`)                                                                                                         |
 
 <a name="slide-base"></a>
 
@@ -575,9 +575,9 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 
 > NOTE: The Magic tag uses the Web Animations API. If you use the Magic tag and want it to work places other than Chrome, you will need to include the polyfill [https://github.com/web-animations/web-animations-js](https://github.com/web-animations/web-animations-js)
 
-The Magic Tag is a new experimental feature that attempts to recreate Magic Move behavior that slide authors might be accustomed to coming from Keynote. It wraps slides, and transitions between positional values for child elements. This means that if you have two similar strings, we will transition common characters to their new positions. This does not transition on non positional values such as slide background color or font size. Do not use a `transition` prop on your slides if you are wrapping them with a Magic tag since it will take care of the transition for you.
+The Magic Tag recreates Magic Move behavior that slide authors might be accustomed to coming from Keynote. It wraps slides and transitions between positional values for child elements. This means that if you have two similar strings, we will transition common characters to their new positions. This does not transition on non positional values such as slide background color or font size.
 
-Using Magic is pretty simple, you just wrap your slides with it, and it transitions between them:
+_<span role="img" aria-label="Warning Sign">⚠️ </span> WARNING: Do not use a `transition` prop on your slides if you are wrapping them with a Magic tag since it will take care of the transition for you._
 
 ```javascript
 <Magic>
@@ -611,10 +611,10 @@ For best performance, wrap the contents of this tag in a native DOM element like
 | Name               | PropType         | Description                                                                                                                                                                                                                                   |
 | ------------------ | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | order              | PropTypes.number | An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.                                                         |
-| transitionDuration | PropTypes.number | An optional duration (in milliseconds) for the Appear animation. Default value is `300`.                                                                                                                                                      |
-| startValue         | Proptypes.object | An optional style object that defines the starting, inactive state of the Appear tag. The default animation is a simple fade-in, so the default `startValue` value is `{ opacity: 0 }`.                                                       |
-| endValue           | Proptypes.object | An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in, so the default `endValue` value is `{ opacity: 1 }`.                                                             |
-| easing             | PropTypes.string | An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). Default value is `quadInOut` |
+| transitionDuration | PropTypes.number | An optional duration (in milliseconds) for the Appear animation. (default: `300`)                                                                                                                                                      |
+| startValue         | Proptypes.object | An optional style object that defines the starting, inactive state of the Appear tag. The default animation is a fade-in. (defaul: `{ opacity: 0 }`)                                                     |
+| endValue           | Proptypes.object | An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in. (default: `{ opacity: 1 }`)                                                             |
+| easing             | PropTypes.string | An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). (default: `quadInOut` ) |
 
 <a name="anim"></a>
 
@@ -683,8 +683,8 @@ For more information on the playground read the docs over at [react-live](https:
 | Name                   | PropType         | Description                                                                                                                      |
 | ---------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | code                   | PropTypes.string | The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed. |
-| previewBackgroundColor | PropTypes.string | The background color you want for the preview pane. Defaults to `#fff`.                                                          |
-| theme                  | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. Defaults to `dark`.                          |
+| previewBackgroundColor | PropTypes.string | The background color you want for the preview pane. (default: `#fff`)                                                           |
+| theme                  | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. (default: `dark`)                          |
 | scope                  | PropTypes.object | Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.        |
 
 Example code blocks:
@@ -770,7 +770,7 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 | Name   | PropType         | Description                        |
 | ------ | ---------------- | ---------------------------------- |
 | href   | PropTypes.string | String of url for `href` attribute |
-| target | PropTypes.string | Set the `target` attribute         |
+| target | PropTypes.string | Set the `target` attribute(default: `_self`)         |
 
 <a name="list--listitem-base"></a>
 
@@ -780,8 +780,8 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 | -------- | -------------- | -------------------------------------- |
 | ordered  | PropTypes.bool | Render as `<ol>`-tag                   |
 | reversed | PropTypes.bool | Set the `reversed` attribute           |
-| start    | PropTypes.bool | Set the `start` attribute, Default: 1  |
-| type     | PropTypes.bool | Set the `type` attribute. Default: "1" |
+| start    | PropTypes.number | Set the `start` attribute. (default: `1`) |
+| type     | PropTypes.string | Set the `type` attribute. (default: `"1"`) |
 
 These tags create lists. Use them as follows:
 
