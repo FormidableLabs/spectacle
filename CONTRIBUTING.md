@@ -4,7 +4,7 @@ Thanks for contributing!
 
 ### Installing dependencies
 
-```bash
+```sh
 yarn install
 ```
 
@@ -16,19 +16,19 @@ You will find tests for files colocated with `*.test.js` suffixes. Whenever maki
 
 If you are adding a new feature or some extra functionality, you should also make sure to accompany those changes with appropriate tests.
 
-### Linting and Formating
+### Linting and Formatting
 
-Before commiting any changes, be sure to do `yarn run lint`; this will lint all relevant files using [ESLint](http://eslint.org/) and report on any changes that you need to make.
+Before committing any changes, be sure to do `yarn run lint`; this will lint all relevant files using [ESLint](http://eslint.org/) and report on any changes that you need to make.
 
-You will also want to ensure your code meets the prettier formating guidelines by running `yarn run prettier -l <filename>` on a specific file. If there are differences the script errors out. You can also speciify a glob `yarn run prettier -l "src/**/*.js"` which will return a list of files that do not conform.
+You will also want to ensure your code meets the prettier formatting guidelines by running `yarn run prettier -l <filename>` on a specific file. If there are differences the script errors out. You can also specify a glob `yarn run prettier -l "src/**/*.js"` which will return a list of files that do not conform.
 
-Alternitivley install the Prettier [editor plugin](https://prettier.io/docs/en/editors.html) in your favorite editor. This is the perfered method.
+Alternatively, install the Prettier [editor plugin](https://prettier.io/docs/en/editors.html) in your favorite editor. This is the preferred method.
 
-There is also a pre-commit hook in place to lint all staged files. If any of the staged files do not conform to the eslint rules or the [prettier](https://prettier.io/) formating guidelines, your commit will fail until you resolve all outstanding issues.
+There is also a pre-commit hook in place to lint all staged files. If any of the staged files do not conform to the eslint rules or the [prettier](https://prettier.io/) formatting guidelines, your commit will fail until you resolve all outstanding issues.
 
-To resolve/fix prettier formating problems from the CLI:
+To resolve/fix prettier formatting problems from the CLI:
 
-```
+```sh
 yarn run prettier --write <filename>
 ```
 
@@ -36,7 +36,7 @@ This will modify your file in place. You will need to `git add` the file again a
 
 Example
 
-```
+```sh
 $ yarn run prettier --write src/components/time.js
 ...
 src/components/time.js 93ms
@@ -50,7 +50,7 @@ Thanks for taking the time to help us make Spectacle even better! Before you go 
 - Run the tests using `yarn run test`.
 - Run lint and flow using `yarn run lint`
 
-## Releasing a new version to NPM (only for project administrators):
+## Releasing a new version to NPM (only for project administrators)
 
 1.  Run `npm version patch` (or `minor`, `major` as appropriate) to run tests and lint, build the `lib` ands `dist` directories, , then update `package.json` and add a git tag.
 2.  Run `npm publish` and publish to npm if all is well.
@@ -113,7 +113,7 @@ further defined and clarified by project maintainers.
 ### Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at ken.wheeler@formidable.com. All
+reported by contacting the project team at emma.brillhart@formidable.com. All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. The project team is
 obligated to maintain confidentiality with regard to the reporter of an incident.
