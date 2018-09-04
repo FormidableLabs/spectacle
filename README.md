@@ -412,17 +412,17 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 
 | Name                    | PropType          | Description                                                                                                                                                                   |
 | ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| autoplay                | PropTypes.bool    | Automatically advance slides. (default: `false`)                                                                                                                                                 |
-| autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration. (default: `7000`)                                                                                         |
-| controls                | PropTypes.bool    | Show control arrows when not in fullscreen. (default: `true`)                                                                                                                                    |
-| contentHeight           | PropTypes.numbers | Baseline content area height. (default: `700px`)                                                                                                                                   |
-| contentWidth            | PropTypes.numbers | Baseline content area width. (default: `1000px`)                                                                                                                                   |
-| disableKeyboardControls | PropTypes.bool    | Toggle keyboard control. (default: `false`)                                                                                                                                      |
+| autoplay                | PropTypes.bool    | Automatically advance slides. (Default: `false`)                                                                                                                                                 |
+| autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration. (Default: `7000`)                                                                                         |
+| controls                | PropTypes.bool    | Show control arrows when not in fullscreen. (Default: `true`)                                                                                                                                    |
+| contentHeight           | PropTypes.numbers | Baseline content area height. (Default: `700px`)                                                                                                                                   |
+| contentWidth            | PropTypes.numbers | Baseline content area width. (Default: `1000px`)                                                                                                                                   |
+| disableKeyboardControls | PropTypes.bool    | Toggle keyboard control. (Default: `false`)                                                                                                                                      |
 | history                 | PropTypes.object  | Accepts custom configuration for [history](https://github.com/ReactTraining/history).                                                                                          |
-| progress                | PropTypes.string  | Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quaternary' color in the theme. (default: `pacman`)                                                               |
+| progress                | PropTypes.string  | Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quaternary' color in the theme. (Default: `pacman`)                                                               |
 | theme                   | PropTypes.object  | Accepts a theme object for styling your presentation.                                                                                                                          |
 | transition              | PropTypes.array   | Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.** |
-| transitionDuration      | PropTypes.number  | Accepts integer value in milliseconds for global transition duration. (default: `500`)                                                                                                         |
+| transitionDuration      | PropTypes.number  | Accepts integer value in milliseconds for global transition duration. (Default: `500`)                                                                                                         |
 
 <a name="slide-base"></a>
 
@@ -611,10 +611,10 @@ For best performance, wrap the contents of this tag in a native DOM element like
 | Name               | PropType         | Description                                                                                                                                                                                                                                   |
 | ------------------ | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | order              | PropTypes.number | An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.                                                         |
-| transitionDuration | PropTypes.number | An optional duration (in milliseconds) for the Appear animation. (default: `300`)                                                                                                                                                      |
+| transitionDuration | PropTypes.number | An optional duration (in milliseconds) for the Appear animation. (Default: `300`)                                                                                                                                                      |
 | startValue         | Proptypes.object | An optional style object that defines the starting, inactive state of the Appear tag. The default animation is a fade-in. (defaul: `{ opacity: 0 }`)                                                     |
-| endValue           | Proptypes.object | An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in. (default: `{ opacity: 1 }`)                                                             |
-| easing             | PropTypes.string | An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). (default: `quadInOut` ) |
+| endValue           | Proptypes.object | An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in. (Default: `{ opacity: 1 }`)                                                             |
+| easing             | PropTypes.string | An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). (Default: `quadInOut` ) |
 
 <a name="anim"></a>
 
@@ -683,8 +683,8 @@ For more information on the playground read the docs over at [react-live](https:
 | Name                   | PropType         | Description                                                                                                                      |
 | ---------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | code                   | PropTypes.string | The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed. |
-| previewBackgroundColor | PropTypes.string | The background color you want for the preview pane. (default: `#fff`)                                                           |
-| theme                  | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. (default: `dark`)                          |
+| previewBackgroundColor | PropTypes.string | The background color you want for the preview pane. (Default: `#fff`)                                                           |
+| theme                  | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. (Default: `dark`)                          |
 | scope                  | PropTypes.object | Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.        |
 
 Example code blocks:
@@ -770,7 +770,7 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 | Name   | PropType         | Description                        |
 | ------ | ---------------- | ---------------------------------- |
 | href   | PropTypes.string | String of url for `href` attribute |
-| target | PropTypes.string | Set the `target` attribute(default: `_self`)         |
+| target | PropTypes.string | Set the `target` attribute(Default: `_self`)         |
 
 <a name="list--listitem-base"></a>
 
@@ -780,8 +780,8 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 | -------- | -------------- | -------------------------------------- |
 | ordered  | PropTypes.bool | Render as `<ol>`-tag                   |
 | reversed | PropTypes.bool | Set the `reversed` attribute           |
-| start    | PropTypes.number | Set the `start` attribute. (default: `1`) |
-| type     | PropTypes.string | Set the `type` attribute. (default: `"1"`) |
+| start    | PropTypes.number | Set the `start` attribute. (Default: `1`) |
+| type     | PropTypes.string | Set the `type` attribute. (Default: `"1"`) |
 
 These tags create lists. Use them as follows:
 
@@ -863,9 +863,9 @@ Every component above that has `(Base)` after it has been extended from a common
 
 | Name       | PropType                   | Description                                                                 |
 | ---------- | -------------------------- | --------------------------------------------------------------------------- |
-| italic     | PropTypes.boolean          | Set `fontStyle` to `italic`                                                 |
-| bold       | PropTypes.boolean          | Set `fontWeight` to `bold`                                                  |
-| caps       | PropTypes.boolean          | Set `textTransform` to `uppercase`                                          |
+| italic     | PropTypes.boolean          | Set `fontStyle` to `italic` (Default: `false`)                                                |
+| bold       | PropTypes.boolean          | Set `fontWeight` to `bold` (Default: `false`)                                                 |
+| caps       | PropTypes.boolean          | Set `textTransform` to `uppercase` (Default: `false`)                                         |
 | margin     | PropTypes.number or string | Set `margin` value                                                          |
 | padding    | PropTypes.number or string | Set `padding` value                                                         |
 | textColor  | PropTypes.string           | Set `color` value                                                           |
@@ -892,8 +892,8 @@ The `Typeface` tag is used to apply a specific font to text content. It can eith
 | ---------- | ----------------- | ------------------------------------------------------------------ |
 | font       | PropTypes.string  | Use a font from the local system                                   |
 | googleFont | PropTypes.string  | Use a font from the Google Fonts library                           |
-| weight     | PropTypes.number  | Numeric weight value for the font. Default: `400`.                 |
-| italic     | PropTypes.boolean | Use an italics variant of the font if it exists. Default: `false`. |
+| weight     | PropTypes.number  | Numeric weight value for the font. (Default: `400`).                 |
+| italic     | PropTypes.boolean | Use an italics variant of the font if it exists. (Default: `false`) |
 
 ```jsx
 <Typeface googleFont="Roboto Slab" weight={600}>
