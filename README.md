@@ -645,6 +645,24 @@ These tags create a styled blockquote. Use them as follows:
   <Cite>Everyone</Cite>
 </BlockQuote>
 ```
+_Note: By default the text color of the `Quote` tag is the same as the background color and may not show up. Use the `bgColor` and/or `textColor` props on the `Slide` or `Quote` tags to make it visible._
+
+```jsx
+<Slide transition={['fade']} bgColor="secondary" textColor="primary">
+  <BlockQuote>
+    <Quote>Example Quote</Quote>
+    <Cite>Author</Cite>
+  </BlockQuote>
+</Slide>
+```
+```jsx
+<Slide transition={['fade']}>
+  <BlockQuote>
+    <Quote textColor="secondary">Example Quote</Quote>
+    <Cite>Author</Cite>
+  </BlockQuote>
+</Slide>
+```
 
 <a name="codepane-base"></a>
 
