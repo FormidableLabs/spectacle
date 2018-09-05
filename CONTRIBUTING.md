@@ -29,19 +29,10 @@ There is also a pre-commit hook in place to lint all staged files. If any of the
 To resolve/fix prettier formatting problems from the CLI:
 
 ```sh
-yarn run prettier --write <filename>
+yarn prettier-fix && yarn lint-fix
 ```
 
 This will modify your file in place. You will need to `git add` the file again and re-commit.
-
-Example
-
-```sh
-$ yarn run prettier --write src/components/time.js
-...
-src/components/time.js 93ms
-✨  Done in 0.58s.
-```
 
 ### Before submitting a PR...
 
