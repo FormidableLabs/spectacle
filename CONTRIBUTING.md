@@ -40,6 +40,7 @@ Thanks for taking the time to help us make Spectacle even better! Before you go 
 
 - Run the tests using `yarn run test`.
 - Run lint and flow using `yarn run lint`
+- Everything else included in our [pull request checklist](https://github.com/FormidableLabs/spectacle/blob/master/.github/PULL_REQUEST_TEMPLATE.md#checklist-feel-free-to-delete-this-section-upon-completion)
 
 ## Releasing a new version to NPM (only for project administrators)
 
