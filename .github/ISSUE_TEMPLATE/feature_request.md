@@ -1,3 +1,9 @@
+---
+name: Feature request
+about: Suggest an idea for this project
+
+---
+
 <!--
 
 Have you read Formidable's Code of Conduct? By filing an Issue, you are expected to comply with it, including treating everyone with respect: https://github.com/FormidableLabs/spectacle/blob/master/CONTRIBUTING.md#contributor-covenant-code-of-conduct
