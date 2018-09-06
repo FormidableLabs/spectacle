@@ -85,7 +85,7 @@ Note that we have webpack externals for `react`, `react-dom`, and `prop-types`, 
 
 ## One Page
 
-To aid with a speedy development we've provide a simple boilerplate HTML page with a bespoke script tag that contains your entire presentation. The rest of the setup will take care of transpiling your React/ESnext code, providing Spectacle, React, and ReactDOM libraries, and being raring to go with a minimum of effort.
+To aid with speedy development we've provided a simple boilerplate HTML page with a bespoke script tag that contains your entire presentation. The rest of the setup will take care of transpiling your React/ESnext code, providing Spectacle, React, and ReactDOM libraries, and being raring to go with a minimum of effort.
 
 We can start with this project's sample at [`one-page.html`](./one-page.html). It's the same presentation as the fully-built-from-source version, with a few notable exceptions:
 
@@ -168,6 +168,7 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
 ## Development
 
 After downloading the boilerplate, run the following commands on the project's root directory...
+
 - `npm install`
 - `rm -R .git` to remove the existing version control
 - `npm start` to start up the local server or visit [http://localhost:3000/#/](http://localhost:3000/#/)
@@ -182,7 +183,7 @@ Building the dist version of the slides is as easy as running `npm run build:dis
 
 If you want to deploy the slideshow to [surge](https://surge.sh/), run `npm run deploy`
 
-_<span role="img" aria-label="Warning Sign">⚠️ </span> WARNING:  If you are deploying the dist version to [GitHub Pages](https://pages.github.com/ 'GitHub Pages'), note that the built bundle uses an absolute path to the `/dist/` directory while GitHub Pages requires the relative `./dist/` to find any embedded assets and/or images. A very hacky way to fix this is to edit one place in the produced bundle, as shown [in this GitHub issue](https://github.com/FormidableLabs/spectacle/issues/326#issue-233283633 'GitHub: spectacle issue #326')._
+_<span role="img" aria-label="Warning Sign">⚠️ </span> WARNING: If you are deploying the dist version to [GitHub Pages](https://pages.github.com/ 'GitHub Pages'), note that the built bundle uses an absolute path to the `/dist/` directory while GitHub Pages requires the relative `./dist/` to find any embedded assets and/or images. A very hacky way to fix this is to edit one place in the produced bundle, as shown [in this GitHub issue](https://github.com/FormidableLabs/spectacle/issues/326#issue-233283633 'GitHub: spectacle issue #326')._
 
 <a name="presenting"></a>
 
@@ -200,7 +201,7 @@ To present:
 
 - Run `npm start`. You will be redirected to a URL containing your presentation or visit [http://localhost:3000/#/](http://localhost:3000/#/)
 - Open a second browser window on a different screen
-- Add `0?presenter` or `0?presenter&timer` immediately after the `/`, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/0?presenter&timer](http://localhost:3000/#/?presenter&timer&_k=wbyhif)
+- Add `?presenter` or `?presenter&timer` immediately after the `/`, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/?presenter&timer](http://localhost:3000/#/?presenter&timer)
 - Give an amazingly stylish presentation
 
 _Note: Any windows/tabs in the same browser that are running Spectacle will sync to one another, even if you don't want to use presentation mode_
@@ -252,13 +253,28 @@ A PDF is created in your project directory. For more options and configuration o
 
 After running `npm start` and opening [http://localhost:3000/#/](http://localhost:3000/#/) in your browser...
 
-- Add `?export&_k=wbyhif` after the `/` on the URL of page you are redirected to, e.g.: [http://localhost:3000/#/?export&\_k=wbyhif](http://localhost:3000/#/?export&_k=wbyhif)
+- Add `?export` after the `/` on the URL of the page you are redirected to, e.g.: [http://localhost:3000/#/?export](http://localhost:3000/#/?export)
 - Bring up the print dialog `(ctrl or cmd + p)`
 - Change destination to "Save as PDF", as shown below:
 
 ![http://i.imgur.com/t6GL5Oc.png](http://i.imgur.com/t6GL5Oc.png)
 
 If you want a printer friendly version, repeat the above process but instead print from [http://localhost:3000/#/?export&print](http://localhost:3000/#/?export&print)
+
+#### Query Parameters
+
+Here is a list of all valid query parameters that can be placed after `\` on the URL.
+
+| Query            | Description                                                                                                     |
+| ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| Number           | Starting at `0` being you first slide, adding a number will take you to that particular slide.                  |
+| ?export          | Creates a single-page overview of your slides, that you can then print.                                         |
+| ?export&print    | Creates a black & white single-page overview of your slides.                                                    |
+| ?presenter       | Takes you to presenter mode where you’ll see current slide, next slide, current time, and your [notes](#notes). |
+| ?presenter&timer | Takes you to presenter mode where you’ll see current slide, next slide, timer, and your [notes](#notes).        |
+| ?overview        | Take you to overview mode where you’ll see all your slides.                                                     |
+
+_NOTE: If you add a non-valid query parameter, you will be taken to a blank page. Removing or replacing the query parameter with a valid query parameter and refreshing the page will return you to the correct destination._
 
 <a name="basic-concepts"></a>
 
@@ -410,19 +426,19 @@ In Spectacle, presentations are composed of a set of base tags. We can separate 
 
 The Deck tag is the root level tag for your presentation. It supports the following props:
 
-| Name                    | PropType          | Description                                                                                                                                                                   |
-| ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| autoplay                | PropTypes.bool    | Automatically advance slides. (Default: `false`)                                                                                                                                                 |
-| autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration. (Default: `7000`)                                                                                         |
-| controls                | PropTypes.bool    | Show control arrows when not in fullscreen. (Default: `true`)                                                                                                                                    |
-| contentHeight           | PropTypes.numbers | Baseline content area height. (Default: `700px`)                                                                                                                                   |
-| contentWidth            | PropTypes.numbers | Baseline content area width. (Default: `1000px`)                                                                                                                                   |
-| disableKeyboardControls | PropTypes.bool    | Toggle keyboard control. (Default: `false`)                                                                                                                                      |
-| history                 | PropTypes.object  | Accepts custom configuration for [history](https://github.com/ReactTraining/history).                                                                                          |
-| progress                | PropTypes.string  | Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quaternary' color in the theme. (Default: `pacman`)                                                               |
-| theme                   | PropTypes.object  | Accepts a theme object for styling your presentation.                                                                                                                          |
-| transition              | PropTypes.array   | Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.** |
-| transitionDuration      | PropTypes.number  | Accepts integer value in milliseconds for global transition duration. (Default: `500`)                                                                                                         |
+| Name                    | PropType          | Description                                                                                                                                                                   | Default  |
+| ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| autoplay                | PropTypes.bool    | Automatically advance slides.                                                                                                                                                 | `false`  |
+| autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration.                                                                                                           | `7000`   |
+| controls                | PropTypes.bool    | Show control arrows when not in fullscreen.                                                                                                                                   | `true`   |
+| contentHeight           | PropTypes.numbers | Baseline content area height.                                                                                                                                                 | `700px`  |
+| contentWidth            | PropTypes.numbers | Baseline content area width.                                                                                                                                                  | `1000px` |
+| disableKeyboardControls | PropTypes.bool    | Toggle keyboard control.                                                                                                                                                      | `false`  |
+| history                 | PropTypes.object  | Accepts custom configuration for [history](https://github.com/ReactTraining/history).                                                                                         |          |
+| progress                | PropTypes.string  | Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quaternary' color in the theme.                                                               | `pacman` |
+| theme                   | PropTypes.object  | Accepts a theme object for styling your presentation.                                                                                                                         |          |
+| transition              | PropTypes.array   | Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.** |          |
+| transitionDuration      | PropTypes.number  | Accepts integer value in milliseconds for global transition duration.                                                                                                         | `500`    |
 
 <a name="slide-base"></a>
 
@@ -430,21 +446,21 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 
 The slide tag represents each slide in the presentation. Giving a slide tag an `id` attribute will replace its number based navigation hash with the `id` provided. It supports the following props, in addition to any of the props outlined in the Base class props listing:
 
-| Name               | PropType         | Description                                                                                                                                                                                                                                                                                                                     |
-| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| align              | PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (right). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom). You would provide this prop like `align="center center"`, which is its default. |
-| controlColor       | PropTypes.string | Used to override color of control arrows on a per slide basis, accepts color aliases, or valid color values.                                                                                                                                                                                                                    |
-| goTo               | PropTypes.number | Used to navigate to a slide for out-of-order presenting. Slide numbers start at `1`. This can also be used to skip slides as well.                                                                                                                                                                                              |
-| id                 | PropTypes.string | Used to create a string based hash.                                                                                                                                                                                                                                                                                             |
-| maxHeight          | PropTypes.number | Used to set max dimensions of the Slide.                                                                                                                                                                                                                                                                                        |
-| maxWidth           | PropTypes.number | Used to set max dimensions of the Slide.                                                                                                                                                                                                                                                                                        |
-| notes              | PropTypes.string | Text which will appear in the presenter mode. Can be HTML.                                                                                                                                                                                                                                                                      |
-| onActive           | PropTypes.func   | Optional function that is called with the slide index when the slide comes into view.                                                                                                                                                                                                                                           |
-| progressColor      | PropTypes.string | Used to override color of progress elements on a per slide basis, accepts color aliases, or valid color values.                                                                                                                                                                                                                 |
-| transition         | PropTypes.array  | Accepts `slide`, `zoom`, `fade`, `spin`, or a [function](#transition-function), and can be combined. Sets the slide transition. This will affect both enter and exit transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**                                                                |
-| transitionIn       | PropTypes.array  | Specifies the slide transition when the slide comes into view. Accepts the same values as transition.                                                                                                                                                                                                                           |
-| transitionOut      | PropTypes.array  | Specifies the slide transition when the slide exits. Accepts the same values as transition.                                                                                                                                                                                                                                     |
-| transitionDuration | PropTypes.number | Accepts integer value in milliseconds for slide transition duration.                                                                                                                                                                                                                                                            |
+| Name               | PropType         | Description                                                                                                                                                                                                                                                                                  | Default                                 |
+| ------------------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| align              | PropTypes.string | Accepts a space delimited value for positioning interior content. The first value can be `flex-start` (left), `center` (middle), or `flex-end` (right). The second value can be `flex-start` (top) , `center` (middle), or `flex-end` (bottom).                                              | `align="center center"`                 |
+| controlColor       | PropTypes.string | Used to override color of control arrows on a per slide basis, accepts color aliases, or valid color values.                                                                                                                                                                                 | Set by `Deck`'s `control` prop          |
+| goTo               | PropTypes.number | Used to navigate to a slide for out-of-order presenting. Slide numbers start at `1`. This can also be used to skip slides as well.                                                                                                                                                           |                                         |
+| id                 | PropTypes.string | Used to create a string based hash.                                                                                                                                                                                                                                                          |                                         |
+| maxHeight          | PropTypes.number | Used to set max dimensions of the Slide.                                                                                                                                                                                                                                                     |                                         |
+| maxWidth           | PropTypes.number | Used to set max dimensions of the Slide.                                                                                                                                                                                                                                                     |                                         |
+| notes              | PropTypes.string | Text which will appear in the presenter mode. Can be HTML.                                                                                                                                                                                                                                   |                                         |
+| onActive           | PropTypes.func   | Optional function that is called with the slide index when the slide comes into view.                                                                                                                                                                                                        |                                         |
+| progressColor      | PropTypes.string | Used to override color of progress elements on a per slide basis, accepts color aliases, or valid color values.                                                                                                                                                                              | Set by `Deck`'s `theme.quaternary` prop |
+| transition         | PropTypes.array  | Used to override transition prop on a per slide basis, accepts `slide`, `zoom`, `fade`, `spin`, or a [function](#transition-function), and can be combined. This will affect both enter and exit transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.** | Set by `Deck`'s `transition` prop       |
+| transitionIn       | PropTypes.array  | Specifies the slide transition when the slide comes into view. Accepts the same values as transition.                                                                                                                                                                                        |
+| transitionOut      | PropTypes.array  | Specifies the slide transition when the slide exits. Accepts the same values as transition.                                                                                                                                                                                                  | Set by `Deck`'s `transition` prop       |
+| transitionDuration | PropTypes.number | Accepts integer value in milliseconds for slide transition duration.                                                                                                                                                                                                                         | Set by `Deck`'s `transition` prop       |
 
 <a name="wrapping-slides"></a>
 
@@ -499,7 +515,7 @@ The notes tag allows to use any tree of react elements as the notes of a slide. 
 
 ### MarkdownSlides
 
-The MarkdownSlides function lets you create a single or multiple slides using Markdown. It can be used as a tagged template literal or a function. Three dashes (`---`) are used as a delimiter between slides.
+The MarkdownSlides function lets you create a single or multiple slides using Markdown. It can be used as a tagged template literal or a function. Three dashes (`---` are used as a delimiter between slides.
 
 **Tagged Template Literal Usage**
 
@@ -561,9 +577,9 @@ The Markdown tag is used to add inline markdown to your slide. You can provide m
 
 Markdown generated tags aren't prop configurable, and instead render with your theme defaults.
 
-| Name   | PropType         | Description     |
-| ------ | ---------------- | --------------- |
-| source | PropTypes.string | Markdown source |
+| Name   | PropType         | Description     | Default |
+| ------ | ---------------- | --------------- | ------- |
+| source | PropTypes.string | Markdown source |         |
 
 <a name="magic-tag"></a>
 
@@ -608,13 +624,13 @@ This tag does not extend from Base. It's special. Wrapping elements in the appea
 
 For best performance, wrap the contents of this tag in a native DOM element like a `<div>` or `<span>`.
 
-| Name               | PropType         | Description                                                                                                                                                                                                                                   |
-| ------------------ | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| order              | PropTypes.number | An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.                                                         |
-| transitionDuration | PropTypes.number | An optional duration (in milliseconds) for the Appear animation. (Default: `300`)                                                                                                                                                      |
-| startValue         | Proptypes.object | An optional style object that defines the starting, inactive state of the Appear tag. The default animation is a fade-in. (defaul: `{ opacity: 0 }`)                                                     |
-| endValue           | Proptypes.object | An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in. (Default: `{ opacity: 1 }`)                                                             |
-| easing             | PropTypes.string | An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). (Default: `quadInOut` ) |
+| Name               | PropType         | Description                                                                                                                                                                                                      | Default          |
+| ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| order              | PropTypes.number | An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.                            |
+| transitionDuration | PropTypes.number | An optional duration (in milliseconds) for the Appear animation.                                                                                                                                                 | `300`            |
+| startValue         | Proptypes.object | An optional style object that defines the starting, inactive state of the Appear tag. The default animation is a fade-in.                                                                                        | `{ opacity: 0 }` |
+| endValue           | Proptypes.object | An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in.                                                                                     | `{ opacity: 1 }` |
+| easing             | PropTypes.string | An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). | `quadInOut`      |
 
 <a name="anim"></a>
 
@@ -624,14 +640,14 @@ If you want extra flexibility with animated animation, you can use the Anim comp
 
 For best performance, wrap the contents of this tag in a native DOM element like a `<div>` or `<span>`.
 
-| Name               | PropType         | Description                                                                                                                                                                                                                                |
-| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| order              | PropTypes.number | An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.                                                      |
-| transitionDuration | PropTypes.number | A duration (in milliseconds) for the animation. Default value is `300`.                                                                                                                                                                    |
-| fromStyle          | Proptypes.object | A style object that defines the starting, inactive state of the Anim tag.                                                                                                                                                                  |
-| toStyle            | Proptypes.array  | An array of style objects that define each step in the animation. They will step from one toStyle object to another, until that fragment is finished with its animations.                                                                  |
-| easing             | PropTypes.string | A victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing).                                     |
-| onAnim             | PropTypes.fun    | This function is called every time the Anim component plays an animation. It'll be called with two arguments, forwards, a boolean indicating if it was stepped forwards or backwards, and the index of the animation that was just played. |
+| Name               | PropType         | Description                                                                                                                                                                                                                                | Default         |
+| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| order              | PropTypes.number | An optional integer for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.                                                                    | Starting at `1` |
+| transitionDuration | PropTypes.number | A duration (in milliseconds) for the animation.                                                                                                                                                                                            | `300`           |
+| fromStyle          | Proptypes.object | A style object that defines the starting, inactive state of the Anim tag.                                                                                                                                                                  |                 |
+| toStyle            | Proptypes.array  | An array of style objects that define each step in the animation. They will step from one toStyle object to another, until that fragment is finished with its animations.                                                                  |                 |
+| easing             | PropTypes.string | A victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing).                                     |                 |
+| onAnim             | PropTypes.fun    | This function is called every time the Anim component plays an animation. It'll be called with two arguments, forwards, a boolean indicating if it was stepped forwards or backwards, and the index of the animation that was just played. |                 |
 
 <a name="blockquote-quote-and-cite-base"></a>
 
@@ -645,6 +661,7 @@ These tags create a styled blockquote. Use them as follows:
   <Cite>Everyone</Cite>
 </BlockQuote>
 ```
+
 _Note: By default the text color of the `Quote` tag is the same as the background color and may not show up. Use the `bgColor` and/or `textColor` props on the `Slide` or `Quote` tags to make it visible._
 
 ```jsx
@@ -655,6 +672,7 @@ _Note: By default the text color of the `Quote` tag is the same as the backgroun
   </BlockQuote>
 </Slide>
 ```
+
 ```jsx
 <Slide transition={['fade']}>
   <BlockQuote>
@@ -670,12 +688,12 @@ _Note: By default the text color of the `Quote` tag is the same as the backgroun
 
 This tag displays a styled, highlighted code preview. I prefer putting my code samples in external `.example` files and requiring them using `raw-loader` as shown in the demo. Here are the props:
 
-| Name      | PropType         | Description                                                                                             |
-| --------- | ---------------- | ------------------------------------------------------------------------------------------------------- |
-| lang      | PropTypes.string | Prism compatible language name. i.e: 'javascript'                                                       |
-| source    | PropTypes.string | String of code to be shown                                                                              |
-| className | PropTypes.string | String of a className to be appended to the CodePane                                                    |
-| theme     | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. Defaults to `dark`. |
+| Name      | PropType         | Description                                                                         | Default |
+| --------- | ---------------- | ----------------------------------------------------------------------------------- | ------- |
+| lang      | PropTypes.string | Prism compatible language name. i.e: 'javascript'                                   |         |
+| source    | PropTypes.string | String of code to be shown                                                          |         |
+| className | PropTypes.string | String of a className to be appended to the CodePane                                |         |
+| theme     | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. | `dark`  |
 
 If you want to change the theme used here, you can include a prism theme in index.html via a style or a link tag. For your theme to be actually applied
 correctly you need to set the `theme` prop to `"external"`, which disables our builtin light and dark themes.
@@ -698,12 +716,12 @@ This tag displays a two-pane view with a ES6 source code editor on the right and
 
 For more information on the playground read the docs over at [react-live](https://github.com/FormidableLabs/react-live).
 
-| Name                   | PropType         | Description                                                                                                                      |
-| ---------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| code                   | PropTypes.string | The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed. |
-| previewBackgroundColor | PropTypes.string | The background color you want for the preview pane. (Default: `#fff`)                                                           |
-| theme                  | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting. (Default: `dark`)                          |
-| scope                  | PropTypes.object | Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.        |
+| Name                   | PropType         | Description                                                                                                                      | Default |
+| ---------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| code                   | PropTypes.string | The code block you want to initially supply to the component playground. If none is supplied a demo component will be displayed. |         |
+| previewBackgroundColor | PropTypes.string | The background color you want for the preview pane.                                                                              | `#fff`  |
+| theme                  | PropTypes.string | Accepts `light`, `dark`, or `external` for the source editor's syntax highlighting.                                              | `dark`  |
+| scope                  | PropTypes.object | Defines any outside modules or components to expose to the playground. React, Component, and render are supplied for you.        |         |
 
 Example code blocks:
 
@@ -733,10 +751,10 @@ If you want to change the theme used here, please refer to the instructions abov
 
 The GoToAction tag lets you jump to another slide in your deck. The GoToAction can be used a simple button that supports `Base` styling or accept a render prop with a callback to support custom components.
 
-| Name   | PropType                             | Description                                                                                                                                              |
-| ------ | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| slide  | PropTypes.string or PropTypes.number | The string identifier or number of the side the button should jump to. Slide numbers start at `1`. This is only used in the simple button configuration. |
-| render | PropTypes.func                       | A function with a `goToSlide` param that should return a React element to render. This is only used in the custom component configuration.               |
+| Name   | PropType                             | Description                                                                                                                                | Default         |
+| ------ | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| slide  | PropTypes.string or PropTypes.number | The string identifier or number of the side the button should jump to. This is only used in the simple button configuration.               | Starting at `1` |
+| render | PropTypes.func                       | A function with a `goToSlide` param that should return a React element to render. This is only used in the custom component configuration. |                 |
 
 ##### Simple Button Configuration Example
 
@@ -762,22 +780,22 @@ The GoToAction tag lets you jump to another slide in your deck. The GoToAction c
 
 Heading tags are special in that, when you specify a `size` prop, they generate the appropriate heading tag, and extend themselves with a style that is defined in the theme file for that heading. Line height can be adjusted via a numeric `lineHeight` prop.
 
-| Name       | PropType          | Description                                                                                                               |
-| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| fit        | PropTypes.boolean | When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |
-| lineHeight | PropTypes.number  | Sets the line height of your text.                                                                                        |
+| Name       | PropType          | Description                                                                                                               | Default |
+| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
+| fit        | PropTypes.boolean | When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** | `false` |
+| lineHeight | PropTypes.number  | Sets the line height of your text.                                                                                        |         |
 
 <a name="image-base"></a>
 
 #### Image (Base)
 
-| Name    | PropType                             | Description                                 |
-| ------- | ------------------------------------ | ------------------------------------------- |
-| alt     | PropTypes.string                     | Set the `alt` property of the image         |
-| display | PropTypes.string                     | Set the display style property of the image |
-| height  | PropTypes.string or PropTypes.number | Supply a height to the image                |
-| src     | PropTypes.string                     | Image src                                   |
-| width   | PropTypes.string or PropTypes.number | Supply a width to the image                 |
+| Name    | PropType                             | Description                                 | Default |
+| ------- | ------------------------------------ | ------------------------------------------- | ------- |
+| alt     | PropTypes.string                     | Set the `alt` property of the image         |         |
+| display | PropTypes.string                     | Set the display style property of the image |         |
+| height  | PropTypes.string or PropTypes.number | Supply a height to the image                |         |
+| src     | PropTypes.string                     | Image src                                   |         |
+| width   | PropTypes.string or PropTypes.number | Supply a width to the image                 |         |
 
 <a name="link-base"></a>
 
@@ -785,21 +803,21 @@ Heading tags are special in that, when you specify a `size` prop, they generate 
 
 The link tag is used to render `<a>` tags. It accepts an `href` prop:
 
-| Name   | PropType         | Description                        |
-| ------ | ---------------- | ---------------------------------- |
-| href   | PropTypes.string | String of url for `href` attribute |
-| target | PropTypes.string | Set the `target` attribute(Default: `_self`)         |
+| Name   | PropType         | Description                        | Default |
+| ------ | ---------------- | ---------------------------------- | ------- |
+| href   | PropTypes.string | String of url for `href` attribute |         |
+| target | PropTypes.string | Set the `target` attribute         | `_self` |
 
 <a name="list--listitem-base"></a>
 
 #### List & ListItem (Base)
 
-| Name     | PropType       | Description                            |
-| -------- | -------------- | -------------------------------------- |
-| ordered  | PropTypes.bool | Render as `<ol>`-tag                   |
-| reversed | PropTypes.bool | Set the `reversed` attribute           |
-| start    | PropTypes.number | Set the `start` attribute. (Default: `1`) |
-| type     | PropTypes.string | Set the `type` attribute. (Default: `"1"`) |
+| Name     | PropType         | Description                  | Default |
+| -------- | ---------------- | ---------------------------- | ------- |
+| ordered  | PropTypes.bool   | Render as `<ol>` tag         |         |
+| reversed | PropTypes.bool   | Set the `reversed` attribute |         |
+| start    | PropTypes.number | Set the `start` attribute.   | `1`     |
+| type     | PropTypes.string | Set the `type` attribute.    | `"1"`   |
 
 These tags create lists. Use them as follows:
 
@@ -831,9 +849,9 @@ Unordered lists:
 
 The `S` tag is used to add styling to a piece of text, such as underline or strikethrough.
 
-| Name | PropType         | Description                                              |
-| ---- | ---------------- | -------------------------------------------------------- |
-| type | PropTypes.string | Accepts `strikethrough`, `underline`, `bold` or `italic` |
+| Name | PropType         | Description                                              | Default |
+| ---- | ---------------- | -------------------------------------------------------- | ------- |
+| type | PropTypes.string | Accepts `strikethrough`, `underline`, `bold` or `italic` |         |
 
 <a name="table-tablerow-tableheaderitem-and-tableitem-base"></a>
 
@@ -868,10 +886,10 @@ The `Table` tag is used to add table to your slide. It is used with `TableHeader
 
 The `Text` tag is used to add text to your slide. Line height can be adjusted via a numeric `lineHeight` prop.
 
-| Name       | PropType          | Description                                                                                                               |
-| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| fit        | PropTypes.boolean | When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |
-| lineHeight | PropTypes.number  | Sets the line height of your text.                                                                                        |
+| Name | PropType | Description | Default |
+| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- | |
+| fit | PropTypes.boolean | When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** | |
+| lineHeight | PropTypes.number | Sets the line height of your text. | |
 
 <a name="base-props"></a>
 
@@ -879,26 +897,26 @@ The `Text` tag is used to add text to your slide. Line height can be adjusted vi
 
 Every component above that has `(Base)` after it has been extended from a common class that includes the following props:
 
-| Name       | PropType                   | Description                                                                 |
-| ---------- | -------------------------- | --------------------------------------------------------------------------- |
-| italic     | PropTypes.boolean          | Set `fontStyle` to `italic` (Default: `false`)                                                |
-| bold       | PropTypes.boolean          | Set `fontWeight` to `bold` (Default: `false`)                                                 |
-| caps       | PropTypes.boolean          | Set `textTransform` to `uppercase` (Default: `false`)                                         |
-| margin     | PropTypes.number or string | Set `margin` value                                                          |
-| padding    | PropTypes.number or string | Set `padding` value                                                         |
-| textColor  | PropTypes.string           | Set `color` value                                                           |
-| textFont   | PropTypes.string           | Set `fontFamily` value                                                      |
-| textSize   | PropTypes.string           | Set `fontSize` value                                                        |
-| textAlign  | PropTypes.string           | Set `textAlign` value                                                       |
-| textFont   | PropTypes.string           | Set `textFont` value                                                        |
-| bgColor    | PropTypes.string           | Set `backgroundColor` value                                                 |
-| bgImage    | PropTypes.string           | Set `backgroundImage` value                                                 |
-| bgSize     | PropTypes.string           | Set `backgroundSize` value                                                  |
-| bgPosition | PropTypes.string           | Set `backgroundPosition` value                                              |
-| bgRepeat   | PropTypes.string           | Set `backgroundRepeat` value                                                |
-| bgDarken   | PropTypes.number           | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image |
-| overflow   | PropTypes.string           | Set `overflow` value                                                        |
-| height     | PropTypes.string           | Set `height` value                                                          |
+| Name       | PropType                   | Description                                                                 | Default |
+| ---------- | -------------------------- | --------------------------------------------------------------------------- | ------- |
+| italic     | PropTypes.boolean          | Set `fontStyle` to `italic`                                                 | `false` |
+| bold       | PropTypes.boolean          | Set `fontWeight` to `bold`                                                  | `false` |
+| caps       | PropTypes.boolean          | Set `textTransform` to `uppercase`                                          | `false` |
+| margin     | PropTypes.number or string | Set `margin` value                                                          |         |
+| padding    | PropTypes.number or string | Set `padding` value                                                         |         |
+| textColor  | PropTypes.string           | Set `color` value                                                           |         |
+| textFont   | PropTypes.string           | Set `fontFamily` value                                                      |         |
+| textSize   | PropTypes.string           | Set `fontSize` value                                                        |         |
+| textAlign  | PropTypes.string           | Set `textAlign` value                                                       |         |
+| textFont   | PropTypes.string           | Set `textFont` value                                                        |         |
+| bgColor    | PropTypes.string           | Set `backgroundColor` value                                                 |         |
+| bgImage    | PropTypes.string           | Set `backgroundImage` value                                                 |         |
+| bgSize     | PropTypes.string           | Set `backgroundSize` value                                                  |         |
+| bgPosition | PropTypes.string           | Set `backgroundPosition` value                                              |         |
+| bgRepeat   | PropTypes.string           | Set `backgroundRepeat` value                                                |         |
+| bgDarken   | PropTypes.number           | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image |         |
+| overflow   | PropTypes.string           | Set `overflow` value                                                        |         |
+| height     | PropTypes.string           | Set `height` value                                                          |         |
 
 <a name="typeface"></a>
 
@@ -906,12 +924,12 @@ Every component above that has `(Base)` after it has been extended from a common
 
 The `Typeface` tag is used to apply a specific font to text content. It can either use a font that exists on the system or load a font from the Google Fonts library. `Typeface` requires either `font` or `googleFont` to be defined.
 
-| Name       | PropType          | Description                                                        |
-| ---------- | ----------------- | ------------------------------------------------------------------ |
-| font       | PropTypes.string  | Use a font from the local system                                   |
-| googleFont | PropTypes.string  | Use a font from the Google Fonts library                           |
-| weight     | PropTypes.number  | Numeric weight value for the font. (Default: `400`).                 |
-| italic     | PropTypes.boolean | Use an italics variant of the font if it exists. (Default: `false`) |
+| Name       | PropType          | Description                                      | Default |
+| ---------- | ----------------- | ------------------------------------------------ | ------- |
+| font       | PropTypes.string  | Use a font from the local system                 |         |
+| googleFont | PropTypes.string  | Use a font from the Google Fonts library         |         |
+| weight     | PropTypes.number  | Numeric weight value for the font.               | `400`   |
+| italic     | PropTypes.boolean | Use an italics variant of the font if it exists. | `false` |
 
 ```jsx
 <Typeface googleFont="Roboto Slab" weight={600}>
