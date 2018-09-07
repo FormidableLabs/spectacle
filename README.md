@@ -61,23 +61,19 @@ ReactJS based Presentation Library
 
 ## Getting Started
 
-The best way to get started is by running
+There are three ways to get started on your presentation. The first way is to run the following commend in your terminal.
 
-npm
+`npm create react-app my-presentation --scripts-version spectacle-scripts`
 
-`npm create-react-app my-presentation --scripts-version spectacle-scripts`
-
-yarn
+or
 
 `yarn create react-app my-presentation --scripts-version spectacle-scripts`
 
-This will use `create react-app` to create almost everything you need. This however, doesn't include publish scripts, and ejecting is required for fancy stuff.
+The second way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
-The second best way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
+Both of these ways will give you everything you'll need to get started, including a sample presentation in the `presentation.js` file. You can changed the props and tags as needed for your presentation or remove the `Deck` tag and all its content to start from scratch. From here you can you go to [Development](#development) to get started.
 
-From here you can you go to [Development](#development) to get started.
-
-Alternatively, you can `npm install spectacle` and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
+The third way to get started, you can run `npm install spectacle` in your terminal and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
 Note that we have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tags in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`.
 
