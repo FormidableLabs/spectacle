@@ -1,4 +1,4 @@
-/*eslint new-cap:0, max-statements:0*/
+/*eslint new-cap:0, max-statements:0, no-console:0*/
 /* eslint react/no-did-mount-set-state: 0 */
 
 import React, { Children, cloneElement, Component } from 'react';
@@ -18,6 +18,7 @@ import memoize from 'lodash/memoize';
 
 import Presenter from './presenter';
 import Export from './export';
+import SlideWrapper from './slide-wrapper';
 import Overview from './overview';
 import Magic from './magic';
 
@@ -64,18 +65,6 @@ const StyledTransition = styled(ReactTransitionGroup)({
 export class Manager extends Component {
   static displayName = 'Manager';
 
-  static defaultProps = {
-    autoplay: false,
-    autoplayDuration: 7000,
-    contentWidth: 1000,
-    contentHeight: 700,
-    transition: [],
-    transitionDuration: 500,
-    progress: 'pacman',
-    controls: true,
-    globalStyles: true
-  };
-
   static propTypes = {
     autoplay: PropTypes.bool,
     autoplayDuration: PropTypes.number,
@@ -83,6 +72,7 @@ export class Manager extends Component {
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
     controls: PropTypes.bool,
+    disableKeyboardControls: PropTypes.bool,
     dispatch: PropTypes.func,
     fragment: PropTypes.object,
     globalStyles: PropTypes.bool,
@@ -109,6 +99,19 @@ export class Manager extends Component {
     goToSlide: PropTypes.func
   };
 
+  static defaultProps = {
+    autoplay: false,
+    autoplayDuration: 7000,
+    contentWidth: 1000,
+    contentHeight: 700,
+    disableKeyboardControls: false,
+    transition: [],
+    transitionDuration: 500,
+    progress: 'pacman',
+    controls: true,
+    globalStyles: true
+  };
+
   constructor(props) {
     super(...arguments);
     this._getProgressStyles = this._getProgressStyles.bind(this);
@@ -119,6 +122,7 @@ export class Manager extends Component {
     this._goToSlide = this._goToSlide.bind(this);
     this._startAutoplay = this._startAutoplay.bind(this);
     this._stopAutoplay = this._stopAutoplay.bind(this);
+    this.presentationConnection = null;
 
     this.state = {
       lastSlideIndex: null,
@@ -179,6 +183,24 @@ export class Manager extends Component {
     window.addEventListener('storage', this._goToSlide);
     window.addEventListener('keydown', this._handleKeyPress);
     window.addEventListener('resize', this._handleScreenChange);
+    if (
+      (((navigator || {}).presentation || {}).receiver || {}).connectionList
+    ) {
+      navigator.presentation.receiver.connectionList.then(list => {
+        list.connections.map(connection => {
+          this.presentationConnection = connection;
+          connection.addEventListener('message', event => {
+            this._goToSlide({ key: 'spectacle-slide', newValue: event.data });
+          });
+        });
+        list.addEventListener('connectionavailable', e => {
+          this.presentationConnection = e.connection;
+          e.connection.addEventListener('message', event => {
+            this._goToSlide({ key: 'spectacle-slide', newValue: event.data });
+          });
+        });
+      });
+    }
   }
   _detachEvents() {
     window.removeEventListener('storage', this._goToSlide);
@@ -255,7 +277,9 @@ export class Manager extends Component {
 
     if (
       event.target instanceof HTMLInputElement ||
-      event.target.type === 'textarea'
+      event.target.type === 'textarea' ||
+      event.target.contentEditable === 'true' ||
+      this.props.disableKeyboardControls
     ) {
       return;
     }
@@ -274,9 +298,24 @@ export class Manager extends Component {
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
   _togglePresenterMode() {
-    const suffix =
-      this.props.route.params.indexOf('presenter') !== -1 ? '' : '?presenter';
+    const presenting = this.props.route.params.indexOf('presenter') !== -1;
+    const suffix = presenting ? '' : '?presenter';
+    const originalLocation = location.href;
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
+    if (presenting === false && window.PresentationRequest) {
+      const presentationRequest = new PresentationRequest([
+        `${originalLocation}`
+      ]);
+      navigator.presentation.defaultRequest = presentationRequest;
+      presentationRequest.start().then(connection => {
+        this.presentationConnection = connection;
+        this.presentationConnection.addEventListener('message', data => {
+          this._goToSlide({ key: 'spectacle-slide', newValue: data.data });
+        });
+      });
+    } else if (this.presentationConnection) {
+      this.presentationConnection.terminate();
+    }
   }
   _toggleTimerMode() {
     const isTimer =
@@ -314,14 +353,17 @@ export class Manager extends Component {
           )
         : data.slide - 1;
 
-      localStorage.setItem(
-        'spectacle-slide',
-        JSON.stringify({
-          slide: this._getHash(index),
-          forward: false,
-          time: Date.now()
-        })
-      );
+      const msgData = JSON.stringify({
+        slide: this._getHash(index),
+        forward: false,
+        time: Date.now()
+      });
+
+      localStorage.setItem('spectacle-slide', msgData);
+
+      if (this.presentationConnection) {
+        this.presentationConnection.send(msgData);
+      }
     } else {
       return;
     }
@@ -353,24 +395,31 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex - 1)}${this._getSuffix()}`
         );
-        localStorage.setItem(
-          'spectacle-slide',
-          JSON.stringify({
-            slide: this._getHash(slideIndex - 1),
-            forward: false,
-            time: Date.now()
-          })
-        );
-      }
-    } else if (slideIndex > 0) {
-      localStorage.setItem(
-        'spectacle-slide',
-        JSON.stringify({
-          slide: this._getHash(slideIndex),
+
+        const msgData = JSON.stringify({
+          slide: this._getHash(slideIndex - 1),
           forward: false,
           time: Date.now()
-        })
-      );
+        });
+
+        localStorage.setItem('spectacle-slide', msgData);
+
+        if (this.presentationConnection) {
+          this.presentationConnection.send(msgData);
+        }
+      }
+    } else if (slideIndex > 0) {
+      const msgData = JSON.stringify({
+        slide: this._getHash(slideIndex),
+        forward: false,
+        time: Date.now()
+      });
+
+      localStorage.setItem('spectacle-slide', msgData);
+
+      if (this.presentationConnection) {
+        this.presentationConnection.send(msgData);
+      }
     }
   }
   _nextUnviewedIndex() {
@@ -417,24 +466,31 @@ export class Manager extends Component {
         this.context.history.replace(
           `/${this._getHash(slideIndex + offset) + this._getSuffix()}`
         );
-        localStorage.setItem(
-          'spectacle-slide',
-          JSON.stringify({
-            slide: this._getHash(slideIndex + offset),
-            forward: true,
-            time: Date.now()
-          })
-        );
-      }
-    } else if (slideIndex < slideReference.length) {
-      localStorage.setItem(
-        'spectacle-slide',
-        JSON.stringify({
-          slide: this._getHash(slideIndex),
+
+        const msgData = JSON.stringify({
+          slide: this._getHash(slideIndex + offset),
           forward: true,
           time: Date.now()
-        })
-      );
+        });
+
+        localStorage.setItem('spectacle-slide', msgData);
+
+        if (this.presentationConnection) {
+          this.presentationConnection.send(msgData);
+        }
+      }
+    } else if (slideIndex < slideReference.length) {
+      const msgData = JSON.stringify({
+        slide: this._getHash(slideIndex),
+        forward: true,
+        time: Date.now()
+      });
+
+      localStorage.setItem('spectacle-slide', msgData);
+
+      if (this.presentationConnection) {
+        this.presentationConnection.send(msgData);
+      }
     }
   }
   _getHash(slideIndex) {
@@ -668,7 +724,7 @@ export class Manager extends Component {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 
-    return cloneElement(slide, {
+    const targetProps = {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
       export: this.props.route.params.indexOf('export') !== -1,
@@ -683,7 +739,13 @@ export class Manager extends Component {
         ? slide.props.transitionDuration
         : this.props.transitionDuration,
       slideReference: this.state.slideReference
-    });
+    };
+
+    return (
+      <SlideWrapper key={slideIndex} {...slide.props} {...targetProps}>
+        {cloneElement(slide, { ...slide.props, ...targetProps })}
+      </SlideWrapper>
+    );
   }
   _getProgressStyles() {
     const slideIndex = this._getSlideIndex();

@@ -7,7 +7,7 @@ const defaultColors = {
   primary: 'black',
   secondary: 'black',
   tertiary: 'black',
-  quarternary: 'black'
+  quaternary: 'black'
 };
 
 const defaultFonts = {
@@ -60,7 +60,7 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         outline: 0
       },
       prevIcon: {
-        fill: colors.quarternary
+        fill: colors.quaternary
       },
       next: {
         position: 'absolute',
@@ -73,7 +73,7 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         outline: 0
       },
       nextIcon: {
-        fill: colors.quarternary
+        fill: colors.quaternary
       }
     },
     prism: {

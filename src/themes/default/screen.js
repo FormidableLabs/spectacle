@@ -7,7 +7,7 @@ const defaultColors = {
   primary: '#f9c300',
   secondary: 'black',
   tertiary: 'white',
-  quarternary: 'white'
+  quaternary: 'white'
 };
 
 const defaultFonts = {
@@ -101,7 +101,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         outline: 0
       },
       prevIcon: {
-        fill: colors.quarternary,
+        fill: colors.quaternary,
         transition: 'fill 1s ease-in-out 0.2s'
       },
       next: {
@@ -115,7 +115,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         outline: 0
       },
       nextIcon: {
-        fill: colors.quarternary,
+        fill: colors.quaternary,
         transition: 'fill 1s ease-in-out 0.2s'
       }
     },
@@ -147,7 +147,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           borderTopLeftRadius: '10px',
           borderTopRightRadius: '10px',
           transition: 'all 0.3s ease-out',
-          background: colors.quarternary
+          background: colors.quaternary
         },
         pacmanBottom: {
           position: 'absolute',
@@ -156,7 +156,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           height: '10px',
           borderBottomLeftRadius: '10px',
           borderBottomRightRadius: '10px',
-          background: colors.quarternary,
+          background: colors.quaternary,
           transition: 'all 0.3s ease-out',
           top: '10px'
         },
@@ -168,7 +168,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           height: '10px',
           borderWidth: 2,
           borderStyle: 'solid',
-          borderColor: colors.quarternary,
+          borderColor: colors.quaternary,
           borderRadius: '50%',
           transition: 'all 0.3s ease-out'
         }
@@ -185,7 +185,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         },
         bar: {
           height: '100%',
-          background: colors.quarternary,
+          background: colors.quaternary,
           transition: 'all 0.3s ease-out'
         }
       },
@@ -195,7 +195,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
           bottom: 10,
           right: 10,
           zIndex: 1000,
-          color: colors.quarternary,
+          color: colors.quaternary,
           transition: 'all 0.3s ease-out'
         }
       }

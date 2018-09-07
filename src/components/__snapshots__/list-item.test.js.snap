@@ -16,7 +16,7 @@ exports[`<ListItem /> should render correctly 1`] = `
     }
   >
     <li
-      className="css-tr63ps"
+      className="css-tr63ps ezfhvuh0"
     >
       Dog
     </li>

@@ -54,19 +54,6 @@ describe('<Slide />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('should return the correct transition keys', () => {
-    const wrapper = mount(
-      <Slide transitionIn={['slide']} transitionOut={['fade']}>
-        <div>Slide Content</div>
-      </Slide>,
-      { context: _mockContext() }
-    );
-
-    expect(wrapper.instance().getTransitionKeys()).toEqual(['slide']);
-    wrapper.setState({ reverse: true });
-    expect(wrapper.instance().getTransitionKeys()).toEqual(['fade']);
-  });
-
   test('should call optional callback when slide becomes active', () => {
     const spy = jest.fn();
     mount(

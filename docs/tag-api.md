@@ -31,6 +31,7 @@ The deck tag wraps your slides. It supports the following props:
 | transitionDuration | PropTypes.number | Accepts integer value in milliseconds for global transition duration.                                                                                                         |
 | progress           | PropTypes.string | Accepts `pacman`, `bar`, `number` or `none`.                                                                                                                                  |
 | controls           | PropTypes.bool   | Show control arrows when not in fullscreen                                                                                                                                    |
+| globalStyles       | PropTypes.bool   | Add spectable styles to global scope. Default: <code>true</code>                                                                                                              |
 
 <a name="slide-base"></a>
 
