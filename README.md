@@ -391,24 +391,7 @@ const CustomHeading = styled(Heading)`
 `;
 ```
 
-**_How can I separate my slides into other files?_**
-
-Until this release, you would have to do some array shenanigans, but now you can just wrap those slides with an element that has a special prop:
-
-```javascript
-// mySlides.js
-export default class mySlides extends Component {
-  render() {
-    return (
-      <div hasSlideChildren>
-        <Slide>1</Slide>
-        <Slide>2</Slide>
-        <Slide>3</Slide>
-      </div>
-    );
-  }
-}
-```
+[//]: <> (**_How can I separate my slides into other files?_**)
 
 <a name="tag-api"></a>
 
@@ -461,12 +444,6 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 | transitionIn       | PropTypes.array  | Specifies the slide transition when the slide comes into view. Accepts the same values as transition.                                                                                                                                                                                        |
 | transitionOut      | PropTypes.array  | Specifies the slide transition when the slide exits. Accepts the same values as transition.                                                                                                                                                                                                  | Set by `Deck`'s `transition` prop       |
 | transitionDuration | PropTypes.number | Accepts integer value in milliseconds for slide transition duration.                                                                                                                                                                                                                         | Set by `Deck`'s `transition` prop       |
-
-<a name="wrapping-slides"></a>
-
-##### Wrapping Slides
-
-If you author your slides in another file or want any kind of grouping that requires one additional level of nesting, you can add a `hasSlideChildren` prop to their parent element. This lets Spectacle identify that it is a wrapper, and will disregard the heirarchy instead opting to read the child slides as if the wrapper was not present.
 
 <a name="transition-function"></a>
 
