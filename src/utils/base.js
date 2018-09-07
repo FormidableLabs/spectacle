@@ -29,11 +29,11 @@ const convertFontSizeToPx = function(fontSize) {
         convertedFontSize = parsedFont.size;
         break;
       case 'pt':
-        convertedFontSize = parsedFont.size * 96 / 72;
+        convertedFontSize = (parsedFont.size * 96) / 72;
         break;
       case '%':
         if (bodyFont) {
-          convertedFontSize = bodyFont.size * parsedFont.size / 100;
+          convertedFontSize = (bodyFont.size * parsedFont.size) / 100;
         }
         break;
       case 'em':
