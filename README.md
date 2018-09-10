@@ -63,7 +63,7 @@ ReactJS based Presentation Library
 
 There are three ways to get started on your presentation. The first way is to run the following commend in your terminal.
 
-`npm create react-app my-presentation --scripts-version spectacle-scripts`
+`npx create-react-app my-presentation --scripts-version spectacle-scripts`
 
 or
 
