@@ -65,10 +65,6 @@ There are three ways to get started on your presentation. The first way is to ru
 
 `npx create-react-app my-presentation --scripts-version spectacle-scripts`
 
-or
-
-`yarn create react-app my-presentation --scripts-version spectacle-scripts`
-
 The second way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
 Both of these ways will give you everything you'll need to get started, including a sample presentation in the `presentation.js` file. You can changed the props and tags as needed for your presentation or remove the `Deck` tag and all its content to start from scratch. From here you can go to [Development](#development) to get started.
