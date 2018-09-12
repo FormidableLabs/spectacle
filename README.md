@@ -161,7 +161,7 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
 
 After downloading the boilerplate, run the following commands on the project's root directory...
 
-- `npm install`
+- `npm install` (you can also use `yarn`)
 - `rm -R .git` to remove the existing version control
 - `npm start` to start up the local server or visit [http://localhost:3000/#/](http://localhost:3000/#/)
 
