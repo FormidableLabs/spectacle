@@ -119,6 +119,32 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
     </script>
     ```
 
+3.  If you want to create your own theme settings, you can use the following code snippet to change the [themes](#createthemecolors-fonts) default settings.
+
+    ```html
+    <script type="text/spectacle">
+        () => {
+          const { themes: { defaultTheme } } = Spectacle;
+          const theme = defaultTheme({
+            // Change default settings
+            primary: "blue",
+            secondary: "red"
+          },
+          {
+            primary: "Helvetica",
+          });
+
+          return (
+            <Deck transition={['zoom']} theme={theme}>
+              <Slide>some stuff</Slide>
+              <Slide>other stuff</Slide>
+              <Slide>some more stuff</Slide>
+            </Deck>
+          );
+        }
+      </script>
+    ```
+
 ... with those guidelines in mind, here's the boilerplate that you can copy-and-paste into an HTML file and start a Spectacle presentation that works from the get go!
 
 ```html
