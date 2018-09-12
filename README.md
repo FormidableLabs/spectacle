@@ -503,7 +503,15 @@ Slide Content
 **Function Usage**
 
 ```jsx
-import slidesMarkdown from "raw-loader!markdown.md";
+const slidesMarkdown = `
+## Slide One Title
+Slide Content
+---
+## Slide Two Title
+Slide Content
+  `;
+
+  ....
 
 <Deck ...>
   {MarkdownSlides(slidesMarkdown)}
