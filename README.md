@@ -71,7 +71,7 @@ Both of these ways will give you everything you'll need to get started, includin
 
 The third way to get started, you can run `npm install spectacle` in your terminal and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
-Note that we have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tags in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`.
+_NOTE: We have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tags in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`._
 
 <a name="one-page"></a>
 
@@ -222,7 +222,7 @@ To present:
 - Add `?presenter` or `?presenter&timer` immediately after the `/`, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/?presenter&timer](http://localhost:3000/#/?presenter&timer)
 - Give an amazingly stylish presentation
 
-_Note: Any windows/tabs in the same browser that are running Spectacle will sync to one another, even if you don't want to use presentation mode_
+_NOTE: Any windows/tabs in the same browser that are running Spectacle will sync to one another, even if you don't want to use presentation mode_
 
 Check it out:
 
@@ -592,7 +592,7 @@ Markdown generated tags aren't prop configurable, and instead render with your t
 
 #### Magic
 
-> NOTE: The Magic tag uses the Web Animations API. If you use the Magic tag and want it to work places other than Chrome, you will need to include the polyfill [https://github.com/web-animations/web-animations-js](https://github.com/web-animations/web-animations-js)
+_NOTE: The Magic tag uses the Web Animations API. If you use the Magic tag and want it to work places other than Chrome, you will need to include the polyfill [https://github.com/web-animations/web-animations-js](https://github.com/web-animations/web-animations-js)_
 
 The Magic Tag recreates Magic Move behavior that slide authors might be accustomed to coming from Keynote. It wraps slides and transitions between positional values for child elements. This means that if you have two similar strings, we will transition common characters to their new positions. This does not transition on non positional values such as slide background color or font size.
 
@@ -665,7 +665,7 @@ These tags create a styled blockquote. Use them as follows:
 </BlockQuote>
 ```
 
-_Note: By default the text color of the `Quote` tag is the same as the background color and may not show up. Use the `bgColor` and/or `textColor` props on the `Slide` or `Quote` tags to make it visible._
+_NOTE: By default the text color of the `Quote` tag is the same as the background color and may not show up. Use the `bgColor` and/or `textColor` props on the `Slide` or `Quote` tags to make it visible._
 
 ```jsx
 <Slide transition={['fade']} bgColor="secondary" textColor="primary">
@@ -919,6 +919,18 @@ Every component above that has `(Base)` after it has been extended from a common
 | bgDarken   | PropTypes.number           | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image |                 |
 | overflow   | PropTypes.string           | Set `overflow` value                                                        |                 |
 | height     | PropTypes.string           | Set `height` value                                                          |                 |
+
+_NOTE: When using `bgImage` prop for local images, you must import the file for it to render properly._
+
+```jsx
+import myImage from './images/my-image.jpg';
+
+......
+
+<Slide bgImage={myImage}>
+  I have an image for a background
+</Slide>
+```
 
 <a name="typeface"></a>
 
