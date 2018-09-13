@@ -443,9 +443,9 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 
 <a name="slide-base"></a>
 
-#### Slide (Base)
+#### Slide ([Base](#base-props))
 
-The slide tag represents each slide in the presentation. Giving a slide tag an `id` attribute will replace its number based navigation hash with the `id` provided. It supports the following props, in addition to any of the props outlined in the Base class props listing:
+The slide tag represents each slide in the presentation. Giving a slide tag an `id` attribute will replace its number based navigation hash with the `id` provided. It supports the following props, in addition to any of the props outlined in the [Base](#base-props) class props listing:
 
 | Name               | PropType         | Description                                                                                                                                                                                                                                                                                  | Default                           |
 | ------------------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
@@ -574,7 +574,7 @@ The fill tag takes up all the space available to it. For example, if you have a 
 
 <a name="markdown"></a>
 
-#### Markdown (Base)
+#### Markdown ([Base](#base-props))
 
 The Markdown tag is used to add inline markdown to your slide. You can provide markdown source via the `source` prop, or as children. You can also provide a custom [mdast configuration](https://github.com/wooorm/mdast) via the `mdastConfig` prop.
 
@@ -654,7 +654,7 @@ For best performance, wrap the contents of this tag in a native DOM element like
 
 <a name="blockquote-quote-and-cite-base"></a>
 
-#### BlockQuote, Quote and Cite (Base)
+#### BlockQuote, Quote and Cite ([Base](#base-props))
 
 These tags create a styled blockquote. Use them as follows:
 
@@ -687,7 +687,7 @@ _Note: By default the text color of the `Quote` tag is the same as the backgroun
 
 <a name="codepane-base"></a>
 
-#### CodePane (Base)
+#### CodePane ([Base](#base-props))
 
 This tag displays a styled, highlighted code preview. I prefer putting my code samples in external `.example` files and requiring them using `raw-loader` as shown in the demo. Here are the props:
 
@@ -707,7 +707,7 @@ CodePane and Playground both use the prism library under the hood, which has sev
 
 <a name="code-base"></a>
 
-#### Code (Base)
+#### Code ([Base](#base-props))
 
 A simple tag for wrapping inline text that you want lightly styled in a monospace font.
 
@@ -750,7 +750,7 @@ If you want to change the theme used here, please refer to the instructions abov
 
 <a name="go-to-action"></a>
 
-#### Go To Action (Base)
+#### Go To Action ([Base](#base-props))
 
 The GoToAction tag lets you jump to another slide in your deck. The GoToAction can be used a simple button that supports `Base` styling or accept a render prop with a callback to support custom components.
 
@@ -779,7 +779,7 @@ The GoToAction tag lets you jump to another slide in your deck. The GoToAction c
 
 <a name="heading-base"></a>
 
-#### Heading (Base)
+#### Heading ([Base](#base-props))
 
 Heading tags are special in that, when you specify a `size` prop, they generate the appropriate heading tag, and extend themselves with a style that is defined in the theme file for that heading. Line height can be adjusted via a numeric `lineHeight` prop.
 
@@ -790,7 +790,7 @@ Heading tags are special in that, when you specify a `size` prop, they generate 
 
 <a name="image-base"></a>
 
-#### Image (Base)
+#### Image ([Base](#base-props))
 
 | Name    | PropType                             | Description                                 | Default |
 | ------- | ------------------------------------ | ------------------------------------------- | ------- |
@@ -802,7 +802,7 @@ Heading tags are special in that, when you specify a `size` prop, they generate 
 
 <a name="link-base"></a>
 
-#### Link (Base)
+#### Link ([Base](#base-props))
 
 The link tag is used to render `<a>` tags. It accepts an `href` prop:
 
@@ -813,7 +813,7 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 
 <a name="list--listitem-base"></a>
 
-#### List & ListItem (Base)
+#### List & ListItem ([Base](#base-props))
 
 | Name     | PropType         | Description                  | Default |
 | -------- | ---------------- | ---------------------------- | ------- |
@@ -848,7 +848,7 @@ Unordered lists:
 
 <a name="s-base"></a>
 
-#### S (Base)
+#### S ([Base](#base-props))
 
 The `S` tag is used to add styling to a piece of text, such as underline or strikethrough.
 
@@ -858,7 +858,7 @@ The `S` tag is used to add styling to a piece of text, such as underline or stri
 
 <a name="table-tablerow-tableheaderitem-and-tableitem-base"></a>
 
-#### Table, TableRow, TableHeaderItem and TableItem (Base)
+#### Table, TableRow, TableHeaderItem and TableItem ([Base](base-propse))
 
 The `Table` tag is used to add table to your slide. It is used with `TableHeader`, `TableBody`, `TableRow`, `TableHeaderItem` and `TableItem`. Use them as follows:
 
@@ -885,7 +885,7 @@ The `Table` tag is used to add table to your slide. It is used with `TableHeader
 
 <a name="text-base"></a>
 
-#### Text (Base)
+#### Text ([Base](#base-props))
 
 The `Text` tag is used to add text to your slide. Line height can be adjusted via a numeric `lineHeight` prop.
 
@@ -911,7 +911,6 @@ Every component above that has `(Base)` after it has been extended from a common
 | textFont   | PropTypes.string           | Set `fontFamily` value                                                      |         |
 | textSize   | PropTypes.string           | Set `fontSize` value                                                        |         |
 | textAlign  | PropTypes.string           | Set `textAlign` value                                                       |         |
-| textFont   | PropTypes.string           | Set `textFont` value                                                        |         |
 | bgColor    | PropTypes.string           | Set `backgroundColor` value                                                 |         |
 | bgImage    | PropTypes.string           | Set `backgroundImage` value                                                 |         |
 | bgSize     | PropTypes.string           | Set `backgroundSize` value                                                  |         |
