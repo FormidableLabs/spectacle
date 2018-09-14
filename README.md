@@ -786,19 +786,20 @@ Heading tags are special in that, when you specify a `size` prop, they generate 
 | Name       | PropType          | Description                                                                                                               | Default |
 | ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
 | fit        | PropTypes.boolean | When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** | `false` |
-| lineHeight | PropTypes.number  | Sets the line height of your text.                                                                                        |         |
+| lineHeight | PropTypes.number  | Sets the line height of your text.                                                                                        |
+| size       | PropTypes.number  | Sets the heading tag                                                                                                      |
 
 <a name="image-base"></a>
 
 #### Image ([Base](#base-props))
 
-| Name    | PropType                             | Description                                 | Default |
-| ------- | ------------------------------------ | ------------------------------------------- | ------- |
-| alt     | PropTypes.string                     | Set the `alt` property of the image         |         |
-| display | PropTypes.string                     | Set the display style property of the image |         |
-| height  | PropTypes.string or PropTypes.number | Supply a height to the image                |         |
-| src     | PropTypes.string                     | Image src                                   |         |
-| width   | PropTypes.string or PropTypes.number | Supply a width to the image                 |         |
+| Name    | PropType                             | Description                                    | Default |
+| ------- | ------------------------------------ | ---------------------------------------------- | ------- |
+| alt     | PropTypes.string                     | Set the `alt` attribute of the image           |         |
+| display | PropTypes.string                     | Set the `display` style attribute of the image |         |
+| height  | PropTypes.string or PropTypes.number | Set the `height` to the image                  |         |
+| src     | PropTypes.string                     | Set the `src` attribute of the image           |         |
+| width   | PropTypes.string or PropTypes.number | Set the `width` to the image                   |         |
 
 <a name="link-base"></a>
 
