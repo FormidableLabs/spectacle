@@ -913,6 +913,7 @@ Every component above that has `(Base)` after it has been extended from a common
 | textSize   | PropTypes.string           | Set `fontSize` value                                                        |                 |
 | textAlign  | PropTypes.string           | Set `textAlign` value                                                       |                 |
 | bgColor    | PropTypes.string           | Set `backgroundColor` value                                                 |                 |
+| bgGradient | PropTypes.string           | Set `backgroundImage` value                                                 |                 |
 | bgImage    | PropTypes.string           | Set `backgroundImage` value                                                 |                 |
 | bgSize     | PropTypes.string           | Set `backgroundSize` value                                                  | `cover`         |
 | bgPosition | PropTypes.string           | Set `backgroundPosition` value                                              | `center center` |
