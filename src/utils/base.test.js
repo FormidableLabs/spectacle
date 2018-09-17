@@ -1,7 +1,7 @@
 import { getStyles } from './base';
-/* eslint-disable */
+/* eslint-disable-next-line max-statements */
 describe('getStyles', () => {
-  let fn;
+  let generateStyles;
   let _this;
   beforeEach(() => {
     _this = {
@@ -13,47 +13,47 @@ describe('getStyles', () => {
         }
       }
     };
-    fn = getStyles.bind(_this);
+    generateStyles = getStyles.bind(_this);
   });
 
   describe('italic', () => {
     it('should assign italic to fontStyle when italic is true', () => {
       _this.props.italic = true;
-      const res = fn();
-      expect(res.fontStyle).toEqual('italic');
+      const styles = generateStyles();
+      expect(styles.fontStyle).toEqual('italic');
     });
     it('should assign normal to fontStyle when italic is false', () => {
       _this.props.italic = false;
-      const res = fn();
-      expect(res.fontStyle).toEqual('normal');
+      const styles = generateStyles();
+      expect(styles.fontStyle).toEqual('normal');
     });
   });
 
   describe('fontWeight', () => {
     it('should assign bold to fontWeight when bold is true', () => {
       _this.props.bold = true;
-      const res = fn();
-      expect(res.fontWeight).toEqual('bold');
+      const styles = generateStyles();
+      expect(styles.fontWeight).toEqual('bold');
     });
 
     it('should assign normal to fontWeight when bold is false', () => {
       _this.props.bold = false;
-      const res = fn();
-      expect(res.fontWeight).toEqual('normal');
+      const styles = generateStyles();
+      expect(styles.fontWeight).toEqual('normal');
     });
   });
 
   describe('caps', () => {
     it('should assign uppercase to textTransform when caps is true', () => {
       _this.props.caps = true;
-      const res = fn();
-      expect(res.textTransform).toEqual('uppercase');
+      const styles = generateStyles();
+      expect(styles.textTransform).toEqual('uppercase');
     });
 
     it('should assign none to textTransform when caps is false', () => {
       _this.props.caps = false;
-      const res = fn();
-      expect(res.textTransform).toEqual('none');
+      const styles = generateStyles();
+      expect(styles.textTransform).toEqual('none');
     });
   });
 
@@ -61,8 +61,8 @@ describe('getStyles', () => {
     it('should assign margin value to margin ', () => {
       const marginValue = '30px';
       _this.props.margin = marginValue;
-      const res = fn();
-      expect(res.margin).toEqual(marginValue);
+      const styles = generateStyles();
+      expect(styles.margin).toEqual(marginValue);
     });
   });
 
@@ -70,8 +70,8 @@ describe('getStyles', () => {
     it('should assign padding value to padding ', () => {
       const paddingValue = '30px';
       _this.props.padding = paddingValue;
-      const res = fn();
-      expect(res.padding).toEqual(paddingValue);
+      const styles = generateStyles();
+      expect(styles.padding).toEqual(paddingValue);
     });
   });
 
@@ -80,14 +80,14 @@ describe('getStyles', () => {
       const textColorValue = 'blue';
       _this.props.textColor = textColorValue;
       _this.context.styles.colors = { color: textColorValue };
-      const res = fn();
-      expect(res.color).toEqual(textColorValue);
+      const styles = generateStyles();
+      expect(styles.color).toEqual(textColorValue);
     });
 
     it('should assign color to default color pink', () => {
       _this.props.textColor = _this.context.styles.colors.primary;
-      const res = fn();
-      expect(res.color).toEqual('pink');
+      const styles = generateStyles();
+      expect(styles.color).toEqual('pink');
     });
   });
 
@@ -96,27 +96,27 @@ describe('getStyles', () => {
       const textFontValue = 'Times New Roman';
       _this.props.textFont = textFontValue;
       _this.context.styles.fonts = { font: textFontValue };
-      const res = fn();
-      expect(res.fontFamily).toEqual(textFontValue);
+      const styles = generateStyles();
+      expect(styles.fontFamily).toEqual(textFontValue);
     });
   });
 
   describe('fontFamily', () => {
     it('should assign fontFamily to default font Helvetica', () => {
       _this.props.textFont = _this.context.styles.fonts.primary;
-      const res = fn();
-      expect(res.fontFamily).toEqual('Helvetica');
+      const styles = generateStyles();
+      expect(styles.fontFamily).toEqual('Helvetica');
     });
   });
 
-  // Need to figure out how to test for textSize
+  // @TODO add test for textSize
 
   describe('textAlign', () => {
     it('should assign textAlign value to textAlign', () => {
       const textAlignValue = 'right';
       _this.props.textAlign = textAlignValue;
-      const res = fn();
-      expect(res.textAlign).toEqual(textAlignValue);
+      const styles = generateStyles();
+      expect(styles.textAlign).toEqual(textAlignValue);
     });
   });
 
@@ -125,14 +125,14 @@ describe('getStyles', () => {
       const bgColorValue = 'blue';
       _this.props.bgColor = bgColorValue;
       _this.context.styles.colors = { color: bgColorValue };
-      const res = fn();
-      expect(res.backgroundColor).toEqual(bgColorValue);
+      const styles = generateStyles();
+      expect(styles.backgroundColor).toEqual(bgColorValue);
     });
 
     it('should assign background to default color primary', () => {
       _this.props.bgColor = _this.context.styles.colors.primary;
-      const res = fn();
-      expect(res.backgroundColor).toEqual('pink');
+      const styles = generateStyles();
+      expect(styles.backgroundColor).toEqual('pink');
     });
   });
 
@@ -140,8 +140,8 @@ describe('getStyles', () => {
     it('should assign bgGradient value to backgroundImage', () => {
       const bgGradientValue = 'radial-gradient(red blue green)';
       _this.props.bgGradient = bgGradientValue;
-      const res = fn();
-      expect(res.backgroundImage).toEqual(bgGradientValue);
+      const styles = generateStyles();
+      expect(styles.backgroundImage).toEqual(bgGradientValue);
     });
   });
 
@@ -149,8 +149,8 @@ describe('getStyles', () => {
     it('should assign bgImage value to backgroundImage', () => {
       const bgImageValue = 'https://sameimage.com/url....';
       _this.props.bgImage = bgImageValue;
-      const res = fn();
-      expect(res.backgroundImage).toEqual(`url(${bgImageValue})`);
+      const styles = generateStyles();
+      expect(styles.backgroundImage).toEqual(`url(${bgImageValue})`);
     });
   });
 
@@ -164,39 +164,40 @@ describe('getStyles', () => {
         _this.props.bgImage
       })`;
       _this.props.bgDarken = bgDarkenValue;
-      const res = fn();
-      expect(res.backgroundImage).toEqual(backgroundImageValue);
+      const styles = generateStyles();
+      expect(styles.backgroundImage).toEqual(backgroundImageValue);
     });
 
     it('should assign bgSize value to backgroundSize', () => {
       const bgSizeValue = 'auto';
       _this.props.bgSize = bgSizeValue;
-      const res = fn();
-      expect(res.backgroundSize).toEqual(bgSizeValue);
+      const styles = generateStyles();
+      expect(styles.backgroundSize).toEqual(bgSizeValue);
     });
-
+    /* eslint-disable-next-line quotes */
     it("should assign 'cover' to backgroundSize", () => {
-      const res = fn();
-      expect(res.backgroundSize).toEqual('cover');
+      const styles = generateStyles();
+      expect(styles.backgroundSize).toEqual('cover');
     });
 
     it('should assign bgPosition value to backgroundSize', () => {
       const bgPositionValue = 'auto';
       _this.props.bgPosition = bgPositionValue;
-      const res = fn();
-      expect(res.backgroundPosition).toEqual(bgPositionValue);
+      const styles = generateStyles();
+      expect(styles.backgroundPosition).toEqual(bgPositionValue);
     });
 
+    /* eslint-disable-next-line quotes */
     it("should assign 'center center' to backgroundSize", () => {
-      const res = fn();
-      expect(res.backgroundPosition).toEqual('center center');
+      const styles = generateStyles();
+      expect(styles.backgroundPosition).toEqual('center center');
     });
 
     it('should assign bgRepeat value to backgroundSize', () => {
       const bgRepeatValue = 'repeat';
       _this.props.bgRepeat = bgRepeatValue;
-      const res = fn();
-      expect(res.backgroundRepeat).toEqual(bgRepeatValue);
+      const styles = generateStyles();
+      expect(styles.backgroundRepeat).toEqual(bgRepeatValue);
     });
   });
 
@@ -204,8 +205,8 @@ describe('getStyles', () => {
     it('should assign overflow value to overflow', () => {
       const overflowValue = 'scroll';
       _this.props.overflow = overflowValue;
-      const res = fn();
-      expect(res.overflow).toEqual(overflowValue);
+      const styles = generateStyles();
+      expect(styles.overflow).toEqual(overflowValue);
     });
   });
 
@@ -213,9 +214,8 @@ describe('getStyles', () => {
     it('should assign height value to height', () => {
       const heightValue = 'scroll';
       _this.props.height = heightValue;
-      const res = fn();
-      expect(res.height).toEqual(heightValue);
+      const styles = generateStyles();
+      expect(styles.height).toEqual(heightValue);
     });
   });
 });
-/* eslint-enable */
