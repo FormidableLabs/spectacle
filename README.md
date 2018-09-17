@@ -61,15 +61,15 @@ ReactJS based Presentation Library
 
 ## Getting Started
 
-There are three ways to get started on your presentation. The first way is to run the following commend in your terminal.
+There are three ways to get started on your presentation. The first way is to run the following command in your terminal:
 
 `npx create-react-app my-presentation --scripts-version spectacle-scripts`
 
 The second way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
-Both of these ways will give you everything you'll need to get started, including a sample presentation in the `presentation.js` file. You can changed the props and tags as needed for your presentation or remove the `Deck` tag and all its content to start from scratch. From here you can go to [Development](#development) to get started.
+Both of these ways will give you everything you'll need to get started, including a sample presentation in the `presentation.js` file. You can change the props and tags as needed for your presentation or remove the `Deck` tag and all its content to start from scratch. From here you can go to [Development](#development) to get started.
 
-The third way to get started, you can run `npm install spectacle` in your terminal and write your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
+The third way to get started is by running `npm install spectacle` in your terminal and writing your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
 _NOTE: We have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tags in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`._
 
@@ -431,6 +431,8 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 | ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | autoplay                | PropTypes.bool    | Automatically advance slides.                                                                                                                                                 | `false`  |
 | autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration.                                                                                                           | `7000`   |
+| autoplayLoop            | PropTypes.bool    | Keep slides in loop.                                                                                                                                                          |
+| `false                  |
 | controls                | PropTypes.bool    | Show control arrows when not in fullscreen.                                                                                                                                   | `true`   |
 | contentHeight           | PropTypes.numbers | Baseline content area height.                                                                                                                                                 | `700px`  |
 | contentWidth            | PropTypes.numbers | Baseline content area width.                                                                                                                                                  | `1000px` |
