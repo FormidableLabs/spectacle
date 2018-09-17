@@ -426,18 +426,21 @@ In Spectacle, presentations are composed of a set of base tags. We can separate 
 #### Deck
 
 The Deck tag is the root level tag for your presentation. It supports the following props:
-| autoplay | PropTypes.bool | Automatically advance slides. | `false` |
-| autoplayDuration | PropTypes.number | Accepts integer value in milliseconds for global autoplay duration. | `7000` |
-| autoplayLoop | PropTypes.bool | Keep slides in loop.| | `false` |
-| controls | PropTypes.bool | Show control arrows when not in fullscreen. | `true` |
-| contentHeight | PropTypes.numbers | Baseline content area height. | `700px` |
-| contentWidth | PropTypes.numbers | Baseline content area width. | `1000px` |
-| disableKeyboardControls | PropTypes.bool | Toggle keyboard control. | `false` |
-| history | PropTypes.object | Accepts custom configuration for [history](https://github.com/ReactTraining/history). | |
-| progress | PropTypes.string | Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quaternary' color in the theme. | `pacman` |
-| theme | PropTypes.object | Accepts a theme object for styling your presentation. | |
-| transition | PropTypes.array | Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.** | |
-| transitionDuration | PropTypes.number | Accepts integer value in milliseconds for global transition duration. | `500` |
+
+| Name                    | PropType          | Description                                                                                                                                                                   | Default  |
+| ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| autoplay                | PropTypes.bool    | Automatically advance slides.                                                                                                                                                 | `false`  |
+| autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration.                                                                                                           | `7000`   |
+| autoplayLoop            | PropTypes.bool    | Keep slides in loop.                                                                                                                                                          | `false`  |
+| controls                | PropTypes.bool    | Show control arrows when not in fullscreen.                                                                                                                                   | `true`   |
+| contentHeight           | PropTypes.numbers | Baseline content area height.                                                                                                                                                 | `700px`  |
+| contentWidth            | PropTypes.numbers | Baseline content area width.                                                                                                                                                  | `1000px` |
+| disableKeyboardControls | PropTypes.bool    | Toggle keyboard control.                                                                                                                                                      | `false`  |
+| history                 | PropTypes.object  | Accepts custom configuration for [history](https://github.com/ReactTraining/history).                                                                                         |          |
+| progress                | PropTypes.string  | Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quaternary' color in the theme.                                                               | `pacman` |
+| theme                   | PropTypes.object  | Accepts a theme object for styling your presentation.                                                                                                                         |          |
+| transition              | PropTypes.array   | Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.** |          |
+| transitionDuration      | PropTypes.number  | Accepts integer value in milliseconds for global transition duration.                                                                                                         | `500`    |
 
 <a name="slide-base"></a>
 
