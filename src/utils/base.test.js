@@ -10,6 +10,13 @@ describe('getStyles', () => {
         styles: {
           colors: { primary: 'pink' },
           fonts: { primary: 'Helvetica' }
+        },
+        store: {
+          getState: () => ({
+            style: {
+              globalStyleSet: []
+            }
+          })
         }
       }
     };
@@ -109,7 +116,14 @@ describe('getStyles', () => {
     });
   });
 
-  // @TODO add test for textSize
+  describe('textSize', () => {
+    it('should assign textSize value to fontSize', () => {
+      const textSizeVlaue = '40px';
+      _this.props.textSize = textSizeVlaue;
+      const styles = generateStyles();
+      expect(styles.fontSize).toEqual(textSizeVlaue);
+    });
+  });
 
   describe('textAlign', () => {
     it('should assign textAlign value to textAlign', () => {
