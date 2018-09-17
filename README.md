@@ -890,10 +890,10 @@ The `Table` tag is used to add table to your slide. It is used with `TableHeader
 
 The `Text` tag is used to add text to your slide. Line height can be adjusted via a numeric `lineHeight` prop.
 
-| Name | PropType | Description | Default |
-| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- | |
-| fit | PropTypes.boolean | When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** | |
-| lineHeight | PropTypes.number | Sets the line height of your text. | |
+| Name       | PropType          | Description                                                                                                               | Default |
+| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
+| fit        | PropTypes.boolean | When set to true, fits text to the slide's width. **Note: If you use the 'scale' transition, this won't work in Safari.** |         |
+| lineHeight | PropTypes.number  | Sets the line height of your text.                                                                                        |         |
 
 <a name="base-props"></a>
 
