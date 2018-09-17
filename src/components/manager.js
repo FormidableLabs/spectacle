@@ -68,6 +68,7 @@ export class Manager extends Component {
   static propTypes = {
     autoplay: PropTypes.bool,
     autoplayDuration: PropTypes.number,
+    autoplayLoop: PropTypes.bool,
     children: PropTypes.node,
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
@@ -102,6 +103,7 @@ export class Manager extends Component {
   static defaultProps = {
     autoplay: false,
     autoplayDuration: 7000,
+    autoplayLoop: true,
     contentWidth: 1000,
     contentHeight: 700,
     disableKeyboardControls: false,
@@ -455,7 +457,11 @@ export class Manager extends Component {
     ) {
       if (slideIndex === slideReference.length - 1) {
         // On last slide, loop to first slide
-        if (this.props.autoplay && this.state.autoplaying) {
+        if (
+          this.props.autoplay &&
+          this.props.autoplayLoop &&
+          this.state.autoplaying
+        ) {
           const slideData = '{ "slide": "0", "forward": "false" }';
           this._goToSlide({ key: 'spectacle-slide', newValue: slideData });
           this.viewedIndexes = new Set();

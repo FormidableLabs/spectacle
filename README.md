@@ -426,11 +426,9 @@ In Spectacle, presentations are composed of a set of base tags. We can separate 
 #### Deck
 
 The Deck tag is the root level tag for your presentation. It supports the following props:
-
-| Name                    | PropType          | Description                                                                                                                                                                   | Default  |
-| ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | autoplay                | PropTypes.bool    | Automatically advance slides.                                                                                                                                                 | `false`  |
 | autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration.                                                                                                           | `7000`   |
+| autoplayLoop            | PropTypes.bool    | Keep slides in loop.|                                                                                                                                                         | `false`  |
 | controls                | PropTypes.bool    | Show control arrows when not in fullscreen.                                                                                                                                   | `true`   |
 | contentHeight           | PropTypes.numbers | Baseline content area height.                                                                                                                                                 | `700px`  |
 | contentWidth            | PropTypes.numbers | Baseline content area width.                                                                                                                                                  | `1000px` |

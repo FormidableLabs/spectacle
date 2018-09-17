@@ -13,6 +13,7 @@ exports[`<Manager /> should render correctly. 1`] = `
   <Manager
     autoplay={false}
     autoplayDuration={7000}
+    autoplayLoop={true}
     contentHeight={700}
     contentWidth={1000}
     controls={true}
@@ -392,6 +393,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
   <Manager
     autoplay={false}
     autoplayDuration={7000}
+    autoplayLoop={true}
     contentHeight={700}
     contentWidth={1000}
     controls={true}
@@ -525,6 +527,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
   <Manager
     autoplay={false}
     autoplayDuration={7000}
+    autoplayLoop={true}
     contentHeight={700}
     contentWidth={1000}
     controls={true}
@@ -725,6 +728,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
   <Manager
     autoplay={false}
     autoplayDuration={7000}
+    autoplayLoop={true}
     contentHeight={700}
     contentWidth={1000}
     controls={true}
