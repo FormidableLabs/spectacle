@@ -72,6 +72,7 @@ export const getStyles = function getStyles() {
     textSize,
     textAlign,
     bgColor,
+    bgGradient,
     bgImage,
     bgDarken,
     bgSize,
@@ -99,6 +100,7 @@ export const getStyles = function getStyles() {
   if (padding) {
     styles.padding = padding;
   }
+
   if (textColor) {
     let color = '';
     if (!this.context.styles.colors.hasOwnProperty(textColor)) {
@@ -147,6 +149,10 @@ export const getStyles = function getStyles() {
     }
     styles.backgroundColor = color;
   }
+  if (bgGradient) {
+    styles.backgroundImage = bgGradient;
+  }
+
   if (bgImage) {
     if (bgDarken) {
       styles.backgroundImage = `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
