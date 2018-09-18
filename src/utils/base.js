@@ -24,67 +24,6 @@ export const transformTextColor = ({ textColor }, context) => {
   }
 };
 
-// export const getStyles = function getStyles() {
-//   if (
-//     process.env.NODE_ENV !== 'production' &&
-//     typeof this.warnedAboutFontSize === 'undefined'
-//   ) {
-//     this.warnedAboutFontSize = false;
-//   }
-//
-//   const {
-//     italic,
-//     bold,
-//     caps,
-//     margin,
-//     padding,
-//     textColor,
-//     textFont,
-//     textSize,
-//     textAlign,
-//     bgColor,
-//     bgGradient,
-//     bgImage,
-//     bgDarken,
-//     bgSize,
-//     bgPosition,
-//     bgRepeat,
-//     overflow,
-//     height
-//   } = this.props;
-//
-//   const styles = {};
-//   const recommendedMinFontSizePx = 24;
-//
-//   if (typeof italic === 'boolean') {
-//     styles.fontStyle = italic ? 'italic' : 'normal';
-//   }
-//   if (typeof bold === 'boolean') {
-//     styles.fontWeight = bold ? 'bold' : 'normal';
-//   }
-//   if (typeof caps === 'boolean') {
-//     styles.textTransform = caps ? 'uppercase' : 'none';
-//   }
-//   if (margin) {
-//     styles.margin = margin;
-//   }
-//   if (padding) {
-//     styles.padding = padding;
-//   }
-// }
-
-// >>>>>>> master
-//   if (textColor) {
-//     let color = '';
-//     if (!context.styles.colors.hasOwnProperty(textColor)) {
-//       color = textColor;
-//     } else {
-//       color = context.styles.colors[textColor];
-//     }
-//     return { color };
-//   }
-// };
-
 export const transformTextFont = ({ textFont }, context) => {
   if (textFont) {
     let fontFamily = '';
@@ -112,6 +51,7 @@ export const transformItalic = ({ italic }) => {
     return { fontStyle: italic ? 'italic' : 'normal' };
   }
 };
+
 export const transformBold = ({ bold }) => {
   if (typeof bold === 'boolean') {
     return { fontWeight: bold ? 'bold' : 'normal' };
@@ -132,49 +72,25 @@ export const transformBgColor = ({ bgColor }, context) => {
     }
     return { backgroundColor };
   }
-  // <<<<<<< HEAD
 };
 
 export const transformBgSize = ({ bgImage, bgSize }) => {
-  if (bgImage && bgSize) {
+  if (bgImage) {
     return { backgroundSize: bgSize || 'cover' };
   }
 };
 
-// let's make sure this works as expected
 export const transformBgImageByGradient = ({ bgGradient }) => {
   return { backgroundImage: bgGradient };
 };
 
-// // =======
-//     if (bgGradient) {
-//       styles.backgroundImage = bgGradient;
-//     }
-//
-//     if (bgImage) {
-//       if (bgDarken) {
-//         styles.backgroundImage = `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
-//       } else {
-//         styles.backgroundImage = `url(${bgImage})`;
-//       }
-//       styles.backgroundSize = bgSize || 'cover';
-//       styles.backgroundPosition = bgPosition || 'center center';
-//       if (bgRepeat) {
-//         styles.backgroundRepeat = bgRepeat;
-//       }
-// // >>>>>>> master
-//     }
-//   }
-//   ;
-// }
-
 export const transformBgPosition = ({ bgImage, bgPosition }) => {
-  if (bgImage && bgPosition) {
+  if (bgImage) {
     return { backgroundPosition: bgPosition || 'center center' };
   }
 };
 export const transformBgRepeat = ({ bgImage, bgRepeat }) => {
-  if (bgImage && bgRepeat) {
+  if (bgImage) {
     return { backgroundRepeat: bgRepeat };
   }
 };
@@ -223,14 +139,14 @@ const textTransforms = [
   transformTextSize
 ];
 
-const generalTransforms = [
+export const generalTransforms = [
   applyMargin,
   applyPadding,
   applyOverflow,
   applyHeight
 ];
 
-const bgTransforms = [
+export const bgTransforms = [
   transformBgColor,
   transformBgImage,
   transformBgRepeat,

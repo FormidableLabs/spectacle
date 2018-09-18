@@ -23,13 +23,13 @@ const fontSizeWarning = component => {
 
 const bgImageStyleWarning = component => {
   const { props } = component;
-  const { bgLighten, bgDarken, bgImage, bgImageStyle } = props;
+  const { bgLighten, bgDarken, bgImage, bgImageStyle, bgGradient } = props;
 
   if (!bgImageStyle) {
     return false;
   }
 
-  if (bgImageStyle && (bgLighten || bgDarken || bgImage)) {
+  if (bgImageStyle && (bgLighten || bgDarken || bgImage || bgGradient)) {
     // eslint-disable-next-line
     console.warn(
       `The backgroundImage property has been set directly as \`bgImageStyle="${bgImageStyle}"\`.
@@ -37,7 +37,8 @@ const bgImageStyleWarning = component => {
        properties which modify backgroundImage will not be applied:
        ${bgLighten ? `bgLighten={${bgLighten}}` : ''}
        ${bgDarken ? `bgDarken={${bgDarken}}` : ''}
-       ${bgImage ? `bgImage={${bgImage}}}` : ''}`
+       ${bgImage ? `bgImage={${bgImage}}}` : ''}
+       ${bgImage ? `bgImage={${bgGradient}}}` : ''}`
     );
     return true;
   }

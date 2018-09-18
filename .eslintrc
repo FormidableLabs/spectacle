@@ -42,6 +42,7 @@
     "func-style": "off",
     "arrow-parens": "off",
     "no-use-before-define": "off",
+    "no-undef": ["error", { "typeof": true }],
     "react/jsx-filename-extension": "off",
     "react/require-extension": "off",
     "react/no-multi-comp": "off",
