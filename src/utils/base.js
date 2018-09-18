@@ -23,6 +23,68 @@ export const transformTextColor = ({ textColor }, context) => {
     return { color };
   }
 };
+
+// export const getStyles = function getStyles() {
+//   if (
+//     process.env.NODE_ENV !== 'production' &&
+//     typeof this.warnedAboutFontSize === 'undefined'
+//   ) {
+//     this.warnedAboutFontSize = false;
+//   }
+//
+//   const {
+//     italic,
+//     bold,
+//     caps,
+//     margin,
+//     padding,
+//     textColor,
+//     textFont,
+//     textSize,
+//     textAlign,
+//     bgColor,
+//     bgGradient,
+//     bgImage,
+//     bgDarken,
+//     bgSize,
+//     bgPosition,
+//     bgRepeat,
+//     overflow,
+//     height
+//   } = this.props;
+//
+//   const styles = {};
+//   const recommendedMinFontSizePx = 24;
+//
+//   if (typeof italic === 'boolean') {
+//     styles.fontStyle = italic ? 'italic' : 'normal';
+//   }
+//   if (typeof bold === 'boolean') {
+//     styles.fontWeight = bold ? 'bold' : 'normal';
+//   }
+//   if (typeof caps === 'boolean') {
+//     styles.textTransform = caps ? 'uppercase' : 'none';
+//   }
+//   if (margin) {
+//     styles.margin = margin;
+//   }
+//   if (padding) {
+//     styles.padding = padding;
+//   }
+// }
+
+// >>>>>>> master
+//   if (textColor) {
+//     let color = '';
+//     if (!context.styles.colors.hasOwnProperty(textColor)) {
+//       color = textColor;
+//     } else {
+//       color = context.styles.colors[textColor];
+//     }
+//     return { color };
+//   }
+// };
+
 export const transformTextFont = ({ textFont }, context) => {
   if (textFont) {
     let fontFamily = '';
@@ -34,6 +96,7 @@ export const transformTextFont = ({ textFont }, context) => {
     return { fontFamily };
   }
 };
+
 export const transformTextAlign = ({ textAlign }) => {
   if (textAlign) {
     return { textAlign };
@@ -50,7 +113,7 @@ export const transformItalic = ({ italic }) => {
   }
 };
 export const transformBold = ({ bold }) => {
-  if (typeof italic === 'boolean') {
+  if (typeof bold === 'boolean') {
     return { fontWeight: bold ? 'bold' : 'normal' };
   }
 };
@@ -69,12 +132,42 @@ export const transformBgColor = ({ bgColor }, context) => {
     }
     return { backgroundColor };
   }
+  // <<<<<<< HEAD
 };
+
 export const transformBgSize = ({ bgImage, bgSize }) => {
   if (bgImage && bgSize) {
     return { backgroundSize: bgSize || 'cover' };
   }
 };
+
+// let's make sure this works as expected
+export const transformBgImageByGradient = ({ bgGradient }) => {
+  return { backgroundImage: bgGradient };
+};
+
+// // =======
+//     if (bgGradient) {
+//       styles.backgroundImage = bgGradient;
+//     }
+//
+//     if (bgImage) {
+//       if (bgDarken) {
+//         styles.backgroundImage = `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
+//       } else {
+//         styles.backgroundImage = `url(${bgImage})`;
+//       }
+//       styles.backgroundSize = bgSize || 'cover';
+//       styles.backgroundPosition = bgPosition || 'center center';
+//       if (bgRepeat) {
+//         styles.backgroundRepeat = bgRepeat;
+//       }
+// // >>>>>>> master
+//     }
+//   }
+//   ;
+// }
+
 export const transformBgPosition = ({ bgImage, bgPosition }) => {
   if (bgImage && bgPosition) {
     return { backgroundPosition: bgPosition || 'center center' };
@@ -92,7 +185,8 @@ export const transformBgImage = ({
   bgImage,
   bgDarken,
   bgLighten,
-  bgImageStyle
+  bgImageStyle,
+  bgGradient
 }) => {
   if (!bgImage) {
     return;
@@ -100,6 +194,10 @@ export const transformBgImage = ({
 
   if (bgImageStyle) {
     return transformBgImageByBgStyle({ bgImageStyle });
+  }
+
+  if (bgGradient) {
+    return transformBgImageByGradient({ bgGradient });
   }
 
   if (bgDarken) {

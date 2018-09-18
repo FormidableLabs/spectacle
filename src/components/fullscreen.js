@@ -37,7 +37,7 @@ export class Fullscreen extends Component {
     return (
       <StyledFullscreen
         onClick={() => this.toggleFullscreen()}
-        style={this.context.styles.fullscreen}
+        styles={this.context.styles.fullscreen}
         viewBox="0 0 512 512"
       />
     );

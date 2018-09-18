@@ -11,7 +11,7 @@ export default class TableItem extends Component {
     return (
       <StyledTableItem
         className={this.props.className}
-        style={[
+        styles={[
           this.context.styles.components.tableItem,
           getStyles.call(this),
           typefaceStyle,
