@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { defaultCode } from '../utils/playground.default-code';
@@ -156,26 +157,42 @@ class ComponentPlayground extends Component {
     };
   }
 
+  static getDerivedStateFromProps(nextProps, preState) {
+    const updatedState = {};
+    if (nextProps.code !== preState.code) {
+      const code = (nextProps.code || defaultCode).trim();
+      updatedState.code = code;
+    }
+    if (nextProps.scope !== preState.scope) {
+      const scope = getEnhancedScope(nextProps.scope);
+      updatedState.scope = scope;
+    }
+    return isEmpty(updatedState) ? null : updatedState;
+  }
+
   componentDidMount() {
     localStorage.setItem(STORAGE_KEY, this.state.code);
     window.addEventListener('storage', this.syncCode);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.code !== this.props.code) {
-      const code = (this.props.code || defaultCode).trim();
-      this.setState({ code });
-    }
-    if (nextProps.scope !== this.props.scope) {
-      const scope = getEnhancedScope(nextProps.scope);
-      this.setState({ scope });
-    }
+  componentDidUpdate() {
+    this.playgroundsetState();
   }
 
   componentWillUnmount() {
     window.removeEventListener('storage', this.syncCode);
   }
 
+  playgroundsetState() {
+    if (this.props.code) {
+      const code = (this.props.code || defaultCode).trim();
+      this.setState({ code });
+    }
+    if (this.props.scope) {
+      const scope = getEnhancedScope(this.props.scope);
+      this.setState({ scope });
+    }
+  }
   onKeyUp(evt) {
     evt.stopPropagation();
 
