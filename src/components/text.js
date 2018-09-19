@@ -54,8 +54,14 @@ export default class Text extends Component {
     window.addEventListener('load', this.resize);
     window.addEventListener('resize', this.resize);
   }
-  componentWillReceiveProps() {
-    this.resize();
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.fit !== prevState.fit ? { fit: nextProps.fit } : null;
+  }
+
+  componentDidUpdate(prevState, prevProps) {
+    if (prevProps.fit !== this.props.fit) {
+      this.resize();
+    }
   }
   componentWillUnmount() {
     window.removeEventListener('load', this.resize);
