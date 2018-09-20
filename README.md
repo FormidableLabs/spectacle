@@ -431,7 +431,7 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 | ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | autoplay                | PropTypes.bool    | Automatically advance slides.                                                                                                                                                 | `false`  |
 | autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration.                                                                                                           | `7000`   |
-| autoplayLoop            | PropTypes.bool    | Keep slides in loop.                                                                                                                                                          | `false`  |
+| autoplayLoop            | PropTypes.bool    | Keep slides in loop.                                                                                                                                                          | `true`   |
 | controls                | PropTypes.bool    | Show control arrows when not in fullscreen.                                                                                                                                   | `true`   |
 | contentHeight           | PropTypes.numbers | Baseline content area height.                                                                                                                                                 | `700px`  |
 | contentWidth            | PropTypes.numbers | Baseline content area width.                                                                                                                                                  | `1000px` |
@@ -902,26 +902,28 @@ The `Text` tag is used to add text to your slide. Line height can be adjusted vi
 
 Every component above that has `(Base)` after it has been extended from a common class that includes the following props:
 
-| Name       | PropType                   | Description                                                                 | Default         |
-| ---------- | -------------------------- | --------------------------------------------------------------------------- | --------------- |
-| italic     | PropTypes.boolean          | Set `fontStyle` to `italic`                                                 | `false`         |
-| bold       | PropTypes.boolean          | Set `fontWeight` to `bold`                                                  | `false`         |
-| caps       | PropTypes.boolean          | Set `textTransform` to `uppercase`                                          | `false`         |
-| margin     | PropTypes.number or string | Set `margin` value                                                          |                 |
-| padding    | PropTypes.number or string | Set `padding` value                                                         |                 |
-| textColor  | PropTypes.string           | Set `color` value                                                           |                 |
-| textFont   | PropTypes.string           | Set `fontFamily` value                                                      |                 |
-| textSize   | PropTypes.string           | Set `fontSize` value                                                        |                 |
-| textAlign  | PropTypes.string           | Set `textAlign` value                                                       |                 |
-| bgColor    | PropTypes.string           | Set `backgroundColor` value                                                 |                 |
-| bgGradient | PropTypes.string           | Set `backgroundImage` value                                                 |                 |
-| bgImage    | PropTypes.string           | Set `backgroundImage` value                                                 |                 |
-| bgSize     | PropTypes.string           | Set `backgroundSize` value                                                  | `cover`         |
-| bgPosition | PropTypes.string           | Set `backgroundPosition` value                                              | `center center` |
-| bgRepeat   | PropTypes.string           | Set `backgroundRepeat` value                                                |                 |
-| bgDarken   | PropTypes.number           | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image |                 |
-| overflow   | PropTypes.string           | Set `overflow` value                                                        |                 |
-| height     | PropTypes.string           | Set `height` value                                                          |                 |
+| Name         | PropType                   | Description                                                                  | Default         |
+| ------------ | -------------------------- | ---------------------------------------------------------------------------- | --------------- |
+| italic       | PropTypes.boolean          | Set `fontStyle` to `italic`                                                  | `false`         |
+| bold         | PropTypes.boolean          | Set `fontWeight` to `bold`                                                   | `false`         |
+| caps         | PropTypes.boolean          | Set `textTransform` to `uppercase`                                           | `false`         |
+| margin       | PropTypes.number or string | Set `margin` value                                                           |                 |
+| padding      | PropTypes.number or string | Set `padding` value                                                          |                 |
+| textColor    | PropTypes.string           | Set `color` value                                                            |                 |
+| textFont     | PropTypes.string           | Set `fontFamily` value                                                       |                 |
+| textSize     | PropTypes.string           | Set `fontSize` value                                                         |                 |
+| textAlign    | PropTypes.string           | Set `textAlign` value                                                        |                 |
+| bgColor      | PropTypes.string           | Set `backgroundColor` value                                                  |                 |
+| bgGradient   | PropTypes.string           | Set `backgroundImage` value                                                  |                 |
+| bgImage      | PropTypes.string           | Set `backgroundImage` value                                                  |                 |
+| bgImageStyle | PropTypes.string           | Set backgroundImage css property value directly                              |                 |
+| bgSize       | PropTypes.string           | Set `backgroundSize` value                                                   | `cover`         |
+| bgPosition   | PropTypes.string           | Set `backgroundPosition` value                                               | `center center` |
+| bgRepeat     | PropTypes.string           | Set `backgroundRepeat` value                                                 |                 |
+| bgDarken     | PropTypes.number           | Float value from 0.0 to 1.0 specifying how much to darken the bgImage image  | 0               |
+| bgLighten    | PropTypes.number           | Float value from 0.0 to 1.0 specifying how much to lighten the bgImage image | 0               |
+| overflow     | PropTypes.string           | Set `overflow` value                                                         |                 |
+| height       | PropTypes.string           | Set `height` value                                                           |                 |
 
 _NOTE: When using `bgImage` prop for local images, you must import the file for it to render properly._
 
