@@ -1,10 +1,12 @@
 import { convertFontSizeToPx } from './font-size';
+import { get } from 'lodash';
+
 const recommendedMinFontSizePx = 24;
 
 const fontSizeWarning = component => {
   const { props, context } = component;
 
-  if (context.store && !context.store.getState().style.globalStyleSet) {
+  if (context.store && !get(context.store.getState(), 'style.globalStyleSet')) {
     return false;
   }
 
