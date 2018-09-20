@@ -128,38 +128,6 @@ export default class MagicText extends Component {
       }
     );
   }
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.magicIndex === nextProps.magicIndex) {
-  //     return;
-  //   }
-  //   ReactDOM.render(
-  //     <Context context={this.context}>
-  //       <Deck>{nextProps.children}</Deck>
-  //     </Context>,
-  //     this.portal,
-  //     () => {
-  //       const styles = {};
-  //       const portalRoot = get(this.portal, 'childNodes[0].childNodes[0]');
-  //       if (portalRoot) {
-  //         updateChildren(portalRoot);
-  //         buildStyleMap(styles, portalRoot);
-  //         this.diffs = detailedDiff(this.portalMap, styles);
-  //         this.lastPortalMap = this.portalMap;
-  //         this.portalMap = styles;
-  //         if (this.mounted) {
-  //           this.setState(
-  //             {
-  //               renderedChildren: nextProps.children
-  //             },
-  //             () => {
-  //               this.forceUpdate();
-  //             }
-  //           );
-  //         }
-  //       }
-  //     }
-  //   );
-  // }
   shouldComponentUpdate() {
     return false;
   }
