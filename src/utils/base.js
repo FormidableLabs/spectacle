@@ -1,175 +1,169 @@
-/*eslint max-statements:0,complexity:0,no-invalid-this:0*/
-
-const parseFontSize = function(fontSize) {
-  const sizeComponents = fontSize.match(/\d*\.*\d+|\D+/g);
-  const size = parseFloat(sizeComponents[0]);
-  const unit = sizeComponents[1];
-  return { size, unit };
+/*eslint max-statements:0,complexity:0,no-invalid-this:0,consistent-return:0*/
+import checkWarnings from './warn';
+// eslint-disable-next-line max-params
+export const buildStyles = (transforms, props, context, styles = {}) => {
+  return transforms.reduce((av, cv) => {
+    return { ...av, ...cv(props, context, av) };
+  }, styles);
 };
 
-const getFontSizeFromElement = function(element) {
-  const fontSize = window.getComputedStyle
-    ? window.getComputedStyle(element).getPropertyValue('font-size')
-    : element.currentStyle.fontSize;
-  return fontSize ? parseFontSize(fontSize) : null;
-};
+const applyMargin = ({ margin }) => (margin ? { margin } : undefined);
+const applyPadding = ({ padding }) => (padding ? { padding } : undefined);
+const applyOverflow = ({ overflow }) => (overflow ? { overflow } : undefined);
+const applyHeight = ({ height }) => (height ? { height } : undefined);
 
-const convertFontSizeToPx = function(fontSize) {
-  let convertedFontSize;
-
-  if (typeof fontSize === 'number') {
-    convertedFontSize = fontSize;
-  } else if (typeof fontSize === 'string') {
-    const parsedFont = parseFontSize(fontSize);
-    const bodyFont = getFontSizeFromElement(document.body);
-    const htmlFont = getFontSizeFromElement(document.documentElement);
-
-    switch (parsedFont.unit) {
-      case 'px':
-        convertedFontSize = parsedFont.size;
-        break;
-      case 'pt':
-        convertedFontSize = (parsedFont.size * 96) / 72;
-        break;
-      case '%':
-        if (bodyFont) {
-          convertedFontSize = (bodyFont.size * parsedFont.size) / 100;
-        }
-        break;
-      case 'em':
-        if (bodyFont) {
-          convertedFontSize = bodyFont.size * parsedFont.size;
-        }
-        break;
-      case 'rem':
-        if (htmlFont) {
-          convertedFontSize = htmlFont.size * parsedFont.size;
-        }
-        break;
-      default:
-        convertedFontSize = parsedFont.size;
-    }
-  }
-  return convertedFontSize;
-};
-
-export const getStyles = function getStyles() {
-  if (
-    process.env.NODE_ENV !== 'production' &&
-    typeof this.warnedAboutFontSize === 'undefined'
-  ) {
-    this.warnedAboutFontSize = false;
-  }
-
-  const {
-    italic,
-    bold,
-    caps,
-    margin,
-    padding,
-    textColor,
-    textFont,
-    textSize,
-    textAlign,
-    bgColor,
-    bgGradient,
-    bgImage,
-    bgDarken,
-    bgSize,
-    bgPosition,
-    bgRepeat,
-    overflow,
-    height
-  } = this.props;
-
-  const styles = {};
-  const recommendedMinFontSizePx = 24;
-
-  if (typeof italic === 'boolean') {
-    styles.fontStyle = italic ? 'italic' : 'normal';
-  }
-  if (typeof bold === 'boolean') {
-    styles.fontWeight = bold ? 'bold' : 'normal';
-  }
-  if (typeof caps === 'boolean') {
-    styles.textTransform = caps ? 'uppercase' : 'none';
-  }
-  if (margin) {
-    styles.margin = margin;
-  }
-  if (padding) {
-    styles.padding = padding;
-  }
-
+export const transformTextColor = ({ textColor }, context) => {
   if (textColor) {
     let color = '';
-    if (!this.context.styles.colors.hasOwnProperty(textColor)) {
+    if (!context.styles.colors.hasOwnProperty(textColor)) {
       color = textColor;
     } else {
-      color = this.context.styles.colors[textColor];
+      color = context.styles.colors[textColor];
     }
-    styles.color = color;
+    return { color };
   }
+};
+
+export const transformTextFont = ({ textFont }, context) => {
   if (textFont) {
-    let font = '';
-    if (!this.context.styles.fonts.hasOwnProperty(textFont)) {
-      font = textFont;
+    let fontFamily = '';
+    if (!context.styles.fonts.hasOwnProperty(textFont)) {
+      fontFamily = textFont;
     } else {
-      font = this.context.styles.fonts[textFont];
+      fontFamily = context.styles.fonts[textFont];
     }
-    styles.fontFamily = font;
+    return { fontFamily };
   }
-  if (textSize) {
-    styles.fontSize = textSize;
-    if (
-      process.env.NODE_ENV !== 'production' &&
-      !this.warnedAboutFontSize &&
-      this.context.store.getState().style.globalStyleSet
-    ) {
-      const fontSize =
-        convertFontSizeToPx(textSize) || recommendedMinFontSizePx;
-      if (fontSize < recommendedMinFontSizePx) {
-        // eslint-disable-next-line
-        console.warn(
-          `prop \`textSize="${textSize}"\` is below the recommended minimum of ${recommendedMinFontSizePx}px`
-        );
-        this.warnedAboutFontSize = true;
-      }
-    }
-  }
+};
+
+export const transformTextAlign = ({ textAlign }) => {
   if (textAlign) {
-    styles.textAlign = textAlign;
+    return { textAlign };
   }
+};
+export function transformTextSize({ textSize }) {
+  if (textSize) {
+    return { fontSize: textSize };
+  }
+}
+export const transformItalic = ({ italic }) => {
+  if (typeof italic === 'boolean') {
+    return { fontStyle: italic ? 'italic' : 'normal' };
+  }
+};
+
+export const transformBold = ({ bold }) => {
+  if (typeof bold === 'boolean') {
+    return { fontWeight: bold ? 'bold' : 'normal' };
+  }
+};
+export const transformCaps = ({ caps }) => {
+  if (typeof caps === 'boolean') {
+    return { textTransform: caps ? 'uppercase' : 'none' };
+  }
+};
+export const transformBgColor = ({ bgColor }, context) => {
   if (bgColor) {
-    let color = '';
-    if (!this.context.styles.colors.hasOwnProperty(bgColor)) {
-      color = bgColor;
+    let backgroundColor = '';
+    if (!context.styles.colors.hasOwnProperty(bgColor)) {
+      backgroundColor = bgColor;
     } else {
-      color = this.context.styles.colors[bgColor];
+      backgroundColor = context.styles.colors[bgColor];
     }
-    styles.backgroundColor = color;
+    return { backgroundColor };
   }
-  if (bgGradient) {
-    styles.backgroundImage = bgGradient;
+};
+
+export const transformBgSize = ({ bgImage, bgSize }) => {
+  if (bgImage) {
+    return { backgroundSize: bgSize || 'cover' };
+  }
+};
+
+export const transformBgImageByGradient = ({ bgGradient }) => {
+  return { backgroundImage: bgGradient };
+};
+
+export const transformBgPosition = ({ bgImage, bgPosition }) => {
+  if (bgImage) {
+    return { backgroundPosition: bgPosition || 'center center' };
+  }
+};
+export const transformBgRepeat = ({ bgImage, bgRepeat }) => {
+  if (bgImage) {
+    return { backgroundRepeat: bgRepeat };
+  }
+};
+export const transformBgImageByBgStyle = ({ bgImageStyle }) => {
+  return { backgroundImage: bgImageStyle };
+};
+export const transformBgImage = ({
+  bgImage,
+  bgDarken,
+  bgLighten,
+  bgImageStyle,
+  bgGradient
+}) => {
+  if (!bgImage) {
+    return;
   }
 
-  if (bgImage) {
-    if (bgDarken) {
-      styles.backgroundImage = `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`;
-    } else {
-      styles.backgroundImage = `url(${bgImage})`;
-    }
-    styles.backgroundSize = bgSize || 'cover';
-    styles.backgroundPosition = bgPosition || 'center center';
-    if (bgRepeat) {
-      styles.backgroundRepeat = bgRepeat;
-    }
+  if (bgImageStyle) {
+    return transformBgImageByBgStyle({ bgImageStyle });
   }
-  if (overflow) {
-    styles.overflow = overflow;
+
+  if (bgGradient) {
+    return transformBgImageByGradient({ bgGradient });
   }
-  if (height) {
-    styles.height = height;
+
+  if (bgDarken) {
+    return {
+      backgroundImage: `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`
+    };
+  } else if (bgLighten) {
+    return {
+      backgroundImage: `linear-gradient( rgba(255, 255, 255, ${bgLighten}), rgba(255, 255, 255, ${bgLighten}) ), url(${bgImage})`
+    };
+  } else {
+    return { backgroundImage: `url(${bgImage})` };
   }
-  return styles;
+};
+
+const textTransforms = [
+  transformItalic,
+  transformBold,
+  transformCaps,
+  transformTextColor,
+  transformTextFont,
+  transformTextAlign,
+  transformTextSize
+];
+
+export const generalTransforms = [
+  applyMargin,
+  applyPadding,
+  applyOverflow,
+  applyHeight
+];
+
+export const bgTransforms = [
+  transformBgColor,
+  transformBgImage,
+  transformBgRepeat,
+  transformBgSize,
+  transformBgPosition
+];
+
+const styleTransforms = [
+  ...textTransforms,
+  ...generalTransforms,
+  ...bgTransforms
+];
+
+export const getStyles = function getStyles() {
+  if (process.env.NODE_ENV !== 'production') {
+    checkWarnings(this);
+  }
+
+  return buildStyles(styleTransforms, this.props, this.context);
 };

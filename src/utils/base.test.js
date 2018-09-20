@@ -153,7 +153,9 @@ describe('getStyles', () => {
   describe('bgGradient', () => {
     it('should assign bgGradient value to backgroundImage', () => {
       const bgGradientValue = 'radial-gradient(red blue green)';
+      const bgImageValue = 'https://sameimage.com/url....';
       _this.props.bgGradient = bgGradientValue;
+      _this.props.bgImage = bgImageValue;
       const styles = generateStyles();
       expect(styles.backgroundImage).toEqual(bgGradientValue);
     });
@@ -167,52 +169,72 @@ describe('getStyles', () => {
       expect(styles.backgroundImage).toEqual(`url(${bgImageValue})`);
     });
   });
+});
 
-  describe('bgImage additional values', () => {
-    beforeEach(() => {
-      _this.props.bgImage = 'https://sameimage.com/url....';
-    });
-    it('should assign bgDarken value to backgroundImage opacity', () => {
-      const bgDarkenValue = 0.5;
-      const backgroundImageValue = `linear-gradient( rgba(0, 0, 0, ${bgDarkenValue}), rgba(0, 0, 0, ${bgDarkenValue}) ), url(${
-        _this.props.bgImage
-      })`;
-      _this.props.bgDarken = bgDarkenValue;
-      const styles = generateStyles();
-      expect(styles.backgroundImage).toEqual(backgroundImageValue);
-    });
+describe('bgImage additional values', () => {
+  let generateStyles;
+  let _this;
+  beforeEach(() => {
+    _this = {
+      props: { bgImage: 'https://sameimage.com/url....' },
+      context: {
+        styles: {
+          colors: { primary: 'pink' },
+          fonts: { primary: 'Helvetica' }
+        },
+        store: {
+          getState: () => ({
+            style: {
+              globalStyleSet: []
+            }
+          })
+        }
+      }
+    };
+    generateStyles = getStyles.bind(_this);
+  });
 
-    it('should assign bgSize value to backgroundSize', () => {
-      const bgSizeValue = 'auto';
-      _this.props.bgSize = bgSizeValue;
-      const styles = generateStyles();
-      expect(styles.backgroundSize).toEqual(bgSizeValue);
-    });
-    /* eslint-disable-next-line quotes */
-    it("should assign 'cover' to backgroundSize", () => {
-      const styles = generateStyles();
-      expect(styles.backgroundSize).toEqual('cover');
-    });
+  it('should assign bgDarken value to backgroundImage opacity', () => {
+    const bgDarkenValue = 0.5;
+    const backgroundImageValue = `linear-gradient( rgba(0, 0, 0, ${bgDarkenValue}), rgba(0, 0, 0, ${bgDarkenValue}) ), url(${
+      _this.props.bgImage
+    })`;
+    _this.props.bgDarken = bgDarkenValue;
+    const styles = generateStyles();
+    expect(styles.backgroundImage).toEqual(backgroundImageValue);
+  });
 
-    it('should assign bgPosition value to backgroundSize', () => {
-      const bgPositionValue = 'auto';
-      _this.props.bgPosition = bgPositionValue;
-      const styles = generateStyles();
-      expect(styles.backgroundPosition).toEqual(bgPositionValue);
-    });
+  it('should assign bgSize value to backgroundSize', () => {
+    const bgSizeValue = 'auto';
+    _this.props.bgSize = bgSizeValue;
+    const styles = generateStyles();
+    expect(styles.backgroundSize).toEqual(bgSizeValue);
+  });
 
-    /* eslint-disable-next-line quotes */
-    it("should assign 'center center' to backgroundSize", () => {
-      const styles = generateStyles();
-      expect(styles.backgroundPosition).toEqual('center center');
-    });
+  /* eslint-disable-next-line quotes */
+  it("should assign 'cover' to backgroundSize if a bgSize is not provided", () => {
+    const styles = generateStyles();
+    expect(styles.backgroundSize).toEqual('cover');
+  });
 
-    it('should assign bgRepeat value to backgroundSize', () => {
-      const bgRepeatValue = 'repeat';
-      _this.props.bgRepeat = bgRepeatValue;
-      const styles = generateStyles();
-      expect(styles.backgroundRepeat).toEqual(bgRepeatValue);
-    });
+  it('should assign bgPosition value to backgroundSize', () => {
+    const bgPositionValue = 'auto';
+    _this.props.bgPosition = bgPositionValue;
+    const styles = generateStyles();
+    expect(styles.backgroundPosition).toEqual(bgPositionValue);
+  });
+
+  /* eslint-disable-next-line quotes */
+  it("should assign 'center center' to backgroundSize if a bgPosition is not provided", () => {
+    const styles = generateStyles();
+    expect(styles.backgroundPosition).toEqual('center center');
+  });
+
+  it('should assign bgRepeat value to backgroundSize', () => {
+    const bgRepeatValue = 'repeat';
+    _this.props.bgRepeat = bgRepeatValue;
+    const styles = generateStyles();
+    expect(styles.backgroundRepeat).toEqual(bgRepeatValue);
   });
 
   describe('overflow', () => {
