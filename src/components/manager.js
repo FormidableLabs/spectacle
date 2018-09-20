@@ -57,6 +57,44 @@ const StyledTransition = styled(ReactTransitionGroup)({
   transformStyle: 'flat'
 });
 
+function buildSlideReference(props) {
+  const slideReference = [];
+  Children.toArray(props.children).forEach((child, rootIndex) => {
+    if (child.type === Magic) {
+      Children.toArray(child.props.children).forEach((setSlide, magicIndex) => {
+        const reference = {
+          id: setSlide.props.id || slideReference.length,
+          magicIndex,
+          rootIndex
+        };
+        slideReference.push(reference);
+      });
+    } else if (!child.props.hasSlideChildren) {
+      const reference = {
+        id: child.props.id || slideReference.length,
+        rootIndex
+      };
+      if (child.props.goTo) {
+        reference.goTo = child.props.goTo;
+      }
+      slideReference.push(reference);
+    } else {
+      child.props.children.forEach((setSlide, setIndex) => {
+        const reference = {
+          id: setSlide.props.id || slideReference.length,
+          setIndex,
+          rootIndex
+        };
+        if (child.props.goTo) {
+          reference.goTo = child.props.goTo;
+        }
+        slideReference.push(reference);
+      });
+    }
+  });
+  return slideReference;
+}
+
 // TODO(540): Refactor to non-deprecated lifecycle methods.
 // https://github.com/FormidableLabs/spectacle/issues/540
 // - componentWillMount
@@ -146,10 +184,8 @@ export class Manager extends Component {
     };
   }
 
-  componentWillMount() {
-    this.setState({
-      slideReference: this._buildSlideReference(this.props)
-    });
+  static getDerivedStateFromProps(nextProps) {
+    return { slideReference: buildSlideReference(nextProps) };
   }
 
   componentDidMount() {
@@ -163,12 +199,6 @@ export class Manager extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      slideReference: this._buildSlideReference(nextProps)
-    });
-  }
-
   componentDidUpdate() {
     if (
       this.props.globalStyles &&
@@ -177,6 +207,7 @@ export class Manager extends Component {
       this.props.dispatch(setGlobalStyle());
     }
   }
+
   componentWillUnmount() {
     this._detachEvents();
   }
@@ -670,45 +701,7 @@ export class Manager extends Component {
 
     return 0;
   }
-  _buildSlideReference(props) {
-    const slideReference = [];
-    Children.toArray(props.children).forEach((child, rootIndex) => {
-      if (child.type === Magic) {
-        Children.toArray(child.props.children).forEach(
-          (setSlide, magicIndex) => {
-            const reference = {
-              id: setSlide.props.id || slideReference.length,
-              magicIndex,
-              rootIndex
-            };
-            slideReference.push(reference);
-          }
-        );
-      } else if (!child.props.hasSlideChildren) {
-        const reference = {
-          id: child.props.id || slideReference.length,
-          rootIndex
-        };
-        if (child.props.goTo) {
-          reference.goTo = child.props.goTo;
-        }
-        slideReference.push(reference);
-      } else {
-        child.props.children.forEach((setSlide, setIndex) => {
-          const reference = {
-            id: setSlide.props.id || slideReference.length,
-            setIndex,
-            rootIndex
-          };
-          if (child.props.goTo) {
-            reference.goTo = child.props.goTo;
-          }
-          slideReference.push(reference);
-        });
-      }
-    });
-    return slideReference;
-  }
+
   _getSlideIndex() {
     let index = parseInt(this.props.route.slide);
     if (!Number.isFinite(index)) {
