@@ -409,8 +409,6 @@ const CustomHeading = styled(Heading)`
 `;
 ```
 
-[//]: <> (**_How can I separate my slides into other files?_**)
-
 <a name="tag-api"></a>
 
 ## Tag API
