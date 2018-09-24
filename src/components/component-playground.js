@@ -139,10 +139,6 @@ function getEnhancedScope(scope = {}) {
   return { Component, ...scope };
 }
 
-// TODO(540): Refactor to non-deprecated lifecycle methods.
-// https://github.com/FormidableLabs/spectacle/issues/540
-// - componentWillReceiveProps
-// eslint-disable-next-line react/no-deprecated
 class ComponentPlayground extends Component {
   constructor() {
     super(...arguments);
@@ -157,13 +153,13 @@ class ComponentPlayground extends Component {
     };
   }
 
-  static getDerivedStateFromProps(nextProps, preState) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     const updatedState = {};
-    if (nextProps.code !== preState.code) {
+    if (nextProps.code !== prevState.code) {
       const code = (nextProps.code || defaultCode).trim();
       updatedState.code = code;
     }
-    if (nextProps.scope !== preState.scope) {
+    if (nextProps.scope !== prevState.scope) {
       const scope = getEnhancedScope(nextProps.scope);
       updatedState.scope = scope;
     }
@@ -176,14 +172,14 @@ class ComponentPlayground extends Component {
   }
 
   componentDidUpdate() {
-    this.playgroundsetState();
+    this.playgroundSetState();
   }
 
   componentWillUnmount() {
     window.removeEventListener('storage', this.syncCode);
   }
 
-  playgroundsetState() {
+  playgroundSetState() {
     if (this.props.code) {
       const code = (this.props.code || defaultCode).trim();
       this.setState({ code });

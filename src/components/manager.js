@@ -95,11 +95,6 @@ function buildSlideReference(props) {
   return slideReference;
 }
 
-// TODO(540): Refactor to non-deprecated lifecycle methods.
-// https://github.com/FormidableLabs/spectacle/issues/540
-// - componentWillMount
-// - componentWillReceiveProps
-// eslint-disable-next-line react/no-deprecated
 export class Manager extends Component {
   static displayName = 'Manager';
 

@@ -35,10 +35,6 @@ const UnfitText = styled.p(({ lineHeight, styles }) => [
   styles.user
 ]);
 
-// TODO(540): Refactor to non-deprecated lifecycle methods.
-// https://github.com/FormidableLabs/spectacle/issues/540
-// - componentWillReceiveProps
-// eslint-disable-next-line react/no-deprecated
 export default class Text extends Component {
   constructor() {
     super(...arguments);
@@ -49,16 +45,17 @@ export default class Text extends Component {
     };
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.fit !== prevState.fit ? { fit: nextProps.fit } : null;
+  }
+
   componentDidMount() {
     this.resize();
     window.addEventListener('load', this.resize);
     window.addEventListener('resize', this.resize);
   }
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return nextProps.fit !== prevState.fit ? { fit: nextProps.fit } : null;
-  }
 
-  componentDidUpdate(prevState, prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.fit !== this.props.fit) {
       this.resize();
     }
