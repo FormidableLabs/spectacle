@@ -53,10 +53,6 @@ class Context extends Component {
   }
 }
 
-// TODO(540): Refactor to non-deprecated lifecycle methods.
-// https://github.com/FormidableLabs/spectacle/issues/540
-// - componentWillReceiveProps
-// eslint-disable-next-line react/no-deprecated
 export default class MagicText extends Component {
   static contextTypes = {
     contentHeight: PropTypes.number,

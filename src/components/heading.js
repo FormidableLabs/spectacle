@@ -70,7 +70,7 @@ export default class Heading extends Component {
     return nextProps.fit !== prevState.fit ? { fit: nextProps.fit } : null;
   }
 
-  componentDidUpdate(prevState, prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.fit !== this.props.fit) {
       this.resize();
     }
