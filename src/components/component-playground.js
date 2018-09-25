@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import styled, { css } from 'react-emotion';
 import { defaultCode } from '../utils/playground.default-code';
@@ -138,10 +139,6 @@ function getEnhancedScope(scope = {}) {
   return { Component, ...scope };
 }
 
-// TODO(540): Refactor to non-deprecated lifecycle methods.
-// https://github.com/FormidableLabs/spectacle/issues/540
-// - componentWillReceiveProps
-// eslint-disable-next-line react/no-deprecated
 class ComponentPlayground extends Component {
   constructor() {
     super(...arguments);
@@ -156,26 +153,42 @@ class ComponentPlayground extends Component {
     };
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const updatedState = {};
+    if (nextProps.code !== prevState.code) {
+      const code = (nextProps.code || defaultCode).trim();
+      updatedState.code = code;
+    }
+    if (nextProps.scope !== prevState.scope) {
+      const scope = getEnhancedScope(nextProps.scope);
+      updatedState.scope = scope;
+    }
+    return isEmpty(updatedState) ? null : updatedState;
+  }
+
   componentDidMount() {
     localStorage.setItem(STORAGE_KEY, this.state.code);
     window.addEventListener('storage', this.syncCode);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.code !== this.props.code) {
-      const code = (this.props.code || defaultCode).trim();
-      this.setState({ code });
-    }
-    if (nextProps.scope !== this.props.scope) {
-      const scope = getEnhancedScope(nextProps.scope);
-      this.setState({ scope });
-    }
+  componentDidUpdate() {
+    this.playgroundSetState();
   }
 
   componentWillUnmount() {
     window.removeEventListener('storage', this.syncCode);
   }
 
+  playgroundSetState() {
+    if (this.props.code) {
+      const code = (this.props.code || defaultCode).trim();
+      this.setState({ code });
+    }
+    if (this.props.scope) {
+      const scope = getEnhancedScope(this.props.scope);
+      this.setState({ scope });
+    }
+  }
   onKeyUp(evt) {
     evt.stopPropagation();
 

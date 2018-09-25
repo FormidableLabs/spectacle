@@ -53,10 +53,6 @@ class Context extends Component {
   }
 }
 
-// TODO(540): Refactor to non-deprecated lifecycle methods.
-// https://github.com/FormidableLabs/spectacle/issues/540
-// - componentWillReceiveProps
-// eslint-disable-next-line react/no-deprecated
 export default class MagicText extends Component {
   static contextTypes = {
     contentHeight: PropTypes.number,
@@ -85,6 +81,12 @@ export default class MagicText extends Component {
     this.state = {
       renderedChildren: props.children
     };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.magicIndex !== prevState.magicIndex
+      ? { magicIndex: nextProps.magicIndex }
+      : null;
   }
   componentDidMount() {
     this.mounted = true;
@@ -122,42 +124,10 @@ export default class MagicText extends Component {
       }
     );
   }
-  componentWillReceiveProps(nextProps) {
-    if (this.props.magicIndex === nextProps.magicIndex) {
-      return;
-    }
-    ReactDOM.render(
-      <Context context={this.context}>
-        <Deck>{nextProps.children}</Deck>
-      </Context>,
-      this.portal,
-      () => {
-        const styles = {};
-        const portalRoot = get(this.portal, 'childNodes[0].childNodes[0]');
-        if (portalRoot) {
-          updateChildren(portalRoot);
-          buildStyleMap(styles, portalRoot);
-          this.diffs = detailedDiff(this.portalMap, styles);
-          this.lastPortalMap = this.portalMap;
-          this.portalMap = styles;
-          if (this.mounted) {
-            this.setState(
-              {
-                renderedChildren: nextProps.children
-              },
-              () => {
-                this.forceUpdate();
-              }
-            );
-          }
-        }
-      }
-    );
-  }
   shouldComponentUpdate() {
     return false;
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const containerRoot = get(this.container, 'childNodes[0]');
     if (containerRoot) {
       updateChildren(containerRoot);
@@ -198,6 +168,35 @@ export default class MagicText extends Component {
           }
         }
       });
+    }
+    if (this.props.magicIndex !== prevProps.magicIndex) {
+      ReactDOM.render(
+        <Context context={this.context}>
+          <Deck>{this.props.children}</Deck>
+        </Context>,
+        this.portal,
+        () => {
+          const styles = {};
+          const portalRoot = get(this.portal, 'childNodes[0].childNodes[0]');
+          if (portalRoot) {
+            updateChildren(portalRoot);
+            buildStyleMap(styles, portalRoot);
+            this.diffs = detailedDiff(this.portalMap, styles);
+            this.lastPortalMap = this.portalMap;
+            this.portalMap = styles;
+            if (this.mounted) {
+              this.setState(
+                {
+                  renderedChildren: this.props.children
+                },
+                () => {
+                  this.forceUpdate();
+                }
+              );
+            }
+          }
+        }
+      );
     }
     this.lastDiffs = this.diffs;
   }

@@ -51,10 +51,6 @@ const dynamicStyledHeaders = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce(
   {}
 );
 
-// TODO(540): Refactor to non-deprecated lifecycle methods.
-// https://github.com/FormidableLabs/spectacle/issues/540
-// - componentWillReceiveProps
-// eslint-disable-next-line react/no-deprecated
 export default class Heading extends Component {
   constructor() {
     super(...arguments);
@@ -69,9 +65,17 @@ export default class Heading extends Component {
     window.addEventListener('load', this.resize);
     window.addEventListener('resize', this.resize);
   }
-  componentWillReceiveProps() {
-    this.resize();
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.fit !== prevState.fit ? { fit: nextProps.fit } : null;
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.fit !== this.props.fit) {
+      this.resize();
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener('load', this.resize);
     window.removeEventListener('resize', this.resize);
