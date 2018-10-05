@@ -21,7 +21,7 @@ class Appear extends Component {
         easing={easing}
         style={style}
       >
-        <div>{this.props.children}</div>
+        {this.props.children}
       </Anim>
     );
   }
