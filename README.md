@@ -39,6 +39,7 @@ ReactJS based Presentation Library
     - [Magic](#magic)
   - [Element Tags](#element-tags)
     - [Appear](#appear)
+    - [Anim](#anim)
     - [BlockQuote, Quote and Cite (Base)](#blockquote-quote-and-cite-base)
     - [CodePane (Base)](#codepane-base)
     - [Code (Base)](#code-base)
@@ -626,6 +627,18 @@ This tag does not extend from Base. It's special. Wrapping elements in the appea
 
 For best performance, wrap the contents of this tag in a native DOM element like a `<div>` or `<span>`.
 
+_NOTE: When using `CodePane` tag inside an `Appear` tag you must wrap it inside a `<div>`_
+
+```jsx
+....
+<Appear>
+  <div>
+    <CodePane source="CodePane" lang="js" />
+  </div>
+<Appear>
+....
+```
+
 | Name               | PropType         | Description                                                                                                                                                                                                      | Default          |
 | ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | order              | PropTypes.number | An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.                            |
@@ -641,6 +654,8 @@ For best performance, wrap the contents of this tag in a native DOM element like
 If you want extra flexibility with animated animation, you can use the Anim component instead of Appear. It will let you have multi-step animations for each individual fragment. You can use this to create fancy animated intros, in-slide carousels, and many other fancy things. This tag does not extend from Base. It's special.
 
 For best performance, wrap the contents of this tag in a native DOM element like a `<div>` or `<span>`.
+
+_NOTE: `CodePane` tag can not be used inside a `Anim` tag._
 
 | Name               | PropType         | Description                                                                                                                                                                                                                                | Default         |
 | ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
