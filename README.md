@@ -1,10 +1,11 @@
 # Spectacle
 
-[![Join the chat at https://gitter.im/FormidableLabs/spectacle](https://badges.gitter.im/FormidableLabs/spectacle.svg)](https://gitter.im/FormidableLabs/spectacle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Travis Status][trav_img]][trav_site]
 ReactJS based Presentation Library
 
 [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate/)
+
+Have a question about Spectacle? Submit an issue on this repository using the "Question" template.
 
 ## Contents
 
