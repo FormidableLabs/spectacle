@@ -5,7 +5,7 @@ ReactJS based Presentation Library
 
 [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate/)
 
-Have a question about Spectacle? Submit an issue on this repository using the "Question" template.
+Have a question about Spectacle? Submit an issue in this repository using the "Question" template.
 
 ## Contents
 
