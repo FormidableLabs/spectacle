@@ -3,6 +3,7 @@
 [![Travis Status][trav_img]][trav_site]
 ReactJS based Presentation Library
 
+[Spectacle Boilerplate MDX](https://github.com/FormidableLabs/spectacle-boilerplate-mdx/)
 [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate/)
 
 Have a question about Spectacle? Submit an issue in this repository using the "Question" template.
@@ -63,15 +64,25 @@ Have a question about Spectacle? Submit an issue in this repository using the "Q
 
 ## Getting Started
 
+First, decide whether you want to use classic Spectacle, or MDX Spectacle, which has all the same functionality but allows you to write your Spectacle presentation in markdown.
+
+### Classic Spectacle
+
 There are three ways to get started on your presentation. The first way is to run the following command in your terminal:
 
 `npx create-react-app my-presentation --scripts-version spectacle-scripts`
 
 The second way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
-Both of these ways will give you everything you'll need to get started, including a sample presentation in the `presentation.js` file. You can change the props and tags as needed for your presentation or remove the `Deck` tag and all its content to start from scratch. From here you can go to [Development](#development) to get started.
+Both of these ways will give you everything you'll need to get started, including a sample presentation in the `presentation` folder. You can change the props and tags as needed for your presentation or delete everying in `presentation/index.js` to start from scratch. From here you can go to [Development](#development) to get started.
 
 The third way to get started is by running `npm install spectacle` in your terminal and writing your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
+
+### Spectacle MDX
+
+Download the [Spectacle MDX Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate-mdx).
+
+This repository will give you everything you'll need to get started, including a sample presentation in the `presentation` folder. You can change the props and tags as needed for your presentation or delete everything in the `index.mdx` file to start from scratch. From here you can go to [Development](#development) to get started.
 
 _NOTE: We have webpack externals for `react`, `react-dom`, and `prop-types`, so you will need to provide them in your upstream build or something like linking in via `script` tags in your HTML page for all three libraries. This comports with our project dependencies which place these three libraries in `peerDependencies`._
 
