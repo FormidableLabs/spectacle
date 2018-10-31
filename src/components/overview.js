@@ -39,6 +39,7 @@ export default class Overview extends Component {
     window.removeEventListener('resize', this.resizeHandler);
   }
   _slideClicked(index) {
+    this.props.resetViewedIndexes();
     this.context.history.replace(`/${this._getHash(index)}`);
   }
   _getHash(slideIndex) {
@@ -86,6 +87,7 @@ export default class Overview extends Component {
 }
 
 Overview.propTypes = {
+  resetViewedIndexes: PropTypes.function,
   route: PropTypes.object,
   slideIndex: PropTypes.number,
   slideReference: PropTypes.array,

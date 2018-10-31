@@ -581,6 +581,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
         onTouchStart={[Function]}
       >
         <Overview
+          resetViewedIndexes={[Function]}
           route={
             Object {
               "params": Array [

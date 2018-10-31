@@ -157,6 +157,7 @@ export class Manager extends Component {
     this._goToSlide = this._goToSlide.bind(this);
     this._startAutoplay = this._startAutoplay.bind(this);
     this._stopAutoplay = this._stopAutoplay.bind(this);
+    this._resetViewedIndexes = this._resetViewedIndexes.bind(this);
     this.presentationConnection = null;
 
     this.state = {
@@ -409,6 +410,11 @@ export class Manager extends Component {
       this.context.history.replace(`/${slide}${this._getSuffix()}`);
     }
   }
+
+  _resetViewedIndexes() {
+    this.viewedIndexes = new Set();
+  }
+
   _prevSlide() {
     const slideIndex = this._getSlideIndex();
     this.setState({
@@ -490,7 +496,7 @@ export class Manager extends Component {
         ) {
           const slideData = '{ "slide": "0", "forward": "false" }';
           this._goToSlide({ key: 'spectacle-slide', newValue: slideData });
-          this.viewedIndexes = new Set();
+          this._resetViewedIndexes();
         }
       } else if (slideIndex < slideReference.length - 1) {
         this.viewedIndexes.add(slideIndex);
@@ -813,6 +819,7 @@ export class Manager extends Component {
           slideReference={this.state.slideReference}
           slideIndex={this._getSlideIndex()}
           route={this.props.route}
+          resetViewedIndexes={this._resetViewedIndexes}
         />
       );
     } else {
