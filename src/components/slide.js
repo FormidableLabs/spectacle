@@ -17,7 +17,7 @@ class Slide extends React.PureComponent {
     super(...arguments);
     this.stepCounter = stepCounter();
 
-    this.setZoom = this.setZoom.bind(this);
+    // this.setZoom = this.setZoom.bind(this);
   }
 
   state = {
@@ -38,7 +38,7 @@ class Slide extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.setZoom();
+    // this.setZoom();
     const slide = this.slideRef;
     const frags = slide.querySelectorAll('.fragment');
     let currentOrder = 0;
@@ -66,8 +66,8 @@ class Slide extends React.PureComponent {
           currentOrder += 1;
         });
     }
-    window.addEventListener('load', this.setZoom);
-    window.addEventListener('resize', this.setZoom);
+    // window.addEventListener('load', this.setZoom);
+    // window.addEventListener('resize', this.setZoom);
 
     if (isFunction(this.props.onActive)) {
       this.props.onActive(this.props.slideIndex);
@@ -82,10 +82,10 @@ class Slide extends React.PureComponent {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('load', this.setZoom);
-    window.removeEventListener('resize', this.setZoom);
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener('load', this.setZoom);
+  //   window.removeEventListener('resize', this.setZoom);
+  // }
 
   componentDidUpdate() {
     const { steps, slideIndex } = this.stepCounter.getSteps();
@@ -97,31 +97,31 @@ class Slide extends React.PureComponent {
     }
   }
 
-  setZoom() {
-    const mobile = window.matchMedia('(max-width: 628px)').matches;
-    const content = this.contentRef;
-    if (content) {
-      const zoom = this.props.viewerScaleMode
-        ? 1
-        : content.offsetWidth / this.context.contentWidth;
+  // setZoom() {
+  //   const mobile = window.matchMedia('(max-width: 628px)').matches;
+  //   const content = this.contentRef;
+  //   if (content) {
+  //     const zoom = this.props.viewerScaleMode
+  //       ? 1
+  //       : content.offsetWidth / this.context.contentWidth;
 
-      const contentScaleY =
-        content.parentNode.offsetHeight / this.context.contentHeight;
-      const contentScaleX = this.props.viewerScaleMode
-        ? content.parentNode.offsetWidth / this.context.contentWidth
-        : content.parentNode.offsetWidth / this.context.contentHeight;
-      const minScale = Math.min(contentScaleY, contentScaleX);
+  //     const contentScaleY =
+  //       content.parentNode.offsetHeight / this.context.contentHeight;
+  //     const contentScaleX = this.props.viewerScaleMode
+  //       ? content.parentNode.offsetWidth / this.context.contentWidth
+  //       : content.parentNode.offsetWidth / this.context.contentHeight;
+  //     const minScale = Math.min(contentScaleY, contentScaleX);
 
-      let contentScale = minScale < 1 ? minScale : 1;
-      if (mobile && this.props.viewerScaleMode !== true) {
-        contentScale = 1;
-      }
-      this.setState({
-        zoom: zoom > 0.6 ? zoom : 0.6,
-        contentScale
-      });
-    }
-  }
+  //     let contentScale = minScale < 1 ? minScale : 1;
+  //     if (mobile && this.props.viewerScaleMode !== true) {
+  //       contentScale = 1;
+  //     }
+  //     this.setState({
+  //       zoom,
+  //       contentScale
+  //     });
+  //   }
+  // }
 
   render() {
     const { presenterStyle, children } = this.props;
