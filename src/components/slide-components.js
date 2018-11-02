@@ -46,11 +46,7 @@ export const SlideContent = styled.div(props => {
       return 0;
     }
 
-    if (!margin) {
-      return 40;
-    }
-
-    return margin;
+    return 40;
   };
 
   const contentStyles = {
