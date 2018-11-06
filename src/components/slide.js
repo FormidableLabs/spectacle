@@ -19,11 +19,9 @@ class Slide extends React.PureComponent {
   }
 
   state = {
-    contentScale: 1,
     reverse: false,
     transitioning: true,
-    z: 1,
-    zoom: 1
+    z: 1
   };
 
   getChildContext() {
@@ -120,8 +118,6 @@ class Slide extends React.PureComponent {
             overviewMode={this.context.overview}
             width={this.context.contentWidth}
             height={this.context.contentHeight}
-            scale={this.state.contentScale}
-            zoom={this.state.zoom}
             margin={this.props.margin}
             style={{ ...(this.props.contentStyles || {}) }}
             styles={{ context: this.context.styles.components.content }}
