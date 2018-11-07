@@ -104,7 +104,7 @@ export const transformBgImage = ({
   bgImageStyle,
   bgGradient
 }) => {
-  if (!bgImage) {
+  if (!bgImage && !bgImageStyle && !bgGradient) {
     return;
   }
 
