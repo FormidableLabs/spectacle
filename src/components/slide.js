@@ -16,16 +16,12 @@ class Slide extends React.PureComponent {
   constructor() {
     super(...arguments);
     this.stepCounter = stepCounter();
-
-    this.setZoom = this.setZoom.bind(this);
   }
 
   state = {
-    contentScale: 1,
     reverse: false,
     transitioning: true,
-    z: 1,
-    zoom: 1
+    z: 1
   };
 
   getChildContext() {
@@ -38,7 +34,6 @@ class Slide extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.setZoom();
     const slide = this.slideRef;
     const frags = slide.querySelectorAll('.fragment');
     let currentOrder = 0;
@@ -66,8 +61,6 @@ class Slide extends React.PureComponent {
           currentOrder += 1;
         });
     }
-    window.addEventListener('load', this.setZoom);
-    window.addEventListener('resize', this.setZoom);
 
     if (isFunction(this.props.onActive)) {
       this.props.onActive(this.props.slideIndex);
@@ -82,11 +75,6 @@ class Slide extends React.PureComponent {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('load', this.setZoom);
-    window.removeEventListener('resize', this.setZoom);
-  }
-
   componentDidUpdate() {
     const { steps, slideIndex } = this.stepCounter.getSteps();
     const stepFunc = this.props.getAnimStep || this.props.getAppearStep;
@@ -94,32 +82,6 @@ class Slide extends React.PureComponent {
       if (slideIndex === this.props.slideIndex) {
         stepFunc(steps);
       }
-    }
-  }
-
-  setZoom() {
-    const mobile = window.matchMedia('(max-width: 628px)').matches;
-    const content = this.contentRef;
-    if (content) {
-      const zoom = this.props.viewerScaleMode
-        ? 1
-        : content.offsetWidth / this.context.contentWidth;
-
-      const contentScaleY =
-        content.parentNode.offsetHeight / this.context.contentHeight;
-      const contentScaleX = this.props.viewerScaleMode
-        ? content.parentNode.offsetWidth / this.context.contentWidth
-        : content.parentNode.offsetWidth / this.context.contentHeight;
-      const minScale = Math.min(contentScaleY, contentScaleX);
-
-      let contentScale = minScale < 1 ? minScale : 1;
-      if (mobile && this.props.viewerScaleMode !== true) {
-        contentScale = 1;
-      }
-      this.setState({
-        zoom: zoom > 0.6 ? zoom : 0.6,
-        contentScale
-      });
     }
   }
 
@@ -156,8 +118,6 @@ class Slide extends React.PureComponent {
             overviewMode={this.context.overview}
             width={this.context.contentWidth}
             height={this.context.contentHeight}
-            scale={this.state.contentScale}
-            zoom={this.state.zoom}
             margin={this.props.margin}
             style={{ ...(this.props.contentStyles || {}) }}
             styles={{ context: this.context.styles.components.content }}
@@ -181,6 +141,7 @@ Slide.propTypes = {
   align: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
+  contentStyles: PropTypes.object,
   dispatch: PropTypes.func,
   export: PropTypes.bool,
   getAnimStep: PropTypes.func,

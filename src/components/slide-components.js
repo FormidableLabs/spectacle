@@ -38,27 +38,13 @@ export const SlideContentWrapper = styled.div(({ align, overviewMode }) => {
 });
 
 export const SlideContent = styled.div(props => {
-  const { overviewMode, scale, zoom, margin, width, height, styles } = props;
-
-  const getMargin = () => {
-    // ensure a "falsy" value of 0 still gets applied
-    if (margin === 0) {
-      return 0;
-    }
-
-    if (!margin) {
-      return 40;
-    }
-
-    return margin;
-  };
+  const { overviewMode, width, height, styles } = props;
 
   const contentStyles = {
     flex: 1,
     maxHeight: height || 700,
     maxWidth: width || 1000,
-    transform: `scale(${scale})`,
-    padding: zoom > 0.6 ? getMargin() : 10
+    padding: 10
   };
   const overviewStyles = {
     width: '100%'

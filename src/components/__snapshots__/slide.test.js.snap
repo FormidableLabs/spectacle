@@ -42,7 +42,6 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
             innerRef={[Function]}
             margin={undefined}
             overviewMode={undefined}
-            scale={1}
             style={Object {}}
             styles={
               Object {
@@ -50,12 +49,10 @@ exports[`<Slide /> should render correctly with transitions. 1`] = `
               }
             }
             width={undefined}
-            zoom={0.6}
           >
             <div
-              className=" spectacle-content css-1wqnfch e1s7evq12"
+              className=" spectacle-content css-121oawa e1s7evq12"
               height={undefined}
-              scale={1}
               style={Object {}}
               width={undefined}
             >
@@ -107,7 +104,6 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
             innerRef={[Function]}
             margin={undefined}
             overviewMode={undefined}
-            scale={1}
             style={Object {}}
             styles={
               Object {
@@ -115,12 +111,10 @@ exports[`<Slide /> should render correctly without transitions. 1`] = `
               }
             }
             width={undefined}
-            zoom={0.6}
           >
             <div
-              className=" spectacle-content css-1wqnfch e1s7evq12"
+              className=" spectacle-content css-121oawa e1s7evq12"
               height={undefined}
-              scale={1}
               style={Object {}}
               width={undefined}
             >
