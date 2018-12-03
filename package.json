@@ -49,7 +49,7 @@
     "normalize.css": "^7.0.0",
     "prismjs": "1.6.0",
     "react-emotion": "^8.0.8",
-    "react-live": "^1.11.0",
+    "react-live": "^1.12.0",
     "react-redux": "^5.0.5",
     "react-transition-group": "1.2.1",
     "react-typography": "^0.16.5",
@@ -103,8 +103,8 @@
     "style-loader": "^0.20.3",
     "surge": "^0.19.0",
     "url-loader": "^1.0.1",
-    "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.1"
   },
   "resolutions": {

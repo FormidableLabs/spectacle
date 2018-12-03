@@ -60,14 +60,14 @@ export default class Heading extends Component {
       height: 16
     };
   }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.fit !== prevState.fit ? { fit: nextProps.fit } : null;
+  }
+
   componentDidMount() {
     this.resize();
     window.addEventListener('load', this.resize);
     window.addEventListener('resize', this.resize);
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return nextProps.fit !== prevState.fit ? { fit: nextProps.fit } : null;
   }
 
   componentDidUpdate(prevProps) {
