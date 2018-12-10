@@ -288,22 +288,26 @@ After running `npm start` and opening [http://localhost:3000/#/](http://localhos
 - Bring up the print dialog `(ctrl or cmd + p)`
 - Change destination to "Save as PDF", as shown below:
 
-![http://i.imgur.com/t6GL5Oc.png](http://i.imgur.com/t6GL5Oc.png)
+![https://i.imgur.com/fLeYrZC.png](https://i.imgur.com/fLeYrZC.png)
 
-If you want a printer friendly version, repeat the above process but instead print from [http://localhost:3000/#/?export&print](http://localhost:3000/#/?export&print)
+If you want a printer friendly version, repeat the above process but instead print from [http://localhost:3000/#/?export&print](http://localhost:3000/#/?export&print).
+
+If you want to export your slides with your [notes](#notes) included, repeat the above process but instead print from [http://localhost:3000/#/?export&notes](http://localhost:3000/#/?export&notes).
 
 #### Query Parameters
 
 Here is a list of all valid query parameters that can be placed after `\` on the URL.
 
-| Query              | Description                                                                                                     |
-| ------------------ | --------------------------------------------------------------------------------------------------------------- |
-| 0, 1, 2, 3... etc. | Will take you to the corresponding slide, with `0` being the first slide in the presentation.                   |
-| ?export            | Creates a single-page overview of your slides, that you can then print.                                         |
-| ?export&print      | Creates a black & white single-page overview of your slides.                                                    |
-| ?presenter         | Takes you to presenter mode where you’ll see current slide, next slide, current time, and your [notes](#notes). |
-| ?presenter&timer   | Takes you to presenter mode where you’ll see current slide, next slide, timer, and your [notes](#notes).        |
-| ?overview          | Take you to overview mode where you’ll see all your slides.                                                     |
+| Query               | Description                                                                                                          |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| 0, 1, 2, 3... etc.  | Will take you to the corresponding slide, with `0` being the first slide in the presentation.                        |
+| ?export             | Creates a single-page overview of your slides, that you can then print.                                              |
+| ?export&notes       | Creates a single-page overview of your slides, including any [notes](#notes), that you can then print.               |
+| ?export&print       | Creates a black & white single-page overview of your slides.                                                         |
+| ?export&print&notes | Creates a black & white single-page overview of your slides, including any [notes](#notes), that you can then print. |
+| ?presenter          | Takes you to presenter mode where you’ll see current slide, next slide, current time, and your [notes](#notes).      |
+| ?presenter&timer    | Takes you to presenter mode where you’ll see current slide, next slide, timer, and your [notes](#notes).             |
+| ?overview           | Take you to overview mode where you’ll see all your slides.                                                          |
 
 _NOTE: If you add a non-valid query parameter, you will be taken to a blank page. Removing or replacing the query parameter with a valid query parameter and refreshing the page will return you to the correct destination._
 

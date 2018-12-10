@@ -137,8 +137,6 @@ export class Manager extends Component {
     autoplay: false,
     autoplayDuration: 7000,
     autoplayLoop: true,
-    contentWidth: 1000,
-    contentHeight: 700,
     disableKeyboardControls: false,
     transition: [],
     transitionDuration: 500,
