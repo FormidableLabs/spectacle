@@ -47,6 +47,6 @@ module.exports = {
         include: path.join(__dirname, 'example/assets'),
         loader: 'url-loader?mimetype=image/gif'
       }
-    ],
-  },
+    ]
+  }
 };
