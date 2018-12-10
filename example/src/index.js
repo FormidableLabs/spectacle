@@ -40,7 +40,7 @@ require('normalize.css');
 
 const images = {
   city: require('../assets/city.jpg'),
-  kat: require('../assets/kat.png'),
+  kat: require('../assets/kat.gif'),
   logo: require('../assets/formidable-logo.svg'),
   markdown: require('../assets/markdown.png')
 };
