@@ -11,7 +11,7 @@ const Deck = styled.div(() => ({
   top: 0,
   left: 0,
   width: '100%',
-  height: '100%',
+  height: '100%'
 }));
 
 class Context extends Component {
@@ -22,7 +22,7 @@ class Context extends Component {
     overview: PropTypes.bool,
     print: PropTypes.bool,
     store: PropTypes.object,
-    styles: PropTypes.object,
+    styles: PropTypes.object
   };
   static childContextTypes = {
     contentHeight: PropTypes.number,
@@ -31,11 +31,11 @@ class Context extends Component {
     overview: PropTypes.bool,
     print: PropTypes.bool,
     store: PropTypes.object,
-    styles: PropTypes.object,
+    styles: PropTypes.object
   };
   static propTypes = {
     children: PropTypes.node,
-    context: PropTypes.object,
+    context: PropTypes.object
   };
   getChildContext() {
     return {
@@ -45,7 +45,7 @@ class Context extends Component {
       overview: this.props.context.overview,
       print: this.props.context.print,
       store: this.props.context.store,
-      styles: this.props.context.styles,
+      styles: this.props.context.styles
     };
   }
   render() {
@@ -61,7 +61,7 @@ export default class MagicText extends Component {
     overview: PropTypes.bool,
     print: PropTypes.bool,
     store: PropTypes.object,
-    styles: PropTypes.object,
+    styles: PropTypes.object
   };
   static propTypes = {
     children: PropTypes.node,
@@ -79,8 +79,14 @@ export default class MagicText extends Component {
     this.lastDiffs = null;
     this.makePortal = this.makePortal.bind(this);
     this.state = {
-      renderedChildren: props.children,
+      renderedChildren: props.children
     };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.magicIndex !== prevState.magicIndex
+      ? { magicIndex: nextProps.magicIndex }
+      : null;
   }
   componentDidMount() {
     this.mounted = true;
@@ -88,12 +94,12 @@ export default class MagicText extends Component {
     if (!this.props.presenter) {
       this.container.animate([{ opacity: 0 }, { opacity: 1 }], {
         duration: 500,
-        easing: 'ease-in',
+        easing: 'ease-in'
       });
       this.props.exitSubscription(() => {
         this.container.animate([{ opacity: 1 }, { opacity: 0 }], {
           duration: 500,
-          easing: 'ease-in',
+          easing: 'ease-in'
         });
       });
     }
@@ -112,51 +118,16 @@ export default class MagicText extends Component {
           if (containerRoot && portalRoot) {
             updateChildren(containerRoot);
             updateChildren(portalRoot);
-            buildStyleMap(
-              this.portalMap,
-              portalRoot
-            );
+            buildStyleMap(this.portalMap, portalRoot);
           }
         }, 300);
-      }
-    );
-  }
-  componentWillReceiveProps(nextProps) {
-    if (this.props.magicIndex === nextProps.magicIndex) {
-      return;
-    }
-    ReactDOM.render(
-      <Context context={this.context}>
-        <Deck>{nextProps.children}</Deck>
-      </Context>,
-      this.portal,
-      () => {
-        const styles = {};
-        const portalRoot = get(this.portal, 'childNodes[0].childNodes[0]');
-        if (portalRoot) {
-          updateChildren(portalRoot);
-          buildStyleMap(styles, portalRoot);
-          this.diffs = detailedDiff(this.portalMap, styles);
-          this.lastPortalMap = this.portalMap;
-          this.portalMap = styles;
-          if (this.mounted) {
-            this.setState(
-              {
-                renderedChildren: nextProps.children,
-              },
-              () => {
-                this.forceUpdate();
-              }
-            );
-          }
-        }
       }
     );
   }
   shouldComponentUpdate() {
     return false;
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const containerRoot = get(this.container, 'childNodes[0]');
     if (containerRoot) {
       updateChildren(containerRoot);
@@ -167,7 +138,7 @@ export default class MagicText extends Component {
         if (el) {
           el.animate([{ opacity: 0 }, { opacity: 1 }], {
             duration: 500,
-            easing: 'ease-in',
+            easing: 'ease-in'
           });
         }
       });
@@ -176,10 +147,10 @@ export default class MagicText extends Component {
       Object.keys(this.diffs.updated).forEach(m => {
         const props = {
           ...(this.diffs.added[m] || {}),
-          ...(this.diffs.updated[m] || {}),
+          ...(this.diffs.updated[m] || {})
         };
         const last = {
-          ...(this.lastPortalMap[m] || {}),
+          ...(this.lastPortalMap[m] || {})
         };
         if (last) {
           const start = {};
@@ -192,11 +163,40 @@ export default class MagicText extends Component {
           if (el && !el.classList.contains('spectacle-content')) {
             el.animate([start, end], {
               duration: 500,
-              easing: 'ease-in',
+              easing: 'ease-in'
             });
           }
         }
       });
+    }
+    if (this.props.magicIndex !== prevProps.magicIndex) {
+      ReactDOM.render(
+        <Context context={this.context}>
+          <Deck>{this.props.children}</Deck>
+        </Context>,
+        this.portal,
+        () => {
+          const styles = {};
+          const portalRoot = get(this.portal, 'childNodes[0].childNodes[0]');
+          if (portalRoot) {
+            updateChildren(portalRoot);
+            buildStyleMap(styles, portalRoot);
+            this.diffs = detailedDiff(this.portalMap, styles);
+            this.lastPortalMap = this.portalMap;
+            this.portalMap = styles;
+            if (this.mounted) {
+              this.setState(
+                {
+                  renderedChildren: this.props.children
+                },
+                () => {
+                  this.forceUpdate();
+                }
+              );
+            }
+          }
+        }
+      );
     }
     this.lastDiffs = this.diffs;
   }
@@ -221,7 +221,7 @@ export default class MagicText extends Component {
       <div
         style={{
           height: '100%',
-          width: '100%',
+          width: '100%'
         }}
         ref={c => {
           this.container = c;

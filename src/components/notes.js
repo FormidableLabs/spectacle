@@ -12,7 +12,7 @@ export default class Notes extends Component {
     children: PropTypes.node.isRequired
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { store, slideHash: parentSlide, updateNotes } = this.context;
     const currentSlide = store.getState().route.slide;
 

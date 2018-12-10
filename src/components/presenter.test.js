@@ -9,8 +9,8 @@ const _mockRoute = function(slide) {
 const _mockContext = function() {
   return {
     store: {
-      getState: () => ({ route: '' }),
-    },
+      getState: () => ({ route: '' })
+    }
   };
 };
 
@@ -25,7 +25,7 @@ const _mockSlidesWithNotes = function() {
   return [
     <Slide key={0} />,
     <Slide key={1} notes={notes} />,
-    <Slide key={2} />,
+    <Slide key={2} />
   ];
 };
 
@@ -36,7 +36,7 @@ const _mockSlideReference = function() {
   return [
     { id: 0, rootIndex: 0 },
     { id: 1, rootIndex: 1 },
-    { id: 2, rootIndex: 2 },
+    { id: 2, rootIndex: 2 }
   ];
 };
 

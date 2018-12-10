@@ -23,7 +23,12 @@ const mockContext = function(
 describe('<Notes />', () => {
   test('should render correctly', () => {
     const wrapper = mount(
-      <Notes><ul><li>First</li><li>Second</li></ul></Notes>,
+      <Notes>
+        <ul>
+          <li>First</li>
+          <li>Second</li>
+        </ul>
+      </Notes>,
       { context: mockContext(1, '2') }
     );
     expect(wrapper).toMatchSnapshot();
@@ -31,7 +36,12 @@ describe('<Notes />', () => {
 
   test('should update notes on matching slide', () => {
     const updateNotes = jest.fn();
-    const children = <ul><li>First</li><li>Second</li></ul>;
+    const children = (
+      <ul>
+        <li>First</li>
+        <li>Second</li>
+      </ul>
+    );
     const vDom = <Notes>{children}</Notes>;
 
     mount(vDom, { context: mockContext('1', 2, updateNotes) });

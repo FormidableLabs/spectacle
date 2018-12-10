@@ -7,7 +7,7 @@ const stepCounter = () => {
   };
   const getSteps = () => {
     const steps = Object.keys(frags).reduce((previous, key) => {
-      return previous + (frags[key].animations.every(a => a === true));
+      return previous + frags[key].animations.every(a => a === true);
     }, 0);
     return { steps, slideIndex };
   };

@@ -25,7 +25,7 @@ export default css`
   }
 
   & .token.namespace {
-    opacity: .7;
+    opacity: 0.7;
   }
 
   & .token.tag,

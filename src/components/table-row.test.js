@@ -8,14 +8,19 @@ describe('<TableRow />', () => {
       styles: {
         components: {
           tableRow: {
-            color: '#00f',
-          },
-        },
-      },
+            color: '#00f'
+          }
+        }
+      }
     };
-    const wrapper = mount(<TableRow><td>Table Row Content</td></TableRow>, {
-      context,
-    });
+    const wrapper = mount(
+      <TableRow>
+        <td>Table Row Content</td>
+      </TableRow>,
+      {
+        context
+      }
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

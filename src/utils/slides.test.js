@@ -4,10 +4,7 @@ import { countSlides } from './slides';
 describe('slides', () => {
   describe('countSlides', () => {
     test('should count standard slides', () => {
-      const children = [
-        <div key={0} />,
-        <div key={1} />
-      ];
+      const children = [<div key={0} />, <div key={1} />];
       expect(countSlides(children)).toBe(2);
     });
 

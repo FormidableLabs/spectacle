@@ -9,8 +9,8 @@ const StyledHeader = styled.div(({ height, styles }) => [
   {
     display: 'block',
     width: '100%',
-    height,
-  },
+    height
+  }
 ]);
 
 const dynamicHeaderFitStyles = ({ scale, lineHeight, styles }) => [
@@ -21,16 +21,16 @@ const dynamicHeaderFitStyles = ({ scale, lineHeight, styles }) => [
     padding: '0',
     lineHeight,
     transform: `scale(${scale})`,
-    transformOrigin: 'center top',
+    transformOrigin: 'center top'
   },
   styles.typeface,
-  styles.user,
+  styles.user
 ];
 
 const dynamicStyledFitHeaders = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce(
   (memo, tag) => ({
     ...memo,
-    [tag]: styled(tag)(dynamicHeaderFitStyles),
+    [tag]: styled(tag)(dynamicHeaderFitStyles)
   }),
   {}
 );
@@ -40,13 +40,13 @@ const dynamicHeaderStyles = ({ lineHeight, styles }) => [
   styles.base,
   { lineHeight },
   styles.typeface,
-  styles.user,
+  styles.user
 ];
 
 const dynamicStyledHeaders = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce(
   (memo, tag) => ({
     ...memo,
-    [tag]: styled(tag)(dynamicHeaderStyles),
+    [tag]: styled(tag)(dynamicHeaderStyles)
   }),
   {}
 );
@@ -57,17 +57,25 @@ export default class Heading extends Component {
     this.resize = this.resize.bind(this);
     this.state = {
       scale: 1,
-      height: 16,
+      height: 16
     };
   }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.fit !== prevState.fit ? { fit: nextProps.fit } : null;
+  }
+
   componentDidMount() {
     this.resize();
     window.addEventListener('load', this.resize);
     window.addEventListener('resize', this.resize);
   }
-  componentWillReceiveProps() {
-    this.resize();
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.fit !== this.props.fit) {
+      this.resize();
+    }
   }
+
   componentWillUnmount() {
     window.removeEventListener('load', this.resize);
     window.removeEventListener('resize', this.resize);
@@ -82,7 +90,7 @@ export default class Heading extends Component {
       text.style.display = 'block';
       this.setState({
         scale,
-        height,
+        height
       });
     }
   }
@@ -104,25 +112,24 @@ export default class Heading extends Component {
           height={this.state.height}
           styles={{
             context: this.context.styles.components.heading[`h${size}`],
-            base: getStyles.call(this),
+            base: getStyles.call(this)
           }}
         >
-          {
-            createElement(
-              dynamicStyledFitHeaders[Tag],
-              {
-                innerRef: t => {
-                  this.textRef = t;
-                },
-                scale: this.state.scale,
-                lineHeight,
-                styles: {
-                  user: style,
-                  typeface: typefaceStyle
-                }
-              }, children
-            )
-          }
+          {createElement(
+            dynamicStyledFitHeaders[Tag],
+            {
+              innerRef: t => {
+                this.textRef = t;
+              },
+              scale: this.state.scale,
+              lineHeight,
+              styles: {
+                user: style,
+                typeface: typefaceStyle
+              }
+            },
+            children
+          )}
         </StyledHeader>
       );
     }
@@ -136,8 +143,8 @@ export default class Heading extends Component {
           context: this.context.styles.components.heading[`h${size}`],
           base: getStyles.call(this),
           user: style,
-          typeface: typefaceStyle,
-        },
+          typeface: typefaceStyle
+        }
       },
       children
     );
@@ -146,7 +153,7 @@ export default class Heading extends Component {
 
 Heading.defaultProps = {
   size: 1,
-  lineHeight: 1,
+  lineHeight: 1
 };
 
 Heading.propTypes = {
@@ -155,11 +162,11 @@ Heading.propTypes = {
   fit: PropTypes.bool,
   lineHeight: PropTypes.number,
   size: PropTypes.number,
-  style: PropTypes.object,
+  style: PropTypes.object
 };
 
 Heading.contextTypes = {
   styles: PropTypes.object,
   store: PropTypes.object,
-  typeface: PropTypes.object,
+  typeface: PropTypes.object
 };

@@ -1,4 +1,5 @@
 <a name="getting-started"></a>
+
 # Getting Started
 
 The best way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
@@ -8,6 +9,7 @@ Alternatively, you can `npm install spectacle` and write your own build configur
 But really, it is SO much easier to just use the boilerplate. Trust me.
 
 <a name="development"></a>
+
 ## Development
 
 After downloading the boilerplate, your first order of business is to open terminal and run `npm install`
@@ -19,6 +21,7 @@ Then, to start up the local server, run `npm start`
 Open a browser and hit [http://localhost:3000](http://localhost:3000), and we are ready to roll
 
 <a name="build--deployment"></a>
+
 ## Build & Deployment
 
 Building the dist version of the project is as easy as running `npm run build`
@@ -26,6 +29,7 @@ Building the dist version of the project is as easy as running `npm run build`
 If you want to deploy the slideshow to surge, run `npm run deploy`
 
 <a name="presenting"></a>
+
 ## Presenting
 
 Spectacle comes with a built in presenter mode. It shows you a slide lookahead, current time and your current slide:
@@ -49,23 +53,26 @@ Check it out:
 You can toggle the presenter or overview mode by pressing respectively `alt+p` and `alt+o`.
 
 <a name="controls"></a>
+
 ## Controls
 
-|Key Combination|Function|
-|---|---|
-|Right Arrow|Next Slide|
-|Left Arrow|Previous Slide|
-|Space|Next Slide|
-|Shift+Space|Previous Slide|
-|Alt/Option + O|Toggle Overview Mode|
-|Alt/Option + P|Toggle Presenter Mode|
+| Key Combination | Function              |
+| --------------- | --------------------- |
+| Right Arrow     | Next Slide            |
+| Left Arrow      | Previous Slide        |
+| Space           | Next Slide            |
+| Shift+Space     | Previous Slide        |
+| Alt/Option + O  | Toggle Overview Mode  |
+| Alt/Option + P  | Toggle Presenter Mode |
 
 <a name="fullscreen"></a>
+
 ## Fullscreen
 
 Fullscreen can be toggled via browser options, or by **hovering over the bottom right corner of your window until the fullscreen icon appears and clicking it**.
 
 <a name="pdf-export"></a>
+
 ## PDF Export
 
 Exporting a totally sweet looking PDF from your totally sweet looking Spectacle presentation is absurdly easy.

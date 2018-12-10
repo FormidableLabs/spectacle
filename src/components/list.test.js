@@ -16,11 +16,19 @@ describe('<List />', () => {
   });
 
   it('applies contextual styles to the rendered component', () => {
-    const context = { styles: { components: { list: {
-      background: '#fff',
-      color: '#ff0'
-    } } } };
-    const wrapper = shallow(<List style={{ fontWeight: 'bold' }} />, { context });
+    const context = {
+      styles: {
+        components: {
+          list: {
+            background: '#fff',
+            color: '#ff0'
+          }
+        }
+      }
+    };
+    const wrapper = shallow(<List style={{ fontWeight: 'bold' }} />, {
+      context
+    });
     expect(wrapper.prop('styles')).toEqual([
       context.styles.components.list,
       {},

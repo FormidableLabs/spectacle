@@ -53,31 +53,30 @@ const vanishOut = keyframes`
 export const TSingleButton = styled.button`
   width: 68px;
   font-size: 1em;
-  font-family: "Open Sans Condensed";
+  font-family: 'Open Sans Condensed';
   margin: 3px;
   border: 0;
   border-radius: 15px;
-  background: ${
-    (props) => {
-      if (props.stop) {
-        return '#e23d3d';
-      } else if (props.start) {
-        return '#42a53c';
-      } else {
-        return '#darkgrey';
-      }
-    }};
+  background: ${props => {
+    if (props.stop) {
+      return '#e23d3d';
+    } else if (props.start) {
+      return '#42a53c';
+    } else {
+      return '#darkgrey';
+    }
+  }};
 
-  &:focus{
-    outline:0px;
+  &:focus {
+    outline: 0px;
   }
   &:active {
     animation: ${vanishOut} 0.5s;
   }
 
-  opacity: 0;  /* make things invisible upon start */
+  opacity: 0; /* make things invisible upon start */
   animation: ${fadeIn} ease-in 1;
-  animation-fill-mode:forwards;
-  animation-duration:0.5s;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
   animation-delay: 0s;
 `;

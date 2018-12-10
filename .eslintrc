@@ -1,7 +1,11 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": "formidable/configurations/es6-react",
+  "extends": [
+    "formidable/configurations/es6-react",
+    "prettier",
+    "prettier/react"
+  ],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -38,6 +42,7 @@
     "func-style": "off",
     "arrow-parens": "off",
     "no-use-before-define": "off",
+    "no-undef": ["error", { "typeof": true }],
     "react/jsx-filename-extension": "off",
     "react/require-extension": "off",
     "react/no-multi-comp": "off",
@@ -48,8 +53,11 @@
     "react/no-find-dom-node": "off",
     "no-invalid-this": "off",
     "complexity": "off",
-    "no-unused-vars": ["error", {
-      "argsIgnorePattern": "^_+$"
-    }]
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_+$"
+      }
+    ]
   }
 }

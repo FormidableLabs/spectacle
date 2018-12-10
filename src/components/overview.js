@@ -14,9 +14,9 @@ const SlideThumbnail = styled.div`
   position: relative;
   float: left;
   height: ${({ screen }) => (screen / 3) * 0.7}px;
-  opacity: ${({ index, slideIndex }) => index === slideIndex ? 1 : 0.5};
+  opacity: ${({ index, slideIndex }) => (index === slideIndex ? 1 : 0.5)};
   transition: opacity 333ms ease-in-out;
-  width: ${({ screen }) => (screen / 3)}px;
+  width: ${({ screen }) => screen / 3}px;
 
   &:hover {
     opacity: 1;
@@ -39,6 +39,7 @@ export default class Overview extends Component {
     window.removeEventListener('resize', this.resizeHandler);
   }
   _slideClicked(index) {
+    this.props.resetViewedIndexes();
     this.context.history.replace(`/${this._getHash(index)}`);
   }
   _getHash(slideIndex) {
@@ -81,15 +82,12 @@ export default class Overview extends Component {
     });
   }
   render() {
-    return (
-      <OverviewContainer>
-        {this._renderSlides()}
-      </OverviewContainer>
-    );
+    return <OverviewContainer>{this._renderSlides()}</OverviewContainer>;
   }
 }
 
 Overview.propTypes = {
+  resetViewedIndexes: PropTypes.function,
   route: PropTypes.object,
   slideIndex: PropTypes.number,
   slideReference: PropTypes.array,
