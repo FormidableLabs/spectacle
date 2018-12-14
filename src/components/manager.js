@@ -137,6 +137,8 @@ export class Manager extends Component {
     autoplay: false,
     autoplayDuration: 7000,
     autoplayLoop: true,
+    contentWidth: 1000,
+    contentHeight: 700,
     disableKeyboardControls: false,
     transition: [],
     transitionDuration: 500,
@@ -772,7 +774,9 @@ export class Manager extends Component {
       this.props.route.params.indexOf('export') !== -1
         ? {
             body: Object.assign(this.context.styles.global.body, {
-              minWidth: this.props.contentWidth + 150,
+              minWidth: this.state.mobile
+                ? '100vw'
+                : this.props.contentWidth + 150,
               minHeight: this.props.contentHeight + 150,
               overflow: 'auto'
             }),

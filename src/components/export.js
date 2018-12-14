@@ -28,7 +28,6 @@ export default class Export extends Component {
       const el = cloneElement(slide, {
         key: index,
         slideIndex: index,
-        notesMode: this.props.route.params.indexOf('notes') !== -1,
         export: this.props.route.params.indexOf('export') !== -1,
         print: this.props.route.params.indexOf('print') !== -1,
         transition: [],
@@ -54,7 +53,6 @@ export default class Export extends Component {
       const el = cloneElement(slide, {
         key: index,
         slideIndex: index,
-        notesMode: this.props.route.params.indexOf('notes') !== -1,
         export: this.props.route.params.indexOf('export') !== -1,
         print: this.props.route.params.indexOf('print') !== -1,
         notes,
