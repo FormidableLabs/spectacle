@@ -4,13 +4,14 @@ import reduce from 'lodash/reduce';
 import Notes from '../components/notes';
 
 export const getNotesForSlide = slide => {
-  let notes = false;
+  let notes = '';
   Children.map(slide.props.children, child => {
     const isChildNode = child.type === Notes;
     if (isChildNode) {
       notes = child.props.children;
     }
   });
+
   return notes;
 };
 
