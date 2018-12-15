@@ -74,7 +74,7 @@ There are three ways to get started on your presentation. The first way is to ru
 
 The second way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
-Both of these ways will give you everything you'll need to get started, including a sample presentation in the `presentation` folder. You can change the props and tags as needed for your presentation or delete everying in `presentation/index.js` to start from scratch. From here you can go to [Development](#development) to get started.
+Both of these ways will give you everything you'll need to get started, including a sample presentation in the `presentation` folder. You can change the props and tags as needed for your presentation or delete everything in `presentation/index.js` to start from scratch. From here you can go to [Development](#development) to get started.
 
 The third way to get started is by running `npm install spectacle` in your terminal and writing your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
@@ -424,6 +424,14 @@ const CustomHeading = styled(Heading)`
 
 <a name="tag-api"></a>
 
+**_Can I write my presentation in TypeScript?_**
+
+Yes, you can! Updated type definitions for the Spectacle API can be found within [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/spectacle/index.d.ts). You can bring them into your project using `yarn` or `npm`:
+
+```sh
+npm i --save @types/spectacle
+```
+
 ## Tag API
 
 In Spectacle, presentations are composed of a set of base tags. We can separate these into three categories: Main tags, Layout tags & Element tags.
@@ -655,8 +663,8 @@ _NOTE: When using `CodePane` tag inside an `Appear` tag you must wrap it inside 
 | ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | order              | PropTypes.number | An optional integer starting at 1 for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.                            |
 | transitionDuration | PropTypes.number | An optional duration (in milliseconds) for the Appear animation.                                                                                                                                                 | `300`            |
-| startValue         | Proptypes.object | An optional style object that defines the starting, inactive state of the Appear tag. The default animation is a fade-in.                                                                                        | `{ opacity: 0 }` |
-| endValue           | Proptypes.object | An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in.                                                                                     | `{ opacity: 1 }` |
+| startValue         | PropTypes.object | An optional style object that defines the starting, inactive state of the Appear tag. The default animation is a fade-in.                                                                                        | `{ opacity: 0 }` |
+| endValue           | PropTypes.object | An optional style object that defines the ending, active state of the Appear tag. The default animation is a simple fade-in.                                                                                     | `{ opacity: 1 }` |
 | easing             | PropTypes.string | An optional victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing). | `quadInOut`      |
 
 <a name="anim"></a>
@@ -673,8 +681,8 @@ _NOTE: `CodePane` tag can not be used inside a `Anim` tag._
 | ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
 | order              | PropTypes.number | An optional integer for the presentation order of the Appear tags within a slide. If a slide contains ordered and unordered Appear tags, the unordered will show first.                                                                    | Starting at `1` |
 | transitionDuration | PropTypes.number | A duration (in milliseconds) for the animation.                                                                                                                                                                                            | `300`           |
-| fromStyle          | Proptypes.object | A style object that defines the starting, inactive state of the Anim tag.                                                                                                                                                                  |                 |
-| toStyle            | Proptypes.array  | An array of style objects that define each step in the animation. They will step from one toStyle object to another, until that fragment is finished with its animations.                                                                  |                 |
+| fromStyle          | PropTypes.object | A style object that defines the starting, inactive state of the Anim tag.                                                                                                                                                                  |                 |
+| toStyle            | PropTypes.array  | An array of style objects that define each step in the animation. They will step from one toStyle object to another, until that fragment is finished with its animations.                                                                  |                 |
 | easing             | PropTypes.string | A victory easing curve for the Appear animation. The various options are documented in the [Victory Animation easing docs](https://formidable.com/open-source/victory/docs/victory-animation/#easing).                                     |                 |
 | onAnim             | PropTypes.fun    | This function is called every time the Anim component plays an animation. It'll be called with two arguments, forwards, a boolean indicating if it was stepped forwards or backwards, and the index of the animation that was just played. |                 |
 
