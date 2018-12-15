@@ -15,6 +15,10 @@ const Deck = styled.div(() => ({
 }));
 
 class Context extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    context: PropTypes.object
+  };
   static contextTypes = {
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
@@ -33,10 +37,6 @@ class Context extends Component {
     store: PropTypes.object,
     styles: PropTypes.object
   };
-  static propTypes = {
-    children: PropTypes.node,
-    context: PropTypes.object
-  };
   getChildContext() {
     return {
       contentHeight: this.props.context.contentHeight,
@@ -54,6 +54,12 @@ class Context extends Component {
 }
 
 export default class MagicText extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    exitSubscription: PropTypes.func,
+    magicIndex: PropTypes.number,
+    presenter: PropTypes.bool
+  };
   static contextTypes = {
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
@@ -62,12 +68,6 @@ export default class MagicText extends Component {
     print: PropTypes.bool,
     store: PropTypes.object,
     styles: PropTypes.object
-  };
-  static propTypes = {
-    children: PropTypes.node,
-    exitSubscription: PropTypes.func,
-    magicIndex: PropTypes.number,
-    presenter: PropTypes.bool
   };
   constructor(props) {
     super(...arguments);
@@ -158,7 +158,7 @@ export default class MagicText extends Component {
           const xdiff = props.x - last.x || 0;
           const ydiff = props.y - last.y || 0;
           start.transform = `translate(${xdiff * -1}px, ${ydiff * -1}px)`;
-          end.transform = `translate(0, 0)`;
+          end.transform = 'translate(0, 0)';
           const el = document.querySelector(`[data-key='${m}']`);
           if (el && !el.classList.contains('spectacle-content')) {
             el.animate([start, end], {

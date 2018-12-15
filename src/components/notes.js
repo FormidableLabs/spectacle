@@ -2,14 +2,14 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Notes extends Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired
+  };
+
   static contextTypes = {
     store: PropTypes.object,
     slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     updateNotes: PropTypes.func
-  };
-
-  static propTypes = {
-    children: PropTypes.node.isRequired
   };
 
   componentDidMount() {
