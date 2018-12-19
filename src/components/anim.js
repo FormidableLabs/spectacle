@@ -24,7 +24,7 @@ class Anim extends Component {
       return;
     }
 
-    const order = this.props.order || 0;
+    const order = this.props.order;
     const node = findDOMNode(this.fragmentRef);
     if (!node.dataset) {
       node.dataset = {};
