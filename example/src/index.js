@@ -17,6 +17,7 @@ import {
   List,
   Markdown,
   MarkdownSlides,
+  Notes,
   Quote,
   Slide,
   SlideSet,
@@ -29,11 +30,8 @@ import {
   Text,
   GoToAction
 } from '../../src';
-
 import preloader from '../../src/utils/preloader';
-
 import createTheme from '../../src/themes/default';
-
 import Interactive from '../assets/interactive';
 
 require('normalize.css');
@@ -93,6 +91,7 @@ export default class Presentation extends Component {
           <Text textSize="1.5em" margin="20px 0px 0px" bold>
             Hit Your Right Arrow To Begin!
           </Text>
+          <Notes>Let's get started!</Notes>
         </Slide>
         <Slide
           onActive={slideIndex => {
@@ -114,18 +113,19 @@ export default class Presentation extends Component {
             }
           ]}
           bgColor="black"
-          notes="You can even put notes on your slide. How awesome is that?"
         >
           <Image src={images.kat.replace('/', '')} margin="0px auto 40px" />
           <Heading size={2} caps fit textColor="primary" textFont="primary">
             Wait what?
           </Heading>
+          <Notes>
+            You can even put notes on your slide. How awesome is that?
+          </Notes>
         </Slide>
         <Slide
           transitionIn={['zoom', 'fade']}
           transitionOut={['slide', 'fade']}
           bgColor="primary"
-          notes="<ul><li>talk about that</li><li>and that</li></ul>"
         >
           <CodePane
             lang="jsx"
@@ -133,6 +133,13 @@ export default class Presentation extends Component {
             margin="20px auto"
             overflow="overflow"
           />
+          <Notes>
+            <ul>
+              <li>talk about that</li>
+              <li>and that</li>
+              <li>and then this</li>
+            </ul>
+          </Notes>
         </Slide>
         <Slide goTo={3}>
           <ComponentPlayground theme="dark" />
@@ -216,6 +223,7 @@ export default class Presentation extends Component {
               </Heading>
             </div>
           </Anim>
+          <Notes>Much animation, very style</Notes>
         </Slide>
         <Slide>
           <Heading size={2} textColor="secondary" margin="0.25em">
@@ -248,6 +256,7 @@ export default class Presentation extends Component {
               </select>
             )}
           />
+          <Notes>Doesn't work in export view, though</Notes>
         </Slide>
         <Slide
           transition={['slide']}
@@ -301,6 +310,10 @@ export default class Presentation extends Component {
               </Heading>
             </Fill>
           </Layout>
+          <Notes>
+            Use <code>layout</code> to <code>fill</code> or <code>fit</code>{' '}
+            your content
+          </Notes>
         </Slide>
         <Slide transition={['slide']} bgColor="black">
           <BlockQuote>
@@ -328,6 +341,7 @@ export default class Presentation extends Component {
   * Add some \`inline code\` to your sldes!
             `}
           </Markdown>
+          <Notes>Who doesn't love markdown?</Notes>
         </Slide>
         {MarkdownSlides`
 #### Create Multiple Slides in Markdown
@@ -350,6 +364,7 @@ const myCode = (is, great) => 'for' + 'sharing';
           <Heading caps fit size={1} textColor="secondary">
             Combinable Transitions
           </Heading>
+          <Notes>So smooth</Notes>
         </Slide>
         <SlideSet>
           <Slide transition={['fade']} bgColor="secondary" textColor="primary">
@@ -378,11 +393,7 @@ const myCode = (is, great) => 'for' + 'sharing';
             <Interactive />
           </Slide>
         </SlideSet>
-        <Slide
-          transition={['slide']}
-          bgColor="primary"
-          notes="Hard to find cities without any pizza"
-        >
+        <Slide transition={['slide']} bgColor="primary">
           <Heading
             size={4}
             caps
@@ -430,14 +441,16 @@ const myCode = (is, great) => 'for' + 'sharing';
               </TableBody>
             </Table>
           </Layout>
+          <Notes>Hard to find cities without any pizza</Notes>
         </Slide>
         <Slide transition={['spin', 'slide']} bgColor="tertiary">
           <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
             Made with love in Seattle by
           </Heading>
-          <Link href="http://www.formidable.com">
+          <Link href="https://www.formidable.com">
             <Image width="100%" src={images.logo} />
           </Link>
+          <Notes>Check us out → https://www.formidable.com</Notes>
         </Slide>
       </Deck>
     );

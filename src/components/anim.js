@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import findKey from 'lodash/findKey';
 import { connect } from 'react-redux';
+import { findDOMNode } from 'react-dom';
 import { VictoryAnimation } from 'victory-core';
 import { victoryEases } from '../utils/types';
 
@@ -16,7 +16,8 @@ class Anim extends Component {
   componentDidMount() {
     const shouldDisableAnimation =
       this.props.route.params.indexOf('export') !== -1 ||
-      this.props.route.params.indexOf('overview') !== -1;
+      this.props.route.params.indexOf('overview') !== -1 ||
+      this.props.route.params.indexOf('notes') !== -1;
 
     if (shouldDisableAnimation) {
       this.setState({ activeAnimation: this.props.toStyle.length - 1 });
@@ -35,7 +36,8 @@ class Anim extends Component {
   componentDidUpdate(prevProps, prevState) {
     const shouldDisableAnimation =
       this.props.route.params.indexOf('export') !== -1 ||
-      this.props.route.params.indexOf('overview') !== -1;
+      this.props.route.params.indexOf('overview') !== -1 ||
+      this.props.route.params.indexOf('notes') !== -1;
 
     if (shouldDisableAnimation) {
       this.disableAnimation();

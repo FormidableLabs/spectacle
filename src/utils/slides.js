@@ -1,6 +1,19 @@
 import { cloneElement, Children } from 'react';
 import isUndefined from 'lodash/isUndefined';
 import reduce from 'lodash/reduce';
+import Notes from '../components/notes';
+
+export const getNotesForSlide = slide => {
+  let notes = '';
+  Children.map(slide.props.children, child => {
+    const isChildNode = child.type === Notes;
+    if (isChildNode) {
+      notes = child.props.children;
+    }
+  });
+
+  return notes;
+};
 
 export const getSlideByIndex = (children, slideReference, index) => {
   children = Children.toArray(children);
