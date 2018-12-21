@@ -229,7 +229,7 @@ export default class Presentation extends React.Component {
           <Heading size={1} fit caps lineHeight={1}>
             Spectacle Boilerplate
           </Heading>
-          <Text margin="10px 0 0" size={1} fit bold>
+          <Text margin="10px 0 0" fit bold>
             open the presentation/index.js file to get started
           </Text>
         </Slide>
@@ -311,7 +311,7 @@ export default class Presentation extends React.Component {
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
             Spectacle Boilerplate
           </Heading>
-          <Text margin="10px 0 0" size={1} fit bold textColor="tertiary">
+          <Text margin="10px 0 0" fit bold textColor="tertiary">
             open the presentation/index.js file to get started
           </Text>
         </Slide>
@@ -384,7 +384,7 @@ export default class Presentation extends React.Component {
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
             Spectacle Boilerplate
           </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
+          <Text margin="10px 0 0" textColor="tertiary" fit bold>
             open the presentation/index.js file to get started
           </Text>
         </Slide>
