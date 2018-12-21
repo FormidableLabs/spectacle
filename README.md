@@ -136,26 +136,26 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
 
     ```html
     <script type="text/spectacle">
-        () => {
-          const { themes: { defaultTheme } } = Spectacle;
-          const theme = defaultTheme({
-            // Change default settings
-            primary: "blue",
-            secondary: "red"
-          },
-          {
-            primary: "Helvetica",
-          });
+      () => {
+        const { themes: { defaultTheme } } = Spectacle;
+        const theme = defaultTheme({
+          // Change default settings
+          primary: "blue",
+          secondary: "red"
+        },
+        {
+          primary: "Helvetica",
+        });
 
-          return (
-            <Deck transition={['zoom']} theme={theme}>
-              <Slide>some stuff</Slide>
-              <Slide>other stuff</Slide>
-              <Slide>some more stuff</Slide>
-            </Deck>
-          );
-        }
-      </script>
+        return (
+          <Deck transition={['zoom']} theme={theme}>
+            <Slide>some stuff</Slide>
+            <Slide>other stuff</Slide>
+            <Slide>some more stuff</Slide>
+          </Deck>
+        );
+      }
+    </script>
     ```
 
 ... with those guidelines in mind, here's the boilerplate that you can copy-and-paste into an HTML file and start a Spectacle presentation that works from the get go!
@@ -163,15 +163,30 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width initial-scale=1 user-scalable=no"
+    />
     <title>Spectacle</title>
-    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
-    <link href="https://unpkg.com/normalize.css@7/normalize.css" rel="stylesheet" type="text/css">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://unpkg.com/normalize.css@7/normalize.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
     <div id="root"></div>
     <script src="https://unpkg.com/prop-types@15/prop-types.js"></script>
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
@@ -190,7 +205,7 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
         );
       }
     </script>
-</body>
+  </body>
 </html>
 ```
 

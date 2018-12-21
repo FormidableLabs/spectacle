@@ -69,7 +69,7 @@ export default class Text extends Component {
       const text = this.textRef;
       const container = this.containerRef;
       text.style.display = 'inline-block';
-      const scale = container.offsetWidth / text.offsetWidth;
+      const scale = container.offsetWidth / text.offsetWidth || 0;
       const height = text.offsetHeight * scale || 0;
       text.style.display = 'block';
       this.setState({

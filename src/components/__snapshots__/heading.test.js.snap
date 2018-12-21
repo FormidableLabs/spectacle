@@ -52,7 +52,7 @@ exports[`<Heading /> should render the fit configuration correctly. 1`] = `
       <Styled(h1)
         innerRef={[Function]}
         lineHeight={1}
-        scale={NaN}
+        scale={0}
         styles={
           Object {
             "typeface": Object {},
@@ -61,8 +61,8 @@ exports[`<Heading /> should render the fit configuration correctly. 1`] = `
         }
       >
         <h1
-          className="css-piqx9m e134u50i2"
-          scale={NaN}
+          className="css-7u3ttm e134u50i2"
+          scale={0}
         >
           This Header Fits!
         </h1>

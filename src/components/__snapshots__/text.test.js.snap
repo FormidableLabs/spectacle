@@ -25,7 +25,7 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
       <Styled(span)
         innerRef={[Function]}
         lineHeight={1}
-        scale={NaN}
+        scale={0}
         styles={
           Object {
             "typeface": Object {},
@@ -34,8 +34,8 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
         }
       >
         <span
-          className="css-piqx9m e1kfncg51"
-          scale={NaN}
+          className="css-7u3ttm e1kfncg51"
+          scale={0}
         >
           Spectacle Full Size!
         </span>
