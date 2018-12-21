@@ -6,20 +6,23 @@ class Context extends Component {
   static propTypes = {
     children: PropTypes.node,
     history: PropTypes.object,
+    onStateChange: PropTypes.func,
     store: PropTypes.object,
     styles: PropTypes.object
   };
   static childContextTypes = {
-    styles: PropTypes.object,
     history: PropTypes.object,
+    onStateChange: PropTypes.func,
+    styles: PropTypes.object,
     store: PropTypes.object
   };
   getChildContext() {
-    const { history, styles, store } = this.props;
+    const { history, onStateChange, styles, store } = this.props;
     return {
       history,
-      styles,
-      store
+      onStateChange,
+      store,
+      styles
     };
   }
   render() {
