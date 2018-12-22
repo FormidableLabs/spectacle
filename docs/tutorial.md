@@ -31,7 +31,9 @@ Once you've completed these steps, you can run the webpack sever with the comman
 
 ## 2. Add Spectacle
 
-Add Spectacle to your project with the command `yarn add spectacle`, then import it into your React project. Almost all Spectacle presentations are comprised of a couple of basic components: One `Deck` and typically multiple `Slide`s. For now, let's import these two basic components to get our deck started.
+If you chose to use the [spectacle-boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate) to get started, Spectacle is already in your dependencies and there is no reason to add the library a second time - you can go ahead and skip to the next paragraph. If you chose _not_ to use the boilerplate to get setup, you will need to run `yarn add spectacle`.
+
+Almost all Spectacle presentations are comprised of a couple of basic components: One `Deck` and typically multiple `Slide`s. For now, let's import these two basic components to get our deck started.
 
 The imports at the top of your main JavaScript file should look like this:
 
