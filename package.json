@@ -29,7 +29,7 @@
     "prettier-check": "npm run prettier -- --list-different",
     "deploy": "npm run build:dist && surge -p .",
     "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
-    "test": "jest",
+    "test": "jest --verbose",
     "test-debug": "node --inspect-brk node_modules/jest/bin/jest.js --runInBand",
     "check": "npm run lint && npm run test",
     "check-ci": "npm run check && npm run prettier-check"
