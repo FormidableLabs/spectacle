@@ -13,7 +13,9 @@ Have a question about Spectacle? Submit an issue in this repository using the "Q
 <!-- MarkdownTOC depth=4 autolink=true bracket=round autoanchor=true -->
 
 - [Getting Started](#getting-started)
-- [One Page](#one-page)
+  - [Classic Spectacle](#classic-spectacle)
+  - [Spectacle MDX](#spectacle-mdx)
+  - [One Page](#one-page)
 - [Development](#development)
 - [Build & Deployment](#build--deployment)
 - [Presenting](#presenting)
@@ -64,19 +66,23 @@ Have a question about Spectacle? Submit an issue in this repository using the "Q
 
 ## Getting Started
 
-First, decide whether you want to use classic Spectacle, or MDX Spectacle, which has all the same functionality but allows you to write your Spectacle presentation in markdown.
+First, decide whether you want to use [classic Spectacle](#classic-spectacle), [Spectacle MDX](#spectacle-mdx), which has all the same functionality but allows you to write your Spectacle presentation in markdown, or using only [one HTML page](#one-page).
 
 ### Classic Spectacle
 
-There are three ways to get started on your presentation. The first way is to run the following command in your terminal:
+There are four ways to get started building your presentation.
 
-`npx create-react-app my-presentation --scripts-version spectacle-scripts`
+1. **Option #1:** Run the following command in your terminal:
 
-The second way to get started is by using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
+   `npx create-react-app my-presentation --scripts-version spectacle-scripts`
 
-Both of these ways will give you everything you'll need to get started, including a sample presentation in the `presentation` folder. You can change the props and tags as needed for your presentation or delete everything in `presentation/index.js` to start from scratch. From here you can go to [Development](#development) to get started.
+2. **Option #2:** Using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
-The third way to get started is by running `npm install spectacle` in your terminal and writing your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
+3. **Option #3:** Following along the [Spectacle Tutorial](./docs/tutorial.md), which also involves downloading the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
+
+All three of the above ways will give you everything you'll need to get started, including a sample presentation in the `presentation` folder. You can change the props and tags as needed for your presentation or delete everything in `presentation/index.js` to start from scratch. From here you can go to [Development](#development) to get started.
+
+3. **Option #4:** Run `npm install spectacle` in your terminal and writing your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
 ### Spectacle MDX
 
@@ -88,13 +94,14 @@ _NOTE: We have webpack externals for `react`, `react-dom`, and `prop-types`, so 
 
 <a name="one-page"></a>
 
-## One Page
+### One Page
 
 To aid with speedy development we've provided a simple boilerplate HTML page with a bespoke script tag that contains your entire presentation. The rest of the setup will take care of transpiling your React/ESnext code, providing Spectacle, React, and ReactDOM libraries, and being raring to go with a minimum of effort.
 
 We can start with this project's sample at [`one-page.html`](./one-page.html). It's the same presentation as the fully-built-from-source version, with a few notable exceptions:
 
 1.  There are no `import`s or `require`s. Everything must come from the global namespace. This includes `Spectacle`, `React`, `ReactDOM` and all the Spectacle exports from [`./src/index.js`](./src/index.js) -- `Deck`, `Slide`, `themes`, etc.
+
 2.  The presentation must include exactly **one** script tag with the type `text/spectacle` that is a function. Presently, that function is directly inserted inline into a wrapper code boilerplate as a React Component `render` function. The wrapper is transpiled. There should not be any extraneous content around it like outer variables or comments.
 
     **Good** examples:
