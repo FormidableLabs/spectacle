@@ -724,6 +724,8 @@ export class Manager extends Component {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 
+    if (!slide) return null;
+
     const targetProps = {
       dispatch: this.props.dispatch,
       fragments: this.props.fragment,
@@ -751,7 +753,7 @@ export class Manager extends Component {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 
-    if (slide.props.progressColor) {
+    if (slide && slide.props.progressColor) {
       return slide.props.progressColor;
     }
     return null;
@@ -760,7 +762,7 @@ export class Manager extends Component {
     const slideIndex = this._getSlideIndex();
     const slide = this._getSlideByIndex(slideIndex);
 
-    if (slide.props.controlColor) {
+    if (slide && slide.props.controlColor) {
       return slide.props.controlColor;
     }
     return null;
