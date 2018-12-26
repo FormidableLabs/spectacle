@@ -13,6 +13,7 @@ export default class Controller extends Component {
   static propTypes = {
     children: PropTypes.node,
     history: PropTypes.object,
+    onStateChange: PropTypes.func.isRequired,
     store: PropTypes.object,
     theme: PropTypes.object
   };
@@ -69,8 +70,9 @@ export default class Controller extends Component {
 
     return (
       <Context
-        store={this.props.store}
         history={this.history}
+        onStateChange={this.props.onStateChange}
+        store={this.props.store}
         styles={this.state.print ? styles.print : styles.screen}
       >
         {this.props.children}

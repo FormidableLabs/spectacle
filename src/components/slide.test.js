@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import Slide from './slide';
 import Appear from './appear';
+import Text from './text';
 
 const _mockContext = function() {
   return {
@@ -19,7 +20,8 @@ const _mockContext = function() {
       getState: () => ({ route: { params: '', slide: 0 } }),
       subscribe: () => {},
       dispatch: () => {}
-    }
+    },
+    onStateChange: () => {}
   };
 };
 
@@ -172,5 +174,19 @@ describe('<Slide />', () => {
         }
       ]
     ]);
+  });
+
+  test.only('should call `onStateChange` on mount', () => {
+    const onStateChangeSpy = jest.fn();
+    const context = { ..._mockContext(), onStateChange: onStateChangeSpy };
+    mount(
+      <Slide state="slide-1">
+        <Text>Test slide</Text>
+      </Slide>,
+      { context }
+    );
+
+    expect(onStateChangeSpy).toHaveBeenCalledTimes(1);
+    expect(onStateChangeSpy).lastCalledWith('slide-1');
   });
 });

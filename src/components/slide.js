@@ -62,6 +62,8 @@ class Slide extends React.PureComponent {
         });
     }
 
+    this.context.onStateChange(this.props.state);
+
     if (isFunction(this.props.onActive)) {
       this.props.onActive(this.props.slideIndex);
     }
@@ -155,6 +157,7 @@ Slide.propTypes = {
   print: PropTypes.bool,
   slideIndex: PropTypes.number,
   slideReference: PropTypes.array,
+  state: PropTypes.string,
   style: PropTypes.object,
   transition: PropTypes.array,
   transitionDuration: PropTypes.number,
@@ -164,13 +167,14 @@ Slide.propTypes = {
 };
 
 Slide.contextTypes = {
-  styles: PropTypes.object,
-  contentWidth: PropTypes.number,
   contentHeight: PropTypes.number,
+  contentWidth: PropTypes.number,
   export: PropTypes.bool,
-  print: PropTypes.object,
+  onStateChange: PropTypes.func.isRequired,
   overview: PropTypes.bool,
-  store: PropTypes.object
+  print: PropTypes.object,
+  store: PropTypes.object,
+  styles: PropTypes.object
 };
 
 Slide.childContextTypes = {
