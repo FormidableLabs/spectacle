@@ -32,13 +32,15 @@ export default class Deck extends Component {
     history: PropTypes.object,
     onStateChange: PropTypes.func,
     progress: PropTypes.oneOf(['pacman', 'bar', 'number', 'none']),
+    showFullscreenControl: PropTypes.bool,
     theme: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number
   };
 
   static defaultProps = {
-    onStateChange: defaultOnStateChange
+    onStateChange: defaultOnStateChange,
+    showFullscreenControl: true
   };
 
   state = {

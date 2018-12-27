@@ -80,6 +80,16 @@ describe('<Manager />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  test('should render fullscreen button dependant on prop', () => {
+    const wrapper = mount(
+      <Manager showFullscreenControl>
+        <MockSlide />
+      </Manager>,
+      { context: _mockContext(0, []), childContextTypes: _mockChildContext() }
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
   test('should render the export configuration when specified.', () => {
     const wrapper = mount(
       <Manager>

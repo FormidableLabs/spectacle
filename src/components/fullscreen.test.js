@@ -11,14 +11,14 @@ describe('<Fullscreen />', () => {
 
   test('should toggle fullscreen when the button is selected.', () => {
     const context = { styles: { styles: { fullscreen: {} } } };
-    const wrapper = mount(<Fullscreen />, { context });
-    const stub = jest.fn();
-    wrapper.instance().toggleFullscreen = stub;
-    wrapper.update();
+    const onClickStub = jest.fn();
+    const wrapper = mount(<Fullscreen onClick={onClickStub} />, { context });
+
     wrapper
-      .children()
+      .find('button')
       .first()
       .simulate('click');
-    expect(stub).toHaveBeenCalledTimes(1);
+
+    expect(onClickStub).toHaveBeenCalledTimes(1);
   });
 });

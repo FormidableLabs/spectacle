@@ -333,40 +333,312 @@ exports[`<Manager /> should render correctly. 1`] = `
             </div>
           </Styled(div)>
         </Progress>
-        <Fullscreen>
+        <style
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "body { } .spectacle-presenter-next .fragment { display: none !important} ",
+            }
+          }
+        />
+      </div>
+    </Styled(div)>
+  </Manager>
+</Connect(Manager)>
+`;
+
+exports[`<Manager /> should render fullscreen button dependant on prop 1`] = `
+<Connect(Manager)
+  showFullscreenControl={true}
+>
+  <Manager
+    autoplay={false}
+    autoplayDuration={7000}
+    autoplayLoop={true}
+    contentHeight={700}
+    contentWidth={1000}
+    controls={true}
+    disableKeyboardControls={false}
+    dispatch={[Function]}
+    fragment={
+      Object {
+        "fragments": Array [],
+      }
+    }
+    globalStyles={true}
+    progress="pacman"
+    route={
+      Object {
+        "params": Array [],
+        "slide": 0,
+      }
+    }
+    showFullscreenControl={true}
+    style={
+      Object {
+        "globalStyleSet": Array [],
+      }
+    }
+    transition={Array []}
+    transitionDuration={500}
+  >
+    <Styled(div)
+      className="spectacle-deck"
+      onClick={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      route={
+        Object {
+          "params": Array [],
+          "slide": 0,
+        }
+      }
+    >
+      <div
+        className="spectacle-deck css-1w702dy eaa55an0"
+        onClick={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+      >
+        <Controls
+          controlColor={null}
+          currentSlideIndex={0}
+          onNext={[Function]}
+          onPrev={[Function]}
+          totalSlides={1}
+        >
+          <div>
+            <undefined />
+            <undefined />
+          </div>
+        </Controls>
+        <Styled(TransitionGroup)
+          component="div"
+        >
+          <TransitionGroup
+            childFactory={[Function]}
+            className="css-r8ywg3 eaa55an1"
+            component="div"
+          >
+            <div
+              className="css-r8ywg3 eaa55an1"
+            >
+              <SlideWrapper
+                align="center center"
+                dispatch={[Function]}
+                export={false}
+                fragments={
+                  Object {
+                    "fragments": Array [],
+                  }
+                }
+                hash={0}
+                key=".$0"
+                lastSlideIndex={0}
+                presenterStyle={Object {}}
+                print={false}
+                slideIndex={0}
+                slideReference={
+                  Array [
+                    Object {
+                      "id": 0,
+                      "rootIndex": 0,
+                    },
+                  ]
+                }
+                style={Object {}}
+                transition={Array []}
+                transitionDuration={500}
+                viewerScaleMode={false}
+              >
+                <VictoryAnimation
+                  data={
+                    Object {
+                      "transform": " translate3d(0px, 0px, 0px)",
+                      "zIndex": 1,
+                    }
+                  }
+                  delay={0}
+                  duration={500}
+                  easing="quadInOut"
+                >
+                  <div
+                    style={
+                      Object {
+                        "backgroundColor": "",
+                        "display": "flex",
+                        "height": "100%",
+                        "left": 0,
+                        "overflow": "hidden",
+                        "position": "absolute",
+                        "top": 0,
+                        "transform": " translate3d(0px, 0px, 0px)",
+                        "transformOrigin": "center center",
+                        "width": "100%",
+                        "zIndex": 1,
+                      }
+                    }
+                  >
+                    <MockSlide
+                      dispatch={[Function]}
+                      export={false}
+                      fragments={
+                        Object {
+                          "fragments": Array [],
+                        }
+                      }
+                      hash={0}
+                      key=".0"
+                      lastSlideIndex={0}
+                      print={false}
+                      slideIndex={0}
+                      slideReference={
+                        Array [
+                          Object {
+                            "id": 0,
+                            "rootIndex": 0,
+                          },
+                        ]
+                      }
+                      transition={Array []}
+                      transitionDuration={500}
+                    >
+                      <div>
+                        Slide Content
+                      </div>
+                    </MockSlide>
+                  </div>
+                </VictoryAnimation>
+              </SlideWrapper>
+            </div>
+          </TransitionGroup>
+        </Styled(TransitionGroup)>
+        <Progress
+          currentSlideIndex={0}
+          items={
+            Array [
+              Object {
+                "id": 0,
+                "rootIndex": 0,
+              },
+            ]
+          }
+          progressColor={null}
+          type="pacman"
+        >
+          <Styled(div)
+            styles={
+              Array [
+                undefined,
+                null,
+              ]
+            }
+          >
+            <div
+              className="css-0 e12weced4"
+            >
+              <div>
+                <Styled(div)
+                  position={
+                    Object {
+                      "left": "-5px",
+                      "top": "-20px",
+                    }
+                  }
+                  styles={undefined}
+                >
+                  <div
+                    className="css-p4obic e12weced0"
+                  >
+                    <Styled(div)
+                      styles={
+                        Array [
+                          undefined,
+                          Object {
+                            "animation": "animation-vwhb3c 0.12s linear 10 alternate both",
+                          },
+                          null,
+                        ]
+                      }
+                    >
+                      <div
+                        className="css-1la23zo e12weced1"
+                      />
+                    </Styled(div)>
+                    <Styled(div)
+                      styles={
+                        Array [
+                          undefined,
+                          Object {
+                            "animation": "animation-1p18wsg 0.12s linear 10 alternate both",
+                          },
+                          null,
+                        ]
+                      }
+                    >
+                      <div
+                        className="css-1yi33k2 e12weced1"
+                      />
+                    </Styled(div)>
+                  </div>
+                </Styled(div)>
+                <Styled(div)
+                  key="presentation-progress-0"
+                  position={
+                    Object {
+                      "left": "-5px",
+                      "opacity": 0,
+                      "top": "-20px",
+                    }
+                  }
+                  styles={
+                    Array [
+                      undefined,
+                      null,
+                    ]
+                  }
+                >
+                  <div
+                    className="css-ci3gz3 e12weced2"
+                  />
+                </Styled(div)>
+              </div>
+            </div>
+          </Styled(div)>
+        </Progress>
+        <Fullscreen
+          onClick={[Function]}
+        >
           <Styled(FullscreenButton)
+            isFullscreen={false}
             onClick={[Function]}
             styles={undefined}
-            viewBox="0 0 512 512"
           >
             <FullscreenButton
-              className="css-12n5ud e4v3eea0"
+              className="css-12w3q3u e4v3eea0"
+              isFullscreen={false}
               onClick={[Function]}
               styles={undefined}
-              viewBox="0 0 512 512"
             >
               <Styled(button)
                 aria-label="Toggle full screen"
-                className="css-12n5ud e4v3eea0"
+                className="css-12w3q3u e4v3eea0"
                 onClick={[Function]}
                 styles={undefined}
-                viewBox="0 0 512 512"
               >
                 <button
                   aria-label="Toggle full screen"
-                  className="e4v3eea0 css-1hv29sw ev51h780"
+                  className="e4v3eea0 css-11lfetj ev51h780"
                   onClick={[Function]}
-                  viewBox="0 0 512 512"
                 >
                   <svg
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 512 512"
                   >
                     <path
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    />
-                    <path
-                      d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+                      d="M396.795 396.8H320V448h128V320h-51.205zM396.8 115.205V192H448V64H320v51.205zM115.205 115.2H192V64H64v128h51.205zM115.2 396.795V320H64v128h128v-51.205z"
                       fill="currentColor"
                     />
                   </svg>
@@ -669,48 +941,6 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
             </div>
           </Styled(div)>
         </Overview>
-        <Fullscreen>
-          <Styled(FullscreenButton)
-            onClick={[Function]}
-            styles={undefined}
-            viewBox="0 0 512 512"
-          >
-            <FullscreenButton
-              className="css-12n5ud e4v3eea0"
-              onClick={[Function]}
-              styles={undefined}
-              viewBox="0 0 512 512"
-            >
-              <Styled(button)
-                aria-label="Toggle full screen"
-                className="css-12n5ud e4v3eea0"
-                onClick={[Function]}
-                styles={undefined}
-                viewBox="0 0 512 512"
-              >
-                <button
-                  aria-label="Toggle full screen"
-                  className="e4v3eea0 css-1hv29sw ev51h780"
-                  onClick={[Function]}
-                  viewBox="0 0 512 512"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    />
-                    <path
-                      d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </button>
-              </Styled(button)>
-            </FullscreenButton>
-          </Styled(FullscreenButton)>
-        </Fullscreen>
         <style
           dangerouslySetInnerHTML={
             Object {
@@ -1093,48 +1323,6 @@ exports[`<Manager /> should render with slideset slides 1`] = `
             </div>
           </Styled(div)>
         </Progress>
-        <Fullscreen>
-          <Styled(FullscreenButton)
-            onClick={[Function]}
-            styles={undefined}
-            viewBox="0 0 512 512"
-          >
-            <FullscreenButton
-              className="css-12n5ud e4v3eea0"
-              onClick={[Function]}
-              styles={undefined}
-              viewBox="0 0 512 512"
-            >
-              <Styled(button)
-                aria-label="Toggle full screen"
-                className="css-12n5ud e4v3eea0"
-                onClick={[Function]}
-                styles={undefined}
-                viewBox="0 0 512 512"
-              >
-                <button
-                  aria-label="Toggle full screen"
-                  className="e4v3eea0 css-1hv29sw ev51h780"
-                  onClick={[Function]}
-                  viewBox="0 0 512 512"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    />
-                    <path
-                      d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </button>
-              </Styled(button)>
-            </FullscreenButton>
-          </Styled(FullscreenButton)>
-        </Fullscreen>
         <style
           dangerouslySetInnerHTML={
             Object {
