@@ -33,4 +33,4 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] I have made corresponding changes to the documentation
 - [ ] My changes generate no new warnings
 - [ ] Any dependent changes have been merged and published in downstream modules
-- [ ] I have updated type definitions in [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/spectacle/index.d.ts) for any breaking API changes
+- [ ] I have updated type definitions in `index.d.ts` for any breaking API changes
