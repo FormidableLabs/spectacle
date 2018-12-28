@@ -29,8 +29,8 @@ class Appear extends Component {
 
 Appear.defaultProps = {
   transitionDuration: 300,
-  startValue: { opacity: 0 },
-  endValue: { opacity: 1 },
+  startValue: { opacity: 0, pointerEvents: 'none' },
+  endValue: { opacity: 1, pointerEvents: 'auto' },
   easing: 'quadInOut'
 };
 
