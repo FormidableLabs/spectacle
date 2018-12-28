@@ -4,41 +4,36 @@ import styled from 'react-emotion';
 
 import FullscreenButton from './fullscreen-button';
 
-import {
-  requestFullscreen,
-  exitFullscreen,
-  getFullscreenElement
-} from '../utils/fullscreen';
+import { toggleFullscreen, isFullscreen } from '../utils/fullscreen';
 
 const StyledFullscreen = styled(FullscreenButton)`
   position: absolute;
   bottom: 10px;
   right: 20px;
-  opacity: 0;
-  transition: 300ms opacity ease;
+  width: 45px;
+  height: 45px;
   font-size: 30px;
   color: #fff;
+  transition: 300ms transform ease;
+  transform: scale(1);
 
-  &:hover {
-    opacity: 1;
+  &:hover,
+  &:focus {
+    transform: ${props => (props.isFullscreen ? 'scale(0.75)' : 'scale(1.25)')};
+  }
+
+  &:active {
+    transform: ${props => (props.isFullscreen ? 'scale(0.90)' : 'scale(1.10)')};
   }
 `;
 
 export class Fullscreen extends Component {
-  toggleFullscreen() {
-    if (!getFullscreenElement()) {
-      requestFullscreen(document.documentElement);
-    } else {
-      exitFullscreen();
-    }
-  }
-
   render() {
     return (
       <StyledFullscreen
-        onClick={() => this.toggleFullscreen()}
+        isFullscreen={isFullscreen()}
+        onClick={this.props.onClick}
         styles={this.context.styles.fullscreen}
-        viewBox="0 0 512 512"
       />
     );
   }
@@ -46,6 +41,15 @@ export class Fullscreen extends Component {
 
 Fullscreen.contextTypes = {
   styles: PropTypes.object
+};
+
+Fullscreen.propTypes = {
+  controlColor: PropTypes.string,
+  onClick: PropTypes.func
+};
+
+Fullscreen.defaultProps = {
+  onClick: toggleFullscreen
 };
 
 export default Fullscreen;

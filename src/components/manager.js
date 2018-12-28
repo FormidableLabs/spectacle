@@ -26,6 +26,7 @@ import AutoplayControls from './autoplay-controls';
 import Fullscreen from './fullscreen';
 import Progress from './progress';
 import Controls from './controls';
+import { toggleFullscreen } from '../utils/fullscreen';
 
 let convertStyle = styles => {
   return Object.keys(styles)
@@ -112,6 +113,7 @@ export class Manager extends Component {
     globalStyles: PropTypes.bool,
     progress: PropTypes.oneOf(['pacman', 'bar', 'number', 'none']),
     route: PropTypes.object,
+    showFullscreenControl: PropTypes.bool,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number
   };
@@ -252,53 +254,57 @@ export class Manager extends Component {
     const event = window.event ? window.event : e;
 
     if (
-      event.keyCode === 37 ||
-      event.keyCode === 33 ||
-      (event.keyCode === 32 && event.shiftKey)
+      event.keyCode === 37 || // 'ArrowLeft'|
+      event.keyCode === 33 || // 'PageUp'
+      (event.keyCode === 32 && // 'Space'
+        event.shiftKey)
     ) {
       this._prevSlide();
       this._stopAutoplay();
     } else if (
-      event.keyCode === 39 ||
-      event.keyCode === 34 ||
-      (event.keyCode === 32 && !event.shiftKey)
+      event.keyCode === 39 || // 'ArrowRight'
+      event.keyCode === 34 || // 'PageDown'
+      (event.keyCode === 32 && // 'Space'
+        !event.shiftKey)
     ) {
       this._nextSlide();
       this._stopAutoplay();
     } else if (
       event.altKey &&
-      event.keyCode === 79 &&
+      event.keyCode === 79 && // 'o'
       !event.ctrlKey &&
       !event.metaKey
     ) {
-      // o
       this._toggleOverviewMode();
     } else if (
       event.altKey &&
-      event.keyCode === 80 &&
+      event.keyCode === 80 && // 'p'
       !event.ctrlKey &&
       !event.metaKey
     ) {
-      // p
       this._togglePresenterMode();
     } else if (
       event.altKey &&
-      event.keyCode === 84 &&
+      event.keyCode === 84 && // 't'
       !event.ctrlKey &&
       !event.metaKey
     ) {
-      // t
       this._toggleTimerMode();
     } else if (
       event.altKey &&
-      event.keyCode === 65 &&
+      event.keyCode === 65 && // 'a'
+      !event.ctrlKey &&
+      !event.metaKey &&
+      this.props.autoplay
+    ) {
+      this._startAutoplay();
+    } else if (
+      event.altKey &&
+      event.keyCode === 70 && // 'f'
       !event.ctrlKey &&
       !event.metaKey
     ) {
-      // a
-      if (this.props.autoplay) {
-        this._startAutoplay();
-      }
+      toggleFullscreen();
     }
   }
   _handleKeyPress(e) {
@@ -883,7 +889,8 @@ export class Manager extends Component {
           ''
         )}
 
-        {this.props.route.params.indexOf('export') === -1 ? <Fullscreen /> : ''}
+        {this.props.showFullscreenControl &&
+          !this.props.route.params.includes('export') && <Fullscreen />}
 
         {this.props.autoplay ? (
           <AutoplayControls

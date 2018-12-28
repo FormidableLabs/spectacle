@@ -279,12 +279,13 @@ You can toggle the presenter or overview mode by pressing respectively `alt+p` a
 | Alt/Option + P  | Toggle Presenter Mode          |
 | Alt/Option + T  | Toggle Timer in Presenter Mode |
 | Alt/Option + A  | Start autoplay (if enabled)    |
+| Alt/Option + F  | Toggle Fullscreen Mode         |
 
 <a name="fullscreen"></a>
 
 ## Fullscreen
 
-Fullscreen can be toggled via browser options, or by hovering over the bottom right corner of your window until the fullscreen icon appears and clicking it.
+Fullscreen can be toggled via browser options, <kbd>Alt/Option</kbd> + <kbd>F</kbd>, or by pressing the button in the bottom right corner of your window.
 
 <a name="pdf-export"></a>
 
@@ -484,6 +485,7 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 | onStateChange           | PropTypes.func    | Called whenever a new slide becomes visible with the arguments `(previousState, nextState)` where state refers to the outgoing and incoming `<Slide />`'s `state` props, respectively. The default implementation attaches the current state as a class to the document root. | see description |
 | history                 | PropTypes.object  | Accepts custom configuration for [history](https://github.com/ReactTraining/history).                                                                                                                                                                                         |                 |
 | progress                | PropTypes.string  | Accepts `pacman`, `bar`, `number` or `none`. To override the color, change the 'quaternary' color in the theme.                                                                                                                                                               | `pacman`        |
+| showFullscreenControl   | PropTypes.bool    | Show the fullscreen control button in bottom right of the screen.                                                                                                                                                                                                             | `true`          |
 | theme                   | PropTypes.object  | Accepts a theme object for styling your presentation.                                                                                                                                                                                                                         |                 |
 | transition              | PropTypes.array   | Accepts `slide`, `zoom`, `fade` or `spin`, and can be combined. Sets global slide transitions. **Note: If you use the 'scale' transition, fitted text won't work in Safari.**                                                                                                 |                 |
 | transitionDuration      | PropTypes.number  | Accepts integer value in milliseconds for global transition duration.                                                                                                                                                                                                         | `500`           |

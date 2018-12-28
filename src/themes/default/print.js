@@ -46,7 +46,7 @@ const print = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       }
     },
     fullscreen: {
-      fill: colors.tertiary
+      fill: colors.quaternary
     },
     controls: {
       prev: {

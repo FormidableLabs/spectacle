@@ -9,6 +9,7 @@ import FullscreenButton from './fullscreen-button';
 import {
   requestFullscreen,
   exitFullscreen,
+  isFullscreen,
   getFullscreenElement
 } from '../utils/fullscreen';
 
@@ -193,7 +194,7 @@ class ComponentPlayground extends Component {
     evt.stopPropagation();
 
     // Esc: When entering the editor or an input element the default esc-to-exit might not work anymore
-    if (evt.keyCode === 27 && getFullscreenElement()) {
+    if (evt.keyCode === 27 && isFullscreen()) {
       exitFullscreen();
     }
   }
@@ -246,7 +247,10 @@ class ComponentPlayground extends Component {
           <Title>Live Preview</Title>
           <Title useDarkTheme={useDarkTheme}>
             Source Code
-            <FullscreenButton onClick={this.requestFullscreen} />
+            <FullscreenButton
+              onClick={this.requestFullscreen}
+              isFullscreen={getFullscreenElement() === this.node}
+            />
           </Title>
         </PlaygroundRow>
 
