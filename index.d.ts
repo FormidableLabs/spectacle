@@ -160,6 +160,7 @@ declare module 'spectacle' {
     controls?: boolean;
     globalStyles?: boolean;
     history?: any; // Needs a type, see https://github.com/ReactTraining/history
+    showFullscreenControl?: boolean;
     onStateChange?: (previousState?: string, nextState?: string) => void;
     progress?: progressType;
     theme?: Theme;
