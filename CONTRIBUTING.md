@@ -40,7 +40,7 @@ Thanks for taking the time to help us make Spectacle even better! Before you go 
 
 - Run the tests using `yarn run test`.
 - Run lint and flow using `yarn run lint`
-- Open a PR in [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/spectacle/index.d.ts) for anything that modifies the Spectacle API, like breaking changes or new features.
+- Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API, like breaking changes or new features.
 - Everything else included in our [pull request checklist](https://github.com/FormidableLabs/spectacle/blob/master/.github/PULL_REQUEST_TEMPLATE.md#checklist-feel-free-to-delete-this-section-upon-completion)
 
 ## Releasing a new version to NPM (only for project administrators)

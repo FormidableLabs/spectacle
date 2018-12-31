@@ -453,11 +453,9 @@ const CustomHeading = styled(Heading)`
 
 **_Can I write my presentation in TypeScript?_**
 
-Yes, you can! Updated type definitions for the Spectacle API can be found within [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/spectacle/index.d.ts). You can bring them into your project using `yarn` or `npm`:
+Yes, you can! Type definitions are shipped with the library, so you can import Spectacle components into any `.tsx` presentation without additional installation steps.
 
-```sh
-npm i --save @types/spectacle
-```
+Updated type definitions for the Spectacle API can be found [at the root of this repository](./index.d.ts).
 
 ## Tag API
 
