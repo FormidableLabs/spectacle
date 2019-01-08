@@ -190,7 +190,9 @@ export class Manager extends Component {
 
   componentDidMount() {
     const slideIndex = this._getSlideIndex();
-    const autoplayOnStart =  this.props.autoplay ? this.props.autoplayOnStart : false;
+    const autoplayOnStart = this.props.autoplay
+      ? this.props.autoplayOnStart
+      : false;
     this.setState({
       lastSlideIndex: slideIndex
     });
@@ -254,9 +256,9 @@ export class Manager extends Component {
   }
   _toggleAutoplaying() {
     if (this.state.autoplaying) {
-      _stopAutoplay();
+      this._stopAutoplay();
     } else {
-      _startAutoplay();
+      this._startAutoplay();
     }
   }
   _handleEvent(e) {
