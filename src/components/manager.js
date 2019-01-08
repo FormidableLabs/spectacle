@@ -249,6 +249,13 @@ export class Manager extends Component {
     this.setState({ autoplaying: false });
     clearInterval(this.autoplayInterval);
   }
+  _toggleAutoplaying() {
+    if (this.state.autoplaying) {
+      _stopAutoplay();
+    } else {
+      _startAutoplay();
+    }
+  }
   _handleEvent(e) {
     // eslint-disable-line complexity
     const event = window.event ? window.event : e;
@@ -297,7 +304,7 @@ export class Manager extends Component {
       !event.metaKey &&
       this.props.autoplay
     ) {
-      this._startAutoplay();
+      this._toggleAutoplaying();
     } else if (
       event.altKey &&
       event.keyCode === 70 && // 'f'

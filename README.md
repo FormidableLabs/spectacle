@@ -278,7 +278,7 @@ You can toggle the presenter or overview mode by pressing respectively `alt+p` a
 | Alt/Option + O  | Toggle Overview Mode           |
 | Alt/Option + P  | Toggle Presenter Mode          |
 | Alt/Option + T  | Toggle Timer in Presenter Mode |
-| Alt/Option + A  | Start autoplay (if enabled)    |
+| Alt/Option + A  | Toggle autoplay (if enabled)    |
 | Alt/Option + F  | Toggle Fullscreen Mode         |
 
 <a name="fullscreen"></a>
