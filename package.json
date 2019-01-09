@@ -57,7 +57,7 @@
     "react-live": "^1.12.0",
     "react-redux": "^6.0.0",
     "react-transition-group": "1.2.1",
-    "react-typography": "^0.16.5",
+    "react-typography": "^0.16.18",
     "redux": "^3.0.4",
     "redux-actions": "^2.0.3",
     "to-style": "^1.3.3",
