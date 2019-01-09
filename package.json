@@ -82,7 +82,7 @@
     "babel-loader": "^8.0.5",
     "babel-plugin-emotion": "^9.0.1",
     "builder": "^4.0.0",
-    "css-loader": "^0.28.11",
+    "css-loader": "^2.1.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
     "enzyme-to-json": "3.1.2",
