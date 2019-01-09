@@ -99,7 +99,7 @@
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
     "prop-types": "^15.6.2",
-    "raw-loader": "^0.5.1",
+    "raw-loader": "^1.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-test-renderer": "^16.0.0",
