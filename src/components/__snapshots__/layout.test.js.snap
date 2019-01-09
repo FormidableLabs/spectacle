@@ -2,9 +2,7 @@
 
 exports[`<Layout /> should render correctly 1`] = `
 <Layout>
-  <Styled(div)
-    styles={undefined}
-  >
+  <Styled(div)>
     <div
       className="css-k008qs e1ju2ybm0"
     >

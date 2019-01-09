@@ -3,7 +3,6 @@
 exports[`<TableHeaderItem /> should render correctly 1`] = `
 <TableHeaderItem>
   <Styled(td)
-    className={undefined}
     styles={
       Array [
         Object {

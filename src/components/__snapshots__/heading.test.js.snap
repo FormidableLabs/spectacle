@@ -6,7 +6,6 @@ exports[`<Heading /> should render correctly. 1`] = `
   size={2}
 >
   <Styled(h2)
-    className={undefined}
     lineHeight={1}
     styles={
       Object {
@@ -35,7 +34,6 @@ exports[`<Heading /> should render the fit configuration correctly. 1`] = `
   size={1}
 >
   <Styled(div)
-    className={undefined}
     height={0}
     innerRef={[Function]}
     styles={

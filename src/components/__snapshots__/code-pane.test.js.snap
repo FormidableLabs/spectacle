@@ -105,13 +105,7 @@ exports[`<CodePane /> should render correctly. 1`] = `
     ",
                 }
               }
-              onClick={undefined}
-              onCompositionEnd={undefined}
-              onCompositionStart={undefined}
-              onKeyDown={undefined}
-              onKeyUp={undefined}
               spellCheck="false"
-              style={undefined}
             />
           </Editor>
         </Component>

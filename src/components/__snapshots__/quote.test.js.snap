@@ -3,7 +3,6 @@
 exports[`<Quote /> should render correctly 1`] = `
 <Quote>
   <Styled(span)
-    className={undefined}
     styles={
       Array [
         Object {

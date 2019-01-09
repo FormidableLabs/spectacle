@@ -55,9 +55,7 @@ exports[`<Presenter /> should render correctly 1`] = `
               3
             </h2>
           </Styled(h2)>
-          <Time
-            timer={undefined}
-          >
+          <Time>
             <Styled(div)>
               <div
                 className="css-1is0qkf e1fb0qei1"
@@ -95,7 +93,6 @@ exports[`<Presenter /> should render correctly 1`] = `
                     export={false}
                     hash={1}
                     key="1"
-                    lastSlideIndex={undefined}
                     presenter={true}
                     presenterStyle={
                       Object {
@@ -125,7 +122,6 @@ exports[`<Presenter /> should render correctly 1`] = `
                     export={false}
                     hash={2}
                     key="2"
-                    lastSlideIndex={undefined}
                     presenter={true}
                     presenterStyle={
                       Object {
@@ -150,9 +146,7 @@ exports[`<Presenter /> should render correctly 1`] = `
           <Styled(div)>
             <div
               className="css-1c94gjj e1w6ljo77"
-            >
-              <Component />
-            </div>
+            />
           </Styled(div)>
         </div>
       </Styled(div)>
@@ -279,7 +273,6 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     export={false}
                     hash={1}
                     key="1"
-                    lastSlideIndex={undefined}
                     notes="These are my slide notes!!"
                     presenter={true}
                     presenterStyle={
@@ -310,7 +303,6 @@ exports[`<Presenter /> should render timer when set in params. 1`] = `
                     export={false}
                     hash={2}
                     key="2"
-                    lastSlideIndex={undefined}
                     presenter={true}
                     presenterStyle={
                       Object {
@@ -409,9 +401,7 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
               3
             </h2>
           </Styled(h2)>
-          <Time
-            timer={undefined}
-          >
+          <Time>
             <Styled(div)>
               <div
                 className="css-1is0qkf e1fb0qei1"
@@ -449,7 +439,6 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     export={false}
                     hash={1}
                     key="1"
-                    lastSlideIndex={undefined}
                     notes="These are my slide notes!!"
                     presenter={true}
                     presenterStyle={
@@ -480,7 +469,6 @@ exports[`<Presenter /> should render with notes when slides have them. 1`] = `
                     export={false}
                     hash={2}
                     key="2"
-                    lastSlideIndex={undefined}
                     presenter={true}
                     presenterStyle={
                       Object {

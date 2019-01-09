@@ -3,7 +3,6 @@
 exports[`<BlockQuote /> should render correctly. 1`] = `
 <BlockQuote>
   <Styled(blockquote)
-    className={undefined}
     styles={
       Array [
         Object {

@@ -5,7 +5,6 @@ exports[`<S /> should bold text when specified 1`] = `
   type="bold"
 >
   <Styled(span)
-    className={undefined}
     styles={
       Object {
         "base": Object {},
@@ -32,7 +31,6 @@ exports[`<S /> should italicize text when specified 1`] = `
   type="italic"
 >
   <Styled(span)
-    className={undefined}
     styles={
       Object {
         "base": Object {},
@@ -59,7 +57,6 @@ exports[`<S /> should underline text when specified 1`] = `
   type="strikethrough"
 >
   <Styled(span)
-    className={undefined}
     styles={
       Object {
         "base": Object {},
@@ -86,7 +83,6 @@ exports[`<S /> should underline text when specified 2`] = `
   type="underline"
 >
   <Styled(span)
-    className={undefined}
     styles={
       Object {
         "base": Object {},

@@ -24,7 +24,6 @@ exports[`<Controls /> should render correctly. 1`] = `
         height="32px"
         key="prevIcon"
         role="presentation"
-        style={undefined}
         viewBox="0 0 512 828.586"
         width="32px"
       >
@@ -49,7 +48,6 @@ exports[`<Controls /> should render correctly. 1`] = `
         height="32px"
         key="nextIcon"
         role="presentation"
-        style={undefined}
         viewBox="0 0 512 828.586"
         width="32px"
       >

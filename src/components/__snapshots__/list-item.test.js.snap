@@ -3,7 +3,6 @@
 exports[`<ListItem /> should render correctly 1`] = `
 <ListItem>
   <Styled(li)
-    className={undefined}
     styles={
       Array [
         Object {
