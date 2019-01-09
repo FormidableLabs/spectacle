@@ -79,7 +79,7 @@
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
-    "babel-loader": "^8.0.0-beta.2",
+    "babel-loader": "^8.0.5",
     "babel-plugin-emotion": "^9.0.1",
     "builder": "^4.0.0",
     "css-loader": "^0.28.11",
