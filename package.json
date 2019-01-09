@@ -55,7 +55,7 @@
     "prismjs": "1.15.0",
     "react-emotion": "^8.0.8",
     "react-live": "^1.12.0",
-    "react-redux": "^6.0.0",
+    "react-redux": "^5.1.1",
     "react-transition-group": "1.2.1",
     "react-typography": "^0.16.18",
     "redux": "^4.0.1",

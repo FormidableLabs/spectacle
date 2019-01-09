@@ -863,16 +863,15 @@ export class Manager extends Component {
         onClick={this.handleClick}
         {...this._getTouchEvents()}
       >
-        {this.props.controls &&
-          showControls && (
-            <Controls
-              currentSlideIndex={this._getSlideIndex()}
-              totalSlides={this.state.slideReference.length}
-              onPrev={this._prevSlide.bind(this)}
-              onNext={this._nextSlide.bind(this)}
-              controlColor={this._getControlStyles()}
-            />
-          )}
+        {this.props.controls && showControls && (
+          <Controls
+            currentSlideIndex={this._getSlideIndex()}
+            totalSlides={this.state.slideReference.length}
+            onPrev={this._prevSlide.bind(this)}
+            onNext={this._nextSlide.bind(this)}
+            controlColor={this._getControlStyles()}
+          />
+        )}
 
         {googleFontsElements}
         {componentToRender}
@@ -920,5 +919,5 @@ export default connect(
   state => state,
   null,
   null,
-  { forwardRef: true }
+  { withRef: true }
 )(Manager);

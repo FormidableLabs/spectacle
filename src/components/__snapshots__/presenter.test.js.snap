@@ -151,7 +151,7 @@ exports[`<Presenter /> should render correctly 1`] = `
             <div
               className="css-1c94gjj e1w6ljo77"
             >
-              <undefined />
+              <Component />
             </div>
           </Styled(div)>
         </div>
