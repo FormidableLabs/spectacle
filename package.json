@@ -59,7 +59,7 @@
     "react-transition-group": "1.2.1",
     "react-typography": "^0.16.18",
     "redux": "^4.0.1",
-    "redux-actions": "^2.0.3",
+    "redux-actions": "^2.6.4",
     "to-style": "^1.3.3",
     "victory-core": "^15.2.0"
   },
