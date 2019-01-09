@@ -50,7 +50,7 @@
     "emotion": "^8.0.8",
     "history": "^4.7.2",
     "lodash": "^4.17.11",
-    "marksy": "^6.0.2",
+    "marksy": "^6.1.0",
     "normalize.css": "^7.0.0",
     "prismjs": "1.6.0",
     "react-emotion": "^8.0.8",
