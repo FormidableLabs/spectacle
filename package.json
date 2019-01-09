@@ -52,7 +52,7 @@
     "lodash": "^4.17.11",
     "marksy": "^6.1.0",
     "normalize.css": "^8.0.1",
-    "prismjs": "1.6.0",
+    "prismjs": "1.15.0",
     "react-emotion": "^8.0.8",
     "react-live": "^1.12.0",
     "react-redux": "^5.0.5",
