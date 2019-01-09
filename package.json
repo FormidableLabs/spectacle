@@ -92,7 +92,7 @@
     "eslint-plugin-filenames": "^1.2.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-react": "^7.7.0",
-    "file-loader": "^1.1.11",
+    "file-loader": "^3.0.1",
     "husky": "^1.0.0-rc.1",
     "jest": "^22.4.2",
     "jest-serializer-enzyme": "^1.0.0",
