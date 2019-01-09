@@ -48,7 +48,7 @@
     "csstype": "^2.6.0",
     "deep-object-diff": "^1.1.0",
     "emotion": "^8.0.8",
-    "history": "^4.6.1",
+    "history": "^4.7.2",
     "lodash": "^4.17.4",
     "marksy": "^6.0.2",
     "normalize.css": "^7.0.0",
