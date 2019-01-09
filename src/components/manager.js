@@ -920,5 +920,5 @@ export default connect(
   state => state,
   null,
   null,
-  { withRef: true }
+  { forwardRef: true }
 )(Manager);
