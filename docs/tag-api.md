@@ -102,7 +102,7 @@ This tag does not extend from Base. It's special. Wrapping elements in the appea
 
 | Name               | PropType               | Description                                                                 |
 | ------------------ | ---------------------- | --------------------------------------------------------------------------- |
-| transitionDuration | React.PropTypes.number | Accepts integer value in milliseconds for duration of appearance animation. |
+| transitionDuration | PropTypes.number | Accepts integer value in milliseconds for duration of appearance animation. |
 
 <a name="blockquote-quote-and-cite-base"></a>
 
