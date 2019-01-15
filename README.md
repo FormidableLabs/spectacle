@@ -278,7 +278,7 @@ You can toggle the presenter or overview mode by pressing respectively `alt+p` a
 | Alt/Option + O  | Toggle Overview Mode           |
 | Alt/Option + P  | Toggle Presenter Mode          |
 | Alt/Option + T  | Toggle Timer in Presenter Mode |
-| Alt/Option + A  | Start autoplay (if enabled)    |
+| Alt/Option + A  | Toggle autoplay (if enabled)   |
 | Alt/Option + F  | Toggle Fullscreen Mode         |
 
 <a name="fullscreen"></a>
@@ -476,6 +476,7 @@ The Deck tag is the root level tag for your presentation. It supports the follow
 | autoplay                | PropTypes.bool    | Automatically advance slides.                                                                                                                                                                                                                                                 | `false`         |
 | autoplayDuration        | PropTypes.number  | Accepts integer value in milliseconds for global autoplay duration.                                                                                                                                                                                                           | `7000`          |
 | autoplayLoop            | PropTypes.bool    | Keep slides in loop.                                                                                                                                                                                                                                                          | `true`          |
+| autoplayOnStart         | PropTypes.bool    | Start presentation with autoplay on/not paused (if autoplay is enabled).                                                                                                                                                                                                      | `true`          |
 | controls                | PropTypes.bool    | Show control arrows when not in fullscreen.                                                                                                                                                                                                                                   | `true`          |
 | contentHeight           | PropTypes.numbers | Baseline content area height.                                                                                                                                                                                                                                                 | `700px`         |
 | contentWidth            | PropTypes.numbers | Baseline content area width.                                                                                                                                                                                                                                                  | `1000px`        |

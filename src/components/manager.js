@@ -103,6 +103,7 @@ export class Manager extends Component {
     autoplay: PropTypes.bool,
     autoplayDuration: PropTypes.number,
     autoplayLoop: PropTypes.bool,
+    autoplayOnStart: PropTypes.bool,
     children: PropTypes.node,
     contentHeight: PropTypes.number,
     contentWidth: PropTypes.number,
@@ -139,6 +140,7 @@ export class Manager extends Component {
     autoplay: false,
     autoplayDuration: 7000,
     autoplayLoop: true,
+    autoplayOnStart: true,
     contentWidth: 1000,
     contentHeight: 700,
     disableKeyboardControls: false,
@@ -167,7 +169,7 @@ export class Manager extends Component {
       slideReference: [],
       fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < props.contentWidth,
-      autoplaying: props.autoplay
+      autoplaying: props.autoplay ? props.autoplayOnStart : false
     };
 
     this.viewedIndexes = new Set();
@@ -188,11 +190,14 @@ export class Manager extends Component {
 
   componentDidMount() {
     const slideIndex = this._getSlideIndex();
+    const autoplayOnStart = this.props.autoplay
+      ? this.props.autoplayOnStart
+      : false;
     this.setState({
       lastSlideIndex: slideIndex
     });
     this._attachEvents();
-    if (this.props.autoplay) {
+    if (autoplayOnStart) {
       this._startAutoplay();
     }
   }
@@ -249,6 +254,13 @@ export class Manager extends Component {
     this.setState({ autoplaying: false });
     clearInterval(this.autoplayInterval);
   }
+  _toggleAutoplaying() {
+    if (this.state.autoplaying) {
+      this._stopAutoplay();
+    } else {
+      this._startAutoplay();
+    }
+  }
   _handleEvent(e) {
     // eslint-disable-line complexity
     const event = window.event ? window.event : e;
@@ -297,7 +309,7 @@ export class Manager extends Component {
       !event.metaKey &&
       this.props.autoplay
     ) {
-      this._startAutoplay();
+      this._toggleAutoplaying();
     } else if (
       event.altKey &&
       event.keyCode === 70 && // 'f'
