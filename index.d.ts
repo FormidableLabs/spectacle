@@ -157,6 +157,7 @@ declare module 'spectacle' {
     autoplay?: boolean;
     autoplayDuration?: number;
     autoplayLoop?: boolean;
+    autoplayOnStart?: boolean;
     controls?: boolean;
     globalStyles?: boolean;
     history?: any; // Needs a type, see https://github.com/ReactTraining/history
