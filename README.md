@@ -922,7 +922,7 @@ The `S` tag is used to add styling to a piece of text, such as underline or stri
 
 <a name="table-tablerow-tableheaderitem-and-tableitem-base"></a>
 
-#### Table, TableRow, TableHeaderItem and TableItem ([Base](base-propse))
+#### Table, TableRow, TableHeaderItem and TableItem ([Base](#base-props))
 
 The `Table` tag is used to add table to your slide. It is used with `TableHeader`, `TableBody`, `TableRow`, `TableHeaderItem` and `TableItem`. Use them as follows:
 
