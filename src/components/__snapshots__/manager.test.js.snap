@@ -413,8 +413,8 @@ exports[`<Manager /> should render fullscreen button dependant on prop 1`] = `
           totalSlides={1}
         >
           <div>
-            <undefined />
-            <undefined />
+            <Component />
+            <Component />
           </div>
         </Controls>
         <Styled(TransitionGroup)
