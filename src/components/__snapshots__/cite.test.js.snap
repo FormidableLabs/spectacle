@@ -3,7 +3,6 @@
 exports[`<Cite /> should render correctly. 1`] = `
 <Cite>
   <Styled(cite)
-    className={undefined}
     styles={
       Array [
         Object {

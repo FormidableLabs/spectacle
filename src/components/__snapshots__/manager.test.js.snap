@@ -80,7 +80,6 @@ exports[`<Manager /> should render correctly. 1`] = `
               aria-label="Next slide"
               key="next"
               onClick={[Function]}
-              style={undefined}
               type="button"
             >
               <svg
@@ -88,7 +87,6 @@ exports[`<Manager /> should render correctly. 1`] = `
                 height="32px"
                 key="nextIcon"
                 role="presentation"
-                style={undefined}
                 viewBox="0 0 512 828.586"
                 width="32px"
               >
@@ -254,7 +252,6 @@ exports[`<Manager /> should render correctly. 1`] = `
                       "top": "-20px",
                     }
                   }
-                  styles={undefined}
                 >
                   <div
                     className="css-ro10dn e12weced0"
@@ -412,10 +409,7 @@ exports[`<Manager /> should render fullscreen button dependant on prop 1`] = `
           onPrev={[Function]}
           totalSlides={1}
         >
-          <div>
-            <Component />
-            <Component />
-          </div>
+          <div />
         </Controls>
         <Styled(TransitionGroup)
           component="div"
@@ -550,7 +544,6 @@ exports[`<Manager /> should render fullscreen button dependant on prop 1`] = `
                       "top": "-20px",
                     }
                   }
-                  styles={undefined}
                 >
                   <div
                     className="css-p4obic e12weced0"
@@ -617,19 +610,16 @@ exports[`<Manager /> should render fullscreen button dependant on prop 1`] = `
           <Styled(FullscreenButton)
             isFullscreen={false}
             onClick={[Function]}
-            styles={undefined}
           >
             <FullscreenButton
               className="css-12w3q3u e4v3eea0"
               isFullscreen={false}
               onClick={[Function]}
-              styles={undefined}
             >
               <Styled(button)
                 aria-label="Toggle full screen"
                 className="css-12w3q3u e4v3eea0"
                 onClick={[Function]}
-                styles={undefined}
               >
                 <button
                   aria-label="Toggle full screen"
@@ -1025,7 +1015,6 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               aria-label="Previous slide"
               key="prev"
               onClick={[Function]}
-              style={undefined}
               type="button"
             >
               <svg
@@ -1033,7 +1022,6 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                 height="32px"
                 key="prevIcon"
                 role="presentation"
-                style={undefined}
                 viewBox="0 0 512 828.586"
                 width="32px"
               >
@@ -1046,7 +1034,6 @@ exports[`<Manager /> should render with slideset slides 1`] = `
               aria-label="Next slide"
               key="next"
               onClick={[Function]}
-              style={undefined}
               type="button"
             >
               <svg
@@ -1054,7 +1041,6 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                 height="32px"
                 key="nextIcon"
                 role="presentation"
-                style={undefined}
                 viewBox="0 0 512 828.586"
                 width="32px"
               >
@@ -1228,7 +1214,6 @@ exports[`<Manager /> should render with slideset slides 1`] = `
                       "top": "-20px",
                     }
                   }
-                  styles={undefined}
                 >
                   <div
                     className="css-p4obic e12weced0"

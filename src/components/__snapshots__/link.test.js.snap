@@ -6,7 +6,6 @@ exports[`<Link /> should render correctly 1`] = `
   target="_blank"
 >
   <Styled(a)
-    className={undefined}
     href="https://www.formidable.com"
     rel="noopener noreferrer"
     styles={

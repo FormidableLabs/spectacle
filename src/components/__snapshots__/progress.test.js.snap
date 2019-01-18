@@ -37,7 +37,6 @@ exports[`<Progress /> should render PacMan correctly 1`] = `
               "top": "-20px",
             }
           }
-          styles={undefined}
         >
           <div
             className="css-tyaqbb e12weced0"

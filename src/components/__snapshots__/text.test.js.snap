@@ -6,7 +6,6 @@ exports[`<Text /> should render a <div> with text for the \`fit\` configuration.
   lineHeight={1}
 >
   <Styled(div)
-    className={undefined}
     height={0}
     innerRef={[Function]}
     styles={
@@ -50,7 +49,6 @@ exports[`<Text /> should render a <p> with text for the default configuration. 1
   lineHeight={1}
 >
   <Styled(p)
-    className={undefined}
     styles={
       Object {
         "base": Object {},

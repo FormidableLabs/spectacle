@@ -3,7 +3,6 @@
 exports[`<Table /> should render correctly 1`] = `
 <Table>
   <Styled(table)
-    className={undefined}
     styles={
       Array [
         Object {},
