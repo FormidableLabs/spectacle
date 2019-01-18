@@ -116,7 +116,7 @@
   },
   "resolutions": {
     "babel-core": "^7.0.0-0",
-    "source-map": "0.7.3"
+    "source-map": "0.6.1"
   },
   "jest": {
     "moduleNameMapper": {
