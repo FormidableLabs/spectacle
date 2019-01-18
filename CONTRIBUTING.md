@@ -45,7 +45,7 @@ Thanks for taking the time to help us make Spectacle even better! Before you go 
 
 ## Releasing a new version to NPM (only for project administrators)
 
-1.  Run `npm version patch` (or `minor`, `major` as appropriate) to run tests and lint, build the `lib` ands `dist` directories, , then update `package.json` and add a git tag.
+1.  Run `npm version patch` (or `minor`, `major` as appropriate) to run tests and lint, build the `lib` and `dist` directories, and automatically update the `package.json` with a new git tag.
 2.  Run `npm publish` and publish to npm if all is well.
 3.  Run `git push && git push --tags`
 

@@ -100,9 +100,9 @@ The element tags are the bread and butter of your slide content. Most of these t
 
 This tag does not extend from Base. It's special. Wrapping elements in the appear tag makes them appear/disappear in order in response to navigation.
 
-| Name               | PropType               | Description                                                                 |
-| ------------------ | ---------------------- | --------------------------------------------------------------------------- |
-| transitionDuration | React.PropTypes.number | Accepts integer value in milliseconds for duration of appearance animation. |
+| Name               | PropType         | Description                                                                 |
+| ------------------ | ---------------- | --------------------------------------------------------------------------- |
+| transitionDuration | PropTypes.number | Accepts integer value in milliseconds for duration of appearance animation. |
 
 <a name="blockquote-quote-and-cite-base"></a>
 

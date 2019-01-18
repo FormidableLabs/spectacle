@@ -26,6 +26,7 @@ export default class Deck extends Component {
     autoplay: PropTypes.bool,
     autoplayDuration: PropTypes.number,
     autoplayLoop: PropTypes.bool,
+    autoplayOnStart: PropTypes.bool,
     children: PropTypes.node,
     controls: PropTypes.bool,
     globalStyles: PropTypes.bool,
