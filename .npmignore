@@ -12,3 +12,4 @@ __mocks__
 !LICENSE
 !README.md
 !package.json
+!index.d.ts
