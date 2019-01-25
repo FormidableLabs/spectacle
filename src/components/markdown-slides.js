@@ -3,7 +3,7 @@ import Slide from './slide';
 import Markdown from './markdown';
 
 const transformStringsIntoJSX = function(strings) {
-  return strings.split(/\n---\n/).map((markdown, index) => (
+  return strings.split(/\r?\n---\r?\n/).map((markdown, index) => (
     <Slide key={`md-slide-${index}`}>
       <Markdown>{markdown}</Markdown>
     </Slide>
