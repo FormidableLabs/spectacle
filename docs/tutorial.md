@@ -6,7 +6,7 @@ In this guide, we'll show you how to get started with Spectacle and walk you thr
 
 You can do this on your own if you'd like, or you can...
 
-- Clone down [this project](https://github.com/FormidableLabs/spectacle-boilerplate) we've started for you using `git clone git@github.com:Formidable.com/spectacle-boilerplate.git`
+- Clone down [this project](https://github.com/FormidableLabs/spectacle-boilerplate) we've started for you using `git clone git@github.com:FormidableLabs/spectacle-boilerplate.git`
 - Remove existing version control by running `rm -rf .git`
 - `cd spectacle-boilerplate`
 - Replace the existing code in the `presentation/index.js` file with:
