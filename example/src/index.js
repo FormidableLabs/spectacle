@@ -134,11 +134,11 @@ export default class Presentation extends Component {
             overflow="overflow"
           />
           <Notes>
-            <ul>
-              <li>talk about that</li>
-              <li>and that</li>
-              <li>and then this</li>
-            </ul>
+            <List bulletStyle="arrow">
+              <ListItem>talk about that</ListItem>
+              <ListItem bulletStyle="star">and that</ListItem>
+              <ListItem bulletStyle="greenCheck">and then this</ListItem>
+            </List>
           </Notes>
         </Slide>
         <Slide goTo={3}>

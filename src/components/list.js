@@ -3,8 +3,31 @@ import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
 import styled from 'react-emotion';
 
+const bulletStyles = {
+  star: '\\2605',
+  classicCheck: '\\2713',
+  greenCheck: '\\2705',
+  arrow: '\\219d',
+  cross: '\\274C'
+};
+const getListStyle = props => {
+  if (props.bulletStyle) {
+    return [
+      { listStyleType: 'none' },
+      `li::before {
+        content: '${bulletStyles[props.bulletStyle]}';
+        margin: 0 25px
+    }`
+    ];
+  }
+  return undefined;
+};
+
 const StyledOrderedList = styled.ol(props => props.styles);
-const StyledList = styled.ul(props => props.styles);
+const StyledList = styled.ul(
+  props => props.styles,
+  props => getListStyle(props)
+);
 
 export default class List extends Component {
   render() {
@@ -24,6 +47,7 @@ export default class List extends Component {
       </StyledOrderedList>
     ) : (
       <StyledList
+        bulletStyle={this.props.bulletStyle}
         className={this.props.className}
         styles={[
           this.context.styles.components.list,
@@ -38,6 +62,7 @@ export default class List extends Component {
 }
 
 List.propTypes = {
+  bulletStyle: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
   ordered: PropTypes.bool,
