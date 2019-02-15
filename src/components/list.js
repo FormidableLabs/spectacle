@@ -15,11 +15,10 @@ export const getBulletStyle = (bulletStyle, isListItemStyle) => {
   if (bulletStyle) {
     const content = bulletStyles[bulletStyle] || `\\${bulletStyle}`;
 
-    if (isListItemStyle === true) {
-      return [
-        { listStyleType: 'none' },
-        `&::before {
-          content: '${content}' !important;
+    return [
+      { listStyleType: 'none' },
+      `${isListItemStyle ? '&' : 'li'}::before {
+          content: '${content}' ${isListItemStyle ? '!important' : ''};
           display: inline-block;
           margin-right: 40px;
           width: 20px;
@@ -27,21 +26,7 @@ export const getBulletStyle = (bulletStyle, isListItemStyle) => {
           text-align: center;
           vertical-align: middle;
         }`
-      ];
-    } else {
-      return [
-        { listStyleType: 'none' },
-        `li::before {
-          content: '${content}';
-          display: inline-block;
-          margin-right: 40px;
-          width: 20px;
-          font-size: 20px;
-          text-align: center;
-          vertical-align: middle;
-        }`
-      ];
-    }
+    ];
   }
 
   return [];
