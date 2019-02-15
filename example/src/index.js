@@ -137,7 +137,7 @@ export default class Presentation extends Component {
             <List>
               <ListItem>talk about that</ListItem>
               <ListItem>and that</ListItem>
-              <ListItem bulletStyle="greenCheck">and then this</ListItem>
+              <ListItem>and then this</ListItem>
             </List>
           </Notes>
         </Slide>
@@ -380,6 +380,9 @@ const myCode = (is, great) => 'for' + 'sharing';
               </Appear>
               <Appear>
                 <ListItem>PDF export</ListItem>
+              </Appear>
+              <Appear>
+                <ListItem bulletStyle="greenCheck">Customized bullets</ListItem>
               </Appear>
               <Appear>
                 <ListItem>And...</ListItem>

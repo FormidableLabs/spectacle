@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
 import styled from 'react-emotion';
 
-// Is it okay to export from here?  Should they go in different files?
 export const bulletStyles = {
   star: '\\2605',
   classicCheck: '\\2713',
@@ -33,14 +32,14 @@ export const getBulletStyle = (bulletStyle, isListItemStyle) => {
       return [
         { listStyleType: 'none' },
         `li::before {
-        content: '${content}';
-        display: inline-block;
-        margin-right: 40px;
-        width: 20px;
-        font-size: 20px;
-        text-align: center;
-        vertical-align: middle;
-      }`
+          content: '${content}';
+          display: inline-block;
+          margin-right: 40px;
+          width: 20px;
+          font-size: 20px;
+          text-align: center;
+          vertical-align: middle;
+        }`
       ];
     }
   }
