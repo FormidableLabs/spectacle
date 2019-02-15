@@ -879,12 +879,13 @@ The link tag is used to render `<a>` tags. It accepts an `href` prop:
 
 #### List & ListItem ([Base](#base-props))
 
-| Name     | PropType         | Description                  | Default |
-| -------- | ---------------- | ---------------------------- | ------- |
-| ordered  | PropTypes.bool   | Render as `<ol>` tag         |         |
-| reversed | PropTypes.bool   | Set the `reversed` attribute |         |
-| start    | PropTypes.number | Set the `start` attribute.   | `1`     |
-| type     | PropTypes.string | Set the `type` attribute.    | `"1"`   |
+| Name        | PropType         | Description                                                                                                                                                                                                                                                                                                                                                                | Default |
+| ----------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| ordered     | PropTypes.bool   | Render as `<ol>` tag                                                                                                                                                                                                                                                                                                                                                       |         |
+| reversed    | PropTypes.bool   | Set the `reversed` attribute                                                                                                                                                                                                                                                                                                                                               |         |
+| start       | PropTypes.number | Set the `start` attribute.                                                                                                                                                                                                                                                                                                                                                 | `1`     |
+| type        | PropTypes.string | Set the `type` attribute.                                                                                                                                                                                                                                                                                                                                                  | `"1"`   |
+| bulletStyle | PropTypes.string | Allows to customize list bullets for unordered-list. You can set `bulletStyle="star"` both in `List` and `ListItem` components. When `ListItem` prop is set it will overwrite the `List` styling only for the specific `ListItem`. You can either use built-in strings: `star`, `classicCheck`, `greenCheck`, `arrow`, `cross`, or any unicode number `bulletStyle="274C"` |
 
 These tags create lists. Use them as follows:
 
@@ -904,7 +905,7 @@ Unordered lists:
 ```jsx
 <List>
   <ListItem>Item 1</ListItem>
-  <ListItem>Item 2</ListItem>
+  <ListItem bulletStyle="arrow">Item 2</ListItem>
   <ListItem>Item 3</ListItem>
   <ListItem>Item 4</ListItem>
 </List>

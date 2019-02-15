@@ -12,7 +12,6 @@ export default class ListItem extends Component {
     return (
       <StyledListItem
         className={this.props.className}
-        bulletStyle={this.props.bulletStyle}
         styles={[
           this.context.styles.components.listItem,
           getStyles.call(this),
