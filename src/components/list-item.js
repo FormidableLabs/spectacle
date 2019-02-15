@@ -2,31 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
 import styled from 'react-emotion';
+import { getBulletStyle } from './list.js';
 
-const bulletStyles = {
-  star: '\\2605',
-  classicCheck: '\\2713',
-  greenCheck: '\\2705',
-  arrow: '\\27a4',
-  cross: '\\274C'
-};
-const getListStyle = props => {
-  if (props.bulletStyle) {
-    return [
-      { listStyleType: 'none' },
-      `&::before {
-        content: '${bulletStyles[props.bulletStyle]}';
-        margin: 0 25px;
-    }`
-    ];
-  }
-  return undefined;
-};
-
-const StyledListItem = styled.li(
-  props => props.styles,
-  props => getListStyle(props)
-);
+const StyledListItem = styled.li(props => props.styles);
 
 export default class ListItem extends Component {
   render() {
@@ -39,7 +17,8 @@ export default class ListItem extends Component {
           this.context.styles.components.listItem,
           getStyles.call(this),
           typefaceStyle,
-          this.props.style
+          this.props.style,
+          getBulletStyle(this.props.bulletStyle, true)
         ]}
       >
         {this.props.children}

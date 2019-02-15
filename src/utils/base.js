@@ -57,11 +57,13 @@ export const transformBold = ({ bold }) => {
     return { fontWeight: bold ? 'bold' : 'normal' };
   }
 };
+
 export const transformCaps = ({ caps }) => {
   if (typeof caps === 'boolean') {
     return { textTransform: caps ? 'uppercase' : 'none' };
   }
 };
+
 export const transformBgColor = ({ bgColor }, context) => {
   if (bgColor) {
     let backgroundColor = '';

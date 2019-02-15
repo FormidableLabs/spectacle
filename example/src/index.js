@@ -134,9 +134,9 @@ export default class Presentation extends Component {
             overflow="overflow"
           />
           <Notes>
-            <List bulletStyle="arrow">
+            <List>
               <ListItem>talk about that</ListItem>
-              <ListItem bulletStyle="star">and that</ListItem>
+              <ListItem>and that</ListItem>
               <ListItem bulletStyle="greenCheck">and then this</ListItem>
             </List>
           </Notes>
