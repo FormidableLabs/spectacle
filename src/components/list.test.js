@@ -32,7 +32,8 @@ describe('<List />', () => {
     expect(wrapper.prop('styles')).toEqual([
       context.styles.components.list,
       {},
-      { fontWeight: 'bold' }
+      { fontWeight: 'bold' },
+      []
     ]);
   });
 });

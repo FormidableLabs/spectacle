@@ -134,11 +134,11 @@ export default class Presentation extends Component {
             overflow="overflow"
           />
           <Notes>
-            <ul>
-              <li>talk about that</li>
-              <li>and that</li>
-              <li>and then this</li>
-            </ul>
+            <List>
+              <ListItem>talk about that</ListItem>
+              <ListItem>and that</ListItem>
+              <ListItem>and then this</ListItem>
+            </List>
           </Notes>
         </Slide>
         <Slide goTo={3}>
@@ -380,6 +380,9 @@ const myCode = (is, great) => 'for' + 'sharing';
               </Appear>
               <Appear>
                 <ListItem>PDF export</ListItem>
+              </Appear>
+              <Appear>
+                <ListItem bulletStyle="greenCheck">Customized bullets</ListItem>
               </Appear>
               <Appear>
                 <ListItem>And...</ListItem>

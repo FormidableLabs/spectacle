@@ -11,6 +11,7 @@ exports[`<ListItem /> should render correctly 1`] = `
         Object {},
         Object {},
         undefined,
+        Array [],
       ]
     }
   >
