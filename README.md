@@ -319,7 +319,7 @@ If you want to export your slides with your [notes](#notes) included, repeat the
 
 #### Query Parameters
 
-Here is a list of all valid query parameters that can be placed after `\` on the URL.
+Here is a list of all valid query parameters that can be placed after `/#/` on the URL.
 
 | Query               | Description                                                                                                          |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------- |
