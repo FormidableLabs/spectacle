@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import createHistory from 'history/createHashHistory';
+import { createHashHistory } from 'history';
 import PropTypes from 'prop-types';
 import { updateRoute } from '../actions';
 import { countSlides } from './slides';
@@ -7,7 +7,7 @@ import { countSlides } from './slides';
 import theme from '../themes/default';
 import Context from './context';
 
-const history = createHistory();
+const history = createHashHistory();
 
 export default class Controller extends Component {
   static propTypes = {
