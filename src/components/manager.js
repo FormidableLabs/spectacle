@@ -116,7 +116,8 @@ export class Manager extends Component {
     route: PropTypes.object,
     showFullscreenControl: PropTypes.bool,
     transition: PropTypes.array,
-    transitionDuration: PropTypes.number
+    transitionDuration: PropTypes.number,
+    useKeyUpDown: PropTypes.bool
   };
 
   static contextTypes = {
@@ -148,7 +149,8 @@ export class Manager extends Component {
     transitionDuration: 500,
     progress: 'pacman',
     controls: true,
-    globalStyles: true
+    globalStyles: true,
+    useKeyUpDown: false
   };
 
   constructor(props) {
@@ -266,7 +268,8 @@ export class Manager extends Component {
     const event = window.event ? window.event : e;
 
     if (
-      event.keyCode === 37 || // 'ArrowLeft'|
+      (!this.props.useKeyUpDown && event.keyCode === 37) || // 'ArrowLeft'|
+      (this.props.useKeyUpDown && event.keyCode === 40) || // 'ArrowDown'
       event.keyCode === 33 || // 'PageUp'
       (event.keyCode === 32 && // 'Space'
         event.shiftKey)
@@ -274,7 +277,8 @@ export class Manager extends Component {
       this._prevSlide();
       this._stopAutoplay();
     } else if (
-      event.keyCode === 39 || // 'ArrowRight'
+      (!this.props.useKeyUpDown && event.keyCode === 39) || // 'ArrowRight'
+      (this.props.useKeyUpDown && event.keyCode === 38) || // 'ArrowUp'
       event.keyCode === 34 || // 'PageDown'
       (event.keyCode === 32 && // 'Space'
         !event.shiftKey)

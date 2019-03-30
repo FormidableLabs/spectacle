@@ -199,4 +199,22 @@ describe('<Manager />', () => {
     // slide 4 (index 3) the delta should be 3 - 1, thus 2.
     expect(managerInstance._getOffset(1)).toEqual(2);
   });
+
+  test('should go to next slide when keyUp is pressed and useKeyUpDown is set to true', () => {
+    const wrapper = mount(
+      <Manager useKeyUpDown>
+        <MockSlide />
+        <MockSlide />
+        <MockSlide />
+        <MockSlide />
+        <MockSlide />
+      </Manager>,
+      { context: _mockContext(1, []), childContextTypes: _mockChildContext() }
+    );
+    const managerInstance = wrapper.instance().getWrappedInstance();
+
+    managerInstance._handleKeyPress({ keyCode: 38 });
+
+    expect(managerInstance._getSlideIndex()).toEqual(1);
+  });
 });
