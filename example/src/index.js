@@ -366,8 +366,10 @@ const myCode = (is, great) => 'for' + 'sharing';
           </Heading>
           <Notes>So smooth</Notes>
         </Slide>
-        <SlideSet>
-          <Slide transition={['fade']} bgColor="secondary" textColor="primary">
+        <SlideSet
+          style={{ backgroundColor: 'blue', border: '10px solid cyan' }}
+        >
+          <Slide transition={['fade']} textColor="tertiary">
             <List>
               <Appear>
                 <ListItem>Inline style based theme system</ListItem>
