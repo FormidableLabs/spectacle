@@ -103,6 +103,7 @@ class Slide extends React.PureComponent {
         exportMode={this.props.export}
         printMode={this.props.print}
         background={this.context.styles.global.body.background}
+        style={this.props.style}
         styles={{
           base: getStyles.call(this),
           presenter: presenterStyle

@@ -30,7 +30,10 @@ export const getSlideByIndex = (children, slideReference, index) => {
       const setChildren = Children.toArray(
         children[reference.rootIndex].props.children
       );
-      slide = setChildren[reference.setIndex];
+      const style = children[reference.rootIndex].props.style;
+      slide = cloneElement(setChildren[reference.setIndex], {
+        style
+      });
     }
   }
   return slide;

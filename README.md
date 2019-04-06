@@ -512,6 +512,18 @@ The slide tag represents each slide in the presentation. Giving a slide tag an `
 | transitionOut      | PropTypes.array  | Specifies the slide transition when the slide exits. Accepts the same values as transition.                                                                                                                                                                                                  | Set by `Deck`'s `transition` prop |
 | transitionDuration | PropTypes.number | Accepts integer value in milliseconds for slide transition duration.                                                                                                                                                                                                                         | Set by `Deck`'s `transition` prop |
 
+#### SlideSet
+
+With `SlideSet`, you can wrap multiple slide in it to apply the same style.
+
+```jsx
+<SlideSet style={{ border: '2px solid red' }}>
+  <Slide>Slide1</Slide>
+  <Slide>Slide2</Slide>
+  <Slide>Slide3</Slide>
+</SlideSet>
+```
+
 <a name="transition-function"></a>
 
 ##### Transition Function
