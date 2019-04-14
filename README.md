@@ -8,6 +8,10 @@ ReactJS based Presentation Library
 
 Have a question about Spectacle? Submit an issue in this repository using the "Question" template.
 
+## Maintenance Status: Active
+
+Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome. 
+
 ## Contents
 
 <!-- MarkdownTOC depth=4 autolink=true bracket=round autoanchor=true -->
