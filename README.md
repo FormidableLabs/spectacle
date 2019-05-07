@@ -1,6 +1,8 @@
 # Spectacle
 
 [![Travis Status][trav_img]][trav_site]
+[![Maintenance Status][maintenance-image]](#maintenance-status)
+
 ReactJS based Presentation Library
 
 [Spectacle Boilerplate MDX](https://github.com/FormidableLabs/spectacle-boilerplate-mdx/)
@@ -1045,5 +1047,10 @@ The `Typeface` tag is used to apply a specific font to text content. It can eith
 - [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
 - [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
 
+## Maintenance Status
+
+**Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
+
 [trav_img]: https://api.travis-ci.org/FormidableLabs/spectacle.svg
 [trav_site]: https://travis-ci.org/FormidableLabs/spectacle
+[maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg
