@@ -489,7 +489,7 @@ export class Manager extends Component {
   }
   _getOffset(slideIndex) {
     const { goTo } = this.state.slideReference[slideIndex];
-    const nextUnviewedIndex = this._nextUnviewedIndex();
+
     if (goTo && !isNaN(parseInt(goTo))) {
       const goToIndex = () => {
         if (this.viewedIndexes.has(goTo - 1)) {
@@ -499,7 +499,7 @@ export class Manager extends Component {
       };
       return goToIndex() - slideIndex;
     }
-    return nextUnviewedIndex - slideIndex;
+    return 1;
   }
   _nextSlide() {
     const slideIndex = this._getSlideIndex();
