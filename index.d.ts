@@ -307,6 +307,8 @@ declare module 'spectacle' {
   class TableRow extends React.Component<BaseProps> {}
 
   class Text extends React.Component<TextProps> {}
+
+  class UnfitText extends React.Component<TextProps> {}
 }
 
 declare module 'spectacle/lib/utils/preloader' {
