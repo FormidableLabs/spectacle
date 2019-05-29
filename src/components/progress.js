@@ -62,7 +62,8 @@ export default class Progress extends Component {
 
   getWidth() {
     return {
-      width: `${(100 * this.props.currentSlideIndex) /
+      width: `${100 *
+        this.props.currentSlideIndex /
         (this.props.items.length - 1)}%`
     };
   }

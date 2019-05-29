@@ -134,11 +134,7 @@ describe('<Manager />', () => {
 
   test('should get the next index when using out-of-order viewing', () => {
     const wrapper = mount(
-      <Manager>
-        {range(0, 10).map(value => (
-          <MockSlide key={value} />
-        ))}
-      </Manager>,
+      <Manager>{range(0, 10).map(value => <MockSlide key={value} />)}</Manager>,
       { context: _mockContext(5, []), childContextTypes: _mockChildContext() }
     );
     const managerInstance = wrapper.instance().getWrappedInstance();
@@ -150,11 +146,7 @@ describe('<Manager />', () => {
 
   test('should not exceed the maximum number of slides for next index', () => {
     const wrapper = mount(
-      <Manager>
-        {range(0, 11).map(value => (
-          <MockSlide key={value} />
-        ))}
-      </Manager>,
+      <Manager>{range(0, 11).map(value => <MockSlide key={value} />)}</Manager>,
       { context: _mockContext(10, []), childContextTypes: _mockChildContext() }
     );
     const managerInstance = wrapper.instance().getWrappedInstance();

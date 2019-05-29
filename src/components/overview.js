@@ -13,7 +13,7 @@ const SlideThumbnail = styled.div`
   cursor: pointer;
   position: relative;
   float: left;
-  height: ${({ screen }) => (screen / 3) * 0.7}px;
+  height: ${({ screen }) => screen / 3 * 0.7}px;
   opacity: ${({ index, slideIndex }) => (index === slideIndex ? 1 : 0.5)};
   transition: opacity 333ms ease-in-out;
   width: ${({ screen }) => screen / 3}px;

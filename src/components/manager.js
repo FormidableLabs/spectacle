@@ -703,7 +703,7 @@ export class Manager extends Component {
     const xDist = touch.x1 - touch.x2;
     const yDist = touch.y1 - touch.y2;
     const r = Math.atan2(yDist, xDist);
-    let swipeAngle = Math.round((r * 180) / Math.PI);
+    let swipeAngle = Math.round(r * 180 / Math.PI);
 
     if (swipeAngle < 0) {
       swipeAngle = 360 - Math.abs(swipeAngle);
@@ -875,15 +875,16 @@ export class Manager extends Component {
         onClick={this.handleClick}
         {...this._getTouchEvents()}
       >
-        {this.props.controls && showControls && (
-          <Controls
-            currentSlideIndex={this._getSlideIndex()}
-            totalSlides={this.state.slideReference.length}
-            onPrev={this._prevSlide.bind(this)}
-            onNext={this._nextSlide.bind(this)}
-            controlColor={this._getControlStyles()}
-          />
-        )}
+        {this.props.controls &&
+          showControls && (
+            <Controls
+              currentSlideIndex={this._getSlideIndex()}
+              totalSlides={this.state.slideReference.length}
+              onPrev={this._prevSlide.bind(this)}
+              onNext={this._nextSlide.bind(this)}
+              controlColor={this._getControlStyles()}
+            />
+          )}
 
         {googleFontsElements}
         {componentToRender}
@@ -927,9 +928,4 @@ export class Manager extends Component {
   }
 }
 
-export default connect(
-  state => state,
-  null,
-  null,
-  { withRef: true }
-)(Manager);
+export default connect(state => state, null, null, { withRef: true })(Manager);

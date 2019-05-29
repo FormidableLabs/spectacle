@@ -16,53 +16,53 @@ Have a question about Spectacle? Submit an issue in this repository using the "Q
 
 <!-- MarkdownTOC depth=4 autolink=true bracket=round autoanchor=true -->
 
-- [Getting Started](#getting-started)
-  - [Classic Spectacle](#classic-spectacle)
-  - [Spectacle MDX](#spectacle-mdx)
-  - [One Page](#one-page)
-- [Development](#development)
-- [Build & Deployment](#build--deployment)
-- [Presenting](#presenting)
-- [Controls](#controls)
-- [Fullscreen](#fullscreen)
-- [PDF Export](#pdf-export)
-- [Basic Concepts](#basic-concepts)
-  - [Main file](#main-file)
-  - [Themes](#themes)
-    - [createTheme(colors, fonts)](#createthemecolors-fonts)
-- [FAQ](#faq)
-- [Tag API](#tag-api)
-  - [Main Tags](#main-tags)
-    - [Deck](#deck)
-    - [Slide (Base)](#slide-base)
-    - [Notes](#notes)
-    - [MarkdownSlides](#markdown-slides)
-  - [Layout Tags](#layout-tags)
-    - [Layout](#layout)
-    - [Fit](#fit)
-    - [Fill](#fill)
-  - [Markdown Tag](#markdown-tag)
-    - [Markdown](#markdown)
-  - [Magic Tag](#magic-tag)
-    - [Magic](#magic)
-  - [Element Tags](#element-tags)
-    - [Appear](#appear)
-    - [Anim](#anim)
-    - [BlockQuote, Quote and Cite (Base)](#blockquote-quote-and-cite-base)
-    - [CodePane (Base)](#codepane-base)
-    - [Code (Base)](#code-base)
-    - [ComponentPlayground](#component-playground)
-    - [GoToAction (Base)](#go-to-action)
-    - [Heading (Base)](#heading-base)
-    - [Image (Base)](#image-base)
-    - [Link (Base)](#link-base)
-    - [List & ListItem (Base)](#list--listitem-base)
-    - [S (Base)](#s-base)
-    - [Table, TableRow, TableBody, TableHeader, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
-    - [Text (Base)](#text-base)
-    - [Typeface](#typeface)
-  - [Base Props](#base-props)
-- [Third Party Extensions](#third-party)
+* [Getting Started](#getting-started)
+  * [Classic Spectacle](#classic-spectacle)
+  * [Spectacle MDX](#spectacle-mdx)
+  * [One Page](#one-page)
+* [Development](#development)
+* [Build & Deployment](#build--deployment)
+* [Presenting](#presenting)
+* [Controls](#controls)
+* [Fullscreen](#fullscreen)
+* [PDF Export](#pdf-export)
+* [Basic Concepts](#basic-concepts)
+  * [Main file](#main-file)
+  * [Themes](#themes)
+    * [createTheme(colors, fonts)](#createthemecolors-fonts)
+* [FAQ](#faq)
+* [Tag API](#tag-api)
+  * [Main Tags](#main-tags)
+    * [Deck](#deck)
+    * [Slide (Base)](#slide-base)
+    * [Notes](#notes)
+    * [MarkdownSlides](#markdown-slides)
+  * [Layout Tags](#layout-tags)
+    * [Layout](#layout)
+    * [Fit](#fit)
+    * [Fill](#fill)
+  * [Markdown Tag](#markdown-tag)
+    * [Markdown](#markdown)
+  * [Magic Tag](#magic-tag)
+    * [Magic](#magic)
+  * [Element Tags](#element-tags)
+    * [Appear](#appear)
+    * [Anim](#anim)
+    * [BlockQuote, Quote and Cite (Base)](#blockquote-quote-and-cite-base)
+    * [CodePane (Base)](#codepane-base)
+    * [Code (Base)](#code-base)
+    * [ComponentPlayground](#component-playground)
+    * [GoToAction (Base)](#go-to-action)
+    * [Heading (Base)](#heading-base)
+    * [Image (Base)](#image-base)
+    * [Link (Base)](#link-base)
+    * [List & ListItem (Base)](#list--listitem-base)
+    * [S (Base)](#s-base)
+    * [Table, TableRow, TableBody, TableHeader, TableHeaderItem and TableItem (Base)](#table-tablerow-tableheaderitem-and-tableitem-base)
+    * [Text (Base)](#text-base)
+    * [Typeface](#typeface)
+  * [Base Props](#base-props)
+* [Third Party Extensions](#third-party)
 
 <!-- /MarkdownTOC -->
 
@@ -76,17 +76,17 @@ First, decide whether you want to use [classic Spectacle](#classic-spectacle), [
 
 There are four ways to get started building your presentation.
 
-1. **Option #1:** Run the following command in your terminal:
+1.  **Option #1:** Run the following command in your terminal:
 
-   `npx create-react-app my-presentation --scripts-version spectacle-scripts`
+    `npx create-react-app my-presentation --scripts-version spectacle-scripts`
 
-2. **Option #2:** Using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
+2.  **Option #2:** Using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
-3. **Option #3:** Following along the [Spectacle Tutorial](./docs/tutorial.md), which also involves downloading the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
+3.  **Option #3:** Following along the [Spectacle Tutorial](./docs/tutorial.md), which also involves downloading the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
 All three of the above ways will give you everything you'll need to get started, including a sample presentation in the `presentation` folder. You can change the props and tags as needed for your presentation or delete everything in `presentation/index.js` to start from scratch. From here you can go to [Development](#development) to get started.
 
-3. **Option #4:** Run `npm install spectacle` in your terminal and writing your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
+3.  **Option #4:** Run `npm install spectacle` in your terminal and writing your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
 ### Spectacle MDX
 
@@ -226,9 +226,9 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
 
 After downloading the boilerplate, run the following commands on the project's root directory...
 
-- `npm install` (you can also use `yarn`)
-- `rm -R .git` to remove the existing version control
-- `npm start` to start up the local server or visit [http://localhost:3000/#/](http://localhost:3000/#/)
+* `npm install` (you can also use `yarn`)
+* `rm -R .git` to remove the existing version control
+* `npm start` to start up the local server or visit [http://localhost:3000/#/](http://localhost:3000/#/)
 
 ... and we are ready to roll
 
@@ -256,10 +256,10 @@ You also have the option of a stopwatch to count the elapsed time:
 
 To present:
 
-- Run `npm start`. You will be redirected to a URL containing your presentation or visit [http://localhost:3000/#/](http://localhost:3000/#/)
-- Open a second browser window on a different screen
-- Add `?presenter` or `?presenter&timer` immediately after the `/`, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/?presenter&timer](http://localhost:3000/#/?presenter&timer)
-- Give an amazingly stylish presentation
+* Run `npm start`. You will be redirected to a URL containing your presentation or visit [http://localhost:3000/#/](http://localhost:3000/#/)
+* Open a second browser window on a different screen
+* Add `?presenter` or `?presenter&timer` immediately after the `/`, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/?presenter&timer](http://localhost:3000/#/?presenter&timer)
+* Give an amazingly stylish presentation
 
 _NOTE: Any windows/tabs in the same browser that are running Spectacle will sync to one another, even if you don't want to use presentation mode_
 
@@ -301,9 +301,9 @@ You can export a PDF from your Spectacle presentation either from the command li
 
 #### CLI
 
-- Run `npm install spectacle-renderer -g`
-- Run `npm start` on your project and wait for it to build and be available
-- Run `spectacle-renderer`
+* Run `npm install spectacle-renderer -g`
+* Run `npm start` on your project and wait for it to build and be available
+* Run `spectacle-renderer`
 
 A PDF is created in your project directory. For more options and configuration of this tool, check out:
 
@@ -313,9 +313,9 @@ A PDF is created in your project directory. For more options and configuration o
 
 After running `npm start` and opening [http://localhost:3000/#/](http://localhost:3000/#/) in your browser...
 
-- Add `?export` after the `/` on the URL of the page you are redirected to, e.g.: [http://localhost:3000/#/?export](http://localhost:3000/#/?export)
-- Bring up the print dialog `(ctrl or cmd + p)`
-- Change destination to "Save as PDF", as shown below:
+* Add `?export` after the `/` on the URL of the page you are redirected to, e.g.: [http://localhost:3000/#/?export](http://localhost:3000/#/?export)
+* Bring up the print dialog `(ctrl or cmd + p)`
+* Change destination to "Save as PDF", as shown below:
 
 ![https://i.imgur.com/fLeYrZC.png](https://i.imgur.com/fLeYrZC.png)
 
@@ -1046,9 +1046,9 @@ The `Typeface` tag is used to apply a specific font to text content. It can eith
 
 ## Third Party Extensions
 
-- [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @thejameskyle
-- [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
-- [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
+* [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @thejameskyle
+* [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
+* [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
 
 ## Maintenance Status
 
