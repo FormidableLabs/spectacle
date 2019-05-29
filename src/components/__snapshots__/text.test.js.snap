@@ -49,6 +49,7 @@ exports[`<Text /> should render a <p> with text for the default configuration. 1
   lineHeight={1}
 >
   <Styled(p)
+    lineHeight={1}
     styles={
       Object {
         "base": Object {},
@@ -61,7 +62,7 @@ exports[`<Text /> should render a <p> with text for the default configuration. 1
     }
   >
     <p
-      className="css-cmzp7u e1kfncg52"
+      className="css-1izsweo e1kfncg52"
     >
       Spectacle!
     </p>
