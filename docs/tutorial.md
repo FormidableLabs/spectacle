@@ -6,10 +6,10 @@ In this guide, we'll show you how to get started with Spectacle and walk you thr
 
 You can do this on your own if you'd like, or you can...
 
-* Clone down [this project](https://github.com/FormidableLabs/spectacle-boilerplate) we've started for you using `git clone git@github.com:FormidableLabs/spectacle-boilerplate.git`
-* `cd spectacle-boilerplate`
-* Remove existing version control by running `rm -rf .git`
-* Replace the existing code in the `presentation/index.js` file with:
+- Clone down [this project](https://github.com/FormidableLabs/spectacle-boilerplate) we've started for you using `git clone git@github.com:FormidableLabs/spectacle-boilerplate.git`
+- `cd spectacle-boilerplate`
+- Remove existing version control by running `rm -rf .git`
+- Replace the existing code in the `presentation/index.js` file with:
 
   ```js
   import React from 'react';
@@ -25,7 +25,7 @@ You can do this on your own if you'd like, or you can...
   }
   ```
 
-* Run `yarn install` to install all necessary dependencies
+- Run `yarn install` to install all necessary dependencies
 
 Once you've completed these steps, you can run the webpack sever with the command `yarn start`, and the project will render at [localhost:3000](http://localhost:3000). All modifications will take place in this `index.js` file.
 
