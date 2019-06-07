@@ -1,8 +1,2 @@
 node_modules
-package-lock.json
-dist
-lib
-es
-*.log
-.DS_Store
-.vscode
+yarn.lock

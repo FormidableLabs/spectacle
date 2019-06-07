@@ -1,7 +1,5 @@
-package-lock.json
+yarn.lock
 package.json
 node_modules
-dist
 es
 lib
-example/assets
