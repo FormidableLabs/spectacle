@@ -29,6 +29,7 @@ export default class Deck extends Component {
     autoplayOnStart: PropTypes.bool,
     children: PropTypes.node,
     controls: PropTypes.bool,
+    disableKeyboardControls: PropTypes.bool,
     globalStyles: PropTypes.bool,
     history: PropTypes.object,
     onStateChange: PropTypes.func,

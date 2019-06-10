@@ -145,7 +145,7 @@ export default class MagicText extends Component {
     }
     if (this.diffs.updated) {
       Object.keys(this.diffs.updated).forEach(m => {
-        const props = {
+        const properties = {
           ...(this.diffs.added[m] || {}),
           ...(this.diffs.updated[m] || {})
         };
@@ -155,8 +155,8 @@ export default class MagicText extends Component {
         if (last) {
           const start = {};
           const end = {};
-          const xdiff = props.x - last.x || 0;
-          const ydiff = props.y - last.y || 0;
+          const xdiff = properties.x - last.x || 0;
+          const ydiff = properties.y - last.y || 0;
           start.transform = `translate(${xdiff * -1}px, ${ydiff * -1}px)`;
           end.transform = 'translate(0, 0)';
           const el = document.querySelector(`[data-key='${m}']`);
