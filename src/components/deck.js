@@ -28,8 +28,6 @@ export default class Deck extends Component {
     autoplayLoop: PropTypes.bool,
     autoplayOnStart: PropTypes.bool,
     children: PropTypes.node,
-    contentHeight: PropTypes.number,
-    contentWidth: PropTypes.number,
     controls: PropTypes.bool,
     disableKeyboardControls: PropTypes.bool,
     globalStyles: PropTypes.bool,
