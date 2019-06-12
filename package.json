@@ -24,10 +24,6 @@
     "url": "https://github.com/FormidableLabs/spectacle.git"
   },
   "browserslist": "> 0.25%, not dead",
-  "dependencies": {
-    "webpack": "^4.33.0",
-    "webpack-dev-server": "^3.7.1"
-  },
   "peerDependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
@@ -58,6 +54,8 @@
     "react-dom": "^16.7.0",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2",
-    "webpack-cli": "^3.3.4"
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
   }
 }
