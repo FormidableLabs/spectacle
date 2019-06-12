@@ -11,9 +11,6 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        // include: ['index.js', 'src', 'example/assets', 'example/src'].map(
-        //   name => path.resolve(__dirname, name)
-        // ),
         use: {
           loader: 'babel-loader',
           options: {
