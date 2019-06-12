@@ -12,7 +12,8 @@
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
     "prettier-fix": "npm run prettier -- --write",
     "deploy": "",
-    "start": "",
+    "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
+    "build-wds-base": "webpack-dev-server",
     "test": "jest --verbose",
     "check": ""
   },
@@ -22,25 +23,41 @@
     "type": "git",
     "url": "https://github.com/FormidableLabs/spectacle.git"
   },
-  "dependencies": {},
+  "browserslist": "> 0.25%, not dead",
+  "dependencies": {
+    "webpack": "^4.33.0",
+    "webpack-dev-server": "^3.7.1"
+  },
   "peerDependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@mdx-js/loader": "^1.0.0-rc.4",
+    "babel-loader": "^8.0.6",
+    "builder": "^4.0.0",
     "eslint": "^4.19.0",
     "eslint-config-formidable": "^3.0.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-filenames": "^1.2.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-react": "^7.7.0",
+    "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.15.3",
     "prop-types": "^15.6.2",
     "raw-loader": "^1.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "tslint": "^5.12.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "webpack-cli": "^3.3.4"
   }
 }

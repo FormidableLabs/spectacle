@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import MDXDocument from './test.mdx';
 
-import Presentation from './example/src';
-
-render(<Presentation />, document.getElementById('root'));
+// const Zip = () => <div>boop</div>;
+render(<MDXDocument />, document.getElementById('root'));
