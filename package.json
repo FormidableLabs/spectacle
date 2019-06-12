@@ -57,5 +57,8 @@
     "webpack": "^4.33.0",
     "webpack-cli": "^3.3.4",
     "webpack-dev-server": "^3.7.1"
+  },
+  "dependencies": {
+    "styled-components": "^4.3.1"
   }
 }
