@@ -15,8 +15,7 @@ function reducer(state, action) {
 
 const Deck = props => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  console.log(props.children);
-  return <>{props.children}</>;
+  return props.children([dispatch, state]);
 };
 
 export default Deck;

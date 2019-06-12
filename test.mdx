@@ -13,7 +13,14 @@ Below is an example of JSX embedded in Markdown. <br /> **Kara and dom were succ
 </div>
 
 <Deck>
-  <Controls dispatch={'test'} />
+  {([dispatch, state]) => (
+    <>
+      <div>
+        <Controls dispatch={dispatch} />
+        <div>{state.currentSlide}</div>
+      </div>
+    </>
+  )}
 </Deck>
 
 - One ah ah ah
