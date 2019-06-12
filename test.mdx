@@ -1,6 +1,9 @@
 <!-- This is an MDX file that is imported in index.js and transpiled to
 JSX and then rendered, feel free to change this! -->
 
+import Deck from './src/components/deck/index.js';
+import Controls from './src/components/deck/index.js';
+
 # Hello, _world_!
 
 Below is an example of JSX embedded in Markdown. <br /> **Kara and dom were successful!**
@@ -8,6 +11,10 @@ Below is an example of JSX embedded in Markdown. <br /> **Kara and dom were succ
 <div style={{ padding: '20px', backgroundColor: 'aliceblue' }}>
   <h3>This is JSX</h3>
 </div>
+
+<Deck>
+  <Controls dispatch={'test'} />
+</Deck>
 
 - One ah ah ah
 - Two ah ah ah
