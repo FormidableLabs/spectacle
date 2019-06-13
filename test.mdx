@@ -3,6 +3,7 @@ JSX and then rendered, feel free to change this! -->
 
 import Deck from './src/components/Deck.js';
 import Controls from './src/components/Controls.js';
+import { DeckContext } from './src/hooks/useDeck.js';
 
 # Hello, _world_!
 
@@ -13,14 +14,19 @@ Below is an example of JSX embedded in Markdown. <br /> **Kara and dom were succ
 </div>
 
 <Deck>
-  {([dispatch, state]) => (
-    <>
-      <div>
-        <Controls dispatch={dispatch} />
-        <div>{state.currentSlide}</div>
-      </div>
-    </>
-  )}
+    <DeckContext.Consumer>
+  {([state, dispatch]) =>
+     (
+      <>
+        <div>
+          <Controls dispatch={dispatch} />
+          <div>{state.currentSlide}</div>
+        </div>
+      </>
+    )
+  }
+      </DeckContext.Consumer>
+
 </Deck>
 
 - One ah ah ah
