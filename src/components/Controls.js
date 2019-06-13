@@ -1,15 +1,14 @@
 import React from 'react';
-import DeckContet from '../hooks/useDeck';
+import { DeckContext } from '../hooks/useDeck';
 
 const Controls = () => {
-  let deckContext = React.useContext(DeckContet);
-  return deckContext ? (
+  const [state, dispatch] = React.useContext(DeckContext);
+
+  return (
     <>
       <button onClick={() => dispatch({ type: 'next slide' })}>Next</button>
       <button onClick={() => dispatch({ type: 'prev slide' })}>Prev</button>
     </>
-  ) : (
-    <div>boop</div>
   );
 };
 
