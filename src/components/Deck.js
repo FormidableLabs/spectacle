@@ -14,9 +14,12 @@ const initialState = { currentSlide: 0 };
 
 const Deck = props => {
   const [state, dispatch] = useDeck(initialState);
-  const Slides = props.children
-    .filter(x => x.props.mdxType === 'Slide')
-    .map((x, i) => ({ ...x, props: { ...x.props, slideNo: i } }));
+  const Slides =
+    typeof props.children === 'Array'
+      ? props.children
+          .filter(x => x.props.mdxType === 'Slide')
+          .map((x, i) => ({ ...x, props: { ...x.props, slideNo: i } }))
+      : props.children;
 
   return (
     <DeckContext.Provider value={[state, dispatch]}>
