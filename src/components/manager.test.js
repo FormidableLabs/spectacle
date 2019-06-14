@@ -14,6 +14,9 @@ const _mockContext = function(slide, routeParams) {
       controls: {},
       progress: {
         pacman: []
+      },
+      autoplay: {
+        pause: {}
       }
     },
     store: {
@@ -198,5 +201,23 @@ describe('<Manager />', () => {
     // We are at slide 2 (index 1) which directs us to go to
     // slide 4 (index 3) the delta should be 3 - 1, thus 2.
     expect(managerInstance._getOffset(1)).toEqual(2);
+  });
+
+  test('should cancel autoplay when component unmounts', () => {
+    const setIntervalSpy = jest.spyOn(window, 'setInterval');
+    const clearIntervalSpy = jest.spyOn(window, 'clearInterval');
+    const wrapper = mount(
+      <Manager autoplay autoplayOnStart>
+        <MockSlide />
+        <MockSlide />
+        <MockSlide />
+      </Manager>,
+      { context: _mockContext(1, []), childContextTypes: _mockChildContext() }
+    );
+    expect(setIntervalSpy.mock.calls.length).toBe(1);
+    wrapper.unmount();
+    // Called once in `Manager._startAutoplay`
+    // and again in `Manager.componentWillUnmount`
+    expect(clearIntervalSpy.mock.calls.length).toBe(2);
   });
 });
