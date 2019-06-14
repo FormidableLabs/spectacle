@@ -1,3 +1,5 @@
+# Contributing
+
 Thanks for contributing!
 
 ## Development
@@ -20,7 +22,7 @@ yarn
 
 @TODO
 
-### Before submitting a PR...
+### Before submitting a PR
 
 Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
 

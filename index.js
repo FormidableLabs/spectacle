@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import MDXDocument from './test.mdx';
+import MDXDocument from './examples/MDX/test.mdx';
 
 /**
  * Experiment to test MDX -> JSX transpilation through babel.

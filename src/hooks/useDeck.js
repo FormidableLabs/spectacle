@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Exposes DeckContext for use in Deck component and its children
+ */
+
 export const DeckContext = React.createContext();
 
 function useDeck(initialState) {
