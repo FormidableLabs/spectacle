@@ -203,8 +203,8 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
-    <script src="https://unpkg.com/spectacle@^4/dist/spectacle.js"></script>
-    <script src="https://unpkg.com/spectacle@^4/lib/one-page.js"></script>
+    <script src="https://unpkg.com/spectacle@^5/dist/spectacle.js"></script>
+    <script src="https://unpkg.com/spectacle@^5/lib/one-page.js"></script>
     <script type="text/spectacle">
       () => {
         // Your JS Code goes here
