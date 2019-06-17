@@ -12,18 +12,14 @@ const Slide = props => {
   const initialState = { currentSlideElement: 0 };
   const { children, slideNo } = props;
 
-  const numberOfSlideElements =
-    typeof props.children === 'Array'
-      ? props.children.filter(x =>
-          Object.keys(x.props).includes('slide-element')
-        )
-      : 0;
-
+  const numberOfSlideElements = Array.isArray(props.children)
+    ? props.children.filter(x => x.props['slide-element']).length
+    : 0;
   const isActive = slideNo === state.currentSlide;
 
   const SlideElements = Array.isArray(props.children)
     ? props.children.map((x, i) => {
-        if (Object.keys(x.props).includes('slide-element')) {
+        if (x.props['slide-element']) {
           return {
             ...x,
             props: {
@@ -38,6 +34,7 @@ const Slide = props => {
         }
       })
     : props.children;
+
   return (
     <div
       style={
