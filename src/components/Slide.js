@@ -10,12 +10,12 @@ import { DeckContext } from '../hooks/useDeck';
 const Slide = props => {
   const [state, _] = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0 };
-  const { children, slideNo } = props;
+  const { children, slideNum } = props;
 
   const numberOfSlideElements = Array.isArray(props.children)
     ? props.children.filter(x => x.props['slide-element']).length
     : 0;
-  const isActive = slideNo === state.currentSlide;
+  const isActive = slideNum === state.currentSlide;
 
   const SlideElements = Array.isArray(props.children)
     ? props.children.map((x, i) => {
@@ -27,8 +27,8 @@ const Slide = props => {
               'slide-element': i,
               style:
                 x.props['slide-element'] === state.currentSlideElement
-                  ? { backgroundColor: 'orange' }
-                  : { border: '2px solid red' }
+                  ? { border: '2px solid orange' }
+                  : { border: '2px solid green' }
             }
           };
         }
@@ -41,7 +41,7 @@ const Slide = props => {
         isActive ? { backgroundColor: 'blue' } : { border: '2px solid red' }
       }
     >
-      <p>{slideNo}</p>
+      <p>{slideNum}</p>
       <SlideContext.Provider
         value={useSlide(initialState, isActive, numberOfSlideElements)}
       >

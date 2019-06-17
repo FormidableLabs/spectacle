@@ -87,7 +87,7 @@ function useSlide(initialState, isActiveSlide, slideElementsLength) {
   // highest slideElement state or it will look weird.
   React.useEffect(
     function() {
-        // Need to check whether active slide
+      // Need to check whether active slide
       if (isActiveSlide) {
         if (
           prevSlideNum === 0 &&
@@ -102,9 +102,9 @@ function useSlide(initialState, isActiveSlide, slideElementsLength) {
           prevSlideNum = deckContextState.currentSlide;
           return;
         }
-        prevSlideNum = deckContextState.currentSlide;
-        dispatch({ type: 'RESET_SLIDE_ELEMENT' });
       }
+      prevSlideNum = deckContextState.currentSlide;
+      dispatch({ type: 'RESET_SLIDE_ELEMENT' });
     },
     [deckContextState]
   );

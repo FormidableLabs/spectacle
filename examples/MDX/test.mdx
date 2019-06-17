@@ -3,27 +3,24 @@ JSX and then rendered, feel free to change this! -->
 
 import Deck from '../../src/components/Deck.js';
 import Slide from '../../src/components/Slide.js';
-import Controls from '../../src/components/Controls.js';
 import { DeckContext } from '../../src/hooks/useDeck.js';
 
 # Hello, _world_!
-
-Below is an example of JSX embedded in Markdown. <br /> **Kara and dom were successful!**
 
 <div style={{ padding: '20px', backgroundColor: 'aliceblue' }}>
   <h3>This is JSX</h3>
 </div>
 
-<Deck>
+<Deck loop={true}>
   <div></div>
-  <Slide slideNo={1}>
+  <Slide>
     <div>Hi</div>
     <b>b</b>
   </Slide>
-  <Slide slideNo={2}>
+  <Slide>
     <p> Slide 3! </p>
   </Slide>
-  <Slide slideNo={3}>
+  <Slide>
     <p slide-element="true"> Slide 4 x 3! </p>
     <p slide-element="true"> Slide 4 x 3! </p>
     <p> Slide 4 x 3! </p>
