@@ -6,7 +6,7 @@ import useDeck, { DeckContext } from '../hooks/useDeck';
  * Should wrap all the presentation components (slides, etc)
  *
  * Props = {
- * loop: bool (pass in true if you want slides to loop)
+ *  loop: bool (pass in true if you want slides to loop)
  * }
  */
 
