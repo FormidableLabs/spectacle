@@ -1,6 +1,7 @@
 import React from 'react';
 import useSlide, { SlideContext } from '../hooks/useSlide';
 import { DeckContext } from '../hooks/useDeck';
+import isComponentType from '../utils/isComponentType.js';
 
 /**
  *
@@ -30,9 +31,8 @@ const Slide = props => {
   const initialState = { currentSlideElement: 0 };
   const { children, slideNum } = props;
 
-  const numberOfSlideElements = Array.isArray(props.children)
-    ? props.children.filter(x => x.props.mdxType === 'SlideElementWrapper')
-        .length
+  const numberOfSlideElements = Array.isArray(children)
+    ? children.filter(x => isComponentType(x, 'SlideElementWrapper')).length
     : 0;
   const isActive = slideNum === state.currentSlide;
 
@@ -48,7 +48,7 @@ const Slide = props => {
       <SlideContext.Provider
         value={useSlide(initialState, isActive, numberOfSlideElements)}
       >
-        {props.children}
+        {children}
       </SlideContext.Provider>
     </div>
   );
