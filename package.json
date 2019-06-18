@@ -59,6 +59,7 @@
     "webpack-dev-server": "^3.7.1"
   },
   "dependencies": {
+    "react-spring": "^8.0.25",
     "styled-components": "^4.3.1"
   }
 }
