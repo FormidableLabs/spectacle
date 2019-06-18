@@ -7,45 +7,48 @@ import { DeckContext } from '../hooks/useDeck';
  *
  */
 
+export const SlideElementWrapper = props => {
+  const { elementNum, transitionEffect, children } = props;
+  const [state] = React.useContext(SlideContext);
+
+  return (
+    <div
+      style={
+        state && elementNum === state.currentSlideElement
+          ? { border: '2px solid orange' }
+          : { display: 'none' }
+      }
+    >
+      Slide element:
+      {children}
+    </div>
+  );
+};
+
 const Slide = props => {
   const [state, _] = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0 };
   const { children, slideNum } = props;
 
   const numberOfSlideElements = Array.isArray(props.children)
-    ? props.children.filter(x => x.props['slide-element']).length
+    ? props.children.filter(x => x.props.mdxType === 'SlideElementWrapper')
+        .length
     : 0;
   const isActive = slideNum === state.currentSlide;
-
-  const SlideElements = Array.isArray(props.children)
-    ? props.children.map((x, i) => {
-        if (x.props['slide-element']) {
-          return {
-            ...x,
-            props: {
-              ...x.props,
-              'slide-element': i,
-              style:
-                x.props['slide-element'] === state.currentSlideElement
-                  ? { border: '2px solid orange' }
-                  : { border: '2px solid green' }
-            }
-          };
-        }
-      })
-    : props.children;
 
   return (
     <div
       style={
-        isActive ? { backgroundColor: 'blue' } : { border: '2px solid red' }
+        isActive
+          ? { backgroundColor: 'lavender', border: '2px solid plum' }
+          : { backgroundColor: 'snow' }
       }
     >
       <p>{slideNum}</p>
       <SlideContext.Provider
         value={useSlide(initialState, isActive, numberOfSlideElements)}
       >
-        {SlideElements}
+        {props.children}
       </SlideContext.Provider>
     </div>
   );

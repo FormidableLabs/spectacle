@@ -2,7 +2,7 @@
 JSX and then rendered, feel free to change this! -->
 
 import Deck from '../../src/components/Deck.js';
-import Slide from '../../src/components/Slide.js';
+import Slide, { SlideElementWrapper } from '../../src/components/Slide.js';
 import { DeckContext } from '../../src/hooks/useDeck.js';
 
 # Hello, _world_!
@@ -10,20 +10,30 @@ import { DeckContext } from '../../src/hooks/useDeck.js';
 <div style={{ padding: '20px', backgroundColor: 'aliceblue' }}>
   <h3>This is JSX</h3>
 </div>
-
 <Deck loop={true}>
-  <div></div>
   <Slide>
     <div>Hi</div>
     <b>b</b>
   </Slide>
   <Slide>
     <p> Slide 3! </p>
+    <SlideElementWrapper elementNum={0}>
+      Hey, just one "animated" slide element here
+    </SlideElementWrapper>
   </Slide>
   <Slide>
-    <p slide-element="true"> Slide 4 x 3! </p>
-    <p slide-element="true"> Slide 4 x 3! </p>
-    <p> Slide 4 x 3! </p>
+    <p>I'm a static slide element that should always show</p>
+    <p>This means that we don't need a SlideElementWrapper</p>
+    <SlideElementWrapper elementNum={0}>
+      <p slide-element="true"> ZERO Slide 4 x 3! </p>
+    </SlideElementWrapper>
+    <SlideElementWrapper elementNum={1}>
+      <p slide-element="true"> ONE Slide 4 x 3! </p>
+    </SlideElementWrapper>
+    <SlideElementWrapper elementNum={2}>
+      <p slide-element="true"> TWO Slide 4 x 3! </p>
+    </SlideElementWrapper>
+    <p>I'm also a static non-animated "slide element"!</p>
   </Slide>
 </Deck>
 
