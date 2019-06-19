@@ -14,6 +14,8 @@ import { useTransition, animated } from 'react-spring';
 
 const initialState = { currentSlide: 0 };
 
+let prevSlide = initialState.currentSlide;
+
 const Deck = props => {
   // Check for slides and then number slides.
   const Slides = Array.isArray(props.children)
@@ -43,23 +45,45 @@ const Deck = props => {
     props.loop ? true : false
   );
 
-  const transitions = useTransition(state.currentSlide, p => p, {
-    from: {
-      width: '100%',
-      position: 'absolute',
-      transform: 'translate(100%, 0%)'
-    },
-    enter: {
-      width: '100%',
-      position: 'absolute',
-      transform: 'translate(0, 0%)'
-    },
-    leave: {
-      width: '100%',
-      position: 'absolute',
-      transform: 'translate(-100%, 0%)'
-    }
-  });
+  const transitions = useTransition(
+    state.currentSlide,
+    p => p,
+    state.currentSlide > prevSlide
+      ? {
+          from: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(100%, 0%)'
+          },
+          enter: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(0, 0%)'
+          },
+          leave: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(-100%, 0%)'
+          }
+        }
+      : {
+          from: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(-100%, 0%)'
+          },
+          enter: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(0, 0%)'
+          },
+          leave: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(100%, 0%)'
+          }
+        }
+  );
 
   return (
     <div
@@ -73,6 +97,7 @@ const Deck = props => {
       <DeckContext.Provider value={[state, dispatch, Slides.length]}>
         {transitions.map(({ item, props, key }) => {
           const Slide = Slides[item];
+          prevSlide = state.currentSlide;
           return <Slide style={props} />;
         })}
       </DeckContext.Provider>
