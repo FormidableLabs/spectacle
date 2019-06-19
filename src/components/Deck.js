@@ -9,6 +9,7 @@ import { useTransition, animated } from 'react-spring';
  *
  * Props = {
  *  loop: bool (pass in true if you want slides to loop)
+ * transitionEffect: based off of react sprint useTransition
  * }
  */
 
@@ -17,25 +18,49 @@ const initialState = { currentSlide: 0 };
 let prevSlide = initialState.currentSlide;
 
 const Deck = props => {
+  // Array of slide effects for transitioning between slides
+  let slideEffects = [];
+  // Our default effect for transitioning between slides
+  const defaultSlideEffect = {
+    from: {
+      width: '100%',
+      position: 'absolute',
+      transform: 'translate(100%, 0%)'
+    },
+    enter: {
+      width: '100%',
+      position: 'absolute',
+      transform: 'translate(0, 0%)'
+    },
+    leave: {
+      width: '100%',
+      position: 'absolute',
+      transform: 'translate(-100%, 0%)'
+    }
+  };
   // Check for slides and then number slides.
   const Slides = Array.isArray(props.children)
     ? props.children
-        .filter(x => isComponentType(x, 'Slide'))
-        /** One idea is to remove the above filter, and use the `else`
-         * in the map below to allow non-Slide elements to always appear.
-         * At the moment, these break the slide navigation as this hook
-         * is only used by the slides...
-         */
+        // filter if is a Slide
+        .filter(x => x.props.mdxType === 'Slide')
+        // map through transitionEffect props and push into slideEffects Array
+        // then return a wrapped slide with the animated.div + style prop curried
+        // and a slideNum prop based on iterator
         .map((x, i) => {
-          if (isComponentType(x, 'Slide')) {
-            return { ...x, props: { ...x.props, slideNum: i } };
-          } else {
-            return x;
-          }
+          slideEffects = [
+            ...slideEffects,
+            x.props.transitionEffect
+              ? x.props.transitionEffect
+              : defaultSlideEffect
+          ];
+          return ({ style }) => (
+            <animated.div style={{ ...style }}>
+              {isComponentType(x, 'Slide')
+                ? { ...x, props: { ...x.props, slideNum: i } }
+                : x}
+            </animated.div>
+          );
         })
-        .map(x => ({ style }) => (
-          <animated.div style={{ ...style }}>{x}</animated.div>
-        ))
     : props.children;
 
   // Initialise useDeck hook and get state and dispatch off of it
@@ -48,41 +73,7 @@ const Deck = props => {
   const transitions = useTransition(
     state.currentSlide,
     p => p,
-    state.currentSlide > prevSlide
-      ? {
-          from: {
-            width: '100%',
-            position: 'absolute',
-            transform: 'translate(100%, 0%)'
-          },
-          enter: {
-            width: '100%',
-            position: 'absolute',
-            transform: 'translate(0, 0%)'
-          },
-          leave: {
-            width: '100%',
-            position: 'absolute',
-            transform: 'translate(-100%, 0%)'
-          }
-        }
-      : {
-          from: {
-            width: '100%',
-            position: 'absolute',
-            transform: 'translate(-100%, 0%)'
-          },
-          enter: {
-            width: '100%',
-            position: 'absolute',
-            transform: 'translate(0, 0%)'
-          },
-          leave: {
-            width: '100%',
-            position: 'absolute',
-            transform: 'translate(100%, 0%)'
-          }
-        }
+    slideEffects[state.currentSlide]
   );
 
   return (

@@ -12,7 +12,23 @@ import { DeckContext } from '../../src/hooks/useDeck.js';
   <h3>This is JSX</h3>
 </div>
 <Deck loop={true}>
-  <Slide>
+  <Slide transitionEffect={{
+          from: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(-100%, 0%)'
+          },
+          enter: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(0, 0%)'
+          },
+          leave: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(100%, 0%)'
+          }
+        }}>
     <div>Hi</div>
     <b>b</b>
   </Slide>
