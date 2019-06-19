@@ -24,6 +24,7 @@ function useSlide(initialState, isActiveSlide, slideElementsLength) {
   function reducer(state, action) {
     // As we need to animate between slides, we need to check if
     // this is the active slide and only run the reducer if so
+
     if (isActiveSlide) {
       switch (action.type) {
         case 'NEXT_SLIDE_ELEMENT':
@@ -31,23 +32,23 @@ function useSlide(initialState, isActiveSlide, slideElementsLength) {
           // slideElement then go to next slide!
           if (
             slideElementsLength === 0 ||
-            state.currentSlideElement === slideElementsLength - 1
+            (state && state.currentSlideElement === slideElementsLength - 1)
           ) {
             deckContextDispatch({ type: 'NEXT_SLIDE' });
           }
           return {
             // Next slide element
-            currentSlideElement: state.currentSlideElement + 1
+            currentSlideElement: state ? state.currentSlideElement + 1 : 0
           };
         // If there aren't any slideElements or this is the first
         // slideElement then go to prev slide!
         case 'PREV_SLIDE_ELEMENT':
-          if (state.currentSlideElement === 0) {
+          if (state && state.currentSlideElement === 0) {
             deckContextDispatch({ type: 'PREV_SLIDE' });
           }
           return {
             // Prev slideElement
-            currentSlideElement: state.currentSlideElement - 1
+            currentSlideElement: state ? state.currentSlideElement - 1 : 0
           };
         // Resets our slideElements to initial (usually 0)
         case 'RESET_SLIDE_ELEMENT':

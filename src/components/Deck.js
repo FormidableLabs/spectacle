@@ -1,6 +1,7 @@
 import React from 'react';
 import useDeck, { DeckContext } from '../hooks/useDeck';
 import isComponentType from '../utils/isComponentType.js';
+import { useTransition, animated } from 'react-spring';
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -30,6 +31,9 @@ const Deck = props => {
             return x;
           }
         })
+        .map(x => ({ style }) => (
+          <animated.div style={{ ...style }}>{x}</animated.div>
+        ))
     : props.children;
 
   // Initialise useDeck hook and get state and dispatch off of it
@@ -39,10 +43,40 @@ const Deck = props => {
     props.loop ? true : false
   );
 
+  const transitions = useTransition(state.currentSlide, p => p, {
+    from: {
+      width: '100%',
+      position: 'absolute',
+      transform: 'translate(100%, 0%)'
+    },
+    enter: {
+      width: '100%',
+      position: 'absolute',
+      transform: 'translate(0, 0%)'
+    },
+    leave: {
+      width: '100%',
+      position: 'absolute',
+      transform: 'translate(-100%, 0%)'
+    }
+  });
+
   return (
-    <DeckContext.Provider value={[state, dispatch, Slides.length]}>
-      {Slides}
-    </DeckContext.Provider>
+    <div
+      style={{
+        position: 'relative',
+        height: '50vh',
+        width: '100%',
+        overflowX: 'hidden'
+      }}
+    >
+      <DeckContext.Provider value={[state, dispatch, Slides.length]}>
+        {transitions.map(({ item, props, key }) => {
+          const Slide = Slides[item];
+          return <Slide style={props} />;
+        })}
+      </DeckContext.Provider>
+    </div>
   );
 };
 

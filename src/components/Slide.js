@@ -20,13 +20,7 @@ const Slide = props => {
   const isActive = slideNum === state.currentSlide;
 
   return (
-    <div
-      style={
-        isActive
-          ? { backgroundColor: 'lavender', border: '2px solid plum' }
-          : { backgroundColor: 'snow' }
-      }
-    >
+    <div style={{ backgroundColor: 'lavender', border: '2px solid plum' }}>
       <p>{slideNum}</p>
       <SlideContext.Provider
         value={useSlide(initialState, isActive, numberOfSlideElements)}
