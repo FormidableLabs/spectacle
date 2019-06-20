@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import useDeck, { DeckContext } from '../hooks/useDeck';
 import isComponentType from '../utils/isComponentType.js';
 import { useTransition, animated } from 'react-spring';
@@ -17,7 +19,7 @@ const initialState = { currentSlide: 0 };
 
 let prevSlide = initialState.currentSlide;
 
-const Deck = props => {
+const Deck = ({ children, loop }) => {
   // Array of slide effects for transitioning between slides
   let slideEffects = [];
   // Our default effect for transitioning between slides
@@ -39,8 +41,8 @@ const Deck = props => {
     }
   };
   // Check for slides and then number slides.
-  const Slides = Array.isArray(props.children)
-    ? props.children
+  const Slides = Array.isArray(children)
+    ? children
         // filter if is a Slide
         .filter(x => isComponentType(x, 'Slide'))
         // map through transitionEffect props and push into slideEffects Array
@@ -59,13 +61,13 @@ const Deck = props => {
             </animated.div>
           );
         })
-    : props.children;
+    : children;
 
   // Initialise useDeck hook and get state and dispatch off of it
   const [state, dispatch] = useDeck(
     initialState,
     Slides.length,
-    props.loop ? true : false
+    loop ? true : false
   );
 
   const transitions = useTransition(
@@ -92,6 +94,16 @@ const Deck = props => {
       </DeckContext.Provider>
     </div>
   );
+};
+
+Deck.propTypes = {
+  children: PropTypes.object.isRequired,
+  slideNum: PropTypes.number.isRequired,
+  loop: PropTypes.bool.isRequired
+};
+
+Deck.defaultPropsTypes = {
+  loop: false
 };
 
 export default Deck;
