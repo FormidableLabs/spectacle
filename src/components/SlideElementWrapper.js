@@ -17,9 +17,13 @@ const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
 
   const [styleProps, set] = useSpring(() => transitionEffect.from);
 
+  // when state changes check if the elementNum is less than/equal to currentSlideElement
+  // if so trigger transition, if not then to initial!
   React.useEffect(() => {
     if (state && elementNum <= state.currentSlideElement) {
       set({ from: transitionEffect.from, to: transitionEffect.to });
+    } else {
+      set({ to: transitionEffect.from });
     }
   }, [state]);
 
@@ -32,7 +36,7 @@ SlideElementWrapper.propTypes = {
     to: PropTypes.object.isRequired
   }),
   elementNum: PropTypes.number.isRequired,
-  children: PropTypes.object.isRequired
+  children: PropTypes.node.isRequired
 };
 
 SlideElementWrapper.defaultProps = {

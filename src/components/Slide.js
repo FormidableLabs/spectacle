@@ -7,8 +7,8 @@ import isComponentType from '../utils/isComponentType.js';
 import SlideElementWrapper from './SlideElementWrapper';
 
 /**
- *
- *
+ * Slide component wraps anything going in a slide and maintains
+ * the slides' internal state through useSlide.
  */
 
 const Slide = ({ children, slideNum }) => {
@@ -39,7 +39,7 @@ const Slide = ({ children, slideNum }) => {
 };
 
 Slide.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
   slideNum: PropTypes.number.isRequired
 };
 

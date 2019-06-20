@@ -97,8 +97,7 @@ const Deck = ({ children, loop }) => {
 };
 
 Deck.propTypes = {
-  children: PropTypes.object.isRequired,
-  slideNum: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
   loop: PropTypes.bool.isRequired
 };
 
