@@ -7,4 +7,5 @@
  */
 
 export default (component, name) =>
-  component.props.mdxType === name || component.type.name === name;
+  component.props.mdxType === name ||
+  (component.type && component.type.name === name);

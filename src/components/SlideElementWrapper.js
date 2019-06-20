@@ -14,7 +14,6 @@ const SlideElementWrapper = props => {
           : { display: 'none' }
       }
     >
-      Slide element:
       {children}
     </div>
   );

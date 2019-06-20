@@ -13,4 +13,4 @@ import TestJs from './examples/JS/TestJS.js';
  * to hot-reload with new contents.
  */
 
-render(<TestJs />, document.getElementById('root'));
+render(<MDXDocument />, document.getElementById('root'));

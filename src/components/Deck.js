@@ -42,7 +42,7 @@ const Deck = props => {
   const Slides = Array.isArray(props.children)
     ? props.children
         // filter if is a Slide
-        .filter(x => x.props.mdxType === 'Slide')
+        .filter(x => isComponentType(x, 'Slide'))
         // map through transitionEffect props and push into slideEffects Array
         // then return a wrapped slide with the animated.div + style prop curried
         // and a slideNum prop based on iterator
@@ -55,9 +55,7 @@ const Deck = props => {
           ];
           return ({ style }) => (
             <animated.div style={{ ...style }}>
-              {isComponentType(x, 'Slide')
-                ? { ...x, props: { ...x.props, slideNum: i } }
-                : x}
+              {{ ...x, props: { ...x.props, slideNum: i } }}
             </animated.div>
           );
         })

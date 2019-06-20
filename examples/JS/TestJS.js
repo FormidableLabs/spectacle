@@ -1,6 +1,7 @@
 import React from 'react';
 import Deck from '../../src/components/Deck.js';
-import Slide, { SlideElementWrapper } from '../../src/components/Slide.js';
+import Slide from '../../src/components/Slide.js';
+import SlideElementWrapper from '../../src/components/SlideElementWrapper';
 
 const TestJs = () => (
   <Deck loop={true}>
@@ -11,7 +12,7 @@ const TestJs = () => (
     <Slide>
       <p> Slide 3! </p>
       <SlideElementWrapper elementNum={0}>
-        Hey, just one "animated" slide element here
+        <div>Hey, just one "animated" slide element here</div>
       </SlideElementWrapper>
     </Slide>
     <Slide>
