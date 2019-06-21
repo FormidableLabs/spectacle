@@ -17,11 +17,7 @@ import { useTransition, animated } from 'react-spring';
 
 const initialState = { currentSlide: 0 };
 
-let prevSlide = initialState.currentSlide;
-
-const Deck = ({ children, loop }) => {
-  // Array of slide effects for transitioning between slides
-  let slideEffects = [];
+const Deck = ({ children, loop, keyboardControls }) => {
   // Our default effect for transitioning between slides
   const defaultSlideEffect = {
     from: {
@@ -41,27 +37,26 @@ const Deck = ({ children, loop }) => {
     }
   };
   // Check for slides and then number slides.
-  const Slides = Array.isArray(children)
+  const filteredChildren = Array.isArray(children)
     ? children
         // filter if is a Slide
         .filter(x => isComponentType(x, 'Slide'))
-        // map through transitionEffect props and push into slideEffects Array
-        // then return a wrapped slide with the animated.div + style prop curried
-        // and a slideNum prop based on iterator
-        .map((x, i) => {
-          slideEffects = [
-            ...slideEffects,
-            x.props.transitionEffect
-              ? x.props.transitionEffect
-              : defaultSlideEffect
-          ];
-          return ({ style }) => (
-            <animated.div style={{ ...style }}>
-              {{ ...x, props: { ...x.props, slideNum: i } }}
-            </animated.div>
-          );
-        })
-    : children;
+    : console.error('No children passed') || [];
+
+  // return a wrapped slide with the animated.div + style prop curried
+  // and a slideNum prop based on iterator
+
+  const Slides = filteredChildren.map((
+    x,
+    i // eslint-disable-next-line react/display-name
+  ) => ({ style }) => (
+    <animated.div style={{ ...style }}>
+      {{
+        ...x,
+        props: { ...x.props, slideNum: i, keyboardControls }
+      }}
+    </animated.div>
+  ));
 
   // Initialise useDeck hook and get state and dispatch off of it
   const [state, dispatch] = useDeck(
@@ -73,7 +68,7 @@ const Deck = ({ children, loop }) => {
   const transitions = useTransition(
     state.currentSlide,
     p => p,
-    slideEffects[state.currentSlide]
+    filteredChildren[state.currentSlide].props.transitionEffect || defaultSlideEffect
   );
 
   return (
@@ -85,11 +80,10 @@ const Deck = ({ children, loop }) => {
         overflowX: 'hidden'
       }}
     >
-      <DeckContext.Provider value={[state, dispatch, Slides.length]}>
+      <DeckContext.Provider value={[state, dispatch, Slides.length, keyboardControls]}>
         {transitions.map(({ item, props, key }) => {
           const Slide = Slides[item];
-          prevSlide = state.currentSlide;
-          return <Slide style={props} />;
+          return <Slide key={key} style={props} />;
         })}
       </DeckContext.Provider>
     </div>
@@ -98,11 +92,13 @@ const Deck = ({ children, loop }) => {
 
 Deck.propTypes = {
   children: PropTypes.node.isRequired,
+  keyboardControls: PropTypes.oneOf(['arrows', 'space']),
   loop: PropTypes.bool.isRequired
 };
 
-Deck.defaultPropsTypes = {
-  loop: false
+Deck.defaultProps = {
+  loop: false,
+  keyboardControls: 'arrows'
 };
 
 export default Deck;

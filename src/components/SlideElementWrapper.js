@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
 
-import useSlide, { SlideContext } from '../hooks/useSlide';
+import { SlideContext } from '../hooks/useSlide';
 
 /**
  * SlideElementWrapper provides a component for animating slideElements
@@ -25,18 +25,18 @@ const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
     } else {
       set({ to: transitionEffect.from });
     }
-  }, [state]);
+  }, [elementNum, set, state, transitionEffect.from, transitionEffect.to]);
 
   return <animated.div style={styleProps}>{children}</animated.div>;
 };
 
 SlideElementWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+  elementNum: PropTypes.number.isRequired,
   transitionEffect: PropTypes.shape({
     from: PropTypes.object.isRequired,
     to: PropTypes.object.isRequired
-  }),
-  elementNum: PropTypes.number.isRequired,
-  children: PropTypes.node.isRequired
+  })
 };
 
 SlideElementWrapper.defaultProps = {

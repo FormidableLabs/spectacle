@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 // START: test components to try rendering:
 import MDXDocument from './examples/MDX/test.mdx';
-import TestJs from './examples/JS/TestJS.js';
+// import TestJs from './examples/JS/TestJS.js';
 // END: test components to try rendering
 
 /**

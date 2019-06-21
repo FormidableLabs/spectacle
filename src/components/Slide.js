@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import useSlide, { SlideContext } from '../hooks/useSlide';
 import { DeckContext } from '../hooks/useDeck';
 import isComponentType from '../utils/isComponentType.js';
-import SlideElementWrapper from './SlideElementWrapper';
 
 /**
  * Slide component wraps anything going in a slide and maintains
@@ -12,7 +11,7 @@ import SlideElementWrapper from './SlideElementWrapper';
  */
 
 const Slide = ({ children, slideNum }) => {
-  const [state, _] = React.useContext(DeckContext);
+  const [state, , , keyboardControls] = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0 };
 
   const numberOfSlideElements = Array.isArray(children)
@@ -30,7 +29,12 @@ const Slide = ({ children, slideNum }) => {
     >
       <p>{slideNum}</p>
       <SlideContext.Provider
-        value={useSlide(initialState, isActive, numberOfSlideElements)}
+        value={useSlide(
+          initialState,
+          isActive,
+          numberOfSlideElements,
+          keyboardControls
+        )}
       >
         {children}
       </SlideContext.Provider>

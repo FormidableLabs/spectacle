@@ -1,5 +1,4 @@
 import React from 'react';
-import { SlideContext } from './useSlide';
 /**
  * Performs logic operations for all of the deck domain level.
  */

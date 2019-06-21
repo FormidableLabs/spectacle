@@ -15,7 +15,12 @@ let prevSlideNum;
 // Initialise SlideContext.
 export const SlideContext = React.createContext();
 
-function useSlide(initialState, isActiveSlide, slideElementsLength) {
+function useSlide(
+  initialState,
+  isActiveSlide,
+  slideElementsLength,
+  keyboardControls
+) {
   // Gets state, dispatch and number of slides off DeckContext.
   const [deckContextState, deckContextDispatch, slideLength] = React.useContext(
     DeckContext
@@ -64,24 +69,32 @@ function useSlide(initialState, isActiveSlide, slideElementsLength) {
   }
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  function handleKeyDown(e) {
-    if (e.key === 'ArrowLeft') {
-      dispatch({ type: 'PREV_SLIDE_ELEMENT' });
-    }
-    if (e.key === 'ArrowRight') {
-      dispatch({ type: 'NEXT_SLIDE_ELEMENT' });
-    }
-  }
-
   // This useEffect adds a keyDown listener to the window.
   React.useEffect(
     function() {
+      function handleKeyDown(e) {
+        console.log(e);
+        if (keyboardControls === 'arrows') {
+          if (e.key === 'ArrowLeft') {
+            dispatch({ type: 'PREV_SLIDE_ELEMENT' });
+          }
+          if (e.key === 'ArrowRight') {
+            dispatch({ type: 'NEXT_SLIDE_ELEMENT' });
+          }
+        }
+        if (keyboardControls === 'space') {
+          if (e.code === 'Space') {
+            dispatch({ type: 'NEXT_SLIDE_ELEMENT' });
+            e.preventDefault();
+          }
+        }
+      }
       isActiveSlide ? window.addEventListener('keydown', handleKeyDown) : null;
       return function cleanup() {
         window.removeEventListener('keydown', handleKeyDown);
       };
     },
-    [isActiveSlide]
+    [isActiveSlide, keyboardControls]
   );
 
   // If we're looping back through slides, then we need to reset it to the
@@ -104,10 +117,8 @@ function useSlide(initialState, isActiveSlide, slideElementsLength) {
           return;
         }
       }
-      prevSlideNum = deckContextState.currentSlide;
-      dispatch({ type: 'RESET_SLIDE_ELEMENT' });
     },
-    [deckContextState]
+    [deckContextState.currentSlide, isActiveSlide, slideLength]
   );
   return [state, dispatch];
 }
