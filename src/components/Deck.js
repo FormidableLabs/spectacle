@@ -15,9 +15,9 @@ import { useTransition, animated } from 'react-spring';
  * }
  */
 
-const initialState = { currentSlide: 0 };
+const initialState = { currentSlide: 0, immediate: false };
 
-const Deck = ({ children, loop, keyboardControls }) => {
+const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   // Our default effect for transitioning between slides
   const defaultSlideEffect = {
     from: {
@@ -65,11 +65,13 @@ const Deck = ({ children, loop, keyboardControls }) => {
     loop ? true : false
   );
 
-  const transitions = useTransition(
-    state.currentSlide,
-    p => p,
-    filteredChildren[state.currentSlide].props.transitionEffect || defaultSlideEffect
-  );
+  const transitions = useTransition(state.currentSlide, p => p, {
+    ...(filteredChildren[state.currentSlide].props.transitionEffect ||
+      defaultSlideEffect),
+    config: { precision: 0 },
+    unique: true,
+    immediate: rest.animationsWhenGoingBack ? false : state.immediate
+  });
 
   return (
     <div
@@ -80,7 +82,9 @@ const Deck = ({ children, loop, keyboardControls }) => {
         overflowX: 'hidden'
       }}
     >
-      <DeckContext.Provider value={[state, dispatch, Slides.length, keyboardControls]}>
+      <DeckContext.Provider
+        value={[state, dispatch, Slides.length, keyboardControls]}
+      >
         {transitions.map(({ item, props, key }) => {
           const Slide = Slides[item];
           return <Slide key={key} style={props} />;
@@ -91,6 +95,7 @@ const Deck = ({ children, loop, keyboardControls }) => {
 };
 
 Deck.propTypes = {
+  animationsWhenGoingBack: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
   loop: PropTypes.bool.isRequired
@@ -98,7 +103,8 @@ Deck.propTypes = {
 
 Deck.defaultProps = {
   loop: false,
-  keyboardControls: 'arrows'
+  keyboardControls: 'arrows',
+  animationsWhenGoingBack: false
 };
 
 export default Deck;

@@ -24,11 +24,11 @@ function useDeck(initialState, numSlides, looping) {
         // to last slide else stop
         if (state.currentSlide === initialState.currentSlide) {
           if (looping) {
-            return { currentSlide: numSlides - 1 };
+            return { currentSlide: numSlides - 1, immediate: true };
           }
           return { ...state };
         }
-        return { currentSlide: state.currentSlide - 1 };
+        return { currentSlide: state.currentSlide - 1, immediate: true };
       default:
         return { ...state };
     }
