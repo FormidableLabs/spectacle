@@ -13,7 +13,7 @@ import { SlideContext } from '../hooks/useSlide';
  */
 
 const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
-  const [state] = React.useContext(SlideContext);
+  const [state, ,] = React.useContext(SlideContext);
 
   const [styleProps, set] = useSpring(() => transitionEffect.from);
 
@@ -21,9 +21,13 @@ const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
   // if so trigger transition, if not then to initial!
   React.useEffect(() => {
     if (state && elementNum <= state.currentSlideElement) {
-      set({ from: transitionEffect.from, to: transitionEffect.to });
+      set({
+        from: transitionEffect.from,
+        to: transitionEffect.to,
+        immediate: state.immediate
+      });
     } else {
-      set({ to: transitionEffect.from });
+      set({ to: transitionEffect.from, immediate: state.immediate });
     }
   }, [elementNum, set, state, transitionEffect.from, transitionEffect.to]);
 

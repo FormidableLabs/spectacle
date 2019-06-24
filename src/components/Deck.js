@@ -70,7 +70,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
       defaultSlideEffect),
     config: { precision: 0 },
     unique: true,
-    immediate: rest.animationsWhenGoingBack ? false : state.immediate
+    immediate: state.immediate
   });
 
   return (
@@ -83,7 +83,13 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
       }}
     >
       <DeckContext.Provider
-        value={[state, dispatch, Slides.length, keyboardControls]}
+        value={[
+          state,
+          dispatch,
+          Slides.length,
+          keyboardControls,
+          rest.animationsWhenGoingBack
+        ]}
       >
         {transitions.map(({ item, props, key }) => {
           const Slide = Slides[item];

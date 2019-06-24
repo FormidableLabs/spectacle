@@ -11,13 +11,12 @@ import isComponentType from '../utils/isComponentType.js';
  */
 
 const Slide = ({ children, slideNum }) => {
-  const [state, , , keyboardControls] = React.useContext(DeckContext);
-  const initialState = { currentSlideElement: 0 };
+  const [, , , keyboardControls] = React.useContext(DeckContext);
+  const initialState = { currentSlideElement: 0, immediate: false };
 
   const numberOfSlideElements = Array.isArray(children)
     ? children.filter(x => isComponentType(x, 'SlideElementWrapper')).length + 1
     : 0;
-  const isActive = slideNum === state.currentSlide;
 
   return (
     <div
@@ -31,7 +30,7 @@ const Slide = ({ children, slideNum }) => {
       <SlideContext.Provider
         value={useSlide(
           initialState,
-          isActive,
+          slideNum,
           numberOfSlideElements,
           keyboardControls
         )}

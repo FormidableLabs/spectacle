@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { DeckContext } from './useDeck';
+import debounce from '../utils/debounce';
 
 /**
  * Performs logic operations for all of the slide domain level.
@@ -9,22 +11,25 @@ import { DeckContext } from './useDeck';
  * If not, we tell the deck to take us to the next slide.
  */
 
-//  Keeps previous slide number for comparison later.
-let prevSlideNum;
-
 // Initialise SlideContext.
 export const SlideContext = React.createContext();
 
 function useSlide(
   initialState,
-  isActiveSlide,
+  slideNum,
   slideElementsLength,
   keyboardControls
 ) {
   // Gets state, dispatch and number of slides off DeckContext.
-  const [deckContextState, deckContextDispatch, slideLength] = React.useContext(
-    DeckContext
-  );
+  const [
+    deckContextState,
+    deckContextDispatch,
+    ,
+    ,
+    animationsWhenGoingBack
+  ] = React.useContext(DeckContext);
+
+  const isActiveSlide = deckContextState.currentSlide === slideNum;
 
   function reducer(state, action) {
     // As we need to animate between slides, we need to check if
@@ -37,7 +42,7 @@ function useSlide(
           // slideElement then go to next slide!
           if (
             slideElementsLength === 0 ||
-            (state && state.currentSlideElement === slideElementsLength - 1)
+            (state && state.currentSlideElement + 1 === slideElementsLength)
           ) {
             deckContextDispatch({ type: 'NEXT_SLIDE' });
           }
@@ -45,23 +50,34 @@ function useSlide(
             // Next slide element
             currentSlideElement: state ? state.currentSlideElement + 1 : 0
           };
+        case 'IMMEDIATE_NEXT_SLIDE_ELEMENT':
+          if (
+            slideElementsLength === 0 ||
+            (state && state.currentSlideElement + 1 === slideElementsLength)
+          ) {
+            deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' });
+          }
+          return {
+            // Next slide element
+            currentSlideElement: state ? state.currentSlideElement + 1 : 0,
+            immediate: true
+          };
         // If there aren't any slideElements or this is the first
         // slideElement then go to prev slide!
         case 'PREV_SLIDE_ELEMENT':
           if (state && state.currentSlideElement === 0) {
             deckContextDispatch({ type: 'PREV_SLIDE' });
           }
+          if (!animationsWhenGoingBack) {
+            return {
+              currentSlideElement: state ? state.currentSlideElement - 1 : 0,
+              immediate: true
+            };
+          }
           return {
             // Prev slideElement
             currentSlideElement: state ? state.currentSlideElement - 1 : 0
           };
-        // Resets our slideElements to initial (usually 0)
-        case 'RESET_SLIDE_ELEMENT':
-          return initialState;
-        // Sets our slideElements to maximum useful when we want to
-        // go back to a previous slide
-        case 'SHOW_ALL_SLIDE_ELEMENTS':
-          return { currentSlideElement: slideElementsLength };
         default:
           return { ...state };
       }
@@ -72,19 +88,31 @@ function useSlide(
   // This useEffect adds a keyDown listener to the window.
   React.useEffect(
     function() {
+      // Keep track of the number of next slide presses for debounce
+      let nextSlidePress = 0;
+      // Create ref for debounceing function
+      const debouncedDispatch = debounce(() => {
+        if (nextSlidePress === 1) {
+          dispatch({ type: 'NEXT_SLIDE_ELEMENT' });
+        } else {
+          dispatch({ type: 'IMMEDIATE_NEXT_SLIDE_ELEMENT' });
+        }
+        nextSlidePress = 0;
+      }, 200);
       function handleKeyDown(e) {
-        console.log(e);
         if (keyboardControls === 'arrows') {
           if (e.key === 'ArrowLeft') {
             dispatch({ type: 'PREV_SLIDE_ELEMENT' });
           }
           if (e.key === 'ArrowRight') {
-            dispatch({ type: 'NEXT_SLIDE_ELEMENT' });
+            nextSlidePress++;
+            debouncedDispatch();
           }
         }
         if (keyboardControls === 'space') {
           if (e.code === 'Space') {
-            dispatch({ type: 'NEXT_SLIDE_ELEMENT' });
+            nextSlidePress++;
+            debouncedDispatch();
             e.preventDefault();
           }
         }
@@ -95,30 +123,6 @@ function useSlide(
       };
     },
     [isActiveSlide, keyboardControls]
-  );
-
-  // If we're looping back through slides, then we need to reset it to the
-  // highest slideElement state or it will look weird.
-  React.useEffect(
-    function() {
-      // Need to check whether active slide
-      if (isActiveSlide) {
-        if (
-          prevSlideNum === 0 &&
-          deckContextState.currentSlide === slideLength - 1
-        ) {
-          dispatch({ type: 'SHOW_ALL_SLIDE_ELEMENTS' });
-          prevSlideNum = deckContextState.currentSlide;
-          return;
-        }
-        if (deckContextState.currentSlide < prevSlideNum) {
-          dispatch({ type: 'SHOW_ALL_SLIDE_ELEMENTS' });
-          prevSlideNum = deckContextState.currentSlide;
-          return;
-        }
-      }
-    },
-    [deckContextState.currentSlide, isActiveSlide, slideLength]
   );
   return [state, dispatch];
 }
