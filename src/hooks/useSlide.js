@@ -42,7 +42,7 @@ function useSlide(
           // slideElement then go to next slide!
           if (
             slideElementsLength === 0 ||
-            (state && state.currentSlideElement + 1 === slideElementsLength)
+            (state && state.currentSlideElement === slideElementsLength)
           ) {
             deckContextDispatch({ type: 'NEXT_SLIDE' });
           }
@@ -53,7 +53,7 @@ function useSlide(
         case 'IMMEDIATE_NEXT_SLIDE_ELEMENT':
           if (
             slideElementsLength === 0 ||
-            (state && state.currentSlideElement + 1 === slideElementsLength)
+            (state && state.currentSlideElement === slideElementsLength)
           ) {
             deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' });
           }

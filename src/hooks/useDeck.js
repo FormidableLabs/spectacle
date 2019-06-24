@@ -5,7 +5,7 @@ import React from 'react';
 
 export const DeckContext = React.createContext();
 
-function useDeck(initialState, numSlides, looping) {
+function useDeck(initialState, numSlides, looping, animationsWhenGoingBack) {
   function reducer(state, action) {
     switch (action.type) {
       case 'NEXT_SLIDE':
@@ -29,11 +29,17 @@ function useDeck(initialState, numSlides, looping) {
         // to last slide else stop
         if (state.currentSlide === initialState.currentSlide) {
           if (looping) {
-            return { currentSlide: numSlides - 1, immediate: true };
+            return {
+              currentSlide: numSlides - 1,
+              immediate: animationsWhenGoingBack ? true : false
+            };
           }
           return { ...state };
         }
-        return { currentSlide: state.currentSlide - 1, immediate: true };
+        return {
+          currentSlide: state.currentSlide - 1,
+          immediate: animationsWhenGoingBack ? true : false
+        };
       default:
         return { ...state };
     }

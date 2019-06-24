@@ -22,7 +22,6 @@ const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
   React.useEffect(() => {
     if (state && elementNum <= state.currentSlideElement) {
       set({
-        from: transitionEffect.from,
         to: transitionEffect.to,
         immediate: state.immediate
       });

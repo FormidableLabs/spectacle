@@ -15,7 +15,7 @@ const Slide = ({ children, slideNum }) => {
   const initialState = { currentSlideElement: 0, immediate: false };
 
   const numberOfSlideElements = Array.isArray(children)
-    ? children.filter(x => isComponentType(x, 'SlideElementWrapper')).length + 1
+    ? children.filter(x => isComponentType(x, 'SlideElementWrapper')).length
     : 0;
 
   return (

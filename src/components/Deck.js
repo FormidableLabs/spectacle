@@ -62,7 +62,8 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   const [state, dispatch] = useDeck(
     initialState,
     Slides.length,
-    loop ? true : false
+    loop ? true : false,
+    rest.animationsWhenGoingBack
   );
 
   const transitions = useTransition(state.currentSlide, p => p, {
