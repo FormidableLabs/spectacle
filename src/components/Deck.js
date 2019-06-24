@@ -34,7 +34,8 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
       width: '100%',
       position: 'absolute',
       transform: 'translate(-100%, 0%)'
-    }
+    },
+    config: { precision: 0 }
   };
   // Check for slides and then number slides.
   const filteredChildren = Array.isArray(children)
@@ -69,7 +70,6 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   const transitions = useTransition(state.currentSlide, p => p, {
     ...(filteredChildren[state.currentSlide].props.transitionEffect ||
       defaultSlideEffect),
-    config: { precision: 0 },
     unique: true,
     immediate: state.immediate
   });

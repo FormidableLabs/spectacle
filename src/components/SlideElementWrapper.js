@@ -22,13 +22,17 @@ const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
   React.useEffect(() => {
     if (state && elementNum <= state.currentSlideElement) {
       set({
-        to: transitionEffect.to,
+        ...transitionEffect,
         immediate: state.immediate
       });
     } else {
-      set({ to: transitionEffect.from, immediate: state.immediate });
+      set({
+        ...transitionEffect,
+        to: transitionEffect.from,
+        immediate: state.immediate
+      });
     }
-  }, [elementNum, set, state, transitionEffect.from, transitionEffect.to]);
+  }, [elementNum, set, state, transitionEffect]);
 
   return <animated.div style={styleProps}>{children}</animated.div>;
 };
