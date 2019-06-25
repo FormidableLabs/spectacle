@@ -2,8 +2,6 @@ node_modules
 yarn.lock
 package-lock.json
 dist
-lib
-es
 *.log
 .DS_Store
 .vscode

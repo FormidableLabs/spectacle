@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components';
 
-import useDeck, { DeckContext } from '../hooks/useDeck';
-import isComponentType from '../utils/isComponentType.js';
+import useDeck, { DeckContext } from '../../hooks/useDeck';
+import isComponentType from '../../utils/isComponentType.js';
 import { useTransition, animated } from 'react-spring';
+import { DeckContainer } from './Deck.style';
+import defaultTheme from '../../defaults/defaultTheme';
+import defaultTransitionEffect from '../../defaults/defaultTransitionEffect';
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -17,26 +21,7 @@ import { useTransition, animated } from 'react-spring';
 
 const initialState = { currentSlide: 0, immediate: false };
 
-const Deck = ({ children, loop, keyboardControls, ...rest }) => {
-  // Our default effect for transitioning between slides
-  const defaultSlideEffect = {
-    from: {
-      width: '100%',
-      position: 'absolute',
-      transform: 'translate(100%, 0%)'
-    },
-    enter: {
-      width: '100%',
-      position: 'absolute',
-      transform: 'translate(0, 0%)'
-    },
-    leave: {
-      width: '100%',
-      position: 'absolute',
-      transform: 'translate(-100%, 0%)'
-    },
-    config: { precision: 0 }
-  };
+export const Deck = ({ children, loop, keyboardControls, theme, ...rest }) => {
   // Check for slides and then number slides.
   const filteredChildren = Array.isArray(children)
     ? children
@@ -69,35 +54,30 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
 
   const transitions = useTransition(state.currentSlide, p => p, {
     ...(filteredChildren[state.currentSlide].props.transitionEffect ||
-      defaultSlideEffect),
+      defaultTransitionEffect),
     unique: true,
     immediate: state.immediate
   });
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        height: '50vh',
-        width: '100%',
-        overflowX: 'hidden'
-      }}
-    >
-      <DeckContext.Provider
-        value={[
-          state,
-          dispatch,
-          Slides.length,
-          keyboardControls,
-          rest.animationsWhenGoingBack
-        ]}
-      >
-        {transitions.map(({ item, props, key }) => {
-          const Slide = Slides[item];
-          return <Slide key={key} style={props} />;
-        })}
-      </DeckContext.Provider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <DeckContainer>
+        <DeckContext.Provider
+          value={[
+            state,
+            dispatch,
+            Slides.length,
+            keyboardControls,
+            rest.animationsWhenGoingBack
+          ]}
+        >
+          {transitions.map(({ item, props, key }) => {
+            const Slide = Slides[item];
+            return <Slide key={key} style={props} />;
+          })}
+        </DeckContext.Provider>
+      </DeckContainer>
+    </ThemeProvider>
   );
 };
 
@@ -105,13 +85,13 @@ Deck.propTypes = {
   animationsWhenGoingBack: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
-  loop: PropTypes.bool.isRequired
+  loop: PropTypes.bool.isRequired,
+  theme: PropTypes.object.isRequired
 };
 
 Deck.defaultProps = {
   loop: false,
   keyboardControls: 'arrows',
-  animationsWhenGoingBack: false
+  animationsWhenGoingBack: false,
+  theme: defaultTheme
 };
-
-export default Deck;

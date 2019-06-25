@@ -12,7 +12,7 @@ import { SlideContext } from '../hooks/useSlide';
  * to whatever react-spring hook a user desires!
  */
 
-const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
+export const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
   const [state, ,] = React.useContext(SlideContext);
 
   const [styleProps, set] = useSpring(() => transitionEffect.from);
@@ -52,5 +52,3 @@ SlideElementWrapper.defaultProps = {
     to: { opacity: 1 }
   }
 };
-
-export default SlideElementWrapper;

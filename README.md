@@ -4,11 +4,13 @@ ReactJS based Presentation Library
 
 ## Getting Started
 
-@TODO
+Install dependencies in main Spectacle directory with `npm install` or `yarn` then in example directories install dependencies with `npm install` or `yarn`.
 
 ## Development
 
-@TODO
+In main folder directory run `npm run build --watch` or `yarn build --watch` to build Spectacle.
+
+In example directories run `npm start` or `yarn start` to start webpack dev server.
 
 ## Build & Deployment
 

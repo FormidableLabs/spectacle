@@ -10,7 +10,7 @@ import isComponentType from '../utils/isComponentType.js';
  * the slides' internal state through useSlide.
  */
 
-const Slide = ({ children, slideNum }) => {
+export const Slide = ({ children, slideNum }) => {
   const [, , , keyboardControls] = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0, immediate: false };
 
@@ -45,5 +45,3 @@ Slide.propTypes = {
   children: PropTypes.node.isRequired,
   slideNum: PropTypes.number.isRequired
 };
-
-export default Slide;
