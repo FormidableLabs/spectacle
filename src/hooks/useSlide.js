@@ -9,6 +9,9 @@ import debounce from '../utils/debounce';
  * appear/ move around etc.
  * If remaining elements in slide, these are brought in one by one.
  * If not, we tell the deck to take us to the next slide.
+ * 
+ * Note: Immediate is a React-Spring property that we pass to the animations
+ * essentially it skips animations.
  */
 
 // Initialise SlideContext.

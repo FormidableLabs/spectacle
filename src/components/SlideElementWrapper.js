@@ -10,6 +10,9 @@ import { SlideContext } from '../hooks/useSlide';
  *
  * It is currently using useSpring but ideally we will be able to switch
  * to whatever react-spring hook a user desires!
+ * 
+ * Note: Immediate is a React-Spring property that we pass to the animations
+ * essentially it skips animations.
  */
 
 const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {

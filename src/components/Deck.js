@@ -13,6 +13,9 @@ import { useTransition, animated } from 'react-spring';
  *  loop: bool (pass in true if you want slides to loop)
  * transitionEffect: based off of react sprint useTransition
  * }
+ *
+ * Note: Immediate is a React-Spring property that we pass to the animations
+ * essentially it skips animations.
  */
 
 const initialState = { currentSlide: 0, immediate: false };

@@ -1,6 +1,8 @@
 import React from 'react';
 /**
  * Performs logic operations for all of the deck domain level.
+ * Note: Immediate is a React-Spring property that we pass to the animations
+ * essentially it skips animations.
  */
 
 export const DeckContext = React.createContext();
