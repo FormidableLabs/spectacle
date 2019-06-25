@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 
 function usePresentation(handleMessage) {
   const [connection, setConnection] = useState(null);
+  const [isReceiver, setIsReceiver] = useState(false);
   const requestRef = useRef(null)
   const [errors, setErrors] = useState([]);
 
@@ -11,6 +12,7 @@ function usePresentation(handleMessage) {
   const terminateConnection = useCallback(() => {
     if (connection) {
       connection.terminate();
+      setConnection(null);
     }
   }, [connection])
 
@@ -26,22 +28,22 @@ function usePresentation(handleMessage) {
     return terminateConnection;
   }, [connection])
 
-  // Listen for messages and call handleMessage
+  // Listen for messages (from the controller to the presenter) and call handleMessage
   useEffect(() => {
     const handleConnectionList = list => {
-      list.forEach(connection => {
-        connection.onmessage = ({ data }) => handleMessage(data);
+      list.connections.forEach(connection => {
+        connection.onmessage = ({ data }) => handleMessage(JSON.parse(data));
       })
     };
     const receiver = navigator && navigator.presentation && navigator.presentation.receiver;
-    if (reciever) {
+    if (receiver) {
       receiver
         .connectionList
         .then(handleConnectionList)
         .catch(addError)
-    } else {
-      addError(new Error('Browser does not support Presentation API'))
+      setIsReceiver(true);
     }
+    return () => setIsReceiver(false);
   }, [connection])
 
   // Opens the display selection dialog box
@@ -55,11 +57,12 @@ function usePresentation(handleMessage) {
     }
   }, [])
 
+  // Send a message from the controller to the presenter
   const sendMessage = useCallback(message => {
     // This may throw if message isn't stringify-able
     try {
       if (connection) {
-        connection.send(message);
+        connection.send(JSON.stringify(message));
       }
     } catch (e) {
       addError(e);
@@ -71,7 +74,8 @@ function usePresentation(handleMessage) {
     terminateConnection, 
     sendMessage,
     errors,
-    isConnected: Boolean(connection)
+    isReceiver,
+    hasConnection: Boolean(connection)
   };
 }
 
