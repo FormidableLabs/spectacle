@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { DeckContext } from './useDeck';
 import debounce from '../utils/debounce';
+import usePresentation from '../hooks/usePresentation';
 
 /**
  * Performs logic operations for all of the slide domain level.
@@ -26,7 +27,8 @@ function useSlide(
     deckContextDispatch,
     ,
     ,
-    animationsWhenGoingBack
+    animationsWhenGoingBack,
+    presentation
   ] = React.useContext(DeckContext);
 
   const isActiveSlide = deckContextState.currentSlide === slideNum;
@@ -34,6 +36,8 @@ function useSlide(
   function reducer(state, action) {
     // As we need to animate between slides, we need to check if
     // this is the active slide and only run the reducer if so
+
+    console.log({ state, action });
 
     if (isActiveSlide) {
       switch (action.type) {
@@ -85,6 +89,23 @@ function useSlide(
   }
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
+  const { 
+    startConnection, 
+    terminateConnection,
+    sendMessage,
+    errors,
+    isReceiver,
+    hasConnection,
+    addMessageHandler
+  } = presentation;
+
+  useEffect(() => addMessageHandler(dispatch, 'slideDispatch'), []);
+
+  const syncedDispatch = dispatchArgs => {
+    sendMessage(dispatchArgs);
+    dispatch(dispatchArgs);
+  }
+
   // This useEffect adds a keyDown listener to the window.
   React.useEffect(
     function() {
@@ -93,16 +114,16 @@ function useSlide(
       // Create ref for debounceing function
       const debouncedDispatch = debounce(() => {
         if (nextSlidePress === 1) {
-          dispatch({ type: 'NEXT_SLIDE_ELEMENT' });
+          syncedDispatch({ type: 'NEXT_SLIDE_ELEMENT' });
         } else {
-          dispatch({ type: 'IMMEDIATE_NEXT_SLIDE_ELEMENT' });
+          syncedDispatch({ type: 'IMMEDIATE_NEXT_SLIDE_ELEMENT' });
         }
         nextSlidePress = 0;
       }, 200);
       function handleKeyDown(e) {
         if (keyboardControls === 'arrows') {
           if (e.key === 'ArrowLeft') {
-            dispatch({ type: 'PREV_SLIDE_ELEMENT' });
+            syncedDispatch({ type: 'PREV_SLIDE_ELEMENT' });
           }
           if (e.key === 'ArrowRight') {
             nextSlidePress++;
@@ -122,9 +143,9 @@ function useSlide(
         window.removeEventListener('keydown', handleKeyDown);
       };
     },
-    [isActiveSlide, keyboardControls]
+    [isActiveSlide, keyboardControls, presentation]
   );
-  return [state, dispatch];
+  return [state, syncedDispatch];
 }
 
 export default useSlide;

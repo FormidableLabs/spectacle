@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import useDeck, { DeckContext } from '../hooks/useDeck';
-import usePresentation from '../hooks/usePresentation';
 import isComponentType from '../utils/isComponentType.js';
 import { useTransition, animated } from 'react-spring';
+import usePresentation from '../hooks/usePresentation';
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -68,19 +68,12 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     rest.animationsWhenGoingBack
   );
 
-  const { 
-    startConnection, 
-    terminateConnection, 
-    sendMessage,
-    errors,
-    isReceiver,
-    hasConnection
-  } = usePresentation(dispatch);
+  const presentation = usePresentation();
+
+  useEffect(() => presentation.addMessageHandler(dispatch, 'deckDispatch'), []);
 
   const syncedDispatch = deckDispatchArgs => {
-    if (hasConnection) {
-      sendMessage(deckDispatchArgs);
-    }
+    presentation.sendMessage(deckDispatchArgs);
     dispatch(deckDispatchArgs);
   };
 
@@ -106,7 +99,8 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
           syncedDispatch,
           Slides.length,
           keyboardControls,
-          rest.animationsWhenGoingBack
+          rest.animationsWhenGoingBack,
+          presentation
         ]}
       >
         {transitions.map(({ item, props, key }) => {
@@ -115,8 +109,8 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
         })}
       </DeckContext.Provider>
       <div style={{ position: 'fixed', top: 0, right: 0 }}>
-        {!isReceiver && !hasConnection && <button onClick={startConnection}>Start Connection</button>}
-        {hasConnection && <button onClick={terminateConnection}>Terminate Connection</button>}
+        {!presentation.isReceiver && !presentation.hasConnection && <button onClick={presentation.startConnection}>Start Connection</button>}
+        {presentation.hasConnection && <button onClick={presentation.terminateConnection}>Terminate Connection</button>}
       </div>
     </div>
   );

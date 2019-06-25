@@ -1,10 +1,17 @@
 import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 
-function usePresentation(handleMessage) {
+function usePresentation() {
   const [connection, setConnection] = useState(null);
   const [isReceiver, setIsReceiver] = useState(false);
+  const [messageHandlers, setMessageHandlers] = useState({});
   const requestRef = useRef(null)
   const [errors, setErrors] = useState([]);
+
+  const addMessageHandler = (handler, key) => {
+    if (!messageHandlers[key]) {
+      setMessageHandlers({ ...messageHandlers, [key]: handler });
+    }
+  }
 
   // Open to suggestions for better error handling
   const addError = e => setErrors(es => ([...es, e]));
@@ -32,7 +39,11 @@ function usePresentation(handleMessage) {
   useEffect(() => {
     const handleConnectionList = list => {
       list.connections.forEach(connection => {
-        connection.onmessage = ({ data }) => handleMessage(JSON.parse(data));
+        connection.onmessage = ({ data }) => {
+          Object
+            .values(messageHandlers)
+            .forEach(handler => handler(JSON.parse(data)));
+        }
       })
     };
     const receiver = navigator && navigator.presentation && navigator.presentation.receiver;
@@ -44,7 +55,7 @@ function usePresentation(handleMessage) {
       setIsReceiver(true);
     }
     return () => setIsReceiver(false);
-  }, [connection])
+  }, [connection, messageHandlers])
 
   // Opens the display selection dialog box
   const startConnection = useCallback(() => {
@@ -67,7 +78,7 @@ function usePresentation(handleMessage) {
     } catch (e) {
       addError(e);
     }
-  }, [connection])
+  }, [connection, messageHandlers])
 
   return { 
     startConnection, 
@@ -75,6 +86,7 @@ function usePresentation(handleMessage) {
     sendMessage,
     errors,
     isReceiver,
+    addMessageHandler,
     hasConnection: Boolean(connection)
   };
 }
