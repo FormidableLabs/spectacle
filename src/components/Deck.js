@@ -68,6 +68,22 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     rest.animationsWhenGoingBack
   );
 
+  const { 
+    startConnection, 
+    terminateConnection, 
+    sendMessage,
+    errors,
+    isReceiver,
+    hasConnection
+  } = usePresentation(dispatch);
+
+  const syncedDispatch = deckDispatchArgs => {
+    if (hasConnection) {
+      sendMessage(deckDispatchArgs);
+    }
+    dispatch(deckDispatchArgs);
+  };
+
   const transitions = useTransition(state.currentSlide, p => p, {
     ...(filteredChildren[state.currentSlide].props.transitionEffect ||
       defaultSlideEffect),
@@ -87,7 +103,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
       <DeckContext.Provider
         value={[
           state,
-          dispatch,
+          syncedDispatch,
           Slides.length,
           keyboardControls,
           rest.animationsWhenGoingBack
@@ -98,6 +114,10 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
           return <Slide key={key} style={props} />;
         })}
       </DeckContext.Provider>
+      <div style={{ position: 'fixed', top: 0, right: 0 }}>
+        {!isReceiver && !hasConnection && <button onClick={startConnection}>Start Connection</button>}
+        {hasConnection && <button onClick={terminateConnection}>Terminate Connection</button>}
+      </div>
     </div>
   );
 };
