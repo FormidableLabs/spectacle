@@ -14,21 +14,19 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    modules: [
-        path.resolve(__dirname, 'node_modules')
-    ],
+    modules: [path.resolve(__dirname, 'node_modules')],
     alias: {
-        spectacle: path.resolve(__dirname, '../..')
+      spectacle: path.resolve(__dirname, '../..')
     }
   },
   module: {
     rules: [
-        {
-            test: /\.js$/,
-            loader: require.resolve('source-map-loader'),
-            include: [/node_modules/, context],
-            enforce: 'pre',
-          },
+      {
+        test: /\.js$/,
+        loader: require.resolve('source-map-loader'),
+        include: [/node_modules/, context],
+        enforce: 'pre'
+      },
       {
         test: /\.js$/,
         include: [context],
@@ -37,7 +35,12 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-      { test: /\.mdx?$/, include: [context], exclude: [/node_modules/],use: ['babel-loader', '@mdx-js/loader'] }
+      {
+        test: /\.mdx?$/,
+        include: [context],
+        exclude: [/node_modules/],
+        use: ['babel-loader', '@mdx-js/loader']
+      }
     ]
   },
   plugins: [

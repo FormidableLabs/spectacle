@@ -72,52 +72,62 @@ const terserMinified = terser({
   }
 });
 
-const makePlugins = (isProduction = false) => [
-  nodeResolve({
-    mainFields: ['module', 'jsnext', 'main'],
-    browser: true
-  }),
-  commonjs({
-    ignoreGlobal: true,
-    include: /\/node_modules\//,
-    namedExports: {
-      'react': Object.keys(require('react'))
-    },
-  }),
-  buble({
-    transforms: {
-      unicodeRegExp: false,
-      dangerousForOf: true,
-      dangerousTaggedTemplateString: true
-    },
-    objectAssign: 'Object.assign',
-    exclude: 'node_modules/**'
-  }),
-  babel({
-    babelrc: false,
-    extensions: DEFAULT_EXTENSIONS,
-    exclude: 'node_modules/**',
-    presets: [],
-    plugins: [
-      ['babel-plugin-closure-elimination', {}],
-      ['@babel/plugin-transform-object-assign', {}],
-      ['@babel/plugin-transform-react-jsx', {
-        pragma: 'React.createElement',
-        pragmaFrag: 'React.Fragment',
-        useBuiltIns: true
-      }],
-      ['babel-plugin-transform-async-to-promises', {
-        inlineHelpers: true,
-        externalHelpers: true
-      }],
-      isProduction && ['babel-plugin-transform-react-remove-prop-types', {
-        mode: 'remove',
-        removeImport: true
-      }]
-    ].filter(Boolean)
-  }),
-  isProduction ? terserMinified : terserPretty
-].filter(Boolean);
+const makePlugins = (isProduction = false) =>
+  [
+    nodeResolve({
+      mainFields: ['module', 'jsnext', 'main'],
+      browser: true
+    }),
+    commonjs({
+      ignoreGlobal: true,
+      include: /\/node_modules\//,
+      namedExports: {
+        react: Object.keys(require('react'))
+      }
+    }),
+    buble({
+      transforms: {
+        unicodeRegExp: false,
+        dangerousForOf: true,
+        dangerousTaggedTemplateString: true
+      },
+      objectAssign: 'Object.assign',
+      exclude: 'node_modules/**'
+    }),
+    babel({
+      babelrc: false,
+      extensions: DEFAULT_EXTENSIONS,
+      exclude: 'node_modules/**',
+      presets: [],
+      plugins: [
+        ['babel-plugin-closure-elimination', {}],
+        ['@babel/plugin-transform-object-assign', {}],
+        [
+          '@babel/plugin-transform-react-jsx',
+          {
+            pragma: 'React.createElement',
+            pragmaFrag: 'React.Fragment',
+            useBuiltIns: true
+          }
+        ],
+        [
+          'babel-plugin-transform-async-to-promises',
+          {
+            inlineHelpers: true,
+            externalHelpers: true
+          }
+        ],
+        isProduction && [
+          'babel-plugin-transform-react-remove-prop-types',
+          {
+            mode: 'remove',
+            removeImport: true
+          }
+        ]
+      ].filter(Boolean)
+    }),
+    isProduction ? terserMinified : terserPretty
+  ].filter(Boolean);
 
 const config = {
   input: './src/index.js',
@@ -149,7 +159,8 @@ export default [
         format: 'esm'
       }
     ]
-  }, {
+  },
+  {
     ...config,
     plugins: makePlugins(true),
     output: [
