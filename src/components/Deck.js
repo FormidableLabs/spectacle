@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import useDeck, { DeckContext } from '../hooks/useDeck';
+import usePresentation from '../hooks/usePresentation';
 import isComponentType from '../utils/isComponentType.js';
 import { useTransition, animated } from 'react-spring';
 
