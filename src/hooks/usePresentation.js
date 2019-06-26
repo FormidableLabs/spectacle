@@ -3,25 +3,35 @@ import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 function usePresentation() {
   const [connection, setConnection] = useState(null);
   const [isReceiver, setIsReceiver] = useState(false);
-  const [messageHandlers, setMessageHandlers] = useState({});
-  const requestRef = useRef(null)
+
+  // moved to using ref as we don't want messagehandlers to change after invocation
+  const messageHandlers = useRef({});
+  const requestRef = useRef(null);
   const [errors, setErrors] = useState([]);
 
-  const addMessageHandler = (handler, key) => {
-    if (!messageHandlers[key]) {
-      setMessageHandlers({ ...messageHandlers, [key]: handler });
-    }
-  }
+  // add message handler handles adding and removing handlers
+  const addMessageHandler = useCallback((handler, key) => {
+    const keyHandlers = (messageHandlers.current[key] =
+      messageHandlers.current[key] || []);
+    keyHandlers.push(handler);
+    return () => {
+      // if it exists then remove it from the messageHandler in cleanup
+      const keyHandlers = messageHandlers.current[key];
+      if (keyHandlers) {
+        keyHandlers.splice(keyHandlers.indexOf(handler), 1);
+      }
+    };
+  }, []);
 
   // Open to suggestions for better error handling
-  const addError = e => setErrors(es => ([...es, e]));
+  const addError = e => setErrors(es => [...es, e]);
 
   const terminateConnection = useCallback(() => {
     if (connection) {
       connection.terminate();
       setConnection(null);
     }
-  }, [connection])
+  }, [connection]);
 
   // Create a presentation request and store it as a ref
   useEffect(() => {
@@ -33,29 +43,31 @@ function usePresentation() {
       addError(new Error('Browser does not support Presentation API'));
     }
     return terminateConnection;
-  }, [connection])
+  }, [connection, terminateConnection]);
 
   // Listen for messages (from the controller to the presenter) and call handleMessage
   useEffect(() => {
     const handleConnectionList = list => {
       list.connections.forEach(connection => {
         connection.onmessage = ({ data }) => {
-          Object
-            .values(messageHandlers)
-            .forEach(handler => handler(JSON.parse(data)));
-        }
-      })
+          const event = JSON.parse(data);
+          // check if we have and handler for this event
+          const handlers = messageHandlers.current[event.type];
+          if (handlers) {
+            // if it exists then pass payload to slide
+            handlers.forEach(handler => handler(event.payload));
+          }
+        };
+      });
     };
-    const receiver = navigator && navigator.presentation && navigator.presentation.receiver;
+    const receiver =
+      navigator && navigator.presentation && navigator.presentation.receiver;
     if (receiver) {
-      receiver
-        .connectionList
-        .then(handleConnectionList)
-        .catch(addError)
+      receiver.connectionList.then(handleConnectionList).catch(addError);
       setIsReceiver(true);
     }
     return () => setIsReceiver(false);
-  }, [connection, messageHandlers])
+  }, [connection]);
 
   // Opens the display selection dialog box
   const startConnection = useCallback(() => {
@@ -64,30 +76,41 @@ function usePresentation() {
       request
         .start()
         .then(setConnection)
-        .catch(() => addError(new Error('User exited display selection dialog box')))
+        .catch(() =>
+          addError(new Error('User exited display selection dialog box'))
+        );
     }
-  }, [])
+  }, []);
 
   // Send a message from the controller to the presenter
-  const sendMessage = useCallback(message => {
-    // This may throw if message isn't stringify-able
-    try {
-      if (connection) {
-        connection.send(JSON.stringify(message));
+  // type is the handler name e.g. slideDispatch0
+  const sendMessage = useCallback(
+    (type, payload) => {
+      // This may throw if message isn't stringify-able
+      try {
+        if (connection) {
+          connection.send(
+            JSON.stringify({
+              type,
+              payload
+            })
+          );
+        }
+      } catch (e) {
+        addError(e);
       }
-    } catch (e) {
-      addError(e);
-    }
-  }, [connection, messageHandlers])
+    },
+    [connection]
+  );
 
-  return { 
-    startConnection, 
-    terminateConnection, 
+  return {
+    startConnection,
+    terminateConnection,
     sendMessage,
     errors,
     isReceiver,
     addMessageHandler,
-    hasConnection: Boolean(connection)
+    hasConnection: !!connection
   };
 }
 

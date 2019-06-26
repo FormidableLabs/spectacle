@@ -37,8 +37,6 @@ function useSlide(
     // As we need to animate between slides, we need to check if
     // this is the active slide and only run the reducer if so
 
-    console.log({ state, action });
-
     if (isActiveSlide) {
       switch (action.type) {
         case 'NEXT_SLIDE_ELEMENT':
@@ -89,22 +87,22 @@ function useSlide(
   }
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  const { 
-    startConnection, 
-    terminateConnection,
-    sendMessage,
-    errors,
-    isReceiver,
-    hasConnection,
-    addMessageHandler
-  } = presentation;
+  const { sendMessage, addMessageHandler } = presentation;
 
-  useEffect(() => addMessageHandler(dispatch, 'slideDispatch'), []);
+  useEffect(() => addMessageHandler(dispatch, `slideDispatch${slideNum}`), [
+    dispatch,
+    addMessageHandler,
+    slideNum
+  ]);
 
-  const syncedDispatch = dispatchArgs => {
-    sendMessage(dispatchArgs);
-    dispatch(dispatchArgs);
-  }
+  const syncedDispatch = React.useCallback(
+    dispatchArgs => {
+      // slideDispatch + slideNum is our event type
+      sendMessage(`slideDispatch${slideNum}`, dispatchArgs);
+      dispatch(dispatchArgs);
+    },
+    [sendMessage, slideNum]
+  );
 
   // This useEffect adds a keyDown listener to the window.
   React.useEffect(
@@ -143,7 +141,7 @@ function useSlide(
         window.removeEventListener('keydown', handleKeyDown);
       };
     },
-    [isActiveSlide, keyboardControls, presentation]
+    [isActiveSlide, keyboardControls, presentation, syncedDispatch]
   );
   return [state, syncedDispatch];
 }

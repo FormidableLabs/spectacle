@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import useDeck, { DeckContext } from '../hooks/useDeck';
@@ -70,13 +70,9 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
 
   const presentation = usePresentation();
 
-  useEffect(() => presentation.addMessageHandler(dispatch, 'deckDispatch'), []);
-
-  const syncedDispatch = deckDispatchArgs => {
-    presentation.sendMessage(deckDispatchArgs);
-    dispatch(deckDispatchArgs);
-  };
-
+  // removed this code as we only want to dispatch 
+  // NEXT_SLIDE within the reducer, if we syncdispatch
+  // it causes a +1 slide error.
   const transitions = useTransition(state.currentSlide, p => p, {
     ...(filteredChildren[state.currentSlide].props.transitionEffect ||
       defaultSlideEffect),
@@ -96,7 +92,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
       <DeckContext.Provider
         value={[
           state,
-          syncedDispatch,
+          dispatch,
           Slides.length,
           keyboardControls,
           rest.animationsWhenGoingBack,
@@ -109,8 +105,16 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
         })}
       </DeckContext.Provider>
       <div style={{ position: 'fixed', top: 0, right: 0 }}>
-        {!presentation.isReceiver && !presentation.hasConnection && <button onClick={presentation.startConnection}>Start Connection</button>}
-        {presentation.hasConnection && <button onClick={presentation.terminateConnection}>Terminate Connection</button>}
+        {!presentation.isReceiver && !presentation.hasConnection && (
+          <button onClick={presentation.startConnection}>
+            Start Connection
+          </button>
+        )}
+        {presentation.hasConnection && (
+          <button onClick={presentation.terminateConnection}>
+            Terminate Connection
+          </button>
+        )}
       </div>
     </div>
   );
