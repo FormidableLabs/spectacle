@@ -1,5 +1,6 @@
 const defaultTheme = {
-    font: 'Helvetica'
+  font: 'Helvetica',
+  primaryTextColor: 'black'
 };
 
 export default defaultTheme;
