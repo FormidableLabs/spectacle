@@ -8,7 +8,6 @@ import { useTransition, animated } from 'react-spring';
 import { DeckContainer } from './Deck.style';
 import defaultTheme from '../../defaults/defaultTheme';
 import defaultTransitionEffect from '../../defaults/defaultTransitionEffect';
-
 /**
  * Provides top level state/context provider with useDeck hook
  * Should wrap all the presentation components (slides, etc)
@@ -58,7 +57,7 @@ export const Deck = ({ children, loop, keyboardControls, theme, ...rest }) => {
     unique: true,
     immediate: state.immediate
   });
-
+  console.log(state);
   return (
     <ThemeProvider theme={theme}>
       <DeckContainer>

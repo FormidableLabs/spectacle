@@ -1,1 +1,2 @@
-export * from './components';
+export * from './coreComponents';
+export * from './displayComponents'
