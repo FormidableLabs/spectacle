@@ -222,6 +222,10 @@ declare module 'spectacle' {
     target?: targetType;
   }
 
+  interface ListProps extends BaseProps {
+    bulletStyle?: bulletStyleType;
+  }
+
   interface MarkdownProps {
     mdastConfig?: { [key: string]: number | string };
     source?: string;
@@ -290,13 +294,9 @@ declare module 'spectacle' {
 
   class Link extends React.Component<LinkProps> {}
 
-  class List extends React.Component<BaseProps> {
-    bulletStyle?: bulletStyleType;
-  }
+  class List extends React.Component<ListProps> {}
 
-  class ListItem extends React.Component<BaseProps> {
-    bulletStyle?: bulletStyleType;
-  }
+  class ListItem extends React.Component<ListProps> {}
 
   class Markdown extends React.Component<MarkdownProps> {}
 
