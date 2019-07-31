@@ -196,9 +196,7 @@ describe('bgImage additional values', () => {
 
   it('should assign bgDarken value to backgroundImage opacity', () => {
     const bgDarkenValue = 0.5;
-    const backgroundImageValue = `linear-gradient( rgba(0, 0, 0, ${bgDarkenValue}), rgba(0, 0, 0, ${bgDarkenValue}) ), url(${
-      _this.props.bgImage
-    })`;
+    const backgroundImageValue = `linear-gradient( rgba(0, 0, 0, ${bgDarkenValue}), rgba(0, 0, 0, ${bgDarkenValue}) ), url(${_this.props.bgImage})`;
     _this.props.bgDarken = bgDarkenValue;
     const styles = generateStyles();
     expect(styles.backgroundImage).toEqual(backgroundImageValue);

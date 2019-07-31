@@ -49,10 +49,10 @@
     "deep-object-diff": "^1.1.0",
     "emotion": "^8.0.8",
     "history": "^4.7.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "marksy": "^6.1.0",
     "normalize.css": "^8.0.1",
-    "prismjs": "1.15.0",
+    "prismjs": "^1.17.1",
     "react-emotion": "^8.0.8",
     "react-live": "^1.6",
     "react-redux": "^5.1.1",
@@ -81,7 +81,7 @@
     "babel-loader": "^8.0.5",
     "babel-plugin-emotion": "^9.0.1",
     "builder": "^4.0.0",
-    "css-loader": "^2.1.0",
+    "css-loader": "^3.1.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "enzyme-to-json": "3.3.5",
@@ -105,7 +105,7 @@
     "redbox-react": "1.6.0",
     "rimraf": "^2.6.3",
     "style-loader": "^0.23.1",
-    "surge": "^0.20.1",
+    "surge": "^0.21.3",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2",
     "url-loader": "^1.1.2",
@@ -115,7 +115,7 @@
   },
   "resolutions": {
     "babel-core": "^7.0.0-0",
-    "source-map": "0.6.1"
+    "source-map": "^0.5.0"
   },
   "jest": {
     "moduleNameMapper": {
