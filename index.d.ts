@@ -20,6 +20,16 @@ declare module 'spectacle' {
     | 'flex-end flex-end';
 
   /**
+   * Bullet Style Types for Spectacle
+   */
+  type bulletStyleType =
+    | 'arrow'
+    | 'classicCheck'
+    | 'cross'
+    | 'greenCheck'
+    | 'star';
+
+  /**
    * Animation Types for Spectacle
    */
   type easeType =
@@ -212,6 +222,10 @@ declare module 'spectacle' {
     target?: targetType;
   }
 
+  interface ListProps extends BaseProps {
+    bulletStyle?: bulletStyleType;
+  }
+
   interface MarkdownProps {
     mdastConfig?: { [key: string]: number | string };
     source?: string;
@@ -280,9 +294,9 @@ declare module 'spectacle' {
 
   class Link extends React.Component<LinkProps> {}
 
-  class List extends React.Component<BaseProps> {}
+  class List extends React.Component<ListProps> {}
 
-  class ListItem extends React.Component<BaseProps> {}
+  class ListItem extends React.Component<ListProps> {}
 
   class Markdown extends React.Component<MarkdownProps> {}
 
