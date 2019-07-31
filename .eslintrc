@@ -1,11 +1,8 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": [
-    "formidable/configurations/es6-react",
-    "prettier",
-    "prettier/react"
-  ],
+  "extends": ["prettier", "prettier/react", "plugin:react/recommended"],
+  "plugins": ["react-hooks"],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -25,6 +22,11 @@
       "experimentalObjectRestSpread": true
     }
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "quotes": [
       "error",
@@ -33,6 +35,8 @@
         "allowTemplateLiterals": true
       }
     ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "comma-dangle": "off",
     "indent": "off",
     "space-before-function-paren": "off",

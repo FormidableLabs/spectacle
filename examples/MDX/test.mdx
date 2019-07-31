@@ -1,0 +1,100 @@
+<!-- This is an MDX file that is imported in index.js and transpiled to
+JSX and then rendered, feel free to change this! -->
+
+import Deck from '../../src/components/Deck.js';
+import Slide from '../../src/components/Slide.js';
+import SlideElementWrapper from '../../src/components/SlideElementWrapper.js';
+import { DeckContext } from '../../src/hooks/useDeck.js';
+
+# Hello, _world_!
+
+<div style={{ padding: '20px', backgroundColor: 'aliceblue' }}>
+  <h3>This is JSX</h3>
+</div>
+<Deck loop={true}>
+  <Slide transitionEffect={{
+          from: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(-100%, 0%)'
+          },
+          enter: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(0, 0%)'
+          },
+          leave: {
+            width: '100%',
+            position: 'absolute',
+            transform: 'translate(100%, 0%)'
+          }
+        }}>
+    <div>Hi</div>
+    <b>b</b>
+  </Slide>
+  <Slide>
+    <p> Slide 3! </p>
+    <SlideElementWrapper elementNum={1}>
+      Hey, just one "animated" slide element here
+    </SlideElementWrapper>
+  </Slide>
+  <Slide>
+    <p>I'm a static slide element that should always show</p>
+    <p>This means that we don't need a SlideElementWrapper</p>
+    <SlideElementWrapper elementNum={1} transitionEffect={{from: {transform: 'translate(-100vw)'}, to: {
+        transform: 'translate(0)'}
+    }}>
+      <p slide-element="true"> ZERO Slide 4 x 3! </p>
+    </SlideElementWrapper>
+    <SlideElementWrapper elementNum={2}>
+      <p slide-element="true"> ONE Slide 4 x 3! </p>
+    </SlideElementWrapper>
+    <SlideElementWrapper elementNum={3}>
+      <p slide-element="true"> TWO Slide 4 x 3! </p>
+    </SlideElementWrapper>
+    <p>I'm also a static non-animated "slide element"!</p>
+  </Slide>
+</Deck>
+
+- One ah ah ah
+- Two ah ah ah
+  - Two point five
+- Three
+
+## Code snippet test
+
+### Using tabs
+
+    function useDeck(initialState) {
+      function reducer(state, action) {
+        switch (action.type) {
+          case 'next slide':
+            return { currentSlide: state.currentSlide + 1 };
+          case 'prev slide':
+            return { currentSlide: state.currentSlide - 1 };
+          default:
+            return { ...state };
+        }
+      }
+      const [state, dispatch] = React.useReducer(reducer, initialState);
+      return [state, dispatch];
+    }
+
+### Using backticks
+
+```js
+function useDeck(initialState) {
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'next slide':
+        return { currentSlide: state.currentSlide + 1 };
+      case 'prev slide':
+        return { currentSlide: state.currentSlide - 1 };
+      default:
+        return { ...state };
+    }
+  }
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+  return [state, dispatch];
+}
+```
