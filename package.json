@@ -17,6 +17,9 @@
     "test": "jest --verbose",
     "check": ""
   },
+  "bin": {
+    "spectacle": "./bin/cli.js"
+  },
   "author": "",
   "license": "MIT",
   "repository": {
