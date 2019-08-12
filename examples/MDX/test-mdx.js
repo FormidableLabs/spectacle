@@ -1,9 +1,9 @@
-import React from 'react';
+import React from './node_modules/react';
 import slides from './slides.mdx';
-import Deck from '../../src/components/Deck';
-import Slide from '../../src/components/Slide';
+import Deck from '../../src/components/deck';
+import Slide from '../../src/components/slide';
 
-import { MDXProvider } from '@mdx-js/react';
+import { MDXProvider } from './node_modules/@mdx-js/react';
 
 /*
  * Note: you can add mappings here to customize how

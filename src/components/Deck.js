@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import useDeck, { DeckContext } from '../hooks/useDeck';
-import isComponentType from '../utils/isComponentType.js';
+import useDeck, { DeckContext } from '../hooks/use-deck';
+import isComponentType from '../utils/is-component-type.js';
 import { useTransition, animated } from 'react-spring';
 
 /**
