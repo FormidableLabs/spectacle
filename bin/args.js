@@ -1,23 +1,22 @@
 const yargs = require('yargs');
+const validatePresentationMode = require('./validate/presentation-mode');
 
-// Validate and normalize.
-const validate = parser => {
+const validate = async parser => {
   const { argv } = parser;
-  const { mdx } = argv;
+  const { src } = argv;
 
-  return Promise.resolve({ mdx });
+  return await validatePresentationMode(src);
 };
 
 const args = () =>
   yargs
-    .usage(`Usage: spectacle -m <file>`)
+    .usage(`Usage: spectacle -s <file>`)
 
     // MDX File
-    .option('mdx', {
-      alias: 'm',
-      describe: 'Path to mdx file from which a presentation will be generated.',
+    .option('src', {
+      alias: 's',
+      describe: 'Path to a file from which a presentation will be generated.',
       default: 'slides.mdx',
-      required: false,
       type: 'string'
     })
 
