@@ -2,7 +2,6 @@
 
 const args = require('./args');
 const actions = require('./actions');
-var path = require('path');
 
 const main = () =>
   Promise.resolve()

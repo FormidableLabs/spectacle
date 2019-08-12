@@ -108,7 +108,8 @@ Deck.propTypes = {
   animationsWhenGoingBack: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
-  loop: PropTypes.bool.isRequired
+  loop: PropTypes.bool.isRequired,
+  style: PropTypes.object
 };
 
 Deck.defaultProps = {
