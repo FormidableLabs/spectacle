@@ -1,4 +1,4 @@
-import React from './node_modules/react';
+import React from 'react';
 import Deck from '../../src/components/deck.js';
 import Slide from '../../src/components/slide.js';
 import SlideElementWrapper from '../../src/components/slide-element-wrapper';
