@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { MDXProvider } from '@mdx-js/react';
-import Deck from '../src/components/Deck';
-import Slide from '../src/components/Slide';
+import Deck from '../src/components/deck';
+import Slide from '../src/components/slide';
 
 // See the webpack config to see how this import alias is made
 import slides from 'spectacle-user-mdx';

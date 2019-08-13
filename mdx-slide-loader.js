@@ -126,7 +126,7 @@ ${inlineModules
   /*
   Step 10:
   * Finally, declare the default export as an array of the slide components.
-  * See /examples/MDX/TestMDX.js for how to import and use the generated slide
+  * See /examples/mdx/test-mdx.js for how to import and use the generated slide
   * components.
   */
   const footer = `export const slideCount = ${slides.length};\n\n

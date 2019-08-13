@@ -1,7 +1,7 @@
 import React from 'react';
 import slides from './slides.mdx';
-import Deck from '../../src/components/Deck';
-import Slide from '../../src/components/Slide';
+import Deck from '../../src/components/deck';
+import Slide from '../../src/components/slide';
 
 import { MDXProvider } from '@mdx-js/react';
 

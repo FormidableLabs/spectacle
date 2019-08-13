@@ -1,7 +1,7 @@
 import React from 'react';
-import Deck from '../../src/components/Deck.js';
-import Slide from '../../src/components/Slide.js';
-import SlideElementWrapper from '../../src/components/SlideElementWrapper';
+import Deck from '../../src/components/deck.js';
+import Slide from '../../src/components/slide.js';
+import SlideElementWrapper from '../../src/components/slide-element-wrapper';
 
 const TestJs = () => (
   <Deck loop={true}>
