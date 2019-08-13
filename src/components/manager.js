@@ -8,6 +8,7 @@ import filter from 'lodash/filter';
 import size from 'lodash/size';
 import findIndex from 'lodash/findIndex';
 import get from 'lodash/get';
+import isNil from 'lodash/isNil';
 import { connect } from 'react-redux';
 import { setGlobalStyle, updateFragment } from '../actions';
 import Typeface from './typeface';
@@ -758,7 +759,7 @@ export class Manager extends Component {
       transition: (slide.props.transition || {}).length
         ? slide.props.transition
         : this.props.transition,
-      transitionDuration: (slide.props.transition || {}).transitionDuration
+      transitionDuration: !isNil(slide.props.transitionDuration)
         ? slide.props.transitionDuration
         : this.props.transitionDuration,
       slideReference: this.state.slideReference
