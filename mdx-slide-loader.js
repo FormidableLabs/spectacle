@@ -140,7 +140,7 @@ ${wrapperName}.isMDXComponent = true;`;
   /*
    Step 10:
    * Begin composing the final output. Include React, mdx, modules, and the inline
-   * export/import statements that we removed in Step 6.
+   * export/import statements that we removed in Step 8.
    */
   let allCode = `/* @jsx mdx */
 import React from 'react'
