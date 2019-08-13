@@ -53,7 +53,7 @@ module.exports = {
         }
       },
       {
-        test: /\.mdx$/,
+        test: /\.mdx?$/,
         use: [
           {
             loader: require.resolve(babelLoader),
