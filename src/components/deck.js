@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import useDeck, { DeckContext } from '../hooks/use-deck';
 import isComponentType from '../utils/is-component-type.js';
 import { useTransition, animated } from 'react-spring';
+import { AnimationProvider, AnimationMutexContext } from '../hooks/useMutex';
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -20,26 +21,29 @@ import { useTransition, animated } from 'react-spring';
 
 const initialState = { currentSlide: 0, immediate: false };
 
+const defaultSlideEffect = {
+  from: {
+    width: '100%',
+    position: 'absolute',
+    transform: 'translate(100%, 0%)'
+  },
+  enter: {
+    width: '100%',
+    position: 'absolute',
+    transform: 'translate(0, 0%)'
+  },
+  leave: {
+    width: '100%',
+    position: 'absolute',
+    transform: 'translate(-100%, 0%)'
+  },
+  config: { precision: 0 }
+};
+
 const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   // Our default effect for transitioning between slides
-  const defaultSlideEffect = {
-    from: {
-      width: '100%',
-      position: 'absolute',
-      transform: 'translate(100%, 0%)'
-    },
-    enter: {
-      width: '100%',
-      position: 'absolute',
-      transform: 'translate(0, 0%)'
-    },
-    leave: {
-      width: '100%',
-      position: 'absolute',
-      transform: 'translate(-100%, 0%)'
-    },
-    config: { precision: 0 }
-  };
+  const { signal } = React.useContext(AnimationMutexContext);
+
   // Check for slides and then number slides.
   const filteredChildren = Array.isArray(children)
     ? children
@@ -70,9 +74,20 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     rest.animationsWhenGoingBack
   );
 
+  const userTransitionEffect =
+    filteredChildren[state.currentSlide].props.transitionEffect || {};
+
+  const transitionRef = React.useRef();
+
+  React.useEffect(() => {
+    transitionRef.current.start().then(() => signal());
+  }, [transitionRef, state.currentSlide, signal]);
+
   const transitions = useTransition(state.currentSlide, p => p, {
-    ...(filteredChildren[state.currentSlide].props.transitionEffect ||
-      defaultSlideEffect),
+    ref: transitionRef,
+    enter: () => userTransitionEffect.enter || defaultSlideEffect.enter,
+    leave: userTransitionEffect.leave || defaultSlideEffect.leave,
+    from: userTransitionEffect.from || defaultSlideEffect.from,
     unique: true,
     immediate: state.immediate
   });
@@ -118,4 +133,10 @@ Deck.defaultProps = {
   animationsWhenGoingBack: false
 };
 
-export default Deck;
+const ConnectedDeck = props => (
+  <AnimationProvider>
+    <Deck {...props} />
+  </AnimationProvider>
+);
+
+export default ConnectedDeck;

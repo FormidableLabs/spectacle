@@ -26,13 +26,17 @@ const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
     if (state && elementNum <= state.currentSlideElement) {
       set({
         ...transitionEffect,
-        immediate: state.immediate
+        immediate: state.immediate,
+        onStart: () => console.log('start element'),
+        onRest: () => console.log('rest element')
       });
     } else {
       set({
         ...transitionEffect,
         to: transitionEffect.from,
-        immediate: state.immediate
+        immediate: state.immediate,
+        onStart: () => console.log('start element'),
+        onRest: () => console.log('rest element')
       });
     }
   }, [elementNum, set, state, transitionEffect]);

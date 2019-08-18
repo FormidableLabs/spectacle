@@ -2,6 +2,7 @@ import React from 'react';
 
 import { DeckContext } from './use-deck';
 import debounce from '../utils/debounce';
+import { AnimationMutexContext } from './useMutex';
 
 /**
  * Performs logic operations for all of the slide domain level.
@@ -32,61 +33,50 @@ function useSlide(
     animationsWhenGoingBack
   ] = React.useContext(DeckContext);
 
+  const { synchronize } = React.useContext(AnimationMutexContext);
+
   const isActiveSlide = deckContextState.currentSlide === slideNum;
 
-  function reducer(state, action) {
-    // As we need to animate between slides, we need to check if
-    // this is the active slide and only run the reducer if so
+  const [currentSlideElement, setCurrentSlideElement] = React.useState(
+    (initialState && initialState.currentSlideElement) || 0
+  );
+  const [immediate, setImmediate] = React.useState(
+    (initialState && initialState.immediate) || false
+  );
 
-    if (isActiveSlide) {
-      switch (action.type) {
-        case 'NEXT_SLIDE_ELEMENT':
-          // If there aren't any slideElements or this is the last
-          // slideElement then go to next slide!
-          if (
-            slideElementsLength === 0 ||
-            (state && state.currentSlideElement === slideElementsLength)
-          ) {
-            deckContextDispatch({ type: 'NEXT_SLIDE' });
-          }
-          return {
-            // Next slide element
-            currentSlideElement: state ? state.currentSlideElement + 1 : 0
-          };
-        case 'IMMEDIATE_NEXT_SLIDE_ELEMENT':
-          if (
-            slideElementsLength === 0 ||
-            (state && state.currentSlideElement === slideElementsLength)
-          ) {
-            deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' });
-          }
-          return {
-            // Next slide element
-            currentSlideElement: state ? state.currentSlideElement + 1 : 0,
-            immediate: true
-          };
-        // If there aren't any slideElements or this is the first
-        // slideElement then go to prev slide!
-        case 'PREV_SLIDE_ELEMENT':
-          if (state && state.currentSlideElement === 0) {
-            deckContextDispatch({ type: 'PREV_SLIDE' });
-          }
-          if (!animationsWhenGoingBack) {
-            return {
-              currentSlideElement: state ? state.currentSlideElement - 1 : 0,
-              immediate: true
-            };
-          }
-          return {
-            // Prev slideElement
-            currentSlideElement: state ? state.currentSlideElement - 1 : 0
-          };
-        default:
-          return { ...state };
+  const goToNextSlideElement = React.useCallback(() => {
+    if (
+      slideElementsLength === 0 ||
+      currentSlideElement === slideElementsLength
+    ) {
+      deckContextDispatch({ type: 'NEXT_SLIDE' });
+    } else {
+      setCurrentSlideElement(currentSlideElement + 1);
+    }
+  }, [currentSlideElement, deckContextDispatch, slideElementsLength]);
+
+  const goToImmediateNextSlideElement = React.useCallback(() => {
+    if (
+      slideElementsLength === 0 ||
+      currentSlideElement === slideElementsLength
+    ) {
+      deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' });
+    } else {
+      setCurrentSlideElement(currentSlideElement + 1);
+      setImmediate(true);
+    }
+  }, [currentSlideElement, deckContextDispatch, slideElementsLength]);
+
+  const goToPreviousSlideElement = React.useCallback(() => {
+    if (currentSlideElement === 0) {
+      deckContextDispatch({ type: 'PREV_SLIDE' });
+    } else {
+      setCurrentSlideElement(currentSlideElement - 1);
+      if (!animationsWhenGoingBack) {
+        setImmediate(true);
       }
     }
-  }
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  }, [animationsWhenGoingBack, currentSlideElement, deckContextDispatch]);
 
   // This useEffect adds a keyDown listener to the window.
   React.useEffect(
@@ -96,16 +86,16 @@ function useSlide(
       // Create ref for debounceing function
       const debouncedDispatch = debounce(() => {
         if (nextSlidePress === 1) {
-          dispatch({ type: 'NEXT_SLIDE_ELEMENT' });
+          synchronize(goToNextSlideElement);
         } else {
-          dispatch({ type: 'IMMEDIATE_NEXT_SLIDE_ELEMENT' });
+          goToImmediateNextSlideElement();
         }
         nextSlidePress = 0;
       }, 200);
       function handleKeyDown(e) {
         if (keyboardControls === 'arrows') {
           if (e.key === 'ArrowLeft') {
-            dispatch({ type: 'PREV_SLIDE_ELEMENT' });
+            goToPreviousSlideElement();
           }
           if (e.key === 'ArrowRight') {
             nextSlidePress++;
@@ -125,9 +115,22 @@ function useSlide(
         window.removeEventListener('keydown', handleKeyDown);
       };
     },
-    [isActiveSlide, keyboardControls]
+    [
+      isActiveSlide,
+      keyboardControls,
+      goToNextSlideElement,
+      goToPreviousSlideElement,
+      goToImmediateNextSlideElement
+    ]
   );
-  return [state, dispatch];
+  return [
+    { ...initialState, currentSlideElement, immediate, isActiveSlide },
+    {
+      goToNextSlideElement,
+      goToImmediateNextSlideElement,
+      goToPreviousSlideElement
+    }
+  ];
 }
 
 export default useSlide;

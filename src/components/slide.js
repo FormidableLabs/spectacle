@@ -18,6 +18,13 @@ const Slide = ({ children, slideNum }) => {
     ? children.filter(x => isComponentType(x, 'SlideElementWrapper')).length
     : 0;
 
+  const value = useSlide(
+    initialState,
+    slideNum,
+    numberOfSlideElements,
+    keyboardControls
+  );
+
   return (
     <div
       style={{
@@ -27,16 +34,7 @@ const Slide = ({ children, slideNum }) => {
       }}
     >
       <p>{slideNum}</p>
-      <SlideContext.Provider
-        value={useSlide(
-          initialState,
-          slideNum,
-          numberOfSlideElements,
-          keyboardControls
-        )}
-      >
-        {children}
-      </SlideContext.Provider>
+      <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
     </div>
   );
 };
