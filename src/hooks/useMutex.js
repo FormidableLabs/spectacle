@@ -16,7 +16,6 @@ function useMutex() {
 
   const signal = React.useCallback(() => {
     lock.current = false;
-    console.log('signal');
     wait();
   }, [wait]);
 
@@ -27,7 +26,7 @@ function useMutex() {
         wait();
       }
     },
-    [wait]
+    [wait, lock]
   );
 
   return { synchronize, signal, wait };

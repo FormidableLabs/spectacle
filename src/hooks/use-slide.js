@@ -49,11 +49,16 @@ function useSlide(
       slideElementsLength === 0 ||
       currentSlideElement === slideElementsLength
     ) {
-      deckContextDispatch({ type: 'NEXT_SLIDE' });
+      synchronize(() => deckContextDispatch({ type: 'NEXT_SLIDE' }));
     } else {
       setCurrentSlideElement(currentSlideElement + 1);
     }
-  }, [currentSlideElement, deckContextDispatch, slideElementsLength]);
+  }, [
+    currentSlideElement,
+    deckContextDispatch,
+    slideElementsLength,
+    synchronize
+  ]);
 
   const goToImmediateNextSlideElement = React.useCallback(() => {
     if (
@@ -69,14 +74,19 @@ function useSlide(
 
   const goToPreviousSlideElement = React.useCallback(() => {
     if (currentSlideElement === 0) {
-      deckContextDispatch({ type: 'PREV_SLIDE' });
+      synchronize(() => deckContextDispatch({ type: 'PREV_SLIDE' }));
     } else {
       setCurrentSlideElement(currentSlideElement - 1);
       if (!animationsWhenGoingBack) {
         setImmediate(true);
       }
     }
-  }, [animationsWhenGoingBack, currentSlideElement, deckContextDispatch]);
+  }, [
+    animationsWhenGoingBack,
+    currentSlideElement,
+    deckContextDispatch,
+    synchronize
+  ]);
 
   // This useEffect adds a keyDown listener to the window.
   React.useEffect(
@@ -86,7 +96,7 @@ function useSlide(
       // Create ref for debounceing function
       const debouncedDispatch = debounce(() => {
         if (nextSlidePress === 1) {
-          synchronize(goToNextSlideElement);
+          goToNextSlideElement();
         } else {
           goToImmediateNextSlideElement();
         }
