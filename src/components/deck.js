@@ -43,6 +43,7 @@ const defaultSlideEffect = {
 const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   // Our default effect for transitioning between slides
   const { signal, synchronize } = React.useContext(AnimationMutexContext);
+  const [firstRun, setFirstRun] = React.useState(true);
 
   // Check for slides and then number slides.
   const filteredChildren = Array.isArray(children)
@@ -82,12 +83,13 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   React.useEffect(() => {
     const runSlideTransition = () =>
       transitionRef.current.start().then(() => signal());
-    if (state.currentSlide === 0) {
+    if (firstRun) {
+      setFirstRun(false);
       synchronize(() => runSlideTransition());
       return;
     }
     runSlideTransition();
-  }, [transitionRef, state.currentSlide, signal, synchronize]);
+  }, [transitionRef, state.currentSlide, signal, synchronize, firstRun]);
 
   const transitions = useTransition(state.currentSlide, p => p, {
     ref: transitionRef,
