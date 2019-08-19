@@ -24,15 +24,26 @@ function useDeck(initialState, numSlides, looping, animationsWhenGoingBack) {
           return { ...state };
         }
         return action.type === 'NEXT_SLIDE_IMMEDIATE'
-          ? { currentSlide: state.currentSlide + 1, immediate: true }
-          : { currentSlide: state.currentSlide + 1 };
+          ? {
+              currentSlide: state.currentSlide + 1,
+              immediate: true,
+              currentSlideElement: 0,
+              immediateElement: false
+            }
+          : {
+              currentSlide: state.currentSlide + 1,
+              currentSlideElement: 0,
+              immediate: false,
+              immediateElement: false
+            };
       case 'PREV_SLIDE':
-        // If current slide is inital slide then if looping go
+        // If current slide is initial slide then if looping go
         // to last slide else stop
         if (state.currentSlide === initialState.currentSlide) {
           if (looping) {
             return {
               currentSlide: numSlides - 1,
+              currentSlideElement: 0,
               immediate: animationsWhenGoingBack ? true : false
             };
           }
@@ -40,8 +51,38 @@ function useDeck(initialState, numSlides, looping, animationsWhenGoingBack) {
         }
         return {
           currentSlide: state.currentSlide - 1,
-          immediate: animationsWhenGoingBack ? true : false
+          currentSlideElement: 0,
+          immediate: animationsWhenGoingBack ? true : false,
+          immediateElement: true
         };
+      case 'NEXT_SLIDE_ELEMENT': {
+        return {
+          ...state,
+          currentSlideElement: state.currentSlideElement + 1,
+          immediateElement: false
+        };
+      }
+      case 'NEXT_SLIDE_ELEMENT_IMMEDIATE': {
+        return {
+          ...state,
+          currentSlideElement: state.currentSlideElement + 1,
+          immediateElement: true
+        };
+      }
+      case 'PREV_SLIDE_ELEMENT': {
+        return {
+          ...state,
+          currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
+          immediateElement: false
+        };
+      }
+      case 'PREV_SLIDE_ELEMENT_IMMEDIATE': {
+        return {
+          ...state,
+          currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
+          immediateElement: true
+        };
+      }
       default:
         return { ...state };
     }

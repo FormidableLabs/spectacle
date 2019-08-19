@@ -19,7 +19,12 @@ import { AnimationProvider, AnimationMutexContext } from '../hooks/useMutex';
  * essentially it skips animations.
  */
 
-const initialState = { currentSlide: 0, immediate: false };
+const initialState = {
+  currentSlide: 0,
+  immediate: false,
+  immediateElement: false,
+  currentSlideElement: 0
+};
 
 const defaultSlideEffect = {
   from: {

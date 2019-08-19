@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
+<<<<<<< HEAD:src/components/slide-element-wrapper.js
 
 import { SlideContext } from '../hooks/use-slide';
 
+=======
+import { DeckContext } from '../hooks/useDeck';
+import { AnimationMutexContext } from '../hooks/useMutex';
+>>>>>>> Refactor deck reducer to handle slide element transitions:src/components/SlideElementWrapper.js
 /**
  * SlideElementWrapper provides a component for animating slideElements
  * Anything wrapped inside will be affected by the transition.
@@ -16,30 +21,19 @@ import { SlideContext } from '../hooks/use-slide';
  */
 
 const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
-  const [state, ,] = React.useContext(SlideContext);
-
+  const [state] = React.useContext(DeckContext);
+  const { signal } = React.useContext(AnimationMutexContext);
   const [styleProps, set] = useSpring(() => transitionEffect.from);
 
-  // when state changes check if the elementNum is less than/equal to currentSlideElement
-  // if so trigger transition, if not then to initial!
   React.useEffect(() => {
-    if (state && elementNum <= state.currentSlideElement) {
+    if (state && state.currentSlideElement === elementNum) {
       set({
         ...transitionEffect,
-        immediate: state.immediate,
-        onStart: () => console.log('start element'),
-        onRest: () => console.log('rest element')
-      });
-    } else {
-      set({
-        ...transitionEffect,
-        to: transitionEffect.from,
-        immediate: state.immediate,
-        onStart: () => console.log('start element'),
-        onRest: () => console.log('rest element')
+        immediate: state.immediateElement,
+        onRest: () => signal()
       });
     }
-  }, [elementNum, set, state, transitionEffect]);
+  }, [elementNum, set, signal, state, transitionEffect]);
 
   return <animated.div style={styleProps}>{children}</animated.div>;
 };

@@ -34,28 +34,20 @@ function useSlide(
   ] = React.useContext(DeckContext);
 
   const { synchronize } = React.useContext(AnimationMutexContext);
-
   const isActiveSlide = deckContextState.currentSlide === slideNum;
-
-  const [currentSlideElement, setCurrentSlideElement] = React.useState(
-    (initialState && initialState.currentSlideElement) || 0
-  );
-  const [immediate, setImmediate] = React.useState(
-    (initialState && initialState.immediate) || false
-  );
 
   const goToNextSlideElement = React.useCallback(() => {
     if (
       slideElementsLength === 0 ||
-      currentSlideElement === slideElementsLength
+      deckContextState.currentSlideElement === slideElementsLength
     ) {
       synchronize(() => deckContextDispatch({ type: 'NEXT_SLIDE' }));
     } else {
-      setCurrentSlideElement(currentSlideElement + 1);
+      synchronize(() => deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT' }));
     }
   }, [
-    currentSlideElement,
     deckContextDispatch,
+    deckContextState.currentSlideElement,
     slideElementsLength,
     synchronize
   ]);
@@ -63,28 +55,32 @@ function useSlide(
   const goToImmediateNextSlideElement = React.useCallback(() => {
     if (
       slideElementsLength === 0 ||
-      currentSlideElement === slideElementsLength
+      deckContextState.currentSlideElement === slideElementsLength
     ) {
-      deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' });
+      synchronize(() => deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' }));
     } else {
-      setCurrentSlideElement(currentSlideElement + 1);
-      setImmediate(true);
+      synchronize(() =>
+        deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT_IMMEDIATE' })
+      );
     }
-  }, [currentSlideElement, deckContextDispatch, slideElementsLength]);
+  }, [deckContextDispatch, deckContextState, slideElementsLength, synchronize]);
 
   const goToPreviousSlideElement = React.useCallback(() => {
-    if (currentSlideElement === 0) {
+    if (deckContextState.currentSlideElement === 0) {
       synchronize(() => deckContextDispatch({ type: 'PREV_SLIDE' }));
     } else {
-      setCurrentSlideElement(currentSlideElement - 1);
       if (!animationsWhenGoingBack) {
-        setImmediate(true);
+        synchronize(() =>
+          deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT_IMMEDIATE' })
+        );
+        return;
       }
+      synchronize(() => deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT' }));
     }
   }, [
     animationsWhenGoingBack,
-    currentSlideElement,
     deckContextDispatch,
+    deckContextState,
     synchronize
   ]);
 
@@ -134,7 +130,13 @@ function useSlide(
     ]
   );
   return [
-    { ...initialState, currentSlideElement, immediate, isActiveSlide },
+    {
+      ...initialState,
+      slideElementsLength,
+      currentSlideElement: deckContextState.currentSlideElement,
+      immediate: false,
+      isActiveSlide
+    },
     {
       goToNextSlideElement,
       goToImmediateNextSlideElement,
