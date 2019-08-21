@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DeckContext } from './useDeck';
+import { DeckContext } from './use-deck';
 import debounce from '../utils/debounce';
 
 /**

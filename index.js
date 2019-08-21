@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 // START: test components to try rendering:
-import MDXDocument from './examples/MDX/test.mdx';
+import TestMDX from './examples/MDX/TestMDX';
 // import TestJs from './examples/JS/TestJS.js';
 // END: test components to try rendering
 
@@ -13,4 +13,4 @@ import MDXDocument from './examples/MDX/test.mdx';
  * to hot-reload with new contents.
  */
 
-render(<MDXDocument />, document.getElementById('root'));
+render(<TestMDX />, document.getElementById('root'));

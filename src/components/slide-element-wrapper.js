@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
 
-import { SlideContext } from '../hooks/useSlide';
+import { SlideContext } from '../hooks/use-slide';
 
 /**
  * SlideElementWrapper provides a component for animating slideElements
@@ -10,7 +10,7 @@ import { SlideContext } from '../hooks/useSlide';
  *
  * It is currently using useSpring but ideally we will be able to switch
  * to whatever react-spring hook a user desires!
- * 
+ *
  * Note: Immediate is a React-Spring property that we pass to the animations
  * essentially it skips animations.
  */
