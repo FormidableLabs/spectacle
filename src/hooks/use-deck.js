@@ -7,7 +7,13 @@ import React from 'react';
 
 export const DeckContext = React.createContext();
 
-function useDeck(initialState, numSlides, looping, animationsWhenGoingBack) {
+function useDeck(
+  initialState,
+  numSlides,
+  looping,
+  animationsWhenGoingBack,
+  slideElementMap
+) {
   function reducer(state, action) {
     switch (action.type) {
       case 'NEXT_SLIDE':
@@ -18,7 +24,12 @@ function useDeck(initialState, numSlides, looping, animationsWhenGoingBack) {
         if (state.currentSlide + 1 === numSlides) {
           if (looping) {
             return action.type === 'NEXT_SLIDE_IMMEDIATE'
-              ? { ...initialState, immediate: true }
+              ? {
+                  ...initialState,
+                  immediate: true,
+                  reverseDirection: false,
+                  immediateElement: false
+                }
               : initialState;
           }
           return { ...state };
@@ -28,13 +39,15 @@ function useDeck(initialState, numSlides, looping, animationsWhenGoingBack) {
               currentSlide: state.currentSlide + 1,
               immediate: true,
               currentSlideElement: 0,
-              immediateElement: false
+              immediateElement: false,
+              reverseDirection: false
             }
           : {
               currentSlide: state.currentSlide + 1,
               currentSlideElement: 0,
               immediate: false,
-              immediateElement: false
+              immediateElement: false,
+              reverseDirection: false
             };
       case 'PREV_SLIDE':
         // If current slide is initial slide then if looping go
@@ -43,51 +56,64 @@ function useDeck(initialState, numSlides, looping, animationsWhenGoingBack) {
           if (looping) {
             return {
               currentSlide: numSlides - 1,
-              currentSlideElement: 0,
-              immediate: animationsWhenGoingBack ? true : false
+              currentSlideElement: Math.max(slideElementMap[numSlides - 1], 0),
+              immediate: !!animationsWhenGoingBack,
+              reverseDirection: true
             };
           }
           return { ...state };
         }
         return {
           currentSlide: state.currentSlide - 1,
-          currentSlideElement: 0,
-          immediate: animationsWhenGoingBack ? true : false,
-          immediateElement: true
+          currentSlideElement: Math.max(
+            slideElementMap[state.currentSlide - 1],
+            0
+          ),
+          immediate: !!animationsWhenGoingBack,
+          immediateElement: true,
+          reverseDirection: true
         };
       case 'NEXT_SLIDE_ELEMENT': {
         return {
           ...state,
           currentSlideElement: state.currentSlideElement + 1,
-          immediateElement: false
+          immediateElement: false,
+          reverseDirection: false
         };
       }
       case 'NEXT_SLIDE_ELEMENT_IMMEDIATE': {
         return {
           ...state,
           currentSlideElement: state.currentSlideElement + 1,
-          immediateElement: true
+          immediateElement: true,
+          reverseDirection: false
         };
       }
       case 'PREV_SLIDE_ELEMENT': {
         return {
           ...state,
           currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
-          immediateElement: false
+          immediateElement: false,
+          reverseDirection: true
         };
       }
       case 'PREV_SLIDE_ELEMENT_IMMEDIATE': {
         return {
           ...state,
           currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
-          immediateElement: true
+          immediateElement: true,
+          reverseDirection: true
         };
       }
       default:
         return { ...state };
     }
   }
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [state, dispatch] = React.useReducer((state, action) => {
+    const _reducer = reducer(state, action);
+    // console.log(_reducer);
+    return _reducer;
+  }, initialState);
 
   return [state, dispatch, state.immediate];
 }

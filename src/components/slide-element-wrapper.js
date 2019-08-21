@@ -8,7 +8,11 @@ import { SlideContext } from '../hooks/use-slide';
 =======
 import { DeckContext } from '../hooks/useDeck';
 import { AnimationMutexContext } from '../hooks/useMutex';
+<<<<<<< HEAD:src/components/slide-element-wrapper.js
 >>>>>>> Refactor deck reducer to handle slide element transitions:src/components/SlideElementWrapper.js
+=======
+
+>>>>>>> Finished previous animations:src/components/SlideElementWrapper.js
 /**
  * SlideElementWrapper provides a component for animating slideElements
  * Anything wrapped inside will be affected by the transition.
@@ -21,19 +25,59 @@ import { AnimationMutexContext } from '../hooks/useMutex';
  */
 
 const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
-  const [state] = React.useContext(DeckContext);
+  const [
+    { reverseDirection, currentSlideElement, immediateElement }
+  ] = React.useContext(DeckContext);
   const { signal } = React.useContext(AnimationMutexContext);
-  const [styleProps, set] = useSpring(() => transitionEffect.from);
+  const activeElement = elementNum === currentSlideElement;
+  const upcomingElement =
+    (elementNum > currentSlideElement && !reverseDirection) ||
+    (elementNum < currentSlideElement && reverseDirection);
+  const previousElement =
+    (elementNum < currentSlideElement && !reverseDirection) ||
+    (elementNum > currentSlideElement && reverseDirection);
+
+  const [styleProps, set] = useSpring(() => {
+    if ((activeElement || upcomingElement) && !previousElement) {
+      return reverseDirection ? transitionEffect.to : transitionEffect.from;
+    } else if (previousElement) {
+      return reverseDirection ? transitionEffect.from : transitionEffect.to;
+    } else {
+      return transitionEffect.to;
+    }
+  });
 
   React.useEffect(() => {
-    if (state && state.currentSlideElement === elementNum) {
+    if (activeElement) {
       set({
-        ...transitionEffect,
-        immediate: state.immediateElement,
+        ...transitionEffect.to,
+        immediate: immediateElement,
+        onRest: () => signal()
+      });
+    } else if (reverseDirection && previousElement) {
+      set({
+        ...transitionEffect.from,
+        immediate: immediateElement,
+        onRest: () => signal()
+      });
+    } else if (reverseDirection && upcomingElement) {
+      set({
+        ...transitionEffect.to,
+        immediate: immediateElement,
         onRest: () => signal()
       });
     }
-  }, [elementNum, set, signal, state, transitionEffect]);
+  }, [
+    activeElement,
+    elementNum,
+    immediateElement,
+    previousElement,
+    reverseDirection,
+    set,
+    signal,
+    transitionEffect,
+    upcomingElement
+  ]);
 
   return <animated.div style={styleProps}>{children}</animated.div>;
 };

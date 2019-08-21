@@ -16,15 +16,16 @@ function useMutex() {
 
   const signal = React.useCallback(() => {
     lock.current = false;
-    wait();
+    return wait();
   }, [wait]);
 
   const synchronize = React.useCallback(
     runnable => {
       queue.current.push(runnable);
       if (!lock.current) {
-        wait();
+        return wait();
       }
+      return Promise.resolve();
     },
     [wait, lock]
   );

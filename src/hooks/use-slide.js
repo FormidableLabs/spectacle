@@ -84,19 +84,20 @@ function useSlide(
     synchronize
   ]);
 
+  const keyPressCount = React.useRef(0);
+
   // This useEffect adds a keyDown listener to the window.
   React.useEffect(
     function() {
       // Keep track of the number of next slide presses for debounce
-      let nextSlidePress = 0;
       // Create ref for debounceing function
       const debouncedDispatch = debounce(() => {
-        if (nextSlidePress === 1) {
+        if (keyPressCount.current === 1) {
           goToNextSlideElement();
         } else {
           goToImmediateNextSlideElement();
         }
-        nextSlidePress = 0;
+        keyPressCount.current = 0;
       }, 200);
       function handleKeyDown(e) {
         if (keyboardControls === 'arrows') {
@@ -104,13 +105,13 @@ function useSlide(
             goToPreviousSlideElement();
           }
           if (e.key === 'ArrowRight') {
-            nextSlidePress++;
+            keyPressCount.current++;
             debouncedDispatch();
           }
         }
         if (keyboardControls === 'space') {
           if (e.code === 'Space') {
-            nextSlidePress++;
+            keyPressCount.current++;
             debouncedDispatch();
             e.preventDefault();
           }

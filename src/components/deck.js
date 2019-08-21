@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import useDeck, { DeckContext } from '../hooks/use-deck';
-import isComponentType from '../utils/is-component-type.js';
-import { useTransition, animated } from 'react-spring';
-import { AnimationProvider, AnimationMutexContext } from '../hooks/useMutex';
+import useDeck, { DeckContext } from '../hooks/useDeck';
+import isComponentType from '../utils/isComponentType.js';
+import { animated, useTransition } from 'react-spring';
+import { AnimationMutexContext, AnimationProvider } from '../hooks/useMutex';
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -23,7 +23,8 @@ const initialState = {
   currentSlide: 0,
   immediate: false,
   immediateElement: false,
-  currentSlideElement: 0
+  currentSlideElement: 0,
+  reverseDirection: false
 };
 
 const defaultSlideEffect = {
@@ -52,37 +53,34 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
 
   // Check for slides and then number slides.
   const filteredChildren = Array.isArray(children)
-    ? children
-        // filter if is a Slide
-        .filter(x => isComponentType(x, 'Slide'))
+    ? children.filter(x => isComponentType(x, 'Slide'))
     : console.error('No children passed') || [];
 
-  // return a wrapped slide with the animated.div + style prop curried
-  // and a slideNum prop based on iterator
-
-  const Slides = filteredChildren.map((
-    x,
-    i // eslint-disable-next-line react/display-name
-  ) => ({ style }) => (
-    <animated.div style={{ ...style }}>
-      {{
-        ...x,
-        props: { ...x.props, slideNum: i, keyboardControls }
-      }}
-    </animated.div>
-  ));
+  const slideElementMap = React.useMemo(() => {
+    const map = {};
+    filteredChildren.filter((slide, index) => {
+      map[index] = Array.isArray(slide.props.children)
+        ? slide.props.children.reduce((memo, current) => {
+            if (isComponentType(current, 'SlideElementWrapper')) {
+              memo += 1;
+            }
+            return memo;
+          }, 0)
+        : 0;
+    });
+    return map;
+  }, [filteredChildren]);
 
   // Initialise useDeck hook and get state and dispatch off of it
   const [state, dispatch] = useDeck(
     initialState,
-    Slides.length,
-    loop ? true : false,
-    rest.animationsWhenGoingBack
+    filteredChildren.length,
+    !!loop,
+    rest.animationsWhenGoingBack,
+    slideElementMap
   );
-
   const userTransitionEffect =
     filteredChildren[state.currentSlide].props.transitionEffect || {};
-
   const transitionRef = React.useRef();
 
   React.useEffect(() => {
@@ -105,6 +103,15 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     immediate: state.immediate
   });
 
+  const slides = transitions.map(({ item, props, key }) => (
+    <animated.div style={props} key={key}>
+      {React.cloneElement(filteredChildren[item], {
+        slideNum: item,
+        keyboardControls
+      })}
+    </animated.div>
+  ));
+
   return (
     <div
       style={{
@@ -118,15 +125,13 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
         value={[
           state,
           dispatch,
-          Slides.length,
+          slides.length,
           keyboardControls,
-          rest.animationsWhenGoingBack
+          rest.animationsWhenGoingBack,
+          slideElementMap
         ]}
       >
-        {transitions.map(({ item, props, key }) => {
-          const Slide = Slides[item];
-          return <Slide key={key} style={props} />;
-        })}
+        {slides}
       </DeckContext.Provider>
     </div>
   );
@@ -136,8 +141,7 @@ Deck.propTypes = {
   animationsWhenGoingBack: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
-  loop: PropTypes.bool.isRequired,
-  style: PropTypes.object
+  loop: PropTypes.bool.isRequired
 };
 
 Deck.defaultProps = {
@@ -146,10 +150,10 @@ Deck.defaultProps = {
   animationsWhenGoingBack: false
 };
 
-const ConnectedDeck = props => (
-  <AnimationProvider>
-    <Deck {...props} />
-  </AnimationProvider>
-);
-
-export default ConnectedDeck;
+export default function ConnectedDeck(props) {
+  return (
+    <AnimationProvider>
+      <Deck {...props} />
+    </AnimationProvider>
+  );
+}
