@@ -15,6 +15,13 @@ const INITIAL_CONTENT = {
 };
 
 const parseParagraph = children => {
+  if (!Array.isArray(children)) {
+    return {
+      text: children,
+      notes: []
+    };
+  }
+
   let foundNotes = false;
   return children.reduce((prev, curr) => {
     if (foundNotes) {
@@ -50,12 +57,16 @@ const parseParagraph = children => {
 };
 
 const Paragraph = ({ children }) => {
-  if (!Array.isArray(children)) {
-    return children;
-  }
+  const [content, setContent] = React.useState(INITIAL_CONTENT);
 
-  const content = parseParagraph(children);
-  console.log('content: ', content);
+  React.useEffect(() => {
+    const parsed = parseParagraph(children);
+    console.log('parsed: ', parsed);
+    setContent(parsed);
+    console.log('notes: ', parsed.notes);
+    // TODO - save notes
+  }, [children]);
+
   return content.text;
 };
 
