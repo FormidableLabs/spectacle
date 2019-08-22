@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
-import { DeckContext } from '../hooks/useDeck';
-import { TransitionPipeContext } from '../hooks/useTransitionPipe';
+import { DeckContext } from '../hooks/use-deck';
+import { TransitionPipeContext } from '../hooks/use-transition-pipe';
 
 /**
  * SlideElementWrapper provides a component for animating slideElements

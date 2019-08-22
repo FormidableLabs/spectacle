@@ -7,7 +7,7 @@ import { animated, useTransition } from 'react-spring';
 import {
   TransitionPipeContext,
   TransitionPipeProvider
-} from '../hooks/useTransitionPipe';
+} from '../hooks/use-transition-pipe';
 
 /**
  * Provides top level state/context provider with useDeck hook
