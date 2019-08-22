@@ -73,7 +73,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   }, [filteredChildren]);
 
   // Initialise useDeck hook and get state and dispatch off of it
-  const [state, dispatch] = useDeck(
+  const { state, dispatch } = useDeck(
     initialState,
     filteredChildren.length,
     !!loop,
@@ -119,14 +119,14 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
       }}
     >
       <DeckContext.Provider
-        value={[
+        value={{
           state,
           dispatch,
-          slides.length,
+          numberOfSlides: slides.length,
           keyboardControls,
-          rest.animationsWhenGoingBack,
+          animationsWhenGoingBack: rest.animationsWhenGoingBack,
           slideElementMap
-        ]}
+        }}
       >
         {slides}
       </DeckContext.Provider>

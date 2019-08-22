@@ -16,9 +16,9 @@ import { TransitionPipeContext } from '../hooks/use-transition-pipe';
  */
 
 const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
-  const [
-    { reverseDirection, currentSlideElement, immediateElement }
-  ] = React.useContext(DeckContext);
+  const {
+    state: { reverseDirection, currentSlideElement, immediateElement }
+  } = React.useContext(DeckContext);
   const { signal } = React.useContext(TransitionPipeContext);
   const activeElement = elementNum === currentSlideElement;
   const upcomingElement =

@@ -24,13 +24,11 @@ function useSlide(
   keyboardControls
 ) {
   // Gets state, dispatch and number of slides off DeckContext.
-  const [
-    deckContextState,
-    deckContextDispatch,
-    ,
-    ,
+  const {
+    state: deckContextState,
+    dispatch: deckContextDispatch,
     animationsWhenGoingBack
-  ] = React.useContext(DeckContext);
+  } = React.useContext(DeckContext);
 
   const isActiveSlide = deckContextState.currentSlide === slideNum;
 

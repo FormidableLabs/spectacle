@@ -109,13 +109,8 @@ function useDeck(
         return { ...state };
     }
   }
-  const [state, dispatch] = React.useReducer((state, action) => {
-    const _reducer = reducer(state, action);
-    // console.log(_reducer);
-    return _reducer;
-  }, initialState);
-
-  return [state, dispatch, state.immediate];
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+  return { state, dispatch };
 }
 
 export default useDeck;
