@@ -9,9 +9,7 @@ import { DeckContext } from '../hooks/use-deck';
  */
 
 const Slide = ({ children, slideNum }) => {
-  const [, , , keyboardControls, , slideElementMap] = React.useContext(
-    DeckContext
-  );
+  const { slideElementMap, keyboardControls } = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0, immediate: false };
   const numberOfSlideElements = slideElementMap[slideNum];
 
