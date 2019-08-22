@@ -2,7 +2,6 @@ import React from 'react';
 
 import { DeckContext } from './use-deck';
 import debounce from '../utils/debounce';
-import { AnimationMutexContext } from './useMutex';
 
 /**
  * Performs logic operations for all of the slide domain level.
@@ -33,7 +32,6 @@ function useSlide(
     animationsWhenGoingBack
   ] = React.useContext(DeckContext);
 
-  const { synchronize } = React.useContext(AnimationMutexContext);
   const isActiveSlide = deckContextState.currentSlide === slideNum;
 
   const goToNextSlideElement = React.useCallback(() => {
@@ -41,15 +39,14 @@ function useSlide(
       slideElementsLength === 0 ||
       deckContextState.currentSlideElement === slideElementsLength
     ) {
-      synchronize(() => deckContextDispatch({ type: 'NEXT_SLIDE' }));
+      deckContextDispatch({ type: 'NEXT_SLIDE' });
     } else {
-      synchronize(() => deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT' }));
+      deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT' });
     }
   }, [
     deckContextDispatch,
     deckContextState.currentSlideElement,
-    slideElementsLength,
-    synchronize
+    slideElementsLength
   ]);
 
   const goToImmediateNextSlideElement = React.useCallback(() => {
@@ -57,32 +54,23 @@ function useSlide(
       slideElementsLength === 0 ||
       deckContextState.currentSlideElement === slideElementsLength
     ) {
-      synchronize(() => deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' }));
+      deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' });
     } else {
-      synchronize(() =>
-        deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT_IMMEDIATE' })
-      );
+      deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT_IMMEDIATE' });
     }
-  }, [deckContextDispatch, deckContextState, slideElementsLength, synchronize]);
+  }, [deckContextDispatch, deckContextState, slideElementsLength]);
 
   const goToPreviousSlideElement = React.useCallback(() => {
     if (deckContextState.currentSlideElement === 0) {
-      synchronize(() => deckContextDispatch({ type: 'PREV_SLIDE' }));
+      deckContextDispatch({ type: 'PREV_SLIDE' });
     } else {
       if (!animationsWhenGoingBack) {
-        synchronize(() =>
-          deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT_IMMEDIATE' })
-        );
+        deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT_IMMEDIATE' });
         return;
       }
-      synchronize(() => deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT' }));
+      deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT' });
     }
-  }, [
-    animationsWhenGoingBack,
-    deckContextDispatch,
-    deckContextState,
-    synchronize
-  ]);
+  }, [animationsWhenGoingBack, deckContextDispatch, deckContextState]);
 
   const keyPressCount = React.useRef(0);
 

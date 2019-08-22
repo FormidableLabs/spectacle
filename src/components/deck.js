@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import useDeck, { DeckContext } from '../hooks/useDeck';
 import isComponentType from '../utils/isComponentType.js';
 import { animated, useTransition } from 'react-spring';
-import { AnimationMutexContext, AnimationProvider } from '../hooks/useMutex';
+import {
+  TransitionPipeContext,
+  TransitionPipeProvider
+} from '../hooks/useTransitionPipe';
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -47,9 +50,7 @@ const defaultSlideEffect = {
 };
 
 const Deck = ({ children, loop, keyboardControls, ...rest }) => {
-  // Our default effect for transitioning between slides
-  const { signal, synchronize } = React.useContext(AnimationMutexContext);
-  const [firstRun, setFirstRun] = React.useState(true);
+  const { runTransition } = React.useContext(TransitionPipeContext);
 
   // Check for slides and then number slides.
   const filteredChildren = Array.isArray(children)
@@ -81,18 +82,14 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   );
   const userTransitionEffect =
     filteredChildren[state.currentSlide].props.transitionEffect || {};
-  const transitionRef = React.useRef();
+  const transitionRef = React.useRef(null);
 
   React.useEffect(() => {
-    const runSlideTransition = () =>
-      transitionRef.current.start().then(() => signal());
-    if (firstRun) {
-      setFirstRun(false);
-      synchronize(() => runSlideTransition());
+    if (!transitionRef.current) {
       return;
     }
-    runSlideTransition();
-  }, [transitionRef, state.currentSlide, signal, synchronize, firstRun]);
+    runTransition(transitionRef.current);
+  }, [transitionRef, state.currentSlide, runTransition]);
 
   const transitions = useTransition(state.currentSlide, p => p, {
     ref: transitionRef,
@@ -152,8 +149,8 @@ Deck.defaultProps = {
 
 export default function ConnectedDeck(props) {
   return (
-    <AnimationProvider>
+    <TransitionPipeProvider>
       <Deck {...props} />
-    </AnimationProvider>
+    </TransitionPipeProvider>
   );
 }
