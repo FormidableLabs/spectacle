@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 // START: test components to try rendering:
-import TestMDX from './examples/MDX/TestMDX';
+import TestMDX from './examples/mdx/test-mdx';
 // import TestJs from './examples/JS/TestJS.js';
 // END: test components to try rendering
 

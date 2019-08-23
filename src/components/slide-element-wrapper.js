@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
-
-import { SlideContext } from '../hooks/use-slide';
+import { DeckContext } from '../hooks/use-deck';
+import { TransitionPipeContext } from '../hooks/use-transition-pipe';
 
 /**
  * SlideElementWrapper provides a component for animating slideElements
@@ -16,26 +16,51 @@ import { SlideContext } from '../hooks/use-slide';
  */
 
 const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
-  const [state, ,] = React.useContext(SlideContext);
+  const {
+    state: { reverseDirection, currentSlideElement, immediateElement }
+  } = React.useContext(DeckContext);
+  const { signal } = React.useContext(TransitionPipeContext);
+  const activeElement = elementNum === currentSlideElement;
+  const upcomingElement =
+    (elementNum > currentSlideElement && !reverseDirection) ||
+    (elementNum < currentSlideElement && reverseDirection);
+  const previousElement =
+    (elementNum < currentSlideElement && !reverseDirection) ||
+    (elementNum > currentSlideElement && reverseDirection);
 
-  const [styleProps, set] = useSpring(() => transitionEffect.from);
-
-  // when state changes check if the elementNum is less than/equal to currentSlideElement
-  // if so trigger transition, if not then to initial!
-  React.useEffect(() => {
-    if (state && elementNum <= state.currentSlideElement) {
-      set({
-        ...transitionEffect,
-        immediate: state.immediate
-      });
+  const [styleProps, set] = useSpring(() => {
+    if ((activeElement || upcomingElement) && !previousElement) {
+      return reverseDirection ? transitionEffect.to : transitionEffect.from;
+    } else if (previousElement) {
+      return reverseDirection ? transitionEffect.from : transitionEffect.to;
     } else {
+      return transitionEffect.to;
+    }
+  });
+
+  React.useEffect(() => {
+    if (activeElement && !reverseDirection) {
       set({
-        ...transitionEffect,
-        to: transitionEffect.from,
-        immediate: state.immediate
+        ...transitionEffect.to,
+        immediate: immediateElement
+      });
+    } else if (reverseDirection && previousElement) {
+      set({
+        ...transitionEffect.from,
+        immediate: immediateElement
       });
     }
-  }, [elementNum, set, state, transitionEffect]);
+  }, [
+    activeElement,
+    elementNum,
+    immediateElement,
+    previousElement,
+    reverseDirection,
+    set,
+    signal,
+    transitionEffect,
+    upcomingElement
+  ]);
 
   return <animated.div style={styleProps}>{children}</animated.div>;
 };

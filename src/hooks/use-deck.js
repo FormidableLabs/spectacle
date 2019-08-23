@@ -7,7 +7,13 @@ import React from 'react';
 
 export const DeckContext = React.createContext();
 
-function useDeck(initialState, numSlides, looping, animationsWhenGoingBack) {
+function useDeck(
+  initialState,
+  numSlides,
+  looping,
+  animationsWhenGoingBack,
+  slideElementMap
+) {
   function reducer(state, action) {
     switch (action.type) {
       case 'NEXT_SLIDE':
@@ -18,37 +24,93 @@ function useDeck(initialState, numSlides, looping, animationsWhenGoingBack) {
         if (state.currentSlide + 1 === numSlides) {
           if (looping) {
             return action.type === 'NEXT_SLIDE_IMMEDIATE'
-              ? { ...initialState, immediate: true }
+              ? {
+                  ...initialState,
+                  immediate: true,
+                  reverseDirection: false,
+                  immediateElement: false
+                }
               : initialState;
           }
           return { ...state };
         }
         return action.type === 'NEXT_SLIDE_IMMEDIATE'
-          ? { currentSlide: state.currentSlide + 1, immediate: true }
-          : { currentSlide: state.currentSlide + 1 };
+          ? {
+              currentSlide: state.currentSlide + 1,
+              immediate: true,
+              currentSlideElement: 0,
+              immediateElement: false,
+              reverseDirection: false
+            }
+          : {
+              currentSlide: state.currentSlide + 1,
+              currentSlideElement: 0,
+              immediate: false,
+              immediateElement: false,
+              reverseDirection: false
+            };
       case 'PREV_SLIDE':
-        // If current slide is inital slide then if looping go
+        // If current slide is initial slide then if looping go
         // to last slide else stop
         if (state.currentSlide === initialState.currentSlide) {
           if (looping) {
             return {
               currentSlide: numSlides - 1,
-              immediate: animationsWhenGoingBack ? true : false
+              currentSlideElement: Math.max(slideElementMap[numSlides - 1], 0),
+              immediate: !!animationsWhenGoingBack,
+              reverseDirection: true
             };
           }
           return { ...state };
         }
         return {
           currentSlide: state.currentSlide - 1,
-          immediate: animationsWhenGoingBack ? true : false
+          currentSlideElement: Math.max(
+            slideElementMap[state.currentSlide - 1],
+            0
+          ),
+          immediate: !!animationsWhenGoingBack,
+          immediateElement: true,
+          reverseDirection: true
         };
+      case 'NEXT_SLIDE_ELEMENT': {
+        return {
+          ...state,
+          currentSlideElement: state.currentSlideElement + 1,
+          immediateElement: false,
+          reverseDirection: false
+        };
+      }
+      case 'NEXT_SLIDE_ELEMENT_IMMEDIATE': {
+        return {
+          ...state,
+          currentSlideElement: state.currentSlideElement + 1,
+          immediateElement: true,
+          reverseDirection: false
+        };
+      }
+      case 'PREV_SLIDE_ELEMENT': {
+        return {
+          ...state,
+          currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
+          immediateElement: false,
+          reverseDirection: true
+        };
+      }
+      case 'PREV_SLIDE_ELEMENT_IMMEDIATE': {
+        return {
+          ...state,
+          currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
+          immediateElement: true,
+          reverseDirection: true
+        };
+      }
       default:
         return { ...state };
     }
   }
   const [state, dispatch] = React.useReducer(reducer, initialState);
-
-  return [state, dispatch, state.immediate];
+  return { state, dispatch };
 }
 
 export default useDeck;

@@ -24,97 +24,80 @@ function useSlide(
   keyboardControls
 ) {
   // Gets state, dispatch and number of slides off DeckContext.
-  const [
-    deckContextState,
-    deckContextDispatch,
-    ,
-    ,
+  const {
+    state: deckContextState,
+    dispatch: deckContextDispatch,
     animationsWhenGoingBack
-  ] = React.useContext(DeckContext);
+  } = React.useContext(DeckContext);
 
   const isActiveSlide = deckContextState.currentSlide === slideNum;
 
-  function reducer(state, action) {
-    // As we need to animate between slides, we need to check if
-    // this is the active slide and only run the reducer if so
-
-    if (isActiveSlide) {
-      switch (action.type) {
-        case 'NEXT_SLIDE_ELEMENT':
-          // If there aren't any slideElements or this is the last
-          // slideElement then go to next slide!
-          if (
-            slideElementsLength === 0 ||
-            (state && state.currentSlideElement === slideElementsLength)
-          ) {
-            deckContextDispatch({ type: 'NEXT_SLIDE' });
-          }
-          return {
-            // Next slide element
-            currentSlideElement: state ? state.currentSlideElement + 1 : 0
-          };
-        case 'IMMEDIATE_NEXT_SLIDE_ELEMENT':
-          if (
-            slideElementsLength === 0 ||
-            (state && state.currentSlideElement === slideElementsLength)
-          ) {
-            deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' });
-          }
-          return {
-            // Next slide element
-            currentSlideElement: state ? state.currentSlideElement + 1 : 0,
-            immediate: true
-          };
-        // If there aren't any slideElements or this is the first
-        // slideElement then go to prev slide!
-        case 'PREV_SLIDE_ELEMENT':
-          if (state && state.currentSlideElement === 0) {
-            deckContextDispatch({ type: 'PREV_SLIDE' });
-          }
-          if (!animationsWhenGoingBack) {
-            return {
-              currentSlideElement: state ? state.currentSlideElement - 1 : 0,
-              immediate: true
-            };
-          }
-          return {
-            // Prev slideElement
-            currentSlideElement: state ? state.currentSlideElement - 1 : 0
-          };
-        default:
-          return { ...state };
-      }
+  const goToNextSlideElement = React.useCallback(() => {
+    if (
+      slideElementsLength === 0 ||
+      deckContextState.currentSlideElement === slideElementsLength
+    ) {
+      deckContextDispatch({ type: 'NEXT_SLIDE' });
+    } else {
+      deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT' });
     }
-  }
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  }, [
+    deckContextDispatch,
+    deckContextState.currentSlideElement,
+    slideElementsLength
+  ]);
+
+  const goToImmediateNextSlideElement = React.useCallback(() => {
+    if (
+      slideElementsLength === 0 ||
+      deckContextState.currentSlideElement === slideElementsLength
+    ) {
+      deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' });
+    } else {
+      deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT_IMMEDIATE' });
+    }
+  }, [deckContextDispatch, deckContextState, slideElementsLength]);
+
+  const goToPreviousSlideElement = React.useCallback(() => {
+    if (deckContextState.currentSlideElement === 0) {
+      deckContextDispatch({ type: 'PREV_SLIDE' });
+    } else {
+      if (!animationsWhenGoingBack) {
+        deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT_IMMEDIATE' });
+        return;
+      }
+      deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT' });
+    }
+  }, [animationsWhenGoingBack, deckContextDispatch, deckContextState]);
+
+  const keyPressCount = React.useRef(0);
 
   // This useEffect adds a keyDown listener to the window.
   React.useEffect(
     function() {
       // Keep track of the number of next slide presses for debounce
-      let nextSlidePress = 0;
       // Create ref for debounceing function
       const debouncedDispatch = debounce(() => {
-        if (nextSlidePress === 1) {
-          dispatch({ type: 'NEXT_SLIDE_ELEMENT' });
+        if (keyPressCount.current === 1) {
+          goToNextSlideElement();
         } else {
-          dispatch({ type: 'IMMEDIATE_NEXT_SLIDE_ELEMENT' });
+          goToImmediateNextSlideElement();
         }
-        nextSlidePress = 0;
+        keyPressCount.current = 0;
       }, 200);
       function handleKeyDown(e) {
         if (keyboardControls === 'arrows') {
           if (e.key === 'ArrowLeft') {
-            dispatch({ type: 'PREV_SLIDE_ELEMENT' });
+            goToPreviousSlideElement();
           }
           if (e.key === 'ArrowRight') {
-            nextSlidePress++;
+            keyPressCount.current++;
             debouncedDispatch();
           }
         }
         if (keyboardControls === 'space') {
           if (e.code === 'Space') {
-            nextSlidePress++;
+            keyPressCount.current++;
             debouncedDispatch();
             e.preventDefault();
           }
@@ -125,9 +108,28 @@ function useSlide(
         window.removeEventListener('keydown', handleKeyDown);
       };
     },
-    [isActiveSlide, keyboardControls]
+    [
+      isActiveSlide,
+      keyboardControls,
+      goToNextSlideElement,
+      goToPreviousSlideElement,
+      goToImmediateNextSlideElement
+    ]
   );
-  return [state, dispatch];
+  return [
+    {
+      ...initialState,
+      slideElementsLength,
+      currentSlideElement: deckContextState.currentSlideElement,
+      immediate: false,
+      isActiveSlide
+    },
+    {
+      goToNextSlideElement,
+      goToImmediateNextSlideElement,
+      goToPreviousSlideElement
+    }
+  ];
 }
 
 export default useSlide;
