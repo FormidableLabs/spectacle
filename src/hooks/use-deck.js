@@ -49,6 +49,15 @@ function useDeck(
               immediateElement: false,
               reverseDirection: false
             };
+      case 'GO_TO_SLIDE': {
+        return {
+          currentSlideElement: 0,
+          currentSlide: action.payload.slideNumber,
+          immediate: action.payload.immediate,
+          immediateElement: false,
+          reverseDirection: action.payload.reverseDirection
+        };
+      }
       case 'PREV_SLIDE':
         // If current slide is initial slide then if looping go
         // to last slide else stop

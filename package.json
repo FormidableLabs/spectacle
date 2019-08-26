@@ -69,8 +69,10 @@
     "@mdx-js/react": "^1.1.5",
     "@mdx-js/tag": "^0.20.3",
     "gray-matter": "^4.0.2",
+    "history": "^4.9.0",
     "loader-utils": "^1.2.3",
     "normalize-newline": "^3.0.0",
+    "query-string": "^6.8.2",
     "react-spring": "^8.0.25",
     "styled-components": "^4.3.1",
     "wonka": "^3.2.0"
