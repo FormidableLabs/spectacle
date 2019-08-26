@@ -11,12 +11,12 @@ const components = {};
 
 const MDXSlides = () => (
   <Deck loop>
-    {slides.map((S, i) => {
+    {slides.map((MDXSlide, i) => {
       const NotesForSlide = notes[i];
       return (
         <Slide key={`slide-${i}`} slideNum={i}>
           <MDXProvider components={components}>
-            <S />
+            <MDXSlide />
             <div
               style={{ height: 5, width: '100%', backgroundColor: 'black' }}
             />

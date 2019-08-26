@@ -5,7 +5,7 @@ const EX_REG = /export\sdefault\s/g;
  * See this link for an explanation of the regex solution:
  * https://stackoverflow.com/questions/6462578/regex-to-match-all-instances-not-inside-quotes/23667311#23667311
  * Note that the regex isn't concerned about code blocks (```).
- * Tracking pairs of ` should be sufficient to caputre code blocks, too.
+ * Tracking pairs of ` should be sufficient to capture code blocks, too.
  */
 const MOD_REG = /\\`|`(?:\\`|[^`])*`|(^(?:import|export).*$)/gm;
 
