@@ -26,7 +26,7 @@ const pluginClassProperties = path.resolve(
   '@babel/plugin-proposal-class-properties'
 );
 
-const mdxSlideLoader = path.resolve(__dirname, 'mdx-slide-loader');
+const mdxSlideLoader = path.resolve(__dirname, 'mdx-loader', 'index');
 
 const babelConfigOptions = {
   babelrc: false,
