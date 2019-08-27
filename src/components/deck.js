@@ -28,7 +28,8 @@ const initialState = {
   immediate: false,
   immediateElement: false,
   currentSlideElement: 0,
-  reverseDirection: false
+  reverseDirection: false,
+  presenterMode: false
 };
 
 const defaultSlideEffect = {
@@ -90,6 +91,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     dispatch,
     currentSlide: state.currentSlide,
     currentSlideElement: state.currentSlideElement,
+    presenterMode: state.presenterMode,
     slideElementMap
   });
 

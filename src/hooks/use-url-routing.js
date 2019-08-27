@@ -3,7 +3,7 @@ import { createBrowserHistory } from 'history';
 import * as queryString from 'query-string';
 
 export default function useUrlRouting(options) {
-  const { dispatch, slideElementMap, currentSlide } = options;
+  const { dispatch, slideElementMap, currentSlide, presenterMode } = options;
   const history = React.useRef(createBrowserHistory());
   const numberOfSlides = React.useMemo(
     () => Object.getOwnPropertyNames(slideElementMap).length,
@@ -13,6 +13,8 @@ export default function useUrlRouting(options) {
   const onHistoryChange = React.useCallback(() => {
     const query = queryString.parse(window.location.search);
     const proposedSlideNumber = parseInt(query.slide, 10);
+    const presenterMode = Boolean(query.presenterMode);
+
     /**
      * If the proposed URL slide index is out-of-bounds or is not a valid
      * integer, navigate to the first slide. Do nothing if the proposed slide
@@ -27,6 +29,7 @@ export default function useUrlRouting(options) {
       return;
     }
     if (proposedSlideNumber === currentSlide) {
+      dispatch({ type: 'SET_PRESENTER_MODE', payload: { presenterMode } });
       return;
     }
     const reverseDirection = proposedSlideNumber < currentSlide;
@@ -35,7 +38,8 @@ export default function useUrlRouting(options) {
       payload: {
         slideNumber: proposedSlideNumber,
         reverseDirection,
-        immediate: Boolean(query.immediate)
+        immediate: Boolean(query.immediate),
+        presenterMode
       }
     });
   }, [dispatch, numberOfSlides, currentSlide]);
@@ -45,11 +49,12 @@ export default function useUrlRouting(options) {
       const nextSafeSlideIndex = Math.min(numberOfSlides - 1, currentSlide + 1);
       const qs = queryString.stringify({
         slide: nextSafeSlideIndex,
-        immediate: immediate || undefined
+        immediate: immediate || undefined,
+        presenterMode: presenterMode || undefined
       });
       history.current.push(`?${qs}`);
     },
-    [currentSlide, numberOfSlides]
+    [currentSlide, numberOfSlides, presenterMode]
   );
 
   const navigateToPreviousSlide = React.useCallback(
@@ -57,11 +62,12 @@ export default function useUrlRouting(options) {
       const previousSafeSlideIndex = Math.max(0, currentSlide - 1);
       const qs = queryString.stringify({
         slide: previousSafeSlideIndex,
-        immediate: immediate || undefined
+        immediate: immediate || undefined,
+        presenterMode: presenterMode || undefined
       });
       history.current.push(`?${qs}`);
     },
-    [currentSlide]
+    [currentSlide, presenterMode]
   );
 
   React.useEffect(() => {
