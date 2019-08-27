@@ -3,7 +3,13 @@ import { createBrowserHistory } from 'history';
 import * as queryString from 'query-string';
 
 export default function useUrlRouting(options) {
-  const { dispatch, slideElementMap, currentSlide, presenterMode } = options;
+  const {
+    dispatch,
+    slideElementMap,
+    currentSlide,
+    presenterMode,
+    loop
+  } = options;
   const history = React.useRef(createBrowserHistory());
   const numberOfSlides = React.useMemo(
     () => Object.getOwnPropertyNames(slideElementMap).length,
@@ -46,7 +52,12 @@ export default function useUrlRouting(options) {
 
   const navigateToNextSlide = React.useCallback(
     ({ immediate } = {}) => {
-      const nextSafeSlideIndex = Math.min(numberOfSlides - 1, currentSlide + 1);
+      let nextSafeSlideIndex;
+      if (currentSlide + 1 > numberOfSlides - 1 && loop) {
+        nextSafeSlideIndex = 0;
+      } else {
+        nextSafeSlideIndex = Math.min(currentSlide + 1, numberOfSlides - 1);
+      }
       const qs = queryString.stringify({
         slide: nextSafeSlideIndex,
         immediate: immediate || undefined,
@@ -54,12 +65,17 @@ export default function useUrlRouting(options) {
       });
       history.current.push(`?${qs}`);
     },
-    [currentSlide, numberOfSlides, presenterMode]
+    [currentSlide, loop, numberOfSlides, presenterMode]
   );
 
   const navigateToPreviousSlide = React.useCallback(
     ({ immediate } = {}) => {
-      const previousSafeSlideIndex = Math.max(0, currentSlide - 1);
+      let previousSafeSlideIndex;
+      if (currentSlide - 1 < 0 && loop) {
+        previousSafeSlideIndex = numberOfSlides - 1;
+      } else {
+        previousSafeSlideIndex = Math.max(0, currentSlide - 1);
+      }
       const qs = queryString.stringify({
         slide: previousSafeSlideIndex,
         immediate: immediate || undefined,

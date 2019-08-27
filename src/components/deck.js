@@ -92,7 +92,8 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     currentSlide: state.currentSlide,
     currentSlideElement: state.currentSlideElement,
     presenterMode: state.presenterMode,
-    slideElementMap
+    slideElementMap,
+    loop
   });
 
   const userTransitionEffect =
