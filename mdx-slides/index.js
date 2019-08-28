@@ -5,20 +5,27 @@ import Deck from '../src/components/deck';
 import Slide from '../src/components/slide';
 
 // See the webpack config to see how this import alias is made
-import slides from 'spectacle-user-mdx';
+import slides, { notes } from 'spectacle-user-mdx';
 
 const components = {};
 
 const MDXSlides = () => (
-  <MDXProvider components={components}>
-    <Deck loop>
-      {slides.map((S, i) => (
+  <Deck loop>
+    {slides.map((MDXSlide, i) => {
+      const NotesForSlide = notes[i];
+      return (
         <Slide key={`slide-${i}`} slideNum={i}>
-          <S />
+          <MDXProvider components={components}>
+            <MDXSlide />
+            <div
+              style={{ height: 5, width: '100%', backgroundColor: 'black' }}
+            />
+            <NotesForSlide />
+          </MDXProvider>
         </Slide>
-      ))}
-    </Deck>
-  </MDXProvider>
+      );
+    })}
+  </Deck>
 );
 
 render(<MDXSlides />, document.getElementById('root'));
