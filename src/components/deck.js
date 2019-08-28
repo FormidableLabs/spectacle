@@ -110,7 +110,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   }, [navigateToCurrentUrl]);
 
   React.useLayoutEffect(() => {
-    document.getElementsByTagName('body')[0].style.margin = '0';
+    document.body.style.margin = '0';
   }, []);
 
   React.useEffect(() => {
