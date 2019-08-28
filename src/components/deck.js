@@ -8,6 +8,7 @@ import {
   TransitionPipeContext,
   TransitionPipeProvider
 } from '../hooks/use-transition-pipe';
+import useUrlRouting from '../hooks/use-url-routing';
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -27,7 +28,8 @@ const initialState = {
   immediate: false,
   immediateElement: false,
   currentSlideElement: 0,
-  reverseDirection: false
+  reverseDirection: false,
+  presenterMode: false
 };
 
 const defaultSlideEffect = {
@@ -80,9 +82,32 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     rest.animationsWhenGoingBack,
     slideElementMap
   );
+
+  const {
+    navigateToNextSlide,
+    navigateToPreviousSlide,
+    navigateToCurrentUrl
+  } = useUrlRouting({
+    dispatch,
+    currentSlide: state.currentSlide,
+    currentSlideElement: state.currentSlideElement,
+    presenterMode: state.presenterMode,
+    slideElementMap,
+    loop
+  });
+
   const userTransitionEffect =
     filteredChildren[state.currentSlide].props.transitionEffect || {};
   const transitionRef = React.useRef(null);
+
+  React.useEffect(() => {
+    /***
+     * This will look at the current query string and navigate to whatever
+     * slide is specified, otherwise start at 0. This only runs once per mount
+     * of Deck, which should be the entire lifecyle of the slideshow.
+     */
+    navigateToCurrentUrl();
+  }, [navigateToCurrentUrl]);
 
   React.useEffect(() => {
     if (!transitionRef.current) {
@@ -125,7 +150,9 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
           numberOfSlides: slides.length,
           keyboardControls,
           animationsWhenGoingBack: rest.animationsWhenGoingBack,
-          slideElementMap
+          slideElementMap,
+          navigateToNextSlide,
+          navigateToPreviousSlide
         }}
       >
         {slides}

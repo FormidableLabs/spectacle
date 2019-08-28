@@ -27,7 +27,9 @@ function useSlide(
   const {
     state: deckContextState,
     dispatch: deckContextDispatch,
-    animationsWhenGoingBack
+    animationsWhenGoingBack,
+    navigateToNextSlide,
+    navigateToPreviousSlide
   } = React.useContext(DeckContext);
 
   const isActiveSlide = deckContextState.currentSlide === slideNum;
@@ -37,13 +39,14 @@ function useSlide(
       slideElementsLength === 0 ||
       deckContextState.currentSlideElement === slideElementsLength
     ) {
-      deckContextDispatch({ type: 'NEXT_SLIDE' });
+      navigateToNextSlide();
     } else {
       deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT' });
     }
   }, [
     deckContextDispatch,
     deckContextState.currentSlideElement,
+    navigateToNextSlide,
     slideElementsLength
   ]);
 
@@ -52,15 +55,20 @@ function useSlide(
       slideElementsLength === 0 ||
       deckContextState.currentSlideElement === slideElementsLength
     ) {
-      deckContextDispatch({ type: 'NEXT_SLIDE_IMMEDIATE' });
+      navigateToNextSlide({ immediate: true });
     } else {
       deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT_IMMEDIATE' });
     }
-  }, [deckContextDispatch, deckContextState, slideElementsLength]);
+  }, [
+    deckContextDispatch,
+    deckContextState.currentSlideElement,
+    navigateToNextSlide,
+    slideElementsLength
+  ]);
 
   const goToPreviousSlideElement = React.useCallback(() => {
     if (deckContextState.currentSlideElement === 0) {
-      deckContextDispatch({ type: 'PREV_SLIDE' });
+      navigateToPreviousSlide();
     } else {
       if (!animationsWhenGoingBack) {
         deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT_IMMEDIATE' });
@@ -68,7 +76,12 @@ function useSlide(
       }
       deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT' });
     }
-  }, [animationsWhenGoingBack, deckContextDispatch, deckContextState]);
+  }, [
+    animationsWhenGoingBack,
+    deckContextDispatch,
+    deckContextState.currentSlideElement,
+    navigateToPreviousSlide
+  ]);
 
   const keyPressCount = React.useRef(0);
 

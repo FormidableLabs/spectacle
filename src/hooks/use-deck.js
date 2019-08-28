@@ -17,53 +17,36 @@ function useDeck(
   function reducer(state, action) {
     switch (action.type) {
       case 'NEXT_SLIDE':
-      case 'NEXT_SLIDE_IMMEDIATE':
-        // If next slide is going to be greater than number
-        // of slides, if it is looping then go to initial state
-        // if not then stop
-        if (state.currentSlide + 1 === numSlides) {
-          if (looping) {
-            return action.type === 'NEXT_SLIDE_IMMEDIATE'
-              ? {
-                  ...initialState,
-                  immediate: true,
-                  reverseDirection: false,
-                  immediateElement: false
-                }
-              : initialState;
-          }
-          return { ...state };
-        }
-        return action.type === 'NEXT_SLIDE_IMMEDIATE'
-          ? {
-              currentSlide: state.currentSlide + 1,
-              immediate: true,
-              currentSlideElement: 0,
-              immediateElement: false,
-              reverseDirection: false
-            }
-          : {
-              currentSlide: state.currentSlide + 1,
-              currentSlideElement: 0,
-              immediate: false,
-              immediateElement: false,
-              reverseDirection: false
-            };
-      case 'PREV_SLIDE':
-        // If current slide is initial slide then if looping go
-        // to last slide else stop
-        if (state.currentSlide === initialState.currentSlide) {
-          if (looping) {
-            return {
-              currentSlide: numSlides - 1,
-              currentSlideElement: Math.max(slideElementMap[numSlides - 1], 0),
-              immediate: !!animationsWhenGoingBack,
-              reverseDirection: true
-            };
-          }
-          return { ...state };
-        }
         return {
+          ...state,
+          currentSlide: state.currentSlide + 1,
+          currentSlideElement: 0,
+          immediate: false,
+          immediateElement: false,
+          reverseDirection: false
+        };
+      case 'NEXT_SLIDE_IMMEDIATE':
+        return {
+          ...state,
+          currentSlide: state.currentSlide + 1,
+          immediate: true,
+          currentSlideElement: 0,
+          immediateElement: false,
+          reverseDirection: false
+        };
+      case 'GO_TO_SLIDE': {
+        return {
+          ...state,
+          currentSlideElement: 0,
+          currentSlide: action.payload.slideNumber,
+          immediate: action.payload.immediate,
+          immediateElement: false,
+          reverseDirection: action.payload.reverseDirection
+        };
+      }
+      case 'PREV_SLIDE':
+        return {
+          ...state,
           currentSlide: state.currentSlide - 1,
           currentSlideElement: Math.max(
             slideElementMap[state.currentSlide - 1],
@@ -73,36 +56,38 @@ function useDeck(
           immediateElement: true,
           reverseDirection: true
         };
-      case 'NEXT_SLIDE_ELEMENT': {
+      case 'NEXT_SLIDE_ELEMENT':
         return {
           ...state,
           currentSlideElement: state.currentSlideElement + 1,
           immediateElement: false,
           reverseDirection: false
         };
-      }
-      case 'NEXT_SLIDE_ELEMENT_IMMEDIATE': {
+      case 'NEXT_SLIDE_ELEMENT_IMMEDIATE':
         return {
           ...state,
           currentSlideElement: state.currentSlideElement + 1,
           immediateElement: true,
           reverseDirection: false
         };
-      }
-      case 'PREV_SLIDE_ELEMENT': {
+      case 'PREV_SLIDE_ELEMENT':
         return {
           ...state,
           currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
           immediateElement: false,
           reverseDirection: true
         };
-      }
-      case 'PREV_SLIDE_ELEMENT_IMMEDIATE': {
+      case 'PREV_SLIDE_ELEMENT_IMMEDIATE':
         return {
           ...state,
           currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
           immediateElement: true,
           reverseDirection: true
+        };
+      case 'SET_PRESENTER_MODE': {
+        return {
+          ...state,
+          presenterMode: action.payload.presenterMode
         };
       }
       default:
