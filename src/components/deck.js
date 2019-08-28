@@ -109,6 +109,10 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     navigateToCurrentUrl();
   }, [navigateToCurrentUrl]);
 
+  React.useLayoutEffect(() => {
+    document.body.style.margin = '0';
+  }, []);
+
   React.useEffect(() => {
     if (!transitionRef.current) {
       return;
@@ -135,14 +139,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   ));
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        height: '50vh',
-        width: '100%',
-        overflowX: 'hidden'
-      }}
-    >
+    <div>
       <DeckContext.Provider
         value={{
           state,

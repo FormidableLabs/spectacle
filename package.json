@@ -72,8 +72,10 @@
     "history": "^4.9.0",
     "loader-utils": "^1.2.3",
     "normalize-newline": "^3.0.0",
+    "prism-react-renderer": "^0.1.7",
     "query-string": "^6.8.2",
     "react-spring": "^8.0.25",
+    "react-typography": "^0.16.19",
     "styled-components": "^4.3.1",
     "wonka": "^3.2.0"
   }
