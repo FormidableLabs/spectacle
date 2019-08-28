@@ -20,15 +20,21 @@ const Slide = ({ children, slideNum }) => {
     keyboardControls
   );
 
+  const baseSlideStyle = React.useMemo(
+    () => ({
+      height: '100vh',
+      width: '100vw',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      position: 'absolute'
+    }),
+    []
+  );
+
   return (
-    <div
-      style={{
-        backgroundColor: 'lavender',
-        border: '2px solid plum',
-        overflow: 'hidden'
-      }}
-    >
-      <p>{slideNum}</p>
+    <div style={baseSlideStyle}>
       <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
     </div>
   );

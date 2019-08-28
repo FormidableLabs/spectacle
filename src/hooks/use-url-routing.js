@@ -83,7 +83,7 @@ export default function useUrlRouting(options) {
       });
       history.current.push(`?${qs}`);
     },
-    [currentSlide, presenterMode]
+    [currentSlide, loop, numberOfSlides, presenterMode]
   );
 
   React.useEffect(() => {
