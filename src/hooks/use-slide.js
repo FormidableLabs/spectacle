@@ -83,6 +83,13 @@ function useSlide(
     navigateToPreviousSlide
   ]);
 
+  const setNotes = React.useCallback(
+    notes => {
+      deckContextDispatch({ type: 'SET_CURRENT_NOTES', payload: notes });
+    },
+    [deckContextDispatch]
+  );
+
   const keyPressCount = React.useRef(0);
 
   // This useEffect adds a keyDown listener to the window.
@@ -129,20 +136,21 @@ function useSlide(
       goToImmediateNextSlideElement
     ]
   );
-  return [
-    {
+  return {
+    state: {
       ...initialState,
       slideElementsLength,
       currentSlideElement: deckContextState.currentSlideElement,
       immediate: false,
       isActiveSlide
     },
-    {
+    actions: {
       goToNextSlideElement,
       goToImmediateNextSlideElement,
-      goToPreviousSlideElement
+      goToPreviousSlideElement,
+      setNotes
     }
-  ];
+  };
 }
 
 export default useSlide;

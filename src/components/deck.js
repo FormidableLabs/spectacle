@@ -9,6 +9,7 @@ import {
   TransitionPipeProvider
 } from '../hooks/use-transition-pipe';
 import useUrlRouting from '../hooks/use-url-routing';
+import Presenter from './presenter';
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -29,7 +30,8 @@ const initialState = {
   immediateElement: false,
   currentSlideElement: 0,
   reverseDirection: false,
-  presenterMode: false
+  presenterMode: false,
+  currentNotes: null
 };
 
 const defaultSlideEffect = {
@@ -138,6 +140,12 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     </animated.div>
   ));
 
+  const content = state.presenterMode ? (
+    <Presenter>{filteredChildren}</Presenter>
+  ) : (
+    slides
+  );
+
   return (
     <div>
       <DeckContext.Provider
@@ -152,7 +160,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
           navigateToPreviousSlide
         }}
       >
-        {slides}
+        {content}
       </DeckContext.Provider>
     </div>
   );
