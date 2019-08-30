@@ -9,9 +9,7 @@ const NotesContainer = ({ children }) => {
   } = React.useContext(SlideContext);
 
   React.useEffect(() => {
-    console.log('is active slide', isActiveSlide);
     if (isActiveSlide) {
-      console.log('notes content', children);
       setNotes(children);
     }
   }, [isActiveSlide, setNotes, children]);

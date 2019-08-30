@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 
 function usePresentation() {
   const [connection, setConnection] = useState(null);
@@ -35,9 +35,10 @@ function usePresentation() {
 
   // Create a presentation request and store it as a ref
   useEffect(() => {
-    if (PresentationRequest) {
+    if (window.PresentationRequest) {
       if (!requestRef.current) {
         requestRef.current = new PresentationRequest(['/']);
+        console.log(requestRef.current);
       }
     } else {
       addError(new Error('Browser does not support Presentation API'));
@@ -50,8 +51,9 @@ function usePresentation() {
     const handleConnectionList = list => {
       list.connections.forEach(connection => {
         connection.onmessage = ({ data }) => {
+          console.log('RECEIVED MESSAGE!!');
           const event = JSON.parse(data);
-          // check if we have and handler for this event
+          // check if we have a handler for this event
           const handlers = messageHandlers.current[event.type];
           if (handlers) {
             // if it exists then pass payload to slide
@@ -77,6 +79,7 @@ function usePresentation() {
         .start()
         .then(setConnection)
         .catch(() =>
+          // TODO - memory leak
           addError(new Error('User exited display selection dialog box'))
         );
     }
@@ -88,6 +91,8 @@ function usePresentation() {
     (type, payload) => {
       // This may throw if message isn't stringify-able
       try {
+        console.log('sending message type?', type);
+        console.log(connection);
         if (connection) {
           connection.send(
             JSON.stringify({
@@ -97,6 +102,7 @@ function usePresentation() {
           );
         }
       } catch (e) {
+        console.log('error', e);
         addError(e);
       }
     },
@@ -115,3 +121,5 @@ function usePresentation() {
 }
 
 export default usePresentation;
+
+export const MSG_GO_TO_SLIDE = 'MSG_GO_TO_SLIDE';

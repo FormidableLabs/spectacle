@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { DeckContext } from './use-deck';
-import debounce from '../utils/debounce';
 
 /**
  * Performs logic operations for all of the slide domain level.
@@ -17,71 +15,14 @@ import debounce from '../utils/debounce';
 // Initialise SlideContext.
 export const SlideContext = React.createContext();
 
-function useSlide(
-  initialState,
-  slideNum,
-  slideElementsLength,
-  keyboardControls
-) {
+function useSlide(initialState, slideNum, slideElementsLength) {
   // Gets state, dispatch and number of slides off DeckContext.
   const {
     state: deckContextState,
-    dispatch: deckContextDispatch,
-    animationsWhenGoingBack,
-    navigateToNextSlide,
-    navigateToPreviousSlide
+    dispatch: deckContextDispatch
   } = React.useContext(DeckContext);
 
   const isActiveSlide = deckContextState.currentSlide === slideNum;
-
-  const goToNextSlideElement = React.useCallback(() => {
-    if (
-      slideElementsLength === 0 ||
-      deckContextState.currentSlideElement === slideElementsLength
-    ) {
-      navigateToNextSlide();
-    } else {
-      deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT' });
-    }
-  }, [
-    deckContextDispatch,
-    deckContextState.currentSlideElement,
-    navigateToNextSlide,
-    slideElementsLength
-  ]);
-
-  const goToImmediateNextSlideElement = React.useCallback(() => {
-    if (
-      slideElementsLength === 0 ||
-      deckContextState.currentSlideElement === slideElementsLength
-    ) {
-      navigateToNextSlide({ immediate: true });
-    } else {
-      deckContextDispatch({ type: 'NEXT_SLIDE_ELEMENT_IMMEDIATE' });
-    }
-  }, [
-    deckContextDispatch,
-    deckContextState.currentSlideElement,
-    navigateToNextSlide,
-    slideElementsLength
-  ]);
-
-  const goToPreviousSlideElement = React.useCallback(() => {
-    if (deckContextState.currentSlideElement === 0) {
-      navigateToPreviousSlide();
-    } else {
-      if (!animationsWhenGoingBack) {
-        deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT_IMMEDIATE' });
-        return;
-      }
-      deckContextDispatch({ type: 'PREV_SLIDE_ELEMENT' });
-    }
-  }, [
-    animationsWhenGoingBack,
-    deckContextDispatch,
-    deckContextState.currentSlideElement,
-    navigateToPreviousSlide
-  ]);
 
   const setNotes = React.useCallback(
     notes => {
@@ -90,52 +31,6 @@ function useSlide(
     [deckContextDispatch]
   );
 
-  const keyPressCount = React.useRef(0);
-
-  // This useEffect adds a keyDown listener to the window.
-  React.useEffect(
-    function() {
-      // Keep track of the number of next slide presses for debounce
-      // Create ref for debounceing function
-      const debouncedDispatch = debounce(() => {
-        if (keyPressCount.current === 1) {
-          goToNextSlideElement();
-        } else {
-          goToImmediateNextSlideElement();
-        }
-        keyPressCount.current = 0;
-      }, 200);
-      function handleKeyDown(e) {
-        if (keyboardControls === 'arrows') {
-          if (e.key === 'ArrowLeft') {
-            goToPreviousSlideElement();
-          }
-          if (e.key === 'ArrowRight') {
-            keyPressCount.current++;
-            debouncedDispatch();
-          }
-        }
-        if (keyboardControls === 'space') {
-          if (e.code === 'Space') {
-            keyPressCount.current++;
-            debouncedDispatch();
-            e.preventDefault();
-          }
-        }
-      }
-      isActiveSlide ? window.addEventListener('keydown', handleKeyDown) : null;
-      return () => {
-        window.removeEventListener('keydown', handleKeyDown);
-      };
-    },
-    [
-      isActiveSlide,
-      keyboardControls,
-      goToNextSlideElement,
-      goToPreviousSlideElement,
-      goToImmediateNextSlideElement
-    ]
-  );
   return {
     state: {
       ...initialState,
@@ -145,9 +40,6 @@ function useSlide(
       isActiveSlide
     },
     actions: {
-      goToNextSlideElement,
-      goToImmediateNextSlideElement,
-      goToPreviousSlideElement,
       setNotes
     }
   };

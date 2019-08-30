@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DeckContext } from '../hooks/use-deck';
+import { DeckContext } from '../../hooks/use-deck';
+import usePresentation, { MSG_GO_TO_SLIDE } from '../../hooks/use-presentation';
 
 const basePresenterStyle = {
   height: '100vh',
@@ -14,10 +15,29 @@ const basePresenterStyle = {
   flexDirection: 'row'
 };
 
-const Presenter = props => {
+const PresenterDeck = props => {
   const {
     state: { currentNotes, currentSlide }
   } = React.useContext(DeckContext);
+
+  const { isReceiver, hasConnection, addMessageHandler } = usePresentation();
+  React.useEffect(
+    () => {
+      addMessageHandler(payload => {
+        console.log('Pres message received', payload);
+      }, MSG_GO_TO_SLIDE);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  React.useEffect(() => {
+    console.log('presenter receiver update', isReceiver);
+  }, [isReceiver]);
+
+  React.useEffect(() => {
+    console.log('presenter hasConnection update', hasConnection);
+  }, [hasConnection]);
 
   const { children } = props;
 
@@ -93,8 +113,8 @@ const Presenter = props => {
   );
 };
 
-Presenter.propTypes = {
+PresenterDeck.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default Presenter;
+export default PresenterDeck;

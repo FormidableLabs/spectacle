@@ -19,16 +19,11 @@ const baseSlideStyle = {
 };
 
 const Slide = ({ children, slideNum, style }) => {
-  const { slideElementMap, keyboardControls } = React.useContext(DeckContext);
+  const { slideElementMap } = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0, immediate: false };
   const numberOfSlideElements = slideElementMap[slideNum];
 
-  const value = useSlide(
-    initialState,
-    slideNum,
-    numberOfSlideElements,
-    keyboardControls
-  );
+  const value = useSlide(initialState, slideNum, numberOfSlideElements);
 
   return (
     <div style={style || baseSlideStyle}>

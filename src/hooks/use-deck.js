@@ -92,7 +92,6 @@ function useDeck(
         };
       }
       case 'SET_CURRENT_NOTES': {
-        console.log('current notes action', action);
         return {
           ...state,
           currentNotes: action.payload

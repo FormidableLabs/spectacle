@@ -1,6 +1,6 @@
 import React from 'react';
-import Deck from '../../src/components/deck.js';
-import Slide from '../../src/components/slide.js';
+import Deck from '../../src/components/deck';
+import Slide from '../../src/components/slide';
 import SlideElementWrapper from '../../src/components/slide-element-wrapper';
 import CodePane from '../../src/components/code-pane';
 
