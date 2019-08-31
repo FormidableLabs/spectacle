@@ -2,8 +2,8 @@ import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 
 function getReceiver() {
   return (
-    window.navigator && 
-    window.navigator.presentation && 
+    window.navigator &&
+    window.navigator.presentation &&
     window.navigator.presentation.receiver
   );
 }
@@ -30,20 +30,20 @@ function usePresentation() {
   }, [connection, terminateConnection]);
 
   // Add a message handler
-  const addMessageHandler = useCallback(handler => {    
+  const addMessageHandler = useCallback(handler => {
     const receiver = getReceiver();
     if (receiver) {
       const handleConnectionList = list => {
         list.connections.forEach(connection => {
           const oldHandler = connection.onmessage || (() => {});
           connection.onmessage = event => {
-            const parsedData = JSON.parse(event.data)
+            const parsedData = JSON.parse(event.data);
             handler(parsedData);
-            oldHandler(event)
+            oldHandler(event);
           };
         });
-      };      
-      receiver.connectionList.then(handleConnectionList).catch(addError)
+      };
+      receiver.connectionList.then(handleConnectionList).catch(addError);
     }
   }, []);
 
@@ -65,7 +65,9 @@ function usePresentation() {
           setConnection(connection);
         })
         .catch(e =>
-          addError(new Error('User (probably) exited display selection dialog box', e))
+          addError(
+            new Error('User (probably) exited display selection dialog box', e)
+          )
         );
     }
   }, []);
@@ -78,7 +80,9 @@ function usePresentation() {
         if (connection) {
           connection.send(JSON.stringify(msg));
         } else {
-          addError(new Error('Cannot send message before starting a conection'))
+          addError(
+            new Error('Cannot send message before starting a conection')
+          );
         }
       } catch (e) {
         addError(e);

@@ -47,8 +47,7 @@ int main()
 `;
 
 const TestJs = () => {
-
-  const {     
+  const {
     startConnection,
     terminateConnection,
     sendMessage,
@@ -64,21 +63,29 @@ const TestJs = () => {
   // The user might exit out of the presentation and start it up again, so
   // we'll need to re-add the messageHandlers.
   React.useEffect(() => {
-    addMessageHandler(msg => setMessages(prev => ([ ...prev, msg])));
-  }, [isReceiver])
+    addMessageHandler(msg => setMessages(prev => [...prev, msg]));
+  }, [isReceiver]);
 
-  const sendHello = () => sendMessage("Hello");
+  const sendHello = () => sendMessage('Hello');
 
   return (
     <React.Fragment>
-      {!isController && !isReceiver && <button onClick={startConnection}>Start Connection</button>}
-      {isController && !isReceiver && <button onClick={terminateConnection}>Terminate Connection</button>}
-      {isController && !isReceiver && <button onClick={sendHello}>Send "Hello"</button>}
+      {!isController && !isReceiver && (
+        <button onClick={startConnection}>Start Connection</button>
+      )}
+      {isController && !isReceiver && (
+        <button onClick={terminateConnection}>Terminate Connection</button>
+      )}
+      {isController && !isReceiver && (
+        <button onClick={sendHello}>Send "Hello"</button>
+      )}
       {isReceiver && (
         <div>
           <h1>Messages</h1>
           <ul>
-            {messages.map(message => <li key={message}>{message}</li>)}
+            {messages.map(message => (
+              <li key={message}>{message}</li>
+            ))}
           </ul>
         </div>
       )}
@@ -114,7 +121,7 @@ const TestJs = () => {
         <div>HEY PHIL. YOU DOUBTED US???</div>
       </Deck>
     </React.Fragment>
-  )
+  );
 };
 
 export default TestJs;
