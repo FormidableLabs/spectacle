@@ -5,6 +5,14 @@ import theme from 'prism-react-renderer/themes/vsDark';
 
 const spaceSearch = /\S|$/;
 
+const lineNumberStyles = {
+  padding: '0 1em',
+  borderRight: '1px solid hsla(0, 0%, 0%, 0.25)',
+  background: 'hsla(0, 0%, 0%, 0.1)',
+  flex: '0 1 30px',
+  alignSelf: 'stretch'
+};
+
 export default function CodePane(props) {
   const canvas = React.useRef(document.createElement('canvas'));
   const context = React.useRef(canvas.current.getContext('2d'));
@@ -31,17 +39,6 @@ export default function CodePane(props) {
       padding: '0 1em 0 0'
     }),
     [font, props.fontSize]
-  );
-
-  const lineNumberStyles = React.useMemo(
-    () => ({
-      padding: '0 1em',
-      borderRight: '1px solid hsla(0, 0%, 0%, 0.25)',
-      background: 'hsla(0, 0%, 0%, 0.1)',
-      flex: '0 1 30px',
-      alignSelf: 'stretch'
-    }),
-    []
   );
 
   const measureIndentation = React.useCallback(
