@@ -4,8 +4,7 @@ import Slide from '../../src/components/slide.js';
 import SlideElementWrapper from '../../src/components/slide-element-wrapper';
 import CodePane from '../../src/components/code-pane';
 
-const reactJSCodeBlock = `
-export default function CodePane(props) {
+const reactJSCodeBlock = `export default function CodePane(props) {
   return (
     <Highlight
       {...defaultProps}
@@ -26,24 +25,19 @@ export default function CodePane(props) {
       )}
     </Highlight>
   );
-}
-`;
+}`;
 
-const cppCodeBlock = `
-#include <iostream>
+const cppCodeBlock = `#include <iostream>
 
 int main()
 {
-  auto curried_add = [](int x) -> function<int(int)> {
-    return [=](int y) { return x + y; };
-  };
+  auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
   
   auto answer = curried_add(7)(8);
   std::cout << answer << std::endl;
   
   return 0;
-}
-`;
+}`;
 
 const TestJs = () => (
   <Deck>
@@ -51,7 +45,7 @@ const TestJs = () => (
       <CodePane language="jsx">{reactJSCodeBlock}</CodePane>
     </Slide>
     <Slide slideNum={2}>
-      <CodePane googleFont="Space Mono" fontSize={20} language="cpp">
+      <CodePane fontSize={18} language="cpp">
         {cppCodeBlock}
       </CodePane>
     </Slide>
