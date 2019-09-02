@@ -8,33 +8,25 @@ import { DeckContext } from '../hooks/use-deck';
  * the slides' internal state through useSlide.
  */
 
-const Slide = ({ children, slideNum }) => {
-  const { slideElementMap, keyboardControls } = React.useContext(DeckContext);
+const baseSlideStyle = {
+  height: '100vh',
+  width: '100vw',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  position: 'absolute'
+};
+
+const Slide = ({ children, slideNum, style }) => {
+  const { slideElementMap } = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0, immediate: false };
   const numberOfSlideElements = slideElementMap[slideNum];
 
-  const value = useSlide(
-    initialState,
-    slideNum,
-    numberOfSlideElements,
-    keyboardControls
-  );
-
-  const baseSlideStyle = React.useMemo(
-    () => ({
-      height: '100vh',
-      width: '100vw',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      position: 'absolute'
-    }),
-    []
-  );
+  const value = useSlide(initialState, slideNum, numberOfSlideElements);
 
   return (
-    <div style={baseSlideStyle}>
+    <div style={style || baseSlideStyle}>
       <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
     </div>
   );
@@ -42,7 +34,8 @@ const Slide = ({ children, slideNum }) => {
 
 Slide.propTypes = {
   children: PropTypes.node.isRequired,
-  slideNum: PropTypes.number.isRequired
+  slideNum: PropTypes.number.isRequired,
+  style: PropTypes.object
 };
 
 export default Slide;

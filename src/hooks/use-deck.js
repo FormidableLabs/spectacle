@@ -41,7 +41,8 @@ function useDeck(
           currentSlide: action.payload.slideNumber,
           immediate: action.payload.immediate,
           immediateElement: false,
-          reverseDirection: action.payload.reverseDirection
+          reverseDirection: action.payload.reverseDirection,
+          presenterMode: action.payload.presenterMode
         };
       }
       case 'PREV_SLIDE':
@@ -88,6 +89,12 @@ function useDeck(
         return {
           ...state,
           presenterMode: action.payload.presenterMode
+        };
+      }
+      case 'SET_CURRENT_NOTES': {
+        return {
+          ...state,
+          currentNotes: action.payload
         };
       }
       default:

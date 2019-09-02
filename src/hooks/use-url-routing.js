@@ -7,8 +7,9 @@ export default function useUrlRouting(options) {
     dispatch,
     slideElementMap,
     currentSlide,
+    loop,
     presenterMode,
-    loop
+    onInitializedState
   } = options;
   const history = React.useRef(createBrowserHistory());
   const numberOfSlides = React.useMemo(
@@ -16,10 +17,28 @@ export default function useUrlRouting(options) {
     [slideElementMap]
   );
 
+  const slideChangeCallback = React.useRef(null);
+
+  /**
+   * In order for Deck to render the correct type of sub-deck,
+   * we need for certain state from the url to be written to the
+   * DeckContext. For example, we need to know whether or not this
+   * browser is in presenter mode.
+   */
+  React.useEffect(() => {
+    const query = queryString.parse(window.location.search);
+    const queryPresenterMode = Boolean(query.presenterMode);
+    dispatch({
+      type: 'SET_PRESENTER_MODE',
+      payload: { presenterMode: queryPresenterMode }
+    });
+    onInitializedState && onInitializedState();
+  }, [dispatch, onInitializedState]);
+
   const onHistoryChange = React.useCallback(() => {
     const query = queryString.parse(window.location.search);
     const proposedSlideNumber = parseInt(query.slide, 10);
-    const presenterMode = Boolean(query.presenterMode);
+    const queryPresenterMode = Boolean(query.presenterMode);
 
     /**
      * If the proposed URL slide index is out-of-bounds or is not a valid
@@ -35,7 +54,10 @@ export default function useUrlRouting(options) {
       return;
     }
     if (proposedSlideNumber === currentSlide) {
-      dispatch({ type: 'SET_PRESENTER_MODE', payload: { presenterMode } });
+      dispatch({
+        type: 'SET_PRESENTER_MODE',
+        payload: { presenterMode: queryPresenterMode }
+      });
       return;
     }
     const reverseDirection = proposedSlideNumber < currentSlide;
@@ -45,9 +67,12 @@ export default function useUrlRouting(options) {
         slideNumber: proposedSlideNumber,
         reverseDirection,
         immediate: Boolean(query.immediate),
-        presenterMode
+        presenterMode: queryPresenterMode
       }
     });
+    console.log('should do callback');
+    slideChangeCallback.current &&
+      slideChangeCallback.current(proposedSlideNumber);
   }, [dispatch, numberOfSlides, currentSlide]);
 
   const navigateToNextSlide = React.useCallback(
@@ -93,9 +118,17 @@ export default function useUrlRouting(options) {
     };
   }, [onHistoryChange]);
 
+  const registerSlideChangeCallback = React.useCallback(onSlideChange => {
+    slideChangeCallback.current = onSlideChange;
+    console.log('registering', onSlideChange);
+    return () =>
+      console.log('deregistering...') || (slideChangeCallback.current = null);
+  }, []);
+
   return {
     navigateToNextSlide,
     navigateToPreviousSlide,
-    navigateToCurrentUrl: onHistoryChange
+    navigateToCurrentUrl: onHistoryChange,
+    registerSlideChangeCallback
   };
 }

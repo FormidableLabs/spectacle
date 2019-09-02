@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 
 function getReceiver() {
   return (
@@ -22,6 +22,7 @@ function usePresentation() {
     if (window.PresentationRequest) {
       if (!requestRef.current) {
         requestRef.current = new PresentationRequest(['/']);
+        console.log(requestRef.current);
       }
     } else {
       addError(new Error('Browser does not support Presentation API'));
@@ -60,6 +61,7 @@ function usePresentation() {
     if (request) {
       request
         .start()
+<<<<<<< HEAD
         .then(connection => {
           connection.onclose = () => setConnection(null); // Detect user closing presentation window
           setConnection(connection);
@@ -68,6 +70,12 @@ function usePresentation() {
           addError(
             new Error('User (probably) exited display selection dialog box', e)
           )
+=======
+        .then(setConnection)
+        .catch(() =>
+          // TODO - memory leak
+          addError(new Error('User exited display selection dialog box'))
+>>>>>>> rewrite/presenter-mode
         );
     }
   }, []);
@@ -77,6 +85,8 @@ function usePresentation() {
     msg => {
       // This may throw if message isn't stringify-able
       try {
+        console.log('sending message type?', type);
+        console.log(connection);
         if (connection) {
           connection.send(JSON.stringify(msg));
         } else {
@@ -85,6 +95,7 @@ function usePresentation() {
           );
         }
       } catch (e) {
+        console.log('error', e);
         addError(e);
       }
     },
@@ -103,3 +114,5 @@ function usePresentation() {
 }
 
 export default usePresentation;
+
+export const MSG_GO_TO_SLIDE = 'MSG_GO_TO_SLIDE';
