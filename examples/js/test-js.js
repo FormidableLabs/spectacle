@@ -3,6 +3,7 @@ import Deck from '../../src/components/deck.js';
 import Slide from '../../src/components/slide.js';
 import SlideElementWrapper from '../../src/components/slide-element-wrapper';
 import CodePane from '../../src/components/code-pane';
+import { Heading, Text } from '../../src/components/text';
 
 const reactJSCodeBlock = `export default function CodePane(props) {
   return (
@@ -42,7 +43,8 @@ int main()
 const TestJs = () => (
   <Deck>
     <Slide slideNum={1}>
-      <CodePane language="jsx">{reactJSCodeBlock}</CodePane>
+      <Heading>Spectacle 2</Heading>
+      <Text>Hello There 🤗</Text>
     </Slide>
     <Slide slideNum={2}>
       <CodePane fontSize={18} language="cpp">
@@ -56,6 +58,7 @@ const TestJs = () => (
       </SlideElementWrapper>
     </Slide>
     <Slide slideNum={4}>
+      <CodePane language="jsx">{reactJSCodeBlock}</CodePane>
       <p>{`I'm a static slide element that should always show`}</p>
       <p>{`This means that we don't need a SlideElementWrapper`}</p>
       <SlideElementWrapper elementNum={1}>

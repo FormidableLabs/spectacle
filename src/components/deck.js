@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components';
 
+import defaultTheme from '../theme/default-theme';
 import useDeck, { DeckContext } from '../hooks/use-deck';
 import isComponentType from '../utils/is-component-type';
 import { animated, useTransition } from 'react-spring';
@@ -162,19 +164,23 @@ Deck.propTypes = {
   animationsWhenGoingBack: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
-  loop: PropTypes.bool.isRequired
+  loop: PropTypes.bool.isRequired,
+  theme: PropTypes.object
 };
 
-Deck.defaultProps = {
+const ConnectedDeck = props => (
+  <ThemeProvider theme={defaultTheme}>
+    <TransitionPipeProvider>
+      <Deck {...props} />
+    </TransitionPipeProvider>
+  </ThemeProvider>
+);
+
+ConnectedDeck.propTypes = Deck.propTypes;
+ConnectedDeck.defaultProps = {
   loop: false,
   keyboardControls: 'arrows',
   animationsWhenGoingBack: false
 };
 
-export default function ConnectedDeck(props) {
-  return (
-    <TransitionPipeProvider>
-      <Deck {...props} />
-    </TransitionPipeProvider>
-  );
-}
+export default ConnectedDeck;

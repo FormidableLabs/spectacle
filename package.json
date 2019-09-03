@@ -76,7 +76,8 @@
     "query-string": "^6.8.2",
     "react-spring": "^8.0.25",
     "react-typography": "^0.16.19",
-    "styled-components": "^4.3.1",
+    "styled-components": "^4.3.2",
+    "styled-system": "^5.1.1",
     "wonka": "^3.2.0"
   }
 }
