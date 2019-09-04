@@ -1,32 +1,16 @@
 import React from 'react';
-import Deck from '../../src/components/deck.js';
-import Slide from '../../src/components/slide.js';
-import SlideElementWrapper from '../../src/components/slide-element-wrapper';
-import CodePane from '../../src/components/code-pane';
-import { Heading, Text } from '../../src/components/text';
-
-const reactJSCodeBlock = `export default function CodePane(props) {
-  return (
-    <Highlight
-      {...defaultProps}
-      code={props.children}
-      language={props.language}
-      theme={theme}
-    >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
-  );
-}`;
+import {
+  Deck,
+  Slide,
+  SlideElementWrapper,
+  CodePane,
+  Heading,
+  ListItem,
+  OrderedList,
+  Quote,
+  Text,
+  UnorderedList
+} from '../../src/components';
 
 const cppCodeBlock = `#include <iostream>
 
@@ -43,8 +27,17 @@ int main()
 const TestJs = () => (
   <Deck>
     <Slide slideNum={1}>
-      <Heading>Spectacle 2</Heading>
+      <Heading>Spectacle</Heading>
       <Text>Hello There 🤗</Text>
+      <Quote>This is a Formidaquote!</Quote>
+      <OrderedList>
+        <ListItem>This is an</ListItem>
+        <ListItem>ordered list</ListItem>
+      </OrderedList>
+      <UnorderedList>
+        <ListItem>This is an</ListItem>
+        <ListItem>unordered list</ListItem>
+      </UnorderedList>
     </Slide>
     <Slide slideNum={2}>
       <CodePane fontSize={18} language="cpp">
@@ -52,25 +45,24 @@ const TestJs = () => (
       </CodePane>
     </Slide>
     <Slide slideNum={3}>
-      <p> Slide 3! </p>
+      <Text fontSize="subHeader">Slide 3!</Text>
       <SlideElementWrapper elementNum={1}>
-        <div>{`Hey, just one "animated" slide element here`}</div>
+        <Text>{`Hey, just one "animated" slide element here`}</Text>
       </SlideElementWrapper>
     </Slide>
     <Slide slideNum={4}>
-      <CodePane language="jsx">{reactJSCodeBlock}</CodePane>
-      <p>{`I'm a static slide element that should always show`}</p>
-      <p>{`This means that we don't need a SlideElementWrapper`}</p>
+      <Text>{`I'm a static slide element that should always show`}</Text>
+      <Text>{`This means that we don't need a SlideElementWrapper`}</Text>
       <SlideElementWrapper elementNum={1}>
-        <p> ZERO Slide 4 x 3! </p>
+        <Text> ZERO Slide 4 x 3! </Text>
       </SlideElementWrapper>
       <SlideElementWrapper elementNum={2}>
-        <p> ONE Slide 4 x 3! </p>
+        <Text> ONE Slide 4 x 3! </Text>
       </SlideElementWrapper>
       <SlideElementWrapper elementNum={3}>
-        <p> TWO Slide 4 x 3! </p>
+        <Text> TWO Slide 4 x 3! </Text>
       </SlideElementWrapper>
-      <p>{`I'm also a static non-animated "slide element"!`}</p>
+      <Text>{`I'm also a static non-animated "slide element"!`}</Text>
     </Slide>
     <div>HEY PHIL. YOU DOUBTED US???</div>
   </Deck>

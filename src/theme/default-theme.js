@@ -6,8 +6,7 @@ export default {
   },
   fonts: {
     header: 'Helvetica Neue',
-    text: 'Helvetica Neue',
-    monospace: 'monospace'
+    text: 'Helvetica Neue'
   },
   fontSizes: {
     header: '48px',
@@ -15,7 +14,8 @@ export default {
     text: '18px'
   },
   space: {
-    headerMargin: '0.25em 0',
-    textMargin: '0.33em 0'
+    headerMargin: '16px',
+    textMargin: '16px',
+    listMargin: '16px 0'
   }
 };

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import propTypes from 'prop-types';
 import theme from 'prism-react-renderer/themes/vsDark';
+import { ThemeContext } from 'styled-components';
 
 const spaceSearch = /\S|$/;
 
@@ -16,10 +17,11 @@ const lineNumberStyles = {
 export default function CodePane(props) {
   const canvas = React.useRef(document.createElement('canvas'));
   const context = React.useRef(canvas.current.getContext('2d'));
+  const themeContext = React.useContext(ThemeContext);
 
   const font = React.useMemo(() => {
-    if (props.font && props.font.trim().length > 0) {
-      return props.font;
+    if (themeContext && themeContext.fonts && themeContext.fonts.monospace) {
+      return themeContext.fonts.monospace;
     }
     const { platform } = navigator;
     if (platform.toLowerCase().search('win') !== -1) {
@@ -29,7 +31,7 @@ export default function CodePane(props) {
     } else {
       return 'monospace';
     }
-  }, [props.font]);
+  }, [themeContext]);
 
   const preStyles = React.useMemo(
     () => ({
@@ -103,7 +105,6 @@ export default function CodePane(props) {
 
 CodePane.propTypes = {
   children: propTypes.string.isRequired,
-  font: propTypes.string,
   fontSize: propTypes.number,
   language: propTypes.string.isRequired,
   theme: propTypes.object
