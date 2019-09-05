@@ -4,14 +4,19 @@ import {
   Slide,
   SlideElementWrapper,
   CodePane,
+  FlexBox,
+  Box,
+  Image,
   Heading,
   ListItem,
   OrderedList,
   Quote,
   Text,
-  UnorderedList
+  UnorderedList,
+  Grid
 } from '../../src/components';
 
+const formidableLogo = require('./formidable.png');
 const cppCodeBlock = `#include <iostream>
 
 int main()
@@ -64,7 +69,38 @@ const TestJs = () => (
       </SlideElementWrapper>
       <Text>{`I'm also a static non-animated "slide element"!`}</Text>
     </Slide>
-    <div>HEY PHIL. YOU DOUBTED US???</div>
+    <Slide slideNum={5}>
+      <FlexBox>
+        <Text>These</Text>
+        <Text>Text</Text>
+        <Text color="secondary">Items</Text>
+        <Text fontWeight="bold">Flex</Text>
+      </FlexBox>
+      <Grid gridTemplateColumns="1fr 2fr" gridColumnGap={15}>
+        <Box backgroundColor="primary">
+          <Text color="secondary">Single-size Grid Item</Text>
+        </Box>
+        <Box backgroundColor="secondary">
+          <Text>Double-size Grid Item</Text>
+        </Box>
+      </Grid>
+      <Heading>Lots of Formidables!</Heading>
+      <Grid
+        gridTemplateColumns="1fr 1fr 1fr"
+        gridTemplateRows="1fr 1fr 1fr"
+        alignItems="center"
+        justifyContent="center"
+        gridRowGap={15}
+      >
+        {Array(9)
+          .fill('')
+          .map(index => (
+            <FlexBox key={`formidable-logo-${index}`}>
+              <Image src={formidableLogo} width={100} />
+            </FlexBox>
+          ))}
+      </Grid>
+    </Slide>
   </Deck>
 );
 

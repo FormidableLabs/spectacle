@@ -61,6 +61,10 @@ module.exports = {
           },
           { loader: require.resolve(mdxSlideLoader) }
         ]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
       }
     ]
   },

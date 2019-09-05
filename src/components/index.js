@@ -10,12 +10,18 @@ import {
   UnorderedList,
   Text
 } from './typography';
+import { FlexBox, Grid, Box } from './layout';
+import { Image } from './Image';
 
 export {
   Deck,
   Slide,
   SlideElementWrapper,
   CodePane,
+  Box,
+  FlexBox,
+  Grid,
+  Image,
   OrderedList,
   Quote,
   Heading,
