@@ -5,8 +5,8 @@ export default {
     tertiary: '#1e2852'
   },
   fonts: {
-    header: 'Helvetica Neue',
-    text: 'Helvetica Neue'
+    header: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+    text: '"Helvetica Neue", Helvetica, Arial, sans-serif'
   },
   fontSizes: {
     header: '48px',
