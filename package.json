@@ -17,6 +17,7 @@
     "prettier-fix": "npm run prettier -- --write",
     "deploy": "",
     "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
+    "start:one-page": "serve",
     "build-wds-base": "webpack-dev-server",
     "test": "jest --verbose",
     "check": ""
@@ -64,6 +65,7 @@
     "raw-loader": "^1.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "serve": "^11.1.0",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2",
     "webpack": "^4.33.0",

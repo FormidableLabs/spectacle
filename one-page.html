@@ -13,6 +13,16 @@
       import htm from 'https://unpkg.com/htm@2.2.1?module'
       const html = htm.bind(React.createElement);
 
+      // TODO: All these fail for React import.
+      //import CodePane from './one-page/components/code-pane.js';
+      //import Deck from './one-page/components/deck.js';
+      //import SlideElementWrapper from './one-page/components/slide-element-wrapper.js';
+
+      // TODO: Things that work!
+      import Slide from './one-page/components/slide.js';
+      console.log("TODO HERE Imported!", { Slide });
+
+      // TODO: Replace with actual spectacle deck. Just testing "react".
       const Counter = (props) => {
       const [count, setCount] = React.useState(parseInt(props.count));
         return html`
@@ -34,10 +44,10 @@
 
 
       /*
-      import Deck from './es/components/deck.js';
-      import Slide from './es/components/slide.js';
-      import SlideElementWrapper from './es/components/slide-element-wrapper';
-      import CodePane from './es/src/components/code-pane';
+      import Deck from './one-page/components/deck.js';
+      import Slide from './one-page/components/slide.js';
+      import SlideElementWrapper from './one-page/components/slide-element-wrapper';
+      import CodePane from './one-page/components/code-pane';
 
       const reactJSCodeBlock = `export default function CodePane(props) {
         return (

@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import useDeck, { DeckContext } from '../hooks/use-deck';
-import isComponentType from '../utils/is-component-type';
+import useDeck, { DeckContext } from '../hooks/use-deck.js';
+import isComponentType from '../utils/is-component-type.js';
 import { animated, useTransition } from 'react-spring';
 import {
   TransitionPipeContext,
   TransitionPipeProvider
-} from '../hooks/use-transition-pipe';
-import useUrlRouting from '../hooks/use-url-routing';
+} from '../hooks/use-transition-pipe.js';
+import useUrlRouting from '../hooks/use-url-routing.js';
 
 /**
  * Provides top level state/context provider with useDeck hook
