@@ -3,8 +3,10 @@
  *
  * This is a shim until things are fixed from:
  * https://unpkg.com/browse/react-ecmascript@1.4.4/react.development.mjs
+ *
+ * TODO(ONE-PAGE): Remove this once support lands in es-react
+ * https://github.com/lukejacksonn/es-react/issues/4
  */
-
 import React from 'https://unpkg.com/es-react@16.8.60/src/react.js';
 
 export default React;
