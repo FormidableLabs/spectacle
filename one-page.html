@@ -109,6 +109,8 @@
       Oh, the Hackage!
       ================
 
+      ## Introduction
+
       The above code _looks_ like it should work, but it doesn't really.
       It errors with the `react` import. Which (for now) is expected because
       although we can rewrite the `react` import here to `es-react`, we
@@ -119,6 +121,14 @@
       Maps which **are** on the spec, just not implemented yet.
 
       Eventually, the below should work for us (just not yet...).
+
+      # Hacks
+
+      - Unfortunately, we have to pattern match against unpkg resolutions, so
+        we repeat the same `https://unpkg.com/react{SEMVER_TOKEN>?module` for
+        each.
+      - Right now `es-react` doesn't export named React members so we shim it
+        here until https://github.com/lukejacksonn/es-react/issues/4 is fixed.
     -->
     <script type="importmap-shim">
       {
@@ -141,6 +151,7 @@
       // and then the code is run again with shims.
       document.querySelector('#deck').setAttribute("type", "module-shim");
     </script>
+    <!-- TODO(ONE-PAGE): Remove _DEBUG script once everything works. -->
     <script type="text/javascript"
       src_DEBUG="./one-page-es-module-shims.js"
       src="https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.js"
