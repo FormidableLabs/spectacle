@@ -51,7 +51,6 @@ const TestJs = () => {
     startConnection,
     terminateConnection,
     sendMessage,
-    errors,
     addMessageHandler,
     isReceiver,
     isController
@@ -64,7 +63,7 @@ const TestJs = () => {
   // we'll need to re-add the messageHandlers.
   React.useEffect(() => {
     addMessageHandler(msg => setMessages(prev => [...prev, msg]));
-  }, [isReceiver]);
+  }, [addMessageHandler, isReceiver]);
 
   const sendHello = () => sendMessage('Hello');
 
@@ -77,7 +76,7 @@ const TestJs = () => {
         <button onClick={terminateConnection}>Terminate Connection</button>
       )}
       {isController && !isReceiver && (
-        <button onClick={sendHello}>Send "Hello"</button>
+        <button onClick={sendHello}>{`Send "Hello"`}</button>
       )}
       {isReceiver && (
         <div>
@@ -90,33 +89,38 @@ const TestJs = () => {
         </div>
       )}
       <Deck>
-        <Slide slideNum={1}>
+        <Slide slideNum={0}>
           <CodePane language="jsx">{reactJSCodeBlock}</CodePane>
         </Slide>
-        <Slide slideNum={2}>
+        <Slide slideNum={1}>
           <CodePane googleFont="Space Mono" fontSize={20} language="cpp">
             {cppCodeBlock}
           </CodePane>
         </Slide>
-        <Slide slideNum={3}>
+        <Slide slideNum={2}>
           <p> Slide 3! </p>
-          <SlideElementWrapper elementNum={1}>
+          <SlideElementWrapper elementNum={0}>
             <div>{`Hey, just one "animated" slide element here`}</div>
           </SlideElementWrapper>
         </Slide>
-        <Slide slideNum={4}>
+        <Slide slideNum={3}>
           <p>{`I'm a static slide element that should always show`}</p>
           <p>{`This means that we don't need a SlideElementWrapper`}</p>
-          <SlideElementWrapper elementNum={1}>
+          <SlideElementWrapper elementNum={0}>
             <p> ZERO Slide 4 x 3! </p>
           </SlideElementWrapper>
-          <SlideElementWrapper elementNum={2}>
+          <SlideElementWrapper elementNum={1}>
             <p> ONE Slide 4 x 3! </p>
           </SlideElementWrapper>
-          <SlideElementWrapper elementNum={3}>
+          <SlideElementWrapper elementNum={2}>
             <p> TWO Slide 4 x 3! </p>
           </SlideElementWrapper>
           <p>{`I'm also a static non-animated "slide element"!`}</p>
+        </Slide>
+        <Slide slideNum={4}>
+          <SlideElementWrapper elementNum={0}>
+            <p>One more slide for good measure</p>
+          </SlideElementWrapper>
         </Slide>
         <div>HEY PHIL. YOU DOUBTED US???</div>
       </Deck>

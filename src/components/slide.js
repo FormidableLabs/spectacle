@@ -20,7 +20,7 @@ const baseSlideStyle = {
 
 const Slide = ({ children, slideNum, style }) => {
   const { slideElementMap } = React.useContext(DeckContext);
-  const initialState = { currentSlideElement: 0, immediate: false };
+  const initialState = { currentSlideElement: -1, immediate: false };
   const numberOfSlideElements = slideElementMap[slideNum];
 
   const value = useSlide(initialState, slideNum, numberOfSlideElements);

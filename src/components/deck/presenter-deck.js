@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
-import usePresentation, { MSG_GO_TO_SLIDE } from '../../hooks/use-presentation';
 
 const basePresenterStyle = {
   height: '100vh',
@@ -20,26 +19,13 @@ const PresenterDeck = props => {
     state: { currentNotes, currentSlide }
   } = React.useContext(DeckContext);
 
-  const { isReceiver, hasConnection, addMessageHandler } = usePresentation();
-  React.useEffect(
-    () => {
-      addMessageHandler(payload => {
-        console.log('Pres message received', payload);
-      }, MSG_GO_TO_SLIDE);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
-  React.useEffect(() => {
-    console.log('presenter receiver update', isReceiver);
-  }, [isReceiver]);
-
-  React.useEffect(() => {
-    console.log('presenter hasConnection update', hasConnection);
-  }, [hasConnection]);
-
-  const { children } = props;
+  const {
+    children,
+    isController,
+    isReceiver,
+    startConnection,
+    terminateConnection
+  } = props;
 
   const activeSlide =
     children.length > currentSlide ? children[currentSlide] : null;
@@ -67,9 +53,11 @@ const PresenterDeck = props => {
     style: slideStyle
   });
 
-  const clonedNextSlide = React.cloneElement(nextSlide, {
-    style: slideStyle
-  });
+  const clonedNextSlide =
+    nextSlide &&
+    React.cloneElement(nextSlide, {
+      style: slideStyle
+    });
 
   return (
     <div style={basePresenterStyle}>
@@ -103,6 +91,12 @@ const PresenterDeck = props => {
           justifyContent: 'center'
         }}
       >
+        {!isController && !isReceiver && (
+          <button onClick={startConnection}>Start Connection</button>
+        )}
+        {isController && !isReceiver && (
+          <button onClick={terminateConnection}>Terminate Connection</button>
+        )}
         <h3 style={{}}>Current Slide:</h3>
         <div style={slideContainerStyle}>{clonedActiveSlide}</div>
         <div style={{ height: '5%' }} />
@@ -114,7 +108,11 @@ const PresenterDeck = props => {
 };
 
 PresenterDeck.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  isController: PropTypes.bool.isRequired,
+  isReceiver: PropTypes.bool.isRequired,
+  startConnection: PropTypes.func.isRequired,
+  terminateConnection: PropTypes.func.isRequired
 };
 
 export default PresenterDeck;

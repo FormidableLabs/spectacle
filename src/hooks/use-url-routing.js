@@ -7,38 +7,84 @@ export default function useUrlRouting(options) {
     dispatch,
     slideElementMap,
     currentSlide,
+    currentSlideElement,
+    currentPresenterMode,
     loop,
-    presenterMode,
-    onInitializedState
+    animationsWhenGoingBack,
+    onUrlChange
   } = options;
+
   const history = React.useRef(createBrowserHistory());
+
   const numberOfSlides = React.useMemo(
     () => Object.getOwnPropertyNames(slideElementMap).length,
     [slideElementMap]
   );
 
-  const slideChangeCallback = React.useRef(null);
+  const countSlideElements = React.useCallback(
+    slideNumber => slideElementMap[slideNumber],
+    [slideElementMap]
+  );
 
-  /**
-   * In order for Deck to render the correct type of sub-deck,
-   * we need for certain state from the url to be written to the
-   * DeckContext. For example, we need to know whether or not this
-   * browser is in presenter mode.
-   */
-  React.useEffect(() => {
-    const query = queryString.parse(window.location.search);
-    const queryPresenterMode = Boolean(query.presenterMode);
-    dispatch({
-      type: 'SET_PRESENTER_MODE',
-      payload: { presenterMode: queryPresenterMode }
-    });
-    onInitializedState && onInitializedState();
-  }, [dispatch, onInitializedState]);
+  const isSlideOutOfBounds = React.useCallback(
+    proposedSlideNumber => {
+      return (
+        isNaN(proposedSlideNumber) || numberOfSlides - 1 < proposedSlideNumber
+      );
+    },
+    [numberOfSlides]
+  );
+
+  const isSlideElementOutOfBounds = React.useCallback(
+    (proposedSlideElementNumber, slideElementsLength) => {
+      const val =
+        isNaN(proposedSlideElementNumber) ||
+        proposedSlideElementNumber >= slideElementsLength ||
+        proposedSlideElementNumber < -1;
+      return val;
+    },
+    []
+  );
+
+  const stateFromUrl = React.useCallback(
+    url => {
+      const query = queryString.parse(url);
+      const immediate = Boolean(query.immediate);
+      const presenterMode = Boolean(query.presenterMode);
+      const proposedSlideNumber = parseInt(query.slide, 10);
+      const proposedSlideElementNumber = parseInt(query.slideElement, 10);
+      const slideNumber = isSlideOutOfBounds(proposedSlideNumber)
+        ? 0
+        : proposedSlideNumber;
+      const slideElementsLength = countSlideElements(slideNumber);
+      const slideElementNumber = isSlideElementOutOfBounds(
+        proposedSlideElementNumber,
+        slideElementsLength
+      )
+        ? -1
+        : proposedSlideElementNumber;
+
+      return {
+        immediate,
+        presenterMode,
+        proposedSlideNumber,
+        proposedSlideElementNumber,
+        slideNumber,
+        slideElementNumber
+      };
+    },
+    [countSlideElements, isSlideElementOutOfBounds, isSlideOutOfBounds]
+  );
 
   const onHistoryChange = React.useCallback(() => {
-    const query = queryString.parse(window.location.search);
-    const proposedSlideNumber = parseInt(query.slide, 10);
-    const queryPresenterMode = Boolean(query.presenterMode);
+    const {
+      slideNumber,
+      slideElementNumber,
+      proposedSlideNumber,
+      proposedSlideElementNumber,
+      presenterMode,
+      immediate
+    } = stateFromUrl(window.location.search);
 
     /**
      * If the proposed URL slide index is out-of-bounds or is not a valid
@@ -46,70 +92,116 @@ export default function useUrlRouting(options) {
      * number is the same as the current slide.
      */
     if (
-      isNaN(proposedSlideNumber) ||
-      numberOfSlides - 1 < proposedSlideNumber
+      proposedSlideNumber !== slideNumber ||
+      proposedSlideElementNumber !== slideElementNumber
     ) {
-      const qs = queryString.stringify({ slide: 0 });
+      const qs = queryString.stringify({
+        slide: slideNumber,
+        slideElement: slideElementNumber
+      });
       history.current.replace(`?${qs}`);
       return;
     }
-    if (proposedSlideNumber === currentSlide) {
-      dispatch({
-        type: 'SET_PRESENTER_MODE',
-        payload: { presenterMode: queryPresenterMode }
-      });
-      return;
-    }
-    const reverseDirection = proposedSlideNumber < currentSlide;
+    // TODO - figure out what case this covers
+    // if (slideNumber === currentSlide) {
+    //   dispatch({
+    //     type: 'SET_PRESENTER_MODE',
+    //     payload: { presenterMode }
+    //   });
+    //   return;
+    // }
+    const reverseDirection = slideNumber < currentSlide;
+    const update = {
+      slideNumber,
+      slideElementNumber,
+      reverseDirection,
+      immediate
+    };
     dispatch({
       type: 'GO_TO_SLIDE',
       payload: {
-        slideNumber: proposedSlideNumber,
-        reverseDirection,
-        immediate: Boolean(query.immediate),
-        presenterMode: queryPresenterMode
+        ...update,
+        presenterMode
       }
     });
-    console.log('should do callback');
-    slideChangeCallback.current &&
-      slideChangeCallback.current(proposedSlideNumber);
-  }, [dispatch, numberOfSlides, currentSlide]);
+    onUrlChange(update);
+  }, [stateFromUrl, currentSlide, dispatch, onUrlChange]);
 
-  const navigateToNextSlide = React.useCallback(
+  const nextSafeSlide = React.useCallback(() => {
+    if (currentSlide + 1 > numberOfSlides - 1 && loop) {
+      return 0;
+    }
+    return Math.min(currentSlide + 1, numberOfSlides - 1);
+  }, [currentSlide, loop, numberOfSlides]);
+
+  const navigateToNext = React.useCallback(
     ({ immediate } = {}) => {
-      let nextSafeSlideIndex;
-      if (currentSlide + 1 > numberOfSlides - 1 && loop) {
-        nextSafeSlideIndex = 0;
+      const slideElementsLength = countSlideElements(currentSlide);
+      let nextSafeSlideIndex = currentSlide;
+      let nextSafeSlideElementIndex = -1;
+
+      if (
+        slideElementsLength === 0 ||
+        currentSlideElement + 1 === slideElementsLength
+      ) {
+        // advance to the next safe slide
+        nextSafeSlideIndex = nextSafeSlide();
       } else {
-        nextSafeSlideIndex = Math.min(currentSlide + 1, numberOfSlides - 1);
+        // advance to the next slide element
+        nextSafeSlideElementIndex = currentSlideElement + 1;
       }
+
       const qs = queryString.stringify({
         slide: nextSafeSlideIndex,
+        slideElement: nextSafeSlideElementIndex,
         immediate: immediate || undefined,
-        presenterMode: presenterMode || undefined
+        presenterMode: currentPresenterMode || undefined
       });
       history.current.push(`?${qs}`);
     },
-    [currentSlide, loop, numberOfSlides, presenterMode]
+    [
+      countSlideElements,
+      currentPresenterMode,
+      currentSlide,
+      currentSlideElement,
+      nextSafeSlide
+    ]
   );
 
-  const navigateToPreviousSlide = React.useCallback(
-    ({ immediate } = {}) => {
-      let previousSafeSlideIndex;
-      if (currentSlide - 1 < 0 && loop) {
-        previousSafeSlideIndex = numberOfSlides - 1;
-      } else {
-        previousSafeSlideIndex = Math.max(0, currentSlide - 1);
-      }
-      const qs = queryString.stringify({
-        slide: previousSafeSlideIndex,
-        immediate: immediate || undefined,
-        presenterMode: presenterMode || undefined
-      });
-      history.current.push(`?${qs}`);
-    },
-    [currentSlide, loop, numberOfSlides, presenterMode]
-  );
+  const previousSafeSlide = React.useCallback(() => {
+    if (currentSlide - 1 < 0 && loop) {
+      return numberOfSlides - 1;
+    }
+    return Math.max(0, currentSlide - 1);
+  }, [currentSlide, loop, numberOfSlides]);
+
+  const navigateToPrevious = React.useCallback(() => {
+    const immediate = !animationsWhenGoingBack;
+    let previousSafeSlideIndex = currentSlide;
+    let previousSafeSlideElementIndex = -1;
+
+    if (currentSlideElement < 0) {
+      // back up to the previous safe slide
+      previousSafeSlideIndex = previousSafeSlide();
+    } else {
+      // back up to the previous slide element
+      previousSafeSlideElementIndex = currentSlideElement - 1;
+    }
+
+    const qs = queryString.stringify({
+      slide: previousSafeSlideIndex,
+      slideElement: previousSafeSlideElementIndex,
+      immediate: immediate || undefined,
+      presenterMode: currentPresenterMode || undefined
+    });
+    history.current.push(`?${qs}`);
+  }, [
+    animationsWhenGoingBack,
+    currentPresenterMode,
+    currentSlide,
+    currentSlideElement,
+    previousSafeSlide
+  ]);
 
   React.useEffect(() => {
     const removeHistoryListener = history.current.listen(onHistoryChange);
@@ -118,17 +210,22 @@ export default function useUrlRouting(options) {
     };
   }, [onHistoryChange]);
 
-  const registerSlideChangeCallback = React.useCallback(onSlideChange => {
-    slideChangeCallback.current = onSlideChange;
-    console.log('registering', onSlideChange);
-    return () =>
-      console.log('deregistering...') || (slideChangeCallback.current = null);
-  }, []);
+  /**
+   * In order for Deck to render the correct type of sub-deck,
+   * we need for certain state from the url to be written to the
+   * DeckContext. For example, we need to know whether or not this
+   * browser is in presenter mode.
+   */
+  React.useEffect(
+    () => {
+      onHistoryChange();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   return {
-    navigateToNextSlide,
-    navigateToPreviousSlide,
-    navigateToCurrentUrl: onHistoryChange,
-    registerSlideChangeCallback
+    navigateToNext,
+    navigateToPrevious
   };
 }

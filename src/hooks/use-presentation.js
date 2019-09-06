@@ -22,7 +22,6 @@ function usePresentation() {
     if (window.PresentationRequest) {
       if (!requestRef.current) {
         requestRef.current = new PresentationRequest(['/']);
-        console.log(requestRef.current);
       }
     } else {
       addError(new Error('Browser does not support Presentation API'));
@@ -35,9 +34,9 @@ function usePresentation() {
     const receiver = getReceiver();
     if (receiver) {
       const handleConnectionList = list => {
-        list.connections.forEach(connection => {
-          const oldHandler = connection.onmessage || (() => {});
-          connection.onmessage = event => {
+        list.connections.forEach(listConnection => {
+          const oldHandler = listConnection.onmessage || (() => {});
+          listConnection.onmessage = event => {
             const parsedData = JSON.parse(event.data);
             handler(parsedData);
             oldHandler(event);
@@ -61,21 +60,14 @@ function usePresentation() {
     if (request) {
       request
         .start()
-<<<<<<< HEAD
-        .then(connection => {
-          connection.onclose = () => setConnection(null); // Detect user closing presentation window
-          setConnection(connection);
+        .then(requestConnection => {
+          requestConnection.onclose = () => setConnection(null); // Detect user closing presentation window
+          setConnection(requestConnection);
         })
         .catch(e =>
           addError(
             new Error('User (probably) exited display selection dialog box', e)
           )
-=======
-        .then(setConnection)
-        .catch(() =>
-          // TODO - memory leak
-          addError(new Error('User exited display selection dialog box'))
->>>>>>> rewrite/presenter-mode
         );
     }
   }, []);
@@ -85,8 +77,6 @@ function usePresentation() {
     msg => {
       // This may throw if message isn't stringify-able
       try {
-        console.log('sending message type?', type);
-        console.log(connection);
         if (connection) {
           connection.send(JSON.stringify(msg));
         } else {
@@ -115,4 +105,4 @@ function usePresentation() {
 
 export default usePresentation;
 
-export const MSG_GO_TO_SLIDE = 'MSG_GO_TO_SLIDE';
+export const MSG_SLIDE_STATE_CHANGE = 'MSG_SLIDE_STATE_CHANGE';
