@@ -21,7 +21,7 @@
 
       // TODO(ONE-PAGE): Code pane doesn't work.
       // => The requested module 'blob:http://localhost:5000/4cc4ca6a-6fa1-476d-8a4c-a20323ac5b5f' does not provide an export named 'default'
-      // import CodePane from './one-page/components/code-pane.js';
+      import CodePane from './one-page/components/code-pane.js';
 
       import Deck from './one-page/components/deck.js';
       import SlideElementWrapper from './one-page/components/slide-element-wrapper.js';
@@ -129,6 +129,7 @@
         each.
       - Right now `es-react` doesn't export named React members so we shim it
         here until https://github.com/lukejacksonn/es-react/issues/4 is fixed.
+      - `query-string` is not ESM, so we use a fork `@chaitin/querystrin`.
     -->
     <script type="importmap-shim">
       {
@@ -140,8 +141,9 @@
           "react": "./one-page-temp-react.js",
           "react-dom": "https://unpkg.com/es-react@16.8.60/src/react-dom.js",
           "react-spring": "https://unpkg.com/react-spring?module",
-          "prism-react-renderer": "https://unpkg.com/prism-react-renderer?module",
-          "prism-react-renderer/themes/vsDark.js": "https://unpkg.com/prism-react-renderer/themes/vsDark.js?module",
+          "prism-react-renderer": "./one-page-temp-prism-react-renderer/es/index.js",
+          "prism-react-renderer/es/vendor/prism/index.js": "./one-page-temp-prism-react-renderer/es/vendor/prism/index.js",
+          "prism-react-renderer/es/themes/vsDark.js": "./one-page-temp-prism-react-renderer/es/themes/vsDark.js",
           "wonka": "https://unpkg.com/wonka?module"
         }
       }

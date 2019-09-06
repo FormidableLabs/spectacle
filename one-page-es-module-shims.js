@@ -265,6 +265,7 @@
   }
 
   async function loadAll (load, seen) {
+    console.log("TODO HERE loadAll", { load, seen });
     if (load.b || seen[load.u])
       return;
     seen[load.u] = 1;
