@@ -17,7 +17,12 @@
         "@babel/preset-react"
       ],
       "plugins": [
-        ["transform-react-remove-prop-types", { "removeImport": true }]
+        ["transform-react-remove-prop-types", { "removeImport": true }],
+        ["rewrite-require", {
+          "aliases": {
+            "react": "https://unpkg.com/es-react@16.8.60/src/react.js"
+          }
+        }]
       ]
     }
   }
