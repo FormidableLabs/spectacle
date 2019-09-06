@@ -110,7 +110,8 @@ export default function useUrlRouting(options) {
     //   });
     //   return;
     // }
-    const reverseDirection = slideNumber < currentSlide;
+    const reverseDirection =
+      slideNumber < currentSlide || slideElementNumber < currentSlideElement;
     const update = {
       slideNumber,
       slideElementNumber,
@@ -125,7 +126,7 @@ export default function useUrlRouting(options) {
       }
     });
     onUrlChange(update);
-  }, [stateFromUrl, currentSlide, dispatch, onUrlChange]);
+  }, [stateFromUrl, currentSlide, currentSlideElement, dispatch, onUrlChange]);
 
   const nextSafeSlide = React.useCallback(() => {
     if (currentSlide + 1 > numberOfSlides - 1 && loop) {
