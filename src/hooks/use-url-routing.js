@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { createBrowserHistory } from 'history';
 import * as queryString from 'query-string';
 
