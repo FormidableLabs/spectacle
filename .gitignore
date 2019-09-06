@@ -4,6 +4,7 @@ package-lock.json
 dist
 lib
 es
+one-page
 *.log
 .DS_Store
 .vscode

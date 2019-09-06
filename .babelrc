@@ -10,6 +10,12 @@
         ["@babel/preset-env", { "modules": false }],
         "@babel/preset-react"
       ]
+    },
+    "one-page": {
+      "presets": [
+        ["@babel/preset-env", { "modules": false }],
+        "@babel/preset-react"
+      ]
     }
   }
 }

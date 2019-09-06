@@ -8,8 +8,9 @@
   "scripts": {
     "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.js/\"",
     "build:es": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-babel -- -d es",
+    "build:one-page": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"one-page\\\"}\" build-babel -- -d one-page",
     "build:lib": "builder run build-babel -- -d lib",
-    "build": "builder concurrent --buffer build:es build:lib",
+    "build": "builder concurrent --buffer build:es build:one-page build:lib",
     "lint": "eslint --ignore-path .gitignore .",
     "lint-fix": "",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
