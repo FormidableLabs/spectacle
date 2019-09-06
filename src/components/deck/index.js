@@ -94,13 +94,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   }, [filteredChildren]);
 
   // Initialise useDeck hook and get state and dispatch off of it
-  const { state, dispatch } = useDeck(
-    initialState,
-    filteredChildren.length,
-    !!loop,
-    rest.animationsWhenGoingBack,
-    slideElementMap
-  );
+  const { state, dispatch } = useDeck(initialState);
 
   const {
     startConnection,

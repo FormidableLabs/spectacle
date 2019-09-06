@@ -102,14 +102,6 @@ export default function useUrlRouting(options) {
       history.current.replace(`?${qs}`);
       return;
     }
-    // TODO - figure out what case this covers
-    // if (slideNumber === currentSlide) {
-    //   dispatch({
-    //     type: 'SET_PRESENTER_MODE',
-    //     payload: { presenterMode }
-    //   });
-    //   return;
-    // }
     const reverseDirection =
       slideNumber < currentSlide || slideElementNumber < currentSlideElement;
     const update = {
@@ -138,15 +130,24 @@ export default function useUrlRouting(options) {
   const navigateToNext = React.useCallback(
     ({ immediate } = {}) => {
       const slideElementsLength = countSlideElements(currentSlide);
+      const atLastElement =
+        currentSlideElement + 1 === slideElementsLength ||
+        slideElementsLength === 0;
+      const atLastSlide =
+        currentSlide + 1 === numberOfSlides || numberOfSlides === 0;
+
       let nextSafeSlideIndex = currentSlide;
       let nextSafeSlideElementIndex = -1;
-
-      if (
-        slideElementsLength === 0 ||
-        currentSlideElement + 1 === slideElementsLength
-      ) {
+      if (atLastElement && atLastSlide) {
+        if (!loop) {
+          return;
+        }
+        nextSafeSlideIndex = 0;
+        nextSafeSlideElementIndex = -1;
+      } else if (atLastElement) {
         // advance to the next safe slide
         nextSafeSlideIndex = nextSafeSlide();
+        nextSafeSlideElementIndex = -1;
       } else {
         // advance to the next slide element
         nextSafeSlideElementIndex = currentSlideElement + 1;
@@ -165,7 +166,9 @@ export default function useUrlRouting(options) {
       currentPresenterMode,
       currentSlide,
       currentSlideElement,
-      nextSafeSlide
+      loop,
+      nextSafeSlide,
+      numberOfSlides
     ]
   );
 
@@ -178,12 +181,23 @@ export default function useUrlRouting(options) {
 
   const navigateToPrevious = React.useCallback(() => {
     const immediate = !animationsWhenGoingBack;
+    const slideElementsLength = countSlideElements(currentSlide);
+    const atNoElement = currentSlideElement === -1 || slideElementsLength === 0;
+    const atFirstSlide = currentSlide === 0 || numberOfSlides === 0;
+
     let previousSafeSlideIndex = currentSlide;
     let previousSafeSlideElementIndex = -1;
 
-    if (currentSlideElement < 0) {
+    if (atNoElement && atFirstSlide) {
+      if (!loop) {
+        return;
+      }
+      previousSafeSlideIndex = numberOfSlides - 1;
+    } else if (currentSlideElement < 0) {
       // back up to the previous safe slide
       previousSafeSlideIndex = previousSafeSlide();
+      previousSafeSlideElementIndex =
+        countSlideElements(previousSafeSlideIndex) - 1;
     } else {
       // back up to the previous slide element
       previousSafeSlideElementIndex = currentSlideElement - 1;
@@ -198,9 +212,12 @@ export default function useUrlRouting(options) {
     history.current.push(`?${qs}`);
   }, [
     animationsWhenGoingBack,
+    countSlideElements,
     currentPresenterMode,
     currentSlide,
     currentSlideElement,
+    loop,
+    numberOfSlides,
     previousSafeSlide
   ]);
 

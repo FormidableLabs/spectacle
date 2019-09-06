@@ -88,7 +88,7 @@ const TestJs = () => {
           </ul>
         </div>
       )}
-      <Deck>
+      <Deck loop={true}>
         <Slide slideNum={0}>
           <CodePane language="jsx">{reactJSCodeBlock}</CodePane>
         </Slide>
