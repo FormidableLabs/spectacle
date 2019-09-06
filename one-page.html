@@ -7,9 +7,10 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module">
-      import React from 'https://unpkg.com/es-react@16.8.60/src/react.js';
-      import ReactDOM from 'https://unpkg.com/es-react@16.8.60/src/react-dom.js';
+
+    <script id="deck" type="module">
+      import React from 'react';
+      import ReactDOM from 'react-dom';
       import htm from 'https://unpkg.com/htm@2.2.1?module'
       const html = htm.bind(React.createElement);
 
@@ -117,6 +118,35 @@
           <div>HEY PHIL. YOU DOUBTED US???</div>
         </Deck>
       );*/
+    </script>
+
+    <!--
+      Oh, the Hackage!
+      ================
+
+      The above code _looks_ like it should work, but it doesn't really.
+      It errors with the `react` import. Which (for now) is expected because
+      although we can rewrite the `react` import here to `es-react`, we
+      **can't** for the dependents of our stuff. So, instead we do hacky stuff!
+
+      We use https://github.com/guybedford/es-module-shims to smooth over things
+      like `react` not supporting ESM by rewriting _during imports_ with Import
+      Maps which **are** on the spec, just not implemented yet.
+
+      Eventually, the below should work for us (just not yet...).
+    -->
+    <script type="importmap-shim">
+      {
+        "imports": {
+          "react": "https://unpkg.com/es-react@16.8.60/src/react.js",
+          "react-dom": "https://unpkg.com/es-react@16.8.60/src/react-dom.js"
+        }
+      }
+    </script>
+    <script>
+      document.querySelector('#deck').setAttribute("type", "module-shim");
+    </script>
+    <script type="text/javascript" src="https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.min.js">
     </script>
   </body>
 </html>
