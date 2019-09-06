@@ -19,10 +19,8 @@
       import htm from 'https://unpkg.com/htm@2.2.1?module'
       const html = htm.bind(React.createElement);
 
-      // TODO(ONE-PAGE): Code pane doesn't work.
-      // => The requested module 'blob:http://localhost:5000/4cc4ca6a-6fa1-476d-8a4c-a20323ac5b5f' does not provide an export named 'default'
-      import CodePane from './one-page/components/code-pane.js';
 
+      import CodePane from './one-page/components/code-pane.js';
       import Deck from './one-page/components/deck.js';
       import SlideElementWrapper from './one-page/components/slide-element-wrapper.js';
       import Slide from './one-page/components/slide.js';
@@ -66,14 +64,12 @@
         html`
           <${Deck}>
             <${Slide}>
-              <p>TODO_CodePane</p>
-              <!-- TODO_CodePane language="jsx">{reactJSCodeBlock}</TODO_CodePane -->
+              <${CodePane} language="jsx">${reactJSCodeBlock}<//>
             <//>
             <${Slide}>
-              <p>TODO_CodePane</p>
-              <!-- TODO_CodePane fontSize={18} language="cpp">
-                {cppCodeBlock}
-              </TODO_CodePane -->
+              <${CodePane} fontSize=${18} language="cpp">
+                ${cppCodeBlock}
+              <//>
             <//>
             <${Slide}>
               <p> Slide 3! </p>
