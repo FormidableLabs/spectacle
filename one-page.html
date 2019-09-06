@@ -19,37 +19,13 @@
       import htm from 'https://unpkg.com/htm@2.2.1?module'
       const html = htm.bind(React.createElement);
 
-      import CodePane from './one-page/components/code-pane.js';
+      // TODO(ONE-PAGE): Code pane doesn't work.
+      // => The requested module 'blob:http://localhost:5000/4cc4ca6a-6fa1-476d-8a4c-a20323ac5b5f' does not provide an export named 'default'
+      // import CodePane from './one-page/components/code-pane.js';
+
       import Deck from './one-page/components/deck.js';
       import SlideElementWrapper from './one-page/components/slide-element-wrapper.js';
       import Slide from './one-page/components/slide.js';
-      console.log("TODO HERE Imported!", { Slide });
-
-      // TODO: Replace with actual spectacle deck. Just testing "react".
-      const Counter = (props) => {
-      const [count, setCount] = React.useState(parseInt(props.count));
-        return html`
-          <div>
-            <h1>${count}</h1>
-            <button onClick=${e => setCount(count - 1)}>Decrement</button>
-            <button onClick=${e => setCount(count + 1)}>Increment</button>
-          </div>
-        `
-      };
-
-      ReactDOM.render(
-        html`
-          <h1>Look Ma! No script tags, no build step</h1>
-          <${Counter} count=0 />
-        `,
-        document.getElementById('root')
-      );
-
-      /*
-      import Deck from './one-page/components/deck.js';
-      import Slide from './one-page/components/slide.js';
-      import SlideElementWrapper from './one-page/components/slide-element-wrapper';
-      import CodePane from './one-page/components/code-pane';
 
       const reactJSCodeBlock = `export default function CodePane(props) {
         return (
@@ -86,39 +62,47 @@
         return 0;
       }`;
 
-      const TestJs = () => (
-        <Deck>
-          <Slide slideNum={1}>
-            <CodePane language="jsx">{reactJSCodeBlock}</CodePane>
-          </Slide>
-          <Slide slideNum={2}>
-            <CodePane fontSize={18} language="cpp">
-              {cppCodeBlock}
-            </CodePane>
-          </Slide>
-          <Slide slideNum={3}>
-            <p> Slide 3! </p>
-            <SlideElementWrapper elementNum={1}>
-              <div>{`Hey, just one "animated" slide element here`}</div>
-            </SlideElementWrapper>
-          </Slide>
-          <Slide slideNum={4}>
-            <p>{`I'm a static slide element that should always show`}</p>
-            <p>{`This means that we don't need a SlideElementWrapper`}</p>
-            <SlideElementWrapper elementNum={1}>
-              <p> ZERO Slide 4 x 3! </p>
-            </SlideElementWrapper>
-            <SlideElementWrapper elementNum={2}>
-              <p> ONE Slide 4 x 3! </p>
-            </SlideElementWrapper>
-            <SlideElementWrapper elementNum={3}>
-              <p> TWO Slide 4 x 3! </p>
-            </SlideElementWrapper>
-            <p>{`I'm also a static non-animated "slide element"!`}</p>
-          </Slide>
-          <div>HEY PHIL. YOU DOUBTED US???</div>
-        </Deck>
-      );*/
+      ReactDOM.render(
+        html`
+          <${Deck}>
+            <${Slide}>
+              <p>TODO_CodePane</p>
+              <!-- TODO_CodePane language="jsx">{reactJSCodeBlock}</TODO_CodePane -->
+            <//>
+            <${Slide}>
+              <p>TODO_CodePane</p>
+              <!-- TODO_CodePane fontSize={18} language="cpp">
+                {cppCodeBlock}
+              </TODO_CodePane -->
+            <//>
+            <${Slide}>
+              <p> Slide 3! </p>
+              <${SlideElementWrapper} elementNum={1}>
+                <div>Hey, just one "animated" slide element here</div>
+              <//>
+            <//>
+            <${Slide}>
+              <p>I'm a static slide element that should always show</p>
+              <p>This means that we don't need a SlideElementWrapper</p>
+              <${SlideElementWrapper} elementNum={1}>
+                <p> ZERO Slide 4 x 3! </p>
+              </>
+              <${SlideElementWrapper} elementNum={2}>
+                <p> ONE Slide 4 x 3! </p>
+              <//>
+              <${SlideElementWrapper} elementNum={3}>
+                <p> TWO Slide 4 x 3! </p>
+              <//>
+              <p>I'm also a static non-animated "slide element"!</p>
+            <//>
+            <${Slide}>
+              <p>The end!</p>
+            <//>
+          <//>
+        `,
+        document.getElementById('root')
+      );
+
     </script>
 
     <!--
@@ -158,8 +142,8 @@
       document.querySelector('#deck').setAttribute("type", "module-shim");
     </script>
     <script type="text/javascript"
-      src="./one-page-es-module-shims.js"
-      src_DEBUG="https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.js"
+      src_DEBUG="./one-page-es-module-shims.js"
+      src="https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.js"
     >
     </script>
   </body>
