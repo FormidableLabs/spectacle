@@ -17,17 +17,7 @@
         "@babel/preset-react"
       ],
       "plugins": [
-        ["transform-react-remove-prop-types", { "removeImport": true }],
-        ["rewrite-require", {
-          "aliases": {
-            "react": "https://unpkg.com/es-react@16.8.60/src/react.js",
-
-            // TODO(ONE-PAGE): Remove all of the below once published.
-            "react-spring": "https://unpkg.com/react-spring?module",
-            "prism-react-renderer": "https://unpkg.com/prism-react-renderer?module",
-            "prism-react-renderer/themes/vsDark.js": "https://unpkg.com/prism-react-renderer/themes/vsDark.js?module"
-          }
-        }]
+        ["transform-react-remove-prop-types", { "removeImport": true }]
       ]
     }
   }
