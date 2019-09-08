@@ -23,18 +23,37 @@ function useDeck(initialState) {
         };
         return newState;
       }
-      case 'SET_CURRENT_NOTES': {
+      case 'SET_NOTES': {
         return {
           ...state,
-          currentNotes: action.payload
+          notes: {
+            ...state.notes,
+            [action.payload.slideNumber]: action.payload.notes
+          }
         };
       }
       default:
         return { ...state };
     }
   }
+
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  return { state, dispatch };
+
+  // derived state
+  const currentNotes = React.useMemo(() => state.notes[state.currentSlide], [
+    state.currentSlide,
+    state.notes
+  ]);
+
+  const allState = React.useMemo(
+    () => ({
+      ...state,
+      currentNotes
+    }),
+    [currentNotes, state]
+  );
+
+  return { state: allState, dispatch };
 }
 
 export default useDeck;

@@ -12,7 +12,7 @@ const MOD_REG = /\\`|`(?:\\`|[^`])*`|(^(?:import|export).*$)/gm;
 const NOTES_MARKER = 'Notes: ';
 const NOTES_REG = new RegExp(`^${NOTES_MARKER}`, 'm');
 
-const nameForContent = (index, type) => `MDXContentWrapper${type}${index}`;
+const nameForComponent = (index, type) => `MDXContentWrapper${type}${index}`;
 
 /*
  * We want to pull the notes out of each slide. This RegEx looks for "Notes: "
@@ -24,7 +24,7 @@ const isolateNotes = content => {
     // found the notes marker!
     return content.substring(indexOfNotes + NOTES_MARKER.length);
   }
-  return null;
+  return '';
 };
 
 /*
@@ -88,7 +88,7 @@ const trim = content => content.trim();
  * definitions in another component that is uniquely named.
  */
 const wrapComponent = (content, index, type) => {
-  const wrapperName = nameForContent(index, type);
+  const wrapperName = nameForComponent(index, type);
   return `function ${wrapperName}(props) {
   ${content}
   return (<MDXContent {...props} />);
@@ -105,6 +105,6 @@ module.exports = {
   removeDefaultExport,
   sync,
   addInlineModules,
-  nameForContent,
+  nameForComponent,
   MOD_REG
 };

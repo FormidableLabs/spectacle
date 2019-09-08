@@ -10,7 +10,7 @@ const {
   removeDefaultExport,
   sync,
   addInlineModules,
-  nameForContent,
+  nameForComponent,
   isolateNotes,
   removeNotes,
   MOD_REG
@@ -59,24 +59,24 @@ module.exports = async function(src) {
    */
   const slides = separatedContent
     .map(removeNotes)
-    .map(content => addInlineModules(content, inlineModules))
-    .map(content => sync(content, options))
+    .map(mdxContent => addInlineModules(mdxContent, inlineModules))
+    .map(mdxContent => sync(mdxContent, options))
     .map(removeDefaultExport)
     .map(removeInlineModules)
     .map(trim)
-    .map((content, index) => wrapComponent(content, index, SLIDE_TYPE));
+    .map((mdxContent, index) => wrapComponent(mdxContent, index, SLIDE_TYPE));
 
   /*
    * Process the content and generate an array of notes components
    */
   const notes = separatedContent
     .map(isolateNotes)
-    .map(content => addInlineModules(content, inlineModules))
-    .map(content => sync(content, options))
+    .map(mdxContent => addInlineModules(mdxContent, inlineModules))
+    .map(mdxContent => sync(mdxContent, options))
     .map(removeDefaultExport)
     .map(removeInlineModules)
     .map(trim)
-    .map((content, index) => wrapComponent(content, index, NOTES_TYPE));
+    .map((mdxContent, index) => wrapComponent(mdxContent, index, NOTES_TYPE));
 
   const { modules = [] } = data;
   const slideWrapperNames = [];
@@ -101,7 +101,7 @@ ${inlineModules
    */
   slides.forEach((s, i) => {
     allCode += s + '\n\n';
-    slideWrapperNames.push(nameForContent(i, SLIDE_TYPE));
+    slideWrapperNames.push(nameForComponent(i, SLIDE_TYPE));
   });
 
   /*
@@ -109,7 +109,7 @@ ${inlineModules
    */
   notes.forEach((n, i) => {
     allCode += n + '\n\n';
-    noteWrapperNames.push(nameForContent(i, NOTES_TYPE));
+    noteWrapperNames.push(nameForComponent(i, NOTES_TYPE));
   });
 
   /*

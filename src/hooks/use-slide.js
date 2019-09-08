@@ -31,9 +31,12 @@ function useSlide(slideNum) {
 
   const setNotes = React.useCallback(
     notes => {
-      deckContextDispatch({ type: 'SET_CURRENT_NOTES', payload: notes });
+      deckContextDispatch({
+        type: 'SET_NOTES',
+        payload: { notes, slideNumber: slideNum }
+      });
     },
-    [deckContextDispatch]
+    [deckContextDispatch, slideNum]
   );
 
   const currentSlideElement = isActiveSlide

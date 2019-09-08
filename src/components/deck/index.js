@@ -60,11 +60,16 @@ const initialState = {
   currentSlideElement: DEFAULT_SLIDE_ELEMENT_INDEX,
   reverseDirection: false,
   presenterMode: false,
-  currentNotes: null,
+  notes: {},
   resolvedInitialUrl: false
 };
 
-const Deck = ({ children, loop, keyboardControls, ...rest }) => {
+const Deck = ({
+  children,
+  loop,
+  keyboardControls,
+  animationsWhenGoingBack
+}) => {
   React.useLayoutEffect(() => {
     document.body.style.margin = '0';
   }, []);
@@ -111,7 +116,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   } = usePresentation();
 
   React.useEffect(() => {
-    if (errors) {
+    if (errors && errors.length > 0) {
       console.log('presentation errors', errors);
     }
   }, [errors]);
@@ -135,7 +140,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     currentPresenterMode: state.presenterMode,
     slideElementMap,
     loop,
-    animationsWhenGoingBack: rest.animationsWhenGoingBack,
+    animationsWhenGoingBack,
     onUrlChange
   });
 
@@ -204,7 +209,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
           dispatch,
           numberOfSlides: filteredChildren.length,
           keyboardControls,
-          animationsWhenGoingBack: rest.animationsWhenGoingBack,
+          animationsWhenGoingBack,
           slideElementMap
         }}
       >

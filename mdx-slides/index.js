@@ -6,7 +6,7 @@ import Slide from '../src/components/slide';
 
 // See the webpack config to see how this import alias is made
 import slides, { notes } from 'spectacle-user-mdx';
-import NotesContainer from '../src/components/notes-container';
+import Notes from '../src/components/notes';
 
 const components = {};
 
@@ -18,9 +18,9 @@ const MDXSlides = () => (
         <Slide key={`slide-${i}`} slideNum={i}>
           <MDXProvider components={components}>
             <MDXSlide />
-            <NotesContainer>
+            <Notes>
               <NotesForSlide />
-            </NotesContainer>
+            </Notes>
           </MDXProvider>
         </Slide>
       );

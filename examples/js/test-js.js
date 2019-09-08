@@ -3,7 +3,7 @@ import Deck from '../../src/components/deck';
 import Slide from '../../src/components/slide';
 import SlideElementWrapper from '../../src/components/slide-element-wrapper';
 import CodePane from '../../src/components/code-pane';
-import usePresentation from '../../src/hooks/use-presentation';
+import Notes from '../../src/components/notes';
 
 const reactJSCodeBlock = `
 export default function CodePane(props) {
@@ -47,55 +47,25 @@ int main()
 `;
 
 const TestJs = () => {
-  const {
-    startConnection,
-    terminateConnection,
-    sendMessage,
-    addMessageHandler,
-    isReceiver,
-    isController
-  } = usePresentation();
-
-  const [messages, setMessages] = React.useState([]);
-
-  // The dependencies are [isReceiver] as opposed to [] because
-  // The user might exit out of the presentation and start it up again, so
-  // we'll need to re-add the messageHandlers.
-  React.useEffect(() => {
-    addMessageHandler(msg => setMessages(prev => [...prev, msg]));
-  }, [addMessageHandler, isReceiver]);
-
-  const sendHello = () => sendMessage('Hello');
-
   return (
     <React.Fragment>
-      {!isController && !isReceiver && (
-        <button onClick={startConnection}>Start Connection</button>
-      )}
-      {isController && !isReceiver && (
-        <button onClick={terminateConnection}>Terminate Connection</button>
-      )}
-      {isController && !isReceiver && (
-        <button onClick={sendHello}>{`Send "Hello"`}</button>
-      )}
-      {isReceiver && (
-        <div>
-          <h1>Messages</h1>
-          <ul>
-            {messages.map(message => (
-              <li key={message}>{message}</li>
-            ))}
-          </ul>
-        </div>
-      )}
       <Deck loop={true}>
         <Slide slideNum={0}>
           <CodePane language="jsx">{reactJSCodeBlock}</CodePane>
+          <Notes>
+            <p>
+              Notes are shown in presenter mode. Open up
+              localhost:3000/?presenterMode=true to see them.
+            </p>
+          </Notes>
         </Slide>
         <Slide slideNum={1}>
           <CodePane googleFont="Space Mono" fontSize={20} language="cpp">
             {cppCodeBlock}
           </CodePane>
+          <Notes>
+            <p>Here are more notes!</p>
+          </Notes>
         </Slide>
         <Slide slideNum={2}>
           <p> Slide 3! </p>
