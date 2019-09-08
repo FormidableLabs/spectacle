@@ -1,5 +1,6 @@
 import React from 'react';
 import { DeckContext } from './use-deck';
+import { DEFAULT_SLIDE_ELEMENT_INDEX } from '../utils/constants';
 
 /**
  * Performs logic operations for all of the slide domain level.
@@ -15,12 +16,16 @@ import { DeckContext } from './use-deck';
 // Initialise SlideContext.
 export const SlideContext = React.createContext();
 
-function useSlide(initialState, slideNum, slideElementsLength) {
+function useSlide(slideNum) {
   // Gets state, dispatch and number of slides off DeckContext.
   const {
     state: deckContextState,
-    dispatch: deckContextDispatch
+    dispatch: deckContextDispatch,
+    slideElementMap
   } = React.useContext(DeckContext);
+
+  const { reverseDirection, immediate } = deckContextState;
+  const slideElementsLength = slideElementMap[slideNum];
 
   const isActiveSlide = deckContextState.currentSlide === slideNum;
 
@@ -31,12 +36,16 @@ function useSlide(initialState, slideNum, slideElementsLength) {
     [deckContextDispatch]
   );
 
+  const currentSlideElement = isActiveSlide
+    ? deckContextState.currentSlideElement
+    : DEFAULT_SLIDE_ELEMENT_INDEX;
+
   return {
     state: {
-      ...initialState,
+      reverseDirection,
       slideElementsLength,
-      currentSlideElement: deckContextState.currentSlideElement,
-      immediate: false,
+      currentSlideElement,
+      immediate,
       isActiveSlide
     },
     actions: {

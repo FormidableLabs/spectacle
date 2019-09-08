@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useSlide, { SlideContext } from '../hooks/use-slide';
-import { DeckContext } from '../hooks/use-deck';
 
 /**
  * Slide component wraps anything going in a slide and maintains
@@ -19,12 +18,7 @@ const baseSlideStyle = {
 };
 
 const Slide = ({ children, slideNum, style }) => {
-  const { slideElementMap } = React.useContext(DeckContext);
-  const initialState = { currentSlideElement: -1, immediate: false };
-  const numberOfSlideElements = slideElementMap[slideNum];
-
-  const value = useSlide(initialState, slideNum, numberOfSlideElements);
-
+  const value = useSlide(slideNum);
   return (
     <div style={style || baseSlideStyle}>
       <SlideContext.Provider value={value}>{children}</SlideContext.Provider>

@@ -16,6 +16,10 @@ import usePresentation, {
   MSG_SLIDE_STATE_CHANGE
 } from '../../hooks/use-presentation';
 import useKeyboardControls from '../../hooks/use-keyboard-controls';
+import {
+  DEFAULT_SLIDE_ELEMENT_INDEX,
+  DEFAULT_SLIDE_INDEX
+} from '../../utils/constants';
 
 const defaultSlideEffect = {
   from: {
@@ -50,10 +54,10 @@ const defaultSlideEffect = {
  */
 
 const initialState = {
-  currentSlide: 0,
+  currentSlide: DEFAULT_SLIDE_INDEX,
   immediate: false,
   immediateElement: false,
-  currentSlideElement: -1,
+  currentSlideElement: DEFAULT_SLIDE_ELEMENT_INDEX,
   reverseDirection: false,
   presenterMode: false,
   currentNotes: null,

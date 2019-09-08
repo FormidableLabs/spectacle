@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { createBrowserHistory } from 'history';
 import * as queryString from 'query-string';
+import {
+  DEFAULT_SLIDE_ELEMENT_INDEX,
+  DEFAULT_SLIDE_INDEX
+} from '../utils/constants';
 
 export default function useUrlRouting(options) {
   const {
@@ -40,7 +44,7 @@ export default function useUrlRouting(options) {
       const val =
         isNaN(proposedSlideElementNumber) ||
         proposedSlideElementNumber >= slideElementsLength ||
-        proposedSlideElementNumber < -1;
+        proposedSlideElementNumber < DEFAULT_SLIDE_ELEMENT_INDEX;
       return val;
     },
     []
@@ -54,14 +58,14 @@ export default function useUrlRouting(options) {
       const proposedSlideNumber = parseInt(query.slide, 10);
       const proposedSlideElementNumber = parseInt(query.slideElement, 10);
       const slideNumber = isSlideOutOfBounds(proposedSlideNumber)
-        ? 0
+        ? DEFAULT_SLIDE_INDEX
         : proposedSlideNumber;
       const slideElementsLength = countSlideElements(slideNumber);
       const slideElementNumber = isSlideElementOutOfBounds(
         proposedSlideElementNumber,
         slideElementsLength
       )
-        ? -1
+        ? DEFAULT_SLIDE_ELEMENT_INDEX
         : proposedSlideElementNumber;
 
       return {
@@ -97,7 +101,9 @@ export default function useUrlRouting(options) {
     ) {
       const qs = queryString.stringify({
         slide: slideNumber,
-        slideElement: slideElementNumber
+        slideElement: slideElementNumber,
+        presenterMode: presenterMode || undefined,
+        immediate: immediate || undefined
       });
       history.current.replace(`?${qs}`);
       return;
@@ -122,7 +128,7 @@ export default function useUrlRouting(options) {
 
   const nextSafeSlide = React.useCallback(() => {
     if (currentSlide + 1 > numberOfSlides - 1 && loop) {
-      return 0;
+      return DEFAULT_SLIDE_INDEX;
     }
     return Math.min(currentSlide + 1, numberOfSlides - 1);
   }, [currentSlide, loop, numberOfSlides]);
@@ -137,17 +143,17 @@ export default function useUrlRouting(options) {
         currentSlide + 1 === numberOfSlides || numberOfSlides === 0;
 
       let nextSafeSlideIndex = currentSlide;
-      let nextSafeSlideElementIndex = -1;
+      let nextSafeSlideElementIndex = DEFAULT_SLIDE_ELEMENT_INDEX;
       if (atLastElement && atLastSlide) {
         if (!loop) {
           return;
         }
-        nextSafeSlideIndex = 0;
-        nextSafeSlideElementIndex = -1;
+        nextSafeSlideIndex = DEFAULT_SLIDE_INDEX;
+        nextSafeSlideElementIndex = DEFAULT_SLIDE_ELEMENT_INDEX;
       } else if (atLastElement) {
         // advance to the next safe slide
         nextSafeSlideIndex = nextSafeSlide();
-        nextSafeSlideElementIndex = -1;
+        nextSafeSlideElementIndex = DEFAULT_SLIDE_ELEMENT_INDEX;
       } else {
         // advance to the next slide element
         nextSafeSlideElementIndex = currentSlideElement + 1;
@@ -182,11 +188,13 @@ export default function useUrlRouting(options) {
   const navigateToPrevious = React.useCallback(() => {
     const immediate = !animationsWhenGoingBack;
     const slideElementsLength = countSlideElements(currentSlide);
-    const atNoElement = currentSlideElement === -1 || slideElementsLength === 0;
+    const atNoElement =
+      currentSlideElement === DEFAULT_SLIDE_ELEMENT_INDEX ||
+      slideElementsLength === 0;
     const atFirstSlide = currentSlide === 0 || numberOfSlides === 0;
 
     let previousSafeSlideIndex = currentSlide;
-    let previousSafeSlideElementIndex = -1;
+    let previousSafeSlideElementIndex = DEFAULT_SLIDE_ELEMENT_INDEX;
 
     if (atNoElement && atFirstSlide) {
       if (!loop) {
