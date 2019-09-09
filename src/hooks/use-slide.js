@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { DeckContext } from './use-deck.js';
-import debounce from '../utils/debounce.js';
+import { DeckContext } from './use-deck';
+import debounce from '../utils/debounce';
 
 /**
  * Performs logic operations for all of the slide domain level.

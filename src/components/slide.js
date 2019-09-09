@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useSlide, { SlideContext } from '../hooks/use-slide.js';
-import { DeckContext } from '../hooks/use-deck.js';
+import useSlide, { SlideContext } from '../hooks/use-slide';
+import { DeckContext } from '../hooks/use-deck';
 
 /**
  * Slide component wraps anything going in a slide and maintains

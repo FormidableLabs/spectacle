@@ -1,7 +1,7 @@
 import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 // TODO(ONE-PAGE): Probably shouldn't have `/es/` in there...
-import theme from 'prism-react-renderer/es/themes/vsDark.js';
+import theme from 'prism-react-renderer/es/themes/vsDark';
 import propTypes from 'prop-types';
 
 const spaceSearch = /\S|$/;
