@@ -3,6 +3,12 @@
 /**
  * Super-simple static server that serves assets a la how unpkg would
  * with some aspects of Node.js `require` resolution.
+ *
+ * Run with:
+ *
+ * ```sh
+ * $ micro one-page-server.js
+ * ```
  */
 const handler = require('serve-handler');
 const path = require('path');
