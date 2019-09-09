@@ -1,7 +1,8 @@
 'use strict';
 
 /**
- * Super-simply static server that serves assets a la how unpkg would.
+ * Super-simple static server that serves assets a la how unpkg would
+ * with some aspects of Node.js `require` resolution.
  */
 const handler = require('serve-handler');
 const path = require('path');
