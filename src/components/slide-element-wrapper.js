@@ -17,7 +17,7 @@ import { SlideContext } from '../hooks/use-slide';
 
 const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
   const {
-    state: { currentSlideElement, reverseDirection, immediateElement }
+    state: { currentSlideElement, reverseDirection, immediate }
   } = React.useContext(SlideContext);
   const { signal } = React.useContext(TransitionPipeContext);
   const activeElement = elementNum === currentSlideElement;
@@ -42,18 +42,18 @@ const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
     if (activeElement && !reverseDirection) {
       set({
         ...transitionEffect.to,
-        immediate: immediateElement
+        immediate
       });
     } else if (reverseDirection && previousElement) {
       set({
         ...transitionEffect.from,
-        immediate: immediateElement
+        immediate
       });
     }
   }, [
     activeElement,
     elementNum,
-    immediateElement,
+    immediate,
     previousElement,
     reverseDirection,
     set,

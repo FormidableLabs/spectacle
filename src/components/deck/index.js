@@ -192,7 +192,7 @@ const Deck = ({
           {filteredChildren}
         </PresenterDeck>
       );
-    } /*if (isReceiver && !isController) */ else {
+    } else {
       content = (
         <AudienceDeck addMessageHandler={addMessageHandler}>
           {slides}

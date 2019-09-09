@@ -102,8 +102,8 @@ export default function useUrlRouting(options) {
       const qs = queryString.stringify({
         slide: slideNumber,
         slideElement: slideElementNumber,
-        presenterMode: presenterMode || undefined,
-        immediate: immediate || undefined
+        immediate: immediate || undefined,
+        presenterMode: presenterMode || undefined
       });
       history.current.replace(`?${qs}`);
       return;
