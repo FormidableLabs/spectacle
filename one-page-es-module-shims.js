@@ -1,4 +1,5 @@
 /* ES Module Shims 0.4.2 */
+/* eslint-disable */
 /**
  * TODO(ONE-PAGE): For debugging only. REMOVE later
  * From: https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.js
