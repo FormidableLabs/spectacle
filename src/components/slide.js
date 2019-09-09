@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { color } from 'styled-system';
 
 const SlideContainer = styled('div')`
-  background-color: red;
+  ${color};
   position: relative;
   width: 100%;
   padding-top: 56.25%;
@@ -20,6 +20,13 @@ const SlideWrapper = styled('div')`
   position: absolute;
   overflow-y: scroll;
 `;
+const TemplateWrapper = styled('div')`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
 
 /**
  * Slide component wraps anything going in a slide and maintains
@@ -27,7 +34,14 @@ const SlideWrapper = styled('div')`
  */
 
 const Slide = props => {
-  const { children, slideNum, backgroundColor, textColor } = props;
+  const {
+    children,
+    slideNum,
+    backgroundColor,
+    textColor,
+    template,
+    numberOfSlides
+  } = props;
   const { slideElementMap, keyboardControls } = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0, immediate: false };
   const numberOfSlideElements = slideElementMap[slideNum];
@@ -38,8 +52,12 @@ const Slide = props => {
     keyboardControls
   );
   return (
-    <SlideContainer>
-      <SlideWrapper backgroundColor={backgroundColor} color={textColor}>
+    <SlideContainer backgroundColor={backgroundColor}>
+      <TemplateWrapper>
+        {typeof template === 'function' &&
+          template({ slideNumber: slideNum, numberOfSlides })}
+      </TemplateWrapper>
+      <SlideWrapper color={textColor}>
         <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
       </SlideWrapper>
     </SlideContainer>
@@ -49,7 +67,9 @@ const Slide = props => {
 Slide.propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
-  slideNum: PropTypes.number.isRequired,
+  slideNum: PropTypes.number,
+  numberOfSlides: PropTypes.number,
+  template: PropTypes.func,
   textColor: PropTypes.string
 };
 

@@ -148,7 +148,9 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     <AnimatedDeckDiv style={props} key={key}>
       {React.cloneElement(filteredChildren[item], {
         slideNum: item,
-        keyboardControls
+        keyboardControls,
+        numberOfSlides: filteredChildren.length,
+        template: rest.template
       })}
     </AnimatedDeckDiv>
   ));
@@ -179,6 +181,7 @@ Deck.propTypes = {
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
   loop: PropTypes.bool.isRequired,
+  template: PropTypes.func,
   textColor: PropTypes.string,
   theme: PropTypes.object
 };
