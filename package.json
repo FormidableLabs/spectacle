@@ -51,7 +51,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^1.6.0",
-    "file-loader": "^4.1.0",
+    "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.15.3",
     "prop-types": "^15.7.2",
@@ -76,7 +76,8 @@
     "query-string": "^6.8.2",
     "react-spring": "^8.0.25",
     "react-typography": "^0.16.19",
-    "styled-components": "^4.3.1",
+    "styled-components": "^4.3.2",
+    "styled-system": "^5.1.1",
     "wonka": "^3.2.0"
   }
 }
