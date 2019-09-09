@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
 
+// TODO - make this better.
+
 const basePresenterStyle = {
   height: '100vh',
   width: '100vw',
@@ -24,8 +26,7 @@ const baseColumnContainerStyle = {
 
 const leftColumnContainerStyle = {
   ...baseColumnContainerStyle,
-  paddingTop: '4em',
-  backgroundColor: 'rgba(40, 30, 20, 0.2)'
+  paddingTop: '4em'
 };
 
 const notesContainerStyle = {
@@ -35,37 +36,37 @@ const notesContainerStyle = {
 };
 
 const rightColumnContainerStyle = {
-  ...baseColumnContainerStyle,
-  backgroundColor: 'rgba(10, 150, 10, 0.2)',
-  justifyContent: 'center',
-  // ensure that the combined height of the slide previews
-  // never exceeds the height of the screen
-  maxWidth: 'calc(((100vh - 10%) / 2) * 16 / 9)'
+  ...baseColumnContainerStyle
 };
 
 const slideHeaderStyle = {
   margin: 0,
   marginTop: 10,
-  marginBottom: 10
+  marginBottom: 10,
+  flex: 1
 };
 
-const slideContainerStyle = {
-  position: 'relative',
-  overflow: 'hidden',
+const baseSlideStyle = {
+  position: 'absolute',
+  right: '5vw',
+  width: '100vw',
+  height: '100vh',
+  transform: 'scale(0.4)',
   borderStyle: 'solid',
   borderWidth: 3,
-  borderColor: 'black',
-  height: 0,
-  // 16 / 9 aspect ratio - https://css-tricks.com/aspect-ratio-boxes/
-  paddingTop: '56.25%'
+  borderColor: 'black'
 };
 
-const slideStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0
+const currentSlideStyle = {
+  ...baseSlideStyle,
+  top: '5vh',
+  transformOrigin: 'top right'
+};
+
+const nextSlideStyle = {
+  ...baseSlideStyle,
+  bottom: '5vh',
+  transformOrigin: 'bottom right'
 };
 
 const buttonContainerStyle = {
@@ -99,13 +100,13 @@ const PresenterDeck = props => {
     children.length > currentSlide + 1 ? children[currentSlide + 1] : null;
 
   const clonedActiveSlide = React.cloneElement(activeSlide, {
-    style: slideStyle
+    style: currentSlideStyle
   });
 
   const clonedNextSlide =
     nextSlide &&
     React.cloneElement(nextSlide, {
-      style: slideStyle
+      style: nextSlideStyle
     });
 
   return (
@@ -126,11 +127,11 @@ const PresenterDeck = props => {
         <h4>Notes:</h4>
         <div style={notesContainerStyle}>{currentNotes}</div>
       </div>
+      {clonedActiveSlide}
+      {clonedNextSlide}
       <div style={rightColumnContainerStyle}>
         <h4 style={slideHeaderStyle}>Current Slide:</h4>
-        <div style={slideContainerStyle}>{clonedActiveSlide}</div>
         <h4 style={slideHeaderStyle}>Next Slide:</h4>
-        <div style={slideContainerStyle}>{clonedNextSlide}</div>
       </div>
     </div>
   );
