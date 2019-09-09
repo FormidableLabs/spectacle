@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ThemeContext, ThemeProvider } from 'styled-components';
 
+import defaultTheme from '../theme/default-theme';
 import useDeck, { DeckContext } from '../hooks/use-deck';
 import isComponentType from '../utils/is-component-type';
 import { animated, useTransition } from 'react-spring';
@@ -82,6 +84,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
     rest.animationsWhenGoingBack,
     slideElementMap
   );
+  const themeContext = React.useContext(ThemeContext);
 
   const {
     navigateToNextSlide,
@@ -111,7 +114,15 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
 
   React.useLayoutEffect(() => {
     document.body.style.margin = '0';
-  }, []);
+    document.body.style.background =
+      themeContext.colors[rest.backgroundColor] ||
+      rest.backgroundColor ||
+      themeContext.colors.tertiary;
+    document.body.style.color =
+      themeContext.colors[rest.textColor] ||
+      rest.textColor ||
+      themeContext.colors.primary;
+  }, [rest.backgroundColor, rest.textColor, themeContext.colors]);
 
   React.useEffect(() => {
     if (!transitionRef.current) {
@@ -139,7 +150,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   ));
 
   return (
-    <div>
+    <>
       <DeckContext.Provider
         value={{
           state,
@@ -154,27 +165,33 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
       >
         {slides}
       </DeckContext.Provider>
-    </div>
+    </>
   );
 };
 
 Deck.propTypes = {
   animationsWhenGoingBack: PropTypes.bool.isRequired,
+  backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
-  loop: PropTypes.bool.isRequired
+  loop: PropTypes.bool.isRequired,
+  textColor: PropTypes.string,
+  theme: PropTypes.object
 };
 
-Deck.defaultProps = {
+const ConnectedDeck = props => (
+  <ThemeProvider theme={defaultTheme}>
+    <TransitionPipeProvider>
+      <Deck {...props} />
+    </TransitionPipeProvider>
+  </ThemeProvider>
+);
+
+ConnectedDeck.propTypes = Deck.propTypes;
+ConnectedDeck.defaultProps = {
   loop: false,
   keyboardControls: 'arrows',
   animationsWhenGoingBack: false
 };
 
-export default function ConnectedDeck(props) {
-  return (
-    <TransitionPipeProvider>
-      <Deck {...props} />
-    </TransitionPipeProvider>
-  );
-}
+export default ConnectedDeck;

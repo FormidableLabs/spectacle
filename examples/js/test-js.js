@@ -1,32 +1,22 @@
 import React from 'react';
-import Deck from '../../src/components/deck.js';
-import Slide from '../../src/components/slide.js';
-import SlideElementWrapper from '../../src/components/slide-element-wrapper';
-import CodePane from '../../src/components/code-pane';
+import {
+  Deck,
+  Slide,
+  SlideElementWrapper,
+  CodePane,
+  FlexBox,
+  Box,
+  Image,
+  Heading,
+  ListItem,
+  OrderedList,
+  Quote,
+  Text,
+  UnorderedList,
+  Grid
+} from '../../src/components';
 
-const reactJSCodeBlock = `export default function CodePane(props) {
-  return (
-    <Highlight
-      {...defaultProps}
-      code={props.children}
-      language={props.language}
-      theme={theme}
-    >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
-  );
-}`;
-
+const formidableLogo = require('./formidable.png');
 const cppCodeBlock = `#include <iostream>
 
 int main()
@@ -42,7 +32,17 @@ int main()
 const TestJs = () => (
   <Deck>
     <Slide slideNum={1}>
-      <CodePane language="jsx">{reactJSCodeBlock}</CodePane>
+      <Heading>Spectacle</Heading>
+      <Text>Hello There 🤗</Text>
+      <Quote>This is a Formidaquote!</Quote>
+      <OrderedList>
+        <ListItem>This is an</ListItem>
+        <ListItem>ordered list</ListItem>
+      </OrderedList>
+      <UnorderedList>
+        <ListItem>This is an</ListItem>
+        <ListItem>unordered list</ListItem>
+      </UnorderedList>
     </Slide>
     <Slide slideNum={2}>
       <CodePane fontSize={18} language="cpp">
@@ -50,26 +50,57 @@ const TestJs = () => (
       </CodePane>
     </Slide>
     <Slide slideNum={3}>
-      <p> Slide 3! </p>
+      <Text fontSize="subHeader">Slide 3!</Text>
       <SlideElementWrapper elementNum={1}>
-        <div>{`Hey, just one "animated" slide element here`}</div>
+        <Text>{`Hey, just one "animated" slide element here`}</Text>
       </SlideElementWrapper>
     </Slide>
     <Slide slideNum={4}>
-      <p>{`I'm a static slide element that should always show`}</p>
-      <p>{`This means that we don't need a SlideElementWrapper`}</p>
+      <Text>{`I'm a static slide element that should always show`}</Text>
+      <Text>{`This means that we don't need a SlideElementWrapper`}</Text>
       <SlideElementWrapper elementNum={1}>
-        <p> ZERO Slide 4 x 3! </p>
+        <Text> ZERO Slide 4 x 3! </Text>
       </SlideElementWrapper>
       <SlideElementWrapper elementNum={2}>
-        <p> ONE Slide 4 x 3! </p>
+        <Text> ONE Slide 4 x 3! </Text>
       </SlideElementWrapper>
       <SlideElementWrapper elementNum={3}>
-        <p> TWO Slide 4 x 3! </p>
+        <Text> TWO Slide 4 x 3! </Text>
       </SlideElementWrapper>
-      <p>{`I'm also a static non-animated "slide element"!`}</p>
+      <Text>{`I'm also a static non-animated "slide element"!`}</Text>
     </Slide>
-    <div>HEY PHIL. YOU DOUBTED US???</div>
+    <Slide slideNum={5}>
+      <FlexBox>
+        <Text>These</Text>
+        <Text>Text</Text>
+        <Text color="secondary">Items</Text>
+        <Text fontWeight="bold">Flex</Text>
+      </FlexBox>
+      <Grid gridTemplateColumns="1fr 2fr" gridColumnGap={15}>
+        <Box backgroundColor="primary">
+          <Text color="secondary">Single-size Grid Item</Text>
+        </Box>
+        <Box backgroundColor="secondary">
+          <Text>Double-size Grid Item</Text>
+        </Box>
+      </Grid>
+      <Heading>Lots of Formidables!</Heading>
+      <Grid
+        gridTemplateColumns="1fr 1fr 1fr"
+        gridTemplateRows="1fr 1fr 1fr"
+        alignItems="center"
+        justifyContent="center"
+        gridRowGap={15}
+      >
+        {Array(9)
+          .fill('')
+          .map(index => (
+            <FlexBox key={`formidable-logo-${index}`}>
+              <Image src={formidableLogo} width={100} />
+            </FlexBox>
+          ))}
+      </Grid>
+    </Slide>
   </Deck>
 );
 
