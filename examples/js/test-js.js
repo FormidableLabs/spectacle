@@ -94,7 +94,7 @@ const TestJs = () => (
       >
         {Array(9)
           .fill('')
-          .map(index => (
+          .map((_, index) => (
             <FlexBox key={`formidable-logo-${index}`}>
               <Image src={formidableLogo} width={100} />
             </FlexBox>

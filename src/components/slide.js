@@ -5,14 +5,20 @@ import { DeckContext } from '../hooks/use-deck';
 import styled from 'styled-components';
 import { color } from 'styled-system';
 
+const SlideContainer = styled('div')`
+  background-color: red;
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+`;
 const SlideWrapper = styled('div')`
   ${color};
-  min-height: 100vh;
-  width: 100vw;
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   position: absolute;
+  overflow-y: scroll;
 `;
 
 /**
@@ -32,9 +38,11 @@ const Slide = props => {
     keyboardControls
   );
   return (
-    <SlideWrapper backgroundColor={backgroundColor} color={textColor}>
-      <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
-    </SlideWrapper>
+    <SlideContainer>
+      <SlideWrapper backgroundColor={backgroundColor} color={textColor}>
+        <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
+      </SlideWrapper>
+    </SlideContainer>
   );
 };
 
