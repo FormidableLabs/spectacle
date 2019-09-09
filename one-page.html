@@ -19,6 +19,12 @@
       import htm from 'https://unpkg.com/htm@2.2.1?module'
       const html = htm.bind(React.createElement);
 
+      // TODO: HERE -- Catch up with `test-js.js` and new theme support.
+      // - [ ] Lots more import maps to set up
+      // - [ ] Prop-types: `https://unpkg.com/prop-types@15.7.2?module`
+      // - [ ] Once prop-types is shimmed. Remove `one-page` babel build, and switch to `es/` totally...
+      //     - [ ] package.json:scripts, .gitignore, etc.
+
 
       import CodePane from './one-page/components/code-pane.js';
       import Deck from './one-page/components/deck.js';
@@ -140,6 +146,8 @@
           "prism-react-renderer": "./one-page-temp-prism-react-renderer/es/index.js",
           "prism-react-renderer/es/vendor/prism/index": "./one-page-temp-prism-react-renderer/es/vendor/prism/index.js",
           "prism-react-renderer/es/themes/vsDark": "./one-page-temp-prism-react-renderer/es/themes/vsDark.js",
+          "styled-components": "https://unpkg.com/styled-components?module",
+          "styled-system": "https://unpkg.com/styled-system?module",
           "wonka": "https://unpkg.com/wonka?module"
         }
       }
