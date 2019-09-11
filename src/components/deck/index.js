@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext, ThemeProvider } from 'styled-components';
+import styled, { ThemeContext, ThemeProvider } from 'styled-components';
 
 import useDeck, { DeckContext } from '../../hooks/use-deck';
 import isComponentType from '../../utils/is-component-type';
@@ -21,6 +21,14 @@ import {
   DEFAULT_SLIDE_ELEMENT_INDEX,
   DEFAULT_SLIDE_INDEX
 } from '../../utils/constants';
+import searchChildrenForAppear from '../../utils/search-children-appear';
+
+const AnimatedDeckDiv = styled(animated.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
 
 const defaultSlideEffect = {
   from: {
@@ -77,25 +85,12 @@ const Deck = ({
     ? children.filter(x => isComponentType(x, 'Slide'))
     : console.error('No children passed') || [];
 
+  const numberOfSlides = filteredChildren.length;
+
   const slideElementMap = React.useMemo(() => {
     const map = {};
     filteredChildren.filter((slide, index) => {
-      let count = 0;
-      if (Array.isArray(slide.props.children)) {
-        count = slide.props.children.reduce((memo, current) => {
-          if (isComponentType(current, 'SlideElementWrapper')) {
-            memo += 1;
-          }
-          return memo;
-        }, 0);
-      } else if (
-        slide.props.children &&
-        isComponentType(slide.props.children, 'SlideElementWrapper')
-      ) {
-        count = 1;
-      }
-
-      map[index] = count;
+      map[index] = searchChildrenForAppear(slide.props.children);
     });
     return map;
   }, [filteredChildren]);
@@ -106,10 +101,7 @@ const Deck = ({
 
   React.useLayoutEffect(() => {
     document.body.style.margin = '0';
-    document.body.style.background =
-      themeContext.colors[rest.backgroundColor] ||
-      rest.backgroundColor ||
-      themeContext.colors.tertiary;
+    document.body.style.background = '#000';
     document.body.style.color =
       themeContext.colors[rest.textColor] ||
       rest.textColor ||
@@ -163,7 +155,7 @@ const Deck = ({
 
   const { runTransition } = React.useContext(TransitionPipeContext);
   const userTransitionEffect =
-    children[state.currentSlide].props.transitionEffect || {};
+    filteredChildren[state.currentSlide].props.transitionEffect || {};
   const transitionRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -183,11 +175,13 @@ const Deck = ({
   });
 
   const slides = transitions.map(({ item, props, key }) => (
-    <animated.div style={props} key={key}>
-      {React.cloneElement(children[item], {
-        slideNum: item
+    <AnimatedDeckDiv style={props} key={key}>
+      {React.cloneElement(filteredChildren[item], {
+        slideNum: item,
+        numberOfSlides,
+        template: rest.template
       })}
-    </animated.div>
+    </AnimatedDeckDiv>
   ));
 
   let content = null;
@@ -218,7 +212,7 @@ const Deck = ({
         value={{
           state,
           dispatch,
-          numberOfSlides: filteredChildren.length,
+          numberOfSlides,
           keyboardControls,
           animationsWhenGoingBack,
           slideElementMap
@@ -236,6 +230,7 @@ Deck.propTypes = {
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
   loop: PropTypes.bool.isRequired,
+  template: PropTypes.func,
   textColor: PropTypes.string,
   theme: PropTypes.object
 };

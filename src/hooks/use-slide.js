@@ -24,6 +24,12 @@ function useSlide(slideNum) {
     slideElementMap
   } = React.useContext(DeckContext);
 
+  if (slideNum === 'undefined') {
+    throw new Error(
+      'Must provide slide number to useSlide. Provided undefined instead.'
+    );
+  }
+
   const { reverseDirection, immediate } = deckContextState;
   const slideElementsLength = slideElementMap[slideNum];
 

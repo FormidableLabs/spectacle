@@ -1,139 +1,88 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
+import styled from 'styled-components';
+import { Heading, Text } from '../typography';
+import defaultTheme from '../../theme/default-theme';
 
-// TODO - make this better.
+const PresenterDeckContainer = styled('div')`
+  height: calc(100vh - 8em);
+  width: calc(100vw - 8em);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 4em;
+  background-color: ${defaultTheme.colors.tertiary};
+`;
 
-const basePresenterStyle = {
-  height: '100vh',
-  width: '100vw',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  position: 'absolute',
-  display: 'flex',
-  flexDirection: 'row'
-};
+const NotesColumn = styled('div')`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
 
-const baseColumnContainerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  paddingLeft: '4em',
-  paddingRight: '4em',
-  flex: 1
-};
+const PreviewColumn = styled('div')`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
 
-const leftColumnContainerStyle = {
-  ...baseColumnContainerStyle,
-  paddingTop: '4em'
-};
+const PresentationHeader = styled(Heading)`
+  align-items: flex-start;
+  text-align: start;
+`;
 
-const notesContainerStyle = {
-  fontSize: '1.3em',
-  fontFamily: 'georgia',
-  lineHeight: '180%'
-};
+const SlidePreviewPlaceholder = styled('div')`
+  flex: 1;
+  background-color: ${defaultTheme.colors.primary};
+`;
 
-const rightColumnContainerStyle = {
-  ...baseColumnContainerStyle
-};
-
-const slideHeaderStyle = {
-  margin: 0,
-  marginTop: 10,
-  marginBottom: 10,
-  flex: 1
-};
-
-const baseSlideStyle = {
-  position: 'absolute',
-  right: '5vw',
-  width: '100vw',
-  height: '100vh',
-  transform: 'scale(0.4)',
-  borderStyle: 'solid',
-  borderWidth: 3,
-  borderColor: 'black'
-};
-
-const currentSlideStyle = {
-  ...baseSlideStyle,
-  top: '5vh',
-  transformOrigin: 'top right'
-};
-
-const nextSlideStyle = {
-  ...baseSlideStyle,
-  bottom: '5vh',
-  transformOrigin: 'bottom right'
-};
-
-const buttonContainerStyle = {
-  position: 'absolute',
-  left: '1em',
-  top: '1em'
-};
-
-const buttonStyle = {
-  height: 20,
-  width: 150,
-  backgroundColor: 'white'
-};
+const Button = styled('button')`
+  border: 0;
+  width: 200px;
+  padding: 1em;
+  background-color: ${defaultTheme.colors.secondary};
+  color: ${defaultTheme.colors.primary};
+  font-size: ${defaultTheme.fontSizes.text};
+`;
 
 const PresenterDeck = props => {
   const {
-    state: { currentSlide, currentNotes }
+    state: { currentNotes }
   } = React.useContext(DeckContext);
 
   const {
-    children,
     isController,
     isReceiver,
     startConnection,
     terminateConnection
   } = props;
 
-  const activeSlide =
-    children.length > currentSlide ? children[currentSlide] : null;
-  const nextSlide =
-    children.length > currentSlide + 1 ? children[currentSlide + 1] : null;
-
-  const clonedActiveSlide = React.cloneElement(activeSlide, {
-    style: currentSlideStyle
-  });
-
-  const clonedNextSlide =
-    nextSlide &&
-    React.cloneElement(nextSlide, {
-      style: nextSlideStyle
-    });
-
   return (
-    <div style={basePresenterStyle}>
-      <div style={buttonContainerStyle}>
+    <PresenterDeckContainer>
+      <NotesColumn>
         {!isController && !isReceiver && (
-          <button style={buttonStyle} onClick={startConnection}>
-            Start Connection
-          </button>
+          <Button onClick={startConnection}>Start Connection</Button>
         )}
         {isController && !isReceiver && (
-          <button style={buttonStyle} onClick={terminateConnection}>
-            Terminate Connection
-          </button>
+          <Button onClick={terminateConnection}>Terminate Connection</Button>
         )}
-      </div>
-      <div style={leftColumnContainerStyle}>
-        <h4>Notes:</h4>
-        <div style={notesContainerStyle}>{currentNotes}</div>
-      </div>
-      {clonedActiveSlide}
-      {clonedNextSlide}
-      <div style={rightColumnContainerStyle}>
-        <h4 style={slideHeaderStyle}>Current Slide:</h4>
-        <h4 style={slideHeaderStyle}>Next Slide:</h4>
-      </div>
-    </div>
+        <PresentationHeader fontSize="subHeader">Notes:</PresentationHeader>
+        <Text lineHeight="180%">{currentNotes}</Text>
+      </NotesColumn>
+      <PreviewColumn>
+        <PresentationHeader fontSize="subHeader">
+          Current Slide:
+        </PresentationHeader>
+        <SlidePreviewPlaceholder />
+        <PresentationHeader fontSize="subHeader">
+          Next Slide:
+        </PresentationHeader>
+        <SlidePreviewPlaceholder />
+      </PreviewColumn>
+    </PresenterDeckContainer>
   );
 };
 
