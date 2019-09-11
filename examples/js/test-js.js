@@ -39,7 +39,7 @@ const TestJs = () => (
         width={1}
       >
         <Text fontSize={12}>
-          Slide {slideNumber + 1} of {numberOfSlides}
+          Slide {slideNumber} of {numberOfSlides}
         </Text>
         <Box padding={10}>
           <Image src={formidableLogo} width={100} />
