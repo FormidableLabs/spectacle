@@ -60,6 +60,20 @@ const defaultSlideEffect = {
   config: { precision: 0 }
 };
 
+function searchChildrenForAppear(children) {
+  if (!Array.isArray(children)) {
+    return 0;
+  }
+  return children.reduce((memo, current) => {
+    if (isComponentType(current, 'Appear')) {
+      memo += 1;
+    } else if (current.props.children && current.props.children.length > 0) {
+      memo += searchChildrenForAppear(current.props.children);
+    }
+    return memo;
+  }, 0);
+}
+
 const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   const { runTransition } = React.useContext(TransitionPipeContext);
 
@@ -71,14 +85,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   const slideElementMap = React.useMemo(() => {
     const map = {};
     filteredChildren.filter((slide, index) => {
-      map[index] = Array.isArray(slide.props.children)
-        ? slide.props.children.reduce((memo, current) => {
-            if (isComponentType(current, 'SlideElementWrapper')) {
-              memo += 1;
-            }
-            return memo;
-          }, 0)
-        : 0;
+      map[index] = searchChildrenForAppear(slide.props.children);
     });
     return map;
   }, [filteredChildren]);

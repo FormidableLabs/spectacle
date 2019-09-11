@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Deck,
   Slide,
-  SlideElementWrapper,
+  Appear,
   CodePane,
   FlexBox,
   Box,
@@ -52,8 +52,12 @@ const TestJs = () => (
       <Text>Hello There 🤗</Text>
       <Quote>This is a Formidaquote!</Quote>
       <OrderedList>
-        <ListItem>This is an</ListItem>
-        <ListItem>ordered list</ListItem>
+        <Appear elementNum={1}>
+          <ListItem>This is an</ListItem>
+        </Appear>
+        <Appear elementNum={2}>
+          <ListItem>ordered list</ListItem>
+        </Appear>
       </OrderedList>
       <UnorderedList>
         <ListItem>This is an</ListItem>
@@ -67,22 +71,22 @@ const TestJs = () => (
     </Slide>
     <Slide>
       <Text fontSize="subHeader">Slide 3!</Text>
-      <SlideElementWrapper elementNum={1}>
+      <Appear elementNum={1}>
         <Text>{`Hey, just one "animated" slide element here`}</Text>
-      </SlideElementWrapper>
+      </Appear>
     </Slide>
     <Slide>
       <Text>{`I'm a static slide element that should always show`}</Text>
       <Text>{`This means that we don't need a SlideElementWrapper`}</Text>
-      <SlideElementWrapper elementNum={1}>
+      <Appear elementNum={1}>
         <Text> ZERO Slide 4 x 3! </Text>
-      </SlideElementWrapper>
-      <SlideElementWrapper elementNum={2}>
+      </Appear>
+      <Appear elementNum={2}>
         <Text> ONE Slide 4 x 3! </Text>
-      </SlideElementWrapper>
-      <SlideElementWrapper elementNum={3}>
+      </Appear>
+      <Appear elementNum={3}>
         <Text> TWO Slide 4 x 3! </Text>
-      </SlideElementWrapper>
+      </Appear>
       <Text>{`I'm also a static non-animated "slide element"!`}</Text>
     </Slide>
     <Slide>
