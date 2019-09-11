@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext, ThemeProvider } from 'styled-components';
+import styled, { ThemeContext, ThemeProvider } from 'styled-components';
 
 import defaultTheme from '../theme/default-theme';
 import useDeck, { DeckContext } from '../hooks/use-deck';
@@ -11,6 +11,7 @@ import {
   TransitionPipeProvider
 } from '../hooks/use-transition-pipe';
 import useUrlRouting from '../hooks/use-url-routing';
+import searchChildrenForAppear from '../utils/search-children-appear';
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -24,6 +25,13 @@ import useUrlRouting from '../hooks/use-url-routing';
  * Note: Immediate is a React-Spring property that we pass to the animations
  * essentially it skips animations.
  */
+
+const AnimatedDeckDiv = styled(animated.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
 
 const initialState = {
   currentSlide: 0,
@@ -64,14 +72,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   const slideElementMap = React.useMemo(() => {
     const map = {};
     filteredChildren.filter((slide, index) => {
-      map[index] = Array.isArray(slide.props.children)
-        ? slide.props.children.reduce((memo, current) => {
-            if (isComponentType(current, 'SlideElementWrapper')) {
-              memo += 1;
-            }
-            return memo;
-          }, 0)
-        : 0;
+      map[index] = searchChildrenForAppear(slide.props.children);
     });
     return map;
   }, [filteredChildren]);
@@ -114,10 +115,7 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
 
   React.useLayoutEffect(() => {
     document.body.style.margin = '0';
-    document.body.style.background =
-      themeContext.colors[rest.backgroundColor] ||
-      rest.backgroundColor ||
-      themeContext.colors.tertiary;
+    document.body.style.background = '#000';
     document.body.style.color =
       themeContext.colors[rest.textColor] ||
       rest.textColor ||
@@ -141,12 +139,14 @@ const Deck = ({ children, loop, keyboardControls, ...rest }) => {
   });
 
   const slides = transitions.map(({ item, props, key }) => (
-    <animated.div style={props} key={key}>
+    <AnimatedDeckDiv style={props} key={key}>
       {React.cloneElement(filteredChildren[item], {
         slideNum: item,
-        keyboardControls
+        keyboardControls,
+        numberOfSlides: filteredChildren.length,
+        template: rest.template
       })}
-    </animated.div>
+    </AnimatedDeckDiv>
   ));
 
   return (
@@ -175,6 +175,7 @@ Deck.propTypes = {
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
   loop: PropTypes.bool.isRequired,
+  template: PropTypes.func,
   textColor: PropTypes.string,
   theme: PropTypes.object
 };

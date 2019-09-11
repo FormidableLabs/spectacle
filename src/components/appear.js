@@ -15,7 +15,7 @@ import { TransitionPipeContext } from '../hooks/use-transition-pipe';
  * essentially it skips animations.
  */
 
-const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
+const Appear = ({ elementNum, transitionEffect, children }) => {
   const {
     state: { reverseDirection, currentSlideElement, immediateElement }
   } = React.useContext(DeckContext);
@@ -65,7 +65,7 @@ const SlideElementWrapper = ({ elementNum, transitionEffect, children }) => {
   return <animated.div style={styleProps}>{children}</animated.div>;
 };
 
-SlideElementWrapper.propTypes = {
+Appear.propTypes = {
   children: PropTypes.node.isRequired,
   elementNum: PropTypes.number.isRequired,
   transitionEffect: PropTypes.shape({
@@ -74,11 +74,11 @@ SlideElementWrapper.propTypes = {
   })
 };
 
-SlideElementWrapper.defaultProps = {
+Appear.defaultProps = {
   transitionEffect: {
     from: { opacity: 0 },
     to: { opacity: 1 }
   }
 };
 
-export default SlideElementWrapper;
+export default Appear;

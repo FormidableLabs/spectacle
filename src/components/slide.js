@@ -5,14 +5,27 @@ import { DeckContext } from '../hooks/use-deck';
 import styled from 'styled-components';
 import { color } from 'styled-system';
 
+const SlideContainer = styled('div')`
+  ${color};
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+`;
 const SlideWrapper = styled('div')`
   ${color};
-  min-height: 100vh;
-  width: 100vw;
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   position: absolute;
+  overflow-y: scroll;
+`;
+const TemplateWrapper = styled('div')`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 /**
@@ -21,7 +34,14 @@ const SlideWrapper = styled('div')`
  */
 
 const Slide = props => {
-  const { children, slideNum, backgroundColor, textColor } = props;
+  const {
+    children,
+    slideNum,
+    backgroundColor,
+    textColor,
+    template,
+    numberOfSlides
+  } = props;
   const { slideElementMap, keyboardControls } = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0, immediate: false };
   const numberOfSlideElements = slideElementMap[slideNum];
@@ -32,16 +52,24 @@ const Slide = props => {
     keyboardControls
   );
   return (
-    <SlideWrapper backgroundColor={backgroundColor} color={textColor}>
-      <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
-    </SlideWrapper>
+    <SlideContainer backgroundColor={backgroundColor}>
+      <TemplateWrapper>
+        {typeof template === 'function' &&
+          template({ slideNumber: slideNum, numberOfSlides })}
+      </TemplateWrapper>
+      <SlideWrapper color={textColor}>
+        <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
+      </SlideWrapper>
+    </SlideContainer>
   );
 };
 
 Slide.propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
-  slideNum: PropTypes.number.isRequired,
+  slideNum: PropTypes.number,
+  numberOfSlides: PropTypes.number,
+  template: PropTypes.func,
   textColor: PropTypes.string
 };
 
