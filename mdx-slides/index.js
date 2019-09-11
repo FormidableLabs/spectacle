@@ -22,7 +22,6 @@ const LeftAlignedHeading = props => <Heading {...props} textAlign="left" />;
 
 const components = {
   p: Text,
-  // TODO - different heading sizes
   h1: LeftAlignedHeading,
   h2: LeftAlignedHeading,
   h3: LeftAlignedHeading,
@@ -30,10 +29,8 @@ const components = {
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
-  // TODO - broken
   img: Image,
   codeblock: CodePane,
-  // pre: CodePane
   code: CodePane
 };
 

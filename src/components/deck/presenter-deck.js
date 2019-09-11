@@ -4,6 +4,7 @@ import { DeckContext } from '../../hooks/use-deck';
 import styled from 'styled-components';
 import { Heading, Text } from '../typography';
 import defaultTheme from '../../theme/default-theme';
+import * as queryString from 'query-string';
 
 const PresenterDeckContainer = styled('div')`
   height: calc(100vh - 8em);
@@ -41,7 +42,7 @@ const SlidePreviewPlaceholder = styled('div')`
 
 const Button = styled('button')`
   border: 0;
-  width: 200px;
+  width: 250px;
   padding: 1em;
   background-color: ${defaultTheme.colors.secondary};
   color: ${defaultTheme.colors.primary};
@@ -50,7 +51,7 @@ const Button = styled('button')`
 
 const PresenterDeck = props => {
   const {
-    state: { currentNotes }
+    state: { currentNotes, currentSlide, currentSlideElement, immediate }
   } = React.useContext(DeckContext);
 
   const {
@@ -60,11 +61,20 @@ const PresenterDeck = props => {
     terminateConnection
   } = props;
 
+  const onStartConnection = React.useCallback(() => {
+    const urlParams = queryString.stringify({
+      slide: currentSlide,
+      slideElement: currentSlideElement,
+      immediate: immediate || undefined
+    });
+    startConnection(urlParams);
+  }, [currentSlide, currentSlideElement, immediate, startConnection]);
+
   return (
     <PresenterDeckContainer>
       <NotesColumn>
         {!isController && !isReceiver && (
-          <Button onClick={startConnection}>Start Connection</Button>
+          <Button onClick={onStartConnection}>Start Connection</Button>
         )}
         {isController && !isReceiver && (
           <Button onClick={terminateConnection}>Terminate Connection</Button>

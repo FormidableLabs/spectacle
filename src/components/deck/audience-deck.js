@@ -6,13 +6,14 @@ import { MSG_SLIDE_STATE_CHANGE } from '../../hooks/use-presentation';
 const AudienceDeck = props => {
   const { addMessageHandler } = props;
 
-  const { dispatch } = React.useContext(DeckContext);
+  const { dispatch, state } = React.useContext(DeckContext);
+
+  console.log('slide number', state);
 
   const onMessageReceived = React.useCallback(
     message => {
       // The PresentationDeck will send messages to
       // keep the AudienceDeck in sync.
-      console.log('RECEIVED MESSAGE:', message);
       if (message.type === MSG_SLIDE_STATE_CHANGE) {
         dispatch({
           type: 'GO_TO_SLIDE',

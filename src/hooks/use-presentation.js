@@ -19,11 +19,7 @@ function usePresentation() {
 
   // Create a presentation request and store it as a ref
   useEffect(() => {
-    if (window.PresentationRequest) {
-      if (!requestRef.current) {
-        requestRef.current = new PresentationRequest(['/']);
-      }
-    } else {
+    if (!window.PresentationRequest) {
       addError(new Error('Browser does not support Presentation API'));
     }
     return terminateConnection;
@@ -55,7 +51,8 @@ function usePresentation() {
   }, [connection]);
 
   // Opens the display selection dialog box
-  const startConnection = useCallback(() => {
+  const startConnection = useCallback(urlParams => {
+    requestRef.current = new PresentationRequest([`/?${urlParams}`]);
     const request = requestRef && requestRef.current;
     if (request) {
       request

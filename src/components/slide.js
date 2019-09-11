@@ -48,7 +48,10 @@ const Slide = props => {
     <SlideContainer backgroundColor={backgroundColor} {...style}>
       <TemplateWrapper>
         {typeof template === 'function' &&
-          template({ slideNumber: slideNum, numberOfSlides })}
+          template({
+            slideNumber: slideNum,
+            numberOfSlides: numberOfSlides - 1
+          })}
       </TemplateWrapper>
       <SlideWrapper color={textColor}>
         <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
