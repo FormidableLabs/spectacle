@@ -7,8 +7,6 @@ import { color } from 'styled-system';
 
 const SlideContainer = styled('div')`
   ${color};
-  position: relative;
-  transform-origin: left center;
   width: ${({ theme }) => theme.size.width || 1366}px;
   height: ${({ theme }) => theme.size.height || 768}px;
 `;
@@ -44,16 +42,37 @@ const Slide = props => {
   const initialState = { currentSlideElement: 0, immediate: false };
   const numberOfSlideElements = slideElementMap[slideNum];
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
+  const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
+  const slideRef = React.useRef(null);
+  const slideWidth = theme.size.width || 1366;
+  const slideHeight = theme.size.height || 768;
 
   const transformForWindowSize = React.useCallback(() => {
-    const slideWidth = theme.size.width || 1366;
-    const clientWidth = Math.max(
-      document.documentElement.clientWidth,
-      window.innerWidth || 0
-    );
-    const ratio = clientWidth / slideWidth;
+    const clientWidth = slideRef.current.parentElement.clientWidth;
+    const clientHeight = slideRef.current.parentElement.clientHeight;
+    const useVerticalRatio =
+      clientWidth / clientHeight > slideWidth / slideHeight;
+    const ratio = useVerticalRatio
+      ? clientHeight / slideHeight
+      : clientWidth / slideWidth;
     setRatio(ratio);
-  }, [theme]);
+  }, [slideHeight, slideWidth]);
+
+  React.useEffect(() => {
+    const clientWidth = slideRef.current.parentElement.clientWidth;
+    const clientHeight = slideRef.current.parentElement.clientHeight;
+    const useVerticalRatio =
+      clientWidth / clientHeight > slideWidth / slideHeight;
+    const clientRects = slideRef.current.getClientRects();
+    setOrigin({
+      x: useVerticalRatio
+        ? `${(clientWidth - clientRects[0].width) / 2 / (1 - ratio)}px`
+        : 'left',
+      y: useVerticalRatio
+        ? 'top'
+        : `${(clientHeight - clientRects[0].height) / 2 / (1 - ratio)}px`
+    });
+  }, [ratio, slideHeight, slideWidth, theme]);
 
   React.useEffect(() => {
     if (!isNaN(scaleRatio)) {
@@ -65,7 +84,6 @@ const Slide = props => {
       window.removeEventListener('resize', transformForWindowSize);
     };
   }, [transformForWindowSize, scaleRatio]);
-
   const value = useSlide(
     initialState,
     slideNum,
@@ -74,8 +92,12 @@ const Slide = props => {
   );
   return (
     <SlideContainer
+      ref={slideRef}
       backgroundColor={backgroundColor}
-      style={{ transform: `scale(${ratio})` }}
+      style={{
+        transform: `scale(${ratio})`,
+        transformOrigin: `${origin.x} ${origin.y}`
+      }}
     >
       <TemplateWrapper>
         {typeof template === 'function' &&
