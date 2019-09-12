@@ -1,4 +1,8 @@
 export default {
+  size: {
+    width: 1366,
+    height: 768
+  },
   colors: {
     primary: '#ebe5da',
     secondary: '#f04d21',
