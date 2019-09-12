@@ -36,13 +36,14 @@ const Slide = props => {
     backgroundColor,
     textColor,
     template,
-    numberOfSlides
+    numberOfSlides,
+    scaleRatio
   } = props;
   const theme = React.useContext(ThemeContext);
   const { slideElementMap, keyboardControls } = React.useContext(DeckContext);
   const initialState = { currentSlideElement: 0, immediate: false };
   const numberOfSlideElements = slideElementMap[slideNum];
-  const [ratio, setRatio] = React.useState({ x: 1, y: 1 });
+  const [ratio, setRatio] = React.useState(scaleRatio || 1);
 
   const transformForWindowSize = React.useCallback(() => {
     const slideWidth = theme.size.width || 1366;
@@ -55,12 +56,15 @@ const Slide = props => {
   }, [theme]);
 
   React.useEffect(() => {
+    if (!isNaN(scaleRatio)) {
+      return;
+    }
     transformForWindowSize();
     window.addEventListener('resize', transformForWindowSize);
     return () => {
       window.removeEventListener('resize', transformForWindowSize);
     };
-  }, [transformForWindowSize]);
+  }, [transformForWindowSize, scaleRatio]);
 
   const value = useSlide(
     initialState,
@@ -88,6 +92,7 @@ Slide.propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
   numberOfSlides: PropTypes.number,
+  scaleRatio: PropTypes.number,
   slideNum: PropTypes.number,
   template: PropTypes.func,
   textColor: PropTypes.string
