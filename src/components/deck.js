@@ -27,10 +27,11 @@ import searchChildrenForAppear from '../utils/search-children-appear';
  */
 
 const AnimatedDeckDiv = styled(animated.div)`
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  position: fixed;
 `;
 
 const initialState = {
@@ -44,18 +45,15 @@ const initialState = {
 
 const defaultSlideEffect = {
   from: {
-    width: '100%',
-    position: 'absolute',
+    position: 'fixed',
     transform: 'translate(100%, 0%)'
   },
   enter: {
-    width: '100%',
-    position: 'absolute',
+    position: 'fixed',
     transform: 'translate(0, 0%)'
   },
   leave: {
-    width: '100%',
-    position: 'absolute',
+    position: 'fixed',
     transform: 'translate(-100%, 0%)'
   },
   config: { precision: 0 }
