@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useSlide, { SlideContext } from '../hooks/use-slide';
-import { DeckContext } from '../hooks/use-deck';
 import styled, { ThemeContext } from 'styled-components';
 import { color } from 'styled-system';
 
@@ -40,9 +39,6 @@ const Slide = props => {
     scaleRatio
   } = props;
   const theme = React.useContext(ThemeContext);
-  const { slideElementMap, keyboardControls } = React.useContext(DeckContext);
-  const initialState = { currentSlideElement: 0, immediate: false };
-  const numberOfSlideElements = slideElementMap[slideNum];
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
 
   const transformForWindowSize = React.useCallback(() => {
@@ -51,8 +47,8 @@ const Slide = props => {
       document.documentElement.clientWidth,
       window.innerWidth || 0
     );
-    const ratio = clientWidth / slideWidth;
-    setRatio(ratio);
+    const newRatio = clientWidth / slideWidth;
+    setRatio(newRatio);
   }, [theme]);
 
   React.useEffect(() => {
@@ -66,12 +62,8 @@ const Slide = props => {
     };
   }, [transformForWindowSize, scaleRatio]);
 
-  const value = useSlide(
-    initialState,
-    slideNum,
-    numberOfSlideElements,
-    keyboardControls
-  );
+  const value = useSlide(slideNum);
+
   return (
     <SlideContainer
       backgroundColor={backgroundColor}
@@ -79,7 +71,10 @@ const Slide = props => {
     >
       <TemplateWrapper>
         {typeof template === 'function' &&
-          template({ slideNumber: slideNum, numberOfSlides })}
+          template({
+            slideNumber: slideNum,
+            numberOfSlides: numberOfSlides - 1
+          })}
       </TemplateWrapper>
       <SlideWrapper color={textColor}>
         <SlideContext.Provider value={value}>{children}</SlideContext.Provider>

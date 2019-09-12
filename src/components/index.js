@@ -12,6 +12,7 @@ import {
 } from './typography';
 import { FlexBox, Grid, Box } from './layout';
 import { Image } from './Image';
+import Notes from './notes';
 
 export {
   Deck,
@@ -27,5 +28,6 @@ export {
   Heading,
   ListItem,
   UnorderedList,
-  Text
+  Text,
+  Notes
 };
