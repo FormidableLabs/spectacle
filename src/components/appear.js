@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
-import { DeckContext } from '../hooks/use-deck';
 import { TransitionPipeContext } from '../hooks/use-transition-pipe';
+import { SlideContext } from '../hooks/use-slide';
 
 /**
  * SlideElementWrapper provides a component for animating slideElements
@@ -17,8 +17,8 @@ import { TransitionPipeContext } from '../hooks/use-transition-pipe';
 
 const Appear = ({ elementNum, transitionEffect, children }) => {
   const {
-    state: { reverseDirection, currentSlideElement, immediateElement }
-  } = React.useContext(DeckContext);
+    state: { currentSlideElement, reverseDirection, immediate }
+  } = React.useContext(SlideContext);
   const { signal } = React.useContext(TransitionPipeContext);
   const activeElement = elementNum === currentSlideElement;
   const upcomingElement =
@@ -42,18 +42,18 @@ const Appear = ({ elementNum, transitionEffect, children }) => {
     if (activeElement && !reverseDirection) {
       set({
         ...transitionEffect.to,
-        immediate: immediateElement
+        immediate
       });
     } else if (reverseDirection && previousElement) {
       set({
         ...transitionEffect.from,
-        immediate: immediateElement
+        immediate
       });
     }
   }, [
     activeElement,
     elementNum,
-    immediateElement,
+    immediate,
     previousElement,
     reverseDirection,
     set,

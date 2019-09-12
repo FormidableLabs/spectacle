@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useSlide, { SlideContext } from '../hooks/use-slide';
-import { DeckContext } from '../hooks/use-deck';
 import styled, { ThemeContext } from 'styled-components';
 import { color } from 'styled-system';
 
@@ -38,9 +37,6 @@ const Slide = props => {
     scaleRatio
   } = props;
   const theme = React.useContext(ThemeContext);
-  const { slideElementMap, keyboardControls } = React.useContext(DeckContext);
-  const initialState = { currentSlideElement: 0, immediate: false };
-  const numberOfSlideElements = slideElementMap[slideNum];
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
   const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
   const slideRef = React.useRef(null);
@@ -52,10 +48,10 @@ const Slide = props => {
     const clientHeight = slideRef.current.parentElement.clientHeight;
     const useVerticalRatio =
       clientWidth / clientHeight > slideWidth / slideHeight;
-    const ratio = useVerticalRatio
+    const newRatio = useVerticalRatio
       ? clientHeight / slideHeight
       : clientWidth / slideWidth;
-    setRatio(ratio);
+    setRatio(newRatio);
   }, [slideHeight, slideWidth]);
 
   React.useEffect(() => {
@@ -84,12 +80,9 @@ const Slide = props => {
       window.removeEventListener('resize', transformForWindowSize);
     };
   }, [transformForWindowSize, scaleRatio]);
-  const value = useSlide(
-    initialState,
-    slideNum,
-    numberOfSlideElements,
-    keyboardControls
-  );
+
+  const value = useSlide(slideNum);
+
   return (
     <SlideContainer
       ref={slideRef}
@@ -101,7 +94,10 @@ const Slide = props => {
     >
       <TemplateWrapper>
         {typeof template === 'function' &&
-          template({ slideNumber: slideNum, numberOfSlides })}
+          template({
+            slideNumber: slideNum,
+            numberOfSlides: numberOfSlides - 1
+          })}
       </TemplateWrapper>
       <SlideWrapper color={textColor}>
         <SlideContext.Provider value={value}>{children}</SlideContext.Provider>

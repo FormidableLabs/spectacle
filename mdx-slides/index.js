@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { MDXProvider } from '@mdx-js/react';
-import { Deck, Slide } from '../src/components';
+import { Deck, Slide, Notes } from '../src/components';
 
 // See the webpack config to see how this import alias is made
 import slides, { notes } from 'spectacle-user-mdx';
@@ -15,10 +15,9 @@ const MDXSlides = () => (
         <Slide key={`slide-${i}`} slideNum={i}>
           <MDXProvider components={mdxComponentMap}>
             <MDXSlide />
-            <div
-              style={{ height: 5, width: '100%', backgroundColor: 'black' }}
-            />
-            <NotesForSlide />
+            <Notes>
+              <NotesForSlide />
+            </Notes>
           </MDXProvider>
         </Slide>
       );

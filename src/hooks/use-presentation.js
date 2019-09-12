@@ -1,30 +1,47 @@
-import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
+
+function getReceiver() {
+  return (
+    window.navigator &&
+    window.navigator.presentation &&
+    window.navigator.presentation.receiver
+  );
+}
 
 function usePresentation() {
   const [connection, setConnection] = useState(null);
-  const [isReceiver, setIsReceiver] = useState(false);
-
-  // moved to using ref as we don't want messagehandlers to change after invocation
-  const messageHandlers = useRef({});
-  const requestRef = useRef(null);
   const [errors, setErrors] = useState([]);
 
-  // add message handler handles adding and removing handlers
-  const addMessageHandler = useCallback((handler, key) => {
-    const keyHandlers = (messageHandlers.current[key] =
-      messageHandlers.current[key] || []);
-    keyHandlers.push(handler);
-    return () => {
-      // if it exists then remove it from the messageHandler in cleanup
-      const keyHandlers = messageHandlers.current[key];
-      if (keyHandlers) {
-        keyHandlers.splice(keyHandlers.indexOf(handler), 1);
-      }
-    };
-  }, []);
+  const requestRef = useRef(null);
 
   // Open to suggestions for better error handling
   const addError = e => setErrors(es => [...es, e]);
+
+  // Create a presentation request and store it as a ref
+  useEffect(() => {
+    if (!window.PresentationRequest) {
+      addError(new Error('Browser does not support Presentation API'));
+    }
+    return terminateConnection;
+  }, [connection, terminateConnection]);
+
+  // Add a message handler
+  const addMessageHandler = useCallback(handler => {
+    const receiver = getReceiver();
+    if (receiver) {
+      const handleConnectionList = list => {
+        list.connections.forEach(listConnection => {
+          const oldHandler = listConnection.onmessage || (() => {});
+          listConnection.onmessage = event => {
+            const parsedData = JSON.parse(event.data);
+            handler(parsedData);
+            oldHandler(event);
+          };
+        });
+      };
+      receiver.connectionList.then(handleConnectionList).catch(addError);
+    }
+  }, []);
 
   const terminateConnection = useCallback(() => {
     if (connection) {
@@ -33,70 +50,39 @@ function usePresentation() {
     }
   }, [connection]);
 
-  // Create a presentation request and store it as a ref
-  useEffect(() => {
-    if (PresentationRequest) {
-      if (!requestRef.current) {
-        requestRef.current = new PresentationRequest(['/']);
-      }
-    } else {
-      addError(new Error('Browser does not support Presentation API'));
-    }
-    return terminateConnection;
-  }, [connection, terminateConnection]);
-
-  // Listen for messages (from the controller to the presenter) and call handleMessage
-  useEffect(() => {
-    const handleConnectionList = list => {
-      list.connections.forEach(connection => {
-        connection.onmessage = ({ data }) => {
-          const event = JSON.parse(data);
-          // check if we have and handler for this event
-          const handlers = messageHandlers.current[event.type];
-          if (handlers) {
-            // if it exists then pass payload to slide
-            handlers.forEach(handler => handler(event.payload));
-          }
-        };
-      });
-    };
-    const receiver =
-      navigator && navigator.presentation && navigator.presentation.receiver;
-    if (receiver) {
-      receiver.connectionList.then(handleConnectionList).catch(addError);
-      setIsReceiver(true);
-    }
-    return () => setIsReceiver(false);
-  }, [connection]);
-
   // Opens the display selection dialog box
-  const startConnection = useCallback(() => {
+  const startConnection = useCallback(urlParams => {
+    requestRef.current = new PresentationRequest([`/?${urlParams}`]);
     const request = requestRef && requestRef.current;
     if (request) {
       request
         .start()
-        .then(setConnection)
-        .catch(() =>
-          addError(new Error('User exited display selection dialog box'))
+        .then(requestConnection => {
+          requestConnection.onclose = () => setConnection(null); // Detect user closing presentation window
+          setConnection(requestConnection);
+        })
+        .catch(e =>
+          addError(
+            new Error('User (probably) exited display selection dialog box', e)
+          )
         );
     }
   }, []);
 
   // Send a message from the controller to the presenter
-  // type is the handler name e.g. slideDispatch0
   const sendMessage = useCallback(
-    (type, payload) => {
+    msg => {
       // This may throw if message isn't stringify-able
       try {
         if (connection) {
-          connection.send(
-            JSON.stringify({
-              type,
-              payload
-            })
+          connection.send(JSON.stringify(msg));
+        } else {
+          addError(
+            new Error('Cannot send message before starting a conection')
           );
         }
       } catch (e) {
+        console.log('error', e);
         addError(e);
       }
     },
@@ -108,10 +94,12 @@ function usePresentation() {
     terminateConnection,
     sendMessage,
     errors,
-    isReceiver,
     addMessageHandler,
-    hasConnection: !!connection
+    isReceiver: Boolean(getReceiver()),
+    isController: Boolean(connection)
   };
 }
 
 export default usePresentation;
+
+export const MSG_SLIDE_STATE_CHANGE = 'MSG_SLIDE_STATE_CHANGE';
