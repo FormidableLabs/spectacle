@@ -1,38 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { MDXProvider } from '@mdx-js/react';
+import { Deck, Slide, Notes } from '../src/components';
 
 // See the webpack config to see how this import alias is made
 import slides, { notes } from 'spectacle-user-mdx';
-import {
-  Deck,
-  Slide,
-  CodePane,
-  Image,
-  OrderedList,
-  Quote,
-  Heading,
-  UnorderedList,
-  Text,
-  ListItem,
-  Notes
-} from '../src/components';
-
-const LeftAlignedHeading = props => <Heading {...props} textAlign="left" />;
-
-const components = {
-  p: Text,
-  h1: LeftAlignedHeading,
-  h2: LeftAlignedHeading,
-  h3: LeftAlignedHeading,
-  blockquote: Quote,
-  ul: UnorderedList,
-  ol: OrderedList,
-  li: ListItem,
-  img: Image,
-  codeblock: CodePane,
-  code: CodePane
-};
+import mdxComponentMap from '../src/utils/mdx-component-mapper';
 
 const MDXSlides = () => (
   <Deck loop>
@@ -40,7 +13,7 @@ const MDXSlides = () => (
       const NotesForSlide = notes[i];
       return (
         <Slide key={`slide-${i}`} slideNum={i}>
-          <MDXProvider components={components}>
+          <MDXProvider components={mdxComponentMap}>
             <MDXSlide />
             <Notes>
               <NotesForSlide />
