@@ -24,7 +24,14 @@
       // - [ ] Prop-types: `https://unpkg.com/prop-types@15.7.2?module`
       // - [ ] Once prop-types is shimmed. Remove `one-page` babel build, and switch to `es/` totally...
       //     - [ ] package.json:scripts, .gitignore, etc.
-
+      // - [ ] No ESM
+      //     - https://unpkg.com/stylis-rule-sheet@0.0.10?module
+      //       ISSUE: https://github.com/thysultan/stylis.js/issues/81
+      //     - https://unpkg.com/react-is@16.9.0?module
+      //     - https://unpkg.com/stream@0.0.2?module
+      //     - https://unpkg.com/prop-types@15.7.2?module
+      //       SHIM: Manual project
+      //     - https://unpkg.com/object-assign@4.1.1?module
 
       import CodePane from './one-page/components/code-pane.js';
       import Deck from './one-page/components/deck.js';
@@ -138,14 +145,18 @@
         "imports": {
           "history": "https://unpkg.com/history?module",
           "query-string": "https://unpkg.com/@chaitin/querystring?module",
-          "https://unpkg.com/react@>= 16.8.0?module": "./one-page-temp-react.js",
           "https://unpkg.com/react@>=0.14.9?module": "./one-page-temp-react.js",
+          "https://unpkg.com/react@>= 16.3.0?module": "./one-page-temp-react.js",
+          "https://unpkg.com/react@>= 16.8.0?module": "./one-page-temp-react.js",
+          "https://unpkg.com/react@16.9.0?module": "./one-page-temp-react.js",
           "react": "./one-page-temp-react.js",
           "react-dom": "https://unpkg.com/es-react@16.8.60/src/react-dom.js",
           "react-spring": "https://unpkg.com/react-spring?module",
           "prism-react-renderer": "./one-page-temp-prism-react-renderer/es/index.js",
           "prism-react-renderer/es/vendor/prism/index": "./one-page-temp-prism-react-renderer/es/vendor/prism/index.js",
           "prism-react-renderer/es/themes/vsDark": "./one-page-temp-prism-react-renderer/es/themes/vsDark.js",
+          "https://unpkg.com/prop-types@^15.5.4?module": "./one-page-temp-prop-types.js",
+          "prop-types": "./one-page-temp-prop-types.js",
           "styled-components": "https://unpkg.com/styled-components?module",
           "styled-system": "https://unpkg.com/styled-system?module",
           "wonka": "https://unpkg.com/wonka?module"

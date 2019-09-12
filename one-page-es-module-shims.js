@@ -201,7 +201,11 @@
 
   function resolveImportMap (importMap, resolvedOrPlain, parentUrl) {
     // TODO(ONE-PAGE): Find unpkg react strings
-    if (resolvedOrPlain.indexOf("/react@") !== -1) {
+    if (
+      resolvedOrPlain.indexOf("/react@") !== -1 ||
+      resolvedOrPlain.indexOf("/prop-types@") !== -1 ||
+      resolvedOrPlain.indexOf("/react-is@") !== -1
+    ) {
       console.log("TODO HERE resolveImportMap", { resolvedOrPlain, parentUrl });
     }
 
@@ -266,7 +270,7 @@
   }
 
   async function loadAll (load, seen) {
-    console.log("TODO HERE loadAll", { load, seen });
+    //console.log("TODO HERE loadAll", { load, seen });
     if (load.b || seen[load.u])
       return;
     seen[load.u] = 1;
