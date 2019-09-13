@@ -18,7 +18,7 @@ const PresenterDeckContainer = styled('div')`
 `;
 
 const NotesColumn = styled('div')`
-  padding: 4em;
+  padding: 2em 4em;
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -39,7 +39,6 @@ const PresentationHeader = styled(Heading)`
 const SlideContainer = styled('div')`
   height: calc(50% - 1em);
   width: 100%;
-  background-color: ${defaultTheme.colors.primary};
 `;
 
 const SlideDivider = styled('div')`
@@ -50,6 +49,7 @@ const Button = styled('button')`
   border: 0;
   width: 250px;
   padding: 1em;
+  margin-bottom: 1em;
   background-color: ${defaultTheme.colors.secondary};
   color: ${defaultTheme.colors.primary};
   font-size: ${defaultTheme.fontSizes.text};
@@ -82,10 +82,6 @@ const PresenterDeck = props => {
   const nextSlide =
     children.length > currentSlide + 1 ? children[currentSlide + 1] : null;
 
-  const clonedActiveSlide = React.cloneElement(activeSlide, {});
-
-  const clonedNextSlide = nextSlide && React.cloneElement(nextSlide, {});
-
   return (
     <PresenterDeckContainer>
       <NotesColumn>
@@ -99,9 +95,9 @@ const PresenterDeck = props => {
         <Text lineHeight="180%">{currentNotes}</Text>
       </NotesColumn>
       <PreviewColumn>
-        <SlideContainer>{clonedActiveSlide}</SlideContainer>
+        <SlideContainer>{activeSlide}</SlideContainer>
         <SlideDivider />
-        <SlideContainer>{clonedNextSlide}</SlideContainer>
+        <SlideContainer>{nextSlide}</SlideContainer>
       </PreviewColumn>
     </PresenterDeckContainer>
   );
