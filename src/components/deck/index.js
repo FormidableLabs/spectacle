@@ -24,10 +24,8 @@ import {
 import searchChildrenForAppear from '../../utils/search-children-appear';
 
 const AnimatedDeckDiv = styled(animated.div)`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
+  width: 100vw;
   position: fixed;
 `;
 
