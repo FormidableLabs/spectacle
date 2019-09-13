@@ -7,27 +7,28 @@ import defaultTheme from '../../theme/default-theme';
 import * as queryString from 'query-string';
 
 const PresenterDeckContainer = styled('div')`
-  height: calc(100vh - 8em);
-  width: calc(100vw - 8em);
+  height: 100vh;
+  width: 100vw;
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: row;
-  padding: 4em;
-  background-color: ${defaultTheme.colors.tertiary};
+  background-color: black;
 `;
 
 const NotesColumn = styled('div')`
+  padding: 2em 4em;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  width: 50%;
 `;
 
 const PreviewColumn = styled('div')`
   display: flex;
   flex-direction: column;
-  flex: 1;
+  height: 100%;
+  width: 50%;
 `;
 
 const PresentationHeader = styled(Heading)`
@@ -35,15 +36,20 @@ const PresentationHeader = styled(Heading)`
   text-align: start;
 `;
 
-const SlidePreviewPlaceholder = styled('div')`
-  flex: 1;
-  background-color: ${defaultTheme.colors.primary};
+const SlideContainer = styled('div')`
+  height: calc(50% - 1em);
+  width: 100%;
+`;
+
+const SlideDivider = styled('div')`
+  height: 2em;
 `;
 
 const Button = styled('button')`
   border: 0;
   width: 250px;
   padding: 1em;
+  margin-bottom: 1em;
   background-color: ${defaultTheme.colors.secondary};
   color: ${defaultTheme.colors.primary};
   font-size: ${defaultTheme.fontSizes.text};
@@ -58,7 +64,8 @@ const PresenterDeck = props => {
     isController,
     isReceiver,
     startConnection,
-    terminateConnection
+    terminateConnection,
+    children
   } = props;
 
   const onStartConnection = React.useCallback(() => {
@@ -69,6 +76,11 @@ const PresenterDeck = props => {
     });
     startConnection(urlParams);
   }, [currentSlide, currentSlideElement, immediate, startConnection]);
+
+  const activeSlide =
+    children.length > currentSlide ? children[currentSlide] : null;
+  const nextSlide =
+    children.length > currentSlide + 1 ? children[currentSlide + 1] : null;
 
   return (
     <PresenterDeckContainer>
@@ -83,14 +95,9 @@ const PresenterDeck = props => {
         <Text lineHeight="180%">{currentNotes}</Text>
       </NotesColumn>
       <PreviewColumn>
-        <PresentationHeader fontSize="subHeader">
-          Current Slide:
-        </PresentationHeader>
-        <SlidePreviewPlaceholder />
-        <PresentationHeader fontSize="subHeader">
-          Next Slide:
-        </PresentationHeader>
-        <SlidePreviewPlaceholder />
+        <SlideContainer>{activeSlide}</SlideContainer>
+        <SlideDivider />
+        <SlideContainer>{nextSlide}</SlideContainer>
       </PreviewColumn>
     </PresenterDeckContainer>
   );
