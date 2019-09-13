@@ -8,7 +8,9 @@ import {
   Heading,
   ListItem,
   UnorderedList,
-  Text
+  Text,
+  Link,
+  CodeSpan
 } from './typography';
 import { FlexBox, Grid, Box } from './layout';
 import { Image } from './Image';
@@ -29,5 +31,7 @@ export {
   ListItem,
   UnorderedList,
   Text,
+  Link,
+  CodeSpan,
   Notes
 };

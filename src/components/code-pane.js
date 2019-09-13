@@ -8,8 +8,7 @@ const spaceSearch = /\S|$/;
 
 const lineNumberStyles = {
   padding: '0 1em',
-  borderRight: '1px solid hsla(0, 0%, 0%, 0.25)',
-  background: 'hsla(0, 0%, 0%, 0.1)',
+  borderRight: '1px solid hsla(0, 0%, 100%, 0.25)',
   flex: '0 1 30px',
   alignSelf: 'stretch'
 };
@@ -33,14 +32,27 @@ export default function CodePane(props) {
     }
   }, [themeContext]);
 
+  const fontSize = React.useMemo(() => {
+    if (
+      themeContext &&
+      themeContext.fontSizes &&
+      themeContext.fontSizes.monospace
+    ) {
+      return themeContext.fontSizes.monospace;
+    }
+    return props.fontSize;
+  }, [themeContext, props.fontSize]);
+
   const preStyles = React.useMemo(
     () => ({
       fontFamily: font,
-      fontSize: props.fontSize,
+      fontSize: fontSize,
+      maxHeight: themeContext.size.maxCodePaneHeight || 300,
+      overflow: 'scroll',
       margin: 0,
-      padding: '0 1em 0 0'
+      padding: '0.5em 1em 0.5em 0'
     }),
-    [font, props.fontSize]
+    [font, fontSize, themeContext]
   );
 
   const measureIndentation = React.useCallback(

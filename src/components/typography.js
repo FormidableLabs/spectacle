@@ -17,11 +17,35 @@ Text.defaultProps = {
   margin: 'textMargin'
 };
 
+const CodeSpan = styled('code')(
+  compose(
+    color,
+    typography,
+    space
+  )
+);
+CodeSpan.defaultProps = {
+  fontFamily: 'monospace'
+};
+
+const Link = styled('a')(
+  compose(
+    color,
+    typography,
+    space
+  )
+);
+Link.defaultProps = {
+  ...Text.defaultProps,
+  textDecoration: 'underline',
+  color: 'quaternary'
+};
+
 const Heading = styled(Text)({});
 Heading.defaultProps = {
   color: 'secondary',
   fontFamily: 'header',
-  fontSize: 'header',
+  fontSize: 'h1',
   fontWeight: 'bold',
   textAlign: 'center',
   margin: 'headerMargin'
@@ -79,4 +103,13 @@ const ListItem = styled('li')(
   )
 );
 
-export { Text, Heading, Quote, OrderedList, UnorderedList, ListItem };
+export {
+  Text,
+  Heading,
+  Quote,
+  OrderedList,
+  UnorderedList,
+  ListItem,
+  Link,
+  CodeSpan
+};

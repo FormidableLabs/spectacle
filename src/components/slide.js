@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useSlide, { SlideContext } from '../hooks/use-slide';
 import styled, { ThemeContext } from 'styled-components';
-import { color } from 'styled-system';
+import { color, space } from 'styled-system';
 
 const SlideContainer = styled('div')`
   ${color};
   width: ${({ theme }) => theme.size.width || 1366}px;
   height: ${({ theme }) => theme.size.height || 768}px;
+  overflow: hidden;
 `;
 const SlideWrapper = styled('div')`
   ${color};
-  overflow-y: scroll;
+  ${space};
 `;
 const TemplateWrapper = styled('div')`
   position: absolute;
@@ -19,6 +20,7 @@ const TemplateWrapper = styled('div')`
   left: 0;
   right: 0;
   bottom: 0;
+  pointer-events: none;
 `;
 
 /**
@@ -99,7 +101,7 @@ const Slide = props => {
             numberOfSlides: numberOfSlides - 1
           })}
       </TemplateWrapper>
-      <SlideWrapper color={textColor}>
+      <SlideWrapper padding="slidePadding" color={textColor}>
         <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
       </SlideWrapper>
     </SlideContainer>
