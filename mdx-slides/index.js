@@ -27,7 +27,7 @@ const MDXSlides = () => (
         width={1}
       >
         <Text fontSize={16} color="quinary" fontWeight="bold">
-          Slide {slideNumber} of {numberOfSlides}
+          Slide {slideNumber} of {numberOfSlides - 1}
         </Text>
         <Box padding={10}>
           <Image src={formidableLogo} width={100} />
