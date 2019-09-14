@@ -54,6 +54,10 @@ Heading.defaultProps = {
 const Quote = styled(Text)`
   border-left: 1px solid
     ${({ theme, borderColor }) => borderColor || theme.colors.secondary};
+
+  div {
+    margin: 0;
+  }
 `;
 Quote.defaultProps = {
   color: 'primary',

@@ -13,7 +13,7 @@ import {
   CodeSpan
 } from './typography';
 import { FlexBox, Grid, Box } from './layout';
-import { Image } from './Image';
+import { Image } from './image';
 import Notes from './notes';
 
 export {

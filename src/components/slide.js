@@ -21,6 +21,7 @@ const TemplateWrapper = styled('div')`
   right: 0;
   bottom: 0;
   pointer-events: none;
+  z-index: -1;
 `;
 
 /**
