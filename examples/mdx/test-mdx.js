@@ -1,21 +1,30 @@
 import React from 'react';
 import slides from './slides.mdx';
-import Deck from '../../src/components/deck';
-import Slide from '../../src/components/slide';
-
+import { Deck, Text, FlexBox, Box, Image, Slide } from '../../src/components';
 import { MDXProvider } from '@mdx-js/react';
-
-/*
- * Note: you can add mappings here to customize how
- * MDX will render standard markdown tags
- */
-const components = {
-  // h5: MyH5Component
-};
+import mdxComponentMap from '../../src/utils/mdx-component-mapper';
+const formidableLogo = require('../js/formidable.png');
 
 const MDXTest = () => (
-  <MDXProvider components={components}>
-    <Deck loop>
+  <MDXProvider components={mdxComponentMap}>
+    <Deck
+      loop
+      template={({ numberOfSlides, slideNumber }) => (
+        <FlexBox
+          justifyContent="space-between"
+          position="absolute"
+          bottom={0}
+          width={1}
+        >
+          <Text fontSize={16} color="quinary" fontWeight="bold">
+            Slide {slideNumber} of {numberOfSlides - 1}
+          </Text>
+          <Box padding={10}>
+            <Image src={formidableLogo} width={100} />
+          </Box>
+        </FlexBox>
+      )}
+    >
       {slides.map((S, i) => (
         <Slide key={`slide-${i}`} slideNum={i}>
           <S />
