@@ -47,7 +47,7 @@ const SlideDivider = styled('div')`
 
 const Button = styled('button')`
   border: 0;
-  width: 250px;
+  width: 300px;
   padding: 1em;
   margin-bottom: 1em;
   background-color: ${defaultTheme.colors.secondary};
@@ -92,7 +92,9 @@ const PresenterDeck = props => {
           <Button onClick={terminateConnection}>Terminate Connection</Button>
         )}
         <PresentationHeader fontSize="subHeader">Notes:</PresentationHeader>
-        <Text lineHeight="180%" fontSize="14px">{currentNotes}</Text>
+        <Text lineHeight="180%" fontSize="18px">
+          {currentNotes}
+        </Text>
       </NotesColumn>
       <PreviewColumn>
         <SlideContainer>{activeSlide}</SlideContainer>
