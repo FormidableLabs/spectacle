@@ -21,6 +21,7 @@ const Box = styled('div')(
 const FlexBox = styled('div')(
   compose(
     layout,
+    space,
     flexbox,
     position
   )

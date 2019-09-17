@@ -15,6 +15,8 @@ import {
 import { FlexBox, Grid, Box } from './layout';
 import { Image } from './image';
 import Notes from './notes';
+import Progress from './progress';
+import FullScreen from './fullscreen';
 
 export {
   Deck,
@@ -33,5 +35,7 @@ export {
   Text,
   Link,
   CodeSpan,
-  Notes
+  Notes,
+  Progress,
+  FullScreen
 };
