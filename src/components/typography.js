@@ -25,7 +25,8 @@ const CodeSpan = styled('code')(
   )
 );
 CodeSpan.defaultProps = {
-  fontFamily: 'monospace'
+  fontFamily: 'monospace',
+  fontSize: 'monospace'
 };
 
 const Link = styled('a')(
@@ -106,6 +107,10 @@ const ListItem = styled('li')(
     space
   )
 );
+
+ListItem.defaultProps = {
+  margin: 'listMargin'
+}
 
 export {
   Text,

@@ -22,7 +22,7 @@ export default {
     h3: '40px',
     h4: '32px',
     text: '26px',
-    monospace: '26px'
+    monospace: '20px'
   },
   space: {
     headerMargin: '16px 16px 24px',
