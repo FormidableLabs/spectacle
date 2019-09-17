@@ -27,10 +27,9 @@
       // - [ ] No ESM
       //     - https://unpkg.com/stylis-rule-sheet@0.0.10?module
       //       ISSUE: https://github.com/thysultan/stylis.js/issues/81
-      //     - https://unpkg.com/react-is@16.9.0?module
       //     - https://unpkg.com/stream@0.0.2?module
       //     - https://unpkg.com/prop-types@15.7.2?module
-      //       SHIM: Manual project
+      //       SHIM: Manual build in another temp project
       //     - https://unpkg.com/object-assign@4.1.1?module
       //       SHIM: Simple
 
@@ -152,6 +151,8 @@
           "https://unpkg.com/react@16.9.0?module": "./one-page-temp-react.js",
           "react": "./one-page-temp-react.js",
           "react-dom": "https://unpkg.com/es-react@16.8.60/src/react-dom.js",
+          "https://unpkg.com/react-is@^16.6.0?module": "https://unpkg.com/react-is-esm@16.8.4-alpha.1/dist-web/index.js?module",
+          "react-is": "https://unpkg.com/react-is-esm@16.8.4-alpha.1/dist-web/index.js?module",
           "react-spring": "https://unpkg.com/react-spring?module",
           "https://unpkg.com/object-assign@^4.1.1?module": "./one-page-temp-object-assign.js",
           "object-asign": "./one-page-temp-object-assign.js",

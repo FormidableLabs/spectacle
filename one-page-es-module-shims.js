@@ -202,7 +202,7 @@
   function resolveImportMap (importMap, resolvedOrPlain, parentUrl) {
     // TODO(ONE-PAGE): Find unpkg react strings
     if (
-      resolvedOrPlain.indexOf("/object-assign@") !== -1
+      resolvedOrPlain.indexOf("/react-is@") !== -1
     ) {
       console.log("TODO HERE resolveImportMap", { resolvedOrPlain, parentUrl });
     }
