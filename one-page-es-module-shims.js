@@ -202,7 +202,7 @@
   function resolveImportMap (importMap, resolvedOrPlain, parentUrl) {
     // TODO(ONE-PAGE): Find unpkg react strings
     if (
-      resolvedOrPlain.indexOf("/stylis-rule-sheet@") !== -1
+      resolvedOrPlain.indexOf("/stream@") !== -1
     ) {
       console.log("TODO HERE resolveImportMap", { resolvedOrPlain, parentUrl });
     }
@@ -470,9 +470,13 @@
     })();
 
     load.L = load.f.then(async deps => {
+      window.DEP_START = window.DEP_START || 0;
+      window.DEP_END = window.DEP_END || 0;
       load.d = await Promise.all(deps.map(async depId => {
+        console.log("TODO DEPLOAD START", { start: window.DEP_START++, depId });
         const depLoad = getOrCreateLoad(await resolve(depId, load.r || load.u));
         await depLoad.f;
+        console.log("TODO DEPLOAD FINISH", { end: window.DEP_END++, depId });
         return depLoad;
       }));
     });
