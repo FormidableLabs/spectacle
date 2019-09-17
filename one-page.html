@@ -27,6 +27,7 @@
       // - [ ] No ESM
       //     - https://unpkg.com/stylis-rule-sheet@0.0.10?module
       //       ISSUE: https://github.com/thysultan/stylis.js/issues/81
+      //       SHIM: Manual copy and paste with export.
       //     - https://unpkg.com/stream@0.0.2?module
       //     - https://unpkg.com/prop-types@15.7.2?module
       //       SHIM: Manual build in another temp project
@@ -163,6 +164,8 @@
           "prop-types": "./one-page-temp-prop-types.js",
           "styled-components": "https://unpkg.com/styled-components?module",
           "styled-system": "https://unpkg.com/styled-system?module",
+          "https://unpkg.com/stylis-rule-sheet@^0.0.10?module": "./one-page-temp-stylis-rule-sheet.js",
+          "stylis-rule-sheet": "./one-page-temp-stylis-rule-sheet.js",
           "wonka": "https://unpkg.com/wonka?module"
         }
       }

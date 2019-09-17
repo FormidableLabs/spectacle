@@ -202,7 +202,7 @@
   function resolveImportMap (importMap, resolvedOrPlain, parentUrl) {
     // TODO(ONE-PAGE): Find unpkg react strings
     if (
-      resolvedOrPlain.indexOf("/react-is@") !== -1
+      resolvedOrPlain.indexOf("/stylis-rule-sheet@") !== -1
     ) {
       console.log("TODO HERE resolveImportMap", { resolvedOrPlain, parentUrl });
     }
