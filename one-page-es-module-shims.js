@@ -10,7 +10,18 @@
   let baseUrl;
 
   function createBlob (source) {
-    return URL.createObjectURL(new Blob([source], { type: 'application/javascript' }));
+    const blob = new Blob([source], { type: 'application/javascript' });
+    const obj = URL.createObjectURL(blob);
+
+    // TODO TEMP DEBUG.
+    // Print out all imports so we get blob:URLs
+    const blobImports = source
+      .split("\n")
+      .filter((l) => l.indexOf("blob:") > -1)
+      .join("\n");
+    console.log(obj, blobImports);
+
+    return obj;
   }
 
   const hasDocument = typeof document !== 'undefined';
