@@ -7,95 +7,53 @@ import React from 'react';
 
 export const DeckContext = React.createContext();
 
-function useDeck(
-  initialState,
-  numSlides,
-  looping,
-  animationsWhenGoingBack,
-  slideElementMap
-) {
+function useDeck(initialState) {
   function reducer(state, action) {
     switch (action.type) {
-      case 'NEXT_SLIDE':
-        return {
-          ...state,
-          currentSlide: state.currentSlide + 1,
-          currentSlideElement: 0,
-          immediate: false,
-          immediateElement: false,
-          reverseDirection: false
-        };
-      case 'NEXT_SLIDE_IMMEDIATE':
-        return {
-          ...state,
-          currentSlide: state.currentSlide + 1,
-          immediate: true,
-          currentSlideElement: 0,
-          immediateElement: false,
-          reverseDirection: false
-        };
       case 'GO_TO_SLIDE': {
-        return {
+        const newState = {
           ...state,
-          currentSlideElement: 0,
+          currentSlideElement: action.payload.slideElementNumber,
           currentSlide: action.payload.slideNumber,
           immediate: action.payload.immediate,
           immediateElement: false,
-          reverseDirection: action.payload.reverseDirection
+          reverseDirection: action.payload.reverseDirection,
+          presenterMode: action.payload.presenterMode,
+          resolvedInitialUrl: true
         };
+        return newState;
       }
-      case 'PREV_SLIDE':
+      case 'SET_NOTES': {
         return {
           ...state,
-          currentSlide: state.currentSlide - 1,
-          currentSlideElement: Math.max(
-            slideElementMap[state.currentSlide - 1],
-            0
-          ),
-          immediate: !!animationsWhenGoingBack,
-          immediateElement: true,
-          reverseDirection: true
-        };
-      case 'NEXT_SLIDE_ELEMENT':
-        return {
-          ...state,
-          currentSlideElement: state.currentSlideElement + 1,
-          immediateElement: false,
-          reverseDirection: false
-        };
-      case 'NEXT_SLIDE_ELEMENT_IMMEDIATE':
-        return {
-          ...state,
-          currentSlideElement: state.currentSlideElement + 1,
-          immediateElement: true,
-          reverseDirection: false
-        };
-      case 'PREV_SLIDE_ELEMENT':
-        return {
-          ...state,
-          currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
-          immediateElement: false,
-          reverseDirection: true
-        };
-      case 'PREV_SLIDE_ELEMENT_IMMEDIATE':
-        return {
-          ...state,
-          currentSlideElement: Math.max(state.currentSlideElement - 1, 0),
-          immediateElement: true,
-          reverseDirection: true
-        };
-      case 'SET_PRESENTER_MODE': {
-        return {
-          ...state,
-          presenterMode: action.payload.presenterMode
+          notes: {
+            ...state.notes,
+            [action.payload.slideNumber]: action.payload.notes
+          }
         };
       }
       default:
         return { ...state };
     }
   }
+
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  return { state, dispatch };
+
+  // derived state
+  const currentNotes = React.useMemo(() => state.notes[state.currentSlide], [
+    state.currentSlide,
+    state.notes
+  ]);
+
+  const allState = React.useMemo(
+    () => ({
+      ...state,
+      currentNotes
+    }),
+    [currentNotes, state]
+  );
+
+  return { state: allState, dispatch };
 }
 
 export default useDeck;

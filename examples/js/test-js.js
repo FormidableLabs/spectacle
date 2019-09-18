@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Deck,
   Slide,
-  SlideElementWrapper,
+  Appear,
   CodePane,
   FlexBox,
   Box,
@@ -13,7 +13,8 @@ import {
   Quote,
   Text,
   UnorderedList,
-  Grid
+  Grid,
+  Notes
 } from '../../src/components';
 
 const formidableLogo = require('./formidable.png');
@@ -22,54 +23,85 @@ const cppCodeBlock = `#include <iostream>
 int main()
 {
   auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
-  
+
   auto answer = curried_add(7)(8);
   std::cout << answer << std::endl;
-  
+
   return 0;
 }`;
 
 const TestJs = () => (
-  <Deck>
-    <Slide slideNum={1}>
+  <Deck
+    template={({ numberOfSlides, slideNumber }) => (
+      <FlexBox
+        justifyContent="space-between"
+        position="absolute"
+        bottom={0}
+        width={1}
+      >
+        <Text fontSize={12}>
+          Slide {slideNumber} of {numberOfSlides}
+        </Text>
+        <Box padding={10}>
+          <Image src={formidableLogo} width={100} />
+        </Box>
+      </FlexBox>
+    )}
+  >
+    <Slide>
       <Heading>Spectacle</Heading>
       <Text>Hello There 🤗</Text>
       <Quote>This is a Formidaquote!</Quote>
       <OrderedList>
-        <ListItem>This is an</ListItem>
-        <ListItem>ordered list</ListItem>
+        <Appear elementNum={0}>
+          <ListItem>This is an</ListItem>
+        </Appear>
+        <Appear elementNum={1}>
+          <ListItem>ordered list</ListItem>
+        </Appear>
       </OrderedList>
       <UnorderedList>
         <ListItem>This is an</ListItem>
         <ListItem>unordered list</ListItem>
       </UnorderedList>
+      <Notes>
+        <p>
+          Notes are shown in presenter mode. Open up
+          localhost:3000/?presenterMode=true to see them.
+        </p>
+      </Notes>
     </Slide>
-    <Slide slideNum={2}>
+    <Slide>
       <CodePane fontSize={18} language="cpp">
         {cppCodeBlock}
       </CodePane>
+      <Notes>
+        <p>
+          This is a code pane! It can support multiple programming languages.
+        </p>
+      </Notes>
     </Slide>
-    <Slide slideNum={3}>
+    <Slide>
       <Text fontSize="subHeader">Slide 3!</Text>
-      <SlideElementWrapper elementNum={1}>
+      <Appear elementNum={0}>
         <Text>{`Hey, just one "animated" slide element here`}</Text>
-      </SlideElementWrapper>
+      </Appear>
     </Slide>
-    <Slide slideNum={4}>
+    <Slide>
       <Text>{`I'm a static slide element that should always show`}</Text>
       <Text>{`This means that we don't need a SlideElementWrapper`}</Text>
-      <SlideElementWrapper elementNum={1}>
+      <Appear elementNum={0}>
         <Text> ZERO Slide 4 x 3! </Text>
-      </SlideElementWrapper>
-      <SlideElementWrapper elementNum={2}>
+      </Appear>
+      <Appear elementNum={1}>
         <Text> ONE Slide 4 x 3! </Text>
-      </SlideElementWrapper>
-      <SlideElementWrapper elementNum={3}>
+      </Appear>
+      <Appear elementNum={2}>
         <Text> TWO Slide 4 x 3! </Text>
-      </SlideElementWrapper>
+      </Appear>
       <Text>{`I'm also a static non-animated "slide element"!`}</Text>
     </Slide>
-    <Slide slideNum={5}>
+    <Slide>
       <FlexBox>
         <Text>These</Text>
         <Text>Text</Text>
@@ -94,7 +126,7 @@ const TestJs = () => (
       >
         {Array(9)
           .fill('')
-          .map(index => (
+          .map((_, index) => (
             <FlexBox key={`formidable-logo-${index}`}>
               <Image src={formidableLogo} width={100} />
             </FlexBox>

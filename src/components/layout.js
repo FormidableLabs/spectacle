@@ -1,8 +1,17 @@
 import styled from 'styled-components';
-import { compose, grid, flexbox, layout, position, color } from 'styled-system';
+import {
+  compose,
+  grid,
+  flexbox,
+  layout,
+  position,
+  color,
+  space
+} from 'styled-system';
 
 const Box = styled('div')(
   compose(
+    space,
     layout,
     position,
     color
