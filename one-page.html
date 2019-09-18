@@ -39,7 +39,7 @@
       //       SHIM: Simple
       // - [ ] No default export
       //     - https://unpkg.com/browse/stylis@3.5.4/
-      //       TODO: HERE CONSIDER UMD + WINDOW EXPORT?
+      //       HACK: Re-export off window from ESM
       //       PROBLEM: UMD, not ESM
       //       UPSTREAM: `import Stylis from /*"https://unpkg.com/stylis@^3.5.0/stylis.min?module"*/"blob:http://localhost:3000/61028930-a917-43a6-a1f1-7b96fe776f77";`
 
@@ -188,8 +188,8 @@
     </script>
     <!-- TODO(ONE-PAGE): Remove _DEBUG script once everything works. -->
     <script type="text/javascript"
-      src="./one-page-es-module-shims.js"
-      src_DEBUG="https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.js"
+      src_DEBUG="./one-page-es-module-shims.js"
+      src="https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.js"
     >
     </script>
   </body>
