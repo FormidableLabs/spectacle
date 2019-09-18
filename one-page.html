@@ -9,10 +9,13 @@
     <div id="root"></div>
 
     <script>
-      // Polyfill process.
+      // Polyfills.
       // **Note**: Because `import`s are hoisted, we need a separate, prior <script> block.
       window.process = window.process || { env: { NODE_ENV: "production" } };
+      window.__DEV__ = false; // `react-is` needs.
     </script>
+    <!-- UMB imports to Window that we'll re-export as ESM (ugh). -->
+    <script src="https://unpkg.com/stylis@3.5.4/stylis.js"></script>
     <script id="deck" type="module">
       import React from 'react';
       import ReactDOM from 'react-dom';
@@ -172,6 +175,8 @@
           "styled-system": "https://unpkg.com/styled-system?module",
           "https://unpkg.com/stylis-rule-sheet@^0.0.10?module": "./one-page-temp-stylis-rule-sheet.js",
           "stylis-rule-sheet": "./one-page-temp-stylis-rule-sheet.js",
+          "https://unpkg.com/stylis@^3.5.0/stylis.min?module": "./one-page-temp-stylis-umd.js",
+          "stylis": "./one-page-temp-stylis-umd.js",
           "wonka": "https://unpkg.com/wonka?module"
         }
       }
