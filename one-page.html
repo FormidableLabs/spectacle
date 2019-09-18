@@ -22,11 +22,7 @@
       import htm from 'https://unpkg.com/htm@2.2.1?module'
       const html = htm.bind(React.createElement);
 
-      // TODO: HERE -- Catch up with `test-js.js` and new theme support.
-      // - [ ] Lots more import maps to set up
-      // - [ ] Prop-types: `https://unpkg.com/prop-types@15.7.2?module`
-      // - [ ] Once prop-types is shimmed. Remove `one-page` babel build, and switch to `es/` totally...
-      //     - [ ] package.json:scripts, .gitignore, etc.
+      // TODO(ONE-PAGE): ESM shim notes.
       // - [ ] No ESM
       //     - https://unpkg.com/stylis-rule-sheet@0.0.10?module
       //       ISSUE: https://github.com/thysultan/stylis.js/issues/81
@@ -42,6 +38,9 @@
       //       HACK: Re-export off window from ESM
       //       PROBLEM: UMD, not ESM
       //       UPSTREAM: `import Stylis from /*"https://unpkg.com/stylis@^3.5.0/stylis.min?module"*/"blob:http://localhost:3000/61028930-a917-43a6-a1f1-7b96fe776f77";`
+
+      // TODO(ONE-PAGE): HERE -- Catch up and build existing
+      // TODO(ONE-PAGE): Update to latest `test-js.js`
 
       import CodePane from './one-page/components/code-pane.js';
       import Deck from './one-page/components/deck.js';
