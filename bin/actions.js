@@ -21,7 +21,7 @@ const launchServer = (configUpdates = {}) => {
   });
 };
 
-const launchMDXServer = mdxFilePath => {
+const launchMDXServer = (mdxFilePath, themeFilePath) => {
   if (!mdxFilePath) {
     // developer error - must supply an entry file path
     throw new Error('MDX file path must be provided.');
@@ -31,14 +31,20 @@ const launchMDXServer = mdxFilePath => {
   const absoluteMdxFilePath = path.resolve(mdxFilePath);
   const nodeModules = path.resolve(__dirname, '../node_modules');
 
+  const alias = {
+    'spectacle-user-mdx': absoluteMdxFilePath
+  };
+  if (themeFilePath) {
+    const absoluteThemeFilePath = path.resolve(themeFilePath);
+    alias['spectacle-user-theme'] = absoluteThemeFilePath;
+  }
+
   const configUpdates = {
     mode: 'development',
     context: cliRoot,
     entry: './mdx-slides/index.js',
     resolve: {
-      alias: {
-        'spectacle-user-mdx': absoluteMdxFilePath
-      },
+      alias,
       modules: [nodeModules]
     }
   };
