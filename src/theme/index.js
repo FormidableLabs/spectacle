@@ -1,12 +1,6 @@
 import defaultTheme from './default-theme';
-let userTheme;
-try {
-  // see cli actions.js to understand this import
-  // if the user doesn't specify a theme, this require will throw
-  userTheme = require('spectacle-user-theme').default;
-} catch (e) {
-  userTheme = {};
-}
+// see cli actions.js to understand this import
+let userTheme = require('spectacle-user-theme').default;
 
 const mergedTheme = { ...defaultTheme };
 if (userTheme && Object.keys(userTheme).length > 0) {
