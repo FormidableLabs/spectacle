@@ -21,7 +21,8 @@ function useSlide(slideNum) {
   const {
     state: deckContextState,
     dispatch: deckContextDispatch,
-    slideElementMap
+    slideElementMap,
+    numberOfSlides
   } = React.useContext(DeckContext);
 
   if (slideNum === 'undefined') {
@@ -55,7 +56,8 @@ function useSlide(slideNum) {
       slideElementsLength,
       currentSlideElement,
       immediate,
-      isActiveSlide
+      isActiveSlide,
+      numberOfSlides
     },
     actions: {
       setNotes

@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 
 // START: test components to try rendering:
-// import TestMDX from './examples/mdx/test-mdx';
-import TestJs from './examples/js/test-js';
+import TestMDX from './examples/mdx/test-mdx';
+// import TestJs from './examples/js/test-js';
 // END: test components to try rendering
 
 /**
@@ -13,4 +13,4 @@ import TestJs from './examples/js/test-js';
  * to hot-reload with new contents.
  */
 
-render(<TestJs />, document.getElementById('root'));
+render(<TestMDX />, document.getElementById('root'));

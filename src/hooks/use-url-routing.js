@@ -80,6 +80,19 @@ export default function useUrlRouting(options) {
     [countSlideElements, isSlideElementOutOfBounds, isSlideOutOfBounds]
   );
 
+  const goToSlide = React.useCallback(
+    slideNumber => {
+      const qs = queryString.stringify({
+        presenterMode: currentPresenterMode || undefined,
+        immediate: true,
+        slide: slideNumber,
+        slideElement: DEFAULT_SLIDE_ELEMENT_INDEX
+      });
+      history.current.push(`?${qs}`);
+    },
+    [currentPresenterMode]
+  );
+
   const onHistoryChange = React.useCallback(() => {
     const {
       slideNumber,
@@ -89,7 +102,6 @@ export default function useUrlRouting(options) {
       presenterMode,
       immediate
     } = stateFromUrl(window.location.search);
-
     /**
      * If the proposed URL slide index is out-of-bounds or is not a valid
      * integer, navigate to the first slide. Do nothing if the proposed slide
@@ -252,6 +264,7 @@ export default function useUrlRouting(options) {
 
   return {
     navigateToNext,
-    navigateToPrevious
+    navigateToPrevious,
+    goToSlide
   };
 }
