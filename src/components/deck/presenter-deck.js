@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { compose, color, typography } from 'styled-system';
 import { Heading, Text } from '../typography';
-import defaultTheme from '../../theme/default-theme';
 import * as queryString from 'query-string';
 
 const PresenterDeckContainer = styled('div')`
@@ -45,15 +45,23 @@ const SlideDivider = styled('div')`
   height: 2em;
 `;
 
-const Button = styled('button')`
-  border: 0;
-  width: 250px;
-  padding: 1em;
-  margin-bottom: 1em;
-  background-color: ${defaultTheme.colors.secondary};
-  color: ${defaultTheme.colors.primary};
-  font-size: ${defaultTheme.fontSizes.text};
-`;
+const Button = styled('button')(
+  compose(
+    color,
+    typography
+  ),
+  css`
+    border: 0;
+    width: 300px;
+    padding: 1em;
+    margin-bottom: 1em;
+  `
+);
+Button.defaultProps = {
+  backgroundColor: 'secondary',
+  color: 'primary',
+  fontSize: 'text'
+};
 
 const PresenterDeck = props => {
   const {

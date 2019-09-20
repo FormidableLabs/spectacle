@@ -12,7 +12,7 @@ import {
 } from '../src/components';
 const formidableLogo = require('../examples/js/formidable.png');
 
-// See the webpack config to see how this import alias is made
+// See the cli actions.js to see how this import alias is made
 import slides, { notes } from 'spectacle-user-mdx';
 import mdxComponentMap from '../src/utils/mdx-component-mapper';
 
