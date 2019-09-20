@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useSlide, { SlideContext } from '../hooks/use-slide';
 import styled, { ThemeContext } from 'styled-components';
 import { color, space } from 'styled-system';
+import { DeckContext } from '../hooks/use-deck';
 
 const SlideContainer = styled('div')`
   ${color};
@@ -36,10 +37,10 @@ const Slide = props => {
     backgroundColor,
     textColor,
     template,
-    numberOfSlides,
     scaleRatio
   } = props;
   const theme = React.useContext(ThemeContext);
+  const { numberOfSlides } = React.useContext(DeckContext);
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
   const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
   const slideRef = React.useRef(null);

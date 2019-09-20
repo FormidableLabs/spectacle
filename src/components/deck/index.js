@@ -176,7 +176,6 @@ const Deck = ({
       const staticSlides = filteredChildren.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
-          numberOfSlides,
           template: rest.template
         })
       );

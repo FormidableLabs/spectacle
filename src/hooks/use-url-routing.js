@@ -86,7 +86,7 @@ export default function useUrlRouting(options) {
         presenterMode: currentPresenterMode || undefined,
         immediate: true,
         slide: slideNumber,
-        slideElement: 0
+        slideElement: DEFAULT_SLIDE_ELEMENT_INDEX
       });
       history.current.push(`?${qs}`);
     },
