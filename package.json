@@ -60,7 +60,7 @@
     "react-dom": "^16.7.0",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2",
-    "webpack": "^4.33.0",
+    "webpack": "^4.40.2",
     "webpack-cli": "^3.3.4",
     "webpack-dev-server": "^3.7.1"
   },
