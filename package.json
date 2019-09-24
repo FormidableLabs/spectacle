@@ -16,7 +16,7 @@
     "prettier-fix": "npm run prettier -- --write",
     "deploy": "",
     "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
-    "start:one-page": "micro one-page-server.js",
+    "start:one-page": "micro -l tcp://0.0.0.0:4000 one-page/server.js",
     "build-wds-base": "webpack-dev-server",
     "test": "jest --verbose",
     "check": ""

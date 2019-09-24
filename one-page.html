@@ -22,9 +22,6 @@
       import htm from 'https://unpkg.com/htm@2.2.1?module'
       const html = htm.bind(React.createElement);
 
-      // TODO(ONE-PAGE): HERE -- Catch up and build existing
-      // TODO(ONE-PAGE): Update to latest `test-js.js`
-
       import {
         Deck,
         Slide,
@@ -44,7 +41,7 @@
       } from './es/components/index.js';
 
       // TODO(ONE-PAGE): Figure out "require"-ing a PNG.
-      // const formidableLogo = require('./formidable.png');
+      const formidableLogo = "./examples/js/formidable.png";
 
       const cppCodeBlock = `#include <iostream>
 
@@ -71,7 +68,7 @@
                 Slide ${slideNumber} of ${numberOfSlides}
               <//>
               <${Box} padding=${10}>
-                <pre>TODO(ONE-PAGE) Image src={formidableLogo} width={100}<//>
+                <${Image} src=${formidableLogo} width=${100} />
               <//>
             <//>`
           )}
@@ -155,8 +152,9 @@
               ${Array(9)
                 .fill('')
                 .map((_, index) => (
+                  // TODO(ONE-PAGE): I don't see anything in dev or one-page (???)
                   html`<${FlexBox} key="formidable-logo-${index}">
-                    <pre> TODO(ONE-PAGE Image src={formidableLogo} width={100} </pre>
+                    <${Image} src=${formidableLogo} width=${100} />
                   <//>`
                 ))}
             <//>
