@@ -8,9 +8,8 @@
   "scripts": {
     "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.js/\"",
     "build:es": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-babel -- -d es",
-    "build:one-page": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"one-page\\\"}\" build-babel -- -d one-page",
     "build:lib": "builder run build-babel -- -d lib",
-    "build": "builder concurrent --buffer build:es build:one-page build:lib",
+    "build": "builder concurrent --buffer build:es build:lib",
     "lint": "eslint --ignore-path .gitignore .",
     "lint-fix": "",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
@@ -49,7 +48,6 @@
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "babel-plugin-rewrite-require": "^1.14.5",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "builder": "^4.0.0",
     "eslint": "^5.16.0",
     "eslint-config-formidable": "^3.0.0",
