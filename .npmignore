@@ -6,6 +6,7 @@
 !/lib
 !/src
 !/docs
+!/one-page
 __snapshots__
 __mocks__
 *.test.js
@@ -13,3 +14,4 @@ __mocks__
 !README.md
 !package.json
 !index.d.ts
+!one-page.html
