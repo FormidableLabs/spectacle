@@ -60,7 +60,21 @@
 
       const deck = (
         html`<${Deck}
-
+          template=${({ numberOfSlides, slideNumber }) => (
+            html`<${FlexBox}
+              justifyContent="space-between"
+              position="absolute"
+              bottom=${0}
+              width=${1}
+            >
+              <${Text} fontSize=${12}>
+                Slide ${slideNumber} of ${numberOfSlides}
+              <//>
+              <${Box} padding=${10}>
+                <pre>TODO Image src={formidableLogo} width={100}<//>
+              <//>
+            <//>`
+          )}
         >
           <${Slide}>
             <${Heading}>Spectacle<//>
