@@ -72,5 +72,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: `./index.html`
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      'spectacle-user-theme': path.resolve(
+        __dirname,
+        './src/theme/backup-user-theme'
+      )
+    }
+  }
 };

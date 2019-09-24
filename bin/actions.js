@@ -35,14 +35,9 @@ const launchMDXServer = (mdxFilePath, themeFilePath) => {
     'spectacle-user-mdx': absoluteMdxFilePath
   };
   if (themeFilePath) {
-    const absoluteThemeFilePath = path.resolve(themeFilePath);
-    alias['spectacle-user-theme'] = absoluteThemeFilePath;
+    alias['spectacle-user-theme'] = path.resolve(themeFilePath);
   } else {
-    const backupTheme = path.resolve(
-      __dirname,
-      '../src/theme/backup-user-theme'
-    );
-    alias['spectacle-user-theme'] = backupTheme;
+    alias['spectacle-user-theme'] = config.resolve.alias['spectacle-user-theme'];
   }
 
   const configUpdates = {
