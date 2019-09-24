@@ -93,6 +93,7 @@ const Deck = ({
 
   // Initialise useDeck hook and get state and dispatch off of it
   const { state, dispatch } = useDeck(initialState);
+  console.log("TODO HERE DECK", { initialState, state })
   const themeContext = React.useContext(ThemeContext);
 
   React.useLayoutEffect(() => {

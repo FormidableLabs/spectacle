@@ -40,7 +40,10 @@ function useDeck(initialState) {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   // derived state
-  const currentNotes = React.useMemo(() => state.notes[state.currentSlide], [
+  const currentNotes = React.useMemo(() => {
+    console.log("TODO HERE USE DECK", { state })
+    return state.notes[state.currentSlide]
+  }, [
     state.currentSlide,
     state.notes
   ]);

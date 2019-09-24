@@ -42,79 +42,37 @@
       // TODO(ONE-PAGE): HERE -- Catch up and build existing
       // TODO(ONE-PAGE): Update to latest `test-js.js`
 
-      import CodePane from './one-page/components/code-pane.js';
-      import Deck from './one-page/components/deck.js';
-      import SlideElementWrapper from './one-page/components/slide-element-wrapper.js';
+      import Deck from './one-page/components/deck/index.js';
       import Slide from './one-page/components/slide.js';
+      import { Heading } from './one-page/components/typography.js';
+      // import {
+      //   Deck,
+      //   Slide,
+      //   Appear,
+      //   CodePane,
+      //   FlexBox,
+      //   Box,
+      //   Image,
+      //   Heading,
+      //   ListItem,
+      //   OrderedList,
+      //   Quote,
+      //   Text,
+      //   UnorderedList,
+      //   Grid,
+      //   Notes
+      // } from './one-page/components/index.js';
 
-      const reactJSCodeBlock = `export default function CodePane(props) {
-        return (
-          <Highlight
-            {...defaultProps}
-            code={props.children}
-            language={props.language}
-            theme={theme}
-          >
-            {({ className, style, tokens, getLineProps, getTokenProps }) => (
-              <pre className={className} style={style}>
-                {tokens.map((line, i) => (
-                  <div key={i} {...getLineProps({ line, key: i })}>
-                    {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({ token, key })} />
-                    ))}
-                  </div>
-                ))}
-              </pre>
-            )}
-          </Highlight>
-        );
-      }`;
-
-      const cppCodeBlock = `#include <iostream>
-
-      int main()
-      {
-        auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
-
-        auto answer = curried_add(7)(8);
-        std::cout << answer << std::endl;
-
-        return 0;
-      }`;
+      console.log("TODO HERE ONE-PAGE", { Deck });
 
       ReactDOM.render(
         html`
           <${Deck}>
             <${Slide}>
-              <${CodePane} language="jsx">${reactJSCodeBlock}<//>
+              <${Heading}>ONE<//>
             <//>
             <${Slide}>
-              <${CodePane} fontSize=${18} language="cpp">
-                ${cppCodeBlock}
-              <//>
-            <//>
-            <${Slide}>
-              <p> Slide 3! </p>
-              <${SlideElementWrapper} elementNum=${1}>
-                <div>Hey, just one "animated" slide element here</div>
-              <//>
-            <//>
-            <${Slide}>
-              <p>I'm a static slide element that should always show</p>
-              <p>This means that we don't need a SlideElementWrapper</p>
-              <${SlideElementWrapper} elementNum=${1}>
-                <p> ZERO Slide 4 x 3! </p>
-              </>
-              <${SlideElementWrapper} elementNum=${2}>
-                <p> ONE Slide 4 x 3! </p>
-              <//>
-              <${SlideElementWrapper} elementNum=${3}>
-                <p> TWO Slide 4 x 3! </p>
-              <//>
-              <p>I'm also a static non-animated "slide element"!</p>
-            <//>
-            <${Slide}>
-              <p>The end!</p>
+              <${Heading}>TWO<//>
             <//>
           <//>
         `,

@@ -31,23 +31,17 @@ int main()
 }`;
 
 const TestJs = () => (
-  <Deck
-    template={({ numberOfSlides, slideNumber }) => (
-      <FlexBox
-        justifyContent="space-between"
-        position="absolute"
-        bottom={0}
-        width={1}
-      >
-        <Text fontSize={12}>
-          Slide {slideNumber} of {numberOfSlides}
-        </Text>
-        <Box padding={10}>
-          <Image src={formidableLogo} width={100} />
-        </Box>
-      </FlexBox>
-    )}
-  >
+  <Deck>
+    <Slide>
+      <Heading>ONE</Heading>
+    </Slide>
+    <Slide>
+      <Heading>TWO</Heading>
+    </Slide>
+  </Deck>
+);
+
+/*
     <Slide>
       <Heading>Spectacle</Heading>
       <Text>Hello There 🤗</Text>
@@ -133,7 +127,6 @@ const TestJs = () => (
           ))}
       </Grid>
     </Slide>
-  </Deck>
-);
+*/
 
 export default TestJs;
