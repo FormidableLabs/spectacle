@@ -17,8 +17,10 @@ const { promisify } = require('util');
 const { parse } = require('url');
 
 const stat = promisify(fs.stat);
-const exists = (filePath) => stat(filePath)
-  .then(() => true)
+
+// Exists _and_ is a file.
+const fileExists = (filePath) => stat(filePath)
+  .then((stats) => stats.isFile())
   .catch((err) => {
     if (err.code === 'ENOENT') { return false; }
     throw err;
@@ -30,15 +32,15 @@ const resolve = async (url) => {
 
   // Already exists.
   const { pathname } = parse(url);
-  const pathExists = await exists(path.join('.', pathname));
+  const pathExists = await fileExists(path.join('.', pathname));
   if (pathExists) { return url; }
 
   // Use Node.js `require`-type resolution semantics if file doesn't end in `.js`.
   // A sub-implementation of https://nodejs.org/api/modules.html#modules_all_together
-  const jsExists = await exists(path.join('.', `${pathname}.js`));
+  const jsExists = await fileExists(path.join('.', `${pathname}.js`));
   if (jsExists) { return url.replace(pathname, `${pathname}.js`); }
 
-  const jsIndexExists = await exists(path.join('.', pathname, 'index.js'));
+  const jsIndexExists = await fileExists(path.join('.', pathname, 'index.js'));
   if (jsIndexExists) { return url.replace(pathname, `${pathname}/index.js`); }
 
   // Base case: pass through.
@@ -47,6 +49,8 @@ const resolve = async (url) => {
 
 module.exports = async (req, res) => {
   req.url = await resolve(req.url);
+
+  console.log("TODO HERE", { url: req.url })
 
   await handler(req, res);
 };
