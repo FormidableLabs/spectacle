@@ -48,9 +48,10 @@ const resolve = async (url) => {
 }
 
 module.exports = async (req, res) => {
+  const beforeUrl = req.url;
   req.url = await resolve(req.url);
 
-  console.log("TODO HERE", { url: req.url })
+  console.log("TODO HERE", { beforeUrl, afterUrl: req.url })
 
   await handler(req, res);
 };
