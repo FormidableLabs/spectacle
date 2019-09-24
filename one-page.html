@@ -28,35 +28,71 @@
       import {
         Deck,
         Slide,
-        // Appear,
-        // CodePane,
-        // FlexBox,
-        // Box,
-        // Image,
-        Heading
-        // ListItem,
-        // OrderedList,
-        // Quote,
-        // Text,
-        // UnorderedList,
-        // Grid,
-        // Notes
+        Appear,
+        // CodePane, // TODO(ONE-PAGE): FIX CODE PANE / PRR
+        FlexBox,
+        Box,
+        Image,
+        Heading,
+        ListItem,
+        OrderedList,
+        Quote,
+        Text,
+        UnorderedList,
+        Grid,
+        Notes
       } from './es/components/index.js';
 
-      ReactDOM.render(
-        html`
-          <${Deck}>
-            <${Slide}>
-              <${Heading}>ONE<//>
+      // TODO(ONE-PAGE): Figure out "require"-ing a PNG.
+      // const formidableLogo = require('./formidable.png');
+
+      const cppCodeBlock = `#include <iostream>
+
+      int main()
+      {
+        auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
+
+        auto answer = curried_add(7)(8);
+        std::cout << answer << std::endl;
+
+        return 0;
+      }`;
+
+      const deck = (
+        html`<${Deck}
+
+        >
+          <${Slide}>
+            <${Heading}>Spectacle<//>
+            <${Text}>Hello There 🤗<//>
+            <${Quote}>This is a Formidaquote!<//>
+            <${OrderedList}>
+              <${Appear} elementNum=${0}>
+                <${ListItem}>This is an<//>
+              <//>
+              <${Appear} elementNum=${1}>
+                <${ListItem}>ordered list<//>
+              <//>
             <//>
-            <${Slide}>
-              <${Heading}>TWO<//>
+            <${UnorderedList}>
+              <${ListItem}>This is an<//>
+              <${ListItem}>unordered list<//>
+            <//>
+            <${Notes}>
+              <p>
+                Notes are shown in presenter mode. Open up
+                localhost:3000/?presenterMode=true to see them.
+              <//>
             <//>
           <//>
-        `,
-        document.getElementById('root')
+
+          <${Slide}>
+            <${Heading}>TODO_REMOVE_BUG<//>
+          <//>
+        <//>`
       );
 
+      ReactDOM.render(deck, document.getElementById('root'));
     </script>
 
     <!--
