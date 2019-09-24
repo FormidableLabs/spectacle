@@ -40,6 +40,7 @@ const _mockSlideReference = function() {
   ];
 };
 
+// @TODO update these tests to no longer check using componentWillMount
 describe('<Presenter />', () => {
   beforeAll(() => {
     global.Date.now = mockDateFn;
@@ -95,6 +96,7 @@ describe('<Presenter />', () => {
       />,
       { context: _mockContext() }
     );
+
     wrapper.instance().componentWillMount = jest.fn();
     expect(wrapper).toMatchSnapshot();
   });
