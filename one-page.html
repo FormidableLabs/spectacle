@@ -22,23 +22,6 @@
       import htm from 'https://unpkg.com/htm@2.2.1?module'
       const html = htm.bind(React.createElement);
 
-      // TODO(ONE-PAGE): ESM shim notes.
-      // - [ ] No ESM
-      //     - https://unpkg.com/stylis-rule-sheet@0.0.10?module
-      //       ISSUE: https://github.com/thysultan/stylis.js/issues/81
-      //       SHIM: Manual copy and paste with export.
-      //     - https://unpkg.com/stream@0.0.2?module
-      //       FIX: Use `styled-components.browser.esm.js` which doesn't import.
-      //     - https://unpkg.com/prop-types@15.7.2?module
-      //       SHIM: Manual build in another temp project
-      //     - https://unpkg.com/object-assign@4.1.1?module
-      //       SHIM: Simple
-      // - [ ] No default export
-      //     - https://unpkg.com/browse/stylis@3.5.4/
-      //       HACK: Re-export off window from ESM
-      //       PROBLEM: UMD, not ESM
-      //       UPSTREAM: `import Stylis from /*"https://unpkg.com/stylis@^3.5.0/stylis.min?module"*/"blob:http://localhost:3000/61028930-a917-43a6-a1f1-7b96fe776f77";`
-
       // TODO(ONE-PAGE): HERE -- Catch up and build existing
       // TODO(ONE-PAGE): Update to latest `test-js.js`
 
@@ -93,42 +76,60 @@
 
       Eventually, the below should work for us (just not yet...).
 
-      # Hacks
+      ## Hacks
 
       - Unfortunately, we have to pattern match against unpkg resolutions, so
-        we repeat the same `https://unpkg.com/react{SEMVER_TOKEN>?module` for
+        we repeat the same `https://unpkg.com/react@{SEMVER_STRING}/?module` for
         each.
       - Right now `es-react` doesn't export named React members so we shim it
         here until https://github.com/lukejacksonn/es-react/issues/4 is fixed.
-      - `query-string` is not ESM, so we use a fork `@chaitin/querystrin`.
+      - `query-string` is not ESM, so we use a fork `@chaitin/querystring`.
+
+      ## Notes
+
+      - https://unpkg.com/stylis-rule-sheet@0.0.10?module
+        ISSUE: https://github.com/thysultan/stylis.js/issues/81
+        SHIM: Manual copy and paste with export.
+      - https://unpkg.com/stream@0.0.2?module
+        FIX: Use `styled-components.browser.esm.js` which doesn't import.
+      - https://unpkg.com/prop-types@15.7.2?module
+        SHIM: Manual build in another temp project
+      - https://unpkg.com/object-assign@4.1.1?module
+        SHIM: Simple
+      - https://unpkg.com/browse/stylis@3.5.4/
+        HACK: Re-export off window from ESM
+        PROBLEM: UMD, not ESM
+        UPSTREAM: `import Stylis from /*"https://unpkg.com/stylis@^3.5.0/stylis.min?module"*/"blob:http://localhost:3000/61028930-a917-43a6-a1f1-7b96fe776f77";`
+
+      // TODO(ONE-PAGE): Prism RR broken
+      // "prism-react-renderer": "./one-page-temp-prism-react-renderer/es/index.js",
+      // "prism-react-renderer/es/vendor/prism/index": "./one-page-temp-prism-react-renderer/es/vendor/prism/index.js",
+      // "prism-react-renderer/es/themes/vsDark": "./one-page-temp-prism-react-renderer/es/themes/vsDark.js",
     -->
     <script type="importmap-shim">
       {
         "imports": {
           "history": "https://unpkg.com/history?module",
           "query-string": "https://unpkg.com/@chaitin/querystring?module",
-          "https://unpkg.com/react@>=0.14.9?module": "./one-page-temp-react.js",
-          "https://unpkg.com/react@>= 16.3.0?module": "./one-page-temp-react.js",
-          "https://unpkg.com/react@>= 16.8.0?module": "./one-page-temp-react.js",
-          "https://unpkg.com/react@16.9.0?module": "./one-page-temp-react.js",
-          "react": "./one-page-temp-react.js",
+          "https://unpkg.com/react@>=0.14.9?module": "./one-page/adapters/react.js",
+          "https://unpkg.com/react@>= 16.3.0?module": "./one-page/adapters/react.js",
+          "https://unpkg.com/react@>= 16.8.0?module": "./one-page/adapters/react.js",
+          "https://unpkg.com/react@16.9.0?module": "./one-page/adapters/react.js",
+          "react": "./one-page/adapters/react.js",
           "react-dom": "https://unpkg.com/es-react@16.8.60/src/react-dom.js",
           "https://unpkg.com/react-is@^16.6.0?module": "https://unpkg.com/react-is-esm@16.8.4-alpha.1/dist-web/index.js?module",
           "react-is": "https://unpkg.com/react-is-esm@16.8.4-alpha.1/dist-web/index.js?module",
           "react-spring": "https://unpkg.com/react-spring?module",
-          "https://unpkg.com/object-assign@^4.1.1?module": "./one-page-temp-object-assign.js",
-          "object-asign": "./one-page-temp-object-assign.js",
-          "prism-react-renderer": "./one-page-temp-prism-react-renderer/es/index.js",
-          "prism-react-renderer/es/vendor/prism/index": "./one-page-temp-prism-react-renderer/es/vendor/prism/index.js",
-          "prism-react-renderer/es/themes/vsDark": "./one-page-temp-prism-react-renderer/es/themes/vsDark.js",
-          "https://unpkg.com/prop-types@^15.5.4?module": "./one-page-temp-prop-types.js",
-          "prop-types": "./one-page-temp-prop-types.js",
+          "https://unpkg.com/object-assign@^4.1.1?module": "./one-page/shims/object-assign.js",
+          "object-asign": "./one-page/shims/object-assign.js",
+          "https://unpkg.com/prop-types@^15.5.4?module": "./one-page/shims/prop-types.js",
+          "prop-types": "./one-page/shims/prop-types.js",
           "styled-components": "https://unpkg.com/styled-components@4.3.2/dist/styled-components.browser.esm.js?module",
           "styled-system": "https://unpkg.com/styled-system?module",
-          "https://unpkg.com/stylis-rule-sheet@^0.0.10?module": "./one-page-temp-stylis-rule-sheet.js",
-          "stylis-rule-sheet": "./one-page-temp-stylis-rule-sheet.js",
-          "https://unpkg.com/stylis@^3.5.0/stylis.min?module": "./one-page-temp-stylis-umd.js",
-          "stylis": "./one-page-temp-stylis-umd.js",
+          "https://unpkg.com/stylis-rule-sheet@^0.0.10?module": "./one-page/adapters/stylis-rule-sheet.js",
+          "stylis-rule-sheet": "./one-page/adapters/stylis-rule-sheet.js",
+          "https://unpkg.com/stylis@^3.5.0/stylis.min?module": "./one-page/adapters-window/stylis.js",
+          "stylis": "./one-page/adapters-window/stylis.js",
           "wonka": "https://unpkg.com/wonka?module"
         }
       }
@@ -140,7 +141,7 @@
     </script>
     <!-- TODO(ONE-PAGE): Remove _DEBUG script once everything works. -->
     <script type="text/javascript"
-      src_DEBUG="./one-page-es-module-shims.js"
+      src_DEBUG="./one-page/debug/es-module-shims.js"
       src="https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.js"
     >
     </script>
