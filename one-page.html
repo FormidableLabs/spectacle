@@ -19,9 +19,6 @@
     <script id="deck" type="module">
       import React from 'react';
       import ReactDOM from 'react-dom';
-      import htm from 'https://unpkg.com/htm@2.2.1?module'
-      const html = htm.bind(React.createElement);
-
       import {
         Deck,
         Slide,
@@ -39,10 +36,12 @@
         Grid,
         Notes
       } from './es/components/index.js';
+      import htm from 'https://unpkg.com/htm@2.2.1?module'
 
-      // TODO(ONE-PAGE): Figure out "require"-ing a PNG.
+      const html = htm.bind(React.createElement);
+
+      // Example content.
       const formidableLogo = "./examples/js/formidable.png";
-
       const cppCodeBlock = `#include <iostream>
 
       int main()
