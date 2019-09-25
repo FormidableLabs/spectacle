@@ -47,7 +47,6 @@
     "@mdx-js/loader": "^1.0.0-rc.4",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
-    "babel-plugin-rewrite-require": "^1.14.5",
     "builder": "^4.0.0",
     "eslint": "^5.16.0",
     "eslint-config-formidable": "^3.0.0",
