@@ -14,8 +14,6 @@
       window.process = window.process || { env: { NODE_ENV: "production" } };
       window.__DEV__ = false; // `react-is` needs.
     </script>
-    <!-- UMB imports to Window that we'll re-export as ESM (ugh). -->
-    <script src="https://unpkg.com/stylis@3.5.4/stylis.js"></script>
     <script id="deck" type="module">
       import React from 'react';
       import ReactDOM from 'react-dom';
@@ -36,7 +34,7 @@
         Grid,
         Notes
       } from './es/components/index.js';
-      import htm from 'https://unpkg.com/htm@2.2.1?module'
+      import htm from 'https://unpkg.com/htm@2.2.1?module';
 
       const html = htm.bind(React.createElement);
 
@@ -58,18 +56,18 @@
         html`<${Deck}
           template=${({ numberOfSlides, slideNumber }) => (
             html`<${FlexBox}
-              justifyContent="space-between"
-              position="absolute"
-              bottom=${0}
-              width=${1}
-            >
-              <${Text} fontSize=${12}>
-                Slide ${slideNumber} of ${numberOfSlides}
-              <//>
-              <${Box} padding=${10}>
-                <${Image} src=${formidableLogo} width=${100} />
-              <//>
-            <//>`
+                justifyContent="space-between"
+                position="absolute"
+                bottom=${0}
+                width=${1}
+              >
+                <${Text} fontSize=${12}>
+                  Slide ${slideNumber} of ${numberOfSlides}
+                <//>
+                <${Box} padding=${10}>
+                  <${Image} src=${formidableLogo} width=${100} />
+                <//>
+              <//>`
           )}
         >
           <${Slide}>
@@ -148,7 +146,7 @@
               justifyContent="center"
               gridRowGap=${15}
             >
-              ${Array(9)
+            ${Array(9)
                 .fill('')
                 .map((_, index) => (
                   // TODO(ONE-PAGE): I don't see anything in dev or one-page (???)
@@ -233,8 +231,8 @@
           "styled-system": "https://unpkg.com/styled-system?module",
           "https://unpkg.com/stylis-rule-sheet@^0.0.10?module": "./one-page/adapters/stylis-rule-sheet.js",
           "stylis-rule-sheet": "./one-page/adapters/stylis-rule-sheet.js",
-          "https://unpkg.com/stylis@^3.5.0/stylis.min?module": "./one-page/adapters-window/stylis.js",
-          "stylis": "./one-page/adapters-window/stylis.js",
+          "https://unpkg.com/stylis@^3.5.0/stylis.min?module": "https://unpkg.com/@emotion/stylis?module",
+          "stylis": "https://unpkg.com/@emotion/stylis?module",
           "wonka": "https://unpkg.com/wonka?module"
         }
       }
