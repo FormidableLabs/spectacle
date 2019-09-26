@@ -8,11 +8,6 @@ This directory contains all of our production and development support files for 
 
 Contains either extensions of ESM libraries that need more support or full implementations manually ported over from CJS or another format. They provide the **full functionality** of the adapted source.
 
-
-### `adapters-window`
-
-Contains a simple re-export that uses the `window` variable from a UMD or other `window`-mutating script load. This unfortunately also means you need a normal `<script>` tag to load a library into window that this adapter can then re-export with proper ESM.
-
 ### `shims`
 
 Contains shims of dependencies that basically replaces real functionality with no-ops. For example, `prop-types` shim does nothing, while the `object-assign` shim just re-exports the native `Object.assign`.
