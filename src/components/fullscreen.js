@@ -12,7 +12,11 @@ const FullScreen = props => {
     }
   }, []);
   return (
-    <div onClick={toggleFullScreen} style={{ pointerEvents: 'all' }}>
+    <div
+      className="spectacle-fullscreen-button"
+      onClick={toggleFullScreen}
+      style={{ pointerEvents: 'all' }}
+    >
       <svg width={props.size} height={props.size} viewBox="0 0 512 512">
         <path
           fill={props.color}
