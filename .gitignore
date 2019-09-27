@@ -7,3 +7,4 @@ es
 *.log
 .DS_Store
 .vscode
+/spectacle.js

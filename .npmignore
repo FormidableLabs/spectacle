@@ -1,7 +1,6 @@
 /*
 /dist/*
 !/dist/spectacle*
-/dist/*.map
 !/es
 !/lib
 !/mdx-loader
@@ -13,4 +12,5 @@ __mocks__
 !LICENSE
 !README.md
 !package.json
+!spectacle.js
 !index.d.ts
