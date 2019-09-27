@@ -1,7 +1,7 @@
 import Deck from './deck/index'; // TODO(ONE-PAGE): Incorrect relative path in dev without.
 import Slide from './slide';
 import Appear from './appear';
-//import CodePane from './code-pane';
+import CodePane from './code-pane';
 import {
   OrderedList,
   Quote,
@@ -20,7 +20,7 @@ export {
   Deck,
   Slide,
   Appear,
-  //CodePane,
+  CodePane,
   Box,
   FlexBox,
   Grid,

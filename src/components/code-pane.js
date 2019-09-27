@@ -1,7 +1,6 @@
 import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-// TODO(ONE-PAGE): Probably shouldn't have `/es/` in there...
-import theme from 'prism-react-renderer/es/themes/vsDark';
+import theme from 'prism-react-renderer/themes/vsDark';
 import { ThemeContext } from 'styled-components';
 import propTypes from 'prop-types';
 

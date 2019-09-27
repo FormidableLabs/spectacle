@@ -3,7 +3,7 @@ import {
   Deck,
   Slide,
   Appear,
-  // TODO(ONE-PAGE): Add back in CodePane,
+  CodePane,
   FlexBox,
   Box,
   Image,
@@ -72,8 +72,7 @@ const TestJs = () => (
       </Notes>
     </Slide>
     <Slide>
-      <pre>TODO CodePane fontSize=18 language="cpp" cppCodeBlock
-      </pre>
+      <CodePane fontSize={18} language="cpp">{cppCodeBlock}</CodePane>
       <Notes>
         <p>
           This is a code pane! It can support multiple programming languages.

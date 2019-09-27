@@ -466,6 +466,7 @@
           return deps;
         }
         else {
+          console.error("TODO HERE BAD CONTENT", { res })
           throw new Error(`Unknown Content-Type "${contentType}"`);
         }
       }
@@ -484,10 +485,10 @@
       window.DEP_START = window.DEP_START || 0;
       window.DEP_END = window.DEP_END || 0;
       load.d = await Promise.all(deps.map(async depId => {
-        console.log("TODO DEPLOAD START", { start: window.DEP_START++, depId });
+        //console.log("TODO DEPLOAD START", { start: window.DEP_START++, depId });
         const depLoad = getOrCreateLoad(await resolve(depId, load.r || load.u));
         await depLoad.f;
-        console.log("TODO DEPLOAD FINISH", { end: window.DEP_END++, depId });
+        //console.log("TODO DEPLOAD FINISH", { end: window.DEP_END++, depId });
         return depLoad;
       }));
     });
