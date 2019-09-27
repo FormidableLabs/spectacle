@@ -1,7 +1,6 @@
 /*
 /dist/*
 !/dist/spectacle*
-/dist/*.map
 !/es
 !/lib
 !/src
@@ -12,4 +11,5 @@ __mocks__
 !LICENSE
 !README.md
 !package.json
+!spectacle.js
 !index.d.ts
