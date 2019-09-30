@@ -22,6 +22,7 @@ import {
   DEFAULT_SLIDE_INDEX
 } from '../../utils/constants';
 import searchChildrenForAppear from '../../utils/search-children-appear';
+import OverviewDeck from './overview-deck';
 
 const AnimatedDeckDiv = styled(animated.div)`
   height: 100vh;
@@ -65,6 +66,7 @@ const initialState = {
   currentSlideElement: DEFAULT_SLIDE_ELEMENT_INDEX,
   reverseDirection: false,
   presenterMode: false,
+  overviewMode: false,
   notes: {},
   resolvedInitialUrl: false
 };
@@ -172,7 +174,17 @@ const Deck = ({
 
   let content = null;
   if (state.resolvedInitialUrl) {
-    if (state.presenterMode) {
+    if (state.overviewMode) {
+      const staticSlides = filteredChildren.map((slide, index) =>
+        React.cloneElement(slide, {
+          slideNum: index,
+          template: rest.template
+        })
+      );
+      content = (
+        <OverviewDeck goToSlide={goToSlide}>{staticSlides}</OverviewDeck>
+      );
+    } else if (state.presenterMode) {
       const staticSlides = filteredChildren.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,

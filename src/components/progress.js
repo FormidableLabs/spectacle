@@ -18,7 +18,7 @@ const Circle = styled('div')`
 const Progress = props => {
   const { numberOfSlides, state, goToSlide } = React.useContext(DeckContext);
   return (
-    <div>
+    <div className="spectacle-progress-indicator">
       {Array(numberOfSlides)
         .fill(0)
         .map((_, idx) => (

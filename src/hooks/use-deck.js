@@ -19,6 +19,7 @@ function useDeck(initialState) {
           immediateElement: false,
           reverseDirection: action.payload.reverseDirection,
           presenterMode: action.payload.presenterMode,
+          overviewMode: action.payload.overviewMode,
           resolvedInitialUrl: true
         };
         return newState;
