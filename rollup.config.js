@@ -5,6 +5,7 @@ import buble from 'rollup-plugin-buble';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
+import alias from 'rollup-plugin-alias';
 
 const pkgInfo = require('./package.json');
 const name = basename(pkgInfo.main, '.js');
@@ -52,7 +53,8 @@ const makePlugins = (isProduction = false) =>
       ignoreGlobal: true,
       include: /\/node_modules\//,
       namedExports: {
-        react: Object.keys(require('react'))
+        react: Object.keys(require('react')),
+        'react-is': Object.keys(require('react-is'))
       }
     }),
     buble({
@@ -93,6 +95,7 @@ const makePlugins = (isProduction = false) =>
         ]
       ].filter(Boolean)
     }),
+    alias({}),
     isProduction &&
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
@@ -106,6 +109,13 @@ const config = {
   treeshake: {
     propertyReadSideEffects: false
   }
+};
+
+const globals = {
+  react: 'React',
+  'react-is': 'ReactIs',
+  'react-dom': 'ReactDOM',
+  'prop-types': 'PropTypes'
 };
 
 export default [
@@ -128,6 +138,26 @@ export default [
         esModule: false,
         file: `./dist/${name}.es.js`,
         format: 'esm'
+      }
+    ]
+  },
+  {
+    ...config,
+    external: ['react', 'react-is', 'react-dom', 'prop-types'],
+    plugins: [
+      ...makePlugins(false),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production')
+      })
+    ],
+    output: [
+      // UMD bundle
+      {
+        name: 'Spectacle',
+        sourcemap: false,
+        file: `./dist/one-page.umd.js`,
+        format: 'umd',
+        globals
       }
     ]
   },
