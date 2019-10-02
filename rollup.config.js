@@ -5,7 +5,6 @@ import buble from 'rollup-plugin-buble';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
-import alias from 'rollup-plugin-alias';
 
 const pkgInfo = require('./package.json');
 const name = basename(pkgInfo.main, '.js');
@@ -16,7 +15,9 @@ if (pkgInfo.peerDependencies)
 if (pkgInfo.dependencies) external.push(...Object.keys(pkgInfo.dependencies));
 
 // TODO: query-string does not have an ESM build, so we'll just bundle and ship it
-external = external.filter(x => x !== 'query-string');
+external = external.filter(
+  x => x !== 'query-string' && x !== 'styled-components'
+);
 
 const externalPredicate = new RegExp(`^(${external.join('|')})($|/)`);
 const externalTest = id => {
@@ -95,7 +96,6 @@ const makePlugins = (isProduction = false) =>
         ]
       ].filter(Boolean)
     }),
-    alias({}),
     isProduction &&
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
@@ -130,7 +130,14 @@ export default [
         esModule: false,
         file: `./dist/${name}.js`,
         format: 'cjs'
-      },
+      }
+    ]
+  },
+  {
+    ...config,
+    external: id => console.log(id) || externalTest(id),
+    plugins: [...makePlugins(false)],
+    output: [
       {
         sourcemap: true,
         legacy: true,
@@ -158,6 +165,24 @@ export default [
         file: `./dist/one-page.umd.js`,
         format: 'umd',
         globals
+      }
+    ]
+  },
+  {
+    ...config,
+    external: () => false,
+    plugins: [
+      ...makePlugins(false),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production')
+      })
+    ],
+    output: [
+      // one-page ESM bundle
+      {
+        sourcemap: false,
+        file: `./dist/one-page.js`,
+        format: 'esm'
       }
     ]
   },
