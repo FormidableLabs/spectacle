@@ -8,19 +8,63 @@
   </head>
   <body>
     <div id="root"></div>
-    <script src="https://unpkg.com/react-dom@16.10.1/umd/react-dom.production.min.js"></script>
-    <script type="module">
-      import * as Spectacle from '../dist/one-page.js';
 
-      const Presentation = React.createElement(Spectacle.Deck, {}, [
-        React.createElement(
-          Spectacle.Slide,
+    <script>
+      window.process = {
+        browser: true,
+        env: {
+          NODE_ENV: 'production'
+        }
+      };
+    </script>
+    <script type="module-shim">
+      import {
+        render
+      } from 'https://unpkg.com/@philpl/es-react/react-dom?module';
+      import {
+        createElement
+      } from 'https://unpkg.com/@philpl/es-react/react?module';
+
+      import { Deck, Slide, Heading } from '../dist/spectacle.es.js';
+
+      const Presentation = createElement(Deck, {}, [
+        createElement(
+          Slide,
           {},
-          React.createElement(Spectacle.Heading, {}, 'Hello, world!')
+          createElement(Heading, {}, 'Hello, world!')
         )
       ]);
 
-      ReactDOM.render(Presentation, document.getElementById('root'));
+      render(Presentation, document.getElementById('root'));
     </script>
+
+    <script type="importmap-shim">
+      {
+        "imports": {
+          "react": "https://unpkg.com/@philpl/es-react/react?module",
+          "react-dom": "https://unpkg.com/@philpl/es-react/react-dom?module",
+          "prop-types": "https://unpkg.com/@philpl/es-react/prop-types?module",
+          "react-is": "https://unpkg.com/@philpl/es-react/react-is?module",
+          "object-assign": "https://unpkg.com/merge-anything?module",
+
+          "https://unpkg.com/object-assign@4.1.1?module": "https://unpkg.com/merge-anything?module",
+          "https://unpkg.com/object-assign@^4.1.1?module": "https://unpkg.com/merge-anything?module",
+          "https://unpkg.com/react-is@^16.6.0?module": "https://unpkg.com/@philpl/es-react/react-is?module",
+          "https://unpkg.com/react-is@16.10.1?module": "https://unpkg.com/@philpl/es-react/react-is?module",
+          "https://unpkg.com/prop-types@15.7.2?module": "https://unpkg.com/@philpl/es-react/prop-types?module",
+          "https://unpkg.com/prop-types@^15.5.4?module": "https://unpkg.com/@philpl/es-react/prop-types?module",
+
+          "https://unpkg.com/react@>=0.14.9?module": "https://unpkg.com/@philpl/es-react/react?module",
+          "https://unpkg.com/react@>= 16.3.0?module": "https://unpkg.com/@philpl/es-react/react?module",
+          "https://unpkg.com/react@>= 16.8.0?module": "https://unpkg.com/@philpl/es-react/react?module",
+          "https://unpkg.com/react@16.9.0?module": "https://unpkg.com/@philpl/es-react/react?module"
+        }
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.js"
+    ></script>
+    <!-- <script type="text/javascript" src="/es-module-shims.js"></script> -->
   </body>
 </html>

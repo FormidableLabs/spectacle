@@ -6,7 +6,9 @@ import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
-const pkgInfo = require('./package.json');
+import unpkg from './plugins/unpkg-behaviour';
+
+const pkgInfo = require('../package.json');
 const name = basename(pkgInfo.main, '.js');
 
 let external = ['dns', 'fs', 'path', 'url'];
@@ -14,7 +16,7 @@ if (pkgInfo.peerDependencies)
   external.push(...Object.keys(pkgInfo.peerDependencies));
 if (pkgInfo.dependencies) external.push(...Object.keys(pkgInfo.dependencies));
 
-// TODO: query-string does not have an ESM build, so we'll just bundle and ship it
+// TODO: the packages do not have an ESM build, so we'll just bundle and ship it
 external = external.filter(
   x => x !== 'query-string' && x !== 'styled-components'
 );
@@ -135,8 +137,8 @@ export default [
   },
   {
     ...config,
-    external: id => console.log(id) || externalTest(id),
-    plugins: [...makePlugins(false)],
+    external: id => externalTest(id),
+    plugins: [...makePlugins(false), unpkg()],
     output: [
       {
         sourcemap: true,
