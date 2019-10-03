@@ -15,6 +15,7 @@
     "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
     "build-wds-base": "webpack-dev-server",
     "build": "rollup -c config/rollup.config.js",
+    "build-prod": "NODE_ENV=production rollup -c config/rollup.config.js",
     "test": "jest --verbose",
     "check": ""
   },

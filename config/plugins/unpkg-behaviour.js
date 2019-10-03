@@ -16,54 +16,27 @@ export default function UnpkgBehaviour() {
   return {
     name: 'unpkg-behaviour',
     options(opts) {
-      const isExternal = id => {
-        return opts.external(id);
-      };
-
       dependencies = Object.keys(pkgJSON.dependencies).reduce((acc, dep) => {
         const manifestLocation = require.resolve(`${dep}/package.json`);
         const rawManifest = fs.readFileSync(manifestLocation);
         const manifest = JSON.parse(rawManifest);
 
-        if (manifest.module && isExternal(manifest.name)) {
+        if (manifest.module && opts.external(manifest.name)) {
           acc[manifest.name] = manifest;
         }
         return acc;
       }, {});
 
-      const depNames = Object.values(dependencies);
       if (Array.isArray(opts.external)) {
         return Object.assign({}, opts, {
-          external: Array.from(new Set(opts.external.concat(depNames)))
+          external: id =>
+            opts.external.includes(id) || id.startsWith('https://unpkg.com')
         });
       }
-      // if (typeof opts.external === 'function') {
-      //   return Object.assign({}, opts, {
-      //     external: id => {
-      //       // console.log('external function', id, dependencies);
-
-      //       // console.log(id);
-      //       // if (id === 'styled-components') {
-      //       //   console.log('hi');
-      //       // }
-      //       const key = Object.keys(dependencies).find(
-      //         _key => dependencies[_key] === id
-      //       );
-      //       if (key) {
-      //         if (opts.external(key)) {
-      //           console.log(key);
-      //         }
-
-      //         return opts.external(key);
-      //       }
-
-      //       return opts.external(id);
-      //     }
-      //   });
-      // }
-      if (!opts.external) {
+      if (typeof opts.external === 'function') {
         return Object.assign({}, opts, {
-          external: depNames
+          external: id =>
+            opts.external(id) || id.startsWith('https://unpkg.com')
         });
       }
       return opts;

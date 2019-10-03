@@ -8,6 +8,7 @@ import { terser } from 'rollup-plugin-terser';
 
 import unpkg from './plugins/unpkg-behaviour';
 
+const isProduction = process.env.NODE_ENV === 'production' || false;
 const pkgInfo = require('../package.json');
 const name = basename(pkgInfo.main, '.js');
 
@@ -46,7 +47,7 @@ const terserMinified = terser({
   }
 });
 
-const makePlugins = (isProduction = false) =>
+const makePlugins = () =>
   [
     nodeResolve({
       mainFields: ['module', 'jsnext', 'main'],
@@ -138,7 +139,7 @@ export default [
   {
     ...config,
     external: id => externalTest(id),
-    plugins: [...makePlugins(false), unpkg()],
+    plugins: [...makePlugins(), !isProduction && unpkg()].filter(Boolean),
     output: [
       {
         sourcemap: true,
