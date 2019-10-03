@@ -16,12 +16,22 @@ export default function UnpkgBehaviour() {
   return {
     name: 'unpkg-behaviour',
     options(opts) {
+      const isExternal = id => {
+        if (Array.isArray(opts.external)) {
+          return opts.external.includes(id);
+        }
+        if (typeof opts.external === 'function') {
+          return opts.external(id);
+        }
+        return false;
+      };
+
       dependencies = Object.keys(pkgJSON.dependencies).reduce((acc, dep) => {
         const manifestLocation = require.resolve(`${dep}/package.json`);
         const rawManifest = fs.readFileSync(manifestLocation);
         const manifest = JSON.parse(rawManifest);
 
-        if (manifest.module && opts.external(manifest.name)) {
+        if (manifest.module && isExternal(manifest.name)) {
           acc[manifest.name] = manifest;
         }
         return acc;
