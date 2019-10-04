@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="module">
+      /** NOTE: this is currently broken as it creates a second instance
+       *  of react on the page - we need to figure out how best to approach this
+       *  alternatives include:
+       *  1. bundling + exporting react with spectacle so that only 1 instance
+       *     is used throughout the page
+       *  2. keeping react external in the esm bundle and aliasing it to es-react
+       *  3. keeping react external and including an importmap (shim) to map
+       *     react to es-react.
+       */
+      import { render } from 'https://unpkg.com/@philpl/es-react/react-dom?module';
+      import { createElement } from 'https://unpkg.com/@philpl/es-react/react?module';
+
+      import { Deck, Slide, Heading } from '../dist/one-page.js';
+
+      const Presentation = createElement(Deck, {}, [
+        createElement(Slide, {}, createElement(Heading, {}, 'Hello, world!'))
+      ]);
+
+      render(Presentation, document.getElementById('root'));
+    </script>
+  </body>
+</html>
