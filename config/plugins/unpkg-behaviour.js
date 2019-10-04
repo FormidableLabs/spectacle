@@ -5,6 +5,22 @@ const MagicString = require('magic-string');
 
 const pkgJSON = readPkg.sync();
 
+const parseImport = input => {
+  // https://github.com/egoist/parse-package-name/blob/master/index.js
+  const RE_SCOPED = /^(@[^/]+\/[^/@]+)(?:\/([^@]+))?(?:@([\s\S]+))?/;
+  const RE_NORMAL = /^([^/@]+)(?:\/([^@]+))?(?:@([\s\S]+))?/;
+  const matched =
+    input.charAt(0) === '@' ? input.match(RE_SCOPED) : input.match(RE_NORMAL);
+
+  if (!matched) {
+    return {};
+  }
+  return {
+    name: matched[1],
+    path: matched[2] || ''
+  };
+};
+
 const transformToUnpkgUrl = (name, version, subPackagePath) =>
   `https://unpkg.com/${name}@${version}${
     subPackagePath ? `/${subPackagePath}` : ''
@@ -60,14 +76,14 @@ export default function UnpkgBehaviour() {
         enter(node, parent) {
           if (node.type === 'Literal' && parent.type === 'ImportDeclaration') {
             const importLiteral = node.value;
-            const [basePackage, subPackagePath] = importLiteral.split(/\/(.+)/);
-            const manifest = dependencies[basePackage];
+            const pkg = parseImport(importLiteral);
+            const manifest = dependencies[pkg.name];
 
             if (manifest) {
               const unpkgUrl = transformToUnpkgUrl(
                 manifest.name,
                 manifest.version,
-                subPackagePath
+                pkg.path
               );
 
               magicString.overwrite(node.start, node.end, `'${unpkgUrl}'`, {
