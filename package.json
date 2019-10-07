@@ -3,8 +3,8 @@
   "version": "5.5.0",
   "description": "ReactJS Powered Presentation Framework",
   "source": "src/components/index.js",
-  "main": "dist/spectacle.js",
-  "module": "dist/spectacle.es.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "types": "index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
@@ -20,8 +20,7 @@
     "prettier-fix": "npm run prettier -- --write",
     "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
     "build-wds-base": "webpack-dev-server",
-    "build": "rollup -c rollup.config.js",
-    "build:rollup": "rollup -c rollup.config.js",
+    "build": "rollup -c config/rollup.config.js",
     "test": "echo TODO_IMPLEMENT",
     "check": "echo TODO_IMPLEMENT",
     "check-ci": "yarn run check"
