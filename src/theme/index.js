@@ -1,7 +1,7 @@
 import defaultTheme from './default-theme';
 // see cli actions.js to understand this import
 // TODO: replace with global theme variable?
-let userTheme = {};
+let userTheme = window.userTheme || {};
 
 const mergedTheme = { ...defaultTheme };
 if (userTheme && Object.keys(userTheme).length > 0) {
