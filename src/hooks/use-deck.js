@@ -25,12 +25,13 @@ function useDeck(initialState) {
         return newState;
       }
       case 'SET_NOTES': {
+        const notes = {
+          ...state.notes,
+          [action.payload.slideNumber]: action.payload.notes
+        };
         return {
           ...state,
-          notes: {
-            ...state.notes,
-            [action.payload.slideNumber]: action.payload.notes
-          }
+          notes
         };
       }
       default:
