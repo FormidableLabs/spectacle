@@ -109,6 +109,8 @@ const Slide = props => {
   );
 };
 
+Slide.displayName = 'Slide';
+
 Slide.propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
