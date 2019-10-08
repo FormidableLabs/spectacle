@@ -3,6 +3,8 @@ import externalTest from './external';
 
 const pkgInfo = require('../package.json');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const config = {
   input: pkgInfo.source || '../src/index.js',
   external: externalTest,
@@ -19,20 +21,22 @@ const globals = {
   'prop-types': 'PropTypes'
 };
 
-export default [
-  // UMD bundle
-  {
-    ...config,
-    external: ['react', 'react-is', 'react-dom', 'prop-types'],
-    plugins: [...makePlugins(true)],
-    output: [
-      {
-        name: 'Spectacle',
-        sourcemap: true,
-        file: `./dist/one-page.umd.js`,
-        format: 'umd',
-        globals
-      }
-    ]
-  }
-];
+export default function makeConfig(commandOptions) {
+  return [
+    // UMD bundle
+    {
+      ...config,
+      external: ['react', 'react-is', 'react-dom', 'prop-types'],
+      plugins: [...makePlugins(isProduction, commandOptions)],
+      output: [
+        {
+          name: 'Spectacle',
+          sourcemap: false,
+          file: `./dist/one-page.umd.js`,
+          format: 'umd',
+          globals
+        }
+      ]
+    }
+  ];
+}
