@@ -65,6 +65,8 @@ const Appear = ({ elementNum, transitionEffect, children }) => {
   return <animated.div style={styleProps}>{children}</animated.div>;
 };
 
+Appear.displayName = 'Appear';
+
 Appear.propTypes = {
   children: PropTypes.node.isRequired,
   elementNum: PropTypes.number.isRequired,
