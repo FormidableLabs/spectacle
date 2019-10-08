@@ -4,10 +4,24 @@ import buble from 'rollup-plugin-buble';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
+import serve from 'rollup-plugin-serve';
+import livereload from 'rollup-plugin-livereload';
 
 import babelPreset from './babel';
 
-const makePlugins = (isProduction = false) =>
+const devServerPlugins = commandOptions => [
+  serve({
+    open: true,
+    contentBase: '.',
+    openPage: '/examples/one-page-umd.html',
+    port: commandOptions.port
+  }),
+  livereload({
+    watch: ['dist', 'examples']
+  })
+];
+
+const makePlugins = (isProduction = false, commandOptions) =>
   [
     nodeResolve({
       mainFields: ['module', 'jsnext', 'main'],
@@ -31,11 +45,11 @@ const makePlugins = (isProduction = false) =>
       exclude: 'node_modules/**'
     }),
     babel(babelPreset(isProduction)),
-    isProduction &&
-      replace({
-        'process.env.NODE_ENV': JSON.stringify('production')
-      }),
-    terser()
+    replace({
+      'process.env.NODE_ENV': isProduction
+    }),
+    isProduction && terser(),
+    ...(commandOptions.open ? devServerPlugins(commandOptions) : [])
   ].filter(Boolean);
 
 export default makePlugins;
