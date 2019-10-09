@@ -20,7 +20,7 @@ import {
   Markdown
 } from '../../src/';
 
-const formidableLogo = require('./formidable.png');
+import formidableLogo from './formidable.png';
 const cppCodeBlock = `#include <iostream>
 
 int main()
