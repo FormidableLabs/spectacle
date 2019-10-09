@@ -17,7 +17,7 @@ const devServerPlugins = commandOptions => [
     port: commandOptions.port
   }),
   livereload({
-    watch: ['dist', 'examples']
+    watch: ['dist']
   })
 ];
 
