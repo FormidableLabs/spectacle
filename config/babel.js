@@ -1,5 +1,6 @@
 const babelPreset = isProduction => ({
   babelrc: false,
+  compact: false,
   presets: [],
   plugins: [
     '@babel/plugin-transform-object-assign',

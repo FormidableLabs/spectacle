@@ -1,42 +1,26 @@
-import makePlugins from './plugins';
-import externalTest from './external';
+import path from 'path';
 
-const pkgInfo = require('../package.json');
+import makePlugins from './plugins';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 const config = {
-  input: pkgInfo.source || '../src/index.js',
-  external: externalTest,
+  input: 'index.js',
   treeshake: {
     propertyReadSideEffects: false
   }
 };
 
-// UMD module globals
-const globals = {
-  react: 'React',
-  'react-is': 'ReactIs',
-  'react-dom': 'ReactDOM',
-  'prop-types': 'PropTypes'
-};
-
 export default function makeConfig(commandOptions) {
   return [
-    // UMD bundle
     {
       ...config,
-      external: ['react', 'react-is', 'react-dom', 'prop-types'],
       plugins: [...makePlugins(isProduction, commandOptions)],
-      output: [
-        {
-          name: 'Spectacle',
-          sourcemap: false,
-          file: `./dist/one-page.umd.js`,
-          format: 'umd',
-          globals
-        }
-      ]
+      output: {
+        format: 'iife',
+        name: 'Spectacle',
+        file: path.join('dist', 'bundle.js')
+      }
     }
   ];
 }

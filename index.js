@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 
 // TODO: This should be moved to `examples` along with `index.html` and not
 // be in real repo root (unless this is our "cloned repo" example??)
@@ -16,4 +16,5 @@ import TestJs from './examples/js/test-js';
  * to hot-reload with new contents.
  */
 
-render(<TestJs />, document.getElementById('root'));
+ReactDOM.render(<TestJs />, document.getElementById('root'));
+// ReactDOM.render(<TestMDX />, document.getElementById('root'));
