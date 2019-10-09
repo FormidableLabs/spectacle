@@ -6,6 +6,7 @@ import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
+import image from 'rollup-plugin-image';
 
 import babelPreset from './babel';
 
@@ -13,7 +14,6 @@ const devServerPlugins = commandOptions => [
   serve({
     open: true,
     contentBase: '.',
-    openPage: '/examples/one-page-umd.html',
     port: commandOptions.port
   }),
   livereload({
@@ -27,6 +27,7 @@ const makePlugins = (isProduction = false, commandOptions) =>
       mainFields: ['module', 'jsnext', 'main'],
       browser: true
     }),
+    image(),
     commonjs({
       ignoreGlobal: true,
       include: /\/node_modules\//,
