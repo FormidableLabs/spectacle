@@ -8,6 +8,8 @@ import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 import image from 'rollup-plugin-image';
 
+import mdx from './plugins/mdx-plugin/index';
+
 import babelPreset from './babel';
 
 const devServerPlugins = commandOptions => [
@@ -28,6 +30,7 @@ const makePlugins = (isProduction = false, commandOptions) =>
       browser: true
     }),
     image(),
+    mdx(),
     commonjs({
       ignoreGlobal: true,
       include: /\/node_modules\//,
@@ -36,6 +39,7 @@ const makePlugins = (isProduction = false, commandOptions) =>
         'react-is': Object.keys(require('react-is'))
       }
     }),
+
     buble({
       transforms: {
         unicodeRegExp: false,

@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 // be in real repo root (unless this is our "cloned repo" example??)
 
 // START: test components to try rendering:
-// import TestMDX from './examples/mdx/test-mdx';
-import TestJs from './examples/js/test-js';
+import TestMDX from './examples/mdx/test-mdx';
+// import TestJs from './examples/js/test-js';
 // END: test components to try rendering
 
 /**
@@ -16,5 +16,5 @@ import TestJs from './examples/js/test-js';
  * to hot-reload with new contents.
  */
 
-ReactDOM.render(<TestJs />, document.getElementById('root'));
-// ReactDOM.render(<TestMDX />, document.getElementById('root'));
+ReactDOM.render(<TestMDX />, document.getElementById('root'));
+// ReactDOM.render(<TestJs />, document.getElementById('root'));
