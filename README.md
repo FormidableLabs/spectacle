@@ -437,6 +437,10 @@ const theme = createTheme(
 
 The returned theme object can then be passed to the `Deck` tag via the `theme` prop, and will override the default styles.
 
+#### Slide Templates
+
+GitHub user [@boardfish](https://github.com/boardfish) has documented an approach to using [higher-order components](https://reactjs.org/docs/higher-order-components.html) to create slide templates at [this repository](https://github.com/boardfish/spectacle-slide-templates).
+
 <a name="faq"></a>
 
 ## FAQ
