@@ -1,5 +1,14 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+/**
+ * Production library config.
+ *
+ * Used as a base, this produces with other configs:
+ *
+ * - `dist/spectacle.min.js`: production library
+ * - `dist/spectacle.js`: development library
+ * - `dist/example.js`: development example deck (not published to npm)
+ */
 
 /*
  * In order for the CLI to find loaders and babel configurations when
@@ -38,10 +47,22 @@ const babelConfigOptions = {
 };
 
 module.exports = {
-  entry: './index.js',
+  mode: 'production',
+  entry: './src/index.js',
   output: {
+    library: 'Spectacle',
+    libraryTarget: 'umd',
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'spectacle.min.js'
+  },
+  devtool: 'source-map',
+  // TODO: Confirm these are externals we want.
+  // TODO: Document externals
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDom',
+    'react-is': 'ReactIs',
+    'prop-types': 'PropTypes'
   },
   module: {
     rules: [
@@ -68,11 +89,6 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: `./index.html`
-    })
-  ],
   resolve: {
     alias: {
       'spectacle-user-theme': path.resolve(
