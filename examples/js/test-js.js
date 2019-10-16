@@ -14,7 +14,9 @@ import {
   Text,
   UnorderedList,
   Grid,
-  Notes
+  Notes,
+  FullScreen,
+  Progress
 } from '../../src/components';
 
 const formidableLogo = require('./formidable.png');
@@ -32,18 +34,18 @@ int main()
 
 const TestJs = () => (
   <Deck
-    template={({ numberOfSlides, slideNumber }) => (
+    template={() => (
       <FlexBox
         justifyContent="space-between"
         position="absolute"
         bottom={0}
         width={1}
       >
-        <Text fontSize={12}>
-          Slide {slideNumber} of {numberOfSlides}
-        </Text>
-        <Box padding={10}>
-          <Image src={formidableLogo} width={100} />
+        <Box padding="0 1em">
+          <FullScreen />
+        </Box>
+        <Box padding="1em">
+          <Progress />
         </Box>
       </FlexBox>
     )}

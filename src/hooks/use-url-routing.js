@@ -13,6 +13,7 @@ export default function useUrlRouting(options) {
     currentSlide,
     currentSlideElement,
     currentPresenterMode,
+    currentOverviewMode,
     loop,
     animationsWhenGoingBack,
     onUrlChange
@@ -55,6 +56,7 @@ export default function useUrlRouting(options) {
       const query = queryString.parse(url);
       const immediate = Boolean(query.immediate);
       const presenterMode = Boolean(query.presenterMode);
+      const overviewMode = Boolean(query.overviewMode);
       const proposedSlideNumber = parseInt(query.slide, 10);
       const proposedSlideElementNumber = parseInt(query.slideElement, 10);
       const slideNumber = isSlideOutOfBounds(proposedSlideNumber)
@@ -68,9 +70,16 @@ export default function useUrlRouting(options) {
         ? DEFAULT_SLIDE_ELEMENT_INDEX
         : proposedSlideElementNumber;
 
+      if (overviewMode && presenterMode) {
+        throw new Error(
+          'Presenter Mode and Overview Mode cannot be used at the same time.'
+        );
+      }
+
       return {
         immediate,
         presenterMode,
+        overviewMode,
         proposedSlideNumber,
         proposedSlideElementNumber,
         slideNumber,
@@ -80,6 +89,20 @@ export default function useUrlRouting(options) {
     [countSlideElements, isSlideElementOutOfBounds, isSlideOutOfBounds]
   );
 
+  const goToSlide = React.useCallback(
+    slideNumber => {
+      const qs = queryString.stringify({
+        presenterMode: currentPresenterMode || undefined,
+        overviewMode: currentOverviewMode || undefined,
+        immediate: true,
+        slide: slideNumber,
+        slideElement: DEFAULT_SLIDE_ELEMENT_INDEX
+      });
+      history.current.push(`?${qs}`);
+    },
+    [currentPresenterMode, currentOverviewMode]
+  );
+
   const onHistoryChange = React.useCallback(() => {
     const {
       slideNumber,
@@ -87,9 +110,9 @@ export default function useUrlRouting(options) {
       proposedSlideNumber,
       proposedSlideElementNumber,
       presenterMode,
+      overviewMode,
       immediate
     } = stateFromUrl(window.location.search);
-
     /**
      * If the proposed URL slide index is out-of-bounds or is not a valid
      * integer, navigate to the first slide. Do nothing if the proposed slide
@@ -103,7 +126,8 @@ export default function useUrlRouting(options) {
         slide: slideNumber,
         slideElement: slideElementNumber,
         immediate: immediate || undefined,
-        presenterMode: presenterMode || undefined
+        presenterMode: presenterMode || undefined,
+        overviewMode: overviewMode || undefined
       });
       history.current.replace(`?${qs}`);
       return;
@@ -120,7 +144,8 @@ export default function useUrlRouting(options) {
       type: 'GO_TO_SLIDE',
       payload: {
         ...update,
-        presenterMode
+        presenterMode,
+        overviewMode
       }
     });
     onUrlChange(update);
@@ -163,13 +188,15 @@ export default function useUrlRouting(options) {
         slide: nextSafeSlideIndex,
         slideElement: nextSafeSlideElementIndex,
         immediate: immediate || undefined,
-        presenterMode: currentPresenterMode || undefined
+        presenterMode: currentPresenterMode || undefined,
+        overviewMode: currentOverviewMode || undefined
       });
       history.current.push(`?${qs}`);
     },
     [
       countSlideElements,
       currentPresenterMode,
+      currentOverviewMode,
       currentSlide,
       currentSlideElement,
       loop,
@@ -215,13 +242,15 @@ export default function useUrlRouting(options) {
       slide: previousSafeSlideIndex,
       slideElement: previousSafeSlideElementIndex,
       immediate: immediate || undefined,
-      presenterMode: currentPresenterMode || undefined
+      presenterMode: currentPresenterMode || undefined,
+      overviewMode: currentOverviewMode || undefined
     });
     history.current.push(`?${qs}`);
   }, [
     animationsWhenGoingBack,
     countSlideElements,
     currentPresenterMode,
+    currentOverviewMode,
     currentSlide,
     currentSlideElement,
     loop,
@@ -252,6 +281,7 @@ export default function useUrlRouting(options) {
 
   return {
     navigateToNext,
-    navigateToPrevious
+    navigateToPrevious,
+    goToSlide
   };
 }

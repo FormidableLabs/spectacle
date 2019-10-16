@@ -36,7 +36,6 @@ const Slide = props => {
     backgroundColor,
     textColor,
     template,
-    numberOfSlides,
     scaleRatio
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -85,6 +84,7 @@ const Slide = props => {
   }, [transformForWindowSize, scaleRatio]);
 
   const value = useSlide(slideNum);
+  const { numberOfSlides } = value.state;
 
   return (
     <SlideContainer
@@ -112,7 +112,6 @@ const Slide = props => {
 Slide.propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
-  numberOfSlides: PropTypes.number,
   scaleRatio: PropTypes.number,
   slideNum: PropTypes.number,
   template: PropTypes.func,
