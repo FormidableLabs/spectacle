@@ -52,7 +52,7 @@
         auto answer = curried_add(7)(8);
         std::cout << answer << std::endl;
         return 0;
-      }`;
+      }`.replace(/      /gm, '');
       const deck = html`
         <${Deck}
           template=${({ numberOfSlides, slideNumber }) =>
