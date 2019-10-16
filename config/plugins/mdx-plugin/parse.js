@@ -80,8 +80,8 @@ const parse = (src, options) => {
    * export/import statements that we removed in Step 6.
    */
   let allCode = `/* @jsx mdx */
-import React from 'react'
-import { mdx } from '@mdx-js/react'
+import React from 'react';
+import { mdx } from '@mdx-js/react';
 ${modules.join('\n')}
 ${inlineModules
   .filter(function(el, i, arr) {
