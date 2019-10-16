@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 
 // START: test components to try rendering:
 import TestMDX from './examples/mdx/test-mdx';
-// import TestJs from './examples/js/test-js';
+import TestJs from './examples/js/test-js';
 // END: test components to try rendering
 
 /**

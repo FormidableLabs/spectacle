@@ -25,12 +25,12 @@ const devServerPlugins = commandOptions => [
 
 const makePlugins = (isProduction = false, commandOptions) =>
   [
+    mdx(),
     nodeResolve({
       mainFields: ['module', 'jsnext', 'main'],
       browser: true
     }),
     image(),
-    mdx(),
     commonjs({
       ignoreGlobal: true,
       include: /\/node_modules\//,
@@ -39,8 +39,8 @@ const makePlugins = (isProduction = false, commandOptions) =>
         'react-is': Object.keys(require('react-is'))
       }
     }),
-
     buble({
+      include: ['*.js', '*.mdx'],
       transforms: {
         unicodeRegExp: false,
         dangerousForOf: true,
