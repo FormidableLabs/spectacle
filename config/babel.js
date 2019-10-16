@@ -2,6 +2,7 @@ const babelPreset = isProduction => ({
   babelrc: false,
   compact: false,
   presets: [],
+  extensions: ['.mdx', '.js'],
   plugins: [
     '@babel/plugin-transform-object-assign',
     [
