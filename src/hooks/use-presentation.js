@@ -17,6 +17,13 @@ function usePresentation() {
   // Open to suggestions for better error handling
   const addError = e => setErrors(es => [...es, e]);
 
+  const terminateConnection = useCallback(() => {
+    if (connection) {
+      connection.terminate();
+      setConnection(null);
+    }
+  }, [connection]);
+
   // Create a presentation request and store it as a ref
   useEffect(() => {
     if (!window.PresentationRequest) {
@@ -42,13 +49,6 @@ function usePresentation() {
       receiver.connectionList.then(handleConnectionList).catch(addError);
     }
   }, []);
-
-  const terminateConnection = useCallback(() => {
-    if (connection) {
-      connection.terminate();
-      setConnection(null);
-    }
-  }, [connection]);
 
   // Opens the display selection dialog box
   const startConnection = useCallback(urlParams => {
