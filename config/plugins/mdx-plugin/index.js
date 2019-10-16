@@ -2,18 +2,17 @@ import { extname } from 'path';
 
 import parse from './parse';
 
-export default function mdx(options = {}) {
+export default function mdx() {
   return {
     name: 'mdx',
-    transform(data, id) {
+
+    transform(code, id) {
       const ext = extname(id);
       if (ext !== '.mdx') {
-        return null;
+        return code;
       }
-
-      const code = parse(data);
-
-      return code;
+      const parsedCode = parse(code);
+      return parsedCode;
     }
   };
 }
