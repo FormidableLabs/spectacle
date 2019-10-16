@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      window.userTheme = {
+        colors: {
+          secondary: 'hotpink'
+        }
+      };
+    </script>
+
+    <script src="https://unpkg.com/react@16.10.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.10.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-is@16.10.1/umd/react-is.production.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+    <!-- <script src="https://unpkg.com/spectacle/dist/spectacle.js"></script> -->
+    <script src="../dist/spectacle.js"></script>
+    <script type="module">
+      const {
+        Deck,
+        Slide,
+        Appear,
+        CodePane,
+        FlexBox,
+        Box,
+        Image,
+        Heading,
+        ListItem,
+        OrderedList,
+        Quote,
+        Text,
+        UnorderedList,
+        Grid,
+        Notes
+      } = Spectacle;
+      import htm from 'https://unpkg.com/htm@2.2.1?module';
+      const html = htm.bind(React.createElement);
+      // Example content.
+      const formidableLogo = './js/formidable.png';
+      const cppCodeBlock = `#include <iostream>
+      int main()
+      {
+        auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
+        auto answer = curried_add(7)(8);
+        std::cout << answer << std::endl;
+        return 0;
+      }`.replace(/      /gm, '');
+      const deck = html`
+        <${Deck}
+          template=${({ numberOfSlides, slideNumber }) =>
+            html`
+              <${FlexBox}
+                justifyContent="space-between"
+                position="absolute"
+                bottom=${0}
+                width=${1}
+              >
+                <${Text} fontSize=${12}>
+                  Slide ${slideNumber} of ${numberOfSlides}
+                <//>
+                <${Box} padding=${10}>
+                  <${Image} src=${formidableLogo} width=${100} />
+                <//>
+              <//>
+            `}
+        >
+          <${Slide}>
+            <${Heading}>Spectacle<//>
+            <${Text}>Hello There 🤗<//>
+            <${Quote}>This is a Formidaquote!<//>
+            <${OrderedList}>
+              <${Appear} elementNum=${0}>
+                <${ListItem}>This is an<//>
+              <//>
+              <${Appear} elementNum=${1}>
+                <${ListItem}>ordered list<//>
+              <//>
+            <//>
+            <${UnorderedList}>
+              <${ListItem}>This is an<//>
+              <${ListItem}>unordered list<//>
+            <//>
+            <${Notes}>
+              <p>
+                Notes are shown in presenter mode. Open up
+                localhost:3000/?presenterMode=true to see them.
+              <//>
+            <//>
+          <//>
+          <${Slide}>
+            <${CodePane} fontSize=${18} language="cpp">
+              ${cppCodeBlock}
+            <//>
+            <${Notes}>
+              <p>
+                This is a code pane! It can support multiple programming
+                languages.
+              <//>
+            <//>
+          <//>
+          <${Slide}>
+            <${Text} fontSize="subHeader">Slide 3!<//>
+            <${Appear} elementNum=${0}>
+              <${Text}>Hey, just one "animated" slide element here<//>
+            <//>
+          <//>
+          <${Slide}>
+            <${Text}>I'm a static slide element that should always show<//>
+            <${Text}>This means that we don't need a SlideElementWrapper<//>
+            <${Appear} elementNum=${0}>
+              <${Text}> ZERO Slide 4 x 3! <//>
+            <//>
+            <${Appear} elementNum=${1}>
+              <${Text}> ONE Slide 4 x 3! <//>
+            <//>
+            <${Appear} elementNum=${2}>
+              <${Text}> TWO Slide 4 x 3! <//>
+            <//>
+            <${Text}>I'm also a static non-animated "slide element"!<//>
+          <//>
+          <${Slide}>
+            <${FlexBox}>
+              <${Text}>These<//>
+              <${Text}>Text<//>
+              <${Text} color="secondary">Items<//>
+              <${Text} fontWeight="bold">Flex<//>
+            <//>
+            <${Grid} gridTemplateColumns="1fr 2fr" gridColumnGap=${15}>
+              <${Box} backgroundColor="primary">
+                <${Text} color="secondary">Single-size Grid Item<//>
+              <//>
+              <${Box} backgroundColor="secondary">
+                <${Text}>Double-size Grid Item<//>
+              <//>
+            <//>
+            <${Heading}>Lots of Formidables!<//>
+            <${Grid}
+              gridTemplateColumns="1fr 1fr 1fr"
+              gridTemplateRows="1fr 1fr 1fr"
+              alignItems="center"
+              justifyContent="center"
+              gridRowGap=${15}
+            >
+              ${Array(9)
+                .fill('')
+                .map(
+                  (_, index) =>
+                    // TODO(ONE-PAGE): I don't see anything in dev or one-page (???)
+                    html`
+                      <${FlexBox} key="formidable-logo-${index}">
+                        <${Image} src=${formidableLogo} width=${100} />
+                      <//>
+                    `
+                )}
+            <//>
+          <//>
+        <//>
+      `;
+      ReactDOM.render(deck, document.getElementById('root'));
+    </script>
+  </body>
+</html>

@@ -6,16 +6,21 @@
   "module": "es/index.js",
   "types": "index.d.ts",
   "scripts": {
-    "build": "",
+    "build-wds": "webpack-dev-server --config webpack.config.example.js",
+    "build-webpack-base": "webpack",
+    "build-webpack-example": "builder run build-webpack-base -- --config webpack.config.example.js",
+    "build-webpack-lib-dev": "builder run build-webpack-base -- --config webpack.config.dev.js",
+    "build-webpack-lib": "builder run build-webpack-base",
+    "build": "builder concurrent --buffer build-webpack-lib build-webpack-lib-dev build-webpack-example",
     "lint": "eslint --ignore-path .gitignore .",
-    "lint-fix": "",
+    "lint-fix": "yarn lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
-    "prettier-fix": "npm run prettier -- --write",
-    "deploy": "",
-    "start": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"esm\\\"}\" build-wds-base -- --port=3000 --hot",
-    "build-wds-base": "webpack-dev-server",
-    "test": "jest --verbose",
-    "check": ""
+    "prettier-fix": "yarn prettier --write",
+    "deploy": "echo TODO_IMPLEMENT",
+    "start": "builder run build-wds -- --port=3000 --hot",
+    "test": "echo TODO_IMPLEMENT",
+    "check": "echo TODO_IMPLEMENT",
+    "check-ci": "yarn run check"
   },
   "bin": {
     "spectacle": "./bin/cli.js"
