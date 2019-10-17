@@ -13,7 +13,7 @@ const fileExists = srcPath => {
   });
 };
 
-const validatePresentationMode = async (src, theme) => {
+const validatePresentationMode = async (src, theme, port, title) => {
   /* - the default action of the CLI is to boot up a presentation from a file
    * - src defaults to `slides.mdx`
    * - theme has no default
@@ -21,7 +21,7 @@ const validatePresentationMode = async (src, theme) => {
    * - then check to see if the default or provided file exists
    */
 
-  const validatedValue = {};
+  const validatedValue = { port, title };
   const srcExtension = path.extname(src);
 
   if (isMDXFileType(srcExtension)) {

@@ -17,7 +17,7 @@ import {
   Notes,
   FullScreen,
   Progress
-} from '../../src/components';
+} from '../../src/';
 
 const formidableLogo = require('./formidable.png');
 const cppCodeBlock = `#include <iostream>
@@ -129,7 +129,7 @@ const TestJs = () => (
         {Array(9)
           .fill('')
           .map((_, index) => (
-            <FlexBox key={`formidable-logo-${index}`}>
+            <FlexBox key={`formidable-logo-${index}`} flex={1}>
               <Image src={formidableLogo} width={100} />
             </FlexBox>
           ))}

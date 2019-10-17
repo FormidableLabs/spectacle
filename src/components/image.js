@@ -5,11 +5,14 @@ const Image = styled('img')(
   compose(
     layout,
     position
-  ),
-  css`
-    max-height: 100%;
-    max-width: 100%;
-  `
+  )
 );
 
-export { Image };
+const FullSizeImage = styled(Image);
+
+FullSizeImage.defaultProps = {
+  maxWidth: '100%',
+  maxHeight: '100%'
+};
+
+export { Image, FullSizeImage };

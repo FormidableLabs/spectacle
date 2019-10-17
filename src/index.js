@@ -1,15 +1,8 @@
-// TODO: Consider removing `./components/index` here and just doing right here.
-// TODO: Consider additional re-exports from other things.
-
+import Deck from './components/deck';
+import Slide from './components/slide';
+import Appear from './components/appear';
+import CodePane from './components/code-pane';
 import {
-  Deck,
-  Slide,
-  Appear,
-  CodePane,
-  Box,
-  FlexBox,
-  Grid,
-  Image,
   OrderedList,
   Quote,
   Heading,
@@ -17,11 +10,13 @@ import {
   UnorderedList,
   Text,
   Link,
-  CodeSpan,
-  Notes,
-  Progress,
-  FullScreen
-} from './components/index';
+  CodeSpan
+} from './components/typography';
+import { FlexBox, Grid, Box } from './components/layout';
+import { Image, FullSizeImage } from './components/image';
+import Notes from './components/notes';
+import Progress from './components/progress';
+import FullScreen from './components/fullscreen';
 
 export {
   Deck,
@@ -32,6 +27,7 @@ export {
   FlexBox,
   Grid,
   Image,
+  FullSizeImage,
   OrderedList,
   Quote,
   Heading,
