@@ -31,7 +31,7 @@ export default function makeConfig(commandOptions) {
     output: {
       format: 'iife',
       name: 'Spectacle',
-      file: path.join('dist', 'bundle.js')
+      file: path.join('dist', 'spectacle.js')
     }
   };
 
@@ -44,7 +44,7 @@ export default function makeConfig(commandOptions) {
       {
         name: 'Spectacle',
         sourcemap: false,
-        file: `./dist/one-page.umd.js`,
+        file: `./dist/umd/spectacle.js`,
         format: 'umd',
         // specify variable names for external imports
         globals: {
