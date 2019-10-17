@@ -8,7 +8,6 @@ import { terser } from 'rollup-plugin-terser';
 import image from 'rollup-plugin-image';
 
 import mdx from './mdx-plugin/index';
-import devServerPlugins from './server';
 
 import babelPreset from '../babel';
 
