@@ -100,7 +100,9 @@ const PresenterDeck = props => {
           <Button onClick={terminateConnection}>Terminate Connection</Button>
         )}
         <PresentationHeader fontSize="subHeader">Notes:</PresentationHeader>
-        <Text lineHeight="180%">{currentNotes}</Text>
+        <Text lineHeight="180%" fontSize="18px">
+          {currentNotes}
+        </Text>
       </NotesColumn>
       <PreviewColumn>
         <SlideContainer>{activeSlide}</SlideContainer>
