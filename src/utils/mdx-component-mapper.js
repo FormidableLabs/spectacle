@@ -11,7 +11,7 @@ import {
   ListItem,
   Link,
   CodeSpan
-} from '../components';
+} from '../';
 
 const mdxComponentMap = {
   p: Text,

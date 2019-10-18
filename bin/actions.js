@@ -2,14 +2,13 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const path = require('path');
 const config = require('../webpack.config');
-
-const port = 3000;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const options = {
   hot: true
 };
 
-const launchServer = (configUpdates = {}) => {
+const launchServer = (configUpdates = {}, port) => {
   const customConfig = { ...config, ...configUpdates };
   const server = new WebpackDevServer(webpack(customConfig), options);
 
@@ -21,7 +20,7 @@ const launchServer = (configUpdates = {}) => {
   });
 };
 
-const launchMDXServer = (mdxFilePath, themeFilePath) => {
+const launchMDXServer = (mdxFilePath, themeFilePath, title, port = 3000) => {
   if (!mdxFilePath) {
     // developer error - must supply an entry file path
     throw new Error('MDX file path must be provided.');
@@ -37,20 +36,31 @@ const launchMDXServer = (mdxFilePath, themeFilePath) => {
   if (themeFilePath) {
     alias['spectacle-user-theme'] = path.resolve(themeFilePath);
   } else {
-    alias['spectacle-user-theme'] = config.resolve.alias['spectacle-user-theme'];
+    alias['spectacle-user-theme'] =
+      config.resolve.alias['spectacle-user-theme'];
   }
 
   const configUpdates = {
     mode: 'development',
     context: cliRoot,
     entry: './mdx-slides/index.js',
+    output: {
+      filename: 'spectacle.js'
+    },
     resolve: {
       alias,
       modules: [nodeModules]
-    }
+    },
+    externals: {},
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: `./index.html`,
+        title: title || 'Spectacle – Getting Started'
+      })
+    ]
   };
 
-  launchServer(configUpdates);
+  launchServer(configUpdates, port);
 };
 
 module.exports = {

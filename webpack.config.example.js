@@ -14,6 +14,7 @@ module.exports = {
   externals: {},
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'Spectacle Development Example',
       template: `./index.html`
     })
   ]

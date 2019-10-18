@@ -1,15 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { MDXProvider } from '@mdx-js/react';
-import {
-  Deck,
-  Slide,
-  Notes,
-  FlexBox,
-  Text,
-  Box,
-  Image
-} from '../src/components';
+import { Deck, Slide, Notes, FlexBox, Text, Box, Image } from '../src/';
 const formidableLogo = require('../examples/js/formidable.png');
 
 // See the cli actions.js to see how this import alias is made
