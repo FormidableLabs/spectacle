@@ -26,8 +26,6 @@ const launchMDXServer = (mdxFilePath, themeFilePath, title, port = 3000) => {
     throw new Error('MDX file path must be provided.');
   }
 
-  console.log(title);
-
   const cliRoot = path.resolve(__dirname, '..');
   const absoluteMdxFilePath = path.resolve(mdxFilePath);
   const nodeModules = path.resolve(__dirname, '../node_modules');
