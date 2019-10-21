@@ -56,7 +56,6 @@
     "babel-plugin-transform-async-to-promises": "^0.8.14",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "builder": "^4.0.0",
-    "es-react": "^16.8.60",
     "eslint": "^5.16.0",
     "eslint-config-formidable": "^3.0.0",
     "eslint-config-prettier": "^2.9.0",
