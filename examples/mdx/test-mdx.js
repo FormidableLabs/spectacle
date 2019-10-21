@@ -7,7 +7,7 @@ import {
   Box,
   Progress,
   FullScreen
-} from '../../src/components';
+} from '../../src/';
 import { MDXProvider } from '@mdx-js/react';
 import mdxComponentMap from '../../src/utils/mdx-component-mapper';
 
