@@ -22,8 +22,8 @@ const config = {
 export default function makeConfig(commandOptions) {
   const builds = [];
 
-  // iife build (for use with dev-server)
-  const iife = {
+  // dev-server example deck build 
+  const example = {
     ...config,
     // dev-server uses index.js as an alternative entry point as we are building
     // an example application, rather than just building the library code.
@@ -65,13 +65,13 @@ export default function makeConfig(commandOptions) {
   // if rollup has been ran via `--open` then only
   // include the dev-server IIFE build.
   if (commandOptions.open) {
-    builds.push(...[iife]);
+    builds.push(...[example]);
   }
 
   // if we are not running the dev-server, include all
-  // default bundle builds.
+  // bundle builds that we publish to npm.
   if (!commandOptions.open) {
-    builds.push(...[iife, umd]);
+    builds.push(...[umd]);
   }
 
   return builds;
