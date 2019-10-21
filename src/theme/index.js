@@ -1,6 +1,6 @@
 import defaultTheme from './default-theme';
-// see cli actions.js to understand this import
-// TODO: replace with global theme variable?
+// TODO: replace with userTheme import alias?
+// https://github.com/FormidableLabs/spectacle/issues/737
 let userTheme = window.userTheme || {};
 
 const mergedTheme = { ...defaultTheme };

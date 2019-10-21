@@ -1,9 +1,11 @@
 /*
 /dist/*
-!/dist/spectacle*
-/dist/*.map
 !/es
 !/lib
+!/dist/umd/spectacle*
+!/dist/cjs/spectacle*
+!/dist/es/spectacle*
+/dist/**/*.map
 !/mdx-loader
 !/src
 !/docs
