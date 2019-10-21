@@ -3,11 +3,13 @@ import path from 'path';
 import makePlugins from './plugins/index';
 import makeDevServerPlugins from './plugins/server';
 
+const pkgInfo = require('../package.json');
+
 const isProduction = process.env.NODE_ENV === 'production';
 
 // default config that is used across all builds
 const config = {
-  input: 'index.js',
+  input: pkgInfo.source || './index.js',
   treeshake: {
     // We assume reading a property of an object never has side-effects so we
     // disable this option as it can significantly reduce bundle size but
@@ -23,6 +25,9 @@ export default function makeConfig(commandOptions) {
   // iife build (for use with dev-server)
   const iife = {
     ...config,
+    // dev-server uses index.js as an alternative entry point as we are building
+    // an example application, rather than just building the library code.
+    input: 'index.js',
     plugins: [
       ...makePlugins(isProduction),
       // if rollup has been ran with `--open`, include the dev server plugins
@@ -31,7 +36,7 @@ export default function makeConfig(commandOptions) {
     output: {
       format: 'iife',
       name: 'Spectacle',
-      file: path.join('dist', 'spectacle.js')
+      file: path.join('dist', 'example.js')
     }
   };
 

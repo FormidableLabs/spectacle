@@ -1,9 +1,9 @@
 /*
 /dist/*
-!/dist/spectacle*
-/dist/*.map
-!/es
-!/lib
+!/dist/umd/spectacle.js
+!/dist/cjs/spectacle.js
+!/dist/es/spectacle.js
+/dist/**/*.map
 !/src
 !/docs
 __snapshots__
