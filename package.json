@@ -7,7 +7,7 @@
   "types": "index.d.ts",
   "scripts": {
     "clean": "rimraf dist lib es",
-    "preversion": "npm run check",
+    "preversion": "yarn run check",
     "version": "yarn clean && yarn build",
     "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.js/\"",
     "build-babel-esm": "builder run build-babel -- -d es",
@@ -22,7 +22,7 @@
     "lint-fix": "yarn lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
     "prettier-fix": "yarn prettier --write",
-    "deploy": "echo TODO_IMPLEMENT",
+    "deploy": "echo TODO_IMPLEMENT_OR_REMOVE",
     "start": "builder run build-wds -- --port=3000 --hot",
     "test": "echo TODO_IMPLEMENT",
     "check": "echo TODO_IMPLEMENT",
