@@ -23,6 +23,8 @@ import {
 } from '../../utils/constants';
 import searchChildrenForAppear from '../../utils/search-children-appear';
 import OverviewDeck from './overview-deck';
+import { Markdown, Slide } from '../../index';
+import indentNormalizer from '../../utils/indent-normalizer';
 
 const AnimatedDeckDiv = styled(animated.div)`
   height: 100vh;
@@ -71,6 +73,13 @@ const initialState = {
   resolvedInitialUrl: false
 };
 
+const splitMarkdownIntoSlides = md =>
+  md.split(/\n\s*---\n/).map((markdown, index) => (
+    <Slide key={`md-slide-${index}`}>
+      <Markdown>{markdown}</Markdown>
+    </Slide>
+  ));
+
 const Deck = ({
   children,
   loop,
@@ -79,8 +88,20 @@ const Deck = ({
   ...rest
 }) => {
   // Check for slides and then number slides.
+
   const filteredChildren = Array.isArray(children)
-    ? children.filter(x => isComponentType(x, 'Slide'))
+    ? children
+        .map(x => {
+          if (
+            isComponentType(x, 'Markdown') &&
+            Boolean(x.props.containsSlides)
+          ) {
+            return splitMarkdownIntoSlides(x.props.children);
+          }
+          return x;
+        })
+        .flat(1)
+        .filter(x => isComponentType(x, 'Slide'))
     : console.error('No children passed') || [];
 
   const numberOfSlides = filteredChildren.length;

@@ -17,6 +17,7 @@ import { Image, FullSizeImage } from './components/image';
 import Notes from './components/notes';
 import Progress from './components/progress';
 import FullScreen from './components/fullscreen';
+import Markdown from './components/markdown';
 
 export {
   Deck,
@@ -38,5 +39,6 @@ export {
   CodeSpan,
   Notes,
   Progress,
-  FullScreen
+  FullScreen,
+  Markdown
 };
