@@ -4,6 +4,7 @@
 /dist/*.map
 !/es
 !/lib
+!/mdx-loader
 !/src
 !/docs
 __snapshots__

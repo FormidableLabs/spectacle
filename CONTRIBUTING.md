@@ -31,6 +31,17 @@ Thanks for taking the time to help us make Spectacle even better! Before you go 
 - Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API, like breaking changes or new features.
 - Everything else included in our [pull request checklist](https://github.com/FormidableLabs/spectacle/blob/master/.github/PULL_REQUEST_TEMPLATE.md#checklist-feel-free-to-delete-this-section-upon-completion)
 
+### Releasing a new version to NPM
+
+_Only for project administrators_.
+
+1. Update `CHANGELOG.md`, following format for previous versions
+2. Commit as "Changes for version VERSION"
+3. Run `npm version patch` (or `minor|major|VERSION`) to run tests and lint,
+   build published directories, then update `package.json` + add a git tag.
+4. Run `npm publish` and publish to NPM if all is well.
+5. Run `git push && git push --tags`
+
 ## Contributor Covenant Code of Conduct
 
 ### Our Pledge
