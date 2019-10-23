@@ -16,7 +16,8 @@ import {
   Grid,
   Notes,
   FullScreen,
-  Progress
+  Progress,
+  Markdown
 } from '../../src/';
 
 const formidableLogo = require('./formidable.png');
@@ -135,6 +136,29 @@ const TestJs = () => (
           ))}
       </Grid>
     </Slide>
+    <Slide>
+      <Markdown>
+        {`
+          ### Paying for too much Lambda memory?
+          - Yes you are!
+          
+          \`\`\`js
+          fields @timestamp, res.duration
+          | filter res.duration > 0
+          | sort @timestamp desc
+          | limit 20
+          | stats min(res.duration), avg(res.duration), max(res.duration) by bin(30m)
+          \`\`\`
+        `}
+      </Markdown>
+    </Slide>
+    <Markdown containsSlides>
+      {`
+        ### First MD generated Slide
+        ---
+        ### Second MD Generated Slide
+      `}
+    </Markdown>
   </Deck>
 );
 
