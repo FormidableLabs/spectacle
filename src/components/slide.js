@@ -42,6 +42,8 @@ const Slide = props => {
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
   const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
   const slideRef = React.useRef(null);
+  const contentRef = React.useRef(null);
+  const templateRef = React.useRef(null);
   const slideWidth = theme.size.width || 1366;
   const slideHeight = theme.size.height || 768;
 
@@ -86,6 +88,65 @@ const Slide = props => {
   const value = useSlide(slideNum);
   const { numberOfSlides } = value.state;
 
+  React.useLayoutEffect(() => {
+    if (!contentRef.current.hasChildNodes()) {
+      return;
+    }
+    const childNodes = [].slice.call(contentRef.current.childNodes);
+    const metrics = childNodes.reduce(
+      (memo, current) => {
+        const currentNodeIsAutoFill = current.classList.contains(
+          'spectacle-auto-height-fill'
+        );
+        const style = getComputedStyle(current);
+        const nodeHeight =
+          current.offsetHeight +
+          parseFloat(style.marginTop) +
+          parseFloat(style.marginBottom);
+        return {
+          totalHeight: nodeHeight + memo.totalHeight,
+          autoFillsHeight: currentNodeIsAutoFill
+            ? current.clientHeight + memo.autoFillsHeight
+            : memo.autoFillsHeight,
+          numberAutoFills: currentNodeIsAutoFill
+            ? memo.numberAutoFills + 1
+            : memo.numberAutoFills
+        };
+      },
+      { totalHeight: 0, autoFillsHeight: 0, numberAutoFills: 0 }
+    );
+
+    if (templateRef.current.hasChildNodes()) {
+      const templateChildNodes = [].slice.call(templateRef.current.childNodes);
+      metrics.templateHeight = templateChildNodes.reduce((memo, current) => {
+        const style = getComputedStyle(current);
+        const nodeHeight =
+          current.offsetHeight +
+          parseFloat(style.marginTop) +
+          parseFloat(style.marginBottom);
+        return (memo += nodeHeight);
+      }, 0);
+    } else {
+      metrics.templateHeight = 0;
+    }
+
+    const emptySpace =
+      slideHeight -
+      (metrics.totalHeight - metrics.autoFillsHeight + metrics.templateHeight);
+
+    childNodes.forEach(node => {
+      const currentNodeIsAutoFill = node.classList.contains(
+        'spectacle-auto-height-fill'
+      );
+
+      if (!currentNodeIsAutoFill) {
+        return;
+      }
+
+      node.style.maxHeight = `${emptySpace}px`;
+    });
+  }, [contentRef, templateRef, slideHeight]);
+
   return (
     <SlideContainer
       ref={slideRef}
@@ -95,7 +156,7 @@ const Slide = props => {
         transformOrigin: `${origin.x} ${origin.y}`
       }}
     >
-      <TemplateWrapper>
+      <TemplateWrapper ref={templateRef}>
         {typeof template === 'function' &&
           template({
             slideNumber: slideNum,
@@ -103,7 +164,9 @@ const Slide = props => {
           })}
       </TemplateWrapper>
       <SlideWrapper padding="slidePadding" color={textColor}>
-        <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
+        <SlideContext.Provider value={value}>
+          <div ref={contentRef}>{children}</div>
+        </SlideContext.Provider>
       </SlideWrapper>
     </SlideContainer>
   );

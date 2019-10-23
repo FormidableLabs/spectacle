@@ -2,7 +2,7 @@ export default {
   size: {
     width: 1366,
     height: 768,
-    maxCodePaneHeight: 520
+    maxCodePaneHeight: 200
   },
   colors: {
     primary: '#ebe5da',

@@ -47,7 +47,7 @@ export default function CodePane(props) {
     () => ({
       fontFamily: font,
       fontSize: fontSize,
-      maxHeight: themeContext.size.maxCodePaneHeight || 300,
+      maxHeight: themeContext.size.maxCodePaneHeight || 200,
       overflow: 'scroll',
       margin: 0,
       padding: '0.5em 1em 0.5em 0'
@@ -77,7 +77,11 @@ export default function CodePane(props) {
         theme={theme}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={className} style={{ ...style, ...preStyles }}>
+          <pre
+            className={`${className} ${props.autoFillHeight &&
+              'spectacle-auto-height-fill'}`}
+            style={{ ...style, ...preStyles }}
+          >
             {tokens.map((line, i) => {
               const lineProps = getLineProps({ line, key: i });
               const lineIndentation = line[0].content.search(spaceSearch);
@@ -116,6 +120,7 @@ export default function CodePane(props) {
 }
 
 CodePane.propTypes = {
+  autoFillHeight: propTypes.bool,
   children: propTypes.string.isRequired,
   fontSize: propTypes.number,
   language: propTypes.string.isRequired,
