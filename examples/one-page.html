@@ -39,7 +39,8 @@
         Text,
         UnorderedList,
         Grid,
-        Notes
+        Notes,
+        Markdown
       } = Spectacle;
       import htm from 'https://unpkg.com/htm@2.2.1?module';
       const html = htm.bind(React.createElement);
@@ -161,6 +162,33 @@
                     `
                 )}
             <//>
+          <//>
+          <${Slide}>
+            <${Markdown}>
+              ${`
+                ### Paying for too much Lambda memory?
+                - Yes you are!
+
+                \`\`\`js
+                fields @timestamp, res.duration
+                | filter res.duration > 0
+                | sort @timestamp desc
+                | limit 20
+                | stats min(res.duration), avg(res.duration), max(res.duration) by bin(30m)
+                \`\`\`
+              `}
+            <//>
+          <//>
+          <${Markdown} containsSlides>
+            ${`
+              ### First MD Generated Slide
+              - A list item
+              - Another
+              ---
+              ### Second MD Generated Slide
+              1. An ordered list item
+              2. Second
+            `}
           <//>
         <//>
       `;
