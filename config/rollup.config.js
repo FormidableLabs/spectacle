@@ -5,6 +5,8 @@ import makeDevServerPlugins from './plugins/server';
 
 const pkgInfo = require('../package.json');
 
+const createBundleName = isProduction => `spectacle.${isProduction ? 'production.min' : 'development'}.js`;
+
 // default config that is used across all builds
 const config = {
   input: pkgInfo.source || './index.js',
@@ -40,6 +42,20 @@ export default function makeConfig(commandOptions) {
     }
   };
 
+  // CJS build
+  const makeCJS = (isProduction) => ({
+    ...config,
+    external: ['react', 'react-is', 'react-dom', 'prop-types'],
+    plugins: [...makePlugins(isProduction)],
+    output: [
+      {
+        format: 'cjs',
+        file: `./dist/cjs/${createBundleName(isProduction)}`,
+        sourcemap: false,
+      }
+    ]
+  })
+
   // UMD build
   const makeUmd = (isProduction) => ({
     ...config,
@@ -49,7 +65,7 @@ export default function makeConfig(commandOptions) {
       {
         name: 'Spectacle',
         sourcemap: false,
-        file: `./dist/umd/spectacle.${isProduction ? 'production.min' : 'development'}.js`,
+        file: `./dist/umd/${createBundleName(isProduction)}`,
         format: 'umd',
         // specify variable names for external imports
         globals: {
@@ -71,7 +87,7 @@ export default function makeConfig(commandOptions) {
   // if we are not running the dev-server, include all bundle builds
   // that we publish to npm (including production & development).
   if (!commandOptions.open) {
-    builds.push(...[makeUmd(true), makeUmd(false)]);
+    builds.push(...[makeUmd(true), makeUmd(false), makeCJS(true), makeCJS(false)]);
   }
 
   return builds;
