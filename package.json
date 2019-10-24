@@ -11,7 +11,6 @@
     "version": "yarn clean && yarn build",
     "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.js/\"",
     "build-babel-esm": "builder run build-babel -- -d es",
-    "build-babel-cjs": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"cjs\\\"}\" build-babel -- -d lib",
     "lint": "eslint --ignore-path .gitignore .",
     "lint-fix": "yarn lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
