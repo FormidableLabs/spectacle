@@ -5,8 +5,6 @@ import makeDevServerPlugins from './plugins/server';
 
 const pkgInfo = require('../package.json');
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 // default config that is used across all builds
 const config = {
   input: pkgInfo.source || './index.js',
@@ -29,19 +27,21 @@ export default function makeConfig(commandOptions) {
     // an example application, rather than just building the library code.
     input: 'index.js',
     plugins: [
-      ...makePlugins(isProduction),
+      // produce the development build for use with the dev-server
+      ...makePlugins(false),
       // if rollup has been ran with `--open`, include the dev server plugins
       ...(commandOptions.open ? makeDevServerPlugins(commandOptions) : [])
     ],
     output: {
       format: 'iife',
       name: 'Spectacle',
-      file: path.join('dist', 'example.js')
+      file: path.join('dist', 'example.js'),
+      sourcemap: true
     }
   };
 
   // UMD build
-  const umd = {
+  const makeUmd = (isProduction) => ({
     ...config,
     external: ['react', 'react-is', 'react-dom', 'prop-types'],
     plugins: [...makePlugins(isProduction)],
@@ -49,7 +49,7 @@ export default function makeConfig(commandOptions) {
       {
         name: 'Spectacle',
         sourcemap: false,
-        file: `./dist/umd/spectacle.js`,
+        file: `./dist/umd/spectacle.${isProduction ? 'production.min' : 'development'}.js`,
         format: 'umd',
         // specify variable names for external imports
         globals: {
@@ -60,7 +60,7 @@ export default function makeConfig(commandOptions) {
         }
       }
     ]
-  };
+  });
 
   // if rollup has been ran via `--open` then only
   // include the dev-server IIFE build.
@@ -68,10 +68,10 @@ export default function makeConfig(commandOptions) {
     builds.push(...[example]);
   }
 
-  // if we are not running the dev-server, include all
-  // bundle builds that we publish to npm.
+  // if we are not running the dev-server, include all bundle builds
+  // that we publish to npm (including production & development).
   if (!commandOptions.open) {
-    builds.push(...[umd]);
+    builds.push(...[makeUmd(true), makeUmd(false)]);
   }
 
   return builds;
