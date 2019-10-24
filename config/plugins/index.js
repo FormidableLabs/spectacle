@@ -14,7 +14,7 @@ import babelPreset from '../babel';
 const makePlugins = (isProduction = false) =>
   [
     // run mdx files through our custom plugin first to ensure
-    // babel (and buble) and transpile the generated JSX.
+    // babel (and buble) can transpile the generated JSX.
     mdx(),
     // resolve modules located in node_modules
     nodeResolve({

@@ -2,6 +2,7 @@ const babelPreset = isProduction => ({
   // we do not want to use the .babelrc as all settings are defined here
   babelrc: false,
   // minify the result in production
+  compact: isProduction,
   minified: isProduction,
   // include mdx files for transpilation *after* they have been
   // run through the custom mdx-plugin
