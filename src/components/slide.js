@@ -26,9 +26,16 @@ const TemplateWrapper = styled('div')`
 
 const getNodeFullHeight = node => {
   const style = getComputedStyle(node);
+  let nextSiblingMarginTop = 0;
+  if (node.nextSibling) {
+    nextSiblingMarginTop = parseFloat(
+      getComputedStyle(node.nextSibling).marginTop
+    );
+  }
   return (
     node.offsetHeight +
-    parseFloat(style.marginTop) +
+    parseFloat(style.marginTop) -
+    nextSiblingMarginTop +
     parseFloat(style.marginBottom)
   );
 };
@@ -51,6 +58,7 @@ const Slide = props => {
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
   const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
   const slideRef = React.useRef(null);
+  const slideWrapperRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const templateRef = React.useRef(null);
   const slideWidth = theme.size.width || 1366;
@@ -107,12 +115,11 @@ const Slide = props => {
         const currentNodeIsAutoFill = current.classList.contains(
           'spectacle-auto-height-fill'
         );
-        const nodeHeight = getNodeFullHeight(current);
+        const nodeHeight = currentNodeIsAutoFill
+          ? 0
+          : getNodeFullHeight(current);
         return {
           totalHeight: nodeHeight + memo.totalHeight,
-          autoFillsHeight: currentNodeIsAutoFill
-            ? nodeHeight + memo.autoFillsHeight
-            : memo.autoFillsHeight,
           numberAutoFills: currentNodeIsAutoFill
             ? memo.numberAutoFills + 1
             : memo.numberAutoFills
@@ -125,31 +132,31 @@ const Slide = props => {
       const templateChildNodes = [].slice.call(templateRef.current.childNodes);
       metrics.templateHeight = templateChildNodes.reduce((memo, current) => {
         const nodeHeight = getNodeFullHeight(current);
-        console.log(nodeHeight);
-        return (memo += nodeHeight);
+        return memo + nodeHeight;
       }, 0);
     } else {
       metrics.templateHeight = 0;
     }
 
-    console.log(metrics);
+    const slideWrapperStyle = getComputedStyle(slideWrapperRef.current);
+    const totalSlideSpace =
+      slideHeight -
+      (parseFloat(slideWrapperStyle.paddingTop) +
+        parseFloat(slideWrapperStyle.paddingBottom));
 
-    const emptySpace = 0;
-
-    console.log(emptySpace);
+    const emptySpace =
+      totalSlideSpace - (metrics.totalHeight + metrics.templateHeight);
 
     childNodes.forEach(node => {
       const currentNodeIsAutoFill = node.classList.contains(
         'spectacle-auto-height-fill'
       );
-
       if (!currentNodeIsAutoFill) {
         return;
       }
-
       node.style.maxHeight = `${emptySpace}px`;
     });
-  }, [contentRef, templateRef, slideHeight]);
+  }, [slideWrapperRef, contentRef, templateRef, slideHeight]);
 
   return (
     <SlideContainer
@@ -167,7 +174,11 @@ const Slide = props => {
             numberOfSlides: numberOfSlides
           })}
       </TemplateWrapper>
-      <SlideWrapper padding="slidePadding" color={textColor}>
+      <SlideWrapper
+        ref={slideWrapperRef}
+        padding="slidePadding"
+        color={textColor}
+      >
         <SlideContext.Provider value={value}>
           <div ref={contentRef}>{children}</div>
         </SlideContext.Provider>

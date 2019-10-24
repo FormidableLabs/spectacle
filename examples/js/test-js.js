@@ -110,7 +110,7 @@ const TestJs = () => (
       </Notes>
     </Slide>
     <Slide>
-      <Text>Multithreading in C++</Text>
+      <Heading>Hi There</Heading>
       <CodePane fontSize={18} language="cpp" autoFillHeight>
         {cppCodeBlock}
       </CodePane>
