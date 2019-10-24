@@ -26,13 +26,13 @@ const cppCodeBlock = `#include <iostream>
 #include <sstream>
 #include <pthread.h>
 
-struct thread_data_t 
+struct thread_data_t
 {
    int  thread_id;
    std::string message;
 };
 
-void *print_thread_message(void *thread_arg) 
+void *print_thread_message(void *thread_arg)
 {
    struct thread_data_t *thread_data;
    thread_data = (struct thread_data_t *) thread_arg;
@@ -47,19 +47,19 @@ int main()
 {
   pthread_t threads[NUM_THREADS];
   struct thread_data_t thread_data[NUM_THREADS];
-  
-  for (int i = 0; i < NUM_THREADS; i++) 
+
+  for (int i = 0; i < NUM_THREADS; i++)
   {
     auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
     auto answer = curried_add(i)(5);
-    
+
     std::stringstream message;
     message << "The math result is " << answer << "!";
     thread_data.thread_id = i;
     thread_data.message = message.str();
     int err = pthread_create(&threads, NULL, print_thread_message, (void *)&thread_data[i]);
-    
-    if (err) 
+
+    if (err)
     {
       exit(-1)
     }
@@ -111,7 +111,6 @@ const TestJs = () => (
     </Slide>
     <Slide>
       <Text>Multithreading in C++</Text>
-
       <CodePane fontSize={18} language="cpp" autoFillHeight>
         {cppCodeBlock}
       </CodePane>
@@ -179,7 +178,7 @@ const TestJs = () => (
         {`
           ### Paying for too much Lambda memory?
           - Yes you are!
-          
+
           \`\`\`js
           fields @timestamp, res.duration
           | filter res.duration > 0

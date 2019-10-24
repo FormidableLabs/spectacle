@@ -24,6 +24,15 @@ const TemplateWrapper = styled('div')`
   z-index: -1;
 `;
 
+const getNodeFullHeight = node => {
+  const style = getComputedStyle(node);
+  return (
+    node.offsetHeight +
+    parseFloat(style.marginTop) +
+    parseFloat(style.marginBottom)
+  );
+};
+
 /**
  * Slide component wraps anything going in a slide and maintains
  * the slides' internal state through useSlide.
@@ -98,15 +107,11 @@ const Slide = props => {
         const currentNodeIsAutoFill = current.classList.contains(
           'spectacle-auto-height-fill'
         );
-        const style = getComputedStyle(current);
-        const nodeHeight =
-          current.offsetHeight +
-          parseFloat(style.marginTop) +
-          parseFloat(style.marginBottom);
+        const nodeHeight = getNodeFullHeight(current);
         return {
           totalHeight: nodeHeight + memo.totalHeight,
           autoFillsHeight: currentNodeIsAutoFill
-            ? current.clientHeight + memo.autoFillsHeight
+            ? nodeHeight + memo.autoFillsHeight
             : memo.autoFillsHeight,
           numberAutoFills: currentNodeIsAutoFill
             ? memo.numberAutoFills + 1
@@ -119,20 +124,19 @@ const Slide = props => {
     if (templateRef.current.hasChildNodes()) {
       const templateChildNodes = [].slice.call(templateRef.current.childNodes);
       metrics.templateHeight = templateChildNodes.reduce((memo, current) => {
-        const style = getComputedStyle(current);
-        const nodeHeight =
-          current.offsetHeight +
-          parseFloat(style.marginTop) +
-          parseFloat(style.marginBottom);
+        const nodeHeight = getNodeFullHeight(current);
+        console.log(nodeHeight);
         return (memo += nodeHeight);
       }, 0);
     } else {
       metrics.templateHeight = 0;
     }
 
-    const emptySpace =
-      slideHeight -
-      (metrics.totalHeight - metrics.autoFillsHeight + metrics.templateHeight);
+    console.log(metrics);
+
+    const emptySpace = 0;
+
+    console.log(emptySpace);
 
     childNodes.forEach(node => {
       const currentNodeIsAutoFill = node.classList.contains(
