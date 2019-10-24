@@ -1,7 +1,6 @@
 /*
 /dist/*
 !/es
-!/lib
 !/dist/umd/spectacle*
 !/dist/cjs/spectacle*
 !/dist/es/spectacle*
