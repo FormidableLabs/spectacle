@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getStyles } from '../utils/base';
 import styled from 'react-emotion';
 
-const StyledTableHeaderItem = styled.td(props => props.styles);
+const StyledTableHeaderItem = styled.th(props => props.styles);
 
 export default class TableHeaderItem extends Component {
   render() {
