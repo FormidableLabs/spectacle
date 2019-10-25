@@ -110,7 +110,7 @@ const ListItem = styled('li')(
 
 ListItem.defaultProps = {
   margin: 'listMargin'
-}
+};
 
 export {
   Text,

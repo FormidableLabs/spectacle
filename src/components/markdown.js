@@ -3,10 +3,12 @@ import propTypes from 'prop-types';
 import marksy from 'marksy';
 import mdxComponentMap from '../utils/mdx-component-mapper';
 import indentNormalizer from '../utils/indent-normalizer';
-import { CodePane, Slide } from '../index';
+import { CodePane } from '../index';
 
 const _CodePane = ({ language, code }) => (
-  <CodePane language={language}>{code}</CodePane>
+  <CodePane autoFillHeight language={language}>
+    {code}
+  </CodePane>
 );
 
 const compile = marksy({

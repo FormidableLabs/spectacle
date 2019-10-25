@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useSlide, { SlideContext } from '../hooks/use-slide';
 import styled, { ThemeContext } from 'styled-components';
 import { color, space } from 'styled-system';
+import useAutofillHeight from '../hooks/use-autofill-height';
 
 const SlideContainer = styled('div')`
   ${color};
@@ -42,6 +43,9 @@ const Slide = props => {
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
   const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
   const slideRef = React.useRef(null);
+  const slideWrapperRef = React.useRef(null);
+  const contentRef = React.useRef(null);
+  const templateRef = React.useRef(null);
   const slideWidth = theme.size.width || 1366;
   const slideHeight = theme.size.height || 768;
 
@@ -86,6 +90,8 @@ const Slide = props => {
   const value = useSlide(slideNum);
   const { numberOfSlides } = value.state;
 
+  useAutofillHeight({ slideWrapperRef, templateRef, contentRef, slideHeight });
+
   return (
     <SlideContainer
       ref={slideRef}
@@ -95,15 +101,21 @@ const Slide = props => {
         transformOrigin: `${origin.x} ${origin.y}`
       }}
     >
-      <TemplateWrapper>
+      <TemplateWrapper ref={templateRef}>
         {typeof template === 'function' &&
           template({
             slideNumber: slideNum,
             numberOfSlides: numberOfSlides
           })}
       </TemplateWrapper>
-      <SlideWrapper padding="slidePadding" color={textColor}>
-        <SlideContext.Provider value={value}>{children}</SlideContext.Provider>
+      <SlideWrapper
+        ref={slideWrapperRef}
+        padding="slidePadding"
+        color={textColor}
+      >
+        <SlideContext.Provider value={value}>
+          <div ref={contentRef}>{children}</div>
+        </SlideContext.Provider>
       </SlideWrapper>
     </SlideContainer>
   );
