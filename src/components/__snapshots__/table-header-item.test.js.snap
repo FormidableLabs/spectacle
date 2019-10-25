@@ -2,7 +2,7 @@
 
 exports[`<TableHeaderItem /> should render correctly 1`] = `
 <TableHeaderItem>
-  <Styled(td)
+  <Styled(th)
     styles={
       Array [
         Object {
@@ -14,11 +14,11 @@ exports[`<TableHeaderItem /> should render correctly 1`] = `
       ]
     }
   >
-    <td
+    <th
       className="css-4x5e e51bxha0"
     >
       Header Text
-    </td>
-  </Styled(td)>
+    </th>
+  </Styled(th)>
 </TableHeaderItem>
 `;
