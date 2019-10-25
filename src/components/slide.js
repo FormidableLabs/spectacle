@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useSlide, { SlideContext } from '../hooks/use-slide';
 import styled, { ThemeContext } from 'styled-components';
 import { color, space } from 'styled-system';
+import useAutofillHeight from '../hooks/use-autofill-height';
 
 const SlideContainer = styled('div')`
   ${color};
@@ -23,22 +24,6 @@ const TemplateWrapper = styled('div')`
   pointer-events: none;
   z-index: -1;
 `;
-
-const getNodeFullHeight = node => {
-  const style = getComputedStyle(node);
-  let nextSiblingMarginTop = 0;
-  if (node.nextSibling) {
-    nextSiblingMarginTop = parseFloat(
-      getComputedStyle(node.nextSibling).marginTop
-    );
-  }
-  return (
-    node.offsetHeight +
-    parseFloat(style.marginTop) -
-    nextSiblingMarginTop +
-    parseFloat(style.marginBottom)
-  );
-};
 
 /**
  * Slide component wraps anything going in a slide and maintains
@@ -105,58 +90,7 @@ const Slide = props => {
   const value = useSlide(slideNum);
   const { numberOfSlides } = value.state;
 
-  React.useLayoutEffect(() => {
-    if (!contentRef.current.hasChildNodes()) {
-      return;
-    }
-    const childNodes = [].slice.call(contentRef.current.childNodes);
-    const metrics = childNodes.reduce(
-      (memo, current) => {
-        const currentNodeIsAutoFill = current.classList.contains(
-          'spectacle-auto-height-fill'
-        );
-        const nodeHeight = currentNodeIsAutoFill
-          ? 0
-          : getNodeFullHeight(current);
-        return {
-          totalHeight: nodeHeight + memo.totalHeight,
-          numberAutoFills: currentNodeIsAutoFill
-            ? memo.numberAutoFills + 1
-            : memo.numberAutoFills
-        };
-      },
-      { totalHeight: 0, autoFillsHeight: 0, numberAutoFills: 0 }
-    );
-
-    if (templateRef.current.hasChildNodes()) {
-      const templateChildNodes = [].slice.call(templateRef.current.childNodes);
-      metrics.templateHeight = templateChildNodes.reduce((memo, current) => {
-        const nodeHeight = getNodeFullHeight(current);
-        return memo + nodeHeight;
-      }, 0);
-    } else {
-      metrics.templateHeight = 0;
-    }
-
-    const slideWrapperStyle = getComputedStyle(slideWrapperRef.current);
-    const totalSlideSpace =
-      slideHeight -
-      (parseFloat(slideWrapperStyle.paddingTop) +
-        parseFloat(slideWrapperStyle.paddingBottom));
-
-    const emptySpace =
-      totalSlideSpace - (metrics.totalHeight + metrics.templateHeight);
-
-    childNodes.forEach(node => {
-      const currentNodeIsAutoFill = node.classList.contains(
-        'spectacle-auto-height-fill'
-      );
-      if (!currentNodeIsAutoFill) {
-        return;
-      }
-      node.style.maxHeight = `${emptySpace}px`;
-    });
-  }, [slideWrapperRef, contentRef, templateRef, slideHeight]);
+  useAutofillHeight({ slideWrapperRef, templateRef, contentRef, slideHeight });
 
   return (
     <SlideContainer
