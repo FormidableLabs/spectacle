@@ -87,18 +87,6 @@ const TestJs = () => (
     )}
   >
     <Slide>
-      <Slide>
-        <Markdown>{`
-        # hello there
-        
-        | hi   | Supported | Versions |
-|-----------|-----------|----------|
-| Chrome          | Yes       | Last 2   |
-| Firefox         | Yes       | Last 2   |
-| Opera           | Yes       | Last 2   |
-| Edge (EdgeHTML) | No        |          |
-| IE 11           | No        |          |`}</Markdown>
-      </Slide>
       <Heading>Spectacle</Heading>
       <Text>Hello There 🤗</Text>
       <Quote>This is a Formidaquote!</Quote>
@@ -184,6 +172,21 @@ const TestJs = () => (
             </FlexBox>
           ))}
       </Grid>
+    </Slide>
+    <Slide>
+      <Markdown>
+        {`
+          # hello there
+
+          | hi              | Supported | Versions |
+          |-----------------|-----------|----------|
+          | Chrome          | Yes       | Last 2   |
+          | Firefox         | Yes       | Last 2   |
+          | Opera           | Yes       | Last 2   |
+          | Edge (EdgeHTML) | No        |          |
+          | IE 11           | No        |          |
+        `}
+      </Markdown>
     </Slide>
     <Slide>
       <Markdown>

@@ -3,3 +3,4 @@ package.json
 node_modules
 es
 lib
+dist
