@@ -539,7 +539,7 @@ To use a `ComponentPlayground`, you'll want to provide the code sample to the co
 
 ```js
 <Slide>
-  <ComponentPlayground code={code.deckSample} theme={dark} />
+  <ComponentPlayground source={code.deckSample} theme={dark} />
 </Slide>
 ```
 
