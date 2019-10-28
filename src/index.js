@@ -10,7 +10,10 @@ import {
   UnorderedList,
   Text,
   Link,
-  CodeSpan
+  CodeSpan,
+  Table,
+  TableCell,
+  TableRow
 } from './components/typography';
 import { FlexBox, Grid, Box } from './components/layout';
 import { Image, FullSizeImage } from './components/image';
@@ -40,5 +43,8 @@ export {
   Notes,
   Progress,
   FullScreen,
-  Markdown
+  Markdown,
+  Table,
+  TableCell,
+  TableRow
 };
