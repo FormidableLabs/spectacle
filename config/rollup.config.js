@@ -51,7 +51,7 @@ export default function makeConfig(commandOptions) {
       {
         format: 'cjs',
         file: `./dist/cjs/${createBundleName(isProduction)}`,
-        sourcemap: false,
+        sourcemap: false
       }
     ]
   })
@@ -72,7 +72,7 @@ export default function makeConfig(commandOptions) {
           react: 'React',
           'react-is': 'ReactIs',
           'react-dom': 'ReactDOM',
-          'prop-types': 'PropTypes'
+          'prop-types': 'PropTypes',
         }
       }
     ]

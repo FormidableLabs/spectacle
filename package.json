@@ -3,8 +3,8 @@
   "version": "5.5.0",
   "description": "ReactJS Powered Presentation Framework",
   "source": "src/index.js",
-  "main": "lib/spectacle.js",
-  "module": "es/index.js",
+  "main": "dist/cjs/spectacle.development.js",
+  "module": "dist/esm/spectacle.development.js",
   "types": "index.d.ts",
   "scripts": {
     "clean": "rimraf dist lib es",
