@@ -1,5 +1,7 @@
 import path from 'path';
 
+import externalTest from './external';
+
 import makePlugins from './plugins/index';
 import makeDevServerPlugins from './plugins/server';
 
@@ -45,7 +47,7 @@ export default function makeConfig(commandOptions) {
   // CJS build
   const makeCJS = (isProduction) => ({
     ...config,
-    external: ['react', 'react-is', 'react-dom', 'prop-types'],
+    external: externalTest,
     plugins: [...makePlugins(isProduction)],
     output: [
       {
