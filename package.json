@@ -6,7 +6,7 @@
   "main": "dist/umd/spectacle.js",
   "types": "index.d.ts",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist lib es",
     "preversion": "yarn run check",
     "version": "yarn clean && yarn build",
     "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.js/\"",
