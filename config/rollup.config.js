@@ -7,7 +7,8 @@ import makeDevServerPlugins from './plugins/server';
 
 const pkgInfo = require('../package.json');
 
-const createBundleName = isProduction => `spectacle.${isProduction ? 'production.min' : 'development'}.js`;
+const isProduction = process.env.NODE_ENV === 'production' || false;
+const bundleName = `spectacle.${isProduction ? 'production.min' : 'development'}.js`;
 
 // default config that is used across all builds
 const config = {
@@ -45,21 +46,21 @@ export default function makeConfig(commandOptions) {
   };
 
   // CJS build
-  const makeCJS = (isProduction) => ({
+  const makeCJS = () => ({
     ...config,
     external: externalTest,
     plugins: [...makePlugins(isProduction)],
     output: [
       {
         format: 'cjs',
-        file: `./dist/cjs/${createBundleName(isProduction)}`,
+        file: `./dist/cjs/${bundleName}`,
         sourcemap: false
       }
     ]
   })
 
   // UMD build
-  const makeUmd = (isProduction) => ({
+  const makeUmd = () => ({
     ...config,
     external: ['react', 'react-is', 'react-dom', 'prop-types'],
     plugins: [...makePlugins(isProduction)],
@@ -67,7 +68,7 @@ export default function makeConfig(commandOptions) {
       {
         name: 'Spectacle',
         sourcemap: false,
-        file: `./dist/umd/${createBundleName(isProduction)}`,
+        file: `./dist/umd/${bundleName}`,
         format: 'umd',
         // specify variable names for external imports
         globals: {
@@ -87,9 +88,9 @@ export default function makeConfig(commandOptions) {
   }
 
   // if we are not running the dev-server, include all bundle builds
-  // that we publish to npm (including production & development).
+  // other than the dev-server IIFE build.
   if (!commandOptions.open) {
-    builds.push(...[makeUmd(true), makeUmd(false), makeCJS(true), makeCJS(false)]);
+    builds.push(...[makeUmd(isProduction), makeCJS(isProduction)]);
   }
 
   return builds;
