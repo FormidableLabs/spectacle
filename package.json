@@ -3,7 +3,7 @@
   "version": "5.5.0",
   "description": "ReactJS Powered Presentation Framework",
   "source": "src/index.js",
-  "main": "dist/umd/spectacle.js",
+  "main": "dist/cjs/spectacle.production.min.js",
   "types": "index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
