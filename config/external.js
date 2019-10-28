@@ -1,12 +1,13 @@
 const pkgInfo = require('../package.json');
 
-let external = [];
-
 // add all dependencies defined in package.json into external array
 // as we don't want to bundle these
-if (pkgInfo.peerDependencies)
-  external.push(...Object.keys(pkgInfo.peerDependencies));
-if (pkgInfo.dependencies) external.push(...Object.keys(pkgInfo.dependencies));
+const dependencyTypes = ['peerDependencies', 'optionalDependencies', 'dependencies']
+const external = dependencyTypes.reduce((acc, dependencyType) => {
+  if (pkgInfo[dependencyType])
+    acc.push(...Object.keys(pkgInfo[dependencyType]));
+  return acc;
+}, []);
 
 // create a regex of all external modules
 const externalPredicate = new RegExp(`^(${external.join('|')})($|/)`);
