@@ -110,6 +110,7 @@ export class Manager extends Component {
     contentWidth: PropTypes.number,
     controls: PropTypes.bool,
     disableKeyboardControls: PropTypes.bool,
+    disableTouchControls: PropTypes.bool,
     dispatch: PropTypes.func,
     fragment: PropTypes.object,
     globalStyles: PropTypes.bool,
@@ -145,6 +146,7 @@ export class Manager extends Component {
     contentWidth: 1000,
     contentHeight: 700,
     disableKeyboardControls: false,
+    disableTouchControls: false,
     transition: [],
     transitionDuration: 500,
     progress: 'pacman',
@@ -636,6 +638,9 @@ export class Manager extends Component {
     }
   }
   _getTouchEvents() {
+    if (this.props.disableTouchControls) {
+      return {};
+    }
     const self = this;
 
     return {
