@@ -112,54 +112,6 @@ ListItem.defaultProps = {
   margin: 'listMargin'
 };
 
-const Table = styled('table')(
-  compose(
-    color,
-    typography,
-    space
-  )
-);
-
-Table.defaultProps = {
-  color: 'primary',
-  fontFamily: 'text',
-  fontSize: 'text',
-  textAlign: 'left',
-  margin: 'listMargin'
-};
-
-const TableRow = styled('tr')(
-  compose(
-    color,
-    typography,
-    space
-  )
-);
-
-TableRow.defaultProps = {
-  color: 'primary',
-  fontFamily: 'text',
-  fontSize: 'text',
-  textAlign: 'left',
-  margin: 'listMargin'
-};
-
-const TableCell = styled('td')(
-  compose(
-    color,
-    typography,
-    space
-  )
-);
-
-TableCell.defaultProps = {
-  color: 'primary',
-  fontFamily: 'text',
-  fontSize: 'text',
-  textAlign: 'left',
-  margin: 'listMargin'
-};
-
 export {
   Text,
   Heading,
@@ -168,8 +120,5 @@ export {
   UnorderedList,
   ListItem,
   Link,
-  CodeSpan,
-  Table,
-  TableCell,
-  TableRow
+  CodeSpan
 };

@@ -10,11 +10,9 @@ import {
   UnorderedList,
   Text,
   Link,
-  CodeSpan,
-  Table,
-  TableCell,
-  TableRow
+  CodeSpan
 } from './components/typography';
+import { Table, TableCell, TableRow } from './components/table';
 import { FlexBox, Grid, Box } from './components/layout';
 import { Image, FullSizeImage } from './components/image';
 import Notes from './components/notes';
