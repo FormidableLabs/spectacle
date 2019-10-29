@@ -10,7 +10,10 @@ import {
   Text,
   ListItem,
   Link,
-  CodeSpan
+  CodeSpan,
+  Table,
+  TableRow,
+  TableCell
 } from '../';
 
 const mdxComponentMap = {
@@ -27,7 +30,10 @@ const mdxComponentMap = {
   a: Link,
   codeblock: props => <CodePane autoFillHeight {...props} />,
   code: props => <CodePane autoFillHeight {...props} />,
-  inlineCode: CodeSpan
+  inlineCode: CodeSpan,
+  table: Table,
+  tr: TableRow,
+  td: TableCell
 };
 
 export default mdxComponentMap;

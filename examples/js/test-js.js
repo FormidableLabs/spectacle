@@ -176,6 +176,21 @@ const TestJs = () => (
     <Slide>
       <Markdown>
         {`
+          # hello there
+
+          | hi              | Supported | Versions |
+          |-----------------|-----------|----------|
+          | Chrome          | Yes       | Last 2   |
+          | Firefox         | Yes       | Last 2   |
+          | Opera           | Yes       | Last 2   |
+          | Edge (EdgeHTML) | No        |          |
+          | IE 11           | No        |          |
+        `}
+      </Markdown>
+    </Slide>
+    <Slide>
+      <Markdown>
+        {`
           ### Paying for too much Lambda memory?
           - Yes you are!
 
