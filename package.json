@@ -4,6 +4,7 @@
   "description": "ReactJS Powered Presentation Framework",
   "source": "src/index.js",
   "main": "dist/cjs/spectacle.development.js",
+  "module": "dist/esm/spectacle.production.min.js",
   "types": "index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
