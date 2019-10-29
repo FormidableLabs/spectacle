@@ -1,9 +1,11 @@
 import path from 'path';
 
-import externalTest from './external';
+import externalTest, { external } from './external';
 
 import makePlugins from './plugins/index';
 import makeDevServerPlugins from './plugins/server';
+
+import unpkg from './plugins/unpkg-plugin/index';
 
 const pkgInfo = require('../package.json');
 
@@ -57,6 +59,21 @@ export default function makeConfig(commandOptions) {
         sourcemap: false
       }
     ]
+  });
+
+  const makeESM = () => ({
+    ...config,
+    // These packages do not have a browser-ready ESM build, so we'll just
+    // bundle and ship them
+    external: external.filter(
+      x => x !== 'query-string' && x !== 'styled-components' && x !== 'marksy'
+    ),
+    plugins: [...makePlugins(isProduction), !isProduction && unpkg()].filter(Boolean),
+    output: {
+      format: 'esm',
+      file: `./dist/esm/${bundleName}`,
+      sourcemap: false
+    }
   })
 
   // UMD build
@@ -87,10 +104,20 @@ export default function makeConfig(commandOptions) {
     builds.push(...[example]);
   }
 
-  // if we are not running the dev-server, include all bundle builds
-  // other than the dev-server IIFE build.
   if (!commandOptions.open) {
-    builds.push(...[makeUmd(isProduction), makeCJS(isProduction)]);
+    // if --format CLI flag has been used, only include the specified formats
+    if (commandOptions.format) {
+      const formats = commandOptions.format.split(',');
+      builds.push(...[
+        formats.includes('umd') && makeUmd(isProduction),
+        formats.includes('cjs') && makeCJS(isProduction),
+        formats.includes('esm') && makeESM(isProduction)
+      ].filter(Boolean)
+      )
+    } else {
+      // if the flag has been ommitted, include all build formats
+      builds.push(...[makeUmd(isProduction), makeCJS(isProduction), makeESM(isProduction)]);
+    }
   }
 
   return builds;

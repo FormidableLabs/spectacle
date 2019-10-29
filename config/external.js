@@ -3,7 +3,7 @@ const pkgInfo = require('../package.json');
 // add all dependencies defined in package.json into external array
 // as we don't want to bundle these
 const dependencyTypes = ['peerDependencies', 'optionalDependencies', 'dependencies']
-const external = dependencyTypes.reduce((acc, dependencyType) => {
+export const external = dependencyTypes.reduce((acc, dependencyType) => {
   if (pkgInfo[dependencyType])
     acc.push(...Object.keys(pkgInfo[dependencyType]));
   return acc;
