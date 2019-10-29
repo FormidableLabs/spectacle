@@ -1,0 +1,12 @@
+{
+  "name": "one-page-esm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node serve.js"
+  },
+  "devDependencies": {
+    "serve-handler": "^6.1.2"
+  }
+}
