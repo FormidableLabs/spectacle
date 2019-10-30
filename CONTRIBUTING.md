@@ -32,18 +32,6 @@ $ yarn start:js
 $ open http://localhost:3000/
 ```
 
-#### `examples/mdx`
-
-A deck using MDX slides found in `examples/mdx/slides.mdx`:
-
-```sh
-# In one terminal open dev server
-$ yarn start:mdx
-
-# In another open a browser to 3001
-$ open http://localhost:3001/
-```
-
 #### `examples/one-page`
 
 A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!

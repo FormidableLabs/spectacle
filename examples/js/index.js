@@ -216,11 +216,4 @@ const TestJs = () => (
   </Deck>
 );
 
-/**
- * Experiment to test MDX -> JSX transpilation through babel.
- *
- * Outputs MDXDocument, changing MDXDocument will cause webpack
- * to hot-reload with new contents.
- */
-
 render(<TestJs />, document.getElementById('root'));
