@@ -8,7 +8,7 @@ Thanks for contributing!
 
 We use [`yarn`](https://yarnpkg.com/en/docs/getting-started).
 
-Install all dependencies by running
+Install all dependencies by running:
 
 ```sh
 $ yarn
@@ -20,11 +20,27 @@ We have various deck scenarios in `examples` that are part of the development pr
 
 #### `examples/js`
 
-@TODO
+A basic deck with JSX and JavaScript:
+
+```sh
+# In one terminal open dev server
+$ yarn start:js
+
+# In another open a browser to 3000
+$ open http://localhost:3000/
+```
 
 #### `examples/mdx`
 
-@TODO
+A deck using MDX slides found in `examples/mdx/slides.mdx`:
+
+```sh
+# In one terminal open dev server
+$ yarn start:mdx
+
+# In another open a browser to 3001
+$ open http://localhost:3001/
+```
 
 #### `examples/one-page`
 
