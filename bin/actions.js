@@ -4,6 +4,33 @@ const path = require('path');
 const config = require('../webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const spectacleComponents = [
+  'Deck',
+  'Slide',
+  'Appear',
+  'CodePane',
+  'Box',
+  'FlexBox',
+  'Grid',
+  'Image',
+  'FullSizeImage',
+  'OrderedList',
+  'Quote',
+  'Heading',
+  'ListItem',
+  'UnorderedList',
+  'Text',
+  'Link',
+  'CodeSpan',
+  'Notes',
+  'Progress',
+  'FullScreen',
+  'Markdown',
+  'Table',
+  'TableCell',
+  'TableRow'
+]
+
 const options = {
   hot: true
 };
@@ -33,6 +60,12 @@ const launchMDXServer = (mdxFilePath, themeFilePath, templateFilePath, title, po
   const alias = {
     'spectacle-user-mdx': absoluteMdxFilePath
   };
+  const plugins = [
+    new HtmlWebpackPlugin({
+      template: `./index.html`,
+      title: title || 'Spectacle - Getting Started'
+    })
+  ]
 
   if (themeFilePath) {
     alias['spectacle-user-theme'] = path.resolve(themeFilePath);
@@ -42,6 +75,14 @@ const launchMDXServer = (mdxFilePath, themeFilePath, templateFilePath, title, po
   }
 
   if (templateFilePath) {
+    const componentMap = spectacleComponents.reduce((acc, comp) => {
+      acc[comp] = [path.resolve(path.join(__dirname, '../', 'src')), comp];
+      return acc;
+    }, {});
+    plugins.push(
+      new webpack.ProvidePlugin(componentMap)
+    )
+
     alias['spectacle-user-template'] = path.resolve(templateFilePath);
   } else {
     alias['spectacle-user-template'] = config.resolve.alias['spectacle-user-template'];
@@ -59,12 +100,7 @@ const launchMDXServer = (mdxFilePath, themeFilePath, templateFilePath, title, po
       modules: [nodeModules]
     },
     externals: {},
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: `./index.html`,
-        title: title || 'Spectacle – Getting Started'
-      })
-    ]
+    plugins
   };
 
   launchServer(configUpdates, port);
