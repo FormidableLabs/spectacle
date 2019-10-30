@@ -14,6 +14,30 @@ Install all dependencies by running
 $ yarn
 ```
 
+### Examples
+
+We have various deck scenarios in `examples` that are part of the development process:
+
+#### `examples/js`
+
+@TODO
+
+#### `examples/mdx`
+
+@TODO
+
+#### `examples/one-page`
+
+A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
+
+```sh
+# Build the library
+$ yarn build
+
+# Open the page in a web browser
+$ open examples/one-page.html
+```
+
 ### Testing
 
 @TODO
