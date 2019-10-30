@@ -114,8 +114,7 @@ ${inlineModules
 
   /*
    * Finally, declare the default export as an array of the slide components.
-   * See /examples/mdx/test-mdx.js for how to import and use the generated slide
-   * components.
+   * See /examples/mdx/for how to import and use the generated slide components.
    */
   const footer = `
 export const notes = [${noteWrapperNames}];\n\n
