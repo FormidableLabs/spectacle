@@ -6,12 +6,12 @@ const TransitionPipeContext = React.createContext({});
 
 function TransitionPipeProvider(props) {
   const runTransition = React.useMemo(() => {
-    const [transitionSource, runTransition] = makeSubject();
+    const [transitionSource, nextTransition] = makeSubject();
     pipe(
       transitionSource,
       subscribe(transition => transition.start())
     );
-    return runTransition;
+    return nextTransition;
   }, []);
   return (
     <TransitionPipeContext.Provider value={{ runTransition }}>
