@@ -169,6 +169,8 @@ declare module 'spectacle' {
     autoplayLoop?: boolean;
     autoplayOnStart?: boolean;
     controls?: boolean;
+    disableKeyboardControls?: boolean;
+    disableTouchControls?: boolean;
     globalStyles?: boolean;
     history?: any; // Needs a type, see https://github.com/ReactTraining/history
     showFullscreenControl?: boolean;

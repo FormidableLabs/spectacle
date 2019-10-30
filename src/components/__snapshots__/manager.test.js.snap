@@ -19,6 +19,7 @@ exports[`<Manager /> should render correctly. 1`] = `
     contentWidth={1000}
     controls={true}
     disableKeyboardControls={false}
+    disableTouchControls={false}
     dispatch={[Function]}
     fragment={
       Object {
@@ -357,6 +358,7 @@ exports[`<Manager /> should render fullscreen button dependant on prop 1`] = `
     contentWidth={1000}
     controls={true}
     disableKeyboardControls={false}
+    disableTouchControls={false}
     dispatch={[Function]}
     fragment={
       Object {
@@ -663,6 +665,7 @@ exports[`<Manager /> should render the export configuration when specified. 1`] 
     contentWidth={1000}
     controls={true}
     disableKeyboardControls={false}
+    disableTouchControls={false}
     dispatch={[Function]}
     fragment={
       Object {
@@ -798,6 +801,7 @@ exports[`<Manager /> should render the overview configuration when specified. 1`
     contentWidth={1000}
     controls={true}
     disableKeyboardControls={false}
+    disableTouchControls={false}
     dispatch={[Function]}
     fragment={
       Object {
@@ -959,6 +963,7 @@ exports[`<Manager /> should render with slideset slides 1`] = `
     contentWidth={1000}
     controls={true}
     disableKeyboardControls={false}
+    disableTouchControls={false}
     dispatch={[Function]}
     fragment={
       Object {
