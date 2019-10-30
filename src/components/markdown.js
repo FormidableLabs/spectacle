@@ -11,6 +11,11 @@ const _CodePane = ({ language, code }) => (
   </CodePane>
 );
 
+_CodePane.propTypes = {
+  code: propTypes.string.isRequired,
+  language: propTypes.string.isRequired
+};
+
 const compile = marksy({
   createElement: React.createElement,
   elements: {
