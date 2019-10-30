@@ -5,58 +5,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>One Page ESM Spectacle Presentation</title>
+  <title>Document</title>
 </head>
 
 <body>
   <div id="root"></div>
 
   <script>
-    window.process = {
-      browser: true,
-      env: {
-        NODE_ENV: 'production'
+    window.userTheme = {
+      colors: {
+        secondary: 'hotpink'
       }
     };
   </script>
-  <script type="module-shim">
-      import { render } from 'https://unpkg.com/@philpl/es-react/react-dom?module';
-      import React, { createElement } from 'https://unpkg.com/@philpl/es-react/react?module';
-      import { Deck,
-        Slide,
-        Appear,
-        CodePane,
-        FlexBox,
-        Box,
-        Image,
-        Heading,
-        ListItem,
-        OrderedList,
-        Quote,
-        Text,
-        UnorderedList,
-        Grid,
-        Notes,
-        Markdown } from './dist/esm/spectacle.development.js';
-      import htm from 'https://unpkg.com/htm@2.2.1?module';
-      
-      const html = htm.bind(React.createElement);
-      
-      const formidableLogo = './js/formidable.png';
-      
-      const cppCodeBlock = `#include <iostream>
-        int main()
-        {
-          auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
-          auto answer = curried_add(7)(8);
-          std::cout << answer << std::endl;
-          return 0;
-        }`.replace(/      /gm, '');
-        
-      const Presentation = html`
+
+  <script src="https://unpkg.com/react@16.10.1/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16.10.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react-is@16.10.1/umd/react-is.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+  <script src="../../dist/umd/spectacle.production.min.js"></script>
+  <script type="module">
+    const {
+      Deck,
+      Slide,
+      Appear,
+      CodePane,
+      FlexBox,
+      Box,
+      Image,
+      Heading,
+      ListItem,
+      OrderedList,
+      Quote,
+      Text,
+      UnorderedList,
+      Grid,
+      Notes,
+      Markdown
+    } = Spectacle;
+    import htm from 'https://unpkg.com/htm@2.2.1?module';
+    const html = htm.bind(React.createElement);
+    // Example content.
+    const formidableLogo = './js/formidable.png';
+    const cppCodeBlock = `#include <iostream>
+      int main()
+      {
+        auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
+        auto answer = curried_add(7)(8);
+        std::cout << answer << std::endl;
+        return 0;
+      }`.replace(/      /gm, '');
+    const deck = html`
         <${Deck}
           template=${({ numberOfSlides, slideNumber }) =>
-            html`
+        html`
               <${FlexBox}
                 justifyContent="space-between"
                 position="absolute"
@@ -150,16 +152,30 @@
               gridRowGap=${15}
             >
               ${Array(9)
-                .fill('')
-                .map(
-                  (_, index) =>
-                    // TODO(ONE-PAGE): I don't see anything in dev or one-page (???)
-                    html`
+        .fill('')
+        .map(
+          (_, index) =>
+            // TODO(ONE-PAGE): I don't see anything in dev or one-page (???)
+            html`
                       <${FlexBox} key="formidable-logo-${index}">
                         <${Image} src=${formidableLogo} width=${100} />
                       <//>
                     `
-                )}
+        )}
+            <//>
+          <//>
+          <${Slide}>
+            <${Markdown}>
+              ${`
+                # hello there
+                | hi              | Supported | Versions |
+                |-----------------|-----------|----------|
+                | Chrome          | Yes       | Last 2   |
+                | Firefox         | Yes       | Last 2   |
+                | Opera           | Yes       | Last 2   |
+                | Edge (EdgeHTML) | No        |          |
+                | IE 11           | No        |          |
+              `}
             <//>
           <//>
           <${Slide}>
@@ -167,7 +183,6 @@
               ${`
                 ### Paying for too much Lambda memory?
                 - Yes you are!
-
                 \`\`\`js
                 fields @timestamp, res.duration
                 | filter res.duration > 0
@@ -191,32 +206,8 @@
           <//>
         <//>
       `;
-      
-      render(Presentation, document.getElementById('root'));
-    </script>
-
-  <script type="importmap-shim">
-      {
-        "imports": {
-          "react": "https://unpkg.com/@philpl/es-react/react?module",
-          "react-dom": "https://unpkg.com/@philpl/es-react/react-dom?module",
-          "prop-types": "https://unpkg.com/@philpl/es-react/prop-types?module",
-          "react-is": "https://unpkg.com/@philpl/es-react/react-is?module",
-          "object-assign": "https://unpkg.com/merge-anything?module",
-          "https://unpkg.com/object-assign@4.1.1?module": "https://unpkg.com/merge-anything?module",
-          "https://unpkg.com/object-assign@^4.1.1?module": "https://unpkg.com/merge-anything?module",
-          "https://unpkg.com/react-is@^16.6.0?module": "https://unpkg.com/@philpl/es-react/react-is?module",
-          "https://unpkg.com/react-is@16.10.1?module": "https://unpkg.com/@philpl/es-react/react-is?module",
-          "https://unpkg.com/prop-types@15.7.2?module": "https://unpkg.com/@philpl/es-react/prop-types?module",
-          "https://unpkg.com/prop-types@^15.5.4?module": "https://unpkg.com/@philpl/es-react/prop-types?module",
-          "https://unpkg.com/react@>=0.14.9?module": "https://unpkg.com/@philpl/es-react/react?module",
-          "https://unpkg.com/react@>= 16.3.0?module": "https://unpkg.com/@philpl/es-react/react?module",
-          "https://unpkg.com/react@>= 16.8.0?module": "https://unpkg.com/@philpl/es-react/react?module",
-          "https://unpkg.com/react@16.9.0?module": "https://unpkg.com/@philpl/es-react/react?module"
-        }
-      }
-    </script>
-  <script type="text/javascript" src="https://unpkg.com/es-module-shims@0.4.2/dist/es-module-shims.js"></script>
+    ReactDOM.render(deck, document.getElementById('root'));
+  </script>
 </body>
 
 </html>

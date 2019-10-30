@@ -5,8 +5,6 @@ import externalTest from './external';
 import makePlugins from './plugins/index';
 import makeDevServerPlugins from './plugins/server';
 
-import unpkg from './plugins/unpkg-plugin/index';
-
 const pkgInfo = require('../package.json');
 
 const isProduction = process.env.NODE_ENV === 'production' || false;
@@ -64,7 +62,7 @@ export default function makeConfig(commandOptions) {
   const makeESM = () => ({
     ...config,
     external: externalTest,
-    plugins: [...makePlugins(isProduction), !isProduction && unpkg()].filter(Boolean),
+    plugins: [...makePlugins(isProduction)],
     output: {
       format: 'esm',
       file: `./dist/esm/${bundleName}`,
