@@ -110,13 +110,17 @@ export default function makeConfig(commandOptions) {
       const formats = commandOptions.format.split(',');
       builds.push(...[
         formats.includes('umd') && makeUmd(isProduction),
-        formats.includes('cjs') && makeCJS(isProduction),
-        formats.includes('esm') && makeESM(isProduction)
+        formats.includes('cjs') && !isProduction && makeCJS(isProduction),
+        formats.includes('esm') && !isProduction && makeESM(isProduction)
       ].filter(Boolean)
       )
     } else {
       // if the flag has been ommitted, include all build formats
-      builds.push(...[makeUmd(isProduction), makeCJS(isProduction), makeESM(isProduction)]);
+      builds.push(...[
+        makeUmd(isProduction),
+        !isProduction && makeCJS(isProduction),
+        !isProduction && makeESM(isProduction)
+      ].filter(Boolean));
     }
   }
 
