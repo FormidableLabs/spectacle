@@ -16,7 +16,9 @@ $ yarn
 
 ### Examples
 
-We have various deck scenarios in `examples` that are part of the development process:
+We have various deck scenarios in `examples` that are part of the development process.
+
+We normally just do `start:NAME` to run an in-memory dev server. But we also add a `yarn build-examples` script task to make sure we actually produce non-broken examples as a CI / assurance test.
 
 #### `examples/js`
 
@@ -80,6 +82,7 @@ Note that there is duplication for JS code in `prettier` doing the same style ch
 
 Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
 
+- Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
 - Run all checks using `yarn run check`
 - Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API, like breaking changes or new features.
 - Everything else included in our [pull request checklist](https://github.com/FormidableLabs/spectacle/blob/master/.github/PULL_REQUEST_TEMPLATE.md#checklist-feel-free-to-delete-this-section-upon-completion)
