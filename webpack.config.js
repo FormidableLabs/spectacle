@@ -35,10 +35,7 @@ module.exports = {
       },
       {
         test: /\.mdx?$/,
-        use: [
-          'babel-loader',
-          path.resolve(__dirname, 'mdx-loader', 'index')
-        ]
+        use: ['babel-loader', path.resolve(__dirname, 'mdx-loader', 'index')]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,

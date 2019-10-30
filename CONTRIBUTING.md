@@ -11,7 +11,7 @@ We use [`yarn`](https://yarnpkg.com/en/docs/getting-started).
 Install all dependencies by running
 
 ```sh
-yarn
+$ yarn
 ```
 
 ### Testing
@@ -20,14 +20,27 @@ yarn
 
 ### Linting and Formatting
 
-@TODO
+To check (and fix) code:
+
+```sh
+$ yarn lint
+$ yarn lint-fix
+```
+
+To check (and fix) formatting of MD, JSON, _and_ code:
+
+```sh
+$ yarn prettier-check
+$ yarn prettier-fix
+```
+
+Note that there is duplication for JS code in `prettier` doing the same style changes. But both should be harmonious and run together.
 
 ### Before submitting a PR
 
 Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
 
-- Run the tests using `yarn run test`.
-- Run lint and flow using `yarn run lint`
+- Run all checks using `yarn run check`
 - Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API, like breaking changes or new features.
 - Everything else included in our [pull request checklist](https://github.com/FormidableLabs/spectacle/blob/master/.github/PULL_REQUEST_TEMPLATE.md#checklist-feel-free-to-delete-this-section-upon-completion)
 

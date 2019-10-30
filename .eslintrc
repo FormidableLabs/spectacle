@@ -2,7 +2,7 @@
   "root": true,
   "parser": "babel-eslint",
   "extends": ["prettier", "prettier/react", "plugin:react/recommended"],
-  "plugins": ["react-hooks"],
+  "plugins": ["prettier", "react-hooks"],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -28,6 +28,7 @@
     }
   },
   "rules": {
+    "prettier/prettier": "error",
     "quotes": [
       "error",
       "single",
