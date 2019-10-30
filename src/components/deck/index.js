@@ -24,7 +24,6 @@ import {
 import searchChildrenForAppear from '../../utils/search-children-appear';
 import OverviewDeck from './overview-deck';
 import { Markdown, Slide } from '../../index';
-import indentNormalizer from '../../utils/indent-normalizer';
 
 const AnimatedDeckDiv = styled(animated.div)`
   height: 100vh;
@@ -73,12 +72,19 @@ const initialState = {
   resolvedInitialUrl: false
 };
 
-const splitMarkdownIntoSlides = md =>
-  md.split(/\n\s*---\n/).map((markdown, index) => (
-    <Slide key={`md-slide-${index}`}>
-      <Markdown>{markdown}</Markdown>
-    </Slide>
-  ));
+const mapMarkdownIntoSlides = (child, index) => {
+  if (
+    isComponentType(child, 'Markdown') &&
+    Boolean(child.props.containsSlides)
+  ) {
+    return child.props.children.split(/\n\s*---\n/).map((markdown, mdIndex) => (
+      <Slide key={`md-slide-${index}-${mdIndex}`}>
+        <Markdown>{markdown}</Markdown>
+      </Slide>
+    ));
+  }
+  return child;
+};
 
 const Deck = ({
   children,
@@ -87,24 +93,19 @@ const Deck = ({
   animationsWhenGoingBack,
   ...rest
 }) => {
-  // Check for slides and then number slides.
+  if (React.Children.count(children) === 0) {
+    throw new Error('Spectacle must have at least one slide to run.');
+  }
 
-  const filteredChildren = Array.isArray(children)
-    ? children
-        .map(x => {
-          if (
-            isComponentType(x, 'Markdown') &&
-            Boolean(x.props.containsSlides)
-          ) {
-            return splitMarkdownIntoSlides(x.props.children);
-          }
-          return x;
-        })
-        .flat(1)
-        .filter(x => isComponentType(x, 'Slide'))
-    : console.error('No children passed') || [];
+  const filteredChildren = React.Children.map(children, mapMarkdownIntoSlides)
+    .flat(1)
+    .filter(child => isComponentType(child, 'Slide'));
 
   const numberOfSlides = filteredChildren.length;
+
+  if (numberOfSlides === 0) {
+    throw new Error('Spectacle must have at least one slide to run.');
+  }
 
   const slideElementMap = React.useMemo(() => {
     const map = {};
