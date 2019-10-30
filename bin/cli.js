@@ -10,10 +10,11 @@ const main = () =>
     .then(parsedInput => {
       const mdxFilePath = parsedInput.mdx;
       const themeFilePath = parsedInput.theme;
+      const templateFilePath = parsedInput.template;
       const title = parsedInput.title;
       const port = parsedInput.port;
       if (mdxFilePath) {
-        actions.launchMDXServer(mdxFilePath, themeFilePath, title, port);
+        actions.launchMDXServer(mdxFilePath, themeFilePath, templateFilePath, title, port);
       }
       // add future actions here
       else {

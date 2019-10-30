@@ -94,6 +94,10 @@ module.exports = {
       'spectacle-user-theme': path.resolve(
         __dirname,
         './src/theme/backup-user-theme'
+      ),
+      'spectacle-user-template': path.resolve(
+        __dirname,
+        './mdx-slides/backup-user-template'
       )
     }
   }

@@ -12,7 +12,7 @@ const launchServer = (configUpdates = {}, port) => {
   const customConfig = { ...config, ...configUpdates };
   const server = new WebpackDevServer(webpack(customConfig), options);
 
-  server.listen(port, 'localhost', function(err) {
+  server.listen(port, 'localhost', function (err) {
     if (err) {
       console.log(err);
     }
@@ -20,7 +20,7 @@ const launchServer = (configUpdates = {}, port) => {
   });
 };
 
-const launchMDXServer = (mdxFilePath, themeFilePath, title, port = 3000) => {
+const launchMDXServer = (mdxFilePath, themeFilePath, templateFilePath, title, port = 3000) => {
   if (!mdxFilePath) {
     // developer error - must supply an entry file path
     throw new Error('MDX file path must be provided.');
@@ -33,11 +33,18 @@ const launchMDXServer = (mdxFilePath, themeFilePath, title, port = 3000) => {
   const alias = {
     'spectacle-user-mdx': absoluteMdxFilePath
   };
+
   if (themeFilePath) {
     alias['spectacle-user-theme'] = path.resolve(themeFilePath);
   } else {
     alias['spectacle-user-theme'] =
       config.resolve.alias['spectacle-user-theme'];
+  }
+
+  if (templateFilePath) {
+    alias['spectacle-user-template'] = path.resolve(templateFilePath);
+  } else {
+    alias['spectacle-user-template'] = config.resolve.alias['spectacle-user-template'];
   }
 
   const configUpdates = {

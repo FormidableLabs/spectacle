@@ -13,7 +13,7 @@ const fileExists = srcPath => {
   });
 };
 
-const validatePresentationMode = async (src, theme, port, title) => {
+const validatePresentationMode = async (src, theme, port, title, template) => {
   /* - the default action of the CLI is to boot up a presentation from a file
    * - src defaults to `slides.mdx`
    * - theme has no default
@@ -55,6 +55,15 @@ const validatePresentationMode = async (src, theme, port, title) => {
     if (!themeExists) {
       throw new Error(`A theme file cannot be found at the path "${src}".`);
     }
+  }
+
+  if (template) {
+    const templateExists = await fileExists(template);
+    if (!templateExists) {
+      throw new Error(`A template file cannot be found at the path "${template}"`);
+    }
+
+    validatedValue['template'] = template;
   }
 
   return validatedValue;
