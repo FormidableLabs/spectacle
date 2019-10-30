@@ -8,10 +8,40 @@ Thanks for contributing!
 
 We use [`yarn`](https://yarnpkg.com/en/docs/getting-started).
 
-Install all dependencies by running
+Install all dependencies by running:
 
 ```sh
-yarn
+$ yarn
+```
+
+### Examples
+
+We have various deck scenarios in `examples` that are part of the development process.
+
+We normally just do `start:NAME` to run an in-memory dev server. But we also add a `yarn build-examples` script task to make sure we actually produce non-broken examples as a CI / assurance test.
+
+#### `examples/js`
+
+A basic deck with JSX and JavaScript:
+
+```sh
+# In one terminal open dev server
+$ yarn start:js
+
+# In another open a browser to 3000
+$ open http://localhost:3000/
+```
+
+#### `examples/one-page`
+
+A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
+
+```sh
+# Build the library
+$ yarn build
+
+# Open the page in a web browser
+$ open examples/one-page.html
 ```
 
 ### Testing
@@ -20,14 +50,28 @@ yarn
 
 ### Linting and Formatting
 
-@TODO
+To check (and fix) code:
+
+```sh
+$ yarn lint
+$ yarn lint-fix
+```
+
+To check (and fix) formatting of MD, JSON, _and_ code:
+
+```sh
+$ yarn prettier-check
+$ yarn prettier-fix
+```
+
+Note that there is duplication for JS code in `prettier` doing the same style changes. But both should be harmonious and run together.
 
 ### Before submitting a PR
 
 Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
 
-- Run the tests using `yarn run test`.
-- Run lint and flow using `yarn run lint`
+- Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
+- Run all checks using `yarn run check`
 - Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API, like breaking changes or new features.
 - Everything else included in our [pull request checklist](https://github.com/FormidableLabs/spectacle/blob/master/.github/PULL_REQUEST_TEMPLATE.md#checklist-feel-free-to-delete-this-section-upon-completion)
 

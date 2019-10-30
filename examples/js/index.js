@@ -1,4 +1,6 @@
 import React from 'react';
+import { render } from 'react-dom';
+
 import {
   Deck,
   Slide,
@@ -214,4 +216,4 @@ const TestJs = () => (
   </Deck>
 );
 
-export default TestJs;
+render(<TestJs />, document.getElementById('root'));
