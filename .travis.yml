@@ -11,6 +11,8 @@ sudo: false
 branches:
   only:
     - master
+    # TODO: Remove after we release the rewrite.
+    - task/rewrite
 
 install:
   # Fail if lockfile outdated.
