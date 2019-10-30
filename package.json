@@ -4,7 +4,6 @@
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "index.d.ts",
   "scripts": {
     "clean": "rimraf dist lib es \"examples/*/dist\"",
     "preversion": "yarn run check",
@@ -70,8 +69,6 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "rimraf": "^3.0.0",
-    "tslint": "^5.12.1",
-    "typescript": "^3.2.2",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.4",
     "webpack-dev-server": "^3.7.1"
