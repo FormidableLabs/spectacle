@@ -95,7 +95,9 @@ const Slide = props => {
   return (
     <SlideContainer
       ref={slideRef}
-      backgroundColor={backgroundColor}
+      backgroundColor={
+        window.location.search.includes('print') ? '#ffffff' : backgroundColor
+      }
       style={{
         transform: `scale(${ratio})`,
         transformOrigin: `${origin.x} ${origin.y}`
