@@ -1,6 +1,6 @@
 import path from 'path';
 
-import externalTest, { external } from './external';
+import externalTest from './external';
 
 import makePlugins from './plugins/index';
 import makeDevServerPlugins from './plugins/server';
@@ -63,11 +63,7 @@ export default function makeConfig(commandOptions) {
 
   const makeESM = () => ({
     ...config,
-    // These packages do not have a browser-ready ESM build, so we'll just
-    // bundle and ship them
-    external: external.filter(
-      x => x !== 'query-string' && x !== 'styled-components' && x !== 'marksy'
-    ),
+    external: externalTest,
     plugins: [...makePlugins(isProduction), !isProduction && unpkg()].filter(Boolean),
     output: {
       format: 'esm',
