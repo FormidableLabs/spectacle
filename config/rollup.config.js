@@ -1,9 +1,14 @@
 import path from 'path';
 
+import externalTest from './external';
+
 import makePlugins from './plugins/index';
 import makeDevServerPlugins from './plugins/server';
 
 const pkgInfo = require('../package.json');
+
+const isProduction = process.env.NODE_ENV === 'production' || false;
+const bundleName = `spectacle.${isProduction ? 'production.min' : 'development'}.js`;
 
 // default config that is used across all builds
 const config = {
@@ -40,8 +45,33 @@ export default function makeConfig(commandOptions) {
     }
   };
 
+  // CJS build
+  const makeCJS = () => ({
+    ...config,
+    external: externalTest,
+    plugins: [...makePlugins(isProduction)],
+    output: [
+      {
+        format: 'cjs',
+        file: `./dist/cjs/${bundleName}`,
+        sourcemap: false
+      }
+    ]
+  });
+
+  const makeESM = () => ({
+    ...config,
+    external: externalTest,
+    plugins: [...makePlugins(isProduction)],
+    output: {
+      format: 'esm',
+      file: `./dist/esm/${bundleName}`,
+      sourcemap: false
+    }
+  })
+
   // UMD build
-  const makeUmd = (isProduction) => ({
+  const makeUmd = () => ({
     ...config,
     external: ['react', 'react-is', 'react-dom', 'prop-types'],
     plugins: [...makePlugins(isProduction)],
@@ -49,14 +79,14 @@ export default function makeConfig(commandOptions) {
       {
         name: 'Spectacle',
         sourcemap: false,
-        file: `./dist/umd/spectacle.${isProduction ? 'production.min' : 'development'}.js`,
+        file: `./dist/umd/${bundleName}`,
         format: 'umd',
         // specify variable names for external imports
         globals: {
           react: 'React',
           'react-is': 'ReactIs',
           'react-dom': 'ReactDOM',
-          'prop-types': 'PropTypes'
+          'prop-types': 'PropTypes',
         }
       }
     ]
@@ -68,10 +98,24 @@ export default function makeConfig(commandOptions) {
     builds.push(...[example]);
   }
 
-  // if we are not running the dev-server, include all bundle builds
-  // that we publish to npm (including production & development).
   if (!commandOptions.open) {
-    builds.push(...[makeUmd(true), makeUmd(false)]);
+    // if --format CLI flag has been used, only include the specified formats
+    if (commandOptions.format) {
+      const formats = commandOptions.format.split(',');
+      builds.push(...[
+        formats.includes('umd') && makeUmd(isProduction),
+        formats.includes('cjs') && !isProduction && makeCJS(isProduction),
+        formats.includes('esm') && !isProduction && makeESM(isProduction)
+      ].filter(Boolean)
+      )
+    } else {
+      // if the flag has been ommitted, include all build formats
+      builds.push(...[
+        makeUmd(isProduction),
+        !isProduction && makeCJS(isProduction),
+        !isProduction && makeESM(isProduction)
+      ].filter(Boolean));
+    }
   }
 
   return builds;
