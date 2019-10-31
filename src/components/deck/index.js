@@ -9,7 +9,6 @@ import PresenterDeck from './presenter-deck';
 import AudienceDeck from './audience-deck';
 import { mergeTheme } from '../../theme';
 import { PrintDeck } from './print-deck';
-import theme from '../../theme';
 import { animated, useTransition } from 'react-spring';
 import {
   TransitionPipeContext,
