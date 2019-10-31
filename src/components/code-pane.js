@@ -2,7 +2,9 @@ import * as React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import propTypes from 'prop-types';
 import theme from 'prism-react-renderer/themes/vsDark';
+import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
 import { ThemeContext } from 'styled-components';
+import { DeckContext } from '../hooks/use-deck';
 
 const spaceSearch = /\S|$/;
 
@@ -17,7 +19,9 @@ export default function CodePane(props) {
   const canvas = React.useRef(document.createElement('canvas'));
   const context = React.useRef(canvas.current.getContext('2d'));
   const themeContext = React.useContext(ThemeContext);
-
+  const {
+    state: { printMode }
+  } = React.useContext(DeckContext);
   const font = React.useMemo(() => {
     if (themeContext && themeContext.fonts && themeContext.fonts.monospace) {
       return themeContext.fonts.monospace;
@@ -74,7 +78,7 @@ export default function CodePane(props) {
         {...defaultProps}
         code={props.children}
         language={props.language}
-        theme={theme}
+        theme={printMode ? lightTheme : theme}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre

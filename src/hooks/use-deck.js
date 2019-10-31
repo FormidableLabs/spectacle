@@ -21,6 +21,7 @@ function useDeck(initialState) {
           presenterMode: action.payload.presenterMode,
           overviewMode: action.payload.overviewMode,
           exportMode: action.payload.exportMode,
+          printMode: action.payload.printMode,
           resolvedInitialUrl: true
         };
         return newState;
