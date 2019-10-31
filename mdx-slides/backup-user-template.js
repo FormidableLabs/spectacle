@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { FlexBox, Text, Box, Image } from '../src/';
-
-const formidableLogo = require('../examples/js/formidable.png');
+import { FlexBox, Text } from '../src/';
 
 const Template = ({ numberOfSlides, slideNumber }) => (
   <FlexBox
@@ -14,9 +12,6 @@ const Template = ({ numberOfSlides, slideNumber }) => (
     <Text fontSize={16} color="quinary" fontWeight="bold">
       Slide {slideNumber} of {numberOfSlides - 1}
     </Text>
-    <Box padding={10}>
-      <Image src={formidableLogo} width={100} />
-    </Box>
   </FlexBox>
 );
 
