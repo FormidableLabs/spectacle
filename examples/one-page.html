@@ -9,14 +9,6 @@
   <body>
     <div id="root"></div>
 
-    <script>
-      window.userTheme = {
-        colors: {
-          secondary: 'hotpink'
-        }
-      };
-    </script>
-
     <script src="https://unpkg.com/react@16.10.1/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16.10.1/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/react-is@16.10.1/umd/react-is.production.min.js"></script>
@@ -56,6 +48,11 @@
       }`.replace(/      /gm, '');
       const deck = html`
         <${Deck}
+          theme=${{
+            colors: {
+              secondary: 'hotpink'
+            }
+          }}
           template=${({ numberOfSlides, slideNumber }) =>
             html`
               <${FlexBox}
@@ -154,7 +151,6 @@
                 .fill('')
                 .map(
                   (_, index) =>
-                    // TODO(ONE-PAGE): I don't see anything in dev or one-page (???)
                     html`
                       <${FlexBox} key="formidable-logo-${index}">
                         <${Image} src=${formidableLogo} width=${100} />

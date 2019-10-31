@@ -1,16 +1,14 @@
 import defaultTheme from './default-theme';
-// see cli actions.js to understand this import
-let userTheme = require('spectacle-user-theme').default;
 
-const mergedTheme = { ...defaultTheme };
-if (userTheme && Object.keys(userTheme).length > 0) {
-  for (const key in defaultTheme) {
-    const userThemeCategory = userTheme[key];
-    const defaultThemeCategory = defaultTheme[key];
-    if (userThemeCategory) {
-      mergedTheme[key] = { ...defaultThemeCategory, ...userThemeCategory };
-    }
-  }
-}
+// A naive, but fast deep object copy.
+const deepCopy = obj => JSON.parse(JSON.stringify(obj));
 
-export default mergedTheme;
+// Merge a user-provided theme in with defaults.
+// **Note**: Assumes theme objects only go 2 levels deep.
+export const mergeTheme = theme =>
+  Object.keys(theme || {}).reduce((merged, key) => {
+    merged[key] = { ...merged[key], ...theme[key] };
+    return merged;
+  }, deepCopy(defaultTheme));
+
+export default defaultTheme;
