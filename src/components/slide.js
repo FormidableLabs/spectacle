@@ -4,6 +4,7 @@ import useSlide, { SlideContext } from '../hooks/use-slide';
 import styled, { ThemeContext } from 'styled-components';
 import { color, space } from 'styled-system';
 import useAutofillHeight from '../hooks/use-autofill-height';
+import { DeckContext } from '../hooks/use-deck';
 
 const SlideContainer = styled('div')`
   ${color};
@@ -45,6 +46,7 @@ const Slide = props => {
     scaleRatio
   } = props;
   const theme = React.useContext(ThemeContext);
+  const { state } = React.useContext(DeckContext);
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
   const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
   const slideRef = React.useRef(null);
@@ -103,10 +105,14 @@ const Slide = props => {
       backgroundColor={
         window.location.search.includes('print') ? '#ffffff' : backgroundColor
       }
-      style={{
-        transform: `scale(${ratio})`,
-        transformOrigin: `${origin.x} ${origin.y}`
-      }}
+      style={
+        state.exportMode
+          ? {}
+          : {
+              transform: `scale(${ratio})`,
+              transformOrigin: `${origin.x} ${origin.y}`
+            }
+      }
     >
       <TemplateWrapper ref={templateRef}>
         {typeof template === 'function' &&
