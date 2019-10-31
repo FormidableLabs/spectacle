@@ -8,6 +8,8 @@ import useUrlRouting from '../../hooks/use-url-routing';
 import PresenterDeck from './presenter-deck';
 import AudienceDeck from './audience-deck';
 import { mergeTheme } from '../../theme';
+import { PrintDeck } from './print-deck';
+import theme from '../../theme';
 import { animated, useTransition } from 'react-spring';
 import {
   TransitionPipeContext,
@@ -206,6 +208,14 @@ const Deck = ({
       content = (
         <OverviewDeck goToSlide={goToSlide}>{staticSlides}</OverviewDeck>
       );
+    } else if (state.exportMode) {
+      const staticSlides = filteredChildren.map((slide, index) =>
+        React.cloneElement(slide, {
+          slideNum: index,
+          template: rest.template
+        })
+      );
+      content = <PrintDeck>{staticSlides}</PrintDeck>;
     } else if (state.presenterMode) {
       const staticSlides = filteredChildren.map((slide, index) =>
         React.cloneElement(slide, {

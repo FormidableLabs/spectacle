@@ -1,5 +1,6 @@
 import * as React from 'react';
 import propTypes from 'prop-types';
+import styled from 'styled-components';
 
 const FullScreen = props => {
   const toggleFullScreen = React.useCallback(() => {
@@ -11,8 +12,14 @@ const FullScreen = props => {
       }
     }
   }, []);
+
+  const Container = styled('div')`
+    @media print {
+      display: none;
+    }
+  `;
   return (
-    <div
+    <Container
       className="spectacle-fullscreen-button"
       onClick={toggleFullScreen}
       style={{ pointerEvents: 'all' }}
@@ -27,7 +34,7 @@ const FullScreen = props => {
           }
         />
       </svg>
-    </div>
+    </Container>
   );
 };
 

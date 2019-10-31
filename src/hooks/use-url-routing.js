@@ -14,6 +14,7 @@ export default function useUrlRouting(options) {
     currentSlideElement,
     currentPresenterMode,
     currentOverviewMode,
+    currentExportMode,
     loop,
     animationsWhenGoingBack,
     onUrlChange
@@ -56,6 +57,7 @@ export default function useUrlRouting(options) {
       const query = queryString.parse(url);
       const immediate = Boolean(query.immediate);
       const presenterMode = Boolean(query.presenterMode);
+      const exportMode = Boolean(query.exportMode);
       const overviewMode = Boolean(query.overviewMode);
       const proposedSlideNumber = parseInt(query.slide, 10);
       const proposedSlideElementNumber = parseInt(query.slideElement, 10);
@@ -83,7 +85,8 @@ export default function useUrlRouting(options) {
         proposedSlideNumber,
         proposedSlideElementNumber,
         slideNumber,
-        slideElementNumber
+        slideElementNumber,
+        exportMode
       };
     },
     [countSlideElements, isSlideElementOutOfBounds, isSlideOutOfBounds]
@@ -94,13 +97,14 @@ export default function useUrlRouting(options) {
       const qs = queryString.stringify({
         presenterMode: currentPresenterMode || undefined,
         overviewMode: currentOverviewMode || undefined,
+        exportMode: currentExportMode || undefined,
         immediate: true,
         slide: slideNumber,
         slideElement: DEFAULT_SLIDE_ELEMENT_INDEX
       });
       history.current.push(`?${qs}`);
     },
-    [currentPresenterMode, currentOverviewMode]
+    [currentPresenterMode, currentOverviewMode, currentExportMode]
   );
 
   const onHistoryChange = React.useCallback(() => {
@@ -111,7 +115,8 @@ export default function useUrlRouting(options) {
       proposedSlideElementNumber,
       presenterMode,
       overviewMode,
-      immediate
+      immediate,
+      exportMode
     } = stateFromUrl(window.location.search);
     /**
      * If the proposed URL slide index is out-of-bounds or is not a valid
@@ -127,7 +132,8 @@ export default function useUrlRouting(options) {
         slideElement: slideElementNumber,
         immediate: immediate || undefined,
         presenterMode: presenterMode || undefined,
-        overviewMode: overviewMode || undefined
+        overviewMode: overviewMode || undefined,
+        exportMode: exportMode || undefined
       });
       history.current.replace(`?${qs}`);
       return;
@@ -145,7 +151,8 @@ export default function useUrlRouting(options) {
       payload: {
         ...update,
         presenterMode,
-        overviewMode
+        overviewMode,
+        exportMode
       }
     });
     onUrlChange(update);
@@ -189,19 +196,21 @@ export default function useUrlRouting(options) {
         slideElement: nextSafeSlideElementIndex,
         immediate: immediate || undefined,
         presenterMode: currentPresenterMode || undefined,
-        overviewMode: currentOverviewMode || undefined
+        overviewMode: currentOverviewMode || undefined,
+        exportMode: currentExportMode || undefined
       });
       history.current.push(`?${qs}`);
     },
     [
       countSlideElements,
-      currentPresenterMode,
-      currentOverviewMode,
       currentSlide,
       currentSlideElement,
+      numberOfSlides,
+      currentPresenterMode,
+      currentOverviewMode,
+      currentExportMode,
       loop,
-      nextSafeSlide,
-      numberOfSlides
+      nextSafeSlide
     ]
   );
 

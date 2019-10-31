@@ -10,6 +10,11 @@ const SlideContainer = styled('div')`
   width: ${({ theme }) => theme.size.width || 1366}px;
   height: ${({ theme }) => theme.size.height || 768}px;
   overflow: hidden;
+  @media print {
+    page-break-before: always;
+    height: 100vh;
+    width: 100vw;
+  }
 `;
 const SlideWrapper = styled('div')`
   ${color};
