@@ -8,13 +8,19 @@ const getNodeFullHeight = node => {
       getComputedStyle(node.nextSibling).marginTop
     );
   }
-  return (
+  const height =
     node.offsetHeight +
     parseFloat(style.marginTop) -
     nextSiblingMarginTop +
-    parseFloat(style.marginBottom)
-  );
+    parseFloat(style.marginBottom);
+  return height;
 };
+
+const isCurrentNodeAutoFill = current =>
+  current.classList.contains('spectacle-auto-height-fill') ||
+  (current.tagName.toLowerCase().includes('pre') &&
+    current.childNodes &&
+    current.childNodes[0].classList.contains('spectacle-auto-height-fill'));
 
 export default function useAutofillHeight({
   slideWrapperRef,
@@ -29,9 +35,7 @@ export default function useAutofillHeight({
     const childNodes = [].slice.call(contentRef.current.childNodes);
     const metrics = childNodes.reduce(
       (memo, current) => {
-        const currentNodeIsAutoFill = current.classList.contains(
-          'spectacle-auto-height-fill'
-        );
+        const currentNodeIsAutoFill = isCurrentNodeAutoFill(current);
         const nodeHeight = currentNodeIsAutoFill
           ? 0
           : getNodeFullHeight(current);
@@ -47,10 +51,10 @@ export default function useAutofillHeight({
 
     if (templateRef.current.hasChildNodes()) {
       const templateChildNodes = [].slice.call(templateRef.current.childNodes);
-      metrics.templateHeight = templateChildNodes.reduce((memo, current) => {
-        const nodeHeight = getNodeFullHeight(current);
-        return memo + nodeHeight;
-      }, 0);
+      metrics.templateHeight = templateChildNodes.reduce(
+        (memo, current) => memo + getNodeFullHeight(current),
+        0
+      );
     } else {
       metrics.templateHeight = 0;
     }
@@ -65,11 +69,14 @@ export default function useAutofillHeight({
       totalSlideSpace - (metrics.totalHeight + metrics.templateHeight);
 
     childNodes.forEach(node => {
-      const currentNodeIsAutoFill = node.classList.contains(
-        'spectacle-auto-height-fill'
-      );
-      if (!currentNodeIsAutoFill) {
+      if (!isCurrentNodeAutoFill(node)) {
         return;
+      }
+      if (
+        node.childNodes[0] &&
+        node.childNodes[0].tagName.toLowerCase() === 'pre'
+      ) {
+        node = node.childNodes[0];
       }
       node.style.maxHeight = `${emptySpace / metrics.numberAutoFills}px`;
     });
