@@ -38,13 +38,5 @@ module.exports = {
         use: ['file-loader']
       }
     ]
-  },
-  resolve: {
-    alias: {
-      'spectacle-user-theme': path.resolve(
-        __dirname,
-        'src/theme/backup-user-theme'
-      )
-    }
   }
 };
