@@ -1,8 +1,8 @@
 export default {
   colors: {
-    primary: '#000000',
-    secondary: '#000000',
-    tertiary: '#000000',
+    primary: '#00000096',
+    secondary: '#00000069',
+    tertiary: '#00000085',
     quaternary: '#000000',
     quinary: '#000000'
   }
