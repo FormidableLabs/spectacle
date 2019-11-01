@@ -157,7 +157,12 @@ const Deck = ({
     [sendMessage, isController]
   );
 
-  const { navigateToNext, navigateToPrevious, goToSlide } = useUrlRouting({
+  const {
+    navigateToNext,
+    navigateToPrevious,
+    toggleMode,
+    goToSlide
+  } = useUrlRouting({
     dispatch,
     currentSlide: state.currentSlide,
     currentSlideElement: state.currentSlideElement,
@@ -171,7 +176,8 @@ const Deck = ({
   useKeyboardControls({
     keyboardControls,
     navigateToNext,
-    navigateToPrevious
+    navigateToPrevious,
+    toggleMode
   });
 
   const { runTransition } = React.useContext(TransitionPipeContext);

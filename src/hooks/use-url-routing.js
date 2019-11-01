@@ -304,9 +304,15 @@ export default function useUrlRouting(options) {
     []
   );
 
+  const toggleMode = React.useCallback(
+    s => dispatch({ type: 'TOGGLE_MODE', payload: { mode: s } }),
+    [dispatch]
+  );
+
   return {
     navigateToNext,
     navigateToPrevious,
+    toggleMode,
     goToSlide
   };
 }

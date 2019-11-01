@@ -35,6 +35,9 @@ function useDeck(initialState) {
           }
         };
       }
+      case 'TOGGLE_MODE': {
+        return { ...state, [action.payload.mode]: !state[action.payload.mode] };
+      }
       default:
         return { ...state };
     }

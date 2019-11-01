@@ -2,22 +2,16 @@ import * as React from 'react';
 import propTypes from 'prop-types';
 import styled from 'styled-components';
 
-const FullScreen = props => {
-  const toggleFullScreen = React.useCallback(() => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      if ('exitFullscreen' in document) {
-        document.exitFullscreen();
-      }
-    }
-  }, []);
+import { useToggleFullScreen } from '../hooks/use-full-screen';
 
+const FullScreen = props => {
   const Container = styled('div')`
     @media print {
       display: none;
     }
   `;
+
+  const toggleFullScreen = useToggleFullScreen();
   return (
     <Container
       className="spectacle-fullscreen-button"
