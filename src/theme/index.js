@@ -1,14 +1,20 @@
 import defaultTheme from './default-theme';
+import printTheme from './print-theme';
 
-// A naive, but fast deep object copy.
-const deepCopy = obj => JSON.parse(JSON.stringify(obj));
+const mergeKeys = (base, override) =>
+  Object.keys(override || {}).reduce(
+    (merged, key) => {
+      merged[key] = { ...merged[key], ...override[key] };
+      return merged;
+    },
+    { ...base }
+  );
 
-// Merge a user-provided theme in with defaults.
-// **Note**: Assumes theme objects only go 2 levels deep.
-export const mergeTheme = theme =>
-  Object.keys(theme || {}).reduce((merged, key) => {
-    merged[key] = { ...merged[key], ...theme[key] };
-    return merged;
-  }, deepCopy(defaultTheme));
+export const mergeTheme = theme => {
+  const isPrintMode = window.location.search.includes('printMode');
+  const merged = mergeKeys(defaultTheme, theme);
 
-export default defaultTheme;
+  // if is print mode then do the above for printTheme else return the
+  // above merged themes
+  return isPrintMode ? mergeKeys(merged, printTheme) : merged;
+};

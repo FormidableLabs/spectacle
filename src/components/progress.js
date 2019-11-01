@@ -15,10 +15,16 @@ const Circle = styled('div')`
   cursor: pointer;
 `;
 
+const Container = styled('div')`
+  @media print {
+    display: none;
+  }
+`;
+
 const Progress = props => {
   const { numberOfSlides, state, goToSlide } = React.useContext(DeckContext);
   return (
-    <div className="spectacle-progress-indicator">
+    <Container className="spectacle-progress-indicator">
       {Array(numberOfSlides)
         .fill(0)
         .map((_, idx) => (
@@ -30,7 +36,7 @@ const Progress = props => {
             onClick={() => goToSlide(idx)}
           />
         ))}
-    </div>
+    </Container>
   );
 };
 

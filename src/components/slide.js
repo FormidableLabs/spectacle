@@ -4,12 +4,18 @@ import useSlide, { SlideContext } from '../hooks/use-slide';
 import styled, { ThemeContext } from 'styled-components';
 import { color, space } from 'styled-system';
 import useAutofillHeight from '../hooks/use-autofill-height';
+import { DeckContext } from '../hooks/use-deck';
 
 const SlideContainer = styled('div')`
   ${color};
   width: ${({ theme }) => theme.size.width || 1366}px;
   height: ${({ theme }) => theme.size.height || 768}px;
   overflow: hidden;
+  @media print {
+    page-break-before: always;
+    height: 100vh;
+    width: 100vw;
+  }
 `;
 const SlideWrapper = styled('div')`
   ${color};
@@ -40,6 +46,7 @@ const Slide = props => {
     scaleRatio
   } = props;
   const theme = React.useContext(ThemeContext);
+  const { state } = React.useContext(DeckContext);
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
   const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
   const slideRef = React.useRef(null);
@@ -87,6 +94,17 @@ const Slide = props => {
     };
   }, [transformForWindowSize, scaleRatio]);
 
+  const transforms = React.useMemo(
+    () =>
+      state.exportMode
+        ? {}
+        : {
+            transform: `scale(${ratio})`,
+            transformOrigin: `${origin.x} ${origin.y}`
+          },
+    [state.exportMode, origin, ratio]
+  );
+
   const value = useSlide(slideNum);
   const { numberOfSlides } = value.state;
 
@@ -95,11 +113,8 @@ const Slide = props => {
   return (
     <SlideContainer
       ref={slideRef}
-      backgroundColor={backgroundColor}
-      style={{
-        transform: `scale(${ratio})`,
-        transformOrigin: `${origin.x} ${origin.y}`
-      }}
+      backgroundColor={state.printMode ? '#ffffff' : backgroundColor}
+      style={transforms}
     >
       <TemplateWrapper ref={templateRef}>
         {typeof template === 'function' &&
