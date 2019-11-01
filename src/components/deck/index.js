@@ -99,7 +99,7 @@ const Deck = ({
   }
 
   const filteredChildren = React.Children.map(children, mapMarkdownIntoSlides)
-    .flat(1)
+    .reduce((acc, slide) => acc.concat(slide), [])
     .filter(child => isComponentType(child, 'Slide'));
 
   const numberOfSlides = filteredChildren.length;

@@ -1,6 +1,7 @@
 import React from 'react';
 import debounce from '../utils/debounce';
 import { useToggleFullScreen } from './use-full-screen';
+import { isWindows, isMacOS } from '../utils/detect-platform';
 
 const useKeyboardControls = ({
   keyboardControls = 'arrows',
@@ -36,7 +37,7 @@ const useKeyboardControls = ({
             e.preventDefault();
           }
         }
-        if (!!e.altKey) {
+        if (!!e.altKey && isMacOS()) {
           switch (e.key) {
             case 'ø':
               toggleMode('overviewMode');
@@ -45,6 +46,20 @@ const useKeyboardControls = ({
               toggleMode('presenterMode');
               break;
             case 'ƒ':
+              toggleFullScreen();
+              break;
+            default:
+              null;
+          }
+        } else if (!!e.altKey && !!e.shiftKey && isWindows()) {
+          switch (e.key) {
+            case 'O':
+              toggleMode('overviewMode');
+              break;
+            case 'P':
+              toggleMode('presenterMode');
+              break;
+            case 'F':
               toggleFullScreen();
               break;
             default:
