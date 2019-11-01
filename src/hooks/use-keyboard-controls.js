@@ -1,12 +1,16 @@
 import React from 'react';
 import debounce from '../utils/debounce';
+import { useToggleFullScreen } from './use-full-screen';
+import { isWindows, isMacOS } from '../utils/detect-platform';
 
 const useKeyboardControls = ({
   keyboardControls = 'arrows',
   navigateToNext,
-  navigateToPrevious
+  navigateToPrevious,
+  toggleMode
 }) => {
   const keyPressCount = React.useRef(0);
+  const toggleFullScreen = useToggleFullScreen();
   React.useEffect(
     function() {
       // Keep track of the number of next slide presses for debounce
@@ -33,6 +37,35 @@ const useKeyboardControls = ({
             e.preventDefault();
           }
         }
+        if (!!e.altKey && isMacOS()) {
+          switch (e.key) {
+            case 'ø':
+              toggleMode('overviewMode');
+              break;
+            case 'π':
+              toggleMode('presenterMode');
+              break;
+            case 'ƒ':
+              toggleFullScreen();
+              break;
+            default:
+              null;
+          }
+        } else if (!!e.altKey && !!e.shiftKey && isWindows()) {
+          switch (e.key) {
+            case 'O':
+              toggleMode('overviewMode');
+              break;
+            case 'P':
+              toggleMode('presenterMode');
+              break;
+            case 'F':
+              toggleFullScreen();
+              break;
+            default:
+              null;
+          }
+        }
       }
 
       window.addEventListener('keydown', handleKeyDown);
@@ -40,7 +73,13 @@ const useKeyboardControls = ({
         window.removeEventListener('keydown', handleKeyDown);
       };
     },
-    [keyboardControls, navigateToNext, navigateToPrevious]
+    [
+      keyboardControls,
+      navigateToNext,
+      navigateToPrevious,
+      toggleFullScreen,
+      toggleMode
+    ]
   );
 };
 
