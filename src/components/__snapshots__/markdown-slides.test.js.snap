@@ -4,6 +4,8 @@ exports[`MarkdownSlides should render correctly when using function syntax 1`] =
 <div>
   <Slide
     align="center center"
+    isPresenter={false}
+    isPresenterMainSlide={false}
     key="md-slide-0"
     presenterStyle={Object {}}
     style={Object {}}
@@ -18,6 +20,8 @@ exports[`MarkdownSlides should render correctly when using function syntax 1`] =
   </Slide>
   <Slide
     align="center center"
+    isPresenter={false}
+    isPresenterMainSlide={false}
     key="md-slide-1"
     presenterStyle={Object {}}
     style={Object {}}
@@ -37,6 +41,8 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
 <div>
   <Slide
     align="center center"
+    isPresenter={false}
+    isPresenterMainSlide={false}
     key="md-slide-0"
     presenterStyle={Object {}}
     style={Object {}}
@@ -50,6 +56,8 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
   </Slide>
   <Slide
     align="center center"
+    isPresenter={false}
+    isPresenterMainSlide={false}
     key="md-slide-1"
     presenterStyle={Object {}}
     style={Object {}}
@@ -68,6 +76,8 @@ exports[`MarkdownSlides should render correctly when using tagged template liter
 <div>
   <Slide
     align="center center"
+    isPresenter={false}
+    isPresenterMainSlide={false}
     key="md-slide-0"
     presenterStyle={Object {}}
     style={Object {}}
@@ -82,6 +92,8 @@ This text is **bold**.
   </Slide>
   <Slide
     align="center center"
+    isPresenter={false}
+    isPresenterMainSlide={false}
     key="md-slide-1"
     presenterStyle={Object {}}
     style={Object {}}

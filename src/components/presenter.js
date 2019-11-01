@@ -67,7 +67,9 @@ export default class Presenter extends Component {
       transitionOut: [],
       transitionDuration: 0,
       presenter: true,
-      presenterStyle
+      presenterStyle,
+      isPresenter: true,
+      isPresenterMainSlide: true
     });
   }
   _renderNextSlide() {
@@ -91,7 +93,8 @@ export default class Presenter extends Component {
         transitionDuration: 0,
         presenterStyle,
         presenter: true,
-        appearOff: true
+        appearOff: true,
+        isPresenter: true
       })
     ) : (
       <EndHeader>END</EndHeader>

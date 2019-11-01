@@ -137,7 +137,9 @@ Slide.defaultProps = {
   align: 'center center',
   presenterStyle: {},
   style: {},
-  viewerScaleMode: false
+  viewerScaleMode: false,
+  isPresenter: false,
+  isPresenterMainSlide: false
 };
 
 Slide.propTypes = {
@@ -150,6 +152,8 @@ Slide.propTypes = {
   getAnimStep: PropTypes.func,
   getAppearStep: PropTypes.func,
   hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  isPresenter: PropTypes.bool,
+  isPresenterMainSlide: PropTypes.bool,
   lastSlideIndex: PropTypes.number,
   margin: PropTypes.number,
   notes: PropTypes.any,
