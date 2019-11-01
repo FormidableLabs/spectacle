@@ -94,6 +94,17 @@ const Slide = props => {
     };
   }, [transformForWindowSize, scaleRatio]);
 
+  const transforms = React.useMemo(
+    () =>
+      state.exportMode
+        ? {}
+        : {
+            transform: `scale(${ratio})`,
+            transformOrigin: `${origin.x} ${origin.y}`
+          },
+    [state.exportMode, origin, ratio]
+  );
+
   const value = useSlide(slideNum);
   const { numberOfSlides } = value.state;
 
@@ -102,17 +113,8 @@ const Slide = props => {
   return (
     <SlideContainer
       ref={slideRef}
-      backgroundColor={
-        window.location.search.includes('print') ? '#ffffff' : backgroundColor
-      }
-      style={
-        state.exportMode
-          ? {}
-          : {
-              transform: `scale(${ratio})`,
-              transformOrigin: `${origin.x} ${origin.y}`
-            }
-      }
+      backgroundColor={state.printMode ? '#ffffff' : backgroundColor}
+      style={transforms}
     >
       <TemplateWrapper ref={templateRef}>
         {typeof template === 'function' &&
