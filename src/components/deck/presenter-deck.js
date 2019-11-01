@@ -5,16 +5,19 @@ import styled, { css } from 'styled-components';
 import { compose, color, typography } from 'styled-system';
 import { Heading, Text } from '../typography';
 import * as queryString from 'query-string';
+import { Timer } from './timer';
 
 const PresenterDeckContainer = styled('div')`
-  height: 100vh;
-  width: 100vw;
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: row;
-  background-color: black;
+  background-color: #282828;
+  padding: 2em;
+  overflow: hidden;
 `;
 
 const NotesColumn = styled('div')`
@@ -29,11 +32,15 @@ const PreviewColumn = styled('div')`
   flex-direction: column;
   height: 100%;
   width: 50%;
+  > :first-child {
+    margin-bottom: 0.5em;
+  }
 `;
 
 const PresentationHeader = styled(Heading)`
   align-items: flex-start;
   text-align: start;
+  margin-bottom: 0;
 `;
 
 const SlideContainer = styled('div')`
@@ -41,8 +48,11 @@ const SlideContainer = styled('div')`
   width: 100%;
 `;
 
-const SlideDivider = styled('div')`
-  height: 2em;
+const SlideName = styled(Text)`
+  position: relative;
+  top: 2em;
+  left: 0;
+  margin: 0;
 `;
 
 const Button = styled('button')(
@@ -52,20 +62,30 @@ const Button = styled('button')(
   ),
   css`
     border: 0;
-    width: 300px;
+    width: 8em;
     padding: 1em;
-    margin-bottom: 1em;
+    margin-left: 16px;
   `
 );
 Button.defaultProps = {
   backgroundColor: 'secondary',
   color: 'primary',
-  fontSize: 'text'
+  fontSize: '18px'
 };
+
+const NotesContainer = styled.div`
+  min-height: 30%;
+`;
 
 const PresenterDeck = props => {
   const {
-    state: { currentNotes, currentSlide, currentSlideElement, immediate }
+    state: {
+      currentNotes,
+      currentSlide,
+      currentSlideElement,
+      immediate,
+      numberOfSlides
+    }
   } = React.useContext(DeckContext);
 
   const {
@@ -93,21 +113,30 @@ const PresenterDeck = props => {
   return (
     <PresenterDeckContainer>
       <NotesColumn>
+        <Text>{`Slide ${currentSlide + 1} of ${numberOfSlides}`}</Text>
+        <Timer />
+        <PresentationHeader fontSize="subHeader">Notes:</PresentationHeader>
+        <NotesContainer>
+          <Text lineHeight="180%" fontSize="18px">
+            {currentNotes}
+          </Text>
+        </NotesContainer>
         {!isController && !isReceiver && (
           <Button onClick={onStartConnection}>Start Connection</Button>
         )}
         {isController && !isReceiver && (
           <Button onClick={terminateConnection}>Terminate Connection</Button>
         )}
-        <PresentationHeader fontSize="subHeader">Notes:</PresentationHeader>
-        <Text lineHeight="180%" fontSize="18px">
-          {currentNotes}
-        </Text>
       </NotesColumn>
       <PreviewColumn>
-        <SlideContainer>{activeSlide}</SlideContainer>
-        <SlideDivider />
-        <SlideContainer>{nextSlide}</SlideContainer>
+        <SlideContainer>
+          <SlideName fontSize="18px">Current slide</SlideName>
+          {activeSlide}
+        </SlideContainer>
+        <SlideContainer>
+          <SlideName fontSize="18px">Next slide</SlideName>
+          {nextSlide}
+        </SlideContainer>
       </PreviewColumn>
     </PresenterDeckContainer>
   );
