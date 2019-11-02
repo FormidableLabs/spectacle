@@ -209,8 +209,10 @@ const TestJs = () => (
     <Markdown containsSlides>
       {`
         ### First MD generated Slide
+        Notes: These are notes
         ---
         ### Second MD Generated Slide
+        Notes: These are more notes
       `}
     </Markdown>
   </Deck>

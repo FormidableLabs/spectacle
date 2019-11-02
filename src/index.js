@@ -20,6 +20,7 @@ import Progress from './components/progress';
 import FullScreen from './components/fullscreen';
 import Markdown from './components/markdown';
 import mdxComponentMap from './utils/mdx-component-mapper';
+import { removeNotes, isolateNotes } from './utils/notes';
 
 export {
   Deck,
@@ -46,5 +47,7 @@ export {
   Table,
   TableCell,
   TableRow,
-  mdxComponentMap
+  mdxComponentMap,
+  removeNotes,
+  isolateNotes
 };
