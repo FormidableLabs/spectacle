@@ -77,7 +77,7 @@ const initialState = {
 
 const mapMarkdownIntoSlides = (child, index) => {
   if (
-    isComponentType(child, 'Markdown') &&
+    isComponentType(child, Markdown.name) &&
     Boolean(child.props.containsSlides)
   ) {
     return child.props.children.split(/\n\s*---\n/).map((markdown, mdIndex) => {
@@ -108,7 +108,7 @@ const Deck = ({
 
   const filteredChildren = React.Children.map(children, mapMarkdownIntoSlides)
     .reduce((acc, slide) => acc.concat(slide), [])
-    .filter(child => isComponentType(child, 'Slide'));
+    .filter(child => isComponentType(child, Slide.name));
 
   const numberOfSlides = filteredChildren.length;
 
