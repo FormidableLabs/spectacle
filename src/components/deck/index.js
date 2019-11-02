@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeContext, ThemeProvider } from 'styled-components';
-
+import normalize from 'normalize-newline';
+import indentNormalizer from '../../utils/indent-normalizer';
 import useDeck, { DeckContext } from '../../hooks/use-deck';
 import isComponentType from '../../utils/is-component-type';
 import useUrlRouting from '../../hooks/use-url-routing';
@@ -24,7 +25,8 @@ import {
 } from '../../utils/constants';
 import searchChildrenForAppear from '../../utils/search-children-appear';
 import OverviewDeck from './overview-deck';
-import { Markdown, Slide } from '../../index';
+import { Markdown, Slide, Notes } from '../../index';
+import { isolateNotes, removeNotes } from '../../utils/notes';
 
 const AnimatedDeckDiv = styled(animated.div)`
   height: 100vh;
@@ -78,11 +80,17 @@ const mapMarkdownIntoSlides = (child, index) => {
     isComponentType(child, 'Markdown') &&
     Boolean(child.props.containsSlides)
   ) {
-    return child.props.children.split(/\n\s*---\n/).map((markdown, mdIndex) => (
-      <Slide key={`md-slide-${index}-${mdIndex}`}>
-        <Markdown>{markdown}</Markdown>
-      </Slide>
-    ));
+    return child.props.children.split(/\n\s*---\n/).map((markdown, mdIndex) => {
+      const content = normalize(indentNormalizer(markdown));
+      const contentWithoutNotes = removeNotes(content);
+      const notes = isolateNotes(content);
+      return (
+        <Slide key={`md-slide-${index}-${mdIndex}`}>
+          <Markdown>{contentWithoutNotes}</Markdown>
+          <Notes>{notes}</Notes>
+        </Slide>
+      );
+    });
   }
   return child;
 };
