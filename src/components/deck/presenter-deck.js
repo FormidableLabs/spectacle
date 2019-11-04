@@ -44,16 +44,23 @@ const PresentationHeader = styled(Heading)`
 `;
 
 const SlideContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
   height: calc(50% - 1em);
   width: 100%;
 `;
 
+const SlideWrapper = styled('div')`
+  flex: 1;
+  position: relative;
+`;
+
 const SlideName = styled(Text)`
   position: relative;
-  top: 2em;
   left: 0;
-  margin: 0;
+  margin: 0.5em 0;
   z-index: 1;
+  text-align: center;
 `;
 
 const Button = styled('button')(
@@ -132,11 +139,11 @@ const PresenterDeck = props => {
       <PreviewColumn>
         <SlideContainer>
           <SlideName fontSize="18px">Current slide</SlideName>
-          {activeSlide}
+          <SlideWrapper>{activeSlide}</SlideWrapper>
         </SlideContainer>
         <SlideContainer>
           <SlideName fontSize="18px">Next slide</SlideName>
-          {nextSlide}
+          <SlideWrapper>{nextSlide}</SlideWrapper>
         </SlideContainer>
       </PreviewColumn>
     </PresenterDeckContainer>

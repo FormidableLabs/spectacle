@@ -100,7 +100,10 @@ const Slide = props => {
         ? {}
         : {
             transform: `scale(${ratio})`,
-            transformOrigin: `${origin.x} ${origin.y}`
+            transformOrigin: `${origin.x} ${origin.y}`,
+            position: 'absolute',
+            top: 0,
+            left: 0
           },
     [state.exportMode, origin, ratio]
   );
