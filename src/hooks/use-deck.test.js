@@ -9,7 +9,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('useDeck', () => {
   it('initialises', () => {
     const TestComponent = () => {
-      const { state, dispatch } = useDeck({ currentSlide: 0, notes: '' });
+      const { state } = useDeck({ currentSlide: 0, notes: '' });
       return <div>{state.slideNumber}</div>;
     };
     const component = shallow(<TestComponent />);
