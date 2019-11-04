@@ -40,7 +40,7 @@ describe('useDeck', () => {
       currentSlide: 0,
       notes: ''
     });
-    component.find('button').simulate('click');
+    component.find('[data-testid="dispatch button"]').simulate('click');
     expect(setOutsideState).toHaveBeenNthCalledWith(2, {
       currentNotes: undefined,
       currentSlide: 3,
@@ -83,7 +83,7 @@ describe('useDeck', () => {
       currentSlide: 0,
       notes: ''
     });
-    component.find('button').simulate('click');
+    component.find('[data-testid="dispatch button"]').simulate('click');
     expect(setOutsideState).toHaveBeenNthCalledWith(2, {
       currentNotes: 'hello there',
       currentSlide: 0,
@@ -119,7 +119,7 @@ describe('useDeck', () => {
       currentSlide: 0,
       notes: ''
     });
-    component.find('button').simulate('click');
+    component.find('[data-testid="dispatch button"]').simulate('click');
     expect(setOutsideState).toHaveBeenNthCalledWith(2, {
       currentSlide: 0,
       notes: '',
