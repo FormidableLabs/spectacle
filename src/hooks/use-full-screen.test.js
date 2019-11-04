@@ -14,13 +14,15 @@ describe('useToggleFullScreen', () => {
       const toggleFullScreen = useToggleFullScreen();
       return (
         <button
-          data-testid="dispatch button"
+          data-testid="toggle fullscreen button"
           onClick={() => toggleFullScreen()}
         ></button>
       );
     };
     const component = shallow(<TestComponent />);
-    component.find('button').simulate('click');
+    component
+      .find('[data-testid="toggle fullscreen button"]')
+      .simulate('click');
     expect(document.documentElement.requestFullscreen).toHaveBeenCalled();
   });
   it('calls document.exitFullscreen when in fullscreen', () => {
@@ -30,13 +32,15 @@ describe('useToggleFullScreen', () => {
       const toggleFullScreen = useToggleFullScreen();
       return (
         <button
-          data-testid="dispatch button"
+          data-testid="toggle fullscreen button"
           onClick={() => toggleFullScreen()}
         ></button>
       );
     };
     const component = shallow(<TestComponent />);
-    component.find('button').simulate('click');
+    component
+      .find('[data-testid="toggle fullscreen button"]')
+      .simulate('click');
     expect(document.exitFullscreen).toHaveBeenCalled();
   });
 });
