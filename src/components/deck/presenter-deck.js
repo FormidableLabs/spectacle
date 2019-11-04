@@ -39,6 +39,7 @@ const PresentationHeader = styled(Heading)`
 const SlideContainer = styled('div')`
   height: calc(50% - 1em);
   width: 100%;
+  overflow: hidden;
 `;
 
 const SlideDivider = styled('div')`
