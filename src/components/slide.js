@@ -83,7 +83,7 @@ const Slide = props => {
     });
   }, [ratio, slideHeight, slideWidth, theme]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (!isNaN(scaleRatio)) {
       return;
     }
