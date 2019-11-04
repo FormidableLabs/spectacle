@@ -95,10 +95,14 @@ const PresenterDeck = props => {
     <PresenterDeckContainer>
       <NotesColumn>
         {!isController && !isReceiver && (
-          <Button onClick={onStartConnection}>Start Connection</Button>
+          <Button onClick={onStartConnection} data-testid="Start Connection">
+            Start Connection
+          </Button>
         )}
         {isController && !isReceiver && (
-          <Button onClick={terminateConnection}>Terminate Connection</Button>
+          <Button onClick={terminateConnection} data-testid="Close Connection">
+            Terminate Connection
+          </Button>
         )}
         <PresentationHeader fontSize="subHeader">Notes:</PresentationHeader>
         <Text lineHeight="180%" fontSize="18px">
@@ -108,7 +112,7 @@ const PresenterDeck = props => {
       <PreviewColumn>
         <SlideContainer>{activeSlide}</SlideContainer>
         <SlideDivider />
-        <SlideContainer>{nextSlide}</SlideContainer>
+        <SlideContainer data-testid="Next Slide">{nextSlide}</SlideContainer>
       </PreviewColumn>
     </PresenterDeckContainer>
   );
