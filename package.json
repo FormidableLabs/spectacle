@@ -24,7 +24,7 @@
     "prettier-fix": "yarn prettier --write",
     "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
     "test": "jest",
-    "check": "yarn lint && yarn prettier-check",
+    "check": "yarn lint && yarn prettier-check && yarn test",
     "check-ci": "yarn run check"
   },
   "author": "",
