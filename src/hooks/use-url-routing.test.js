@@ -13,7 +13,8 @@ describe('useUrlRouting', () => {
   history.createBrowserHistory = () => ({
     push: pushMock,
     listen: jest.fn(),
-    replace: jest.fn()
+    replace: jest.fn(),
+    url: ''
   });
   describe('navigateToNext', () => {
     it('navigates to next slideElement when navigateToNext is called', () => {
@@ -139,6 +140,169 @@ describe('useUrlRouting', () => {
         .find('[data-testid="navigate to next button"]')
         .simulate('click');
       expect(pushMock).toBeCalledWith('?slide=0&slideElement=-1');
+    });
+  });
+  describe('navigateToPrevious', () => {
+    it('navigates to prev slideElement when navigateToPrevious is called', () => {
+      const options = {
+        dispatch: jest.fn(),
+        slideElementMap: { 0: 2, 1: 2, 2: 0, 3: 0 },
+        currentSlide: 1,
+        currentSlideElement: 2,
+        currentPresenterMode: false,
+        currentOverviewMode: false,
+        currentExportMode: false,
+        currentPrintMode: false,
+        loop: false,
+        animationsWhenGoingBack: false,
+        onUrlChange: jest.fn()
+      };
+      const TestComponent = () => {
+        const { navigateToPrevious } = useUrlRouting(options);
+        return (
+          <>
+            <button
+              data-testid="navigate to prev button"
+              onClick={() => navigateToPrevious()}
+            ></button>
+          </>
+        );
+      };
+      const component = mount(<TestComponent />);
+      component
+        .find('[data-testid="navigate to prev button"]')
+        .simulate('click');
+      expect(pushMock).toBeCalledWith('?immediate=true&slide=1&slideElement=1');
+    });
+    it('navigates to prev slide when navigateToPrevious is called when no more slideElements remaining', () => {
+      const options = {
+        dispatch: jest.fn(),
+        slideElementMap: { 0: 2, 1: 2, 2: 0, 3: 0 },
+        currentSlide: 1,
+        currentSlideElement: -1,
+        currentPresenterMode: false,
+        currentOverviewMode: false,
+        currentExportMode: false,
+        currentPrintMode: false,
+        loop: false,
+        animationsWhenGoingBack: false,
+        onUrlChange: jest.fn()
+      };
+      const TestComponent = () => {
+        const { navigateToPrevious } = useUrlRouting(options);
+        return (
+          <>
+            <button
+              data-testid="navigate to prev button"
+              onClick={() => navigateToPrevious()}
+            ></button>
+          </>
+        );
+      };
+      const component = mount(<TestComponent />);
+      component
+        .find('[data-testid="navigate to prev button"]')
+        .simulate('click');
+      expect(pushMock).toBeCalledWith('?immediate=true&slide=0&slideElement=1');
+    });
+    it('navigates to prev slide when navigateToPrevious is called when no more slideElements remaining', () => {
+      const options = {
+        dispatch: jest.fn(),
+        slideElementMap: { 0: 0 },
+        currentSlide: 0,
+        currentSlideElement: -1,
+        currentPresenterMode: false,
+        currentOverviewMode: false,
+        currentExportMode: false,
+        currentPrintMode: false,
+        loop: false,
+        animationsWhenGoingBack: false,
+        onUrlChange: jest.fn()
+      };
+      const TestComponent = () => {
+        const { navigateToPrevious } = useUrlRouting(options);
+        return (
+          <>
+            <button
+              data-testid="navigate to prev button"
+              onClick={() => navigateToPrevious()}
+            ></button>
+          </>
+        );
+      };
+      const component = mount(<TestComponent />);
+      component
+        .find('[data-testid="navigate to prev button"]')
+        .simulate('click');
+      expect(pushMock).not.toBeCalled();
+    });
+    it('navigates to prev slide when navigateToPrevious is called when no more slideElements remaining', () => {
+      const options = {
+        dispatch: jest.fn(),
+        slideElementMap: { 0: 0, 1: 0 },
+        currentSlide: 0,
+        currentSlideElement: -1,
+        currentPresenterMode: false,
+        currentOverviewMode: false,
+        currentExportMode: false,
+        currentPrintMode: false,
+        loop: true,
+        animationsWhenGoingBack: false,
+        onUrlChange: jest.fn()
+      };
+      const TestComponent = () => {
+        const { navigateToPrevious } = useUrlRouting(options);
+        return (
+          <>
+            <button
+              data-testid="navigate to prev button"
+              onClick={() => navigateToPrevious()}
+            ></button>
+          </>
+        );
+      };
+      const component = mount(<TestComponent />);
+      component
+        .find('[data-testid="navigate to prev button"]')
+        .simulate('click');
+      expect(pushMock).toBeCalledWith(
+        '?immediate=true&slide=1&slideElement=-1'
+      );
+    });
+  });
+  describe('toggleMode', () => {
+    it('When calling toggleMode with payload it calls dispatch with that mode', () => {
+      const dispatchCallback = jest.fn();
+      const options = {
+        dispatch: dispatchCallback,
+        slideElementMap: { 0: 0, 1: 0 },
+        currentSlide: 0,
+        currentSlideElement: -1,
+        currentPresenterMode: false,
+        currentOverviewMode: false,
+        currentExportMode: false,
+        currentPrintMode: false,
+        loop: true,
+        animationsWhenGoingBack: false,
+        onUrlChange: jest.fn()
+      };
+      const TestComponent = () => {
+        const { toggleMode } = useUrlRouting(options);
+        return (
+          <>
+            <button
+              data-testid="toggle mode button"
+              onClick={() => toggleMode('fullScreen')}
+            ></button>
+          </>
+        );
+      };
+      const component = mount(<TestComponent />);
+      component.find('[data-testid="toggle mode button"]').simulate('click');
+      expect(dispatchCallback).toBeCalledWith({
+        type: 'TOGGLE_MODE',
+        payload: { mode: 'fullScreen' }
+      });
     });
   });
 });
