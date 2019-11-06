@@ -1,0 +1,383 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Progress /> should render the circles at the specified size and color 1`] = `
+<Progress
+  color="#ff0"
+  size={20}
+>
+  <styled.div
+    className="spectacle-progress-indicator"
+  >
+    <StyledComponent
+      className="spectacle-progress-indicator"
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bwzfXH",
+            "isStatic": false,
+            "lastClassName": "fiQnxA",
+            "rules": Array [
+              "
+  @media print {
+    display: none;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bwzfXH",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="sc-bwzfXH fiQnxA spectacle-progress-indicator"
+      >
+        <styled.div
+          active={true}
+          color="#ff0"
+          data-testid="Progress Circle"
+          key="progress-circle-0"
+          onClick={[Function]}
+          size={20}
+        >
+          <StyledComponent
+            active={true}
+            color="#ff0"
+            data-testid="Progress Circle"
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bdVaJa",
+                  "isStatic": false,
+                  "lastClassName": "idATeh",
+                  "rules": Array [
+                    "
+  width: ",
+                    [Function],
+                    "px;
+  height: ",
+                    [Function],
+                    "px;
+  display: inline-block;
+  border: 1px solid ",
+                    [Function],
+                    ";
+  background: ",
+                    [Function],
+                    ";
+  margin: ",
+                    [Function],
+                    "px;
+  border-radius: 50%;
+  pointer-events: all;
+  cursor: pointer;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bdVaJa",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            onClick={[Function]}
+            size={20}
+          >
+            <div
+              className="sc-bdVaJa daIxbm"
+              color="#ff0"
+              data-testid="Progress Circle"
+              onClick={[Function]}
+              size={20}
+            />
+          </StyledComponent>
+        </styled.div>
+        <styled.div
+          active={false}
+          color="#ff0"
+          data-testid="Progress Circle"
+          key="progress-circle-1"
+          onClick={[Function]}
+          size={20}
+        >
+          <StyledComponent
+            active={false}
+            color="#ff0"
+            data-testid="Progress Circle"
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bdVaJa",
+                  "isStatic": false,
+                  "lastClassName": "idATeh",
+                  "rules": Array [
+                    "
+  width: ",
+                    [Function],
+                    "px;
+  height: ",
+                    [Function],
+                    "px;
+  display: inline-block;
+  border: 1px solid ",
+                    [Function],
+                    ";
+  background: ",
+                    [Function],
+                    ";
+  margin: ",
+                    [Function],
+                    "px;
+  border-radius: 50%;
+  pointer-events: all;
+  cursor: pointer;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bdVaJa",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            onClick={[Function]}
+            size={20}
+          >
+            <div
+              className="sc-bdVaJa idATeh"
+              color="#ff0"
+              data-testid="Progress Circle"
+              onClick={[Function]}
+              size={20}
+            />
+          </StyledComponent>
+        </styled.div>
+        <styled.div
+          active={false}
+          color="#ff0"
+          data-testid="Progress Circle"
+          key="progress-circle-2"
+          onClick={[Function]}
+          size={20}
+        >
+          <StyledComponent
+            active={false}
+            color="#ff0"
+            data-testid="Progress Circle"
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bdVaJa",
+                  "isStatic": false,
+                  "lastClassName": "idATeh",
+                  "rules": Array [
+                    "
+  width: ",
+                    [Function],
+                    "px;
+  height: ",
+                    [Function],
+                    "px;
+  display: inline-block;
+  border: 1px solid ",
+                    [Function],
+                    ";
+  background: ",
+                    [Function],
+                    ";
+  margin: ",
+                    [Function],
+                    "px;
+  border-radius: 50%;
+  pointer-events: all;
+  cursor: pointer;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bdVaJa",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            onClick={[Function]}
+            size={20}
+          >
+            <div
+              className="sc-bdVaJa idATeh"
+              color="#ff0"
+              data-testid="Progress Circle"
+              onClick={[Function]}
+              size={20}
+            />
+          </StyledComponent>
+        </styled.div>
+        <styled.div
+          active={false}
+          color="#ff0"
+          data-testid="Progress Circle"
+          key="progress-circle-3"
+          onClick={[Function]}
+          size={20}
+        >
+          <StyledComponent
+            active={false}
+            color="#ff0"
+            data-testid="Progress Circle"
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bdVaJa",
+                  "isStatic": false,
+                  "lastClassName": "idATeh",
+                  "rules": Array [
+                    "
+  width: ",
+                    [Function],
+                    "px;
+  height: ",
+                    [Function],
+                    "px;
+  display: inline-block;
+  border: 1px solid ",
+                    [Function],
+                    ";
+  background: ",
+                    [Function],
+                    ";
+  margin: ",
+                    [Function],
+                    "px;
+  border-radius: 50%;
+  pointer-events: all;
+  cursor: pointer;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bdVaJa",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            onClick={[Function]}
+            size={20}
+          >
+            <div
+              className="sc-bdVaJa idATeh"
+              color="#ff0"
+              data-testid="Progress Circle"
+              onClick={[Function]}
+              size={20}
+            />
+          </StyledComponent>
+        </styled.div>
+        <styled.div
+          active={false}
+          color="#ff0"
+          data-testid="Progress Circle"
+          key="progress-circle-4"
+          onClick={[Function]}
+          size={20}
+        >
+          <StyledComponent
+            active={false}
+            color="#ff0"
+            data-testid="Progress Circle"
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bdVaJa",
+                  "isStatic": false,
+                  "lastClassName": "idATeh",
+                  "rules": Array [
+                    "
+  width: ",
+                    [Function],
+                    "px;
+  height: ",
+                    [Function],
+                    "px;
+  display: inline-block;
+  border: 1px solid ",
+                    [Function],
+                    ";
+  background: ",
+                    [Function],
+                    ";
+  margin: ",
+                    [Function],
+                    "px;
+  border-radius: 50%;
+  pointer-events: all;
+  cursor: pointer;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bdVaJa",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            onClick={[Function]}
+            size={20}
+          >
+            <div
+              className="sc-bdVaJa idATeh"
+              color="#ff0"
+              data-testid="Progress Circle"
+              onClick={[Function]}
+              size={20}
+            />
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</Progress>
+`;
