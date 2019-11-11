@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
-import styled, { css } from 'styled-components';
-import { compose, color, typography } from 'styled-system';
+import styled from 'styled-components';
 import { Heading, Text } from '../typography';
+import { FlexBox } from '../layout';
 import * as queryString from 'query-string';
 import { Timer } from './timer';
+import SpectacleLogo from '../logo';
+import InternalButton from '../internal-button';
 
 const PresenterDeckContainer = styled('div')`
   position: absolute;
@@ -21,7 +23,7 @@ const PresenterDeckContainer = styled('div')`
 `;
 
 const NotesColumn = styled('div')`
-  padding: 2em 4em;
+  padding: 0 4em;
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -37,12 +39,6 @@ const PreviewColumn = styled('div')`
   }
 `;
 
-const PresentationHeader = styled(Heading)`
-  align-items: flex-start;
-  text-align: start;
-  margin-bottom: 0;
-`;
-
 const SlideContainer = styled('div')`
   display: flex;
   flex-direction: column;
@@ -54,36 +50,21 @@ const SlideContainer = styled('div')`
 const SlideWrapper = styled('div')`
   flex: 1;
   position: relative;
+
+  .spectacle-fullscreen-button {
+    display: none;
+  }
 `;
 
-const SlideName = styled(Text)`
-  position: relative;
-  left: 0;
-  margin: 0.5em 0;
-  z-index: 1;
-  text-align: center;
+const SlideCountLabel = styled('span')`
+  background: hsla(0, 0%, 100%, 0.1);
+  border-radius: 4px;
+  font-size: 0.7em;
+  padding: 1px 4px;
 `;
 
-const Button = styled('button')(
-  compose(
-    color,
-    typography
-  ),
-  css`
-    border: 0;
-    width: 8em;
-    padding: 1em;
-    margin-left: 16px;
-  `
-);
-Button.defaultProps = {
-  backgroundColor: 'secondary',
-  color: 'primary',
-  fontSize: '18px'
-};
-
-const NotesContainer = styled.div`
-  min-height: 30%;
+const NotesContainer = styled('div')`
+  overflow-y: scroll;
 `;
 
 const PresenterDeck = props => {
@@ -122,28 +103,46 @@ const PresenterDeck = props => {
   return (
     <PresenterDeckContainer>
       <NotesColumn>
-        <Text>{`Slide ${currentSlide + 1} of ${numberOfSlides}`}</Text>
+        <FlexBox justifyContent="space-between">
+          <SpectacleLogo />
+          {!isController && !isReceiver && (
+            <InternalButton onClick={onStartConnection}>
+              Cast to Secondary Display
+            </InternalButton>
+          )}
+          {isController && !isReceiver && (
+            <InternalButton onClick={terminateConnection}>
+              Stop Casting
+            </InternalButton>
+          )}
+        </FlexBox>
         <Timer />
-        <PresentationHeader fontSize="subHeader">Notes:</PresentationHeader>
+        <Text fontSize={20} fontWeight="bold">
+          Notes:
+        </Text>
         <NotesContainer>
           <Text lineHeight="180%" fontSize="18px">
             {currentNotes}
           </Text>
         </NotesContainer>
-        {!isController && !isReceiver && (
-          <Button onClick={onStartConnection}>Start Connection</Button>
-        )}
-        {isController && !isReceiver && (
-          <Button onClick={terminateConnection}>Terminate Connection</Button>
-        )}
       </NotesColumn>
       <PreviewColumn>
         <SlideContainer>
-          <SlideName fontSize="18px">Current slide</SlideName>
+          <Text fontSize={20} fontWeight="bold" textAlign="center">
+            Current&nbsp;
+            <SlideCountLabel>
+              Slide {activeSlide.props.slideNum + 1} of {numberOfSlides}
+            </SlideCountLabel>
+          </Text>
           <SlideWrapper>{activeSlide}</SlideWrapper>
         </SlideContainer>
         <SlideContainer>
-          <SlideName fontSize="18px">Next slide</SlideName>
+          <Text fontSize={20} fontWeight="bold" textAlign="center">
+            Next&nbsp;
+            <SlideCountLabel>
+              Slide {nextSlide.props.slideNum + 1} of {numberOfSlides}
+            </SlideCountLabel>
+          </Text>
           <SlideWrapper>{nextSlide}</SlideWrapper>
         </SlideContainer>
       </PreviewColumn>
