@@ -11,6 +11,7 @@ const SlideContainer = styled('div')`
   width: ${({ theme }) => theme.size.width || 1366}px;
   height: ${({ theme }) => theme.size.height || 768}px;
   overflow: hidden;
+  display: flex;
   @media print {
     page-break-before: always;
     height: 100vh;
@@ -20,6 +21,8 @@ const SlideContainer = styled('div')`
 const SlideWrapper = styled('div')`
   ${color};
   ${space};
+  flex: 1;
+  display: flex;
 `;
 const TemplateWrapper = styled('div')`
   position: absolute;
@@ -29,6 +32,9 @@ const TemplateWrapper = styled('div')`
   bottom: 0;
   pointer-events: none;
   z-index: -1;
+`;
+const InnerSlideRef = styled('div')`
+  flex: 1;
 `;
 
 /**
@@ -132,7 +138,7 @@ const Slide = props => {
         color={textColor}
       >
         <SlideContext.Provider value={value}>
-          <div ref={contentRef}>{children}</div>
+          <InnerSlideRef ref={contentRef}>{children}</InnerSlideRef>
         </SlideContext.Provider>
       </SlideWrapper>
     </SlideContainer>

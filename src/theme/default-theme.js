@@ -6,7 +6,7 @@ export default {
   },
   colors: {
     primary: '#ebe5da',
-    secondary: '#f04d21',
+    secondary: '#fc6986',
     tertiary: '#1e2852',
     quaternary: '#ffc951',
     quinary: '#8bddfd'
@@ -17,11 +17,10 @@ export default {
     monospace: '"Consolas", "Menlo", monospace'
   },
   fontSizes: {
-    h1: '52px',
-    h2: '44px',
-    h3: '40px',
-    h4: '32px',
-    text: '26px',
+    h1: '72px',
+    h2: '64px',
+    h3: '56px',
+    text: '44px',
     monospace: '20px'
   },
   space: {
