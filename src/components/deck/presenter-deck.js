@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
 import styled from 'styled-components';
-import { Heading, Text } from '../typography';
+import { Text } from '../typography';
 import { FlexBox } from '../layout';
 import * as queryString from 'query-string';
 import { Timer } from './timer';
