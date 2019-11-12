@@ -19,6 +19,7 @@ const Appear = ({ elementNum, transitionEffect, children }) => {
   const {
     state: { currentSlideElement, reverseDirection, immediate }
   } = React.useContext(SlideContext);
+
   const { signal } = React.useContext(TransitionPipeContext);
   const activeElement = elementNum === currentSlideElement;
   const upcomingElement =

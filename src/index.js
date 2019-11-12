@@ -12,7 +12,13 @@ import {
   Link,
   CodeSpan
 } from './components/typography';
-import { Table, TableCell, TableRow } from './components/table';
+import {
+  Table,
+  TableCell,
+  TableRow,
+  TableHeader,
+  TableBody
+} from './components/table';
 import { FlexBox, Grid, Box } from './components/layout';
 import { Image, FullSizeImage } from './components/image';
 import Notes from './components/notes';
@@ -47,6 +53,8 @@ export {
   Table,
   TableCell,
   TableRow,
+  TableHeader,
+  TableBody,
   mdxComponentMap,
   removeNotes,
   isolateNotes
