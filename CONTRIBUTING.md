@@ -1,6 +1,8 @@
 # Contributing
 
-Thanks for contributing!
+Thank you for contributing!
+
+Spectacle is actively maintained by @carlos-kelly and @kale-stew from within @FormidableLabs.
 
 ## Development
 
@@ -46,7 +48,7 @@ $ open examples/one-page.html
 
 ### Testing
 
-@TODO
+TODO
 
 ### Linting and Formatting
 
@@ -64,16 +66,16 @@ $ yarn prettier-check
 $ yarn prettier-fix
 ```
 
-Note that there is duplication for JS code in `prettier` doing the same style changes. But both should be harmonious and run together.
+Note that there is duplication for JS code in `prettier` doing the same style changes, but both should be harmonious and run together.
 
 ### Before submitting a PR
 
 Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
 
+- Run all checks using `yarn run check`.
 - Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
-- Run all checks using `yarn run check`
 - Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API, like breaking changes or new features.
-- Everything else included in our [pull request checklist](https://github.com/FormidableLabs/spectacle/blob/master/.github/PULL_REQUEST_TEMPLATE.md#checklist-feel-free-to-delete-this-section-upon-completion)
+- Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
 ### Releasing a new version to NPM
 
