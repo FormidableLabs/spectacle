@@ -22,7 +22,7 @@ const children = [
   </div>
 ];
 
-describe('PrintDeck', () => {
+describe('PresenterDeck', () => {
   beforeEach(() =>
     mockedUseContext.mockReturnValue({
       state: {

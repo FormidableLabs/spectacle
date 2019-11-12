@@ -106,12 +106,18 @@ const PresenterDeck = props => {
         <FlexBox justifyContent="space-between">
           <SpectacleLogo />
           {!isController && !isReceiver && (
-            <InternalButton onClick={onStartConnection}>
+            <InternalButton
+              data-testid="Start Connection"
+              onClick={onStartConnection}
+            >
               Cast to Secondary Display
             </InternalButton>
           )}
           {isController && !isReceiver && (
-            <InternalButton onClick={terminateConnection}>
+            <InternalButton
+              data-testid="Close Connection"
+              onClick={terminateConnection}
+            >
               Stop Casting
             </InternalButton>
           )}
@@ -136,15 +142,17 @@ const PresenterDeck = props => {
           </Text>
           <SlideWrapper>{activeSlide}</SlideWrapper>
         </SlideContainer>
-        <SlideContainer>
-          <Text fontSize={20} fontWeight="bold" textAlign="center">
-            Next&nbsp;
-            <SlideCountLabel>
-              Slide {nextSlide.props.slideNum + 1} of {numberOfSlides}
-            </SlideCountLabel>
-          </Text>
-          <SlideWrapper>{nextSlide}</SlideWrapper>
-        </SlideContainer>
+        {!!nextSlide && (
+          <SlideContainer>
+            <Text fontSize={20} fontWeight="bold" textAlign="center">
+              Next&nbsp;
+              <SlideCountLabel>
+                Slide {nextSlide.props.slideNum + 1} of {numberOfSlides}
+              </SlideCountLabel>
+            </Text>
+            <SlideWrapper data-testid="Next Slide">{nextSlide}</SlideWrapper>
+          </SlideContainer>
+        )}
       </PreviewColumn>
     </PresenterDeckContainer>
   );
