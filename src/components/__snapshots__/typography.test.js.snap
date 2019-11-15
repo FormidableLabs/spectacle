@@ -3,23 +3,23 @@
 exports[`<CodeSpan /> should render a <code> with text 1`] = `
 <styled.code
   fontFamily="monospace"
-  fontSize="monospace"
+  fontSize="text"
 >
   <StyledComponent
     fontFamily="monospace"
-    fontSize="monospace"
+    fontSize="text"
     forwardedComponent={
       Object {
         "$$typeof": Symbol(react.forward_ref),
         "_foldedDefaultProps": Object {
           "fontFamily": "monospace",
-          "fontSize": "monospace",
+          "fontSize": "text",
         },
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "sc-bwzfXH",
           "isStatic": false,
-          "lastClassName": "llQNOW",
+          "lastClassName": "vCJVt",
           "rules": Array [
             [Function],
           ],
@@ -37,9 +37,9 @@ exports[`<CodeSpan /> should render a <code> with text 1`] = `
     forwardedRef={null}
   >
     <code
-      className="sc-bwzfXH llQNOW"
+      className="sc-bwzfXH vCJVt"
       fontFamily="monospace"
-      fontSize="monospace"
+      fontSize="text"
     >
       Code!
     </code>
@@ -78,7 +78,7 @@ exports[`<Heading /> should render a <Text /> component with h1 size 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-bxivhb",
           "isStatic": false,
-          "lastClassName": "bkTcph",
+          "lastClassName": "fgPWOS",
           "rules": Array [
             [Function],
           ],
@@ -101,7 +101,7 @@ exports[`<Heading /> should render a <Text /> component with h1 size 1`] = `
     textAlign="center"
   >
     <div
-      className="sc-bdVaJa sc-bxivhb bkTcph"
+      className="sc-bdVaJa sc-bxivhb fgPWOS"
       color="secondary"
       fontFamily="header"
       fontSize="h1"
@@ -143,7 +143,7 @@ exports[`<Link /> should render an <a> with text 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-htpNat",
           "isStatic": false,
-          "lastClassName": "ljENQF",
+          "lastClassName": "gtuVZb",
           "rules": Array [
             [Function],
           ],
@@ -165,7 +165,7 @@ exports[`<Link /> should render an <a> with text 1`] = `
     textDecoration="underline"
   >
     <a
-      className="sc-htpNat ljENQF"
+      className="sc-htpNat gtuVZb"
       color="quaternary"
       fontFamily="text"
       fontSize="text"
@@ -203,7 +203,7 @@ exports[`<OrderedList /> should render an <ol> with <li> children 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-EHOje",
           "isStatic": false,
-          "lastClassName": "gQKsor",
+          "lastClassName": "cTJUpw",
           "rules": Array [
             [Function],
           ],
@@ -223,7 +223,7 @@ exports[`<OrderedList /> should render an <ol> with <li> children 1`] = `
     textAlign="left"
   >
     <ol
-      className="sc-EHOje gQKsor"
+      className="sc-EHOje cTJUpw"
       color="primary"
       fontFamily="text"
       fontSize="text"
@@ -342,7 +342,7 @@ exports[`<Quote /> should render a <Text /> component with a left border 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-ifAKCX",
           "isStatic": false,
-          "lastClassName": "dVkzML",
+          "lastClassName": "Rvdjo",
           "rules": Array [
             [Function],
             "
@@ -375,7 +375,7 @@ exports[`<Quote /> should render a <Text /> component with a left border 1`] = `
     textAlign="left"
   >
     <div
-      className="sc-bdVaJa sc-ifAKCX dVkzML"
+      className="sc-bdVaJa sc-ifAKCX Rvdjo"
       color="primary"
       fontFamily="text"
       fontSize="text"
@@ -415,7 +415,7 @@ exports[`<Text /> should render a <div> with text 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-bdVaJa",
           "isStatic": false,
-          "lastClassName": "gMVSNU",
+          "lastClassName": "jyYFKr",
           "rules": Array [
             [Function],
           ],
@@ -436,7 +436,7 @@ exports[`<Text /> should render a <div> with text 1`] = `
     textAlign="left"
   >
     <div
-      className="sc-bdVaJa gMVSNU"
+      className="sc-bdVaJa jyYFKr"
       color="primary"
       fontFamily="text"
       fontSize="text"
@@ -473,7 +473,7 @@ exports[`<UnorderedList /> should render a <ul> with <li> children 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-bZQynM",
           "isStatic": false,
-          "lastClassName": "hzGuvh",
+          "lastClassName": "gKyNJo",
           "rules": Array [
             [Function],
           ],
@@ -493,7 +493,7 @@ exports[`<UnorderedList /> should render a <ul> with <li> children 1`] = `
     textAlign="left"
   >
     <ul
-      className="sc-bZQynM hzGuvh"
+      className="sc-bZQynM gKyNJo"
       color="primary"
       fontFamily="text"
       fontSize="text"
