@@ -41,6 +41,42 @@ yarn add spectacle
 
 ### Basic Concepts
 
+Spectacle is a library exposes a number of React components you can use to build a presentation using React components.
+
+#### Deck
+
+Wraps slide components, providing templates to slides as well as keyboard bindings. It orchestrates animations of Slide components in and out of the presentation.
+
+#### Slide
+
+Wraps slides, is controlled by the deck component.
+
+#### Notes
+
+Slides may have speaker notes associated with them using the `Notes` component. These notes can be accessed using the presenter deck using `alt + p (mac)` or `Alt + Shift + p (win)`.
+
+#### Layout Components
+
+We have a number of styleable layout components to make constructing great looking slides easier.
+
+These include:
+
+| Components    |                                                                         |
+| ------------- | ----------------------------------------------------------------------- |
+| Appear        | Wraps a slideElement that can animate in.                               |
+| CodePane      | Syntax highlighting of code for a number of languages.                  |
+| Markdown      | A markdown component that allows the user to write mdx in their slides. |
+| FlexBox       |                                                                         |
+| Grid          |                                                                         |
+| Box           | A child of Grid.                                                        |
+| Image         |                                                                         |
+| ListItem      |                                                                         |
+| OrderedList   |                                                                         |
+| Quote         |                                                                         |
+| Text          |                                                                         |
+| UnorderedList |                                                                         |
+| Heading       |                                                                         |
+
 #### Layouts
 
 #### Themes
