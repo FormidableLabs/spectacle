@@ -26,7 +26,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
         "componentStyle": ComponentStyle {
           "componentId": "sc-bdVaJa",
           "isStatic": false,
-          "lastClassName": "daBKtD",
+          "lastClassName": "durzFL",
           "rules": Array [
             [Function],
           ],
@@ -46,7 +46,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
     textAlign="left"
   >
     <table
-      className="sc-bdVaJa daBKtD"
+      className="sc-bdVaJa durzFL"
       color="primary"
       fontFamily="text"
       fontSize="text"
@@ -57,6 +57,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
         fontSize="text"
         margin="listMargin"
         textAlign="left"
+        width={1}
       >
         <StyledComponent
           color="primary"
@@ -71,12 +72,13 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                 "fontSize": "text",
                 "margin": "listMargin",
                 "textAlign": "left",
+                "width": 1,
               },
               "attrs": Array [],
               "componentStyle": ComponentStyle {
                 "componentId": "sc-htpNat",
                 "isStatic": false,
-                "lastClassName": "kAldGz",
+                "lastClassName": "fpnqwt",
                 "rules": Array [
                   [Function],
                 ],
@@ -94,12 +96,14 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
           forwardedRef={null}
           margin="listMargin"
           textAlign="left"
+          width={1}
         >
           <tbody
-            className="sc-htpNat kAldGz"
+            className="sc-htpNat fpnqwt"
             color="primary"
             fontFamily="text"
             fontSize="text"
+            width={1}
           >
             <styled.tr
               color="primary"
@@ -126,7 +130,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                     "componentStyle": ComponentStyle {
                       "componentId": "sc-bxivhb",
                       "isStatic": false,
-                      "lastClassName": "diWnNz",
+                      "lastClassName": "gctdLg",
                       "rules": Array [
                         [Function],
                       ],
@@ -146,7 +150,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                 textAlign="left"
               >
                 <tr
-                  className="sc-bxivhb diWnNz"
+                  className="sc-bxivhb gctdLg"
                   color="primary"
                   fontFamily="text"
                   fontSize="text"
@@ -176,7 +180,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                           "componentStyle": ComponentStyle {
                             "componentId": "sc-ifAKCX",
                             "isStatic": false,
-                            "lastClassName": "iVQBSZ",
+                            "lastClassName": "liwbNs",
                             "rules": Array [
                               [Function],
                             ],
@@ -196,7 +200,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                       textAlign="left"
                     >
                       <td
-                        className="sc-ifAKCX iVQBSZ"
+                        className="sc-ifAKCX liwbNs"
                         color="primary"
                         fontFamily="text"
                         fontSize="text"
@@ -230,7 +234,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                           "componentStyle": ComponentStyle {
                             "componentId": "sc-ifAKCX",
                             "isStatic": false,
-                            "lastClassName": "iVQBSZ",
+                            "lastClassName": "liwbNs",
                             "rules": Array [
                               [Function],
                             ],
@@ -250,7 +254,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                       textAlign="left"
                     >
                       <td
-                        className="sc-ifAKCX iVQBSZ"
+                        className="sc-ifAKCX liwbNs"
                         color="primary"
                         fontFamily="text"
                         fontSize="text"
@@ -287,7 +291,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                     "componentStyle": ComponentStyle {
                       "componentId": "sc-bxivhb",
                       "isStatic": false,
-                      "lastClassName": "diWnNz",
+                      "lastClassName": "gctdLg",
                       "rules": Array [
                         [Function],
                       ],
@@ -307,7 +311,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                 textAlign="left"
               >
                 <tr
-                  className="sc-bxivhb diWnNz"
+                  className="sc-bxivhb gctdLg"
                   color="primary"
                   fontFamily="text"
                   fontSize="text"
@@ -337,7 +341,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                           "componentStyle": ComponentStyle {
                             "componentId": "sc-ifAKCX",
                             "isStatic": false,
-                            "lastClassName": "iVQBSZ",
+                            "lastClassName": "liwbNs",
                             "rules": Array [
                               [Function],
                             ],
@@ -357,7 +361,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                       textAlign="left"
                     >
                       <td
-                        className="sc-ifAKCX iVQBSZ"
+                        className="sc-ifAKCX liwbNs"
                         color="primary"
                         fontFamily="text"
                         fontSize="text"
@@ -391,7 +395,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                           "componentStyle": ComponentStyle {
                             "componentId": "sc-ifAKCX",
                             "isStatic": false,
-                            "lastClassName": "iVQBSZ",
+                            "lastClassName": "liwbNs",
                             "rules": Array [
                               [Function],
                             ],
@@ -411,7 +415,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
                       textAlign="left"
                     >
                       <td
-                        className="sc-ifAKCX iVQBSZ"
+                        className="sc-ifAKCX liwbNs"
                         color="primary"
                         fontFamily="text"
                         fontSize="text"
@@ -457,7 +461,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
         "componentStyle": ComponentStyle {
           "componentId": "sc-bdVaJa",
           "isStatic": false,
-          "lastClassName": "daBKtD",
+          "lastClassName": "durzFL",
           "rules": Array [
             [Function],
           ],
@@ -477,7 +481,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
     textAlign="left"
   >
     <table
-      className="sc-bdVaJa daBKtD"
+      className="sc-bdVaJa durzFL"
       color="primary"
       fontFamily="text"
       fontSize="text"
@@ -510,7 +514,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
               "componentStyle": ComponentStyle {
                 "componentId": "sc-bwzfXH",
                 "isStatic": false,
-                "lastClassName": "kolAaC",
+                "lastClassName": "hTrYkn",
                 "rules": Array [
                   [Function],
                 ],
@@ -530,7 +534,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
           textAlign="left"
         >
           <thead
-            className="sc-bwzfXH kolAaC"
+            className="sc-bwzfXH hTrYkn"
             color="primary"
             fontFamily="text"
             fontSize="text"
@@ -561,7 +565,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
                     "componentStyle": ComponentStyle {
                       "componentId": "sc-bxivhb",
                       "isStatic": false,
-                      "lastClassName": "diWnNz",
+                      "lastClassName": "gctdLg",
                       "rules": Array [
                         [Function],
                       ],
@@ -581,7 +585,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
                 textAlign="left"
               >
                 <tr
-                  className="sc-bxivhb diWnNz"
+                  className="sc-bxivhb gctdLg"
                   color="primary"
                   fontFamily="text"
                   fontSize="text"
@@ -611,7 +615,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
                           "componentStyle": ComponentStyle {
                             "componentId": "sc-ifAKCX",
                             "isStatic": false,
-                            "lastClassName": "iVQBSZ",
+                            "lastClassName": "liwbNs",
                             "rules": Array [
                               [Function],
                             ],
@@ -631,7 +635,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
                       textAlign="left"
                     >
                       <td
-                        className="sc-ifAKCX iVQBSZ"
+                        className="sc-ifAKCX liwbNs"
                         color="primary"
                         fontFamily="text"
                         fontSize="text"
@@ -665,7 +669,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
                           "componentStyle": ComponentStyle {
                             "componentId": "sc-ifAKCX",
                             "isStatic": false,
-                            "lastClassName": "iVQBSZ",
+                            "lastClassName": "liwbNs",
                             "rules": Array [
                               [Function],
                             ],
@@ -685,7 +689,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
                       textAlign="left"
                     >
                       <td
-                        className="sc-ifAKCX iVQBSZ"
+                        className="sc-ifAKCX liwbNs"
                         color="primary"
                         fontFamily="text"
                         fontSize="text"

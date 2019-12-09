@@ -22,14 +22,15 @@
         Appear,
         CodePane,
         FlexBox,
+        FullScreen,
+        CodeSpan,
+        Progress,
         Box,
         Image,
         Heading,
         ListItem,
         OrderedList,
-        Quote,
         Text,
-        UnorderedList,
         Grid,
         Notes,
         Markdown
@@ -46,14 +47,15 @@
         std::cout << answer << std::endl;
         return 0;
       }`.replace(/      /gm, '');
+      const customTheme = {
+        space: {
+          headerMargin: '0'
+        }
+      };
       const deck = html`
         <${Deck}
-          theme=${{
-            colors: {
-              secondary: 'hotpink'
-            }
-          }}
-          template=${({ numberOfSlides, slideNumber }) =>
+          theme=${customTheme}
+          template=${() =>
             html`
               <${FlexBox}
                 justifyContent="space-between"
@@ -61,40 +63,26 @@
                 bottom=${0}
                 width=${1}
               >
-                <${Text} fontSize=${12}>
-                  Slide ${slideNumber} of ${numberOfSlides}
+                <${Box} padding="0 1em">
+                  <${FullScreen} />
                 <//>
-                <${Box} padding=${10}>
-                  <${Image} src=${formidableLogo} width=${100} />
+                <${Box} padding="1em">
+                  <${Progress} />
                 <//>
               <//>
             `}
         >
           <${Slide}>
-            <${Heading}>Spectacle<//>
-            <${Text}>Hello There 🤗<//>
-            <${Quote}>This is a Formidaquote!<//>
-            <${OrderedList}>
-              <${Appear} elementNum=${0}>
-                <${ListItem}>This is an<//>
-              <//>
-              <${Appear} elementNum=${1}>
-                <${ListItem}>ordered list<//>
-              <//>
-            <//>
-            <${UnorderedList}>
-              <${ListItem}>This is an<//>
-              <${ListItem}>unordered list<//>
-            <//>
-            <${Notes}>
-              <p>
-                Notes are shown in presenter mode. Open up
-                localhost:3000/?presenterMode=true to see them.
+            <${FlexBox} height="100%" flexDirection="column">
+              <${Heading} fontSize="150px">SPECTACLE</Heading>
+              <${Heading} fontSize="h2">A ReactJS Presentation Library</Heading>
+              <${Heading} color="primary" fontSize="h3">
+                Where you can write your decks in JSX, Markdown, or MDX!
               <//>
             <//>
           <//>
           <${Slide}>
-            <${CodePane} fontSize=${18} language="cpp">
+            <${CodePane} autoFillHeight fontSize=${18} language="cpp">
               ${cppCodeBlock}
             <//>
             <${Notes}>
@@ -105,24 +93,20 @@
             <//>
           <//>
           <${Slide}>
-            <${Text} fontSize="subHeader">Slide 3!<//>
-            <${Appear} elementNum=${0}>
-              <${Text}>Hey, just one "animated" slide element here<//>
+            <${Heading}>Animated Elements<//>
+            <${OrderedList}>
+              <${Appear} elementNum=${0}>
+                <${ListItem}>Elements can animate in!<//>
+              <//>
+              <${Appear} elementNum=${2}>
+                <${ListItem}>
+                  Just identify the order with the prop <${CodeSpan}>elementNum<//>!
+                <//>
+              <//>
+              <${Appear} elementNum=${1}>
+                <${ListItem}>Out of order<//>
+              <//>
             <//>
-          <//>
-          <${Slide}>
-            <${Text}>I'm a static slide element that should always show<//>
-            <${Text}>This means that we don't need a SlideElementWrapper<//>
-            <${Appear} elementNum=${0}>
-              <${Text}> ZERO Slide 4 x 3! <//>
-            <//>
-            <${Appear} elementNum=${1}>
-              <${Text}> ONE Slide 4 x 3! <//>
-            <//>
-            <${Appear} elementNum=${2}>
-              <${Text}> TWO Slide 4 x 3! <//>
-            <//>
-            <${Text}>I'm also a static non-animated "slide element"!<//>
           <//>
           <${Slide}>
             <${FlexBox}>
@@ -162,9 +146,9 @@
           <${Slide}>
             <${Markdown}>
               ${`
-                # hello there
+                # Layout Tables in Markdown
 
-                | hi              | Supported | Versions |
+                | Browser         | Supported | Versions |
                 |-----------------|-----------|----------|
                 | Chrome          | Yes       | Last 2   |
                 | Firefox         | Yes       | Last 2   |
@@ -174,31 +158,30 @@
               `}
             <//>
           <//>
-          <${Slide}>
-            <${Markdown}>
-              ${`
-                ### Paying for too much Lambda memory?
-                - Yes you are!
-
-                \`\`\`js
-                fields @timestamp, res.duration
-                | filter res.duration > 0
-                | sort @timestamp desc
-                | limit 20
-                | stats min(res.duration), avg(res.duration), max(res.duration) by bin(30m)
-                \`\`\`
-              `}
-            <//>
-          <//>
           <${Markdown} containsSlides>
             ${`
-              ### First MD Generated Slide
-              - A list item
-              - Another
+              ### Even write multiple slides in Markdown
+              > Wonderfully formatted quotes
+
+              1. Even create
+              2. Lists in Markdown
+
+              - Or Unordered Lists
+              - Too!
+              Notes: These are notes
               ---
-              ### Second MD Generated Slide
-              1. An ordered list item
-              2. Second
+              ### This slide was also generated in Markdown!
+
+              \`\`\`jsx
+              const evenCooler = "is that you can do code in Markdown";
+              // You can even specify the syntax type!
+              \`\`\`
+
+              ### A slide can have multiple code blocks too.
+
+              \`\`\`c
+              char[] someString = "Popular languages like C too!";
+              \`\`\`
             `}
           <//>
         <//>

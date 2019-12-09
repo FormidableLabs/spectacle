@@ -60,7 +60,8 @@ TableBody.defaultProps = {
   fontFamily: 'text',
   fontSize: 'text',
   textAlign: 'left',
-  margin: 'listMargin'
+  margin: 'listMargin',
+  width: 1
 };
 
 const TableRow = styled('tr')(
