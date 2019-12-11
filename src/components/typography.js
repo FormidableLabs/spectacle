@@ -26,7 +26,7 @@ const CodeSpan = styled('code')(
 );
 CodeSpan.defaultProps = {
   fontFamily: 'monospace',
-  fontSize: 'monospace'
+  fontSize: 'text'
 };
 
 const Link = styled('a')(

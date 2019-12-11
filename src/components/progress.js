@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import styled from 'styled-components';
 import { DeckContext } from '../hooks/use-deck';
 
-const Circle = styled('div')`
+export const Circle = styled('div')`
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   display: inline-block;
@@ -34,6 +34,7 @@ const Progress = props => {
             active={state.currentSlide === idx}
             size={props.size}
             onClick={() => goToSlide(idx)}
+            data-testid="Progress Circle"
           />
         ))}
     </Container>

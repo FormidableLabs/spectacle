@@ -12,15 +12,15 @@ import {
   Heading,
   ListItem,
   OrderedList,
-  Quote,
   Text,
-  UnorderedList,
   Grid,
   Notes,
   FullScreen,
   Progress,
-  Markdown
+  Markdown,
+  CodeSpan
 } from '../../src/';
+import SpectacleLogo from '../../src/components/logo';
 
 const formidableLogo = require('./formidable.png');
 const cppCodeBlock = `#include <iostream>
@@ -70,8 +70,19 @@ int main()
   return 0;
 }`;
 
+const customTheme = {
+  fonts: {
+    header: '"Open Sans Condensed", Helvetica, Arial, sans-serif',
+    text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
+  },
+  space: {
+    headerMargin: '0'
+  }
+};
+
 const TestJs = () => (
   <Deck
+    theme={customTheme}
     template={() => (
       <FlexBox
         justifyContent="space-between"
@@ -89,21 +100,18 @@ const TestJs = () => (
     )}
   >
     <Slide>
-      <Heading>Spectacle</Heading>
-      <Text>Hello There 🤗</Text>
-      <Quote>This is a Formidaquote!</Quote>
-      <OrderedList>
-        <Appear elementNum={0}>
-          <ListItem>This is an</ListItem>
-        </Appear>
-        <Appear elementNum={1}>
-          <ListItem>ordered list</ListItem>
-        </Appear>
-      </OrderedList>
-      <UnorderedList>
-        <ListItem>This is an</ListItem>
-        <ListItem>unordered list</ListItem>
-      </UnorderedList>
+      <FlexBox height="100%">
+        <SpectacleLogo size={500} />
+      </FlexBox>
+    </Slide>
+    <Slide>
+      <FlexBox height="100%" flexDirection="column">
+        <Heading fontSize="150px">SPECTACLE</Heading>
+        <Heading fontSize="h2">A ReactJS Presentation Library</Heading>
+        <Heading color="primary" fontSize="h3">
+          Where you can write your decks in JSX, Markdown, or MDX!
+        </Heading>
+      </FlexBox>
       <Notes>
         <p>
           Notes are shown in presenter mode. Open up
@@ -112,36 +120,31 @@ const TestJs = () => (
       </Notes>
     </Slide>
     <Slide>
-      <Heading>Hi There</Heading>
+      <Heading>Code Blocks</Heading>
       <CodePane fontSize={18} language="cpp" autoFillHeight>
         {cppCodeBlock}
       </CodePane>
-      <Text>Lots of pointers!</Text>
-      <Notes>
-        <p>
-          This is a code pane! It can support multiple programming languages.
-        </p>
-      </Notes>
+      <Text>
+        Code Blocks now auto size and scroll when there is an overflow of
+        content! They also auto-wrap longer lines.
+      </Text>
     </Slide>
     <Slide>
-      <Text fontSize="subHeader">Slide 3!</Text>
-      <Appear elementNum={0}>
-        <Text>{`Hey, just one "animated" slide element here`}</Text>
-      </Appear>
-    </Slide>
-    <Slide>
-      <Text>{`I'm a static slide element that should always show`}</Text>
-      <Text>{`This means that we don't need a SlideElementWrapper`}</Text>
-      <Appear elementNum={0}>
-        <Text> ZERO Slide 4 x 3! </Text>
-      </Appear>
-      <Appear elementNum={1}>
-        <Text> ONE Slide 4 x 3! </Text>
-      </Appear>
-      <Appear elementNum={2}>
-        <Text> TWO Slide 4 x 3! </Text>
-      </Appear>
-      <Text>{`I'm also a static non-animated "slide element"!`}</Text>
+      <Heading>Animated Elements</Heading>
+      <OrderedList>
+        <Appear elementNum={0}>
+          <ListItem>Elements can animate in!</ListItem>
+        </Appear>
+        <Appear elementNum={2}>
+          <ListItem>
+            Just identify the order with the prop{' '}
+            <CodeSpan>elementNum</CodeSpan>!
+          </ListItem>
+        </Appear>
+        <Appear elementNum={1}>
+          <ListItem>Out of order</ListItem>
+        </Appear>
+      </OrderedList>
     </Slide>
     <Slide>
       <FlexBox>
@@ -158,7 +161,7 @@ const TestJs = () => (
           <Text>Double-size Grid Item</Text>
         </Box>
       </Grid>
-      <Heading>Lots of Formidables!</Heading>
+      <Heading>Create Grids in Spectacle</Heading>
       <Grid
         gridTemplateColumns="1fr 1fr 1fr"
         gridTemplateRows="1fr 1fr 1fr"
@@ -178,9 +181,9 @@ const TestJs = () => (
     <Slide>
       <Markdown>
         {`
-          # hello there
+          # Layout Tables in Markdown
 
-          | hi              | Supported | Versions |
+          | Browser         | Supported | Versions |
           |-----------------|-----------|----------|
           | Chrome          | Yes       | Last 2   |
           | Firefox         | Yes       | Last 2   |
@@ -190,28 +193,31 @@ const TestJs = () => (
         `}
       </Markdown>
     </Slide>
-    <Slide>
-      <Markdown>
-        {`
-          ### Paying for too much Lambda memory?
-          - Yes you are!
-
-          \`\`\`js
-          fields @timestamp, res.duration
-          | filter res.duration > 0
-          | sort @timestamp desc
-          | limit 20
-          | stats min(res.duration), avg(res.duration), max(res.duration) by bin(30m)
-          \`\`\`
-        `}
-      </Markdown>
-    </Slide>
     <Markdown containsSlides>
       {`
-        ### First MD generated Slide
+        ### Even write multiple slides in Markdown
+        > Wonderfully formatted quotes
+        
+        1. Even create
+        2. Lists in Markdown
+        
+        - Or Unordered Lists
+        - Too!
         Notes: These are notes
         ---
-        ### Second MD Generated Slide
+        ### This slide was also generated in Markdown!
+        
+        \`\`\`jsx
+        const evenCooler = "is that you can do code in Markdown";
+        // You can even specify the syntax type! 
+        \`\`\`
+        
+        ### A slide can have multiple code blocks too.
+        
+        \`\`\`c
+        char[] someString = "Popular languages like C too!";
+        \`\`\`
+        
         Notes: These are more notes
       `}
     </Markdown>

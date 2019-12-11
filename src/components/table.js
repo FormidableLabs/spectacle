@@ -26,6 +26,44 @@ Table.defaultProps = {
   margin: 'listMargin'
 };
 
+const TableHeader = styled('thead')(
+  compose(
+    color,
+    typography,
+    space,
+    border,
+    layout
+  )
+);
+
+TableHeader.defaultProps = {
+  color: 'primary',
+  fontFamily: 'text',
+  fontSize: 'text',
+  fontWeight: 'bold',
+  textAlign: 'left',
+  margin: 'listMargin'
+};
+
+const TableBody = styled('tbody')(
+  compose(
+    color,
+    typography,
+    space,
+    border,
+    layout
+  )
+);
+
+TableBody.defaultProps = {
+  color: 'primary',
+  fontFamily: 'text',
+  fontSize: 'text',
+  textAlign: 'left',
+  margin: 'listMargin',
+  width: 1
+};
+
 const TableRow = styled('tr')(
   compose(
     color,
@@ -62,4 +100,4 @@ TableCell.defaultProps = {
   margin: 'listMargin'
 };
 
-export { Table, TableCell, TableRow };
+export { Table, TableCell, TableRow, TableHeader, TableBody };
