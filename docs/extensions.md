@@ -1,6 +1,8 @@
 <a name="third-party"></a>
 
-# Spectacle Extensions
+# Third Party Extensions
 
-- [Spectacle Editor](https://www.formidable.com/open-source/spectacle-editor) - A desktop application to create your own Spectacle-based presentations using drag and drop, text editors, and more. Plotly integrated and open sourced. Created by [Formidable](https://www.formidable.com) in partnership with [Plotly](https://plot.ly).
-- [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by [@thejameskyle](https://github.com/thejameskyle).
+- [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @jamiebuilds
+- [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
+- [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
+- [Spectacle Codemirror](https://github.com/jonathan-fielding/spectacle) - Show a live code editor inside your slides

@@ -13,6 +13,11 @@
     "node": true,
     "jest": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "globals": {
     "expect": true
   },

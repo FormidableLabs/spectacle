@@ -38,7 +38,7 @@
     "check": "npm run lint-js && npm run check-typescript && npm run test",
     "check-ci": "npm run check && npm run prettier-check"
   },
-  "author": "",
+  "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
