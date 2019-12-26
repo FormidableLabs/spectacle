@@ -30,19 +30,17 @@ First, decide whether you want to use [classic Spectacle](#classic-spectacle), [
 
 There are four ways to get started building your presentation using the classic JSX Spectacle syntax.
 
-1. **Option #1:** Run the following command in your terminal:
+1.  **Option #1:** Run the following command in your terminal:
 
-```bash
-npx create-react-app my-presentation --scripts-version spectacle-scripts
-```
+    `npx create-react-app my-presentation --scripts-version spectacle-scripts`
 
-2. **Option #2:** Using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
+2.  **Option #2:** Using the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
-3. **Option #3:** Following along the [Spectacle Tutorial](./docs/tutorial.md), which also involves downloading the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
+3.  **Option #3:** Following along the [Spectacle Tutorial](./docs/tutorial.md), which also involves downloading the [Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate).
 
 All three of the above ways will give you everything you'll need to get started, including a sample presentation in the `presentation` folder. You can change the props and tags as needed for your presentation or delete everything in `presentation/index.js` to start from scratch. From here you can go to [Development](#development) to get started.
 
-4. **Option #4:** Run `npm install spectacle` in your terminal and writing your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
+3.  **Option #4:** Run `npm install spectacle` in your terminal and writing your own build configurations. We also provide full UMD builds (with a `Spectacle` global variable) of the library at `dist/spectacle.js` and `dist/spectacle.min.js` for more general use cases. You could, for example, include the library via a script tag with: `https://unpkg.com/spectacle@VERSION/dist/spectacle.min.js`.
 
 <a name="spectacle-mdx"></a>
 
@@ -66,66 +64,66 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
 
 2.  The presentation must include exactly **one** script tag with the type `text/spectacle` that is a function. Presently, that function is directly inserted inline into a wrapper code boilerplate as a React Component `render` function. The wrapper is transpiled. There should not be any extraneous content around it like outer variables or comments.
 
-**Good** examples:
+    **Good** examples:
 
-```html
-<script type="text/spectacle">
-  () => (
-    <Deck>{/* SLIDES */}</Deck>
-  )
-</script>
-```
+    ```html
+    <script type="text/spectacle">
+      () => (
+        <Deck>{/* SLIDES */}</Deck>
+      )
+    </script>
+    ```
 
-```html
-<script type="text/spectacle">
-  () => {
-    // Code-y code stuff in JS...
+    ```html
+    <script type="text/spectacle">
+      () => {
+        // Code-y code stuff in JS...
 
-    return (
-      <Deck>{/* SLIDES */}</Deck>
-    );
-  }
-</script>
-```
+        return (
+          <Deck>{/* SLIDES */}</Deck>
+        );
+      }
+    </script>
+    ```
 
-**Bad** examples of what not to do:
+    **Bad** examples of what not to do:
 
-```html
-<script type="text/spectacle">
-  // Outer comment (BAD)
-  const outerVariable = "BAD";
+    ```html
+    <script type="text/spectacle">
+      // Outer comment (BAD)
+      const outerVariable = "BAD";
 
-  () => (
-    <Deck>{/* SLIDES */}</Deck>
-  )
-</script>
-```
+      () => (
+        <Deck>{/* SLIDES */}</Deck>
+      )
+    </script>
+    ```
 
-3.  If you want to create your own theme settings, you can use the following code snippet to change the [themes](#createthemecolors-fonts) default settings.
+3.  If you want to create your own theme settings, you can use the following code snippet to change the [themes](./docs/basic-concepts#createthemecolors-fonts) default settings.
 
-```html
-<script type="text/spectacle">
-  () => {
-    const { themes: { defaultTheme } } = Spectacle;
-    const theme = defaultTheme({
-      // Change default settings
-      primary: "blue",
-      secondary: "red"
-    },
-    {
-      primary: "Helvetica",
-    });
+    ```html
+    <script type="text/spectacle">
+      () => {
+        const { themes: { defaultTheme } } = Spectacle;
+        const theme = defaultTheme({
+          // Change default settings
+          primary: "blue",
+          secondary: "red"
+        },
+        {
+          primary: "Helvetica",
+        });
 
-    return (
-      <Deck transition={['zoom']} theme={theme}>
-        <Slide>some stuff</Slide>
-        <Slide>other stuff</Slide>
-        <Slide>some more stuff</Slide>
-      </Deck>
-    );
-  }
-</script>
-```
+        return (
+          <Deck transition={['zoom']} theme={theme}>
+            <Slide>some stuff</Slide>
+            <Slide>other stuff</Slide>
+            <Slide>some more stuff</Slide>
+          </Deck>
+        );
+      }
+    </script>
+    ```
 
 ... with those guidelines in mind, here's the boilerplate that you can copy-and-paste into an HTML file and start a Spectacle presentation that works from the get go!
 
@@ -161,8 +159,8 @@ We can start with this project's sample at [`one-page.html`](./one-page.html). I
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
-    <script src="https://unpkg.com/spectacle@^4/dist/spectacle.js"></script>
-    <script src="https://unpkg.com/spectacle@^4/lib/one-page.js"></script>
+    <script src="https://unpkg.com/spectacle@^5/dist/spectacle.js"></script>
+    <script src="https://unpkg.com/spectacle@^5/lib/one-page.js"></script>
     <script type="text/spectacle">
       () => {
         // Your JS Code goes here
