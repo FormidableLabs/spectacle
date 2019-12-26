@@ -3,10 +3,7 @@
 [![Travis Status][trav_img]][trav_site]
 [![Maintenance Status][maintenance-image]](#maintenance-status)
 
-ReactJS based Presentation Library
-`
-[Spectacle Boilerplate MDX](https://github.com/FormidableLabs/spectacle-boilerplate-mdx/)
-[Spectacle Boilerplate](https://github.com/FormidableLabs/spectacle-boilerplate/)
+A [ReactJS](https://reactjs.org/)-based Presentation Library.
 
 Looking for a quick preview of what you can do with Spectacle? Check out our live Demo Deck [here](https://raw.githack.com/FormidableLabs/spectacle/master/one-page.html#/).
 
