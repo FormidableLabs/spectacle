@@ -90,6 +90,6 @@ Updated type definitions for the Spectacle API can be found [at the root of this
 
 **Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
 
-[trav_img]: https://api.travis-ci.org/FormidableLabs/spectacle.svg
-[trav_site]: https://travis-ci.org/FormidableLabs/spectacle
+[trav_img]: https://api.travis-ci.com/FormidableLabs/spectacle.svg
+[trav_site]: https://travis-ci.com/FormidableLabs/spectacle
 [maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg
