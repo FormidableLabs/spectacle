@@ -5,7 +5,7 @@
 !/es
 !/lib
 !/src
-!/docs
+/docs/*
 __snapshots__
 __mocks__
 *.test.js
