@@ -85,7 +85,7 @@ GitHub user [@boardfish](https://github.com/boardfish) has documented an approac
 With `SlideSet`, you can wrap multiple slide in it to apply the same style.
 
 ```jsx
-<SlideSet style={{ border: "2px solid red" }}>
+<SlideSet style={{ border: '2px solid red' }}>
   <Slide>Slide1</Slide>
   <Slide>Slide2</Slide>
   <Slide>Slide3</Slide>
@@ -349,7 +349,7 @@ These tags create a styled blockquote. Use them as follows:
 _NOTE: By default the text color of the `Quote` tag is the same as the background color and may not show up. Use the `bgColor` and/or `textColor` props on the `Slide` or `Quote` tags to make it visible._
 
 ```jsx
-<Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+<Slide transition={['fade']} bgColor="secondary" textColor="primary">
   <BlockQuote>
     <Quote>Example Quote</Quote>
     <Cite>Author</Cite>
@@ -358,7 +358,7 @@ _NOTE: By default the text color of the `Quote` tag is the same as the backgroun
 ```
 
 ```jsx
-<Slide transition={["fade"]}>
+<Slide transition={['fade']}>
   <BlockQuote>
     <Quote textColor="secondary">Example Quote</Quote>
     <Cite>Author</Cite>
@@ -417,7 +417,7 @@ render(<Button title="My Button" />);
 ```jsx
 class View extends React.Component {
   componentDidMount() {
-    console.log("Hello");
+    console.log('Hello');
   }
 
   render() {
@@ -451,7 +451,7 @@ The GoToAction tag lets you jump to another slide in your deck. The GoToAction c
 ```jsx
 <GoToAction
   render={goToSlide => (
-    <CustomComponent onClick={() => goToSlide("wait-wut")}>
+    <CustomComponent onClick={() => goToSlide('wait-wut')}>
       WAIT WUT!?
     </CustomComponent>
   )}

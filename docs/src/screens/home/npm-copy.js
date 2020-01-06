@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { BounceAnimation } from "../../components/bounce-animation";
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { BounceAnimation } from '../../components/bounce-animation';
+import styled from 'styled-components';
 
 const HeroNPMWrapper = styled.div`
   flex-direction: row;
@@ -62,10 +62,10 @@ class NpmCopy extends React.Component {
     this.setState({ animating: true, copied: true });
     setTimeout(() => {
       this.setState({ animating: false });
-    }, "100");
+    }, '100');
     setTimeout(() => {
       this.setState({ copied: false });
-    }, "3000");
+    }, '3000');
   }
 
   render() {
@@ -75,7 +75,7 @@ class NpmCopy extends React.Component {
           <HeroNPMCopy>{this.props.text}</HeroNPMCopy>
           <HeroNPMButton onClick={this.handleCopy}>
             <BounceAnimation bouncing={this.state.animating}>
-              {this.state.copied ? "Copied" : "Copy"}
+              {this.state.copied ? 'Copied' : 'Copy'}
             </BounceAnimation>
           </HeroNPMButton>
         </HeroNPMWrapper>

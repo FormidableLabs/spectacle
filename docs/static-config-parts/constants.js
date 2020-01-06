@@ -4,15 +4,15 @@
 // react-static build, aka production:  REACT_STATIC_ENV="production" && REACT_STATIC_STAGING=undefined
 
 const stage =
-  process.env.REACT_STATIC_STAGING === "true"
-    ? "staging"
+  process.env.REACT_STATIC_STAGING === 'true'
+    ? 'staging'
     : process.env.REACT_STATIC_ENV;
-const landerBasePath = "open-source/spectacle";
+const landerBasePath = 'open-source/spectacle';
 const metaData = {
-  title: "Spectacle",
+  title: 'Spectacle',
   description:
-    "A React.js based library for creating sleek presentations using JSX syntax (with the ability to live demo your code!)",
-  url: "http://www.formidable.com/open-source/spectacle/"
+    'A React.js based library for creating sleek presentations using JSX syntax (with the ability to live demo your code!)',
+  url: 'http://www.formidable.com/open-source/spectacle/'
 };
 
 module.exports = { stage, landerBasePath, metaData };

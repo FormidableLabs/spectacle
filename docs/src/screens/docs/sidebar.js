@@ -1,16 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { withRouteData, withRouter, Link } from "react-static";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { withRouteData, withRouter, Link } from 'react-static';
 import {
   SidebarNavItem,
   SidebarNavSubItem,
   SidebarContainer,
   SidebarWrapper
-} from "../../components/navigation";
-import closeButton from "../../static/svgs/x.svg";
-import logoSidebar from "../../static/svgs/logo-sidebar.svg";
-import constants from "../../constants";
+} from '../../components/navigation';
+import closeButton from '../../static/svgs/x.svg';
+import logoSidebar from '../../static/svgs/logo-sidebar.svg';
+import constants from '../../constants';
 
 const HeroLogo = styled.img`
   position: absolute;
@@ -19,7 +19,7 @@ const HeroLogo = styled.img`
   min-width: 14rem;
 
   @media (max-width: 768px) {
-    display: ${props => (props.overlay ? "" : "none")};
+    display: ${props => (props.overlay ? '' : 'none')};
   }
 `;
 
@@ -30,7 +30,7 @@ const ContentWrapper = styled.div`
   height: auto;
 
   @media (max-width: 768px) {
-    display: ${props => (props.overlay ? "" : "none")};
+    display: ${props => (props.overlay ? '' : 'none')};
   }
 `;
 
@@ -54,7 +54,7 @@ const CloseButton = styled.img`
   display: none;
 
   @media (max-width: 768px) {
-    display: ${props => (props.overlay ? "block" : "none")};
+    display: ${props => (props.overlay ? 'block' : 'none')};
     right: 1rem;
   }
 `;
@@ -71,7 +71,7 @@ class Sidebar extends React.Component {
         <SidebarNavItem
           to={`/docs${item.path}`}
           replace
-          key={item.title.split(" ").join("_")}
+          key={item.title.split(' ').join('_')}
           isSelected={currentPath}
         >
           {item.title}
@@ -80,13 +80,13 @@ class Sidebar extends React.Component {
           <SubContentWrapper>
             {subContent.map(sh => {
               const slug = `#${sh.content
-                .split(" ")
-                .join("-")
+                .split(' ')
+                .join('-')
                 .toLowerCase()}`;
               return (
                 <SidebarNavSubItem
                   to={slug}
-                  key={sh.content.split(" ").join("_")}
+                  key={sh.content.split(' ').join('_')}
                   isSelected={slug === location.hash}
                 >
                   {sh.content}
@@ -110,7 +110,7 @@ class Sidebar extends React.Component {
             overlay={overlay}
             onClick={() => closeSidebar()}
           />
-          <Link to={"/"}>
+          <Link to={'/'}>
             <HeroLogo
               src={logoSidebar}
               alt="Formidable Logo"
@@ -118,18 +118,18 @@ class Sidebar extends React.Component {
             />
           </Link>
           <ContentWrapper overlay={overlay}>
-            <SidebarNavItem to={`/#`} key={"home"}>
+            <SidebarNavItem to={`/#`} key={'home'}>
               Home
             </SidebarNavItem>
-            <SidebarNavItem to={`/docs/getting-started`} key={"documentation"}>
+            <SidebarNavItem to={`/docs/getting-started`} key={'documentation'}>
               Documentation
             </SidebarNavItem>
             {sidebarHeaders &&
               sidebarHeaders.map(sh => this.renderSidebarItem(sh))}
-            <SidebarNavItem to={constants.githubIssues} key={"issues"}>
+            <SidebarNavItem to={constants.githubIssues} key={'issues'}>
               Issues
             </SidebarNavItem>
-            <SidebarNavItem to={constants.github} key={"github"}>
+            <SidebarNavItem to={constants.github} key={'github'}>
               Github
             </SidebarNavItem>
           </ContentWrapper>

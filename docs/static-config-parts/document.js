@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { metaData } from "./constants";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { metaData } from './constants';
 
 class CustomDocument extends React.Component {
   render() {

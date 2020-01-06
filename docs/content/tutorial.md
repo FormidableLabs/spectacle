@@ -12,7 +12,7 @@ You can do this on your own if you'd like, or you can...
 - Replace the existing code in the `presentation/index.js` file with:
 
   ```js
-  import React from "react";
+  import React from 'react';
 
   export default class Presentation extends React.Component {
     render() {
@@ -38,8 +38,8 @@ Almost all Spectacle presentations are comprised of a couple of basic components
 The imports at the top of your main JavaScript file should look like this:
 
 ```js
-import React from "react";
-import { Deck, Slide } from "spectacle";
+import React from 'react';
+import { Deck, Slide } from 'spectacle';
 ```
 
 To create our deck, we'll wrap some Slide components into a Deck in our Presentation class:
@@ -64,8 +64,8 @@ export default class Presentation extends React.Component {
 To break up our content, we can use the `Heading` and `Text` tags to display varying sizes of text. Every time we want to use a new component from the Spectacle API, we will have to add it to our imports at the top:
 
 ```js
-import React from "react";
-import { Deck, Heading, Slide, Text } from "spectacle";
+import React from 'react';
+import { Deck, Heading, Slide, Text } from 'spectacle';
 ```
 
 Now we can add these components to our slides:
@@ -148,15 +148,15 @@ Then, near the top of your file, import your image(s):
 
 ```js
 const images = {
-  formidagon: require("../assets/formidable-logo.svg"),
-  goodWork: require("../assets/good-work.gif")
+  formidagon: require('../assets/formidable-logo.svg'),
+  goodWork: require('../assets/good-work.gif')
 };
 ```
 
 Once you've brought in your images, you can supply them to the `src` prop on the `Image` tag to display within your slides (but don't forget to import the tag!). Now, your `index.js` should look like this:
 
 ```js
-import React from "react";
+import React from 'react';
 import {
   BlockQuote,
   Cite,
@@ -168,11 +168,11 @@ import {
   Quote,
   Slide,
   Text
-} from "spectacle";
+} from 'spectacle';
 
 const images = {
-  formidagon: require("../assets/formidable-logo.svg"),
-  goodWork: require("../assets/good-work.gif")
+  formidagon: require('../assets/formidable-logo.svg'),
+  goodWork: require('../assets/good-work.gif')
 };
 
 export default class Presentation extends React.Component {
@@ -281,9 +281,9 @@ export default class Presentation extends React.Component {
 To style our slides a little further, we can create a theme to enforce fonts and colors on all of our slides. We'll want to import the `createTheme` function from Spectacle, but we use a direct path (`'spectacle/lib/themes/default'`) instead of grouping it in with the default component exports. Your imports should now look like so:
 
 ```js
-import React from "react";
-import { Deck, Heading, Slide, Text } from "spectacle";
-import createTheme from "spectacle/lib/themes/default";
+import React from 'react';
+import { Deck, Heading, Slide, Text } from 'spectacle';
+import createTheme from 'spectacle/lib/themes/default';
 ```
 
 And then, using `createTheme`, we can declare values for our theme:
@@ -291,14 +291,14 @@ And then, using `createTheme`, we can declare values for our theme:
 ```js
 const theme = createTheme(
   {
-    primary: "white",
-    secondary: "#1F2022",
-    tertiary: "#03A9FC",
-    quaternary: "#CECECE"
+    primary: 'white',
+    secondary: '#1F2022',
+    tertiary: '#03A9FC',
+    quaternary: '#CECECE'
   },
   {
-    primary: "Montserrat",
-    secondary: "Helvetica"
+    primary: 'Montserrat',
+    secondary: 'Helvetica'
   }
 );
 ```
@@ -380,10 +380,10 @@ export default class Presentation extends React.Component {
     return (
       <Deck
         theme={theme}
-        transition={["zoom", "slide"]}
+        transition={['zoom', 'slide']}
         transitionDuration={500}
       >
-        <Slide transition={["zoom"]} bgColor="primary">
+        <Slide transition={['zoom']} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
             Spectacle Boilerplate
           </Heading>
@@ -394,7 +394,7 @@ export default class Presentation extends React.Component {
         <Slide bgColor="secondary">
           <Image src={images.formidagon} width={800} />
         </Slide>
-        <Slide transition={["fade"]} bgColor="tertiary">
+        <Slide transition={['fade']} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>
             Typography
           </Heading>
@@ -417,7 +417,7 @@ export default class Presentation extends React.Component {
             Standard text
           </Text>
         </Slide>
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
+        <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
           <Heading size={6} textColor="secondary" caps>
             Standard List
           </Heading>
@@ -428,7 +428,7 @@ export default class Presentation extends React.Component {
             <ListItem>Item 4</ListItem>
           </List>
         </Slide>
-        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+        <Slide transition={['fade']} bgColor="secondary" textColor="primary">
           <BlockQuote>
             <Quote>Example Quote</Quote>
             <Cite>Author</Cite>
@@ -473,30 +473,30 @@ Additionally, you could bring in other core components, like `Anim` and `Appear`
     transitionDuration={500}
     fromStyle={{
       opacity: 0,
-      transform: "translate3d(0px, -100px, 0px)  scale(1) rotate(0deg)"
+      transform: 'translate3d(0px, -100px, 0px)  scale(1) rotate(0deg)'
     }}
     toStyle={[
       {
         opacity: 1,
-        transform: "translate3d(0px, 0px, 0px)  scale(1) rotate(0deg)"
+        transform: 'translate3d(0px, 0px, 0px)  scale(1) rotate(0deg)'
       },
       {
         opacity: 1,
-        transform: "translate3d(0px, 0px, 0px) scale(1.6) rotate(-15deg)"
+        transform: 'translate3d(0px, 0px, 0px) scale(1.6) rotate(-15deg)'
       },
       {
         opacity: 1,
-        transform: "translate3d(0px, 0px, 0px)  scale(0.8) rotate(0deg)"
+        transform: 'translate3d(0px, 0px, 0px)  scale(0.8) rotate(0deg)'
       },
       {
         opacity: 1,
-        transform: "translate3d(0px, -200px, 0px)  scale(0.8) rotate(0deg)"
+        transform: 'translate3d(0px, -200px, 0px)  scale(0.8) rotate(0deg)'
       }
     ]}
-    easing={"bounceOut"}
+    easing={'bounceOut'}
     onAnim={(forwards, animIndex) => {
-      console.log("forwards ", forwards);
-      console.log("animIndex ", animIndex);
+      console.log('forwards ', forwards);
+      console.log('animIndex ', animIndex);
     }}
   >
     <div>
@@ -518,7 +518,7 @@ When displaying code using either component, the process is similar to display a
 
 ```js
 const code = {
-  deckSample: require("../assets/deck.example")
+  deckSample: require('../assets/deck.example')
 };
 ```
 

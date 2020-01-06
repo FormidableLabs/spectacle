@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { ProjectBadge } from "formidable-oss-badges";
-import styled from "styled-components";
-import { BodyCopy } from "../../components/body-copy";
-import { Button } from "../../components/button";
-import { SecondaryTitle } from "../../components/secondary-title";
-import { SectionTitle } from "../../components/section-title";
-import { Wrapper } from "../../components/wrapper";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ProjectBadge } from 'formidable-oss-badges';
+import styled from 'styled-components';
+import { BodyCopy } from '../../components/body-copy';
+import { Button } from '../../components/button';
+import { SecondaryTitle } from '../../components/secondary-title';
+import { SectionTitle } from '../../components/section-title';
+import { Wrapper } from '../../components/wrapper';
 
 const OuterWrapper = styled.div`
   background-color: #000000;

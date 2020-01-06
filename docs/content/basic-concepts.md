@@ -15,7 +15,7 @@ Check it out [here](https://github.com/FormidableLabs/spectacle-boilerplate/blob
 ```jsx
 // index.js
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Appear,
   BlockQuote,
@@ -33,7 +33,7 @@ import {
   Quote,
   Slide,
   Text
-} from "spectacle";
+} from 'spectacle';
 
 export default class extends Component {
   render() {
@@ -61,7 +61,7 @@ In Spectacle, themes are functions that return style objects for `screen` & `pri
 You can import the default theme from:
 
 ```jsx
-import createTheme from "spectacle/lib/themes/default";
+import createTheme from 'spectacle/lib/themes/default';
 ```
 
 Or create your own based upon the source.
@@ -79,15 +79,15 @@ Spectacle's functional theme system allows you to pass in color and font variabl
 ```jsx
 const theme = createTheme(
   {
-    primary: "red",
-    secondary: "blue"
+    primary: 'red',
+    secondary: 'blue'
   },
   {
-    primary: "Helvetica",
+    primary: 'Helvetica',
     secondary: {
-      name: "Droid Serif",
+      name: 'Droid Serif',
       googleFont: true,
-      styles: ["400", "700i"]
+      styles: ['400', '700i']
     }
   }
 );
@@ -115,7 +115,7 @@ Building the dist version of the slides is as easy as running `npm run build:dis
 
 If you want to deploy the slideshow to [surge](https://surge.sh/), run `npm run deploy`
 
-_<span role="img" aria-label="Warning Sign">⚠️ </span> WARNING: If you are deploying the dist version to [GitHub Pages](https://pages.github.com/ "GitHub Pages"), note that the built bundle uses an absolute path to the `/dist/` directory while GitHub Pages requires the relative `./dist/` to find any embedded assets and/or images. A very hacky way to fix this is to edit one place in the produced bundle, as shown [in this GitHub issue](https://github.com/FormidableLabs/spectacle/issues/326#issue-233283633 "GitHub: spectacle issue #326")._
+_<span role="img" aria-label="Warning Sign">⚠️ </span> WARNING: If you are deploying the dist version to [GitHub Pages](https://pages.github.com/ 'GitHub Pages'), note that the built bundle uses an absolute path to the `/dist/` directory while GitHub Pages requires the relative `./dist/` to find any embedded assets and/or images. A very hacky way to fix this is to edit one place in the produced bundle, as shown [in this GitHub issue](https://github.com/FormidableLabs/spectacle/issues/326#issue-233283633 'GitHub: spectacle issue #326')._
 
 <a name="presenting"></a>
 

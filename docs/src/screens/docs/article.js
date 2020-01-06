@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { withRouteData } from "react-static";
-import { Markdown } from "../../components/markdown";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { withRouteData } from 'react-static';
+import { Markdown } from '../../components/markdown';
 
 const Container = styled.div`
   box-sizing: content-box;

@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { BodyCopy } from "../../components/body-copy";
-import { SectionTitle } from "../../components/section-title";
-import { Wrapper } from "../../components/wrapper";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { BodyCopy } from '../../components/body-copy';
+import { SectionTitle } from '../../components/section-title';
+import { Wrapper } from '../../components/wrapper';
 
 const OuterWrapper = styled.div`
   background: #f3f3f3;

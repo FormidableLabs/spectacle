@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Markdown = styled.article`
   @media (max-width: 768px) {
     width: 75vw;
   }
   & h1 {
-    font-family: "castledown";
+    font-family: 'castledown';
     font-size: 3.4rem;
     margin: 0 0 2rem;
 
@@ -19,7 +19,7 @@ export const Markdown = styled.article`
   }
 
   & h2 {
-    font-family: "castledown";
+    font-family: 'castledown';
     font-size: 2.8rem;
     margin: 6rem 0 2rem;
     @media (min-width: 1024px) {
@@ -28,7 +28,7 @@ export const Markdown = styled.article`
   }
 
   & h3 {
-    font-family: "castledown";
+    font-family: 'castledown';
     font-size: 1.8rem;
     margin: 2rem 0;
     @media (min-width: 1024px) {

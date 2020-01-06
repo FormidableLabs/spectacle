@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { withRouteData, Link } from "react-static";
-import Article from "./article";
-import Sidebar from "./sidebar";
-import burger from "../../static/svgs/burger.svg";
-import logoFormidableDark from "../../static/svgs/logo_formidable_dark.svg";
-import constants from "../../constants";
-import { Footer } from "../../components/footer";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { withRouteData, Link } from 'react-static';
+import Article from './article';
+import Sidebar from './sidebar';
+import burger from '../../static/svgs/burger.svg';
+import logoFormidableDark from '../../static/svgs/logo_formidable_dark.svg';
+import constants from '../../constants';
+import { Footer } from '../../components/footer';
 
 const headerZIndex = 800;
 
@@ -60,7 +60,7 @@ const CollapsedMenu = styled.div`
 
   @media (max-width: 768px) {
     display: block;
-    visibility: ${props => (props.overlay ? "hidden" : "visible")};
+    visibility: ${props => (props.overlay ? 'hidden' : 'visible')};
     padding-left: 2.5rem;
     position: absolute;
     left: 0;
@@ -119,11 +119,11 @@ class Docs extends React.Component {
             <img src={burger} alt="Menu" onClick={() => this.openSidebar()} />
           </CollapsedMenu>
           <DocsTitle>
-            <Link to={"/"} style={{ color: "#3b3b3b" }}>
+            <Link to={'/'} style={{ color: '#3b3b3b' }}>
               {constants.docsTitle}
             </Link>
           </DocsTitle>
-          <Link to={"https://formidable.com"}>
+          <Link to={'https://formidable.com'}>
             <HeaderLogo src={logoFormidableDark} alt="Formidable Logo" />
           </Link>
         </Wrapper>

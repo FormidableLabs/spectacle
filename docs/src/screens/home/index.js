@@ -1,12 +1,12 @@
-import React from "react";
-import Features from "./features";
-import GetStarted from "./get-started";
-import MoreOSS from "./more-oss";
-import Preview from "./preview";
-import content from "./_content";
-import styled from "styled-components";
-import { Header } from "../../components/header";
-import { Footer } from "../../components/footer";
+import React from 'react';
+import Features from './features';
+import GetStarted from './get-started';
+import MoreOSS from './more-oss';
+import Preview from './preview';
+import content from './_content';
+import styled from 'styled-components';
+import { Header } from '../../components/header';
+import { Footer } from '../../components/footer';
 
 const Container = styled.div`
   width: 100%;

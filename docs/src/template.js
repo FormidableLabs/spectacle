@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { GlobalStyle } from "./global-style";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { GlobalStyle } from './global-style';
 
 class Template extends React.Component {
   render() {

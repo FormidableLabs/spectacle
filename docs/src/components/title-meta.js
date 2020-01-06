@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import DocumentMeta from "react-document-meta";
+import React from 'react';
+import PropTypes from 'prop-types';
+import DocumentMeta from 'react-document-meta';
 
 class TitleMeta extends React.Component {
   render() {
@@ -8,7 +8,7 @@ class TitleMeta extends React.Component {
       title: this.props.title,
       meta: {
         property: {
-          "og:title": this.props.title
+          'og:title': this.props.title
         }
       }
     };

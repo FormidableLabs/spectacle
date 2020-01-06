@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { BodyCopy } from "../../components/body-copy";
-import { Button } from "../../components/button";
-import { SectionTitle } from "../../components/section-title";
-import { Wrapper } from "../../components/wrapper";
-import constants from "../../constants";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { BodyCopy } from '../../components/body-copy';
+import { Button } from '../../components/button';
+import { SectionTitle } from '../../components/section-title';
+import { Wrapper } from '../../components/wrapper';
+import constants from '../../constants';
 
 const OuterWrapper = styled.div`
   background: ${constants.color};

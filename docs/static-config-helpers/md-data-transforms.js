@@ -1,9 +1,9 @@
 /* eslint-disable func-style */
 // we can switch to single-function lodash deps like the cool kids once we've got feature parity,
 // keeping in mind this is naught but the build step.
-const _ = require("lodash");
-const path = require("path");
-const getMdFiles = require("./get-md-files");
+const _ = require('lodash');
+const path = require('path');
+const getMdFiles = require('./get-md-files');
 
 const sidebarTitleSlugMutation = (mdData, mdPath) => {
   const { name } = path.parse(mdPath);
@@ -11,21 +11,21 @@ const sidebarTitleSlugMutation = (mdData, mdPath) => {
   mdData.slug = name.toLowerCase();
   mdData.path = `/${name.toLowerCase()}/`;
   const spacedCappedName = name
-    .split("-")
+    .split('-')
     .map(n => _.upperFirst(n))
-    .join(" ");
+    .join(' ');
 
   mdData.title = spacedCappedName;
 
-  if (spacedCappedName.includes("api")) {
+  if (spacedCappedName.includes('api')) {
     mdData.title = spacedCappedName.replace(/(api)/, v => v.toUpperCase());
   }
 };
 
-const sidebarSort = items => _.orderBy(items, ["data.order"], "asc");
+const sidebarSort = items => _.orderBy(items, ['data.order'], 'asc');
 
 function getSidebarItems(
-  mdPath = "src/content/docs/",
+  mdPath = 'src/content/docs/',
   items = [],
   mutations = [sidebarTitleSlugMutation],
   sort = sidebarSort

@@ -10,7 +10,7 @@ const staticWebpackConfig = (config, { defaultLoaders }) => {
           test: /\.svg$/,
           use: [
             {
-              loader: "url-loader",
+              loader: 'url-loader',
               options: {
                 limit: Number.MAX_SAFE_INTEGER
               }
@@ -19,7 +19,7 @@ const staticWebpackConfig = (config, { defaultLoaders }) => {
         },
         {
           test: /\.md$/,
-          use: "raw-loader"
+          use: 'raw-loader'
         },
         defaultLoaders.cssLoader,
         defaultLoaders.jsLoader,

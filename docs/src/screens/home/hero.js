@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-static";
-import { Wrapper } from "../../components/wrapper";
-import styled from "styled-components";
-import badge from "../../static/bg_hero_badge.png";
-import NpmCopy from "./npm-copy";
+import React from 'react';
+import { Link } from 'react-static';
+import { Wrapper } from '../../components/wrapper';
+import styled from 'styled-components';
+import badge from '../../static/bg_hero_badge.png';
+import NpmCopy from './npm-copy';
 
 const HeroContent = styled.div`
   align-items: center;
@@ -20,11 +20,11 @@ const HeroContent = styled.div`
     grid-template-columns: 3fr 0.5fr 4fr;
     grid-template-rows: repeat(5, 1fr);
     grid-template-areas:
-      "a . b"
-      "a . b"
-      "a . b"
-      "a . c"
-      "d d d";
+      'a . b'
+      'a . b'
+      'a . b'
+      'a . c'
+      'd d d';
     margin: 20rem 2rem 0;
   }
 `;

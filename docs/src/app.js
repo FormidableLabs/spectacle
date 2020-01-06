@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withRouter, Router } from "react-static";
-import { hot } from "react-hot-loader";
-import Template from "./template";
-import Analytics from "./google-analytics";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter, Router } from 'react-static';
+import { hot } from 'react-hot-loader';
+import Template from './template';
+import Analytics from './google-analytics';
 // Routes generated at build-time
 // eslint-disable-next-line import/no-unresolved
-import Routes from "react-static-routes";
+import Routes from 'react-static-routes';
 // import default prism theme styles
-import "prismjs/themes/prism.css";
+import 'prismjs/themes/prism.css';
 
-const scrollSidebar = async (location, activeItemClass = ".active") => {
+const scrollSidebar = async (location, activeItemClass = '.active') => {
   const actives = document.querySelectorAll(activeItemClass);
   const last = actives[actives.length - 1];
   last.scrollIntoView();
 };
 
-const checkScrollRoutes = (pathname, routes = ["docs"]) =>
+const checkScrollRoutes = (pathname, routes = ['docs']) =>
   routes.some(r => pathname.includes(r));
 
 class ScrollToTop extends Component {
   componentDidMount() {
     if (
-      typeof window !== "undefined" &&
+      typeof window !== 'undefined' &&
       checkScrollRoutes(this.props.location.pathname)
     ) {
       scrollSidebar(this.props.location);
@@ -31,7 +31,7 @@ class ScrollToTop extends Component {
 
   componentDidUpdate() {
     if (
-      typeof window !== "undefined" &&
+      typeof window !== 'undefined' &&
       checkScrollRoutes(this.props.location.pathname)
     ) {
       scrollSidebar(this.props.location);
@@ -51,11 +51,11 @@ ScrollToTop.propTypes = {
 const WrappedScrollToTop = withRouter(ScrollToTop);
 
 let history;
-if (typeof window !== "undefined") {
-  const createBrowserHistory = require("history").createBrowserHistory;
-  const { stage, landerBasePath } = require("../static-config-parts/constants");
+if (typeof window !== 'undefined') {
+  const createBrowserHistory = require('history').createBrowserHistory;
+  const { stage, landerBasePath } = require('../static-config-parts/constants');
   history =
-    stage === "development"
+    stage === 'development'
       ? createBrowserHistory()
       : createBrowserHistory({ basename: `/${landerBasePath}` });
 }

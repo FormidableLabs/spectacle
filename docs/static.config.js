@@ -1,30 +1,30 @@
-import React from "react";
-import { reloadRoutes } from "react-static/node";
-import chokidar from "chokidar";
-import { getSidebarItems } from "./static-config-helpers/md-data-transforms";
-const staticWebpackConfig = require("./static-config-parts/static-webpack-config");
-const { ServerStyleSheet } = require("styled-components");
+import React from 'react';
+import { reloadRoutes } from 'react-static/node';
+import chokidar from 'chokidar';
+import { getSidebarItems } from './static-config-helpers/md-data-transforms';
+const staticWebpackConfig = require('./static-config-parts/static-webpack-config');
+const { ServerStyleSheet } = require('styled-components');
 const {
   stage,
   landerBasePath,
   metaData
-} = require("./static-config-parts/constants");
+} = require('./static-config-parts/constants');
 
-chokidar.watch("src/content").on("all", () => reloadRoutes());
+chokidar.watch('src/content').on('all', () => reloadRoutes());
 
 export default {
   // plugins: ["react-static-plugin-styled-components"],
   paths: {
     root: process.cwd(), // The root of your project. Don't change this unless you know what you're doing.
-    src: "src", // The source directory. Must include an index.js entry file.
+    src: 'src', // The source directory. Must include an index.js entry file.
     // See app.js for how stage is used to make client-side routing resolve correctly by stage.
-    dist: stage === "staging" ? `dist/${landerBasePath}` : "dist", // The production output directory.
-    devDist: "tmp/dev-server", // The development scratch directory.
-    public: "public" // The public directory (files copied to dist during build)
+    dist: stage === 'staging' ? `dist/${landerBasePath}` : 'dist', // The production output directory.
+    devDist: 'tmp/dev-server', // The development scratch directory.
+    public: 'public' // The public directory (files copied to dist during build)
   },
   basePath: landerBasePath,
   stagingBasePath: landerBasePath,
-  devBasePath: "",
+  devBasePath: '',
   getSiteData: () => ({
     title: metaData.title
   }),
@@ -38,12 +38,12 @@ export default {
 
     return [
       {
-        path: "/",
-        component: "src/screens/home"
+        path: '/',
+        component: 'src/screens/home'
       },
       {
-        path: "/docs",
-        component: "src/screens/docs",
+        path: '/docs',
+        component: 'src/screens/docs',
         getData: () => ({
           title: `${metaData.title} | Documentation`,
           markdown: sidebarItems[0].markdown,
@@ -58,7 +58,7 @@ export default {
         children: sidebarItems.map(
           ({ slug, path, markdown, content, data }) => ({
             path,
-            component: "src/screens/docs",
+            component: 'src/screens/docs',
             getData: () => ({
               title: data.title,
               markdown,
@@ -90,7 +90,7 @@ export default {
   // So this is kinda cutesy, it's the equivalent of html.js in gatsby, it defines
   // the root html page as a react component:
   // https://github.com/nozzle/react-static/blob/master/docs/config.md#document
-  Document: require("./static-config-parts/document").default,
+  Document: require('./static-config-parts/document').default,
   // turn this on if it helps your local development workflow for build testing
   bundleAnalyzer: false,
   webpack: staticWebpackConfig

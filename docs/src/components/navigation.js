@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Link } from "react-static";
-import sidebarBackground from "../static/svgs/sidebar-background.svg";
-import collapsedSidebarBackground from "../static/svgs/collapsed-sidebar-background.svg";
+import styled from 'styled-components';
+import { Link } from 'react-static';
+import sidebarBackground from '../static/svgs/sidebar-background.svg';
+import collapsedSidebarBackground from '../static/svgs/collapsed-sidebar-background.svg';
 
 const sidebarZIndex = 900;
 
@@ -32,7 +32,7 @@ export const SidebarContainer = styled.div`
 `;
 
 export const SidebarWrapper = styled.aside`
-  font-family: "akkurat";
+  font-family: 'akkurat';
   background-image: url(${sidebarBackground});
   background-repeat: repeat-y;
   background-size: 100%;
@@ -51,8 +51,8 @@ export const SidebarWrapper = styled.aside`
       props.overlay
         ? `url(${sidebarBackground})`
         : `url(${collapsedSidebarBackground})`};
-    min-width: ${props => (props.overlay ? "24rem" : "2.5rem")};
-    width: ${props => (props.overlay ? "24rem" : "2.5rem")};
+    min-width: ${props => (props.overlay ? '24rem' : '2.5rem')};
+    width: ${props => (props.overlay ? '24rem' : '2.5rem')};
   }
 `;
 
@@ -69,20 +69,20 @@ export const SidebarNavItem = styled(Link)`
 
   /* For selected state (need to break out of container) */
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 3rem;
     background: ${({ isSelected }) =>
-      isSelected ? "rgba(0, 0, 0, 0.2)" : "transparent"};
+      isSelected ? 'rgba(0, 0, 0, 0.2)' : 'transparent'};
   }
 `;
 
 export const SidebarNavSubItem = styled(Link)`
   color:  ${({ isSelected }) =>
-    isSelected ? "rgba(255, 255, 255, 0.8)" : "white"};
+    isSelected ? 'rgba(255, 255, 255, 0.8)' : 'white'};
   }
   margin-left: 3rem;
   margin-top: 1rem;
@@ -99,6 +99,6 @@ export const SidebarNavSubItem = styled(Link)`
     width: 100%;
     height: 2rem;
     background: ${({ isSelected }) =>
-      isSelected ? "rgba(0, 0, 0, 0.2)" : "transparent"};
+      isSelected ? 'rgba(0, 0, 0, 0.2)' : 'transparent'};
   }
 `;

@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { BodyCopy } from "../../components/body-copy";
-import { SecondaryTitle } from "../../components/secondary-title";
-import { SectionTitle } from "../../components/section-title";
-import { Wrapper } from "../../components/wrapper";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { BodyCopy } from '../../components/body-copy';
+import { SecondaryTitle } from '../../components/secondary-title';
+import { SectionTitle } from '../../components/section-title';
+import { Wrapper } from '../../components/wrapper';
 
 const FeatureCard = styled.div`
   margin: 0 0 4rem;

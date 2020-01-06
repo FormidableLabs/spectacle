@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Wrapper } from "./wrapper";
-import styled from "styled-components";
-import logoFormidableWhite from "../static/svgs/logo_formidable_white.png";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Wrapper } from './wrapper';
+import styled from 'styled-components';
+import logoFormidableWhite from '../static/svgs/logo_formidable_white.png';
 
 const Container = styled.footer`
   background: #1f1f1f;
@@ -100,7 +100,7 @@ export const Footer = props => (
         Formidable is a Seattle, Denver, and London-based engineering
         consultancy and open source software organization, specializing in
         React.js, React Native, GraphQL, Node.js, and the extended JavaScript
-        ecosystem. For more information about Formidable, please visit{" "}
+        ecosystem. For more information about Formidable, please visit{' '}
         <a href="https://www.formidable.com">formidable.com</a>.
       </FooterDescription>
     </Wrapper>

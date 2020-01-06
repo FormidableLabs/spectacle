@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SecondaryTitle = styled.h3`
   color: #4e4e4e;
