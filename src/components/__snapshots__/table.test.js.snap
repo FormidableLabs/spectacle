@@ -7,6 +7,7 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
   fontSize="text"
   margin="listMargin"
   textAlign="left"
+  width={1}
 >
   <StyledComponent
     color="primary"
@@ -21,12 +22,13 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
           "fontSize": "text",
           "margin": "listMargin",
           "textAlign": "left",
+          "width": 1,
         },
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "sc-bdVaJa",
           "isStatic": false,
-          "lastClassName": "durzFL",
+          "lastClassName": "iLHhEe",
           "rules": Array [
             [Function],
           ],
@@ -44,12 +46,14 @@ exports[`<Table /> should render a <table> with a <tr> for each row and a <td> w
     forwardedRef={null}
     margin="listMargin"
     textAlign="left"
+    width={1}
   >
     <table
-      className="sc-bdVaJa durzFL"
+      className="sc-bdVaJa iLHhEe"
       color="primary"
       fontFamily="text"
       fontSize="text"
+      width={1}
     >
       <styled.tbody
         color="primary"
@@ -442,6 +446,7 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
   fontSize="text"
   margin="listMargin"
   textAlign="left"
+  width={1}
 >
   <StyledComponent
     color="primary"
@@ -456,12 +461,13 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
           "fontSize": "text",
           "margin": "listMargin",
           "textAlign": "left",
+          "width": 1,
         },
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "sc-bdVaJa",
           "isStatic": false,
-          "lastClassName": "durzFL",
+          "lastClassName": "iLHhEe",
           "rules": Array [
             [Function],
           ],
@@ -479,12 +485,14 @@ exports[`<Table /> should render a <table> with bold text for the header row 1`]
     forwardedRef={null}
     margin="listMargin"
     textAlign="left"
+    width={1}
   >
     <table
-      className="sc-bdVaJa durzFL"
+      className="sc-bdVaJa iLHhEe"
       color="primary"
       fontFamily="text"
       fontSize="text"
+      width={1}
     >
       <styled.thead
         color="primary"
