@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeContext, ThemeProvider } from 'styled-components';
 import normalize from 'normalize-newline';
@@ -95,13 +95,17 @@ const mapMarkdownIntoSlides = (child, index) => {
   return child;
 };
 
-const Deck = ({
-  children,
-  loop,
-  keyboardControls,
-  animationsWhenGoingBack,
-  ...rest
-}) => {
+const Deck = props => {
+  const {
+    children,
+    loop,
+    keyboardControls,
+    animationsWhenGoingBack,
+    autoLayout,
+    backgroundColor,
+    textColor,
+    template
+  } = props;
   if (React.Children.count(children) === 0) {
     throw new Error('Spectacle must have at least one slide to run.');
   }
@@ -132,10 +136,10 @@ const Deck = ({
     document.body.style.margin = '0';
     document.body.style.background = '#000';
     document.body.style.color =
-      themeContext.colors[rest.textColor] ||
-      rest.textColor ||
+      themeContext.colors[textColor] ||
+      textColor ||
       themeContext.colors.primary;
-  }, [rest.backgroundColor, rest.textColor, themeContext.colors]);
+  }, [backgroundColor, textColor, themeContext.colors]);
 
   const {
     startConnection,
@@ -215,7 +219,8 @@ const Deck = ({
       const staticSlides = filteredChildren.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
-          template: rest.template
+          template,
+          autoLayout: Boolean(autoLayout)
         })
       );
       content = (
@@ -225,7 +230,7 @@ const Deck = ({
       const staticSlides = filteredChildren.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
-          template: rest.template
+          template: template
         })
       );
       content = <PrintDeck>{staticSlides}</PrintDeck>;
@@ -233,7 +238,8 @@ const Deck = ({
       const staticSlides = filteredChildren.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
-          template: rest.template
+          template,
+          autoLayout: Boolean(autoLayout)
         })
       );
       content = (
@@ -247,15 +253,18 @@ const Deck = ({
         </PresenterDeck>
       );
     } else {
-      const animatedSlides = transitions.map(({ item, props, key }) => (
-        <AnimatedDeckDiv style={props} key={key}>
-          {React.cloneElement(filteredChildren[item], {
-            slideNum: item,
-            numberOfSlides,
-            template: rest.template
-          })}
-        </AnimatedDeckDiv>
-      ));
+      const animatedSlides = transitions.map(
+        ({ item, props: animatedStyleProps, key }) => (
+          <AnimatedDeckDiv style={animatedStyleProps} key={key}>
+            {React.cloneElement(filteredChildren[item], {
+              slideNum: item,
+              numberOfSlides,
+              template,
+              autoLayout: Boolean(autoLayout)
+            })}
+          </AnimatedDeckDiv>
+        )
+      );
 
       content = (
         <AudienceDeck addMessageHandler={addMessageHandler}>
@@ -266,7 +275,7 @@ const Deck = ({
   }
 
   return (
-    <>
+    <Fragment>
       <DeckContext.Provider
         value={{
           state,
@@ -280,12 +289,13 @@ const Deck = ({
       >
         {content}
       </DeckContext.Provider>
-    </>
+    </Fragment>
   );
 };
 
 Deck.propTypes = {
   animationsWhenGoingBack: PropTypes.bool.isRequired,
+  autoLayout: PropTypes.bool,
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
