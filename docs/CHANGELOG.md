@@ -1,22 +1,23 @@
 Spectacle Docs
 
-## 5.1.0
+## 6.0.0 (2020-01-06)
+
+- [#95](https://github.com/FormidableLabs/spectacle-docs/pull/95) Move all content over to the [main Spectacle repository](https://www.github.com/formidablelabs/spectacle).
+
+## 5.1.0 (2019-07-10)
 
 - [#89](https://github.com/FormidableLabs/spectacle-docs/pull/89) Design update
 
-## 5.0.10
+## 5.0.10 (2019-04-29)
 
 - update `formidable-oss-badges`
 
-## 5.0.9
+## 5.0.9 (2019-04-24)
 
 - Use logo badges
-
-## 5.0.8
-
 - [#84](https://github.com/FormidableLabs/spectacle-docs/pull/84)
 
-## 5.0.7
+## 5.0.7 (2019-04-19)
 
 - [#86](https://github.com/FormidableLabs/spectacle-docs/pull/86) fix formidable wordmark padding
 
