@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeContext, ThemeProvider } from 'styled-components';
 import normalize from 'normalize-newline';
@@ -230,7 +230,7 @@ const Deck = props => {
       const staticSlides = filteredChildren.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
-          template: rest.template
+          template: template
         })
       );
       content = <PrintDeck>{staticSlides}</PrintDeck>;
@@ -275,7 +275,7 @@ const Deck = props => {
   }
 
   return (
-    <>
+    <Fragment>
       <DeckContext.Provider
         value={{
           state,
@@ -289,7 +289,7 @@ const Deck = props => {
       >
         {content}
       </DeckContext.Provider>
-    </>
+    </Fragment>
   );
 };
 
