@@ -197,27 +197,28 @@ const TestJs = () => (
       {`
         ### Even write multiple slides in Markdown
         > Wonderfully formatted quotes
-        
+
         1. Even create
         2. Lists in Markdown
-        
+
+
         - Or Unordered Lists
-        - Too!
+        - Too!!
         Notes: These are notes
         ---
         ### This slide was also generated in Markdown!
-        
+
         \`\`\`jsx
         const evenCooler = "is that you can do code in Markdown";
-        // You can even specify the syntax type! 
+        // You can even specify the syntax type!
         \`\`\`
-        
+
         ### A slide can have multiple code blocks too.
-        
+
         \`\`\`c
         char[] someString = "Popular languages like C too!";
         \`\`\`
-        
+
         Notes: These are more notes
       `}
     </Markdown>

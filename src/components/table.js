@@ -23,7 +23,8 @@ Table.defaultProps = {
   fontFamily: 'text',
   fontSize: 'text',
   textAlign: 'left',
-  margin: 'listMargin'
+  margin: 'listMargin',
+  width: 1
 };
 
 const TableHeader = styled('thead')(
