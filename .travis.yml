@@ -1,8 +1,9 @@
 language: node_js
 
 node_js:
-  - "8"
   - "10"
+  - "12"
+  - "13"
 
 # Use container-based Travis infrastructure.
 sudo: false
@@ -22,5 +23,12 @@ notifications:
     on_failure: always
 
 script:
+  # Core library
   - yarn run build
   - yarn run check-ci
+
+jobs:
+  include:
+    - stage: documentation
+      node_js: "12"
+      script: echo "TODO (1) install+lint+build docs, (2) deploy"

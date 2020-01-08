@@ -1,0 +1,20 @@
+<svg width="210px" height="1047px" viewBox="0 0 210 1047" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <rect id="path-1" x="0" y="0" width="210" height="1047"></rect>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Documentation-Desktop">
+            <g id="Sidebar">
+                <g id="sidebar-bg">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#3D4247" xlink:href="#path-1"></use>
+                    <rect id="Rectangle" fill="#FC6986" x="0" y="0" width="12" height="1047"></rect>
+                    <rect id="Rectangle-Copy-4" fill="#FC6986" opacity="0.7" x="12" y="0" width="12" height="1047"></rect>
+                    <rect id="Rectangle-Copy-5" fill="#FC6986" opacity="0.4" x="24" y="0" width="186" height="1047"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

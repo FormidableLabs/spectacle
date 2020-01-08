@@ -1,3 +1,8 @@
+---
+title: Base Props
+order: 3
+---
+
 <a name="base-props"></a>
 
 # Base Props

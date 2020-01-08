@@ -1,3 +1,10 @@
+---
+title: Getting Started with Spectacle - A Tutorial
+order: 5
+---
+
+<a name="tutorial"></a>
+
 # Getting Started with Spectacle: A Tutorial
 
 In this guide, we'll show you how to get started with Spectacle and walk you through the creation and customization of a presentation deck. We've created a Github repository with the [completed project](https://github.com/FormidableLabs/spectacle-boilerplate), and will link the corresponding commit where appropriate to help you follow along. If you want, you can [view the completed tutorial here](https://github.com/FormidableLabs/spectacle-boilerplate/blob/master/presentation/index.js).

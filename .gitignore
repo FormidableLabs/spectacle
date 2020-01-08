@@ -1,8 +1,36 @@
-node_modules
+# dependencies
+/node_modules
+/*/node_modules
 package-lock.json
+yarn.lock
+
+# testing
+/coverage
+test/screenshots
+
+# production
+/dist
+/tmp
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+\.hg
+.idea
+.vscode
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# build
+coverage
+Procfile
+build
 dist
 lib
 es
-*.log
-.DS_Store
-.vscode
