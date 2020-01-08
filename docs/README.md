@@ -7,44 +7,47 @@ Now built with react-static!
 To install and run the docs site locally:
 
 ```sh
-cd docs
-yarn install
-yarn start
+$ cd docs
+$ yarn install
+$ yarn start
 ```
 
 Note that paths in local development are based on a root of "/" but be careful when defining relative and absolute paths
 inline or doing url parsing, as the production output root will be "open-source/spectacle."
 
-## Want to see if you're ready to :shipit:?
+## Building the site for deployment
 
-To build the staging build output and serve it with the canonical path it'll have when built as a lander for formidable.com:
+### Build and check the staging site
+
+The staging build is served from a root path, e.g. `http://example/com`. This is typically used for CI / per-PR previews.
 
 ```sh
-cd docs
-yarn stage
-yarn serve
+$ cd docs
+$ yarn stage:build
+$ yarn stage:serve
 ```
 
-This step is important for validating that both the `basePath` used by the static HTML output and the `basename` used
+This build creates `dist/open-source/spectacle` simulating the directory style output.
+
+Then visit: http://localhost:3000/open-source/spectacle/
+
+### Build and check the production site
+
+The production site is served from a nested path, e.g. `https://formidable.com/open-source/spectacle`.
+
+```sh
+$ cd docs
+$ yarn prod:build
+$ yarn prod:serve
+```
+
+This build creates `dist` but the `serve` dev server remaps paths to make it appear at `open-source/spectacle`. This build **is** the appropriate, full production build.
+
+Then visit: http://localhost:3000/open-source/spectacle/
+
+Both of these steps are important for validating that both the `basePath` used by the static HTML output and the `basename` used
 by the client-side router are working as expected. This is also where you'll want to validate that there are no hardcoded, inlined, or malformed asset paths that worked locally but will not resolve correctly in production!
 
-<!--
-## Ready to Publish?
-
-To publish to NPM run
-
-**This package _must_ be published with `npm@5.6.0`**
-
-```sh
-npm version <newversion | major | minor | patch> (see Versioning notes below)
-git push origin master && git push --tags
-npm publish
-```
-
-## Ready to Deploy?
-
-OSS landers are deployed by the formidable.com package, see `DEPLOYMENT.md` or `lib/actions.js` there for how the build output is consumed.
--->
 
 ## Tips for developing
 
