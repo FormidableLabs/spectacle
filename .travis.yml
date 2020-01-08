@@ -34,7 +34,7 @@ jobs:
       script:
         - cd docs
         - yarn install --frozen-lockfile
+        - yarn run check-ci
         - yarn run clean
         - yarn run prod:build
-        - yarn run check-ci
       # TODO: ADD DEPLOY HERE!!!
