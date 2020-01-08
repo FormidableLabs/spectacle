@@ -35,6 +35,7 @@ export default {
       path: `/${d.slug}/`,
       slug: d.slug
     }));
+    console.log('TODO HERE', { sidebarHeaders });
 
     return [
       {

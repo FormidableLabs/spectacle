@@ -24,6 +24,7 @@
     "preversion": "yarn run lint && yarn run build",
     "format": "yarn run lint --fix",
     "lint": "eslint 'src/**/*.js' 'static-config-*/*.js' 'src/**/*.js' 'static.config.js'",
+    "check-ci": "yarn run lint",
     "test-local": "node test/spectacle-integration.js"
   },
   "dependencies": {

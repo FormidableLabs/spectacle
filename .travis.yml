@@ -31,4 +31,10 @@ jobs:
   include:
     - stage: documentation
       node_js: "12"
-      script: echo "TODO (1) install+lint+build docs, (2) deploy"
+      script:
+        - cd docs
+        - yarn install --frozen-lockfile
+        - yarn run clean
+        - yarn run prod:build
+        - yarn run check-ci
+      # TODO: ADD DEPLOY HERE!!!
