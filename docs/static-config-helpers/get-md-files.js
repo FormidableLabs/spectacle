@@ -151,7 +151,6 @@ const getMdFiles = async (
   sort = defaultSort,
   config = baseConfig
 ) => {
-  console.log('TODO HERE getMdFiles', { mdPath })
   // Short-circuit if no markdown.
   if (!(await exists(path.resolve(mdPath)))) {
     return items;
@@ -180,7 +179,6 @@ const getMdFiles = async (
     items.push(mdData);
   }));
 
-  console.log('TODO HERE', { items })
   return sort(items);
 };
 
