@@ -1,18 +1,18 @@
 /* eslint-disable func-style */
 const fs = require('fs');
+const _ = require('lodash');
+const frontmatter = require('remark-frontmatter');
+const html = require('remark-html');
 const klaw = require('klaw');
 const path = require('path');
-const html = require('remark-html');
-const frontmatter = require('remark-frontmatter');
-const yaml = require('js-yaml');
 const remark = require('remark');
-const _ = require('lodash');
+const remarkPrism = require('gatsby-remark-prismjs'); // gatsby-remark plugins are usable for remark parsing without requiring gatsby.
 const select = require('unist-util-select');
-const visit = require('unist-util-visit');
 const slug = require('remark-slug');
 const slugs = require('github-slugger')();
-// gatsby-remark plugins are usable for remark parsing without requiring gatsby.
-const remarkPrism = require('gatsby-remark-prismjs');
+const visit = require('unist-util-visit');
+const yaml = require('js-yaml');
+const { promisify } = require('util');
 
 function defaultSort(items) {
   return items;
@@ -143,17 +143,17 @@ const getMdFiles = async (
   config = baseConfig
 ) =>
   // eslint-disable-next-line promise/avoid-new
-  new Promise(resolve => {
+  new Promise((resolve, reject) => {
     if (fs.existsSync(mdPath)) {
       klaw(mdPath)
         .on('data', item => {
           if (path.extname(item.path) === '.md') {
-            const data = fs.readFileSync(item.path, 'utf8');
+            const data = promisify(fs.readFile);
 
             const { renderer, outputHarmonizer } = config;
             renderer.process(data, (err, result) => {
               if (err) {
-                throw err;
+                return reject(err);
               }
 
               const mdData = outputHarmonizer(result);
@@ -167,7 +167,7 @@ const getMdFiles = async (
           }
         })
         .on('error', e => {
-          throw e;
+          reject(e);
         })
         .on('end', () => {
           resolve(sort(items));
