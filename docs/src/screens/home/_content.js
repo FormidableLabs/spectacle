@@ -1,3 +1,5 @@
+/* eslint-disable filenames/match-regex */
+/* eslint-disable quotes*/
 const content = {
   features: [
     {
@@ -15,7 +17,7 @@ const content = {
     {
       title: 'Auto-Size Text, Image Dimming, and More',
       description:
-        'On top of all of Spectacle\'s helpful features, you can also make your presentation look amazing with auto-formatting, easy themeing abilities, image dimming, and lots of other fun touches',
+        "On top of all of Spectacle's helpful features, you can also make your presentation look amazing with auto-formatting, easy themeing abilities, image dimming, and lots of other fun touches",
       icon: require('../../static/svgs/amazing.svg')
     }
   ],

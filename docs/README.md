@@ -48,7 +48,6 @@ Then visit: http://localhost:3000/open-source/spectacle/
 Both of these steps are important for validating that both the `basePath` used by the static HTML output and the `basename` used
 by the client-side router are working as expected. This is also where you'll want to validate that there are no hardcoded, inlined, or malformed asset paths that worked locally but will not resolve correctly in production!
 
-
 ## Tips for developing
 
 - Almost all of your code will be executed in two contexts: first in node for server-side rendering and static html generation, then client-side as a PWA. In addition to writing [node-safe code](https://github.com/nozzle/react-static/blob/master/docs/concepts.md#writing-universal-node-safe-code), this also means that it's necessary to validate that both contexts are working as expected.
