@@ -126,9 +126,8 @@ const Slide = props => {
     }
     transformForWindowSize();
     window.addEventListener('resize', transformForWindowSize);
-    return () => {
-      window.removeEventListener('resize', transformForWindowSize);
-    };
+    // eslint-disable-next-line consistent-return
+    return () => window.removeEventListener('resize', transformForWindowSize);
   }, [transformForWindowSize, scaleRatio]);
 
   const transforms = React.useMemo(

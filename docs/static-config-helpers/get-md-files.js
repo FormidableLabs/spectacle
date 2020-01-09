@@ -151,6 +151,7 @@ const getMdFiles = async (
             const data = promisify(fs.readFile);
 
             const { renderer, outputHarmonizer } = config;
+            // eslint-disable-next-line consistent-return
             renderer.process(data, (err, result) => {
               if (err) {
                 return reject(err);

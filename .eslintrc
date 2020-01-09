@@ -27,11 +27,6 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
   "rules": {
     "prettier/prettier": "error",
     "quotes": [
@@ -48,7 +43,6 @@
     "complexity": "off",
     "consistent-return": "warn",
     "func-style": "off",
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "indent": "off",
     "max-len": "off",
     "max-params": ["error", 5],
