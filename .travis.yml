@@ -12,6 +12,18 @@ branches:
   only:
     - master
 
+env:
+  global:
+    # AWS (`formidable-com`, "spectacle CI" keys)
+    # AWS_ACCESS_KEY_ID
+    secure: "RLNlvBN+kTJbblGyX/lAMJ8yLOPab8+pYTBpoFKJKiDUT9N+krPbUy9Hk/Qhsb5aIvFg21z3JjG8gTwYQDJc32oI61whQp71IHB96SPpx0//jUuCldnn0L+dKtNq0IrY8N7Smg2vrEkfocRd2FiEB8G6rnQEYc5HF+tIn94kcoynwbXKRiyoCofGdh9UrTVXUQ+fTu3lFMjGc/v5AWcOkvoOT84IX/Rhn+g/Z0Xur4vZ+SfOML/ue79W5gMowsclQdGnLSBJHqH1svDgwB1h6SiwZljT/nGotcbicafO1ft7O9j0jlJi3yewqjouoGCLBj/gVTeqEg+9g9+mGt1odAw4UAs5opjKjXPML7k4fmM2TPCRf6suhv9R4o4VrZHjuPFb4K0qKaqxo+BYJSjdjA1IKV4AsPV16FdpHx9VgcN59X4ngmYvjVry9NBxNj0dmRgh5XcukBs3kznGdVLrNWVFauTd6Zn7KSvrvvIhL5eI9FTWCriYkMnXF3MLDfenHLOGHgtmUxq2Vdpw+JO8metRAQzIT7yOu2EdoXF+BffS+dwN7MPJVXAdwtpCYMqlMOLGkkoywXYOW8oydl1sJpe/Q9t2n8+PplYEcUmQY4E19m7RcHwgYKi8NdCatiqPSuaNH9vsKY6N3SCoFyou2DJ6IY+269ORT0ghgS5Frcw="
+    # AWS_SECRET_ACCESS_KEY
+    secure: "wUfSmPq9nED4o5/Krbaf8SOsDy5GCgM141dfLCbx2LA90yrQcg+8LJ0nbRg6Me78PCHAlqmB4lQgunmwuke27fhljJuRNLGZfLAqjNBBDWXxDUi6HU9h1DXTIY4dJJpYVcZ+7PQDKlI+yNoFw3qiDjNpgRBmUb+md2MylhB2xLhrYz438fZjkHEojfnN0X6jpOwSjjuAERz771QoUEZRN3gm3MauLTTyOZW+wMVdAaFVCeIZeYdU8pK8SWRFWF9lCUcRcUUddhdydUl0AvUa2QtkG2lp/fDOSDFn6HBoKznl1JkYwQd1AH5zRReBOwqdlCvFGg1GYgBNLRIZ8LyTsqQ+Im5k9wwA5F2z7EMDpug2fAenRH4r6TIqpWqU2AHbizFotjeIgzwkv3yC3HYZ3hpzsjwKUMJ2QUriFu7ZvzOQOAaLhvVMWXcRlhE5nEssyZXT/VDPgFyIc3MPBS1V3Riy00OCSzOskG4wajsVDTHj9T3tUDjo3kTFI2b4kRonCwVKIERu+oSfW2lWdjnktud4G7Ua22uMvoOWCAVLcdXGs7s+zbTF6Rt26RibqtK8CcUkO0s4qqOBV49KbkYQPcZvfRkMbRyrLtpsANGImRN33Jh0+TV6X8b6FLM5JmRBt/Wpyo1uhxkdJ/IKZMgiu1OfeeXiugr9seeXBKE2r0I="
+
+before_install:
+  # Add `aws` CLI tool.
+  - pip install --user awscli
+
 install:
   # Fail if lockfile outdated.
   # https://yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-frozen-lockfile
