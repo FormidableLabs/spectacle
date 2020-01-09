@@ -16,12 +16,15 @@ const { promisify } = require('util');
 
 const readFile = promisify(fs.readFile);
 const stat = promisify(fs.stat);
-const exists = (filePath) => stat(filePath)
-  .then(() => true)
-  .catch((err) => {
-    if (err.code === 'ENOENT') { return false; }
-    throw err;
-  });
+const exists = filePath =>
+  stat(filePath)
+    .then(() => true)
+    .catch(err => {
+      if (err.code === 'ENOENT') {
+        return false;
+      }
+      throw err;
+    });
 
 function defaultSort(items) {
   return items;
@@ -159,25 +162,29 @@ const getMdFiles = async (
   // Get all md files.
   const mdFiles = [];
   // eslint-disable-next-line promise/avoid-new
-  await new Promise((resolve, reject) => klaw(mdPath)
-    .on('data', fileInfo => {
-      if (path.extname(fileInfo.path) === '.md') {
-        mdFiles.push(fileInfo.path);
-      }
-    })
-    .on('error', e => reject(e))
-    .on('end', () => resolve()));
+  await new Promise((resolve, reject) =>
+    klaw(mdPath)
+      .on('data', fileInfo => {
+        if (path.extname(fileInfo.path) === '.md') {
+          mdFiles.push(fileInfo.path);
+        }
+      })
+      .on('error', e => reject(e))
+      .on('end', () => resolve())
+  );
 
   // Process files.
   const { renderer, outputHarmonizer } = config;
   const processMd = promisify(renderer.process);
-  await Promise.all(mdFiles.map(async mdFile => {
-    const data = await readFile(mdFile, 'utf8');
-    const result = await processMd(data);
-    const mdData = outputHarmonizer(result);
-    mutations.forEach(m => m(mdData, mdFile));
-    items.push(mdData);
-  }));
+  await Promise.all(
+    mdFiles.map(async mdFile => {
+      const data = await readFile(mdFile, 'utf8');
+      const result = await processMd(data);
+      const mdData = outputHarmonizer(result);
+      mutations.forEach(m => m(mdData, mdFile));
+      items.push(mdData);
+    })
+  );
 
   return sort(items);
 };
