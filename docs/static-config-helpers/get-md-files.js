@@ -14,6 +14,18 @@ const visit = require('unist-util-visit');
 const yaml = require('js-yaml');
 const { promisify } = require('util');
 
+const readFile = promisify(fs.readFile);
+const stat = promisify(fs.stat);
+const exists = filePath =>
+  stat(filePath)
+    .then(() => true)
+    .catch(err => {
+      if (err.code === 'ENOENT') {
+        return false;
+      }
+      throw err;
+    });
+
 function defaultSort(items) {
   return items;
 }
@@ -141,40 +153,40 @@ const getMdFiles = async (
   mutations = [],
   sort = defaultSort,
   config = baseConfig
-) =>
+) => {
+  // Short-circuit if no markdown.
+  if (!(await exists(path.resolve(mdPath)))) {
+    return items;
+  }
+
+  // Get all md files.
+  const mdFiles = [];
   // eslint-disable-next-line promise/avoid-new
-  new Promise((resolve, reject) => {
-    if (fs.existsSync(mdPath)) {
-      klaw(mdPath)
-        .on('data', item => {
-          if (path.extname(item.path) === '.md') {
-            const data = promisify(fs.readFile);
+  await new Promise((resolve, reject) =>
+    klaw(mdPath)
+      .on('data', fileInfo => {
+        if (path.extname(fileInfo.path) === '.md') {
+          mdFiles.push(fileInfo.path);
+        }
+      })
+      .on('error', e => reject(e))
+      .on('end', () => resolve())
+  );
 
-            const { renderer, outputHarmonizer } = config;
-            renderer.process(data, (err, result) => {
-              if (err) {
-                return reject(err);
-              }
+  // Process files.
+  const { renderer, outputHarmonizer } = config;
+  const processMd = promisify(renderer.process);
+  await Promise.all(
+    mdFiles.map(async mdFile => {
+      const data = await readFile(mdFile, 'utf8');
+      const result = await processMd(data);
+      const mdData = outputHarmonizer(result);
+      mutations.forEach(m => m(mdData, mdFile));
+      items.push(mdData);
+    })
+  );
 
-              const mdData = outputHarmonizer(result);
-
-              mutations.forEach(m => {
-                m(mdData, item.path);
-              });
-
-              items.push(mdData);
-            });
-          }
-        })
-        .on('error', e => {
-          reject(e);
-        })
-        .on('end', () => {
-          resolve(sort(items));
-        });
-    } else {
-      resolve(items);
-    }
-  });
+  return sort(items);
+};
 
 module.exports = getMdFiles;
