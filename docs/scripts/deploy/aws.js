@@ -14,6 +14,9 @@ const DEST = `s3://${path.join(BUCKET_NAME, DOCS_PATH)}`;
 const AWS_DRY_RUN_FLAG = '--dryrun';
 const AWS_EXCLUDES = ['*.DS_Store*'];
 
+// Cache values (in seconds)
+const CACHE_MAX_AGE_DEFAULT = 10 * 60; // eslint-disable-line no-magic-numbers
+
 const EXECA_OPTS = {
   stdio: 'inherit'
 };
@@ -28,9 +31,8 @@ const main = async ({ isDryRun }) => {
       's3',
       'sync',
       isDryRun ? AWS_DRY_RUN_FLAG : '',
-      // TODO(docs): Add cache control.
-      // "--cache-control",
-      // `max-age=${CACHE_MAX_AGE_DEFAULT},public`,
+      '--cache-control',
+      `max-age=${CACHE_MAX_AGE_DEFAULT},public`,
       '--delete',
       ...AWS_EXCLUDES.reduce(
         (memo, exc) => memo.concat(['--exclude', exc]),
