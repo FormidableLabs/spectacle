@@ -63,7 +63,7 @@ $ brew install awscli
 Then, set up `aws-vault` with the AWS access and secret keys for `spectacle` CI in the `AWS IAM (formidable-com)` entry in the IC vault:
 
 ```sh
-$ brew install aws-vault
+$ brew cask install aws-vault
 $ aws-vault add fmd-spectacle-ci
 # Enter AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY values for "spectacle CI"
 ```
