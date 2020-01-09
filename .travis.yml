@@ -49,4 +49,11 @@ jobs:
         - yarn run check-ci
         - yarn run clean
         - yarn run prod:build
-      # TODO: ADD DEPLOY HERE!!!
+      deploy:
+        # Deploy master to production
+        - provider: script
+          # TODO(docs): Remove `--dryrun` flag to really deploy!
+          script: yarn deploy:aws --dryrun
+          skip_cleanup: true
+          on:
+            branch: master
