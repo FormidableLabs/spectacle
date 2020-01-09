@@ -48,6 +48,35 @@ Then visit: http://localhost:3000/open-source/spectacle/
 Both of these steps are important for validating that both the `basePath` used by the static HTML output and the `basename` used
 by the client-side router are working as expected. This is also where you'll want to validate that there are no hardcoded, inlined, or malformed asset paths that worked locally but will not resolve correctly in production!
 
+## Deployment
+
+_Only for project administrators._
+
+Our CI is configured to deploy the production build in `dist` to `formidable.com/open-source/spectacle`. This section discusses kicking the tires locally:
+
+First, install the AWS CLI:
+
+```sh
+$ brew install awscli
+```
+
+Then, set up `aws-vault` with the AWS access and secret keys for `spectacle` CI in the `AWS IAM (formidable-com)` entry in the IC vault:
+
+```sh
+$ brew install aws-vault
+$ aws-vault add fmd-spectacle-ci
+# Enter AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY values for "spectacle CI"
+```
+
+Then build for production and deploy with dry run to check things:
+
+```sh
+$ cd docs
+$ yarn prod:build
+$ aws-vault exec fmd-spectacle-ci --no-session -- \
+  yarn deploy:aws --dryrun
+```
+
 ## Tips for developing
 
 - Almost all of your code will be executed in two contexts: first in node for server-side rendering and static html generation, then client-side as a PWA. In addition to writing [node-safe code](https://github.com/nozzle/react-static/blob/master/docs/concepts.md#writing-universal-node-safe-code), this also means that it's necessary to validate that both contexts are working as expected.
