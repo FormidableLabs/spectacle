@@ -1,7 +1,6 @@
 language: node_js
 
 node_js:
-  - "8"
   - "10"
   - "12"
 
@@ -31,3 +30,9 @@ script:
   - yarn build-examples
   # All other checks.
   - yarn run check-ci
+
+jobs:
+  include:
+    - stage: documentation
+      node_js: "12"
+      script: echo "TODO (1) install+lint+build docs, (2) deploy"
