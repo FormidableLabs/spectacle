@@ -27,7 +27,7 @@ const { log } = console;
 const logMsg = msg => log(chalk`[{cyan deploy/surge}] ${msg}`);
 
 const main = async ({ isDryRun }) => {
-  logMsg(`Uploading files to {cyan ${DEST}}`);
+  logMsg(chalk`Uploading files to {cyan ${DEST}}`);
   await execa(
     'aws',
     [
