@@ -2,13 +2,18 @@
 
 Thank you for contributing!
 
-Spectacle is actively maintained by @carlos-kelly and @kale-stew from within @FormidableLabs.
+<a href="https://github.com/FormidableLabs/spectacle#maintenance-status">
+  <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
+</a>
+
+Spectacle is actively maintained by [@carlos-kelly][carlos-kelly] and [@kale-stew][kale-stew]
+from within [@FormidableLabs][formidable-github].
 
 ## Development
 
 ### Installing dependencies
 
-We use [`yarn`](https://yarnpkg.com/en/docs/getting-started).
+We prefer to use [`yarn`][yarn-docs].
 
 Install all dependencies by running:
 
@@ -20,7 +25,9 @@ $ yarn
 
 We have various deck scenarios in `examples` that are part of the development process.
 
-We normally just do `start:NAME` to run an in-memory dev server. But we also add a `yarn build-examples` script task to make sure we actually produce non-broken examples as a CI / assurance test.
+We normally just do `start:NAME` to run an in-memory dev server. But we also add a
+`yarn build-examples` script task to make sure we actually produce non-broken examples
+as a CI / assurance test.
 
 #### `examples/js`
 
@@ -36,7 +43,8 @@ $ open http://localhost:3000/
 
 #### `examples/one-page`
 
-A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
+A self-contained single web page that uses Spectacle, React, and `htm` for a
+"no build" presentation!
 
 ```sh
 # Build the library
@@ -66,15 +74,18 @@ $ yarn prettier-check
 $ yarn prettier-fix
 ```
 
-Note that there is duplication for JS code in `prettier` doing the same style changes, but both should be harmonious and run together.
+Note that there is duplication for JS code in `prettier` doing the same style changes,
+but both should be harmonious and run together.
 
 ### Before submitting a PR
 
-Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
+Thanks for taking the time to help us make Spectacle even better! Before you go
+ahead and submit a PR, make sure that you have done the following:
 
 - Run all checks using `yarn run check`.
 - Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
-- Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API, like breaking changes or new features.
+  <!-- - Update the [type definitions](./index.d.ts) for anything
+  that modifies the Spectacle API, like breaking changes or new features. -->
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
 ### Releasing a new version to NPM
@@ -157,8 +168,14 @@ members of the project's leadership.
 
 ### Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at [http://contributor-covenant.org/version/1/4][version]
+This Code of Conduct is adapted from the [Contributor Covenant][cc-homepage], version 2.0,
+available at [https://www.contributor-covenant.org/version/2/0][cc-latest-version]
 
-[homepage]: http://contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1/4/
+<!-- Links -->
+
+[carlos-kelly]: https://www.github.com/carlos-kelly
+[cc-homepage]: http://contributor-covenant.org
+[cc-latest-version]: https://www.contributor-covenant.org/version/2/0/code_of_conduct
+[formidable-github]: https://www.github.com/FormidableLabs
+[kale-stew]: https://www.github.com/kale-stew
+[yarn-docs]: https://yarnpkg.com/en/docs/getting-started
