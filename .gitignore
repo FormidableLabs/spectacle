@@ -11,6 +11,7 @@ test/screenshots
 # production
 /dist
 /tmp
+/docs/tmp
 
 # misc
 .DS_Store
