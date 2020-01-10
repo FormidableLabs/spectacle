@@ -3,6 +3,28 @@ title: API Reference
 order: 3
 ---
 
+- [API Reference](#api-reference)
+  - [Main Tags](#main-tags)
+    - [Deck](#deck)
+    - [Slide](#slide)
+  - [Semantic Tags](#semantic-tags)
+    - [CodePane](#codepane)
+    - [CodeSpan](#codespan)
+    - [Heading](#heading)
+    - [Image](#image)
+    - [ListItem](#listitem)
+    - [Markdown](#markdown)
+    - [Notes](#notes)
+    - [OrderedList](#orderedlist)
+    - [Text](#text)
+  - [Style Tags](#style-tags)
+    - [Appear](#appear)
+    - [Box](#box)
+    - [FlexBox](#flexbox)
+    - [FullScreen](#fullscreen)
+    - [Grid](#grid)
+    - [Progress](#progress)
+
 <a name="api-reference"></a>
 
 # API Reference
