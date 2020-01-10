@@ -7,11 +7,11 @@ order: 3
 
 # API Reference
 
-In Spectacle, presentations are composed of a set of base tags. We can separate these into three categories: Main tags, Layout tags & Element tags.
+In Spectacle, presentations are composed of a set of base tags. We can separate these into three categories: Main tags, Semantic tags & Style tags.
 
-<a name="main-components"></a>
+<a name="main-tags"></a>
 
-## Main Components
+## Main Tags
 
 <a name="deck"></a>
 
@@ -21,9 +21,9 @@ In Spectacle, presentations are composed of a set of base tags. We can separate 
 
 ### Slide
 
-<a name="semantic-components"></a>
+<a name="semantic-tags"></a>
 
-## Semantic Components
+## Semantic Tags
 
 <a name="codepane"></a>
 
@@ -61,9 +61,9 @@ In Spectacle, presentations are composed of a set of base tags. We can separate 
 
 ### Text
 
-<a name="style-components"></a>
+<a name="style-tags"></a>
 
-## Style Components
+## Style Tags
 
 <a name="appear"></a>
 
