@@ -1,8 +1,16 @@
-# Spectacle
-
-<!-- TODO BADGES -->
-
-✨ A ReactJS based Presentation Library ✨
+<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/master/docs/src/static/bg_hero_badge.png" width=250></p>
+<h2 align="center">Spectacle</h2>
+<p align="center">
+<strong>A✨ A ReactJS based Presentation Library ✨</strong>
+<br><br>
+<a href="https://npmjs.com/package/spectacle"><img src="https://img.shields.io/npm/dm/spectacle.svg"></a>
+<a href="https://npmjs.com/package/spectacle"><img src="https://img.shields.io/npm/v/spectacle.svg"></a>
+<img src="http://img.badgesize.io/https://unpkg.com/spectacle/dist/spectacle.min.js?compression=gzip&label=gzip%20size">
+<img src="http://img.badgesize.io/https://unpkg.com/spectacle/dist/spectacle.min.js?label=size">
+<a href="https://github.com/FormidableLabs/spectacle#maintenance-status">
+  <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
+</a>
+</p>
 
 Looking for a quick preview of what you can do with Spectacle? Check out our Live Demo deck [here](TODO).
 
