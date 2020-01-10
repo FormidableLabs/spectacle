@@ -6,8 +6,7 @@ const chalk = require('chalk');
 const execa = require('execa');
 
 const PROJECT = 'spectacle';
-// TODO(docs): Convert to real location when ready for full release.
-const DOCS_PATH = `open-source/${PROJECT}-TODO-TESTING`;
+const DOCS_PATH = `open-source/${PROJECT}`;
 
 const SRC = path.resolve(__dirname, '../../dist');
 const BUCKET_NAME = 'formidable.com';

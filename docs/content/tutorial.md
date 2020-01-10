@@ -377,7 +377,7 @@ export default class Presentation extends React.Component {
 }
 ```
 
-## 6. Add animations
+## 7. Add animations
 
 Using the core Spectacle API, we can supply transition props like `transition` and `transitionDuration` to our `Deck` and `Slide` components to make the presentation more animated, without adding any new imports:
 
@@ -517,7 +517,7 @@ Additionally, you could bring in other core components, like `Anim` and `Appear`
 </Slide>
 ```
 
-## 7. Add code examples
+## 8. Add code examples
 
 Finally, you have a couple of options for displaying code content. `CodePane` and `ComponentPlayground` both offer ways to display code, but they differ in a fundamental way: `CodePane` is a styled, highlighted code preview, while `ComponentPlayground` is a two-paned view with source on the right and a preview pane on the left for showing off custom React components.
 
