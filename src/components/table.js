@@ -9,13 +9,7 @@ import {
 } from 'styled-system';
 
 const Table = styled('table')(
-  compose(
-    color,
-    typography,
-    space,
-    border,
-    layout
-  )
+  compose(color, typography, space, border, layout)
 );
 
 Table.defaultProps = {
@@ -28,13 +22,7 @@ Table.defaultProps = {
 };
 
 const TableHeader = styled('thead')(
-  compose(
-    color,
-    typography,
-    space,
-    border,
-    layout
-  )
+  compose(color, typography, space, border, layout)
 );
 
 TableHeader.defaultProps = {
@@ -47,13 +35,7 @@ TableHeader.defaultProps = {
 };
 
 const TableBody = styled('tbody')(
-  compose(
-    color,
-    typography,
-    space,
-    border,
-    layout
-  )
+  compose(color, typography, space, border, layout)
 );
 
 TableBody.defaultProps = {
@@ -66,13 +48,7 @@ TableBody.defaultProps = {
 };
 
 const TableRow = styled('tr')(
-  compose(
-    color,
-    typography,
-    space,
-    border,
-    layout
-  )
+  compose(color, typography, space, border, layout)
 );
 
 TableRow.defaultProps = {
@@ -84,13 +60,7 @@ TableRow.defaultProps = {
 };
 
 const TableCell = styled('td')(
-  compose(
-    color,
-    typography,
-    space,
-    border,
-    layout
-  )
+  compose(color, typography, space, border, layout)
 );
 
 TableCell.defaultProps = {

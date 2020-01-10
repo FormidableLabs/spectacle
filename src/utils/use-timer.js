@@ -7,6 +7,8 @@ export const useTimer = (handler, period, isActive) => {
   React.useEffect(() => {
     callBack.current = handler;
   }, [handler]);
+
+  // eslint-disable-next-line consistent-return
   React.useEffect(() => {
     if (isActive) {
       initialTime.current = new Date().getTime();
