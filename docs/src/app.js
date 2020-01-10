@@ -10,7 +10,7 @@ import Routes from 'react-static-routes';
 // import default prism theme styles
 import 'prismjs/themes/prism.css';
 
-const scrollSidebar = async (location, activeItemClass = '.active') => {
+const scrollSidebar = (location, activeItemClass = '.active') => {
   const actives = document.querySelectorAll(activeItemClass);
   const last = actives[actives.length - 1];
   last.scrollIntoView();

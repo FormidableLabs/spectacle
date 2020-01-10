@@ -24,14 +24,12 @@ const sidebarTitleSlugMutation = (mdData, mdPath) => {
 
 const sidebarSort = items => _.orderBy(items, ['data.order'], 'asc');
 
-function getSidebarItems(
+const getSidebarItems = (
   mdPath = 'content/',
   items = [],
   mutations = [sidebarTitleSlugMutation],
   sort = sidebarSort
-) {
-  return getMdFiles(mdPath, items, mutations, sort);
-}
+) => getMdFiles(mdPath, items, mutations, sort);
 
 module.exports = {
   getSidebarItems
