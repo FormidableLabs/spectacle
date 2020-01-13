@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import CodePane from './code-pane';
 
 describe('<CodePane />', () => {
@@ -20,7 +20,9 @@ describe('<CodePane />', () => {
         </CustomButton>
       );
     `;
-    const wrapper = mount(<CodePane lang="jsx" source={source} />, { context });
+    const wrapper = shallow(<CodePane lang="jsx" source={source} />, {
+      context
+    });
     expect(wrapper).toMatchSnapshot();
   });
 });
