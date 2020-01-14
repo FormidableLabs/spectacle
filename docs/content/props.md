@@ -46,3 +46,21 @@ order: 3
 | `letterSpacing` | PropTypes.string | Set CSS `letter-spacing` value or `letterSpacings` theme value | `1px` or `spreadOutText` |
 | `textAlign` | PropTypes.string | Set CSS `text-align` value | `left` |
 | `fontStyle` | PropTypes.string | Set CSS `font-style` value | `normal` or `italic` |
+
+<a name="Layout"></a>
+
+# Layout
+
+| Name | PropType | Description | Example |
+| --- | --- | --- | --- |
+| `width` | PropTypes.string or PropTypes.number | Set CSS `width` value or `sizes` theme value, fractional numeric values get converted to precents, for example `1/2` becomes `50%`, whole numbers get converted into pixels | `100%`, `1/2`, `30px`, `256`, or `primary` |
+| `height` | PropTypes.string or PropTypes.number | Set CSS `height` value or `sizes` theme value, fractional numeric values get converted to precents, for example `1/2` becomes `50%`, whole numbers get converted into pixels | `100%`, `1/2`, `30px`, `256`, or `primary` |
+| `minWidth` | PropTypes.string or PropTypes.number | Set CSS `min-width` value or `sizes` theme value, fractional numeric values get converted to precents, for example `1/2` becomes `50%`, whole numbers get converted into pixels | `100%`, `1/2`, `30px`, `256`, or `primary` |
+| `maxWidth` | PropTypes.string or PropTypes.number | Set CSS `max-width` value or `sizes` theme value, fractional numeric values get converted to precents, for example `1/2` becomes `50%`, whole numbers get converted into pixels | `100%`, `1/2`, `30px`, `256`, or `primary` |
+| `minHeight` | PropTypes.string or PropTypes.number | Set CSS `min-height` value or `sizes` theme value, fractional numeric values get converted to precents, for example `1/2` becomes `50%`, whole numbers get converted into pixels | `100%`, `1/2`, `30px`, `256`, or `primary` |
+| `maxHeight` | PropTypes.string or PropTypes.number | Set CSS `max-height` value or `sizes` theme value, fractional numeric values get converted to precents, for example `1/2` becomes `50%`, whole numbers get converted into pixels | `100%`, `1/2`, `30px`, `256`, or `primary` |
+| `size` | PropTypes.string or PropTypes.number | Set CSS `width` and `height` value or `sizes` theme value, fractional numeric values get converted to precents, for example `1/2` becomes `50%`, whole numbers get converted into pixels | `100%`, `1/2`, `30px`, `256`, or `primary` |
+| `display` | PropTypes.string | Set CSS `display` value | `inline-block` |
+| `overflow` | PropTypes.string | Set CSS `overflow` value | `visible` |
+| `overflowX` | PropTypes.string | Set CSS `overflow-x` value | `hidden` |
+| `overflowY` | PropTypes.string | Set CSS `overflow-y` value | `visible` |
