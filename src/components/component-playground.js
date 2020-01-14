@@ -156,13 +156,23 @@ class ComponentPlayground extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const updatedState = {};
-    if (nextProps.code !== prevState.code) {
+    if (
+      typeof nextProps.code !== 'undefined' &&
+      nextProps.code !== prevState.code
+    ) {
       const code = (nextProps.code || defaultCode).trim();
       updatedState.code = code;
+    } else {
+      updatedState.code = prevState.code;
     }
-    if (nextProps.scope !== prevState.scope) {
+    if (
+      typeof nextProps.scope !== 'undefined' &&
+      nextProps.scope !== prevState.scope
+    ) {
       const scope = getEnhancedScope(nextProps.scope);
       updatedState.scope = scope;
+    } else {
+      updatedState.scope = prevState.scope;
     }
     return isEmpty(updatedState) ? null : updatedState;
   }

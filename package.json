@@ -54,7 +54,7 @@
     "normalize.css": "^8.0.1",
     "prismjs": "^1.17.1",
     "react-emotion": "^8.0.8",
-    "react-live": "^1.6",
+    "react-live": "^2.2.2",
     "react-redux": "^5.1.1",
     "react-transition-group": "1.2.1",
     "react-typography": "^0.16.18",
