@@ -6,7 +6,7 @@ Thank you for contributing!
   <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
 </a>
 
-Spectacle is actively maintained by [@carlos-kelly][carlos-kelly] and [@kale-stew][kale-stew]
+Spectacle is actively maintained by @[carlos-kelly][] and @[kale-stew][]
 from within [@FormidableLabs][formidable-github].
 
 ## Development
@@ -17,7 +17,7 @@ We prefer to use [`yarn`][yarn-docs].
 
 Install all dependencies by running:
 
-```sh
+```bash
 $ yarn
 ```
 
@@ -33,7 +33,7 @@ as a CI / assurance test.
 
 A basic deck with JSX and JavaScript:
 
-```sh
+```bash
 # In one terminal open dev server
 $ yarn start:js
 
@@ -46,7 +46,7 @@ $ open http://localhost:3000/
 A self-contained single web page that uses Spectacle, React, and `htm` for a
 "no build" presentation!
 
-```sh
+```bash
 # Build the library
 $ yarn build
 
@@ -62,14 +62,14 @@ TODO
 
 To check (and fix) code:
 
-```sh
+```bash
 $ yarn lint
 $ yarn lint-fix
 ```
 
 To check (and fix) formatting of MD, JSON, _and_ code:
 
-```sh
+```bash
 $ yarn prettier-check
 $ yarn prettier-fix
 ```
