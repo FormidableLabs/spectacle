@@ -16,6 +16,8 @@ Looking for a quick preview of what you can do with Spectacle? Check out our Liv
 
 Have a question about Spectacle? Submit an issue in this repository using the "Question" template.
 
+## Table of Contents
+
 - [Basic Concepts](./docs/content/basic-concepts.md#basic-concepts)
   - [Installation](./docs/content/basic-concepts.md#installation)
   - [Development](./docs/content/basic-concepts.md#development)

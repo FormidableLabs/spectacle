@@ -3,11 +3,6 @@ title: Basic Concepts
 order: 1
 ---
 
-- [Basic Concepts](#basic-concepts)
-  - [Installation](#installation)
-  - [Development](#development)
-  - [Presenting](#presenting)
-
 <a name="basic-concepts"></a>
 
 # Basic Concepts
@@ -15,6 +10,10 @@ order: 1
 <a name="installation"></a>
 
 ## Installation
+
+```sh
+yarn add spectacle
+```
 
 <a name="development"></a>
 
