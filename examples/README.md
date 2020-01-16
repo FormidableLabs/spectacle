@@ -11,4 +11,7 @@ For more detailed documentation, please check out [the docs](https://formidable.
 ## Table of Contents
 
 - [JS](./js/index.js)
+- [MDX](./mdx)
+- [Markdown](./md)
+- [MDX + Babel](./mdx-babel)
 - [One Page](./one-page.html)
