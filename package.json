@@ -17,6 +17,7 @@
     "build-webpack-examples-js": "builder run build-webpack-base -- --config examples/js/webpack.config.js",
     "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev",
     "build-examples": "builder concurrent --buffer build-webpack-examples-js",
+    "format": "yarn run lint-fix && yarn run prettier-fix",
     "lint": "eslint --ignore-path .gitignore .",
     "lint-fix": "yarn lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
