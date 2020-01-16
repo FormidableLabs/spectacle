@@ -26,7 +26,7 @@ To see a list of the extensions we've listed here in the past, please check out 
 
 A generation tool for [Spectacle][] presentation decks. Includes `spectacle` and `spectacle-boilerplate`.
 
-## Installation
+### Installation
 
 Either install it globally:
 
@@ -42,7 +42,7 @@ to get:
 
 ... or use it directly with [npx][] as `npx spectacle-cli` for the CLI or `npx -p spectacle-cli spectacle-boilerplate` for the generation tool.
 
-## The Spectacle CLI (`spectacle`)
+### The Spectacle CLI (`spectacle`)
 
 The Spectacle CLI will create a development server to create a `.md` or `.mdx` slides-based deck with additional enhancements for theme overrides, etc.
 
@@ -75,7 +75,7 @@ Some additional tips:
 - `-s|--src`: The slide source file path. If a file has a `.md` suffix is processed as straight Markdown. If a file has a `.mdx` suffix it is processed as enhanced MDX.
 - `-t|--theme`: A `require|import`-able file (e.g., `.js` or `.json`) that contains an object to override the Spectacle default theme in places.
 
-## Boilerplate generation (`spectacle-boilerplate`)
+### Boilerplate generation (`spectacle-boilerplate`)
 
 Want a much more customizable experience with full build control? Then `spectacle-boilerplate` is for you!
 
@@ -115,13 +115,13 @@ $ spectacle-boilerplate \
   --dir "project-o-awesome
 ```
 
-## Details
+### Details
 
-### Markdown
+#### Markdown
 
 For `.md` source files, everything is pretty straightforward -- the Markdown is parsed into Spectacle components and rendered as a deck. Slides are separated with `---`. You can find a working example in `examples/cli-md` in the project repository.
 
-### MDX
+#### MDX
 
 For `.mdx` source files, things are slightly more complicated.
 
