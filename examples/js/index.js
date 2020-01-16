@@ -2,23 +2,23 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import {
-  Deck,
-  Slide,
   Appear,
-  CodePane,
-  FlexBox,
   Box,
-  Image,
-  Heading,
-  ListItem,
-  OrderedList,
-  Text,
-  Grid,
-  Notes,
+  CodePane,
+  CodeSpan,
+  Deck,
+  FlexBox,
   FullScreen,
-  Progress,
+  Grid,
+  Heading,
+  Image,
+  ListItem,
   Markdown,
-  CodeSpan
+  Notes,
+  OrderedList,
+  Progress,
+  Slide,
+  Text
 } from '../../src/';
 import SpectacleLogo from '../../src/components/logo';
 

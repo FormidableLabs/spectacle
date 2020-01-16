@@ -7,7 +7,11 @@ order: 4
 
 # Third Party Extensions
 
-- [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @jamiebuilds
-- [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
-- [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
-- [Spectacle Codemirror](https://github.com/jonathan-fielding/spectacle) - Show a live code editor inside your slides
+In the past, developers across the open-source-iverse have created extensions for use within your Spectacle presentation.
+
+Since the [release of v6](TODO), the previously developed extensions are no longer compatible with the latest and greatest in Spectacle. We hope that changes soon, and we are happy to support you...
+
+- ... in updating your project if you're one of the folks with a now-deprecated tool.
+- ... with PR review and feedback if you're interested in writing a new tool and don't know where to start.
+
+To see a list of the extensions we've listed here in the past, please check out [the archive in git](TODO).
