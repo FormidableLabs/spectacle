@@ -13,11 +13,10 @@ order: 1
 
 Installing Spectacle is as quick as you'd expect. Install it using your package manager of choice.
 
-```sh
-yarn add spectacle
-
-#or
-npm install --save spectacle
+```bash
+$ yarn add spectacle
+# or
+$ npm install --save spectacle
 ```
 
 <a name="development"></a>
@@ -32,26 +31,33 @@ For complete examples of each presentation type, please see the [`examples/`](..
 
 ### MDX
 
-This approach involves statically generating your slides from a `.mdx` or .`md` file. This is done using the [`spectacle-cli`](https://github.com/FormidableLabs/spectacle-cli). Complete documentation can be found in the repo, but the high-level overview of slide generation is:
+This approach involves statically generating your slides from a `.mdx` or .`md` file, which is accomplished using the [`spectacle-cli`][spectacle-cli]. With the CLI, you can either generate a new presentation (`spectacle-cli spectacle-boilerplate`) or you can serve up an existing Markdown/MDX file as a presentation (`spectacle -s`). It can be installed globally, locally, or used via `npx`.
 
-Install `spectacle-cli` globally or locally, and then run `spectacle-boilerplate`. _Or,_ you can just use `npx -p spectacle-cli spectacle-boilerplate` for fully-contained one-line shell commands!
+```bash
+# Global install using yarn
+$ yarn global add spectacle-cli
 
-Some examples of CLI usage to generate a new project:
+# Serving a presentation using npx
+$ npx spectacle-cli
 
-```sh
-# Generate a JavaScript deck project
-$ spectacle-boilerplate
+# Generating a new presentation using npx
+$ npx -p spectacle-cli spectacle-boilerplate
+```
 
-# ... or an MDX deck project with a custom name + description
-$ spectacle-boilerplate \
-  --mode mdx \
-  --name "very-cool-deck" \
-  --description "My generated Spectacle MDX deck"
+To serve a local Markdown or MDX file up as a presentation:
 
-# ... or a Markdown deck project to a different directory than CWD.
-$ spectacle-boilerplate \
-  --mode md \
-  --dir "./extremely-awesome-project"
+```bash
+# Navigate to the directory containing your slides
+$ cd my-cool-presentation
+
+# Run the CLI (given there is a slides.md or slides.mdx in the CWD)
+$ spectacle -s
+```
+
+To generate a new presentation using the CLI's boilerplate feature:
+
+```bash
+$ spectacle spectacle-boilerplate
 ```
 
 To see a more complete examples of a presentation generated with MDX or Markdown, please check out our three samples meant to be used with the CLI:
@@ -60,10 +66,7 @@ To see a more complete examples of a presentation generated with MDX or Markdown
 - [`.mdx` Example](../../examples/mdx)
 - [`.mdx` + Babel Example](../../examples/mdx-babel)
 
-To generate a presentation sourcing one of the examples linked above,
-
-1. `cd` into the example dir you want to test: `cd examples/<example-name>`
-2. Run `spectacle -s` to serve up a presentation that sources the CWD's `slides.[md|mdx]`.
+For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](./extensions#spectacle-cli).
 
 <a name="jsx"></a>
 
@@ -93,3 +96,7 @@ To present:
 **Note:** Any windows/tabs in the same browser running Spectacle will sync to one another, even if you aren't in presentation mode.
 
 ![Two screens presenting the same Spectacle presentation](TODO)
+
+<!-- Links -->
+
+[spectacle-cli]: https://www.github.com/formidablelabs/spectacle-cli
