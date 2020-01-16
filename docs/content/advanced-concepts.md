@@ -3,11 +3,6 @@ title: Advanced Concepts
 order: 2
 ---
 
-- [Advanced Concepts](#advanced-concepts)
-  - [Themes](#themes)
-  - [Slide Templates](#slide-templates)
-  - [Build & Deployment](#build--deployment)
-
 <a name="advanced-concepts"></a>
 
 # Advanced Concepts
