@@ -165,7 +165,7 @@ Style Tags exist to aid the styling of either `Deck` templates or specific `Slid
 
 Meant to serve as a callback to the origin Pacman-style progress bar from "Original Spectacle" (anything pre-v6). Add it to your presentation to give your audience a visual of progress throughout your presentation.
 
-```js
+```javascript
 // index.js
 // TODO - i'm sure this is wrong
 <Deck>
