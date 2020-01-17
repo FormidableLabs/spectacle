@@ -136,30 +136,30 @@ order: 3
 
 | Name       | PropType         | Description              | Example    |
 | ---------- | ---------------- | ------------------------ | ---------- |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
-| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `border` | PropTypes.string | Set CSS `position` value | `2px solid white` |
+| `borderWidth` | PropTypes.number or PropTypes.string | Set CSS `border-width` value | `5px` |
+| `borderStyle` | PropTypes.string | Set CSS `border-style` value | `solid` |
+| `borderColor` | PropTypes.string | Set CSS `border-color` value | `rgb(255, 200, 150)` |
+| `borderRadius` | PropTypes.number or PropTypes.string | Set CSS `border-radius` value | `10` |
+| `borderTop` | PropTypes.string | Set CSS `border-top` value | `3px dashed #000` |
+| `borderTopWidth` | PropTypes.number or PropTypes.string | Set CSS `border-top-width` value | `1` |
+| `borderTopStyle` | PropTypes.string | Set CSS `border-top-style` value | `solid` |
+| `borderTopColor` | PropTypes.string | Set CSS `border-top-color` value | `#ff0abc` |
+| `borderTopLeftRadius` | PropTypes.number or PropTypes.string | Set CSS `border-top-left-radius` value | `20%` |
+| `borderTopRightRadius` | PropTypes.number or PropTypes.string | Set CSS `border-top-right-radius` value | `4px` |
+| `borderRight` | PropTypes.string | Set CSS `border-right` value | `relative` |
+| `borderRightWidth` | PropTypes.number or PropTypes.string | Set CSS `border-right-width` value | `1px` |
+| `borderRightStyle` | PropTypes.string | Set CSS `border-right-style` value | `solid` |
+| `borderRightColor` | PropTypes.string | Set CSS `border-right-color` value | `red` |
+| `borderBottom` | PropTypes.string | Set CSS `border-bottom` value | `2px solid blue` |
+| `borderBottomWidth` | PropTypes.number or PropTypes.string | Set CSS `border-bottom-width` value | `1em` |
+| `borderBottomStyle` | PropTypes.string | Set CSS `border-bottom-style` value | `dashed` |
+| `borderBottomColor` | PropTypes.string | Set CSS `border-bottom-color` value | `orange` |
+| `borderBottomLeftRadius` | PropTypes.number or PropTypes.string | Set CSS `border-bottom-left-radius` value | `2px` |
+| `borderBottomRightRadius` | PropTypes.number or PropTypes.string | Set CSS `border-bottom-right-radius` value | `4px` |
+| `borderLeft` | PropTypes.string | Set CSS `border-left` value | `1px solid green` |
+| `borderLeftWidth` | PropTypes.number or PropTypes.string | Set CSS `border-left-width` value | `2px` |
+| `borderLeftStyle` | PropTypes.string | Set CSS `border-left-style` value | `solid` |
+| `borderLeftColor` | PropTypes.string | Set CSS `border-left-color` value | `green` |
+| `borderX` | PropTypes.string | Set CSS `border-left` and `border-right` value | `2px dotted red` |
+| `borderY` | PropTypes.string | Set CSS `border-top` and `border-bottom` value | `1px solid black` |
