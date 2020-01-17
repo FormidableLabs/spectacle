@@ -100,3 +100,16 @@ order: 3
 | `gridTemplateRows`    | PropTypes.string                     | Set CSS `grid-template-rows` value    | `40px 1fr` or `8ch auto`                      |
 | `gridTemplateAreas`   | PropTypes.string                     | Set CSS `grid-template-area` value    | `a b` or `inherit`                            |
 | `gridArea`            | PropTypes.string                     | Set CSS `grid-area` value             | `a` or `2 / 1 / 4`                            |
+
+<a name="Position"></a>
+
+# Position
+
+| Name       | PropType         | Description              | Example    |
+| ---------- | ---------------- | ------------------------ | ---------- |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `zIndex`   | PropTypes.number | Set CSS `z-index` value  | `2`        |
+| `top`      | PropTypes.number | Set CSS `top` value      | `1`        |
+| `right`    | PropTypes.number | Set CSS `right` value    | `3`        |
+| `bottom`   | PropTypes.number | Set CSS `bottom` value   | `10`       |
+| `left`     | PropTypes.number | Set CSS `left` value     | `5`        |
