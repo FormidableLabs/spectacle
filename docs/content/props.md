@@ -7,6 +7,8 @@ order: 3
 
 # Color
 
+**Color** props are used by `CodeSpan`, `Text`, `Link`, `Heading`, `Quote`, `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableCell`, `UnorderedList`, `OrderedList`, and `ListItem`.
+
 | Name                      | PropType         | Description                                             | Example                  |
 | ------------------------- | ---------------- | ------------------------------------------------------- | ------------------------ |
 | `color`                   | PropTypes.string | Set CSS `color` value or `color` theme value            | `#abc123` or `primary`   |
@@ -15,6 +17,8 @@ order: 3
 <a name="Space"></a>
 
 # Space
+
+**Space** props used by `Box`, `FlexBox`, `Grid`, `CodeSpan`, `Text`, `Link`, `Heading`, `Quote`, `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableCell`, `UnorderedList`, `OrderedList`, and `ListItem`.
 
 | Name                    | PropType         | Description                                                             | Example                             |
 | ----------------------- | ---------------- | ----------------------------------------------------------------------- | ----------------------------------- |
@@ -37,6 +41,8 @@ order: 3
 
 # Typography
 
+**Typography** props are used by `CodeSpan`, `Text`, `Link`, `Heading`, `Quote`, `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableCell`, `UnorderedList`, `OrderedList`, and `ListItem`.
+
 | Name            | PropType         | Description                                                    | Example                     |
 | --------------- | ---------------- | -------------------------------------------------------------- | --------------------------- |
 | `fontFamily`    | PropTypes.string | Set CSS `font-family` value or `fonts` theme value             | `Helvetica` or `primary`    |
@@ -50,6 +56,8 @@ order: 3
 <a name="Layout"></a>
 
 # Layout
+
+**Layout** props are used by `Box`, `FlexBox`, `Grid`, `Table`, `TableHeader`, `TableBody`, `TableRow`, and `TableCell`.
 
 | Name        | PropType                             | Description                                                                                                                                                                              | Example                                    |
 | ----------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
@@ -69,6 +77,8 @@ order: 3
 
 # Flex
 
+**Flex** props are used by `FlexBox`.
+
 | Name             | PropType                             | Description                     | Example         |
 | ---------------- | ------------------------------------ | ------------------------------- | --------------- |
 | `alignItems`     | PropTypes.string                     | Set CSS `align-items` value     | `flex-start`    |
@@ -85,6 +95,8 @@ order: 3
 <a name="Grid"></a>
 
 # Grid
+
+**Grid** props are used by `Grid`.
 
 | Name                  | PropType                             | Description                           | Example                                       |
 | --------------------- | ------------------------------------ | ------------------------------------- | --------------------------------------------- |
@@ -105,6 +117,8 @@ order: 3
 
 # Position
 
+**Position** props are used by `Box`, `FlexBox`, and `Grid`.
+
 | Name       | PropType         | Description              | Example    |
 | ---------- | ---------------- | ------------------------ | ---------- |
 | `position` | PropTypes.string | Set CSS `position` value | `relative` |
@@ -113,3 +127,39 @@ order: 3
 | `right`    | PropTypes.number | Set CSS `right` value    | `3`        |
 | `bottom`   | PropTypes.number | Set CSS `bottom` value   | `10`       |
 | `left`     | PropTypes.number | Set CSS `left` value     | `5`        |
+
+<a name="Border"></a>
+
+# Border
+
+**Border** props are used by `Box`, `FlexBox`, `Grid`, `Table`, `TableHeader`, `TableBody`, `TableRow`, and `TableCell`.
+
+| Name       | PropType         | Description              | Example    |
+| ---------- | ---------------- | ------------------------ | ---------- |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
+| `position` | PropTypes.string | Set CSS `position` value | `relative` |
