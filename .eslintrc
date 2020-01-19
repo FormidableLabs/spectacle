@@ -28,37 +28,6 @@
     }
   },
   "rules": {
-    "prettier/prettier": "error",
-    "quotes": [
-      "error",
-      "single",
-      {
-        "allowTemplateLiterals": true
-      }
-    ],
-    "no-shadow": "error",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "comma-dangle": "off",
-    "complexity": "off",
-    "consistent-return": "warn",
-    "func-style": "off",
-    "indent": "off",
-    "max-len": "off",
-    "max-params": ["error", 5],
-    "no-invalid-this": "off",
-    "no-magic-numbers": "off",
-    "arrow-parens": "off",
-    "no-use-before-define": "off",
-    "no-undef": [
-      "error",
-      {
-        "typeof": true
-      }
-    ],
-    "react/jsx-filename-extension": "off",
-    "react/sort-comp": "warn",
-    "react/sort-prop-types": "warn",
-    "space-before-function-paren": "off"
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
   }
 }
