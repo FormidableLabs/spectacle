@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import { color, typography, space, compose } from 'styled-system';
 
-const Text = styled('div')(compose(color, typography, space));
+const Text = styled('div')(
+  compose(
+    color,
+    typography,
+    space
+  )
+);
 Text.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -11,13 +17,25 @@ Text.defaultProps = {
   margin: 'textMargin'
 };
 
-const CodeSpan = styled('code')(compose(color, typography, space));
+const CodeSpan = styled('code')(
+  compose(
+    color,
+    typography,
+    space
+  )
+);
 CodeSpan.defaultProps = {
   fontFamily: 'monospace',
   fontSize: 'text'
 };
 
-const Link = styled('a')(compose(color, typography, space));
+const Link = styled('a')(
+  compose(
+    color,
+    typography,
+    space
+  )
+);
 Link.defaultProps = {
   ...Text.defaultProps,
   textDecoration: 'underline',
@@ -52,7 +70,13 @@ Quote.defaultProps = {
   margin: 'textMargin'
 };
 
-const OrderedList = styled('ol')(compose(color, typography, space));
+const OrderedList = styled('ol')(
+  compose(
+    color,
+    typography,
+    space
+  )
+);
 OrderedList.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -61,7 +85,13 @@ OrderedList.defaultProps = {
   margin: 'listMargin'
 };
 
-const UnorderedList = styled('ul')(compose(color, typography, space));
+const UnorderedList = styled('ul')(
+  compose(
+    color,
+    typography,
+    space
+  )
+);
 UnorderedList.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -70,7 +100,13 @@ UnorderedList.defaultProps = {
   margin: 'listMargin'
 };
 
-const ListItem = styled('li')(compose(color, typography, space));
+const ListItem = styled('li')(
+  compose(
+    color,
+    typography,
+    space
+  )
+);
 
 ListItem.defaultProps = {
   margin: 'listMargin'
