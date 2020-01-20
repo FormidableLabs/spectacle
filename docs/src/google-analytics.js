@@ -14,5 +14,3 @@ export default ({ children, ...rest }) => {
   }
   return <Analytics>{children}</Analytics>;
 };
-
-export default GAnalytics;

@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { compose, layout, position } from 'styled-system';
 
-const Image = styled('img')(compose(layout, position));
+const Image = styled('img')(
+  compose(
+    layout,
+    position
+  )
+);
 
 const FullSizeImage = styled(Image);
 
