@@ -24,3 +24,9 @@ For more info about the query parameters Spectacle supports, please check out ou
 There are a variety of approaches to deploying your Spectacle presentation for viewership beyond your localhost, but the _preferred_ way is [TODO]().
 
 To deploy your slideshow to TODO,
+
+<a main="faq-3"></a>
+
+## Can I write my presentation in TypeScript?
+
+The short answer is: yes!

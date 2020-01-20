@@ -31,26 +31,26 @@ For complete examples of each presentation type, please see the [`examples/`](..
 
 ### MDX
 
-This approach involves statically generating your slides from a `.mdx` or .`md` file, which is accomplished using the [`spectacle-cli`][spectacle-cli]. With the CLI, you can either generate a new presentation (`spectacle-cli spectacle-boilerplate`) or you can serve up an existing Markdown/MDX file as a presentation (`spectacle -s`). It can be installed globally, locally, or used via `npx`.
+This approach involves statically generating your slides from a `.mdx` or .`md` file, which is accomplished using the [`spectacle-cli`](ttps://www.github.com/FormidableLabs/spectacle-cli). With the CLI, you can either generate a new presentation (`spectacle-cli spectacle-boilerplate`) or you can serve up an existing Markdown/MDX file as a presentation (`spectacle -s`). It can be installed globally, locally, or used via `npx`.
 
 ```bash
-# Global install using yarn
+# global install using yarn
 $ yarn global add spectacle-cli
 
-# Serving a presentation using npx
+# serving a presentation using npx
 $ npx spectacle-cli
 
-# Generating a new presentation using npx
+# generating a new presentation using npx
 $ npx -p spectacle-cli spectacle-boilerplate
 ```
 
 To serve a local Markdown or MDX file up as a presentation:
 
 ```bash
-# Navigate to the directory containing your slides
+# navigate to the directory containing your slides
 $ cd my-cool-presentation
 
-# Run the CLI (given there is a slides.md or slides.mdx in the CWD)
+# run the CLI (given there is a slides.md or slides.mdx in the CWD)
 $ spectacle -s
 ```
 
@@ -78,6 +78,47 @@ The bare minimum you'll want to use to build your presentation are the `Deck` el
 
 To see a complete example of a presentation written in JSX, please check out our [sample JSX presentation](../../examples/js/index.js).
 
+<a name="one-html-page"></a>
+
+### One HTML Page
+
+To create a Spectacle presentation that lives in a single HTML page, you will only need to add a few scripts to your setup:
+
+```html
+<script src="https://unpkg.com/react@16.10.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.10.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react-is@16.10.1/umd/react-is.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+<script src="https://unpkg.com/spectacle/dist/spectacle.js"></script>
+```
+
+... and then wrap your HTML in a declarative `module` script, like so:
+
+```html
+<script type="module">
+  // import Spectacle elements just like you might in JSX
+  const { Deck, Slide } = Spectacle;
+
+  // bind to the DOM
+  import htm from 'https://unpkg.com/htm@2.2.1?module';
+  const html = htm.bind(React.createElement);
+
+  // add some content
+  const deck = html`
+    <${Deck} theme=${customTheme}>
+        <${Slide}>
+            <${FlexBox} height="100%" flexDirection="column">
+              <${Heading} fontSize="150px">SPECTACLE</Heading>
+              <${Heading} fontSize="h2">A ReactJS Presentation Library</Heading>
+            <//>
+          <//>
+        <//>
+  `;
+</script>
+```
+
+To see a complete example of a presentation written as a single HTML page, please check out our [sample one page presentation](../../examples/one-page.html).
+
 <a name="presenting"></a>
 
 ## Presenting
@@ -96,7 +137,3 @@ To present:
 **Note:** Any windows/tabs in the same browser running Spectacle will sync to one another, even if you aren't in presentation mode.
 
 ![Two screens presenting the same Spectacle presentation](TODO)
-
-<!-- Links -->
-
-[spectacle-cli]: https://www.github.com/formidablelabs/spectacle-cli
