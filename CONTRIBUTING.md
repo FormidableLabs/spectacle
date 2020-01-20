@@ -74,6 +74,12 @@ $ yarn prettier-check
 $ yarn prettier-fix
 ```
 
+We also have a simple one-liner for running both of these fix-checks back-to-back:
+
+```
+$ yarn format
+```
+
 Note that there is duplication for JS code in `prettier` doing the same style changes,
 but both should be harmonious and run together.
 
@@ -84,20 +90,21 @@ ahead and submit a PR, make sure that you have done the following:
 
 - Run all checks using `yarn run check`.
 - Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
-  <!-- - Update the [type definitions](./index.d.ts) for anything
-  that modifies the Spectacle API, like breaking changes or new features. -->
+- Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API,
+  like breaking changes or new features.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
 ### Releasing a new version to NPM
 
 _Only for project administrators_.
 
-1. Update `CHANGELOG.md`, following format for previous versions
+1. Update [`CHANGELOG.md`](./CHANGELOG.md), following format for previous versions
 2. Commit as "Changes for version VERSION"
 3. Run `npm version patch` (or `minor|major|VERSION`) to run tests and lint,
    build published directories, then update `package.json` + add a git tag.
-4. Run `npm publish` and publish to NPM if all is well.
-5. Run `git push && git push --tags`
+4. If all is well, run `npm publish` to publish to NPM.
+5. Run `git push && git push --tags` to publish to Github.
+6. Go and manually draft a release for your recently pushed tag with notes in the [Github UI](https://github.com/FormidableLabs/spectacle/releases/new).
 
 ## Contributor Covenant Code of Conduct
 
