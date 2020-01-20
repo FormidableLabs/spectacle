@@ -9,9 +9,23 @@ import {
   space
 } from 'styled-system';
 
-const Box = styled('div')(compose(space, layout, position, color));
+const Box = styled('div')(
+  compose(
+    space,
+    layout,
+    position,
+    color
+  )
+);
 
-const FlexBox = styled('div')(compose(layout, space, flexbox, position));
+const FlexBox = styled('div')(
+  compose(
+    layout,
+    space,
+    flexbox,
+    position
+  )
+);
 
 FlexBox.defaultProps = {
   alignItems: 'center',
@@ -19,7 +33,13 @@ FlexBox.defaultProps = {
   display: 'flex'
 };
 
-const Grid = styled('div')(compose(layout, grid, position));
+const Grid = styled('div')(
+  compose(
+    layout,
+    grid,
+    position
+  )
+);
 
 Grid.defaultProps = {
   display: 'grid'
