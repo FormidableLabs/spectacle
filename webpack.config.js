@@ -19,7 +19,6 @@ module.exports = {
     filename: 'spectacle.min.js'
   },
   devtool: 'source-map',
-  // TODO: Confirm these are externals we want.
   // TODO: Document externals
   externals: {
     react: 'React',

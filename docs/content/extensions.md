@@ -14,7 +14,7 @@ Since the [release of v6](https://github.com/FormidableLabs/spectacle/releases/t
 - ... in updating your project if you're one of the folks with a now-deprecated tool.
 - ... with PR review and feedback if you're interested in writing a new tool and don't know where to start.
 
-To see a list of the extensions we've listed here in the past, please check out [the archive in git](TODO).
+To see a list of the extensions we've listed here in the past, please check out [the archive in git](https://github.com/FormidableLabs/spectacle/blob/3fd0e850ebab65758b1a4db04c8edef5f2cee81e/docs/content/extensions.md).
 
 <a name="formidable"></a>
 

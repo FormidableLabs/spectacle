@@ -56,7 +56,11 @@ $ open examples/one-page.html
 
 ### Testing
 
-TODO
+To run all tests:
+
+```bash
+yarn test
+```
 
 ### Linting and Formatting
 
@@ -88,7 +92,7 @@ but both should be harmonious and run together.
 Thanks for taking the time to help us make Spectacle even better! Before you go
 ahead and submit a PR, make sure that you have done the following:
 
-- Run all checks using `yarn run check`.
+- Run all checks using `yarn check-ci`.
 - Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
 - Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API,
   like breaking changes or new features.

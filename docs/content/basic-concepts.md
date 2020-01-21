@@ -136,4 +136,4 @@ To present:
 
 **Note:** Any windows/tabs in the same browser running Spectacle will sync to one another, even if you aren't in presentation mode.
 
-![Two screens presenting the same Spectacle presentation](TODO)
+![Gif of two screens presenting the same Spectacle presentation](TODO)
