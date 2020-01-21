@@ -17,31 +17,22 @@ const SlideContainer = styled('div')`
     height: 100vh;
     width: 100vw;
   }
-  ${({ autoLayout }) =>
-    autoLayout &&
-    css`
-      height: 100%;
-      display: flex;
-      flex-direction: column-reverse;
-    `}
 `;
 
 const SlideWrapper = styled('div')(
   color,
   space,
-  ({ autoLayout }) =>
-    autoLayout &&
-    css`
+  css`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    > div {
       flex: 1;
       display: flex;
       flex-direction: column;
-      > div {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-    `
+      justify-content: flex-start;
+    }
+  `
 );
 
 const TemplateWrapper = styled('div')(({ autoLayout }) =>
@@ -74,7 +65,6 @@ const InnerSlideRef = styled('div')`
 
 const Slide = props => {
   const {
-    autoLayout,
     children,
     slideNum,
     backgroundColor,
@@ -152,11 +142,10 @@ const Slide = props => {
   return (
     <SlideContainer
       ref={slideRef}
-      autoLayout={autoLayout}
       backgroundColor={state.printMode ? '#ffffff' : backgroundColor}
       style={transforms}
     >
-      <TemplateWrapper ref={templateRef} autoLayout={autoLayout}>
+      <TemplateWrapper ref={templateRef}>
         {typeof template === 'function' &&
           template({
             slideNumber: slideNum,
@@ -167,7 +156,6 @@ const Slide = props => {
         ref={slideWrapperRef}
         padding="slidePadding"
         color={textColor}
-        autoLayout={autoLayout}
       >
         <SlideContext.Provider value={value}>
           <InnerSlideRef ref={contentRef}>{children}</InnerSlideRef>
@@ -178,7 +166,6 @@ const Slide = props => {
 };
 
 Slide.propTypes = {
-  autoLayout: PropTypes.bool,
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
   scaleRatio: PropTypes.number,

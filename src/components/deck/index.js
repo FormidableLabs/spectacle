@@ -101,7 +101,6 @@ const Deck = props => {
     loop,
     keyboardControls,
     animationsWhenGoingBack,
-    autoLayout,
     backgroundColor,
     textColor,
     template
@@ -219,8 +218,7 @@ const Deck = props => {
       const staticSlides = filteredChildren.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
-          template,
-          autoLayout: Boolean(autoLayout)
+          template
         })
       );
       content = (
@@ -238,8 +236,7 @@ const Deck = props => {
       const staticSlides = filteredChildren.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
-          template,
-          autoLayout: Boolean(autoLayout)
+          template
         })
       );
       content = (
@@ -259,8 +256,7 @@ const Deck = props => {
             {React.cloneElement(filteredChildren[item], {
               slideNum: item,
               numberOfSlides,
-              template,
-              autoLayout: Boolean(autoLayout)
+              template
             })}
           </AnimatedDeckDiv>
         )
@@ -295,7 +291,6 @@ const Deck = props => {
 
 Deck.propTypes = {
   animationsWhenGoingBack: PropTypes.bool.isRequired,
-  autoLayout: PropTypes.bool,
   backgroundColor: PropTypes.string,
   children: PropTypes.node.isRequired,
   keyboardControls: PropTypes.oneOf(['arrows', 'space']),
