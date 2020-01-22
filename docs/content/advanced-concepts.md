@@ -63,9 +63,9 @@ There are a variety of ways to host your Spectacle presentation. Our preferred p
 
 ### Deploying with Github Pages
 
-[gh-pages][], if you're unfamiliar, is a simple way to host a static project directly from your Github profile. It deploys your project to a URL based on your username and repository name (e.g. your-username.github.io/your-repo-name).
+[gh-pages][] is a simple way to host a static project directly from your Github profile. It deploys your project to a URL based on your username and repository name (e.g. your-username.github.io/your-repo-name).
 
-1. Add the following keys to your package.json:
+1. Add the following keys to your package.json (assumes you have a `create-react-app`-based project):
 
    ```json
    "homepage": "<your-username>.github.io/<your-repo-name>",
