@@ -1,11 +1,9 @@
 /*
 /dist/*
-!/dist/spectacle*
+!/dist/spectacle*.js
 /dist/*.map
-!/es
-!/lib
-!/src
-!/docs
+!/es/**/*.js
+!/lib/**/*.js
 __snapshots__
 __mocks__
 *.test.js
