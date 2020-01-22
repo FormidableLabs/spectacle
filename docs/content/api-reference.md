@@ -21,10 +21,10 @@ These are the bare bones of a Spectacle presentation, the two most essential tag
 
 Wraps the entire presentation and carries most of the overarching slide logic, like theme and template context.
 
-| Props    | Type                        | Example |
-| -------- | --------------------------- | ------- |
-| theme    | [Custom Theme Object](TODO) | `TODO`  |
-| template | [Layout Render Prop](TODO)  | `TODO`  |
+| Props    | Type                                       |
+| -------- | ------------------------------------------ |
+| theme    | [Styled-system theme object](TODO)         |
+| template | [Template render function](#deck-template) |
 
 <a name="slide"></a>
 
@@ -32,132 +32,24 @@ Wraps the entire presentation and carries most of the overarching slide logic, l
 
 Wraps a single slide within your presentation; identifies what is contained to a single view.
 
-No props need to be directly passed to this tag as the `Deck` and semantic tags within the `Slide` should handle most of your layout and themeing, but should you need to override those presentation-wide props, you can pass a theme or template object directly into the `Slide`.
+No props are directly passed to this tag as the `Deck` and semantic tags within the `Slide` will handle most of your layout and theming.
 
 <a name="semantic-tags"></a>
 
-## Semantic Tags
+## Typography Tags
 
-The use of a semantic tag should be clear by its name. Semantic Tags are elements whose name describes its semantic use, i.e. a `Heading` is equal to an HTML `h`eader tag.
+These tags are for displaying textual content.
 
-| Tag Name                    | Accepts Props? | Example                                                                                                                   |
-| --------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| [CodePane](#CodePane)       | Y              | ``                                                                                                                        |
-| [CodeSpan](#CodeSpan)       | Y              | ``                                                                                                                        |
-| [Heading](#Heading)         | Y              | `<Heading color="secondary" fontSize="h2">A Secondary Heading</Heading>`                                                  |
-| [Image](#Image)             | Y              | `<Image src={FormidaLogo} width="250px" />`                                                                               |
-| [ListItem](#ListItem)       | Y              | `<OrderedList><ListItem color="primary">item uno</ListItem><ListItem color="secondary">item dos</ListItem></OrderedList>` |
-| [Markdown](#Markdown)       | N              | ``                                                                                                                        |
-| [Notes](#Notes)             | N              | `<Notes><ul><li>Notes are kept as children</li><li><i>and</i> you can still use HTML</li></ul></Notes>`                   |
-| [OrderedList](#OrderedList) | ??             | ``                                                                                                                        |
-| [Text](#Text)               | Y              | `<Text>a little sample of text</Text>`                                                                                    |
-
-<a name="codepane"></a>
-
-### CodePane
-
-Displays a block of code in a designated language.
-
-| Prop           | Type    |
-| -------------- | ------- |
-| autoFillHeight | Boolean |
-| fontSize       | Number  |
-| language\*     | String  |
-
-\*: Required
-
-<a name="codespan"></a>
-
-### CodeSpan
-
-Wraps a line of text in monospaced font.
-
-<a name="heading"></a>
-
-### Heading
-
-Represents an `h` tag within your presentation. It accepts a variety of props.
-
-| Props    | Type   | Example                     |
-| -------- | ------ | --------------------------- |
-| color    | String | `"primary", "#HEXCODETODO"` |
-| fontSize | String | `"h2", "350px"`             |
-
-<a name="image"></a>
-
-### Image
-
-| Props  | Type               |
-| ------ | ------------------ |
-| src\*  | String             |
-| height | `Number || String` |
-| width  | `Number || String` |
-
-\*: Required
-
-<a name="listitem"></a>
-
-### ListItem
-
-Wrapped by [`OrderedList`](#OrderedList) and either receives alignment, color, and size props from its parent, or those can be provided to the element directly.
-
-| Prop     | Type               |
-| -------- | ------------------ |
-| align    | String             |
-| color    | String             |
-| fontSize | `Number || String` |
-
-<a name="markdown"></a>
-
-### Markdown
-
-<a name="notes"></a>
-
-### Notes
-
-Allows a user to write notes to their future selves inside of a specific `Slide`, visible when [Presenter Mode](./basic-concepts.md#presenting) is in use.
-
-<a name="orderedlist"></a>
-
-### OrderedList
-
-Wraps [`ListItem](#ListItem)[s] and supplies alignment, color, and fontSize logic to its nested children.
-
-| Prop     | Type               |
-| -------- | ------------------ |
-| align    | String             |
-| color    | String             |
-| fontSize | `Number || String` |
-
-<a name="text"></a>
-
-### Text
-
-<a name="style-tags"></a>
-
-## Style Tags
-
-Style Tags exist to aid the styling of either `Deck` templates or specific `Slide`s. Some are decorative and can be sprinkled throughout your presentation, others are overarching choices you will make about your slideshow and how you would like to present it.
-
-<a name="appear"></a>
-
-### Appear
-
-<a name="box"></a>
-
-### Box
-
-<a name="flexbox"></a>
-
-### FlexBox
-
-<a name="fullscreen"></a>
-
-### FullScreen
-
-<a name="grid"></a>
-
-### Grid
+| Tag Name                                       | Theme Props                                                                                                             | Additional Props           | Default Props                                                                                                                                                    |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a name="text">**Text**</a>                    | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: textMargin                                       |
+| <a name="heading">**Heading**</a>              | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **color**: secondary<br /> **fontFamily**: header<br />**fontSize**: h1<br />**fontWeight**: bold<br />**textAlign**: center<br />**margin**: headerMargin       |
+| <a name="link">**Link**</a>                    | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)<br /> | **href**: PropTypes.string | **color**: quaternary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textDecoration**: underline<br />**textAlign**: left<br />**margin**: textMargin |
+| <a name="quote">**Quote**</a>                  | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)<br /> | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**borderLeft**: 1px solid secondary                          |
+| <a name="ordered-list">**OrderedList**</a>     | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
+| <a name="unordered-list">**UnorderedList**</a> | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
+| <a name="list-item">**ListItem**</a>           | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **margin**: listMargin                                                                                                                                           |
+| <a name="code-span">**CodeSpan**</a>           | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **fontFamily**: monospace<br />**fontSize**: text                                                                                                                |
 
 <a name="progress"></a>
 
@@ -171,6 +63,31 @@ Meant to serve as a callback to the origin Pacman-style progress bar from "Origi
 <Deck>
   <Progress />
 </Deck>
+```
+
+<a name="deck-template"></a>
+
+## Deck Template
+
+A template in Spectacle is a fixed overlay of components that are presented on every slide. They are similar to masters in Keynote or PowerPoint. It’s a function prop that has a single optional config object containing current slide and total slide count and returns a React Node.
+
+```jsx
+<Deck template=(({ slideNumber, numberOfSlides }) => (
+  <FlexBox
+    justifyContent="space-between"
+    position="absolute"
+    bottom={0}
+    width={1}
+  >
+    <Box padding="0 1em">
+      <FullScreen />
+    </Box>
+    <Box padding="1em">
+      <Progress />
+      Slide {slideNumber} of {numberOfSlides}
+    </Box>
+  </FlexBox>
+))>
 ```
 
 ![A screenshot of Progress in use](TODO)
