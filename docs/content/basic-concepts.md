@@ -31,10 +31,11 @@ For complete examples of each presentation type, please see the [`examples/`](..
 
 ### MDX
 
-This approach involves statically generating your slides from a `.mdx` or .`md` file, which is accomplished using the [`spectacle-cli`](ttps://www.github.com/FormidableLabs/spectacle-cli). With the CLI, you can either generate a new presentation (`spectacle-cli spectacle-boilerplate`) or you can serve up an existing Markdown/MDX file as a presentation (`spectacle -s`). It can be installed globally, locally, or used via `npx`.
+This approach involves statically generating your slides from a `.mdx` or .`md` file, which is accomplished with [`spectacle-cli`](ttps://www.github.com/FormidableLabs/spectacle-cli). With this package, you can either generate a new presentation (with the `spectacle-boilerplate` tool) or you can serve up an existing Markdown/MDX file as a presentation (with `spectacle -s`). It can be installed globally, locally, or used via `npx`.
 
 ```bash
-# global install using yarn
+# globally install `spectacle` and `spectacle-boilerplate` tools
+$ npm install --global spectacle-cli
 $ yarn global add spectacle-cli
 
 # serving a presentation using npx
@@ -44,7 +45,7 @@ $ npx spectacle-cli
 $ npx -p spectacle-cli spectacle-boilerplate
 ```
 
-To serve a local Markdown or MDX file up as a presentation:
+To serve a local Markdown or MDX file up as a presentation with the CLI tool:
 
 ```bash
 # navigate to the directory containing your slides
@@ -54,10 +55,11 @@ $ cd my-cool-presentation
 $ spectacle -s
 ```
 
-To generate a new presentation using the CLI's boilerplate feature:
+To generate a new MDX or MD presentation using the boilerplate tool:
 
 ```bash
-$ spectacle spectacle-boilerplate
+$ spectacle-boilerplate -m mdx
+$ spectacle-boilerplate -m md
 ```
 
 To see a more complete examples of a presentation generated with MDX or Markdown, please check out our three samples meant to be used with the CLI:
@@ -68,6 +70,8 @@ To see a more complete examples of a presentation generated with MDX or Markdown
 
 For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](./extensions#spectacle-cli).
 
+**Note:** If you want to create the build infrastructure for MDX support in a Spectacle deck, you can add the [`spectacle-mdx-loader`](https://github.com/FormidableLabs/spectacle-mdx-loader) plugin to your webpack configuration. Straight Markdown just requires the webpack `raw-loader`.
+
 <a name="jsx"></a>
 
 ### JSX
@@ -77,6 +81,12 @@ This approach is where you use the library's tags to compose your presentation. 
 The bare minimum you'll want to use to build your presentation are the `Deck` element and a `Slide` element. Each `Slide` represents a slide within your presentation `Deck` (the entire slideshow).
 
 To see a complete example of a presentation written in JSX, please check out our [sample JSX presentation](../../examples/js/index.js).
+
+You can also bootstrap a fresh project with `spectacle-boilerplate`:
+
+```bash
+$ spectacle-boilerplate
+```
 
 <a name="one-html-page"></a>
 
