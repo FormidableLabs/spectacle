@@ -3,22 +3,22 @@ title: Base Props
 order: 3
 ---
 
-<a name="Color"></a>
+<a name="color"></a>
 
-# Color
+## Color
 
-**Color** props are used by `CodeSpan`, `Text`, `Link`, `Heading`, `Quote`, `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableCell`, `UnorderedList`, `OrderedList`, and `ListItem`.
+**Color** props are used by [`CodeSpan`](/docs/api-reference#code-span), [`Text`](/docs/api-reference#text), [`Link`](/docs/api-reference#link), [`Heading`](/docs/api-reference#heading), [`Quote`](/docs/api-reference#quote), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), [`TableCell`](/docs/api-reference#table-cell), [`UnorderedList`](/docs/api-reference#unordered-list), [`OrderedList`](/docs/api-reference#ordered-list), and [`ListItem`](/docs/api-reference#list-item).
 
 | Name                      | PropType         | Description                                             | Example                  |
 | ------------------------- | ---------------- | ------------------------------------------------------- | ------------------------ |
 | `color`                   | PropTypes.string | Set CSS `color` value or `color` theme value            | `#abc123` or `primary`   |
 | `bg` or `backgroundColor` | PropTypes.string | Set CSS `background-color` value or `color` theme value | `#abc123` or `secondary` |
 
-<a name="Space"></a>
+<a name="space"></a>
 
-# Space
+## Space
 
-**Space** props used by `Box`, `FlexBox`, `Grid`, `CodeSpan`, `Text`, `Link`, `Heading`, `Quote`, `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableCell`, `UnorderedList`, `OrderedList`, and `ListItem`.
+**Space** props used by [`Box`](/docs/api-reference#box), [`FlexBox`](/docs/api-reference#flex-box), [`Grid`](/docs/api-reference#grid), [`CodeSpan`](/docs/api-reference#code-span), [`Text`](/docs/api-reference#text), [`Link`](/docs/api-reference#link), [`Heading`](/docs/api-reference#heading), [`Quote`](/docs/api-reference#quote), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), [`TableCell`](/docs/api-reference#table-cell), [`UnorderedList`](/docs/api-reference#unordered-list), [`OrderedList`](/docs/api-reference#ordered-list), and [`ListItem`](/docs/api-reference#list-item).
 
 | Name                    | PropType         | Description                                                             | Example                             |
 | ----------------------- | ---------------- | ----------------------------------------------------------------------- | ----------------------------------- |
@@ -37,27 +37,27 @@ order: 3
 | `px` or `paddingX`      | PropTypes.string | Set CSS `padding-left` and `padding-right` value or `space` theme value | `1em` or `secondary`                |
 | `py` or `paddingY`      | PropTypes.string | Set CSS `padding-top` and `padding-bottom` value or `space` theme value | `5px` or `tertiary`                 |
 
-<a name="Typography"></a>
+<a name="typography"></a>
 
-# Typography
+## Typography
 
-**Typography** props are used by `CodeSpan`, `Text`, `Link`, `Heading`, `Quote`, `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableCell`, `UnorderedList`, `OrderedList`, and `ListItem`.
+**Typography** props are used by [`CodeSpan`](/docs/api-reference#code-span), [`Text`](/docs/api-reference#text), [`Link`](/docs/api-reference#link), [`Heading`](/docs/api-reference#heading), [`Quote`](/docs/api-reference#quote), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), [`TableCell`](/docs/api-reference#table-cell), [`UnorderedList`](/docs/api-reference#unordered-list), [`OrderedList`](/docs/api-reference#ordered-list), and [`ListItem`](/docs/api-reference#list-item).
 
-| Name            | PropType         | Description                                                    | Example                     |
-| --------------- | ---------------- | -------------------------------------------------------------- | --------------------------- |
-| `fontFamily`    | PropTypes.string | Set CSS `font-family` value or `fonts` theme value             | `Helvetica` or `primary`    |
-| `fontSize`      | PropTypes.string | Set CSS `font-size` value or `fontSizes` theme value           | `16px` or `bodyCopy`        |
-| `fontWeight`    | PropTypes.string | Set CSS `font-weight` value or `fontWeights` theme value       | `400`, `bold`, or `heading` |
-| `lineHeight`    | PropTypes.string | Set CSS `line-height` value or `fontWeights` theme value       | `1.5em` or `paragraph`      |
-| `letterSpacing` | PropTypes.string | Set CSS `letter-spacing` value or `letterSpacings` theme value | `1px` or `spreadOutText`    |
-| `textAlign`     | PropTypes.string | Set CSS `text-align` value                                     | `left`                      |
-| `fontStyle`     | PropTypes.string | Set CSS `font-style` value                                     | `normal` or `italic`        |
+| Name            | PropType         | Description                                                    | Example                                                    |
+| --------------- | ---------------- | -------------------------------------------------------------- | ---------------------------------------------------------- |
+| `fontFamily`    | PropTypes.string | Set CSS `font-family` value or `fonts` theme value             | `Helvetica` or `primary`                                   |
+| `fontSize`      | PropTypes.string | Set CSS `font-size` value or `fontSizes` theme value           | `16px` or `bodyCopy`                                       |
+| `fontWeight`    | PropTypes.string | Set CSS `font-weight` value or `fontWeights` theme value       | `400`, `bold`, or [`Heading`](/docs/api-reference#heading) |
+| `lineHeight`    | PropTypes.string | Set CSS `line-height` value or `fontWeights` theme value       | `1.5em` or `paragraph`                                     |
+| `letterSpacing` | PropTypes.string | Set CSS `letter-spacing` value or `letterSpacings` theme value | `1px` or `spreadOutText`                                   |
+| `textAlign`     | PropTypes.string | Set CSS `text-align` value                                     | `left`                                                     |
+| `fontStyle`     | PropTypes.string | Set CSS `font-style` value                                     | `normal` or `italic`                                       |
 
-<a name="Layout"></a>
+<a name="layout"></a>
 
-# Layout
+## Layout
 
-**Layout** props are used by `Box`, `FlexBox`, `Grid`, `Table`, `TableHeader`, `TableBody`, `TableRow`, and `TableCell`.
+**Layout** props are used by [`Box`](/docs/api-reference#box), [`FlexBox`](/docs/api-reference#flex-box), [`Grid`](/docs/api-reference#grid), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), and [`TableCell`](/docs/api-reference#table-cell).
 
 | Name        | PropType                             | Description                                                                                                                                                                              | Example                                    |
 | ----------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
@@ -73,11 +73,11 @@ order: 3
 | `overflowX` | PropTypes.string                     | Set CSS `overflow-x` value                                                                                                                                                               | `hidden`                                   |
 | `overflowY` | PropTypes.string                     | Set CSS `overflow-y` value                                                                                                                                                               | `visible`                                  |
 
-<a name="Flex"></a>
+<a name="flex"></a>
 
-# Flex
+## Flex
 
-**Flex** props are used by `FlexBox`.
+**Flex** props are used by [`FlexBox`](/docs/api-reference#flex-box).
 
 | Name             | PropType                             | Description                     | Example         |
 | ---------------- | ------------------------------------ | ------------------------------- | --------------- |
@@ -92,11 +92,11 @@ order: 3
 | `alignSelf`      | PropTypes.string                     | Set CSS `align-self` value      | `center`        |
 | `order`          | PropTypes.number                     | Set CSS `order` value           | `1`             |
 
-<a name="Grid"></a>
+<a name="grid"></a>
 
-# Grid
+## Grid
 
-**Grid** props are used by `Grid`.
+**Grid** props are used by [`Grid`](/docs/api-reference#grid).
 
 | Name                  | PropType                             | Description                           | Example                                       |
 | --------------------- | ------------------------------------ | ------------------------------------- | --------------------------------------------- |
@@ -113,11 +113,11 @@ order: 3
 | `gridTemplateAreas`   | PropTypes.string                     | Set CSS `grid-template-area` value    | `a b` or `inherit`                            |
 | `gridArea`            | PropTypes.string                     | Set CSS `grid-area` value             | `a` or `2 / 1 / 4`                            |
 
-<a name="Position"></a>
+<a name="position"></a>
 
-# Position
+## Position
 
-**Position** props are used by `Box`, `FlexBox`, and `Grid`.
+**Position** props are used by [`Box`](/docs/api-reference#box), [`FlexBox`](/docs/api-reference#flex-box), and [`Grid`](/docs/api-reference#grid).
 
 | Name       | PropType         | Description              | Example    |
 | ---------- | ---------------- | ------------------------ | ---------- |
@@ -128,11 +128,11 @@ order: 3
 | `bottom`   | PropTypes.number | Set CSS `bottom` value   | `10`       |
 | `left`     | PropTypes.number | Set CSS `left` value     | `5`        |
 
-<a name="Border"></a>
+<a name="border"></a>
 
-# Border
+## Border
 
-**Border** props are used by `Box`, `FlexBox`, `Grid`, `Table`, `TableHeader`, `TableBody`, `TableRow`, and `TableCell`.
+**Border** props are used by [`Box`](/docs/api-reference#box), [`FlexBox`](/docs/api-reference#flex-box), [`Grid`](/docs/api-reference#grid), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), and [`TableCell`](/docs/api-reference#table-cell).
 
 | Name                      | PropType                             | Description                                    | Example              |
 | ------------------------- | ------------------------------------ | ---------------------------------------------- | -------------------- |
