@@ -1,9 +1,9 @@
 language: node_js
 
 node_js:
-  - "10"
-  - "12"
-  - "13"
+  - '10'
+  - '12'
+  - '13'
 
 # Use container-based Travis infrastructure.
 sudo: false
@@ -71,7 +71,7 @@ script:
 jobs:
   include:
     - stage: documentation
-      node_js: "12"
+      node_js: '12'
       script:
         - cd docs
         - yarn install --frozen-lockfile

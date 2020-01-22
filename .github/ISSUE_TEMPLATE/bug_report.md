@@ -14,7 +14,7 @@ Have you read Formidable's Code of Conduct? By filing an Issue, you are expected
 **Feel free to delete this section if you have checked off all of the following.**
 
 - [ ] I've searched open [issues](https://www.github.com/FormidableLabs/spectacle/issues) to make sure I'm not opening a duplicate issue
-- [ ] I have read through the [docs](TODO) before asking a question
+- [ ] I have read through the [docs](https://www.formidable.com/open-source/spectacle/docs) before asking a question
 - [ ] I am using the latest version of Spectacle
 
 ### Describe Your Environment

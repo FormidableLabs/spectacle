@@ -7,7 +7,25 @@ order: 4
 
 # Third Party Extensions
 
-- [Spectacle Code Slide](https://github.com/thejameskyle/spectacle-code-slide) - Step through lines of code using this awesome slide extension by @jamiebuilds
-- [Spectacle Terminal Slide](https://github.com/elijahmanor/spectacle-terminal) - Terminal component that can be used in a spectacle slide deck by @elijahmanor
-- [Spectacle Image Slide](https://github.com/FezVrasta/spectacle-image-slide) - Show a slide with a big image and a title on top
-- [Spectacle Codemirror](https://github.com/jonathan-fielding/spectacle) - Show a live code editor inside your slides
+In the past, developers across the open-source-iverse have created extensions for use within your Spectacle presentation.
+
+Since the [release of v6](https://github.com/FormidableLabs/spectacle/releases/tag/v6), the previously developed extensions are no longer compatible with the latest and greatest in Spectacle. We hope that changes soon, and we are happy to support you...
+
+- ... in updating your project if you're one of the folks with a now-deprecated tool.
+- ... with PR review and feedback if you're interested in writing a new tool and don't know where to start.
+
+To see a list of the extensions we've listed here in the past, please check out [the archive in git](https://github.com/FormidableLabs/spectacle/blob/3fd0e850ebab65758b1a4db04c8edef5f2cee81e/docs/content/extensions.md).
+
+<a name="formidable"></a>
+
+# Formidable Extensions
+
+There are a few companion projects that Formidable directly maintains.
+
+## `spectacle-cli`
+
+[![spectacle-cli npm version](https://badge.fury.io/js/spectacle-cli.svg)](http://badge.fury.io/js/spectacle-cli)
+
+A generation tool for serving or generating new presentation decks. Includes `spectacle` and `spectacle-boilerplate`.
+
+For complete documentation of the CLI, please check out [the repo](https://www.github.com/FormidableLabs/spectacle-cli).

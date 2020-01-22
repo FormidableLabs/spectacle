@@ -7,215 +7,133 @@ order: 1
 
 # Basic Concepts
 
-<a name="main-file"></a>
+<a name="installation"></a>
 
-## Main file
+## Installation
 
-Your presentation files & assets will live in the `presentation` folder.
+Installing Spectacle is as quick as you'd expect. Install it using your package manager of choice.
 
-The main `.js` file you write your deck in is `/presentation/index.js`
-
-Check it out [here](https://github.com/FormidableLabs/spectacle-boilerplate/blob/master/presentation/index.js) in the boilerplate.
-
-```jsx
-// index.js
-
-import React, { Component } from 'react';
-import {
-  Appear,
-  BlockQuote,
-  Cite,
-  CodePane,
-  Code,
-  Deck,
-  Fill,
-  Fit,
-  Heading,
-  Image,
-  Layout,
-  ListItem,
-  List,
-  Quote,
-  Slide,
-  Text
-} from 'spectacle';
-
-export default class extends Component {
-  render() {
-    return (
-      <Deck>
-        <Slide>
-          <Text>Hello</Text>
-        </Slide>
-      </Deck>
-    );
-  }
-}
+```bash
+$ yarn add spectacle
+# or
+$ npm install --save spectacle
 ```
-
-Here is where you can use the library's tags to compose your presentation. While you can use any JSX syntax here, building your presentation with the supplied tags allows for theming to work properly.
-
-The bare minimum you need to start is a `Deck` element and a `Slide` element. Each `Slide` element represents a slide inside of your slideshow.
-
-<a name="themes"></a>
-
-## Themes
-
-In Spectacle, themes are functions that return style objects for `screen` & `print`.
-
-You can import the default theme from:
-
-```jsx
-import createTheme from 'spectacle/lib/themes/default';
-```
-
-Or create your own based upon the source.
-
-`index.js` is what you would edit in order to create a custom theme of your own, using object based styles.
-
-You will want to edit `index.html` to include any web fonts or additional CSS that your theme requires.
-
-<a name="createthemecolors-fonts"></a>
-
-### createTheme(colors, fonts)
-
-Spectacle's functional theme system allows you to pass in color and font variables that you can use on your elements. The fonts configuration object can take a string for a system font or an object that specifies it‘s a Google Font. If you use a Google Font you can provide a styles array for loading different weights and variations. Google Font tags will be automatically created. See the example below:
-
-```jsx
-const theme = createTheme(
-  {
-    primary: 'red',
-    secondary: 'blue'
-  },
-  {
-    primary: 'Helvetica',
-    secondary: {
-      name: 'Droid Serif',
-      googleFont: true,
-      styles: ['400', '700i']
-    }
-  }
-);
-```
-
-The returned theme object can then be passed to the `Deck` tag via the `theme` prop, and will override the default styles.
 
 <a name="development"></a>
 
-# Development
+## Writing your Presentation
 
-After downloading the boilerplate, run the following commands on the project's root directory...
+After installing Spectacle, all of your presentation and style logic will live in a main file, while your content exists either inline (with JSX) or in a separate markdown file (using MDX).
 
-- `npm install` (you can also use `yarn`)
-- `rm -R .git` to remove the existing version control
-- `npm start` to start up the local server or visit [http://localhost:3000/#/](http://localhost:3000/#/)
+For complete examples of each presentation type, please see the [`examples/`](../../examples/README.md) dir.
 
-... and we are ready to roll
+<a name="mdx"></a>
 
-<a name="build--deployment"></a>
+### MDX
 
-# Build & Deployment
+This approach involves statically generating your slides from a `.mdx` or .`md` file, which is accomplished using the [`spectacle-cli`](ttps://www.github.com/FormidableLabs/spectacle-cli). With the CLI, you can either generate a new presentation (`spectacle-cli spectacle-boilerplate`) or you can serve up an existing Markdown/MDX file as a presentation (`spectacle -s`). It can be installed globally, locally, or used via `npx`.
 
-Building the dist version of the slides is as easy as running `npm run build:dist`
+```bash
+# global install using yarn
+$ yarn global add spectacle-cli
 
-If you want to deploy the slideshow to [surge](https://surge.sh/), run `npm run deploy`
+# serving a presentation using npx
+$ npx spectacle-cli
 
-_<span role="img" aria-label="Warning Sign">⚠️ </span> WARNING: If you are deploying the dist version to [GitHub Pages](https://pages.github.com/ 'GitHub Pages'), note that the built bundle uses an absolute path to the `/dist/` directory while GitHub Pages requires the relative `./dist/` to find any embedded assets and/or images. A very hacky way to fix this is to edit one place in the produced bundle, as shown [in this GitHub issue](https://github.com/FormidableLabs/spectacle/issues/326#issue-233283633 'GitHub: spectacle issue #326')._
+# generating a new presentation using npx
+$ npx -p spectacle-cli spectacle-boilerplate
+```
+
+To serve a local Markdown or MDX file up as a presentation:
+
+```bash
+# navigate to the directory containing your slides
+$ cd my-cool-presentation
+
+# run the CLI (given there is a slides.md or slides.mdx in the CWD)
+$ spectacle -s
+```
+
+To generate a new presentation using the CLI's boilerplate feature:
+
+```bash
+$ spectacle spectacle-boilerplate
+```
+
+To see a more complete examples of a presentation generated with MDX or Markdown, please check out our three samples meant to be used with the CLI:
+
+- [`.md` Example](../../examples/md)
+- [`.mdx` Example](../../examples/mdx)
+- [`.mdx` + Babel Example](../../examples/mdx-babel)
+
+For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](./extensions#spectacle-cli).
+
+<a name="jsx"></a>
+
+### JSX
+
+This approach is where you use the library's tags to compose your presentation. While you can mix in your own JSX syntax here, building your presentation with the supplied tags will allow for out-of-box themeing and layouts to work properly.
+
+The bare minimum you'll want to use to build your presentation are the `Deck` element and a `Slide` element. Each `Slide` represents a slide within your presentation `Deck` (the entire slideshow).
+
+To see a complete example of a presentation written in JSX, please check out our [sample JSX presentation](../../examples/js/index.js).
+
+<a name="one-html-page"></a>
+
+### One HTML Page
+
+To create a Spectacle presentation that lives in a single HTML page, you will only need to add a few scripts to your setup:
+
+```html
+<script src="https://unpkg.com/react@16.10.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.10.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react-is@16.10.1/umd/react-is.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+<script src="https://unpkg.com/spectacle/dist/spectacle.js"></script>
+```
+
+... and then wrap your HTML in a declarative `module` script, like so:
+
+```html
+<script type="module">
+  // import Spectacle elements just like you might in JSX
+  const { Deck, Slide } = Spectacle;
+
+  // bind to the DOM
+  import htm from 'https://unpkg.com/htm@2.2.1?module';
+  const html = htm.bind(React.createElement);
+
+  // add some content
+  const deck = html`
+    <${Deck} theme=${customTheme}>
+        <${Slide}>
+            <${FlexBox} height="100%" flexDirection="column">
+              <${Heading} fontSize="150px">SPECTACLE</Heading>
+              <${Heading} fontSize="h2">A ReactJS Presentation Library</Heading>
+            <//>
+          <//>
+        <//>
+  `;
+</script>
+```
+
+To see a complete example of a presentation written as a single HTML page, please check out our [sample one page presentation](../../examples/one-page.html).
 
 <a name="presenting"></a>
 
-# Presenting
+## Presenting
 
-Spectacle comes with a built in presenter mode. It shows you a slide lookahead, current time and your current slide:
+Spectacle comes with a built-in presenter mode. It shows you a slide lookahead, your current slide, current time (or time elapsed), and any notes you've appended to your slide:
 
-![http://i.imgur.com/jW8uMYY.png](http://i.imgur.com/jW8uMYY.png)
-
-You also have the option of a stopwatch to count the elapsed time:
-
-![http://i.imgur.com/VDltgmZ.png](http://i.imgur.com/VDltgmZ.png)
+![Screenshot of presenter mode in use](TODO)
 
 To present:
 
-- Run `npm start`. You will be redirected to a URL containing your presentation or visit [http://localhost:3000/#/](http://localhost:3000/#/)
-- Open a second browser window on a different screen
-- Add `?presenter` or `?presenter&timer` immediately after the `/`, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/?presenter&timer](http://localhost:3000/#/?presenter&timer)
-- Give an amazingly stylish presentation
+1. Run `yarn start`, which will open up a presentation at [localhost:3000/#](http://localhost:3000/#) by default.
+2. Open a second browser window on a different screen.
+3. Append [`?presenter`](http://localhost:3000/#/0?presenter) or [`?presenter&timer`](http://localhost:3000/#/0?presenter&timer) immediately after the `/#`
+4. Give an amazingly in-sync and stylish presentation.
 
-_NOTE: Any windows/tabs in the same browser that are running Spectacle will sync to one another, even if you don't want to use presentation mode_
+**Note:** Any windows/tabs in the same browser running Spectacle will sync to one another, even if you aren't in presentation mode.
 
-Check it out:
-
-![http://i.imgur.com/H7o2qHI.gif](http://i.imgur.com/H7o2qHI.gif_)
-
-You can toggle the presenter or overview mode by pressing respectively `alt+p` and `alt+o`.
-
-<a name="controls"></a>
-
-# Controls
-
-| Key Combination | Function                       |
-| --------------- | ------------------------------ |
-| Right Arrow     | Next Slide                     |
-| Left Arrow      | Previous Slide                 |
-| Space           | Next Slide                     |
-| Shift+Space     | Previous Slide                 |
-| Alt/Option + O  | Toggle Overview Mode           |
-| Alt/Option + P  | Toggle Presenter Mode          |
-| Alt/Option + T  | Toggle Timer in Presenter Mode |
-| Alt/Option + A  | Toggle autoplay (if enabled)   |
-| Alt/Option + F  | Toggle Fullscreen Mode         |
-
-<a name="fullscreen"></a>
-
-# Fullscreen
-
-Fullscreen can be toggled via browser options, <kbd>Alt/Option</kbd> + <kbd>F</kbd>, or by pressing the button in the bottom right corner of your window.
-
-Note: Right now, this works well when browser window itself is not full screen. When the browser is in fullscreen, there is an issue [#654](https://github.com/FormidableLabs/spectacle/issues/654). This is because we use the browser's FullScreen API methods. It still works but has some inconsistency.
-
-<a name="pdf-export"></a>
-
-# PDF Export
-
-You can export a PDF from your Spectacle presentation either from the command line or browser:
-
-### CLI
-
-- Run `npm install spectacle-renderer -g`
-- Run `npm start` on your project and wait for it to build and be available
-- Run `spectacle-renderer`
-
-A PDF is created in your project directory. For more options and configuration of this tool, check out:
-
-[https://github.com/FormidableLabs/spectacle-renderer](https://github.com/FormidableLabs/spectacle-renderer)
-
-### Browser
-
-After running `npm start` and opening [http://localhost:3000/#/](http://localhost:3000/#/) in your browser...
-
-- Add `?export` after the `/` on the URL of the page you are redirected to, e.g.: [http://localhost:3000/#/?export](http://localhost:3000/#/?export)
-- Bring up the print dialog `(ctrl or cmd + p)`
-- Change destination to "Save as PDF", as shown below:
-
-![https://i.imgur.com/fLeYrZC.png](https://i.imgur.com/fLeYrZC.png)
-
-If you want a printer friendly version, repeat the above process but instead print from [http://localhost:3000/#/?export&print](http://localhost:3000/#/?export&print).
-
-If you want to export your slides with your [notes](#notes) included, repeat the above process but instead print from [http://localhost:3000/#/?export&notes](http://localhost:3000/#/?export&notes).
-
-### Query Parameters
-
-Here is a list of all valid query parameters that can be placed after `/#/` on the URL.
-
-| Query               | Description                                                                                                          |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| 0, 1, 2, 3... etc.  | Will take you to the corresponding slide, with `0` being the first slide in the presentation.                        |
-| ?export             | Creates a single-page overview of your slides, that you can then print.                                              |
-| ?export&notes       | Creates a single-page overview of your slides, including any [notes](#notes), that you can then print.               |
-| ?export&print       | Creates a black & white single-page overview of your slides.                                                         |
-| ?export&print&notes | Creates a black & white single-page overview of your slides, including any [notes](#notes), that you can then print. |
-| ?presenter          | Takes you to presenter mode where you’ll see current slide, next slide, current time, and your [notes](#notes).      |
-| ?presenter&timer    | Takes you to presenter mode where you’ll see current slide, next slide, timer, and your [notes](#notes).             |
-| ?overview           | Take you to overview mode where you’ll see all your slides.                                                          |
-
-_NOTE: If you add a non-valid query parameter, you will be taken to a blank page. Removing or replacing the query parameter with a valid query parameter and refreshing the page will return you to the correct destination._
+![Gif of two screens presenting the same Spectacle presentation](TODO)
