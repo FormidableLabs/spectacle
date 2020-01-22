@@ -30,7 +30,7 @@
     "build-webpack-lib": "builder run build-webpack-base",
     "build-webpack-examples-js": "builder run build-webpack-base -- --config examples/js/webpack.config.js",
     "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev",
-    "build-examples": "builder concurrent --buffer build-webpack-examples-js",
+    "build-examples": "builder concurrent --buffer build-webpack-examples-js"
   },
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
