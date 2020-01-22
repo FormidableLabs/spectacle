@@ -25,9 +25,9 @@ $ yarn
 
 We have various deck scenarios in `examples` that are part of the development process.
 
-We normally just do `start:NAME` to run an in-memory dev server. But we also add a
-`yarn build-examples` script task to make sure we actually produce non-broken examples
-as a CI / assurance test.
+We follow the convention of `start:NAME` to run an in-memory dev server for a specific
+example, but we also have a `yarn build-examples` script task to make sure we're actually
+producing non-broken sample presentations as a CI / assurance test.
 
 #### `examples/js`
 
@@ -54,12 +54,75 @@ $ yarn build
 $ open examples/one-page.html
 ```
 
+_or_ use the single line:
+
+```bash
+$ yarn start:one-page
+```
+
+#### `examples/md`
+
+A basic deck written in markdown and served via the
+[spectacle-cli][]:
+
+```bash
+# start the dev server using spectacle-cli
+$ spectacle -s examples/md/slides.md
+
+# open the browser
+$ open http://localhost:3000/
+```
+
+_or_ use the single line:
+
+```bash
+$ yarn start:md
+```
+
+#### `examples/mdx`
+
+A basic deck written in [mdx][] and served via the
+[spectacle-cli][]:
+
+```bash
+# start the dev server using spectacle-cli
+$ spectacle -s examples/mdx/slides.mdx
+
+# open the browser
+$ open http://localhost:3000/
+```
+
+_or_ use the single line:
+
+```bash
+$ yarn start:mdx
+```
+
+#### `examples/mdx-babel`
+
+A basic deck written in [mdx][] and a custom babel config,
+served via the [spectacle-cli][]:
+
+```bash
+# start the dev server using spectacle-cli
+$ spectacle -s examples/mdx-babel/slides.mdx
+
+# open the browser
+$ open http://localhost:3000/
+```
+
+_or_ use the single line:
+
+```bash
+$ yarn start:mdx-babel
+```
+
 ### Testing
 
 To run all tests:
 
 ```bash
-yarn test
+$ yarn test
 ```
 
 ### Linting and Formatting
@@ -80,7 +143,7 @@ $ yarn prettier-fix
 
 We also have a simple one-liner for running both of these fix-checks back-to-back:
 
-```
+```bash
 $ yarn format
 ```
 
@@ -189,4 +252,6 @@ available at [https://www.contributor-covenant.org/version/2/0][cc-latest-versio
 [cc-latest-version]: https://www.contributor-covenant.org/version/2/0/code_of_conduct
 [formidable-github]: https://www.github.com/FormidableLabs
 [kale-stew]: https://www.github.com/kale-stew
+[mdx]: https://mdxjs.com/
+[spectacle-cli]: https://www.github.com/FormidableLabs/spectacle-cli
 [yarn-docs]: https://yarnpkg.com/en/docs/getting-started

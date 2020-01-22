@@ -22,13 +22,6 @@ To see a list of the extensions we've listed here in the past, please check out 
 
 There are a few companion projects that Formidable directly maintains.
 
-<!-- TODO --------------------------
-  where are spectacle-cli docs hosted?
-  I firmly do not want to duplicate docs
-  (spectacle-docs for a second time?)
-  so ideally we just read it from the hosted Readme
--->
-
 ## `spectacle-cli`
 
 [![spectacle-cli npm version](https://badge.fury.io/js/spectacle-cli.svg)](http://badge.fury.io/js/spectacle-cli)
@@ -36,11 +29,3 @@ There are a few companion projects that Formidable directly maintains.
 A generation tool for serving or generating new presentation decks. Includes `spectacle` and `spectacle-boilerplate`.
 
 For complete documentation of the CLI, please check out [the repo](https://www.github.com/FormidableLabs/spectacle-cli).
-
-## `spectacle-scripts`
-
-[![spectacle-scripts npm version](https://badge.fury.io/js/spectacle-scripts.svg)](http://badge.fury.io/js/spectacle-scripts)
-
-A TODO...
-
-For complete documentation of `spectacle-scripts`, please check out [the repo](https://www.github.com/FormidableLabs/spectacle-scripts).
