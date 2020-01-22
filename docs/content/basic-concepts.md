@@ -25,7 +25,7 @@ $ npm install --save spectacle
 
 After installing Spectacle, all of your presentation and style logic will live in a main file, while your content exists either inline (with JSX) or in a separate markdown file (using MDX).
 
-For complete examples of each presentation type, please see the [`examples/`](../../examples/README.md) dir.
+For complete examples of each presentation type, please see the [`examples/`](https://github.com/FormidableLabs/spectacle/tree/task/rewrite/examples/README.md) dir.
 
 <a name="mdx"></a>
 
@@ -80,9 +80,9 @@ This approach is where you use the library's tags to compose your presentation. 
 
 The bare minimum you'll want to use to build your presentation are the `Deck` element and a `Slide` element. Each `Slide` represents a slide within your presentation `Deck` (the entire slideshow).
 
-To see a complete example of a presentation written in JSX, please check out our [sample JSX presentation](../../examples/js/index.js).
+To see a complete example of a presentation written in JSX, please check out our [sample JSX presentation](https://github.com/FormidableLabs/spectacle/tree/task/rewrite/examples/js/index.js).
 
-You can also bootstrap a fresh project with `spectacle-boilerplate`:
+You can also bootstrap a fresh JSX project with `spectacle-boilerplate`:
 
 ```bash
 $ spectacle-boilerplate
@@ -116,18 +116,18 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
   // add some content
   const deck = html`
     <${Deck} theme=${customTheme}>
-        <${Slide}>
-            <${FlexBox} height="100%" flexDirection="column">
-              <${Heading} fontSize="150px">SPECTACLE</Heading>
-              <${Heading} fontSize="h2">A ReactJS Presentation Library</Heading>
-            <//>
-          <//>
+      <${Slide}>
+        <${FlexBox} height="100%" flexDirection="column">
+          <${Heading} fontSize="150px">SPECTACLE</Heading>
+          <${Heading} fontSize="h2">A ReactJS Presentation Library</Heading>
         <//>
+      <//>
+    <//>
   `;
 </script>
 ```
 
-To see a complete example of a presentation written as a single HTML page, please check out our [sample one page presentation](../../examples/one-page.html).
+To see a complete example of a presentation written as a single HTML page, please check out our [sample one page presentation](https://github.com/FormidableLabs/spectacle/tree/task/rewrite/examples/one-page.html).
 
 <a name="presenting"></a>
 
