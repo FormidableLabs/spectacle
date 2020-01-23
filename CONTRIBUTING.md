@@ -105,11 +105,22 @@ $ yarn link
 # In `spectacle-cli` repo
 $ yarn link spectacle
 
-# Check all MD examples per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#examples
+# Check all MDX, MD examples per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#examples
 $ yarn start:examples
 
-# Check all JS, MD boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#boilerplate
+# (In another shell) Check mdx:5000, mdx+babel:5001, md:5100
+$ open http://localhost:5000/ http://localhost:5001/ http://localhost:5100/
+
+# Check all JS, MDX, MD boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#boilerplate
+$ yarn clean:boilerplate
+$ yarn boilerplate:generate
+$ yarn boilerplate:install
 $ yarn start:boilerplate
+
+# (In another shell) Check mdx:6300, md:6100, js:6200
+# **Note**: These `yarn install` internally so will use latest published
+# `spectacle`, so results may be not entirely accurage.
+$ open http://localhost:6300/ http://localhost:6100/ http://localhost:6200/
 ```
 
 ### Testing
