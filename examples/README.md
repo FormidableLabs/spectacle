@@ -14,7 +14,6 @@ For more detailed documentation, please check out [the docs](https://formidable.
 - [One Page](#examplesone-page)
 - [Markdown](#examplesmd)
 - [MDX](#examplesmdx)
-- [MDX + Babel](#examplesmdx-babel)
 
 <a name="usage"></a>
 
@@ -60,52 +59,12 @@ $ yarn start:one-page
 
 #### `examples/md`
 
-```bash
-# start the dev server using spectacle-cli
-$ spectacle -s examples/md/slides.md
-
-# open the browser
-$ open http://localhost:3000/
-```
-
-_or_ use the single line:
+A basic deck written in markdown:
 
 ```bash
+# In one terminal open dev server
 $ yarn start:md
-```
 
-<a name="examples-mdx"></a>
-
-#### `examples/mdx`
-
-```bash
-# start the dev server using spectacle-cli
-$ spectacle -s examples/mdx/slides.mdx
-
-# open the browser
-$ open http://localhost:3000/
-```
-
-_or_ use the single line:
-
-```bash
-$ yarn start:mdx
-```
-
-<a name="examples-mdx-babel"></a>
-
-#### `examples/mdx-babel`
-
-```bash
-# start the dev server using spectacle-cli
-$ spectacle -s examples/mdx-babel/slides.mdx
-
-# open the browser
-$ open http://localhost:3000/
-```
-
-_or_ use the single line:
-
-```bash
-$ yarn start:mdx-babel
+# In another open a browser to 3100
+$ open http://localhost:3100/
 ```

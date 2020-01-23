@@ -62,9 +62,9 @@ $ spectacle spectacle-boilerplate
 
 To see a more complete examples of a presentation generated with MDX or Markdown, please check out our three samples meant to be used with the CLI:
 
-- [`.md` Example](../../examples/md)
-- [`.mdx` Example](../../examples/mdx)
-- [`.mdx` + Babel Example](../../examples/mdx-babel)
+- [`.md` Example](TODO_LINK_SPECTACLE)
+- [`.mdx` Example](TODO_LINK_SPECTACLE_MDX_LOADER)
+- [`.mdx` + Babel Example](TODO_LINK_SPECTACLE_CLI)
 
 For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](./extensions#spectacle-cli).
 

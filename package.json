@@ -6,9 +6,7 @@
   "module": "es/index.js",
   "scripts": {
     "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
-    "start:md": "npx spectacle-cli spectacle -s examples/md/slides.md",
-    "start:mdx": "npx spectacle-cli spectacle -s examples/mdx/slides.mdx",
-    "start:mdx-babel": "npx spectacle-cli spectacle -s examples/mdx-babel/slides.mdx",
+    "start:md": "webpack-dev-server --port=3100 --hot --config examples/md/webpack.config.js",
     "start:one-page": "open examples/one-page.html",
     "check": "yarn lint && yarn prettier-check && yarn test",
     "check-ci": "yarn run check",
@@ -29,8 +27,9 @@
     "build-webpack-lib-dev": "builder run build-webpack-base -- --config webpack.config.dev.js",
     "build-webpack-lib": "builder run build-webpack-base",
     "build-webpack-examples-js": "builder run build-webpack-base -- --config examples/js/webpack.config.js",
+    "build-webpack-examples-md": "builder run build-webpack-base -- --config examples/md/webpack.config.js",
     "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev",
-    "build-examples": "builder concurrent --buffer build-webpack-examples-js"
+    "build-examples": "builder concurrent --buffer build-webpack-examples-js build-webpack-examples-md"
   },
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",

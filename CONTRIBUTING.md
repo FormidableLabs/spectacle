@@ -62,59 +62,14 @@ $ yarn start:one-page
 
 #### `examples/md`
 
-A basic deck written in markdown and served via the
-[spectacle-cli][]:
+A basic deck written in markdown:
 
 ```bash
-# start the dev server using spectacle-cli
-$ spectacle -s examples/md/slides.md
-
-# open the browser
-$ open http://localhost:3000/
-```
-
-_or_ use the single line:
-
-```bash
+# In one terminal open dev server
 $ yarn start:md
-```
 
-#### `examples/mdx`
-
-A basic deck written in [mdx][] and served via the
-[spectacle-cli][]:
-
-```bash
-# start the dev server using spectacle-cli
-$ spectacle -s examples/mdx/slides.mdx
-
-# open the browser
-$ open http://localhost:3000/
-```
-
-_or_ use the single line:
-
-```bash
-$ yarn start:mdx
-```
-
-#### `examples/mdx-babel`
-
-A basic deck written in [mdx][] and a custom babel config,
-served via the [spectacle-cli][]:
-
-```bash
-# start the dev server using spectacle-cli
-$ spectacle -s examples/mdx-babel/slides.mdx
-
-# open the browser
-$ open http://localhost:3000/
-```
-
-_or_ use the single line:
-
-```bash
-$ yarn start:mdx-babel
+# In another open a browser to 3100
+$ open http://localhost:3100/
 ```
 
 ### Testing
