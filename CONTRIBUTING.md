@@ -118,8 +118,10 @@ $ yarn boilerplate:install
 $ yarn start:boilerplate
 
 # (In another shell) Check mdx:6300, md:6100, js:6200
+#
 # **Note**: These `yarn install` internally so will use latest published
-# `spectacle`, so results may be not entirely accurage.
+# `spectacle`, so results may be not entirely accurage. You may need to manually
+# update the installed contents in generated project `node_modules`.
 $ open http://localhost:6300/ http://localhost:6100/ http://localhost:6200/
 ```
 
