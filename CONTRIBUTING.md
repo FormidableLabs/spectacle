@@ -23,7 +23,22 @@ $ yarn
 
 ### Examples
 
-We have various deck scenarios in `examples` that are part of the development process.
+#### Overview
+
+Our examples are spread out across multiple projects depending on where the core technology lies. We publish most of these to `npm` for use in `spectacle-cli` project to either use with the CLI (`spectacle`) or generate a fresh project boilerplte (`spectacle-boilerplate`).
+
+- `spectacle`
+    - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/master/examples/js)
+    - [`examples/md`](https://github.com/FormidableLabs/spectacle/tree/master/examples/md)
+    - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/master/examples/one-page.html)
+- `spectacle-mdx-loader`
+    - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/mdx)
+- `spectacle-cli`
+    - [`examples/cli-mdx-babel`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/cli-mdx-babel): _Not published_
+
+#### This repository
+
+We have various deck scenarios in `examples` in this repository that are part of the development process.
 
 We follow the convention of `start:NAME` to run an in-memory dev server for a specific
 example, but we also have a `yarn build-examples` script task to make sure we're actually
@@ -90,10 +105,10 @@ $ yarn link
 # In `spectacle-cli` repo
 $ yarn link spectacle
 
-# Check all examples per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#examples
+# Check all MD examples per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#examples
 $ yarn start:examples
 
-# Check all boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#boilerplate
+# Check all JS, MD boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#boilerplate
 $ yarn start:boilerplate
 ```
 
