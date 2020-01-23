@@ -19,10 +19,10 @@ import {
   Progress,
   Slide,
   Text
-} from '../../src/';
-import SpectacleLogo from '../../src/components/logo';
+} from 'spectacle';
+import SpectacleLogo from 'spectacle/components/logo';
 
-const formidableLogo = require('./formidable.png');
+const formidableLogo = 'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
 const cppCodeBlock = `#include <iostream>
 #include <cstdlib>
 #include <sstream>
