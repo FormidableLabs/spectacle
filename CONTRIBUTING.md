@@ -79,6 +79,24 @@ $ yarn start:one-page
 
 **Note**: This file is published and used by `spectacle-cli`.
 
+### Examples integration with `spectacle-cli`
+
+`spectacle-cli` uses our `js,md,one-page` examples in the CLI and boilerplate tools. To check that changes to these files don't break `spectacle-cli` upstream, check with something like the following:
+
+```sh
+# In `spectacle` repo
+$ yarn link
+
+# In `spectacle-cli` repo
+$ yarn link spectacle
+
+# Check all examples per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#examples
+$ yarn start:examples
+
+# Check all boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#boilerplate
+$ yarn start:boilerplate
+```
+
 ### Testing
 
 To run all tests:
