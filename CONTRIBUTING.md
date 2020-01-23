@@ -34,31 +34,14 @@ producing non-broken sample presentations as a CI / assurance test.
 A basic deck with JSX and JavaScript:
 
 ```bash
-# In one terminal open dev server
+# start the dev server
 $ yarn start:js
 
-# In another open a browser to 3000
+# open the browser
 $ open http://localhost:3000/
 ```
 
-#### `examples/one-page`
-
-A self-contained single web page that uses Spectacle, React, and `htm` for a
-"no build" presentation!
-
-```bash
-# Build the library
-$ yarn build
-
-# Open the page in a web browser
-$ open examples/one-page.html
-```
-
-_or_ use the single line:
-
-```bash
-$ yarn start:one-page
-```
+**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
 
 #### `examples/md`
 
@@ -71,6 +54,30 @@ $ yarn start:md
 # In another open a browser to 3100
 $ open http://localhost:3100/
 ```
+
+**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
+
+#### `examples/one-page`
+
+A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
+
+```bash
+# [optional] build the library -
+#   comment out the unpkg dependency in
+#   one-page.html and use the local dist/
+$ yarn build
+
+# open the browser
+$ open examples/one-page.html
+```
+
+_or_ use the single line:
+
+```bash
+$ yarn start:one-page
+```
+
+**Note**: This file is published and used by `spectacle-cli`.
 
 ### Testing
 
