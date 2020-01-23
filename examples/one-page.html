@@ -36,42 +36,51 @@
         Notes,
         Markdown
       } = Spectacle;
+
       import htm from 'https://unpkg.com/htm@2.2.1?module';
       const html = htm.bind(React.createElement);
+
       // Example content.
-      const formidableLogo = './js/formidable.png';
-      const cppCodeBlock = `#include <iostream>
+      const formidableLogo =
+        'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
+
+      const cppCodeBlock = `
+      #include <iostream>
+
       int main()
       {
         auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
         auto answer = curried_add(7)(8);
         std::cout << answer << std::endl;
         return 0;
-      }`.replace(/      /gm, '');
-      const customTheme = {
+      }`.trimLeft().replace(/      /gm, '');
+
+      const theme = {
         space: {
           headerMargin: '0'
         }
       };
-      const deck = html`
+
+      const template = () => html`
+        <${FlexBox}
+          justifyContent="space-between"
+          position="absolute"
+          bottom=${0}
+          width=${1}
+        >
+          <${Box} padding="0 1em">
+            <${FullScreen} />
+          <//>
+          <${Box} padding="1em">
+            <${Progress} />
+          <//>
+        <//>
+      `;
+
+      const presentation = html`
         <${Deck}
-          theme=${customTheme}
-          template=${() =>
-            html`
-              <${FlexBox}
-                justifyContent="space-between"
-                position="absolute"
-                bottom=${0}
-                width=${1}
-              >
-                <${Box} padding="0 1em">
-                  <${FullScreen} />
-                <//>
-                <${Box} padding="1em">
-                  <${Progress} />
-                <//>
-              <//>
-            `}
+          theme=${theme}
+          template=${template}
         >
           <${Slide}>
             <${FlexBox} height="100%" flexDirection="column">
@@ -187,7 +196,8 @@
           <//>
         <//>
       `;
-      ReactDOM.render(deck, document.getElementById('root'));
+
+      ReactDOM.render(presentation, document.getElementById('root'));
     </script>
   </body>
 </html>

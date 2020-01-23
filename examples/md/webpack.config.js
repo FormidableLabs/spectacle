@@ -23,7 +23,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Spectacle JS Development Example',
+      title: 'Spectacle MD Development Example',
       template: `./index.html`
     })
   ],

@@ -29,13 +29,10 @@ const template = () => (
 import mdContent from './slides.md';
 // SPECTACLE_CLI_MD_END
 
-// TODO REMOVE
-console.log('TODO HERE', { mdContent });
-
-const MDSlides = () => (
-  <Deck loop={true} theme template>
-    <Markdown containsSlides={true}>{mdContent}</Markdown>
+const Presentation = () => (
+  <Deck loop theme={theme} template={template}>
+    <Markdown containsSlides>{mdContent}</Markdown>
   </Deck>
 );
 
-render(<MDSlides />, document.getElementById('root'));
+render(<Presentation />, document.getElementById('root'));
