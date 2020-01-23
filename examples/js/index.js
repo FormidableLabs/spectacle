@@ -22,7 +22,8 @@ import {
 } from 'spectacle';
 import SpectacleLogo from 'spectacle/components/logo';
 
-const formidableLogo = 'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
+const formidableLogo =
+  'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
 const cppCodeBlock = `#include <iostream>
 #include <cstdlib>
 #include <sstream>
