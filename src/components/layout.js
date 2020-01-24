@@ -13,7 +13,7 @@ import {
 const Box = styled('div')(compose(space, layout, position, color, border));
 
 const FlexBox = styled('div')(
-  compose(layout, space, flexbox, position, border)
+  compose(layout, space, flexbox, position, border, color)
 );
 
 FlexBox.defaultProps = {
