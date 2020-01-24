@@ -17,10 +17,10 @@ import {
   Notes,
   OrderedList,
   Progress,
+  SpectacleLogo,
   Slide,
   Text
 } from 'spectacle';
-import SpectacleLogo from 'spectacle/components/logo';
 
 // SPECTACLE_CLI_THEME_START
 const theme = {
