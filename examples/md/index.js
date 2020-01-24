@@ -3,6 +3,10 @@ import { render } from 'react-dom';
 
 import { Deck, FlexBox, Markdown, FullScreen, Progress, Box } from 'spectacle';
 
+// SPECTACLE_CLI_MD_START
+import mdContent from './slides.md';
+// SPECTACLE_CLI_MD_END
+
 // SPECTACLE_CLI_THEME_START
 const theme = {};
 // SPECTACLE_CLI_THEME_END
@@ -24,10 +28,6 @@ const template = () => (
   </FlexBox>
 );
 // SPECTACLE_CLI_TEMPLATE_END
-
-// SPECTACLE_CLI_MD_START
-import mdContent from './slides.md';
-// SPECTACLE_CLI_MD_END
 
 const Presentation = () => (
   <Deck loop theme={theme} template={template}>
