@@ -2,6 +2,10 @@
 
 =======
 
+## 6.0.0-alpha.6
+
+- Fix `one-page.html` unpkg script links.
+
 ## 6.0.0-alpha.5
 
 - Add color props support to Flex Box.
