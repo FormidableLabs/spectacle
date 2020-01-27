@@ -17,12 +17,44 @@ import {
   Notes,
   OrderedList,
   Progress,
+  SpectacleLogo,
   Slide,
   Text
-} from '../../src/';
-import SpectacleLogo from '../../src/components/logo';
+} from 'spectacle';
 
-const formidableLogo = require('./formidable.png');
+// SPECTACLE_CLI_THEME_START
+const theme = {
+  fonts: {
+    header: '"Open Sans Condensed", Helvetica, Arial, sans-serif',
+    text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
+  },
+  space: {
+    headerMargin: '0'
+  }
+};
+// SPECTACLE_CLI_THEME_END
+
+// SPECTACLE_CLI_TEMPLATE_START
+const template = () => (
+  <FlexBox
+    justifyContent="space-between"
+    position="absolute"
+    bottom={0}
+    width={1}
+  >
+    <Box padding="0 1em">
+      <FullScreen />
+    </Box>
+    <Box padding="1em">
+      <Progress />
+    </Box>
+  </FlexBox>
+);
+// SPECTACLE_CLI_TEMPLATE_END
+
+const formidableLogo =
+  'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
+
 const cppCodeBlock = `#include <iostream>
 #include <cstdlib>
 #include <sstream>
@@ -70,35 +102,8 @@ int main()
   return 0;
 }`;
 
-const customTheme = {
-  fonts: {
-    header: '"Open Sans Condensed", Helvetica, Arial, sans-serif',
-    text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
-  },
-  space: {
-    headerMargin: '0'
-  }
-};
-
-const TestJs = () => (
-  <Deck
-    theme={customTheme}
-    template={() => (
-      <FlexBox
-        justifyContent="space-between"
-        position="absolute"
-        bottom={0}
-        width={1}
-      >
-        <Box padding="0 1em">
-          <FullScreen />
-        </Box>
-        <Box padding="1em">
-          <Progress />
-        </Box>
-      </FlexBox>
-    )}
-  >
+const Presentation = () => (
+  <Deck theme={theme} template={template}>
     <Slide>
       <FlexBox height="100%">
         <SpectacleLogo size={500} />
@@ -225,4 +230,4 @@ const TestJs = () => (
   </Deck>
 );
 
-render(<TestJs />, document.getElementById('root'));
+render(<Presentation />, document.getElementById('root'));

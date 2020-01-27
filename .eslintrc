@@ -28,6 +28,7 @@
     }
   },
   "rules": {
+    "prettier/prettier": ["error"],
     "quotes": ["error", "single", { "allowTemplateLiterals": true }]
   }
 }

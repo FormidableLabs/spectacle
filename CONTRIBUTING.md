@@ -23,7 +23,22 @@ $ yarn
 
 ### Examples
 
-We have various deck scenarios in `examples` that are part of the development process.
+#### Overview
+
+Our examples are spread out across multiple projects depending on where the core technology lies. We publish most of these to `npm` for use in `spectacle-cli` project to either use with the CLI (`spectacle`) or generate a fresh project boilerplte (`spectacle-boilerplate`).
+
+- `spectacle`
+  - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/master/examples/js)
+  - [`examples/md`](https://github.com/FormidableLabs/spectacle/tree/master/examples/md)
+  - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/master/examples/one-page.html)
+- `spectacle-mdx-loader`
+  - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/mdx)
+- `spectacle-cli`
+  - [`examples/cli-mdx-babel`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/cli-mdx-babel): _Not published_
+
+#### This repository
+
+We have various deck scenarios in `examples` in this repository that are part of the development process.
 
 We follow the convention of `start:NAME` to run an in-memory dev server for a specific
 example, but we also have a `yarn build-examples` script task to make sure we're actually
@@ -34,23 +49,40 @@ producing non-broken sample presentations as a CI / assurance test.
 A basic deck with JSX and JavaScript:
 
 ```bash
-# In one terminal open dev server
+# start the dev server
 $ yarn start:js
 
-# In another open a browser to 3000
+# open the browser
 $ open http://localhost:3000/
 ```
 
-#### `examples/one-page`
+**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
 
-A self-contained single web page that uses Spectacle, React, and `htm` for a
-"no build" presentation!
+#### `examples/md`
+
+A basic deck written in markdown:
 
 ```bash
-# Build the library
+# In one terminal open dev server
+$ yarn start:md
+
+# In another open a browser to 3100
+$ open http://localhost:3100/
+```
+
+**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
+
+#### `examples/one-page`
+
+A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
+
+```bash
+# [optional] build the library -
+#   comment out the unpkg dependency in
+#   one-page.html and use the local dist/
 $ yarn build
 
-# Open the page in a web browser
+# open the browser
 $ open examples/one-page.html
 ```
 
@@ -60,61 +92,37 @@ _or_ use the single line:
 $ yarn start:one-page
 ```
 
-#### `examples/md`
+**Note**: This file is published and used by `spectacle-cli`.
 
-A basic deck written in markdown and served via the
-[spectacle-cli][]:
+### Examples integration with `spectacle-cli`
 
-```bash
-# start the dev server using spectacle-cli
-$ spectacle -s examples/md/slides.md
+`spectacle-cli` uses our `js,md,one-page` examples in the CLI and boilerplate tools. To check that changes to these files don't break `spectacle-cli` upstream, check with something like the following:
 
-# open the browser
-$ open http://localhost:3000/
-```
+```sh
+# In `spectacle` repo
+$ yarn link
 
-_or_ use the single line:
+# In `spectacle-cli` repo
+$ yarn link spectacle
 
-```bash
-$ yarn start:md
-```
+# Check all MDX, MD examples per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#examples
+$ yarn start:examples
 
-#### `examples/mdx`
+# (In another shell) Check mdx:5000, mdx+babel:5001, md:5100
+$ open http://localhost:5000/ http://localhost:5001/ http://localhost:5100/
 
-A basic deck written in [mdx][] and served via the
-[spectacle-cli][]:
+# Check all JS, MDX, MD boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#boilerplate
+$ yarn clean:boilerplate
+$ yarn boilerplate:generate
+$ yarn boilerplate:install
+$ yarn start:boilerplate
 
-```bash
-# start the dev server using spectacle-cli
-$ spectacle -s examples/mdx/slides.mdx
-
-# open the browser
-$ open http://localhost:3000/
-```
-
-_or_ use the single line:
-
-```bash
-$ yarn start:mdx
-```
-
-#### `examples/mdx-babel`
-
-A basic deck written in [mdx][] and a custom babel config,
-served via the [spectacle-cli][]:
-
-```bash
-# start the dev server using spectacle-cli
-$ spectacle -s examples/mdx-babel/slides.mdx
-
-# open the browser
-$ open http://localhost:3000/
-```
-
-_or_ use the single line:
-
-```bash
-$ yarn start:mdx-babel
+# (In another shell) Check mdx:6300, md:6100, js:6200
+#
+# **Note**: These `yarn install` internally so will use latest published
+# `spectacle`, so results may be not entirely accurage. You may need to manually
+# update the installed contents in generated project `node_modules`.
+$ open http://localhost:6300/ http://localhost:6100/ http://localhost:6200/
 ```
 
 ### Testing
