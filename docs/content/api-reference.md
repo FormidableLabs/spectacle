@@ -51,18 +51,55 @@ These tags are for displaying textual content.
 | <a name="list-item">**ListItem**</a>           | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **margin**: listMargin                                                                                                                                           |
 | <a name="code-span">**CodeSpan**</a>           | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **fontFamily**: monospace<br />**fontSize**: text                                                                                                                |
 
+## Layout Tags
+
+These tags are for adding structure to your slides.
+
+| Tag Name                           | Theme Props                                                                                                                                                                                                                       | Additional Props | Default Props     |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- |
+| <a name="box">**Box**</a>          | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br /> [**Border**](/docs/props#border)                                         | —                | —                 |
+| <a name="flex-box">**FlexBox**</a> | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br /> [**Border**](/docs/props#border)<br />[**Flex**](/docs/props#flex)<br /> | —                | —                 |
+| <a name="grid">**Grid**</a>        | [**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br />[**Grid**](/docs/props#grid)<br />                                                                                                                | —                | **display**: grid |
+
 <a name="progress"></a>
 
-### Progress
+## Progress
 
-Meant to serve as a callback to the origin Pacman-style progress bar from "Original Spectacle" (anything pre-v6). Add it to your presentation to give your audience a visual of progress throughout your presentation.
+Progress is a component with no children that just shows dots for each slide in your deck. Visited and current slides are represented by a filled circle and future slides with just a stroke. The size and color are customizable.
 
-```javascript
-// index.js
-// TODO - i'm sure this is wrong
-<Deck>
-  <Progress />
-</Deck>
+| Props | Type             | Example   |
+| ----- | ---------------- | --------- |
+| size  | PropTypes.number | `23`      |
+| color | PropTypes.string | `#abc123` |
+
+<a name="code-pane"></a>
+
+## Code Pane
+
+CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code. The Code Pane will trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. Optionally you can have the Code Pane fill the available empty space on your slide via the `autoFillHeight` prop. Themes are configurable objects and can be imported from the [prism-react-renderer themes](https://github.com/FormidableLabs/prism-react-renderer/tree/master/src/themes).
+
+| Props          | Type              | Example               |
+| -------------- | ----------------- | --------------------- |
+| autoFillHeight | PropTypes.boolean | `false`               |
+| children       | PropTypes.string  | `let name = "Carlos"` |
+| fontSize       | PropTypes.number  | `16`                  |
+| language       | PropTypes.string  | `javascript`          |
+| theme          | Prism Theme       | —                     |
+
+```jsx
+import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
+
+() => (
+  <Slide>
+    <CodePane language="javascript" theme={lightTheme}>
+      {`
+  function helloWorld() {
+    console.log('Hello World!');
+  }
+`}
+    </CodePane>
+  </Slide>
+);
 ```
 
 <a name="deck-template"></a>
