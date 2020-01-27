@@ -13,9 +13,17 @@ module.exports = {
     filename: 'example.js'
   },
   externals: {},
+  module: {
+    rules: base.module.rules.concat([
+      {
+        test: /\.md$/,
+        use: [require.resolve('raw-loader')]
+      }
+    ])
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Spectacle JS Development Example',
+      title: 'Spectacle MD Development Example',
       template: `./index.html`
     })
   ],

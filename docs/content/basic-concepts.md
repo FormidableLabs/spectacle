@@ -60,11 +60,11 @@ To generate a new presentation using the CLI's boilerplate feature:
 $ spectacle spectacle-boilerplate
 ```
 
-To see a more complete examples of a presentation generated with MDX or Markdown, please check out our three samples meant to be used with the CLI:
+To see a more complete examples of a presentation generated with MDX or Markdown, please check out our three samples available for use with the CLI as well as manual builds:
 
-- [`.md` Example](../../examples/md)
-- [`.mdx` Example](../../examples/mdx)
-- [`.mdx` + Babel Example](../../examples/mdx-babel)
+- [`.md` Example](https://github.com/FormidableLabs/spectacle/tree/master/examples/md) (`spectacle`)
+- [`.mdx` Example](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/mdx) (`spectacle-mdx-loader`)
+- [`.mdx` + Babel Example](https://github.com/FormidableLabs/spectacle-cli/tree/master/examples/cli-mdx-babel) (`spectacle-cli`)
 
 For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](./extensions#spectacle-cli).
 

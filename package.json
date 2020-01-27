@@ -6,9 +6,7 @@
   "module": "es/index.js",
   "scripts": {
     "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
-    "start:md": "npx spectacle-cli spectacle -s examples/md/slides.md",
-    "start:mdx": "npx spectacle-cli spectacle -s examples/mdx/slides.mdx",
-    "start:mdx-babel": "npx spectacle-cli spectacle -s examples/mdx-babel/slides.mdx",
+    "start:md": "webpack-dev-server --port=3100 --hot --config examples/md/webpack.config.js",
     "start:one-page": "open examples/one-page.html",
     "check": "yarn lint && yarn prettier-check && yarn test",
     "check-ci": "yarn run check",
@@ -29,8 +27,9 @@
     "build-webpack-lib-dev": "builder run build-webpack-base -- --config webpack.config.dev.js",
     "build-webpack-lib": "builder run build-webpack-base",
     "build-webpack-examples-js": "builder run build-webpack-base -- --config examples/js/webpack.config.js",
+    "build-webpack-examples-md": "builder run build-webpack-base -- --config examples/md/webpack.config.js",
     "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev",
-    "build-examples": "builder concurrent --buffer build-webpack-examples-js"
+    "build-examples": "builder concurrent --buffer build-webpack-examples-js build-webpack-examples-md"
   },
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
@@ -67,6 +66,7 @@
     "jest": "^24.9.0",
     "prettier": "^1.15.3",
     "prop-types": "^15.7.2",
+    "raw-loader": "^4.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "rimraf": "^3.0.0",

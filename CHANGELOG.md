@@ -2,8 +2,9 @@
 
 =======
 
-## Unreleased
+## UNRELEASED
 
+- Move around internal examples, and publish some for `spectacle-cli` usage.
 - Use top-center layout defaults for Spectacle. Drop `autoLayout` prop.
 - Add `border` styled-system props to `FlexBox` and `Box`.
 
