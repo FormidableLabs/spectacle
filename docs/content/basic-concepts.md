@@ -108,7 +108,7 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
   const { Deck, Slide } = Spectacle;
 
   // bind to the DOM
-  import htm from 'https://unpkg.com/htm@2.2.1?module';
+  import htm from 'https://unpkg.com/htm@^3?module';
   const html = htm.bind(React.createElement);
 
   // add some content

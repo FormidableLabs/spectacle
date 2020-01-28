@@ -34,10 +34,11 @@
         Text,
         Grid,
         Notes,
-        Markdown
+        Markdown,
+        SpectacleLogo
       } = Spectacle;
 
-      import htm from 'https://unpkg.com/htm@2.2.1?module';
+      import htm from 'https://unpkg.com/htm@^3?module';
       const html = htm.bind(React.createElement);
 
       // Example content.
@@ -82,6 +83,11 @@
           theme=${theme}
           template=${template}
         >
+        <${Slide}>
+            <${FlexBox} height="100%">
+              <${SpectacleLogo} size=${500} />
+            <//>
+          <//>
           <${Slide}>
             <${FlexBox} height="100%" flexDirection="column">
               <${Heading} fontSize="150px">SPECTACLE<//>
