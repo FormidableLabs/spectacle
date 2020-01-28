@@ -2,6 +2,10 @@
 
 =======
 
+## 6.0.0-alpha.7
+
+- Fix `one-page.html` closing tags.
+
 ## 6.0.0-alpha.6
 
 - Fix `one-page.html` unpkg script links.
