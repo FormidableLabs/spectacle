@@ -30,7 +30,6 @@ A collection of tools for serving or generating new presentation decks. Includes
 
 For complete documentation of the CLI, please check out [the repo](https://www.github.com/FormidableLabs/spectacle-cli).
 
-
 ## `spectacle-mdx-loader`
 
 [![spectacle-mdx-loader npm version](https://badge.fury.io/js/spectacle-mdx-loader.svg)](http://badge.fury.io/js/spectacle-mdx-loader)
