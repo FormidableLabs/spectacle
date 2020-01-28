@@ -34,7 +34,7 @@ declare module 'spectacle' {
     children: React.ReactNode;
     elementNum: number;
     transitionEffect: {
-      from: Record<string, number | string>;
+      to: Record<string, number | string>;
       from: Record<string, number | string>;
     };
   }>;
@@ -48,5 +48,21 @@ declare module 'spectacle' {
   export const Text: React.FC<TypographyProps>;
   export const CodeSpan: React.FC<TypographyProps>;
   export const Heading: React.FC<TypographyProps>;
-  export const Link: React.FC<TypographyProps & React.AnchorHTMLAttributes>;
+  export const Link: React.FC<TypographyProps & React.AnchorHTMLAttributes<{}>>;
+
+  type BoxProps = {
+    children: React.ReactNode;
+  } & StyledSystem.ColorProps &
+    StyledSystem.SpaceProps &
+    StyledSystem.LayoutProps &
+    StyledSystem.PositionProps &
+    StyledSystem.BorderProps;
+
+  export const Box: React.FC<BoxProps>;
+  export const FlexBox: React.FC<BoxProps & StyledSystem.FlexProps>;
+  export const Grid: React.FC<{
+    children: React.ReactNode;
+  } & StyledSystem.LayoutProps &
+    StyledSystem.GridProps &
+    StyledSystem.PositionProps>;
 }
