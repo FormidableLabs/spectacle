@@ -26,6 +26,14 @@ There are a few companion projects that Formidable directly maintains.
 
 [![spectacle-cli npm version](https://badge.fury.io/js/spectacle-cli.svg)](http://badge.fury.io/js/spectacle-cli)
 
-A generation tool for serving or generating new presentation decks. Includes `spectacle` and `spectacle-boilerplate`.
+A collection of tools for serving or generating new presentation decks. Includes `spectacle` and `spectacle-boilerplate`.
 
 For complete documentation of the CLI, please check out [the repo](https://www.github.com/FormidableLabs/spectacle-cli).
+
+## `spectacle-mdx-loader`
+
+[![spectacle-mdx-loader npm version](https://badge.fury.io/js/spectacle-mdx-loader.svg)](http://badge.fury.io/js/spectacle-mdx-loader)
+
+A webpack MDX loader for Spectacle presentations.
+
+See [the repository](https://www.github.com/FormidableLabs/spectacle-mdx-loader) for usage, integration, and more information.
