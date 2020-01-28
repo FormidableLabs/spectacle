@@ -29,7 +29,7 @@ After installing Spectacle, all of your presentation and style logic will live i
 
 ### MDX/Markdown
 
-This approach involves statically generating your slides from a `.mdx` or .`md` file, which is accomplished with [`spectacle-cli`](ttps://www.github.com/FormidableLabs/spectacle-cli). With this package, you can either generate a new presentation (with the `spectacle-boilerplate` tool) or you can serve up an existing MDX/Markdown file as a presentation (with `spectacle -s`). It can be installed globally, locally, or used via `npx`.
+This approach involves statically generating your slides from a `.mdx` or .`md` file, which is accomplished with [`spectacle-cli`](https://www.github.com/FormidableLabs/spectacle-cli). With this package, you can either generate a new presentation (with the `spectacle-boilerplate` tool) or you can serve up an existing MDX/Markdown file as a presentation (with `spectacle -s`). It can be installed globally, locally, or used via `npx`.
 
 ```bash
 # globally install `spectacle` and `spectacle-boilerplate` tools
