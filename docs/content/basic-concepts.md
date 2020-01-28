@@ -116,8 +116,8 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
     <${Deck} theme=${customTheme}>
       <${Slide}>
         <${FlexBox} height="100%" flexDirection="column">
-          <${Heading} fontSize="150px">SPECTACLE</Heading>
-          <${Heading} fontSize="h2">A ReactJS Presentation Library</Heading>
+          <${Heading} fontSize="150px">SPECTACLE<//>
+          <${Heading} fontSize="h2">A ReactJS Presentation Library<//>
         <//>
       <//>
     <//>
