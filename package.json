@@ -4,6 +4,7 @@
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "types": "index.d.ts",
   "scripts": {
     "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
     "start:md": "webpack-dev-server --port=3100 --hot --config examples/md/webpack.config.js",
@@ -50,6 +51,8 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@types/react": "^16.9.19",
+    "@types/styled-system": "^5.1.4",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "builder": "^4.0.0",
