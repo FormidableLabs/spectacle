@@ -23,7 +23,7 @@ const EXECA_OPTS = {
 };
 
 const { log } = console;
-const logMsg = msg => log(chalk`[{cyan deploy/surge}] ${msg}`);
+const logMsg = msg => log(chalk`[{cyan deploy/aws}] ${msg}`);
 
 const main = async ({ isDryRun }) => {
   logMsg(chalk`Uploading files to {cyan ${DEST}}`);
