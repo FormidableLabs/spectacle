@@ -39,6 +39,17 @@ declare module 'spectacle' {
     };
   }>;
 
+  export const CodePane: React.FC<{
+    children: React.ReactNode;
+    autoFillHeight: boolean;
+    fontSize?: number;
+    language: string;
+    theme?: {
+      plain: Record<string, string>;
+      styles: Array<{ types: Array<string>; style: Record<string, string> }>;
+    };
+  }>;
+
   type TypographyProps = {
     children: React.ReactNode;
   } & StyledSystem.ColorProps &
@@ -48,6 +59,10 @@ declare module 'spectacle' {
   export const Text: React.FC<TypographyProps>;
   export const CodeSpan: React.FC<TypographyProps>;
   export const Heading: React.FC<TypographyProps>;
+  export const ListItem: React.FC<TypographyProps>;
+  export const Quote: React.FC<TypographyProps>;
+  export const OrderedList: React.FC<TypographyProps>;
+  export const UnorderedList: React.FC<TypographyProps>;
   export const Link: React.FC<TypographyProps & React.AnchorHTMLAttributes<{}>>;
 
   type BoxProps = {
@@ -65,4 +80,40 @@ declare module 'spectacle' {
   } & StyledSystem.LayoutProps &
     StyledSystem.GridProps &
     StyledSystem.PositionProps>;
+
+  export const Image: React.FC<React.ImgHTMLAttributes &
+    StyledSystem.LayoutProps &
+    StyledSystem.PositionProps>;
+
+  export const FullSizeImage: React.FC<React.ImgHTMLAttributes &
+    StyledSystem.LayoutProps &
+    StyledSystem.PositionProps>;
+
+  export const Notes: React.FC<{
+    children: React.ReactNode;
+  }>;
+
+  export const Progress: React.FC<{
+    color: string;
+    size: number;
+  }>;
+
+  export const FullScreen: React.FC<{
+    color: string;
+    size: number;
+  }>;
+
+  export const Markdown: React.FC<{
+    children: React.ReactNode;
+    containsSlides?: boolean;
+  }>;
+
+  export const SpectacleLogo: React.FC<{
+    size: number;
+  }>;
+
+  export const mdxComponentMap: Record<string, JSX.Element>;
+
+  export const isolateNotes: (content: string) => string;
+  export const remoteNotes: (content: string) => string;
 }
