@@ -81,11 +81,11 @@ declare module 'spectacle' {
     StyledSystem.GridProps &
     StyledSystem.PositionProps>;
 
-  export const Image: React.FC<React.ImgHTMLAttributes &
+  export const Image: React.FC<React.ImgHTMLAttributes<{}> &
     StyledSystem.LayoutProps &
     StyledSystem.PositionProps>;
 
-  export const FullSizeImage: React.FC<React.ImgHTMLAttributes &
+  export const FullSizeImage: React.FC<React.ImgHTMLAttributes<{}> &
     StyledSystem.LayoutProps &
     StyledSystem.PositionProps>;
 
