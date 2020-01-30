@@ -63,117 +63,91 @@
       };
 
       const template = () => html`
-        <${FlexBox}
-          justifyContent="space-between"
-          position="absolute"
-          bottom=${0}
-          width=${1}
-        >
+        <${FlexBox} justifyContent="space-between" position="absolute" bottom=${0} width=${1}>
           <${Box} padding="0 1em">
-            <${FullScreen} />
-          <//>
+            <${FullScreen}/>
+          </${Box}>
           <${Box} padding="1em">
-            <${Progress} />
-          <//>
-        <//>
+            <${Progress}/>
+          </${Box}>
+        </${FlexBox}>
       `;
 
       const presentation = html`
-        <${Deck}
-          theme=${theme}
-          template=${template}
-        >
-        <${Slide}>
+        <${Deck} theme=${theme} template=${template}>
+          <${Slide}>
             <${FlexBox} height="100%">
               <${SpectacleLogo} size=${500} />
-            <//>
-          <//>
+            </${FlexBox}>
+          </${Slide}>
           <${Slide}>
             <${FlexBox} height="100%" flexDirection="column">
-              <${Heading} fontSize="150px">SPECTACLE<//>
-              <${Heading} fontSize="h2">A ReactJS Presentation Library<//>
-              <${Heading} color="primary" fontSize="h3">
-                Where you can write your decks in JSX, Markdown, or MDX!
-              <//>
-            <//>
-          <//>
-          <${Slide}>
-            <${CodePane} autoFillHeight fontSize=${18} language="cpp">
-              ${cppCodeBlock}
-            <//>
+              <${Heading} fontSize="150px">SPECTACLE</${Heading}>
+              <${Heading} fontSize="h2">A ReactJS Presentation Library</${Heading}>
+              <${Heading} color="primary" fontSize="h3">Where you can write your decks in JSX, Markdown, or MDX!</${Heading}>
+            </${FlexBox}>
             <${Notes}>
-              <p>
-                This is a code pane! It can support multiple programming
-                languages.
-              <//>
-            <//>
-          <//>
+              <p>Notes are shown in presenter mode. Open up localhost:3000/?presenterMode=true to see them.</p>
+            </${Notes}>
+          </${Slide}>
           <${Slide}>
-            <${Heading}>Animated Elements<//>
+            <${Heading}>Code Blocks</${Heading}>
+            <${CodePane} fontSize=${18} language="cpp" autoFillHeight>${cppCodeBlock}</${CodePane}>
+            <${Text}>Code Blocks now auto size and scroll when there is an overflow of content! They also auto-wrap longer lines.</${Text}>
+          </${Slide}>
+          <${Slide}>
+            <${Heading}>Animated Elements</${Heading}>
             <${OrderedList}>
               <${Appear} elementNum=${0}>
-                <${ListItem}>Elements can animate in!<//>
-              <//>
+                <${ListItem}>Elements can animate in!</${ListItem}>
+              </${Appear}>
               <${Appear} elementNum=${2}>
-                <${ListItem}>
-                  Just identify the order with the prop <${CodeSpan}>elementNum<//>!
-                <//>
-              <//>
+                <${ListItem}>Just identify the order with the prop <${CodeSpan}>elementNum</${CodeSpan}>!</${ListItem}>
+              </${Appear}>
               <${Appear} elementNum=${1}>
-                <${ListItem}>Out of order<//>
-              <//>
-            <//>
-          <//>
+                <${ListItem}>Out of order</${ListItem}>
+              </${Appear}>
+            </${OrderedList}>
+          </${Slide}>
           <${Slide}>
             <${FlexBox}>
-              <${Text}>These<//>
-              <${Text}>Text<//>
-              <${Text} color="secondary">Items<//>
-              <${Text} fontWeight="bold">Flex<//>
-            <//>
+              <${Text}>These</${Text}>
+              <${Text}>Text</${Text}>
+              <${Text} color="secondary">Items</${Text}>
+              <${Text} fontWeight="bold">Flex</${Text}>
+            </${FlexBox}>
             <${Grid} gridTemplateColumns="1fr 2fr" gridColumnGap=${15}>
               <${Box} backgroundColor="primary">
-                <${Text} color="secondary">Single-size Grid Item<//>
-              <//>
+                <${Text} color="secondary">Single-size Grid Item</${Text}>
+              </${Box}>
               <${Box} backgroundColor="secondary">
-                <${Text}>Double-size Grid Item<//>
-              <//>
-            <//>
-            <${Heading}>Lots of Formidables!<//>
-            <${Grid}
-              gridTemplateColumns="1fr 1fr 1fr"
-              gridTemplateRows="1fr 1fr 1fr"
-              alignItems="center"
-              justifyContent="center"
-              gridRowGap=${15}
-            >
-              ${Array(9)
-                .fill('')
-                .map(
-                  (_, index) =>
-                    html`
-                      <${FlexBox} key="formidable-logo-${index}">
-                        <${Image} src=${formidableLogo} width=${100} />
-                      <//>
-                    `
-                )}
-            <//>
-          <//>
+                <${Text}>Double-size Grid Item</${Text}>
+              </${Box}>
+            </${Grid}>
+            <${Heading}>Create Grids in Spectacle</${Heading}>
+            <${Grid} gridTemplateColumns="1fr 1fr 1fr" gridTemplateRows="1fr 1fr 1fr" alignItems="center" justifyContent="center" gridRowGap=${15}>
+              ${Array(9).fill('').map((_, index) => html`
+                <${FlexBox} key=${`formidable-logo-${index}`} flex=${1}>
+                  <${Image} src=${formidableLogo} width=${100} />
+                </${FlexBox}>`
+              )}
+            </${Grid}>
+          </${Slide}>
           <${Slide}>
             <${Markdown}>
               ${`
                 # Layout Tables in Markdown
 
-                | Browser         | Supported | Versions |
+                | Browser | Supported | Versions |
                 |-----------------|-----------|----------|
-                | Chrome          | Yes       | Last 2   |
-                | Firefox         | Yes       | Last 2   |
-                | Opera           | Yes       | Last 2   |
-                | Edge (EdgeHTML) | No        |          |
-                | IE 11           | No        |          |
+                | Chrome | Yes | Last 2 |
+                | Firefox | Yes | Last 2 |
+                | Opera | Yes | Last 2 |
+                | Edge (EdgeHTML) | No | |
+                | IE 11 | No | |
               `}
-            <//>
-          <//>
+            </${Markdown}>
+          </${Slide}>
           <${Markdown} containsSlides>
             ${`
               ### Even write multiple slides in Markdown
@@ -182,8 +156,9 @@
               1. Even create
               2. Lists in Markdown
 
+
               - Or Unordered Lists
-              - Too!
+              - Too!!
               Notes: These are notes
               ---
               ### This slide was also generated in Markdown!
@@ -198,9 +173,11 @@
               \`\`\`c
               char[] someString = "Popular languages like C too!";
               \`\`\`
+
+              Notes: These are more notes
             `}
-          <//>
-        <//>
+          </${Markdown}>
+        </${Deck}>
       `;
 
       ReactDOM.render(presentation, document.getElementById('root'));
