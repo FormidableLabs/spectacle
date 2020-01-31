@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 
 import {
   Appear,
@@ -230,4 +230,4 @@ const Presentation = () => (
   </Deck>
 );
 
-render(<Presentation />, document.getElementById('root'));
+ReactDOM.render(<Presentation />, document.getElementById('root'));
