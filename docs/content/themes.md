@@ -95,7 +95,3 @@ The following CSS properties are divided into the below theme keys:
 | `letterSpacings` | `letter-spacing`                                                        |
 | `shadows`        | `box-shadow`, `text-shadow`                                             |
 | `zIndices`       | `z-index`                                                               |
-
-```
-
-```
