@@ -177,7 +177,7 @@ const Presentation = () => (
         {Array(9)
           .fill('')
           .map((_, index) => (
-            <FlexBox padding={0} key={`formidable-logo-${index}`} flex={1}>
+            <FlexBox paddingTop={0} key={`formidable-logo-${index}`} flex={1}>
               <Image src={formidableLogo} width={100} />
             </FlexBox>
           ))}

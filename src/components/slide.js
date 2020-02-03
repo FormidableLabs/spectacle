@@ -152,7 +152,7 @@ const Slide = props => {
             numberOfSlides: numberOfSlides
           })}
       </TemplateWrapper>
-      <SlideWrapper ref={slideWrapperRef} padding={4} color={textColor}>
+      <SlideWrapper ref={slideWrapperRef} padding={2} color={textColor}>
         <SlideContext.Provider value={value}>
           <InnerSlideRef ref={contentRef}>{children}</InnerSlideRef>
         </SlideContext.Provider>
