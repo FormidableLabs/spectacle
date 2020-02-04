@@ -1,26 +1,4 @@
 {
-  "public": "dist",
-  "trailingSlash": true,
-  "rewrites": [
-    {
-      "source": "open-source/spectacle",
-      "destination": "/index.html"
-    },
-    {
-      "source": "open-source/spectacle/:file",
-      "destination": "/:file"
-    },
-    {
-      "source": "open-source/spectacle/:one/:file",
-      "destination": "/:one/:file"
-    },
-    {
-      "source": "open-source/spectacle/:one/:two/:file",
-      "destination": "/:one/:two/:file"
-    },
-    {
-      "source": "open-source/spectacle/:one/:two/:three/:file",
-      "destination": "/:one/:two/:three/:file"
-    }
-  ]
+  "public": "dist-prod",
+  "trailingSlash": true
 }
