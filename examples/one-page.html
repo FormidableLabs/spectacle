@@ -74,19 +74,19 @@
 
       struct thread_data_t
       {
-        int  thread_id;
-        std::string message;
+         int  thread_id;
+         std::string message;
       };
 
       void *print_thread_message(void *thread_arg)
       {
-        struct thread_data_t *thread_data;
-        thread_data = (struct thread_data_t *) thread_arg;
+         struct thread_data_t *thread_data;
+         thread_data = (struct thread_data_t *) thread_arg;
 
-        cout << "Thread ID: " << thread_data->thread_id;
-        cout << "Message: " << thread_data->message << endl;
+         cout << "Thread ID: " << thread_data->thread_id;
+         cout << "Message: " << thread_data->message << endl;
 
-        pthread_exit(NULL);
+         pthread_exit(NULL);
       }
 
       int main()

@@ -10,6 +10,7 @@ const { transformFileAsync } = require('@babel/core');
 const pretty = require('pretty');
 
 const SRC_FILE = path.resolve(__dirname, '../examples/js/index.js');
+const DEST_FILE = path.resolve(__dirname, '../examples/one-page.html');
 
 const htmImport = `
 import htm from 'https://unpkg.com/htm@^3?module';
@@ -28,8 +29,8 @@ const spectacleImportReplacer = (match, imports) => {
   return `const {\n${imports}\n} = Spectacle;\n\n${htmImport}`;
 };
 
-const main = async () => {
-  let { code } = await transformFileAsync(SRC_FILE, {
+const getSrcContent = async src => {
+  let { code } = await transformFileAsync(src, {
     babelrc: false,
     configFile: false,
     plugins: ['babel-plugin-transform-jsx-to-htm']
@@ -65,8 +66,36 @@ const main = async () => {
     }
   );
 
-  // TODO: Place in one-page.html
-  console.log(code);
+  return code;
+};
+
+const writeDestContent = async (destFile, code) => {
+  // Format for indentation in one-page.html.
+  const indent = '      ';
+  code = `${indent}${code}`;
+  code = code.split('\n').join(`\n${indent}`);
+
+  // Get destination content.
+  let destContent = (await fs.readFile(destFile)).toString();
+
+  // Mutate in our updated code.
+  destContent = destContent
+    .replace(
+      /(<script type="module">\n)[\s\S]*?(\n[ ]*<\/script>\n[ ]*<\/body>\n[ ]*<\/html>)/m,
+      (match, open, close) => `${open}${code}${close}`
+    )
+    // Trim trailing spaces
+    .split('\n')
+    .map(line => line.trimRight())
+    .join('\n');
+
+  // Update one-page
+  await fs.writeFile(destFile, destContent);
+};
+
+const main = async () => {
+  const code = await getSrcContent(SRC_FILE);
+  await writeDestContent(DEST_FILE, code);
 };
 
 if (require.main === module) {
