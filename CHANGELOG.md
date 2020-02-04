@@ -4,7 +4,7 @@
 
 ## UNRELEASED
 
-- Update `exapmles/one-page.html` to `examples/js/index.js` with new script helper.
+- Update `examples/one-page.html` to `examples/js/index.js` with new script helper.
 
 ## 6.0.0-alpha.7
 
