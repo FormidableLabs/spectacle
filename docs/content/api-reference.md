@@ -72,6 +72,17 @@ Progress is a component with no children that just shows dots for each slide in 
 | size  | PropTypes.number | `23`      |
 | color | PropTypes.string | `#abc123` |
 
+<a name="full-screen"></a>
+
+## FullScreen
+
+FullScreen is a button that takes the presentation in and out of the browser's full screen mode. It can have a different color and be re-sized.
+
+| Props | Type             | Example   |
+| ----- | ---------------- | --------- |
+| size  | PropTypes.number | `23`      |
+| color | PropTypes.string | `#abc123` |
+
 <a name="code-pane"></a>
 
 ## Code Pane
@@ -100,6 +111,84 @@ import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
     </CodePane>
   </Slide>
 );
+```
+
+<a name="appear"></a>
+
+## Appear
+
+Appear is a component that makes a component animate on the slide on key press. The default animation is opacity. It is currently required to specify the order of elements to be animated starting with `1`. Sequential `<Appear />` tags do not have to be in order.
+
+| Props            | Type                          | Example                                        |
+| ---------------- | ----------------------------- | ---------------------------------------------- |
+| children         | PropTypes.string              | `<Text>Hi</Text>`                              |
+| elementNum       | PropTypes.number              | `1`                                            |
+| transitionEffect | { to: object; from: object; } | `{ to: { opacity: 1 }, from: { opacity: 0 } }` |
+
+<a name="notes"></a>
+
+## Notes
+
+Notes is a component that only renders in Presenter mode for presenter notes. It is used as the last component inside your slide but does not show on the deck.
+
+| Props    | Type             | Example           |
+| -------- | ---------------- | ----------------- |
+| children | PropTypes.string | `Presenter Notes` |
+
+```jsx
+<Slide>
+  <Heading>Urql</Heading>
+  <Text>A highly customizable and versatile GraphQL client</Text>
+  <Notes>
+    Urql is a GraphQL client that exposes a set of React components and hooks.
+  </Notes>
+</Slide>
+```
+
+<a name="image"></a>
+
+### Image
+
+Image is a component to display a picture within a slide. It is analgous to an `<img>` tag and conforms to Layout and Position props.
+
+| Props                                | Type             |
+| ------------------------------------ | ---------------- |
+| src                                  | PropTypes.string |
+| [**Layout**](/docs/props#layout)     |                  |
+| [**Position**](/docs/props#position) |                  |
+
+<a name="markdown"></a>
+
+## Markdown
+
+Markdown is a component to author slides or slide content using Markdown. Regular Markdown tags get converted into Spectacle components. The `---` three dash marker is used to divide content into separate slides. When using the `---` as a slide delimiter it is required to set the `containsSlides` prop to `true`. Markdown also supports presenter notes using the `Notes:` marker.
+
+| Props          | Type              | Example      |
+| -------------- | ----------------- | ------------ |
+| children       | PropTypes.string  | `# Hi there` |
+| containsSlides | PropTypes.boolean | `true`       |
+
+```jsx
+<Slide>
+  <Markdown>
+    # Urql
+    A highly customizable and versatile GraphQL client
+  <Markdown>
+  <Text>Made by Formidable</Text>
+</Slide>
+<Markdown containsSlides>
+  # Writing queries
+
+  When this hook is executed it will send the query and variables to your GraphQL API.
+
+  ---
+
+  # Writing mutations
+
+  urql will by default come with a simple "document" cache. Each query with variables that is requested from a GraphQL API, the result will be cached completely.
+
+  Notes: The easiest way to always display up-to-date data is to set the requestPolicy to 'cache-and-network'.
+<Markdown>
 ```
 
 <a name="deck-template"></a>
