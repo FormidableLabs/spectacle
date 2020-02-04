@@ -167,7 +167,15 @@ Slide.propTypes = {
   scaleRatio: PropTypes.number,
   slideNum: PropTypes.number,
   template: PropTypes.func,
-  textColor: PropTypes.string
+  textColor: PropTypes.string,
+  transitionEffect: PropTypes.oneOfType([
+    PropTypes.shape({
+      from: PropTypes.object,
+      enter: PropTypes.object,
+      leave: PropTypes.object
+    }),
+    PropTypes.oneOf(['fade', 'slide', 'none'])
+  ])
 };
 
 Slide.defaultProps = {

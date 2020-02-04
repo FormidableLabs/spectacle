@@ -100,7 +100,7 @@ int main()
 }`;
 
 const Presentation = () => (
-  <Deck theme={theme} template={template}>
+  <Deck theme={theme} template={template} transitionEffect="fade">
     <Slide>
       <FlexBox height="100%">
         <SpectacleLogo size={500} />
@@ -125,7 +125,7 @@ const Presentation = () => (
         </p>
       </Notes>
     </Slide>
-    <Slide>
+    <Slide transitionEffect="slide">
       <Heading>Code Blocks</Heading>
       <CodePane fontSize={18} language="cpp" autoFillHeight>
         {cppCodeBlock}
