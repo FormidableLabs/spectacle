@@ -122,6 +122,8 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
       </${Slide}>
     </${Deck}>
   `;
+
+  ReactDOM.render(html`<${Presentation}/>`, document.getElementById('root'));
 </script>
 ```
 
