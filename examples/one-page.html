@@ -18,62 +18,103 @@
 
     <script type="module">
       const {
-        Deck,
-        Slide,
         Appear,
+        Box,
         CodePane,
+        CodeSpan,
+        Deck,
         FlexBox,
         FullScreen,
-        CodeSpan,
-        Progress,
-        Box,
-        Image,
-        Heading,
-        ListItem,
-        OrderedList,
-        Text,
         Grid,
-        Notes,
+        Heading,
+        Image,
+        ListItem,
         Markdown,
-        SpectacleLogo
+        Notes,
+        OrderedList,
+        Progress,
+        SpectacleLogo,
+        Slide,
+        Text
       } = Spectacle;
 
       import htm from 'https://unpkg.com/htm@^3?module';
       const html = htm.bind(React.createElement);
 
-      // Example content.
-      const formidableLogo =
-        'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
-
-      const cppCodeBlock = `
-      #include <iostream>
-
-      int main()
-      {
-        auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
-        auto answer = curried_add(7)(8);
-        std::cout << answer << std::endl;
-        return 0;
-      }`.trimLeft().replace(/      /gm, '');
-
+      // SPECTACLE_CLI_THEME_START
       const theme = {
+        fonts: {
+          header: '"Open Sans Condensed", Helvetica, Arial, sans-serif',
+          text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
+        },
         space: {
           headerMargin: '0'
         }
       };
+      // SPECTACLE_CLI_THEME_END
 
+      // SPECTACLE_CLI_TEMPLATE_START
       const template = () => html`
         <${FlexBox} justifyContent="space-between" position="absolute" bottom=${0} width=${1}>
           <${Box} padding="0 1em">
-            <${FullScreen}/>
+            <${FullScreen} />
           </${Box}>
           <${Box} padding="1em">
-            <${Progress}/>
+            <${Progress} />
           </${Box}>
         </${FlexBox}>
       `;
+      // SPECTACLE_CLI_TEMPLATE_END
 
-      const presentation = html`
+      const formidableLogo = 'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
+      const cppCodeBlock = `#include <iostream>
+      #include <cstdlib>
+      #include <sstream>
+      #include <pthread.h>
+
+      struct thread_data_t
+      {
+        int  thread_id;
+        std::string message;
+      };
+
+      void *print_thread_message(void *thread_arg)
+      {
+        struct thread_data_t *thread_data;
+        thread_data = (struct thread_data_t *) thread_arg;
+
+        cout << "Thread ID: " << thread_data->thread_id;
+        cout << "Message: " << thread_data->message << endl;
+
+        pthread_exit(NULL);
+      }
+
+      int main()
+      {
+        pthread_t threads[NUM_THREADS];
+        struct thread_data_t thread_data[NUM_THREADS];
+
+        for (int i = 0; i < NUM_THREADS; i++)
+        {
+          auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
+          auto answer = curried_add(i)(5);
+
+          std::stringstream message;
+          message << "The math result is " << answer << "!";
+          thread_data.thread_id = i;
+          thread_data.message = message.str();
+          int err = pthread_create(&threads, NULL, print_thread_message, (void *)&thread_data[i]);
+
+          if (err)
+          {
+            exit(-1)
+          }
+        }
+
+        return 0;
+      }`;
+
+      const Presentation = () => html`
         <${Deck} theme=${theme} template=${template}>
           <${Slide}>
             <${FlexBox} height="100%">
@@ -92,7 +133,9 @@
           </${Slide}>
           <${Slide}>
             <${Heading}>Code Blocks</${Heading}>
-            <${CodePane} fontSize=${18} language="cpp" autoFillHeight>${cppCodeBlock}</${CodePane}>
+            <${CodePane} fontSize=${18} language="cpp" autoFillHeight>
+              ${cppCodeBlock}
+            </${CodePane}>
             <${Text}>Code Blocks now auto size and scroll when there is an overflow of content! They also auto-wrap longer lines.</${Text}>
           </${Slide}>
           <${Slide}>
@@ -126,61 +169,59 @@
             </${Grid}>
             <${Heading}>Create Grids in Spectacle</${Heading}>
             <${Grid} gridTemplateColumns="1fr 1fr 1fr" gridTemplateRows="1fr 1fr 1fr" alignItems="center" justifyContent="center" gridRowGap=${15}>
-              ${Array(9).fill('').map((_, index) => html`
-                <${FlexBox} key=${`formidable-logo-${index}`} flex=${1}>
-                  <${Image} src=${formidableLogo} width=${100} />
-                </${FlexBox}>`
-              )}
+              ${Array(9).fill('').map((_, index) => html`<${FlexBox} key=${`formidable-logo-${index}`} flex=${1}>
+                <${Image} src=${formidableLogo} width=${100} />
+              </${FlexBox}>`)}
             </${Grid}>
           </${Slide}>
           <${Slide}>
             <${Markdown}>
               ${`
-                # Layout Tables in Markdown
+              # Layout Tables in Markdown
 
-                | Browser         | Supported | Versions |
-                |-----------------|-----------|----------|
-                | Chrome          | Yes       | Last 2   |
-                | Firefox         | Yes       | Last 2   |
-                | Opera           | Yes       | Last 2   |
-                | Edge (EdgeHTML) | No        |          |
-                | IE 11           | No        |          |
+              | Browser | Supported | Versions |
+              |-----------------|-----------|----------|
+              | Chrome | Yes | Last 2 |
+              | Firefox | Yes | Last 2 |
+              | Opera | Yes | Last 2 |
+              | Edge (EdgeHTML) | No | |
+              | IE 11 | No | |
               `}
             </${Markdown}>
           </${Slide}>
           <${Markdown} containsSlides>
             ${`
-              ### Even write multiple slides in Markdown
-              > Wonderfully formatted quotes
+            ### Even write multiple slides in Markdown
+            > Wonderfully formatted quotes
 
-              1. Even create
-              2. Lists in Markdown
+            1. Even create
+            2. Lists in Markdown
 
 
-              - Or Unordered Lists
-              - Too!!
-              Notes: These are notes
-              ---
-              ### This slide was also generated in Markdown!
+            - Or Unordered Lists
+            - Too!!
+            Notes: These are notes
+            ---
+            ### This slide was also generated in Markdown!
 
-              \`\`\`jsx
-              const evenCooler = "is that you can do code in Markdown";
-              // You can even specify the syntax type!
-              \`\`\`
+            \`\`\`jsx
+            const evenCooler = "is that you can do code in Markdown";
+            // You can even specify the syntax type!
+            \`\`\`
 
-              ### A slide can have multiple code blocks too.
+            ### A slide can have multiple code blocks too.
 
-              \`\`\`c
-              char[] someString = "Popular languages like C too!";
-              \`\`\`
+            \`\`\`c
+            char[] someString = "Popular languages like C too!";
+            \`\`\`
 
-              Notes: These are more notes
+            Notes: These are more notes
             `}
           </${Markdown}>
         </${Deck}>
       `;
 
-      ReactDOM.render(presentation, document.getElementById('root'));
+      ReactDOM.render(html`<${Presentation}/>`, document.getElementById('root'));
     </script>
   </body>
 </html>
