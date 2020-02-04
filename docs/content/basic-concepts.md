@@ -93,9 +93,9 @@ $ spectacle-boilerplate
 To create a Spectacle presentation that lives in a single HTML page, you will only need to add a few scripts to your setup:
 
 ```html
-<script src="https://unpkg.com/react@16.10.1/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16.10.1/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/react-is@16.10.1/umd/react-is.production.min.js"></script>
+<script src="https://unpkg.com/react@16.12.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react-is@16.12.0/umd/react-is.production.min.js"></script>
 <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
 <script src="https://unpkg.com/spectacle/dist/spectacle.js"></script>
 ```
