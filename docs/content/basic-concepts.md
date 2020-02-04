@@ -123,7 +123,12 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
     </${Deck}>
   `;
 
-  ReactDOM.render(html`<${Presentation}/>`, document.getElementById('root'));
+  ReactDOM.render(
+    html`
+      <${Presentation} />
+    `,
+    document.getElementById('root')
+  );
 </script>
 ```
 
