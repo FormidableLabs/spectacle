@@ -2,6 +2,10 @@
 
 =======
 
+## UNRELEASED
+
+- Update `examples/one-page.html` to `examples/js/index.js` with new script helper.
+
 ## 6.0.0-alpha.7
 
 - Fix `one-page.html` closing tags.

@@ -29,6 +29,7 @@
     "build-webpack-lib": "builder run build-webpack-base",
     "build-webpack-examples-js": "builder run build-webpack-base -- --config examples/js/webpack.config.js",
     "build-webpack-examples-md": "builder run build-webpack-base -- --config examples/md/webpack.config.js",
+    "build-one-page": "node scripts/one-page.js",
     "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev",
     "build-examples": "builder concurrent --buffer build-webpack-examples-js build-webpack-examples-md"
   },
@@ -55,6 +56,7 @@
     "@types/styled-system": "^5.1.4",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-jsx-to-htm": "^2.0.0",
     "builder": "^4.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
@@ -68,6 +70,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
     "prettier": "^1.15.3",
+    "pretty": "^2.0.0",
     "prop-types": "^15.7.2",
     "raw-loader": "^4.0.0",
     "react": "^16.9.0",

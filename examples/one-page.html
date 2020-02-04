@@ -9,195 +9,219 @@
   <body>
     <div id="root"></div>
 
-    <script src="https://unpkg.com/react@16.10.1/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@16.10.1/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/react-is@16.10.1/umd/react-is.production.min.js"></script>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-is@16.12.0/umd/react-is.production.min.js"></script>
     <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
     <script src="https://unpkg.com/spectacle@^6.0.0-alpha/dist/spectacle.min.js"></script>
     <!-- <script src="../dist/spectacle.js"></script> -->
 
     <script type="module">
       const {
-        Deck,
-        Slide,
         Appear,
+        Box,
         CodePane,
+        CodeSpan,
+        Deck,
         FlexBox,
         FullScreen,
-        CodeSpan,
-        Progress,
-        Box,
-        Image,
-        Heading,
-        ListItem,
-        OrderedList,
-        Text,
         Grid,
+        Heading,
+        Image,
+        ListItem,
+        Markdown,
         Notes,
-        Markdown
+        OrderedList,
+        Progress,
+        SpectacleLogo,
+        Slide,
+        Text
       } = Spectacle;
 
-      import htm from 'https://unpkg.com/htm@2.2.1?module';
+      import htm from 'https://unpkg.com/htm@^3?module';
       const html = htm.bind(React.createElement);
 
-      // Example content.
-      const formidableLogo =
-        'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
-
-      const cppCodeBlock = `
-      #include <iostream>
-
-      int main()
-      {
-        auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
-        auto answer = curried_add(7)(8);
-        std::cout << answer << std::endl;
-        return 0;
-      }`.trimLeft().replace(/      /gm, '');
-
+      // SPECTACLE_CLI_THEME_START
       const theme = {
+        fonts: {
+          header: '"Open Sans Condensed", Helvetica, Arial, sans-serif',
+          text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
+        },
         space: {
           headerMargin: '0'
         }
       };
+      // SPECTACLE_CLI_THEME_END
 
+      // SPECTACLE_CLI_TEMPLATE_START
       const template = () => html`
-        <${FlexBox}
-          justifyContent="space-between"
-          position="absolute"
-          bottom=${0}
-          width=${1}
-        >
+        <${FlexBox} justifyContent="space-between" position="absolute" bottom=${0} width=${1}>
           <${Box} padding="0 1em">
             <${FullScreen} />
-          <//>
+          </${Box}>
           <${Box} padding="1em">
             <${Progress} />
-          <//>
-        <//>
+          </${Box}>
+        </${FlexBox}>
       `;
+      // SPECTACLE_CLI_TEMPLATE_END
 
-      const presentation = html`
-        <${Deck}
-          theme=${theme}
-          template=${template}
-        >
+      const formidableLogo = 'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
+      const cppCodeBlock = `#include <iostream>
+      #include <cstdlib>
+      #include <sstream>
+      #include <pthread.h>
+
+      struct thread_data_t
+      {
+         int  thread_id;
+         std::string message;
+      };
+
+      void *print_thread_message(void *thread_arg)
+      {
+         struct thread_data_t *thread_data;
+         thread_data = (struct thread_data_t *) thread_arg;
+
+         cout << "Thread ID: " << thread_data->thread_id;
+         cout << "Message: " << thread_data->message << endl;
+
+         pthread_exit(NULL);
+      }
+
+      int main()
+      {
+        pthread_t threads[NUM_THREADS];
+        struct thread_data_t thread_data[NUM_THREADS];
+
+        for (int i = 0; i < NUM_THREADS; i++)
+        {
+          auto curried_add = [](int x) -> function<int(int)> { return [=](int y) { return x + y; }; };
+          auto answer = curried_add(i)(5);
+
+          std::stringstream message;
+          message << "The math result is " << answer << "!";
+          thread_data.thread_id = i;
+          thread_data.message = message.str();
+          int err = pthread_create(&threads, NULL, print_thread_message, (void *)&thread_data[i]);
+
+          if (err)
+          {
+            exit(-1)
+          }
+        }
+
+        return 0;
+      }`;
+
+      const Presentation = () => html`
+        <${Deck} theme=${theme} template=${template}>
+          <${Slide}>
+            <${FlexBox} height="100%">
+              <${SpectacleLogo} size=${500} />
+            </${FlexBox}>
+          </${Slide}>
           <${Slide}>
             <${FlexBox} height="100%" flexDirection="column">
-              <${Heading} fontSize="150px">SPECTACLE<//>
-              <${Heading} fontSize="h2">A ReactJS Presentation Library<//>
-              <${Heading} color="primary" fontSize="h3">
-                Where you can write your decks in JSX, Markdown, or MDX!
-              <//>
-            <//>
-          <//>
-          <${Slide}>
-            <${CodePane} autoFillHeight fontSize=${18} language="cpp">
-              ${cppCodeBlock}
-            <//>
+              <${Heading} fontSize="150px">SPECTACLE</${Heading}>
+              <${Heading} fontSize="h2">A ReactJS Presentation Library</${Heading}>
+              <${Heading} color="primary" fontSize="h3">Where you can write your decks in JSX, Markdown, or MDX!</${Heading}>
+            </${FlexBox}>
             <${Notes}>
-              <p>
-                This is a code pane! It can support multiple programming
-                languages.
-              <//>
-            <//>
-          <//>
+              <p>Notes are shown in presenter mode. Open up localhost:3000/?presenterMode=true to see them.</p>
+            </${Notes}>
+          </${Slide}>
           <${Slide}>
-            <${Heading}>Animated Elements<//>
+            <${Heading}>Code Blocks</${Heading}>
+            <${CodePane} fontSize=${18} language="cpp" autoFillHeight>
+              ${cppCodeBlock}
+            </${CodePane}>
+            <${Text}>Code Blocks now auto size and scroll when there is an overflow of content! They also auto-wrap longer lines.</${Text}>
+          </${Slide}>
+          <${Slide}>
+            <${Heading}>Animated Elements</${Heading}>
             <${OrderedList}>
               <${Appear} elementNum=${0}>
-                <${ListItem}>Elements can animate in!<//>
-              <//>
+                <${ListItem}>Elements can animate in!</${ListItem}>
+              </${Appear}>
               <${Appear} elementNum=${2}>
-                <${ListItem}>
-                  Just identify the order with the prop <${CodeSpan}>elementNum<//>!
-                <//>
-              <//>
+                <${ListItem}>Just identify the order with the prop <${CodeSpan}>elementNum</${CodeSpan}>!</${ListItem}>
+              </${Appear}>
               <${Appear} elementNum=${1}>
-                <${ListItem}>Out of order<//>
-              <//>
-            <//>
-          <//>
+                <${ListItem}>Out of order</${ListItem}>
+              </${Appear}>
+            </${OrderedList}>
+          </${Slide}>
           <${Slide}>
             <${FlexBox}>
-              <${Text}>These<//>
-              <${Text}>Text<//>
-              <${Text} color="secondary">Items<//>
-              <${Text} fontWeight="bold">Flex<//>
-            <//>
+              <${Text}>These</${Text}>
+              <${Text}>Text</${Text}>
+              <${Text} color="secondary">Items</${Text}>
+              <${Text} fontWeight="bold">Flex</${Text}>
+            </${FlexBox}>
             <${Grid} gridTemplateColumns="1fr 2fr" gridColumnGap=${15}>
               <${Box} backgroundColor="primary">
-                <${Text} color="secondary">Single-size Grid Item<//>
-              <//>
+                <${Text} color="secondary">Single-size Grid Item</${Text}>
+              </${Box}>
               <${Box} backgroundColor="secondary">
-                <${Text}>Double-size Grid Item<//>
-              <//>
-            <//>
-            <${Heading}>Lots of Formidables!<//>
-            <${Grid}
-              gridTemplateColumns="1fr 1fr 1fr"
-              gridTemplateRows="1fr 1fr 1fr"
-              alignItems="center"
-              justifyContent="center"
-              gridRowGap=${15}
-            >
-              ${Array(9)
-                .fill('')
-                .map(
-                  (_, index) =>
-                    html`
-                      <${FlexBox} key="formidable-logo-${index}">
-                        <${Image} src=${formidableLogo} width=${100} />
-                      <//>
-                    `
-                )}
-            <//>
-          <//>
+                <${Text}>Double-size Grid Item</${Text}>
+              </${Box}>
+            </${Grid}>
+            <${Heading}>Create Grids in Spectacle</${Heading}>
+            <${Grid} gridTemplateColumns="1fr 1fr 1fr" gridTemplateRows="1fr 1fr 1fr" alignItems="center" justifyContent="center" gridRowGap=${15}>
+              ${Array(9).fill('').map((_, index) => html`<${FlexBox} key=${`formidable-logo-${index}`} flex=${1}>
+                <${Image} src=${formidableLogo} width=${100} />
+              </${FlexBox}>`)}
+            </${Grid}>
+          </${Slide}>
           <${Slide}>
             <${Markdown}>
               ${`
-                # Layout Tables in Markdown
+              # Layout Tables in Markdown
 
-                | Browser         | Supported | Versions |
-                |-----------------|-----------|----------|
-                | Chrome          | Yes       | Last 2   |
-                | Firefox         | Yes       | Last 2   |
-                | Opera           | Yes       | Last 2   |
-                | Edge (EdgeHTML) | No        |          |
-                | IE 11           | No        |          |
+              | Browser | Supported | Versions |
+              |-----------------|-----------|----------|
+              | Chrome | Yes | Last 2 |
+              | Firefox | Yes | Last 2 |
+              | Opera | Yes | Last 2 |
+              | Edge (EdgeHTML) | No | |
+              | IE 11 | No | |
               `}
-            <//>
-          <//>
+            </${Markdown}>
+          </${Slide}>
           <${Markdown} containsSlides>
             ${`
-              ### Even write multiple slides in Markdown
-              > Wonderfully formatted quotes
+            ### Even write multiple slides in Markdown
+            > Wonderfully formatted quotes
 
-              1. Even create
-              2. Lists in Markdown
+            1. Even create
+            2. Lists in Markdown
 
-              - Or Unordered Lists
-              - Too!
-              Notes: These are notes
-              ---
-              ### This slide was also generated in Markdown!
 
-              \`\`\`jsx
-              const evenCooler = "is that you can do code in Markdown";
-              // You can even specify the syntax type!
-              \`\`\`
+            - Or Unordered Lists
+            - Too!!
+            Notes: These are notes
+            ---
+            ### This slide was also generated in Markdown!
 
-              ### A slide can have multiple code blocks too.
+            \`\`\`jsx
+            const evenCooler = "is that you can do code in Markdown";
+            // You can even specify the syntax type!
+            \`\`\`
 
-              \`\`\`c
-              char[] someString = "Popular languages like C too!";
-              \`\`\`
+            ### A slide can have multiple code blocks too.
+
+            \`\`\`c
+            char[] someString = "Popular languages like C too!";
+            \`\`\`
+
+            Notes: These are more notes
             `}
-          <//>
-        <//>
+          </${Markdown}>
+        </${Deck}>
       `;
 
-      ReactDOM.render(presentation, document.getElementById('root'));
+      ReactDOM.render(html`<${Presentation}/>`, document.getElementById('root'));
     </script>
   </body>
 </html>

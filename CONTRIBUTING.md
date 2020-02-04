@@ -94,6 +94,8 @@ $ yarn start:one-page
 
 **Note**: This file is published and used by `spectacle-cli`.
 
+**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `yarn build-one-page` and verify changes look good.
+
 ### Examples integration with `spectacle-cli`
 
 `spectacle-cli` uses our `js,md,one-page` examples in the CLI and boilerplate tools. To check that changes to these files don't break `spectacle-cli` upstream, check with something like the following:
@@ -164,6 +166,7 @@ Thanks for taking the time to help us make Spectacle even better! Before you go
 ahead and submit a PR, make sure that you have done the following:
 
 - Run all checks using `yarn check-ci`.
+- Run `yarn build-one-page` and check + commit changes to `examples/one-page.html`
 - Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
 - Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API,
   like breaking changes or new features.
