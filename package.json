@@ -29,7 +29,7 @@
     "build-webpack-lib": "builder run build-webpack-base",
     "build-webpack-examples-js": "builder run build-webpack-base -- --config examples/js/webpack.config.js",
     "build-webpack-examples-md": "builder run build-webpack-base -- --config examples/md/webpack.config.js",
-    "build-one-page": "babel --no-babelrc --plugins=babel-plugin-transform-jsx-to-htm,babel-plugin-codegen scripts/one-page-codegen.js -o .temp-one-page.js && node scripts/one-page-format.js",
+    "build-one-page": "node scripts/one-page.js",
     "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev",
     "build-examples": "builder concurrent --buffer build-webpack-examples-js build-webpack-examples-md"
   },
@@ -56,7 +56,6 @@
     "@types/styled-system": "^5.1.4",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
-    "babel-plugin-codegen": "^3.1.0",
     "babel-plugin-transform-jsx-to-htm": "^2.0.0",
     "builder": "^4.0.0",
     "enzyme": "^3.10.0",
