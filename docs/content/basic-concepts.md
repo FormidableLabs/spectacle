@@ -105,7 +105,7 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
 ```html
 <script type="module">
   // import Spectacle elements just like you might in JSX
-  const { Deck, Slide } = Spectacle;
+  const { Deck, Slide, FlexBox, Heading } = Spectacle;
 
   // bind to the DOM
   import htm from 'https://unpkg.com/htm@^3?module';
@@ -113,14 +113,14 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
 
   // add some content
   const deck = html`
-    <${Deck} theme=${customTheme}>
+    <${Deck}>
       <${Slide}>
         <${FlexBox} height="100%" flexDirection="column">
-          <${Heading} fontSize="150px">SPECTACLE<//>
-          <${Heading} fontSize="h2">A ReactJS Presentation Library<//>
-        <//>
-      <//>
-    <//>
+          <${Heading} fontSize="150px">SPECTACLE</${Heading}>
+          <${Heading} fontSize="h2">A ReactJS Presentation Library</${Heading}>
+        </${FlexBox}>
+      </${Slide}>
+    </${Deck}>
   `;
 </script>
 ```
