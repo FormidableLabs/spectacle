@@ -33,6 +33,7 @@ const AnimatedDeckDiv = styled(animated.div)`
   width: 100vw;
   position: fixed;
 `;
+AnimatedDeckDiv.displayName = 'AnimatedDeckDiv';
 
 const defaultTransition = {
   slide: {

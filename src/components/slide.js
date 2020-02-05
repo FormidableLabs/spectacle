@@ -100,6 +100,11 @@ const Slide = props => {
     const useVerticalRatio =
       clientWidth / clientHeight > slideWidth / slideHeight;
     const clientRects = slideRef.current.getClientRects();
+
+    if (!clientRects || clientRects.length === 0) {
+      return;
+    }
+
     setOrigin({
       x: useVerticalRatio
         ? `${(clientWidth - clientRects[0].width) / 2 / (1 - ratio)}px`
