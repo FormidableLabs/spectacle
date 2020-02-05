@@ -23,10 +23,5 @@ export default {
     text: '44px',
     monospace: '20px'
   },
-  space: {
-    headerMargin: '16px 16px 24px',
-    textMargin: '16px',
-    listMargin: '16px 0',
-    slidePadding: '2em'
-  }
+  space: [16, 24, 32]
 };

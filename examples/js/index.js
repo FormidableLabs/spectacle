@@ -27,9 +27,6 @@ const theme = {
   fonts: {
     header: '"Open Sans Condensed", Helvetica, Arial, sans-serif',
     text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
-  },
-  space: {
-    headerMargin: '0'
   }
 };
 // SPECTACLE_CLI_THEME_END
@@ -111,9 +108,13 @@ const Presentation = () => (
     </Slide>
     <Slide>
       <FlexBox height="100%" flexDirection="column">
-        <Heading fontSize="150px">SPECTACLE</Heading>
-        <Heading fontSize="h2">A ReactJS Presentation Library</Heading>
-        <Heading color="primary" fontSize="h3">
+        <Heading margin="0px" fontSize="150px">
+          SPECTACLE
+        </Heading>
+        <Heading margin="0px" fontSize="h2">
+          A ReactJS Presentation Library
+        </Heading>
+        <Heading margin="0px 32px" color="primary" fontSize="h3">
           Where you can write your decks in JSX, Markdown, or MDX!
         </Heading>
       </FlexBox>
@@ -166,18 +167,17 @@ const Presentation = () => (
           <Text>Double-size Grid Item</Text>
         </Box>
       </Grid>
-      <Heading>Create Grids in Spectacle</Heading>
       <Grid
         gridTemplateColumns="1fr 1fr 1fr"
         gridTemplateRows="1fr 1fr 1fr"
         alignItems="center"
         justifyContent="center"
-        gridRowGap={15}
+        gridRowGap={1}
       >
         {Array(9)
           .fill('')
           .map((_, index) => (
-            <FlexBox key={`formidable-logo-${index}`} flex={1}>
+            <FlexBox paddingTop={0} key={`formidable-logo-${index}`} flex={1}>
               <Image src={formidableLogo} width={100} />
             </FlexBox>
           ))}

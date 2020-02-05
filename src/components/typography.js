@@ -8,7 +8,7 @@ Text.defaultProps = {
   fontSize: 'text',
   textAlign: 'left',
   padding: 0,
-  margin: 'textMargin'
+  margin: 0
 };
 
 const CodeSpan = styled('code')(compose(color, typography, space));
@@ -31,7 +31,7 @@ Heading.defaultProps = {
   fontSize: 'h1',
   fontWeight: 'bold',
   textAlign: 'center',
-  margin: 'headerMargin'
+  margin: 1
 };
 
 const Quote = styled(Text)`
@@ -49,7 +49,7 @@ Quote.defaultProps = {
   textAlign: 'left',
   fontStyle: 'italic',
   padding: '16px 0 16px 8px',
-  margin: 'textMargin'
+  margin: 0
 };
 
 const OrderedList = styled('ol')(compose(color, typography, space));
@@ -58,7 +58,7 @@ OrderedList.defaultProps = {
   fontFamily: 'text',
   fontSize: 'text',
   textAlign: 'left',
-  margin: 'listMargin'
+  margin: 0
 };
 
 const UnorderedList = styled('ul')(compose(color, typography, space));
@@ -67,13 +67,13 @@ UnorderedList.defaultProps = {
   fontFamily: 'text',
   fontSize: 'text',
   textAlign: 'left',
-  margin: 'listMargin'
+  margin: 0
 };
 
 const ListItem = styled('li')(compose(color, typography, space));
 
 ListItem.defaultProps = {
-  margin: 'listMargin'
+  margin: 0
 };
 
 export {

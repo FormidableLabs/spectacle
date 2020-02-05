@@ -53,7 +53,7 @@ exports[`<Heading /> should render a <Text /> component with h1 size 1`] = `
   fontFamily="header"
   fontSize="h1"
   fontWeight="bold"
-  margin="headerMargin"
+  margin={1}
   padding={0}
   textAlign="center"
 >
@@ -70,7 +70,7 @@ exports[`<Heading /> should render a <Text /> component with h1 size 1`] = `
           "fontFamily": "header",
           "fontSize": "h1",
           "fontWeight": "bold",
-          "margin": "headerMargin",
+          "margin": 1,
           "padding": 0,
           "textAlign": "center",
         },
@@ -78,7 +78,7 @@ exports[`<Heading /> should render a <Text /> component with h1 size 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-bxivhb",
           "isStatic": false,
-          "lastClassName": "fgPWOS",
+          "lastClassName": "hyPFEb",
           "rules": Array [
             [Function],
           ],
@@ -96,12 +96,12 @@ exports[`<Heading /> should render a <Text /> component with h1 size 1`] = `
       }
     }
     forwardedRef={null}
-    margin="headerMargin"
+    margin={1}
     padding={0}
     textAlign="center"
   >
     <div
-      className="sc-bdVaJa sc-bxivhb fgPWOS"
+      className="sc-bdVaJa sc-bxivhb hyPFEb"
       color="secondary"
       fontFamily="header"
       fontSize="h1"
@@ -118,7 +118,7 @@ exports[`<Link /> should render an <a> with text 1`] = `
   color="quaternary"
   fontFamily="text"
   fontSize="text"
-  margin="textMargin"
+  margin={0}
   padding={0}
   textAlign="left"
   textDecoration="underline"
@@ -134,7 +134,7 @@ exports[`<Link /> should render an <a> with text 1`] = `
           "color": "quaternary",
           "fontFamily": "text",
           "fontSize": "text",
-          "margin": "textMargin",
+          "margin": 0,
           "padding": 0,
           "textAlign": "left",
           "textDecoration": "underline",
@@ -143,7 +143,7 @@ exports[`<Link /> should render an <a> with text 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-htpNat",
           "isStatic": false,
-          "lastClassName": "gtuVZb",
+          "lastClassName": "PfPpC",
           "rules": Array [
             [Function],
           ],
@@ -159,13 +159,13 @@ exports[`<Link /> should render an <a> with text 1`] = `
       }
     }
     forwardedRef={null}
-    margin="textMargin"
+    margin={0}
     padding={0}
     textAlign="left"
     textDecoration="underline"
   >
     <a
-      className="sc-htpNat gtuVZb"
+      className="sc-htpNat PfPpC"
       color="quaternary"
       fontFamily="text"
       fontSize="text"
@@ -182,7 +182,7 @@ exports[`<OrderedList /> should render an <ol> with <li> children 1`] = `
   color="primary"
   fontFamily="text"
   fontSize="text"
-  margin="listMargin"
+  margin={0}
   textAlign="left"
 >
   <StyledComponent
@@ -196,14 +196,14 @@ exports[`<OrderedList /> should render an <ol> with <li> children 1`] = `
           "color": "primary",
           "fontFamily": "text",
           "fontSize": "text",
-          "margin": "listMargin",
+          "margin": 0,
           "textAlign": "left",
         },
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "sc-EHOje",
           "isStatic": false,
-          "lastClassName": "cTJUpw",
+          "lastClassName": "cJXZZF",
           "rules": Array [
             [Function],
           ],
@@ -219,30 +219,30 @@ exports[`<OrderedList /> should render an <ol> with <li> children 1`] = `
       }
     }
     forwardedRef={null}
-    margin="listMargin"
+    margin={0}
     textAlign="left"
   >
     <ol
-      className="sc-EHOje cTJUpw"
+      className="sc-EHOje cJXZZF"
       color="primary"
       fontFamily="text"
       fontSize="text"
     >
       <styled.li
-        margin="listMargin"
+        margin={0}
       >
         <StyledComponent
           forwardedComponent={
             Object {
               "$$typeof": Symbol(react.forward_ref),
               "_foldedDefaultProps": Object {
-                "margin": "listMargin",
+                "margin": 0,
               },
               "attrs": Array [],
               "componentStyle": ComponentStyle {
                 "componentId": "sc-gzVnrw",
                 "isStatic": false,
-                "lastClassName": "hTiCbV",
+                "lastClassName": "eGyYYk",
                 "rules": Array [
                   [Function],
                 ],
@@ -258,30 +258,30 @@ exports[`<OrderedList /> should render an <ol> with <li> children 1`] = `
             }
           }
           forwardedRef={null}
-          margin="listMargin"
+          margin={0}
         >
           <li
-            className="sc-gzVnrw hTiCbV"
+            className="sc-gzVnrw eGyYYk"
           >
             This is an
           </li>
         </StyledComponent>
       </styled.li>
       <styled.li
-        margin="listMargin"
+        margin={0}
       >
         <StyledComponent
           forwardedComponent={
             Object {
               "$$typeof": Symbol(react.forward_ref),
               "_foldedDefaultProps": Object {
-                "margin": "listMargin",
+                "margin": 0,
               },
               "attrs": Array [],
               "componentStyle": ComponentStyle {
                 "componentId": "sc-gzVnrw",
                 "isStatic": false,
-                "lastClassName": "hTiCbV",
+                "lastClassName": "eGyYYk",
                 "rules": Array [
                   [Function],
                 ],
@@ -297,10 +297,10 @@ exports[`<OrderedList /> should render an <ol> with <li> children 1`] = `
             }
           }
           forwardedRef={null}
-          margin="listMargin"
+          margin={0}
         >
           <li
-            className="sc-gzVnrw hTiCbV"
+            className="sc-gzVnrw eGyYYk"
           >
             Ordered List
           </li>
@@ -317,7 +317,7 @@ exports[`<Quote /> should render a <Text /> component with a left border 1`] = `
   fontFamily="text"
   fontSize="text"
   fontStyle="italic"
-  margin="textMargin"
+  margin={0}
   padding="16px 0 16px 8px"
   textAlign="left"
 >
@@ -334,7 +334,7 @@ exports[`<Quote /> should render a <Text /> component with a left border 1`] = `
           "fontFamily": "text",
           "fontSize": "text",
           "fontStyle": "italic",
-          "margin": "textMargin",
+          "margin": 0,
           "padding": "16px 0 16px 8px",
           "textAlign": "left",
         },
@@ -370,7 +370,7 @@ exports[`<Quote /> should render a <Text /> component with a left border 1`] = `
       }
     }
     forwardedRef={null}
-    margin="textMargin"
+    margin={0}
     padding="16px 0 16px 8px"
     textAlign="left"
   >
@@ -392,7 +392,7 @@ exports[`<Text /> should render a <div> with text 1`] = `
   color="primary"
   fontFamily="text"
   fontSize="text"
-  margin="textMargin"
+  margin={0}
   padding={0}
   textAlign="left"
 >
@@ -407,7 +407,7 @@ exports[`<Text /> should render a <div> with text 1`] = `
           "color": "primary",
           "fontFamily": "text",
           "fontSize": "text",
-          "margin": "textMargin",
+          "margin": 0,
           "padding": 0,
           "textAlign": "left",
         },
@@ -415,7 +415,7 @@ exports[`<Text /> should render a <div> with text 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-bdVaJa",
           "isStatic": false,
-          "lastClassName": "jyYFKr",
+          "lastClassName": "cGtrOb",
           "rules": Array [
             [Function],
           ],
@@ -431,12 +431,12 @@ exports[`<Text /> should render a <div> with text 1`] = `
       }
     }
     forwardedRef={null}
-    margin="textMargin"
+    margin={0}
     padding={0}
     textAlign="left"
   >
     <div
-      className="sc-bdVaJa jyYFKr"
+      className="sc-bdVaJa cGtrOb"
       color="primary"
       fontFamily="text"
       fontSize="text"
@@ -452,7 +452,7 @@ exports[`<UnorderedList /> should render a <ul> with <li> children 1`] = `
   color="primary"
   fontFamily="text"
   fontSize="text"
-  margin="listMargin"
+  margin={0}
   textAlign="left"
 >
   <StyledComponent
@@ -466,14 +466,14 @@ exports[`<UnorderedList /> should render a <ul> with <li> children 1`] = `
           "color": "primary",
           "fontFamily": "text",
           "fontSize": "text",
-          "margin": "listMargin",
+          "margin": 0,
           "textAlign": "left",
         },
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "sc-bZQynM",
           "isStatic": false,
-          "lastClassName": "gKyNJo",
+          "lastClassName": "iGdLZ",
           "rules": Array [
             [Function],
           ],
@@ -489,30 +489,30 @@ exports[`<UnorderedList /> should render a <ul> with <li> children 1`] = `
       }
     }
     forwardedRef={null}
-    margin="listMargin"
+    margin={0}
     textAlign="left"
   >
     <ul
-      className="sc-bZQynM gKyNJo"
+      className="sc-bZQynM iGdLZ"
       color="primary"
       fontFamily="text"
       fontSize="text"
     >
       <styled.li
-        margin="listMargin"
+        margin={0}
       >
         <StyledComponent
           forwardedComponent={
             Object {
               "$$typeof": Symbol(react.forward_ref),
               "_foldedDefaultProps": Object {
-                "margin": "listMargin",
+                "margin": 0,
               },
               "attrs": Array [],
               "componentStyle": ComponentStyle {
                 "componentId": "sc-gzVnrw",
                 "isStatic": false,
-                "lastClassName": "hTiCbV",
+                "lastClassName": "eGyYYk",
                 "rules": Array [
                   [Function],
                 ],
@@ -528,30 +528,30 @@ exports[`<UnorderedList /> should render a <ul> with <li> children 1`] = `
             }
           }
           forwardedRef={null}
-          margin="listMargin"
+          margin={0}
         >
           <li
-            className="sc-gzVnrw hTiCbV"
+            className="sc-gzVnrw eGyYYk"
           >
             This is an
           </li>
         </StyledComponent>
       </styled.li>
       <styled.li
-        margin="listMargin"
+        margin={0}
       >
         <StyledComponent
           forwardedComponent={
             Object {
               "$$typeof": Symbol(react.forward_ref),
               "_foldedDefaultProps": Object {
-                "margin": "listMargin",
+                "margin": 0,
               },
               "attrs": Array [],
               "componentStyle": ComponentStyle {
                 "componentId": "sc-gzVnrw",
                 "isStatic": false,
-                "lastClassName": "hTiCbV",
+                "lastClassName": "eGyYYk",
                 "rules": Array [
                   [Function],
                 ],
@@ -567,10 +567,10 @@ exports[`<UnorderedList /> should render a <ul> with <li> children 1`] = `
             }
           }
           forwardedRef={null}
-          margin="listMargin"
+          margin={0}
         >
           <li
-            className="sc-gzVnrw hTiCbV"
+            className="sc-gzVnrw eGyYYk"
           >
             Unordered List
           </li>
