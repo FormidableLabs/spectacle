@@ -21,18 +21,21 @@ These are the bare bones of a Spectacle presentation, the two most essential tag
 
 Wraps the entire presentation and carries most of the overarching slide logic, like theme and template context.
 
-| Props    | Type                                       |
-| -------- | ------------------------------------------ |
-| theme    | [Styled-system theme object](TODO)         |
-| template | [Template render function](#deck-template) |
+| Props            | Type                                                                       |
+| ---------------- | -------------------------------------------------------------------------- |
+| theme            | [Styled-system theme object](/docs/themes)                                 |
+| template         | [Template render function](#deck-template)                                 |
+| transitionEffect | "fade", "slide", "none", or [custom transition object](#transition-object) |
 
 <a name="slide"></a>
 
 ### Slide
 
-Wraps a single slide within your presentation; identifies what is contained to a single view.
+Wraps a single slide within your presentation; identifies what is contained to a single view. The only prop available for Slide is a transition effect specific to this slide. It will override the Deck-specified transition.
 
-No props are directly passed to this tag as the `Deck` and semantic tags within the `Slide` will handle most of your layout and theming.
+| Props            | Type                                                                       |
+| ---------------- | -------------------------------------------------------------------------- |
+| transitionEffect | "fade", "slide", "none", or [custom transition object](#transition-object) |
 
 <a name="semantic-tags"></a>
 
@@ -214,6 +217,31 @@ A template in Spectacle is a fixed overlay of components that are presented on e
     </Box>
   </FlexBox>
 ))>
+```
+
+<a name="transition-object"></a>
+
+## Transition Object
+
+A transition object defines the animatable CSS properties for three states—`from`, `enter`, `leave`. From is the starting transition. Enter are the styles applied when the slide is in view. Leave are the styles when the slide goes out of view.
+
+An example transition object looks like:
+
+```javascript
+const transition = {
+  from: {
+    position: 'fixed',
+    transform: 'translate(100%, 0%)'
+  },
+  enter: {
+    position: 'fixed',
+    transform: 'translate(0, 0%)'
+  },
+  leave: {
+    position: 'fixed',
+    transform: 'translate(-100%, 0%)'
+  }
+};
 ```
 
 ![A screenshot of Progress in use](TODO)
