@@ -11,6 +11,17 @@ declare module 'spectacle' {
     currentSlide: number;
   }) => React.ReactNode;
 
+  export type TransitionEffect =
+    | {
+        enter: Record<string, number | string>;
+        from: Record<string, number | string>;
+        leave: Record<string, number | string>;
+        config: Record<string, number | string>;
+      }
+    | 'fade'
+    | 'slide'
+    | 'none';
+
   export const Deck: React.FC<{
     children: React.ReactNode;
     animationsWhileGoingBack?: boolean;
@@ -20,6 +31,7 @@ declare module 'spectacle' {
     theme?: Record<string, any>;
     textColor?: string;
     template?: TemplateFn;
+    transitionEffect?: TransitionEffect;
   }>;
 
   export const Slide: React.FC<{
@@ -28,6 +40,7 @@ declare module 'spectacle' {
     scaleRatio?: number;
     textColor?: string;
     template?: TemplateFn;
+    transitionEffect?: TransitionEffect;
   }>;
 
   export const Appear: React.FC<{
