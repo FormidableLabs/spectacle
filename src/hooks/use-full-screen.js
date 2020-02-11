@@ -10,10 +10,10 @@ export const useToggleFullScreen = () =>
       } else {
         document.exitFullscreen();
       }
-    } else if ('webkitRequestFullscreen' in document.documentElement) {
+    } else if ('webkitRequestFullScreen' in document.documentElement) {
       // Safari still doesn't support standard.
       if (!document.webkitIsFullScreen) {
-        document.documentElement.webkitRequestFullscreen();
+        document.documentElement.webkitRequestFullScreen();
       } else {
         document.webkitCancelFullScreen();
       }
