@@ -33,22 +33,39 @@ const AnimatedDeckDiv = styled(animated.div)`
   width: 100vw;
   position: fixed;
 `;
+AnimatedDeckDiv.displayName = 'AnimatedDeckDiv';
 
-const defaultSlideEffect = {
-  from: {
-    position: 'fixed',
-    transform: 'translate(100%, 0%)'
+const defaultTransition = {
+  slide: {
+    from: {
+      position: 'fixed',
+      transform: 'translate(100%, 0%)'
+    },
+    enter: {
+      position: 'fixed',
+      transform: 'translate(0, 0%)'
+    },
+    leave: {
+      position: 'fixed',
+      transform: 'translate(-100%, 0%)'
+    },
+    config: { precision: 0 }
   },
-  enter: {
-    position: 'fixed',
-    transform: 'translate(0, 0%)'
+  fade: {
+    enter: { opacity: 1 },
+    from: { opacity: 0 },
+    leave: { opacity: 0 },
+    config: { precision: 0 }
   },
-  leave: {
-    position: 'fixed',
-    transform: 'translate(-100%, 0%)'
-  },
-  config: { precision: 0 }
+  none: {
+    enter: {},
+    from: {},
+    leave: {},
+    config: { precision: 0 }
+  }
 };
+
+const builtInTransitions = Object.keys(defaultTransition);
 
 /**
  * Provides top level state/context provider with useDeck hook
@@ -103,7 +120,8 @@ const Deck = props => {
     animationsWhenGoingBack,
     backgroundColor,
     textColor,
-    template
+    template,
+    transitionEffect
   } = props;
   if (React.Children.count(children) === 0) {
     throw new Error('Spectacle must have at least one slide to run.');
@@ -192,7 +210,7 @@ const Deck = props => {
   });
 
   const { runTransition } = React.useContext(TransitionPipeContext);
-  const userTransitionEffect =
+  const slideTransitionEffect =
     filteredChildren[state.currentSlide].props.transitionEffect || {};
   const transitionRef = React.useRef(null);
 
@@ -203,11 +221,37 @@ const Deck = props => {
     runTransition(transitionRef.current);
   }, [transitionRef, state.currentSlide, runTransition]);
 
+  let currentTransition = {};
+
+  if (
+    typeof slideTransitionEffect === 'string' &&
+    builtInTransitions.includes(slideTransitionEffect)
+  ) {
+    currentTransition = defaultTransition[slideTransitionEffect];
+  } else if (
+    typeof slideTransitionEffect === 'object' &&
+    Object.keys(slideTransitionEffect).length !== 0
+  ) {
+    currentTransition = slideTransitionEffect;
+  } else if (
+    typeof transitionEffect === 'string' &&
+    builtInTransitions.includes(transitionEffect)
+  ) {
+    currentTransition = defaultTransition[transitionEffect];
+  } else if (
+    typeof transitionEffect === 'object' &&
+    Object.keys(transitionEffect).length !== 0
+  ) {
+    currentTransition = transitionEffect;
+  } else {
+    currentTransition = defaultTransition['slide'];
+  }
+
   const transitions = useTransition(state.currentSlide, p => p, {
     ref: transitionRef,
-    enter: () => userTransitionEffect.enter || defaultSlideEffect.enter,
-    leave: userTransitionEffect.leave || defaultSlideEffect.leave,
-    from: userTransitionEffect.from || defaultSlideEffect.from,
+    enter: currentTransition.enter,
+    leave: currentTransition.leave,
+    from: currentTransition.from,
     unique: true,
     immediate: state.immediate
   });
@@ -297,7 +341,15 @@ Deck.propTypes = {
   loop: PropTypes.bool.isRequired,
   template: PropTypes.func,
   textColor: PropTypes.string,
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  transitionEffect: PropTypes.oneOfType([
+    PropTypes.objectOf({
+      from: PropTypes.object,
+      enter: PropTypes.object,
+      leave: PropTypes.object
+    }),
+    PropTypes.oneOf(['fade', 'slide', 'none'])
+  ])
 };
 
 const ConnectedDeck = props => (

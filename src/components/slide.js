@@ -100,6 +100,11 @@ const Slide = props => {
     const useVerticalRatio =
       clientWidth / clientHeight > slideWidth / slideHeight;
     const clientRects = slideRef.current.getClientRects();
+
+    if (!clientRects || clientRects.length === 0) {
+      return;
+    }
+
     setOrigin({
       x: useVerticalRatio
         ? `${(clientWidth - clientRects[0].width) / 2 / (1 - ratio)}px`
@@ -167,7 +172,15 @@ Slide.propTypes = {
   scaleRatio: PropTypes.number,
   slideNum: PropTypes.number,
   template: PropTypes.func,
-  textColor: PropTypes.string
+  textColor: PropTypes.string,
+  transitionEffect: PropTypes.oneOfType([
+    PropTypes.shape({
+      from: PropTypes.object,
+      enter: PropTypes.object,
+      leave: PropTypes.object
+    }),
+    PropTypes.oneOf(['fade', 'slide', 'none'])
+  ])
 };
 
 Slide.defaultProps = {
