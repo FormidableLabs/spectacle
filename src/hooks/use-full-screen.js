@@ -2,25 +2,20 @@ import React from 'react';
 
 export const useToggleFullScreen = () =>
   React.useCallback(() => {
-    if (!document.fullscreenElement) {
-      if ('requestFullScreen' in document.documentElement) {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen
+    // Chrome/FF
+    if ('requestFullscreen' in document.documentElement) {
+      if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
-      } else if ('mozRequestFullScreen' in document.documentElement) {
-        if (document.mozFullScreen) {
-          document.mozCancelFullScreen();
-          return;
-        }
-        document.documentElement.mozRequestFullScreen();
-      } else if ('webkitRequestFullscreen' in document.documentElement) {
-        if (document.webkitIsFullScreen) {
-          document.webkitCancelFullScreen();
-          return;
-        }
-        document.documentElement.webkitRequestFullscreen();
-      }
-    } else {
-      if ('exitFullscreen' in document) {
+      } else {
         document.exitFullscreen();
+      }
+      // Safari still doesn't support standard.
+    } else if ('webkitRequestFullscreen' in document.documentElement) {
+      if (!document.webkitIsFullScreen) {
+        document.documentElement.webkitRequestFullscreen();
+      } else {
+        document.webkitCancelFullScreen();
       }
     }
   }, []);
