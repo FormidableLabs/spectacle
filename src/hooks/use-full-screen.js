@@ -3,8 +3,8 @@ import React from 'react';
 export const useToggleFullScreen = () =>
   React.useCallback(() => {
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen
-    // Chrome/FF
     if ('requestFullscreen' in document.documentElement) {
+      // Chrome/FF
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
       } else {
