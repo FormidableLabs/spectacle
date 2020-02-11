@@ -2,6 +2,8 @@
 
 [![Travis Status][trav_img]][trav_site]
 [![Maintenance Status][maintenance-image]](#maintenance-status)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/FormidableLabs/spectacle) 
+
 
 A [ReactJS](https://reactjs.org/)-based Presentation Library.
 

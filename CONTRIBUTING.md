@@ -2,6 +2,12 @@ Thanks for contributing!
 
 ## Development
 
+### Online one-click setup
+
+You can use gitpod(A free online vs code like ide) for one-click online setup, with a single click it will launch a ready to code workspace with all the dependencies pre-installed and web server running so that you can start straight away.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/from-referrer/)
+
 ### Installing dependencies
 
 ```sh
