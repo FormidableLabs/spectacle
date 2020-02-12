@@ -5,319 +5,125 @@ order: 7
 
 <a name="tutorial"></a>
 
-In this guide, we'll show you how to get started with Spectacle, and walk you through the creation and customization of a presentation deck.
+# Getting Started with Spectacle: A Tutorial
 
-<a name="step-one"></a>
+In this guide, we'll show you a couple of different ways to get started with Spectacle and walk you through the creation and customization of a presentation deck.
 
-## 1. Set up a basic React project
+<a name="option-one"></a>
 
-Stand up a new React application (_probably easiest achieved using [create-react-app](https://github.com/facebook/create-react-app)_). We will be adding content to an index.js, which should be treated as the main entry point in your application.
+## Option One: Using a standard React-based web app
 
-<a name="step-two"></a>
+1. Spin up a new React project using [`create-react-app`](https://github.com/facebook/create-react-app):
 
-## 2. Add Spectacle
+    ```sh
+    npx create-react-app spectacle-tutorial
+    ```
 
-Run `yarn add spectacle` to bring Spectacle into your React application.
+2. Install Spectacle by running `yarn add spectacle` or `npm i spectacle`.
 
-Almost all Spectacle presentations are comprised of a couple basic components: One `Deck` and typically multiple `Slide`s. For now, let's import these two basic components to get our deck started.
+3. In `App.js`, replace the boilerplate content with this Spectacle starter:
 
-The imports at the top of your main presentation file should look like this:
+    ```jsx
+    import React from 'react';
+    import { Deck, Slide, Heading } from 'spectacle';
 
-```js
-import React from 'react';
-import { Deck, Slide } from 'spectacle';
-```
+    function App() {
+      return (
+        <Deck>
+          <Slide>
+            <Heading>Welcome to Spectacle</Heading>
+          </Slide>
+        </Deck>
+      );
+    }
 
-To create our deck, we'll wrap some Slide components into a Deck in our Presentation class, like so:
+    export default App;
+    ```
 
-```js
-export default class Presentation extends React.Component {
-  render() {
-    return (
-      <Deck>
-        <Slide>Spectacle Boilerplate</Slide>
-        <Slide>Typography</Slide>
-        <Slide>Standard List</Slide>
-        <Slide>Example Quote</Slide>
-      </Deck>
-    );
-  }
-}
-```
+4. And you're good to go! Using `create-react-app`'s built-in `start` script, you can start a hot-reloading server to begin building your Spectacle presentation by running `yarn run start` or `npm run start`.
 
-<a name="step-three"></a>
+<a name="option-two"></a>
 
-## 3. Add some slide content
+## Option Two: Using Markdown and the Spectacle CLI
 
-To break up our content, we can use the `Heading` and `Text` tags to display varying sizes of text. Every time we want to use a new component from the Spectacle API, we will have to add it to our imports at the top:
+1. Create a new markdown file. You can use `.md` or `.mdx` (_MDX lets you mix JSX components inside markdown).
 
-```js
-import React from 'react';
-import { Deck, Heading, Slide, Text } from 'spectacle';
-```
+    You can use this as a starter:
 
-Now we can enhance our slides with these components:
+      ```md
+      # Welcome to Spectacle
 
-```js
-export default class Presentation extends React.Component {
-  render() {
-    return (
-      <Deck>
-        <Slide>
-          <Heading>Spectacle</Heading>
-          <Text>a React.js-based presentation library</Text>
-        </Slide>
-        <Slide>
-          <Heading>Typography</Heading>
-          <Heading>Heading 1</Heading>
-          <Heading>Heading 2</Heading>
-          <Heading>Heading 3</Heading>
-          <Heading>Heading 4</Heading>
-          <Heading>Heading 5</Heading>
-          <Text>Standard text</Text>
-        </Slide>
-        <Slide>
-          <Heading>Standard List</Heading>
-        </Slide>
-        <Slide>
-          <Heading>Example Quote</Heading>
-        </Slide>
-      </Deck>
-    );
-  }
-}
-```
+      - This is a list item
+      - This is another list item
 
-We can bring in additional core tags like `List` and `ListItem` to display bulleted lists on your slides:
+      ---
 
-```js
-return (
-  ...
-    <Slide>
-      <List>
-        <ListItem>Item 1</ListItem>
-        <ListItem>Item 2</ListItem>
-        <ListItem>Item 3</ListItem>
-        <ListItem>Item 4</ListItem>
-      </List>
-    </Slide>
-  ...
-)
-```
+      # Second Slide
 
-<a name="step-four"></a>
+      Text can be **bold** or _italic_!
 
-## 4. Add images
+      Notes: These are presenter notes, only visible in presenter mode to the speaker.
+      ```
 
-Create an `assets` directory in the root of your project and save a few of your own images to it. Then, near the top of your file, import your image(s):
+    **Note:** The triple dash (`---`) is used as a slide delimiter. The `Notes:` keyword is used to embed presenter notes only visible to the speaker in presenter mode.
 
-<!-- TODO - revise for optimized img loading? -->
+2. To view your slides, supply your markdown to the Spectacle CLI to start a local web server.
 
-```js
-const images = {
-  formidaLogo: require('../assets/formidable-logo.svg'),
-  goodWork: require('../assets/good-work.gif')
-};
-```
+    `npx spectacle -s my-slides.mdx`
 
-Once you've brought in your images, you can supply them to the `src` prop on the `Image` tag to display within your slides (but don't forget to import the tag!). Now, your presentation file should look like this:
+3. And you're good to go! The web server you started supports live refreshing and will update your deck as you make changes to the markdown file.
 
-```js
-import React from 'react';
-import {
-  BlockQuote,
-  Cite,
-  Deck,
-  Heading,
-  Image,
-  List,
-  ListItem,
-  Quote,
-  Slide,
-  Text
-} from 'spectacle';
+<a name="option-three"></a>
 
-const images = {
-  formidaLogo: require('../assets/formidable-logo.svg'),
-  goodWork: require('../assets/good-work.gif')
-};
+## Option Three: Using One Page
 
-export default class Presentation extends React.Component {
-  render() {
-    return (
-      <Deck>
-        <Slide>
-          <Heading>Spectacle</Heading>
-          <Text>a React.js-based presentation library</Text>
-        </Slide>
-        <Slide>
-          <Image src={images.formidaLogo} width={800} />
-        </Slide>
-        <Slide>
-          <Heading>Typography</Heading>
-          <Heading>Heading 1</Heading>
-          <Heading>Heading 2</Heading>
-          <Heading>Heading 3</Heading>
-          <Heading>Heading 4</Heading>
-          <Heading>Heading 5</Heading>
-          <Text>Standard text</Text>
-        </Slide>
-        <Slide>
-          <Heading>Standard List</Heading>
-          <List>
-            <ListItem>Item 1</ListItem>
-            <ListItem>Item 2</ListItem>
-            <ListItem>Item 3</ListItem>
-            <ListItem>Item 4</ListItem>
-          </List>
-        </Slide>
-        <Slide>
-          <Image src={images.goodWork} width={500} />
-        </Slide>
-      </Deck>
-    );
-  }
-}
-```
+One Page is a single self-contained `HTML` file that lets you build a deck using no build steps, using [htm](https://github.com/developit/htm) over JSX to reduce the dependencies and load time.
 
-<a name="step-five"></a>
-
-## 5. Add charts
-
-<!-- TODO - Victory impl? -->
-
-<a name="step-six"></a>
-
-## 6. Style your slides
-
-<!-- Because the `Text`, `Image`, and `Heading` accept a number of props (like `bold`, `caps`, `fit`, `lineHeight`, and `size`), we can use these props to minimally style our content: -->
-
-<!-- ```js
-export default class Presentation extends React.Component {
-  render() {
-    return (
-      <Deck>
-        <Slide>
-          <Heading size={1} fit caps lineHeight={1}>
-            Spectacle Boilerplate
-          </Heading>
-          <Text margin="10px 0 0" fit bold>
-            open the presentation/index.js file to get started
-          </Text>
-        </Slide>
-        <Slide>
-          <Image src={images.formidaLogo} width={800} />
-        </Slide>
-        <Slide>
-          <Heading size={6} caps>
-            Typography
-          </Heading>
-          <Heading size={1}>Heading 1</Heading>
-          <Heading size={2}>Heading 2</Heading>
-          <Heading size={3}>Heading 3</Heading>
-          <Heading size={4}>Heading 4</Heading>
-          <Heading size={5}>Heading 5</Heading>
-          <Text size={6}>Standard text</Text>
-        </Slide>
-        <Slide>
-          <Heading size={6} caps>
-            Standard List
-          </Heading>
-          <List>
-            <ListItem>Item 1</ListItem>
-            <ListItem>Item 2</ListItem>
-            <ListItem>Item 3</ListItem>
-            <ListItem>Item 4</ListItem>
-          </List>
-        </Slide>
-        <Slide>
-          <Image src={images.goodWork} width={500} />
-        </Slide>
-      </Deck>
-    );
-  }
-}
-``` -->
-
-<a name="step-seven"></a>
-
-## 7. Create a theme
-
-To style our slides further, we can create a theme to enforce fonts and colors on all of our slides.
-
-<a name="step-eight"></a>
-
-## 8. Add animations
-
-Using the core Spectacle API, we can supply transition props <!-- TODO - like so -->.
-
-Additionally, you could bring in other core components like `Appear` to spice up your slides. `Appear` will delay the rendering of your text or image for one click, so you can have more control over the timing over your content. Just wrap any fragment you would like to delay with the tag to apply the animation. For example:
-
-```js
-<Slide>
-  <Heading>Animated List</Heading>
-  <List>
-    <Appear>
-      <ListItem>Item 1</ListItem>
-    </Appear>
-    <Appear>
-      <ListItem>Item 2</ListItem>
-    </Appear>
-    <Appear>
-      <ListItem>Item 3</ListItem>
-    </Appear>
-    <Appear>
-      <ListItem>Item 4</ListItem>
-    </Appear>
-  </List>
-</Slide>
-```
-
-<a name="step-nine"></a>
-
-## 9. Add code samples
-
-Finally, you have a couple of options for displaying code content.
-
-<!-- TODO - is CodePane the same? -->
-<!-- TODO - is ComponentPlayground the same? -->
-
-<!-- `CodePane` and `ComponentPlayground` both offer ways to display code, but they differ in a fundamental way: `CodePane` is a styled, highlighted code preview, while `ComponentPlayground` is a two-paned view with source on the right and a preview pane on the left for showing off custom components. -->
-
-When displaying code using either component, the process is similar to displaying an image. You'll want to start by importing your code examples as assets, like so:
-
-```js
-const code = {
-  deckSample: require('../assets/code/deck.example');
-}
-```
-
-<!-- To then display this code content in a `CodePane` component, you'll provide it as a `source`:
-
-```js
-<Slide>
-  <CodePane
-    lang="jsx"
-    source={code.deckSample}
-    margin="20px auto"
-    overflow="overflow"
-  />
-</Slide>
-``` -->
-
-<!-- To display the same code sample in a `ComponentPlayground`, you'll want to provide the code sample to the component in a similar way, as the `code`:
-
-```js
-<Slide>
-  <ComponentPlayground code={code.deckSample} theme={dark} />
-</Slide>
-``` -->
+As a self-contained entity, it already has references to the dependencies you need to author and launch a deck in a web browser. Since there is no tooling required, One Page is also optimal on tablets. The One Page `HTML` file can be downloaded from the `examples` directory [in this repository](../../examples/one-page.html).
 
 <a name="next-steps"></a>
 
 ## Next Steps
 
-For more information on [presenting](./basic-concepts#presenting), [exporting](./advanced-concepts#exporting), [building](./advanced-concepts#build--deployment), or [deploying](./advanced-concepts#build--deployment) your Spectacle deck, please check out [the docs](https://formidable.com/open-source/spectacle).
+<a name="styling"></a>
+
+### Styling your Spectacle Deck
+
+The easiest way to apply consistent styles to your Spectacle deck is using [themes](./advanced-concepts#themes).
+
+1. Create a theme JS file containing a single object export. Supplied properties will be merged with the default base theme (found in Spectacle at `src/theme/default-theme.js`). 
+
+    Here's a sample object:
+
+    ```js
+    export default {
+      colors: {
+        primary: 'red',
+        secondary: 'green'
+      },
+      fonts: {
+        header: '"Helvetica Neue", Helvetica, Arial, sans-serif'
+      },
+      fontSizes: {
+        h1: '72px',
+        h2: '64px'
+      }
+    };
+    ```
+
+2. Consume the theme using the approach of your choice:
+
+    a. To use a custom theme with a JSX (Option One) or HTM-deck (Option Three), supply the object to the `theme` prop in the `Deck` tag. `<Deck theme={customTheme}>`.
+
+    b. To use a custom theme with the Markdown CLI (Option Two), supply the file using the `-t` argument.
+
+        npx spectacle -s my-slides.mdx -t custom-theme.js
+
+<a name="sharing"></a>
+
+### Sharing your Spectacle Deck
+
+For more information on [presenting](./basic-concepts#presenting), [exporting](./advanced-concepts#exporting), [building](./advanced-concepts#build--deployment), or [deploying](./advanced-concepts#build--deployment) your Spectacle deck, please check out [the documentation on advanced concepts](https://formidable.com/open-source/spectacle/docs/advanced-concepts/).
 
 <a name="documentation-contributing-and-source"></a>
 
