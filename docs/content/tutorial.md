@@ -15,30 +15,30 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 1. Spin up a new React project using [`create-react-app`](https://github.com/facebook/create-react-app):
 
-    ```bash
-    npx create-react-app spectacle-tutorial
-    ```
+   ```bash
+   npx create-react-app spectacle-tutorial
+   ```
 
 2. Install Spectacle by running `yarn add spectacle` or `npm i spectacle`.
 
 3. In `App.js`, replace the boilerplate content with this Spectacle starter:
 
-    ```jsx
-    import React from 'react';
-    import { Deck, Slide, Heading } from 'spectacle';
+   ```jsx
+   import React from 'react';
+   import { Deck, Slide, Heading } from 'spectacle';
 
-    function App() {
-      return (
-        <Deck>
-          <Slide>
-            <Heading>Welcome to Spectacle</Heading>
-          </Slide>
-        </Deck>
-      );
-    }
+   function App() {
+     return (
+       <Deck>
+         <Slide>
+           <Heading>Welcome to Spectacle</Heading>
+         </Slide>
+       </Deck>
+     );
+   }
 
-    export default App;
-    ```
+   export default App;
+   ```
 
 4. And you're good to go! Using `create-react-app`'s built-in `start` script, you can start a hot-reloading server to begin building your Spectacle presentation by running `yarn run start` or `npm run start`.
 
@@ -46,33 +46,33 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 ## Option Two: Using Markdown and the Spectacle CLI
 
-1. Create a new markdown file. You can use `.md` or `.mdx` (_MDX lets you mix JSX components inside markdown).
+1. Create a new markdown file. You can use `.md` or `.mdx` (\_MDX lets you mix JSX components inside markdown).
 
-    You can use this as a starter:
+   You can use this as a starter:
 
-      ```md
-      # Welcome to Spectacle
+   ```md
+   # Welcome to Spectacle
 
-      - This is a list item
-      - This is another list item
+   - This is a list item
+   - This is another list item
 
-      ---
+   ---
 
-      # Second Slide
+   # Second Slide
 
-      Text can be **bold** or _italic_!
+   Text can be **bold** or _italic_!
 
-      Notes: These are presenter notes, only visible in presenter mode to the speaker.
-      ```
+   Notes: These are presenter notes, only visible in presenter mode to the speaker.
+   ```
 
-    **Note:** The triple dash (`---`) is used as a slide delimiter. The `Notes:` keyword is used to embed presenter notes only visible to the speaker in presenter mode.
+   **Note:** The triple dash (`---`) is used as a slide delimiter. The `Notes:` keyword is used to embed presenter notes only visible to the speaker in presenter mode.
 
 2. To view your slides, supply your markdown to the Spectacle CLI to start a local web server.
 
-    ```bash
-    $ npm install --global spectacle-cli
-    $ spectacle -s my-slides.mdx
-    ```
+   ```bash
+   $ npm install --global spectacle-cli
+   $ spectacle -s my-slides.mdx
+   ```
 
 3. And you're good to go! The web server you started supports live refreshing and will update your deck as you make changes to the markdown file.
 
@@ -94,36 +94,36 @@ As a self-contained entity, it already has references to the dependencies you ne
 
 The easiest way to apply consistent styles to your Spectacle deck is using [themes](./themes).
 
-1. Create a theme JS file containing a single object export. Supplied properties will be merged with the default base theme (found in Spectacle at `src/theme/default-theme.js`). 
+1. Create a theme JS file containing a single object export. Supplied properties will be merged with the default base theme (found in Spectacle at `src/theme/default-theme.js`).
 
-    Here's a sample object:
+   Here's a sample object:
 
-    ```js
-    export default {
-      colors: {
-        primary: 'red',
-        secondary: 'green'
-      },
-      fonts: {
-        header: '"Helvetica Neue", Helvetica, Arial, sans-serif'
-      },
-      fontSizes: {
-        h1: '72px',
-        h2: '64px'
-      }
-    };
-    ```
+   ```js
+   export default {
+     colors: {
+       primary: 'red',
+       secondary: 'green'
+     },
+     fonts: {
+       header: '"Helvetica Neue", Helvetica, Arial, sans-serif'
+     },
+     fontSizes: {
+       h1: '72px',
+       h2: '64px'
+     }
+   };
+   ```
 
 2. Consume the theme using the approach of your choice:
 
-    a. To use a custom theme with a JSX (Option One) or HTM-deck (Option Three), supply the object to the `theme` prop in the `Deck` tag. `<Deck theme={customTheme}>`.
+   a. To use a custom theme with a JSX (Option One) or HTM-deck (Option Three), supply the object to the `theme` prop in the `Deck` tag. `<Deck theme={customTheme}>`.
 
-    b. To use a custom theme with the Markdown CLI (Option Two), supply the file using the `-t` argument.
+   b. To use a custom theme with the Markdown CLI (Option Two), supply the file using the `-t` argument.
 
-      ```bash
-      $ npm install --global spectacle-cli
-      $ spectacle -s my-slides.mdx -t custom-theme.js
-      ```
+   ```bash
+   $ npm install --global spectacle-cli
+   $ spectacle -s my-slides.mdx -t custom-theme.js
+   ```
 
 <a name="sharing"></a>
 

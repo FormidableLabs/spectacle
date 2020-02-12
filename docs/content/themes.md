@@ -59,7 +59,7 @@ Common CSS properties are divided into theme keys, which you can override in you
 | `lineHeights`    | `line-height`                                                           |
 | `letterSpacings` | `letter-spacing`                                                        |
 | `shadows`        | `box-shadow`, `text-shadow`                                             |
-| `zIndices`       | `z-index`   
+| `zIndices`       | `z-index`                                                               |
 
 <a name="scaled-spacing"></a>
 
