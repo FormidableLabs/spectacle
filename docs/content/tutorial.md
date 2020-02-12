@@ -69,7 +69,10 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 2. To view your slides, supply your markdown to the Spectacle CLI to start a local web server.
 
-    `npx spectacle -s my-slides.mdx`
+    ```sh
+    $ npm install --global spectacle-cli
+    $ spectacle -s my-slides.mdx
+    ```
 
 3. And you're good to go! The web server you started supports live refreshing and will update your deck as you make changes to the markdown file.
 
@@ -79,7 +82,7 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 One Page is a single self-contained `HTML` file that lets you build a deck using no build steps, using [htm](https://github.com/developit/htm) over JSX to reduce the dependencies and load time.
 
-As a self-contained entity, it already has references to the dependencies you need to author and launch a deck in a web browser. Since there is no tooling required, One Page is also optimal on tablets. The One Page `HTML` file can be downloaded from the `examples` directory [in this repository](../../examples/one-page.html).
+As a self-contained entity, it already has references to the dependencies you need to author and launch a deck in a web browser. Since there is no tooling required, One Page is also optimal on tablets. The One Page `HTML` file can be downloaded from the `examples` directory [in this repository](https://unpkg.com/browse/spectacle@latest/examples/one-page.html).
 
 <a name="next-steps"></a>
 
@@ -117,7 +120,10 @@ The easiest way to apply consistent styles to your Spectacle deck is using [them
 
     b. To use a custom theme with the Markdown CLI (Option Two), supply the file using the `-t` argument.
 
-        npx spectacle -s my-slides.mdx -t custom-theme.js
+      ```sh
+      $ npm install --global spectacle-cli
+      $ spectacle -s my-slides.mdx -t custom-theme.js
+      ```
 
 <a name="sharing"></a>
 
