@@ -80,6 +80,7 @@ class Sidebar extends React.Component {
           <SubContentWrapper>
             {subContent.map(sh => {
               const slug = `#${sh.content
+                .replace('&', '')
                 .replace('.', '')
                 .split(' ')
                 .join('-')
@@ -122,7 +123,7 @@ class Sidebar extends React.Component {
             <SidebarNavItem to={`/#`} key={'home'}>
               Home
             </SidebarNavItem>
-            <SidebarNavItem to={`/docs/getting-started`} key={'documentation'}>
+            <SidebarNavItem to={`/docs`} key={'documentation'}>
               Documentation
             </SidebarNavItem>
             {sidebarHeaders &&
