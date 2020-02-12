@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Text } from '../typography';
 import { FlexBox } from '../layout';
 import * as queryString from 'query-string';
@@ -18,15 +18,16 @@ const PresenterDeckContainer = styled('div')`
   display: flex;
   flex-direction: row;
   background-color: #282828;
-  padding: 2em;
   overflow: hidden;
 `;
 
 const NotesColumn = styled('div')`
-  padding: 0 4em;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  background: #383838;
   width: 50%;
+  border-right: 1px solid black;
 `;
 
 const PreviewColumn = styled('div')`
@@ -54,6 +55,12 @@ const SlideWrapper = styled('div')`
   .spectacle-fullscreen-button {
     display: none;
   }
+
+  ${({ small }) =>
+    small &&
+    css`
+      flex: 0.8;
+    `}
 `;
 
 const SlideCountLabel = styled('span')`
@@ -150,7 +157,9 @@ const PresenterDeck = props => {
                 Slide {nextSlide.props.slideNum + 1} of {numberOfSlides}
               </SlideCountLabel>
             </Text>
-            <SlideWrapper data-testid="Next Slide">{nextSlide}</SlideWrapper>
+            <SlideWrapper small data-testid="Next Slide">
+              {nextSlide}
+            </SlideWrapper>
           </SlideContainer>
         )}
       </PreviewColumn>
