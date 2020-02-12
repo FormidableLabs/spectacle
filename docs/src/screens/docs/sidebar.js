@@ -80,8 +80,7 @@ class Sidebar extends React.Component {
           <SubContentWrapper>
             {subContent.map(sh => {
               const slug = `#${sh.content
-                .replace('&', '')
-                .replace('.', '')
+                .replace(/[&,:]+/gm, '')
                 .split(' ')
                 .join('-')
                 .toLowerCase()}`;
