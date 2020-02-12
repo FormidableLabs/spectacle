@@ -1,6 +1,6 @@
 ---
 title: Extensions
-order: 4
+order: 7
 ---
 
 <a name="third-party"></a>

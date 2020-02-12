@@ -1,6 +1,6 @@
 ---
 title: FAQ
-order: 5
+order: 8
 ---
 
 <a main="frequently-asked-questions"></a>

@@ -1,6 +1,6 @@
 ---
 title: Getting Started - A Tutorial
-order: 7
+order: 6
 ---
 
 <a name="tutorial"></a>
@@ -15,7 +15,7 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 1. Spin up a new React project using [`create-react-app`](https://github.com/facebook/create-react-app):
 
-    ```sh
+    ```bash
     npx create-react-app spectacle-tutorial
     ```
 
@@ -69,7 +69,7 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 2. To view your slides, supply your markdown to the Spectacle CLI to start a local web server.
 
-    ```sh
+    ```bash
     $ npm install --global spectacle-cli
     $ spectacle -s my-slides.mdx
     ```
@@ -92,7 +92,7 @@ As a self-contained entity, it already has references to the dependencies you ne
 
 ### Styling your Spectacle Deck
 
-The easiest way to apply consistent styles to your Spectacle deck is using [themes](./advanced-concepts#themes).
+The easiest way to apply consistent styles to your Spectacle deck is using [themes](./themes).
 
 1. Create a theme JS file containing a single object export. Supplied properties will be merged with the default base theme (found in Spectacle at `src/theme/default-theme.js`). 
 
@@ -120,7 +120,7 @@ The easiest way to apply consistent styles to your Spectacle deck is using [them
 
     b. To use a custom theme with the Markdown CLI (Option Two), supply the file using the `-t` argument.
 
-      ```sh
+      ```bash
       $ npm install --global spectacle-cli
       $ spectacle -s my-slides.mdx -t custom-theme.js
       ```

@@ -100,7 +100,7 @@ $ yarn start:one-page
 
 `spectacle-cli` uses our `js,md,one-page` examples in the CLI and boilerplate tools. To check that changes to these files don't break `spectacle-cli` upstream, check with something like the following:
 
-```sh
+```bash
 # In `spectacle` repo
 $ yarn link
 
