@@ -7,8 +7,6 @@ import { countSlides } from './slides';
 import theme from '../themes/default';
 import Context from './context';
 
-const history = createHashHistory();
-
 export default class Controller extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -21,7 +19,7 @@ export default class Controller extends Component {
   constructor(props) {
     super(...arguments);
 
-    this.history = props.history || history;
+    this.history = props.history || createHashHistory();
   }
 
   state = {
