@@ -213,6 +213,47 @@ const Deck = props => {
   const slideTransitionEffect =
     filteredChildren[state.currentSlide].props.transitionEffect || {};
   const transitionRef = React.useRef(null);
+  const broadcastChannelRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (typeof window.navigator.presentation === 'undefined') {
+      broadcastChannelRef.current = new BroadcastChannel(
+        'spectacle_presenter_mode_channel'
+      );
+    }
+    return () => {
+      broadcastChannelRef.current.close();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (
+      broadcastChannelRef.current &&
+      typeof broadcastChannelRef.current.postMessage === 'function'
+    ) {
+      broadcastChannelRef.current.onmessage = message => {
+        if (state.presenterMode) {
+          return;
+        }
+        const { slide, element } = JSON.parse(message.data);
+        if (slide !== state.currentSlide) {
+          goToSlide(slide, false);
+        }
+      };
+      if (state.presenterMode) {
+        const slideData = {
+          slide: state.currentSlide,
+          element: state.currentSlideElement
+        };
+        broadcastChannelRef.current.postMessage(JSON.stringify(slideData));
+      }
+    }
+  }, [
+    state.currentSlide,
+    state.currentSlideElement,
+    state.presenterMode,
+    goToSlide
+  ]);
 
   React.useEffect(() => {
     if (!transitionRef.current) {

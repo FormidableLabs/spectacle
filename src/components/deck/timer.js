@@ -2,6 +2,7 @@ import React from 'react';
 import { useTimer } from '../../utils/use-timer';
 import { Text, FlexBox, Box } from '../../';
 import InternalButton from '../internal-button';
+import { SYSTEM_FONT } from '../../utils/constants';
 
 export const Timer = () => {
   const [timer, setTimer] = React.useState(0);
@@ -12,10 +13,14 @@ export const Timer = () => {
   return (
     <FlexBox>
       <FlexBox justifyContent="flex-start" flex={1}>
-        <Text fontWeight="bold" fontSize={24}>{`${String(minutes).padStart(
-          2,
-          '0'
-        )}:${String(timer.toFixed(0) - minutes * 60).padStart(2, '0')}`}</Text>
+        <Text
+          fontFamily={SYSTEM_FONT}
+          fontWeight="bold"
+          fontSize="2.2vw"
+          textAlign="left"
+        >{`${String(minutes).padStart(2, '0')}:${String(
+          timer.toFixed(0) - minutes * 60
+        ).padStart(2, '0')}`}</Text>
       </FlexBox>
       <InternalButton onClick={() => setTimerStarted(s => !s)}>
         {timerStarted ? 'Stop Timer' : 'Start Timer'}

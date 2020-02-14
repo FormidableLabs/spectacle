@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SYSTEM_FONT } from '../utils/constants';
 
 /**
  * This button is for internal controls like the presenter display.
@@ -14,6 +15,7 @@ const InternalButton = styled('button')`
   padding: 3px 20px;
   font-size: 14px;
   font-weight: bold;
+  font-family: ${SYSTEM_FONT};
 
   &:active {
     box-shadow: inset 1px 1px 0 hsla(0, 0%, 0%, 0.25),

@@ -96,12 +96,12 @@ export default function useUrlRouting(options) {
   );
 
   const goToSlide = React.useCallback(
-    slideNumber => {
+    (slideNumber, immediate = true) => {
       const qs = queryString.stringify({
         presenterMode: currentPresenterMode || undefined,
         overviewMode: currentOverviewMode || undefined,
         exportMode: currentExportMode || undefined,
-        immediate: true,
+        immediate: immediate,
         slide: slideNumber,
         slideElement: DEFAULT_SLIDE_ELEMENT_INDEX,
         printMode: currentPrintMode || undefined

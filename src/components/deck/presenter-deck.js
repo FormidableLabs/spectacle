@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
 import styled, { css } from 'styled-components';
 import { Text } from '../typography';
-import { FlexBox } from '../layout';
+import { FlexBox, Box } from '../layout';
 import * as queryString from 'query-string';
 import { Timer } from './timer';
 import SpectacleLogo from '../logo';
 import InternalButton from '../internal-button';
+import { SYSTEM_FONT } from '../../utils/constants';
+import 'broadcastchannel-polyfill';
 
 const PresenterDeckContainer = styled('div')`
   position: absolute;
@@ -50,6 +52,7 @@ const SlideContainer = styled('div')`
 
 const SlideWrapper = styled('div')`
   flex: 1;
+  width: 100%;
   position: relative;
 
   .spectacle-fullscreen-button {
@@ -71,7 +74,10 @@ const SlideCountLabel = styled('span')`
 `;
 
 const NotesContainer = styled('div')`
+  border-top: 1px solid black;
   overflow-y: scroll;
+  background: #404040;
+  flex: 1;
 `;
 
 const PresenterDeck = props => {
@@ -107,41 +113,67 @@ const PresenterDeck = props => {
   const nextSlide =
     children.length > currentSlide + 1 ? children[currentSlide + 1] : null;
 
+  const castButton = React.useMemo(() => {
+    if (isReceiver) {
+      return null;
+    }
+    if (typeof window.navigator.presentation === 'undefined') {
+      return (
+        <Text
+          fontSize={15}
+          fontFamily={SYSTEM_FONT}
+          textAlign="right"
+          padding="0px"
+          margin="0px"
+        >
+          Open a second browser tab with
+        </Text>
+      );
+    }
+    if (isController) {
+      return (
+        <InternalButton
+          data-testid="Close Connection"
+          onClick={terminateConnection}
+        >
+          Stop Casting
+        </InternalButton>
+      );
+    }
+    return (
+      <InternalButton
+        data-testid="Start Connection"
+        onClick={onStartConnection}
+      >
+        Cast to Secondary Display
+      </InternalButton>
+    );
+  }, []);
+
   return (
     <PresenterDeckContainer>
       <NotesColumn>
-        <FlexBox justifyContent="space-between">
+        <FlexBox justifyContent="space-between" paddingTop={10} paddingX={15}>
           <SpectacleLogo />
-          {!isController && !isReceiver && (
-            <InternalButton
-              data-testid="Start Connection"
-              onClick={onStartConnection}
-            >
-              Cast to Secondary Display
-            </InternalButton>
-          )}
-          {isController && !isReceiver && (
-            <InternalButton
-              data-testid="Close Connection"
-              onClick={terminateConnection}
-            >
-              Stop Casting
-            </InternalButton>
-          )}
+          {castButton}
         </FlexBox>
-        <Timer />
-        <Text fontSize={20} fontWeight="bold">
-          Notes:
-        </Text>
+        <Box paddingRight={15}>
+          <Timer />
+        </Box>
         <NotesContainer>
-          <Text lineHeight="180%" fontSize="18px">
+          <Text fontFamily={SYSTEM_FONT} lineHeight="180%" fontSize="1.5vw">
             {currentNotes}
           </Text>
         </NotesContainer>
       </NotesColumn>
       <PreviewColumn>
         <SlideContainer>
-          <Text fontSize={20} fontWeight="bold" textAlign="center">
+          <Text
+            fontSize={20}
+            fontWeight="bold"
+            fontFamily={SYSTEM_FONT}
+            textAlign="center"
+          >
             Current&nbsp;
             <SlideCountLabel>
               Slide {activeSlide.props.slideNum + 1} of {numberOfSlides}
@@ -151,7 +183,12 @@ const PresenterDeck = props => {
         </SlideContainer>
         {!!nextSlide && (
           <SlideContainer>
-            <Text fontSize={20} fontWeight="bold" textAlign="center">
+            <Text
+              fontSize={20}
+              fontFamily={SYSTEM_FONT}
+              fontWeight="bold"
+              textAlign="center"
+            >
               Next&nbsp;
               <SlideCountLabel>
                 Slide {nextSlide.props.slideNum + 1} of {numberOfSlides}
