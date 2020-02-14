@@ -189,6 +189,7 @@ const Deck = props => {
   const {
     navigateToNext,
     navigateToPrevious,
+    navigateTo,
     toggleMode,
     goToSlide
   } = useUrlRouting({
@@ -236,9 +237,7 @@ const Deck = props => {
           return;
         }
         const { slide, element } = JSON.parse(message.data);
-        if (slide !== state.currentSlide) {
-          goToSlide(slide, false);
-        }
+        navigateTo({ slideIndex: slide, elementIndex: element });
       };
       if (state.presenterMode) {
         const slideData = {
@@ -252,7 +251,7 @@ const Deck = props => {
     state.currentSlide,
     state.currentSlideElement,
     state.presenterMode,
-    goToSlide
+    navigateTo
   ]);
 
   React.useEffect(() => {

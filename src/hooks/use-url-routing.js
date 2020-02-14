@@ -177,6 +177,25 @@ export default function useUrlRouting(options) {
     return Math.min(currentSlide + 1, numberOfSlides - 1);
   }, [currentSlide, loop, numberOfSlides]);
 
+  /**
+   * This method will navigate to whatever index is specified. It is for
+   * internal use only, such as presenter mode, as it does not check bounds.
+   */
+  const navigateTo = React.useCallback(
+    ({ slideIndex, elementIndex, immediate = false }) => {
+      const qs = queryString.stringify({
+        slide: slideIndex,
+        slideElement: elementIndex,
+        immediate: immediate || undefined,
+        presenterMode: currentPresenterMode || undefined,
+        overviewMode: currentOverviewMode || undefined,
+        exportMode: currentExportMode || undefined,
+        printMode: currentPrintMode || undefined
+      });
+      history.current.push(`?${qs}`);
+    }
+  );
+
   const navigateToNext = React.useCallback(
     ({ immediate } = {}) => {
       const slideElementsLength = countSlideElements(currentSlide);
@@ -312,6 +331,7 @@ export default function useUrlRouting(options) {
   return {
     navigateToNext,
     navigateToPrevious,
+    navigateTo,
     toggleMode,
     goToSlide
   };
