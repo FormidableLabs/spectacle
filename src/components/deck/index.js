@@ -168,12 +168,6 @@ const Deck = props => {
     isController
   } = usePresentation();
 
-  React.useEffect(() => {
-    if (errors && errors.length > 0) {
-      console.log('presentation errors', errors);
-    }
-  }, [errors]);
-
   const onUrlChange = React.useCallback(
     update => {
       if (isController) {
@@ -217,12 +211,18 @@ const Deck = props => {
   const broadcastChannelRef = React.useRef(null);
 
   React.useEffect(() => {
-    if (typeof window.navigator.presentation === 'undefined') {
+    if (
+      typeof window.navigator.presentation === 'undefined' &&
+      typeof MessageChannel !== 'undefined'
+    ) {
       broadcastChannelRef.current = new BroadcastChannel(
         'spectacle_presenter_mode_channel'
       );
     }
     return () => {
+      if (!broadcastChannelRef.current) {
+        return;
+      }
       broadcastChannelRef.current.close();
     };
   }, []);
@@ -383,7 +383,7 @@ Deck.propTypes = {
   textColor: PropTypes.string,
   theme: PropTypes.object,
   transitionEffect: PropTypes.oneOfType([
-    PropTypes.objectOf({
+    PropTypes.shape({
       from: PropTypes.object,
       enter: PropTypes.object,
       leave: PropTypes.object

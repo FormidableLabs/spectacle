@@ -92,6 +92,10 @@ const Slide = props => {
       : clientWidth / slideWidth;
     const clientRects = slideRef.current.getClientRects();
 
+    if (!clientRects || clientRects.length === 0) {
+      return;
+    }
+
     setRatio(newRatio);
     setOrigin({
       x: useVerticalRatio

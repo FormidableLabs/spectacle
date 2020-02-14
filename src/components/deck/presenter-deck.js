@@ -120,13 +120,15 @@ const PresenterDeck = props => {
     if (typeof window.navigator.presentation === 'undefined') {
       return (
         <Text
+          data-testid="use-browser-tab-text"
           fontSize={15}
           fontFamily={SYSTEM_FONT}
           textAlign="right"
           padding="0px"
           margin="0px"
         >
-          Open a second browser tab with
+          Open a second browser tab at the same address to use as the audience
+          deck.
         </Text>
       );
     }

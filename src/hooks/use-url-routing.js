@@ -18,10 +18,11 @@ export default function useUrlRouting(options) {
     currentPrintMode,
     loop,
     animationsWhenGoingBack,
-    onUrlChange
+    onUrlChange,
+    customHistory
   } = options;
 
-  const history = React.useRef(createBrowserHistory());
+  const history = React.useRef(customHistory || createBrowserHistory());
 
   const numberOfSlides = React.useMemo(
     () => Object.getOwnPropertyNames(slideElementMap).length,

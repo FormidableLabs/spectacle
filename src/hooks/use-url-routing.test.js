@@ -305,4 +305,36 @@ describe('useUrlRouting', () => {
       });
     });
   });
+  describe('navigateTo', () => {
+    it('navigates to the passed slideIndex and elementIndex.', () => {
+      const history = {
+        replace: jest.fn(),
+        listen: jest.fn(),
+        push: jest.fn()
+      };
+      const options = {
+        dispatch: jest.fn(),
+        slideElementMap: { 0: 0, 1: 0 },
+        currentSlide: 0,
+        currentSlideElement: -1,
+        currentPresenterMode: false,
+        currentOverviewMode: false,
+        currentExportMode: false,
+        currentPrintMode: false,
+        loop: true,
+        animationsWhenGoingBack: false,
+        onUrlChange: jest.fn(),
+        customHistory: history
+      };
+      const TestComponent = () => {
+        const { navigateTo } = useUrlRouting(options);
+        React.useEffect(() => {
+          navigateTo({ slideIndex: 2, elementIndex: 3 });
+        }, []);
+        return <div />;
+      };
+      mount(<TestComponent />);
+      expect(history.push).toBeCalledWith('?slide=2&slideElement=3');
+    });
+  });
 });
