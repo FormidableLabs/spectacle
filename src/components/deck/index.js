@@ -168,12 +168,6 @@ const Deck = props => {
     isController
   } = usePresentation();
 
-  React.useEffect(() => {
-    if (errors && errors.length > 0) {
-      console.log('presentation errors', errors);
-    }
-  }, [errors]);
-
   const onUrlChange = React.useCallback(
     update => {
       if (isController) {
@@ -189,6 +183,7 @@ const Deck = props => {
   const {
     navigateToNext,
     navigateToPrevious,
+    navigateTo,
     toggleMode,
     goToSlide
   } = useUrlRouting({
@@ -213,6 +208,48 @@ const Deck = props => {
   const slideTransitionEffect =
     filteredChildren[state.currentSlide].props.transitionEffect || {};
   const transitionRef = React.useRef(null);
+  const broadcastChannelRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (typeof MessageChannel !== 'undefined') {
+      broadcastChannelRef.current = new BroadcastChannel(
+        'spectacle_presenter_mode_channel'
+      );
+    }
+    return () => {
+      if (!broadcastChannelRef.current) {
+        return;
+      }
+      broadcastChannelRef.current.close();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (
+      broadcastChannelRef.current &&
+      typeof broadcastChannelRef.current.postMessage === 'function'
+    ) {
+      broadcastChannelRef.current.onmessage = message => {
+        if (state.presenterMode) {
+          return;
+        }
+        const { slide, element } = JSON.parse(message.data);
+        navigateTo({ slideIndex: slide, elementIndex: element });
+      };
+      if (state.presenterMode) {
+        const slideData = {
+          slide: state.currentSlide,
+          element: state.currentSlideElement
+        };
+        broadcastChannelRef.current.postMessage(JSON.stringify(slideData));
+      }
+    }
+  }, [
+    state.currentSlide,
+    state.currentSlideElement,
+    state.presenterMode,
+    navigateTo
+  ]);
 
   React.useEffect(() => {
     if (!transitionRef.current) {
@@ -343,7 +380,7 @@ Deck.propTypes = {
   textColor: PropTypes.string,
   theme: PropTypes.object,
   transitionEffect: PropTypes.oneOfType([
-    PropTypes.objectOf({
+    PropTypes.shape({
       from: PropTypes.object,
       enter: PropTypes.object,
       leave: PropTypes.object

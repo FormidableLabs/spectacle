@@ -81,6 +81,7 @@
     "webpack-dev-server": "^3.7.1"
   },
   "dependencies": {
+    "broadcastchannel-polyfill": "^1.0.0",
     "history": "^4.9.0",
     "marksy": "^8.0.0",
     "normalize-newline": "^3.0.0",

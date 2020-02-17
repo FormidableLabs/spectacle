@@ -23,7 +23,7 @@ const children = [
 ];
 
 describe('PresenterDeck', () => {
-  beforeEach(() =>
+  beforeEach(() => {
     mockedUseContext.mockReturnValue({
       state: {
         currentNotes: '',
@@ -31,8 +31,11 @@ describe('PresenterDeck', () => {
         currentSlideElement: 0,
         immediate: false
       }
-    })
-  );
+    });
+  });
+  afterEach(() => {
+    global.navigator.presentation = undefined;
+  });
   it('Renders correct slides', () => {
     const props = {
       isController: true,
@@ -78,6 +81,9 @@ describe('PresenterDeck', () => {
     ).toBe(0);
   });
   it('Begins connection when button is clicked', () => {
+    const mockPresentation = jest.fn();
+    global.navigator.presentation = mockPresentation;
+
     const props = {
       isController: false,
       isReceiver: false,
@@ -98,6 +104,9 @@ describe('PresenterDeck', () => {
     );
   });
   it('Cancels connection when button is clicked', () => {
+    const mockPresentation = jest.fn();
+    global.navigator.presentation = mockPresentation;
+
     const props = {
       isController: true,
       isReceiver: false,
@@ -114,5 +123,21 @@ describe('PresenterDeck', () => {
       .first()
       .simulate('click');
     expect(props.terminateConnection).toHaveBeenCalled();
+  });
+  it('Does not show the Chrome Cast button when there is no presentation API', () => {
+    const props = {
+      isController: true,
+      isReceiver: false,
+      startConnection: jest.fn(),
+      terminateConnection: jest.fn()
+    };
+    const component = mount(
+      <ThemeProvider theme={defaultTheme}>
+        <PresenterDeck {...props}>{children}</PresenterDeck>
+      </ThemeProvider>
+    );
+
+    expect(component.find('[data-testid="Start Connection"]').length).toBe(0);
+    expect(component.find('[data-testid="Close Connection"]').length).toBe(0);
   });
 });

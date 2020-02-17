@@ -25,16 +25,6 @@ const mountWithContext = (tree, context) => {
 };
 
 describe('<Progress />', () => {
-  it('should render the circles at the specified size and color', () => {
-    const wrapper = mountWithContext(<Progress size={20} color="#ff0" />, {
-      numberOfSlides: 5,
-      state: {
-        currentSlide: 0
-      }
-    });
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it('should render the right amount of circles', () => {
     const wrapper = mountWithContext(<Progress />, {
       numberOfSlides: 5,

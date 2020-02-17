@@ -22,7 +22,7 @@ const children = [
   </Appear>
 ];
 
-describe('PrintDeck', () => {
+describe('Appear', () => {
   let component;
 
   const getStyleProps = childSelector =>
@@ -41,7 +41,9 @@ describe('PrintDeck', () => {
       }
     });
     component = mount(
-      <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <>{children}</>
+      </ThemeProvider>
     );
 
     expect(getStyleProps('.child1')).toHaveProperty('opacity', 0);
@@ -56,7 +58,9 @@ describe('PrintDeck', () => {
       }
     });
     component = mount(
-      <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <>{children}</>
+      </ThemeProvider>
     );
 
     expect(getStyleProps('.child1')).toHaveProperty('opacity', 1);

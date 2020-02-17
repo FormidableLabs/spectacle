@@ -18,10 +18,11 @@ export default function useUrlRouting(options) {
     currentPrintMode,
     loop,
     animationsWhenGoingBack,
-    onUrlChange
+    onUrlChange,
+    customHistory
   } = options;
 
-  const history = React.useRef(createBrowserHistory());
+  const history = React.useRef(customHistory || createBrowserHistory());
 
   const numberOfSlides = React.useMemo(
     () => Object.getOwnPropertyNames(slideElementMap).length,
@@ -96,12 +97,12 @@ export default function useUrlRouting(options) {
   );
 
   const goToSlide = React.useCallback(
-    slideNumber => {
+    (slideNumber, immediate = true) => {
       const qs = queryString.stringify({
         presenterMode: currentPresenterMode || undefined,
         overviewMode: currentOverviewMode || undefined,
         exportMode: currentExportMode || undefined,
-        immediate: true,
+        immediate: immediate,
         slide: slideNumber,
         slideElement: DEFAULT_SLIDE_ELEMENT_INDEX,
         printMode: currentPrintMode || undefined
@@ -176,6 +177,25 @@ export default function useUrlRouting(options) {
     }
     return Math.min(currentSlide + 1, numberOfSlides - 1);
   }, [currentSlide, loop, numberOfSlides]);
+
+  /**
+   * This method will navigate to whatever index is specified. It is for
+   * internal use only, such as presenter mode, as it does not check bounds.
+   */
+  const navigateTo = React.useCallback(
+    ({ slideIndex, elementIndex, immediate = false }) => {
+      const qs = queryString.stringify({
+        slide: slideIndex,
+        slideElement: elementIndex,
+        immediate: immediate || undefined,
+        presenterMode: currentPresenterMode || undefined,
+        overviewMode: currentOverviewMode || undefined,
+        exportMode: currentExportMode || undefined,
+        printMode: currentPrintMode || undefined
+      });
+      history.current.push(`?${qs}`);
+    }
+  );
 
   const navigateToNext = React.useCallback(
     ({ immediate } = {}) => {
@@ -312,6 +332,7 @@ export default function useUrlRouting(options) {
   return {
     navigateToNext,
     navigateToPrevious,
+    navigateTo,
     toggleMode,
     goToSlide
   };

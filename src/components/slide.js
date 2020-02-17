@@ -90,7 +90,21 @@ const Slide = props => {
     const newRatio = useVerticalRatio
       ? clientHeight / slideHeight
       : clientWidth / slideWidth;
+    const clientRects = slideRef.current.getClientRects();
+
+    if (!clientRects || clientRects.length === 0) {
+      return;
+    }
+
     setRatio(newRatio);
+    setOrigin({
+      x: useVerticalRatio
+        ? `${(clientWidth - clientRects[0].width) / 2 / (1 - newRatio)}px`
+        : 'left',
+      y: useVerticalRatio
+        ? 'top'
+        : `${(clientHeight - clientRects[0].height) / 2 / (1 - newRatio)}px`
+    });
   }, [slideHeight, slideWidth]);
 
   React.useEffect(() => {

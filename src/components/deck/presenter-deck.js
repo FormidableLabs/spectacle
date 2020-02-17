@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Text } from '../typography';
-import { FlexBox } from '../layout';
+import { FlexBox, Box } from '../layout';
 import * as queryString from 'query-string';
 import { Timer } from './timer';
 import SpectacleLogo from '../logo';
 import InternalButton from '../internal-button';
+import { SYSTEM_FONT } from '../../utils/constants';
+import 'broadcastchannel-polyfill';
 
 const PresenterDeckContainer = styled('div')`
   position: absolute;
@@ -18,15 +20,16 @@ const PresenterDeckContainer = styled('div')`
   display: flex;
   flex-direction: row;
   background-color: #282828;
-  padding: 2em;
   overflow: hidden;
 `;
 
 const NotesColumn = styled('div')`
-  padding: 0 4em;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  background: #383838;
   width: 50%;
+  border-right: 1px solid black;
 `;
 
 const PreviewColumn = styled('div')`
@@ -49,11 +52,18 @@ const SlideContainer = styled('div')`
 
 const SlideWrapper = styled('div')`
   flex: 1;
+  width: 100%;
   position: relative;
 
   .spectacle-fullscreen-button {
     display: none;
   }
+
+  ${({ small }) =>
+    small &&
+    css`
+      flex: 0.8;
+    `}
 `;
 
 const SlideCountLabel = styled('span')`
@@ -64,7 +74,10 @@ const SlideCountLabel = styled('span')`
 `;
 
 const NotesContainer = styled('div')`
+  border-top: 1px solid black;
   overflow-y: scroll;
+  background: #404040;
+  flex: 1;
 `;
 
 const PresenterDeck = props => {
@@ -100,41 +113,70 @@ const PresenterDeck = props => {
   const nextSlide =
     children.length > currentSlide + 1 ? children[currentSlide + 1] : null;
 
+  const castButton = React.useMemo(() => {
+    if (isReceiver || typeof window.navigator.presentation === 'undefined') {
+      return null;
+    }
+    if (isController) {
+      return (
+        <InternalButton
+          data-testid="Close Connection"
+          onClick={terminateConnection}
+        >
+          Stop Casting
+        </InternalButton>
+      );
+    }
+    return (
+      <InternalButton
+        data-testid="Start Connection"
+        onClick={onStartConnection}
+      >
+        Cast to Secondary Display
+      </InternalButton>
+    );
+  }, []);
+
   return (
     <PresenterDeckContainer>
       <NotesColumn>
-        <FlexBox justifyContent="space-between">
+        <FlexBox justifyContent="space-between" paddingTop={10} paddingX={15}>
           <SpectacleLogo />
-          {!isController && !isReceiver && (
-            <InternalButton
-              data-testid="Start Connection"
-              onClick={onStartConnection}
+          <FlexBox width={0.75} flexDirection="column" alignItems="flex-end">
+            <Text
+              data-testid="use-browser-tab-text"
+              fontSize={15}
+              fontFamily={SYSTEM_FONT}
+              textAlign="right"
+              padding="0px"
+              margin="0px 0px 10px"
             >
-              Cast to Secondary Display
-            </InternalButton>
-          )}
-          {isController && !isReceiver && (
-            <InternalButton
-              data-testid="Close Connection"
-              onClick={terminateConnection}
-            >
-              Stop Casting
-            </InternalButton>
-          )}
+              Open a second browser tab at {window.location.host} to use as the
+              audience deck
+              {!!castButton &&
+                ' or use Chrome’s display cast to present on a secondary display'}
+              .
+            </Text>
+            {castButton}
+          </FlexBox>
         </FlexBox>
-        <Timer />
-        <Text fontSize={20} fontWeight="bold">
-          Notes:
-        </Text>
+        <Box paddingRight={15}>
+          <Timer />
+        </Box>
         <NotesContainer>
-          <Text lineHeight="180%" fontSize="18px">
+          <Text fontFamily={SYSTEM_FONT} lineHeight="180%" fontSize="1.5vw">
             {currentNotes}
           </Text>
         </NotesContainer>
       </NotesColumn>
       <PreviewColumn>
         <SlideContainer>
-          <Text fontSize={20} fontWeight="bold" textAlign="center">
+          <Text
+            fontSize={20}
+            fontWeight="bold"
+            fontFamily={SYSTEM_FONT}
+            textAlign="center"
+          >
             Current&nbsp;
             <SlideCountLabel>
               Slide {activeSlide.props.slideNum + 1} of {numberOfSlides}
@@ -144,13 +186,20 @@ const PresenterDeck = props => {
         </SlideContainer>
         {!!nextSlide && (
           <SlideContainer>
-            <Text fontSize={20} fontWeight="bold" textAlign="center">
+            <Text
+              fontSize={20}
+              fontFamily={SYSTEM_FONT}
+              fontWeight="bold"
+              textAlign="center"
+            >
               Next&nbsp;
               <SlideCountLabel>
                 Slide {nextSlide.props.slideNum + 1} of {numberOfSlides}
               </SlideCountLabel>
             </Text>
-            <SlideWrapper data-testid="Next Slide">{nextSlide}</SlideWrapper>
+            <SlideWrapper small data-testid="Next Slide">
+              {nextSlide}
+            </SlideWrapper>
           </SlideContainer>
         )}
       </PreviewColumn>
