@@ -61,6 +61,14 @@ declare module 'spectacle' {
       plain: Record<string, string>;
       styles: Array<{ types: Array<string>; style: Record<string, string> }>;
     };
+    highlightStart?: number;
+    highlightEnd?: number;
+  }>;
+
+  export const Stepper: React.FC<{
+    children: (value: any, step: number) => React.ReactNode;
+    values: any[];
+    defaultValue?: any;
   }>;
 
   type TypographyProps = {

@@ -18,6 +18,8 @@ const lineNumberStyles = {
 export default function CodePane(props) {
   const canvas = React.useRef(document.createElement('canvas'));
   const context = React.useRef(canvas.current.getContext('2d'));
+  const scrollContainerRef = React.useRef(null);
+  const lineRef = React.useRef(null);
   const themeContext = React.useContext(ThemeContext);
   const {
     state: { printMode }
@@ -59,6 +61,12 @@ export default function CodePane(props) {
     [font, fontSize, themeContext]
   );
 
+  const isLineDimmed = React.useCallback(
+    lineNumber =>
+      lineNumber < props.highlightStart || lineNumber > props.highlightEnd,
+    [props.highlightStart, props.highlightEnd]
+  );
+
   const measureIndentation = React.useCallback(
     indentation => {
       if (indentation === 0) {
@@ -72,6 +80,17 @@ export default function CodePane(props) {
     [props.fontSize, font]
   );
 
+  // Auto-scroll to highlighted range
+  React.useLayoutEffect(() => {
+    const lineHeight = lineRef.current.clientHeight;
+    const top = Math.max(0, (props.highlightStart - 1) * lineHeight);
+
+    scrollContainerRef.current.scroll({
+      top,
+      behavior: 'smooth'
+    });
+  }, [lineRef.current, props.highlightStart]);
+
   return (
     <>
       <Highlight
@@ -82,6 +101,7 @@ export default function CodePane(props) {
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
+            ref={scrollContainerRef}
             className={`${className} ${props.autoFillHeight &&
               'spectacle-auto-height-fill'}`}
             style={{ ...style, ...preStyles }}
@@ -89,18 +109,21 @@ export default function CodePane(props) {
             {tokens.map((line, i) => {
               const lineProps = getLineProps({ line, key: i });
               const lineIndentation = line[0].content.search(spaceSearch);
+
               lineProps.style = {
                 ...(lineProps.style || {}),
                 whiteSpace: 'pre-wrap',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'flex-start'
+                justifyContent: 'flex-start',
+                opacity: isLineDimmed(i + 1) ? 0.5 : 1
               };
               if (line[0].content && !line[0].empty) {
                 line[0].content = line[0].content.trimLeft();
               }
+
               return (
-                <div key={i} {...lineProps}>
+                <div key={i} {...lineProps} ref={i === 0 ? lineRef : undefined}>
                   <div style={lineNumberStyles}>{i + 1}</div>
                   <div
                     style={{
@@ -128,11 +151,15 @@ CodePane.propTypes = {
   children: propTypes.string.isRequired,
   fontSize: propTypes.number,
   language: propTypes.string.isRequired,
+  highlightEnd: propTypes.number,
+  highlightStart: propTypes.number,
   theme: propTypes.object
 };
 
 CodePane.defaultProps = {
   language: 'javascript',
   theme: theme,
-  fontSize: 15
+  fontSize: 15,
+  highlightStart: -Infinity,
+  highlightEnd: Infinity
 };

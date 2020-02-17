@@ -84,11 +84,15 @@ Appear is a component that makes a component animate on the slide on key press. 
 
 CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code. The Code Pane will trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. Optionally you can have the Code Pane fill the available empty space on your slide via the `autoFillHeight` prop. Themes are configurable objects and can be imported from the [prism-react-renderer themes](https://github.com/FormidableLabs/prism-react-renderer/tree/master/src/themes).
 
+Additionally, `highlightStart` and `highlightEnd` props can be used to highlight certain ranges of code. Combine this with the [Stepper](#stepper) component to iterate over lines of code as you present.
+
 | Props          | Type              | Example               |
 | -------------- | ----------------- | --------------------- |
 | autoFillHeight | PropTypes.boolean | `false`               |
 | children       | PropTypes.string  | `let name = "Carlos"` |
 | fontSize       | PropTypes.number  | `16`                  |
+| highlightEnd   | PropTypes.number  | `2`                   |
+| highlightStart | PropTypes.number  | `1`                   |
 | language       | PropTypes.string  | `javascript`          |
 | theme          | Prism Theme       | —                     |
 
@@ -106,6 +110,18 @@ import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
     </CodePane>
   </Slide>
 );
+```
+
+<a name="stepper"></a>
+
+## Stepper
+
+Stepper is a render-prop component that allows you to step over a set of values in your presentation, providing the current value and step as arguments in the child function. Like [Appear](#appear), this iteration happens on key press. Especially useful for stepping through the [Code Pane](#code-pane) component.
+
+```jsx
+<Stepper values={[1, 2, 3]}>
+  {(value, step) => <p>Current value: {value}</p>}
+</Stepper>
 ```
 
 <a name="full-screen"></a>

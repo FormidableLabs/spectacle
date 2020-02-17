@@ -8,7 +8,7 @@ export default function searchChildrenForAppear(children) {
   return children.reduce((memo, current) => {
     if (isComponentType(current, Appear.name)) {
       memo += 1;
-    } else if (current.props.children && current.props.children.length > 0) {
+    } else if (current?.props?.children?.length > 0) {
       memo += searchChildrenForAppear(current.props.children);
     }
     return memo;
