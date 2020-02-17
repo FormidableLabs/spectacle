@@ -114,23 +114,8 @@ const PresenterDeck = props => {
     children.length > currentSlide + 1 ? children[currentSlide + 1] : null;
 
   const castButton = React.useMemo(() => {
-    if (isReceiver) {
+    if (isReceiver || typeof window.navigator.presentation === 'undefined') {
       return null;
-    }
-    if (typeof window.navigator.presentation === 'undefined') {
-      return (
-        <Text
-          data-testid="use-browser-tab-text"
-          fontSize={15}
-          fontFamily={SYSTEM_FONT}
-          textAlign="right"
-          padding="0px"
-          margin="0px"
-        >
-          Open a second browser tab at the same address to use as the audience
-          deck.
-        </Text>
-      );
     }
     if (isController) {
       return (
@@ -157,7 +142,23 @@ const PresenterDeck = props => {
       <NotesColumn>
         <FlexBox justifyContent="space-between" paddingTop={10} paddingX={15}>
           <SpectacleLogo />
-          {castButton}
+          <FlexBox width={0.75} flexDirection="column" alignItems="flex-end">
+            <Text
+              data-testid="use-browser-tab-text"
+              fontSize={15}
+              fontFamily={SYSTEM_FONT}
+              textAlign="right"
+              padding="0px"
+              margin="0px 0px 10px"
+            >
+              Open a second browser tab at {window.location.host} to use as the
+              audience deck
+              {!!castButton &&
+                ' or use Chrome’s display cast to present on a secondary display'}
+              .
+            </Text>
+            {castButton}
+          </FlexBox>
         </FlexBox>
         <Box paddingRight={15}>
           <Timer />

@@ -211,10 +211,7 @@ const Deck = props => {
   const broadcastChannelRef = React.useRef(null);
 
   React.useEffect(() => {
-    if (
-      typeof window.navigator.presentation === 'undefined' &&
-      typeof MessageChannel !== 'undefined'
-    ) {
+    if (typeof MessageChannel !== 'undefined') {
       broadcastChannelRef.current = new BroadcastChannel(
         'spectacle_presenter_mode_channel'
       );

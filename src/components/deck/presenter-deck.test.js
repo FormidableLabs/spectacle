@@ -124,7 +124,7 @@ describe('PresenterDeck', () => {
       .simulate('click');
     expect(props.terminateConnection).toHaveBeenCalled();
   });
-  it('Shows the use browser tab text when there is no presentation API', () => {
+  it('Does not show the Chrome Cast button when there is no presentation API', () => {
     const props = {
       isController: true,
       isReceiver: false,
@@ -137,8 +137,7 @@ describe('PresenterDeck', () => {
       </ThemeProvider>
     );
 
-    expect(
-      component.find('[data-testid="use-browser-tab-text"]').length
-    ).not.toBe(0);
+    expect(component.find('[data-testid="Start Connection"]').length).toBe(0);
+    expect(component.find('[data-testid="Close Connection"]').length).toBe(0);
   });
 });

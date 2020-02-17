@@ -16,7 +16,7 @@ exports[`<Progress /> should render the circles at the specified size and color 
           "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "sc-bwzfXH",
-            "isStatic": false,
+            "isStatic": true,
             "lastClassName": "fiQnxA",
             "rules": Array [
               "
@@ -39,7 +39,7 @@ exports[`<Progress /> should render the circles at the specified size and color 
       forwardedRef={null}
     >
       <div
-        className="sc-bwzfXH fiQnxA spectacle-progress-indicator"
+        className="spectacle-progress-indicator sc-bwzfXH fiQnxA"
       >
         <styled.div
           active={true}
