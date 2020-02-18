@@ -27,11 +27,11 @@ The `src` directory contains all the source for the Spectacle library. All compo
 
 #### JavaScript-based Decks
 
-To start the development server at port `3000` against a JavaScript-based deck use `yarn start:js` or `npm run start:js`.
+To start the development server at port `3000` against a JavaScript-based deck (found in `examples/js`) use `yarn start:js` or `npm run start:js`.
 
 #### Markdown-based Decks
 
-To start the development server at port `3100` against a Markdown-based deck use `yarn start:md` or `npm run start:md`. The source for the development decks are in `examples/js` and `examples/md`.
+To start the development server at port `3100` against a Markdown-based deck (found in `examples/md`) use `yarn start:md` or `npm run start:md`.
 
 ## Writing your Presentation
 
