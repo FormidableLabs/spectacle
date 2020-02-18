@@ -21,6 +21,18 @@ $ npm install --save spectacle
 
 <a name="development"></a>
 
+## Getting Started with Development
+
+The `src` directory contains all the source for the Spectacle library. All components designed to be part of the Spectacle API must be exported in `src/index.js`.
+
+#### JavaScript-based Decks
+
+To start the development server at port `3000` against a JavaScript-based deck (found in `examples/js`) use `yarn start:js` or `npm run start:js`.
+
+#### Markdown-based Decks
+
+To start the development server at port `3100` against a Markdown-based deck (found in `examples/md`) use `yarn start:md` or `npm run start:md`.
+
 ## Writing your Presentation
 
 After installing Spectacle, all of your presentation and style logic will live in a main file, while your content exists either inline (with JSX) or in a separate markdown file (using MDX).
