@@ -243,5 +243,3 @@ const transition = {
   }
 };
 ```
-
-![A screenshot of Progress in use](TODO)
