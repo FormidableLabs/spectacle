@@ -152,7 +152,7 @@ To see a complete example of a presentation written as a single HTML page, pleas
 
 Spectacle comes with a built-in presenter mode. It shows you a slide lookahead, your current slide, current time (or time elapsed), and any notes you've appended to your slide:
 
-![Screenshot of presenter mode in use](TODO)
+![Screenshot of presenter mode in use](https://i.ibb.co/qsgYCkn/presentation-mode.png)
 
 To present:
 
@@ -163,4 +163,4 @@ To present:
 
 **Note:** Any windows/tabs in the same browser running Spectacle will sync to one another, even if you aren't in presentation mode.
 
-![Gif of two screens presenting the same Spectacle presentation](TODO)
+![Gif of two screens presenting the same Spectacle presentation](https://i.ibb.co/jVBSRT9/presentation-mode.gif)
