@@ -21,7 +21,13 @@ There are a variety of ways to host your Spectacle presentation.
 
 ## Keyboard Controls
 
-<!-- TODO - check out use-keyboard-controls -->
+| Key Combination | Function               |
+| --------------- | ---------------------- |
+| Right Arrow     | Next Slide             |
+| Left Arrow      | Previous Slide         |
+| Alt/Option + O  | Toggle Overview Mode   |
+| Alt/Option + P  | Toggle Presenter Mode  |
+| Alt/Option + F  | Toggle Fullscreen Mode |
 
 <a name="query-parameters"></a>
 
