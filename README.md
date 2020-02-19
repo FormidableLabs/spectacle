@@ -58,5 +58,4 @@ Have a question about Spectacle? Submit an issue in this repository using the "Q
   - [Border](./docs/content/props.md#border)
 - [Frequently Asked Questions](./docs/content/faq.md#frequently-asked-questions)
   - [Can I export my slides for use elsewhere?](./docs/content/faq.md#faq-1)
-  - [What is the preferred way to deploy a Spectacle presentation?](./docs/content/faq.md#faq-2)
-  - [Can I write my presentation in TypeScript?](./docs/content/faq.md#faq-3)
+  - [Can I write my presentation in TypeScript?](./docs/content/faq.md#faq-2)
