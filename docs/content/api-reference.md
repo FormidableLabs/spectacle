@@ -1,6 +1,6 @@
 ---
 title: API Reference
-order: 4
+order: 5
 ---
 
 <a name="api-reference"></a>

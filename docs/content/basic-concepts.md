@@ -78,7 +78,7 @@ To see a more complete examples of a presentation generated with MDX or Markdown
 - [`.mdx` Example](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/mdx) (`spectacle-mdx-loader`)
 - [`.mdx` + Babel Example](https://github.com/FormidableLabs/spectacle-cli/tree/master/examples/cli-mdx-babel) (`spectacle-cli`)
 
-For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](./extensions#spectacle-cli).
+For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](/docs/extensions#spectacle-cli).
 
 **Note:** If you want to manually create the build infrastructure for MDX support in a Spectacle deck, you can add the [`spectacle-mdx-loader`](https://github.com/FormidableLabs/spectacle-mdx-loader) plugin to your webpack configuration. Straight Markdown just requires the webpack `raw-loader`.
 

@@ -1,6 +1,6 @@
 ---
 title: Extensions
-order: 4
+order: 7
 ---
 
 <a name="third-party"></a>
@@ -22,7 +22,7 @@ To see a list of the extensions we've listed here in the past, please check out 
 
 There are a few companion projects that Formidable directly maintains.
 
-## `spectacle-cli`
+## spectacle-cli
 
 [![spectacle-cli npm version](https://badge.fury.io/js/spectacle-cli.svg)](http://badge.fury.io/js/spectacle-cli)
 
@@ -30,7 +30,7 @@ A collection of tools for serving or generating new presentation decks. Includes
 
 For complete documentation of the CLI, please check out [the repo](https://www.github.com/FormidableLabs/spectacle-cli).
 
-## `spectacle-mdx-loader`
+## spectacle-mdx-loader
 
 [![spectacle-mdx-loader npm version](https://badge.fury.io/js/spectacle-mdx-loader.svg)](http://badge.fury.io/js/spectacle-mdx-loader)
 

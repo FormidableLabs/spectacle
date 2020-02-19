@@ -25,7 +25,7 @@ $ yarn
 
 #### Overview
 
-Our examples are spread out across multiple projects depending on where the core technology lies. We publish most of these to `npm` for use in `spectacle-cli` project to either use with the CLI (`spectacle`) or generate a fresh project boilerplte (`spectacle-boilerplate`).
+Our examples are spread out across multiple projects depending on where the core technology lies. We publish most of these to `npm` for use in `spectacle-cli` project to either use with the CLI (`spectacle`) or generate a fresh project boilerplate (`spectacle-boilerplate`).
 
 - `spectacle`
   - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/task/rewrite/examples/js)
@@ -100,7 +100,7 @@ $ yarn start:one-page
 
 `spectacle-cli` uses our `js,md,one-page` examples in the CLI and boilerplate tools. To check that changes to these files don't break `spectacle-cli` upstream, check with something like the following:
 
-```sh
+```bash
 # In `spectacle` repo
 $ yarn link
 
