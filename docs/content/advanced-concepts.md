@@ -17,6 +17,14 @@ order: 2
 
 There are a variety of ways to host your Spectacle presentation.
 
+1. If you are integrating this lib yourself, take your build and follow the linked instructions from any of (but not limited to) this list of providers:
+
+   - [Heroku](https://devcenter.heroku.com/articles/git#deploying-code)
+   - [Zeit](https://zeit.co/docs/v2/platform/deployments)
+   - [Surge](https://surge.sh/help/deploying-continuously-using-git-hooks)
+
+2. If using `spectacle-cli` (either `spectacle --action build` or `spectacle-boilerplate` with `yarn clean && yarn build`) your output is `dist/` and upload that directory to any of the above static hosting providers.
+
 <a name="keyboard-controls"></a>
 
 ## Keyboard Controls
