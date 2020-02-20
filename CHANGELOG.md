@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 6.0.0-alpha.8
 
 - Update `examples/one-page.html` to `examples/js/index.js` with new script helper.
 - Add support for Deck or Slide-level transitions
