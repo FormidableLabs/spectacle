@@ -88,19 +88,25 @@ declare module 'spectacle' {
 
   export const Box: React.FC<BoxProps>;
   export const FlexBox: React.FC<BoxProps & StyledSystem.FlexProps>;
-  export const Grid: React.FC<{
-    children: React.ReactNode;
-  } & StyledSystem.LayoutProps &
-    StyledSystem.GridProps &
-    StyledSystem.PositionProps>;
+  export const Grid: React.FC<
+    {
+      children: React.ReactNode;
+    } & StyledSystem.LayoutProps &
+      StyledSystem.GridProps &
+      StyledSystem.PositionProps
+  >;
 
-  export const Image: React.FC<React.ImgHTMLAttributes<{}> &
-    StyledSystem.LayoutProps &
-    StyledSystem.PositionProps>;
+  export const Image: React.FC<
+    React.ImgHTMLAttributes<{}> &
+      StyledSystem.LayoutProps &
+      StyledSystem.PositionProps
+  >;
 
-  export const FullSizeImage: React.FC<React.ImgHTMLAttributes<{}> &
-    StyledSystem.LayoutProps &
-    StyledSystem.PositionProps>;
+  export const FullSizeImage: React.FC<
+    React.ImgHTMLAttributes<{}> &
+      StyledSystem.LayoutProps &
+      StyledSystem.PositionProps
+  >;
 
   export const Notes: React.FC<{
     children: React.ReactNode;

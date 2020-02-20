@@ -10,10 +10,25 @@ import {
   space
 } from 'styled-system';
 
-const Box = styled('div')(compose(space, layout, position, color, border));
+const Box = styled('div')(
+  compose(
+    space,
+    layout,
+    position,
+    color,
+    border
+  )
+);
 
 const FlexBox = styled('div')(
-  compose(layout, space, flexbox, position, border, color)
+  compose(
+    layout,
+    space,
+    flexbox,
+    position,
+    border,
+    color
+  )
 );
 
 FlexBox.defaultProps = {
@@ -22,7 +37,13 @@ FlexBox.defaultProps = {
   display: 'flex'
 };
 
-const Grid = styled('div')(compose(layout, grid, position));
+const Grid = styled('div')(
+  compose(
+    layout,
+    grid,
+    position
+  )
+);
 
 Grid.defaultProps = {
   display: 'grid'
