@@ -11,6 +11,8 @@ Spectacle has a robust theme system that is built upon [styled system](https://s
 
 A theme is a 2-level deep object of labeled theme keys and CSS property object values, which is passed directly to the `Deck` component.
 
+<a name="theme-object"></a>
+
 ## Theme Object
 
 The following is an example of a simple custom theme object:
@@ -27,6 +29,8 @@ const theme = {
   }
 };
 ```
+
+<a name="usage"></a>
 
 ## Usage
 
@@ -60,6 +64,31 @@ Common CSS properties are divided into theme keys, which you can override in you
 | `letterSpacings` | `letter-spacing`                                                        |
 | `shadows`        | `box-shadow`, `text-shadow`                                             |
 | `zIndices`       | `z-index`                                                               |
+
+<a name="deck-templates"></a>
+
+## Deck Templates
+
+A template in Spectacle is a fixed overlay of components that are presented on every slide. They are similar to masters in Keynote or PowerPoint. It’s a function prop that has a single optional config object containing current slide and total slide count and returns a React Node.
+
+```jsx
+<Deck template=(({ slideNumber, numberOfSlides }) => (
+  <FlexBox
+    justifyContent="space-between"
+    position="absolute"
+    bottom={0}
+    width={1}
+  >
+    <Box padding="0 1em">
+      <FullScreen />
+    </Box>
+    <Box padding="1em">
+      <Progress />
+      Slide {slideNumber} of {numberOfSlides}
+    </Box>
+  </FlexBox>
+))>
+```
 
 <a name="scaled-spacing"></a>
 

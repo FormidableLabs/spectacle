@@ -33,11 +33,13 @@ To start the development server at port `3000` against a JavaScript-based deck (
 
 To start the development server at port `3100` against a Markdown-based deck (found in `examples/md`) use `yarn start:md` or `npm run start:md`.
 
+<a name="writing-your-presentation"></a>
+
 ## Writing your Presentation
 
 After installing Spectacle, all of your presentation and style logic will live in a main file, while your content exists either inline (with JSX) or in a separate markdown file (using MDX).
 
-<a name="mdx-or-markdown"></a>
+<a name="mdx--markdown"></a>
 
 ### MDX/Markdown
 

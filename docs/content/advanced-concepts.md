@@ -7,10 +7,6 @@ order: 2
 
 # Advanced Concepts
 
-<a name="slide-templates"></a>
-
-## Slide Templates
-
 <a name="build--deployment"></a>
 
 ## Build & Deployment
