@@ -114,7 +114,7 @@ $ aws-vault exec fmd-spectacle-ci --no-session -- \
 
 ## Tips for getting the most out of react-static + webpack tooling
 
-We are on react-static v5 due to blocking stability issues with v6, which means...
+We are on react-static v5 due to painful upgrade issues with v7, which means...
 
 - You'll want to make sure that when you refer to the docs you're in the v5 branch.
 

@@ -26,7 +26,7 @@
     "format": "yarn run lint --fix && yarn run prettier-all",
     "lint": "eslint 'src/**/*.js' 'static-config-*/*.js' 'src/**/*.js' 'static.config.js'",
     "check-ci": "yarn run lint",
-    "test-local": "yarn run start && node test/spectacle-integration.js"
+    "test-local": "node test/spectacle-integration.js"
   },
   "dependencies": {
     "@babel/node": "^7.2.0",
