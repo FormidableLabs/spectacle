@@ -104,7 +104,7 @@ $ aws-vault exec fmd-spectacle-ci --no-session -- \
 
 - Almost all of your code will be executed in two contexts: first in node for server-side rendering and static html generation, then client-side as a PWA. In addition to writing [node-safe code](https://github.com/nozzle/react-static/blob/master/docs/concepts.md#writing-universal-node-safe-code), this also means that it's necessary to validate that both contexts are working as expected.
 
-- In addition to two execution contexts, there are three stages: development, staging, and production. `yarn start` uses a local dev server with live reload that takes about one second to rebuild. This is a good choice for most local development, but it's important to keep in mind that **the development server does not build the static html.** For that, you will want to use `yarn stage && yarn serve`. The `yarn build` command is used by formidable.com within its build script that moves the output of this lander into the correct location within the overall site output.
+- In addition to two execution contexts, there are three stages: development, staging, and production. `yarn start` uses a local dev server with live reload that takes about one second to rebuild. This is a good choice for most local development, but it's important to keep in mind that **the development server does not build the static html.** For that, you will want to use `yarn stage:build && yarn stage:serve`.
 
 - When debugging an issue with the static html output, don't be shy about cracking open the `dist` folder and looking at the output!
 
@@ -114,7 +114,7 @@ $ aws-vault exec fmd-spectacle-ci --no-session -- \
 
 ## Tips for getting the most out of react-static + webpack tooling
 
-We are on react-static v5 due to blocking stability issues with v6, which means...
+We are on react-static v5 due to painful upgrade issues with v7, which means...
 
 - You'll want to make sure that when you refer to the docs you're in the v5 branch.
 

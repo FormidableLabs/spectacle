@@ -23,7 +23,7 @@
     "prod:deploy": "node scripts/deploy/aws.js",
     "prettier-all": "npx prettier --write '{src,static-config-helpers,static-config-parts,static.config,scripts,lib}/**/*.{js,jsx}'",
     "preversion": "yarn run lint && yarn run build",
-    "format": "yarn run lint --fix && prettier-all",
+    "format": "yarn run lint --fix && yarn run prettier-all",
     "lint": "eslint 'src/**/*.js' 'static-config-*/*.js' 'src/**/*.js' 'static.config.js'",
     "check-ci": "yarn run lint",
     "test-local": "node test/spectacle-integration.js"

@@ -3,6 +3,37 @@ title: Base Props
 order: 3
 ---
 
+<a name="base-props"></a>
+
+# Base Props
+
+The following are a handful of standard base props many components consume. For a complete list of available components and the props they consume, please see our complete [API Reference](/docs/api-reference).
+
+<a name="transition-object"></a>
+
+## Transition Object
+
+A transition object defines the animatable CSS properties for three states: `from`, `enter`, and `leave`. From is the starting transition. Enter are the styles applied when the slide is in view. Leave are the styles when the slide goes out of view.
+
+An example transition object looks like:
+
+```javascript
+const transition = {
+  from: {
+    position: 'fixed',
+    transform: 'translate(100%, 0%)'
+  },
+  enter: {
+    position: 'fixed',
+    transform: 'translate(0, 0%)'
+  },
+  leave: {
+    position: 'fixed',
+    transform: 'translate(-100%, 0%)'
+  }
+};
+```
+
 <a name="color"></a>
 
 ## Color

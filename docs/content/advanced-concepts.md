@@ -7,10 +7,6 @@ order: 2
 
 # Advanced Concepts
 
-<a name="slide-templates"></a>
-
-## Slide Templates
-
 <a name="build--deployment"></a>
 
 ## Build & Deployment
@@ -41,10 +37,12 @@ There are a variety of ways to host your Spectacle presentation.
 
 ## Query Parameters
 
-A handful of query parameters are supported within your Spectacle presentation
+A handful of query parameters are supported within your Spectacle presentation.
+Append your URL with one of the following parameters, like so: `&<parameter>=true`.
+To combine parameters, use multiple `&` to separate the parameters, e.g.: `&exportMode=true&printMode=true`
 
-| Parameter             | Description of Use                                                                                                                                                 |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `?exportMode`         | For exporting your presentation as a PDF. Add it to your project URL and "Save to PDF" directly from the browser                                                   |
-| `?printMode`          | Turns your slideshow into a printer-friendly, black & white version. Meant for use concurrently with `?exportMode` e.g. `?exportMode&printMode`                    |
-| `?presenterMode=true` | Displays a Presenter Mode for ease of presentation. For more info on this mode, please see [Presenting](/docs/basic-concepts#presenting) in our Basic Concepts doc |
+| Parameter       | Description of Use                                                                                                                                                 |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `exportMode`    | For exporting your presentation as a PDF. Add it to your project URL and "Save to PDF" directly from the browser                                                   |
+| `printMode`     | Turns your slideshow into a printer-friendly, black & white version. Meant for use concurrently with `?exportMode` e.g. `?exportMode&printMode`                    |
+| `presenterMode` | Displays a Presenter Mode for ease of presentation. For more info on this mode, please see [Presenting](/docs/basic-concepts#presenting) in our Basic Concepts doc |

@@ -33,11 +33,13 @@ To start the development server at port `3000` against a JavaScript-based deck (
 
 To start the development server at port `3100` against a Markdown-based deck (found in `examples/md`) use `yarn start:md` or `npm run start:md`.
 
+<a name="writing-your-presentation"></a>
+
 ## Writing your Presentation
 
 After installing Spectacle, all of your presentation and style logic will live in a main file, while your content exists either inline (with JSX) or in a separate markdown file (using MDX).
 
-<a name="mdx-or-markdown"></a>
+<a name="mdx--markdown"></a>
 
 ### MDX/Markdown
 
@@ -152,7 +154,7 @@ To see a complete example of a presentation written as a single HTML page, pleas
 
 Spectacle comes with a built-in presenter mode. It shows you a slide lookahead, your current slide, current time (or time elapsed), and any notes you've appended to your slide:
 
-![Screenshot of presenter mode in use](TODO)
+![Screenshot of presenter mode in use](https://i.ibb.co/qsgYCkn/presentation-mode.png)
 
 To present:
 
@@ -163,4 +165,4 @@ To present:
 
 **Note:** Any windows/tabs in the same browser running Spectacle will sync to one another, even if you aren't in presentation mode.
 
-![Gif of two screens presenting the same Spectacle presentation](TODO)
+![Gif of two screens presenting the same Spectacle presentation](https://i.ibb.co/jVBSRT9/presentation-mode.gif)

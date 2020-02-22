@@ -37,7 +37,7 @@ Wraps a single slide within your presentation; identifies what is contained to a
 | ---------------- | -------------------------------------------------------------------------- |
 | transitionEffect | "fade", "slide", "none", or [custom transition object](#transition-object) |
 
-<a name="semantic-tags"></a>
+<a name="typography-tags"></a>
 
 ## Typography Tags
 
@@ -54,6 +54,8 @@ These tags are for displaying textual content.
 | <a name="list-item">**ListItem**</a>           | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **margin**: listMargin                                                                                                                                           |
 | <a name="code-span">**CodeSpan**</a>           | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **fontFamily**: monospace<br />**fontSize**: text                                                                                                                |
 
+<a name="layout-tags"></a>
+
 ## Layout Tags
 
 These tags are for adding structure to your slides.
@@ -64,27 +66,17 @@ These tags are for adding structure to your slides.
 | <a name="flex-box">**FlexBox**</a> | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br /> [**Border**](/docs/props#border)<br />[**Flex**](/docs/props#flex)<br /> | —                | —                 |
 | <a name="grid">**Grid**</a>        | [**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br />[**Grid**](/docs/props#grid)<br />                                                                                                                | —                | **display**: grid |
 
-<a name="progress"></a>
+<a name="appear"></a>
 
-## Progress
+## Appear
 
-Progress is a component with no children that just shows dots for each slide in your deck. Visited and current slides are represented by a filled circle and future slides with just a stroke. The size and color are customizable.
+Appear is a component that makes a component animate on the slide on key press. The default animation is opacity. It is currently required to specify the order of elements to be animated starting with `1`. Sequential `<Appear />` tags do not have to be in order.
 
-| Props | Type             | Example   |
-| ----- | ---------------- | --------- |
-| size  | PropTypes.number | `23`      |
-| color | PropTypes.string | `#abc123` |
-
-<a name="full-screen"></a>
-
-## FullScreen
-
-FullScreen is a button that takes the presentation in and out of the browser's full screen mode. It can have a different color and be re-sized.
-
-| Props | Type             | Example   |
-| ----- | ---------------- | --------- |
-| size  | PropTypes.number | `23`      |
-| color | PropTypes.string | `#abc123` |
+| Props            | Type                          | Example                                        |
+| ---------------- | ----------------------------- | ---------------------------------------------- |
+| children         | PropTypes.string              | `<Text>Hi</Text>`                              |
+| elementNum       | PropTypes.number              | `1`                                            |
+| transitionEffect | { to: object; from: object; } | `{ to: { opacity: 1 }, from: { opacity: 0 } }` |
 
 <a name="code-pane"></a>
 
@@ -116,41 +108,20 @@ import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
 );
 ```
 
-<a name="appear"></a>
+<a name="full-screen"></a>
 
-## Appear
+## FullScreen
 
-Appear is a component that makes a component animate on the slide on key press. The default animation is opacity. It is currently required to specify the order of elements to be animated starting with `1`. Sequential `<Appear />` tags do not have to be in order.
+FullScreen is a button that takes the presentation in and out of the browser's full screen mode. It can have a different color and be re-sized.
 
-| Props            | Type                          | Example                                        |
-| ---------------- | ----------------------------- | ---------------------------------------------- |
-| children         | PropTypes.string              | `<Text>Hi</Text>`                              |
-| elementNum       | PropTypes.number              | `1`                                            |
-| transitionEffect | { to: object; from: object; } | `{ to: { opacity: 1 }, from: { opacity: 0 } }` |
-
-<a name="notes"></a>
-
-## Notes
-
-Notes is a component that only renders in Presenter mode for presenter notes. It is used as the last component inside your slide but does not show on the deck.
-
-| Props    | Type             | Example           |
-| -------- | ---------------- | ----------------- |
-| children | PropTypes.string | `Presenter Notes` |
-
-```jsx
-<Slide>
-  <Heading>Urql</Heading>
-  <Text>A highly customizable and versatile GraphQL client</Text>
-  <Notes>
-    Urql is a GraphQL client that exposes a set of React components and hooks.
-  </Notes>
-</Slide>
-```
+| Props | Type             | Example   |
+| ----- | ---------------- | --------- |
+| size  | PropTypes.number | `23`      |
+| color | PropTypes.string | `#abc123` |
 
 <a name="image"></a>
 
-### Image
+## Image
 
 Image is a component to display a picture within a slide. It is analgous to an `<img>` tag and conforms to Layout and Position props.
 
@@ -194,54 +165,33 @@ Markdown is a component to author slides or slide content using Markdown. Regula
 <Markdown>
 ```
 
-<a name="deck-template"></a>
+<a name="notes"></a>
 
-## Deck Template
+## Notes
 
-A template in Spectacle is a fixed overlay of components that are presented on every slide. They are similar to masters in Keynote or PowerPoint. It’s a function prop that has a single optional config object containing current slide and total slide count and returns a React Node.
+Notes is a component that only renders in Presenter mode as presenter notes. It is used as the last component inside your slide but does not show on the deck.
+
+| Props    | Type             | Example           |
+| -------- | ---------------- | ----------------- |
+| children | PropTypes.string | `Presenter Notes` |
 
 ```jsx
-<Deck template=(({ slideNumber, numberOfSlides }) => (
-  <FlexBox
-    justifyContent="space-between"
-    position="absolute"
-    bottom={0}
-    width={1}
-  >
-    <Box padding="0 1em">
-      <FullScreen />
-    </Box>
-    <Box padding="1em">
-      <Progress />
-      Slide {slideNumber} of {numberOfSlides}
-    </Box>
-  </FlexBox>
-))>
+<Slide>
+  <Heading>Urql</Heading>
+  <Text>A highly customizable and versatile GraphQL client</Text>
+  <Notes>
+    Urql is a GraphQL client that exposes a set of React components and hooks.
+  </Notes>
+</Slide>
 ```
 
-<a name="transition-object"></a>
+<a name="progress"></a>
 
-## Transition Object
+## Progress
 
-A transition object defines the animatable CSS properties for three states—`from`, `enter`, `leave`. From is the starting transition. Enter are the styles applied when the slide is in view. Leave are the styles when the slide goes out of view.
+Progress is a component with no children that just shows dots for each slide in your deck. Visited and current slides are represented by a filled circle and future slides with just a stroke. The size and color are customizable.
 
-An example transition object looks like:
-
-```javascript
-const transition = {
-  from: {
-    position: 'fixed',
-    transform: 'translate(100%, 0%)'
-  },
-  enter: {
-    position: 'fixed',
-    transform: 'translate(0, 0%)'
-  },
-  leave: {
-    position: 'fixed',
-    transform: 'translate(-100%, 0%)'
-  }
-};
-```
-
-![A screenshot of Progress in use](TODO)
+| Props | Type             | Example   |
+| ----- | ---------------- | --------- |
+| size  | PropTypes.number | `23`      |
+| color | PropTypes.string | `#abc123` |

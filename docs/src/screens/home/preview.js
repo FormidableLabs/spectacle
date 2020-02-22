@@ -16,6 +16,12 @@ const Video = styled.video`
   }
 `;
 
+const PreviewSources = {
+  bgMp4: require('../../../public/static/bg-demo.mp4'),
+  bgStill: require('../../../public/static/bg-still.png'),
+  bgWebm: require('../../../public/static/bg-demo.webm')
+};
+
 class Preview extends React.Component {
   render() {
     const { previewObj } = this.props;
@@ -25,9 +31,9 @@ class Preview extends React.Component {
         <Wrapper>
           <SectionTitle>Code Preview</SectionTitle>
           <BodyCopy>{previewObj.description}</BodyCopy>
-          <Video autoPlay muted loop poster="./static/bg-still.png">
-            <source src="./static/bg-demo.webm" type="video/webm" />
-            <source src="./static/bg-demo.mp4" type="video/mp4" />
+          <Video autoPlay muted loop poster={PreviewSources.bgStill}>
+            <source src={PreviewSources.bgWebm} type="video/webm" />
+            <source src={PreviewSources.bgMp4} type="video/mp4" />
           </Video>
         </Wrapper>
       </OuterWrapper>
