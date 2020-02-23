@@ -28,6 +28,7 @@ import Markdown from './components/markdown';
 import SpectacleLogo from './components/logo';
 import mdxComponentMap from './utils/mdx-component-mapper';
 import { removeNotes, isolateNotes } from './utils/notes';
+import indentNormalizer from './utils/indent-normalizer';
 
 export {
   Deck,
@@ -59,5 +60,6 @@ export {
   TableBody,
   mdxComponentMap,
   removeNotes,
-  isolateNotes
+  isolateNotes,
+  indentNormalizer
 };

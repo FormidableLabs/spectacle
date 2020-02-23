@@ -19,7 +19,8 @@ import {
   Progress,
   SpectacleLogo,
   Slide,
-  Text
+  Text,
+  indentNormalizer
 } from 'spectacle';
 
 // SPECTACLE_CLI_THEME_START
@@ -52,7 +53,8 @@ const template = () => (
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
 
-const cppCodeBlock = `#include <iostream>
+const cppCodeBlock = indentNormalizer(`
+#include <iostream>
 #include <cstdlib>
 #include <sstream>
 #include <pthread.h>
@@ -97,7 +99,7 @@ int main()
   }
 
   return 0;
-}`;
+}`);
 
 const Presentation = () => (
   <Deck theme={theme} template={template} transitionEffect="fade">
