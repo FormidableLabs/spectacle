@@ -2,7 +2,14 @@ import indentNormalizer from './indent-normalizer';
 
 describe('indentNormalizer', () => {
   it('handles empty cases', () => {
+    expect(indentNormalizer()).toEqual('');
+    expect(indentNormalizer(null)).toEqual('');
     expect(indentNormalizer('')).toEqual('');
+    expect(indentNormalizer(' ')).toEqual('');
+    expect(indentNormalizer(' \n ')).toEqual('');
+  });
+
+  it('handles base cases', () => {
     expect(indentNormalizer('no indents')).toEqual('no indents');
     expect(indentNormalizer('no indents\nstill none')).toEqual(
       'no indents\nstill none'
