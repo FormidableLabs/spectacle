@@ -35,7 +35,8 @@
         Progress,
         SpectacleLogo,
         Slide,
-        Text
+        Text,
+        indentNormalizer
       } = Spectacle;
 
       import htm from 'https://unpkg.com/htm@^3?module';
@@ -46,9 +47,6 @@
         fonts: {
           header: '"Open Sans Condensed", Helvetica, Arial, sans-serif',
           text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
-        },
-        space: {
-          headerMargin: '0'
         }
       };
       // SPECTACLE_CLI_THEME_END
@@ -67,7 +65,8 @@
       // SPECTACLE_CLI_TEMPLATE_END
 
       const formidableLogo = 'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
-      const cppCodeBlock = `#include <iostream>
+      const cppCodeBlock = indentNormalizer(`
+      #include <iostream>
       #include <cstdlib>
       #include <sstream>
       #include <pthread.h>
@@ -112,10 +111,10 @@
         }
 
         return 0;
-      }`;
+      }`);
 
       const Presentation = () => html`
-        <${Deck} theme=${theme} template=${template}>
+        <${Deck} theme=${theme} template=${template} transitionEffect="fade">
           <${Slide}>
             <${FlexBox} height="100%">
               <${SpectacleLogo} size=${500} />
@@ -123,15 +122,15 @@
           </${Slide}>
           <${Slide}>
             <${FlexBox} height="100%" flexDirection="column">
-              <${Heading} fontSize="150px">SPECTACLE</${Heading}>
-              <${Heading} fontSize="h2">A ReactJS Presentation Library</${Heading}>
-              <${Heading} color="primary" fontSize="h3">Where you can write your decks in JSX, Markdown, or MDX!</${Heading}>
+              <${Heading} margin="0px" fontSize="150px">SPECTACLE</${Heading}>
+              <${Heading} margin="0px" fontSize="h2">A ReactJS Presentation Library</${Heading}>
+              <${Heading} margin="0px 32px" color="primary" fontSize="h3">Where you can write your decks in JSX, Markdown, or MDX!</${Heading}>
             </${FlexBox}>
             <${Notes}>
               <p>Notes are shown in presenter mode. Open up localhost:3000/?presenterMode=true to see them.</p>
             </${Notes}>
           </${Slide}>
-          <${Slide}>
+          <${Slide} transitionEffect="slide">
             <${Heading}>Code Blocks</${Heading}>
             <${CodePane} fontSize=${18} language="cpp" autoFillHeight>
               ${cppCodeBlock}
@@ -167,9 +166,8 @@
                 <${Text}>Double-size Grid Item</${Text}>
               </${Box}>
             </${Grid}>
-            <${Heading}>Create Grids in Spectacle</${Heading}>
-            <${Grid} gridTemplateColumns="1fr 1fr 1fr" gridTemplateRows="1fr 1fr 1fr" alignItems="center" justifyContent="center" gridRowGap=${15}>
-              ${Array(9).fill('').map((_, index) => html`<${FlexBox} key=${`formidable-logo-${index}`} flex=${1}>
+            <${Grid} gridTemplateColumns="1fr 1fr 1fr" gridTemplateRows="1fr 1fr 1fr" alignItems="center" justifyContent="center" gridRowGap=${1}>
+              ${Array(9).fill('').map((_, index) => html`<${FlexBox} paddingTop=${0} key=${`formidable-logo-${index}`} flex=${1}>
                 <${Image} src=${formidableLogo} width=${100} />
               </${FlexBox}>`)}
             </${Grid}>
