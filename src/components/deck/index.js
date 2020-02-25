@@ -24,6 +24,7 @@ import {
   DEFAULT_SLIDE_INDEX
 } from '../../utils/constants';
 import searchChildrenForAppear from '../../utils/search-children-appear';
+import searchChildrenForStepper from '../../utils/search-children-stepper';
 import OverviewDeck from './overview-deck';
 import { Markdown, Slide, Notes } from '../../index';
 import { isolateNotes, removeNotes } from '../../utils/notes';
@@ -138,11 +139,14 @@ const Deck = props => {
   }
 
   const slideElementMap = React.useMemo(() => {
-    const map = {};
-    filteredChildren.filter((slide, index) => {
-      map[index] = searchChildrenForAppear(slide.props.children);
-    });
-    return map;
+    return filteredChildren.reduce((map, slide, index) => {
+      const appearElements = searchChildrenForAppear(slide.props.children);
+      const stepperElements = searchChildrenForStepper(slide.props.children);
+
+      map[index] = appearElements + stepperElements;
+
+      return map;
+    }, {});
   }, [filteredChildren]);
 
   // Initialise useDeck hook and get state and dispatch off of it
