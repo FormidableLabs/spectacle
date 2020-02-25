@@ -21,7 +21,7 @@ import {
   SpectacleLogo,
   Stepper,
   Text,
-  indentNormalizer,
+  indentNormalizer
 } from 'spectacle';
 
 // SPECTACLE_CLI_THEME_START
