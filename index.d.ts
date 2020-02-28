@@ -35,7 +35,12 @@ declare module 'spectacle' {
   }>;
 
   export const Slide: React.FC<{
-    backgroundColor?: string;
+    backgroundColor?: PropTypes.string;
+    backgroundImage?: PropTypes.string;
+    backgroundOpacity?: PropTypes.number;
+    backgroundPosition?: PropTypes.string;
+    backgroundRepeat?: PropTypes.string;
+    backgroundSize?: PropTypes.string;
     children: React.ReactNode;
     scaleRatio?: number;
     textColor?: string;

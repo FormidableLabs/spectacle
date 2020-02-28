@@ -31,11 +31,21 @@ Wraps the entire presentation and carries most of the overarching slide logic, l
 
 ### Slide
 
-Wraps a single slide within your presentation; identifies what is contained to a single view. The only prop available for Slide is a transition effect specific to this slide. It will override the Deck-specified transition.
+Wraps a single slide within your presentation; identifies what is contained to a single view. If a transition effect is applied to this slide, it will override the Deck-specified transition.
 
-| Props            | Type                                                                       |
-| ---------------- | -------------------------------------------------------------------------- |
-| transitionEffect | "fade", "slide", "none", or [custom transition object](#transition-object) |
+| Props              | Type                                                                       |
+| ------------------ | -------------------------------------------------------------------------- |
+| backgroundColor    | PropTypes.string                                                           |
+| backgroundImage    | PropTypes.string                                                           |
+| backgroundOpacity  | PropTypes.number                                                           |
+| backgroundPosition | PropTypes.string                                                           |
+| backgroundRepeat   | PropTypes.string                                                           |
+| backgroundSize     | PropTypes.string                                                           |
+| scaleRatio         | PropTypes.number                                                           |
+| slideNum           | PropTypes.number                                                           |
+| template           | PropTypes.func                                                             |
+| textColor          | PropTypes.string                                                           |
+| transitionEffect   | "fade", "slide", "none", or [custom transition object](#transition-object) |
 
 <a name="typography-tags"></a>
 

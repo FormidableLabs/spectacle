@@ -21,6 +21,7 @@ import {
   SpectacleLogo,
   Stepper,
   Text,
+  UnorderedList,
   indentNormalizer
 } from 'spectacle';
 
@@ -127,6 +128,34 @@ const Presentation = () => (
           localhost:3000/?presenterMode=true to see them.
         </p>
       </Notes>
+    </Slide>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage="url(https://github.com/FormidableLabs/dogs/blob/master/beau.jpg?raw=true)"
+      backgroundOpacity={0.5}
+    >
+      <Heading>Custom Backgrounds</Heading>
+
+      <UnorderedList>
+        <ListItem>
+          <CodeSpan>backgroundColor</CodeSpan>
+        </ListItem>
+        <ListItem>
+          <CodeSpan>backgroundImage</CodeSpan>
+        </ListItem>
+        <ListItem>
+          <CodeSpan>backgroundOpacity</CodeSpan>
+        </ListItem>
+        <ListItem>
+          <CodeSpan>backgroundSize</CodeSpan>
+        </ListItem>
+        <ListItem>
+          <CodeSpan>backgroundPosition</CodeSpan>
+        </ListItem>
+        <ListItem>
+          <CodeSpan>backgroundRepeat</CodeSpan>
+        </ListItem>
+      </UnorderedList>
     </Slide>
     <Slide transitionEffect="slide">
       <Heading>Code Blocks</Heading>
