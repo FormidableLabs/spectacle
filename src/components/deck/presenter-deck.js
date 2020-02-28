@@ -164,7 +164,7 @@ const PresenterDeck = props => {
           <Timer />
         </Box>
         <NotesContainer>
-          <Text fontFamily={SYSTEM_FONT} lineHeight="180%" fontSize="1.5vw">
+          <Text fontFamily={SYSTEM_FONT} lineHeight="1.2" fontSize="1.5vw">
             {currentNotes}
           </Text>
         </NotesContainer>
