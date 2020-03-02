@@ -34,6 +34,19 @@ const transition = {
 };
 ```
 
+<a name="background"></a>
+
+## Background
+
+**Background** props used by [`Slide`](/docs/api-reference#slide).
+
+| Name                 | PropType         | Description                  | Example                        |
+| -------------------- | ---------------- | ---------------------------- | ------------------------------ |
+| `backgroundImage`    | PropTypes.string | Set CSS `backgroundImage`    | `url('...')` or `require(...)` |
+| `backgroundSize`     | PropTypes.string | Set CSS `backgroundSize`     | `cover`                        |
+| `backgroundPosition` | PropTypes.string | Set CSS `backgroundPosition` | `center`                       |
+| `backgroundRepeat`   | PropTypes.string | Set CSS `backgroundRepeat`   | `no-repeat`                    |
+
 <a name="color"></a>
 
 ## Color

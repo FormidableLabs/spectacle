@@ -1,5 +1,9 @@
 # Changelog
 
+## UNRELEASED
+
+- Expand custom background support by adding `Background` props to the `Slide` component, along with `backgroundOpacity`
+
 ## 6.0.0-alpha.8
 
 - Update `examples/one-page.html` to `examples/js/index.js` with new script helper.

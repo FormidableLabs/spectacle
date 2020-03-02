@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useSlide, { SlideContext } from '../hooks/use-slide';
 import styled, { ThemeContext, css } from 'styled-components';
-import { color, space } from 'styled-system';
+import { background, color, space } from 'styled-system';
 import useAutofillHeight from '../hooks/use-autofill-height';
 import { DeckContext } from '../hooks/use-deck';
 
@@ -16,6 +16,17 @@ const SlideContainer = styled('div')`
     page-break-before: always;
     height: 100vh;
     width: 100vw;
+  }
+  &:before {
+    ${background};
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    opacity: ${({ backgroundOpacity }) => backgroundOpacity};
   }
 `;
 
@@ -67,6 +78,11 @@ const Slide = props => {
     children,
     slideNum,
     backgroundColor,
+    backgroundImage,
+    backgroundOpacity,
+    backgroundPosition,
+    backgroundRepeat,
+    backgroundSize,
     textColor,
     template,
     scaleRatio
@@ -161,6 +177,11 @@ const Slide = props => {
     <SlideContainer
       ref={slideRef}
       backgroundColor={state.printMode ? '#ffffff' : backgroundColor}
+      backgroundImage={state.printMode ? undefined : backgroundImage}
+      backgroundOpacity={backgroundOpacity}
+      backgroundPosition={backgroundPosition}
+      backgroundRepeat={backgroundRepeat}
+      backgroundSize={backgroundSize}
       style={transforms}
     >
       <TemplateWrapper ref={templateRef}>
@@ -181,6 +202,11 @@ const Slide = props => {
 
 Slide.propTypes = {
   backgroundColor: PropTypes.string,
+  backgroundImage: PropTypes.string,
+  backgroundOpacity: PropTypes.number,
+  backgroundPosition: PropTypes.string,
+  backgroundRepeat: PropTypes.string,
+  backgroundSize: PropTypes.string,
   children: PropTypes.node.isRequired,
   scaleRatio: PropTypes.number,
   slideNum: PropTypes.number,
@@ -198,7 +224,11 @@ Slide.propTypes = {
 
 Slide.defaultProps = {
   textColor: 'primary',
-  backgroundColor: 'tertiary'
+  backgroundColor: 'tertiary',
+  backgroundOpacity: 1,
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover'
 };
 
 export default Slide;
