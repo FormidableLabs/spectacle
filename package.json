@@ -40,6 +40,18 @@
     "url": "https://github.com/FormidableLabs/spectacle.git"
   },
   "browserslist": "> 0.25%, not dead",
+  "dependencies": {
+    "broadcastchannel-polyfill": "^1.0.0",
+    "history": "^4.9.0",
+    "marksy": "^8.0.0",
+    "normalize-newline": "^3.0.0",
+    "prism-react-renderer": "^0.1.7",
+    "query-string": "^6.8.2",
+    "react-spring": "^8.0.25",
+    "styled-components": "^4.3.2",
+    "styled-system": "^5.1.1",
+    "wonka": "^3.2.0"
+  },
   "peerDependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.9.0",
@@ -79,17 +91,5 @@
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.4",
     "webpack-dev-server": "^3.7.1"
-  },
-  "dependencies": {
-    "broadcastchannel-polyfill": "^1.0.0",
-    "history": "^4.9.0",
-    "marksy": "^8.0.0",
-    "normalize-newline": "^3.0.0",
-    "prism-react-renderer": "^0.1.7",
-    "query-string": "^6.8.2",
-    "react-spring": "^8.0.25",
-    "styled-components": "^4.3.2",
-    "styled-system": "^5.1.1",
-    "wonka": "^3.2.0"
   }
 }
