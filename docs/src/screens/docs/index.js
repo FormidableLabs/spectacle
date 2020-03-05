@@ -73,11 +73,9 @@ const CollapsedMenu = styled.div`
 `;
 
 const DocsTitle = styled.h2`
-  font-size: 3rem;
-  top: 0.2rem;
+  font-size: 2.8rem;
   flex: auto;
   width: 100%;
-  letter-spacing: 0.5rem;
   margin: 0;
   position: relative;
   left: 4rem;

@@ -9,14 +9,15 @@ import {
   SidebarWrapper
 } from '../../components/navigation';
 import closeButton from '../../static/svgs/x.svg';
-import logoSidebar from '../../static/svgs/logo-sidebar.svg';
+import logoSidebar from '../../static/bg_hero_badge.png';
 import constants from '../../constants';
 
 const HeroLogo = styled.img`
   position: absolute;
   top: 3rem;
   left: 6rem;
-  min-width: 14rem;
+  align-self: center;
+  width: 14rem;
 
   @media (max-width: 768px) {
     display: ${props => (props.overlay ? '' : 'none')};
@@ -28,6 +29,7 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   margin: 4rem 0rem 1rem 28px;
   height: auto;
+  padding-left: 1.5rem;
 
   @media (max-width: 768px) {
     display: ${props => (props.overlay ? '' : 'none')};
@@ -44,6 +46,10 @@ const Wrapper = styled.div`
   display: inline-block;
   padding-left: 2rem;
   position: relative;
+
+  a {
+    font-weight: normal;
+  }
 `;
 
 const CloseButton = styled.img`
