@@ -49,4 +49,11 @@ export const GlobalStyle = createGlobalStyle`
   img {
     max-width: 100%;
   }
+
+
+  .gatsby-highlight {
+    code {
+      border: none !important;
+    }
+  }
 `;
