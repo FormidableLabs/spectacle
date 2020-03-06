@@ -1,16 +1,19 @@
 # Changelog
 
-## UNRELEASED
+## 6.0.0
 
-- Expand custom background support by adding `Background` props to the `Slide` component, along with `backgroundOpacity`
+- Expand custom background support by adding `Background` props to the `Slide` component, along with `backgroundOpacity`.
+  [#849](https://github.com/FormidableLabs/spectacle/pull/849)
+- Add `Stepper`, allowing for code range highlighting/scrolling within CodePane.
+  [#843](https://github.com/FormidableLabs/spectacle/pull/843)
 
 ## 6.0.0-alpha.8
 
 - Update `examples/one-page.html` to `examples/js/index.js` with new script helper.
-- Add support for Deck or Slide-level transitions
-- Add default transitions for Fade, Slide, and None
-- Fixes Full Screen component for Chrome/FF, adds support for Safari
-- Added support for dual-browser tab mode for presenter mode in all browsers
+- Add support for Deck or Slide-level transitions.
+- Add default transitions for Fade, Slide, and None.
+- Fixes Full Screen component for Chrome/FF, adds support for Safari.
+- Added support for dual-browser tab mode for presenter mode in all browsers.
 
 ## 6.0.0-alpha.7
 
