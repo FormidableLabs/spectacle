@@ -60,7 +60,6 @@ const HeaderContainer = styled.a`
   width: 12rem;
   flex-direction: column;
   color: #ffffff;
-  font-family: akkurat;
 `;
 
 const HeaderText = styled.p`

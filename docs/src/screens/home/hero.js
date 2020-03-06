@@ -31,10 +31,8 @@ const HeroContent = styled.div`
 
 const HeroTitle = styled.h1`
   font-size: 3rem;
-  letter-spacing: 0.15em;
   margin: 0 0 2rem;
   text-align: center;
-  text-transform: uppercase;
   width: 100%;
   @media (min-width: 768px) {
     font-size: 5.8rem;
@@ -44,8 +42,6 @@ const HeroTitle = styled.h1`
 `;
 
 const HeroBody = styled.p`
-  font-family: Helvetica;
-  letter-spacing: 0.08em;
   font-size: 1.4rem;
   line-height: 2.2rem;
   margin: 0 0 4rem;

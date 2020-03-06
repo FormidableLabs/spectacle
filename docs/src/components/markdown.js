@@ -5,12 +5,11 @@ export const Markdown = styled.article`
     width: 75vw;
   }
   & h1 {
-    font-family: 'castledown';
     font-size: 3.4rem;
     margin: 0 0 2rem;
 
     @media (min-width: 1024px) {
-      font-size: 4.8rem;
+      font-size: 3.5rem;
     }
 
     @media (max-width: 768px) {
@@ -19,7 +18,6 @@ export const Markdown = styled.article`
   }
 
   & h2 {
-    font-family: 'castledown';
     font-size: 2.8rem;
     margin: 6rem 0 2rem;
     @media (min-width: 1024px) {
@@ -28,7 +26,6 @@ export const Markdown = styled.article`
   }
 
   & h3 {
-    font-family: 'castledown';
     font-size: 1.8rem;
     margin: 2rem 0;
     @media (min-width: 1024px) {
@@ -36,8 +33,17 @@ export const Markdown = styled.article`
     }
   }
 
+  & h4 {
+    font-size: 1.5rem;
+    margin: 2rem 0;
+    @media (min-width: 1024px) {
+      font-size: 1.8rem;
+    }
+  }
+
   & table {
     border-collapse: collapse;
+    width: 100%;
   }
 
   & td {
@@ -77,7 +83,6 @@ export const Markdown = styled.article`
   }
 
   & p {
-    font-family: Helvetica;
     font-size: 1.7rem;
     line-height: 1.6;
   }
@@ -91,7 +96,6 @@ export const Markdown = styled.article`
   }
 
   & li {
-    font-family: Helvetica;
     font-size: 1.7rem;
     line-height: 1.6;
     padding: 0.5rem;

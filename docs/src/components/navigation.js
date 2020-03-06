@@ -32,7 +32,6 @@ export const SidebarContainer = styled.div`
 `;
 
 export const SidebarWrapper = styled.aside`
-  font-family: 'akkurat';
   background-image: url(${sidebarBackground});
   background-repeat: repeat-y;
   background-size: 100%;
@@ -62,7 +61,8 @@ export const SidebarNavItem = styled(Link)`
   display: inline-block;
   margin: 0.25rem 0;
   padding: 0.25rem;
-  padding-left: 1.25rem;
+  font-weight: bold;
+
   &:hover {
     color: rgba(200, 200, 200, 0.8);
   }
