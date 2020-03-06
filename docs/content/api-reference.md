@@ -76,6 +76,20 @@ These tags are for adding structure to your slides.
 | <a name="flex-box"></a>**FlexBox** | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br /> [**Border**](/docs/props#border)<br />[**Flex**](/docs/props#flex)<br /> | —                | —                 |
 | <a name="grid"></a>**Grid**        | [**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br />[**Grid**](/docs/props#grid)<br />                                                                                                                | —                | **display**: grid |
 
+<a name="table-tags"></a>
+
+## Table Tags
+
+These tags are for adding tables with content to your slides.
+
+| Tag Name                                   | Theme Props                                                                                                                                                                                   | Additional Props | Default Props                                                                                                                                       |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a name="table"></a>**Table**              | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| <a name="table-header"></a>**TableHeader** | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**fontWeight**: bold<br />**textAlign:** left<br />**margin**: listMargin |
+| <a name="table-body"></a>**TableBody**     | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| <a name="table-row"></a>**TableRow**       | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| <a name="table-cell"></a>**TableCell**     | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+
 <a name="appear"></a>
 
 ## Appear
