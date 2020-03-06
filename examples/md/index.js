@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import { Deck, FlexBox, Markdown, FullScreen, Progress, Box } from 'spectacle';
+import { Box, Deck, FlexBox, FullScreen, Markdown, Progress } from 'spectacle';
 
 // SPECTACLE_CLI_MD_START
 import mdContent from './slides.md';

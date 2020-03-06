@@ -135,7 +135,6 @@ const Presentation = () => (
       backgroundOpacity={0.5}
     >
       <Heading>Custom Backgrounds</Heading>
-
       <UnorderedList>
         <ListItem>
           <CodeSpan>backgroundColor</CodeSpan>

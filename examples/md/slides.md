@@ -17,11 +17,11 @@ These slides are bare Markdown with nothing special.
 
 ---
 
-![datboi](https://pbs.twimg.com/media/CkjFUyTXEAEysBY.jpg)
+![datboi](https://media.giphy.com/media/xohHbwcnOhqbS/giphy.gif)
 
 ---
 
-###### Typography
+Typography
 
 # Heading 1
 
@@ -34,8 +34,6 @@ These slides are bare Markdown with nothing special.
 ##### Heading 5
 
 ###### Heading 6
-
-Standard Text
 
 ---
 
