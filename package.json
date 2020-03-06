@@ -12,7 +12,7 @@
     "check": "yarn lint && yarn prettier-check && yarn test",
     "check-ci": "yarn run check",
     "format": "yarn run lint-fix && yarn run prettier-fix",
-    "lint": "eslint --ignore-path .gitignore .",
+    "lint": "eslint '*.js' 'examples/**/*.js' src scripts 'docs/*.js' docs/src docs/scripts 'docs/static-config-*/*.js'",
     "lint-fix": "yarn lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
     "prettier-check": "yarn prettier --check",
