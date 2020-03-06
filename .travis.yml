@@ -11,6 +11,7 @@ sudo: false
 branches:
   only:
     - master
+    - task/rewrite # TODO: DISABLE. Just want surge build.
 
 env:
   global:
