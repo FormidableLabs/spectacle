@@ -6,7 +6,7 @@ Now built with react-static!
 
 To install and run the docs site locally:
 
-```sh
+```bash
 $ cd docs
 $ yarn install
 $ yarn start
@@ -21,7 +21,7 @@ inline or doing url parsing, as the production output root will be "open-source/
 
 The staging build is served from a root path, e.g. `http://example/com`. This is typically used for CI / per-PR previews.
 
-```sh
+```bash
 $ cd docs
 $ yarn stage:build
 $ yarn stage:serve
@@ -35,7 +35,7 @@ Then visit: http://localhost:3000/open-source/spectacle/
 
 The production site is served from a nested path, e.g. `https://formidable.com/open-source/spectacle`.
 
-```sh
+```bash
 $ cd docs
 $ yarn prod:build
 $ yarn prod:serve
@@ -60,7 +60,7 @@ Our CI deploys to staging for each PR using surge.sh at the following URL:
 
 To test things out locally find the `Surge.sh` entry in 1password in the IC vault and make up some pretend values for a PR number in `TRAVIS_PULL_REQUEST`:
 
-```sh
+```bash
 $ cd docs
 $ yarn clean
 $ yarn stage:build
@@ -78,13 +78,13 @@ Our CI is configured to deploy the production build in `dist` to `formidable.com
 
 First, install the AWS CLI:
 
-```sh
+```bash
 $ brew install awscli
 ```
 
 Then, set up `aws-vault` with the AWS access and secret keys for "CI" in the `AWS IAM (spectacle-ci)` entry in the IC vault:
 
-```sh
+```bash
 $ brew cask install aws-vault
 $ aws-vault add fmd-spectacle-ci
 # Enter AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY values for AWS `spectacle-ci` user titled "CI"
@@ -92,7 +92,7 @@ $ aws-vault add fmd-spectacle-ci
 
 Then build for production and deploy with dry run to check things:
 
-```sh
+```bash
 $ cd docs
 $ yarn clean
 $ yarn prod:build
@@ -104,7 +104,7 @@ $ aws-vault exec fmd-spectacle-ci --no-session -- \
 
 - Almost all of your code will be executed in two contexts: first in node for server-side rendering and static html generation, then client-side as a PWA. In addition to writing [node-safe code](https://github.com/nozzle/react-static/blob/master/docs/concepts.md#writing-universal-node-safe-code), this also means that it's necessary to validate that both contexts are working as expected.
 
-- In addition to two execution contexts, there are three stages: development, staging, and production. `yarn start` uses a local dev server with live reload that takes about one second to rebuild. This is a good choice for most local development, but it's important to keep in mind that **the development server does not build the static html.** For that, you will want to use `yarn stage && yarn serve`. The `yarn build` command is used by formidable.com within its build script that moves the output of this lander into the correct location within the overall site output.
+- In addition to two execution contexts, there are three stages: development, staging, and production. `yarn start` uses a local dev server with live reload that takes about one second to rebuild. This is a good choice for most local development, but it's important to keep in mind that **the development server does not build the static html.** For that, you will want to use `yarn stage:build && yarn stage:serve`.
 
 - When debugging an issue with the static html output, don't be shy about cracking open the `dist` folder and looking at the output!
 
@@ -114,7 +114,7 @@ $ aws-vault exec fmd-spectacle-ci --no-session -- \
 
 ## Tips for getting the most out of react-static + webpack tooling
 
-We are on react-static v5 due to blocking stability issues with v6, which means...
+We are on react-static v5 due to painful upgrade issues with v7, which means...
 
 - You'll want to make sure that when you refer to the docs you're in the v5 branch.
 

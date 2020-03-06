@@ -1,61 +1,52 @@
-import Progress from './progress';
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { ThemeProvider } from 'styled-components';
 
-const _mockSlideIndexReference = function() {
-  return [{ id: 0 }, { id: 1 }, { id: 'last' }];
+import { DeckContext } from '../hooks/use-deck';
+import defaultTheme from '../theme/default-theme';
+import Progress, { Circle } from './progress';
+
+Enzyme.configure({ adapter: new Adapter() });
+
+const mountWithContext = (tree, context) => {
+  const WrappingThemeProvider = props => (
+    <DeckContext.Provider
+      value={{
+        ...context,
+        goToSlide: jest.fn()
+      }}
+    >
+      <ThemeProvider theme={defaultTheme}>{props.children}</ThemeProvider>
+    </DeckContext.Provider>
+  );
+  return mount(tree, { wrappingComponent: WrappingThemeProvider });
 };
 
 describe('<Progress />', () => {
-  test('should render PacMan correctly', () => {
-    const context = { styles: { progress: { pacman: [] } } };
-    const wrapper = mount(
-      <Progress
-        type="pacman"
-        items={_mockSlideIndexReference()}
-        currentSlideIndex={2}
-      />,
-      { context }
-    );
-    expect(wrapper).toMatchSnapshot();
+  it('should render the right amount of circles', () => {
+    const wrapper = mountWithContext(<Progress />, {
+      numberOfSlides: 5,
+      state: {
+        currentSlide: 0
+      }
+    });
+    expect(wrapper.find(Circle).length).toBe(5);
   });
 
-  test('should render the number style correctly', () => {
-    const context = { styles: { progress: { number: [] } } };
-    const wrapper = mount(
-      <Progress
-        type="number"
-        items={_mockSlideIndexReference()}
-        currentSlideIndex={1}
-      />,
-      { context }
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test('should render the bar style correctly', () => {
-    const context = { styles: { progress: { bar: [] } } };
-    const wrapper = mount(
-      <Progress
-        type="bar"
-        items={_mockSlideIndexReference()}
-        currentSlideIndex={1}
-      />,
-      { context }
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test('should render nothing when none is provided.', () => {
-    const context = { styles: { progress: {} } };
-    const wrapper = mount(
-      <Progress
-        type="none"
-        items={_mockSlideIndexReference()}
-        currentSlideIndex={3}
-      />,
-      { context }
-    );
-    expect(wrapper).toMatchSnapshot();
+  it('should render the right amount of circles with the current circle in the active state', () => {
+    const wrapper = mountWithContext(<Progress />, {
+      numberOfSlides: 5,
+      state: {
+        currentSlide: 4
+      }
+    });
+    expect(
+      wrapper
+        .find(Circle)
+        .at(4)
+        .prop('active')
+    ).toBe(true);
   });
 });

@@ -1,95 +1,80 @@
-# Spectacle
+<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/master/docs/src/static/bg_hero_badge.png" width=250></p>
+<h2 align="center">Spectacle</h2>
+<p align="center">
+<strong>✨ A ReactJS based Presentation Library ✨</strong>
+<br><br>
+<a href="https://npmjs.com/package/spectacle"><img src="https://img.shields.io/npm/dm/spectacle.svg"></a>
+<a href="https://npmjs.com/package/spectacle"><img src="https://img.shields.io/npm/v/spectacle.svg"></a>
+<img src="http://img.badgesize.io/https://unpkg.com/spectacle/dist/spectacle.min.js?compression=gzip&label=gzip%20size">
+<img src="http://img.badgesize.io/https://unpkg.com/spectacle/dist/spectacle.min.js?label=size">
+<a href="https://github.com/FormidableLabs/spectacle#maintenance-status">
+  <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
+</a>
+</p>
 
-[![Travis Status][trav_img]][trav_site]
-[![Maintenance Status][maintenance-image]](#maintenance-status)
-
-A [ReactJS](https://reactjs.org/)-based Presentation Library.
-
-Looking for a quick preview of what you can do with Spectacle? Check out our live Demo Deck [here](https://raw.githack.com/FormidableLabs/spectacle/master/one-page.html#/).
+Looking for a quick preview of what you can do with Spectacle? Check out our Live Demo deck [here](https://raw.githack.com/FormidableLabs/spectacle/master/examples/one-page.html/).
 
 Have a question about Spectacle? Submit an issue in this repository using the "Question" template.
 
-## Contents
+## Table of Contents
 
-- [Getting Started](./docs/content/getting-started.md)
-  - [Classic Spectacle](./docs/content/getting-started.md#classic-spectacle)
-  - [Spectacle MDX](./docs/content/getting-started.md#spectacle-mdx)
-  - [One Page](./docs/content/getting-started.md#one-page)
-- [Basic Concepts](./docs/content/basic-concepts.md)
-  - [Main file](./docs/content/basic-concepts.md#main-file)
-  - [Themes](./docs/content/basic-concepts.md#themes)
-    - [createTheme(colors, fonts)](./docs/content/basic-concepts.md#createthemecolors-fonts)
-  - [Development](./docs/content/basic-concepts.md#development)
-  - [Build & Deployment](./docs/content/basic-concepts.md#build--deployment)
+- [Getting Started: A Tutorial](./docs/content/tutorial.md)
+- [Basic Concepts](./docs/content/basic-concepts.md#basic-concepts)
+  - [Installation](./docs/content/basic-concepts.md#installation)
+  - [Getting Started with Development](./docs/content/basic-concepts.md#development)
+  - [Writing your Presentation](./docs/content/basic-concepts.md#writing-your-presentation)
+    - [MDX/Markdown](./docs/content/basic-concepts.md#mdx--markdown)
+    - [JSX](./docs/content/basic-concepts.md#jsx)
+    - [One Page/HTML](./docs/content/basic-concepts.md#one-html-page)
   - [Presenting](./docs/content/basic-concepts.md#presenting)
-  - [Controls](./docs/content/basic-concepts.md#controls)
-  - [Fullscreen](./docs/content/basic-concepts.md#fullscreen)
-  - [PDF Export](./docs/content/basic-concepts.md#pdf-export)
-- [Tag API](./docs/content/tag-api.md)
-  - [Main Tags](./docs/content/tag-api.md#main-tags)
-    - [Deck](./docs/content/tag-api.md#deck)
-    - [Slide (Base)](./docs/content/tag-api.md#slide-base)
-    - [Notes](./docs/content/tag-api.md#notes)
-    - [MarkdownSlides](./docs/content/tag-api.md#markdown-slides)
-  - [Layout Tags](./docs/content/tag-api.md#layout-tags)
-    - [Layout](./docs/content/tag-api.md#layout)
-    - [Fit](./docs/content/tag-api.md#fit)
-    - [Fill](./docs/content/tag-api.md#fill)
-  - [Markdown Tag](./docs/content/tag-api.md#markdown-tag)
-    - [Markdown](./docs/content/tag-api.md#markdown)
-  - [Magic Tag](./docs/content/tag-api.md#magic-tag)
-    - [Magic](./docs/content/tag-api.md#magic)
-  - [Element Tags](./docs/content/tag-api.md#element-tags)
-    - [Appear](./docs/content/tag-api.md#appear)
-    - [Anim](./docs/content/tag-api.md#anim)
-    - [BlockQuote, Quote and Cite (Base)](./docs/content/tag-api.md#blockquote-quote-and-cite-base)
-    - [CodePane (Base)](./docs/content/tag-api.md#codepane-base)
-    - [Code (Base)](./docs/content/tag-api.md#code-base)
-    - [ComponentPlayground](./docs/content/tag-api.md#component-playground)
-    - [GoToAction (Base)](./docs/content/tag-api.md#go-to-action)
-    - [Heading (Base)](./docs/content/tag-api.md#heading-base)
-    - [Image (Base)](./docs/content/tag-api.md#image-base)
-    - [Link (Base)](./docs/content/tag-api.md#link-base)
-    - [List & ListItem (Base)](./docs/content/tag-api.md#list--listitem-base)
-    - [S (Base)](./docs/content/tag-api.md#s-base)
-    - [Table, TableRow, TableBody, TableHeader, TableHeaderItem and TableItem (Base)](./docs/content/tag-api.md#table-tablerow-tableheaderitem-and-tableitem-base)
-    - [Text (Base)](./docs/content/tag-api.md#text-base)
-    - [Typeface](./docs/content/tag-api.md#typeface)
-  - [Base Props](./docs/content/tag-api.md#base-props)
-- [Third Party Extensions](./docs/content/extensions.md)
-- [FAQ](#faq)
-- [Maintenance Status](#maintenance-status)
-
-<a name="faq"></a>
-
-# FAQ
-
-**_How can I easily style the base components for my presentation?_**
-
-Historically, custom styling in Spectacle has meant screwing with a theme file, or using `!important` overrides. We fixed that. Spectacle is now driven by [emotion](https://github.com/emotion-js/emotion), so you can bring your own styling library, whether it's emotion itself, or something like styled-components or glamorous. For example, if you want to create a custom Heading style:
-
-```javascript
-import styled from 'react-emotion';
-import { Heading } from 'spectacle';
-
-const CustomHeading = styled(Heading)`
-  font-size: 1.2em;
-  color: papayawhip;
-`;
-```
-
-<a name="tag-api"></a>
-
-**_Can I write my presentation in TypeScript?_**
-
-Yes, you can! Type definitions are shipped with the library, so you can import Spectacle components into any `.tsx` presentation without additional installation steps.
-
-Updated type definitions for the Spectacle API can be found [at the root of this repository](./index.d.ts).
-
-## Maintenance Status
-
-**Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
-
-[trav_img]: https://api.travis-ci.com/FormidableLabs/spectacle.svg
-[trav_site]: https://travis-ci.com/FormidableLabs/spectacle
-[maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg
+- [Advanced Concepts](./docs/content/advanced-concepts.md#advanced-concepts)
+  - [Build & Deployment](./docs/content/advanced-concepts.md#build--deployment)
+  - [Keyboard Controls](./docs/content/advanced-concepts.md#keyboard-controls)
+  - [Query Parameters](./docs/content/advanced-concepts.md#query-parameters)
+- [Base Props](./docs/content/props.md)
+  - [Transition Object](./docs/content/props.md#transition-object)
+  - [Color](./docs/content/props.md#color)
+  - [Space](./docs/content/props.md#space)
+  - [Typography](./docs/content/props.md#typography)
+  - [Layout](./docs/content/props.md#layout)
+  - [Flex](./docs/content/props.md#flex)
+  - [Position](./docs/content/props.md#position)
+  - [Border](./docs/content/props.md#border)
+- [Theme System](./docs/content/themes.md)
+  - [Theme Object](./docs/content/themes.md#theme-object)
+  - [Usage](./docs/content/themes.md#usage)
+  - [Theme Keys](./docs/content/themes.md#theme-keys-css-props)
+  - [Deck Templates](./docs/content/themes.md#deck-templates)
+  - [Scaled Spacing](./docs/content/themes.md#scaled-spacing)
+- [API Reference](./docs/content/api-reference.md#api-reference)
+  - [Main Tags](./docs/content/api-reference.md#main-tags)
+    - [Deck](./docs/content/api-reference.md#deck)
+    - [Slide](./docs/content/api-reference.md#slide)
+  - [Typography Tags](./docs/content/api-reference.md#typography-tags)
+    - [Text](./docs/content/api-reference.md#text)
+    - [Heading](./docs/content/api-reference.md#heading)
+    - [Link](./docs/content/api-reference.md#link)
+    - [Quote](./docs/content/api-reference.md#quote)
+    - [OrderedList](./docs/content/api-reference.md#ordered-list)
+    - [UnorderedList](./docs/content/api-reference.md#unordered-list)
+    - [ListItem](./docs/content/api-reference.md#list-item)
+    - [CodeSpan](./docs/content/api-reference.md#code-span)
+  - [Layout Tags](./docs/content/api-reference.md#layout-tags)
+    - [Box](./docs/content/api-reference.md#box)
+    - [FlexBox](./docs/content/api-reference.md#flex-box)
+    - [Grid](./docs/content/api-reference.md#grid)
+  - [Appear](./docs/content/api-reference.md#appear)
+  - [CodePane](./docs/content/api-reference.md#codepane)
+  - [FullScreen](./docs/content/api-reference.md#fullscreen)
+  - [Image](./docs/content/api-reference.md#image)
+  - [Markdown](./docs/content/api-reference.md#markdown)
+  - [Notes](./docs/content/api-reference.md#notes)
+  - [Progress](./docs/content/api-reference.md#progress)
+- [Extensions](./docs/content/extensions.md)
+  - [Third Party Extensions](./docs/content/extensions.md#third-party)
+  - [Formidable Extensions](./docs/content/extensions.md#formidable)
+    - [`spectacle-cli`](./docs/content/extensions.md#spectacle-cli)
+    - [`spectacle-mdx-loader`](./docs/content/extensions.md#spectacle-mdx-loader)
+- [Frequently Asked Questions](./docs/content/faq.md#frequently-asked-questions)
+  - [Can I export my slides for use elsewhere?](./docs/content/faq.md#faq-1)
+  - [Can I write my presentation in TypeScript?](./docs/content/faq.md#faq-2)

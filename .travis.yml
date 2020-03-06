@@ -1,9 +1,9 @@
 language: node_js
 
 node_js:
-  - "10"
-  - "12"
-  - "13"
+  - '10'
+  - '12'
+  - '13'
 
 # Use container-based Travis infrastructure.
 sudo: false
@@ -43,12 +43,15 @@ notifications:
 script:
   # Core library
   - yarn run build
+  # Build all examples to make sure they're not broken.
+  - yarn build-examples
+  # All other checks.
   - yarn run check-ci
 
 jobs:
   include:
     - stage: documentation
-      node_js: "12"
+      node_js: '12'
       script:
         - cd docs
         - yarn install --frozen-lockfile

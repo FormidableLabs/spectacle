@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<GoToAction /> should just render a div when no props are provided 1`] = `
-<GoToAction>
-  <div />
-</GoToAction>
-`;

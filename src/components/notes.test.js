@@ -1,58 +1,22 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
 import Notes from './notes';
 
-const mockContext = function(
-  currentSlide,
-  parentSlide,
-  updateNotes = () => {}
-) {
-  return {
-    updateNotes,
-    slideHash: parentSlide,
-    store: {
-      getState: () => ({
-        route: {
-          slide: currentSlide
-        }
-      })
-    }
-  };
-};
+Enzyme.configure({ adapter: new Adapter() });
 
-describe('<Notes />', () => {
-  test('should render correctly', () => {
-    const wrapper = mount(
-      <Notes>
-        <ul>
-          <li>First</li>
-          <li>Second</li>
-        </ul>
-      </Notes>,
-      { context: mockContext(1, '2') }
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
+const mockedUseContext = (React.useContext = jest.fn());
 
-  test('should update notes on matching slide', () => {
-    const updateNotes = jest.fn();
-    const children = (
-      <ul>
-        <li>First</li>
-        <li>Second</li>
-      </ul>
-    );
-    const vDom = <Notes>{children}</Notes>;
-
-    mount(vDom, { context: mockContext('1', 2, updateNotes) });
-    expect(updateNotes.mock.calls.length).toEqual(0);
-
-    mount(vDom, { context: mockContext('2', 2, updateNotes) });
-    expect(updateNotes.mock.calls.length).toEqual(1);
-    expect(updateNotes.mock.calls[0]).toEqual([children]);
-
-    mount(vDom, { context: mockContext('hurz', 'hurz', updateNotes) });
-    expect(updateNotes.mock.calls.length).toEqual(2);
-    expect(updateNotes.mock.calls[0]).toEqual([children]);
+describe('Notes', () => {
+  const setNotes = jest.fn();
+  it('Calls setNotes with children value', () => {
+    mockedUseContext.mockReturnValue({
+      actions: {
+        setNotes
+      }
+    });
+    mount(<Notes>{'Some Notes'}</Notes>);
+    expect(setNotes).toHaveBeenCalledWith('Some Notes');
   });
 });

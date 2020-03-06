@@ -1,31 +1,21 @@
-import { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { SlideContext } from '../hooks/use-slide';
 
-export default class Notes extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired
-  };
+const Notes = ({ children }) => {
+  const {
+    actions: { setNotes }
+  } = React.useContext(SlideContext);
 
-  static contextTypes = {
-    store: PropTypes.object,
-    slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    updateNotes: PropTypes.func
-  };
+  React.useEffect(() => {
+    setNotes(children);
+  }, [setNotes, children]);
 
-  componentDidMount() {
-    const { store, slideHash: parentSlide, updateNotes } = this.context;
-    const currentSlide = store.getState().route.slide;
+  return null;
+};
 
-    // updateNotes is only defined when this component is wrapped in
-    // a Presenter.
-    // Also, the type of parentSlide is either string or number based
-    // on the parent slide having an id or not.
-    if (updateNotes && currentSlide === `${parentSlide}`) {
-      updateNotes(this.props.children);
-    }
-  }
+Notes.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
-  render() {
-    return false;
-  }
-}
+export default Notes;

@@ -1,53 +1,188 @@
-Thanks for contributing!
+# Contributing
+
+Thank you for contributing!
+
+<a href="https://github.com/FormidableLabs/spectacle#maintenance-status">
+  <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
+</a>
+
+Spectacle is actively maintained by @[carlos-kelly][] and @[kale-stew][]
+from within [@FormidableLabs][formidable-github].
 
 ## Development
 
 ### Installing dependencies
 
-```sh
-yarn install
+We prefer to use [`yarn`][yarn-docs].
+
+Install all dependencies by running:
+
+```bash
+$ yarn
 ```
 
-You will find all building blocks that make up Spectacle in the [`src`](src) folder.
+### Examples
+
+#### Overview
+
+Our examples are spread out across multiple projects depending on where the core technology lies. We publish most of these to `npm` for use in `spectacle-cli` project to either use with the CLI (`spectacle`) or generate a fresh project boilerplate (`spectacle-boilerplate`).
+
+- `spectacle`
+  - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/master/examples/js)
+  - [`examples/md`](https://github.com/FormidableLabs/spectacle/tree/master/examples/md)
+  - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/master/examples/one-page.html)
+- `spectacle-mdx-loader`
+  - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/mdx)
+- `spectacle-cli`
+  - [`examples/cli-mdx-babel`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/cli-mdx-babel): _Not published_
+
+#### This repository
+
+We have various deck scenarios in `examples` in this repository that are part of the development process.
+
+We follow the convention of `start:NAME` to run an in-memory dev server for a specific
+example, but we also have a `yarn build-examples` script task to make sure we're actually
+producing non-broken sample presentations as a CI / assurance test.
+
+#### `examples/js`
+
+A basic deck with JSX and JavaScript:
+
+```bash
+# start the dev server
+$ yarn start:js
+
+# open the browser
+$ open http://localhost:3000/
+```
+
+**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
+
+#### `examples/md`
+
+A basic deck written in markdown:
+
+```bash
+# In one terminal open dev server
+$ yarn start:md
+
+# In another open a browser to 3100
+$ open http://localhost:3100/
+```
+
+**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
+
+#### `examples/one-page`
+
+A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
+
+```bash
+# [optional] build the library -
+#   comment out the unpkg dependency in
+#   one-page.html and use the local dist/
+$ yarn build
+
+# open the browser
+$ open examples/one-page.html
+```
+
+_or_ use the single line:
+
+```bash
+$ yarn start:one-page
+```
+
+**Note**: This file is published and used by `spectacle-cli`.
+
+**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `yarn build-one-page` and verify changes look good.
+
+### Examples integration with `spectacle-cli`
+
+`spectacle-cli` uses our `js,md,one-page` examples in the CLI and boilerplate tools. To check that changes to these files don't break `spectacle-cli` upstream, check with something like the following:
+
+```bash
+# In `spectacle` repo
+$ yarn link
+
+# In `spectacle-cli` repo
+$ yarn link spectacle
+
+# Check all MDX, MD examples per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#examples
+$ yarn start:examples
+
+# (In another shell) Check mdx:5000, mdx+babel:5001, md:5100
+$ open http://localhost:5000/ http://localhost:5001/ http://localhost:5100/
+
+# Check all JS, MDX, MD boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/master/CONTRIBUTING.md#boilerplate
+$ yarn clean:boilerplate
+$ yarn boilerplate:generate
+$ yarn boilerplate:install
+$ yarn start:boilerplate
+
+# (In another shell) Check mdx:6300, md:6100, js:6200
+#
+# **Note**: These `yarn install` internally so will use latest published
+# `spectacle`, so results may be not entirely accurage. You may need to manually
+# update the installed contents in generated project `node_modules`.
+$ open http://localhost:6300/ http://localhost:6100/ http://localhost:6200/
+```
 
 ### Testing
 
-You will find tests for files colocated with `*.test.js` suffixes. Whenever making any changes, ensure that all existing tests pass by running `yarn run test`.
+To run all tests:
 
-If you are adding a new feature or some extra functionality, you should also make sure to accompany those changes with appropriate tests.
+```bash
+$ yarn test
+```
 
 ### Linting and Formatting
 
-Before committing any changes, be sure to do `yarn run lint`; this will lint all relevant files using [ESLint](http://eslint.org/) and report on any changes that you need to make.
+To check (and fix) code:
 
-You will also want to ensure your code meets the prettier formatting guidelines by running `yarn run prettier -l <filename>` on a specific file. If there are differences the script errors out. You can also specify a glob `yarn run prettier -l "src/**/*.js"` which will return a list of files that do not conform.
-
-Alternatively, install the Prettier [editor plugin](https://prettier.io/docs/en/editors.html) in your favorite editor. This is the preferred method.
-
-There is also a pre-commit hook in place to lint all staged files. If any of the staged files do not conform to the eslint rules or the [prettier](https://prettier.io/) formatting guidelines, your commit will fail until you resolve all outstanding issues.
-
-To resolve/fix prettier formatting problems from the CLI:
-
-```sh
-yarn prettier-fix && yarn lint-fix
+```bash
+$ yarn lint
+$ yarn lint-fix
 ```
 
-This will modify your file in place. You will need to `git add` the file again and re-commit.
+To check (and fix) formatting of MD, JSON, _and_ code:
 
-### Before submitting a PR...
+```bash
+$ yarn prettier-check
+$ yarn prettier-fix
+```
 
-Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
+We also have a simple one-liner for running both of these fix-checks back-to-back:
 
-- Run the tests using `yarn run test`.
-- Run lint and flow using `yarn run lint`
-- Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API, like breaking changes or new features.
-- Everything else included in our [pull request checklist](https://github.com/FormidableLabs/spectacle/blob/master/.github/PULL_REQUEST_TEMPLATE.md#checklist-feel-free-to-delete-this-section-upon-completion)
+```bash
+$ yarn format
+```
 
-## Releasing a new version to NPM (only for project administrators)
+Note that there is duplication for JS code in `prettier` doing the same style changes,
+but both should be harmonious and run together.
 
-1.  Run `npm version patch` (or `minor`, `major` as appropriate) to run tests and lint, build the `lib` and `dist` directories, and automatically update the `package.json` with a new git tag.
-2.  Run `npm publish` and publish to npm if all is well.
-3.  Run `git push && git push --tags`
+### Before submitting a PR
+
+Thanks for taking the time to help us make Spectacle even better! Before you go
+ahead and submit a PR, make sure that you have done the following:
+
+- Run all checks using `yarn check-ci`.
+- Run `yarn build-one-page` and check + commit changes to `examples/one-page.html`
+- Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
+- Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API,
+  like breaking changes or new features.
+- Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
+
+### Releasing a new version to NPM
+
+_Only for project administrators_.
+
+1. Update [`CHANGELOG.md`](./CHANGELOG.md), following format for previous versions
+2. Commit as "Changes for version VERSION"
+3. Run `npm version patch` (or `minor|major|VERSION`) to run tests and lint,
+   build published directories, then update `package.json` + add a git tag.
+4. If all is well, run `npm publish` to publish to NPM.
+5. Run `git push && git push --tags` to publish to Github.
+6. Go and manually draft a release for your recently pushed tag with notes in the [Github UI](https://github.com/FormidableLabs/spectacle/releases/new).
 
 ## Contributor Covenant Code of Conduct
 
@@ -118,8 +253,16 @@ members of the project's leadership.
 
 ### Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at [http://contributor-covenant.org/version/1/4][version]
+This Code of Conduct is adapted from the [Contributor Covenant][cc-homepage], version 2.0,
+available at [https://www.contributor-covenant.org/version/2/0][cc-latest-version]
 
-[homepage]: http://contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1/4/
+<!-- Links -->
+
+[carlos-kelly]: https://www.github.com/carlos-kelly
+[cc-homepage]: http://contributor-covenant.org
+[cc-latest-version]: https://www.contributor-covenant.org/version/2/0/code_of_conduct
+[formidable-github]: https://www.github.com/FormidableLabs
+[kale-stew]: https://www.github.com/kale-stew
+[mdx]: https://mdxjs.com/
+[spectacle-cli]: https://www.github.com/FormidableLabs/spectacle-cli
+[yarn-docs]: https://yarnpkg.com/en/docs/getting-started

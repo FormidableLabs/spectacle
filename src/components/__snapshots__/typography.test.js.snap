@@ -1,0 +1,582 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CodeSpan /> should render a <code> with text 1`] = `
+<styled.code
+  fontFamily="monospace"
+  fontSize="text"
+>
+  <StyledComponent
+    fontFamily="monospace"
+    fontSize="text"
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "_foldedDefaultProps": Object {
+          "fontFamily": "monospace",
+          "fontSize": "text",
+        },
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bwzfXH",
+          "isStatic": false,
+          "lastClassName": "vCJVt",
+          "rules": Array [
+            [Function],
+          ],
+        },
+        "displayName": "styled.code",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bwzfXH",
+        "target": "code",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  >
+    <code
+      className="sc-bwzfXH vCJVt"
+      fontFamily="monospace"
+      fontSize="text"
+    >
+      Code!
+    </code>
+  </StyledComponent>
+</styled.code>
+`;
+
+exports[`<Heading /> should render a <Text /> component with h1 size 1`] = `
+<Styled(styled.div)
+  color="secondary"
+  fontFamily="header"
+  fontSize="h1"
+  fontWeight="bold"
+  margin={1}
+  padding={0}
+  textAlign="center"
+>
+  <StyledComponent
+    color="secondary"
+    fontFamily="header"
+    fontSize="h1"
+    fontWeight="bold"
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "_foldedDefaultProps": Object {
+          "color": "secondary",
+          "fontFamily": "header",
+          "fontSize": "h1",
+          "fontWeight": "bold",
+          "margin": 1,
+          "padding": 0,
+          "textAlign": "center",
+        },
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bxivhb",
+          "isStatic": false,
+          "lastClassName": "hyPFEb",
+          "rules": Array [
+            [Function],
+          ],
+        },
+        "displayName": "Styled(styled.div)",
+        "foldedComponentIds": Array [
+          "sc-bdVaJa",
+        ],
+        "render": [Function],
+        "styledComponentId": "sc-bxivhb",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+    margin={1}
+    padding={0}
+    textAlign="center"
+  >
+    <div
+      className="sc-bdVaJa sc-bxivhb hyPFEb"
+      color="secondary"
+      fontFamily="header"
+      fontSize="h1"
+      fontWeight="bold"
+    >
+      Spectacle!
+    </div>
+  </StyledComponent>
+</Styled(styled.div)>
+`;
+
+exports[`<Link /> should render an <a> with text 1`] = `
+<styled.a
+  color="quaternary"
+  fontFamily="text"
+  fontSize="text"
+  margin={0}
+  padding={0}
+  textAlign="left"
+  textDecoration="underline"
+>
+  <StyledComponent
+    color="quaternary"
+    fontFamily="text"
+    fontSize="text"
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "_foldedDefaultProps": Object {
+          "color": "quaternary",
+          "fontFamily": "text",
+          "fontSize": "text",
+          "margin": 0,
+          "padding": 0,
+          "textAlign": "left",
+          "textDecoration": "underline",
+        },
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-htpNat",
+          "isStatic": false,
+          "lastClassName": "PfPpC",
+          "rules": Array [
+            [Function],
+          ],
+        },
+        "displayName": "styled.a",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-htpNat",
+        "target": "a",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+    margin={0}
+    padding={0}
+    textAlign="left"
+    textDecoration="underline"
+  >
+    <a
+      className="sc-htpNat PfPpC"
+      color="quaternary"
+      fontFamily="text"
+      fontSize="text"
+      textDecoration="underline"
+    >
+      Spectacle!
+    </a>
+  </StyledComponent>
+</styled.a>
+`;
+
+exports[`<OrderedList /> should render an <ol> with <li> children 1`] = `
+<styled.ol
+  color="primary"
+  fontFamily="text"
+  fontSize="text"
+  margin={0}
+  textAlign="left"
+>
+  <StyledComponent
+    color="primary"
+    fontFamily="text"
+    fontSize="text"
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "_foldedDefaultProps": Object {
+          "color": "primary",
+          "fontFamily": "text",
+          "fontSize": "text",
+          "margin": 0,
+          "textAlign": "left",
+        },
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-EHOje",
+          "isStatic": false,
+          "lastClassName": "cJXZZF",
+          "rules": Array [
+            [Function],
+          ],
+        },
+        "displayName": "styled.ol",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-EHOje",
+        "target": "ol",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+    margin={0}
+    textAlign="left"
+  >
+    <ol
+      className="sc-EHOje cJXZZF"
+      color="primary"
+      fontFamily="text"
+      fontSize="text"
+    >
+      <styled.li
+        margin={0}
+      >
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "_foldedDefaultProps": Object {
+                "margin": 0,
+              },
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-gzVnrw",
+                "isStatic": false,
+                "lastClassName": "eGyYYk",
+                "rules": Array [
+                  [Function],
+                ],
+              },
+              "displayName": "styled.li",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-gzVnrw",
+              "target": "li",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+          margin={0}
+        >
+          <li
+            className="sc-gzVnrw eGyYYk"
+          >
+            This is an
+          </li>
+        </StyledComponent>
+      </styled.li>
+      <styled.li
+        margin={0}
+      >
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "_foldedDefaultProps": Object {
+                "margin": 0,
+              },
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-gzVnrw",
+                "isStatic": false,
+                "lastClassName": "eGyYYk",
+                "rules": Array [
+                  [Function],
+                ],
+              },
+              "displayName": "styled.li",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-gzVnrw",
+              "target": "li",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+          margin={0}
+        >
+          <li
+            className="sc-gzVnrw eGyYYk"
+          >
+            Ordered List
+          </li>
+        </StyledComponent>
+      </styled.li>
+    </ol>
+  </StyledComponent>
+</styled.ol>
+`;
+
+exports[`<Quote /> should render a <Text /> component with a left border 1`] = `
+<Styled(styled.div)
+  color="primary"
+  fontFamily="text"
+  fontSize="text"
+  fontStyle="italic"
+  margin={0}
+  padding="16px 0 16px 8px"
+  textAlign="left"
+>
+  <StyledComponent
+    color="primary"
+    fontFamily="text"
+    fontSize="text"
+    fontStyle="italic"
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "_foldedDefaultProps": Object {
+          "color": "primary",
+          "fontFamily": "text",
+          "fontSize": "text",
+          "fontStyle": "italic",
+          "margin": 0,
+          "padding": "16px 0 16px 8px",
+          "textAlign": "left",
+        },
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-ifAKCX",
+          "isStatic": false,
+          "lastClassName": "Rvdjo",
+          "rules": Array [
+            [Function],
+            "
+  border-left: 1px solid
+    ",
+            [Function],
+            ";
+
+  div {
+    margin: 0;
+  }
+",
+          ],
+        },
+        "displayName": "Styled(styled.div)",
+        "foldedComponentIds": Array [
+          "sc-bdVaJa",
+        ],
+        "render": [Function],
+        "styledComponentId": "sc-ifAKCX",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+    margin={0}
+    padding="16px 0 16px 8px"
+    textAlign="left"
+  >
+    <div
+      className="sc-bdVaJa sc-ifAKCX Rvdjo"
+      color="primary"
+      fontFamily="text"
+      fontSize="text"
+      fontStyle="italic"
+    >
+      Spectacle!
+    </div>
+  </StyledComponent>
+</Styled(styled.div)>
+`;
+
+exports[`<Text /> should render a <div> with text 1`] = `
+<styled.div
+  color="primary"
+  fontFamily="text"
+  fontSize="text"
+  margin={0}
+  padding={0}
+  textAlign="left"
+>
+  <StyledComponent
+    color="primary"
+    fontFamily="text"
+    fontSize="text"
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "_foldedDefaultProps": Object {
+          "color": "primary",
+          "fontFamily": "text",
+          "fontSize": "text",
+          "margin": 0,
+          "padding": 0,
+          "textAlign": "left",
+        },
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "lastClassName": "cGtrOb",
+          "rules": Array [
+            [Function],
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+    margin={0}
+    padding={0}
+    textAlign="left"
+  >
+    <div
+      className="sc-bdVaJa cGtrOb"
+      color="primary"
+      fontFamily="text"
+      fontSize="text"
+    >
+      Spectacle!
+    </div>
+  </StyledComponent>
+</styled.div>
+`;
+
+exports[`<UnorderedList /> should render a <ul> with <li> children 1`] = `
+<styled.ul
+  color="primary"
+  fontFamily="text"
+  fontSize="text"
+  margin={0}
+  textAlign="left"
+>
+  <StyledComponent
+    color="primary"
+    fontFamily="text"
+    fontSize="text"
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "_foldedDefaultProps": Object {
+          "color": "primary",
+          "fontFamily": "text",
+          "fontSize": "text",
+          "margin": 0,
+          "textAlign": "left",
+        },
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bZQynM",
+          "isStatic": false,
+          "lastClassName": "iGdLZ",
+          "rules": Array [
+            [Function],
+          ],
+        },
+        "displayName": "styled.ul",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bZQynM",
+        "target": "ul",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+    margin={0}
+    textAlign="left"
+  >
+    <ul
+      className="sc-bZQynM iGdLZ"
+      color="primary"
+      fontFamily="text"
+      fontSize="text"
+    >
+      <styled.li
+        margin={0}
+      >
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "_foldedDefaultProps": Object {
+                "margin": 0,
+              },
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-gzVnrw",
+                "isStatic": false,
+                "lastClassName": "eGyYYk",
+                "rules": Array [
+                  [Function],
+                ],
+              },
+              "displayName": "styled.li",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-gzVnrw",
+              "target": "li",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+          margin={0}
+        >
+          <li
+            className="sc-gzVnrw eGyYYk"
+          >
+            This is an
+          </li>
+        </StyledComponent>
+      </styled.li>
+      <styled.li
+        margin={0}
+      >
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "_foldedDefaultProps": Object {
+                "margin": 0,
+              },
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-gzVnrw",
+                "isStatic": false,
+                "lastClassName": "eGyYYk",
+                "rules": Array [
+                  [Function],
+                ],
+              },
+              "displayName": "styled.li",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-gzVnrw",
+              "target": "li",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+          margin={0}
+        >
+          <li
+            className="sc-gzVnrw eGyYYk"
+          >
+            Unordered List
+          </li>
+        </StyledComponent>
+      </styled.li>
+    </ul>
+  </StyledComponent>
+</styled.ul>
+`;

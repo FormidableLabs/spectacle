@@ -1,20 +1,31 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'react-emotion';
+import styled from 'styled-components';
+import {
+  compose,
+  grid,
+  flexbox,
+  layout,
+  position,
+  border,
+  color,
+  space
+} from 'styled-system';
 
-const StyledLayout = styled.div(props => [{ display: 'flex' }, props.styles]);
+const Box = styled('div')(compose(space, layout, position, color, border));
 
-export default class Layout extends Component {
-  render() {
-    return (
-      <StyledLayout styles={this.props.style}>
-        {this.props.children}
-      </StyledLayout>
-    );
-  }
-}
+const FlexBox = styled('div')(
+  compose(layout, space, flexbox, position, border, color)
+);
 
-Layout.propTypes = {
-  children: PropTypes.node,
-  style: PropTypes.object
+FlexBox.defaultProps = {
+  alignItems: 'center',
+  justifyContent: 'center',
+  display: 'flex'
 };
+
+const Grid = styled('div')(compose(layout, grid, position));
+
+Grid.defaultProps = {
+  display: 'grid'
+};
+
+export { Box, FlexBox, Grid };

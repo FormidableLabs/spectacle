@@ -6,7 +6,7 @@ if (typeof document !== 'undefined') {
   Analytics = require('react-router-ga').default;
 }
 
-// eslint-disable-next-line react/prop-types
+/* eslint-disable-next-line react/display-name, react/prop-types */
 export default ({ children, ...rest }) => {
   if (typeof document !== 'undefined') {
     // fragment doesn't like it when you try to give it attributes

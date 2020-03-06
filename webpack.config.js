@@ -1,51 +1,40 @@
 const path = require('path');
-const webpack = require('webpack');
+
+/**
+ * Production library config.
+ *
+ * Used as a base, this produces with other configs:
+ *
+ * - `dist/spectacle.min.js`: production library
+ * - `dist/spectacle.js`: development library
+ */
 
 module.exports = {
-  mode: 'development',
-  devtool: 'cheap-module-source-map',
-  entry: './index',
+  mode: 'production',
+  entry: './src/index.js',
   output: {
+    library: 'Spectacle',
+    libraryTarget: 'umd',
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/dist/'
+    filename: 'spectacle.min.js'
   },
-  plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  ],
+  devtool: 'source-map',
+  // TODO: Document externals
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDom',
+    'react-is': 'ReactIs',
+    'prop-types': 'PropTypes'
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        include: ['index.js', 'src', 'example/assets', 'example/src'].map(
-          name => path.resolve(__dirname, name)
-        ),
-        loader: 'babel-loader'
+        test: /\.jsx?$/,
+        use: ['babel-loader']
       },
       {
-        test: /\.css$/,
-        loader: 'style-loader!raw-loader'
-      },
-      {
-        test: /\.svg$/,
-        include: path.join(__dirname, 'example/assets'),
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-      },
-      {
-        test: /\.png$/,
-        include: path.join(__dirname, 'example/assets'),
-        loader: 'url-loader?mimetype=image/png'
-      },
-      {
-        test: /\.jpg$/,
-        include: path.join(__dirname, 'example/assets'),
-        loader: 'url-loader?mimetype=image/jpg'
-      },
-      {
-        test: /\.gif$/,
-        include: path.join(__dirname, 'example/assets'),
-        loader: 'url-loader?mimetype=image/gif'
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
       }
     ]
   }

@@ -1,55 +1,45 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'react-emotion';
+import * as React from 'react';
+import propTypes from 'prop-types';
+import styled from 'styled-components';
 
-import FullscreenButton from './fullscreen-button';
+import { useToggleFullScreen } from '../hooks/use-full-screen';
 
-import { toggleFullscreen, isFullscreen } from '../utils/fullscreen';
+const FullScreen = props => {
+  const Container = styled('div')`
+    @media print {
+      display: none;
+    }
+  `;
 
-const StyledFullscreen = styled(FullscreenButton)`
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-  width: 45px;
-  height: 45px;
-  font-size: 30px;
-  color: #fff;
-  transition: 300ms transform ease;
-  transform: scale(1);
-
-  &:hover,
-  &:focus {
-    transform: ${props => (props.isFullscreen ? 'scale(0.75)' : 'scale(1.25)')};
-  }
-
-  &:active {
-    transform: ${props => (props.isFullscreen ? 'scale(0.90)' : 'scale(1.10)')};
-  }
-`;
-
-export class Fullscreen extends Component {
-  render() {
-    return (
-      <StyledFullscreen
-        isFullscreen={isFullscreen()}
-        onClick={this.props.onClick}
-        styles={this.context.styles.fullscreen}
-      />
-    );
-  }
-}
-
-Fullscreen.contextTypes = {
-  styles: PropTypes.object
+  const toggleFullScreen = useToggleFullScreen();
+  return (
+    <Container
+      className="spectacle-fullscreen-button"
+      onClick={toggleFullScreen}
+      style={{ pointerEvents: 'all' }}
+    >
+      <svg width={props.size} height={props.size} viewBox="0 0 512 512">
+        <path
+          fill={props.color}
+          d={
+            !!document.fullscreenElement || document.webkitIsFullScreen
+              ? 'M64 371.2h76.795V448H192V320H64v51.2zm76.795-230.4H64V192h128V64h-51.205v76.8zM320 448h51.2v-76.8H448V320H320v128zm51.2-307.2V64H320v128h128v-51.2h-76.8z'
+              : 'M396.795 396.8H320V448h128V320h-51.205zM396.8 115.205V192H448V64H320v51.205zM115.205 115.2H192V64H64v128h51.205zM115.2 396.795V320H64v128h128v-51.205z'
+          }
+        />
+      </svg>
+    </Container>
+  );
 };
 
-Fullscreen.propTypes = {
-  controlColor: PropTypes.string,
-  onClick: PropTypes.func
+FullScreen.propTypes = {
+  color: propTypes.string,
+  size: propTypes.number
 };
 
-Fullscreen.defaultProps = {
-  onClick: toggleFullscreen
+FullScreen.defaultProps = {
+  color: '#fff',
+  size: 24
 };
 
-export default Fullscreen;
+export default FullScreen;

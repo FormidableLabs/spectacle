@@ -1,27 +1,718 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Table /> should render correctly 1`] = `
-<Table>
-  <Styled(table)
-    styles={
-      Array [
-        Object {},
-        Object {},
-        undefined,
-      ]
+exports[`<Table /> should render a <table> with a <tr> for each row and a <td> with text for each cell 1`] = `
+<styled.table
+  color="primary"
+  fontFamily="text"
+  fontSize="text"
+  margin="listMargin"
+  textAlign="left"
+  width={1}
+>
+  <StyledComponent
+    color="primary"
+    fontFamily="text"
+    fontSize="text"
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "_foldedDefaultProps": Object {
+          "color": "primary",
+          "fontFamily": "text",
+          "fontSize": "text",
+          "margin": "listMargin",
+          "textAlign": "left",
+          "width": 1,
+        },
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "lastClassName": "gdxKB",
+          "rules": Array [
+            [Function],
+          ],
+        },
+        "displayName": "styled.table",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": "table",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
     }
+    forwardedRef={null}
+    margin="listMargin"
+    textAlign="left"
+    width={1}
   >
     <table
-      className="css-0 e1hp5cxg0"
+      className="sc-bdVaJa gdxKB"
+      color="primary"
+      fontFamily="text"
+      fontSize="text"
+      width={1}
     >
-      <tbody>
-        <tr>
-          <td>
-            Table Content
-          </td>
-        </tr>
-      </tbody>
+      <styled.tbody
+        color="primary"
+        fontFamily="text"
+        fontSize="text"
+        margin="listMargin"
+        textAlign="left"
+        width={1}
+      >
+        <StyledComponent
+          color="primary"
+          fontFamily="text"
+          fontSize="text"
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "_foldedDefaultProps": Object {
+                "color": "primary",
+                "fontFamily": "text",
+                "fontSize": "text",
+                "margin": "listMargin",
+                "textAlign": "left",
+                "width": 1,
+              },
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-htpNat",
+                "isStatic": false,
+                "lastClassName": "jvKwEj",
+                "rules": Array [
+                  [Function],
+                ],
+              },
+              "displayName": "styled.tbody",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-htpNat",
+              "target": "tbody",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+          margin="listMargin"
+          textAlign="left"
+          width={1}
+        >
+          <tbody
+            className="sc-htpNat jvKwEj"
+            color="primary"
+            fontFamily="text"
+            fontSize="text"
+            width={1}
+          >
+            <styled.tr
+              color="primary"
+              fontFamily="text"
+              fontSize="text"
+              margin="listMargin"
+              textAlign="left"
+            >
+              <StyledComponent
+                color="primary"
+                fontFamily="text"
+                fontSize="text"
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "_foldedDefaultProps": Object {
+                      "color": "primary",
+                      "fontFamily": "text",
+                      "fontSize": "text",
+                      "margin": "listMargin",
+                      "textAlign": "left",
+                    },
+                    "attrs": Array [],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bxivhb",
+                      "isStatic": false,
+                      "lastClassName": "bmEQpW",
+                      "rules": Array [
+                        [Function],
+                      ],
+                    },
+                    "displayName": "styled.tr",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bxivhb",
+                    "target": "tr",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+                margin="listMargin"
+                textAlign="left"
+              >
+                <tr
+                  className="sc-bxivhb bmEQpW"
+                  color="primary"
+                  fontFamily="text"
+                  fontSize="text"
+                >
+                  <styled.td
+                    color="primary"
+                    fontFamily="text"
+                    fontSize="text"
+                    margin="listMargin"
+                    textAlign="left"
+                  >
+                    <StyledComponent
+                      color="primary"
+                      fontFamily="text"
+                      fontSize="text"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "_foldedDefaultProps": Object {
+                            "color": "primary",
+                            "fontFamily": "text",
+                            "fontSize": "text",
+                            "margin": "listMargin",
+                            "textAlign": "left",
+                          },
+                          "attrs": Array [],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-ifAKCX",
+                            "isStatic": false,
+                            "lastClassName": "ebewS",
+                            "rules": Array [
+                              [Function],
+                            ],
+                          },
+                          "displayName": "styled.td",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-ifAKCX",
+                          "target": "td",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={null}
+                      margin="listMargin"
+                      textAlign="left"
+                    >
+                      <td
+                        className="sc-ifAKCX ebewS"
+                        color="primary"
+                        fontFamily="text"
+                        fontSize="text"
+                      >
+                        Row 1
+                      </td>
+                    </StyledComponent>
+                  </styled.td>
+                  <styled.td
+                    color="primary"
+                    fontFamily="text"
+                    fontSize="text"
+                    margin="listMargin"
+                    textAlign="left"
+                  >
+                    <StyledComponent
+                      color="primary"
+                      fontFamily="text"
+                      fontSize="text"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "_foldedDefaultProps": Object {
+                            "color": "primary",
+                            "fontFamily": "text",
+                            "fontSize": "text",
+                            "margin": "listMargin",
+                            "textAlign": "left",
+                          },
+                          "attrs": Array [],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-ifAKCX",
+                            "isStatic": false,
+                            "lastClassName": "ebewS",
+                            "rules": Array [
+                              [Function],
+                            ],
+                          },
+                          "displayName": "styled.td",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-ifAKCX",
+                          "target": "td",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={null}
+                      margin="listMargin"
+                      textAlign="left"
+                    >
+                      <td
+                        className="sc-ifAKCX ebewS"
+                        color="primary"
+                        fontFamily="text"
+                        fontSize="text"
+                      >
+                        Row 1
+                      </td>
+                    </StyledComponent>
+                  </styled.td>
+                </tr>
+              </StyledComponent>
+            </styled.tr>
+            <styled.tr
+              color="primary"
+              fontFamily="text"
+              fontSize="text"
+              margin="listMargin"
+              textAlign="left"
+            >
+              <StyledComponent
+                color="primary"
+                fontFamily="text"
+                fontSize="text"
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "_foldedDefaultProps": Object {
+                      "color": "primary",
+                      "fontFamily": "text",
+                      "fontSize": "text",
+                      "margin": "listMargin",
+                      "textAlign": "left",
+                    },
+                    "attrs": Array [],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bxivhb",
+                      "isStatic": false,
+                      "lastClassName": "bmEQpW",
+                      "rules": Array [
+                        [Function],
+                      ],
+                    },
+                    "displayName": "styled.tr",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bxivhb",
+                    "target": "tr",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+                margin="listMargin"
+                textAlign="left"
+              >
+                <tr
+                  className="sc-bxivhb bmEQpW"
+                  color="primary"
+                  fontFamily="text"
+                  fontSize="text"
+                >
+                  <styled.td
+                    color="primary"
+                    fontFamily="text"
+                    fontSize="text"
+                    margin="listMargin"
+                    textAlign="left"
+                  >
+                    <StyledComponent
+                      color="primary"
+                      fontFamily="text"
+                      fontSize="text"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "_foldedDefaultProps": Object {
+                            "color": "primary",
+                            "fontFamily": "text",
+                            "fontSize": "text",
+                            "margin": "listMargin",
+                            "textAlign": "left",
+                          },
+                          "attrs": Array [],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-ifAKCX",
+                            "isStatic": false,
+                            "lastClassName": "ebewS",
+                            "rules": Array [
+                              [Function],
+                            ],
+                          },
+                          "displayName": "styled.td",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-ifAKCX",
+                          "target": "td",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={null}
+                      margin="listMargin"
+                      textAlign="left"
+                    >
+                      <td
+                        className="sc-ifAKCX ebewS"
+                        color="primary"
+                        fontFamily="text"
+                        fontSize="text"
+                      >
+                        Row 2
+                      </td>
+                    </StyledComponent>
+                  </styled.td>
+                  <styled.td
+                    color="primary"
+                    fontFamily="text"
+                    fontSize="text"
+                    margin="listMargin"
+                    textAlign="left"
+                  >
+                    <StyledComponent
+                      color="primary"
+                      fontFamily="text"
+                      fontSize="text"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "_foldedDefaultProps": Object {
+                            "color": "primary",
+                            "fontFamily": "text",
+                            "fontSize": "text",
+                            "margin": "listMargin",
+                            "textAlign": "left",
+                          },
+                          "attrs": Array [],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-ifAKCX",
+                            "isStatic": false,
+                            "lastClassName": "ebewS",
+                            "rules": Array [
+                              [Function],
+                            ],
+                          },
+                          "displayName": "styled.td",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-ifAKCX",
+                          "target": "td",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={null}
+                      margin="listMargin"
+                      textAlign="left"
+                    >
+                      <td
+                        className="sc-ifAKCX ebewS"
+                        color="primary"
+                        fontFamily="text"
+                        fontSize="text"
+                      >
+                        Row 2
+                      </td>
+                    </StyledComponent>
+                  </styled.td>
+                </tr>
+              </StyledComponent>
+            </styled.tr>
+          </tbody>
+        </StyledComponent>
+      </styled.tbody>
     </table>
-  </Styled(table)>
-</Table>
+  </StyledComponent>
+</styled.table>
+`;
+
+exports[`<Table /> should render a <table> with bold text for the header row 1`] = `
+<styled.table
+  color="primary"
+  fontFamily="text"
+  fontSize="text"
+  margin="listMargin"
+  textAlign="left"
+  width={1}
+>
+  <StyledComponent
+    color="primary"
+    fontFamily="text"
+    fontSize="text"
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "_foldedDefaultProps": Object {
+          "color": "primary",
+          "fontFamily": "text",
+          "fontSize": "text",
+          "margin": "listMargin",
+          "textAlign": "left",
+          "width": 1,
+        },
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "lastClassName": "gdxKB",
+          "rules": Array [
+            [Function],
+          ],
+        },
+        "displayName": "styled.table",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": "table",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+    margin="listMargin"
+    textAlign="left"
+    width={1}
+  >
+    <table
+      className="sc-bdVaJa gdxKB"
+      color="primary"
+      fontFamily="text"
+      fontSize="text"
+      width={1}
+    >
+      <styled.thead
+        color="primary"
+        fontFamily="text"
+        fontSize="text"
+        fontWeight="bold"
+        margin="listMargin"
+        textAlign="left"
+      >
+        <StyledComponent
+          color="primary"
+          fontFamily="text"
+          fontSize="text"
+          fontWeight="bold"
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "_foldedDefaultProps": Object {
+                "color": "primary",
+                "fontFamily": "text",
+                "fontSize": "text",
+                "fontWeight": "bold",
+                "margin": "listMargin",
+                "textAlign": "left",
+              },
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-bwzfXH",
+                "isStatic": false,
+                "lastClassName": "biMVCL",
+                "rules": Array [
+                  [Function],
+                ],
+              },
+              "displayName": "styled.thead",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-bwzfXH",
+              "target": "thead",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+          margin="listMargin"
+          textAlign="left"
+        >
+          <thead
+            className="sc-bwzfXH biMVCL"
+            color="primary"
+            fontFamily="text"
+            fontSize="text"
+            fontWeight="bold"
+          >
+            <styled.tr
+              color="primary"
+              fontFamily="text"
+              fontSize="text"
+              margin="listMargin"
+              textAlign="left"
+            >
+              <StyledComponent
+                color="primary"
+                fontFamily="text"
+                fontSize="text"
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "_foldedDefaultProps": Object {
+                      "color": "primary",
+                      "fontFamily": "text",
+                      "fontSize": "text",
+                      "margin": "listMargin",
+                      "textAlign": "left",
+                    },
+                    "attrs": Array [],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bxivhb",
+                      "isStatic": false,
+                      "lastClassName": "bmEQpW",
+                      "rules": Array [
+                        [Function],
+                      ],
+                    },
+                    "displayName": "styled.tr",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bxivhb",
+                    "target": "tr",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+                margin="listMargin"
+                textAlign="left"
+              >
+                <tr
+                  className="sc-bxivhb bmEQpW"
+                  color="primary"
+                  fontFamily="text"
+                  fontSize="text"
+                >
+                  <styled.td
+                    color="primary"
+                    fontFamily="text"
+                    fontSize="text"
+                    margin="listMargin"
+                    textAlign="left"
+                  >
+                    <StyledComponent
+                      color="primary"
+                      fontFamily="text"
+                      fontSize="text"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "_foldedDefaultProps": Object {
+                            "color": "primary",
+                            "fontFamily": "text",
+                            "fontSize": "text",
+                            "margin": "listMargin",
+                            "textAlign": "left",
+                          },
+                          "attrs": Array [],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-ifAKCX",
+                            "isStatic": false,
+                            "lastClassName": "ebewS",
+                            "rules": Array [
+                              [Function],
+                            ],
+                          },
+                          "displayName": "styled.td",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-ifAKCX",
+                          "target": "td",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={null}
+                      margin="listMargin"
+                      textAlign="left"
+                    >
+                      <td
+                        className="sc-ifAKCX ebewS"
+                        color="primary"
+                        fontFamily="text"
+                        fontSize="text"
+                      >
+                        Row 1
+                      </td>
+                    </StyledComponent>
+                  </styled.td>
+                  <styled.td
+                    color="primary"
+                    fontFamily="text"
+                    fontSize="text"
+                    margin="listMargin"
+                    textAlign="left"
+                  >
+                    <StyledComponent
+                      color="primary"
+                      fontFamily="text"
+                      fontSize="text"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "_foldedDefaultProps": Object {
+                            "color": "primary",
+                            "fontFamily": "text",
+                            "fontSize": "text",
+                            "margin": "listMargin",
+                            "textAlign": "left",
+                          },
+                          "attrs": Array [],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-ifAKCX",
+                            "isStatic": false,
+                            "lastClassName": "ebewS",
+                            "rules": Array [
+                              [Function],
+                            ],
+                          },
+                          "displayName": "styled.td",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-ifAKCX",
+                          "target": "td",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={null}
+                      margin="listMargin"
+                      textAlign="left"
+                    >
+                      <td
+                        className="sc-ifAKCX ebewS"
+                        color="primary"
+                        fontFamily="text"
+                        fontSize="text"
+                      >
+                        Row 1
+                      </td>
+                    </StyledComponent>
+                  </styled.td>
+                </tr>
+              </StyledComponent>
+            </styled.tr>
+          </thead>
+        </StyledComponent>
+      </styled.thead>
+    </table>
+  </StyledComponent>
+</styled.table>
 `;

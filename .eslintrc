@@ -1,11 +1,8 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": [
-    "formidable/configurations/es6-react",
-    "prettier",
-    "prettier/react"
-  ],
+  "extends": ["prettier", "prettier/react", "plugin:react/recommended"],
+  "plugins": ["prettier", "react-hooks"],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -31,30 +28,7 @@
     }
   },
   "rules": {
-    "arrow-parens": "off",
-    "comma-dangle": "off",
-    "complexity": "off",
-    "consistent-return": "warn",
-    "func-style": "off",
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "indent": "off",
-    "max-len": "off",
-    "max-params": ["error", 5],
-    "no-invalid-this": "off",
-    "no-magic-numbers": "off",
-    "no-undef": ["error", { "typeof": true }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_+$" }],
-    "no-use-before-define": "off",
-    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
-    "react/jsx-filename-extension": "off",
-    "react/jsx-handler-names": "off",
-    "react/jsx-indent-props": "off",
-    "react/no-find-dom-node": "off",
-    "react/no-multi-comp": "off",
-    "react/prop-types": "warn",
-    "react/require-extension": "off",
-    "react/sort-comp": "warn",
-    "react/sort-prop-types": "warn",
-    "space-before-function-paren": "off"
+    "prettier/prettier": ["error"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
   }
 }
