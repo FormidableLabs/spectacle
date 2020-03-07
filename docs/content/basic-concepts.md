@@ -111,7 +111,7 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
 <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/react-is@16.12.0/umd/react-is.production.min.js"></script>
 <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
-<script src="https://unpkg.com/spectacle/dist/spectacle.js"></script>
+<script src="https://unpkg.com/spectacle@^6/dist/spectacle.min.js"></script>
 ```
 
 ... and then wrap your HTML in a declarative `module` script, like so:
