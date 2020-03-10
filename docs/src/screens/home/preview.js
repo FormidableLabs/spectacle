@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { BodyCopy } from '../../components/body-copy';
 import { SectionTitle } from '../../components/section-title';
 import { Wrapper } from '../../components/wrapper';
 
@@ -19,30 +17,28 @@ const Video = styled.video`
 const PreviewSources = {
   bgMp4: require('../../../public/static/bg-demo.mp4'),
   bgStill: require('../../../public/static/bg-still.png'),
-  bgWebm: require('../../../public/static/bg-demo.webm')
+  bgWebm: require('../../../public/static/bg-demo.webm'),
+  demoUrl:
+    'https://raw.githack.com/FormidableLabs/spectacle/master/examples/one-page.html'
 };
 
-class Preview extends React.Component {
-  render() {
-    const { previewObj } = this.props;
-
-    return (
-      <OuterWrapper>
-        <Wrapper>
-          <SectionTitle>Code Preview</SectionTitle>
-          <BodyCopy>{previewObj.description}</BodyCopy>
-          <Video autoPlay muted loop poster={PreviewSources.bgStill}>
-            <source src={PreviewSources.bgWebm} type="video/webm" />
-            <source src={PreviewSources.bgMp4} type="video/mp4" />
-          </Video>
-        </Wrapper>
-      </OuterWrapper>
-    );
-  }
-}
-
-Preview.propTypes = {
-  previewObj: PropTypes.object
-};
+const Preview = () => (
+  <OuterWrapper>
+    <Wrapper>
+      <SectionTitle>Code Preview</SectionTitle>
+      <a
+        href={PreviewSources.demoUrl}
+        title="See the live preview"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Video autoPlay muted loop poster={PreviewSources.bgStill}>
+          <source src={PreviewSources.bgWebm} type="video/webm" />
+          <source src={PreviewSources.bgMp4} type="video/mp4" />
+        </Video>
+      </a>
+    </Wrapper>
+  </OuterWrapper>
+);
 
 export default Preview;
