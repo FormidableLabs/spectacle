@@ -97,7 +97,7 @@ export default function CodePane(props) {
         {...defaultProps}
         code={props.children}
         language={props.language}
-        theme={printMode ? lightTheme : theme}
+        theme={printMode ? lightTheme : props.theme}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
