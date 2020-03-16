@@ -36,4 +36,17 @@ describe('search children for appear', () => {
       ])
     ).toEqual(2);
   });
+
+  it('returns the amount of nested appear elements', () => {
+    expect(
+      searchChildrenForAppear(
+        <div>
+          <Appear elementNum={1}>I am nested</Appear>
+          <div>
+            <Appear elementNum={2}>I am deeply nested</Appear>
+          </div>
+        </div>
+      )
+    ).toEqual(2);
+  });
 });
