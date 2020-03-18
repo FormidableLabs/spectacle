@@ -1,5 +1,16 @@
 # Changelog
 
+## 6.0.1
+
+- Fix broken doc links.
+  [#859](https://github.com/FormidableLabs/spectacle/pull/859), [#862](https://github.com/FormidableLabs/spectacle/pull/862)
+- Add a live preview to the docs lander.
+  [#860](https://github.com/FormidableLabs/spectacle/pull/860)
+- Fix CodePane so user-supplied themes are surfaced.
+  [#866](https://github.com/FormidableLabs/spectacle/pull/866)
+- Fix nested Appears.
+  [#864](https://github.com/FormidableLabs/spectacle/pull/864)
+
 ## 6.0.0
 
 - Expand custom background support by adding `Background` props to the `Slide` component, along with `backgroundOpacity`.
