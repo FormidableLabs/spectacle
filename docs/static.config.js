@@ -39,11 +39,11 @@ export default {
     return [
       {
         path: '/',
-        component: 'src/screens/home'
+        template: 'src/screens/home'
       },
       {
         path: '/docs',
-        component: 'src/screens/docs',
+        template: 'src/screens/docs',
         getData: () => ({
           title: `${metaData.title} | Documentation`,
           markdown: sidebarItems[0].markdown,
@@ -58,7 +58,7 @@ export default {
         children: sidebarItems.map(
           ({ slug, path, markdown, content, data }) => ({
             path,
-            component: 'src/screens/docs',
+            template: 'src/screens/docs',
             getData: () => ({
               title: data.title,
               markdown,
@@ -73,25 +73,22 @@ export default {
           })
         )
       }
-      // we can totes add lander or project specific 404s, if we ever have call to
-      // { path: "/404", component: "src/screens/404" }
+      // we can totes add lander or project specific 404s, if we ever need/want to
+      // { path: "/404", template: "src/screens/404" }
     ];
   },
-  renderToHtml: (render, Comp, meta) => {
+  renderToHtml: (render, Comp) => {
     const sheet = new ServerStyleSheet();
     const html = render(sheet.collectStyles(<Comp />));
     // see https://github.com/nozzle/react-static/blob/v5/docs/config.md#rendertohtml
     // you can stick whatever you want here, but it's mutable at build-time, not dynamic
     // at run-time -- key difference!
 
-    meta.styleTags = sheet.getStyleElement();
     return html;
   },
   // So this is kinda cutesy, it's the equivalent of html.js in gatsby, it defines
-  // the root html page as a react component:
+  // the root html page as a react template:
   // https://github.com/nozzle/react-static/blob/master/docs/config.md#document
   Document: require('./static-config-parts/document').default,
-  // turn this on if it helps your local development workflow for build testing
-  bundleAnalyzer: false,
   webpack: staticWebpackConfig
 };
