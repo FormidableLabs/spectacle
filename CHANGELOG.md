@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Surface `textDecoration` prop from styled-system for `Link`s. [#869](https://github.com/FormidableLabs/spectacle/pull/869)
+
 ## 6.0.1
 
 - Fix broken doc links.

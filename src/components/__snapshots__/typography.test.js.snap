@@ -143,7 +143,7 @@ exports[`<Link /> should render an <a> with text 1`] = `
         "componentStyle": ComponentStyle {
           "componentId": "sc-htpNat",
           "isStatic": false,
-          "lastClassName": "PfPpC",
+          "lastClassName": "cRHPrL",
           "rules": Array [
             [Function],
           ],
@@ -165,7 +165,7 @@ exports[`<Link /> should render an <a> with text 1`] = `
     textDecoration="underline"
   >
     <a
-      className="sc-htpNat PfPpC"
+      className="sc-htpNat cRHPrL"
       color="quaternary"
       fontFamily="text"
       fontSize="text"

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { color, typography, space, compose } from 'styled-system';
+import { color, typography, space, compose, system } from 'styled-system';
+
+const decoration = system({ textDecoration: true });
 
 const Text = styled('div')(compose(color, typography, space));
 Text.defaultProps = {
@@ -17,7 +19,7 @@ CodeSpan.defaultProps = {
   fontSize: 'text'
 };
 
-const Link = styled('a')(compose(color, typography, space));
+const Link = styled('a')(compose(color, typography, space, decoration));
 Link.defaultProps = {
   ...Text.defaultProps,
   textDecoration: 'underline',
