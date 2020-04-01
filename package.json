@@ -87,6 +87,7 @@
     "raw-loader": "^4.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "require-from-string": "^2.0.2",
     "rimraf": "^3.0.0",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.4",
