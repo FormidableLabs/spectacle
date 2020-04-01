@@ -7,6 +7,8 @@ process.env.BABEL_ENV = 'cjs';
 
 const path = require('path');
 const requireFromString = require('require-from-string');
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
 
 const { transformFileAsync } = require('@babel/core');
 
@@ -34,9 +36,10 @@ const getSrcContent = async src => {
 
 const main = async () => {
   const code = await getSrcContent(SRC_FILE);
-  console.log('TODO HERE', code);
   const Presentation = requireFromString(code);
-  console.log('TODO HERE', code);
+  const output = ReactDOMServer.renderToStaticMarkup(React.createElement(Presentation, null));
+  console.log('TODO HERE', output);
+
 };
 
 if (require.main === module) {
