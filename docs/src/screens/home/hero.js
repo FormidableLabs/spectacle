@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-static';
+import { Link } from 'react-router-dom';
 import { Wrapper } from '../../components/wrapper';
 import styled from 'styled-components';
 import badge from '../../static/bg_hero_badge.png';

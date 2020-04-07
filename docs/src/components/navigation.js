@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-static';
+import { Link } from 'react-router-dom';
 import sidebarBackground from '../static/svgs/sidebar-background.svg';
 import collapsedSidebarBackground from '../static/svgs/collapsed-sidebar-background.svg';
 

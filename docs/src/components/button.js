@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-static';
+import { Link } from 'react-router-dom';
 
 export const Button = styled(Link)`
   background: ${props => (props.light ? 'white' : '#4e4e4e')};
