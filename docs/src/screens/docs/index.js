@@ -6,7 +6,7 @@ import Article from './article';
 import Sidebar from './sidebar';
 import burger from '../../static/svgs/burger.svg';
 import logoFormidableDark from '../../static/svgs/logo_formidable_dark.svg';
-import constants from '../../constants';
+import { title } from '../../constants';
 import { Footer } from '../../components/footer';
 
 const headerZIndex = 800;
@@ -118,7 +118,7 @@ class Docs extends React.Component {
           </CollapsedMenu>
           <DocsTitle>
             <Link to={'/'} style={{ color: '#3b3b3b' }}>
-              {constants.docsTitle}
+              {title}
             </Link>
           </DocsTitle>
           <Link to={'https://formidable.com'}>

@@ -1,33 +1,31 @@
 import React from 'react';
-import { reloadRoutes } from 'react-static/node';
-import chokidar from 'chokidar';
 import { getSidebarItems } from './static-config-helpers/md-data-transforms';
-const staticWebpackConfig = require('./static-config-parts/static-webpack-config');
-const { ServerStyleSheet } = require('styled-components');
-const {
-  stage,
-  landerBasePath,
-  metaData
-} = require('./static-config-parts/constants');
+import { landerBasePath, title } from './src/constants';
 
-chokidar.watch('src/content').on('all', () => reloadRoutes());
+const IS_STAGING = process.env.REACT_STATIC_STAGING === 'true';
 
 export default {
-  // plugins: ["react-static-plugin-styled-components"],
+  getSiteData: () => ({
+    title: title
+  }),
   paths: {
     root: process.cwd(), // The root of your project. Don't change this unless you know what you're doing.
     src: 'src', // The source directory. Must include an index.js entry file.
     // See app.js for how stage is used to make client-side routing resolve correctly by stage.
-    dist: stage === 'staging' ? `dist/${landerBasePath}` : 'dist', // The production output directory.
+    dist: IS_STAGING ? `dist/${landerBasePath}` : 'dist', // The production output directory.
     devDist: 'tmp/dev-server', // The development scratch directory.
     public: 'public' // The public directory (files copied to dist during build)
   },
+
+  // @TODO revisit these
+  // plugins: [
+  //   'react-static-plugin-react-router',
+  //   'react-static-plugin-sitemap',
+  //   'react-static-plugin-styled-components'
+  // ],
   basePath: landerBasePath,
   stagingBasePath: landerBasePath,
   devBasePath: '',
-  getSiteData: () => ({
-    title: metaData.title
-  }),
   getRoutes: async () => {
     const sidebarItems = await getSidebarItems();
     const sidebarHeaders = sidebarItems.map(d => ({
@@ -45,7 +43,7 @@ export default {
         path: '/docs',
         template: 'src/screens/docs',
         getData: () => ({
-          title: `${metaData.title} | Documentation`,
+          title: `${title} | Documentation`,
           markdown: sidebarItems[0].markdown,
           renderedMd: sidebarItems[0].content,
           sidebarHeaders,
@@ -76,19 +74,6 @@ export default {
       // we can totes add lander or project specific 404s, if we ever need/want to
       // { path: "/404", template: "src/screens/404" }
     ];
-  },
-  renderToHtml: (render, Comp) => {
-    const sheet = new ServerStyleSheet();
-    const html = render(sheet.collectStyles(<Comp />));
-    // see https://github.com/nozzle/react-static/blob/v5/docs/config.md#rendertohtml
-    // you can stick whatever you want here, but it's mutable at build-time, not dynamic
-    // at run-time -- key difference!
-
-    return html;
-  },
-  // So this is kinda cutesy, it's the equivalent of html.js in gatsby, it defines
-  // the root html page as a react template:
-  // https://github.com/nozzle/react-static/blob/master/docs/config.md#document
-  Document: require('./static-config-parts/document').default,
-  webpack: staticWebpackConfig
+  }
+  // Document
 };
