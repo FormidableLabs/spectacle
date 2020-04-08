@@ -1,5 +1,6 @@
 import React from 'react';
 import debounce from '../utils/debounce';
+import { useToggleAutoplay } from './use-autoplay';
 import { useToggleFullScreen } from './use-full-screen';
 import { isWindows, isMacOS } from '../utils/detect-platform';
 
@@ -10,6 +11,7 @@ const useKeyboardControls = ({
   toggleMode
 }) => {
   const keyPressCount = React.useRef(0);
+  const toggleAutoplay = useToggleAutoplay();
   const toggleFullScreen = useToggleFullScreen();
   React.useEffect(
     function() {
@@ -21,6 +23,7 @@ const useKeyboardControls = ({
         keyPressCount.current = 0;
       }, 200);
       function handleKeyDown(e) {
+        // Slide navigation
         if (keyboardControls === 'arrows') {
           if (e.key === 'ArrowLeft') {
             navigateToPrevious();
@@ -37,6 +40,8 @@ const useKeyboardControls = ({
             e.preventDefault();
           }
         }
+
+        // MacOS keyboard controls
         if (!!e.altKey && isMacOS()) {
           switch (e.key) {
             case 'ø':
@@ -48,10 +53,15 @@ const useKeyboardControls = ({
             case 'ƒ':
               toggleFullScreen();
               break;
+            case 'a':
+              toggleAutoplay();
+              break;
             default:
               null;
           }
-        } else if (!!e.altKey && !!e.shiftKey && isWindows()) {
+        }
+        // Windows keyboard controls
+        else if (!!e.altKey && !!e.shiftKey && isWindows()) {
           switch (e.key) {
             case 'O':
               toggleMode('overviewMode');
@@ -61,6 +71,9 @@ const useKeyboardControls = ({
               break;
             case 'F':
               toggleFullScreen();
+              break;
+            case 'a':
+              toggleAutoplay();
               break;
             default:
               null;
@@ -77,6 +90,7 @@ const useKeyboardControls = ({
       keyboardControls,
       navigateToNext,
       navigateToPrevious,
+      toggleAutoplay,
       toggleFullScreen,
       toggleMode
     ]
