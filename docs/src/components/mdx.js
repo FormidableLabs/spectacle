@@ -21,7 +21,7 @@ export const Markdown = styled.article`
     font-size: 2.8rem;
     margin: 6rem 0 2rem;
     @media (min-width: 1024px) {
-      font-size: 2.5rem;
+      font-size: ${p => p.theme.fontSizes.h2};
     }
   }
 
@@ -63,23 +63,23 @@ export const Markdown = styled.article`
   & table,
   th,
   td {
-    font-size: 1.7rem;
+    font-size: ${p => p.theme.fontSizes.body};
     font-family: Helvetica;
     tr:nth-child(even) {
-      background-color: #f2f2f2;
+      background-color: ${p => p.theme.colors.passiveBg};
     }
-    border: 1px solid lightgrey;
+    border: 1px solid ${p => p.theme.colors.border};
   }
 
   & pre {
     line-height: 2rem;
-    background-color: #efefef;
+    background-color: ${p => p.theme.colors.passiveBg};
     padding: 2rem;
     color: #333;
   }
 
   & pre code {
-    color: #333;
+    color: ${p => p.thene.colors.textDark};
   }
 
   & p {
