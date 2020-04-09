@@ -1,31 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import Hero from '../screens/home/hero';
 import bgImg from '../static/bg_hero_feather.jpg';
 import headerTriangle from '../static/svgs/header-triangle.svg';
-import logoFormidableWhite from '../static/svgs/logo_formidable_white.png';
-import styled from 'styled-components';
+import logoFormidableWhite from '../assets/logo_formidable_white.png';
 
 const Container = styled.header`
-  background: #3b3b3b;
-  background-image: linear-gradient(14deg, #404a5f, #7f526a);
-  @media (min-width: 768px) {
-    background-image: url(${bgImg}),
-      linear-gradient(
-        194deg,
-        #77414b,
-        #564c60 18%,
-        #0d4a5d 73%,
-        #023340,
-        #023340,
-        #023340
-      );
-  }
+  background-image: url(${bgImg});
   background-size: cover;
-  color: white;
-  height: auto;
-  padding: 0 0 9rem;
-  width: 100%;
-  position: relative;
+  color: ${p => p.theme.colors.textLight};
+  padding-bottom: 8rem;
 `;
 
 const Triangle = styled.img`
@@ -33,33 +18,39 @@ const Triangle = styled.img`
   display: block;
   left: 0;
   top: 0;
-  width: 13.7rem;
-  @media (min-width: 768px) {
-    width: 22.3rem;
+  width: 14rem;
+  @media ${p => p.theme.media.sm} {
+    width: 22rem;
   }
-  @media (min-width: 1024px) {
-    width: 28.3rem;
+  @media ${p => p.theme.media.md} {
+    width: 28rem;
   }
 `;
 
 const HeaderContainer = styled.a`
   display: flex;
+  flex-direction: column;
   position: absolute;
-  left: 1.8rem;
-  top: 1.3rem;
+  left: 2rem;
+  top: 1.5rem;
   font-size: 0.8rem;
-  @media (min-width: 768px) {
-    left: 3.3rem;
-    top: 1.7rem;
+  color: ${p => p.theme.colors.textLight};
+  @media ${p => p.theme.media.sm} {
+    left: 3.5rem;
+    top: 2rem;
     font-size: 1.2rem;
   }
-  @media (min-width: 1024px) {
-    left: 5.3rem;
-    top: 3.7rem;
+  @media ${p => p.theme.media.md} {
+    left: 4rem;
+    top: 3rem;
   }
-  width: 12rem;
-  flex-direction: column;
-  color: #ffffff;
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  > * + * {
+    margin-top: 1rem;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -73,19 +64,25 @@ const HeaderText = styled.p`
 `;
 
 const HeaderLogo = styled.img`
-  margin-top: 1rem;
-  width: 3.3rem;
-  @media (min-width: 768px) {
-    width: 4.8rem;
+  width: 4rem;
+  @media ${p => p.theme.media.sm} {
+    width: 6rem;
   }
-  z-index: 1;
+  @media ${p => p.theme.media.md} {
+    width: 8rem;
+  }
 `;
 
 export const Header = () => (
   <Container>
     <Triangle src={headerTriangle} />
-    <HeaderContainer href="https://formidable.com" title="Formidable">
-      <HeaderText>Another oss project by </HeaderText>
+    <HeaderContainer
+      href="https://formidable.com"
+      title="Formidable"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <HeaderText>Another oss project by</HeaderText>
       <HeaderLogo src={logoFormidableWhite} alt="Formidable Logo" />
     </HeaderContainer>
     <Hero />
