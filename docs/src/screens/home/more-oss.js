@@ -7,7 +7,7 @@ import { Button } from '../../components/button';
 import { SecondaryTitle } from '../../components/secondary-title';
 import { SectionTitle } from '../../components/section-title';
 import { Wrapper } from '../../components/wrapper';
-import { theme } from '../../themes/theme';
+import { theme } from '../../theme';
 import { Stack } from '../../components/stack';
 
 const OSSCardContainer = styled.div`

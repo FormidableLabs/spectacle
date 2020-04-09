@@ -82,7 +82,7 @@ To see a more complete examples of a presentation generated with MDX or Markdown
 
 For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](/docs/extensions#spectacle-cli).
 
-**Note:** If you want to manually create the build infrastructure for MDX support in a Spectacle deck, you can add the [`spectacle-mdx-loader`](https://github.com/FormidableLabs/spectacle-mdx-loader) plugin to your webpack configuration. Straight Markdown just requires the webpack `raw-loader`.
+**Note:** If you want to manually create the build infrastructure for MDX support in a Spectacle deck, you can add the [`spectacle-mdx-loader`](https://github.com/FormidableLabs/spectacle-mdx-loader) plugin to your webpack configuration.
 
 <a name="jsx"></a>
 
