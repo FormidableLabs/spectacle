@@ -14,31 +14,34 @@ const Video = styled.video`
   }
 `;
 
-const PreviewSources = {
-  bgMp4: require('../../../public/static/bg-demo.mp4'),
-  bgStill: require('../../../public/static/bg-still.png'),
-  bgWebm: require('../../../public/static/bg-demo.webm'),
-  demoUrl:
-    'https://raw.githack.com/FormidableLabs/spectacle/master/examples/one-page.html'
-};
-
-const Preview = () => (
+const Preview = ({ preview }) => (
   <OuterWrapper>
-    <Wrapper>
+    <Wrapper background="linear-gradient(242deg, #c75269 101%, #895160 -11%)">
       <SectionTitle>Code Preview</SectionTitle>
       <a
-        href={PreviewSources.demoUrl}
+        href={preview.demoUrl}
         title="See the live preview"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Video autoPlay muted loop poster={PreviewSources.bgStill}>
-          <source src={PreviewSources.bgWebm} type="video/webm" />
-          <source src={PreviewSources.bgMp4} type="video/mp4" />
+        <Video autoPlay muted loop poster={preview.bgStill}>
+          <source src={preview.bgWebm} type="video/webm" />
+          <source src={preview.bgMp4} type="video/mp4" />
         </Video>
       </a>
     </Wrapper>
   </OuterWrapper>
 );
+
+Preview.propTypes = {
+  preview: PropTypes.arrayOf(
+    PropTypes.shape({
+      bgMp4: PropTypes.string,
+      bgStill: PropTypes.string,
+      bgWebm: PropTypes.string,
+      demoUrl: PropTypes.string
+    }).isRequired
+  )
+};
 
 export default Preview;

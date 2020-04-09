@@ -21,6 +21,13 @@ const content = {
       icon: require('../../static/svgs/amazing.svg')
     }
   ],
+  preview: {
+    bgMp4: require('../../../public/static/bg-demo.mp4'),
+    bgStill: require('../../../public/static/bg-still.png'),
+    bgWebm: require('../../../public/static/bg-demo.webm'),
+    demoUrl:
+      'https://raw.githack.com/FormidableLabs/spectacle/master/examples/one-page.html'
+  },
   getStarted: {
     description:
       'There are several flexible options for getting started with Spectacle, using either JSX or MDX syntax - dive into the documentation to see all the ways you can get a presentation up and running.',
@@ -32,8 +39,7 @@ const content = {
       description:
         'An ecosystem of modular data visualization components for React. Friendly and flexible.',
       logo: require('../../static/svgs/logo_victory.svg'),
-      link: 'https://formidable.com/open-source/victory',
-      hasOwnLogo: true
+      link: 'https://formidable.com/open-source/victory'
     },
     {
       title: 'Development Dashboards',
