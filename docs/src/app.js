@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Root, Routes } from 'react-static';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './themes/theme';
+import { theme } from './theme';
 import Analytics from './google-analytics';
 import { GlobalStyle } from './global-style';
 
