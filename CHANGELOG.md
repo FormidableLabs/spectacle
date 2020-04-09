@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Allow for `props.fontSize` to override the theme's monospace font size in `CodePane`. [#875](https://github.com/FormidableLabs/spectacle/pull/875)
 - Surface `textDecoration` prop from styled-system for `Link`s. [#869](https://github.com/FormidableLabs/spectacle/pull/869)
 
 ## 6.0.1
