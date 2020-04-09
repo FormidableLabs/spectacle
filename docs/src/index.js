@@ -3,13 +3,12 @@ import { render, hydrate } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
 import App from './app';
-import { mount } from 'enzyme';
 
 export default App;
 
 if (typeof document !== 'undefined') {
   const renderMethod = module.hot ? render : hydrate;
-  const render = Comp => {
+  const mount = Comp => {
     renderMethod(
       <AppContainer>
         <Comp />

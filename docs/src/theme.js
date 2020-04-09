@@ -42,7 +42,7 @@ const fontSizes = {
   bodySmall: '1.5rem',
   code: '0.8em',
   h1: '3.45em',
-  h2: '2.11em',
+  h2: '2.5em',
   h3: '1.64em'
 };
 
