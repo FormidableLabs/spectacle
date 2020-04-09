@@ -1,21 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, hydrate } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 
-// Your top level component
 import App from './app';
+import { mount } from 'enzyme';
 
-// Export your top level component as JSX (for static rendering)
 export default App;
 
-// Render your app
 if (typeof document !== 'undefined') {
-  const renderMethod = module.hot
-    ? ReactDOM.render
-    : ReactDOM.hydrate || ReactDOM.render;
+  const renderMethod = module.hot ? render : hydrate;
   const render = Comp => {
-    renderMethod(<Comp />, document.getElementById('root'));
+    renderMethod(
+      <AppContainer>
+        <Comp />
+      </AppContainer>,
+      document.getElementById('root')
+    );
   };
 
-  // Render!
-  render(App);
+  mount(App);
+  if (module.hot) {
+    module.hot.accept('./app', () => mount(require('./app').default));
+  }
 }
