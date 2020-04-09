@@ -39,6 +39,10 @@ export default function CodePane(props) {
   }, [themeContext]);
 
   const fontSize = React.useMemo(() => {
+    if (props && props.fontSize) {
+      return props.fontSize;
+    }
+
     if (
       themeContext &&
       themeContext.fontSizes &&
@@ -46,7 +50,9 @@ export default function CodePane(props) {
     ) {
       return themeContext.fontSizes.monospace;
     }
-    return props.fontSize;
+
+    // Default to 15px
+    return 15;
   }, [themeContext, props.fontSize]);
 
   const preStyles = React.useMemo(
@@ -159,7 +165,6 @@ CodePane.propTypes = {
 CodePane.defaultProps = {
   language: 'javascript',
   theme: theme,
-  fontSize: 15,
   highlightStart: -Infinity,
   highlightEnd: Infinity
 };
