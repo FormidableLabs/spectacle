@@ -11,7 +11,7 @@ if (typeof document !== 'undefined') {
 
 const GoogleAnalytics = ({ children, ...rest }) => {
   if (typeof document !== 'undefined') {
-    // fragment doesn't like it when you try to give it attributes
+    // Fragment doesn't like it when you try to give it attributes
     return <Analytics {...rest}>{children}</Analytics>;
   }
   return <Analytics>{children}</Analytics>;
