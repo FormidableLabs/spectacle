@@ -27,7 +27,7 @@ const Preview = ({ preview }) => (
 );
 
 Preview.propTypes = {
-  preview: PropTypes.arrayOf(
+  preview: PropTypes.objectOf(
     PropTypes.shape({
       bgMp4: PropTypes.string,
       bgStill: PropTypes.string,

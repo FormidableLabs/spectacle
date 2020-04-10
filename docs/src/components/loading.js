@@ -62,7 +62,7 @@ const Circle = styled.circle`
   stroke-linecap: round;
 `;
 
-export const Loading = () => (
+const Loading = () => (
   <Docs isLoading>
     <Container>
       <Loader>
@@ -81,3 +81,5 @@ export const Loading = () => (
     </Container>
   </Docs>
 );
+
+export default Loading;
