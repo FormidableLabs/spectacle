@@ -7,7 +7,7 @@ const colors = {
   button: '#4e4e4e',
   buttonHover: '#1f1f1f',
   buttonLight: '#f0f0f0',
-  buttonLightHover: '#8a5160',
+  buttonLightHover: '#fc6986',
   code: '#ff5d7b',
   codeBg: '#f0f7fb',
   passive: '#444444',

@@ -7,23 +7,35 @@ import headerTriangle from '../static/svgs/header-triangle.svg';
 import logoFormidableWhite from '../assets/logo_formidable_white.png';
 
 const Container = styled.header`
-  background-image: url(${bgImg});
-  background-size: cover;
+  padding: 0px 0px 14rem;
   color: ${p => p.theme.colors.textLight};
-  padding-bottom: 8rem;
+  background-size: cover;
+  background: ${p => p.theme.colors.textDark};
+  background-image: linear-gradient(14deg, #404a5f, #7f526a);
+  @media ${p => p.theme.media.sm} {
+    background-image: url(${bgImg}),
+      linear-gradient(
+        194deg,
+        #77414b,
+        #564c60 18%,
+        #0d4a5d 73%,
+        #023340,
+        #023340,
+        #023340
+      );
+  }
 `;
 
 const Triangle = styled.img`
   position: absolute;
-  display: block;
-  left: 0;
-  top: 0;
-  width: 14rem;
+  left: -0.7rem;
+  top: -0.3rem;
+  width: 20rem;
   @media ${p => p.theme.media.sm} {
-    width: 22rem;
+    width: 26rem;
   }
   @media ${p => p.theme.media.md} {
-    width: 28rem;
+    width: 30rem;
   }
 `;
 
@@ -67,9 +79,6 @@ const HeaderLogo = styled.img`
   width: 4rem;
   @media ${p => p.theme.media.sm} {
     width: 6rem;
-  }
-  @media ${p => p.theme.media.md} {
-    width: 8rem;
   }
 `;
 

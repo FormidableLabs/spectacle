@@ -8,7 +8,7 @@ export const SectionTitle = styled.h2`
   margin: 2rem 0 3rem;
   width: 100%;
   text-align: center;
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.sm} {
     margin: 2rem 0 6rem;
   }
   @media (max-width: 768px) {

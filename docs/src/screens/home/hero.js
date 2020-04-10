@@ -36,21 +36,17 @@ const HeroContent = styled.div`
 `;
 
 const HeroTitle = styled.h1`
-  font-size: 4rem;
-  letter-spacing: 0.25rem;
+  font-size: 4.5rem;
+  letter-spacing: 0.1rem;
   text-align: center;
   @media ${p => p.theme.media.sm} {
-    font-size: 6.5rem;
+    font-size: 5.9rem;
     text-align: left;
-  }
-  @media ${p => p.theme.media.md} {
-    font-size: 9rem;
   }
 `;
 
 const HeroBody = styled.p`
   font-family: Helvetica;
-  letter-spacing: 0.16rem;
   font-size: 1.4rem;
   line-height: 2.2rem;
   max-width: 30rem;
@@ -186,7 +182,7 @@ const Hero = () => {
       <HeroContent>
         <HeroLogo src={badge} alt="spectacle" />
         <HeroBodyAndButtons>
-          <HeroTitle>spectacle</HeroTitle>
+          <HeroTitle>Spectacle</HeroTitle>
           <HeroBody>
             A React.js based library for creating sleek presentations using JSX
             syntax that gives you the ability to live demo your code.
