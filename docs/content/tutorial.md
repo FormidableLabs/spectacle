@@ -92,7 +92,7 @@ As a self-contained entity, it already has references to the dependencies you ne
 
 ### Styling your Spectacle Deck
 
-The easiest way to apply consistent styles to your Spectacle deck is using [themes](/docs/themes).
+The easiest way to apply consistent styles to your Spectacle deck is using [themes](/docs/content/themes.md).
 
 1. Create a theme JS file containing a single object export. Supplied properties will be merged with the default base theme (found in Spectacle at `src/theme/default-theme.js`).
 
@@ -129,7 +129,7 @@ The easiest way to apply consistent styles to your Spectacle deck is using [them
 
 ### Sharing your Spectacle Deck
 
-For more information on [presenting](/docs/basic-concepts#presenting), [exporting](/docs/advanced-concepts#exporting), [building](/docs/advanced-concepts#build--deployment), or [deploying](/docs/advanced-concepts#build--deployment) your Spectacle deck, please check out [the documentation on advanced concepts](/docs/advanced-concepts).
+For more information on [presenting](/docs/content/basic-concepts.md#presenting), [exporting](/docs/content/advanced-concepts.md#exporting), [building](/docs/content/advanced-concepts.md#build--deployment), or [deploying](/docs/content/advanced-concepts.md#build--deployment) your Spectacle deck, please check out [the documentation on advanced concepts](/docs/content/advanced-concepts.md).
 
 <a name="documentation-contributing-and-source"></a>
 
