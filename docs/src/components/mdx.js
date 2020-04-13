@@ -93,7 +93,7 @@ const ImageWrapper = styled.div`
   & > img {
     padding: ${p => p.theme.spacing.md};
     align-self: center;
-    max-height: 40vh;
+    max-height: 60vh;
   }
 `;
 
@@ -141,13 +141,13 @@ const HighlightCode = ({ className = '', children }) => {
           className={className}
         >
           {tokens.map((line, i) => (
-            /* eslint-disable react/jsx-key */
+            // eslint-disable-next-line react/jsx-key
             <div {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
+                // eslint-disable-next-line react/jsx-key
                 <span {...getTokenProps({ token, key })} />
               ))}
             </div>
-            /* eslint-enable react/jsx-key */
           ))}
         </Code>
       )}
@@ -157,7 +157,7 @@ const HighlightCode = ({ className = '', children }) => {
 
 HighlightCode.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.element
+  children: PropTypes.node.isRequired
 };
 
 const Blockquote = styled.blockquote`
@@ -239,6 +239,10 @@ const MdLink = ({ href, children }) => {
   const location = useLocation();
   const currentPage = useMarkdownPage();
 
+  if (!currentPage) {
+    return null;
+  }
+
   if (!/^\w+:/.test(href) && !href.startsWith('#')) {
     const hasTrailingSlash = location.pathname.endsWith('/');
     const from = !hasTrailingSlash ? currentPage.path + '/' : currentPage.path;
@@ -256,12 +260,12 @@ const MdLink = ({ href, children }) => {
 };
 
 MdLink.propTypes = {
-  href: PropTypes.string,
-  children: PropTypes.element
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 const HeadingText = styled.h1`
-  &:target:before {
+  &:target::before {
     content: '';
     display: block;
     height: 1.5em;
@@ -275,7 +279,7 @@ const AnchorLink = styled.a`
   padding-right: 0.5rem;
   width: 2rem;
 
-  @media ${p => p.theme.media.sm} {
+  @media ${({ theme }) => theme.media.sm} {
     margin-left: -2rem;
     display: none;
 
@@ -320,5 +324,5 @@ export const MDXComponents = ({ children }) => (
 );
 
 MDXComponents.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.node.isRequired
 };
