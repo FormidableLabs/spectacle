@@ -19,6 +19,7 @@ import usePresentation, {
   MSG_SLIDE_STATE_CHANGE
 } from '../../hooks/use-presentation';
 import useKeyboardControls from '../../hooks/use-keyboard-controls';
+import useTouchControls from '../../hooks/use-touch-controls';
 import {
   DEFAULT_SLIDE_ELEMENT_INDEX,
   DEFAULT_SLIDE_INDEX
@@ -206,6 +207,11 @@ const Deck = props => {
     navigateToNext,
     navigateToPrevious,
     toggleMode
+  });
+
+  useTouchControls({
+    navigateToNext,
+    navigateToPrevious
   });
 
   const { runTransition } = React.useContext(TransitionPipeContext);
