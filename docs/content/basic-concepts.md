@@ -74,7 +74,6 @@ For a more thorough understanding of the features and flags provided by the CLI,
 
 **Note:** If you want to manually create the build infrastructure for MDX support in a Spectacle deck, you can add the [`spectacle-mdx-loader`](https://github.com/FormidableLabs/spectacle-mdx-loader) plugin to your webpack configuration.
 
-
 ### JSX
 
 This approach is where you use the library's tags to compose your presentation. While you can mix in your own JSX syntax here, building your presentation with the supplied tags will allow for out-of-box themeing and layouts to work properly.
