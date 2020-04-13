@@ -57,8 +57,8 @@ const fontWeights = {
 const layout = {
   page: '144rem',
   header: '4.8rem',
-  stripes: '0.7rem',
-  sidebar: '26rem',
+  stripes: '1.3rem',
+  sidebar: '22rem',
   legend: '22rem',
   logo: '12rem'
 };

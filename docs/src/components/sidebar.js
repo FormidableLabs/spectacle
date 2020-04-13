@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { useBasepath } from 'react-static';
 import { useMarkdownTree, useMarkdownPage } from 'react-static-plugin-md-pages';
-import { sidebarLogo } from '../static/svgs/logo-sidebar.svg';
+import sidebarLogo from '../static/svgs/logo-sidebar.svg';
 
 import {
   ChevronItem,

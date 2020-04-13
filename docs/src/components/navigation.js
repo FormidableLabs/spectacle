@@ -63,7 +63,7 @@ export const SidebarNavItem = styled(NavLink).attrs(() => ({
 }))`
   display: block;
   margin: ${p => p.theme.spacing.xs} 0;
-  color: ${p => p.theme.colors.text};
+  color: ${p => p.theme.colors.textLight};
   font-weight: ${p => p.theme.fontWeights.heading};
   text-decoration: none;
   width: 100%;

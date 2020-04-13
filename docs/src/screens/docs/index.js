@@ -12,7 +12,6 @@ const Container = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  max-width: 144rem;
   margin: 0 auto;
   margin-top: 4.8rem;
   background: ${p => p.theme.colors.textLight};
