@@ -40,7 +40,7 @@ const ProjectWording = styled(Link)`
   display: flex;
   text-decoration: none;
   font-family: ${p => p.theme.fonts.code};
-  color: ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.accentLight};
   margin-left: 0.6ch;
   font-size: 1.9rem;
 `;
@@ -63,7 +63,7 @@ const Header = () => {
         <BlockLink href="https://formidable.com/">
           <FormidableLogo />
         </BlockLink>
-        <ProjectWording to={homepage}>spectacle</ProjectWording>
+        <ProjectWording to={homepage}>Spectacle</ProjectWording>
       </Wrapper>
     </Fixed>
   );

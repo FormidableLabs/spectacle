@@ -271,7 +271,7 @@ const HeadingText = styled.h1`
 
 const AnchorLink = styled.a`
   display: inline-block;
-  color: ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.accentLight};
   padding-right: 0.5rem;
   width: 2rem;
 

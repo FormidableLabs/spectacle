@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.accentLight};
     font-weight: ${p => p.theme.fontWeights.links};
   }
 

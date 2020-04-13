@@ -13,7 +13,7 @@ const Heading = styled.h1`
 `;
 
 const StyledLink = styled.a`
-  background: ${p => p.theme.colors.accent};
+  background: ${p => p.theme.colors.accentLight};
   color: ${p => p.theme.colors.textLight};
   text-decoration: none;
   text-transform: uppercase;
@@ -23,7 +23,8 @@ const StyledLink = styled.a`
   padding: 1.5rem 2rem;
   transition: color 0.4s ease-out;
   &:hover {
-    color: ${p => p.theme.colors.buttonLightHover};
+    color: ${p => p.theme.colors.textLight};
+    background: ${p => p.theme.colors.accentMedium};
   }
 `;
 

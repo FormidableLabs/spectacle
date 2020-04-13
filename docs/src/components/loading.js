@@ -55,7 +55,7 @@ const Svg = styled.svg`
 `;
 
 const Circle = styled.circle`
-  stroke: ${p => p.theme.colors.accent};
+  stroke: ${p => p.theme.colors.accentLight};
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
   animation: ${dash} 1.5s ease-in-out infinite;

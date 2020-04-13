@@ -20,8 +20,9 @@ export const SidebarContainer = styled.div`
 
 export const SidebarStripes = styled.div`
   border-left: ${p => p.theme.layout.stripes} solid
-    ${p => p.theme.colors.accent};
-  border-right: ${p => p.theme.layout.stripes} solid #5a508f;
+    ${p => p.theme.colors.accentLight};
+  border-right: ${p => p.theme.layout.stripes} solid
+    ${p => p.theme.colors.accentMedium};
   position: absolute;
   height: 100%;
   width: 0;
@@ -46,7 +47,7 @@ export const SidebarWrapper = styled.aside`
   font-size: ${p => p.theme.fontSizes.small};
 
   padding: ${p => p.theme.spacing.sm} ${p => p.theme.spacing.md};
-  background-color: rgba(120, 96, 237, 0.15);
+  background-color: ${p => p.theme.colors.accentDark};
   border-right: 1px solid ${p => p.theme.colors.border};
   border-top: 1px solid ${p => p.theme.colors.border};
 
@@ -67,10 +68,10 @@ export const SidebarNavItem = styled(NavLink).attrs(() => ({
   text-decoration: none;
   width: 100%;
   &:hover {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.accentLight};
   }
   &.active {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.accentLight};
   }
 `;
 
@@ -108,10 +109,10 @@ export const SidebarNavSubItem = styled(NavLink).attrs(() => ({}))`
     margin-top: 0;
   }
   &:hover {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.accentLight};
   }
   &.active {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.accentLight};
     font-weight: ${p => p.theme.fontWeights.heading};
   }
 `;

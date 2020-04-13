@@ -73,7 +73,7 @@ const HeadingItem = styled.li`
     transition: color 0.2s ease-out;
 
     &:hover {
-      color: ${p => p.theme.colors.accent};
+      color: ${p => p.theme.colors.accentLight};
     }
   }
 `;

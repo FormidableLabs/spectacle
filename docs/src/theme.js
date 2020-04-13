@@ -1,5 +1,7 @@
 const colors = {
-  accent: '#ff5d7b',
+  accentLight: '#ff5d7b',
+  accentMedium: '#c75d74',
+  accentDark: '#8f5261',
   bg: '#ffffff',
   bgDark: '#1f1f1f',
   bgLight: '#f0f0f0',
