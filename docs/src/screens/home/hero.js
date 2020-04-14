@@ -189,12 +189,14 @@ const Hero = () => {
           </HeroBody>
           <HeroButtonsContainer>
             <NpmCopy text="npm install spectacle" />
-            <DocumentationButton to="docs/">Documentation</DocumentationButton>
+            <DocumentationButton to="docs/basic-concepts">
+              Documentation
+            </DocumentationButton>
           </HeroButtonsContainer>
         </HeroBodyAndButtons>
         <HeroNavList>
           <li>
-            <Link to="docs/">Docs</Link>
+            <Link to="docs/basic-concepts">Docs</Link>
           </li>
           <li>
             <a
