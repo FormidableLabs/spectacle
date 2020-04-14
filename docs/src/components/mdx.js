@@ -138,7 +138,11 @@ const HighlightCode = ({ className = '', children }) => {
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Code
-          style={{ ...style, backgroundColor: 'none' }}
+          style={{
+            ...style,
+            fontFamily: 'Space Mono, monospace',
+            backgroundColor: 'none'
+          }}
           className={className}
         >
           {tokens.map((line, i) => (

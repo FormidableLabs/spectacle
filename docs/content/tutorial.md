@@ -1,15 +1,11 @@
 ---
-title: Getting Started - A Tutorial
+title: Getting Started
 order: 6
 ---
-
-<a name="tutorial"></a>
 
 # Getting Started with Spectacle: A Tutorial
 
 In this guide, we'll show you a couple of different ways to get started with Spectacle and walk you through the creation and customization of a presentation deck.
-
-<a name="option-one"></a>
 
 ## Option One: Using a standard React-based web app
 
@@ -41,8 +37,6 @@ In this guide, we'll show you a couple of different ways to get started with Spe
    ```
 
 4. And you're good to go! Using `create-react-app`'s built-in `start` script, you can start a hot-reloading server to begin building your Spectacle presentation by running `yarn run start` or `npm run start`.
-
-<a name="option-two"></a>
 
 ## Option Two: Using Markdown and the Spectacle CLI
 
@@ -84,11 +78,7 @@ One Page is a single self-contained `HTML` file that lets you build a deck using
 
 As a self-contained entity, it already has references to the dependencies you need to author and launch a deck in a web browser. Since there is no tooling required, One Page is also optimal on tablets. The One Page `HTML` file can be downloaded from the `examples` directory [in this repository](https://unpkg.com/browse/spectacle@latest/examples/one-page.html).
 
-<a name="next-steps"></a>
-
 ## Next Steps
-
-<a name="styling"></a>
 
 ### Styling your Spectacle Deck
 
@@ -125,13 +115,9 @@ The easiest way to apply consistent styles to your Spectacle deck is using [them
    $ spectacle -s my-slides.mdx -t custom-theme.js
    ```
 
-<a name="sharing"></a>
-
 ### Sharing your Spectacle Deck
 
 For more information on [presenting](/docs/basic-concepts#presenting), [exporting](/docs/advanced-concepts#exporting), [building](/docs/advanced-concepts#build--deployment), or [deploying](/docs/advanced-concepts#build--deployment) your Spectacle deck, please check out [the documentation on advanced concepts](/docs/advanced-concepts).
-
-<a name="documentation-contributing-and-source"></a>
 
 ## Documentation, Contributing, and Source
 
