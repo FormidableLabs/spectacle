@@ -26,5 +26,6 @@ export const Button = styled(Link)`
 `;
 
 Button.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 };
