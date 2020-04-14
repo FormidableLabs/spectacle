@@ -10,6 +10,8 @@ import { SectionTitle } from '../../components/section-title';
 import { Stack } from '../../components/stack';
 import { Wrapper } from '../../components/wrapper';
 
+import { theme } from '../../theme';
+
 const OSSCardContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -106,7 +108,11 @@ const MoreOSS = ({ oss }) => (
           );
         })}
       </OSSCardContainer>
-      <Button light to="https://formidable.com/open-source/">
+      <Button
+        color={theme.colors.bg}
+        text={theme.colors.button}
+        to="https://formidable.com/open-source/"
+      >
         View All
       </Button>
     </Stack>
@@ -116,10 +122,9 @@ const MoreOSS = ({ oss }) => (
 MoreOSS.propTypes = {
   oss: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      logo: PropTypes.string.isRequired
+      title: PropTypes.string,
+      link: PropTypes.string,
+      description: PropTypes.string
     }).isRequired
   ).isRequired
 };

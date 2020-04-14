@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { SectionTitle } from '../../components/section-title';
 import { Wrapper } from '../../components/wrapper';
@@ -25,16 +25,5 @@ const Preview = ({ preview }) => (
     </a>
   </Wrapper>
 );
-
-Preview.propTypes = {
-  preview: PropTypes.objectOf(
-    PropTypes.shape({
-      bgMp4: PropTypes.string,
-      bgStill: PropTypes.string,
-      bgWebm: PropTypes.string,
-      demoUrl: PropTypes.string
-    }).isRequired
-  )
-};
 
 export default Preview;

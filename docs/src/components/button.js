@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Button = styled(Link)`
-  background: ${({ light, theme }) => (light ? 'white' : theme.colors.button)};
-  color: ${({ light, theme }) => (light ? theme.colors.button : 'white')};
+  background: ${({ color }) => color};
+  color: ${({ text }) => text};
   display: block;
   font-size: 1.5rem;
   height: 4rem;
@@ -23,3 +24,7 @@ export const Button = styled(Link)`
     opacity: 0.6;
   }
 `;
+
+Button.propTypes = {
+  color: PropTypes.string
+};

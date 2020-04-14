@@ -76,7 +76,7 @@ export const SidebarStyling = ({ children, sidebarOpen, closeSidebar }) => {
 };
 
 SidebarStyling.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   sidebarOpen: PropTypes.bool.isRequired,
   closeSidebar: PropTypes.func.isRequired
 };

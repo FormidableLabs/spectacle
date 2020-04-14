@@ -13,7 +13,13 @@ const GetStarted = ({ getStarted }) => (
     <Stack>
       <SectionTitle>Get Started</SectionTitle>
       <BodyCopy>{getStarted.description}</BodyCopy>
-      <Button to={getStarted.link}>Documentation</Button>
+      <Button
+        color={theme.colors.button}
+        text={theme.colors.bg}
+        to={getStarted.link}
+      >
+        Documentation
+      </Button>
     </Stack>
   </Wrapper>
 );
