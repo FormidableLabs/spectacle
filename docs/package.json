@@ -51,7 +51,7 @@
     "react-router-dom": "^5.1.2",
     "react-router-ga": "^1.0.0",
     "react-static": "^7.2",
-    "react-static-plugin-md-pages": "^0.2.0",
+    "react-static-plugin-md-pages": "^0.1.x",
     "styled-components": "^4.1.1"
   },
   "devDependencies": {
