@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SectionTitle = styled.h2`
-  color: #4e4e4e;
+  color: ${p => (p.light ? p.theme.colors.textLight : '#4e4e4e')};
   font-size: 2.5rem;
   flex: auto;
   line-height: 1.3;

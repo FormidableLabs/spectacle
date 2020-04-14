@@ -95,9 +95,7 @@ const OSSDescription = styled(BodyCopy)`
 const MoreOSS = ({ oss }) => (
   <SectionWrapper background="#000000">
     <Stack>
-      <SectionTitle color={theme.colors.textLight}>
-        More Open Source from Formidable
-      </SectionTitle>
+      <SectionTitle light>More Open Source from Formidable</SectionTitle>
       <OSSCardContainer>
         {oss.map(card => {
           return (
