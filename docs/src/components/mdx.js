@@ -6,7 +6,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { useLocation, Link } from 'react-router-dom';
 import { useMarkdownPage } from 'react-static-plugin-md-pages';
 import Highlight, { Prism } from 'prism-react-renderer';
-import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight';
+import github from 'prism-react-renderer/themes/github';
 import SvgAnchor from '../assets/anchor';
 import { relative } from './sidebar';
 
@@ -132,7 +132,7 @@ const HighlightCode = ({ className = '', children }) => {
   return (
     <Highlight
       Prism={Prism}
-      theme={nightOwlLight}
+      theme={github}
       code={children.trim()}
       language={language}
     >
