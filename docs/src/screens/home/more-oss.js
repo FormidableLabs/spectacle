@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 import { BodyCopy } from '../../components/body-copy';
 import { Button } from '../../components/button';
+import { OSSBadge } from '../../components/oss-badge';
 import { SecondaryTitle } from '../../components/secondary-title';
 import { SectionTitle } from '../../components/section-title';
-import { Wrapper } from '../../components/wrapper';
-import { theme } from '../../theme';
 import { Stack } from '../../components/stack';
+import { Wrapper } from '../../components/wrapper';
 
 const OSSCardContainer = styled.div`
   display: grid;
@@ -52,11 +52,6 @@ const OSSCard = styled.div`
   }
 `;
 
-const OSSImage = styled.img`
-  flex: 0 0 15rem;
-  height: 15rem;
-`;
-
 const OSSCopyContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -93,14 +88,14 @@ const OSSDescription = styled(BodyCopy)`
 `;
 
 const MoreOSS = ({ oss }) => (
-  <SectionWrapper background="#000000">
+  <SectionWrapper background="#000">
     <Stack>
       <SectionTitle light>More Open Source from Formidable</SectionTitle>
       <OSSCardContainer>
         {oss.map(card => {
           return (
             <OSSCard key={card.title}>
-              <OSSImage src={card.logo} />
+              <OSSBadge project={card} />
               <OSSCopyContainer>
                 <a href={card.link} target="_blank" rel="noopener noreferrer">
                   <OSSTitle>{card.title}</OSSTitle>

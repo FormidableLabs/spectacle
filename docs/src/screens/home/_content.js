@@ -38,28 +38,28 @@ const content = {
       title: 'Renature',
       description:
         'A collection of animations that can be used with many inline style libraries, such as Radium or Aphrodite.',
-      logo: require('../../assets/badge_renature.svg'),
       link: 'https://formidable.com/open-source/react-animations'
     },
     {
       title: 'Victory',
       description:
         'An ecosystem of modular data visualization components for React. Friendly and flexible.',
-      logo: require('../../assets/badge_victory.svg'),
       link: 'https://formidable.com/open-source/victory'
     },
     {
       title: 'Enzyme Matchers',
       description:
         'Run common assertions on your React components using Enzyme in a Jest or Jasmine environment.',
-      logo: require('../../assets/badge_enzyme-matchers.svg'),
+      abbreviation: 'Em',
+      color: '#e48055',
       link: 'https://formidable.com/open-source/jest-enzyme/'
     },
     {
       title: 'React Animations',
       description:
         'A collection of animations that can be used with many inline style libraries, such as Radium or Aphrodite.',
-      logo: require('../../assets/badge_react-animations.svg'),
+      abbreviation: 'Ra',
+      color: '#86b9e6',
       link: 'https://formidable.com/open-source/react-animations'
     }
   ]

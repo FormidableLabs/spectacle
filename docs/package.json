@@ -34,7 +34,7 @@
     "array-shuffle": "^1.0.1",
     "axios": "^0.19.1",
     "exenv": "^1.2.2",
-    "formidable-oss-badges": "0.1.1",
+    "formidable-oss-badges": "^0.3.2",
     "gray-matter": "^3.1.1",
     "history": "^4.7.2",
     "htmr": "0.6.3",
