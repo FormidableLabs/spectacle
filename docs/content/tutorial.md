@@ -70,8 +70,6 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 3. And you're good to go! The web server you started supports live refreshing and will update your deck as you make changes to the markdown file.
 
-<a name="option-three"></a>
-
 ## Option Three: Using One Page
 
 One Page is a single self-contained `HTML` file that lets you build a deck using no build steps, using [htm](https://github.com/developit/htm) over JSX to reduce the dependencies and load time.
