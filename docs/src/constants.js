@@ -1,8 +1,7 @@
-const constants = {
-  docsTitle: 'Spectacle',
-  githubIssues: 'https://www.github.com/FormidableLabs/spectacle/issues',
+export default {
+  title: 'Spectacle',
+  color: '#eeeeee',
   github: 'https://www.github.com/FormidableLabs/spectacle',
-  color: '#eeeeee'
+  githubIssues: 'https://www.github.com/FormidableLabs/spectacle/issues',
+  landerBasePath: 'open-source/spectacle'
 };
-
-export default constants;

@@ -15,43 +15,36 @@ const content = {
       icon: require('../../static/svgs/code-preview.svg')
     },
     {
-      title: 'Auto-Size Text, Image Dimming, and More',
+      title: '... and More!',
       description:
-        "On top of all of Spectacle's helpful features, you can also make your presentation look amazing with auto-formatting, easy themeing abilities, image dimming, and lots of other fun touches",
+        'Polish off your presentation with auto-formatting, easy themeing, image dimming, and other fun touches available out of the box.',
       icon: require('../../static/svgs/amazing.svg')
     }
   ],
+  preview: {
+    bgMp4: require('../../../public/static/bg-demo.mp4'),
+    bgStill: require('../../../public/static/bg-still.png'),
+    bgWebm: require('../../../public/static/bg-demo.webm'),
+    demoUrl:
+      'https://raw.githack.com/FormidableLabs/spectacle/master/examples/one-page.html'
+  },
   getStarted: {
     description:
       'There are several flexible options for getting started with Spectacle, using either JSX or MDX syntax - dive into the documentation to see all the ways you can get a presentation up and running.',
-    link: '/docs'
+    link: '/docs/basic-concepts'
   },
   oss: [
+    {
+      title: 'Renature',
+      description:
+        'A collection of animations that can be used with many inline style libraries, such as Radium or Aphrodite.',
+      link: 'https://formidable.com/open-source/react-animations'
+    },
     {
       title: 'Victory',
       description:
         'An ecosystem of modular data visualization components for React. Friendly and flexible.',
-      logo: require('../../static/svgs/logo_victory.svg'),
-      link: 'https://formidable.com/open-source/victory',
-      hasOwnLogo: true
-    },
-    {
-      title: 'Development Dashboards',
-      description:
-        'Dashboards to organize and intuitively display your dev server and tooling output.',
-      abbreviation: 'Dd',
-      color: '#8bd48b',
-      number: '17',
-      link: 'https://formidable.com/open-source/development-dashboards/'
-    },
-    {
-      title: 'React Animations',
-      description:
-        'A collection of animations that can be used with many inline style libraries, such as Radium or Aphrodite.',
-      abbreviation: 'Ra',
-      color: '#86b9e6',
-      number: '03',
-      link: 'https://formidable.com/open-source/react-animations'
+      link: 'https://formidable.com/open-source/victory'
     },
     {
       title: 'Enzyme Matchers',
@@ -59,8 +52,15 @@ const content = {
         'Run common assertions on your React components using Enzyme in a Jest or Jasmine environment.',
       abbreviation: 'Em',
       color: '#e48055',
-      number: '09',
       link: 'https://formidable.com/open-source/jest-enzyme/'
+    },
+    {
+      title: 'React Animations',
+      description:
+        'A collection of animations that can be used with many inline style libraries, such as Radium or Aphrodite.',
+      abbreviation: 'Ra',
+      color: '#86b9e6',
+      link: 'https://formidable.com/open-source/react-animations'
     }
   ]
 };

@@ -3,8 +3,6 @@ title: Extensions
 order: 7
 ---
 
-<a name="third-party"></a>
-
 # Third Party Extensions
 
 In the past, developers across the open-source-iverse have created extensions for use within your Spectacle presentation.
@@ -16,13 +14,9 @@ Since the [release of v6](https://github.com/FormidableLabs/spectacle/releases/t
 
 To see a list of the extensions we've listed here in the past, please check out [the archive in git](https://github.com/FormidableLabs/spectacle/blob/3fd0e850ebab65758b1a4db04c8edef5f2cee81e/docs/content/extensions.md).
 
-<a name="formidable"></a>
-
 # Formidable Extensions
 
 There are a few companion projects that Formidable directly maintains.
-
-<a name="spectacle-cli"></a>
 
 ## spectacle-cli
 
@@ -31,8 +25,6 @@ There are a few companion projects that Formidable directly maintains.
 A collection of tools for serving or generating new presentation decks. Includes `spectacle` and `spectacle-boilerplate`.
 
 For complete documentation of the CLI, please check out [the repo](https://www.github.com/FormidableLabs/spectacle-cli).
-
-<a name="spectacle-mdx-loader"></a>
 
 ## spectacle-mdx-loader
 
