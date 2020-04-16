@@ -38,7 +38,7 @@ const content = {
       title: 'Renature',
       description:
         'A collection of animations that can be used with many inline style libraries, such as Radium or Aphrodite.',
-      link: 'https://formidable.com/open-source/react-animations'
+      link: 'https://formidable.com/open-source/renature'
     },
     {
       title: 'Victory',
@@ -47,20 +47,18 @@ const content = {
       link: 'https://formidable.com/open-source/victory'
     },
     {
-      title: 'Enzyme Matchers',
+      title: 'urql',
       description:
-        'Run common assertions on your React components using Enzyme in a Jest or Jasmine environment.',
-      abbreviation: 'Em',
-      color: '#e48055',
-      link: 'https://formidable.com/open-source/jest-enzyme/'
+        'Universal React Query Library is a blazing-fast GraphQL client, exposed as a set of ReactJS components.',
+      link: 'https://formidable.com/open-source/urql/'
     },
     {
-      title: 'React Animations',
+      title: 'Runpkg',
       description:
-        'A collection of animations that can be used with many inline style libraries, such as Radium or Aphrodite.',
-      abbreviation: 'Ra',
-      color: '#86b9e6',
-      link: 'https://formidable.com/open-source/react-animations'
+        'The online package explorer. Runpkg turns any npm package into an interactive and informative browsing experience.',
+      abbreviation: 'Rp',
+      color: '#80eac7',
+      link: 'https://www.runpkg.com/'
     }
   ]
 };

@@ -6,8 +6,8 @@ import { ProjectBadge, FeaturedBadge } from 'formidable-oss-badges';
 export const FEATURED_PROJECTS = ['victory', 'urql', 'renature'];
 
 const OSSImage = styled.div`
-  width: 220px;
-  max-width: 250px;
+  width: 240px;
+  max-width: 240px;
 `;
 
 export const OSSBadge = ({ project }) => {
