@@ -27,11 +27,6 @@ const Content = styled.article.attrs(() => ({
   @media ${p => p.theme.media.lg} {
     padding: ${p => p.theme.spacing.lg};
   }
-
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  hyphens: auto;
 `;
 
 const Legend = styled.aside`
