@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/master/docs/src/static/bg_hero_badge.png" width=250></p>
+<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/master/docs/src/assets/logo_spectacle.png" width=250></p>
 <h2 align="center">Spectacle</h2>
 <p align="center">
 <strong>✨ A ReactJS based Presentation Library ✨</strong>

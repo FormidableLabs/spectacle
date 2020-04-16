@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import NpmCopy from './npm-copy';
-import badge from '../../static/bg_hero_badge.png';
+import badge from '../../assets/logo_spectacle.png';
 import { Wrapper } from '../../components/wrapper';
 
 const HeroContent = styled.div`

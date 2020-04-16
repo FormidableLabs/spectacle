@@ -22,9 +22,9 @@ const content = {
     }
   ],
   preview: {
-    bgMp4: require('../../../public/static/bg-demo.mp4'),
-    bgStill: require('../../../public/static/bg-still.png'),
-    bgWebm: require('../../../public/static/bg-demo.webm'),
+    bgMp4: require('../../assets/demo-presentation.mp4'),
+    bgStill: require('../../assets/demo-still.png'),
+    bgWebm: require('../../assets/demo-presentation.webm'),
     demoUrl:
       'https://raw.githack.com/FormidableLabs/spectacle/master/examples/one-page.html'
   },
