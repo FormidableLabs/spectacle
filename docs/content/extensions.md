@@ -22,7 +22,7 @@ There are a few companion projects that Formidable directly maintains.
 
 A collection of tools for serving or generating new presentation decks. Includes `spectacle` and `spectacle-boilerplate`.
 
-For complete documentation of the CLI, please check out [the repo](https://www.github.com/FormidableLabs/spectacle-cli).
+For complete documentation of the CLI, please check out [the repository](https://www.github.com/FormidableLabs/spectacle-cli).
 
 ## spectacle-mdx-loader
 
