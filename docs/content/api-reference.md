@@ -94,15 +94,15 @@ CodePane is a component for showing a syntax-highlighted block of source code. I
 
 Additionally, `highlightStart` and `highlightEnd` props can be used to highlight certain ranges of code. Combine this with the [Stepper](#stepper) component to iterate over lines of code as you present.
 
-| Props            | Type              | Example               |
-| ---------------- | ----------------- | --------------------- |
-| `autoFillHeight` | PropTypes.boolean | `false`               |
-| `children`       | PropTypes.string  | `let name = "Carlos"` |
-| `fontSize`       | PropTypes.number  | `16`                  |
-| `highlightEnd`   | PropTypes.number  | `2`                   |
-| `highlightStart` | PropTypes.number  | `1`                   |
-| `language`       | PropTypes.string  | `javascript`          |
-| `theme`          | Prism Theme       | —                     |
+| Props            | Type                                                                                         | Example               |
+| ---------------- | -------------------------------------------------------------------------------------------- | --------------------- |
+| `autoFillHeight` | PropTypes.boolean                                                                            | `false`               |
+| `children`       | PropTypes.string                                                                             | `let name = "Carlos"` |
+| `fontSize`       | PropTypes.number                                                                             | `16`                  |
+| `highlightEnd`   | PropTypes.number                                                                             | `2`                   |
+| `highlightStart` | PropTypes.number                                                                             | `1`                   |
+| `language`       | PropTypes.string                                                                             | `javascript`          |
+| `theme`          | [Prism Theme](https://github.com/FormidableLabs/prism-react-renderer/tree/master/src/themes) | —                     |
 
 ```jsx
 import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
