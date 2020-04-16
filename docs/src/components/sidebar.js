@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { useBasepath } from 'react-static';
 import { useMarkdownTree, useMarkdownPage } from 'react-static-plugin-md-pages';
-import sidebarLogo from '../static/svgs/logo-sidebar.svg';
+import { FeaturedBadge } from 'formidable-oss-badges';
 
 import {
   ChevronItem,
@@ -24,7 +24,7 @@ const ContentWrapper = styled.div`
   padding-bottom: ${p => p.theme.spacing.lg};
 `;
 
-const HeroLogoLink = styled(Link)`
+const HeroBadgeLink = styled(Link)`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -32,13 +32,11 @@ const HeroLogoLink = styled(Link)`
   align-self: center;
 `;
 
-const HeroLogo = styled.img.attrs(() => ({
-  src: sidebarLogo,
-  alt: 'spectacle'
-}))`
+const HeroBadgeWrapper = styled.div`
   display: none;
   width: ${p => p.theme.layout.logo};
   height: ${p => p.theme.layout.logo};
+  margin-bottom: 1rem;
   @media ${p => p.theme.media.sm} {
     display: block;
   }
@@ -78,9 +76,11 @@ export const SidebarStyling = ({ children, sidebarOpen, closeSidebar }) => {
       <SidebarStripes />
       <SidebarContainer hidden={!sidebarOpen} onClick={closeSidebar}>
         <SidebarWrapper>
-          <HeroLogoLink to={homepage}>
-            <HeroLogo />
-          </HeroLogoLink>
+          <HeroBadgeLink to={homepage}>
+            <HeroBadgeWrapper>
+              <FeaturedBadge name="spectacle" />
+            </HeroBadgeWrapper>
+          </HeroBadgeLink>
           <ContentWrapper>{cleanChildren}</ContentWrapper>
         </SidebarWrapper>
       </SidebarContainer>

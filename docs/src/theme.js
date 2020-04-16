@@ -60,7 +60,7 @@ const layout = {
   stripes: '1.3rem',
   sidebar: '22rem',
   legend: '22rem',
-  logo: '12rem'
+  logo: '11rem'
 };
 
 const spacing = {
