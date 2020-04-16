@@ -5,7 +5,7 @@ order: 5
 
 # API Reference
 
-In Spectacle, presentations are composed of a set of base tags. We can separate these into three categories: [Main tags](#main-tags), [Semantic tags](#semantic-tags) & [Style tags](#style-tags).
+In Spectacle, presentations are composed of a set of base tags. We can separate these into three categories: [Main tags](#main-tags), [Typography tags](#typography-tags) & [Layout tags](#layout-tags).
 
 ## Main Tags
 
@@ -15,66 +15,66 @@ These are the bare bones of a Spectacle presentation, the two most essential tag
 
 Wraps the entire presentation and carries most of the overarching slide logic, like theme and template context.
 
-| Props            | Type                                                                       |
-| ---------------- | -------------------------------------------------------------------------- |
-| theme            | [Styled-system theme object](/docs/themes)                                 |
-| template         | [Template render function](#deck-template)                                 |
-| transitionEffect | "fade", "slide", "none", or [custom transition object](#transition-object) |
+| Props            | Type                                                                               |
+| ---------------- | ---------------------------------------------------------------------------------- |
+| theme            | [Styled-system theme object](./themes)                                             |
+| template         | [Template render function](#deck-template)                                         |
+| transitionEffect | "fade", "slide", "none", or [custom transition object](./props/#transition-object) |
 
 ### Slide
 
 Wraps a single slide within your presentation; identifies what is contained to a single view. If a transition effect is applied to this slide, it will override the Deck-specified transition.
 
-| Props              | Type                                                                       |
-| ------------------ | -------------------------------------------------------------------------- |
-| backgroundColor    | PropTypes.string                                                           |
-| backgroundImage    | PropTypes.string                                                           |
-| backgroundOpacity  | PropTypes.number                                                           |
-| backgroundPosition | PropTypes.string                                                           |
-| backgroundRepeat   | PropTypes.string                                                           |
-| backgroundSize     | PropTypes.string                                                           |
-| scaleRatio         | PropTypes.number                                                           |
-| slideNum           | PropTypes.number                                                           |
-| template           | PropTypes.func                                                             |
-| textColor          | PropTypes.string                                                           |
-| transitionEffect   | "fade", "slide", "none", or [custom transition object](#transition-object) |
+| Props              | Type                                                                               |
+| ------------------ | ---------------------------------------------------------------------------------- |
+| backgroundColor    | PropTypes.string                                                                   |
+| backgroundImage    | PropTypes.string                                                                   |
+| backgroundOpacity  | PropTypes.number                                                                   |
+| backgroundPosition | PropTypes.string                                                                   |
+| backgroundRepeat   | PropTypes.string                                                                   |
+| backgroundSize     | PropTypes.string                                                                   |
+| scaleRatio         | PropTypes.number                                                                   |
+| slideNum           | PropTypes.number                                                                   |
+| template           | PropTypes.func                                                                     |
+| textColor          | PropTypes.string                                                                   |
+| transitionEffect   | "fade", "slide", "none", or [custom transition object](./props/#transition-object) |
 
 ## Typography Tags
 
 These tags are for displaying textual content.
 
-| Tag Name          | Theme Props                                                                                                             | Additional Props           | Default Props                                                                                                                                                    |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Text**          | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: textMargin                                       |
-| **Heading**       | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **color**: secondary<br /> **fontFamily**: header<br />**fontSize**: h1<br />**fontWeight**: bold<br />**textAlign**: center<br />**margin**: headerMargin       |
-| **Link**          | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)<br /> | **href**: PropTypes.string | **color**: quaternary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textDecoration**: underline<br />**textAlign**: left<br />**margin**: textMargin |
-| **Quote**         | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)<br /> | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**borderLeft**: 1px solid secondary                          |
-| **OrderedList**   | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
-| **UnorderedList** | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
-| **ListItem**      | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **margin**: listMargin                                                                                                                                           |
-| **CodeSpan**      | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br /> [**Typography**](/docs/props#typography)       | —                          | **fontFamily**: monospace<br />**fontSize**: text                                                                                                                |
+| Tag Name          | Theme Props                                                                                                 | Additional Props           | Default Props                                                                                                                                                    |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Text**          | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: textMargin                                       |
+| **Heading**       | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: secondary<br /> **fontFamily**: header<br />**fontSize**: h1<br />**fontWeight**: bold<br />**textAlign**: center<br />**margin**: headerMargin       |
+| **Link**          | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)<br /> | **href**: PropTypes.string | **color**: quaternary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textDecoration**: underline<br />**textAlign**: left<br />**margin**: textMargin |
+| **Quote**         | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)<br /> | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**borderLeft**: 1px solid secondary                          |
+| **OrderedList**   | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
+| **UnorderedList** | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
+| **ListItem**      | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **margin**: listMargin                                                                                                                                           |
+| **CodeSpan**      | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **fontFamily**: monospace<br />**fontSize**: text                                                                                                                |
 
 ## Layout Tags
 
 These tags are for adding structure to your slides.
 
-| Tag Name    | Theme Props                                                                                                                                                                                                                       | Additional Props | Default Props     |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- |
-| **Box**     | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br /> [**Border**](/docs/props#border)                                         | —                | —                 |
-| **FlexBox** | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br /> [**Border**](/docs/props#border)<br />[**Flex**](/docs/props#flex)<br /> | —                | —                 |
-| **Grid**    | [**Layout**](/docs/props#layout)<br />[**Position**](/docs/props#position)<br />[**Grid**](/docs/props#grid)<br />                                                                                                                | —                | **display**: grid |
+| Tag Name    | Theme Props                                                                                                                                                                                               | Additional Props | Default Props     |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- |
+| **Box**     | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Position**](./props#position)<br /> [**Border**](./props#border)                                     | —                | —                 |
+| **FlexBox** | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Position**](./props#position)<br /> [**Border**](./props#border)<br />[**Flex**](./props#flex)<br /> | —                | —                 |
+| **Grid**    | [**Layout**](./props#layout)<br />[**Position**](./props#position)<br />[**Grid**](./props#grid)<br />                                                                                                    | —                | **display**: grid |
 
 ## Table Tags
 
 These tags are for adding tables with content to your slides.
 
-| Tag Name        | Theme Props                                                                                                                                                                                   | Additional Props | Default Props                                                                                                                                       |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Table**       | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
-| **TableHeader** | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**fontWeight**: bold<br />**textAlign:** left<br />**margin**: listMargin |
-| **TableBody**   | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
-| **TableRow**    | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
-| **TableCell**   | [**Space**](/docs/props#space)<br />[**Color**](/docs/props#color)<br />[**Layout**](/docs/props#layout)<br />[**Typography**](/docs/props#typography)<br /> [**Border**](/docs/props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| Tag Name        | Theme Props                                                                                                                                                               | Additional Props | Default Props                                                                                                                                       |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Table**       | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| **TableHeader** | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**fontWeight**: bold<br />**textAlign:** left<br />**margin**: listMargin |
+| **TableBody**   | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| **TableRow**    | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| **TableCell**   | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
 
 ## Appear
 
@@ -141,11 +141,11 @@ FullScreen is a button that takes the presentation in and out of the browser's f
 
 Image is a component to display a picture within a slide. It is analgous to an `<img>` tag and conforms to Layout and Position props.
 
-| Props                                | Type             |
-| ------------------------------------ | ---------------- |
-| src                                  | PropTypes.string |
-| [**Layout**](/docs/props#layout)     |                  |
-| [**Position**](/docs/props#position) |                  |
+| Props                            | Type             |
+| -------------------------------- | ---------------- |
+| src                              | PropTypes.string |
+| [**Layout**](./props#layout)     |                  |
+| [**Position**](./props#position) |                  |
 
 ## Markdown
 
