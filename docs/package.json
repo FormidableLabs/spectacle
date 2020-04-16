@@ -17,7 +17,7 @@
     "clean": "rimraf dist",
     "format": "yarn run lint --fix && yarn run prettier-all",
     "lint": "eslint '*.js'",
-    "prettier-all": "prettier --write '{src,static.config,scripts}/**/*.{js,jsx}'",
+    "prettier-all": "prettier --write '{src,static.config,scripts,content}/**/*.{js,jsx,md}'",
     "preversion": "yarn run lint && yarn run build",
     "prod:build": "react-static build",
     "prod:deploy": "node scripts/deploy/aws.js",
