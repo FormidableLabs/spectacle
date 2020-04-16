@@ -60,6 +60,19 @@ export const SidebarStyling = ({ children, sidebarOpen, closeSidebar }) => {
   const basepath = useBasepath() || '';
   const homepage = basepath ? `/${basepath}/` : '/';
 
+  // A hack for compatibility with react-static-plugin-md
+  // We need to remove the "Index" index from the list of avail headers
+  const cleanChildren =
+    children &&
+    children.reduce((acc, curr) => {
+      // index.md is given a key of 'docs'
+      if (curr.key !== 'docs') {
+        acc.push(curr);
+      }
+
+      return acc;
+    }, []);
+
   return (
     <>
       <SidebarStripes />
@@ -68,7 +81,7 @@ export const SidebarStyling = ({ children, sidebarOpen, closeSidebar }) => {
           <HeroLogoLink to={homepage}>
             <HeroLogo />
           </HeroLogoLink>
-          <ContentWrapper>{children}</ContentWrapper>
+          <ContentWrapper>{cleanChildren}</ContentWrapper>
         </SidebarWrapper>
       </SidebarContainer>
     </>

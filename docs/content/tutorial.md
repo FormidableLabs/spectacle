@@ -40,7 +40,7 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 ## Option Two: Using Markdown and the Spectacle CLI
 
-1. Create a new markdown file. You can use `.md` or `.mdx` (\_MDX lets you mix JSX components inside markdown).
+1. Create a new markdown file. You can use `.md` or `.mdx` (MDX lets you mix JSX components inside markdown).
 
    You can use this as a starter:
 

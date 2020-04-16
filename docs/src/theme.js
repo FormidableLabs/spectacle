@@ -43,8 +43,8 @@ const fontSizes = {
   body: '1.8rem',
   bodySmall: '1.5rem',
   code: '0.8em',
-  h1: '3.45em',
-  h2: '2.2em',
+  h1: '2.8em',
+  h2: '2.1em',
   h3: '1.64em'
 };
 
