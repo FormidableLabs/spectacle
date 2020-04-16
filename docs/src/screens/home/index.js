@@ -1,11 +1,11 @@
 import React from 'react';
 import content from './_content';
 import { Header } from '../../components/header';
+import { Footer } from '../../components/footer';
 import Features from './features';
 import Preview from './preview';
 import GetStarted from './get-started';
 import MoreOSS from './more-oss';
-import { Footer } from '../../components/footer';
 
 const Home = () => (
   <>
