@@ -104,7 +104,7 @@ The easiest way to apply consistent styles to your Spectacle deck is using [them
 
 2. Consume the theme using the approach of your choice:
 
-   a. To use a custom theme with a JSX (Option One) or HTM-deck (Option Three), supply the object to the `theme` prop in the `Deck` tag. `<Deck theme={customTheme}>`.
+   a. To use a custom theme with a JSX- (Option One) or HTM- (Option Three) Deck, supply the object to the `theme` prop in the `Deck` tag. `<Deck theme={customTheme}>`.
 
    b. To use a custom theme with the Markdown CLI (Option Two), supply the file using the `-t` argument.
 
