@@ -6,7 +6,8 @@ import { ProjectBadge, FeaturedBadge } from 'formidable-oss-badges';
 export const FEATURED_PROJECTS = ['victory', 'urql', 'renature'];
 
 const OSSImage = styled.div`
-  width: 250px;
+  width: 220px;
+  max-width: 250px;
 `;
 
 export const OSSBadge = ({ project }) => {
@@ -14,18 +15,17 @@ export const OSSBadge = ({ project }) => {
   const isFeaturedProject = Boolean(
     FEATURED_PROJECTS.find(p => p === projectName)
   );
-
-  if (isFeaturedProject) {
-    return <FeaturedBadge name={projectName} />;
-  }
-
   return (
     <OSSImage>
-      <ProjectBadge
-        abbreviation={project.abbreviation}
-        color={project.color}
-        description={project.title}
-      />
+      {isFeaturedProject ? (
+        <FeaturedBadge name={projectName} />
+      ) : (
+        <ProjectBadge
+          abbreviation={project.abbreviation}
+          color={project.color}
+          description={project.title}
+        />
+      )}
     </OSSImage>
   );
 };
