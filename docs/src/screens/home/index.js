@@ -1,30 +1,21 @@
 import React from 'react';
-import Features from './features';
-import GetStarted from './get-started';
-import MoreOSS from './more-oss';
-import Preview from './preview';
 import content from './_content';
-import styled from 'styled-components';
 import { Header } from '../../components/header';
 import { Footer } from '../../components/footer';
+import Features from './features';
+import Preview from './preview';
+import GetStarted from './get-started';
+import MoreOSS from './more-oss';
 
-const Container = styled.div`
-  width: 100%;
-`;
-
-class Home extends React.Component {
-  render() {
-    return (
-      <Container>
-        <Header />
-        <Features featureArray={content.features} />
-        <Preview previewObj={content.preview} />
-        <GetStarted getStartedObj={content.getStarted} />
-        <MoreOSS ossArray={content.oss} />
-        <Footer />
-      </Container>
-    );
-  }
-}
+const Home = () => (
+  <>
+    <Header />
+    <Features features={content.features} />
+    <Preview preview={content.preview} />
+    <GetStarted getStarted={content.getStarted} />
+    <MoreOSS oss={content.oss} />
+    <Footer />
+  </>
+);
 
 export default Home;

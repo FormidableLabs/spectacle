@@ -3,15 +3,11 @@ title: Themes
 order: 4
 ---
 
-<a name="theme-system"></a>
-
 # Theme System
 
 Spectacle has a robust theme system that is built upon [styled system](https://styled-system.com/theme-specification).
 
 A theme is a 2-level deep object of labeled theme keys and CSS property object values, which is passed directly to the `Deck` component.
-
-<a name="theme-object"></a>
 
 ## Theme Object
 
@@ -30,8 +26,6 @@ const theme = {
 };
 ```
 
-<a name="usage"></a>
-
 ## Usage
 
 Components in Spectacle can accept either a value label such as `primary` or a raw CSS value like `#f00`.
@@ -41,8 +35,6 @@ The label `primary` returns `#f00` since the `backgroundColor` prop (CSS propert
 <Box backgroundColor="primary" />
 <Box backgroundColor="#f00" />
 ```
-
-<a name="theme-keys-css-props"></a>
 
 ## Theme Keys
 
@@ -64,8 +56,6 @@ Common CSS properties are divided into theme keys, which you can override in you
 | `letterSpacings` | `letter-spacing`                                                        |
 | `shadows`        | `box-shadow`, `text-shadow`                                             |
 | `zIndices`       | `z-index`                                                               |
-
-<a name="deck-templates"></a>
 
 ## Deck Templates
 
@@ -89,8 +79,6 @@ A template in Spectacle is a fixed overlay of components that are presented on e
   </FlexBox>
 ))>
 ```
-
-<a name="scaled-spacing"></a>
 
 ## Scaled Spacing
 

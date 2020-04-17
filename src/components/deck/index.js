@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeContext, ThemeProvider } from 'styled-components';
 import normalize from 'normalize-newline';
@@ -362,7 +362,7 @@ const Deck = props => {
   }
 
   return (
-    <Fragment>
+    <>
       <DeckContext.Provider
         value={{
           state,
@@ -376,7 +376,7 @@ const Deck = props => {
       >
         {content}
       </DeckContext.Provider>
-    </Fragment>
+    </>
   );
 };
 

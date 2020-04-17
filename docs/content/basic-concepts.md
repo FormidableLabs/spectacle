@@ -3,11 +3,7 @@ title: Basic Concepts
 order: 1
 ---
 
-<a name="basic-concepts"></a>
-
 # Basic Concepts
-
-<a name="installation"></a>
 
 ## Installation
 
@@ -18,8 +14,6 @@ $ yarn add spectacle
 # or
 $ npm install --save spectacle
 ```
-
-<a name="development"></a>
 
 ## Getting Started with Development
 
@@ -33,13 +27,9 @@ To start the development server at port `3000` against a JavaScript-based deck (
 
 To start the development server at port `3100` against a Markdown-based deck (found in `examples/md`) use `yarn start:md` or `npm run start:md`.
 
-<a name="writing-your-presentation"></a>
-
 ## Writing your Presentation
 
 After installing Spectacle, all of your presentation and style logic will live in a main file, while your content exists either inline (with JSX) or in a separate markdown file (using MDX).
-
-<a name="mdx--markdown"></a>
 
 ### MDX/Markdown
 
@@ -80,11 +70,9 @@ To see a more complete examples of a presentation generated with MDX or Markdown
 - [`.mdx` Example](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/mdx) (`spectacle-mdx-loader`)
 - [`.mdx` + Babel Example](https://github.com/FormidableLabs/spectacle-cli/tree/master/examples/cli-mdx-babel) (`spectacle-cli`)
 
-For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](/docs/extensions#spectacle-cli).
+For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](./extensions#spectacle-cli).
 
-**Note:** If you want to manually create the build infrastructure for MDX support in a Spectacle deck, you can add the [`spectacle-mdx-loader`](https://github.com/FormidableLabs/spectacle-mdx-loader) plugin to your webpack configuration. Straight Markdown just requires the webpack `raw-loader`.
-
-<a name="jsx"></a>
+**Note:** If you want to manually create the build infrastructure for MDX support in a Spectacle deck, you can add the [`spectacle-mdx-loader`](https://github.com/FormidableLabs/spectacle-mdx-loader) plugin to your webpack configuration.
 
 ### JSX
 
@@ -99,8 +87,6 @@ You can also bootstrap a fresh JSX project with `spectacle-boilerplate`:
 ```bash
 $ spectacle-boilerplate
 ```
-
-<a name="one-html-page"></a>
 
 ### One HTML Page
 
@@ -147,8 +133,6 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
 ```
 
 To see a complete example of a presentation written as a single HTML page, please check out our [sample one page presentation](https://github.com/FormidableLabs/spectacle/blob/master/examples/one-page.html).
-
-<a name="presenting"></a>
 
 ## Presenting
 

@@ -3,11 +3,7 @@ title: FAQ
 order: 8
 ---
 
-<a main="frequently-asked-questions"></a>
-
 # Frequently Asked Questions
-
-<a main="faq-1"></a>
 
 ## Can I export my slides for use elsewhere?
 
@@ -15,9 +11,7 @@ Yes - you can export your slides in PDF format. Appending your presentation URL 
 
 If you want a black & white version of your slides printed to PDF, append your URL with `?export&print` to get a printer-friendly, flattened, black & white print out of your slideshow.
 
-For more info about the query parameters Spectacle supports, please check out our section about it in the [advanced concepts documentation](/docs/advanced-concepts#query-parameters).
-
-<a main="faq-2"></a>
+For more info about the query parameters Spectacle supports, please check out our section about it in the [advanced concepts documentation](./advanced-concepts#query-parameters).
 
 ## Can I write my presentation in TypeScript?
 

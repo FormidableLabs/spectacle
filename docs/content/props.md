@@ -3,13 +3,9 @@ title: Base Props
 order: 3
 ---
 
-<a name="base-props"></a>
-
 # Base Props
 
-The following are a handful of standard base props many components consume. For a complete list of available components and the props they consume, please see our complete [API Reference](/docs/api-reference).
-
-<a name="transition-object"></a>
+The following are a handful of standard base props many components consume. For a complete list of available components and the props they consume, please see our complete [API Reference](./api-reference).
 
 ## Transition Object
 
@@ -34,11 +30,9 @@ const transition = {
 };
 ```
 
-<a name="background"></a>
-
 ## Background
 
-**Background** props used by [`Slide`](/docs/api-reference#slide).
+**Background** props used by [`Slide`](./api-reference#slide).
 
 | Name                 | PropType         | Description                  | Example                        |
 | -------------------- | ---------------- | ---------------------------- | ------------------------------ |
@@ -47,22 +41,18 @@ const transition = {
 | `backgroundPosition` | PropTypes.string | Set CSS `backgroundPosition` | `center`                       |
 | `backgroundRepeat`   | PropTypes.string | Set CSS `backgroundRepeat`   | `no-repeat`                    |
 
-<a name="color"></a>
-
 ## Color
 
-**Color** props are used by [`CodeSpan`](/docs/api-reference#code-span), [`Text`](/docs/api-reference#text), [`Link`](/docs/api-reference#link), [`Heading`](/docs/api-reference#heading), [`Quote`](/docs/api-reference#quote), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), [`TableCell`](/docs/api-reference#table-cell), [`UnorderedList`](/docs/api-reference#unordered-list), [`OrderedList`](/docs/api-reference#ordered-list), and [`ListItem`](/docs/api-reference#list-item).
+**Color** props are used by [`CodeSpan`](./api-reference#code-span), [`Text`](./api-reference#text), [`Link`](./api-reference#link), [`Heading`](./api-reference#heading), [`Quote`](./api-reference#quote), [`Table`](./api-reference#table), [`TableHeader`](./api-reference#table-header), [`TableBody`](./api-reference#table-body), [`TableRow`](./api-reference#table-row), [`TableCell`](./api-reference#table-cell), [`UnorderedList`](./api-reference#unordered-list), [`OrderedList`](./api-reference#ordered-list), and [`ListItem`](./api-reference#list-item).
 
 | Name                      | PropType         | Description                                             | Example                  |
 | ------------------------- | ---------------- | ------------------------------------------------------- | ------------------------ |
 | `color`                   | PropTypes.string | Set CSS `color` value or `color` theme value            | `#abc123` or `primary`   |
 | `bg` or `backgroundColor` | PropTypes.string | Set CSS `background-color` value or `color` theme value | `#abc123` or `secondary` |
 
-<a name="space"></a>
-
 ## Space
 
-**Space** props used by [`Box`](/docs/api-reference#box), [`FlexBox`](/docs/api-reference#flex-box), [`Grid`](/docs/api-reference#grid), [`CodeSpan`](/docs/api-reference#code-span), [`Text`](/docs/api-reference#text), [`Link`](/docs/api-reference#link), [`Heading`](/docs/api-reference#heading), [`Quote`](/docs/api-reference#quote), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), [`TableCell`](/docs/api-reference#table-cell), [`UnorderedList`](/docs/api-reference#unordered-list), [`OrderedList`](/docs/api-reference#ordered-list), and [`ListItem`](/docs/api-reference#list-item).
+**Space** props used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), [`Grid`](./api-reference#grid), [`CodeSpan`](./api-reference#code-span), [`Text`](./api-reference#text), [`Link`](./api-reference#link), [`Heading`](./api-reference#heading), [`Quote`](./api-reference#quote), [`Table`](./api-reference#table), [`TableHeader`](./api-reference#table-header), [`TableBody`](./api-reference#table-body), [`TableRow`](./api-reference#table-row), [`TableCell`](./api-reference#table-cell), [`UnorderedList`](./api-reference#unordered-list), [`OrderedList`](./api-reference#ordered-list), and [`ListItem`](./api-reference#list-item).
 
 | Name                    | PropType         | Description                                                             | Example                             |
 | ----------------------- | ---------------- | ----------------------------------------------------------------------- | ----------------------------------- |
@@ -81,27 +71,23 @@ const transition = {
 | `px` or `paddingX`      | PropTypes.string | Set CSS `padding-left` and `padding-right` value or `space` theme value | `1em` or `secondary`                |
 | `py` or `paddingY`      | PropTypes.string | Set CSS `padding-top` and `padding-bottom` value or `space` theme value | `5px` or `tertiary`                 |
 
-<a name="typography"></a>
-
 ## Typography
 
-**Typography** props are used by [`CodeSpan`](/docs/api-reference#code-span), [`Text`](/docs/api-reference#text), [`Link`](/docs/api-reference#link), [`Heading`](/docs/api-reference#heading), [`Quote`](/docs/api-reference#quote), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), [`TableCell`](/docs/api-reference#table-cell), [`UnorderedList`](/docs/api-reference#unordered-list), [`OrderedList`](/docs/api-reference#ordered-list), and [`ListItem`](/docs/api-reference#list-item).
+**Typography** props are used by [`CodeSpan`](./api-reference#code-span), [`Text`](./api-reference#text), [`Link`](./api-reference#link), [`Heading`](./api-reference#heading), [`Quote`](./api-reference#quote), [`Table`](./api-reference#table), [`TableHeader`](./api-reference#table-header), [`TableBody`](./api-reference#table-body), [`TableRow`](./api-reference#table-row), [`TableCell`](./api-reference#table-cell), [`UnorderedList`](./api-reference#unordered-list), [`OrderedList`](./api-reference#ordered-list), and [`ListItem`](./api-reference#list-item).
 
-| Name            | PropType         | Description                                                    | Example                                                    |
-| --------------- | ---------------- | -------------------------------------------------------------- | ---------------------------------------------------------- |
-| `fontFamily`    | PropTypes.string | Set CSS `font-family` value or `fonts` theme value             | `Helvetica` or `primary`                                   |
-| `fontSize`      | PropTypes.string | Set CSS `font-size` value or `fontSizes` theme value           | `16px` or `bodyCopy`                                       |
-| `fontWeight`    | PropTypes.string | Set CSS `font-weight` value or `fontWeights` theme value       | `400`, `bold`, or [`Heading`](/docs/api-reference#heading) |
-| `lineHeight`    | PropTypes.string | Set CSS `line-height` value or `fontWeights` theme value       | `1.5em` or `paragraph`                                     |
-| `letterSpacing` | PropTypes.string | Set CSS `letter-spacing` value or `letterSpacings` theme value | `1px` or `spreadOutText`                                   |
-| `textAlign`     | PropTypes.string | Set CSS `text-align` value                                     | `left`                                                     |
-| `fontStyle`     | PropTypes.string | Set CSS `font-style` value                                     | `normal` or `italic`                                       |
-
-<a name="layout"></a>
+| Name            | PropType         | Description                                                    | Example                                                |
+| --------------- | ---------------- | -------------------------------------------------------------- | ------------------------------------------------------ |
+| `fontFamily`    | PropTypes.string | Set CSS `font-family` value or `fonts` theme value             | `Helvetica` or `primary`                               |
+| `fontSize`      | PropTypes.string | Set CSS `font-size` value or `fontSizes` theme value           | `16px` or `bodyCopy`                                   |
+| `fontWeight`    | PropTypes.string | Set CSS `font-weight` value or `fontWeights` theme value       | `400`, `bold`, or [`Heading`](./api-reference#heading) |
+| `lineHeight`    | PropTypes.string | Set CSS `line-height` value or `fontWeights` theme value       | `1.5em` or `paragraph`                                 |
+| `letterSpacing` | PropTypes.string | Set CSS `letter-spacing` value or `letterSpacings` theme value | `1px` or `spreadOutText`                               |
+| `textAlign`     | PropTypes.string | Set CSS `text-align` value                                     | `left`                                                 |
+| `fontStyle`     | PropTypes.string | Set CSS `font-style` value                                     | `normal` or `italic`                                   |
 
 ## Layout
 
-**Layout** props are used by [`Box`](/docs/api-reference#box), [`FlexBox`](/docs/api-reference#flex-box), [`Grid`](/docs/api-reference#grid), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), and [`TableCell`](/docs/api-reference#table-cell).
+**Layout** props are used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), [`Grid`](./api-reference#grid), [`Table`](./api-reference#table), [`TableHeader`](./api-reference#table-header), [`TableBody`](./api-reference#table-body), [`TableRow`](./api-reference#table-row), and [`TableCell`](./api-reference#table-cell).
 
 | Name        | PropType                             | Description                                                                                                                                                                              | Example                                    |
 | ----------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
@@ -117,11 +103,9 @@ const transition = {
 | `overflowX` | PropTypes.string                     | Set CSS `overflow-x` value                                                                                                                                                               | `hidden`                                   |
 | `overflowY` | PropTypes.string                     | Set CSS `overflow-y` value                                                                                                                                                               | `visible`                                  |
 
-<a name="flex"></a>
-
 ## Flex
 
-**Flex** props are used by [`FlexBox`](/docs/api-reference#flex-box).
+**Flex** props are used by [`FlexBox`](./api-reference#flex-box).
 
 | Name             | PropType                             | Description                     | Example         |
 | ---------------- | ------------------------------------ | ------------------------------- | --------------- |
@@ -136,11 +120,9 @@ const transition = {
 | `alignSelf`      | PropTypes.string                     | Set CSS `align-self` value      | `center`        |
 | `order`          | PropTypes.number                     | Set CSS `order` value           | `1`             |
 
-<a name="grid"></a>
-
 ## Grid
 
-**Grid** props are used by [`Grid`](/docs/api-reference#grid).
+**Grid** props are used by [`Grid`](./api-reference#grid).
 
 | Name                  | PropType                             | Description                           | Example                                       |
 | --------------------- | ------------------------------------ | ------------------------------------- | --------------------------------------------- |
@@ -157,11 +139,9 @@ const transition = {
 | `gridTemplateAreas`   | PropTypes.string                     | Set CSS `grid-template-area` value    | `a b` or `inherit`                            |
 | `gridArea`            | PropTypes.string                     | Set CSS `grid-area` value             | `a` or `2 / 1 / 4`                            |
 
-<a name="position"></a>
-
 ## Position
 
-**Position** props are used by [`Box`](/docs/api-reference#box), [`FlexBox`](/docs/api-reference#flex-box), and [`Grid`](/docs/api-reference#grid).
+**Position** props are used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), and [`Grid`](./api-reference#grid).
 
 | Name       | PropType         | Description              | Example    |
 | ---------- | ---------------- | ------------------------ | ---------- |
@@ -172,11 +152,9 @@ const transition = {
 | `bottom`   | PropTypes.number | Set CSS `bottom` value   | `10`       |
 | `left`     | PropTypes.number | Set CSS `left` value     | `5`        |
 
-<a name="border"></a>
-
 ## Border
 
-**Border** props are used by [`Box`](/docs/api-reference#box), [`FlexBox`](/docs/api-reference#flex-box), [`Grid`](/docs/api-reference#grid), [`Table`](/docs/api-reference#table), [`TableHeader`](/docs/api-reference#table-header), [`TableBody`](/docs/api-reference#table-body), [`TableRow`](/docs/api-reference#table-row), and [`TableCell`](/docs/api-reference#table-cell).
+**Border** props are used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), [`Grid`](./api-reference#grid), [`Table`](./api-reference#table), [`TableHeader`](./api-reference#table-header), [`TableBody`](./api-reference#table-body), [`TableRow`](./api-reference#table-row), and [`TableCell`](./api-reference#table-cell).
 
 | Name                      | PropType                             | Description                                    | Example              |
 | ------------------------- | ------------------------------------ | ---------------------------------------------- | -------------------- |
