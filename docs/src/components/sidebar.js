@@ -42,18 +42,6 @@ const HeroBadgeWrapper = styled.div`
   }
 `;
 
-export const relative = (from, to) => {
-  if (!from || !to) return null;
-  let [toPath, hash] = to.split('#');
-  let pathname = path.relative(path.dirname(from), toPath);
-  if (!pathname)
-    pathname = path.join(path.relative(from, toPath), path.basename(toPath));
-  if (from.endsWith('/')) pathname = '../' + pathname + '/';
-  if (!pathname.endsWith('/')) pathname += '/';
-  if (hash) pathname += `#${hash}`;
-  return { pathname };
-};
-
 export const SidebarStyling = ({ children, sidebarOpen, closeSidebar }) => {
   const basepath = useBasepath() || '';
   const homepage = basepath ? `/${basepath}/` : '/';
@@ -98,15 +86,10 @@ const Sidebar = props => {
   const currentPage = useMarkdownPage();
   const location = useLocation();
   const tree = useMarkdownTree();
-
   const sidebarItems = useMemo(() => {
     if (!currentPage || !tree || !tree.children || !location) {
       return null;
     }
-
-    const pathname = location.pathname.endsWith('/')
-      ? currentPage.path + '/'
-      : currentPage.path;
 
     let children = tree.children;
     if (tree.frontmatter && tree.originalPath) {
@@ -116,16 +99,17 @@ const Sidebar = props => {
     return children.map(page => {
       const pageChildren = page.children || [];
 
+      const to = pageChildren.length
+        ? `/${pageChildren[0].path}`
+        : `/${page.path}`;
+
       const isActive = pageChildren.length
-        ? currentPage.path.startsWith(page.path)
-        : currentPage.path === page.path;
+        ? pageChildren.filter(ch => location.pathname.includes(ch.path)).length
+        : location.pathname.includes(page.path);
 
       return (
         <React.Fragment key={page.key}>
-          <SidebarNavItem
-            to={relative(pathname, page.path)}
-            isActive={() => isActive}
-          >
+          <SidebarNavItem to={to} isActive={() => isActive}>
             {page.frontmatter.title}
             {pageChildren.length ? <ChevronItem /> : null}
           </SidebarNavItem>
@@ -135,7 +119,7 @@ const Sidebar = props => {
               {pageChildren.map(childPage => (
                 <SidebarNavSubItem
                   isActive={() => childPage.path === currentPage.path}
-                  to={relative(pathname, childPage.path)}
+                  to={`/${childPage.path}`}
                   key={childPage.key}
                 >
                   {childPage.frontmatter.title}

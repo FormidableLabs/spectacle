@@ -101,7 +101,7 @@ export const SidebarNavSubItemWrapper = styled.div`
 
 export const SidebarNavSubItem = styled(NavLink).attrs(() => ({}))`
   display: block;
-  color: ${p => p.theme.colors.passive};
+  color: ${p => p.theme.colors.textLight};
   font-weight: ${p => p.theme.fontWeights.body};
   text-decoration: none;
   margin-top: ${p => p.theme.spacing.xs};
