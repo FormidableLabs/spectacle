@@ -91,10 +91,6 @@ const Sidebar = props => {
       return null;
     }
 
-    // const pathname = location.pathname.endsWith('/')
-    //   ? currentPage.path + '/'
-    //   : currentPage.path;
-
     let children = tree.children;
     if (tree.frontmatter && tree.originalPath) {
       children = [{ ...tree, children: undefined }, ...children];
