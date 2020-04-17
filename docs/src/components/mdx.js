@@ -8,7 +8,6 @@ import { useMarkdownPage } from 'react-static-plugin-md-pages';
 import Highlight, { Prism } from 'prism-react-renderer';
 import github from 'prism-react-renderer/themes/github';
 import SvgAnchor from '../assets/anchor';
-import { relative } from './sidebar';
 
 const getLanguage = className => {
   const res = className.match(/language-(\w+)/);
@@ -253,15 +252,10 @@ const MdLink = ({ href, children }) => {
   }
 
   if (!/^\w+:/.test(href)) {
-    console.log(href)
+    const dir = path.dirname(currentPage.originalPath);
     const basePath = location.pathname.replace(currentPage.originalPath, '');
-    const to = href.includes(basePath) ? href : `${basePath}${href}`;
-    // const hasTrailingSlash = location.pathname.endsWith('/');
-    // const from = !hasTrailingSlash ? currentPage.path + '/' : currentPage.path;
-    // const to = hasTrailingSlash
-    //   ? path.join(path.dirname(currentPage.originalPath), href)
-    //   : path.join(currentPage.path, href);
-    // // return <Link to={relative(from, to)}>{children}</Link>;
+    const head = dir === '.' ? basePath : `${basePath}${dir}`;
+    const to = href.includes(head) ? href : path.resolve(`/${head}/${href}`);
     return <Link to={to}>{children}</Link>;
   }
 
