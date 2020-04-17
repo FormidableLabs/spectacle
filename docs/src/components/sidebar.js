@@ -122,10 +122,7 @@ const Sidebar = props => {
 
       return (
         <React.Fragment key={page.key}>
-          <SidebarNavItem
-            to={relative(pathname, page.path)}
-            isActive={() => isActive}
-          >
+          <SidebarNavItem to={`/${page.path}`} isActive={() => isActive}>
             {page.frontmatter.title}
             {pageChildren.length ? <ChevronItem /> : null}
           </SidebarNavItem>

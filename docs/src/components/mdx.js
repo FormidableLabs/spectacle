@@ -248,17 +248,25 @@ const MdLink = ({ href, children }) => {
     return null;
   }
 
-  if (!/^\w+:/.test(href) && !href.startsWith('#')) {
-    const hasTrailingSlash = location.pathname.endsWith('/');
-    const from = !hasTrailingSlash ? currentPage.path + '/' : currentPage.path;
-    const to = hasTrailingSlash
-      ? path.join(path.dirname(currentPage.originalPath), href)
-      : path.join(currentPage.path, href);
-    return <Link to={relative(from, to)}>{children}</Link>;
+  if (href.startsWith('#')) {
+    return <Link to={href}>{children}</Link>;
+  }
+
+  if (!/^\w+:/.test(href)) {
+    console.log(href)
+    const basePath = location.pathname.replace(currentPage.originalPath, '');
+    const to = href.includes(basePath) ? href : `${basePath}${href}`;
+    // const hasTrailingSlash = location.pathname.endsWith('/');
+    // const from = !hasTrailingSlash ? currentPage.path + '/' : currentPage.path;
+    // const to = hasTrailingSlash
+    //   ? path.join(path.dirname(currentPage.originalPath), href)
+    //   : path.join(currentPage.path, href);
+    // // return <Link to={relative(from, to)}>{children}</Link>;
+    return <Link to={to}>{children}</Link>;
   }
 
   return (
-    <a rel="external" href={href}>
+    <a rel="noopener noreferrer" target="_blank" href={href}>
       {children}
     </a>
   );
