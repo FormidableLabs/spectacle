@@ -1,4 +1,4 @@
 {
-  "public": "dist-prod",
+  "public": "dist",
   "trailingSlash": true
 }
