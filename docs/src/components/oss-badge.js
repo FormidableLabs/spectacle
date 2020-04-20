@@ -5,7 +5,7 @@ import { ProjectBadge, FeaturedBadge } from 'formidable-oss-badges';
 
 export const FEATURED_PROJECTS = ['victory', 'urql', 'renature'];
 
-const OSSImage = styled.div`
+const OSSImage = styled.a`
   width: 240px;
   max-width: 240px;
 `;
@@ -15,10 +15,16 @@ export const OSSBadge = ({ project }) => {
   const isFeaturedProject = Boolean(
     FEATURED_PROJECTS.find(p => p === projectName)
   );
+
   return (
-    <OSSImage>
+    <OSSImage
+      href={project.link}
+      alt={`Visit ${projectName}'s website.`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {isFeaturedProject ? (
-        <FeaturedBadge isHoverable name={projectName} />
+        <FeaturedBadge isHoverable={true} name={projectName} />
       ) : (
         <ProjectBadge
           abbreviation={project.abbreviation}
@@ -34,6 +40,7 @@ OSSBadge.propTypes = {
   project: PropTypes.shape({
     title: PropTypes.string.isRequired,
     abbreviation: PropTypes.string,
-    color: PropTypes.string
+    color: PropTypes.string,
+    link: PropTypes.string
   })
 };
