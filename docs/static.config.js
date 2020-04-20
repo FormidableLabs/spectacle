@@ -1,12 +1,12 @@
 import Document from './src/html';
 import constants from './src/constants';
 
-const isStaging = process.env.REACT_STATIC_STAGING === 'true';
+const { landerBasePath, title } = constants;
 
 export default {
   paths: {
     src: 'src',
-    dist: isStaging ? `dist/${constants.landerBasePath}` : 'dist',
+    dist: `dist/${landerBasePath}`,
     buildArtifacts: 'node_modules/.cache/react-static/artifacts/',
     devDist: 'node_modules/.cache/react-static/dist/',
     temp: 'node_modules/.cache/react-static/temp/',
@@ -25,12 +25,12 @@ export default {
     'react-static-plugin-sitemap',
     'react-static-plugin-react-router'
   ],
-  basePath: constants.landerBasePath,
-  stagingBasePath: '',
-  devBasePath: '',
+  basePath: landerBasePath,
+  stagingBasePath: landerBasePath,
+  devBasePath: landerBasePath,
   Document,
   getSiteData: () => ({
-    title: constants.title
+    title
   }),
   getRoutes: async () => [
     {
