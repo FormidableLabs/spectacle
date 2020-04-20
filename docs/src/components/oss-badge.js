@@ -18,7 +18,7 @@ export const OSSBadge = ({ project }) => {
   return (
     <OSSImage>
       {isFeaturedProject ? (
-        <FeaturedBadge name={projectName} />
+        <FeaturedBadge isHoverable name={projectName} />
       ) : (
         <ProjectBadge
           abbreviation={project.abbreviation}
