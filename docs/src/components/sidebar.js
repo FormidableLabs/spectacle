@@ -102,8 +102,8 @@ const Sidebar = props => {
       const pageChildren = page.children || [];
 
       const to = pageChildren.length
-        ? `${baseURL}/${pageChildren[0].path}`
-        : `${baseURL}/${page.path}`;
+        ? `${baseURL}/${pageChildren[0].path}/`
+        : `${baseURL}/${page.path}/`;
 
       const isActive = pageChildren.length
         ? pageChildren.filter(ch => location.pathname.includes(ch.path)).length
@@ -121,7 +121,7 @@ const Sidebar = props => {
               {pageChildren.map(childPage => (
                 <SidebarNavSubItem
                   isActive={() => childPage.path === currentPage.path}
-                  to={`${baseURL}/${childPage.path}`}
+                  to={`${baseURL}/${childPage.path}/`}
                   key={childPage.key}
                 >
                   {childPage.frontmatter.title}

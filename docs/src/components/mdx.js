@@ -255,7 +255,9 @@ const MdLink = ({ href, children }) => {
     const dir = path.dirname(currentPage.originalPath);
     const basePath = location.pathname.replace(currentPage.originalPath, '');
     const head = dir === '.' ? basePath : `${basePath}${dir}`;
-    const to = href.includes(head) ? href : path.resolve(`/${head}/${href}`);
+    const to = href.includes(head)
+      ? `${href}/`
+      : path.resolve(`/${head}/${href}/`);
     return <Link to={to}>{children}</Link>;
   }
 
