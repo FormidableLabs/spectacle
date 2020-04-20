@@ -1,59 +1,60 @@
 import { createGlobalStyle } from 'styled-components';
 
-const systemFonts = [
-  '-apple-system',
-  'BlinkMacSystemFont',
-  'Segoe UI',
-  'Roboto',
-  'Helvetica Neue',
-  'Arial',
-  'Noto Sans',
-  'sans-serif',
-  'Apple Color Emoji',
-  'Segoe UI Emoji',
-  'Segoe UI Symbol',
-  'Noto Color Emoji'
-];
-
 export const GlobalStyle = createGlobalStyle`
-  :root {
-    font-size: 10px;
+  * {
+    box-sizing: inherit;
+    min-width: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: ${p => p.theme.colors.textLight};
+    color: ${p => p.theme.colors.text};
+    font-family: ${p => p.theme.fonts.body};
+    font-size: ${p => p.theme.fontSizes.bodySmall};
+    font-weight: ${p => p.theme.fontWeights.body};  
+    line-height: ${p => p.theme.lineHeights.body};
+    text-rendering: optimizeLegibility;
+
+    @media ${p => p.theme.media.lg} {
+      font-size: ${p => p.theme.fontSizes.body};
+    }
   }
 
   html {
     box-sizing: border-box;
-  }
-
-  * {
-    box-sizing: inherit;
-  }
-
-  body {
-    background: #fff;
-    color: #3b3b3b;
-    font-family: ${systemFonts.join(',')};
-    font-size: 1.3rem;
-    margin: 0;
-    padding: 0;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-    letter-spacing: 0;
+    font-size: 62.5%;
+    overflow-x: hidden;
   }
 
   a {
     text-decoration: none;
+    color: ${p => p.theme.colors.accentLight};
+    font-weight: ${p => p.theme.fontWeights.links};
   }
 
+  table, pre, p, h1, h2, h3 {
+    margin: 0 0 ${p => p.theme.spacing.md} 0;
+  }
+
+  h1, h2, h3 {
+    font-family: ${p => p.theme.fonts.heading};
+    font-weight: ${p => p.theme.fontWeights.heading};
+    line-height: ${p => p.theme.lineHeights.heading};
+    color: ${p => p.theme.colors.heading};
+  }
+
+  h1 {
+    font-size: ${p => p.theme.fontSizes.h1};
+  }
+  h2 {
+    font-size: ${p => p.theme.fontSizes.h2};
+  }
+  h3 {
+    font-size: ${p => p.theme.fontSizes.h3};
+  }
   img {
     max-width: 100%;
-  }
-
-
-  .gatsby-highlight {
-    code {
-      border: none !important;
-    }
   }
 `;

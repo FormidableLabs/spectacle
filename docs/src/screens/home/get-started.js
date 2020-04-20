@@ -1,34 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
 import { BodyCopy } from '../../components/body-copy';
 import { Button } from '../../components/button';
 import { SectionTitle } from '../../components/section-title';
+import { Stack } from '../../components/stack';
 import { Wrapper } from '../../components/wrapper';
-import constants from '../../constants';
+import { theme } from '../../theme';
 
-const OuterWrapper = styled.div`
-  background: ${constants.color};
-`;
-
-class GetStarted extends React.Component {
-  render() {
-    const { getStartedObj } = this.props;
-
-    return (
-      <OuterWrapper>
-        <Wrapper>
-          <SectionTitle>Get Started</SectionTitle>
-          <BodyCopy>{getStartedObj.description}</BodyCopy>
-          <Button to={getStartedObj.link}>Documentation</Button>
-        </Wrapper>
-      </OuterWrapper>
-    );
-  }
-}
+const GetStarted = ({ getStarted }) => (
+  <Wrapper background={theme.colors.bgLight}>
+    <Stack>
+      <SectionTitle>Get Started</SectionTitle>
+      <BodyCopy>{getStarted.description}</BodyCopy>
+      <Button
+        color={theme.colors.button}
+        text={theme.colors.bg}
+        to={getStarted.link}
+      >
+        Documentation
+      </Button>
+    </Stack>
+  </Wrapper>
+);
 
 GetStarted.propTypes = {
-  getStartedObj: PropTypes.object
+  getStarted: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default GetStarted;

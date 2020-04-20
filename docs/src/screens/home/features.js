@@ -1,50 +1,80 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import { BodyCopy } from '../../components/body-copy';
 import { SecondaryTitle } from '../../components/secondary-title';
 import { SectionTitle } from '../../components/section-title';
+import { Stack } from '../../components/stack';
 import { Wrapper } from '../../components/wrapper';
+import { theme } from '../../theme';
+
+const FeaturesContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 3rem;
+  max-width: 132rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media ${p => p.theme.media.sm} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media ${p => p.theme.media.md} {
+    grid-gap: 5rem;
+  }
+`;
 
 const FeatureCard = styled.div`
-  margin: 0 0 4rem;
-  width: 100%;
-  @media (min-width: 768px) {
-    margin: 0;
-    width: calc(1 / 3 * 100% - (1 - 1 / 3) * 40px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
   }
-  @media (min-width: 1024px) {
-    width: calc(1 / 3 * 100% - (1 - 1 / 3) * 80px);
+
+  > * + * {
+    margin-top: 2rem;
   }
 `;
 
-const Image = styled.img`
-  box-shadow: -0.5rem 0.5rem 0 rgba(0, 0, 0, 0.5);
-  @media (min-width: 1024px) {
-    max-width: initial !important;
-    box-shadow: -1.5rem 1.5rem 0 rgba(0, 0, 0, 0.5);
-  }
+const FeatureInfo = styled.div`
+  max-width: 30rem;
 `;
 
-class Features extends React.Component {
-  render() {
-    return (
-      <Wrapper>
-        <SectionTitle>Features</SectionTitle>
-        {this.props.featureArray.map(feature => (
-          <FeatureCard key={feature.title}>
-            <Image src={feature.icon} />
-            <SecondaryTitle>{feature.title}</SecondaryTitle>
-            <BodyCopy>{feature.description}</BodyCopy>
-          </FeatureCard>
-        ))}
-      </Wrapper>
-    );
-  }
-}
+const Features = ({ features }) => (
+  <Wrapper background={theme.colors.bgLight}>
+    <Stack>
+      <SectionTitle>Features</SectionTitle>
+      <FeaturesContainer>
+        {features.map(feature => {
+          return (
+            <FeatureCard key={feature.title}>
+              <img src={feature.icon} alt={feature.title} />
+              <FeatureInfo>
+                <SecondaryTitle>{feature.title}</SecondaryTitle>
+                <BodyCopy>{feature.description}</BodyCopy>
+              </FeatureInfo>
+            </FeatureCard>
+          );
+        })}
+      </FeaturesContainer>
+    </Stack>
+  </Wrapper>
+);
 
 Features.propTypes = {
-  featureArray: PropTypes.array
+  features: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired
 };
 
 export default Features;
