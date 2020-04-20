@@ -109,9 +109,12 @@ const MoreOSS = ({ oss }) => (
         })}
       </OSSCardContainer>
       <Button
+        as="a"
+        target="_blank"
+        rel="noopener noreferrer"
         color={theme.colors.bg}
         text={theme.colors.button}
-        to="https://formidable.com/open-source/"
+        href="https://formidable.com/open-source/"
       >
         View All
       </Button>
