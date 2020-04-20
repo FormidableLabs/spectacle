@@ -113,7 +113,7 @@ const Presentation = () => (
     <Slide>
       <FlexBox height="100%" flexDirection="column">
         <Heading margin="0px" fontSize="150px">
-          SPECTACLE
+          ✨<i>Spectacle</i> ✨
         </Heading>
         <Heading margin="0px" fontSize="h2">
           A ReactJS Presentation Library

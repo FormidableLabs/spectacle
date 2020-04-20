@@ -30,20 +30,16 @@ const HeroNPMCopy = styled.p`
 const HeroNPMButton = styled.button`
   width: 8rem;
   height: 4rem;
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.bg};
   transition: background 0.4s;
   font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
   letter-spacing: 1px;
-  color: #383838;
+  color: ${({ theme }) => theme.colors.textDark};
   border: 0;
   text-transform: uppercase;
   cursor: copy;
   &:hover {
-    background: #fc6986;
+    background: ${({ theme }) => theme.colors.buttonLightHover};
   }
 `;
 

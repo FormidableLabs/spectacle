@@ -58,8 +58,8 @@ jobs:
         - yarn run check-ci
         # Build and deploy to staging.
         - yarn run clean
-        - yarn run stage:build
-        - yarn run stage:deploy
+        - yarn run build
+        - yarn run deploy:stage
       deploy:
         # Deploy master to production
         - provider: script
@@ -67,8 +67,8 @@ jobs:
           # _Note_: `deploy.script` must be a **single** command string
           script: >-
             yarn run clean &&
-            yarn run prod:build &&
-            yarn run prod:deploy
+            yarn run build &&
+            yarn run deploy:prod
           skip_cleanup: true
           on:
             branch: master
