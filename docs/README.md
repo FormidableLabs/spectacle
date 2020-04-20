@@ -28,8 +28,7 @@ $ yarn serve
 
 Then visit: http://localhost:4000/open-source/spectacle/
 
-Both of these steps are important for validating that both the `basePath` used by the static HTML output and the `basename` used
-by the client-side router are working as expected. This is also where you'll want to validate that there are no hardcoded, inlined, or malformed asset paths that worked locally but will not resolve correctly in production!
+Both of these steps are important for validating that both the `basePath` used by the static HTML output and the `basename` used by the client-side router are working as expected. This is also where you'll want to validate that there are no hardcoded, inlined, or malformed asset paths that worked locally but will not resolve correctly in production!
 
 ## Deployment
 
@@ -45,8 +44,8 @@ To test things out locally find the `Surge.sh` entry in 1password in the IC vaul
 
 ```bash
 $ cd docs
-$ yarn clean
-$ yarn build
+$ yarn clean && \
+  yarn build
 $ SURGE_LOGIN=<SNIPPED> \
   SURGE_TOKEN=<SNIPPED> \
   TRAVIS_PULL_REQUEST=12 \
@@ -77,8 +76,8 @@ Then build for production and deploy with dry run to check things:
 
 ```bash
 $ cd docs
-$ yarn clean
-$ yarn build
+$ yarn clean && \
+  yarn build
 $ aws-vault exec fmd-spectacle-ci --no-session -- \
   yarn deploy:prod --dryrun
 ```
