@@ -11,8 +11,6 @@ sudo: false
 branches:
   only:
     - master
-    # TODO(rewrite): Remove this!!!
-    - task/rewrite-docs
 
 env:
   global:
