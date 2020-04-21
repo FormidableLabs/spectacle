@@ -1,15 +1,11 @@
 ---
-title: Getting Started - A Tutorial
+title: Getting Started
 order: 6
 ---
-
-<a name="tutorial"></a>
 
 # Getting Started with Spectacle: A Tutorial
 
 In this guide, we'll show you a couple of different ways to get started with Spectacle and walk you through the creation and customization of a presentation deck.
-
-<a name="option-one"></a>
 
 ## Option One: Using a standard React-based web app
 
@@ -42,11 +38,9 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 4. And you're good to go! Using `create-react-app`'s built-in `start` script, you can start a hot-reloading server to begin building your Spectacle presentation by running `yarn run start` or `npm run start`.
 
-<a name="option-two"></a>
-
 ## Option Two: Using Markdown and the Spectacle CLI
 
-1. Create a new markdown file. You can use `.md` or `.mdx` (\_MDX lets you mix JSX components inside markdown).
+1. Create a new markdown file. You can use `.md` or `.mdx` (MDX lets you mix JSX components inside markdown).
 
    You can use this as a starter:
 
@@ -76,23 +70,17 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 3. And you're good to go! The web server you started supports live refreshing and will update your deck as you make changes to the markdown file.
 
-<a name="option-three"></a>
-
 ## Option Three: Using One Page
 
 One Page is a single self-contained `HTML` file that lets you build a deck using no build steps, using [htm](https://github.com/developit/htm) over JSX to reduce the dependencies and load time.
 
 As a self-contained entity, it already has references to the dependencies you need to author and launch a deck in a web browser. Since there is no tooling required, One Page is also optimal on tablets. The One Page `HTML` file can be downloaded from the `examples` directory [in this repository](https://unpkg.com/browse/spectacle@latest/examples/one-page.html).
 
-<a name="next-steps"></a>
-
 ## Next Steps
-
-<a name="styling"></a>
 
 ### Styling your Spectacle Deck
 
-The easiest way to apply consistent styles to your Spectacle deck is using [themes](/docs/themes).
+The easiest way to apply consistent styles to your Spectacle deck is using [themes](./themes).
 
 1. Create a theme JS file containing a single object export. Supplied properties will be merged with the default base theme (found in Spectacle at `src/theme/default-theme.js`).
 
@@ -116,7 +104,7 @@ The easiest way to apply consistent styles to your Spectacle deck is using [them
 
 2. Consume the theme using the approach of your choice:
 
-   a. To use a custom theme with a JSX (Option One) or HTM-deck (Option Three), supply the object to the `theme` prop in the `Deck` tag. `<Deck theme={customTheme}>`.
+   a. To use a custom theme with a JSX- (Option One) or HTM- (Option Three) Deck, supply the object to the `theme` prop in the `Deck` tag. `<Deck theme={customTheme}>`.
 
    b. To use a custom theme with the Markdown CLI (Option Two), supply the file using the `-t` argument.
 
@@ -125,13 +113,9 @@ The easiest way to apply consistent styles to your Spectacle deck is using [them
    $ spectacle -s my-slides.mdx -t custom-theme.js
    ```
 
-<a name="sharing"></a>
-
 ### Sharing your Spectacle Deck
 
-For more information on [presenting](/docs/basic-concepts#presenting), [exporting](/docs/advanced-concepts#exporting), [building](/docs/advanced-concepts#build--deployment), or [deploying](/docs/advanced-concepts#build--deployment) your Spectacle deck, please check out [the documentation on advanced concepts](/docs/advanced-concepts).
-
-<a name="documentation-contributing-and-source"></a>
+For more information on [presenting](./basic-concepts#presenting), [exporting](./advanced-concepts#exporting), [building](./advanced-concepts#build--deployment), or [deploying](./advanced-concepts#build--deployment) your Spectacle deck, please check out [the documentation on advanced concepts](./advanced-concepts).
 
 ## Documentation, Contributing, and Source
 

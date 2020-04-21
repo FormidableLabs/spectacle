@@ -8,7 +8,7 @@ const execa = require('execa');
 const PROJECT = 'spectacle';
 const DOCS_PATH = `open-source/${PROJECT}`;
 
-const SRC = path.resolve(__dirname, '../../dist');
+const SRC = path.resolve(__dirname, `../../dist/${DOCS_PATH}`);
 const BUCKET_NAME = 'formidable.com';
 const DEST = `s3://${path.join(BUCKET_NAME, DOCS_PATH)}`;
 
