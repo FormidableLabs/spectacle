@@ -20,7 +20,7 @@
     "prettier-all": "prettier --write '{src,static.config,scripts,content}/**/*.{js,jsx,md}'",
     "preversion": "yarn run lint && yarn run build",
     "build": "react-static build",
-    "serve": "serve -l 4000",
+    "serve": "formideploy serve --port 4000",
     "deploy:prod": "node scripts/deploy/aws.js",
     "deploy:stage": "node scripts/deploy/surge.js",
     "start": "react-static start",
