@@ -2,7 +2,7 @@ import React from 'react';
 import * as ReactIs from 'react-is';
 import isComponentType from './is-component-type';
 import Slide from '../components/slide';
-import Markdown from '../components/Markdown';
+import Markdown from '../components/markdown';
 import Appear from '../components/appear';
 import Stepper from '../components/stepper';
 
@@ -21,18 +21,22 @@ const NULL_VISITOR = {
 
 export default (children, visitor) => {
   React.Children.forEach(children, childNode => {
-    traverseDeckChild(childNode, visitor);
+    traverse(childNode, visitor);
   });
   return visitor;
 };
 
-const traverseDeckChild = (node, visitor) => {
-  const exit = visitor.enter?.call(visitor);
+const traverse = (node, visitor) => {
+  visitor.enter?.call(visitor, node);
   if (ReactIs.isFragment(node)) {
-    traverseChildren(node, visitor);
+    React.Children.forEach(node.children, childNode =>
+      traverse(childNode, visitor)
+    );
   } else if (isComponentType(node, Slide.name)) {
     visitor.enterSlide?.call(visitor, node);
-    traverseChildren(node, visitor);
+    React.Children.forEach(node.props.children, childNode =>
+      traverse(childNode, visitor)
+    );
     visitor.exitSlide?.call(visitor, node);
   } else if (isComponentType(node, Markdown.name)) {
     if (Boolean(node.props.containsSlides)) {
@@ -44,23 +48,21 @@ const traverseDeckChild = (node, visitor) => {
     visitor.visitAppear?.call(visitor, node);
   } else if (isComponentType(node, Stepper.name)) {
     visitor.visitStepper?.call(vistor, node);
+  } else if (ReactIs.isElement(node)) {
+    visitor.visitUnrecognizedNode?.call(visitor, node);
+    React.Children.forEach(node.props.children, childNode =>
+      traverse(childNode, visitor)
+    );
   } else {
-    visitor.visitUnrecognized?.call(visitor, node);
-    traverseChildren(node, visitor);
+    visitor.visitTextNode?.call(visitor, node);
   }
-  if (typeof exit === 'function') {
-    exit(node);
-  }
+  visitor.exit?.call(visitor, node);
 };
 
-const traverseChildren = (node, visitor) => {
-  React.Children.forEach(node.children, childNode =>
-    traverse(childNode, visitor)
-  );
-};
+const traverseChildren = (node, visitor) => {};
 
 const traverseMarkdownSlides = (node, visitor) => {
-  const rawMarkdown = React.Children.only(node.children);
+  const rawMarkdown = React.Children.only(node.props.children);
   const mdSlides = rawMarkdown.split(/\n\s*---\n/);
   for (const mdSlide of mdSlides) {
     const content = normalize(indentNormalizer(mdSlide));

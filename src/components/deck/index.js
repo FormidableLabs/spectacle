@@ -144,6 +144,8 @@ const Deck = props => {
     // visitMarkdownNotSlides: () => {},
   });
 
+  console.log(slideElementMap);
+
   const numberOfSlides = slides.length;
 
   if (numberOfSlides === 0) {
