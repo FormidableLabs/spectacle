@@ -23,6 +23,7 @@
     "version": "yarn clean && yarn build",
     "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.js/\"",
     "build-babel-esm": "builder run build-babel -- -d es",
+    "watch-babel-esm": "builder run build-babel-esm -- --watch",
     "build-babel-cjs": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"cjs\\\"}\" build-babel -- -d lib",
     "build-webpack-base": "webpack",
     "build-webpack-lib-dev": "builder run build-webpack-base -- --config webpack.config.dev.js",
@@ -55,7 +56,8 @@
   "peerDependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-is": "^16.9.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -87,6 +89,7 @@
     "raw-loader": "^4.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-is": "^16.9.0",
     "rimraf": "^3.0.0",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.4",

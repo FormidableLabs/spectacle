@@ -5,6 +5,7 @@ import normalize from 'normalize-newline';
 import indentNormalizer from '../../utils/indent-normalizer';
 import useDeck, { DeckContext } from '../../hooks/use-deck';
 import isComponentType from '../../utils/is-component-type';
+import visitDeckElements from '../../utils/visit-deck-elements';
 import useUrlRouting from '../../hooks/use-url-routing';
 import PresenterDeck from './presenter-deck';
 import AudienceDeck from './audience-deck';
@@ -78,7 +79,7 @@ const builtInTransitions = Object.keys(defaultTransition);
  * transitionEffect: based off of react sprint useTransition
  * }
  *
- * Note: Immediate is a React-Spring property that we pass to the animations
+  Not: Immediate is a React-Spring property that we pass to the animations
  * essentially it skips animations.
  */
 
@@ -94,26 +95,6 @@ const initialState = {
   resolvedInitialUrl: false
 };
 
-const mapMarkdownIntoSlides = (child, index) => {
-  if (
-    isComponentType(child, Markdown.name) &&
-    Boolean(child.props.containsSlides)
-  ) {
-    return child.props.children.split(/\n\s*---\n/).map((markdown, mdIndex) => {
-      const content = normalize(indentNormalizer(markdown));
-      const contentWithoutNotes = removeNotes(content);
-      const notes = isolateNotes(content);
-      return (
-        <Slide key={`md-slide-${index}-${mdIndex}`}>
-          <Markdown>{contentWithoutNotes}</Markdown>
-          <Notes>{notes}</Notes>
-        </Slide>
-      );
-    });
-  }
-  return child;
-};
-
 const Deck = props => {
   const {
     children,
@@ -125,30 +106,49 @@ const Deck = props => {
     template,
     transitionEffect
   } = props;
-  if (React.Children.count(children) === 0) {
-    throw new Error('Spectacle must have at least one slide to run.');
-  }
 
-  const filteredChildren = React.Children.map(children, mapMarkdownIntoSlides)
-    .reduce((acc, slide) => acc.concat(slide), [])
-    .filter(child => isComponentType(child, Slide.name));
+  // TODO: React.useMemo this somehow so we're not doing the traversal if we
+  // don't absolutely need to
 
-  const numberOfSlides = filteredChildren.length;
+  let currentSlide = null;
+  let slideIndex = -1;
+  const slideElementMap = {};
+  const slides = [];
+  visitDeckElements(children, {
+    enterSlide: slide => {
+      if (currentSlide) {
+        throw new Error('<Slide> elements should not be nested.');
+      } else {
+        slides.push(slide);
+        slideIndex += 1;
+        currentSlide = slide;
+        slideElementMap[slideIndex] = 0;
+      }
+    },
+    exitSlide: () => {
+      currentSlide = null;
+    },
+    visitAppear: () => {
+      // TODO: validate that we're inside a <Slide>
+      // TODO: other stuff is happening in search-children-appear
+      slideElementMap[slideIndex] += 1;
+    },
+    visitStepper: () => {
+      // TODO: validate that we're inside a <Slide>
+      // TODO: other stuff is happening in search-children-stepper
+      slideElementMap[slideIndex] += 1;
+    }
+    // TODO: console warnings if we're not in a <Slide>
+    // visitUnrecognized: () => {},
+    // TODO: console warnings if we're not in a <Slide>
+    // visitMarkdownNotSlides: () => {},
+  });
+
+  const numberOfSlides = slides.length;
 
   if (numberOfSlides === 0) {
     throw new Error('Spectacle must have at least one slide to run.');
   }
-
-  const slideElementMap = React.useMemo(() => {
-    return filteredChildren.reduce((map, slide, index) => {
-      const appearElements = searchChildrenForAppear(slide.props.children);
-      const stepperElements = searchChildrenForStepper(slide.props.children);
-
-      map[index] = appearElements + stepperElements;
-
-      return map;
-    }, {});
-  }, [filteredChildren]);
 
   // Initialise useDeck hook and get state and dispatch off of it
   const { state, dispatch } = useDeck({ ...initialState, numberOfSlides });
@@ -216,7 +216,7 @@ const Deck = props => {
 
   const { runTransition } = React.useContext(TransitionPipeContext);
   const slideTransitionEffect =
-    filteredChildren[state.currentSlide].props.transitionEffect || {};
+    slides[state.currentSlide].props.transitionEffect || {};
   const transitionRef = React.useRef(null);
   const broadcastChannelRef = React.useRef(null);
 
@@ -306,7 +306,7 @@ const Deck = props => {
   let content = null;
   if (state.resolvedInitialUrl) {
     if (state.overviewMode) {
-      const staticSlides = filteredChildren.map((slide, index) =>
+      const staticSlides = slides.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
           template
@@ -316,7 +316,7 @@ const Deck = props => {
         <OverviewDeck goToSlide={goToSlide}>{staticSlides}</OverviewDeck>
       );
     } else if (state.exportMode) {
-      const staticSlides = filteredChildren.map((slide, index) =>
+      const staticSlides = slides.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
           template: template
@@ -324,7 +324,7 @@ const Deck = props => {
       );
       content = <PrintDeck>{staticSlides}</PrintDeck>;
     } else if (state.presenterMode) {
-      const staticSlides = filteredChildren.map((slide, index) =>
+      const staticSlides = slides.map((slide, index) =>
         React.cloneElement(slide, {
           slideNum: index,
           template
@@ -344,7 +344,7 @@ const Deck = props => {
       const animatedSlides = transitions.map(
         ({ item, props: animatedStyleProps, key }) => (
           <AnimatedDeckDiv style={animatedStyleProps} key={key}>
-            {React.cloneElement(filteredChildren[item], {
+            {React.cloneElement(slides[item], {
               slideNum: item,
               numberOfSlides,
               template
