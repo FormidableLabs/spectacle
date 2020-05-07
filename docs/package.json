@@ -21,8 +21,8 @@
     "preversion": "yarn run lint && yarn run build",
     "build": "react-static build",
     "serve": "formideploy serve --port 4000",
+    "deploy:stage": "formideploy deploy --staging",
     "deploy:prod": "node scripts/deploy/aws.js",
-    "deploy:stage": "node scripts/deploy/surge.js",
     "start": "react-static start",
     "test-local": "node test/spectacle-integration.js"
   },
