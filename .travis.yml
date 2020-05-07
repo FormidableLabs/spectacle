@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - '10'
   - '12'
-  - '13'
+  - '14'
 
 # Use container-based Travis infrastructure.
 sudo: false
@@ -14,13 +14,17 @@ branches:
 
 env:
   global:
-    # **Staging**: surge (`Surge.sh`)
+    # **GitHub**: `GitHub (spectacle-ci)` "Tokens"
+    # GITHUB_DEPLOYMENT_TOKEN
+    - secure: "sAa4I9Xu3xJJnRp6l2V24Oqapuw1ioiUkFvEIM8cI9o3Jx73OYKz1aw9qmwUlXu/xJVBqcgYlW3iAuUf+e6OufHtlwi0RrTnJv9lfrKNkij5G/grNpgmaXDBi5HWzAykewDNpfZwF5xIcS7+8Kl2R8a2Lym4Rqp+UgLQ/KZCmt1vTuOpK5JNLpf5Y8goB3XcXN6nNzZ4f0JDREQVRWXmVmYImY8jTFyhCxz/3OsffsZqSTs/r6UW0djGqEyV/Ur9HyIqqqCmuhrCphzuK8eYVjk8VSaBhxQSTJDl9cDQarqdzYEa3R+kJ+6i+yzlN7PIji7MUZTt339/eTgn2JIFBR+nokxRo19lm6BMuO5dTBZyzi9q1ZbSXWNV9EM72pXvyV+nzVLvwt830cRojmK1BZv7tu0M9AzzS9zbEYMmG9ZWMUWhfEgSq50GpJSz5YepLOK+XU7B9ceP1zb58LNqx4Yf/tW1hG2bmtrkV2qd1l2AwpvpzdqFY9PzDwXzd6b2mDyyF8w3vy/9C8FmBtK+pa34H/39k/Xwshbhrn7cSxd5OtmUAyl+DZoiavrR6eYuwspyvopSRCFdaR6g8K32C1Q9sfMHeGs1my/ddT58exW7DOk7DoUfagz0oyAuGD11T4QYRIsMbS2w2USdoFyCxKnyaAxPXR7kcR1ta/xfk6A="
+
+    # **Staging**: `Surge.sh`
     # SURGE_LOGIN
     - secure: "vYutiYNUJXdHSibmQ5vPtENVunHOk0ccXUHMeNUZdhZGGIc9sQayo6NNI7lxZkaeIi4dZPeYz9fKqmdG1g4x4O5xd5A5ECNL0mrj5Bs2LMRdHZqD+mihP+/78vWXAb31NqSRpdlisv5/alQof+9nC3lnihWiV9Oj9vIlK+f1gqlo+L1HkXZn+SJ5RxOcHMN4j3Vxi+6EElWnRYUGYkKCjo+UJg+mMC0eS0Juttc6/mWNX6yGoxrnH0koBELYPwGBWOYlRqT0ORTHxN1QmiP9erPXO/hLeQfBTi95ksIMeH2+W2CGKzRgrQT5ewH++NndauETy8psLD2Bpg/Q0AYaCPNiW4hT61uh0OdVUzO1J2N3ahN83om7aMmJ9Bpu+eMu2RhDnCHuLvm8o5bHyl5lE3GVV60hGS9bIfHaH/ci/yY2OI/bIXkdsqppOGGJQu7aEBLqaa0Ed+3LHe8Yu4kz1i7UAW8u3WjIeNRXeWvSlSPldihBbGaJhcZauduQ+rbwvzWeSl6eKVFipn21flpcIKPqnSDqlAW07G4Kz5KZqISaRhzd9ABBM7nh7zwbF70jj8w8jnz5duPgdETfxqlPxoCcI8mT+So3u7nDk3sPy2Ofj4stxljBeFJmEb8E0VgiZTUnG2gwFD0Jbqa2PnKx6eQ1e9+tocCCAwwoVD7CqJ8="
     # SURGE_TOKEN
     - secure: "lImF1waoeTdtHPHdcgkTtJX51aHkOsUU/3kznL5jT6DzJnfQAy6j5yqD4dcTgfrN9OqSvocnY2dXou0SSPrshB70YvMMMaYI0r6PNAmqYN2OvkrFNg1I2T11s66odbk3OifzgTiMPeQisxHtrPKlqjVsO+ruvuTBY1J+SK6Y8wjtZ5KjHHdY8J1Rr0puI1fkOyJgXijnxrCU/MRQ2/4s4fxe7BCc3RrauBcnFYNdljebkEQWHQ1Qs2ZxO2AAOvx6CazaMBPd49iKrCEevivmixH/c/UXH7jjp8+Z6m8WOX2fj/NijOGc0ASJwCvHYejCRduM1JxjRTqufA7J1Be4pjI7NHTyQmCzMlEQO7YysfaVrIvbSZ1ohTZD4WG1nPK28pQwPVELDMNngpXcRZ95ubSMamc7p9+hfL0AubqzI7ULWiiLRAYTQfTmCcrS1GllqOVCoICtJ/ymTtVFQoyVEi+SgBxQBwPkvUoZsDzHCrYKQ2o1F4sDBNdbEFNzf81yM8q7gmQnkM2JGdqwK/dFz/38jXojVhpzociZio5fwwE2F3EanKCow0Puxj8YVmqCw6mfq4L4r0p5LcsZ+NrXZum1mL0vrv+Mwy2odhVXX1rBoG1DKCM3bSCafsx0m9Kgh7er+1yI9Q+IqmiK+rVTuq6nSBg5K5gL/rPL6on5JTI="
 
-    # **Production**: AWS (`spectacle-ci`, "CI" keys)
+    # **Production**: `AWS IAM (spectacle-ci)` "Access Keys > CI"
     # AWS_ACCESS_KEY_ID
     - secure: "WkiLFFTXdyLOguGxaHul2a6DG+kts4qa9MOVR0NqI9T5D9jpudjNEuLV/zRPIhn3Zvhc5eZxh8Wt3W9S2cM3OXz8r1i32nc8IMPBq2FlwWowMCGT7fLkDZCJ70sF6njsowatqCgohzX+PokgZD2GRy7D3gu3zPFpZYmvCo35ppI6CbrLjHf0kP1F5Dzds5nJCRM0ikOWD3aIcPLlXH0LrLvyAfkbsFZLBUlRcwECKxynQ8B7PJCxIQM1fLWUNIsTudxDXAcKZCHvZg9ll7GbtmBIjW65deO2WRok3jqDGTQXz8Slga+gA3eN3or9dG5sVdML41u2xu31YXJIeORu6sjhul53T8Ef+AEwMohH0QLCPQzPZPiZL9Vx747dLPUwbNxX9H5TGUhMHvuAh8dVDsJg6qXtykLJJ/yZuPy60ST6ZeMBUfqOGwTx9m4sojr86Q7qHgrciiYYFt54FoNk8NH4tc73Khb+zw5cGsqAUSFY1O6vXy2ORVyIjkzX/61gokkM9JIp1Q4mU9urUuJh9tIxK5VyhjsWEelVNPs6c7IgDJXmbSzezqjL+8GjoSeGnwdiOESN4BBXkmK7Or2D2MU2tvyVn9Owl8H8zPulU/LPLJBFHQ1Ns9wyEnsGz8R+zwJmtonbkpcMGoxuSi2vn6Wq04StNutRgW9oUfsk1Cs="
     # AWS_SECRET_ACCESS_KEY
