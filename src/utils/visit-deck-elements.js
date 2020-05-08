@@ -8,17 +8,6 @@ import Stepper from '../components/stepper';
 
 const noop = () => {};
 
-const NULL_VISITOR = {
-  enter: noop,
-  exit: noop,
-  enterSlide: noop,
-  exitSlide: noop,
-  visitMarkdownNotSlides: noop,
-  visitAppear: noop,
-  visitStepper: noop,
-  visitUnrecognized: noop
-};
-
 export default (children, visitor) => {
   React.Children.forEach(children, childNode => {
     traverse(childNode, visitor);
@@ -29,7 +18,7 @@ export default (children, visitor) => {
 const traverse = (node, visitor) => {
   visitor.enter?.call(visitor, node);
   if (ReactIs.isFragment(node)) {
-    React.Children.forEach(node.children, childNode =>
+    React.Children.forEach(node.props.children, childNode =>
       traverse(childNode, visitor)
     );
   } else if (isComponentType(node, Slide.name)) {

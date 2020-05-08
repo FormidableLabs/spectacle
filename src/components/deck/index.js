@@ -25,8 +25,6 @@ import {
   DEFAULT_SLIDE_ELEMENT_INDEX,
   DEFAULT_SLIDE_INDEX
 } from '../../utils/constants';
-import searchChildrenForAppear from '../../utils/search-children-appear';
-import searchChildrenForStepper from '../../utils/search-children-stepper';
 import OverviewDeck from './overview-deck';
 import { Markdown, Slide, Notes } from '../../index';
 import { isolateNotes, removeNotes } from '../../utils/notes';
@@ -107,14 +105,12 @@ const Deck = props => {
     transitionEffect
   } = props;
 
-  // TODO: React.useMemo this somehow so we're not doing the traversal if we
-  // don't absolutely need to
-
   const { slides, slideElementMap } = React.useMemo(() => {
     let currentSlide = null;
     let slideIndex = -1;
     const slideElementMap = {};
     const slides = [];
+
     visitDeckElements(children, {
       enterSlide: slide => {
         if (currentSlide) {
@@ -131,12 +127,10 @@ const Deck = props => {
       },
       visitAppear: () => {
         // TODO: validate that we're inside a <Slide>
-        // TODO: other stuff is happening in search-children-appear
         slideElementMap[slideIndex] += 1;
       },
       visitStepper: () => {
         // TODO: validate that we're inside a <Slide>
-        // TODO: other stuff is happening in search-children-stepper
         slideElementMap[slideIndex] += 1;
       }
       // TODO: console warnings if we're not in a <Slide>
