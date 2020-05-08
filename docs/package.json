@@ -22,7 +22,7 @@
     "build": "react-static build",
     "serve": "formideploy serve --port 4000",
     "deploy:stage": "formideploy deploy --staging",
-    "deploy:prod": "node scripts/deploy/aws.js",
+    "deploy:prod": "formideploy deploy --production",
     "start": "react-static start",
     "test-local": "node test/spectacle-integration.js"
   },
