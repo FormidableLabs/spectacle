@@ -110,41 +110,45 @@ const Deck = props => {
   // TODO: React.useMemo this somehow so we're not doing the traversal if we
   // don't absolutely need to
 
-  let currentSlide = null;
-  let slideIndex = -1;
-  const slideElementMap = {};
-  const slides = [];
-  visitDeckElements(children, {
-    enterSlide: slide => {
-      if (currentSlide) {
-        throw new Error('<Slide> elements should not be nested.');
-      } else {
-        slides.push(slide);
-        slideIndex += 1;
-        currentSlide = slide;
-        slideElementMap[slideIndex] = 0;
+  const { slides, slideElementMap } = React.useMemo(() => {
+    let currentSlide = null;
+    let slideIndex = -1;
+    const slideElementMap = {};
+    const slides = [];
+    visitDeckElements(children, {
+      enterSlide: slide => {
+        if (currentSlide) {
+          throw new Error('<Slide> elements should not be nested.');
+        } else {
+          slides.push(slide);
+          slideIndex += 1;
+          currentSlide = slide;
+          slideElementMap[slideIndex] = 0;
+        }
+      },
+      exitSlide: () => {
+        currentSlide = null;
+      },
+      visitAppear: () => {
+        // TODO: validate that we're inside a <Slide>
+        // TODO: other stuff is happening in search-children-appear
+        slideElementMap[slideIndex] += 1;
+      },
+      visitStepper: () => {
+        // TODO: validate that we're inside a <Slide>
+        // TODO: other stuff is happening in search-children-stepper
+        slideElementMap[slideIndex] += 1;
       }
-    },
-    exitSlide: () => {
-      currentSlide = null;
-    },
-    visitAppear: () => {
-      // TODO: validate that we're inside a <Slide>
-      // TODO: other stuff is happening in search-children-appear
-      slideElementMap[slideIndex] += 1;
-    },
-    visitStepper: () => {
-      // TODO: validate that we're inside a <Slide>
-      // TODO: other stuff is happening in search-children-stepper
-      slideElementMap[slideIndex] += 1;
-    }
-    // TODO: console warnings if we're not in a <Slide>
-    // visitUnrecognized: () => {},
-    // TODO: console warnings if we're not in a <Slide>
-    // visitMarkdownNotSlides: () => {},
-  });
-
-  console.log(slideElementMap);
+      // TODO: console warnings if we're not in a <Slide>
+      // visitUnrecognized: () => {},
+      // TODO: console warnings if we're not in a <Slide>
+      // visitMarkdownNotSlides: () => {},
+    });
+    return {
+      slides,
+      slideElementMap
+    };
+  }, [children]);
 
   const numberOfSlides = slides.length;
 
