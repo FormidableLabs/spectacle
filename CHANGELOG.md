@@ -1,18 +1,22 @@
 # Changelog
 
-## Unreleased
+## 6.0.3 (05-11-2020)
 
+- Fix keyboard toggles for both MacOS and Windows.
+  [#893](https://github.com/FormidableLabs/spectacle/pull/893)
+- Documentation updates.
+  [#894](https://github.com/FormidableLabs/spectacle/pull/894)
 - Add support for mobile navigation of slides.
   [#876](https://github.com/FormidableLabs/spectacle/pull/876)
 
-## 6.0.2
+## 6.0.2 (04-10-2020)
 
 - Allow for `props.fontSize` to override the theme's monospace font size in `CodePane`.
   [#875](https://github.com/FormidableLabs/spectacle/pull/875)
 - Surface `textDecoration` prop from styled-system for `Link`s.
   [#869](https://github.com/FormidableLabs/spectacle/pull/869)
 
-## 6.0.1
+## 6.0.1 (03-18-2020)
 
 - Fix broken doc links.
   [#859](https://github.com/FormidableLabs/spectacle/pull/859), [#862](https://github.com/FormidableLabs/spectacle/pull/862)
@@ -23,14 +27,14 @@
 - Fix nested Appears.
   [#864](https://github.com/FormidableLabs/spectacle/pull/864)
 
-## 6.0.0
+## 6.0.0 (03-06-2020)
 
 - Expand custom background support by adding `Background` props to the `Slide` component, along with `backgroundOpacity`.
   [#849](https://github.com/FormidableLabs/spectacle/pull/849)
 - Add `Stepper`, allowing for code range highlighting/scrolling within CodePane.
   [#843](https://github.com/FormidableLabs/spectacle/pull/843)
 
-## 6.0.0-alpha.8
+## 6.0.0-alpha.8 (02-20-2020)
 
 - Update `examples/one-page.html` to `examples/js/index.js` with new script helper.
 - Add support for Deck or Slide-level transitions.
@@ -38,30 +42,30 @@
 - Fixes Full Screen component for Chrome/FF, adds support for Safari.
 - Added support for dual-browser tab mode for presenter mode in all browsers.
 
-## 6.0.0-alpha.7
+## 6.0.0-alpha.7 (01-27-2020)
 
 - Fix `one-page.html` closing tags.
 
-## 6.0.0-alpha.6
+## 6.0.0-alpha.6 (01-27-2020)
 
 - Fix `one-page.html` unpkg script links.
 
-## 6.0.0-alpha.5
+## 6.0.0-alpha.5 (01-27-2020)
 
 - Add color props support to Flex Box.
   [#816](https://github.com/FormidableLabs/spectacle/issues/816)
 
-## 6.0.0-alpha.4
+## 6.0.0-alpha.4 (01-27-2020)
 
 - Move around internal examples, and publish some for `spectacle-cli` usage.
 - Use top-center layout defaults for Spectacle. Drop `autoLayout` prop.
 - Add `border` styled-system props to `FlexBox` and `Box`.
 
-## 6.0.0-alpha.3
+## 6.0.0-alpha.3 (11-04-2019)
 
 - Fixes overflow issue for presenter mode in Chrome.
 
-## 6.0.0-alpha.1
+## 6.0.0-alpha.1 (11-02-2019)
 
 - First release of the Spectacle rewrite MVP.
 - Support for:

@@ -174,15 +174,30 @@ ahead and submit a PR, make sure that you have done the following:
 
 ### Releasing a new version to NPM
 
-_Only for project administrators_.
+<details>
+<summary>
+<i>Only for project administrators</i>
+</summary>
 
-1. Update [`CHANGELOG.md`](./CHANGELOG.md), following format for previous versions
-2. Commit as "Changes for version VERSION"
-3. Run `npm version patch` (or `minor|major|VERSION`) to run tests and lint,
-   build published directories, then update `package.json` + add a git tag.
-4. If all is well, run `npm publish` to publish to NPM.
-5. Run `git push && git push --tags` to publish to Github.
-6. Go and manually draft a release for your recently pushed tag with notes in the [Github UI](https://github.com/FormidableLabs/spectacle/releases/new).
+```sh
+# (1) Update the Changelog, following format from previous versions
+# and commit those changes independently of other updates
+git add CHANGELOG.md && git commit -m "Changes for v<version>"
+
+# (2) Run tests, lint, build published dir, update package.json
+$ npm version [patch|minor|major|<version>]
+
+# (3) If all is well, publish the new version to the npm registry
+$ npm publish
+
+# (4) Then, update github with the associated tag
+$ git push --tags
+```
+
+Then, go and manually draft a release for your recently pushed tag with notes in
+the [Github UI](https://github.com/FormidableLabs/spectacle/releases/new).
+
+</details>
 
 ## Contributor Covenant Code of Conduct
 
