@@ -142,9 +142,9 @@ Spectacle comes with a built-in presenter mode. It shows you a slide lookahead, 
 
 To present:
 
-1. Run `yarn start`, which will open up a presentation at [localhost:3000/#](http://localhost:3000/#) by default.
+1. Run `yarn start`, which will open up a presentation at [localhost:3000/](http://localhost:3000/) by default.
 2. Open a second browser window on a different screen.
-3. Append [`?presenter`](http://localhost:3000/#/0?presenter) or [`?presenter&timer`](http://localhost:3000/#/0?presenter&timer) immediately after the `/#`
+3. Append [`?presenterMode=true`](http://localhost:3000/?presenterMode=true) immediately after the `/`
 4. Give an amazingly in-sync and stylish presentation.
 
 **Note:** Any windows/tabs in the same browser running Spectacle will sync to one another, even if you aren't in presentation mode.

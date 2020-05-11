@@ -7,9 +7,9 @@ order: 8
 
 ## Can I export my slides for use elsewhere?
 
-Yes - you can export your slides in PDF format. Appending your presentation URL with `?export` will allow you to export your presentation by flattening out your presentation so that you can Print to PDF directly from your browser. 🎉
+Yes - you can export your slides in PDF format. Appending your presentation URL with `?exportMode=true` will allow you to export your presentation by flattening out your presentation so that you can Print to PDF directly from your browser. 🎉
 
-If you want a black & white version of your slides printed to PDF, append your URL with `?export&print` to get a printer-friendly, flattened, black & white print out of your slideshow.
+If you want a black & white version of your slides printed to PDF, append your URL with `?exportMode=true&printMode=true` to get a printer-friendly, flattened, black & white print out of your slideshow.
 
 For more info about the query parameters Spectacle supports, please check out our section about it in the [advanced concepts documentation](./advanced-concepts#query-parameters).
 
