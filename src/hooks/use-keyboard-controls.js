@@ -38,7 +38,7 @@ const useKeyboardControls = ({
           }
         }
         if (e.altKey && isMacOS()) {
-          const key = e.key.toUpperCase();
+          const key = e.key.toLowerCase();
           switch (key) {
             case 'ø':
               toggleMode('overviewMode');
