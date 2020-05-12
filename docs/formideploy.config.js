@@ -7,6 +7,7 @@ module.exports = {
   },
   production: {
     // TODO: REMOVE
-    bucket: "tmp-experiment-02.formidable.com"
+    domain: 'tmp-experiment-02.formidable.com',
+    bucket: 'tmp-experiment-02.formidable.com'
   }
 };
