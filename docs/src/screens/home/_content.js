@@ -37,7 +37,7 @@ const content = {
     {
       title: 'Renature',
       description:
-        'A collection of animations that can be used with many inline style libraries, such as Radium or Aphrodite.',
+        'A physics-based animation library for React inspired by the natural world.',
       link: 'https://formidable.com/open-source/renature'
     },
     {
