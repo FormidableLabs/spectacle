@@ -47,6 +47,9 @@ notifications:
     on_failure: always
 
 script:
+  - yarn --version
+  - node --version
+  - aws --version
   - echo "TODO formideploy - REENABLE BUILDS BELOW AND REMOVE"
   # # Core library
   # - yarn run build
