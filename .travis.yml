@@ -83,7 +83,7 @@ jobs:
             branch: master
         # TODO(formideploy): TEMP BRANCH TARGET -- REMOVE
         - provider: script
-          script: yarn run deploy:prod --dryrun
+          script: yarn run deploy:prod
           skip_cleanup: true
           on:
             branch: chore/formideploy
