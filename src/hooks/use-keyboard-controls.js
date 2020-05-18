@@ -37,8 +37,9 @@ const useKeyboardControls = ({
             e.preventDefault();
           }
         }
-        if (!!e.altKey && isMacOS()) {
-          switch (e.key) {
+        if (e.altKey && isMacOS()) {
+          const key = e.key.toLowerCase();
+          switch (key) {
             case 'ø':
               toggleMode('overviewMode');
               break;
@@ -51,8 +52,9 @@ const useKeyboardControls = ({
             default:
               null;
           }
-        } else if (!!e.altKey && !!e.shiftKey && isWindows()) {
-          switch (e.key) {
+        } else if (e.altKey && isWindows()) {
+          const key = e.key.toUpperCase();
+          switch (key) {
             case 'O':
               toggleMode('overviewMode');
               break;
