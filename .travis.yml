@@ -58,6 +58,7 @@ script:
   # # All other checks.
   # - yarn run check-ci
   # TODO(docs): Only build if code changed.
+  # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
   - echo $TRAVIS_COMMIT_RANGE
   - git diff --name-only $TRAVIS_COMMIT_RANGE
 
