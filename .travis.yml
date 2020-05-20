@@ -57,9 +57,6 @@ script:
   # - yarn build-examples
   # # All other checks.
   # - yarn run check-ci
-  - echo "TODO formideploy - REMOVE TESTING GIT DIFFS"
-  # https://stackoverflow.com/a/41159710
-  - git diff --name-only HEAD $(git merge-base HEAD $TRAVIS_BRANCH)
 
 jobs:
   include:
