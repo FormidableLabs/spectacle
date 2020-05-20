@@ -75,7 +75,6 @@ jobs:
         # TODO(match): Conditional script execution
         # Only do the docs build/deploy if docs changes.
         # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
-        - echo "TODO match OLD CHANGED_FILES = ${CHANGED_FILES}"
         - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
         - |
           npx -q match-str -i "^(\.travis\.yml|docs\/)" -s "$CHANGED_FILES" && \
