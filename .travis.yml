@@ -57,12 +57,16 @@ script:
   # - yarn build-examples
   # # All other checks.
   # - yarn run check-ci
+  # TODO(docs): Only build if code changed.
+  - echo $TRAVIS_COMMIT_RANGE
+  - git diff --name-only $TRAVIS_COMMIT_RANGE
 
 jobs:
   include:
     - stage: documentation
       node_js: '12'
       script:
+        # TODO(docs): Only build if code changed.
         - cd docs
         - yarn install --frozen-lockfile
         - yarn run check-ci
