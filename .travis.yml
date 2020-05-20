@@ -57,16 +57,30 @@ script:
   # - yarn build-examples
   # # All other checks.
   # - yarn run check-ci
-  # TODO(docs): Only build if code changed.
+
+  # TODO(match): Conditional script execution
+  # Don't do the core build if only docs changes.
   # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
-  - echo $TRAVIS_COMMIT_RANGE
-  - git diff --name-only $TRAVIS_COMMIT_RANGE
+  - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
+  - |
+    npx -q match-str -e "^(docs\/)" -s "$CHANGED_FILES" && \
+    echo "TODO(match) BUILD CORE" || \
+    echo "TODO(match) DONT BUILD CORE"
 
 jobs:
   include:
     - stage: documentation
       node_js: '12'
       script:
+        # TODO(match): Conditional script execution
+        # Only do the docs build/deploy if docs changes.
+        # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
+        - echo "TODO match OLD CHANGED_FILES = ${CHANGED_FILES}"
+        - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
+        - |
+          npx -q match-str -i "^(\.travis\.yml|docs\/)" -s "$CHANGED_FILES" && \
+          echo "TODO(match) BUILD DOCS" || \
+          echo "TODO(match) DONT BUILD DOCS"
         # TODO(docs): Only build if code changed.
         - cd docs
         - yarn install --frozen-lockfile
