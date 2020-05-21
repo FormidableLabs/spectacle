@@ -57,7 +57,7 @@ script:
   - |
     npx -q match-str -e "^(docs\/)" -s "$CHANGED_FILES" &&  \
     { echo "[CHANGES] Building core."; } || \
-    { echo "[NO CHANGES] No core changes. Skipping build + deploy."; travis_terminate 0; }
+    { echo "[NO CHANGES] No core changes. Skipping build."; travis_terminate 0; }
 
   # Core library
   - yarn run build
