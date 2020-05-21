@@ -66,22 +66,20 @@ script:
     npx -q match-str -e "^(docs\/)" -s "$CHANGED_FILES" && \
     echo "TODO(match) BUILD CORE" || \
     echo "TODO(match) DONT BUILD CORE"
-  - declare -F
 
 jobs:
   include:
     - stage: documentation
       node_js: '12'
       script:
-        # TODO(match): Conditional script execution
         # Only do the docs build/deploy if docs changes.
         # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
         - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
         - |
           npx -q match-str -i "^(\.travis\.yml|docs\/)" -s "$CHANGED_FILES" && \
-          echo "TODO(match) BUILD DOCS" || \
-          echo "TODO(match) DONT BUILD DOCS"
-        # TODO(docs): Only build if code changed.
+          { echo "Building docs."; } || \
+          { echo "No doc changes. Skipping build + deploy."; travis_terminate 0; }
+        # Install, test.
         - cd docs
         - yarn install --frozen-lockfile
         - yarn run check-ci
@@ -95,7 +93,6 @@ jobs:
           # _Note_: `deploy.script` must be a **single** command string
           #
           # TODO(formideploy): Remove `--dryrun` flag!!!
-          # TODO(formideploy): testing out not needing clean + build
           script: yarn run deploy:prod --dryrun
           skip_cleanup: true
           on:
