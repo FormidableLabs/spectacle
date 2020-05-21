@@ -50,22 +50,21 @@ script:
   - yarn --version
   - node --version
   - aws --version
-  - echo "TODO formideploy - REENABLE BUILDS BELOW AND REMOVE"
-  # # Core library
-  # - yarn run build
-  # # Build all examples to make sure they're not broken.
-  # - yarn build-examples
-  # # All other checks.
-  # - yarn run check-ci
 
   # Conditionally build core.
   # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
-  # TODO(docs): Need to deal with Netlify deploy of the examples.
   - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
   - |
-    npx -q match-str -e "^(docs\/)" -s "$CHANGED_FILES" && \
-    echo "TODO(match) BUILD CORE" || \
-    echo "TODO(match) DONT BUILD CORE"
+    npx -q match-str -e "^(docs\/)" -s "$CHANGED_FILES" &&  \
+    { echo "[CHANGES] Building core."; } || \
+    { echo "[NO CHANGES] No core changes. Skipping build + deploy."; travis_terminate 0; }
+
+  # Core library
+  - yarn run build
+  # Build all examples to make sure they're not broken.
+  - yarn build-examples
+  # All other checks.
+  - yarn run check-ci
 
 jobs:
   include:
@@ -73,20 +72,24 @@ jobs:
       node_js: '12'
       script:
         # Only do the docs build/deploy if docs changes.
+        # We early terminate the entire job which should also skip `deploy` tasks.
         # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
         - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
         - |
           npx -q match-str -i "^(\.travis\.yml|docs\/)" -s "$CHANGED_FILES" && \
-          { echo "Building docs."; } || \
-          { echo "No doc changes. Skipping build + deploy."; travis_terminate 0; }
+          { echo "[CHANGES] Building docs."; } || \
+          { echo "[NO CHANGES] No doc changes. Skipping build + deploy."; travis_terminate 0; }
+
         # Install, test.
         - cd docs
         - yarn install --frozen-lockfile
         - yarn run check-ci
+
         # Build and deploy to staging.
         - yarn run clean
         - yarn run build
         - yarn run deploy:stage
+
       deploy:
         # Deploy master to production
         - provider: script
@@ -97,6 +100,7 @@ jobs:
           skip_cleanup: true
           on:
             branch: master
+
         # TODO(formideploy): TEMP BRANCH TARGET -- REMOVE
         - provider: script
           script: yarn run deploy:prod
