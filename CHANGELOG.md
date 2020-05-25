@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Enhance hot key support for Linux users.
+  [#905](https://github.com/FormidableLabs/spectacle/pull/905)
+
 ## 6.0.3 (05-11-2020)
 
 - Fix keyboard toggles for both MacOS and Windows.
