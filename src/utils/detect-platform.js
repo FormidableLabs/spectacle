@@ -3,3 +3,5 @@ export const isWindows = () =>
 
 export const isMacOS = () =>
   navigator.platform.toLowerCase().includes('macintel');
+
+export const isLinux = () => navigator.platform.toLowerCase().includes('linux');
