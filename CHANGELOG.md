@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 6.1.0 (05-28-2020)
 
+- Remove references to PropTypes from type definitions.
+  [#907](https://github.com/FormidableLabs/spectacle/pull/907)
 - Enhance hot key support for Linux users.
   [#905](https://github.com/FormidableLabs/spectacle/pull/905)
 

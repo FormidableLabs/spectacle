@@ -191,7 +191,7 @@ $ npm version [patch|minor|major|<version>]
 $ npm publish
 
 # (4) Then, update github with the associated tag
-$ git push --tags
+$ git push --tags && git push
 ```
 
 Then, go and manually draft a release for your recently pushed tag with notes in
