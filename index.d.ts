@@ -24,7 +24,7 @@ declare module 'spectacle' {
 
   export const Deck: React.FC<{
     children: React.ReactNode;
-    animationsWhileGoingBack?: boolean;
+    animationsWhenGoingBack?: boolean;
     backgroundColor?: string;
     keyboardControls?: 'arrows' | 'space';
     loop?: boolean;
@@ -35,12 +35,12 @@ declare module 'spectacle' {
   }>;
 
   export const Slide: React.FC<{
-    backgroundColor?: PropTypes.string;
-    backgroundImage?: PropTypes.string;
-    backgroundOpacity?: PropTypes.number;
-    backgroundPosition?: PropTypes.string;
-    backgroundRepeat?: PropTypes.string;
-    backgroundSize?: PropTypes.string;
+    backgroundColor?: string;
+    backgroundImage?: string;
+    backgroundOpacity?: number;
+    backgroundPosition?: string;
+    backgroundRepeat?: string;
+    backgroundSize?: string;
     children: React.ReactNode;
     scaleRatio?: number;
     textColor?: string;
