@@ -68,6 +68,7 @@ declare module 'spectacle' {
     };
     highlightStart?: number;
     highlightEnd?: number;
+    indentSize?: number;
   }>;
 
   export const Stepper: React.FC<{
