@@ -102,6 +102,7 @@ describe('useKeyboardControls', () => {
   });
   describe('it toggles view modes on mac', () => {
     beforeEach(() => {
+      detectPlatform.isLinux = jest.fn().mockReturnValue(false);
       detectPlatform.isMacOS = jest.fn().mockReturnValue(true);
       detectPlatform.isWindows = jest.fn().mockReturnValue(false);
     });
@@ -166,6 +167,7 @@ describe('useKeyboardControls', () => {
   });
   describe('it toggles view modes on windows', () => {
     beforeEach(() => {
+      detectPlatform.isLinux = jest.fn().mockReturnValue(false);
       detectPlatform.isMacOS = jest.fn().mockReturnValue(false);
       detectPlatform.isWindows = jest.fn().mockReturnValue(true);
     });
@@ -225,6 +227,71 @@ describe('useKeyboardControls', () => {
       };
       mount(<TestComponent />);
       map.keydown({ key: 'F', altKey: true, shiftKey: true });
+      expect(toggleFullScreenMock).toBeCalled();
+    });
+  });
+  describe('it toggles view modes on Linux', () => {
+    beforeEach(() => {
+      detectPlatform.isLinux = jest.fn().mockReturnValue(true);
+      detectPlatform.isMacOS = jest.fn().mockReturnValue(false);
+      detectPlatform.isWindows = jest.fn().mockReturnValue(false);
+    });
+    it('calls toggleMode with overViewMode when Alt + O is pressed', () => {
+      const map = {};
+      window.addEventListener = jest.fn((event, callback) => {
+        map[event] = callback;
+      });
+      const TestComponent = () => {
+        useKeboardControls({
+          keyboardControls: 'arrows',
+          navigateToNext: navigateToNextMock,
+          navigateToPrevious: navigateToPrevMock,
+          toggleMode: toggleModeMock
+        });
+        return <div data-testid="target">Target</div>;
+      };
+      mount(<TestComponent />);
+      map.keydown({ key: 'O', altKey: true });
+      expect(toggleModeMock).toBeCalledWith('overviewMode');
+    });
+    it('calls toggleMode with presenterMode when Alt + P is pressed', () => {
+      const map = {};
+      window.addEventListener = jest.fn((event, callback) => {
+        map[event] = callback;
+      });
+      const TestComponent = () => {
+        useKeboardControls({
+          keyboardControls: 'arrows',
+          navigateToNext: navigateToNextMock,
+          navigateToPrevious: navigateToPrevMock,
+          toggleMode: toggleModeMock
+        });
+        return <div data-testid="target">Target</div>;
+      };
+      mount(<TestComponent />);
+      map.keydown({ key: 'P', altKey: true });
+      expect(toggleModeMock).toBeCalledWith('presenterMode');
+    });
+    it('calls toggleFullScreenMode when Alt + F is pressed', () => {
+      const toggleFullScreenMock = jest.fn();
+      toggleFullScreen.useToggleFullScreen = jest
+        .fn()
+        .mockReturnValue(toggleFullScreenMock);
+      const map = {};
+      window.addEventListener = jest.fn((event, callback) => {
+        map[event] = callback;
+      });
+      const TestComponent = () => {
+        useKeboardControls({
+          keyboardControls: 'arrows',
+          navigateToNext: navigateToNextMock,
+          navigateToPrevious: navigateToPrevMock,
+          toggleMode: toggleModeMock
+        });
+        return <div data-testid="target">Target</div>;
+      };
+      mount(<TestComponent />);
+      map.keydown({ key: 'F', altKey: true });
       expect(toggleFullScreenMock).toBeCalled();
     });
   });

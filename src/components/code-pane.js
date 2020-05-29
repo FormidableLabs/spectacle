@@ -78,7 +78,8 @@ export default function CodePane(props) {
       if (indentation === 0) {
         return 0;
       }
-      const string = ' '.repeat(indentation);
+      const indentString = ' '.repeat(props.indentSize) || ' ';
+      const string = indentString.repeat(indentation);
       context.current.font = `${props.fontSize}px ${font}`;
       const measurement = context.current.measureText(string);
       return measurement.width;
@@ -156,9 +157,10 @@ CodePane.propTypes = {
   autoFillHeight: propTypes.bool,
   children: propTypes.string.isRequired,
   fontSize: propTypes.number,
-  language: propTypes.string.isRequired,
   highlightEnd: propTypes.number,
   highlightStart: propTypes.number,
+  indentSize: propTypes.number,
+  language: propTypes.string.isRequired,
   theme: propTypes.object
 };
 

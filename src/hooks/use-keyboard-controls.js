@@ -1,7 +1,7 @@
 import React from 'react';
 import debounce from '../utils/debounce';
 import { useToggleFullScreen } from './use-full-screen';
-import { isWindows, isMacOS } from '../utils/detect-platform';
+import { isWindows, isMacOS, isLinux } from '../utils/detect-platform';
 
 const useKeyboardControls = ({
   keyboardControls = 'arrows',
@@ -52,7 +52,7 @@ const useKeyboardControls = ({
             default:
               null;
           }
-        } else if (e.altKey && isWindows()) {
+        } else if (e.altKey && (isWindows() || isLinux())) {
           const key = e.key.toUpperCase();
           switch (key) {
             case 'O':

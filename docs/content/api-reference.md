@@ -101,6 +101,7 @@ Additionally, `highlightStart` and `highlightEnd` props can be used to highlight
 | `fontSize`       | PropTypes.number                                                                             | `16`                  |
 | `highlightEnd`   | PropTypes.number                                                                             | `2`                   |
 | `highlightStart` | PropTypes.number                                                                             | `1`                   |
+| `indentSize`     | PropTypes.number                                                                             | `2`                   |
 | `language`       | PropTypes.string                                                                             | `javascript`          |
 | `theme`          | [Prism Theme](https://github.com/FormidableLabs/prism-react-renderer/tree/master/src/themes) | —                     |
 
