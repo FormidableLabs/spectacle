@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Allow for user-supplied indentation size in the CodePane.
+  [#908](https://github.com/FormidableLabs/spectacle/pull/908)
+
 ## 6.1.0 (05-28-2020)
 
 - Remove references to PropTypes from type definitions.
