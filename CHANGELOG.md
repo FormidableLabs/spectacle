@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+- Allow for user-supplied indentation size in the CodePane.
+  [#908](https://github.com/FormidableLabs/spectacle/pull/908)
+
+## 6.1.0 (05-28-2020)
+
+- Remove references to PropTypes from type definitions.
+  [#907](https://github.com/FormidableLabs/spectacle/pull/907)
+- Enhance hot key support for Linux users.
+  [#905](https://github.com/FormidableLabs/spectacle/pull/905)
+
 ## 6.0.3 (05-11-2020)
 
 - Fix keyboard toggles for both MacOS and Windows.
