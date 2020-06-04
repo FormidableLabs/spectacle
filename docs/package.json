@@ -69,7 +69,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react-hooks": "^2.3.0",
     "execa": "^4.0.0",
-    "formideploy": "FormidableLabs/formideploy#dfe558d",
+    "formideploy": "^0.3.0",
     "prettier": "^1.15.1",
     "puppeteer": "^1.13.0",
     "rimraf": "^3.0.0"
