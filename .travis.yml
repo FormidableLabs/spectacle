@@ -52,6 +52,9 @@ script:
   - aws --version
 
   # Conditionally build core.
+  #
+  # Note: If there is an empty diff (like git internal catchup) this will exit 1 with
+  #       stack trace which is still what we want (no changes).
   # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
   - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
   - |
@@ -73,10 +76,11 @@ jobs:
       script:
         # Only do the docs build/deploy if docs changes.
         # We early terminate the entire job which should also skip `deploy` tasks.
+        #
+        # Note: If there is an empty diff (like git internal catchup) this will exit 1 with
+        #       stack trace which is still what we want (no changes).
         # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
         - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
-        - echo "TODO HERE TRAVIS_COMMIT_RANGE -- ${TRAVIS_COMMIT_RANGE}"
-        - echo "TODO HERE CHANGED_FILES -- ${CHANGED_FILES}"
         - |
           npx -q match-str -i "^(\.travis\.yml|docs\/)" -s "${CHANGED_FILES}" && \
           { echo "[CHANGES] Building docs."; } || \
