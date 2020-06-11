@@ -182,7 +182,7 @@ ahead and submit a PR, make sure that you have done the following:
 ```sh
 # (1) Update the Changelog, following format from previous versions
 # and commit those changes independently of other updates
-git add CHANGELOG.md && git commit -m "Changes for v<version>"
+$ git add CHANGELOG.md && git commit -m "Changes for v<version>"
 
 # (2) Run tests, lint, build published dir, update package.json
 $ npm version [patch|minor|major|<version>]

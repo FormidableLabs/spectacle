@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - '10'
   - '12'
-  - '13'
+  - '14'
 
 # Use container-based Travis infrastructure.
 sudo: false
@@ -14,17 +14,21 @@ branches:
 
 env:
   global:
-    # **Staging**: surge (`Surge.sh`)
+    # **GitHub**: `GitHub (spectacle-ci)` "Tokens"
+    # GITHUB_DEPLOYMENT_TOKEN
+    - secure: "sAa4I9Xu3xJJnRp6l2V24Oqapuw1ioiUkFvEIM8cI9o3Jx73OYKz1aw9qmwUlXu/xJVBqcgYlW3iAuUf+e6OufHtlwi0RrTnJv9lfrKNkij5G/grNpgmaXDBi5HWzAykewDNpfZwF5xIcS7+8Kl2R8a2Lym4Rqp+UgLQ/KZCmt1vTuOpK5JNLpf5Y8goB3XcXN6nNzZ4f0JDREQVRWXmVmYImY8jTFyhCxz/3OsffsZqSTs/r6UW0djGqEyV/Ur9HyIqqqCmuhrCphzuK8eYVjk8VSaBhxQSTJDl9cDQarqdzYEa3R+kJ+6i+yzlN7PIji7MUZTt339/eTgn2JIFBR+nokxRo19lm6BMuO5dTBZyzi9q1ZbSXWNV9EM72pXvyV+nzVLvwt830cRojmK1BZv7tu0M9AzzS9zbEYMmG9ZWMUWhfEgSq50GpJSz5YepLOK+XU7B9ceP1zb58LNqx4Yf/tW1hG2bmtrkV2qd1l2AwpvpzdqFY9PzDwXzd6b2mDyyF8w3vy/9C8FmBtK+pa34H/39k/Xwshbhrn7cSxd5OtmUAyl+DZoiavrR6eYuwspyvopSRCFdaR6g8K32C1Q9sfMHeGs1my/ddT58exW7DOk7DoUfagz0oyAuGD11T4QYRIsMbS2w2USdoFyCxKnyaAxPXR7kcR1ta/xfk6A="
+
+    # **Staging**: `Surge.sh`
     # SURGE_LOGIN
     - secure: "vYutiYNUJXdHSibmQ5vPtENVunHOk0ccXUHMeNUZdhZGGIc9sQayo6NNI7lxZkaeIi4dZPeYz9fKqmdG1g4x4O5xd5A5ECNL0mrj5Bs2LMRdHZqD+mihP+/78vWXAb31NqSRpdlisv5/alQof+9nC3lnihWiV9Oj9vIlK+f1gqlo+L1HkXZn+SJ5RxOcHMN4j3Vxi+6EElWnRYUGYkKCjo+UJg+mMC0eS0Juttc6/mWNX6yGoxrnH0koBELYPwGBWOYlRqT0ORTHxN1QmiP9erPXO/hLeQfBTi95ksIMeH2+W2CGKzRgrQT5ewH++NndauETy8psLD2Bpg/Q0AYaCPNiW4hT61uh0OdVUzO1J2N3ahN83om7aMmJ9Bpu+eMu2RhDnCHuLvm8o5bHyl5lE3GVV60hGS9bIfHaH/ci/yY2OI/bIXkdsqppOGGJQu7aEBLqaa0Ed+3LHe8Yu4kz1i7UAW8u3WjIeNRXeWvSlSPldihBbGaJhcZauduQ+rbwvzWeSl6eKVFipn21flpcIKPqnSDqlAW07G4Kz5KZqISaRhzd9ABBM7nh7zwbF70jj8w8jnz5duPgdETfxqlPxoCcI8mT+So3u7nDk3sPy2Ofj4stxljBeFJmEb8E0VgiZTUnG2gwFD0Jbqa2PnKx6eQ1e9+tocCCAwwoVD7CqJ8="
     # SURGE_TOKEN
     - secure: "lImF1waoeTdtHPHdcgkTtJX51aHkOsUU/3kznL5jT6DzJnfQAy6j5yqD4dcTgfrN9OqSvocnY2dXou0SSPrshB70YvMMMaYI0r6PNAmqYN2OvkrFNg1I2T11s66odbk3OifzgTiMPeQisxHtrPKlqjVsO+ruvuTBY1J+SK6Y8wjtZ5KjHHdY8J1Rr0puI1fkOyJgXijnxrCU/MRQ2/4s4fxe7BCc3RrauBcnFYNdljebkEQWHQ1Qs2ZxO2AAOvx6CazaMBPd49iKrCEevivmixH/c/UXH7jjp8+Z6m8WOX2fj/NijOGc0ASJwCvHYejCRduM1JxjRTqufA7J1Be4pjI7NHTyQmCzMlEQO7YysfaVrIvbSZ1ohTZD4WG1nPK28pQwPVELDMNngpXcRZ95ubSMamc7p9+hfL0AubqzI7ULWiiLRAYTQfTmCcrS1GllqOVCoICtJ/ymTtVFQoyVEi+SgBxQBwPkvUoZsDzHCrYKQ2o1F4sDBNdbEFNzf81yM8q7gmQnkM2JGdqwK/dFz/38jXojVhpzociZio5fwwE2F3EanKCow0Puxj8YVmqCw6mfq4L4r0p5LcsZ+NrXZum1mL0vrv+Mwy2odhVXX1rBoG1DKCM3bSCafsx0m9Kgh7er+1yI9Q+IqmiK+rVTuq6nSBg5K5gL/rPL6on5JTI="
 
-    # **Production**: AWS (`spectacle-ci`, "CI" keys)
+    # **Production**: `AWS IAM (spectacle-ci)` "Access Keys > CI"
     # AWS_ACCESS_KEY_ID
-    - secure: "WkiLFFTXdyLOguGxaHul2a6DG+kts4qa9MOVR0NqI9T5D9jpudjNEuLV/zRPIhn3Zvhc5eZxh8Wt3W9S2cM3OXz8r1i32nc8IMPBq2FlwWowMCGT7fLkDZCJ70sF6njsowatqCgohzX+PokgZD2GRy7D3gu3zPFpZYmvCo35ppI6CbrLjHf0kP1F5Dzds5nJCRM0ikOWD3aIcPLlXH0LrLvyAfkbsFZLBUlRcwECKxynQ8B7PJCxIQM1fLWUNIsTudxDXAcKZCHvZg9ll7GbtmBIjW65deO2WRok3jqDGTQXz8Slga+gA3eN3or9dG5sVdML41u2xu31YXJIeORu6sjhul53T8Ef+AEwMohH0QLCPQzPZPiZL9Vx747dLPUwbNxX9H5TGUhMHvuAh8dVDsJg6qXtykLJJ/yZuPy60ST6ZeMBUfqOGwTx9m4sojr86Q7qHgrciiYYFt54FoNk8NH4tc73Khb+zw5cGsqAUSFY1O6vXy2ORVyIjkzX/61gokkM9JIp1Q4mU9urUuJh9tIxK5VyhjsWEelVNPs6c7IgDJXmbSzezqjL+8GjoSeGnwdiOESN4BBXkmK7Or2D2MU2tvyVn9Owl8H8zPulU/LPLJBFHQ1Ns9wyEnsGz8R+zwJmtonbkpcMGoxuSi2vn6Wq04StNutRgW9oUfsk1Cs="
+    - secure: "a/vTQD7fUNmi8FrQImRUX3EYF7O3ErR/yrafBRUcegdxMRrPY9DVWXoV7W2ZLifufEP6Cfihadxy+9RweKVT4fH9/G6DX3jWtkudrJdVnnSpw1BwOEBpHaQhsoFO4e43sMkU1dHci4kUdDUjHv/hKFKLOG27vI4o+90HXgFHMg8CMtkGGPr5Dmxp7vrCGyIdhK9T/o5tPQSVHL6Q9Nx1KfXIO0MuqSoQStyd3stXf7790psf2qr3ITtOjfj9EIGxse8up/Y80EDgevotExX/YkUWSh9H+PH3tvjZC49VIFwA093qk2ChxUKb9Cl4BuXEki+yZLH80EETIIjSTWkqrxMzo+Jz37zqkVQyoYSDzMYhxWWrsN/CvctluhfrB+VyVPMkR0+nfAheK9plm/N5Bh4JzDiWFw+woef4QuyiIP4OQctpVcyv5P/H14PvU3PIeSTFz4eFz0++bnBv/RSrqjvkGNTFsftZM+xWLOnUt3alqYZyPbmvyga2Gkjyl4PZAGvlaP4u/QFwWvKjO2KZXioQAOPEJ99rr2IMKpVLOlt2xE1k69HMN+yrj17pW+K7R5ppq/irI5p6SQMTgaUHi1/+G40/KfNKLgnPk44FtF3AnZELgk5u017ClHIta2MCuGM8RuKfjC8I3mI9WNA8DEHFCotbga1P25x5cKXrCiY="
     # AWS_SECRET_ACCESS_KEY
-    - secure: "TW1h3Zy+pK5awk7flJV4YvWtWyJykAc/hM4OG3uXSnJBHKEttfE3R7Hu5HnrhNvcbj1G7gQW7aPA0/1DSq4pvGNWUo77wbeNVcRuuweJM+5/va94DcX8RVMcR13Czl8xtT5I5HSUgQ/VshzUWq6pI6VFKdNu0HwZ+NBV+bk8Si6F6GHMD6IfzmdvTjPoAg58R1maW1WcBcxYrhZ+I8b66mYlQrMPzy46o0YL5uP3ypXXceKdXtGiFLrtZJYzaOxa4T9xByStYxxNT/vb0GqATc8Qw4c3t7LspsIR4J3aJF9U52rGHlE/r5sxA1Uupofw3ahpl2R1uNP/ue2oHU5QC5Fl525btXkNKBP/FlpeVtYM0nh+TN5CbvTsIy7l88wec6zagFLRKdg6XKfNIR4OO0vBDy68582Ha/TgbYoWlVRaCcB0/sAiANoP7Wmx0uojzJlW0QaYk2NV+tYncujewAJHpdabrXRlooh/yWOhNgMHEJVKjGm6ZppeU24cGI64xxmCfL3gOJbyJyAOSXF76h9OU2MD0X2BIauLRg8uRnD6ALspuMmXiI3EQcKhe1XXY/IGz7lMXlO8sXKxeyUjnPxvRyNwumoU1gOYGGCiv5NRQfqzL+nrsjLKiV6P+zzvIuStX1eLJD+c0DDM2B7Bjs5O0AEAxX700FtM5HiQhzs="
+    - secure: "X+yoYTadgd0KT77BfzPO0/oqbAIAbwIRhaNRv9DW/bg/eb/4xapTrtQLdG/vG9txSpHuK94XSsFAJni5Fuo4dA6fheQvhLAWRVMh+8vv6rr78sOYDJfE0jJJUgDrB4aRIhbtdMnzm0Q52CAtZPIP+bcheZnpOA3ljpDd28nqK4PGIsN0avjWg+5pKB+HY535x+NNHmlIPMyeeklLGy5+sM4XbiJ5cAFmE6WWighSpJIekHddpPBu7LF8ogiq938gXpLoZtHq+XGlr5e5IJxxZM+AoL4EQnmD//Oyk3GrFfcBzh5bAOj8U1v1a62UUD8l2m0o8im3Twm261mJhT1l15ARkcDk/uOjNJD+O/RcddJH371R9GWH1ARSLg/2RQsD96oHSoisOG9Au2wUg1dXSDzjDB5Y+j3LUqH1D7OEV1s6U57NvryiBOvfHVE/n7uV/kXDMNagJ4p/JiL/HsG9UZSdz5s/Ytrv07squeGtpAz+RlfVuepxB5rVPFxYrX9LAi6bNPkZjt+eEUmQZs4SWNqAcG65Om0dcmCDY9Ywnzk/cBEu30iN7jsnWG41y2SMr1ybFbX/nrV4lIphtXE3dMXyIT1bKkrEiylR5aL2ycdUQEoX73tMDEMVcJVQK+w6ozFsN3UpZv5ayfEUxCsZCR9f6tRlhJgHy7g0Epb+VX0="
 
 before_install:
   # Add `aws` CLI tool.
@@ -41,6 +45,21 @@ notifications:
     on_failure: always
 
 script:
+  - yarn --version
+  - node --version
+  - aws --version
+
+  # Conditionally build core.
+  #
+  # Note: If there is an empty diff (like git internal catchup) this will exit 1 with
+  #       stack trace which is still what we want (no changes).
+  # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
+  - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
+  - |
+    npx -q match-str -e "^(docs\/)" -s "${CHANGED_FILES}" &&  \
+    { echo "[CHANGES] Building core."; } || \
+    { echo "[NO CHANGES] No core changes. Skipping build."; travis_terminate 0; }
+
   # Core library
   - yarn run build
   # Build all examples to make sure they're not broken.
@@ -53,22 +72,33 @@ jobs:
     - stage: documentation
       node_js: '12'
       script:
+        # Only do the docs build/deploy if docs changes.
+        # We early terminate the entire job which should also skip `deploy` tasks.
+        #
+        # Note: If there is an empty diff (like git internal catchup) this will exit 1 with
+        #       stack trace which is still what we want (no changes).
+        # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
+        - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
+        - |
+          npx -q match-str -i "^(\.travis\.yml|docs\/)" -s "${CHANGED_FILES}" && \
+          { echo "[CHANGES] Building docs."; } || \
+          { echo "[NO CHANGES] No doc changes. Skipping build + deploy."; travis_terminate 0; }
+
+        # Install, test.
         - cd docs
         - yarn install --frozen-lockfile
         - yarn run check-ci
+
         # Build and deploy to staging.
         - yarn run clean
         - yarn run build
         - yarn run deploy:stage
+
       deploy:
         # Deploy master to production
         - provider: script
-          # Build and deploy to production.
           # _Note_: `deploy.script` must be a **single** command string
-          script: >-
-            yarn run clean &&
-            yarn run build &&
-            yarn run deploy:prod
+          script: yarn run deploy:prod
           skip_cleanup: true
           on:
             branch: master
