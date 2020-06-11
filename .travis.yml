@@ -55,7 +55,7 @@ script:
   # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
   - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
   - |
-    npx -q match-str -e "^(docs\/)" -s "$CHANGED_FILES" &&  \
+    npx -q match-str -e "^(docs\/)" -s "${CHANGED_FILES}" &&  \
     { echo "[CHANGES] Building core."; } || \
     { echo "[NO CHANGES] No core changes. Skipping build."; travis_terminate 0; }
 
@@ -75,8 +75,10 @@ jobs:
         # We early terminate the entire job which should also skip `deploy` tasks.
         # See: https://reflectoring.io/skip-ci-build/#using-a-git-diff-in-the-ci-build
         - export CHANGED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
+        - echo "TODO HERE TRAVIS_COMMIT_RANGE -- ${TRAVIS_COMMIT_RANGE}"
+        - echo "TODO HERE CHANGED_FILES -- ${CHANGED_FILES}"
         - |
-          npx -q match-str -i "^(\.travis\.yml|docs\/)" -s "$CHANGED_FILES" && \
+          npx -q match-str -i "^(\.travis\.yml|docs\/)" -s "${CHANGED_FILES}" && \
           { echo "[CHANGES] Building docs."; } || \
           { echo "[NO CHANGES] No doc changes. Skipping build + deploy."; travis_terminate 0; }
 
