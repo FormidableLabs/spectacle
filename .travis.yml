@@ -11,8 +11,6 @@ sudo: false
 branches:
   only:
     - master
-    # TODO(formideploy): TEMP BRANCH TARGET -- REMOVE
-    - chore/formideploy
 
 env:
   global:
@@ -100,16 +98,7 @@ jobs:
         # Deploy master to production
         - provider: script
           # _Note_: `deploy.script` must be a **single** command string
-          #
-          # TODO(formideploy): Remove `--dryrun` flag!!!
-          script: yarn run deploy:prod --dryrun
-          skip_cleanup: true
-          on:
-            branch: master
-
-        # TODO(formideploy): TEMP BRANCH TARGET -- REMOVE
-        - provider: script
           script: yarn run deploy:prod
           skip_cleanup: true
           on:
-            branch: chore/formideploy
+            branch: master
