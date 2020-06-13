@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DeckContext } from '../../hooks/use-deck';
+import { SlideNextElementContext } from '../../hooks/use-slide';
 import styled, { css } from 'styled-components';
 import { Text } from '../typography';
 import { FlexBox, Box } from '../layout';
@@ -82,6 +83,7 @@ const NotesContainer = styled('div')`
 
 const PresenterDeck = props => {
   const {
+    slideElementMap,
     state: {
       currentNotes,
       currentSlide,
@@ -99,6 +101,11 @@ const PresenterDeck = props => {
     children
   } = props;
 
+  const countSlideElements = React.useCallback(
+    slideNumber => slideElementMap[slideNumber],
+    [slideElementMap]
+  );
+
   const onStartConnection = React.useCallback(() => {
     const urlParams = queryString.stringify({
       slide: currentSlide,
@@ -110,9 +117,15 @@ const PresenterDeck = props => {
 
   const activeSlide =
     children.length > currentSlide ? children[currentSlide] : null;
-  const nextSlide =
-    children.length > currentSlide + 1 ? children[currentSlide + 1] : null;
-
+  // Show next animation in the preview slide if there are animations left on the current slide
+  const showNextElement =
+    currentSlideElement + 1 < countSlideElements(currentSlide);
+  // If there are no animations left on the current slide, then show the next slide in the preview
+  const nextSlide = showNextElement
+    ? activeSlide
+    : children.length > currentSlide + 1
+    ? children[currentSlide + 1]
+    : null;
   const castButton = React.useMemo(() => {
     if (isReceiver || typeof window.navigator.presentation === 'undefined') {
       return null;
@@ -197,9 +210,11 @@ const PresenterDeck = props => {
                 Slide {nextSlide.props.slideNum + 1} of {numberOfSlides}
               </SlideCountLabel>
             </Text>
-            <SlideWrapper small data-testid="Next Slide">
-              {nextSlide}
-            </SlideWrapper>
+            <SlideNextElementContext.Provider value={{ showNextElement }}>
+              <SlideWrapper small data-testid="Next Slide">
+                {nextSlide}
+              </SlideWrapper>
+            </SlideNextElementContext.Provider>
           </SlideContainer>
         )}
       </PreviewColumn>

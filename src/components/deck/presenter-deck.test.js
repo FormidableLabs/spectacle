@@ -25,6 +25,9 @@ const children = [
 describe('PresenterDeck', () => {
   beforeEach(() => {
     mockedUseContext.mockReturnValue({
+      slideElementMap: {
+        0: 0
+      },
       state: {
         currentNotes: '',
         currentSlide: 0,
@@ -61,6 +64,9 @@ describe('PresenterDeck', () => {
       terminateConnection: jest.fn()
     };
     mockedUseContext.mockReturnValue({
+      slideElementMap: {
+        0: 0
+      },
       state: {
         currentNotes: '',
         currentSlide: 2,

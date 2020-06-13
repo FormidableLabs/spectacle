@@ -15,6 +15,7 @@ import { DEFAULT_SLIDE_ELEMENT_INDEX } from '../utils/constants';
 
 // Initialise SlideContext.
 export const SlideContext = React.createContext();
+export const SlideNextElementContext = React.createContext();
 
 function useSlide(slideNum) {
   // Gets state, dispatch and number of slides off DeckContext.
