@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useSlide, { SlideContext } from '../hooks/use-slide';
+import useSlide, {
+  SlideContext,
+  SlideNextElementContext
+} from '../hooks/use-slide';
 import styled, { ThemeContext, css } from 'styled-components';
 import { background, color, space } from 'styled-system';
 import useAutofillHeight from '../hooks/use-autofill-height';
@@ -89,6 +92,7 @@ const Slide = props => {
   } = props;
   const theme = React.useContext(ThemeContext);
   const { state } = React.useContext(DeckContext);
+  const { showNextElement } = React.useContext(SlideNextElementContext) || {};
   const [ratio, setRatio] = React.useState(scaleRatio || 1);
   const [origin, setOrigin] = React.useState({ x: 0, y: 0 });
   const slideRef = React.useRef(null);
@@ -168,10 +172,21 @@ const Slide = props => {
     [state.exportMode, origin, ratio]
   );
 
-  const value = useSlide(slideNum);
+  let value = useSlide(slideNum);
   const { numberOfSlides } = value.state;
 
   useAutofillHeight({ slideWrapperRef, templateRef, contentRef, slideHeight });
+
+  if (showNextElement) {
+    // Next slide preview in the presenter mode might need to show the next animation
+    value = {
+      ...value,
+      state: {
+        ...value.state,
+        currentSlideElement: value.state.currentSlideElement + 1
+      }
+    };
+  }
 
   return (
     <SlideContainer
