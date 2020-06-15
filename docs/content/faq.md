@@ -15,4 +15,4 @@ For more info about the query parameters Spectacle supports, please check out ou
 
 ## Can I write my presentation in TypeScript?
 
-Yes - Spectacle types are shipped with the package, so you can safely use Spectacle in any `.ts` or `.js` presentation without a separate type definition import. Check out [the exported types](https://github.com/FormidableLabs/spectacle/blob/master/index.d.ts) for a complete list.
+Yes - Spectacle types are shipped with the package, so you can safely use Spectacle in any `.ts` or `.js` presentation without a separate type definition import. Check out [the exported types](https://github.com/FormidableLabs/spectacle/blob/main/index.d.ts) for a complete list.

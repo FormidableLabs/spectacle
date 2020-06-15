@@ -90,20 +90,20 @@ Appear is a component that makes a component animate on the slide on key press. 
 
 ## Code Pane
 
-CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code. The Code Pane will trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. Optionally you can have the Code Pane fill the available empty space on your slide via the `autoFillHeight` prop. Themes are configurable objects and can be imported from the [prism-react-renderer themes](https://github.com/FormidableLabs/prism-react-renderer/tree/master/src/themes).
+CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code. The Code Pane will trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. Optionally you can have the Code Pane fill the available empty space on your slide via the `autoFillHeight` prop. Themes are configurable objects and can be imported from the [prism-react-renderer themes](https://github.com/FormidableLabs/prism-react-renderer/tree/main/src/themes).
 
 Additionally, `highlightStart` and `highlightEnd` props can be used to highlight certain ranges of code. Combine this with the [Stepper](#stepper) component to iterate over lines of code as you present.
 
-| Props            | Type                                                                                         | Example               |
-| ---------------- | -------------------------------------------------------------------------------------------- | --------------------- |
-| `autoFillHeight` | PropTypes.boolean                                                                            | `false`               |
-| `children`       | PropTypes.string                                                                             | `let name = "Carlos"` |
-| `fontSize`       | PropTypes.number                                                                             | `16`                  |
-| `highlightEnd`   | PropTypes.number                                                                             | `2`                   |
-| `highlightStart` | PropTypes.number                                                                             | `1`                   |
-| `indentSize`     | PropTypes.number                                                                             | `2`                   |
-| `language`       | PropTypes.string                                                                             | `javascript`          |
-| `theme`          | [Prism Theme](https://github.com/FormidableLabs/prism-react-renderer/tree/master/src/themes) | —                     |
+| Props            | Type                                                                                       | Example               |
+| ---------------- | ------------------------------------------------------------------------------------------ | --------------------- |
+| `autoFillHeight` | PropTypes.boolean                                                                          | `false`               |
+| `children`       | PropTypes.string                                                                           | `let name = "Carlos"` |
+| `fontSize`       | PropTypes.number                                                                           | `16`                  |
+| `highlightEnd`   | PropTypes.number                                                                           | `2`                   |
+| `highlightStart` | PropTypes.number                                                                           | `1`                   |
+| `indentSize`     | PropTypes.number                                                                           | `2`                   |
+| `language`       | PropTypes.string                                                                           | `javascript`          |
+| `theme`          | [Prism Theme](https://github.com/FormidableLabs/prism-react-renderer/tree/main/src/themes) | —                     |
 
 ```jsx
 import lightTheme from 'prism-react-renderer/themes/nightOwlLight';

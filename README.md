@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/master/docs/src/assets/logo_spectacle.png" width=250></p>
+<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/main/docs/src/assets/logo_spectacle.png" width=250></p>
 <h2 align="center">Spectacle</h2>
 <p align="center">
 <strong>✨ A ReactJS based Presentation Library ✨</strong>
@@ -13,7 +13,7 @@
 </p>
 
 Looking for a quick preview of what you can do with Spectacle? Check out our Live Demo deck
-[here](https://raw.githack.com/FormidableLabs/spectacle/master/examples/one-page.html).
+[here](https://raw.githack.com/FormidableLabs/spectacle/main/examples/one-page.html).
 
 Have a question about Spectacle? Submit an issue in this repository using the
 ["Question" template](https://github.com/FormidableLabs/spectacle/issues/new?template=question.md).
@@ -23,4 +23,4 @@ Have a question about Spectacle? Submit an issue in this repository using the
 Spectacle's documentation lives on our [docs site](https://www.formidable.com/open-source/spectacle).
 Notice something inaccurate or confusing? Feel free to [open an issue](https://github.com/FormidableLabs/spectacle/issues)
 or [make a pull request](https://github.com/FormidableLabs/spectacle/pulls) to help improve the documentation for everyone!
-The source for our docs site lives in this repo in the [`docs`](https://github.com/FormidableLabs/spectacle/blob/master/docs/README.md) folder.
+The source for our docs site lives in this repo in the [`docs`](https://github.com/FormidableLabs/spectacle/blob/main/docs/README.md) folder.

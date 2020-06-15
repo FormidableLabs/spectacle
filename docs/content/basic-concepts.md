@@ -66,9 +66,9 @@ $ spectacle-boilerplate -m md
 
 To see a more complete examples of a presentation generated with MDX or Markdown, please check out our three samples available for use with the CLI as well as manual builds:
 
-- [`.md` Example](https://github.com/FormidableLabs/spectacle/tree/master/examples/md) (`spectacle`)
-- [`.mdx` Example](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/mdx) (`spectacle-mdx-loader`)
-- [`.mdx` + Babel Example](https://github.com/FormidableLabs/spectacle-cli/tree/master/examples/cli-mdx-babel) (`spectacle-cli`)
+- [`.md` Example](https://github.com/FormidableLabs/spectacle/tree/main/examples/md) (`spectacle`)
+- [`.mdx` Example](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/mdx) (`spectacle-mdx-loader`)
+- [`.mdx` + Babel Example](https://github.com/FormidableLabs/spectacle-cli/tree/main/examples/cli-mdx-babel) (`spectacle-cli`)
 
 For a more thorough understanding of the features and flags provided by the CLI, please see its [complete documentation](./extensions#spectacle-cli).
 
@@ -80,7 +80,7 @@ This approach is where you use the library's tags to compose your presentation. 
 
 The bare minimum you'll want to use to build your presentation are the `Deck` element and a `Slide` element. Each `Slide` represents a slide within your presentation `Deck` (the entire slideshow).
 
-To see a complete example of a presentation written in JSX, please check out our [sample JSX presentation](https://github.com/FormidableLabs/spectacle/blob/master/examples/js/index.js).
+To see a complete example of a presentation written in JSX, please check out our [sample JSX presentation](https://github.com/FormidableLabs/spectacle/blob/main/examples/js/index.js).
 
 You can also bootstrap a fresh JSX project with `spectacle-boilerplate`:
 
@@ -132,7 +132,7 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
 </script>
 ```
 
-To see a complete example of a presentation written as a single HTML page, please check out our [sample one page presentation](https://github.com/FormidableLabs/spectacle/blob/master/examples/one-page.html).
+To see a complete example of a presentation written as a single HTML page, please check out our [sample one page presentation](https://github.com/FormidableLabs/spectacle/blob/main/examples/one-page.html).
 
 ## Presenting
 
