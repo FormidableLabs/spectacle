@@ -32,9 +32,9 @@ Our examples are spread out across multiple projects depending on where the core
   - [`examples/md`](https://github.com/FormidableLabs/spectacle/tree/main/examples/md)
   - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page.html)
 - `spectacle-mdx-loader`
-  - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/mdx)
+  - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/mdx)
 - `spectacle-cli`
-  - [`examples/cli-mdx-babel`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/master/examples/cli-mdx-babel): _Not published_
+  - [`examples/cli-mdx-babel`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/cli-mdx-babel): _Not published_
 
 #### This repository
 
