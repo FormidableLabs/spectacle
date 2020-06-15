@@ -121,6 +121,6 @@ For more information on [presenting](./basic-concepts#presenting), [exporting](.
 
 For more information about Spectacle and its components, check out [the docs](https://formidable.com/open-source/spectacle).
 
-Interested in helping out or seeing what's happening under the hood? Spectacle is maintained [on Github](https://github.com/FormidableLabs/spectacle) and you can [start contributing here](https://github.com/FormidableLabs/spectacle/blob/master/docs/CONTRIBUTING.md).
+Interested in helping out or seeing what's happening under the hood? Spectacle is maintained [on Github](https://github.com/FormidableLabs/spectacle) and you can [start contributing here](https://github.com/FormidableLabs/spectacle/blob/main/docs/CONTRIBUTING.md).
 
 For any questions, feel free to [open a new question on Github](https://github.com/FormidableLabs/spectacle/issues/new?template=question.md).

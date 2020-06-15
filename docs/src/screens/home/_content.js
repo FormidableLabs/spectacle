@@ -26,7 +26,7 @@ const content = {
     bgStill: require('../../assets/demo-still.png'),
     bgWebm: require('../../assets/demo-presentation.webm'),
     demoUrl:
-      'https://raw.githack.com/FormidableLabs/spectacle/master/examples/one-page.html'
+      'https://raw.githack.com/FormidableLabs/spectacle/main/examples/one-page.html'
   },
   getStarted: {
     description:

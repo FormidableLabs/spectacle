@@ -10,7 +10,7 @@ sudo: false
 
 branches:
   only:
-    - master
+    - main
 
 env:
   global:
@@ -95,10 +95,10 @@ jobs:
         - yarn run deploy:stage
 
       deploy:
-        # Deploy master to production
+        # Deploy main to production
         - provider: script
           # _Note_: `deploy.script` must be a **single** command string
           script: yarn run deploy:prod
           skip_cleanup: true
           on:
-            branch: master
+            branch: main
