@@ -151,7 +151,8 @@ export default function useUrlRouting(options) {
       return;
     }
     const reverseDirection =
-      slideNumber < currentSlide || slideElementNumber < currentSlideElement;
+      slideNumber < currentSlide ||
+      (slideNumber == currentSlide && slideElementNumber < currentSlideElement);
     const update = {
       slideNumber,
       slideElementNumber,
