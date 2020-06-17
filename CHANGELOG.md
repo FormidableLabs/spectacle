@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 6.2.0 (06-17-2020)
 
+- Fix presenter mode so the next element is displayed, not just the next Slide.
+  [#924](https://github.com/FormidableLabs/spectacle/pull/924)
 - Allow for user-supplied indentation size in the CodePane.
   [#908](https://github.com/FormidableLabs/spectacle/pull/908)
 
