@@ -1,6 +1,7 @@
 import { createBrowserHistory } from 'history';
-import { isEqual, merge } from 'lodash';
 import QS from 'query-string';
+import isEqual from 'react-fast-compare';
+import merge from 'deepmerge';
 
 // Needed to properly merge query strings. (Hook consumers can also provide
 // their own merge function if necessary)
