@@ -3,7 +3,6 @@ import { ulid } from 'ulid';
 import * as transitionConfigs from 'transitions';
 import { useTransition } from 'react-spring';
 import { SlideContext } from 'Slide';
-import sortBy from '../utils/sort-by';
 import sortByKeyComparator from '../utils/sort-by';
 import clamp from '../utils/clamp';
 
