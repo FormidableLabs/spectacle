@@ -1,28 +1,30 @@
 import { createBrowserHistory } from 'history';
 import QS from 'query-string';
 import isEqual from 'react-fast-compare';
-import merge from 'deepmerge';
+import { mergeAndCompare, merge } from 'merge-anything';
 
 // Needed to properly merge query strings. (Hook consumers can also provide
 // their own merge function if necessary)
 function defaultMergeLocation(object, ...sources) {
-  return mergeWith(object, ...sources, (left, right, key) => {
-    switch (key) {
-      case 'search':
-        if (!left) return right;
-        return (
-          '?' +
-          QS.stringify({
-            ...QS.parse(left),
-            ...QS.parse(right)
-          })
-        );
-      case 'state':
-        return merge(left, right);
-      default:
-        return undefined;
-    }
-  });
+  return mergeAndCompare(
+    (left, right, key) => {
+      switch (key) {
+        case 'search':
+          if (!left) return right;
+          return (
+            '?' +
+            QS.stringify({
+              ...QS.parse(left),
+              ...QS.parse(right)
+            })
+          );
+        default:
+          return merge(left, right);
+      }
+    },
+    object,
+    ...sources
+  );
 }
 
 // Hook to keep some external state synchronized with the history location.
@@ -49,8 +51,7 @@ export default function useLocationSync({
       // perform initial two-way sync between location and state (state wins)
       const { location } = history;
       const initialState = merge(
-        {},
-        defaultState,
+        defaultState || {},
         mapLocationToState(location)
       );
       const nextLocation = mergeLocation(

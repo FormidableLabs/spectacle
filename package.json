@@ -42,9 +42,9 @@
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
     "broadcastchannel-polyfill": "^1.0.0",
-    "deepmerge": "^4.2.2",
     "history": "^4.9.0",
     "marksy": "^8.0.0",
+    "merge-anything": "^3.0.3",
     "normalize-newline": "^3.0.0",
     "prism-react-renderer": "^0.1.7",
     "query-string": "^6.8.2",

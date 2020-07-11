@@ -1,5 +1,5 @@
 import { useImmerReducer } from 'use-immer';
-import merge from 'deepmerge';
+import merge from 'merge-anything';
 import useActionDispatcher from '../hooks/use-action-dispatcher';
 
 export const GOTO_FINAL_STEP = null;
