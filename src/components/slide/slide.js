@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { background, color, space } from 'styled-system';
-
 import { DeckContext } from '../deck/deck';
 import { useSpring, animated } from 'react-spring';
 import { useSlide } from '../../hooks/use-slides';
