@@ -45,6 +45,7 @@
     "history": "^4.9.0",
     "marksy": "^8.0.0",
     "merge-anything": "^3.0.3",
+    "mousetrap": "^1.6.5",
     "normalize-newline": "^3.0.0",
     "prism-react-renderer": "^0.1.7",
     "query-string": "^6.8.2",
@@ -53,7 +54,6 @@
     "styled-components": "^4.3.2",
     "styled-system": "^5.1.1",
     "ulid": "^2.3.0",
-    "use-immer": "^0.4.0",
     "use-resize-observer": "^6.1.0",
     "wonka": "^3.2.0"
   },

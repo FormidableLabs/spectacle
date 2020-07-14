@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { ulid } from 'ulid';
-import * as transitionConfigs from 'transitions';
 import { useTransition } from 'react-spring';
-import { SlideContext } from 'Slide';
+import { SlideContext } from '../components/slide/slide';
 import sortByKeyComparator from '../utils/sort-by';
 import clamp from '../utils/clamp';
 

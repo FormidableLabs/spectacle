@@ -1,5 +1,5 @@
-import { useImmerReducer } from 'use-immer';
-import merge from 'merge-anything';
+import * as React from 'react';
+import { merge } from 'merge-anything';
 import useActionDispatcher from '../hooks/use-action-dispatcher';
 
 export const GOTO_FINAL_STEP = null;
@@ -16,43 +16,69 @@ const initialDeckState = {
   }
 };
 
-function deckImmerReducer(draft, { type, payload }) {
+function deckReducer(state, { type, payload = {} }) {
   switch (type) {
     case 'INITIALIZE_TO':
-      merge(draft.activeView, payload);
-      merge(draft.pendingView, payload);
-      draft.initialized = true;
-      break;
+      return {
+        activeView: merge(state.activeView, payload),
+        pendingView: merge(state.pendingView, payload),
+        initialized: true
+      };
     case 'SKIP_TO':
-      merge(draft.pendingView, payload);
-      break;
+      return {
+        ...state,
+        pendingView: merge(state.pendingView, payload)
+      };
     case 'STEP_FORWARD':
-      draft.pendingView.stepIndex += 1;
-      break;
+      return {
+        ...state,
+        pendingView: merge(state.pendingView, {
+          stepIndex: state.pendingView.stepIndex + 1
+        })
+      };
     case 'STEP_BACKWARD':
-      draft.pendingView.stepIndex -= 1;
-      break;
+      return {
+        ...state,
+        pendingView: merge(state.pendingView, {
+          stepIndex: state.pendingView.stepIndex - 1
+        })
+      };
     case 'ADVANCE_SLIDE':
-      draft.pendingView.slideIndex += 1;
-      draft.pendingView.stepIndex = 0;
-      break;
+      return {
+        ...state,
+        pendingView: merge(state.pendingView, {
+          stepIndex: 0,
+          slideIndex: state.pendingView.slideIndex + 1
+        })
+      };
     case 'REGRESS_SLIDE':
-      draft.pendingView.slideIndex -= 1;
-      draft.pendingView.stepIndex = GOTO_FINAL_STEP;
-      break;
+      return {
+        ...state,
+        pendingView: merge(state.pendingView, {
+          stepIndex: GOTO_FINAL_STEP,
+          slideIndex: state.pendingView.slideIndex - 1
+        })
+      };
     case 'COMMIT_TRANSITION':
-      merge(draft.pendingView, payload);
-      merge(draft.activeView, draft.pendingView);
-      break;
+      const pendingView = merge(state.pendingView, payload);
+      return {
+        ...state,
+        pendingView,
+        activeView: merge(state.activeView, pendingView)
+      };
     case 'CANCEL_TRANSITION':
-      merge(draft.pendingView, draft.activeView);
-      break;
+      return {
+        ...state,
+        pendingView: merge(state.pendingView, state.activeView)
+      };
+    default:
+      return state;
   }
 }
 
 export default function useDeckReducer(userProvidedInitialState) {
-  const [{ initialized, pendingView, activeView }, dispatch] = useImmerReducer(
-    deckImmerReducer,
+  const [{ initialized, pendingView, activeView }, dispatch] = React.useReducer(
+    deckReducer,
     initialDeckState
   );
 

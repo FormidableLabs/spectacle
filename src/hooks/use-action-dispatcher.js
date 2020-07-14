@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 function identity(sender) {
   return sender;
 }

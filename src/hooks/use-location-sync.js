@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { createBrowserHistory } from 'history';
 import QS from 'query-string';
 import isEqual from 'react-fast-compare';
