@@ -4355,6 +4355,11 @@ is-what@^3.3.1:
   resolved "https://registry.yarnpkg.com/is-what/-/is-what-3.5.1.tgz#069d31d97afc62bcbfb281ef6a1dd89461ebee76"
   integrity sha512-NHeqazf97ZVerGNEDmYG4+J4UY3uDQOjaJNMIMXw2i/tFfMconSgSK8Z27Y4VWMbM96E9ylroUSnD7jXRjzBwA==
 
+is-what@^3.7.1:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/is-what/-/is-what-3.10.0.tgz#5fee88ee7105c373c5b7c9324f345ad7e9554327"
+  integrity sha512-U4RYCXNOmATQHlOPlOCHCfXyKEFIPqvyaKDqYRuLbD6EYKcTTfc3YXkAYjzOVxO3zt34L+Wh2feIyWrYiZ7kng==
+
 is-whitespace@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/is-whitespace/-/is-whitespace-0.3.0.tgz#1639ecb1be036aec69a54cbb401cfbed7114ab7f"
@@ -5207,6 +5212,14 @@ merge-anything@^2.2.4:
   integrity sha512-l5XlriUDJKQT12bH+rVhAHjwIuXWdAIecGwsYjv2LJo+dA1AeRTmeQS+3QBpO6lEthBMDi2IUMpLC1yyRvGlwQ==
   dependencies:
     is-what "^3.3.1"
+
+merge-anything@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/merge-anything/-/merge-anything-3.0.3.tgz#1bab47eec001c31b4fcd599de8b29f58fe670acf"
+  integrity sha512-TdUB4lH/CTk28Vuh93QcN/e8BUlEr5m1P3AcNONCWlIEgCPF4y5m2KPXro/1e9sO/Z7jGex80QZ93Xoyr1mYjQ==
+  dependencies:
+    is-what "^3.7.1"
+    ts-toolbelt "^6.3.6"
 
 merge-descriptors@1.0.1:
   version "1.0.1"
@@ -6299,6 +6312,11 @@ react-dom@^16.9.0:
     prop-types "^15.6.2"
     scheduler "^0.18.0"
 
+react-fast-compare@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
+  integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+
 react-is@^16.12.0, react-is@^16.8.4:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
@@ -6557,6 +6575,11 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
+
+resize-observer-polyfill@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
+  integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
 
 resolve-cwd@^2.0.0:
   version "2.0.0"
@@ -7536,6 +7559,11 @@ tree-kill@^1.0.0:
   resolved "https://registry.yarnpkg.com/tree-kill/-/tree-kill-1.2.2.tgz#4ca09a9092c88b73a7cdc5e8a01b507b0790a0cc"
   integrity sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==
 
+ts-toolbelt@^6.3.6:
+  version "6.12.1"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.12.1.tgz#bfcfaf0e1cc7416bcfc412c9340233f57a1f86c4"
+  integrity sha512-Y4ZMdw+CzHnzFp7yp8axTDl6G78ypeS1XcaarLoXpnW0McYR7kDLndU2tk7nIEdM99yoHjaRSbL09ULZMtN5RA==
+
 tslib@^1.9.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
@@ -7585,6 +7613,11 @@ uglify-js@3.4.x:
   dependencies:
     commander "~2.19.0"
     source-map "~0.6.1"
+
+ulid@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/ulid/-/ulid-2.3.0.tgz#93063522771a9774121a84d126ecd3eb9804071f"
+  integrity sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
@@ -7683,6 +7716,18 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-immer@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/use-immer/-/use-immer-0.4.0.tgz#9992280c2d8b5777e5bfc4827c69dbdcc1b219eb"
+  integrity sha512-mxx4jbRRc1/56geSc3VHx8gg3FvlzUpQPfVNJXtU1NRK/iTdK0pV3k3YPi7iFUcCM8YJ6/0dUBENyuk3WO/gxw==
+
+use-resize-observer@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/use-resize-observer/-/use-resize-observer-6.1.0.tgz#d4d267a940dbf9c326da6042f8a4bb8c89d29729"
+  integrity sha512-SiPcWHiIQ1CnHmb6PxbYtygqiZXR0U9dNkkbpX9VYnlstUwF8+QqpUTrzh13pjPwcjMVGR+QIC+nvF5ujfFNng==
+  dependencies:
+    resize-observer-polyfill "^1.5.1"
 
 use@^3.1.0:
   version "3.1.1"
