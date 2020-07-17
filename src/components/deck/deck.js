@@ -1,9 +1,14 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
+import styled, { ThemeContext, ThemeProvider } from 'styled-components';
 import { ulid } from 'ulid';
 import { useCollectSlides } from '../../hooks/use-slides';
 import useAspectRatioFitting from '../../hooks/use-aspect-ratio-fitting';
 import useDeckState from '../../hooks/use-deck-state';
+import useMousetrap from '../../hooks/use-mousetrap';
+import useLocationSync from '../../hooks/use-location-sync';
+import { mergeTheme } from '../../theme';
+import * as queryStringMapFns from '../../location-map-fns/query-string';
 
 export const DeckContext = React.createContext();
 const noop = () => {};
@@ -35,7 +40,6 @@ const Deck = React.forwardRef(
       notePortalNode,
       useAnimations = true,
       children,
-      onActiveStateChange = noop,
       initialState: initialDeckState = {
         slideIndex: 0,
         stepIndex: 0
@@ -92,6 +96,27 @@ const Deck = React.forwardRef(
         regressSlide
       ]
     );
+
+    useMousetrap(
+      {
+        left: () => stepBackward(),
+        right: () => stepForward()
+      },
+      []
+    );
+
+    const [syncLocation, onActiveStateChange] = useLocationSync({
+      setState: skipTo,
+      ...queryStringMapFns
+    });
+
+    React.useEffect(() => {
+      const initialView = syncLocation({
+        slideIndex: 0,
+        stepIndex: 0
+      });
+      initializeTo(initialView);
+    }, []);
 
     const [
       setPlaceholderContainer,
@@ -223,59 +248,61 @@ const Deck = React.forwardRef(
     }
 
     return (
-      <BackdropComponent
-        ref={backdropRef}
-        className={className}
-        style={{
-          ...backdropStyle,
-          overflow: 'hidden'
-        }}
-      >
-        <div
-          ref={setSlidePortalNode}
+      <ThemeProvider theme={mergeTheme(restTheme)}>
+        <BackdropComponent
+          ref={backdropRef}
+          className={className}
           style={{
-            ...(overviewMode ? overviewPortalStyle : {}),
-            ...fitAspectRatioStyle,
+            ...backdropStyle,
             overflow: 'hidden'
           }}
-        ></div>
-        <DeckContext.Provider
-          value={{
-            deckId,
-            slideCount: slideIds.length,
-            useAnimations,
-            slidePortalNode,
-            onSlideClick: handleSlideClick,
-            theme: restTheme,
-
-            frameOverrideStyle: overviewMode ? overviewFrameStyle : {},
-            wrapperOverrideStyle: overviewMode ? overviewWrapperStyle : {},
-
-            backdropNode: backdropRef.current,
-            notePortalNode,
-            initialized: fullyInitialized,
-            passedSlideIds: passed,
-            upcomingSlideIds: upcoming,
-            activeView: {
-              ...activeView,
-              slideId: activeSlideId
-            },
-            pendingView: {
-              ...pendingView,
-              slideId: pendingSlideId
-            },
-            skipTo,
-            advanceSlide,
-            regressSlide,
-            commitTransition,
-            cancelTransition
-          }}
         >
-          <div ref={setPlaceholderContainer} style={{ display: 'none' }}>
-            {children}
-          </div>
-        </DeckContext.Provider>
-      </BackdropComponent>
+          <div
+            ref={setSlidePortalNode}
+            style={{
+              ...(overviewMode ? overviewPortalStyle : {}),
+              ...fitAspectRatioStyle,
+              overflow: 'hidden'
+            }}
+          ></div>
+          <DeckContext.Provider
+            value={{
+              deckId,
+              slideCount: slideIds.length,
+              useAnimations,
+              slidePortalNode,
+              onSlideClick: handleSlideClick,
+              theme: restTheme,
+
+              frameOverrideStyle: overviewMode ? overviewFrameStyle : {},
+              wrapperOverrideStyle: overviewMode ? overviewWrapperStyle : {},
+
+              backdropNode: backdropRef.current,
+              notePortalNode,
+              initialized: fullyInitialized,
+              passedSlideIds: passed,
+              upcomingSlideIds: upcoming,
+              activeView: {
+                ...activeView,
+                slideId: activeSlideId
+              },
+              pendingView: {
+                ...pendingView,
+                slideId: pendingSlideId
+              },
+              skipTo,
+              advanceSlide,
+              regressSlide,
+              commitTransition,
+              cancelTransition
+            }}
+          >
+            <div ref={setPlaceholderContainer} style={{ display: 'none' }}>
+              {children}
+            </div>
+          </DeckContext.Provider>
+        </BackdropComponent>
+      </ThemeProvider>
     );
   }
 );

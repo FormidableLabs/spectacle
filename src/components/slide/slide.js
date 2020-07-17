@@ -1,6 +1,9 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
+import { background, color, space } from 'styled-system';
+
 import { DeckContext } from '../deck/deck';
 import { useSpring, animated } from 'react-spring';
 import { useSlide } from '../../hooks/use-slides';
@@ -15,12 +18,56 @@ const STAGE_RIGHT = 'translateX(-100%)';
 const CENTER_STAGE = 'translateX(0%)';
 const STAGE_LEFT = 'translateX(100%)';
 
+const SlideContainer = styled('div')`
+  ${color};
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+
+  @media print {
+    page-break-before: always;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  &:before {
+    ${background};
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    opacity: ${({ backgroundOpacity }) => backgroundOpacity};
+  }
+`;
+
+const SlideWrapper = styled('div')(
+  color,
+  space,
+  css`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  `
+);
+
 export default function Slide({
   id: userProvidedId,
   children,
-  style: userProvidedSlideStyle = {},
-  className = '',
-  namedWrapper
+  backgroundColor,
+  backgroundImage,
+  backgroundOpacity,
+  backgroundPosition,
+  backgroundRepeat,
+  backgroundSize,
+  padding,
+  textColor,
+  className = ''
 }) {
   if (React.useContext(SlideContext)) {
     throw new Error(`Slide components may not be nested within each other.`);
@@ -38,10 +85,6 @@ export default function Slide({
     onSlideClick = noop,
     useAnimations,
     slidePortalNode,
-    theme: { SlideWrapper: ThemeSlideWrapperComponent, ...restTheme } = {},
-    frameOverrideStyle = {},
-    wrapperOverrideStyle = {},
-
     initialized: deckInitialized,
     passedSlideIds,
     upcomingSlideIds,
@@ -104,6 +147,7 @@ export default function Slide({
       commitTransition();
     }
   }, [
+    isActive,
     stepWillChange,
     slideWillChange,
     activeView,
@@ -125,7 +169,7 @@ export default function Slide({
         activeView.slideIndex === pendingView.slideIndex - 1;
       setAnimate(isTransitionToNextSlide);
     }
-  }, [willExit, pendingView, cancelTransition]);
+  }, [willExit, pendingView, cancelTransition, activeView.slideIndex]);
 
   React.useEffect(() => {
     if (!willEnter) return;
@@ -186,13 +230,6 @@ export default function Slide({
     immediate
   });
 
-  let SlideWrapperComponent = 'div';
-  if (namedWrapper && namedWrapper in restTheme) {
-    SlideWrapperComponent = restTheme[namedWrapper];
-  } else if (ThemeSlideWrapperComponent) {
-    SlideWrapperComponent = ThemeSlideWrapperComponent;
-  }
-
   return (
     <>
       {placeholder}
@@ -215,23 +252,21 @@ export default function Slide({
                 height: '100%',
                 position: 'absolute',
                 background: 'white',
-                ...springFrameStyle,
-                ...frameOverrideStyle
+                ...springFrameStyle
               }}
             >
-              <SlideWrapperComponent
+              <SlideContainer
                 className={className}
-                style={{
-                  ...userProvidedSlideStyle,
-                  width: '100%',
-                  height: '100%',
-                  position: 'absolute',
-                  ...wrapperOverrideStyle,
-                  overflow: 'scroll'
-                }}
+                backgroundColor={backgroundColor}
+                backgroundImage={backgroundImage}
+                backgroundOpacity={backgroundOpacity}
+                backgroundPosition={backgroundPosition}
+                backgroundRepeat={backgroundRepeat}
+                backgroundSize={backgroundSize}
+                color={textColor}
               >
-                {children}
-              </SlideWrapperComponent>
+                <SlideWrapper padding={padding}>{children}</SlideWrapper>
+              </SlideContainer>
             </animated.div>,
             slidePortalNode
           )}
@@ -239,3 +274,27 @@ export default function Slide({
     </>
   );
 }
+
+Slide.propTypes = {
+  id: PropTypes.string,
+  className: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  backgroundImage: PropTypes.string,
+  backgroundOpacity: PropTypes.number,
+  backgroundPosition: PropTypes.string,
+  backgroundRepeat: PropTypes.string,
+  backgroundSize: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  textColor: PropTypes.string
+};
+
+Slide.defaultProps = {
+  textColor: 'primary',
+  backgroundColor: 'tertiary',
+  backgroundOpacity: 1,
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  padding: 2
+};

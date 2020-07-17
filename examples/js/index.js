@@ -2,39 +2,72 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Deck from '../../src/components/deck/deck';
 import Slide from '../../src/components/slide/slide';
-import useLocationSync from '../../src/hooks/use-location-sync';
-import useMousetrap from '../../src/hooks/use-mousetrap';
+import beauImage from './beau.jpg';
 
-import * as queryStringMapFns from '../../src/location-map-fns/query-string';
+import {
+  FlexBox,
+  Heading,
+  SpectacleLogo,
+  UnorderedList,
+  CodeSpan,
+  ListItem
+} from 'spectacle';
+
+const theme = {
+  fonts: {
+    header: '"Open Sans Condensed", Helvetica, Arial, sans-serif',
+    text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
+  }
+};
 
 function Presentation() {
-  const deck = React.useRef();
-
-  const [syncLocation, setLocation] = useLocationSync({
-    setState: state => deck.current.skipTo(state),
-    ...queryStringMapFns
-  });
-
-  useMousetrap(
-    {
-      left: () => deck.current.stepBackward(),
-      right: () => deck.current.stepForward()
-    },
-    []
-  );
-
-  React.useEffect(() => {
-    const initialView = syncLocation({
-      slideIndex: 0,
-      stepIndex: 0
-    });
-    deck.current.initializeTo(initialView);
-  }, []);
-
   return (
-    <Deck ref={deck} onActiveStateChange={setLocation}>
-      <Slide>Hi</Slide>
-      <Slide>Hi2</Slide>
+    <Deck theme={theme}>
+      <Slide>
+        <FlexBox height="100%">
+          <SpectacleLogo size={500} />
+        </FlexBox>
+      </Slide>
+      <Slide>
+        <FlexBox height="100%" flexDirection="column">
+          <Heading margin="0px" fontSize="150px">
+            ✨<i>Spectacle</i> ✨
+          </Heading>
+          <Heading margin="0px" fontSize="h2">
+            A ReactJS Presentation Library
+          </Heading>
+          <Heading margin="0px 32px" color="primary" fontSize="h3">
+            Where you can write your decks in JSX, Markdown, or MDX!
+          </Heading>
+        </FlexBox>
+      </Slide>
+      <Slide
+        backgroundColor="tertiary"
+        backgroundImage={`url(${beauImage})`}
+        backgroundOpacity={0.5}
+      >
+        <Heading>Custom Backgrounds</Heading>
+        <UnorderedList>
+          <ListItem>
+            <CodeSpan>backgroundColor</CodeSpan>
+          </ListItem>
+          <ListItem>
+            <CodeSpan>backgroundImage</CodeSpan>
+          </ListItem>
+          <ListItem>
+            <CodeSpan>backgroundOpacity</CodeSpan>
+          </ListItem>
+          <ListItem>
+            <CodeSpan>backgroundSize</CodeSpan>
+          </ListItem>
+          <ListItem>
+            <CodeSpan>backgroundPosition</CodeSpan>
+          </ListItem>
+          <ListItem>
+            <CodeSpan>backgroundRepeat</CodeSpan>
+          </ListItem>
+        </UnorderedList>
+      </Slide>
     </Deck>
   );
 }
