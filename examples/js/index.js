@@ -29,6 +29,25 @@ const theme = {
   }
 };
 
+function SlideFragments() {
+  return (
+    <>
+      <Slide>
+        <Text>This is a slide fragment.</Text>
+      </Slide>
+      <Slide>
+        <Text>This is also a slide fragment.</Text>
+        <Appear>
+          <Text>This item shows up!</Text>
+        </Appear>
+        <Appear>
+          <Text>This item also shows up!</Text>
+        </Appear>
+      </Slide>
+    </>
+  );
+}
+
 function Presentation() {
   return (
     <Deck theme={theme}>
@@ -125,6 +144,7 @@ function Presentation() {
             ))}
         </Grid>
       </Slide>
+      <SlideFragments />
     </Deck>
   );
 }
