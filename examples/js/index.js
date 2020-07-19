@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import beauImage from './beau.jpg';
 
 import {
   FlexBox,
