@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Deck from '../../src/components/deck/deck';
-import Slide from '../../src/components/slide/slide';
 import beauImage from './beau.jpg';
 
 import {
@@ -10,8 +8,19 @@ import {
   SpectacleLogo,
   UnorderedList,
   CodeSpan,
-  ListItem
+  OrderedList,
+  ListItem,
+  Appear,
+  Slide,
+  Deck,
+  Text,
+  Grid,
+  Box,
+  Image
 } from 'spectacle';
+
+const formidableLogo =
+  'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
 
 const theme = {
   fonts: {
@@ -43,7 +52,7 @@ function Presentation() {
       </Slide>
       <Slide
         backgroundColor="tertiary"
-        backgroundImage={`url(${beauImage})`}
+        backgroundImage="url(https://github.com/FormidableLabs/dogs/blob/main/beau.jpg?raw=true)"
         backgroundOpacity={0.5}
       >
         <Heading>Custom Backgrounds</Heading>
@@ -67,6 +76,54 @@ function Presentation() {
             <CodeSpan>backgroundRepeat</CodeSpan>
           </ListItem>
         </UnorderedList>
+      </Slide>
+      <Slide>
+        <Heading>Animated Elements</Heading>
+        <OrderedList>
+          <Appear>
+            <ListItem>Elements can animate in!</ListItem>
+          </Appear>
+          <Appear>
+            <ListItem>Out of order</ListItem>
+          </Appear>
+          <Appear>
+            <ListItem>
+              Just identify the order with the prop{' '}
+              <CodeSpan>stepIndex</CodeSpan>!
+            </ListItem>
+          </Appear>
+        </OrderedList>
+      </Slide>
+      <Slide>
+        <FlexBox>
+          <Text>These</Text>
+          <Text>Text</Text>
+          <Text color="secondary">Items</Text>
+          <Text fontWeight="bold">Flex</Text>
+        </FlexBox>
+        <Grid gridTemplateColumns="1fr 2fr" gridColumnGap={15}>
+          <Box backgroundColor="primary">
+            <Text color="secondary">Single-size Grid Item</Text>
+          </Box>
+          <Box backgroundColor="secondary">
+            <Text>Double-size Grid Item</Text>
+          </Box>
+        </Grid>
+        <Grid
+          gridTemplateColumns="1fr 1fr 1fr"
+          gridTemplateRows="1fr 1fr 1fr"
+          alignItems="center"
+          justifyContent="center"
+          gridRowGap={1}
+        >
+          {Array(9)
+            .fill('')
+            .map((_, index) => (
+              <FlexBox paddingTop={0} key={`formidable-logo-${index}`} flex={1}>
+                <Image src={formidableLogo} width={100} />
+              </FlexBox>
+            ))}
+        </Grid>
       </Slide>
     </Deck>
   );

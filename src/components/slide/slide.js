@@ -25,6 +25,7 @@ const SlideContainer = styled('div')`
   position: absolute;
   overflow: hidden;
   display: flex;
+  z-index: 0;
 
   @media print {
     page-break-before: always;
