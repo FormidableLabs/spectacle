@@ -1,85 +1,60 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSpring, animated } from 'react-spring';
-import { TransitionPipeContext } from '../hooks/use-transition-pipe';
-import { SlideContext } from '../hooks/use-slide';
 
-/**
- * SlideElementWrapper provides a component for animating slideElements
- * Anything wrapped inside will be affected by the transition.
- *
- * It is currently using useSpring but ideally we will be able to switch
- * to whatever react-spring hook a user desires!
- *
- * Note: Immediate is a React-Spring property that we pass to the animations
- * essentially it skips animations.
- */
+import { animated } from 'react-spring';
+import { useAnimatedSteps } from '../hooks/use-steps';
 
-const Appear = ({ elementNum, transitionEffect, children }) => {
-  const {
-    state: { currentSlideElement, reverseDirection, immediate }
-  } = React.useContext(SlideContext);
+export default function Appear({
+  id,
+  className,
+  children: childrenOrRenderFunction,
+  tagName = 'div',
+  stepIndex,
+  numSteps = 1
+}) {
+  if (numSteps !== 1 && typeof childrenOrRenderFunction !== 'function') {
+    console.warn(
+      'TransitionElement seems to have multiple steps for no reason?'
+    );
+  }
 
-  const { signal } = React.useContext(TransitionPipeContext);
-  const activeElement = elementNum === currentSlideElement;
-  const upcomingElement =
-    (elementNum > currentSlideElement && !reverseDirection) ||
-    (elementNum < currentSlideElement && reverseDirection);
-  const previousElement =
-    (elementNum < currentSlideElement && !reverseDirection) ||
-    (elementNum > currentSlideElement && reverseDirection);
-
-  const [styleProps, set] = useSpring(() => {
-    if ((activeElement || upcomingElement) && !previousElement) {
-      return reverseDirection ? transitionEffect.to : transitionEffect.from;
-    } else if (previousElement) {
-      return reverseDirection ? transitionEffect.from : transitionEffect.to;
-    } else {
-      return transitionEffect.to;
+  const { transitions, isActive, step, placeholder } = useAnimatedSteps(
+    numSteps,
+    {
+      id,
+      stepIndex
     }
-  });
+  );
 
-  React.useEffect(() => {
-    if (activeElement && !reverseDirection) {
-      set({
-        ...transitionEffect.to,
-        immediate
-      });
-    } else if (reverseDirection && previousElement) {
-      set({
-        ...transitionEffect.from,
-        immediate
-      });
-    }
-  }, [
-    activeElement,
-    elementNum,
-    immediate,
-    previousElement,
-    reverseDirection,
-    set,
-    signal,
-    transitionEffect,
-    upcomingElement
-  ]);
+  const AnimatedEl = animated[tagName];
 
-  return <animated.div style={styleProps}>{children}</animated.div>;
-};
+  let children;
+  if (typeof childrenOrRenderFunction === 'function') {
+    children = childrenOrRenderFunction(step, isActive);
+  } else {
+    children = childrenOrRenderFunction;
+  }
+
+  return (
+    <>
+      {placeholder}
+      {transitions.map(
+        ({ item, props, key }) =>
+          item && (
+            <AnimatedEl key={key} style={props} className={className}>
+              {children}
+            </AnimatedEl>
+          )
+      )}
+    </>
+  );
+}
 
 Appear.propTypes = {
-  children: PropTypes.node.isRequired,
-  elementNum: PropTypes.number.isRequired,
-  transitionEffect: PropTypes.shape({
-    from: PropTypes.object.isRequired,
-    to: PropTypes.object.isRequired
-  })
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  className: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  tagName: PropTypes.string,
+  stepIndex: PropTypes.number,
+  numSteps: PropTypes.number
 };
-
-Appear.defaultProps = {
-  transitionEffect: {
-    from: { opacity: 0 },
-    to: { opacity: 1 }
-  }
-};
-
-export default Appear;

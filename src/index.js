@@ -1,5 +1,5 @@
-import Deck from './components/deck';
-import Slide from './components/slide';
+import Deck from './components/deck/deck';
+import Slide from './components/slide/slide';
 import Appear from './components/appear';
 import CodePane from './components/code-pane';
 import Stepper from './components/stepper';
@@ -32,9 +32,9 @@ import { removeNotes, isolateNotes } from './utils/notes';
 import indentNormalizer from './utils/indent-normalizer';
 
 export {
+  Appear,
   Deck,
   Slide,
-  Appear,
   CodePane,
   Box,
   FlexBox,

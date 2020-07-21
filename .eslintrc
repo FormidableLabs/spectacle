@@ -1,8 +1,13 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": ["prettier", "prettier/react", "plugin:react/recommended"],
-  "plugins": ["prettier", "react-hooks"],
+  "extends": [
+    "prettier",
+    "prettier/react",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "plugins": ["prettier"],
   "env": {
     "browser": true,
     "commonjs": true,

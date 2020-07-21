@@ -1,3 +1,4 @@
+import * as React from 'react';
 import useResizeObserver from 'use-resize-observer';
 
 // Returns an offset and scaling factor which, when applied to `element`, will
