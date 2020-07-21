@@ -15,10 +15,10 @@ import remark from 'remark-parse';
 import mdastAssert from 'mdast-util-assert';
 import remark2rehype from 'remark-rehype';
 import rehype2react from 'rehype-react';
-import dedent from 'dedent';
 import { isValidElementType } from 'react-is';
 import { root as mdRoot } from 'mdast-builder';
 import mdxComponentMap from '../../utils/mdx-component-mapper';
+import indentNormalizer from '../../utils/indent-normalizer';
 
 const Note = () => null;
 
@@ -37,7 +37,7 @@ const Markdown = ({
 
   const [templateProps, noteElements] = React.useMemo(() => {
     // Dedent and parse markdown into MDAST
-    const markdownText = dedent(rawMarkdownText);
+    const markdownText = indentNormalizer(rawMarkdownText);
     const ast = unified()
       .use(remark)
       .parse(markdownText);
@@ -95,21 +95,20 @@ const Markdown = ({
       });
 
     // Compile each of the values we got back from the template function
-    const templateProps = Object.fromEntries(
-      Object.entries(templatePropMDASTs).map(([_, mdast]) => {
+    const templateProps = Object.entries(templatePropMDASTs).reduce(
+      (acc, [key, mdast]) => {
         // Make sure what we got was actually MDAST
         mdastAssert(mdast);
 
         // Transform the MDAST into HAST
         const hast = compiler.runSync(mdast);
 
-        console.log(compiler.stringify(hast));
-
         // Compile the HAST into React elements
-        return compiler.stringify(hast);
-      })
+        acc[key] = compiler.stringify(hast);
+        return acc;
+      },
+      {}
     );
-
     // Create the compiler for presenter notes, which wraps the entire compiled
     // chunk in a <Note> component. (Rather than React.Fragment, which is the
     // default behavior.)
@@ -133,8 +132,6 @@ const Markdown = ({
   ]);
 
   const { children, ...restProps } = templateProps;
-
-  console.log(children);
 
   return (
     <TemplateComponent {...restProps}>
@@ -169,7 +166,7 @@ export const MarkdownSlideSet = ({
   slideProps = {},
   ...allSlideProps
 }) => {
-  const dedentedMarkdownText = dedent(rawMarkdownText);
+  const dedentedMarkdownText = indentNormalizer(rawMarkdownText);
   const mdSlides = dedentedMarkdownText.split(/\n\s*---\n/);
   return (
     <>

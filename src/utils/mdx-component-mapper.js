@@ -28,9 +28,6 @@ const mdxComponentMap = {
   li: ListItem,
   img: Image,
   a: Link,
-  codeblock: props => <CodePane autoFillHeight {...props} />,
-  code: props => <CodePane autoFillHeight {...props} />,
-  inlineCode: CodeSpan,
   table: Table,
   tr: TableRow,
   td: TableCell

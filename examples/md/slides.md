@@ -40,3 +40,11 @@ Typography
 > Example Quote
 
 ---
+
+```js
+class SuperCoolComponent extends React.Component {
+  render() {
+    return <p>code slide works in markdown too whaaaaat</p><p>code slide works in markdown too whaaaaat</p><p>code slide works in markdown too whaaaaat</p>;
+  }
+}
+```
