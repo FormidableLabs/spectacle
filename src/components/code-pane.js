@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { useSteps } from '../hooks/use-steps';
 import indentNormalizer from '../utils/indent-normalizer';
+import { ThemeContext } from 'styled-components';
 
 const getStyleForLineNumber = (lineNumber, activeRange) => {
   const [from, to] = activeRange;
@@ -19,6 +20,7 @@ export default function CodePane({
   children: rawCodeString,
   stepIndex
 }) {
+  const theme = React.useContext(ThemeContext);
   const { stepId, isActive, step, placeholder } = useSteps(
     highlightRanges.length,
     {
@@ -67,13 +69,28 @@ export default function CodePane({
     };
   }, [isActive, step]);
 
+  const customStyle = React.useMemo(() => {
+    /**
+     * Provide fallback values if the user intentionally overrides the
+     * default theme with no valid values.
+     */
+    const {
+      size: { width = 1366 },
+      space = [0, 0, 0]
+    } = theme;
+
+    return {
+      padding: space[0],
+      margin: 0,
+      width: width - space[2] * 2 - space[0] * 2
+    };
+  }, [theme]);
+
   return (
     <>
       {placeholder}
       <SyntaxHighlighter
-        customStyle={{
-          margin: 0
-        }}
+        customStyle={customStyle}
         language={language}
         wrapLines
         showLineNumbers
