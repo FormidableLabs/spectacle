@@ -41,10 +41,14 @@ Typography
 
 ---
 
-```js
-class SuperCoolComponent extends React.Component {
-  render() {
-    return <p>code slide works in markdown too whaaaaat</p><p>code slide works in markdown too whaaaaat</p><p>code slide works in markdown too whaaaaat</p>;
-  }
-}
+```jsx
+import { createClient, Provider } from 'urql';
+
+const client = createClient({ url: 'https://0ufyz.sse.codesandbox.io' });
+
+const App = () => (
+  <Provider value={client}>
+    <Todos />
+  </Provider>
+);
 ```

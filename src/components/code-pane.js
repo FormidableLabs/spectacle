@@ -4,6 +4,33 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { useSteps } from '../hooks/use-steps';
 import indentNormalizer from '../utils/indent-normalizer';
 import { ThemeContext } from 'styled-components';
+import * as styles from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+export const availableCodePaneThemes = [
+  'atomDark',
+  'base16AteliersulphurpoolLight',
+  'cb',
+  'coy',
+  'darcula',
+  'dark',
+  'duotoneDark',
+  'duotoneEarth',
+  'duotoneForest',
+  'duotoneLight',
+  'duotoneSea',
+  'duotoneSpace',
+  'funky',
+  'ghcolors',
+  'hopscotch',
+  'okaidia',
+  'pojoaque',
+  'prism',
+  'solarizedlight',
+  'tomorrow',
+  'twilight',
+  'vs',
+  'xonokai'
+];
 
 const getStyleForLineNumber = (lineNumber, activeRange) => {
   const [from, to] = activeRange;
@@ -18,7 +45,8 @@ export default function CodePane({
   highlightRanges = [],
   language,
   children: rawCodeString,
-  stepIndex
+  stepIndex,
+  theme: syntaxTheme
 }) {
   const theme = React.useContext(ThemeContext);
   const { stepId, isActive, step, placeholder } = useSteps(
@@ -76,15 +104,23 @@ export default function CodePane({
      */
     const {
       size: { width = 1366 },
-      space = [0, 0, 0]
+      space = [0, 0, 0],
+      fontSizes: { monospace = '20px' }
     } = theme;
 
     return {
       padding: space[0],
       margin: 0,
-      width: width - space[2] * 2 - space[0] * 2
+      width: width - space[2] * 2 - space[0] * 2,
+      fontSize: monospace
     };
   }, [theme]);
+
+  const syntaxStyle = React.useMemo(() => {
+    if (typeof syntaxTheme === 'string') {
+      return styles[syntaxTheme];
+    } else syntaxTheme;
+  }, [syntaxTheme]);
 
   return (
     <>
@@ -96,6 +132,7 @@ export default function CodePane({
         showLineNumbers
         lineProps={getLineProps}
         lineNumberProps={getLineNumberProps}
+        style={syntaxStyle}
       >
         {children}
       </SyntaxHighlighter>
@@ -107,5 +144,10 @@ CodePane.propTypes = {
   highlightRanges: propTypes.array,
   language: propTypes.string.isRequired,
   children: propTypes.string.isRequired,
-  stepIndex: propTypes.number
+  stepIndex: propTypes.number,
+  theme: propTypes.oneOf([propTypes.object, ...availableCodePaneThemes])
+};
+
+CodePane.defaultProps = {
+  theme: 'atomDark'
 };

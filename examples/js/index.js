@@ -15,7 +15,8 @@ import {
   Text,
   Grid,
   Box,
-  Image
+  Image,
+  CodePane
 } from 'spectacle';
 
 const formidableLogo =
@@ -144,6 +145,19 @@ function Presentation() {
         </Grid>
       </Slide>
       <SlideFragments />
+      <Slide>
+        <CodePane language="jsx">{`
+        import { createClient, Provider } from 'urql';
+
+        const client = createClient({ url: 'https://0ufyz.sse.codesandbox.io' });
+        
+        const App = () => (
+          <Provider value={client}>
+            <Todos />
+          </Provider>
+        );
+        `}</CodePane>
+      </Slide>
     </Deck>
   );
 }
