@@ -25,7 +25,7 @@ import { Image, FullSizeImage } from './components/image';
 import Notes from './components/notes';
 import Progress from './components/progress';
 import FullScreen from './components/fullscreen';
-import Markdown from './components/markdown';
+import Markdown, { MarkdownSlideSet } from './components/markdown/markdown';
 import SpectacleLogo from './components/logo';
 import mdxComponentMap from './utils/mdx-component-mapper';
 import { removeNotes, isolateNotes } from './utils/notes';
@@ -53,6 +53,7 @@ export {
   Progress,
   FullScreen,
   Markdown,
+  MarkdownSlideSet,
   SpectacleLogo,
   Stepper,
   Table,
