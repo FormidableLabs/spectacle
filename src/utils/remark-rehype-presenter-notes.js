@@ -3,12 +3,7 @@ import unistVisit from 'unist-util-visit';
 import * as mdast from 'mdast-builder';
 
 export default function remarkRehypePresenterNotes(noteCallback) {
-  return tree => {
-    zone(tree, 'notes', transformZoneNote);
-    unistVisit(tree, 'paragraph', transformLineNote);
-  };
-
-  function transformZoneNote(start, nodes, end) {
+  function transformZoneNote(start, nodes) {
     noteCallback(...nodes);
     return [];
   }
@@ -24,4 +19,9 @@ export default function remarkRehypePresenterNotes(noteCallback) {
     noteCallback(mdast.paragraph(mdast.text(match[1])));
     parent.children.splice(index, 1);
   }
+
+  return tree => {
+    zone(tree, 'notes', transformZoneNote);
+    unistVisit(tree, 'paragraph', transformLineNote);
+  };
 }

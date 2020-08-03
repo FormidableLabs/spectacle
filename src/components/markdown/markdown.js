@@ -23,7 +23,7 @@ import indentNormalizer from '../../utils/indent-normalizer';
 const Note = () => null;
 
 // TODO: parse out presenter notes and render them using <Note />
-const Markdown = ({
+export const Markdown = ({
   componentMap: userProvidedComponentMap = mdxComponentMap,
   template: { default: TemplateComponent, getPropsForAST } = {
     default: 'div',
@@ -140,8 +140,6 @@ const Markdown = ({
     </TemplateComponent>
   );
 };
-
-export default Markdown;
 
 // TODO: document this thoroughly, it's a public-facing API
 export const MarkdownSlide = ({
