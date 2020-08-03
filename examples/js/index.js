@@ -22,12 +22,18 @@ import {
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
 
+// SPECTACLE_CLI_THEME_START
 const theme = {
   fonts: {
     header: '"Open Sans Condensed", Helvetica, Arial, sans-serif',
     text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
   }
 };
+// SPECTACLE_CLI_THEME_END
+
+// SPECTACLE_CLI_TEMPLATE_START
+// TODO(7): Insert template definition here and integrate below in code.
+// SPECTACLE_CLI_TEMPLATE_END
 
 function SlideFragments() {
   return (
@@ -150,7 +156,7 @@ function Presentation() {
         import { createClient, Provider } from 'urql';
 
         const client = createClient({ url: 'https://0ufyz.sse.codesandbox.io' });
-        
+
         const App = () => (
           <Provider value={client}>
             <Todos />

@@ -22,7 +22,7 @@ module.exports = {
   // TODO: Document externals
   externals: {
     react: 'React',
-    'react-dom': 'ReactDom',
+    'react-dom': 'ReactDOM',
     'react-is': 'ReactIs',
     'prop-types': 'PropTypes'
   },
