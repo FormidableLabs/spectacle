@@ -17,5 +17,6 @@ export default function useMousetrap(keybinds, deps) {
         Mousetrap.unbind(combo);
       }
     };
-  }, deps);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [keybinds, ...deps]);
 }

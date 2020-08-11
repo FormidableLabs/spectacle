@@ -18,6 +18,7 @@ import {
   Image,
   CodePane
 } from 'spectacle';
+import Notes from '../../src/components/notes';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
@@ -61,6 +62,7 @@ function Presentation() {
         <FlexBox height="100%">
           <SpectacleLogo size={500} />
         </FlexBox>
+        <Notes>Hi</Notes>
       </Slide>
       <Slide>
         <FlexBox height="100%" flexDirection="column">
