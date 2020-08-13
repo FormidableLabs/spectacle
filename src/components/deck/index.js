@@ -1,11 +1,12 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Deck from './deck';
 import useMousetrap from '../../hooks/use-mousetrap';
 import PresenterMode from '../presenter-mode';
 import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 
 export default function SpectacleDeck(props) {
-  const [mode, setMode] = React.useState(SPECTACLE_MODES.PRESENTER_MODE);
+  const [mode, setMode] = React.useState(SPECTACLE_MODES.DEFAULT_MODE);
 
   const togglePresenterMode = React.useCallback(
     e => {
@@ -37,3 +38,8 @@ export default function SpectacleDeck(props) {
       return null;
   }
 }
+
+SpectacleDeck.propTypes = {
+  children: PropTypes.node.isRequired,
+  theme: PropTypes.object
+};

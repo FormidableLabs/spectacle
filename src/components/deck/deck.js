@@ -116,6 +116,7 @@ const Deck = React.forwardRef(
     );
 
     const [syncLocation, onActiveStateChange] = useLocationSync({
+      disableInteractivity,
       setState: skipTo,
       ...queryStringMapFns
     });

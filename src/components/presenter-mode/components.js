@@ -8,15 +8,15 @@ export const PresenterDeckContainer = styled('div')`
   bottom: 0;
   display: flex;
   flex-direction: row;
-  background-color: #282828;
+  background-color: #181818;
   overflow: hidden;
+  color: white;
 `;
 
 export const NotesColumn = styled('div')`
   padding: 0;
   display: flex;
   flex-direction: column;
-  background: #383838;
   width: 50%;
   border-right: 1px solid black;
 `;
@@ -64,8 +64,22 @@ export const SlideCountLabel = styled('span')`
 export const NotesContainer = styled('div')`
   border-top: 1px solid black;
   overflow-y: scroll;
-  background: #404040;
   flex: 1;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background-color: #111;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+  }
 `;
 
 export const deckBackdropStyles = {

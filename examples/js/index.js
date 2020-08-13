@@ -62,7 +62,13 @@ function Presentation() {
         <FlexBox height="100%">
           <SpectacleLogo size={500} />
         </FlexBox>
-        <Notes>Hi</Notes>
+        <Notes>
+          Spectacle supports notes per slide.
+          <ol>
+            <li>Notes can now be HTML markup!</li>
+            <li>Lists can make it easier to make points.</li>
+          </ol>
+        </Notes>
       </Slide>
       <Slide>
         <FlexBox height="100%" flexDirection="column">
