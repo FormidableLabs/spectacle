@@ -203,7 +203,8 @@ const Slide = props => {
         {typeof template === 'function' &&
           template({
             slideNumber: slideNum,
-            numberOfSlides: numberOfSlides
+            numberOfSlides: numberOfSlides,
+            backgroundColor: state.printMode ? '#ffffff' : backgroundColor
           })}
       </TemplateWrapper>
       <SlideWrapper ref={slideWrapperRef} padding={2} color={textColor}>
