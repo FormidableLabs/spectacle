@@ -30,6 +30,7 @@ function defaultMergeLocation(object, ...sources) {
 
 // Hook to keep some external state synchronized with the history location.
 export default function useLocationSync({
+  disableInteractivity,
   setState,
   mapStateToLocation,
   mapLocationToState,
@@ -41,14 +42,23 @@ export default function useLocationSync({
 
   // "down-sync" from location to state
   React.useEffect(() => {
-    if (!initialized) return;
+    if (!initialized && disableInteractivity) return;
     return history.listen((location, action) => {
       setState(mapLocationToState(location));
     });
-  }, [initialized, history, setState, mapLocationToState]);
+  }, [
+    disableInteractivity,
+    initialized,
+    history,
+    setState,
+    mapLocationToState
+  ]);
 
   const syncLocation = React.useCallback(
     defaultState => {
+      if (disableInteractivity) {
+        return;
+      }
       // perform initial two-way sync between location and state (state wins)
       const { location } = history;
       const initialState = merge(
@@ -64,7 +74,13 @@ export default function useLocationSync({
       setInitialized(true);
       return initialState;
     },
-    [history, initialized]
+    [
+      history,
+      mapLocationToState,
+      mapStateToLocation,
+      disableInteractivity,
+      mergeLocation
+    ]
   );
 
   const setLocation = React.useCallback(
@@ -81,13 +97,7 @@ export default function useLocationSync({
         history.push(nextLocation);
       }
     },
-    [
-      history,
-      initialized,
-      mergeLocation,
-      mapStateToLocation,
-      mapLocationToState
-    ]
+    [history, initialized, mergeLocation, mapStateToLocation]
   );
 
   return [syncLocation, setLocation];

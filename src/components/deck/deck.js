@@ -37,9 +37,11 @@ const Deck = React.forwardRef(
 
       onSlideClick = noop,
 
+      disableInteractivity = false,
       notePortalNode,
       useAnimations = true,
       children,
+      onActiveStateChange: onActiveStateChangeExternal = noop,
       initialState: initialDeckState = {
         slideIndex: 0,
         stepIndex: 0
@@ -68,7 +70,13 @@ const Deck = React.forwardRef(
     React.useEffect(() => {
       if (!initialized) return;
       onActiveStateChange(activeView);
-    }, [initialized, activeView, onActiveStateChange]);
+      onActiveStateChangeExternal(activeView);
+    }, [
+      initialized,
+      activeView,
+      onActiveStateChange,
+      onActiveStateChangeExternal
+    ]);
 
     // It really is much easier to just expose methods to the outside world that
     // drive the presentation through its state rather than trying to implement a
@@ -98,14 +106,17 @@ const Deck = React.forwardRef(
     );
 
     useMousetrap(
-      {
-        left: () => stepBackward(),
-        right: () => stepForward()
-      },
+      disableInteractivity
+        ? {}
+        : {
+            left: () => stepBackward(),
+            right: () => stepForward()
+          },
       []
     );
 
     const [syncLocation, onActiveStateChange] = useLocationSync({
+      disableInteractivity,
       setState: skipTo,
       ...queryStringMapFns
     });
@@ -116,7 +127,7 @@ const Deck = React.forwardRef(
         stepIndex: 0
       });
       initializeTo(initialView);
-    }, []);
+    }, [initializeTo, syncLocation]);
 
     const [
       setPlaceholderContainer,

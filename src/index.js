@@ -1,4 +1,4 @@
-import Deck from './components/deck/deck';
+import Deck from './components/deck';
 import Slide from './components/slide/slide';
 import Appear from './components/appear';
 import CodePane from './components/code-pane';
