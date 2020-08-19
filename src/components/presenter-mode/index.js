@@ -15,6 +15,7 @@ import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { SYSTEM_FONT } from '../../utils/constants';
 import { FlexBox, Box } from '../layout';
 import { Timer } from './timer';
+import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 
 const endOfNextSlide = ({ slideIndex, stepIndex }) => ({
   slideIndex: slideIndex + 1,
@@ -27,6 +28,15 @@ export default function PresenterMode(props) {
   const previewDeck = React.useRef();
   const [notePortalNode, setNotePortalNode] = React.useState();
 
+  const [postMessage] = useBroadcastChannel(
+    'spectacle_presenter_bus',
+    message => {
+      if (message.type === 'SYNC_REQUEST') {
+        postMessage('SYNC', deck.current.activeView);
+      }
+    }
+  );
+
   const [syncLocation, setLocation] = useLocationSync({
     setState: state => deck.current.skipTo(state),
     ...queryStringMapFns
@@ -35,7 +45,7 @@ export default function PresenterMode(props) {
   const onActiveStateChange = React.useCallback(
     activeView => {
       setLocation(activeView);
-      console.log(activeView);
+      postMessage('SYNC', activeView);
       previewDeck.current.skipTo(endOfNextSlide(activeView));
     },
     [setLocation]
@@ -47,6 +57,7 @@ export default function PresenterMode(props) {
       stepIndex: 0
     });
     deck.current.initializeTo(initialView);
+    postMessage('SYNC', initialView);
     previewDeck.current.initializeTo(endOfNextSlide(initialView));
   }, [syncLocation]);
 

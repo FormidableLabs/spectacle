@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Deck from './deck';
-import useMousetrap from '../../hooks/use-mousetrap';
+import DefaultDeck from './default-deck';
 import PresenterMode from '../presenter-mode';
+import useMousetrap from '../../hooks/use-mousetrap';
 import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 
 export default function SpectacleDeck(props) {
@@ -29,7 +29,7 @@ export default function SpectacleDeck(props) {
 
   switch (mode) {
     case SPECTACLE_MODES.DEFAULT_MODE:
-      return <Deck {...props} />;
+      return <DefaultDeck {...props} />;
 
     case SPECTACLE_MODES.PRESENTER_MODE:
       return <PresenterMode {...props} />;
