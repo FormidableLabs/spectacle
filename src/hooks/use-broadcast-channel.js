@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ulid } from 'ulid';
 
-const noop = () => {};
+const noop = () => { };
 
 export default function useBroadcastChannel(
   channelName,
@@ -49,7 +49,6 @@ export default function useBroadcastChannel(
     const messageHandler = event => {
       const rawMessage = event.data;
       const message = JSON.parse(rawMessage);
-      // console.log("RX:", message.type, message.payload);
       userMessageHandlerRef.current(message, postMessage);
     };
     channel.addEventListener('message', messageHandler);
