@@ -37,7 +37,7 @@
     "formidable-oss-badges": "^0.3.4",
     "gray-matter": "^3.1.1",
     "history": "^4.7.2",
-    "htmr": "0.6.3",
+    "htmr": "0.8.7",
     "jdown": "^0.3.0",
     "klaw": "^2.1.1",
     "mdast": "^3.0.0",
