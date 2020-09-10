@@ -4,7 +4,7 @@ import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { ThemeProvider } from 'styled-components';
 
-import { DeckContext } from '../hooks/use-deck';
+import { DeckContext } from './deck/deck';
 import defaultTheme from '../theme/default-theme';
 import Progress, { Circle } from './progress';
 
@@ -27,9 +27,9 @@ const mountWithContext = (tree, context) => {
 describe('<Progress />', () => {
   it('should render the right amount of circles', () => {
     const wrapper = mountWithContext(<Progress />, {
-      numberOfSlides: 5,
-      state: {
-        currentSlide: 0
+      slideCount: 5,
+      activeView: {
+        slideIndex: 0
       }
     });
     expect(wrapper.find(Circle).length).toBe(5);
@@ -37,9 +37,9 @@ describe('<Progress />', () => {
 
   it('should render the right amount of circles with the current circle in the active state', () => {
     const wrapper = mountWithContext(<Progress />, {
-      numberOfSlides: 5,
-      state: {
-        currentSlide: 4
+      slideCount: 5,
+      activeView: {
+        slideIndex: 4
       }
     });
     expect(
