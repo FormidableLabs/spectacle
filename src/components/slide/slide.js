@@ -9,7 +9,7 @@ import { useSlide } from '../../hooks/use-slides';
 import { useCollectSteps } from '../../hooks/use-steps';
 import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 
-const noop = () => {};
+const noop = () => { };
 
 export const SlideContext = React.createContext();
 
@@ -56,6 +56,15 @@ const SlideWrapper = styled('div')(
   `
 );
 
+const TemplateWrapper = styled('div')`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+`;
+
 export default function Slide({
   id: userProvidedId,
   children,
@@ -67,6 +76,7 @@ export default function Slide({
   backgroundSize,
   padding,
   textColor,
+  template,
   className = ''
 }) {
   if (React.useContext(SlideContext)) {
@@ -93,7 +103,8 @@ export default function Slide({
     advanceSlide,
     regressSlide,
     commitTransition,
-    cancelTransition
+    cancelTransition,
+    template: deckTemplate
   } = React.useContext(DeckContext);
 
   const handleClick = React.useCallback(() => {
@@ -117,11 +128,8 @@ export default function Slide({
   // we haven't gotten to it yet, none of them should be visible. (This helps us
   // handle slides which are exiting but which are still visible while
   // animated.)
-  const internalStepIndex = isActive
-    ? activeView.stepIndex
-    : isPassed
-    ? Infinity
-    : -Infinity;
+  const infinityDirection = isPassed ? Infinity : -Infinity;
+  const internalStepIndex = isActive ? activeView.stepIndex : infinityDirection;
 
   React.useEffect(() => {
     if (!isActive) return;
@@ -265,6 +273,14 @@ export default function Slide({
                 backgroundSize={backgroundSize}
                 color={textColor}
               >
+                <TemplateWrapper>
+                  {(typeof template === 'function' ||
+                    typeof deckTemplate === 'function') &&
+                    (template || deckTemplate)({
+                      slideNumber: 0,
+                      numberOfSlides: 0
+                    })}
+                </TemplateWrapper>
                 <SlideWrapper padding={padding}>{children}</SlideWrapper>
               </SlideContainer>
             </animated.div>,
@@ -286,7 +302,8 @@ Slide.propTypes = {
   backgroundSize: PropTypes.string,
   children: PropTypes.node.isRequired,
   padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  textColor: PropTypes.string
+  textColor: PropTypes.string,
+  template: PropTypes.func
 };
 
 Slide.defaultProps = {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import propTypes from 'prop-types';
 import styled from 'styled-components';
-import { DeckContext } from '../hooks/use-deck';
+import { DeckContext } from './deck/deck';
 
 export const Circle = styled('div')`
   width: ${({ size }) => size}px;
@@ -22,18 +22,23 @@ const Container = styled('div')`
 `;
 
 const Progress = props => {
-  const { numberOfSlides, state, goToSlide } = React.useContext(DeckContext);
+  const { slideCount, skipTo, activeView } = React.useContext(DeckContext);
   return (
     <Container className="spectacle-progress-indicator">
-      {Array(numberOfSlides)
+      {Array(slideCount)
         .fill(0)
         .map((_, idx) => (
           <Circle
             key={`progress-circle-${idx}`}
             color={props.color}
-            active={state.currentSlide === idx}
+            active={activeView.slideIndex === idx}
             size={props.size}
-            onClick={() => goToSlide(idx)}
+            onClick={() =>
+              skipTo({
+                slideIndex: idx,
+                stepIndex: 0
+              })
+            }
             data-testid="Progress Circle"
           />
         ))}

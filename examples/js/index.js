@@ -9,6 +9,8 @@ import {
   CodeSpan,
   OrderedList,
   ListItem,
+  FullScreen,
+  Progress,
   Appear,
   Slide,
   Deck,
@@ -33,7 +35,21 @@ const theme = {
 // SPECTACLE_CLI_THEME_END
 
 // SPECTACLE_CLI_TEMPLATE_START
-// TODO(7): Insert template definition here and integrate below in code.
+const template = () => (
+  <FlexBox
+    justifyContent="space-between"
+    position="absolute"
+    bottom={0}
+    width={1}
+  >
+    <Box padding="0 1em">
+      <FullScreen />
+    </Box>
+    <Box padding="1em">
+      <Progress />
+    </Box>
+  </FlexBox>
+);
 // SPECTACLE_CLI_TEMPLATE_END
 
 function SlideFragments() {
@@ -57,7 +73,7 @@ function SlideFragments() {
 
 function Presentation() {
   return (
-    <Deck theme={theme}>
+    <Deck theme={theme} template={template}>
       <Slide>
         <FlexBox height="100%">
           <SpectacleLogo size={500} />
