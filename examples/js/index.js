@@ -18,9 +18,9 @@ import {
   Grid,
   Box,
   Image,
-  CodePane
+  CodePane,
+  Notes
 } from 'spectacle';
-import Notes from '../../src/components/notes';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
