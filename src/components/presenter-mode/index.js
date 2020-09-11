@@ -48,7 +48,7 @@ export default function PresenterMode(props) {
       postMessage('SYNC', activeView);
       previewDeck.current.skipTo(endOfNextSlide(activeView));
     },
-    [setLocation]
+    [postMessage, setLocation]
   );
 
   React.useEffect(() => {
@@ -59,7 +59,7 @@ export default function PresenterMode(props) {
     deck.current.initializeTo(initialView);
     postMessage('SYNC', initialView);
     previewDeck.current.initializeTo(endOfNextSlide(initialView));
-  }, [syncLocation]);
+  }, [postMessage, syncLocation]);
 
   const castButton = false;
 

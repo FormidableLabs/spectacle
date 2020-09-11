@@ -305,7 +305,7 @@ const AnchorIcon = styled(SvgAnchor)`
   height: 100%;
 `;
 
-const Header = tag => ({ id, children }) => {
+const HeaderReturnComponent = ({ id, children }) => {
   return (
     <HeadingText as={tag} id={id}>
       <AnchorLink href={`#${id}`}>
@@ -314,6 +314,13 @@ const Header = tag => ({ id, children }) => {
       {children}
     </HeadingText>
   );
+};
+
+const Header = tag => HeaderReturnComponent;
+
+HeaderReturnComponent.propTypes = {
+  id: PropTypes.oneOf[(PropTypes.string, PropTypes.number)],
+  children: PropTypes.node
 };
 
 const components = {

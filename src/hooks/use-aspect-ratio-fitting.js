@@ -50,7 +50,7 @@ export default function useAspectRatioFitting({
     if (!containerRef.current) return;
     const rects = containerRef.current.getClientRects();
     recalculate(rects[0]);
-  }, [targetWidth, targetHeight]);
+  }, [targetWidth, targetHeight, recalculate]);
 
   useResizeObserver({
     ref: containerRef,
