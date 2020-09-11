@@ -132,7 +132,7 @@ const Sidebar = props => {
         </React.Fragment>
       );
     });
-  }, [currentPage, tree, location]);
+  }, [currentPage, tree, location, baseURL]);
 
   return <SidebarStyling {...props}>{sidebarItems}</SidebarStyling>;
 };

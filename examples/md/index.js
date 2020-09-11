@@ -37,7 +37,7 @@ const template = () => (
 // SPECTACLE_CLI_TEMPLATE_END
 
 const Presentation = () => (
-  <Deck theme={theme}>
+  <Deck theme={theme} template={template}>
     <MarkdownSlideSet>{mdContent}</MarkdownSlideSet>
   </Deck>
 );

@@ -11,7 +11,7 @@ import { mergeTheme } from '../../theme';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
 
 export const DeckContext = React.createContext();
-const noop = () => { };
+const noop = () => {};
 
 const Deck = React.forwardRef(
   (
@@ -110,9 +110,9 @@ const Deck = React.forwardRef(
       disableInteractivity
         ? {}
         : {
-          left: () => stepBackward(),
-          right: () => stepForward()
-        },
+            left: () => stepBackward(),
+            right: () => stepForward()
+          },
       []
     );
 

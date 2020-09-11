@@ -9,7 +9,7 @@ import { useSlide } from '../../hooks/use-slides';
 import { useCollectSteps } from '../../hooks/use-steps';
 import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 
-const noop = () => { };
+const noop = () => {};
 
 export const SlideContext = React.createContext();
 

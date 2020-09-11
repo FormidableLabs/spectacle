@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ulid } from 'ulid';
 
-const noop = () => { };
+const noop = () => {};
 
 export default function useBroadcastChannel(
   channelName,
