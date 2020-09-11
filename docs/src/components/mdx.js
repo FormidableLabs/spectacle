@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import * as path from 'path';
 import styled, { css } from 'styled-components';
@@ -305,7 +305,7 @@ const AnchorIcon = styled(SvgAnchor)`
   height: 100%;
 `;
 
-const HeaderReturnComponent = ({ id, children }) => {
+const Header = ({ tag, id, children }) => {
   return (
     <HeadingText as={tag} id={id}>
       <AnchorLink href={`#${id}`}>
@@ -316,10 +316,9 @@ const HeaderReturnComponent = ({ id, children }) => {
   );
 };
 
-const Header = tag => HeaderReturnComponent;
-
-HeaderReturnComponent.propTypes = {
-  id: PropTypes.oneOf[(PropTypes.string, PropTypes.number)],
+Header.propTypes = {
+  tag: PropTypes.string,
+  id: PropTypes.string,
   children: PropTypes.node
 };
 
@@ -334,9 +333,12 @@ const components = {
   td: TableCell,
   a: MdLink,
   h1: HeadingText,
-  h2: Header('h2'),
-  h3: Header('h3')
+  h2: props => <Header tag="h2" {...props} />,
+  h3: props => <Header tag="h3" {...props} />
 };
+
+components.h2.displayName = 'MDXHeader2';
+components.h3.displayName = 'MDXHeader3';
 
 export const MDXComponents = ({ children }) => (
   <MDXProvider components={components}>{children}</MDXProvider>
