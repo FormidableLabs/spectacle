@@ -4,7 +4,8 @@ export const SYSTEM_FONT =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Helvetica, sans-serif';
 
 export const KEYBOARD_SHORTCUTS = {
-  PRESENTER_MODE: 'mod+p'
+  PRESENTER_MODE: 'mod+p',
+  OVERVIEW_MODE: 'mod+o'
 };
 
 export const SPECTACLE_MODES = {
