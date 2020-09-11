@@ -26,6 +26,8 @@
         CodeSpan,
         OrderedList,
         ListItem,
+        FullScreen,
+        Progress,
         Appear,
         Slide,
         Deck,
@@ -33,7 +35,8 @@
         Grid,
         Box,
         Image,
-        CodePane
+        CodePane,
+        Notes
       } = Spectacle;
 
       import htm from 'https://unpkg.com/htm@^3?module';
@@ -50,9 +53,18 @@
       // SPECTACLE_CLI_THEME_END
 
       // SPECTACLE_CLI_TEMPLATE_START
-      // TODO(7): Insert template definition here and integrate below in code.
-
+      const template = () => html`
+        <${FlexBox} justifyContent="space-between" position="absolute" bottom=${0} width=${1}>
+          <${Box} padding="0 1em">
+            <${FullScreen} />
+          </${Box}>
+          <${Box} padding="1em">
+            <${Progress} />
+          </${Box}>
+        </${FlexBox}>
+      `;
       // SPECTACLE_CLI_TEMPLATE_END
+
       function SlideFragments() {
         return html`
         <${Slide}>
@@ -72,11 +84,16 @@
 
       function Presentation() {
         return html`
-        <${Deck} theme=${theme}>
+        <${Deck} theme=${theme} template=${template}>
           <${Slide}>
             <${FlexBox} height="100%">
               <${SpectacleLogo} size=${500} />
             </${FlexBox}>
+            <${Notes}>Spectacle supports notes per slide.<ol>
+                <li>Notes can now be HTML markup!</li>
+                <li>Lists can make it easier to make points.</li>
+              </ol>
+            </${Notes}>
           </${Slide}>
           <${Slide}>
             <${FlexBox} height="100%" flexDirection="column">

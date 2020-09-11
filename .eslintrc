@@ -7,7 +7,9 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended"
   ],
-  "plugins": ["prettier"],
+  "plugins": [
+    "prettier"
+  ],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -33,7 +35,15 @@
     }
   },
   "rules": {
-    "prettier/prettier": ["error"],
-    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+    "prettier/prettier": [
+      "error"
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ]
   }
 }

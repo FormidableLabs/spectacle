@@ -11,7 +11,7 @@ import { mergeTheme } from '../../theme';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
 
 export const DeckContext = React.createContext();
-const noop = () => {};
+const noop = () => { };
 
 const Deck = React.forwardRef(
   (
@@ -21,6 +21,7 @@ const Deck = React.forwardRef(
       backdropStyle: userProvidedBackdropStyle,
       overviewMode = false,
       overviewScale = 0.25,
+      template,
       theme: {
         slideDimensions: [nativeSlideWidth, nativeSlideHeight] = [1366, 768],
         Backdrop: UserProvidedBackdropComponent,
@@ -109,9 +110,9 @@ const Deck = React.forwardRef(
       disableInteractivity
         ? {}
         : {
-            left: () => stepBackward(),
-            right: () => stepForward()
-          },
+          left: () => stepBackward(),
+          right: () => stepForward()
+        },
       []
     );
 
@@ -305,7 +306,8 @@ const Deck = React.forwardRef(
               advanceSlide,
               regressSlide,
               commitTransition,
-              cancelTransition
+              cancelTransition,
+              template
             }}
           >
             <div ref={setPlaceholderContainer} style={{ display: 'none' }}>
