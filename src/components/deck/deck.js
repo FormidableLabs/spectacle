@@ -276,7 +276,7 @@ const Deck = React.forwardRef(
               ...fitAspectRatioStyle,
               overflow: 'hidden'
             }}
-          ></div>
+          />
           <DeckContext.Provider
             value={{
               deckId,

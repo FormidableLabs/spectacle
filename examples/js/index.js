@@ -19,8 +19,13 @@ import {
   Box,
   Image,
   CodePane,
+  Markdown,
   Notes
 } from 'spectacle';
+import {
+  MarkdownSlide,
+  MarkdownSlideSet
+} from '../../src/components/markdown/markdown';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
@@ -188,6 +193,23 @@ function Presentation() {
         );
         `}</CodePane>
       </Slide>
+      <div>
+        <Slide>
+          <Heading>This is a slide embedded in a div</Heading>
+        </Slide>
+      </div>
+      <MarkdownSlide>
+        {`
+        # This is a Markdown Slide
+        `}
+      </MarkdownSlide>
+      <MarkdownSlideSet>
+        {`
+        # This is the first slide of a Markdown Slide Set
+        ---
+        # This is the second slide of a Markdown Slide Set
+        `}
+      </MarkdownSlideSet>
     </Deck>
   );
 }

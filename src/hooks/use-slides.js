@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ulid } from 'ulid';
 
-const PLACEHOLDER_CLASS_NAME = 'slide-placeholder';
+export const PLACEHOLDER_CLASS_NAME = 'spectacle-v7-slide';
 
 // After the initial render pass, this hook actually goes and looks for
 // <Slide> elements rendered lower in the tree. Slides decide on an ID for
@@ -35,7 +35,7 @@ export function useSlide(userProvidedId) {
   return {
     slideId,
     placeholder: (
-      <div className={PLACEHOLDER_CLASS_NAME} data-slide-id={slideId}></div>
+      <div className={PLACEHOLDER_CLASS_NAME} data-slide-id={slideId} />
     )
   };
 }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import DefaultDeck from './default-deck';
 import PresenterMode from '../presenter-mode';
@@ -7,11 +7,13 @@ import useMousetrap from '../../hooks/use-mousetrap';
 import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 
 export default function SpectacleDeck(props) {
-  const [mode, setMode] = React.useState(SPECTACLE_MODES.OVERVIEW_MODE);
+  const [mode, setMode] = useState(SPECTACLE_MODES.OVERVIEW_MODE);
+  const [currentView, setCurrentView] = useState(null);
 
-  const toggleMode = React.useCallback(
-    (e, newMode) => {
-      e.preventDefault();
+  const toggleMode = useCallback(
+    (e, newMode, newView = null) => {
+      e?.preventDefault();
+      setCurrentView(newView);
       if (mode === newMode) {
         setMode(SPECTACLE_MODES.DEFAULT_MODE);
         return;
@@ -19,6 +21,13 @@ export default function SpectacleDeck(props) {
       setMode(newMode);
     },
     [mode]
+  );
+
+  const handleOverviewSlideSelected = useCallback(
+    newView => {
+      toggleMode(null, SPECTACLE_MODES.DEFAULT_MODE, newView);
+    },
+    [toggleMode]
   );
 
   useMousetrap(
@@ -33,13 +42,18 @@ export default function SpectacleDeck(props) {
 
   switch (mode) {
     case SPECTACLE_MODES.DEFAULT_MODE:
-      return <DefaultDeck {...props} />;
+      return <DefaultDeck currentView={currentView} {...props} />;
 
     case SPECTACLE_MODES.PRESENTER_MODE:
       return <PresenterMode {...props} />;
 
     case SPECTACLE_MODES.OVERVIEW_MODE:
-      return <OverviewMode {...props} />;
+      return (
+        <OverviewMode
+          onSlideSelected={handleOverviewSlideSelected}
+          {...props}
+        />
+      );
 
     default:
       return null;
