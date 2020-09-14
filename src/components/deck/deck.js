@@ -224,7 +224,8 @@ const Deck = React.forwardRef(
         width: `${100 / overviewScale}%`,
         height: `${100 / overviewScale}%`,
         transform: `scale(${overviewScale})`,
-        transformOrigin: '0px 0px'
+        transformOrigin: '0px 0px',
+        position: 'absolute'
       }),
       [overviewScale]
     );

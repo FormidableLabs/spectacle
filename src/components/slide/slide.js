@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, { css, ThemeContext } from 'styled-components';
 import { background, color, space } from 'styled-system';
 import { DeckContext } from '../deck/deck';
 import { useSpring, animated } from 'react-spring';
@@ -114,7 +114,6 @@ export default function Slide({
     cancelTransition,
     template: deckTemplate
   } = useContext(DeckContext);
-
   const handleClick = useCallback(() => {
     onSlideClick(slideId);
   }, [onSlideClick, slideId]);
@@ -246,6 +245,23 @@ export default function Slide({
     immediate
   });
 
+  const theme = useContext(ThemeContext);
+  const scaledWrapperOverrideStyle = useMemo(() => {
+    if (
+      !wrapperOverrideStyle ||
+      Object.entries(wrapperOverrideStyle).length === 0
+    ) {
+      return {};
+    }
+    const themeSlidePadding = theme?.space?.[padding] || 0;
+    return {
+      ...wrapperOverrideStyle,
+      width: `calc(${wrapperOverrideStyle.width} - ${themeSlidePadding * 2}px)`,
+      height: `calc(${wrapperOverrideStyle.height} - ${themeSlidePadding *
+        2}px)`
+    };
+  }, [wrapperOverrideStyle, theme, padding]);
+
   return (
     <>
       {placeholder}
@@ -282,7 +298,7 @@ export default function Slide({
                 backgroundSize={backgroundSize}
                 color={textColor}
               >
-                <TemplateWrapper>
+                <TemplateWrapper style={wrapperOverrideStyle}>
                   {(typeof template === 'function' ||
                     typeof deckTemplate === 'function') &&
                     (template || deckTemplate)({
@@ -290,7 +306,10 @@ export default function Slide({
                       numberOfSlides: 0
                     })}
                 </TemplateWrapper>
-                <SlideWrapper style={wrapperOverrideStyle} padding={padding}>
+                <SlideWrapper
+                  style={scaledWrapperOverrideStyle}
+                  padding={padding}
+                >
                   {children}
                 </SlideWrapper>
               </SlideContainer>
