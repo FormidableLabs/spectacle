@@ -1,4 +1,10 @@
-import * as React from 'react';
+import React, {
+  useContext,
+  useCallback,
+  useState,
+  useEffect,
+  useMemo
+} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
@@ -79,7 +85,7 @@ export default function Slide({
   template,
   className = ''
 }) {
-  if (React.useContext(SlideContext)) {
+  if (useContext(SlideContext)) {
     throw new Error(`Slide components may not be nested within each other.`);
   }
 
@@ -95,6 +101,8 @@ export default function Slide({
     onSlideClick = noop,
     useAnimations,
     slidePortalNode,
+    frameOverrideStyle = {},
+    wrapperOverrideStyle = {},
     initialized: deckInitialized,
     passedSlideIds,
     upcomingSlideIds,
@@ -105,9 +113,9 @@ export default function Slide({
     commitTransition,
     cancelTransition,
     template: deckTemplate
-  } = React.useContext(DeckContext);
+  } = useContext(DeckContext);
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = useCallback(() => {
     onSlideClick(slideId);
   }, [onSlideClick, slideId]);
 
@@ -122,7 +130,7 @@ export default function Slide({
   const slideWillChange = activeView.slideIndex !== pendingView.slideIndex;
   const stepWillChange = activeView.stepIndex !== pendingView.stepIndex;
 
-  const [animate, setAnimate] = React.useState(false);
+  const [animate, setAnimate] = useState(false);
 
   // If we've already been to this slide, all its elements should be visible; if
   // we haven't gotten to it yet, none of them should be visible. (This helps us
@@ -167,7 +175,7 @@ export default function Slide({
   ]);
 
   // Bounds checking for slides in the presentation.
-  React.useEffect(() => {
+  useEffect(() => {
     if (!willExit) return;
     if (pendingView.slideId === undefined) {
       setAnimate(false);
@@ -179,7 +187,7 @@ export default function Slide({
     }
   }, [willExit, pendingView, cancelTransition, activeView.slideIndex]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!willEnter) return;
     if (finalStepIndex === undefined) return;
 
@@ -210,7 +218,7 @@ export default function Slide({
     }
   }, [willEnter, activeView, pendingView, finalStepIndex, commitTransition]);
 
-  const target = React.useMemo(() => {
+  const target = useMemo(() => {
     if (isPassed) {
       return [{ transform: STAGE_RIGHT }, { display: 'none' }];
     }
@@ -260,7 +268,8 @@ export default function Slide({
                 height: '100%',
                 position: 'absolute',
                 background: 'white',
-                ...springFrameStyle
+                ...springFrameStyle,
+                ...frameOverrideStyle
               }}
             >
               <SlideContainer
@@ -281,7 +290,9 @@ export default function Slide({
                       numberOfSlides: 0
                     })}
                 </TemplateWrapper>
-                <SlideWrapper padding={padding}>{children}</SlideWrapper>
+                <SlideWrapper style={wrapperOverrideStyle} padding={padding}>
+                  {children}
+                </SlideWrapper>
               </SlideContainer>
             </animated.div>,
             slidePortalNode
