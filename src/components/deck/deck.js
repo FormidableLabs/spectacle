@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import styled, { ThemeContext, ThemeProvider } from 'styled-components';
+import styled, { ThemeContext, ThemeProvider, css } from 'styled-components';
 import { ulid } from 'ulid';
 import { useCollectSlides } from '../../hooks/use-slides';
 import useAspectRatioFitting from '../../hooks/use-aspect-ratio-fitting';
@@ -9,9 +9,26 @@ import useMousetrap from '../../hooks/use-mousetrap';
 import useLocationSync from '../../hooks/use-location-sync';
 import { mergeTheme } from '../../theme';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
+import { background } from 'styled-system';
 
 export const DeckContext = React.createContext();
 const noop = () => {};
+
+const Portal = styled('div')(({ fitAspectRatioStyle, overviewMode }) => [
+  { overflow: 'hidden' },
+  fitAspectRatioStyle,
+  overviewMode && {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    alignContent: 'flex-start',
+    transform: 'scale(1)',
+    overflowY: 'scroll',
+    width: '100%',
+    height: '100%'
+  }
+]);
 
 const Deck = React.forwardRef(
   (
@@ -196,17 +213,6 @@ const Deck = React.forwardRef(
       targetHeight: nativeSlideHeight
     });
 
-    const overviewPortalStyle = React.useMemo(
-      () => ({
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        alignContent: 'flex-start'
-      }),
-      []
-    );
-
     const overviewFrameStyle = React.useMemo(
       () => ({
         margin: '1rem',
@@ -270,13 +276,10 @@ const Deck = React.forwardRef(
             overflow: 'hidden'
           }}
         >
-          <div
+          <Portal
             ref={setSlidePortalNode}
-            style={{
-              ...(overviewMode ? overviewPortalStyle : {}),
-              ...fitAspectRatioStyle,
-              overflow: 'hidden'
-            }}
+            overviewMode={overviewMode}
+            fitAspectRatioStyle={fitAspectRatioStyle}
           />
           <DeckContext.Provider
             value={{
