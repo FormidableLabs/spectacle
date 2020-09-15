@@ -71,6 +71,20 @@ const TemplateWrapper = styled('div')`
   pointer-events: none;
 `;
 
+const AnimatedDiv = styled(animated.div)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: transparent;
+  ${({ tabIndex }) =>
+    tabIndex === 0 &&
+    css`
+      &:focus {
+        outline: 2px solid white;
+      }
+    `}
+`;
+
 export default function Slide({
   id: userProvidedId,
   children,
@@ -276,17 +290,13 @@ export default function Slide({
       >
         {slidePortalNode &&
           ReactDOM.createPortal(
-            <animated.div
+            <AnimatedDiv
               ref={setStepContainer}
               onClick={handleClick}
-              style={{
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                background: 'white',
-                ...springFrameStyle,
-                ...frameOverrideStyle
-              }}
+              tabIndex={
+                Object.entries(frameOverrideStyle).length > 0 ? 0 : undefined
+              }
+              style={{ ...springFrameStyle, ...frameOverrideStyle }}
             >
               <SlideContainer
                 className={className}
@@ -313,7 +323,7 @@ export default function Slide({
                   {children}
                 </SlideWrapper>
               </SlideContainer>
-            </animated.div>,
+            </AnimatedDiv>,
             slidePortalNode
           )}
       </SlideContext.Provider>

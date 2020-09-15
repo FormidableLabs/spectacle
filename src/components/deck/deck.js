@@ -9,7 +9,7 @@ import useMousetrap from '../../hooks/use-mousetrap';
 import useLocationSync from '../../hooks/use-location-sync';
 import { mergeTheme } from '../../theme';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
-import { background } from 'styled-system';
+import { boxShadow } from 'styled-system';
 
 export const DeckContext = React.createContext();
 const noop = () => {};
