@@ -6,10 +6,10 @@ import useMousetrap from '../../hooks/use-mousetrap';
 import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 
 export default function SpectacleDeck(props) {
-  const [mode, setMode] = useState(SPECTACLE_MODES.OVERVIEW_MODE);
+  const [mode, setMode] = useState(SPECTACLE_MODES.DEFAULT_MODE);
 
   const toggleMode = useCallback(
-    (e, newMode, newView = null) => {
+    (e, newMode) => {
       e?.preventDefault();
       if (mode === newMode) {
         setMode(SPECTACLE_MODES.DEFAULT_MODE);

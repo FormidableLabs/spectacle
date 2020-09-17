@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { ulid } from 'ulid';
+import { BroadcastChannel as BroadcastChannelPolyfill } from 'broadcast-channel';
 
 const noop = () => {};
+const BroadcastChannel = window.BroadcastChannel || BroadcastChannelPolyfill;
 
 export default function useBroadcastChannel(
   channelName,

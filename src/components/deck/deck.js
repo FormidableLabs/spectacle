@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import styled, { ThemeContext, ThemeProvider, css } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { ulid } from 'ulid';
 import { useCollectSlides } from '../../hooks/use-slides';
 import useAspectRatioFitting from '../../hooks/use-aspect-ratio-fitting';
@@ -9,7 +9,6 @@ import useMousetrap from '../../hooks/use-mousetrap';
 import useLocationSync from '../../hooks/use-location-sync';
 import { mergeTheme } from '../../theme';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
-import { boxShadow } from 'styled-system';
 
 export const DeckContext = React.createContext();
 const noop = () => {};
@@ -216,13 +215,14 @@ const Deck = React.forwardRef(
     const overviewFrameStyle = React.useMemo(
       () => ({
         margin: '1rem',
-        width: `${overviewScale * 100}%`,
-        height: `${overviewScale * 100}%`,
+        width: `${overviewScale * nativeSlideWidth}px`,
+        height: `${(overviewScale / (nativeSlideWidth / nativeSlideHeight)) *
+          nativeSlideWidth}px`,
         display: 'block',
         transform: 'none',
         position: 'relative'
       }),
-      [overviewScale]
+      [overviewScale, nativeSlideWidth, nativeSlideHeight]
     );
 
     const overviewWrapperStyle = React.useMemo(
