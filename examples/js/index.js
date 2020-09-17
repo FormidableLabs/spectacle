@@ -19,13 +19,10 @@ import {
   Box,
   Image,
   CodePane,
-  Markdown,
+  MarkdownSlide,
+  MarkdownSlideSet,
   Notes
 } from 'spectacle';
-import {
-  MarkdownSlide,
-  MarkdownSlideSet
-} from '../../src/components/markdown/markdown';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';

@@ -27,6 +27,7 @@ import FullScreen from './components/fullscreen';
 import {
   Markdown,
   MarkdownSlideSet,
+  MarkdownSlide,
   MarkdownPreHelper
 } from './components/markdown/markdown';
 import SpectacleLogo from './components/logo';
@@ -57,6 +58,7 @@ export {
   FullScreen,
   Markdown,
   MarkdownSlideSet,
+  MarkdownSlide,
   MarkdownPreHelper,
   SpectacleLogo,
   Table,
