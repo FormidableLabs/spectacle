@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import styled, { ThemeContext, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { ulid } from 'ulid';
 import { useCollectSlides } from '../../hooks/use-slides';
 import useAspectRatioFitting from '../../hooks/use-aspect-ratio-fitting';
@@ -12,6 +12,22 @@ import * as queryStringMapFns from '../../location-map-fns/query-string';
 
 export const DeckContext = React.createContext();
 const noop = () => {};
+
+const Portal = styled('div')(({ fitAspectRatioStyle, overviewMode }) => [
+  { overflow: 'hidden' },
+  fitAspectRatioStyle,
+  overviewMode && {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    alignContent: 'flex-start',
+    transform: 'scale(1)',
+    overflowY: 'scroll',
+    width: '100%',
+    height: '100%'
+  }
+]);
 
 const Deck = React.forwardRef(
   (
@@ -196,27 +212,17 @@ const Deck = React.forwardRef(
       targetHeight: nativeSlideHeight
     });
 
-    const overviewPortalStyle = React.useMemo(
-      () => ({
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        alignContent: 'flex-start'
-      }),
-      []
-    );
-
     const overviewFrameStyle = React.useMemo(
       () => ({
         margin: '1rem',
-        width: `${overviewScale * 100}%`,
-        height: `${overviewScale * 100}%`,
+        width: `${overviewScale * nativeSlideWidth}px`,
+        height: `${(overviewScale / (nativeSlideWidth / nativeSlideHeight)) *
+          nativeSlideWidth}px`,
         display: 'block',
         transform: 'none',
         position: 'relative'
       }),
-      [overviewScale]
+      [overviewScale, nativeSlideWidth, nativeSlideHeight]
     );
 
     const overviewWrapperStyle = React.useMemo(
@@ -224,7 +230,8 @@ const Deck = React.forwardRef(
         width: `${100 / overviewScale}%`,
         height: `${100 / overviewScale}%`,
         transform: `scale(${overviewScale})`,
-        transformOrigin: '0px 0px'
+        transformOrigin: '0px 0px',
+        position: 'absolute'
       }),
       [overviewScale]
     );
@@ -269,14 +276,11 @@ const Deck = React.forwardRef(
             overflow: 'hidden'
           }}
         >
-          <div
+          <Portal
             ref={setSlidePortalNode}
-            style={{
-              ...(overviewMode ? overviewPortalStyle : {}),
-              ...fitAspectRatioStyle,
-              overflow: 'hidden'
-            }}
-          ></div>
+            overviewMode={overviewMode}
+            fitAspectRatioStyle={fitAspectRatioStyle}
+          />
           <DeckContext.Provider
             value={{
               deckId,

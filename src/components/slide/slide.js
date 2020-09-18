@@ -1,7 +1,13 @@
-import * as React from 'react';
+import React, {
+  useContext,
+  useCallback,
+  useState,
+  useEffect,
+  useMemo
+} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, { css, ThemeContext } from 'styled-components';
 import { background, color, space } from 'styled-system';
 import { DeckContext } from '../deck/deck';
 import { useSpring, animated } from 'react-spring';
@@ -65,6 +71,20 @@ const TemplateWrapper = styled('div')`
   pointer-events: none;
 `;
 
+const AnimatedDiv = styled(animated.div)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: transparent;
+  ${({ tabIndex }) =>
+    tabIndex === 0 &&
+    css`
+      &:focus {
+        outline: 2px solid white;
+      }
+    `}
+`;
+
 export default function Slide({
   id: userProvidedId,
   children,
@@ -79,7 +99,7 @@ export default function Slide({
   template,
   className = ''
 }) {
-  if (React.useContext(SlideContext)) {
+  if (useContext(SlideContext)) {
     throw new Error(`Slide components may not be nested within each other.`);
   }
 
@@ -95,6 +115,8 @@ export default function Slide({
     onSlideClick = noop,
     useAnimations,
     slidePortalNode,
+    frameOverrideStyle = {},
+    wrapperOverrideStyle = {},
     initialized: deckInitialized,
     passedSlideIds,
     upcomingSlideIds,
@@ -105,9 +127,8 @@ export default function Slide({
     commitTransition,
     cancelTransition,
     template: deckTemplate
-  } = React.useContext(DeckContext);
-
-  const handleClick = React.useCallback(() => {
+  } = useContext(DeckContext);
+  const handleClick = useCallback(() => {
     onSlideClick(slideId);
   }, [onSlideClick, slideId]);
 
@@ -122,7 +143,7 @@ export default function Slide({
   const slideWillChange = activeView.slideIndex !== pendingView.slideIndex;
   const stepWillChange = activeView.stepIndex !== pendingView.stepIndex;
 
-  const [animate, setAnimate] = React.useState(false);
+  const [animate, setAnimate] = useState(false);
 
   // If we've already been to this slide, all its elements should be visible; if
   // we haven't gotten to it yet, none of them should be visible. (This helps us
@@ -167,7 +188,7 @@ export default function Slide({
   ]);
 
   // Bounds checking for slides in the presentation.
-  React.useEffect(() => {
+  useEffect(() => {
     if (!willExit) return;
     if (pendingView.slideId === undefined) {
       setAnimate(false);
@@ -179,7 +200,7 @@ export default function Slide({
     }
   }, [willExit, pendingView, cancelTransition, activeView.slideIndex]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!willEnter) return;
     if (finalStepIndex === undefined) return;
 
@@ -210,7 +231,7 @@ export default function Slide({
     }
   }, [willEnter, activeView, pendingView, finalStepIndex, commitTransition]);
 
-  const target = React.useMemo(() => {
+  const target = useMemo(() => {
     if (isPassed) {
       return [{ transform: STAGE_RIGHT }, { display: 'none' }];
     }
@@ -238,6 +259,23 @@ export default function Slide({
     immediate
   });
 
+  const theme = useContext(ThemeContext);
+  const scaledWrapperOverrideStyle = useMemo(() => {
+    if (
+      !wrapperOverrideStyle ||
+      Object.entries(wrapperOverrideStyle).length === 0
+    ) {
+      return {};
+    }
+    const themeSlidePadding = theme?.space?.[padding] || 0;
+    return {
+      ...wrapperOverrideStyle,
+      width: `calc(${wrapperOverrideStyle.width} - ${themeSlidePadding * 2}px)`,
+      height: `calc(${wrapperOverrideStyle.height} - ${themeSlidePadding *
+        2}px)`
+    };
+  }, [wrapperOverrideStyle, theme, padding]);
+
   return (
     <>
       {placeholder}
@@ -252,16 +290,13 @@ export default function Slide({
       >
         {slidePortalNode &&
           ReactDOM.createPortal(
-            <animated.div
+            <AnimatedDiv
               ref={setStepContainer}
               onClick={handleClick}
-              style={{
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                background: 'white',
-                ...springFrameStyle
-              }}
+              tabIndex={
+                Object.entries(frameOverrideStyle).length > 0 ? 0 : undefined
+              }
+              style={{ ...springFrameStyle, ...frameOverrideStyle }}
             >
               <SlideContainer
                 className={className}
@@ -273,7 +308,7 @@ export default function Slide({
                 backgroundSize={backgroundSize}
                 color={textColor}
               >
-                <TemplateWrapper>
+                <TemplateWrapper style={wrapperOverrideStyle}>
                   {(typeof template === 'function' ||
                     typeof deckTemplate === 'function') &&
                     (template || deckTemplate)({
@@ -281,9 +316,14 @@ export default function Slide({
                       numberOfSlides: 0
                     })}
                 </TemplateWrapper>
-                <SlideWrapper padding={padding}>{children}</SlideWrapper>
+                <SlideWrapper
+                  style={scaledWrapperOverrideStyle}
+                  padding={padding}
+                >
+                  {children}
+                </SlideWrapper>
               </SlideContainer>
-            </animated.div>,
+            </AnimatedDiv>,
             slidePortalNode
           )}
       </SlideContext.Provider>

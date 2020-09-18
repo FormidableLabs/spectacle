@@ -41,6 +41,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
+    "broadcast-channel": "^3.2.0",
     "broadcastchannel-polyfill": "^1.0.0",
     "dedent": "^0.7.0",
     "history": "^4.9.0",

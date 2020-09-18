@@ -2,7 +2,6 @@ import Deck from './components/deck';
 import Slide from './components/slide/slide';
 import Appear from './components/appear';
 import CodePane from './components/code-pane';
-import Stepper from './components/stepper';
 import {
   OrderedList,
   Quote,
@@ -28,6 +27,7 @@ import FullScreen from './components/fullscreen';
 import {
   Markdown,
   MarkdownSlideSet,
+  MarkdownSlide,
   MarkdownPreHelper
 } from './components/markdown/markdown';
 import SpectacleLogo from './components/logo';
@@ -58,9 +58,9 @@ export {
   FullScreen,
   Markdown,
   MarkdownSlideSet,
+  MarkdownSlide,
   MarkdownPreHelper,
   SpectacleLogo,
-  Stepper,
   Table,
   TableCell,
   TableRow,

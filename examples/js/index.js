@@ -19,6 +19,8 @@ import {
   Box,
   Image,
   CodePane,
+  MarkdownSlide,
+  MarkdownSlideSet,
   Notes
 } from 'spectacle';
 
@@ -188,6 +190,23 @@ function Presentation() {
         );
         `}</CodePane>
       </Slide>
+      <div>
+        <Slide>
+          <Heading>This is a slide embedded in a div</Heading>
+        </Slide>
+      </div>
+      <MarkdownSlide>
+        {`
+        # This is a Markdown Slide
+        `}
+      </MarkdownSlide>
+      <MarkdownSlideSet>
+        {`
+        # This is the first slide of a Markdown Slide Set
+        ---
+        # This is the second slide of a Markdown Slide Set
+        `}
+      </MarkdownSlideSet>
     </Deck>
   );
 }

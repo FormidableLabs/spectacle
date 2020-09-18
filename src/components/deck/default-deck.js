@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, { forwardRef, useEffect } from 'react';
+import propTypes from 'prop-types';
 import Deck from './deck';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 
-export default function DefaultDeck(props) {
+export default function DefaultDeck({ overviewMode = false, ...props }) {
   const deck = React.useRef();
 
   const [postMessage] = useBroadcastChannel(
@@ -18,11 +19,11 @@ export default function DefaultDeck(props) {
     }
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     postMessage('SYNC_REQUEST');
   }, [postMessage]);
 
-  return <Deck ref={deck} {...props} />;
+  return <Deck overviewMode={overviewMode} ref={deck} {...props} />;
 }
 
-DefaultDeck.propTypes = Deck.propTypes;
+DefaultDeck.propTypes = { ...Deck.propTypes, overviewMode: propTypes.bool };
