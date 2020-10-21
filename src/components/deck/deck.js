@@ -1,5 +1,12 @@
 /* eslint-disable react/prop-types */
-import * as React from 'react';
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useMemo,
+  useCallback,
+  createContext
+} from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { ulid } from 'ulid';
 import { useCollectSlides } from '../../hooks/use-slides';
@@ -10,7 +17,7 @@ import useLocationSync from '../../hooks/use-location-sync';
 import { mergeTheme } from '../../theme';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
 
-export const DeckContext = React.createContext();
+export const DeckContext = createContext();
 const noop = () => {};
 
 const Portal = styled('div')(({ fitAspectRatioStyle, overviewMode }) => [
@@ -29,7 +36,7 @@ const Portal = styled('div')(({ fitAspectRatioStyle, overviewMode }) => [
   }
 ]);
 
-const Deck = React.forwardRef(
+const Deck = forwardRef(
   (
     {
       id: userProvidedId,
@@ -67,7 +74,7 @@ const Deck = React.forwardRef(
     },
     ref
   ) => {
-    const [deckId] = React.useState(userProvidedId || ulid);
+    const [deckId] = useState(userProvidedId || ulid);
 
     const {
       initialized,
@@ -84,7 +91,7 @@ const Deck = React.forwardRef(
       cancelTransition
     } = useDeckState(initialDeckState);
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (!initialized) return;
       onActiveStateChange(activeView);
       onActiveStateChangeExternal(activeView);
@@ -138,7 +145,7 @@ const Deck = React.forwardRef(
       ...queryStringMapFns
     });
 
-    React.useEffect(() => {
+    useEffect(() => {
       const initialView = syncLocation({
         slideIndex: 0,
         stepIndex: 0
@@ -152,7 +159,7 @@ const Deck = React.forwardRef(
       slideIdsInitialized
     ] = useCollectSlides();
 
-    const handleSlideClick = React.useCallback(
+    const handleSlideClick = useCallback(
       slideId => {
         const slideIndex = slideIds.indexOf(slideId);
         onSlideClick(slideIndex);
@@ -163,7 +170,7 @@ const Deck = React.forwardRef(
     const activeSlideId = slideIds[activeView.slideIndex];
     const pendingSlideId = slideIds[pendingView.slideIndex];
 
-    const [passed, upcoming] = React.useMemo(() => {
+    const [passed, upcoming] = useMemo(() => {
       const p = new Set();
       const u = new Set();
       let foundActive = false;
@@ -212,7 +219,7 @@ const Deck = React.forwardRef(
       targetHeight: nativeSlideHeight
     });
 
-    const overviewFrameStyle = React.useMemo(
+    const overviewFrameStyle = useMemo(
       () => ({
         margin: '1rem',
         width: `${overviewScale * nativeSlideWidth}px`,
