@@ -142,7 +142,7 @@ FullScreen is a button that takes the presentation in and out of the browser's f
 
 ## Image
 
-Image is a component to display a picture within a slide. It is analgous to an `<img>` tag and conforms to Layout and Position props.
+Image is a component to display a picture within a slide. It is analogous to an `<img>` tag and conforms to Layout and Position props.
 
 | Props                              | Type             |
 | ---------------------------------- | ---------------- |
