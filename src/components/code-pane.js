@@ -32,7 +32,51 @@ export const availableCodePaneThemes = [
   'xonokai'
 ];
 
+const checkIfSingleArrayInHighlightRanges = highlightRanges => {
+  if (highlightRanges.length === 0) {
+    return false;
+  }
+
+  const [highlightLineNumber] = highlightRanges;
+  return (
+    highlightRanges.length > 0 &&
+    highlightRanges.length <= 2 &&
+    typeof highlightLineNumber !== 'object' &&
+    typeof highlightLineNumber === 'number' &&
+    highlightRanges.every(range => typeof range === 'number')
+  );
+};
+
+const getRangeFormat = ({ isSingleRangeProvided, highlightRanges, step }) => {
+  // if the value passed to highlightRanges is:
+  // a single array containing only two numbers e.g. [3, 5]
+  if (isSingleRangeProvided) {
+    return highlightRanges;
+
+    // a 2D array and some of its elements contain numbers e.g. [[1, 3], 5, 7, 9, [10, 15]]
+  } else if (
+    !isSingleRangeProvided &&
+    typeof highlightRanges[step] === 'number'
+  ) {
+    return [highlightRanges[step]];
+
+    // a 2D array e.g. [[1], [3], [5, 9], [15], [20, 25], [30]]
+  } else {
+    return highlightRanges[step];
+  }
+};
+
 const getStyleForLineNumber = (lineNumber, activeRange) => {
+  const isRangeOneLineNumber = activeRange.length === 1;
+  if (isRangeOneLineNumber) {
+    const [activeLineNumber] = activeRange;
+    if (activeLineNumber === lineNumber) {
+      return { opacity: 1 };
+    } else {
+      return { opacity: 0.5 };
+    }
+  }
+
   const [from, to] = activeRange;
   if (from <= lineNumber && lineNumber <= to) {
     return { opacity: 1 };
@@ -48,13 +92,18 @@ export default function CodePane({
   stepIndex,
   theme: syntaxTheme
 }) {
+  const isSingleRangeProvided = React.useMemo(() => {
+    return checkIfSingleArrayInHighlightRanges(highlightRanges);
+  }, [highlightRanges]);
+
+  const numberOfSteps = React.useMemo(() => {
+    return isSingleRangeProvided ? 1 : highlightRanges.length;
+  }, [isSingleRangeProvided, highlightRanges]);
+
   const theme = React.useContext(ThemeContext);
-  const { stepId, isActive, step, placeholder } = useSteps(
-    highlightRanges.length,
-    {
-      stepIndex
-    }
-  );
+  const { stepId, isActive, step, placeholder } = useSteps(numberOfSteps, {
+    stepIndex
+  });
 
   const children = React.useMemo(() => {
     return indentNormalizer(rawCodeString);
@@ -65,23 +114,32 @@ export default function CodePane({
   const getLineNumberProps = React.useCallback(
     lineNumber => {
       if (!isActive) return;
+      const range = getRangeFormat({
+        isSingleRangeProvided,
+        highlightRanges,
+        step
+      });
       return {
-        style: getStyleForLineNumber(lineNumber, highlightRanges[step])
+        style: getStyleForLineNumber(lineNumber, range)
       };
     },
-    [isActive, highlightRanges, step]
+    [isActive, highlightRanges, step, isSingleRangeProvided]
   );
 
   const getLineProps = React.useCallback(
     lineNumber => {
       if (!isActive) return;
-      const range = highlightRanges[step];
+      const range = getRangeFormat({
+        isSingleRangeProvided,
+        highlightRanges,
+        step
+      });
       return {
         ref: lineNumber === range[0] ? scrollTarget : undefined,
         style: getStyleForLineNumber(lineNumber, range)
       };
     },
-    [isActive, step, highlightRanges]
+    [isActive, highlightRanges, step, isSingleRangeProvided]
   );
 
   React.useEffect(() => {
@@ -141,7 +199,9 @@ export default function CodePane({
 }
 
 CodePane.propTypes = {
-  highlightRanges: propTypes.array,
+  highlightRanges: propTypes.arrayOf(
+    propTypes.oneOfType([propTypes.number, propTypes.arrayOf(propTypes.number)])
+  ),
   language: propTypes.string.isRequired,
   children: propTypes.string.isRequired,
   stepIndex: propTypes.number,
