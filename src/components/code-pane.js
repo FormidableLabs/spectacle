@@ -67,8 +67,8 @@ const getRangeFormat = ({ isSingleRangeProvided, highlightRanges, step }) => {
 };
 
 const getStyleForLineNumber = (lineNumber, activeRange) => {
-  const isRangeOneLineNumber = activeRange.length === 1;
-  if (isRangeOneLineNumber) {
+  const isOneLineNumber = activeRange.length === 1;
+  if (isOneLineNumber) {
     const [activeLineNumber] = activeRange;
     if (activeLineNumber === lineNumber) {
       return { opacity: 1 };
