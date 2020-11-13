@@ -33,22 +33,15 @@ export const availableCodePaneThemes = [
 ];
 
 const checkIfSingleArrayInHighlightRanges = highlightRanges => {
-  if (highlightRanges.length === 0) {
+  if (highlightRanges.length === 0 || highlightRanges.length > 2) {
     return false;
   }
-
-  const [highlightLineNumber] = highlightRanges;
-  return (
-    highlightRanges.length > 0 &&
-    highlightRanges.length <= 2 &&
-    typeof highlightLineNumber !== 'object' &&
-    typeof highlightLineNumber === 'number' &&
-    highlightRanges.every(range => typeof range === 'number')
-  );
+  // Prevents e.g. [3, [5]] from being considered a single array range
+  return highlightRanges.every(range => typeof range === 'number');
 };
 
 const getRangeFormat = ({ isSingleRangeProvided, highlightRanges, step }) => {
-  // if the value passed to highlightRanges is:
+  // If the value passed to highlightRanges is:
   // a single array containing only two numbers e.g. [3, 5]
   if (isSingleRangeProvided) {
     return highlightRanges;
