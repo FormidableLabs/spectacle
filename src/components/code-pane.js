@@ -32,14 +32,6 @@ export const availableCodePaneThemes = [
   'xonokai'
 ];
 
-const checkIfSingleArrayInHighlightRanges = highlightRanges => {
-  if (highlightRanges.length === 0 || highlightRanges.length > 2) {
-    return false;
-  }
-  // Prevents e.g. [3, [5]] from being considered a single array range
-  return highlightRanges.every(range => typeof range === 'number');
-};
-
 const getRangeFormat = ({ isSingleRangeProvided, highlightRanges, step }) => {
   // If the value passed to highlightRanges is:
   // a single array containing only two numbers e.g. [3, 5]
@@ -85,13 +77,23 @@ export default function CodePane({
   stepIndex,
   theme: syntaxTheme
 }) {
-  const isSingleRangeProvided = React.useMemo(() => {
-    return checkIfSingleArrayInHighlightRanges(highlightRanges);
-  }, [highlightRanges]);
-
   const numberOfSteps = React.useMemo(() => {
-    return isSingleRangeProvided ? 1 : highlightRanges.length;
-  }, [isSingleRangeProvided, highlightRanges]);
+    if (highlightRanges.length === 0) {
+      return 0;
+    }
+
+    // Checks if the value passed to highlightRanges is a single array containing only two numbers e.g. [3, 5]
+    const isSingleRange =
+      highlightRanges.length <= 2 &&
+      // Prevents e.g. [3, [5]] from being considered a single array range
+      highlightRanges.every(element => typeof element === 'number');
+
+    if (isSingleRange) {
+      return 1;
+    }
+
+    return highlightRanges.length;
+  }, [highlightRanges]);
 
   const theme = React.useContext(ThemeContext);
   const { stepId, isActive, step, placeholder } = useSteps(numberOfSteps, {
@@ -108,7 +110,7 @@ export default function CodePane({
     lineNumber => {
       if (!isActive) return;
       const range = getRangeFormat({
-        isSingleRangeProvided,
+        isSingleRangeProvided: numberOfSteps === 1,
         highlightRanges,
         step
       });
@@ -116,14 +118,14 @@ export default function CodePane({
         style: getStyleForLineNumber(lineNumber, range)
       };
     },
-    [isActive, highlightRanges, step, isSingleRangeProvided]
+    [isActive, highlightRanges, numberOfSteps, step]
   );
 
   const getLineProps = React.useCallback(
     lineNumber => {
       if (!isActive) return;
       const range = getRangeFormat({
-        isSingleRangeProvided,
+        isSingleRangeProvided: numberOfSteps === 1,
         highlightRanges,
         step
       });
@@ -132,7 +134,7 @@ export default function CodePane({
         style: getStyleForLineNumber(lineNumber, range)
       };
     },
-    [isActive, highlightRanges, step, isSingleRangeProvided]
+    [isActive, highlightRanges, numberOfSteps, step]
   );
 
   React.useEffect(() => {
