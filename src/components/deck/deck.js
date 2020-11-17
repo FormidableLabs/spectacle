@@ -134,7 +134,11 @@ const Deck = forwardRef(
         ? {}
         : {
             left: () => stepBackward(),
-            right: () => stepForward()
+            right: () => stepForward(),
+            ...(overviewMode && {
+              tab: () => advanceSlide(),
+              'shift+tab': () => regressSlide()
+            })
           },
       []
     );

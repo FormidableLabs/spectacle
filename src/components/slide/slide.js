@@ -79,9 +79,7 @@ const AnimatedDiv = styled(animated.div)`
   ${({ tabIndex }) =>
     tabIndex === 0 &&
     css`
-      &:focus {
-        outline: 2px solid white;
-      }
+      outline: 2px solid white;
     `}
 `;
 
@@ -294,7 +292,9 @@ export default function Slide({
               ref={setStepContainer}
               onClick={handleClick}
               tabIndex={
-                Object.entries(frameOverrideStyle).length > 0 ? 0 : undefined
+                Object.entries(frameOverrideStyle).length > 0 && isActive
+                  ? 0
+                  : undefined
               }
               style={{ ...springFrameStyle, ...frameOverrideStyle }}
             >
