@@ -137,7 +137,10 @@ const Deck = forwardRef(
             right: () => stepForward(),
             ...(overviewMode && {
               tab: () => advanceSlide(),
-              'shift+tab': () => regressSlide()
+              'shift+tab': () =>
+                regressSlide({
+                  stepIndex: 0
+                })
             })
           },
       []
