@@ -53,7 +53,7 @@ export default function SpectacleDeck(props) {
       return <PresenterMode {...props} />;
 
     case SPECTACLE_MODES.OVERVIEW_MODE:
-      return <DefaultDeck overviewMode {...props} />;
+      return <DefaultDeck overviewMode toggleMode={toggleMode} {...props} />;
 
     default:
       return null;

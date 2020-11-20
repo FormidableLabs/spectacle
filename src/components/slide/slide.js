@@ -76,6 +76,12 @@ const AnimatedDiv = styled(animated.div)`
   height: 100%;
   position: absolute;
   background: transparent;
+  &:hover {
+    outline: 2px solid white;
+  }
+  &:active {
+    outline: 1px solid white;
+  }
   ${({ tabIndex }) =>
     tabIndex === 0 &&
     css`
@@ -126,9 +132,12 @@ export default function Slide({
     cancelTransition,
     template: deckTemplate
   } = useContext(DeckContext);
-  const handleClick = useCallback(() => {
-    onSlideClick(slideId);
-  }, [onSlideClick, slideId]);
+  const handleClick = useCallback(
+    e => {
+      onSlideClick(e, slideId);
+    },
+    [onSlideClick, slideId]
+  );
 
   const isActive = activeView.slideId === slideId;
   const isPending = pendingView.slideId === slideId;

@@ -16,6 +16,7 @@ import useMousetrap from '../../hooks/use-mousetrap';
 import useLocationSync from '../../hooks/use-location-sync';
 import { mergeTheme } from '../../theme';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
+import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 
 export const DeckContext = createContext();
 const noop = () => {};
@@ -70,7 +71,8 @@ const Deck = forwardRef(
         slideIndex: 0,
         stepIndex: 0
       },
-      suppressBackdropFallback = false
+      suppressBackdropFallback = false,
+      toggleMode
     },
     ref
   ) => {
@@ -136,11 +138,14 @@ const Deck = forwardRef(
             left: () => stepBackward(),
             right: () => stepForward(),
             ...(overviewMode && {
-              tab: () => advanceSlide(),
-              'shift+tab': () =>
+              [KEYBOARD_SHORTCUTS.TAB_FORWARD_OVERVIEW_MODE]: () =>
+                advanceSlide(),
+              [KEYBOARD_SHORTCUTS.TAB_BACKWARD_OVERVIEW_MODE]: () =>
                 regressSlide({
                   stepIndex: 0
-                })
+                }),
+              [KEYBOARD_SHORTCUTS.SELECT_SLIDE_OVERVIEW_MODE]: e =>
+                toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE)
             })
           },
       []
@@ -167,11 +172,18 @@ const Deck = forwardRef(
     ] = useCollectSlides();
 
     const handleSlideClick = useCallback(
-      slideId => {
+      (e, slideId) => {
         const slideIndex = slideIds.indexOf(slideId);
+        if (overviewMode) {
+          skipTo({
+            slideIndex,
+            stepIndex: 0
+          });
+          toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE);
+        }
         onSlideClick(slideIndex);
       },
-      [onSlideClick, slideIds]
+      [slideIds, overviewMode, skipTo, toggleMode, onSlideClick]
     );
 
     const activeSlideId = slideIds[activeView.slideIndex];

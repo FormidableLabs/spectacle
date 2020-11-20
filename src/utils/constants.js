@@ -5,7 +5,10 @@ export const SYSTEM_FONT =
 
 export const KEYBOARD_SHORTCUTS = {
   PRESENTER_MODE: 'mod+p',
-  OVERVIEW_MODE: 'mod+o'
+  OVERVIEW_MODE: 'mod+o',
+  TAB_FORWARD_OVERVIEW_MODE: 'tab',
+  TAB_BACKWARD_OVERVIEW_MODE: 'shift+tab',
+  SELECT_SLIDE_OVERVIEW_MODE: 'enter'
 };
 
 export const SPECTACLE_MODES = {
