@@ -183,7 +183,7 @@ const Deck = forwardRef(
         }
         onSlideClick(slideIndex);
       },
-      [slideIds, overviewMode, skipTo, toggleMode, onSlideClick]
+      [onSlideClick, overviewMode, skipTo, slideIds, toggleMode]
     );
 
     const activeSlideId = slideIds[activeView.slideIndex];
