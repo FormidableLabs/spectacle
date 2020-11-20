@@ -76,9 +76,6 @@ const AnimatedDiv = styled(animated.div)`
   height: 100%;
   position: absolute;
   background: transparent;
-  &:hover {
-    outline: 2px solid white;
-  }
   &:active {
     outline: 1px solid white;
   }
@@ -86,6 +83,13 @@ const AnimatedDiv = styled(animated.div)`
     tabIndex === 0 &&
     css`
       outline: 2px solid white;
+    `}
+  ${({ isOverviewMode }) =>
+    isOverviewMode &&
+    css`
+      &:hover {
+        outline: 2px solid white;
+      }
     `}
 `;
 
@@ -139,6 +143,7 @@ export default function Slide({
     [onSlideClick, slideId]
   );
 
+  const isOverviewMode = Object.entries(frameOverrideStyle).length > 0;
   const isActive = activeView.slideId === slideId;
   const isPending = pendingView.slideId === slideId;
   const isPassed = passedSlideIds.has(slideId);
@@ -300,11 +305,8 @@ export default function Slide({
             <AnimatedDiv
               ref={setStepContainer}
               onClick={handleClick}
-              tabIndex={
-                Object.entries(frameOverrideStyle).length > 0 && isActive
-                  ? 0
-                  : undefined
-              }
+              isOverviewMode={isOverviewMode}
+              tabIndex={isOverviewMode && isActive ? 0 : undefined}
               style={{ ...springFrameStyle, ...frameOverrideStyle }}
             >
               <SlideContainer
