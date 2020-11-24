@@ -126,7 +126,8 @@ export default function Slide({
     regressSlide,
     commitTransition,
     cancelTransition,
-    template: deckTemplate
+    template: deckTemplate,
+    slideCount
   } = useContext(DeckContext);
   const handleClick = useCallback(() => {
     onSlideClick(slideId);
@@ -312,8 +313,8 @@ export default function Slide({
                   {(typeof template === 'function' ||
                     typeof deckTemplate === 'function') &&
                     (template || deckTemplate)({
-                      slideNumber: 0,
-                      numberOfSlides: 0
+                      slideNumber: activeView.slideIndex + 1,
+                      numberOfSlides: slideCount
                     })}
                 </TemplateWrapper>
                 <SlideWrapper
