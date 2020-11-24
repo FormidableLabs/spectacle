@@ -1,5 +1,15 @@
 # Changelog
 
+## 7.0.0-beta.1 (11/24/2020)
+
+- Core refactor of navigation and slide management to fix bugs around nested slide sets
+- Rewrite of <CodePane> to fix line-by-line highlighting
+- Supports nested slides inside JSX fragments and HTML tags like div
+- New <MarkdownSlide> and <MarkdownSlideSet> for MD-based content
+- Slides in Markdown are now tightly integrated within the deck and can be mixed within regular slides
+- Presenter Mode defaults back to Spectacle 5.0 experience of dual-browser mode
+- Notes can now contain HTML markup
+
 ## 6.2.0 (06-17-2020)
 
 - Fix presenter mode so the next element is displayed, not just the next Slide.
