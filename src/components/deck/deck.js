@@ -25,12 +25,13 @@ import {
 
 export const DeckContext = createContext();
 const noop = () => {};
+const printScale = 0.773;
 
 const Portal = styled('div')(
   ({ fitAspectRatioStyle, overviewMode, printMode }) => [
-    { overflow: 'hidden' },
-    fitAspectRatioStyle,
-    (overviewMode || printMode) && {
+    !printMode && { overflow: 'hidden' },
+    !printMode && fitAspectRatioStyle,
+    overviewMode && {
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'flex-start',
@@ -40,6 +41,9 @@ const Portal = styled('div')(
       overflowY: 'scroll',
       width: '100%',
       height: '100%'
+    },
+    printMode && {
+      display: 'block'
     }
   ]
 );
@@ -228,22 +232,20 @@ const Deck = forwardRef(
       targetHeight: nativeSlideHeight
     });
 
-    console.log(backdropRef, fitAspectRatioStyle);
-
     const frameStyle = useMemo(() => {
-      console.log(fitAspectRatioStyle, overviewScale);
+      const options = {
+        printScale,
+        overviewScale,
+        nativeSlideWidth,
+        nativeSlideHeight
+      };
       if (overviewMode) {
-        return overviewFrameStyle({
-          overviewScale,
-          nativeSlideWidth,
-          nativeSlideHeight
-        });
+        return overviewFrameStyle(options);
       } else if (printMode) {
-        return printFrameStyle(fitAspectRatioStyle);
+        return printFrameStyle(options);
       }
       return {};
     }, [
-      fitAspectRatioStyle,
       nativeSlideHeight,
       nativeSlideWidth,
       overviewMode,
@@ -255,10 +257,10 @@ const Deck = forwardRef(
       if (overviewMode) {
         return overviewWrapperStyle({ overviewScale });
       } else if (printMode) {
-        return printWrapperStyle(fitAspectRatioStyle);
+        return printWrapperStyle({ printScale });
       }
       return {};
-    }, [fitAspectRatioStyle, overviewMode, overviewScale, printMode]);
+    }, [overviewMode, overviewScale, printMode]);
 
     // Try to be intelligent about the backdrop background color: we have to use
     // inline styles, which will take precedence over all other styles. So, we do

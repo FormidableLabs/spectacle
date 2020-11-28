@@ -24,22 +24,28 @@ export function overviewWrapperStyle({ overviewScale }) {
   };
 }
 
-export function printFrameStyle({ scaleFactor, height, width }) {
+export function printFrameStyle({
+  nativeSlideWidth,
+  nativeSlideHeight,
+  printScale
+}) {
   return {
-    margin: 20,
-    width: `${scaleFactor * width}px`,
-    height: `${(scaleFactor / (width / height)) * width}px`,
+    margin: 0,
+    width: `${printScale * nativeSlideWidth}px`,
+    height: `${(printScale / (nativeSlideWidth / nativeSlideHeight)) *
+      nativeSlideWidth}px`,
     display: 'block',
     transform: 'none',
-    position: 'relative'
+    position: 'relative',
+    breakAfter: 'page'
   };
 }
 
-export function printWrapperStyle({ scaleFactor }) {
+export function printWrapperStyle({ printScale }) {
   return {
-    width: `${100 / scaleFactor}%`,
-    height: `${100 / scaleFactor}%`,
-    transform: `scale(${scaleFactor})`,
+    width: `${100 / printScale}%`,
+    height: `${100 / printScale}%`,
+    transform: `scale(${printScale})`,
     transformOrigin: '0px 0px',
     position: 'absolute'
   };

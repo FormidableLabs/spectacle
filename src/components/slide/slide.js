@@ -33,12 +33,6 @@ const SlideContainer = styled('div')`
   display: flex;
   z-index: 0;
 
-  @media print {
-    page-break-before: always;
-    height: 100vh;
-    width: 100vw;
-  }
-
   &:before {
     ${background};
     content: ' ';
@@ -72,11 +66,12 @@ const TemplateWrapper = styled('div')`
   pointer-events: none;
 `;
 
-const AnimatedDiv = styled(animated.div)`
+export const AnimatedDiv = styled(animated.div)`
   width: 100%;
   height: 100%;
   position: absolute;
   background: transparent;
+
   ${({ tabIndex }) =>
     tabIndex === 0 &&
     css`
