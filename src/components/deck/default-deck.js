@@ -12,6 +12,23 @@ export default function DefaultDeck({
 }) {
   const deck = React.useRef();
 
+  const [postMessage] = useBroadcastChannel(
+    'spectacle_presenter_bus',
+    message => {
+      if (message.type !== 'SYNC') return;
+      const nextView = message.payload;
+      if (deck.current.initialized) {
+        deck.current.skipTo(nextView);
+      } else {
+        deck.current.initializeTo(nextView);
+      }
+    }
+  );
+
+  useEffect(() => {
+    postMessage('SYNC_REQUEST');
+  }, [postMessage]);
+
   useMousetrap(
     overviewMode
       ? {
@@ -41,23 +58,6 @@ export default function DefaultDeck({
     [overviewMode, toggleMode]
   );
 
-  const [postMessage] = useBroadcastChannel(
-    'spectacle_presenter_bus',
-    message => {
-      if (message.type !== 'SYNC') return;
-      const nextView = message.payload;
-      if (deck.current.initialized) {
-        deck.current.skipTo(nextView);
-      } else {
-        deck.current.initializeTo(nextView);
-      }
-    }
-  );
-
-  useEffect(() => {
-    postMessage('SYNC_REQUEST');
-  }, [postMessage]);
-
   return (
     <Deck
       overviewMode={overviewMode}
@@ -68,4 +68,8 @@ export default function DefaultDeck({
   );
 }
 
-DefaultDeck.propTypes = { ...Deck.propTypes, overviewMode: propTypes.bool };
+DefaultDeck.propTypes = {
+  ...Deck.propTypes,
+  overviewMode: propTypes.bool,
+  toggleMode: propTypes.func
+};
