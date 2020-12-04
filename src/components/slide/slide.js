@@ -84,7 +84,7 @@ const AnimatedDiv = styled(animated.div)`
     css`
       outline: 2px solid white;
     `}
-  ${({ 'data-in-overview-mode': inOverviewMode }) =>
+  ${({ 'data-overview-mode': inOverviewMode }) =>
     inOverviewMode &&
     css`
       &:hover {
@@ -305,7 +305,7 @@ export default function Slide({
             <AnimatedDiv
               ref={setStepContainer}
               onClick={handleClick}
-              data-in-overview-mode={inOverviewMode}
+              data-overview-mode={inOverviewMode}
               tabIndex={inOverviewMode && isActive ? 0 : undefined}
               style={{ ...springFrameStyle, ...frameOverrideStyle }}
             >
