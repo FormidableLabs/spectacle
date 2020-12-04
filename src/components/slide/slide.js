@@ -76,21 +76,14 @@ const AnimatedDiv = styled(animated.div)`
   height: 100%;
   position: absolute;
   background: transparent;
-  &:active {
-    outline: 1px solid white;
-  }
   ${({ tabIndex }) =>
     tabIndex === 0 &&
     css`
       outline: 2px solid white;
     `}
-  ${({ 'data-overview-mode': inOverviewMode }) =>
-    inOverviewMode &&
-    css`
-      &:hover {
-        outline: 2px solid white;
-      }
-    `}
+  &:active {
+    outline: 1px solid white;
+  }
 `;
 
 export default function Slide({
@@ -163,6 +156,11 @@ export default function Slide({
   // animated.)
   const infinityDirection = isPassed ? Infinity : -Infinity;
   const internalStepIndex = isActive ? activeView.stepIndex : infinityDirection;
+
+  const [hover, setHover] = useState(false);
+  const onHoverChange = useCallback(() => {
+    setHover(!hover);
+  }, [hover]);
 
   React.useEffect(() => {
     if (!isActive) return;
@@ -305,9 +303,17 @@ export default function Slide({
             <AnimatedDiv
               ref={setStepContainer}
               onClick={handleClick}
-              data-overview-mode={inOverviewMode}
               tabIndex={inOverviewMode && isActive ? 0 : undefined}
-              style={{ ...springFrameStyle, ...frameOverrideStyle }}
+              style={{
+                ...springFrameStyle,
+                ...frameOverrideStyle,
+                ...(inOverviewMode &&
+                  hover && {
+                    outline: '2px solid white'
+                  })
+              }}
+              onMouseEnter={onHoverChange}
+              onMouseLeave={onHoverChange}
             >
               <SlideContainer
                 className={className}
