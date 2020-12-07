@@ -211,7 +211,7 @@ CodePane.propTypes = {
     propTypes.oneOfType([
       propTypes.number.isRequired,
       propTypes.arrayOf(propTypes.number.isRequired)
-    ])
+    ]).isRequired
   ),
   language: propTypes.string.isRequired,
   children: propTypes.string.isRequired,
