@@ -94,16 +94,13 @@ CodePane is a component for showing a syntax-highlighted block of source code. I
 
 Additionally, `highlightStart` and `highlightEnd` props can be used to highlight certain ranges of code. Combine this with the [Stepper](#stepper) component to iterate over lines of code as you present.
 
-| Props            | Type                                                                                       | Example               |
-| ---------------- | ------------------------------------------------------------------------------------------ | --------------------- |
-| `autoFillHeight` | PropTypes.boolean                                                                          | `false`               |
-| `children`       | PropTypes.string                                                                           | `let name = "Carlos"` |
-| `fontSize`       | PropTypes.number                                                                           | `16`                  |
-| `highlightEnd`   | PropTypes.number                                                                           | `2`                   |
-| `highlightStart` | PropTypes.number                                                                           | `1`                   |
-| `indentSize`     | PropTypes.number                                                                           | `2`                   |
-| `language`       | PropTypes.string                                                                           | `javascript`          |
-| `theme`          | [Prism Theme](https://github.com/FormidableLabs/prism-react-renderer/tree/main/src/themes) | —                     |
+| Props             | Type                                                                                                                                          | Example               |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `children`        | PropTypes.string                                                                                                                              | `let name = "Carlos"` |
+| `highlightRanges` | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))                                                 | `[0, 3]`              |
+| `language`        | PropTypes.string                                                                                                                              | `"javascript"`        |
+| `stepIndex`       | PropTypes.number                                                                                                                              | `2`                   |
+| `theme`           | PropTypes.object or [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | `"atomDark"`          |
 
 ```jsx
 import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
