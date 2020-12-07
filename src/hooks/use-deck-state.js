@@ -55,7 +55,7 @@ function deckReducer(state, { type, payload = {} }) {
       return {
         ...state,
         pendingView: merge(state.pendingView, {
-          stepIndex: GOTO_FINAL_STEP,
+          stepIndex: payload?.stepIndex ?? GOTO_FINAL_STEP,
           slideIndex: state.pendingView.slideIndex - 1
         })
       };

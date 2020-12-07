@@ -160,9 +160,9 @@ const Deck = forwardRef(
     ] = useCollectSlides();
 
     const handleSlideClick = useCallback(
-      slideId => {
+      (e, slideId) => {
         const slideIndex = slideIds.indexOf(slideId);
-        onSlideClick(slideIndex);
+        onSlideClick(e, slideIndex);
       },
       [onSlideClick, slideIds]
     );

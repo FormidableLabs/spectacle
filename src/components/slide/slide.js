@@ -79,10 +79,11 @@ const AnimatedDiv = styled(animated.div)`
   ${({ tabIndex }) =>
     tabIndex === 0 &&
     css`
-      &:focus {
-        outline: 2px solid white;
-      }
+      outline: 2px solid white;
     `}
+  &:active {
+    outline: 1px solid white;
+  }
 `;
 
 export default function Slide({
@@ -129,10 +130,14 @@ export default function Slide({
     template: deckTemplate,
     slideCount
   } = useContext(DeckContext);
-  const handleClick = useCallback(() => {
-    onSlideClick(slideId);
-  }, [onSlideClick, slideId]);
+  const handleClick = useCallback(
+    e => {
+      onSlideClick(e, slideId);
+    },
+    [onSlideClick, slideId]
+  );
 
+  const inOverviewMode = Object.entries(frameOverrideStyle).length > 0;
   const isActive = activeView.slideId === slideId;
   const isPending = pendingView.slideId === slideId;
   const isPassed = passedSlideIds.has(slideId);
@@ -152,6 +157,11 @@ export default function Slide({
   // animated.)
   const infinityDirection = isPassed ? Infinity : -Infinity;
   const internalStepIndex = isActive ? activeView.stepIndex : infinityDirection;
+
+  const [hover, setHover] = useState(false);
+  const onHoverChange = useCallback(() => {
+    setHover(!hover);
+  }, [hover]);
 
   React.useEffect(() => {
     if (!isActive) return;
@@ -294,10 +304,17 @@ export default function Slide({
             <AnimatedDiv
               ref={setStepContainer}
               onClick={handleClick}
-              tabIndex={
-                Object.entries(frameOverrideStyle).length > 0 ? 0 : undefined
-              }
-              style={{ ...springFrameStyle, ...frameOverrideStyle }}
+              tabIndex={inOverviewMode && isActive ? 0 : undefined}
+              style={{
+                ...springFrameStyle,
+                ...frameOverrideStyle,
+                ...(inOverviewMode &&
+                  hover && {
+                    outline: '2px solid white'
+                  })
+              }}
+              onMouseEnter={onHoverChange}
+              onMouseLeave={onHoverChange}
             >
               <SlideContainer
                 className={className}
