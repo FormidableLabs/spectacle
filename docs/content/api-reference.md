@@ -94,7 +94,21 @@ CodePane is a component for showing a syntax-highlighted block of source code. I
 
 The `theme` prop accepts a configurable object or a string of the available [Prism Themes](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js); `'atomDark'`, `'base16AteliersulphurpoolLight'`, `'cb'`, `'coy'`, `'darcula'`, `'dark'`, `'duotoneDark'`, `'duotoneEarth'`, `'duotoneForest'`, `'duotoneLight'`, `'duotoneSea'`, `'duotoneSpace'`, `'funky'`, `'ghcolors'`, `'hopscotch'`, `'okaidia'`, `'pojoaque'`, `'prism'`, `'solarizedlight'`, `'tomorrow'`, `'twilight'`, `'vs'` and `'xonokai'`.
 
-Additionally, the `highlightRanges` prop accepts an array that can be used to highlight certain ranges of code. This array can contain a range of two numbers `[1, 3]` which will highlight lines 1 through 3. It can also contain a list of sub-arrays which will be considered as a list of ranges `[[1, 3], [6, 8], [10, 15]]`, and if in between the list of ranges, you would like to only highlight a single line, then a number can be included within this list `[[1, 3], 5, [6, 8], [10, 15], 20]`.
+Additionally, the `highlightRanges` prop accepts an array that can be used to highlight certain ranges of code:
+
+This array can contain a range of two numbers, where the first number indicates the _start_, and the second number the _end_ of that range, e.g.,
+
+`[1, 3]` will highlight lines 1 through 3.
+
+It can also contain a list of sub-arrays which will be considered as a list of ranges, e.g.,
+
+`[[1, 3], [6, 8], [10, 15]]`.
+
+Array values can even be mixed to include sub-arrays (for multiple lines) and numbers (for single lines), e.g.,
+
+`[[1, 3], 5, [6, 8], [10, 15], 20]`.
+
+_Note that each range will be considered as a step in your current slide's animation. Each range will be highlighted as you move forward or backwards on each step._
 
 | Props             | Type                                                                                                                                          | Example                          | Default Props |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ------------- |
