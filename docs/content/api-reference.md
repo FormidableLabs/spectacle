@@ -90,18 +90,17 @@ Appear is a component that makes a component animate on the slide on key press. 
 
 ## Code Pane
 
-CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code, trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. The CodePane uses the [React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter) Component.
+CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code, trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. CodePane uses the [React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter) Component.
 
-The `theme` prop can take in a configurable object or a string of the available [Prism Themes](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js).
+The `theme` prop accepts a configurable object or a string of the available [Prism Themes](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js); `'atomDark'`, `'base16AteliersulphurpoolLight'`, `'cb'`, `'coy'`, `'darcula'`, `'dark'`, `'duotoneDark'`, `'duotoneEarth'`, `'duotoneForest'`, `'duotoneLight'`, `'duotoneSea'`, `'duotoneSpace'`, `'funky'`, `'ghcolors'`, `'hopscotch'`, `'okaidia'`, `'pojoaque'`, `'prism'`, `'solarizedlight'`, `'tomorrow'`, `'twilight'`, `'vs'` and `'xonokai'`.
 
-Additionally, the `highlightRanges` prop can take in an array that can be used to highlight certain ranges of code. This array can contain a range of two numbers `[0, 3]` which will highlight lines 0 through 3. It can also contain a list of sub-arrays which will be considered as a list of ranges `[[0, 3], [6, 8], [10, 15]]`, and if in between the list of ranges, you would like to only highlight a single line, then a number can be included within this list `[[0, 3], 5, [6, 8], [10, 15], 20]`.
+Additionally, the `highlightRanges` prop accepts an array that can be used to highlight certain ranges of code. This array can contain a range of two numbers `[0, 3]` which will highlight lines 0 through 3. It can also contain a list of sub-arrays which will be considered as a list of ranges `[[0, 3], [6, 8], [10, 15]]`, and if in between the list of ranges, you would like to only highlight a single line, then a number can be included within this list `[[0, 3], 5, [6, 8], [10, 15], 20]`.
 
 | Props             | Type                                                                                                                                          | Example                          |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | `children`        | PropTypes.string                                                                                                                              | `let name = "Carlos"`            |
 | `highlightRanges` | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))                                                 | `[0, 3]` or `[[6, 8], [10, 15]]` |
 | `language`        | PropTypes.string                                                                                                                              | `javascript`                     |
-| `stepIndex`       | PropTypes.number                                                                                                                              | `2`                              |
 | `theme`           | PropTypes.object or [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | `atomDark`                       |
 
 ```jsx
