@@ -1,39 +1,43 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { parse as parseQS } from 'query-string';
+import { parse as parseQS, stringify as stringifyQS } from 'query-string';
 import DefaultDeck from './default-deck';
 import PresenterMode from '../presenter-mode';
 import PrintMode from '../../print-mode';
 import useMousetrap from '../../hooks/use-mousetrap';
 import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
+import { modeKeyForSearchParam, modeSearchParamForKey } from './modes';
 
 export default function SpectacleDeck(props) {
-  const { search: queryString } = location;
-  const { presenterMode, overviewMode, printMode } = parseQS(queryString, {
-    parseBooleans: true
-  });
-
-  const defaultMode = useMemo(() => {
-    if (presenterMode) {
-      return SPECTACLE_MODES.PRESENTER_MODE;
-    } else if (overviewMode) {
-      return SPECTACLE_MODES.OVERVIEW_MODE;
-    } else if (printMode) {
-      return SPECTACLE_MODES.PRINT_MODE;
-    }
-    return SPECTACLE_MODES.DEFAULT_MODE;
-  }, [overviewMode, presenterMode, printMode]);
-
-  const [mode, setMode] = useState(defaultMode);
+  const [mode, setMode] = useState(
+    modeKeyForSearchParam(
+      parseQS(location.search, {
+        parseBooleans: true
+      })
+    )
+  );
 
   const toggleMode = useCallback(
     (e, newMode) => {
       e?.preventDefault();
+
+      const { slideIndex, stepIndex } = parseQS(location.search, {
+        parseBooleans: true
+      });
+
       if (mode === newMode) {
-        setMode(SPECTACLE_MODES.DEFAULT_MODE);
+        location.search = stringifyQS({
+          slideIndex,
+          stepIndex
+        });
         return;
       }
-      setMode(newMode);
+
+      location.search = stringifyQS({
+        slideIndex,
+        stepIndex,
+        ...modeSearchParamForKey(newMode)
+      });
     },
     [mode]
   );
