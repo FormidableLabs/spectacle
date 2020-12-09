@@ -16,25 +16,33 @@ import useMousetrap from '../../hooks/use-mousetrap';
 import useLocationSync from '../../hooks/use-location-sync';
 import { mergeTheme } from '../../theme';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
+import {
+  overviewFrameStyle,
+  overviewWrapperStyle,
+  printFrameStyle,
+  printWrapperStyle
+} from './deck-styles';
 
 export const DeckContext = createContext();
 const noop = () => {};
 
-const Portal = styled('div')(({ fitAspectRatioStyle, overviewMode }) => [
-  { overflow: 'hidden' },
-  fitAspectRatioStyle,
-  overviewMode && {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    alignContent: 'flex-start',
-    transform: 'scale(1)',
-    overflowY: 'scroll',
-    width: '100%',
-    height: '100%'
-  }
-]);
+const Portal = styled('div')(
+  ({ fitAspectRatioStyle, overviewMode, printMode }) => [
+    { overflow: 'hidden' },
+    fitAspectRatioStyle,
+    (overviewMode || printMode) && {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      alignContent: 'flex-start',
+      transform: 'scale(1)',
+      overflowY: 'scroll',
+      width: '100%',
+      height: '100%'
+    }
+  ]
+);
 
 const Deck = forwardRef(
   (
@@ -43,6 +51,7 @@ const Deck = forwardRef(
       className = '',
       backdropStyle: userProvidedBackdropStyle,
       overviewMode = false,
+      printMode = false,
       overviewScale = 0.25,
       template,
       theme: {
@@ -219,29 +228,37 @@ const Deck = forwardRef(
       targetHeight: nativeSlideHeight
     });
 
-    const overviewFrameStyle = useMemo(
-      () => ({
-        margin: '1rem',
-        width: `${overviewScale * nativeSlideWidth}px`,
-        height: `${(overviewScale / (nativeSlideWidth / nativeSlideHeight)) *
-          nativeSlideWidth}px`,
-        display: 'block',
-        transform: 'none',
-        position: 'relative'
-      }),
-      [overviewScale, nativeSlideWidth, nativeSlideHeight]
-    );
+    console.log(backdropRef, fitAspectRatioStyle);
 
-    const overviewWrapperStyle = React.useMemo(
-      () => ({
-        width: `${100 / overviewScale}%`,
-        height: `${100 / overviewScale}%`,
-        transform: `scale(${overviewScale})`,
-        transformOrigin: '0px 0px',
-        position: 'absolute'
-      }),
-      [overviewScale]
-    );
+    const frameStyle = useMemo(() => {
+      console.log(fitAspectRatioStyle, overviewScale);
+      if (overviewMode) {
+        return overviewFrameStyle({
+          overviewScale,
+          nativeSlideWidth,
+          nativeSlideHeight
+        });
+      } else if (printMode) {
+        return printFrameStyle(fitAspectRatioStyle);
+      }
+      return {};
+    }, [
+      fitAspectRatioStyle,
+      nativeSlideHeight,
+      nativeSlideWidth,
+      overviewMode,
+      overviewScale,
+      printMode
+    ]);
+
+    const wrapperStyle = useMemo(() => {
+      if (overviewMode) {
+        return overviewWrapperStyle({ overviewScale });
+      } else if (printMode) {
+        return printWrapperStyle(fitAspectRatioStyle);
+      }
+      return {};
+    }, [fitAspectRatioStyle, overviewMode, overviewScale, printMode]);
 
     // Try to be intelligent about the backdrop background color: we have to use
     // inline styles, which will take precedence over all other styles. So, we do
@@ -274,7 +291,7 @@ const Deck = forwardRef(
     }
 
     return (
-      <ThemeProvider theme={mergeTheme(restTheme)}>
+      <ThemeProvider theme={mergeTheme({ theme: restTheme, printMode })}>
         <BackdropComponent
           ref={backdropRef}
           className={className}
@@ -286,6 +303,7 @@ const Deck = forwardRef(
           <Portal
             ref={setSlidePortalNode}
             overviewMode={overviewMode}
+            printMode={printMode}
             fitAspectRatioStyle={fitAspectRatioStyle}
           />
           <DeckContext.Provider
@@ -297,8 +315,8 @@ const Deck = forwardRef(
               onSlideClick: handleSlideClick,
               theme: restTheme,
 
-              frameOverrideStyle: overviewMode ? overviewFrameStyle : {},
-              wrapperOverrideStyle: overviewMode ? overviewWrapperStyle : {},
+              frameOverrideStyle: frameStyle,
+              wrapperOverrideStyle: wrapperStyle,
 
               backdropNode: backdropRef.current,
               notePortalNode,

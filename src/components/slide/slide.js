@@ -1,4 +1,5 @@
 import React, {
+  createContext,
   useContext,
   useCallback,
   useState,
@@ -17,7 +18,7 @@ import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 
 const noop = () => {};
 
-export const SlideContext = React.createContext();
+export const SlideContext = createContext(null);
 
 const STAGE_RIGHT = 'translateX(-100%)';
 const CENTER_STAGE = 'translateX(0%)';

@@ -1,12 +1,18 @@
-import React, { forwardRef, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import propTypes from 'prop-types';
 import Deck from './deck';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 import useMousetrap from '../../hooks/use-mousetrap';
 import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 
+/**
+ * Spectacle DefaultDeck is a wrapper around the Deck component that adds Broadcast channel support
+ * for audience and presenter modes. This is intentionally not built into the base Deck component
+ * to allow for extensibility outside of core Spectacle functionality.
+ */
 export default function DefaultDeck({
   overviewMode = false,
+  printMode = false,
   toggleMode,
   ...props
 }) {
@@ -62,6 +68,7 @@ export default function DefaultDeck({
     <Deck
       overviewMode={overviewMode}
       onSlideClick={onSlideClick}
+      printMode={printMode}
       ref={deck}
       {...props}
     />
@@ -71,5 +78,6 @@ export default function DefaultDeck({
 DefaultDeck.propTypes = {
   ...Deck.propTypes,
   overviewMode: propTypes.bool,
-  toggleMode: propTypes.func
+  toggleMode: propTypes.func,
+  printMode: propTypes.bool
 };

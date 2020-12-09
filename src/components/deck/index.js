@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { parse as parseQS } from 'query-string';
 import DefaultDeck from './default-deck';
 import PresenterMode from '../presenter-mode';
+import PrintMode from '../../print-mode';
 import useMousetrap from '../../hooks/use-mousetrap';
 import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 
 export default function SpectacleDeck(props) {
   const { search: queryString } = location;
-  const { presenterMode, overviewMode } = parseQS(queryString, {
+  const { presenterMode, overviewMode, printMode } = parseQS(queryString, {
     parseBooleans: true
   });
 
@@ -17,9 +18,11 @@ export default function SpectacleDeck(props) {
       return SPECTACLE_MODES.PRESENTER_MODE;
     } else if (overviewMode) {
       return SPECTACLE_MODES.OVERVIEW_MODE;
+    } else if (printMode) {
+      return SPECTACLE_MODES.PRINT_MODE;
     }
     return SPECTACLE_MODES.DEFAULT_MODE;
-  }, [overviewMode, presenterMode]);
+  }, [overviewMode, presenterMode, printMode]);
 
   const [mode, setMode] = useState(defaultMode);
 
@@ -39,6 +42,8 @@ export default function SpectacleDeck(props) {
     {
       [KEYBOARD_SHORTCUTS.PRESENTER_MODE]: e =>
         toggleMode(e, SPECTACLE_MODES.PRESENTER_MODE),
+      [KEYBOARD_SHORTCUTS.PRINT_MODE]: e =>
+        toggleMode(e, SPECTACLE_MODES.PRINT_MODE),
       [KEYBOARD_SHORTCUTS.OVERVIEW_MODE]: e =>
         toggleMode(e, SPECTACLE_MODES.OVERVIEW_MODE)
     },
@@ -51,6 +56,9 @@ export default function SpectacleDeck(props) {
 
     case SPECTACLE_MODES.PRESENTER_MODE:
       return <PresenterMode {...props} />;
+
+    case SPECTACLE_MODES.PRINT_MODE:
+      return <PrintMode {...props} />;
 
     case SPECTACLE_MODES.OVERVIEW_MODE:
       return <DefaultDeck overviewMode toggleMode={toggleMode} {...props} />;

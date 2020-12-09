@@ -4,8 +4,9 @@ export const SYSTEM_FONT =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Helvetica, sans-serif';
 
 export const KEYBOARD_SHORTCUTS = {
-  PRESENTER_MODE: 'mod+p',
+  PRESENTER_MODE: 'mod+shift+p',
   OVERVIEW_MODE: 'mod+o',
+  PRINT_MODE: 'mod+p',
   TAB_FORWARD_OVERVIEW_MODE: 'tab',
   TAB_BACKWARD_OVERVIEW_MODE: 'shift+tab',
   SELECT_SLIDE_OVERVIEW_MODE: 'enter'
