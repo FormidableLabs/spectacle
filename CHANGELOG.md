@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.0.0-beta.2 (12/9/2020)
+
+- Support for multiple lines or single lines for highlight ranges in <CodePane>
+- Overview Mode now allows for selecting or tabbing through slides
+
 ## 7.0.0-beta.1 (11/24/2020)
 
 - Core refactor of navigation and slide management to fix bugs around nested slide sets
