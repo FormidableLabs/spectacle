@@ -54,11 +54,7 @@ export default function DefaultDeck({
   const onSlideClick = useCallback(
     (e, slideIndex) => {
       if (overviewMode) {
-        deck.current.skipTo({
-          slideIndex,
-          stepIndex: 0
-        });
-        toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE);
+        toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE, slideIndex);
       }
     },
     [overviewMode, toggleMode]

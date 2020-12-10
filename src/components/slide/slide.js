@@ -77,9 +77,6 @@ export const AnimatedDiv = styled(animated.div)`
     css`
       outline: 2px solid white;
     `}
-  &:active {
-    outline: 1px solid white;
-  }
 `;
 
 export default function Slide({

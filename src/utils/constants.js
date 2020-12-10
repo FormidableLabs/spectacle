@@ -5,7 +5,7 @@ export const SYSTEM_FONT =
 
 export const KEYBOARD_SHORTCUTS = {
   PRESENTER_MODE: 'mod+shift+p',
-  OVERVIEW_MODE: 'mod+o',
+  OVERVIEW_MODE: 'mod+shift+o',
   PRINT_MODE: 'mod+shift+e',
   TAB_FORWARD_OVERVIEW_MODE: 'tab',
   TAB_BACKWARD_OVERVIEW_MODE: 'shift+tab',

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { parse as parseQS, stringify as stringifyQS } from 'query-string';
 import DefaultDeck from './default-deck';
@@ -9,7 +9,7 @@ import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 import { modeKeyForSearchParam, modeSearchParamForKey } from './modes';
 
 export default function SpectacleDeck(props) {
-  const [mode, setMode] = useState(
+  const mode = useRef(
     modeKeyForSearchParam(
       parseQS(location.search, {
         parseBooleans: true
@@ -18,20 +18,29 @@ export default function SpectacleDeck(props) {
   );
 
   const toggleMode = useCallback(
-    (e, newMode) => {
+    (e, newMode, senderSlideIndex) => {
       e?.preventDefault();
 
-      const { slideIndex, stepIndex } = parseQS(location.search, {
+      let stepIndex = 0;
+      let slideIndex = senderSlideIndex;
+      const searchParams = parseQS(location.search, {
         parseBooleans: true
       });
 
-      if (mode === newMode) {
+      if (!slideIndex) {
+        slideIndex = searchParams.slideIndex;
+        stepIndex = searchParams.stepIndex;
+      }
+
+      if (mode.current === newMode) {
         location.search = stringifyQS({
           slideIndex,
           stepIndex
         });
         return;
       }
+
+      mode.current = newMode;
 
       location.search = stringifyQS({
         slideIndex,
@@ -54,7 +63,7 @@ export default function SpectacleDeck(props) {
     []
   );
 
-  switch (mode) {
+  switch (mode.current) {
     case SPECTACLE_MODES.DEFAULT_MODE:
       return <DefaultDeck {...props} />;
 
