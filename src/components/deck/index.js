@@ -57,6 +57,8 @@ export default function SpectacleDeck(props) {
         toggleMode(e, SPECTACLE_MODES.PRESENTER_MODE),
       [KEYBOARD_SHORTCUTS.PRINT_MODE]: e =>
         toggleMode(e, SPECTACLE_MODES.PRINT_MODE),
+      [KEYBOARD_SHORTCUTS.EXPORT_MODE]: e =>
+        toggleMode(e, SPECTACLE_MODES.EXPORT_MODE),
       [KEYBOARD_SHORTCUTS.OVERVIEW_MODE]: e =>
         toggleMode(e, SPECTACLE_MODES.OVERVIEW_MODE)
     },
@@ -70,8 +72,16 @@ export default function SpectacleDeck(props) {
     case SPECTACLE_MODES.PRESENTER_MODE:
       return <PresenterMode {...props} />;
 
+    /**
+     * Print mode and export mode are identical except for the theme
+     * that is used. Print mode uses the print theme which is usually
+     * monotone and export mode uses the default theme.
+     */
     case SPECTACLE_MODES.PRINT_MODE:
-      return <PrintMode {...props} />;
+      return <PrintMode {...props} printMode />;
+
+    case SPECTACLE_MODES.EXPORT_MODE:
+      return <PrintMode {...props} exportMode />;
 
     case SPECTACLE_MODES.OVERVIEW_MODE:
       return <DefaultDeck overviewMode toggleMode={toggleMode} {...props} />;

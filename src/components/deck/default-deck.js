@@ -13,6 +13,7 @@ import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 export default function DefaultDeck({
   overviewMode = false,
   printMode = false,
+  exportMode = false,
   toggleMode,
   ...props
 }) {
@@ -65,6 +66,7 @@ export default function DefaultDeck({
       overviewMode={overviewMode}
       onSlideClick={onSlideClick}
       printMode={printMode}
+      exportMode={exportMode}
       ref={deck}
       {...props}
     />
@@ -75,5 +77,6 @@ DefaultDeck.propTypes = {
   ...Deck.propTypes,
   overviewMode: propTypes.bool,
   toggleMode: propTypes.func,
-  printMode: propTypes.bool
+  printMode: propTypes.bool,
+  exportMode: propTypes.bool
 };

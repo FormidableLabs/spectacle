@@ -56,6 +56,7 @@ const Deck = forwardRef(
       backdropStyle: userProvidedBackdropStyle,
       overviewMode = false,
       printMode = false,
+      exportMode = false,
       overviewScale = 0.25,
       template,
       theme: {
@@ -293,7 +294,12 @@ const Deck = forwardRef(
     }
 
     return (
-      <ThemeProvider theme={mergeTheme({ theme: restTheme, printMode })}>
+      <ThemeProvider
+        theme={mergeTheme({
+          theme: restTheme,
+          printMode: printMode && !exportMode
+        })}
+      >
         <BackdropComponent
           ref={backdropRef}
           className={className}

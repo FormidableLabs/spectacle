@@ -22,12 +22,13 @@ const PrintStyle = createGlobalStyle`
   }
 `;
 
-export default function PrintMode({ children, theme }) {
+export default function PrintMode({ children, theme, exportMode }) {
   return (
     <>
       <PrintStyle />
       <Deck
         printMode
+        exportMode={exportMode}
         disableInteractivity
         theme={{ ...theme, Backdrop, backdropStyle: {} }}
       >
@@ -39,5 +40,6 @@ export default function PrintMode({ children, theme }) {
 
 PrintMode.propTypes = {
   theme: propTypes.object,
-  children: propTypes.node.isRequired
+  children: propTypes.node.isRequired,
+  exportMode: propTypes.bool.isRequired
 };

@@ -7,6 +7,8 @@ export function modeSearchParamForKey(key) {
     return { overviewMode: true };
   } else if (key === SPECTACLE_MODES.PRINT_MODE) {
     return { printMode: true };
+  } else if (key === SPECTACLE_MODES.EXPORT_MODE) {
+    return { exportMode: true };
   }
   return {};
 }
@@ -14,7 +16,8 @@ export function modeSearchParamForKey(key) {
 export function modeKeyForSearchParam({
   presenterMode,
   overviewMode,
-  printMode
+  printMode,
+  exportMode
 }) {
   if (presenterMode) {
     return SPECTACLE_MODES.PRESENTER_MODE;
@@ -22,6 +25,8 @@ export function modeKeyForSearchParam({
     return SPECTACLE_MODES.OVERVIEW_MODE;
   } else if (printMode) {
     return SPECTACLE_MODES.PRINT_MODE;
+  } else if (exportMode) {
+    return SPECTACLE_MODES.EXPORT_MODE;
   }
   return SPECTACLE_MODES.DEFAULT_MODE;
 }
