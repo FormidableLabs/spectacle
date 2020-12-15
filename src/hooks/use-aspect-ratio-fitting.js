@@ -61,6 +61,7 @@ export default function useAspectRatioFitting({
     position: 'relative',
     width: targetWidth,
     height: targetHeight,
+    scaleFactor,
     transform: `scale(${scaleFactor})`,
     transformOrigin: `${transformOrigin.x}px ${transformOrigin.y}px`
   };

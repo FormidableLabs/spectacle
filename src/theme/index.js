@@ -10,11 +10,7 @@ const mergeKeys = (base, override) =>
     { ...base }
   );
 
-export const mergeTheme = theme => {
-  const isPrintMode = window.location.search.includes('printMode');
+export function mergeTheme({ theme, printMode }) {
   const merged = mergeKeys(defaultTheme, theme);
-
-  // if is print mode then do the above for printTheme else return the
-  // above merged themes
-  return isPrintMode ? mergeKeys(merged, printTheme) : merged;
-};
+  return printMode ? mergeKeys(merged, printTheme) : merged;
+}
