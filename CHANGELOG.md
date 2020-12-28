@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.0.0-beta.3 (12/28/2020)
+
+- Support for Print and Export Modes
+- Support for keyboard shortcuts to change between modes
+
 ## 7.0.0-beta.2 (12/9/2020)
 
 - Support for multiple lines or single lines for highlight ranges in <CodePane>
