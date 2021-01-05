@@ -95,6 +95,7 @@ function usePresentation() {
     sendMessage,
     errors,
     addMessageHandler,
+    connection,
     isReceiver: Boolean(getReceiver()),
     isController: Boolean(connection)
   };
