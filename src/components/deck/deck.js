@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, {
   useState,
   useEffect,
@@ -7,6 +6,7 @@ import React, {
   useCallback,
   createContext
 } from 'react';
+import propTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { ulid } from 'ulid';
 import { useCollectSlides } from '../../hooks/use-slides';
@@ -25,7 +25,8 @@ import {
 
 export const DeckContext = createContext();
 const noop = () => {};
-const printScale = 0.773;
+const DEFAULT_PRINT_SCALE = 0.773;
+const DEFAULT_OVERVIEW_SCALE = 0.25;
 
 const Portal = styled('div')(
   ({ fitAspectRatioStyle, overviewMode, printMode }) => [
@@ -57,7 +58,8 @@ const Deck = forwardRef(
       overviewMode = false,
       printMode = false,
       exportMode = false,
-      overviewScale = 0.25,
+      overviewScale = DEFAULT_OVERVIEW_SCALE,
+      printScale = DEFAULT_PRINT_SCALE,
       template,
       theme: {
         slideDimensions: [nativeSlideWidth, nativeSlideHeight] = [1366, 768],
@@ -358,5 +360,29 @@ const Deck = forwardRef(
 );
 
 Deck.name = Deck.displayName = 'Deck';
+
+Deck.propTypes = {
+  id: propTypes.oneOfType([propTypes.string, propTypes.number]),
+  className: propTypes.string,
+  backdropStyle: propTypes.object,
+  overviewMode: propTypes.bool,
+  printMode: propTypes.bool,
+  exportMode: propTypes.bool,
+  overviewScale: propTypes.number,
+  printScale: propTypes.number,
+  template: propTypes.oneOfType([propTypes.node, propTypes.func]),
+  theme: propTypes.object,
+  onSlideClick: propTypes.func,
+  disableInteractivity: propTypes.bool,
+  notePortalNode: propTypes.node,
+  useAnimations: propTypes.bool,
+  children: propTypes.node.isRequired,
+  onActiveStateChange: propTypes.func,
+  initialState: propTypes.shape({
+    slideIndex: propTypes.number,
+    stepIndex: propTypes.number
+  }),
+  suppressBackdropFallback: propTypes.bool
+};
 
 export default Deck;

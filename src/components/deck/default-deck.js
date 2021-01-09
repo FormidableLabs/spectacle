@@ -4,6 +4,7 @@ import Deck from './deck';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 import useMousetrap from '../../hooks/use-mousetrap';
 import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
+import PropTypes from 'prop-types';
 
 /**
  * Spectacle DefaultDeck is a wrapper around the Deck component that adds Broadcast channel support
@@ -15,6 +16,7 @@ export default function DefaultDeck({
   printMode = false,
   exportMode = false,
   toggleMode,
+  children,
   ...props
 }) {
   const deck = React.useRef();
@@ -69,12 +71,15 @@ export default function DefaultDeck({
       exportMode={exportMode}
       ref={deck}
       {...props}
-    />
+    >
+      {children}
+    </Deck>
   );
 }
 
 DefaultDeck.propTypes = {
   ...Deck.propTypes,
+  children: PropTypes.node.isRequired,
   overviewMode: propTypes.bool,
   toggleMode: propTypes.func,
   printMode: propTypes.bool,

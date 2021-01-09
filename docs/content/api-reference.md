@@ -14,13 +14,16 @@ These are the bare bones of a Spectacle presentation, the two most essential tag
 ### Deck
 
 Wraps the entire presentation and carries most of the overarching slide logic, like `theme` and `template` context.
-A `template` contains Layout tags (referred to as a template render function) and is supplied to the `Deck` component to apply to all subsequent `Slide`s.
+A `template` contains Layout tags (referred to as a template render function) and is supplied to the `Deck` component to apply to all subsequent `Slide`s. The last three props are for print and export mode only, they have no effect on the audience or presenter views. The `pageSize` and `pageOrientation` props correspond to the size and orientation values for the [CSS media print size selector](https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size). The `printScale` is the ratio for the selected page size, orientation, and slide size. `0.773` is the best ratio for an `A4` page in `landscape` orientation with a default slide size of `1366`-by-`768`.
 
-| Props              | Type                                                                                     |
-| ------------------ | ---------------------------------------------------------------------------------------- |
-| `theme`            | [Styled-system theme object](./themes)                                                   |
-| `template`         | [Template render function](#layout-tags)                                                 |
-| `transitionEffect` | `"fade"`, `"slide"`, `"none"`, or [custom transition object](./props/#transition-object) |
+| Props              | Type                                                                                     | Default       |
+| ------------------ | ---------------------------------------------------------------------------------------- | ------------- |
+| `theme`            | [Styled-system theme object](./themes)                                                   |               |
+| `template`         | [Template render function](#layout-tags)                                                 |               |
+| `transitionEffect` | `"fade"`, `"slide"`, `"none"`, or [custom transition object](./props/#transition-object) |               |
+| `pageSize`         | PropTypes.string                                                                         | `"A4"`        |
+| `pageOrientation`  | `"landscape"` or `"portrait"`                                                            | `"landscape"` |
+| `printScale`       | PropTypes.number                                                                         | `0.773`       |
 
 ### Slide
 

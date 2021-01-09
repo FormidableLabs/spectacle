@@ -15,17 +15,25 @@ const PrintStyle = createGlobalStyle`
     }
     ${AnimatedDiv} {
       @page {
-        size: letter landscape;
+        size: ${({ pageSize, pageOrientation }) =>
+          `${pageSize} ${pageOrientation}`};
         margin: 0;
       }
     }
   }
 `;
 
-export default function PrintMode({ children, theme, exportMode }) {
+export default function PrintMode(props) {
+  const {
+    children,
+    theme,
+    exportMode,
+    pageSize = 'letter',
+    pageOrientation = 'landscape'
+  } = props;
   return (
     <>
-      <PrintStyle />
+      <PrintStyle pageSize={pageSize} pageOrientation={pageOrientation} />
       <Deck
         printMode
         exportMode={exportMode}
@@ -41,5 +49,7 @@ export default function PrintMode({ children, theme, exportMode }) {
 PrintMode.propTypes = {
   theme: propTypes.object,
   children: propTypes.node.isRequired,
-  exportMode: propTypes.bool.isRequired
+  exportMode: propTypes.bool.isRequired,
+  pageSize: propTypes.string,
+  pageOrientation: propTypes.oneOf(['landscape', 'portrait'])
 };
