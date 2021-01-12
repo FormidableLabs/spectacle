@@ -15,6 +15,7 @@ export default function DefaultDeck({
   printMode = false,
   exportMode = false,
   toggleMode,
+  children,
   ...props
 }) {
   const deck = React.useRef();
@@ -69,12 +70,15 @@ export default function DefaultDeck({
       exportMode={exportMode}
       ref={deck}
       {...props}
-    />
+    >
+      {children}
+    </Deck>
   );
 }
 
 DefaultDeck.propTypes = {
   ...Deck.propTypes,
+  children: propTypes.node.isRequired,
   overviewMode: propTypes.bool,
   toggleMode: propTypes.func,
   printMode: propTypes.bool,
