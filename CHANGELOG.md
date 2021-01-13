@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.0-beta.4 (1/13/2021)
+
+- Props for Page Layout, Orientation, and PPI for Print and Export mode
+
 ## 7.0.0-beta.3 (12/28/2020)
 
 - Support for Print and Export Modes

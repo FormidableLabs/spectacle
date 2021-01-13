@@ -253,7 +253,8 @@ const Deck = forwardRef(
       nativeSlideWidth,
       overviewMode,
       overviewScale,
-      printMode
+      printMode,
+      printScale
     ]);
 
     const wrapperStyle = useMemo(() => {
@@ -263,7 +264,7 @@ const Deck = forwardRef(
         return printWrapperStyle({ printScale });
       }
       return {};
-    }, [overviewMode, overviewScale, printMode]);
+    }, [overviewMode, overviewScale, printMode, printScale]);
 
     // Try to be intelligent about the backdrop background color: we have to use
     // inline styles, which will take precedence over all other styles. So, we do
