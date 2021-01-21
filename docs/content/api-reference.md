@@ -169,37 +169,51 @@ Image is a component to display a picture within a slide. It is analogous to an 
 | [**`Layout`**](./props#layout)     |                  |
 | [**`Position`**](./props#position) |                  |
 
-## Markdown
+## Markdown Components
 
-Markdown is a component to author slides or slide content using Markdown. Regular Markdown tags get converted into Spectacle components. The `---` three dash marker is used to divide content into separate slides. When using the `---` as a slide delimiter it is required to set the `containsSlides` prop to `true`. Markdown also supports presenter notes using the `Notes:` marker.
+The Markdown components let you include a block of Markdown within a slide using `<Markdown />`, author a complete slide with Markdown using `<MarkdownSlide />`, or author a series of slides with Markdown using `<MarkdownSlides />`. Markdown tags get converted into Spectacle components. The `---` three dash marker when used inside `<MarkdownSlideSet />` is used to divide content into separate slides. Markdown also supports presenter notes using the `Notes:` marker. `<Markdown />` must be a child of `<Slide />` where `<MarkdownSlide />` and `<MarkdownSlideSet />` are children of `<Deck />`.
+
 
 | Props            | Type              | Example      |
 | ---------------- | ----------------- | ------------ |
 | `children`       | PropTypes.string  | `# Hi there` |
-| `containsSlides` | PropTypes.boolean | `true`       |
 
 ```jsx
 <Slide>
   <Markdown>
     # Urql
     A highly customizable and versatile GraphQL client
-  <Markdown>
+  </Markdown>
   <Text>Made by Formidable</Text>
 </Slide>
-<Markdown containsSlides>
-  # Writing queries
+<MarkdownSlide>
+  # Use Markdown to write a slide
+  
+  This is a single slide composed using Markdown.
+</MarkdownSlide>
+<MarkdownSlideSet>
+  # Markdown Slide Sets
 
-  When this hook is executed it will send the query and variables to your GraphQL API.
+  Let you write a sequence of slides using Markdown.
 
   ---
 
-  # Writing mutations
+  # This is the Second Slide in the Set
 
-  urql will by default come with a simple "document" cache. Each query with variables that is requested from a GraphQL API, the result will be cached completely.
+  Using the `---` delimiter creates a new slide in the set.
 
   Notes: The easiest way to always display up-to-date data is to set the requestPolicy to 'cache-and-network'.
-<Markdown>
+</MarkdownSlideSet>
 ```
+
+#### v7 Migration Guide
+
+In prior versions of Spectacle the `<Markdown />` component was used for slides, set and markdown content. As noted above there are now three specific components for each of these use cases.
+
+1. `<Slide><Markdown /></Slide>` remains the same.
+2. `<Markdown />` when used for a full slide is now `<MarkdownSlide />`.
+3. `<Markdown containsSlides />` is now `<MarkdownSlideSet />`.
+
 
 ## Notes
 

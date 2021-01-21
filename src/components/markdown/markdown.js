@@ -8,8 +8,6 @@ import { DeckContext } from '../deck/deck';
 import presenterNotesPlugin from '../../utils/remark-rehype-presenter-notes';
 import Appear from '../appear';
 import CodePane from '../code-pane';
-// import Note from './Note';
-
 import unified from 'unified';
 import remark from 'remark-parse';
 import mdastAssert from 'mdast-util-assert';
@@ -19,10 +17,8 @@ import { isValidElementType } from 'react-is';
 import { root as mdRoot } from 'mdast-builder';
 import mdxComponentMap from '../../utils/mdx-component-mapper';
 import indentNormalizer from '../../utils/indent-normalizer';
+import Notes from '../notes';
 
-const Note = () => null;
-
-// TODO: parse out presenter notes and render them using <Note />
 export const Markdown = ({
   componentMap: userProvidedComponentMap = mdxComponentMap,
   template: { default: TemplateComponent, getPropsForAST } = {
@@ -116,7 +112,7 @@ export const Markdown = ({
       .use(remark2rehype)
       .use(rehype2react, {
         createElement: React.createElement,
-        Fragment: Note
+        Fragment: Notes
       });
 
     // Transform and compile the notes AST.
