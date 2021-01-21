@@ -173,10 +173,9 @@ Image is a component to display a picture within a slide. It is analogous to an 
 
 The Markdown components let you include a block of Markdown within a slide using `<Markdown />`, author a complete slide with Markdown using `<MarkdownSlide />`, or author a series of slides with Markdown using `<MarkdownSlides />`. Markdown tags get converted into Spectacle components. The `---` three dash marker when used inside `<MarkdownSlideSet />` is used to divide content into separate slides. Markdown also supports presenter notes using the `Notes:` marker. `<Markdown />` must be a child of `<Slide />` where `<MarkdownSlide />` and `<MarkdownSlideSet />` are children of `<Deck />`.
 
-
-| Props            | Type              | Example      |
-| ---------------- | ----------------- | ------------ |
-| `children`       | PropTypes.string  | `# Hi there` |
+| Props      | Type             | Example      |
+| ---------- | ---------------- | ------------ |
+| `children` | PropTypes.string | `# Hi there` |
 
 ```jsx
 <Slide>
@@ -188,7 +187,7 @@ The Markdown components let you include a block of Markdown within a slide using
 </Slide>
 <MarkdownSlide>
   # Use Markdown to write a slide
-  
+
   This is a single slide composed using Markdown.
 </MarkdownSlide>
 <MarkdownSlideSet>
@@ -213,7 +212,6 @@ In prior versions of Spectacle the `<Markdown />` component was used for slides,
 1. `<Slide><Markdown /></Slide>` remains the same.
 2. `<Markdown />` when used for a full slide is now `<MarkdownSlide />`.
 3. `<Markdown containsSlides />` is now `<MarkdownSlideSet />`.
-
 
 ## Notes
 

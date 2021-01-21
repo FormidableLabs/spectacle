@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.0-beta.5 (1/21/2021)
+
+- Fixed Notes for Markdown components
+
 ## 7.0.0-beta.4 (1/13/2021)
 
 - Props for Page Layout, Orientation, and PPI for Print and Export mode
