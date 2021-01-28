@@ -100,7 +100,7 @@ const Presentation = () => (
     </Slide>
     <Slide
       backgroundColor="tertiary"
-      backgroundImage="url(https://github.com/FormidableLabs/dogs/blob/main/beau.jpg?raw=true)"
+      backgroundImage="url(https://github.com/FormidableLabs/dogs/blob/main/src/beau.jpg?raw=true)"
       backgroundOpacity={0.5}
     >
       <Heading>Custom Backgrounds</Heading>
