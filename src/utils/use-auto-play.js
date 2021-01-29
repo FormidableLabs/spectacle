@@ -18,10 +18,8 @@ export const useAutoPlay = options => {
   });
 
   useEffect(() => {
-    const tick = () => savedCallback.current();
-
     if (enabled) {
-      const id = setInterval(tick, interval);
+      const id = setInterval(savedCallback.current, interval);
       return () => clearInterval(id);
     }
   }, [enabled, interval]);
