@@ -22,6 +22,7 @@ import {
   printFrameStyle,
   printWrapperStyle
 } from './deck-styles';
+import { useAutoPlay } from '../../utils/use-auto-play';
 
 export const DeckContext = createContext();
 const noop = () => {};
@@ -86,7 +87,10 @@ const Deck = forwardRef(
         slideIndex: 0,
         stepIndex: 0
       },
-      suppressBackdropFallback = false
+      suppressBackdropFallback = false,
+      autoPlay = false,
+      autoPlayLoop = false,
+      autoPlayInterval = 1000
     },
     ref
   ) => {
@@ -174,6 +178,17 @@ const Deck = forwardRef(
       slideIds,
       slideIdsInitialized
     ] = useCollectSlides();
+
+    useAutoPlay({
+      enabled: autoPlay,
+      loop: autoPlayLoop,
+      interval: autoPlayInterval,
+      navigation: {
+        skipTo,
+        stepForward,
+        isFinalSlide: activeView.slideIndex === slideIds.length - 1
+      }
+    });
 
     const handleSlideClick = useCallback(
       (e, slideId) => {
@@ -343,6 +358,7 @@ const Deck = forwardRef(
                 slideId: pendingSlideId
               },
               skipTo,
+              stepForward,
               advanceSlide,
               regressSlide,
               commitTransition,
@@ -383,7 +399,10 @@ Deck.propTypes = {
     slideIndex: propTypes.number,
     stepIndex: propTypes.number
   }),
-  suppressBackdropFallback: propTypes.bool
+  suppressBackdropFallback: propTypes.bool,
+  autoPlay: propTypes.bool,
+  autoPlayLoop: propTypes.bool,
+  autoPlayInterval: propTypes.number
 };
 
 export default Deck;

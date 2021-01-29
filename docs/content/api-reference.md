@@ -24,6 +24,9 @@ A `template` contains Layout tags (referred to as a template render function) an
 | `pageSize`         | PropTypes.string                                                                         | `"A4"`        |
 | `pageOrientation`  | `"landscape"` or `"portrait"`                                                            | `"landscape"` |
 | `printScale`       | PropTypes.number                                                                         | `0.773`       |
+| `autoPlay`         | PropTypes.bool                                                                           | `false`       |
+| `autoPlayLoop`     | PropTypes.bool                                                                           | `false`       |
+| `autoPlayInterval` | PropTypes.number (milliseconds)                                                          | `1000`        |
 
 ### Slide
 
