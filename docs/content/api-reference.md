@@ -20,7 +20,6 @@ A `template` contains Layout tags (referred to as a template render function) an
 | ------------------ | ---------------------------------------------------------------------------------------- | ------------- |
 | `theme`            | [Styled-system theme object](./themes)                                                   |               |
 | `template`         | [Template render function](#layout-tags)                                                 |               |
-| `transitionEffect` | `"fade"`, `"slide"`, `"none"`, or [custom transition object](./props/#transition-object) |               |
 | `pageSize`         | PropTypes.string                                                                         | `"A4"`        |
 | `pageOrientation`  | `"landscape"` or `"portrait"`                                                            | `"landscape"` |
 | `printScale`       | PropTypes.number                                                                         | `0.773`       |
@@ -44,7 +43,6 @@ Wraps a single slide within your presentation; identifies what is contained to a
 | `slideNum`           | PropTypes.number                                                                   |
 | `template`           | PropTypes.func                                                                     |
 | `textColor`          | PropTypes.string                                                                   |
-| `transitionEffect`   | "fade", "slide", "none", or [custom transition object](./props/#transition-object) |
 
 ## Typography Tags
 

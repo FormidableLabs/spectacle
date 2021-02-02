@@ -1,4 +1,4 @@
-// Type definitions for Spectacle 6.0.0
+// Type definitions for Spectacle 7.0.0
 // Project: Formidable Spectacle
 // Definitions by: Kylie Stewart and Carlos Kelly
 
@@ -11,27 +11,14 @@ declare module 'spectacle' {
     currentSlide: number;
   }) => React.ReactNode;
 
-  export type TransitionEffect =
-    | {
-        enter: Record<string, number | string>;
-        from: Record<string, number | string>;
-        leave: Record<string, number | string>;
-        config: Record<string, number | string>;
-      }
-    | 'fade'
-    | 'slide'
-    | 'none';
-
   export const Deck: React.FC<{
     children: React.ReactNode;
-    animationsWhenGoingBack?: boolean;
-    backgroundColor?: string;
-    keyboardControls?: 'arrows' | 'space';
-    loop?: boolean;
+    autoPlay?: boolean;
+    autoPlayLoop?: boolean;
+    autoPlayInterval?: number;
     theme?: Record<string, any>;
-    textColor?: string;
-    template?: TemplateFn;
-    transitionEffect?: TransitionEffect;
+    template?: TemplateFn | React.ReactNode;
+    printScale?: number;
   }>;
 
   export const Slide: React.FC<{
@@ -42,39 +29,22 @@ declare module 'spectacle' {
     backgroundRepeat?: string;
     backgroundSize?: string;
     children: React.ReactNode;
-    scaleRatio?: number;
+    padding?: string | number;
     textColor?: string;
-    template?: TemplateFn;
-    transitionEffect?: TransitionEffect;
+    template?: TemplateFn | React.ReactNode;
   }>;
 
   export const Appear: React.FC<{
     children: React.ReactNode;
-    elementNum: number;
-    transitionEffect: {
-      to: Record<string, number | string>;
-      from: Record<string, number | string>;
-    };
+    stepIndex?: number;
   }>;
 
   export const CodePane: React.FC<{
     children: React.ReactNode;
-    autoFillHeight: boolean;
-    fontSize?: number;
     language: string;
-    theme?: {
-      plain: Record<string, string>;
-      styles: Array<{ types: Array<string>; style: Record<string, string> }>;
-    };
-    highlightStart?: number;
-    highlightEnd?: number;
-    indentSize?: number;
-  }>;
-
-  export const Stepper: React.FC<{
-    children: (value: any, step: number) => React.ReactNode;
-    values: any[];
-    defaultValue?: any;
+    theme?: object | string;
+    stepIndex?: number;
+    highlightRanges: number | number[];
   }>;
 
   type TypographyProps = {
@@ -132,15 +102,18 @@ declare module 'spectacle' {
 
   export const Markdown: React.FC<{
     children: React.ReactNode;
-    containsSlides?: boolean;
+  }>;
+
+  export const MarkdownSlide: React.FC<{
+    children: React.ReactNode;
+  }>;
+
+  export const MarkdownSlideSet: React.FC<{
+    children: React.ReactNode;
   }>;
 
   export const SpectacleLogo: React.FC<{
     size: number;
   }>;
-
-  export const mdxComponentMap: Record<string, JSX.Element>;
-
-  export const isolateNotes: (content: string) => string;
-  export const remoteNotes: (content: string) => string;
 }
+

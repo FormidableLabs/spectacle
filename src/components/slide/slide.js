@@ -354,7 +354,7 @@ Slide.propTypes = {
   children: PropTypes.node.isRequired,
   padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   textColor: PropTypes.string,
-  template: PropTypes.func
+  template: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
 };
 
 Slide.defaultProps = {
