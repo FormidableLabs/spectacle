@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
+import styled from 'styled-components';
 import Deck from '../deck/deck';
 import { Text, SpectacleLogo } from '../../index';
 import propTypes from 'prop-types';
@@ -17,16 +18,21 @@ import { FlexBox, Box } from '../layout';
 import { Timer } from './timer';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 
-const endOfNextSlide = ({ slideIndex, stepIndex }) => ({
+const endOfNextSlide = ({ slideIndex }) => ({
   slideIndex: slideIndex + 1,
   stepIndex: GOTO_FINAL_STEP
 });
 
+const PreviewSlideWrapper = styled.div(({ visible }) => ({
+  visibility: visible ? 'visible' : 'hidden'
+}));
+
 export default function PresenterMode(props) {
   const { children, theme } = props;
-  const deck = React.useRef();
-  const previewDeck = React.useRef();
-  const [notePortalNode, setNotePortalNode] = React.useState();
+  const deck = useRef();
+  const previewDeck = useRef();
+  const [notePortalNode, setNotePortalNode] = useState();
+  const [showFinalSlide, setShowFinalSlide] = useState(true);
 
   const [postMessage] = useBroadcastChannel(
     'spectacle_presenter_bus',
@@ -42,16 +48,20 @@ export default function PresenterMode(props) {
     ...queryStringMapFns
   });
 
-  const onActiveStateChange = React.useCallback(
+  const onActiveStateChange = useCallback(
     activeView => {
       setLocation(activeView);
       postMessage('SYNC', activeView);
+      setShowFinalSlide(
+        deck.current?.numberOfSlides - 1 !==
+          deck?.current?.activeView.slideIndex
+      );
       previewDeck.current.skipTo(endOfNextSlide(activeView));
     },
     [postMessage, setLocation]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const initialView = syncLocation({
       slideIndex: 0,
       stepIndex: 0
@@ -60,8 +70,6 @@ export default function PresenterMode(props) {
     postMessage('SYNC', initialView);
     previewDeck.current.initializeTo(endOfNextSlide(initialView));
   }, [postMessage, syncLocation]);
-
-  const castButton = false;
 
   return (
     <PresenterDeckContainer>
@@ -78,10 +86,7 @@ export default function PresenterMode(props) {
               margin="0px 0px 10px"
             >
               Open a second browser tab at {window.location.host} to use as the
-              audience deck
-              {!!castButton &&
-                ' or use Chrome’s display cast to present on a secondary display'}
-              .
+              audience deck.
             </Text>
           </FlexBox>
         </FlexBox>
@@ -108,15 +113,17 @@ export default function PresenterMode(props) {
         >
           {children}
         </Deck>
-        <Deck
-          disableInteractivity
-          useAnimations={false}
-          backdropStyle={deckBackdropStyles.nextSlide}
-          ref={previewDeck}
-          theme={theme}
-        >
-          {children}
-        </Deck>
+        <PreviewSlideWrapper visible={showFinalSlide}>
+          <Deck
+            disableInteractivity
+            useAnimations={false}
+            backdropStyle={deckBackdropStyles.nextSlide}
+            ref={previewDeck}
+            theme={theme}
+          >
+            {children}
+          </Deck>
+        </PreviewSlideWrapper>
       </PreviewColumn>
     </PresenterDeckContainer>
   );

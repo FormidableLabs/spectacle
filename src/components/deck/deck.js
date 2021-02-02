@@ -122,6 +122,12 @@ const Deck = forwardRef(
       onActiveStateChangeExternal
     ]);
 
+    const [
+      setPlaceholderContainer,
+      slideIds,
+      slideIdsInitialized
+    ] = useCollectSlides();
+
     // It really is much easier to just expose methods to the outside world that
     // drive the presentation through its state rather than trying to implement a
     // declarative API.
@@ -135,7 +141,8 @@ const Deck = forwardRef(
         stepForward,
         stepBackward,
         advanceSlide,
-        regressSlide
+        regressSlide,
+        numberOfSlides: slideIds.length
       }),
       [
         initialized,
@@ -145,7 +152,8 @@ const Deck = forwardRef(
         stepForward,
         stepBackward,
         advanceSlide,
-        regressSlide
+        regressSlide,
+        slideIds
       ]
     );
 
@@ -172,12 +180,6 @@ const Deck = forwardRef(
       });
       initializeTo(initialView);
     }, [initializeTo, syncLocation]);
-
-    const [
-      setPlaceholderContainer,
-      slideIds,
-      slideIdsInitialized
-    ] = useCollectSlides();
 
     useAutoPlay({
       enabled: autoPlay,
