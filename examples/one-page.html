@@ -14,7 +14,7 @@
     <script src="https://unpkg.com/react-is@16.13.1/umd/react-is.production.min.js"></script>
     <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
     <!-- TODO(7): Update to version 7 link!!! -->
-    <script src="https://unpkg.com/spectacle@^6/dist/spectacle.min.js"></script>
+    <script src="https://unpkg.com/spectacle@^7.0.0-beta.5/dist/spectacle.min.js"></script>
     <!-- <script src="../dist/spectacle.js"></script> -->
 
     <script type="module">
@@ -67,8 +67,7 @@
       `;
       // SPECTACLE_CLI_TEMPLATE_END
 
-      function SlideFragments() {
-        return html`
+      const SlideFragments = () => html`
         <${Slide}>
           <${Text}>This is a slide fragment.</${Text}>
         </${Slide}>
@@ -82,10 +81,8 @@
           </${Appear}>
         </${Slide}>
       `;
-      }
 
-      function Presentation() {
-        return html`
+      const Presentation = () => html`
         <${Deck} theme=${theme} template=${template}>
           <${Slide}>
             <${FlexBox} height="100%">
@@ -104,7 +101,7 @@
               <${Heading} margin="0px 32px" color="primary" fontSize="h3">Where you can write your decks in JSX, Markdown, or MDX!</${Heading}>
             </${FlexBox}>
           </${Slide}>
-          <${Slide} backgroundColor="tertiary" backgroundImage="url(https://github.com/FormidableLabs/dogs/blob/main/beau.jpg?raw=true)" backgroundOpacity=${0.5}>
+          <${Slide} backgroundColor="tertiary" backgroundImage="url(https://github.com/FormidableLabs/dogs/blob/main/src/beau.jpg?raw=true)" backgroundOpacity=${0.5}>
             <${Heading}>Custom Backgrounds</${Heading}>
             <${UnorderedList}>
               <${ListItem}>
@@ -197,7 +194,6 @@
           </${MarkdownSlideSet}>
         </${Deck}>
       `;
-      }
 
       ReactDOM.render(html`<${Presentation}/>`, document.getElementById('root'));
     </script>
