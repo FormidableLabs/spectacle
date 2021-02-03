@@ -72,11 +72,7 @@ const getStyleForLineNumber = (lineNumber, activeRange) => {
   }
 
   const [from, to] = activeRange;
-  if (from <= lineNumber && lineNumber <= to) {
-    return { opacity: 1 };
-  } else {
-    return { opacity: 0.5 };
-  }
+  return { opacity: from <= lineNumber && lineNumber <= to ? 1 : 0.5 };
 };
 
 export default function CodePane({

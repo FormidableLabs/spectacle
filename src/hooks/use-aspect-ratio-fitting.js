@@ -46,8 +46,7 @@ export default function useAspectRatioFitting({
   // changes. (our measurements aren't as accurate as `useResizeObserver`, but
   // we only need to get them close because it'll do them again anyways.)
   React.useEffect(() => {
-    if (!containerRef) return;
-    if (!containerRef.current) return;
+    if (!containerRef || !containerRef.current) return;
     const rects = containerRef.current.getClientRects();
     recalculate(rects[0]);
   }, [targetWidth, targetHeight, recalculate]);
