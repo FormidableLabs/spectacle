@@ -1,8 +1,7 @@
 import Deck from './components/deck';
-import Slide from './components/slide';
+import Slide from './components/slide/slide';
 import Appear from './components/appear';
 import CodePane from './components/code-pane';
-import Stepper from './components/stepper';
 import {
   OrderedList,
   Quote,
@@ -25,16 +24,21 @@ import { Image, FullSizeImage } from './components/image';
 import Notes from './components/notes';
 import Progress from './components/progress';
 import FullScreen from './components/fullscreen';
-import Markdown from './components/markdown';
+import {
+  Markdown,
+  MarkdownSlideSet,
+  MarkdownSlide,
+  MarkdownPreHelper
+} from './components/markdown/markdown';
 import SpectacleLogo from './components/logo';
 import mdxComponentMap from './utils/mdx-component-mapper';
 import { removeNotes, isolateNotes } from './utils/notes';
 import indentNormalizer from './utils/indent-normalizer';
 
 export {
+  Appear,
   Deck,
   Slide,
-  Appear,
   CodePane,
   Box,
   FlexBox,
@@ -53,8 +57,10 @@ export {
   Progress,
   FullScreen,
   Markdown,
+  MarkdownSlideSet,
+  MarkdownSlide,
+  MarkdownPreHelper,
   SpectacleLogo,
-  Stepper,
   Table,
   TableCell,
   TableRow,

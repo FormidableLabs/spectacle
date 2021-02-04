@@ -1,5 +1,33 @@
 # Changelog
 
+## 7.0.0-beta.5 (1/21/2021)
+
+- Fixed Notes for Markdown components
+
+## 7.0.0-beta.4 (1/13/2021)
+
+- Props for Page Layout, Orientation, and PPI for Print and Export mode
+
+## 7.0.0-beta.3 (12/28/2020)
+
+- Support for Print and Export Modes
+- Support for keyboard shortcuts to change between modes
+
+## 7.0.0-beta.2 (12/9/2020)
+
+- Support for multiple lines or single lines for highlight ranges in <CodePane>
+- Overview Mode now allows for selecting or tabbing through slides
+
+## 7.0.0-beta.1 (11/24/2020)
+
+- Core refactor of navigation and slide management to fix bugs around nested slide sets
+- Rewrite of <CodePane> to fix line-by-line highlighting
+- Supports nested slides inside JSX fragments and HTML tags like div
+- New <MarkdownSlide> and <MarkdownSlideSet> for MD-based content
+- Slides in Markdown are now tightly integrated within the deck and can be mixed within regular slides
+- Presenter Mode defaults back to Spectacle 5.0 experience of dual-browser mode
+- Notes can now contain HTML markup
+
 ## 6.2.0 (06-17-2020)
 
 - Fix presenter mode so the next element is displayed, not just the next Slide.

@@ -16,7 +16,7 @@ export const Timer = () => {
         <Text
           fontFamily={SYSTEM_FONT}
           fontWeight="bold"
-          fontSize="2.2vw"
+          fontSize="2vw"
           textAlign="left"
         >{`${String(minutes).padStart(2, '0')}:${String(
           timer.toFixed(0) - minutes * 60

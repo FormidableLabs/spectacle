@@ -1,417 +1,97 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeContext, ThemeProvider } from 'styled-components';
-import normalize from 'normalize-newline';
-import indentNormalizer from '../../utils/indent-normalizer';
-import useDeck, { DeckContext } from '../../hooks/use-deck';
-import isComponentType from '../../utils/is-component-type';
-import useUrlRouting from '../../hooks/use-url-routing';
-import PresenterDeck from './presenter-deck';
-import AudienceDeck from './audience-deck';
-import { mergeTheme } from '../../theme';
-import { PrintDeck } from './print-deck';
-import { animated, useTransition } from 'react-spring';
-import {
-  TransitionPipeContext,
-  TransitionPipeProvider
-} from '../../hooks/use-transition-pipe';
-import usePresentation, {
-  MSG_SLIDE_STATE_CHANGE
-} from '../../hooks/use-presentation';
-import useKeyboardControls from '../../hooks/use-keyboard-controls';
-import useTouchControls from '../../hooks/use-touch-controls';
-import {
-  DEFAULT_SLIDE_ELEMENT_INDEX,
-  DEFAULT_SLIDE_INDEX
-} from '../../utils/constants';
-import searchChildrenForAppear from '../../utils/search-children-appear';
-import searchChildrenForStepper from '../../utils/search-children-stepper';
-import OverviewDeck from './overview-deck';
-import { Markdown, Slide, Notes } from '../../index';
-import { isolateNotes, removeNotes } from '../../utils/notes';
+import { parse as parseQS, stringify as stringifyQS } from 'query-string';
+import DefaultDeck from './default-deck';
+import PresenterMode from '../presenter-mode';
+import PrintMode from '../../print-mode';
+import useMousetrap from '../../hooks/use-mousetrap';
+import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
+import { modeKeyForSearchParam, modeSearchParamForKey } from './modes';
 
-const AnimatedDeckDiv = styled(animated.div)`
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-`;
-AnimatedDeckDiv.displayName = 'AnimatedDeckDiv';
-
-const defaultTransition = {
-  slide: {
-    from: {
-      position: 'fixed',
-      transform: 'translate(100%, 0%)'
-    },
-    enter: {
-      position: 'fixed',
-      transform: 'translate(0, 0%)'
-    },
-    leave: {
-      position: 'fixed',
-      transform: 'translate(-100%, 0%)'
-    },
-    config: { precision: 0 }
-  },
-  fade: {
-    enter: { opacity: 1 },
-    from: { opacity: 0 },
-    leave: { opacity: 0 },
-    config: { precision: 0 }
-  },
-  none: {
-    enter: {},
-    from: {},
-    leave: {},
-    config: { precision: 0 }
-  }
-};
-
-const builtInTransitions = Object.keys(defaultTransition);
-
-/**
- * Provides top level state/context provider with useDeck hook
- * Should wrap all the presentation components (slides, etc)
- *
- * Props = {
- *  loop: bool (pass in true if you want slides to loop)
- * transitionEffect: based off of react sprint useTransition
- * }
- *
- * Note: Immediate is a React-Spring property that we pass to the animations
- * essentially it skips animations.
- */
-
-const initialState = {
-  currentSlide: DEFAULT_SLIDE_INDEX,
-  immediate: false,
-  immediateElement: false,
-  currentSlideElement: DEFAULT_SLIDE_ELEMENT_INDEX,
-  reverseDirection: false,
-  presenterMode: false,
-  overviewMode: false,
-  notes: {},
-  resolvedInitialUrl: false
-};
-
-const mapMarkdownIntoSlides = (child, index) => {
-  if (
-    isComponentType(child, Markdown.name) &&
-    Boolean(child.props.containsSlides)
-  ) {
-    return child.props.children.split(/\n\s*---\n/).map((markdown, mdIndex) => {
-      const content = normalize(indentNormalizer(markdown));
-      const contentWithoutNotes = removeNotes(content);
-      const notes = isolateNotes(content);
-      return (
-        <Slide key={`md-slide-${index}-${mdIndex}`}>
-          <Markdown>{contentWithoutNotes}</Markdown>
-          <Notes>{notes}</Notes>
-        </Slide>
-      );
-    });
-  }
-  return child;
-};
-
-const Deck = props => {
-  const {
-    children,
-    loop,
-    keyboardControls,
-    animationsWhenGoingBack,
-    backgroundColor,
-    textColor,
-    template,
-    transitionEffect
-  } = props;
-  if (React.Children.count(children) === 0) {
-    throw new Error('Spectacle must have at least one slide to run.');
-  }
-
-  const filteredChildren = React.Children.map(children, mapMarkdownIntoSlides)
-    .reduce((acc, slide) => acc.concat(slide), [])
-    .filter(child => isComponentType(child, Slide.name));
-
-  const numberOfSlides = filteredChildren.length;
-
-  if (numberOfSlides === 0) {
-    throw new Error('Spectacle must have at least one slide to run.');
-  }
-
-  const slideElementMap = React.useMemo(() => {
-    return filteredChildren.reduce((map, slide, index) => {
-      const appearElements = searchChildrenForAppear(slide.props.children);
-      const stepperElements = searchChildrenForStepper(slide.props.children);
-
-      map[index] = appearElements + stepperElements;
-
-      return map;
-    }, {});
-  }, [filteredChildren]);
-
-  // Initialise useDeck hook and get state and dispatch off of it
-  const { state, dispatch } = useDeck({ ...initialState, numberOfSlides });
-  const themeContext = React.useContext(ThemeContext);
-
-  React.useLayoutEffect(() => {
-    document.body.style.margin = '0';
-    document.body.style.background = '#000';
-    document.body.style.color =
-      themeContext.colors[textColor] ||
-      textColor ||
-      themeContext.colors.primary;
-  }, [backgroundColor, textColor, themeContext.colors]);
-
-  const {
-    startConnection,
-    terminateConnection,
-    sendMessage,
-    errors,
-    addMessageHandler,
-    isReceiver,
-    isController
-  } = usePresentation();
-
-  const onUrlChange = React.useCallback(
-    update => {
-      if (isController) {
-        sendMessage({
-          type: MSG_SLIDE_STATE_CHANGE,
-          payload: update
-        });
-      }
-    },
-    [sendMessage, isController]
+export default function SpectacleDeck(props) {
+  const mode = useRef(
+    modeKeyForSearchParam(
+      parseQS(location.search, {
+        parseBooleans: true
+      })
+    )
   );
 
-  const {
-    navigateToNext,
-    navigateToPrevious,
-    navigateTo,
-    toggleMode,
-    goToSlide
-  } = useUrlRouting({
-    dispatch,
-    currentSlide: state.currentSlide,
-    currentSlideElement: state.currentSlideElement,
-    currentPresenterMode: state.presenterMode,
-    slideElementMap,
-    loop,
-    animationsWhenGoingBack,
-    onUrlChange
-  });
+  const toggleMode = useCallback(
+    (e, newMode, senderSlideIndex) => {
+      e?.preventDefault();
 
-  useKeyboardControls({
-    keyboardControls,
-    navigateToNext,
-    navigateToPrevious,
-    toggleMode
-  });
+      let stepIndex = 0;
+      let slideIndex = senderSlideIndex;
+      const searchParams = parseQS(location.search, {
+        parseBooleans: true
+      });
 
-  useTouchControls({
-    navigateToNext,
-    navigateToPrevious
-  });
+      if (!slideIndex) {
+        slideIndex = searchParams.slideIndex;
+        stepIndex = searchParams.stepIndex;
+      }
 
-  const { runTransition } = React.useContext(TransitionPipeContext);
-  const slideTransitionEffect =
-    filteredChildren[state.currentSlide].props.transitionEffect || {};
-  const transitionRef = React.useRef(null);
-  const broadcastChannelRef = React.useRef(null);
-
-  React.useEffect(() => {
-    if (typeof MessageChannel !== 'undefined') {
-      broadcastChannelRef.current = new BroadcastChannel(
-        'spectacle_presenter_mode_channel'
-      );
-    }
-    return () => {
-      if (!broadcastChannelRef.current) {
+      if (mode.current === newMode) {
+        location.search = stringifyQS({
+          slideIndex,
+          stepIndex
+        });
         return;
       }
-      broadcastChannelRef.current.close();
-    };
-  }, []);
 
-  React.useEffect(() => {
-    if (
-      broadcastChannelRef.current &&
-      typeof broadcastChannelRef.current.postMessage === 'function'
-    ) {
-      broadcastChannelRef.current.onmessage = message => {
-        if (state.presenterMode) {
-          return;
-        }
-        const { slide, element } = JSON.parse(message.data);
-        navigateTo({ slideIndex: slide, elementIndex: element });
-      };
-      if (state.presenterMode) {
-        const slideData = {
-          slide: state.currentSlide,
-          element: state.currentSlideElement
-        };
-        broadcastChannelRef.current.postMessage(JSON.stringify(slideData));
-      }
-    }
-  }, [
-    state.currentSlide,
-    state.currentSlideElement,
-    state.presenterMode,
-    navigateTo
-  ]);
+      mode.current = newMode;
 
-  React.useEffect(() => {
-    if (!transitionRef.current) {
-      return;
-    }
-    runTransition(transitionRef.current);
-  }, [transitionRef, state.currentSlide, runTransition]);
-
-  let currentTransition = {};
-
-  if (
-    typeof slideTransitionEffect === 'string' &&
-    builtInTransitions.includes(slideTransitionEffect)
-  ) {
-    currentTransition = defaultTransition[slideTransitionEffect];
-  } else if (
-    typeof slideTransitionEffect === 'object' &&
-    Object.keys(slideTransitionEffect).length !== 0
-  ) {
-    currentTransition = slideTransitionEffect;
-  } else if (
-    typeof transitionEffect === 'string' &&
-    builtInTransitions.includes(transitionEffect)
-  ) {
-    currentTransition = defaultTransition[transitionEffect];
-  } else if (
-    typeof transitionEffect === 'object' &&
-    Object.keys(transitionEffect).length !== 0
-  ) {
-    currentTransition = transitionEffect;
-  } else {
-    currentTransition = defaultTransition['slide'];
-  }
-
-  const transitions = useTransition(state.currentSlide, p => p, {
-    ref: transitionRef,
-    enter: currentTransition.enter,
-    leave: currentTransition.leave,
-    from: currentTransition.from,
-    unique: true,
-    immediate: state.immediate
-  });
-
-  let content = null;
-  if (state.resolvedInitialUrl) {
-    if (state.overviewMode) {
-      const staticSlides = filteredChildren.map((slide, index) =>
-        React.cloneElement(slide, {
-          slideNum: index,
-          template
-        })
-      );
-      content = (
-        <OverviewDeck goToSlide={goToSlide}>{staticSlides}</OverviewDeck>
-      );
-    } else if (state.exportMode) {
-      const staticSlides = filteredChildren.map((slide, index) =>
-        React.cloneElement(slide, {
-          slideNum: index,
-          template: template
-        })
-      );
-      content = <PrintDeck>{staticSlides}</PrintDeck>;
-    } else if (state.presenterMode) {
-      const staticSlides = filteredChildren.map((slide, index) =>
-        React.cloneElement(slide, {
-          slideNum: index,
-          template
-        })
-      );
-      content = (
-        <PresenterDeck
-          isController={isController}
-          isReceiver={isReceiver}
-          startConnection={startConnection}
-          terminateConnection={terminateConnection}
-        >
-          {staticSlides}
-        </PresenterDeck>
-      );
-    } else {
-      const animatedSlides = transitions.map(
-        ({ item, props: animatedStyleProps, key }) => (
-          <AnimatedDeckDiv style={animatedStyleProps} key={key}>
-            {React.cloneElement(filteredChildren[item], {
-              slideNum: item,
-              numberOfSlides,
-              template
-            })}
-          </AnimatedDeckDiv>
-        )
-      );
-
-      content = (
-        <AudienceDeck addMessageHandler={addMessageHandler}>
-          {animatedSlides}
-        </AudienceDeck>
-      );
-    }
-  }
-
-  return (
-    <>
-      <DeckContext.Provider
-        value={{
-          state,
-          dispatch,
-          numberOfSlides,
-          keyboardControls,
-          animationsWhenGoingBack,
-          slideElementMap,
-          goToSlide
-        }}
-      >
-        {content}
-      </DeckContext.Provider>
-    </>
+      location.search = stringifyQS({
+        slideIndex,
+        stepIndex,
+        ...modeSearchParamForKey(newMode)
+      });
+    },
+    [mode]
   );
-};
 
-Deck.propTypes = {
-  animationsWhenGoingBack: PropTypes.bool.isRequired,
-  backgroundColor: PropTypes.string,
+  useMousetrap(
+    {
+      [KEYBOARD_SHORTCUTS.PRESENTER_MODE]: e =>
+        toggleMode(e, SPECTACLE_MODES.PRESENTER_MODE),
+      [KEYBOARD_SHORTCUTS.PRINT_MODE]: e =>
+        toggleMode(e, SPECTACLE_MODES.PRINT_MODE),
+      [KEYBOARD_SHORTCUTS.EXPORT_MODE]: e =>
+        toggleMode(e, SPECTACLE_MODES.EXPORT_MODE),
+      [KEYBOARD_SHORTCUTS.OVERVIEW_MODE]: e =>
+        toggleMode(e, SPECTACLE_MODES.OVERVIEW_MODE)
+    },
+    []
+  );
+
+  switch (mode.current) {
+    case SPECTACLE_MODES.DEFAULT_MODE:
+      return <DefaultDeck {...props} />;
+
+    case SPECTACLE_MODES.PRESENTER_MODE:
+      return <PresenterMode {...props} />;
+
+    /**
+     * Print mode and export mode are identical except for the theme
+     * that is used. Print mode uses the print theme which is usually
+     * monotone and export mode uses the default theme.
+     */
+    case SPECTACLE_MODES.PRINT_MODE:
+      return <PrintMode {...props} printMode />;
+
+    case SPECTACLE_MODES.EXPORT_MODE:
+      return <PrintMode {...props} exportMode />;
+
+    case SPECTACLE_MODES.OVERVIEW_MODE:
+      return <DefaultDeck overviewMode toggleMode={toggleMode} {...props} />;
+
+    default:
+      return null;
+  }
+}
+
+SpectacleDeck.propTypes = {
   children: PropTypes.node.isRequired,
-  keyboardControls: PropTypes.oneOf(['arrows', 'space']),
-  loop: PropTypes.bool.isRequired,
-  template: PropTypes.func,
-  textColor: PropTypes.string,
-  theme: PropTypes.object,
-  transitionEffect: PropTypes.oneOfType([
-    PropTypes.shape({
-      from: PropTypes.object,
-      enter: PropTypes.object,
-      leave: PropTypes.object
-    }),
-    PropTypes.oneOf(['fade', 'slide', 'none'])
-  ])
+  theme: PropTypes.object
 };
-
-const ConnectedDeck = props => (
-  <ThemeProvider theme={mergeTheme(props.theme)}>
-    <TransitionPipeProvider>
-      <Deck {...props} />
-    </TransitionPipeProvider>
-  </ThemeProvider>
-);
-
-ConnectedDeck.propTypes = Deck.propTypes;
-ConnectedDeck.defaultProps = {
-  loop: false,
-  keyboardControls: 'arrows',
-  animationsWhenGoingBack: false
-};
-
-export default ConnectedDeck;

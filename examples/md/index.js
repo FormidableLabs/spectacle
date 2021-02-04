@@ -1,7 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import { Box, Deck, FlexBox, FullScreen, Markdown, Progress } from 'spectacle';
+import {
+  Box,
+  Deck,
+  FlexBox,
+  FullScreen,
+  Progress,
+  MarkdownSlideSet
+} from 'spectacle';
 
 // SPECTACLE_CLI_MD_START
 import mdContent from './slides.md';
@@ -30,8 +37,8 @@ const template = () => (
 // SPECTACLE_CLI_TEMPLATE_END
 
 const Presentation = () => (
-  <Deck loop theme={theme} template={template}>
-    <Markdown containsSlides>{mdContent}</Markdown>
+  <Deck theme={theme} template={template}>
+    <MarkdownSlideSet>{mdContent}</MarkdownSlideSet>
   </Deck>
 );
 

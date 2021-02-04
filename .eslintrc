@@ -1,8 +1,18 @@
 {
   "root": true,
-  "parser": "babel-eslint",
-  "extends": ["prettier", "prettier/react", "plugin:react/recommended"],
-  "plugins": ["prettier", "react-hooks"],
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier/react"
+  ],
+  "plugins": [
+    "prettier",
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -28,7 +38,12 @@
     }
   },
   "rules": {
-    "prettier/prettier": ["error"],
-    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ]
   }
 }

@@ -1,172 +1,220 @@
 import * as React from 'react';
-import Highlight, { defaultProps } from 'prism-react-renderer';
 import propTypes from 'prop-types';
-import theme from 'prism-react-renderer/themes/vsDark';
-import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { useSteps } from '../hooks/use-steps';
+import indentNormalizer from '../utils/indent-normalizer';
 import { ThemeContext } from 'styled-components';
-import { DeckContext } from '../hooks/use-deck';
+import * as styles from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-const spaceSearch = /\S|$/;
-
-const lineNumberStyles = {
-  padding: '0 1em',
-  borderRight: '1px solid hsla(0, 0%, 100%, 0.25)',
-  flex: '0 1 30px',
-  alignSelf: 'stretch'
+export const availableCodePaneThemes = [
+  'atomDark',
+  'base16AteliersulphurpoolLight',
+  'cb',
+  'coy',
+  'darcula',
+  'dark',
+  'duotoneDark',
+  'duotoneEarth',
+  'duotoneForest',
+  'duotoneLight',
+  'duotoneSea',
+  'duotoneSpace',
+  'funky',
+  'ghcolors',
+  'hopscotch',
+  'okaidia',
+  'pojoaque',
+  'prism',
+  'solarizedlight',
+  'tomorrow',
+  'twilight',
+  'vs',
+  'xonokai'
+];
+const checkForNumberValues = ranges => {
+  return ranges.every(element => typeof element === 'number');
 };
 
-export default function CodePane(props) {
-  const canvas = React.useRef(document.createElement('canvas'));
-  const context = React.useRef(canvas.current.getContext('2d'));
-  const scrollContainerRef = React.useRef(null);
-  const lineRef = React.useRef(null);
-  const themeContext = React.useContext(ThemeContext);
-  const {
-    state: { printMode }
-  } = React.useContext(DeckContext);
-  const font = React.useMemo(() => {
-    if (themeContext && themeContext.fonts && themeContext.fonts.monospace) {
-      return themeContext.fonts.monospace;
-    }
-    const { platform } = navigator;
-    if (platform.toLowerCase().search('win') !== -1) {
-      return 'Consolas';
-    } else if (platform.toLowerCase().search('mac') !== -1) {
-      return 'Menlo';
+const checkForInvalidValues = ranges => {
+  return ranges.every(element => element === null || element === undefined);
+};
+
+const getRangeFormat = ({ isSingleRangeProvided, highlightRanges, step }) => {
+  // If the value passed to highlightRanges is:
+  // a single array containing only two numbers e.g. [3, 5]
+  if (isSingleRangeProvided) {
+    return highlightRanges;
+  }
+
+  // a 2D array containing null/undefined values e.g. [1, null, 5, [7, 9]]
+  if (highlightRanges[step] === null || highlightRanges[step] === undefined) {
+    return [];
+  }
+
+  // a 2D array and some of its elements contain numbers e.g. [[1, 3], 5, 7, 9, [10, 15]]
+  if (typeof highlightRanges[step] === 'number') {
+    return [highlightRanges[step]];
+  }
+
+  // a 2D array e.g. [[1], [3], [5, 9], [15], [20, 25], [30]]
+  return highlightRanges[step];
+};
+
+const getStyleForLineNumber = (lineNumber, activeRange) => {
+  const isOneLineNumber = activeRange.length === 1;
+  if (isOneLineNumber) {
+    const [activeLineNumber] = activeRange;
+    if (activeLineNumber === lineNumber) {
+      return { opacity: 1 };
     } else {
-      return 'monospace';
+      return { opacity: 0.5 };
     }
-  }, [themeContext]);
+  }
 
-  const fontSize = React.useMemo(() => {
-    if (props && props.fontSize) {
-      return props.fontSize;
-    }
+  const [from, to] = activeRange;
+  return { opacity: from <= lineNumber && lineNumber <= to ? 1 : 0.5 };
+};
 
+export default function CodePane({
+  highlightRanges = [],
+  language,
+  children: rawCodeString,
+  stepIndex,
+  theme: syntaxTheme
+}) {
+  const numberOfSteps = React.useMemo(() => {
     if (
-      themeContext &&
-      themeContext.fontSizes &&
-      themeContext.fontSizes.monospace
+      highlightRanges.length === 0 ||
+      // Prevents e.g. [null, null] to be used to count the number of steps
+      checkForInvalidValues(highlightRanges)
     ) {
-      return themeContext.fontSizes.monospace;
+      return 0;
     }
 
-    // Default to 15px
-    return 15;
-  }, [themeContext, props.fontSize]);
+    // Checks if the value passed to highlightRanges is a single array containing only two numbers e.g. [3, 5]
+    const isSingleRange =
+      highlightRanges.length <= 2 &&
+      // Prevents e.g. [3, [5]] from being considered a single array range
+      checkForNumberValues(highlightRanges);
 
-  const preStyles = React.useMemo(
-    () => ({
-      fontFamily: font,
-      fontSize: fontSize,
-      maxHeight: themeContext.size.maxCodePaneHeight || 200,
-      overflow: 'scroll',
-      margin: 0,
-      padding: '0.5em 1em 0.5em 0'
-    }),
-    [font, fontSize, themeContext]
-  );
+    if (isSingleRange) {
+      return 1;
+    }
 
-  const isLineDimmed = React.useCallback(
-    lineNumber =>
-      lineNumber < props.highlightStart || lineNumber > props.highlightEnd,
-    [props.highlightStart, props.highlightEnd]
-  );
+    return highlightRanges.length;
+  }, [highlightRanges]);
 
-  const measureIndentation = React.useCallback(
-    indentation => {
-      if (indentation === 0) {
-        return 0;
-      }
-      const indentString = ' '.repeat(props.indentSize) || ' ';
-      const string = indentString.repeat(indentation);
-      context.current.font = `${props.fontSize}px ${font}`;
-      const measurement = context.current.measureText(string);
-      return measurement.width;
+  const theme = React.useContext(ThemeContext);
+  const { stepId, isActive, step, placeholder } = useSteps(numberOfSteps, {
+    stepIndex
+  });
+
+  const children = React.useMemo(() => {
+    return indentNormalizer(rawCodeString);
+  }, [rawCodeString]);
+
+  const scrollTarget = React.useRef();
+
+  const getLineNumberProps = React.useCallback(
+    lineNumber => {
+      if (!isActive) return;
+      const range = getRangeFormat({
+        isSingleRangeProvided: numberOfSteps === 1,
+        highlightRanges,
+        step
+      });
+      return {
+        style: getStyleForLineNumber(lineNumber, range)
+      };
     },
-    [props.fontSize, font]
+    [isActive, highlightRanges, numberOfSteps, step]
   );
 
-  // Auto-scroll to highlighted range
-  React.useLayoutEffect(() => {
-    const lineHeight = lineRef.current.clientHeight;
-    const top = Math.max(0, (props.highlightStart - 1) * lineHeight);
+  const getLineProps = React.useCallback(
+    lineNumber => {
+      if (!isActive) return;
+      const range = getRangeFormat({
+        isSingleRangeProvided: numberOfSteps === 1,
+        highlightRanges,
+        step
+      });
+      return {
+        ref: lineNumber === range[0] ? scrollTarget : undefined,
+        style: getStyleForLineNumber(lineNumber, range)
+      };
+    },
+    [isActive, highlightRanges, numberOfSteps, step]
+  );
 
-    scrollContainerRef.current.scroll({
-      top,
-      behavior: 'smooth'
+  React.useEffect(() => {
+    const immHandle = setImmediate(() => {
+      if (!scrollTarget.current) return;
+      scrollTarget.current.scrollIntoView({
+        block: 'center',
+        behavior: 'smooth'
+      });
     });
-  }, [lineRef.current, props.highlightStart]);
+    return () => {
+      clearImmediate(immHandle);
+    };
+  }, [isActive, step]);
+
+  const customStyle = React.useMemo(() => {
+    /**
+     * Provide fallback values if the user intentionally overrides the
+     * default theme with no valid values.
+     */
+    const {
+      size: { width = 1366 },
+      space = [0, 0, 0],
+      fontSizes: { monospace = '20px' }
+    } = theme;
+
+    return {
+      padding: space[0],
+      margin: 0,
+      width: width - space[2] * 2 - space[0] * 2,
+      fontSize: monospace
+    };
+  }, [theme]);
+
+  const syntaxStyle = React.useMemo(() => {
+    if (typeof syntaxTheme === 'string') {
+      return styles[syntaxTheme];
+    } else syntaxTheme;
+  }, [syntaxTheme]);
 
   return (
     <>
-      <Highlight
-        {...defaultProps}
-        code={props.children}
-        language={props.language}
-        theme={printMode ? lightTheme : props.theme}
+      {placeholder}
+      <SyntaxHighlighter
+        customStyle={customStyle}
+        language={language}
+        wrapLines
+        showLineNumbers
+        lineProps={getLineProps}
+        lineNumberProps={getLineNumberProps}
+        style={syntaxStyle}
       >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre
-            ref={scrollContainerRef}
-            className={`${className} ${props.autoFillHeight &&
-              'spectacle-auto-height-fill'}`}
-            style={{ ...style, ...preStyles }}
-          >
-            {tokens.map((line, i) => {
-              const lineProps = getLineProps({ line, key: i });
-              const lineIndentation = line[0].content.search(spaceSearch);
-
-              lineProps.style = {
-                ...(lineProps.style || {}),
-                whiteSpace: 'pre-wrap',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                opacity: isLineDimmed(i + 1) ? 0.5 : 1
-              };
-              if (line[0].content && !line[0].empty) {
-                line[0].content = line[0].content.trimLeft();
-              }
-
-              return (
-                <div key={i} {...lineProps} ref={i === 0 ? lineRef : undefined}>
-                  <div style={lineNumberStyles}>{i + 1}</div>
-                  <div
-                    style={{
-                      marginLeft: measureIndentation(lineIndentation),
-                      flex: 1,
-                      paddingLeft: '0.25em'
-                    }}
-                  >
-                    {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({ token, key })} />
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </pre>
-        )}
-      </Highlight>
+        {children}
+      </SyntaxHighlighter>
     </>
   );
 }
 
 CodePane.propTypes = {
-  autoFillHeight: propTypes.bool,
-  children: propTypes.string.isRequired,
-  fontSize: propTypes.number,
-  highlightEnd: propTypes.number,
-  highlightStart: propTypes.number,
-  indentSize: propTypes.number,
+  highlightRanges: propTypes.arrayOf(
+    propTypes.oneOfType([
+      propTypes.number.isRequired,
+      propTypes.arrayOf(propTypes.number.isRequired)
+    ]).isRequired
+  ),
   language: propTypes.string.isRequired,
-  theme: propTypes.object
+  children: propTypes.string.isRequired,
+  stepIndex: propTypes.number,
+  theme: propTypes.oneOf([propTypes.object, ...availableCodePaneThemes])
 };
 
 CodePane.defaultProps = {
-  language: 'javascript',
-  theme: theme,
-  highlightStart: -Infinity,
-  highlightEnd: Infinity
+  theme: 'atomDark'
 };

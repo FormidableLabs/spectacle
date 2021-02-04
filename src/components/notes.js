@@ -1,21 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { SlideContext } from '../hooks/use-slide';
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import propTypes from 'prop-types';
+import { DeckContext } from '../components/deck/deck';
+import { SlideContext } from '../components/slide/slide';
 
-const Notes = ({ children }) => {
-  const {
-    actions: { setNotes }
-  } = React.useContext(SlideContext);
+export default function Notes({ children }) {
+  const { notePortalNode } = React.useContext(DeckContext);
+  const { isSlideActive } = React.useContext(SlideContext);
 
-  React.useEffect(() => {
-    setNotes(children);
-  }, [setNotes, children]);
+  if (!isSlideActive) return null;
+  if (!notePortalNode) return null;
 
-  return null;
-};
+  return ReactDOM.createPortal(<div>{children}</div>, notePortalNode);
+}
 
 Notes.propTypes = {
-  children: PropTypes.node.isRequired
+  children: propTypes.node.isRequired
 };
-
-export default Notes;

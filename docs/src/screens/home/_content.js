@@ -1,4 +1,3 @@
-/* eslint-disable filenames/match-regex */
 /* eslint-disable quotes*/
 const content = {
   features: [
