@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.0.0
+
+- Updated TypeScript type definitions
+- Fixed duplication final slide in Presnter Mode
+
 ## 7.0.0-beta.5 (1/21/2021)
 
 - Fixed Notes for Markdown components
