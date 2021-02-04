@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.1
+
+- Update one-page to use v7 of Spectacle
+
 ## 7.0.0
 
 - Updated TypeScript type definitions
