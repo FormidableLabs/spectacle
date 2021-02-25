@@ -147,16 +147,13 @@ export default function CodePane({
   );
 
   React.useEffect(() => {
-    const immHandle = setImmediate(() => {
+    window.requestAnimationFrame(() => {
       if (!scrollTarget.current) return;
-      scrollTarget.current.scrollIntoView({
+      scrollTarget.current?.scrollIntoView({
         block: 'center',
         behavior: 'smooth'
       });
     });
-    return () => {
-      clearImmediate(immHandle);
-    };
   }, [isActive, step]);
 
   const customStyle = React.useMemo(() => {
