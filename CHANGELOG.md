@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.2
+
+- Fixed usage of Node API, `setImmediate`, and replaced with a browser API.
+
 ## 7.0.1
 
 - Update one-page to use v7 of Spectacle
