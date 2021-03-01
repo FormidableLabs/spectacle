@@ -118,9 +118,6 @@ exports[`<Link /> should render an <a> with text 1`] = `
   color="quaternary"
   fontFamily="text"
   fontSize="text"
-  margin={0}
-  padding={0}
-  textAlign="left"
   textDecoration="underline"
 >
   <StyledComponent
@@ -134,16 +131,13 @@ exports[`<Link /> should render an <a> with text 1`] = `
           "color": "quaternary",
           "fontFamily": "text",
           "fontSize": "text",
-          "margin": 0,
-          "padding": 0,
-          "textAlign": "left",
           "textDecoration": "underline",
         },
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "sc-htpNat",
           "isStatic": false,
-          "lastClassName": "cRHPrL",
+          "lastClassName": "jVigts",
           "rules": Array [
             [Function],
           ],
@@ -159,13 +153,10 @@ exports[`<Link /> should render an <a> with text 1`] = `
       }
     }
     forwardedRef={null}
-    margin={0}
-    padding={0}
-    textAlign="left"
     textDecoration="underline"
   >
     <a
-      className="sc-htpNat cRHPrL"
+      className="sc-htpNat jVigts"
       color="quaternary"
       fontFamily="text"
       fontSize="text"
