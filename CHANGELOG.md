@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.3
+
+- Fixed margin sizing for `Link` when using Markdown.
+
 ## 7.0.2
 
 - Fixed usage of Node API, `setImmediate`, and replaced with a browser API.
