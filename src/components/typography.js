@@ -21,7 +21,8 @@ CodeSpan.defaultProps = {
 
 const Link = styled('a')(compose(color, typography, space, decoration));
 Link.defaultProps = {
-  ...Text.defaultProps,
+  fontFamily: 'text',
+  fontSize: 'text',
   textDecoration: 'underline',
   color: 'quaternary'
 };
