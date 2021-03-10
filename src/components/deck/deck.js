@@ -26,7 +26,7 @@ import { useAutoPlay } from '../../utils/use-auto-play';
 
 export const DeckContext = createContext();
 const noop = () => {};
-const DEFAULT_PRINT_SCALE = 0.773;
+const DEFAULT_PRINT_SCALE = 0.959;
 const DEFAULT_OVERVIEW_SCALE = 0.25;
 
 const Portal = styled('div')(
@@ -63,7 +63,10 @@ const Deck = forwardRef(
       printScale = DEFAULT_PRINT_SCALE,
       template,
       theme: {
-        slideDimensions: [nativeSlideWidth, nativeSlideHeight] = [1366, 768],
+        size: { width: nativeSlideWidth, height: nativeSlideHeight } = {
+          width: 1366,
+          height: 768
+        },
         Backdrop: UserProvidedBackdropComponent,
         backdropStyle: themeProvidedBackdropStyle = {
           position: 'fixed',
