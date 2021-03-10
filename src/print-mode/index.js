@@ -14,7 +14,8 @@ const PrintStyle = createGlobalStyle`
       margin: 0;
     }
     @page {
-      size: ${({ pageSize }) => pageSize};
+      size: ${({ pageSize, pageOrientation }) =>
+        `${pageSize} ${pageOrientation}`.trim()};
     }
     ${AnimatedDiv} {
       @page {
@@ -25,13 +26,16 @@ const PrintStyle = createGlobalStyle`
 `;
 
 export default function PrintMode(props) {
-  const { children, theme, exportMode, pageSize } = props;
+  const { children, theme, exportMode, pageSize, pageOrientation = '' } = props;
   const width = theme?.size?.width || 1366;
   const height = theme?.size?.height || 768;
   const computedPageSize = pageSize || `${width / 100}in ${height / 100}in`;
   return (
     <>
-      <PrintStyle pageSize={computedPageSize} />
+      <PrintStyle
+        pageSize={computedPageSize}
+        pageOrientation={pageOrientation}
+      />
       <Deck
         printMode
         exportMode={exportMode}
