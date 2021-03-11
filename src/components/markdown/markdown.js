@@ -6,7 +6,6 @@ import * as React from 'react';
 import Slide from '../slide/slide';
 import { DeckContext } from '../deck/deck';
 import presenterNotesPlugin from '../../utils/remark-rehype-presenter-notes';
-import Appear from '../appear';
 import CodePane from '../code-pane';
 import unified from 'unified';
 import remark from 'remark-parse';
@@ -61,11 +60,6 @@ export const Markdown = ({
     // Construct the component map based on the current theme and any custom
     // mappings provided directly to <Markdown />
     const componentMap = {
-      li: props => (
-        <Appear>
-          <ListItem {...props} />
-        </Appear>
-      ),
       __codeBlock: MarkdownCodePane,
       ...themeComponentMap,
       ...userProvidedComponentMap

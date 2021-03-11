@@ -1,20 +1,25 @@
 /* eslint-disable react/display-name */
 import * as React from 'react';
 import {
-  CodePane,
+  Appear,
+  Heading,
   Image,
+  Link,
+  ListItem,
   OrderedList,
   Quote,
-  Heading,
-  UnorderedList,
-  Text,
-  ListItem,
-  Link,
-  CodeSpan,
   Table,
+  TableCell,
   TableRow,
-  TableCell
+  Text,
+  UnorderedList
 } from '../';
+
+const AppearingListItem = props => (
+  <Appear>
+    <ListItem {...props} />
+  </Appear>
+);
 
 const mdxComponentMap = {
   p: Text,
@@ -25,7 +30,7 @@ const mdxComponentMap = {
   blockquote: Quote,
   ul: UnorderedList,
   ol: OrderedList,
-  li: ListItem,
+  li: AppearingListItem,
   img: Image,
   a: Link,
   table: Table,

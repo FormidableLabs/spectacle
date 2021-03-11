@@ -195,6 +195,9 @@ const Presentation = () => (
     <MarkdownSlide>
       {`
         # This is a Markdown Slide
+        
+        - With some steps.
+        - They'll step in by default.
         `}
     </MarkdownSlide>
     <MarkdownSlideSet>
