@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.4
+
+- Fixed page-size for export to PDF mode
+
 ## 7.0.3
 
 - Fixed margin sizing for `Link` when using Markdown.
