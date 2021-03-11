@@ -1,8 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
-import Deck from '../components/deck/deck';
-import { AnimatedDiv } from '../components/slide/slide';
+import Deck from '../deck/deck';
+import { AnimatedDiv } from '../slide/slide';
+import defaultTheme from '../../theme/default-theme';
 
 const Backdrop = styled.div`
   background-color: white;
@@ -13,10 +14,12 @@ const PrintStyle = createGlobalStyle`
     body, html {
       margin: 0;
     }
+    @page {
+      size: ${({ pageSize, pageOrientation }) =>
+        `${pageSize} ${pageOrientation}`.trim()};
+    }
     ${AnimatedDiv} {
       @page {
-        size: ${({ pageSize, pageOrientation }) =>
-          `${pageSize} ${pageOrientation}`};
         margin: 0;
       }
     }
@@ -24,16 +27,16 @@ const PrintStyle = createGlobalStyle`
 `;
 
 export default function PrintMode(props) {
-  const {
-    children,
-    theme,
-    exportMode,
-    pageSize = 'letter',
-    pageOrientation = 'landscape'
-  } = props;
+  const { children, theme, exportMode, pageSize, pageOrientation = '' } = props;
+  const width = theme?.size?.width || defaultTheme.size.width;
+  const height = theme?.size?.height || defaultTheme.size.height;
+  const computedPageSize = pageSize || `${width / 100}in ${height / 100}in`;
   return (
     <>
-      <PrintStyle pageSize={pageSize} pageOrientation={pageOrientation} />
+      <PrintStyle
+        pageSize={computedPageSize}
+        pageOrientation={pageOrientation}
+      />
       <Deck
         printMode
         exportMode={exportMode}

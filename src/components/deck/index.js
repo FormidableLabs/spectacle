@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { parse as parseQS, stringify as stringifyQS } from 'query-string';
 import DefaultDeck from './default-deck';
 import PresenterMode from '../presenter-mode';
-import PrintMode from '../../print-mode';
+import PrintMode from '../print-mode';
 import useMousetrap from '../../hooks/use-mousetrap';
 import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 import { modeKeyForSearchParam, modeSearchParamForKey } from './modes';
