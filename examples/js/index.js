@@ -195,10 +195,18 @@ const Presentation = () => (
     <MarkdownSlide>
       {`
         # This is a Markdown Slide
-        
-        - With some steps.
-        - They'll step in by default.
         `}
+    </MarkdownSlide>
+    <MarkdownSlide animateListItems>
+      {`
+       # This is also a Markdown Slide
+       
+       It uses the \`animateListItems\` prop.
+       
+       - Its list items...
+       - they will appear in...
+       - one at a time.
+      `}
     </MarkdownSlide>
     <MarkdownSlideSet>
       {`

@@ -1,7 +1,6 @@
 /* eslint-disable react/display-name */
 import * as React from 'react';
 import {
-  Appear,
   Heading,
   Image,
   Link,
@@ -15,12 +14,6 @@ import {
   UnorderedList
 } from '../';
 
-const AppearingListItem = props => (
-  <Appear>
-    <ListItem {...props} />
-  </Appear>
-);
-
 const mdxComponentMap = {
   p: Text,
   h1: props => <Heading {...props} fontSize="h1" />,
@@ -30,7 +23,7 @@ const mdxComponentMap = {
   blockquote: Quote,
   ul: UnorderedList,
   ol: OrderedList,
-  li: AppearingListItem,
+  li: ListItem,
   img: Image,
   a: Link,
   table: Table,
