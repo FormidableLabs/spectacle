@@ -191,7 +191,7 @@ The Markdown components let you include a block of Markdown within a slide using
   # Use Markdown to write a slide
 
   This is a single slide composed using Markdown.
-  
+
   - It uses the `animateListItems` prop so...
   - it's list items...
   - will animate in, one at a time.
