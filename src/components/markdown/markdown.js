@@ -127,7 +127,8 @@ export const Markdown = ({
     rawMarkdownText,
     getPropsForAST,
     userProvidedComponentMap,
-    themeComponentMap
+    themeComponentMap,
+    animateListItems
   ]);
 
   const { children, ...restProps } = templateProps;
