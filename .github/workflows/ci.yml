@@ -28,11 +28,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Get Cache Directory Path
+      - name: Get Yarn Cache Directory Path
         id: cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Use Cache
+      - name: Use Yarn Cache
         uses: actions/cache@v2
         id: cache
         with:
