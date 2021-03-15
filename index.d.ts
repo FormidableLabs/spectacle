@@ -106,14 +106,17 @@ declare module 'spectacle' {
   }>;
 
   export const Markdown: React.FC<{
+    animateListItems?: boolean;
     children: React.ReactNode;
   }>;
 
   export const MarkdownSlide: React.FC<{
+    animateListItems?: boolean;
     children: React.ReactNode;
   }>;
 
   export const MarkdownSlideSet: React.FC<{
+    animateListItems?: boolean;
     children: React.ReactNode;
   }>;
 

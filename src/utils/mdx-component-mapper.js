@@ -1,19 +1,17 @@
 /* eslint-disable react/display-name */
 import * as React from 'react';
 import {
-  CodePane,
+  Heading,
   Image,
+  Link,
+  ListItem,
   OrderedList,
   Quote,
-  Heading,
-  UnorderedList,
-  Text,
-  ListItem,
-  Link,
-  CodeSpan,
   Table,
+  TableCell,
   TableRow,
-  TableCell
+  Text,
+  UnorderedList
 } from '../';
 
 const mdxComponentMap = {

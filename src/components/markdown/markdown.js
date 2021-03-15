@@ -6,7 +6,6 @@ import * as React from 'react';
 import Slide from '../slide/slide';
 import { DeckContext } from '../deck/deck';
 import presenterNotesPlugin from '../../utils/remark-rehype-presenter-notes';
-import Appear from '../appear';
 import CodePane from '../code-pane';
 import unified from 'unified';
 import remark from 'remark-parse';
@@ -18,6 +17,8 @@ import { root as mdRoot } from 'mdast-builder';
 import mdxComponentMap from '../../utils/mdx-component-mapper';
 import indentNormalizer from '../../utils/indent-normalizer';
 import Notes from '../notes';
+import { ListItem } from '../../index';
+import Appear from '../appear';
 
 export const Markdown = ({
   componentMap: userProvidedComponentMap = mdxComponentMap,
@@ -25,7 +26,8 @@ export const Markdown = ({
     default: 'div',
     getPropsForAST: () => {}
   },
-  children: rawMarkdownText
+  children: rawMarkdownText,
+  animateListItems = false
 }) => {
   const {
     theme: { markdownComponentMap: themeComponentMap = {} } = {}
@@ -61,15 +63,16 @@ export const Markdown = ({
     // Construct the component map based on the current theme and any custom
     // mappings provided directly to <Markdown />
     const componentMap = {
-      li: props => (
-        <Appear>
-          <ListItem {...props} />
-        </Appear>
-      ),
       __codeBlock: MarkdownCodePane,
       ...themeComponentMap,
       ...userProvidedComponentMap
     };
+
+    // If user wants to animate list items,
+    // wrap ListItem in Appear
+    if (animateListItems) {
+      componentMap['li'] = AppearingListItem;
+    }
 
     // Create an HOC based on the component map which will specially handle
     // fenced code blocks. (See MarkdownPreHelper for more details.)
@@ -124,7 +127,8 @@ export const Markdown = ({
     rawMarkdownText,
     getPropsForAST,
     userProvidedComponentMap,
-    themeComponentMap
+    themeComponentMap,
+    animateListItems
   ]);
 
   const { children, ...restProps } = templateProps;
@@ -137,18 +141,23 @@ export const Markdown = ({
   );
 };
 
+const AppearingListItem = props => (
+  <Appear>
+    <ListItem {...props} />
+  </Appear>
+);
+
 // TODO: document this thoroughly, it's a public-facing API
 export const MarkdownSlide = ({
-  children: rawMarkdownText,
+  children,
   componentMap,
   template,
+  animateListItems = false,
   ...rest
 }) => {
   return (
     <Slide {...rest}>
-      <Markdown componentMap={componentMap} template={template}>
-        {rawMarkdownText}
-      </Markdown>
+      <Markdown {...{ componentMap, template, animateListItems, children }} />
     </Slide>
   );
 };
