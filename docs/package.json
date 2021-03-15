@@ -72,7 +72,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.1.2",
     "execa": "^4.0.0",
-    "formideploy": "^0.3.2",
+    "formideploy": "^0.3.4",
     "prettier": "^1.15.1",
     "puppeteer": "^1.13.0",
     "rimraf": "^3.0.0"
