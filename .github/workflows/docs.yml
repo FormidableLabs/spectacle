@@ -39,10 +39,8 @@ jobs:
           path: ${{ steps.cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
-      # install dependencies if cache not found (deps have updated)
       - name: Installation
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile --non-interactive
+        run: yarn --prefer-offline --frozen-lockfile --non-interactive
 
       - name: Check Code
         run: yarn check-ci
