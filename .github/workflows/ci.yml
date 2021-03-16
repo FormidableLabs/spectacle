@@ -37,7 +37,7 @@ jobs:
         id: cache
         with:
           path: ${{ steps.cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ matrix.node-version }}-${{ hashFiles('./yarn.lock') }}
 
       - name: Installation ${{ matrix.node-version }}
         run: yarn --prefer-offline --frozen-lockfile --non-interactive
