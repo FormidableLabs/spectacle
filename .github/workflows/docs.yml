@@ -24,9 +24,14 @@ jobs:
     # because it has awscli@2 built in.
     # See `ubuntu-latest` note in: https://docs.github.com/en/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [15.x]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Get Yarn Cache Directory Path
         id: cache-dir-path
@@ -39,16 +44,16 @@ jobs:
           path: ${{ steps.cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Installation
+      - name: Installation ${{ matrix.node-version }}
         run: yarn --prefer-offline --frozen-lockfile --non-interactive
 
-      - name: Check Code
+      - name: Check Code ${{ matrix.node-version }}
         run: yarn check-ci
 
-      - name: Clean Code
+      - name: Clean Code ${{ matrix.node-version }}
         run: yarn clean
 
-      - name: Build Docs
+      - name: Build Docs ${{ matrix.node-version }}
         run: yarn build
 
       # deploy to staging if the branch is not main
