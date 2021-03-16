@@ -47,6 +47,11 @@ jobs:
       - name: Installation ${{ matrix.node-version }}
         run: yarn --prefer-offline --frozen-lockfile --non-interactive
 
+      # Used to install the root node_modules necessary for linting
+      - name: Root Node Installation ${{ matrix.node-version }}
+        working-directory: ./
+        run: yarn --prefer-offline --frozen-lockfile --non-interactive
+
       - name: Check Code ${{ matrix.node-version }}
         run: yarn check-ci
 
