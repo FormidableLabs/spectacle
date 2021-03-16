@@ -16,7 +16,7 @@
     "check-ci": "yarn run lint",
     "clean": "rimraf dist",
     "format": "yarn run lint --fix && yarn run prettier-all",
-    "lint": "eslint '*.js'",
+    "lint": "eslint '*.js' src",
     "prettier-all": "prettier --write '{src,static.config,scripts,content}/**/*.{js,jsx,md}'",
     "preversion": "yarn run lint && yarn run build",
     "build": "react-static build",
