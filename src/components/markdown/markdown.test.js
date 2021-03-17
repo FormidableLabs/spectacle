@@ -1,10 +1,11 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
-import { MarkdownSlide, MarkdownSlideSet } from './markdown';
+import { Markdown, MarkdownSlide, MarkdownSlideSet } from './markdown';
 import Adapter from 'enzyme-adapter-react-16';
 import Deck from '../deck/deck';
-import { ListItem } from '../typography';
+import { Heading, ListItem } from '../typography';
 import Appear from '../appear';
+import Slide from '../slide/slide';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -79,5 +80,81 @@ describe('<MarkdownSlideSet />', () => {
 
     expect(wrapper.find('ul')).toHaveLength(2);
     expect(wrapper.find(Appear)).toHaveLength(6);
+  });
+
+  it('Markdown should pass componentProps down to constituent components', () => {
+    const wrapper = mountInsideDeck(
+      <Slide>
+        <Heading>Im not styled...</Heading>
+        <Markdown componentProps={{ color: 'purple' }}>{`
+        # What's up world, I'm styled.
+        
+        - List item
+        - And another one
+      `}</Markdown>
+      </Slide>
+    );
+
+    expect(
+      wrapper
+        .find(Heading)
+        .at(0)
+        .prop('color')
+    ).not.toBe('purple');
+
+    expect(
+      wrapper
+        .find(Heading)
+        .at(1)
+        .prop('color')
+    ).toBe('purple');
+
+    expect(
+      wrapper
+        .find(ListItem)
+        .at(0)
+        .prop('color')
+    ).toBe('purple');
+  });
+
+  it('MarkdownSlide should pass componentProps down to constituent components', () => {
+    const wrapper = mountInsideDeck(
+      <MarkdownSlide componentProps={{ color: 'purple' }}>{`
+        # What's up world, I'm styled.
+      `}</MarkdownSlide>
+    );
+
+    expect(
+      wrapper
+        .find(Heading)
+        .at(0)
+        .prop('color')
+    ).toBe('purple');
+  });
+
+  it('MarkdownSlideSet should pass componentProps down to constituent components', () => {
+    const wrapper = mountInsideDeck(
+      <MarkdownSlideSet componentProps={{ color: 'purple' }}>{`
+        # What's up world, I'm styled.
+        
+        ---
+        
+        # Another slide
+      `}</MarkdownSlideSet>
+    );
+
+    expect(
+      wrapper
+        .find(Heading)
+        .at(0)
+        .prop('color')
+    ).toBe('purple');
+
+    expect(
+      wrapper
+        .find(Heading)
+        .at(1)
+        .prop('color')
+    ).toBe('purple');
   });
 });
