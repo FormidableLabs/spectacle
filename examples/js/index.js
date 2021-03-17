@@ -21,7 +21,8 @@ import {
   CodePane,
   MarkdownSlide,
   MarkdownSlideSet,
-  Notes
+  Notes,
+  Markdown
 } from 'spectacle';
 
 const formidableLogo =
@@ -192,6 +193,16 @@ const Presentation = () => (
         <Heading>This is a slide embedded in a div</Heading>
       </Slide>
     </div>
+    <Slide>
+      <Heading>Markdown can be sprinkled into any slide!</Heading>
+      <Markdown componentProps={{ color: 'indigo', backgroundColor: 'pink' }}>{`
+        ## Hey world
+        
+        - One
+        - Two
+        - Three
+      `}</Markdown>
+    </Slide>
     <MarkdownSlide>
       {`
         # This is a Markdown Slide

@@ -27,7 +27,8 @@ export const Markdown = ({
     getPropsForAST: () => {}
   },
   children: rawMarkdownText,
-  animateListItems = false
+  animateListItems = false,
+  componentProps = {}
 }) => {
   const {
     theme: { markdownComponentMap: themeComponentMap = {} } = {}
@@ -85,12 +86,19 @@ export const Markdown = ({
       CodeBlockComponent
     );
 
+    const componentMapWithPassedThroughProps = Object.entries(
+      componentMap
+    ).reduce((newMap, [key, Component]) => {
+      newMap[key] = props => <Component {...props} {...componentProps} />;
+      return newMap;
+    }, {});
+
     // Create the compiler for the _user-visible_ markdown (not presenter notes)
     const compiler = unified()
       .use(remark2rehype)
       .use(rehype2react, {
         createElement: React.createElement,
-        components: componentMap
+        components: componentMapWithPassedThroughProps
       });
 
     // Compile each of the values we got back from the template function
@@ -153,11 +161,20 @@ export const MarkdownSlide = ({
   componentMap,
   template,
   animateListItems = false,
+  componentProps = {},
   ...rest
 }) => {
   return (
     <Slide {...rest}>
-      <Markdown {...{ componentMap, template, animateListItems, children }} />
+      <Markdown
+        {...{
+          componentMap,
+          template,
+          animateListItems,
+          componentProps,
+          children
+        }}
+      />
     </Slide>
   );
 };
