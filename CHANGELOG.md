@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.1.0
+
+- Added animateListItems prop for Markdown, MarkdownSlide, and MarkdownSlideSet components, enabling animating list items via Markdown components.
+- Added componentProps prop for Markdown, MarkdownSlide, and MarkdownSlideSet components, enabling passing a set of props down to each component rendered within a Markdown component.
+
 ## 7.0.4
 
 - Fixed page-size for export to PDF mode
