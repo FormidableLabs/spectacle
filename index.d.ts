@@ -105,19 +105,24 @@ declare module 'spectacle' {
     size: number;
   }>;
 
+  type MdComponentProps = { [key: string]: any };
+
   export const Markdown: React.FC<{
     animateListItems?: boolean;
     children: React.ReactNode;
+    componentProps?: MdComponentProps;
   }>;
 
   export const MarkdownSlide: React.FC<{
     animateListItems?: boolean;
     children: React.ReactNode;
+    componentProps?: MdComponentProps;
   }>;
 
   export const MarkdownSlideSet: React.FC<{
     animateListItems?: boolean;
     children: React.ReactNode;
+    componentProps?: MdComponentProps;
   }>;
 
   export const SpectacleLogo: React.FC<{

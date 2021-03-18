@@ -174,10 +174,11 @@ Image is a component to display a picture within a slide. It is analogous to an 
 
 The Markdown components let you include a block of Markdown within a slide using `<Markdown />`, author a complete slide with Markdown using `<MarkdownSlide />`, or author a series of slides with Markdown using `<MarkdownSlides />`. Markdown tags get converted into Spectacle components. The `---` three dash marker when used inside `<MarkdownSlideSet />` is used to divide content into separate slides. Markdown also supports presenter notes using the `Notes:` marker. `<Markdown />` must be a child of `<Slide />` where `<MarkdownSlide />` and `<MarkdownSlideSet />` are children of `<Deck />`.
 
-| Props              | Type              | Example                              |
-| ------------------ | ----------------- | ------------------------------------ |
-| `children`         | PropTypes.string  | `# Hi there`                         |
-| `animateListItems` | PropTypes.boolean | `<MarkdownSlide animateListItems />` |
+| Props              | Type              | Example                                                                             |
+| ------------------ | ----------------- | ----------------------------------------------------------------------------------- |
+| `children`         | PropTypes.string  | `# Hi there`                                                                        |
+| `componentProps`   | PropTypes.object  | `<MarkdownSlide componentProps={{ color: 'purple' }}># I'm purple!</MarkdownSlide>` |
+| `animateListItems` | PropTypes.boolean | `<MarkdownSlide animateListItems />`                                                |
 
 ```jsx
 <Slide>

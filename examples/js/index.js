@@ -192,9 +192,12 @@ const Presentation = () => (
         <Heading>This is a slide embedded in a div</Heading>
       </Slide>
     </div>
-    <MarkdownSlide>
+    <MarkdownSlide componentProps={{ color: 'yellow' }}>
       {`
         # This is a Markdown Slide
+        
+        - You can pass props down to all elements on the slide.
+        - Just use the \`componentProps\` prop.
         `}
     </MarkdownSlide>
     <MarkdownSlide animateListItems>
