@@ -5,6 +5,8 @@ name: CI
 #   every pull request with main branch as the base that has a change in a file not in the docs folder
 on:
   push:
+    branches:
+      - main
     paths:
       - '**'
       - '!docs/**'
