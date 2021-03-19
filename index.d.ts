@@ -128,4 +128,56 @@ declare module 'spectacle' {
   export const SpectacleLogo: React.FC<{
     size: number;
   }>;
+
+  export const defaultTheme: {
+    colors: Record<string, string>;
+    size: Record<string, number>;
+    fonts: Record<string, string>;
+    fontSizes: Record<string, string>;
+    space: number[];
+  };
+
+  export const SlideContext: React.Context<{
+    immediate: boolean;
+    slideId: number;
+    isSlideActive: boolean;
+    activationThresholds: number;
+    activeStepIndex: number;
+  }>;
+
+  export const DeckContext: React.Context<{
+    deckId: number;
+    slideCount: number;
+    useAnimations: boolean;
+    slidePortalNode: React.ReactNode;
+    onSlideClick(e: Event, slideId: number): void;
+    theme: Record<string, string | number | number[]>;
+    frameOverrideStyle: Record<string, string | number>;
+    wrapperOverrideStyle: Record<string, string | number>;
+    backdropNode: React.ReactNode;
+    notePortalNode: React.ReactNode;
+    initialized: boolean;
+    passedSlideIds: number[];
+    upcomingSlideIds: number[];
+    activeView: {
+      slideIndex: number;
+      stepIndex: number;
+    };
+    pendingView: {
+      slideIndex: number;
+      stepIndex: number;
+    };
+    skipTo(options: { slideIndex: number; stepIndex: number }): void;
+    stepForward(): void;
+    advanceSlide(): void;
+    regressSlide(): void;
+    commitTransition(): void;
+    cancelTransition(): void;
+    template:
+      | React.ReactNode
+      | ((options: {
+          slideNumber: number;
+          numberOfSlides: number;
+        }) => React.ReactNode);
+  }>;
 }
