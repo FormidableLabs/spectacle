@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.1.1
+
+- Exports `SlideContext`, `DeckContext`, and `defaultTheme`
+- Fixes required child prop for `Notes`
+
 ## 7.1.0
 
 - Added animateListItems prop for Markdown, MarkdownSlide, and MarkdownSlideSet components, enabling animating list items via Markdown components.
