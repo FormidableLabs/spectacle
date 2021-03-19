@@ -1,5 +1,5 @@
 import Deck from './components/deck';
-import Slide from './components/slide/slide';
+import Slide, { SlideContext } from './components/slide/slide';
 import Appear from './components/appear';
 import CodePane from './components/code-pane';
 import {
@@ -34,6 +34,8 @@ import SpectacleLogo from './components/logo';
 import mdxComponentMap from './utils/mdx-component-mapper';
 import { removeNotes, isolateNotes } from './utils/notes';
 import indentNormalizer from './utils/indent-normalizer';
+import { DeckContext } from './components/deck/deck';
+import defaultTheme from './theme/default-theme';
 
 export {
   Appear,
@@ -67,7 +69,10 @@ export {
   TableHeader,
   TableBody,
   mdxComponentMap,
+  DeckContext,
+  SlideContext,
   removeNotes,
   isolateNotes,
-  indentNormalizer
+  indentNormalizer,
+  defaultTheme
 };
