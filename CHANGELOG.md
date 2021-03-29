@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.2
+
+- Fixed issue with `animateListItems` in Markdown components that was causing lists to not show up at all.
+
 ## 7.1.1
 
 - Exports `SlideContext`, `DeckContext`, and `defaultTheme`
