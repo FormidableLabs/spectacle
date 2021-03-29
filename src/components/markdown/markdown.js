@@ -23,15 +23,14 @@ import Appear from '../appear';
 export const Markdown = ({
   componentMap: userProvidedComponentMap = mdxComponentMap,
   template: { default: TemplateComponent, getPropsForAST } = {
-    default: 'div',
-    getPropsForAST: () => {}
+    default: 'div'
   },
   children: rawMarkdownText,
   animateListItems = false,
-  componentProps = {}
+  componentProps
 }) => {
   const {
-    theme: { markdownComponentMap: themeComponentMap = {} } = {}
+    theme: { markdownComponentMap: themeComponentMap } = {}
   } = React.useContext(DeckContext);
 
   const [templateProps, noteElements] = React.useMemo(() => {
@@ -65,7 +64,7 @@ export const Markdown = ({
     // mappings provided directly to <Markdown />
     const componentMap = {
       __codeBlock: MarkdownCodePane,
-      ...themeComponentMap,
+      ...(themeComponentMap || {}),
       ...userProvidedComponentMap
     };
 
@@ -89,7 +88,9 @@ export const Markdown = ({
     const componentMapWithPassedThroughProps = Object.entries(
       componentMap
     ).reduce((newMap, [key, Component]) => {
-      newMap[key] = props => <Component {...props} {...componentProps} />;
+      newMap[key] = props => (
+        <Component {...props} {...(componentProps || {})} />
+      );
       return newMap;
     }, {});
 
