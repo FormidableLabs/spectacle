@@ -55,7 +55,11 @@ Quote.defaultProps = {
   margin: 0
 };
 
-const OrderedList = styled('ol')(compose(color, typography, space));
+const listStyle = system({
+  listStyleType: true
+});
+
+const OrderedList = styled('ol')(compose(color, typography, space, listStyle));
 OrderedList.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -64,7 +68,9 @@ OrderedList.defaultProps = {
   margin: 0
 };
 
-const UnorderedList = styled('ul')(compose(color, typography, space));
+const UnorderedList = styled('ul')(
+  compose(color, typography, space, listStyle)
+);
 UnorderedList.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
