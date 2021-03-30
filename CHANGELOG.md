@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.3
+
+- Add support for `listStyleType` in `UnorderedList` and `OrderedList` components.
+
 ## 7.1.2
 
 - Fixed issue with `animateListItems` in Markdown components that was causing lists to not show up at all.
