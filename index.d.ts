@@ -76,7 +76,7 @@ declare module 'spectacle' {
     StyledSystem.BorderProps;
 
   export const Box: React.FC<BoxProps>;
-  export const FlexBox: React.FC<BoxProps & StyledSystem.FlexProps>;
+  export const FlexBox: React.FC<BoxProps & StyledSystem.FlexboxProps>;
   export const Grid: React.FC<{
     children: React.ReactNode;
   } & StyledSystem.LayoutProps &
