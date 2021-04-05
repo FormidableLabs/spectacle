@@ -1,6 +1,6 @@
 // Type definitions for Spectacle 7.0.0
 // Project: Formidable Spectacle
-// Definitions by: Kylie Stewart, Urmit Patel, and Carlos Kelly
+// Definitions by: Kylie Stewart, Urmit Patel, Grant Sander, and Carlos Kelly
 
 declare module 'spectacle' {
   import * as React from 'react';
@@ -184,4 +184,6 @@ declare module 'spectacle' {
           numberOfSlides: number;
         }) => React.ReactNode);
   }>;
+
+  export const indentNormalizer: (input: string) => string;
 }
