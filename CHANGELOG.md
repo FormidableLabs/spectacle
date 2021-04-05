@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.4
+
+- Fixed reference for `FlexBox` type in ambient type declarations.
+
 ## 7.1.3
 
 - Add support for `listStyleType` in `UnorderedList` and `OrderedList` components.
