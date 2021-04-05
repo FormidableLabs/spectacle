@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.5
+
+- Added missing type for `indentNormalizer` function.
+
 ## 7.1.4
 
 - Fixed reference for `FlexBox` type in ambient type declarations.
