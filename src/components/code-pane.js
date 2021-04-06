@@ -4,33 +4,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { useSteps } from '../hooks/use-steps';
 import indentNormalizer from '../utils/indent-normalizer';
 import { ThemeContext } from 'styled-components';
-import * as styles from 'react-syntax-highlighter/dist/esm/styles/prism';
+import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark';
 
-export const availableCodePaneThemes = [
-  'atomDark',
-  'base16AteliersulphurpoolLight',
-  'cb',
-  'coy',
-  'darcula',
-  'dark',
-  'duotoneDark',
-  'duotoneEarth',
-  'duotoneForest',
-  'duotoneLight',
-  'duotoneSea',
-  'duotoneSpace',
-  'funky',
-  'ghcolors',
-  'hopscotch',
-  'okaidia',
-  'pojoaque',
-  'prism',
-  'solarizedlight',
-  'tomorrow',
-  'twilight',
-  'vs',
-  'xonokai'
-];
 const checkForNumberValues = ranges => {
   return ranges.every(element => typeof element === 'number');
 };
@@ -80,7 +55,7 @@ export default function CodePane({
   language,
   children: rawCodeString,
   stepIndex,
-  theme: syntaxTheme
+  theme: syntaxTheme = dark
 }) {
   const numberOfSteps = React.useMemo(() => {
     if (
@@ -175,12 +150,6 @@ export default function CodePane({
     };
   }, [theme]);
 
-  const syntaxStyle = React.useMemo(() => {
-    if (typeof syntaxTheme === 'string') {
-      return styles[syntaxTheme];
-    } else syntaxTheme;
-  }, [syntaxTheme]);
-
   return (
     <>
       {placeholder}
@@ -191,7 +160,7 @@ export default function CodePane({
         showLineNumbers
         lineProps={getLineProps}
         lineNumberProps={getLineNumberProps}
-        style={syntaxStyle}
+        style={syntaxTheme}
       >
         {children}
       </SyntaxHighlighter>
@@ -209,9 +178,5 @@ CodePane.propTypes = {
   language: propTypes.string.isRequired,
   children: propTypes.string.isRequired,
   stepIndex: propTypes.number,
-  theme: propTypes.oneOf([propTypes.object, ...availableCodePaneThemes])
-};
-
-CodePane.defaultProps = {
-  theme: 'atomDark'
+  theme: propTypes.object
 };
