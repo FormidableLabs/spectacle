@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.0.0
+
+- Removed auto-importing every Prism theme for CodePane to reduce overall bundle size
+- The CodePane theme prop now accepts a pre-defined or custom Prism object
+
 ## 7.1.5
 
 - Added missing type for `indentNormalizer` function.

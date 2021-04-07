@@ -1,4 +1,4 @@
-// Type definitions for Spectacle 7.0.0
+// Type definitions for Spectacle 8.0.0
 // Project: Formidable Spectacle
 // Definitions by: Kylie Stewart, Urmit Patel, Grant Sander, and Carlos Kelly
 
