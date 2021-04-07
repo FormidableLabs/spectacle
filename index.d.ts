@@ -42,7 +42,7 @@ declare module 'spectacle' {
   export const CodePane: React.FC<{
     children: React.ReactNode;
     language: string;
-    theme?: Record<string, unknown> | string;
+    theme?: Record<string, unknown>;
     stepIndex?: number;
     highlightRanges: number | number[];
   }>;

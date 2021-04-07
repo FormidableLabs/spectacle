@@ -96,7 +96,7 @@ Appear is a component that makes a component animate on the slide on key press. 
 
 CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code, trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. CodePane uses the [React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter) Component.
 
-The `theme` prop accepts a configurable object or a string of the available [Prism Themes](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js); `'atomDark'`, `'base16AteliersulphurpoolLight'`, `'cb'`, `'coy'`, `'darcula'`, `'dark'`, `'duotoneDark'`, `'duotoneEarth'`, `'duotoneForest'`, `'duotoneLight'`, `'duotoneSea'`, `'duotoneSpace'`, `'funky'`, `'ghcolors'`, `'hopscotch'`, `'okaidia'`, `'pojoaque'`, `'prism'`, `'solarizedlight'`, `'tomorrow'`, `'twilight'`, `'vs'` and `'xonokai'`.
+The `theme` prop accepts a configurable object or pre-defined theme object from the available [Prism Themes](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js).
 
 Additionally, the `highlightRanges` prop accepts an array that can be used to highlight certain ranges of code:
 
@@ -114,21 +114,19 @@ Array values can even be mixed to include sub-arrays (for multiple lines) and nu
 
 _Note that each range will be considered as a step in your current slide's animation. Each range will be highlighted as you move forward or backwards on each step._
 
-| Props             | Type                                                                                                                                          | Example                          | Default Props |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ------------- |
-| `children`        | PropTypes.string                                                                                                                              | `let name = "Carlos"`            | -             |
-| `highlightRanges` | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))                                                 | `[1, 3]` or `[[6, 8], [10, 15]]` | -             |
-| `language`        | PropTypes.string                                                                                                                              | `javascript`                     | -             |
-| `theme`           | PropTypes.object or [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | `twilight`                       | `atomDark`    |
+| Props             | Type                                                                                          | Example                                                                                                                   | Default Props        |
+| ----------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `children`        | PropTypes.string                                                                              | `let name = "Carlos"`                                                                                                     | -                    |
+| `highlightRanges` | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)) | `[1, 3]` or `[[6, 8], [10, 15]]`                                                                                          | -                    |
+| `language`        | PropTypes.string                                                                              | `javascript`                                                                                                              | -                    |
+| `theme`           | PropTypes.object or                                                                           | [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | vs-dark Theme Object |
 
 ```jsx
+import tomorrow from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow';
+
 () => (
   <Slide>
-    <CodePane
-      language="javascript"
-      theme="solarizedlight"
-      highlightRanges={[1, 3]}
-    >
+    <CodePane language="javascript" theme={tomorrow} highlightRanges={[1, 3]}>
       {`
       const App = () => (
         <Provider value={client}>
