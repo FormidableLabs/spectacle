@@ -62,10 +62,23 @@ export default function DefaultDeck({
     [overviewMode, toggleMode]
   );
 
+  const onMobileSlide = e => {
+    if (navigator.maxTouchPoints < 1) return;
+    switch (e.dir) {
+      case 'Left':
+        deck.current.advanceSlide();
+        break;
+      case 'Right':
+        deck.current.regressSlide();
+        break;
+    }
+  };
+
   return (
     <Deck
       overviewMode={overviewMode}
       onSlideClick={onSlideClick}
+      onMobileSlide={onMobileSlide}
       printMode={printMode}
       exportMode={exportMode}
       ref={deck}

@@ -7139,6 +7139,11 @@ react-spring@^8.0.25:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
 
+react-swipeable@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-6.1.0.tgz#558b08a797a749a33e98492af84f2ca84a23d146"
+  integrity sha512-vB6+bv1I5L9nfuM7quu41o/kK1f3a7cTQ3NHNWkOltg5uhBpnH6xvkQJeoPfKQ6K4pnifELXY65wzWwWBa+zGg==
+
 react-syntax-highlighter@^12.2.1:
   version "12.2.1"
   resolved "https://registry.npmjs.org/react-syntax-highlighter/-/react-syntax-highlighter-12.2.1.tgz"

@@ -15,6 +15,7 @@ import { useSpring, animated } from 'react-spring';
 import { useSlide } from '../../hooks/use-slides';
 import { useCollectSteps } from '../../hooks/use-steps';
 import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
+import { useSwipeable } from 'react-swipeable';
 
 const noop = () => {};
 
@@ -107,6 +108,7 @@ export default function Slide({
 
   const {
     onSlideClick = noop,
+    onMobileSlide,
     useAnimations,
     slidePortalNode,
     frameOverrideStyle = {},
@@ -280,6 +282,9 @@ export default function Slide({
     };
   }, [wrapperOverrideStyle, theme, padding]);
 
+  const swipeHandler = useSwipeable({
+    onSwiped: eventData => onMobileSlide(eventData)
+  });
   return (
     <>
       {placeholder}
@@ -318,6 +323,7 @@ export default function Slide({
                 backgroundRepeat={backgroundRepeat}
                 backgroundSize={backgroundSize}
                 color={textColor}
+                {...swipeHandler}
               >
                 <TemplateWrapper style={wrapperOverrideStyle}>
                   {(typeof template === 'function' ||
