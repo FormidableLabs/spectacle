@@ -86,6 +86,7 @@ const Deck = forwardRef(
       } = {},
 
       onSlideClick = noop,
+      onMobileSlide = noop,
 
       disableInteractivity = false,
       notePortalNode,
@@ -350,6 +351,7 @@ const Deck = forwardRef(
               useAnimations,
               slidePortalNode,
               onSlideClick: handleSlideClick,
+              onMobileSlide: onMobileSlide,
               theme: restTheme,
 
               frameOverrideStyle: frameStyle,
@@ -401,6 +403,7 @@ Deck.propTypes = {
   template: propTypes.oneOfType([propTypes.node, propTypes.func]),
   theme: propTypes.object,
   onSlideClick: propTypes.func,
+  onMobileSlide: propTypes.func,
   disableInteractivity: propTypes.bool,
   notePortalNode: propTypes.node,
   useAnimations: propTypes.bool,
