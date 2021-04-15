@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.1
+
+- Fixed nagivation by swiping on touch-devices
+
 ## 8.0.0
 
 - Removed auto-importing every Prism theme for CodePane to reduce overall bundle size
