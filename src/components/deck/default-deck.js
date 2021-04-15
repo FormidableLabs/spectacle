@@ -66,7 +66,7 @@ export default function DefaultDeck({
     if (navigator.maxTouchPoints < 1) return;
     switch (e.dir) {
       case 'Left':
-        deck.current.advanceSlide();
+        deck.current.stepForward();
         break;
       case 'Right':
         deck.current.regressSlide();
