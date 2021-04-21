@@ -68,43 +68,6 @@ export function useSteps(numSteps = 1, { id: userProvidedId, stepIndex } = {}) {
   };
 }
 
-// TODO: same as above. this is a public-facing API, document it!
-export function useAnimatedSteps(
-  numSteps = 1,
-  {
-    namedTransition,
-    transition: userProvidedTransition = {},
-    ...useStepsOpts
-  } = {}
-) {
-  const { immediate } = React.useContext(SlideContext);
-
-  const { stepId, isActive, step, placeholder } = useSteps(
-    numSteps,
-    useStepsOpts
-  );
-
-  const transitions = useTransition(isActive, null, {
-    immediate,
-    from: {
-      opacity: 0
-    },
-    enter: {
-      opacity: 1
-    },
-    leave: {
-      opacity: 0
-    }
-  });
-
-  return {
-    transitions,
-    isActive,
-    step,
-    placeholder
-  };
-}
-
 // Similar to <Deck>, this is where we go looking for "step placeholder"
 // elements. The main difference here is that slide placeholders are 1:1 with
 // slides, whereas step placeholders may represent multiple steps. So, the
