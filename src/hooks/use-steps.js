@@ -8,9 +8,10 @@ import clamp from '../utils/clamp';
 const PLACEHOLDER_CLASS_NAME = 'step-placeholder';
 
 /*
- * Hook to determine whether or not a step is active or not. Note that
- * useCollectSteps() must be called prior to calling this method as useSteps()
- * requires activationThresholds to be available.
+ * This hook is used to create components which can 'participate' in a presentation.
+ * When a component uses this hook, it passes numSteps, which "reserves" that many steps within the slide progression.
+ * Returns the stepId, whether or not the step is active, the relative step
+ * number and the DOM placeholder.
  */
 export function useSteps(numSteps = 1, { id: userProvidedId, stepIndex } = {}) {
   const [stepId] = React.useState(userProvidedId || ulid);
