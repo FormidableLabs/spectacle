@@ -7,7 +7,11 @@ import clamp from '../utils/clamp';
 
 const PLACEHOLDER_CLASS_NAME = 'step-placeholder';
 
-// TODO: Document this function really well- it's a public-facing API
+/*
+ * Hook to determine whether or not a step is active or not. Note that
+ * useCollectSteps() must be called prior to calling this method as useSteps()
+ * requires activationThresholds to be available.
+*/
 export function useSteps(numSteps = 1, { id: userProvidedId, stepIndex } = {}) {
   const [stepId] = React.useState(userProvidedId || ulid);
 
