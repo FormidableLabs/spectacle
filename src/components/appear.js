@@ -11,8 +11,8 @@ export default function Appear({
   children: childrenOrRenderFunction,
   tagName = 'div',
   stepIndex,
-  visibleStyle = { opacity: '1' },
-  invisibleStyle = { opacity: '0' }
+  activeStyle = { opacity: '1' },
+  inactiveStyle = { opacity: '0' }
 }) {
   const { immediate } = React.useContext(SlideContext);
 
@@ -28,7 +28,7 @@ export default function Appear({
   }
 
   const springStyle = useSpring({
-    to: isActive ? visibleStyle : invisibleStyle,
+    to: isActive ? activeStyle : inactiveStyle,
     immediate
   });
 
@@ -49,6 +49,6 @@ Appear.propTypes = {
   tagName: PropTypes.string,
   stepIndex: PropTypes.number,
   numSteps: PropTypes.number,
-  visibleStyle: PropTypes.object,
-  invisibleStyle: PropTypes.object
+  activeStyle: PropTypes.object,
+  inactiveStyle: PropTypes.object
 };

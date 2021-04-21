@@ -89,8 +89,9 @@ Appear is a component that makes a component animate on the slide on key press. 
 | Props              | Type                                                        | Example                                        |
 | ------------------ | ----------------------------------------------------------- | ---------------------------------------------- |
 | `children`         | PropTypes.string                                            | `<Text>Hi</Text>`                              |
-| `elementNum`       | PropTypes.number                                            | `1`                                            |
-| `transitionEffect` | PropTypes.shape({<br/>to: object;<br />from: object;<br/>}) | `{ to: { opacity: 1 }, from: { opacity: 0 } }` |
+| `stepIndex`        | PropTypes.number                                            | `1`                                            |
+| `activeStyle`      | PropTypes.object                                            | `{ opacity: '1' }`                             |
+| `inactiveStyle`    | PropTypes.object                                            | `{ opacity: '0' }`                             |
 
 ## Code Pane
 
