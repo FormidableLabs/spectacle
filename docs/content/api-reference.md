@@ -86,12 +86,12 @@ These tags are for adding tables with content to your slides.
 
 Appear is a component that makes a component animate on the slide on key press. The default animation is opacity. It is currently required to specify the order of elements to be animated starting with `1`. Sequential `<Appear />` tags do not have to be in order.
 
-| Props              | Type                                                        | Example                                        |
-| ------------------ | ----------------------------------------------------------- | ---------------------------------------------- |
-| `children`         | PropTypes.string                                            | `<Text>Hi</Text>`                              |
-| `stepIndex`        | PropTypes.number                                            | `1`                                            |
-| `activeStyle`      | PropTypes.object                                            | `{ opacity: '1' }`                             |
-| `inactiveStyle`    | PropTypes.object                                            | `{ opacity: '0' }`                             |
+| Props           | Type             | Example            |
+| --------------- | ---------------- | ------------------ |
+| `children`      | PropTypes.string | `<Text>Hi</Text>`  |
+| `stepIndex`     | PropTypes.number | `1`                |
+| `activeStyle`   | PropTypes.object | `{ opacity: '1' }` |
+| `inactiveStyle` | PropTypes.object | `{ opacity: '0' }` |
 
 ## Code Pane
 
