@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { animated } from 'react-spring';
-import { useAnimatedSteps } from '../hooks/use-steps';
+import { animated, useSpring } from 'react-spring';
+import { useSteps } from '../hooks/use-steps';
+import { SlideContext } from './slide/slide';
 
 export default function Appear({
   id,
@@ -10,21 +11,12 @@ export default function Appear({
   children: childrenOrRenderFunction,
   tagName = 'div',
   stepIndex,
-  numSteps = 1
+  activeStyle = { opacity: '1' },
+  inactiveStyle = { opacity: '0' }
 }) {
-  if (numSteps !== 1 && typeof childrenOrRenderFunction !== 'function') {
-    console.warn(
-      'TransitionElement seems to have multiple steps for no reason?'
-    );
-  }
+  const { immediate } = React.useContext(SlideContext);
 
-  const { transitions, isActive, step, placeholder } = useAnimatedSteps(
-    numSteps,
-    {
-      id,
-      stepIndex
-    }
-  );
+  const { isActive, placeholder } = useSteps(1, { id, stepIndex });
 
   const AnimatedEl = animated[tagName];
 
@@ -35,17 +27,17 @@ export default function Appear({
     children = childrenOrRenderFunction;
   }
 
+  const springStyle = useSpring({
+    to: isActive ? activeStyle : inactiveStyle,
+    immediate
+  });
+
   return (
     <>
       {placeholder}
-      {transitions.map(
-        ({ item, props, key }) =>
-          item && (
-            <AnimatedEl key={key} style={props} className={className}>
-              {children}
-            </AnimatedEl>
-          )
-      )}
+      <AnimatedEl style={springStyle} className={className}>
+        {children}
+      </AnimatedEl>
     </>
   );
 }
@@ -56,5 +48,7 @@ Appear.propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   tagName: PropTypes.string,
   stepIndex: PropTypes.number,
-  numSteps: PropTypes.number
+  numSteps: PropTypes.number,
+  activeStyle: PropTypes.object,
+  inactiveStyle: PropTypes.object
 };
