@@ -195,7 +195,7 @@ const Presentation = () => (
     <MarkdownSlide componentProps={{ color: 'yellow' }}>
       {`
         # This is a Markdown Slide
-        
+
         - You can pass props down to all elements on the slide.
         - Just use the \`componentProps\` prop.
         `}
@@ -203,14 +203,40 @@ const Presentation = () => (
     <MarkdownSlide animateListItems>
       {`
        # This is also a Markdown Slide
-       
+
        It uses the \`animateListItems\` prop.
-       
+
        - Its list items...
        - they will appear in...
        - one at a time.
       `}
     </MarkdownSlide>
+    <Slide>
+      <Grid
+        flex={1}
+        gridTemplateColumns="50% 50%"
+        gridTemplateRows="50% 50%"
+        height="100%"
+      >
+        <FlexBox alignItems="center" justifyContent="center">
+          <Heading>This is a 4x4 Grid</Heading>
+        </FlexBox>
+        <FlexBox alignItems="center" justifyContent="center">
+          <Text textAlign="center">
+            With all the content aligned and justified center.
+          </Text>
+        </FlexBox>
+        <FlexBox alignItems="center" justifyContent="center">
+          <Text textAlign="center">
+            It uses Spectacle <CodeSpan>{'<Grid />'}</CodeSpan> and{' '}
+            <CodeSpan>{'<FlexBox />'}</CodeSpan> components.
+          </Text>
+        </FlexBox>
+        <FlexBox alignItems="center" justifyContent="center">
+          <Box width={200} height={200} backgroundColor="secondary" />
+        </FlexBox>
+      </Grid>
+    </Slide>
     <MarkdownSlideSet>
       {`
         # This is the first slide of a Markdown Slide Set
