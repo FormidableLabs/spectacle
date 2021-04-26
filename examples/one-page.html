@@ -13,7 +13,7 @@
     <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/react-is@16.13.1/umd/react-is.production.min.js"></script>
     <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
-    <script src="https://unpkg.com/spectacle@^7.1.0/dist/spectacle.min.js"></script>
+    <script src="https://unpkg.com/spectacle@^8/dist/spectacle.min.js"></script>
     <!-- <script src="../dist/spectacle.js"></script> -->
 
     <script type="module">
@@ -200,6 +200,26 @@
             - one at a time.
             `}
           </${MarkdownSlide}>
+          <${Slide}>
+            <${Grid} flex=${1} gridTemplateColumns="50% 50%" gridTemplateRows="50% 50%" height="100%">
+              <${FlexBox} alignItems="center" justifyContent="center">
+                <${Heading}>This is a 4x4 Grid</${Heading}>
+              </${FlexBox}>
+              <${FlexBox} alignItems="center" justifyContent="center">
+                <${Text} textAlign="center">With all the content aligned and justified center.</${Text}>
+              </${FlexBox}>
+              <${FlexBox} alignItems="center" justifyContent="center">
+                <${Text} textAlign="center">It uses Spectacle <${CodeSpan}>
+                    ${"<Grid />"}
+                  </${CodeSpan}> and <${CodeSpan}>
+                    ${"<FlexBox />"}
+                  </${CodeSpan}> components.</${Text}>
+              </${FlexBox}>
+              <${FlexBox} alignItems="center" justifyContent="center">
+                <${Box} width=${200} height=${200} backgroundColor="secondary" />
+              </${FlexBox}>
+            </${Grid}>
+          </${Slide}>
           <${MarkdownSlideSet}>
             ${`
             # This is the first slide of a Markdown Slide Set
