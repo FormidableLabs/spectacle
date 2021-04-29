@@ -2,7 +2,8 @@ import Deck from './components/deck';
 import Slide, { SlideContext } from './components/slide/slide';
 import Appear from './components/appear';
 import CodePane from './components/code-pane';
-import { OrderedList,
+import {
+  OrderedList,
   Quote,
   Heading,
   ListItem,
