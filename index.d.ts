@@ -12,10 +12,10 @@ declare module 'spectacle' {
     currentSlide: number;
   }) => React.ReactNode;
 
-  export type useMousetrap = (
+  export function useMousetrap(
     keybinds: Record<string, (e?: ExtendedKeyboardEvent) => void>,
     deps: any[]
-  ) => void;
+  ): void;
 
   export const Deck: React.FC<{
     children: React.ReactNode;
