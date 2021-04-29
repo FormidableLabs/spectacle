@@ -5,6 +5,7 @@
 declare module 'spectacle' {
   import * as React from 'react';
   import * as StyledSystem from 'styled-system';
+  import { ExtendedKeyboardEvent } from 'mousetrap';
 
   export type TemplateFn = (options: {
     numberOfSlides: number;
@@ -12,9 +13,7 @@ declare module 'spectacle' {
   }) => React.ReactNode;
 
   export type useMousetrap = (
-    keybinds: {
-      string: void;
-    }[],
+    keybinds: Record<string, (e?: ExtendedKeyboardEvent) => void>,
     deps: any[]
   ) => void;
 
