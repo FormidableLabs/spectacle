@@ -7,7 +7,12 @@ import clamp from '../utils/clamp';
 
 const PLACEHOLDER_CLASS_NAME = 'step-placeholder';
 
-// TODO: Document this function really well- it's a public-facing API
+/*
+ * This hook is used to create components which can 'participate' in a presentation.
+ * When a component uses this hook, it passes numSteps, which "reserves" that many steps within the slide progression.
+ * Returns the stepId, whether or not the step is active, the relative step
+ * number and the DOM placeholder.
+ */
 export function useSteps(numSteps = 1, { id: userProvidedId, stepIndex } = {}) {
   const [stepId] = React.useState(userProvidedId || ulid);
 
