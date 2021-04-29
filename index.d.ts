@@ -11,6 +11,13 @@ declare module 'spectacle' {
     currentSlide: number;
   }) => React.ReactNode;
 
+  export type useMousetrap = (
+    keybinds: {
+      string: void;
+    }[],
+    deps: any[]
+  ) => void;
+
   export const Deck: React.FC<{
     children: React.ReactNode;
     autoPlay?: boolean;
