@@ -40,6 +40,38 @@ describe('<MarkdownSlide />', () => {
     expect(wrapper.find('ul')).toHaveLength(1);
     expect(wrapper.find(Appear)).toHaveLength(3);
   });
+
+  it('should work with raw HTML', () => {
+    const wrapper = mountInsideDeck(
+      <MarkdownSlide>{`
+        - One <div>one-div</div>
+        - Two <i>two-i-1</i><i>two-i-2</i>
+        - Three
+      `}</MarkdownSlide>
+    );
+
+    // Assert raw HTML elements are actually present.
+    expect(
+      wrapper
+        .find('li')
+        .at(0)
+        .children()
+        .find('div')
+    ).toHaveLength(1);
+    expect(
+      wrapper
+        .find('li')
+        .at(1)
+        .children()
+        .find('i')
+    ).toHaveLength(2);
+    expect(
+      wrapper
+        .find('li')
+        .at(2)
+        .children()
+    ).toHaveLength(1);
+  });
 });
 
 describe('<MarkdownSlideSet />', () => {
@@ -49,9 +81,9 @@ describe('<MarkdownSlideSet />', () => {
         - One
         - Two
         - Three
-        
+
         ---
-        
+
         - Four
         - Five
         - Size
@@ -69,9 +101,9 @@ describe('<MarkdownSlideSet />', () => {
         - One
         - Two
         - Three
-        
+
         ---
-        
+
         - Four
         - Five
         - Size
@@ -88,7 +120,7 @@ describe('<MarkdownSlideSet />', () => {
         <Heading>Im not styled...</Heading>
         <Markdown componentProps={{ color: 'purple' }}>{`
         # What's up world, I'm styled.
-        
+
         - List item
         - And another one
       `}</Markdown>
@@ -136,9 +168,9 @@ describe('<MarkdownSlideSet />', () => {
     const wrapper = mountInsideDeck(
       <MarkdownSlideSet componentProps={{ color: 'purple' }}>{`
         # What's up world, I'm styled.
-        
+
         ---
-        
+
         # Another slide
       `}</MarkdownSlideSet>
     );

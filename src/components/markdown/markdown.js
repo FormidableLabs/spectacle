@@ -11,6 +11,7 @@ import unified from 'unified';
 import remark from 'remark-parse';
 import mdastAssert from 'mdast-util-assert';
 import remark2rehype from 'remark-rehype';
+import remarkRaw from 'rehype-raw';
 import rehype2react from 'rehype-react';
 import { isValidElementType } from 'react-is';
 import { root as mdRoot } from 'mdast-builder';
@@ -96,7 +97,8 @@ export const Markdown = ({
 
     // Create the compiler for the _user-visible_ markdown (not presenter notes)
     const compiler = unified()
-      .use(remark2rehype)
+      .use(remark2rehype, { allowDangerousHtml: true })
+      .use(remarkRaw)
       .use(rehype2react, {
         createElement: React.createElement,
         components: componentMapWithPassedThroughProps
@@ -121,7 +123,8 @@ export const Markdown = ({
     // chunk in a <Note> component. (Rather than React.Fragment, which is the
     // default behavior.)
     const notesCompiler = unified()
-      .use(remark2rehype)
+      .use(remark2rehype, { allowDangerousHtml: true })
+      .use(remarkRaw)
       .use(rehype2react, {
         createElement: React.createElement,
         Fragment: Notes

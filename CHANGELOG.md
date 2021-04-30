@@ -1,8 +1,12 @@
 # Changelog
 
+## UNRELEASED
+
+- Allow raw HTML in Markdown content.
+
 ## 8.0.1
 
-- Fixed nagivation by swiping on touch-devices
+- Fixed navigation by swiping on touch-devices
 
 ## 8.0.0
 

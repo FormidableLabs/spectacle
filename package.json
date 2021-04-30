@@ -59,6 +59,7 @@
     "react-spring": "^8.0.25",
     "react-swipeable": "^6.1.0",
     "react-syntax-highlighter": "^12.2.1",
+    "rehype-raw": "^5.1.0",
     "rehype-react": "^6.0.0",
     "remark-parse": "^8.0.3",
     "remark-rehype": "^7.0.0",
