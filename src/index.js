@@ -35,7 +35,7 @@ import mdxComponentMap from './utils/mdx-component-mapper';
 import { removeNotes, isolateNotes } from './utils/notes';
 import indentNormalizer from './utils/indent-normalizer';
 import { DeckContext } from './components/deck/deck';
-import { useMousetrap } from './hooks/use-mousetrap';
+import useMousetrap from './hooks/use-mousetrap';
 import defaultTheme from './theme/default-theme';
 
 export {
