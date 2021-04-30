@@ -1,8 +1,10 @@
 # Changelog
 
-## UNRELEASED
+## 8.1.0
 
 - Allow raw HTML in Markdown content.
+- Added missing export and type for `useMousetrap`
+- Removed unused `useAnimatedSteps` hook.
 
 ## 8.0.1
 
