@@ -1,4 +1,8 @@
-export const opacity = {
+const STAGE_RIGHT = 'translateX(-100%)';
+const CENTER_STAGE = 'translateX(0%)';
+const STAGE_LEFT = 'translateX(100%)';
+
+export const fadeTransition = {
   from: {
     opacity: 0
   },
@@ -10,14 +14,16 @@ export const opacity = {
   }
 };
 
-export const slide = {
+export const slideTransition = {
   from: {
-    transform: 'translate(100%, 0%)'
+    transform: STAGE_LEFT
   },
   enter: {
-    transform: 'translate(0%, 0%)'
+    transform: CENTER_STAGE
   },
   leave: {
-    transform: 'translate(-100%, 0%)'
+    transform: STAGE_RIGHT
   }
 };
+
+export const defaultTransition = slideTransition;

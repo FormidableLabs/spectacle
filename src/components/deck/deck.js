@@ -24,6 +24,7 @@ import {
 } from './deck-styles';
 import { useAutoPlay } from '../../utils/use-auto-play';
 import defaultTheme from '../../theme/default-theme';
+import { defaultTransition } from '../transitions';
 
 export const DeckContext = createContext();
 const noop = () => {};
@@ -100,7 +101,8 @@ const Deck = forwardRef(
       suppressBackdropFallback = false,
       autoPlay = false,
       autoPlayLoop = false,
-      autoPlayInterval = 1000
+      autoPlayInterval = 1000,
+      transition = defaultTransition
     },
     ref
   ) => {
@@ -376,6 +378,7 @@ const Deck = forwardRef(
               regressSlide,
               commitTransition,
               cancelTransition,
+              transition,
               template
             }}
           >
@@ -416,7 +419,12 @@ Deck.propTypes = {
   suppressBackdropFallback: propTypes.bool,
   autoPlay: propTypes.bool,
   autoPlayLoop: propTypes.bool,
-  autoPlayInterval: propTypes.number
+  autoPlayInterval: propTypes.number,
+  transition: propTypes.shape({
+    from: propTypes.object,
+    enter: propTypes.object,
+    leave: propTypes.object
+  })
 };
 
 export default Deck;
