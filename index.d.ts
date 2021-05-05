@@ -7,6 +7,12 @@ declare module 'spectacle' {
   import * as StyledSystem from 'styled-system';
   import { ExtendedKeyboardEvent } from 'mousetrap';
 
+  export type SlideTransition = {
+    from: Record<string, string | number>;
+    leave: Record<string, string | number>;
+    enter: Record<string, string | number>;
+  };
+
   export type TemplateFn = (options: {
     numberOfSlides: number;
     currentSlide: number;
@@ -25,6 +31,7 @@ declare module 'spectacle' {
     theme?: Record<string, any>;
     template?: TemplateFn | React.ReactNode;
     printScale?: number;
+    transition?: SlideTransition;
   }>;
 
   export const Slide: React.FC<{
@@ -38,6 +45,7 @@ declare module 'spectacle' {
     padding?: string | number;
     textColor?: string;
     template?: TemplateFn | React.ReactNode;
+    transition?: SlideTransition;
   }>;
 
   export const Appear: React.FC<{
@@ -189,7 +197,10 @@ declare module 'spectacle' {
           slideNumber: number;
           numberOfSlides: number;
         }) => React.ReactNode);
+    transition: SlideTransition;
   }>;
 
   export const indentNormalizer: (input: string) => string;
+  export const fadeTransition: SlideTransition;
+  export const slideTransition: SlideTransition;
 }

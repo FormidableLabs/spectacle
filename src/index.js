@@ -37,6 +37,7 @@ import indentNormalizer from './utils/indent-normalizer';
 import { DeckContext } from './components/deck/deck';
 import useMousetrap from './hooks/use-mousetrap';
 import defaultTheme from './theme/default-theme';
+import { fadeTransition, slideTransition } from './components/transitions';
 
 export {
   Appear,
@@ -76,5 +77,7 @@ export {
   isolateNotes,
   indentNormalizer,
   defaultTheme,
-  useMousetrap
+  useMousetrap,
+  fadeTransition,
+  slideTransition
 };

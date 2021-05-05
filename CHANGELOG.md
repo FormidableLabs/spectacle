@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+- Added support for custom slide and deck transitions
+- Added Fade and Slide transition objects as built-in transitions
+- Updated JS example with spinning custom slide transition
+
 ## 8.1.0
 
 - Allow raw HTML in Markdown content.

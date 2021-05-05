@@ -16,16 +16,16 @@ An example transition object looks like:
 ```javascript
 const transition = {
   from: {
-    position: 'fixed',
-    transform: 'translate(100%, 0%)'
+    opacity: 0,
+    transform: 'rotate(45deg)'
   },
   enter: {
-    position: 'fixed',
-    transform: 'translate(0, 0%)'
+    opacity: 1,
+    transform: 'rotate(0)'
   },
   leave: {
-    position: 'fixed',
-    transform: 'translate(-100%, 0%)'
+    opacity: 0,
+    transform: 'rotate(315deg)'
   }
 };
 ```

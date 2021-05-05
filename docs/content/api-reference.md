@@ -16,33 +16,35 @@ These are the bare bones of a Spectacle presentation, the two most essential tag
 Wraps the entire presentation and carries most of the overarching slide logic, like `theme` and `template` context.
 A `template` contains Layout tags (referred to as a template render function) and is supplied to the `Deck` component to apply to all subsequent `Slide`s. The last three props are for print and export mode only, they have no effect on the audience or presenter views. The `pageSize` and `pageOrientation` props correspond to the size and orientation values for the [CSS media print size selector](https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size). The `pageSize` is automatically set based on the deck theme slide size for a best-fit using export to PDF mode. If you need to print your deck, supply your paper size using the `pageSize` prop. The `printScale` is the ratio for the selected page size, orientation, and slide size. `0.958` is the best ratio for to ensure the PDF export fits the slide theme size. Currently, only Chrome and Chromium-based browsers fully implement the custom page size CSS media print specification. Other browsers such as Firefox and Safari can still export to PDF but the page size will not be a best fit.
 
-| Props              | Type                                     | Default            |
-| ------------------ | ---------------------------------------- | ------------------ |
-| `theme`            | [Styled-system theme object](./themes)   |                    |
-| `template`         | [Template render function](#layout-tags) |                    |
-| `pageSize`         | PropTypes.string                         | `"13.66in 7.68in"` |
-| `pageOrientation`  | `"landscape"` or `"portrait"`            | `"landscape"`      |
-| `printScale`       | PropTypes.number                         | `0.959`            |
-| `autoPlay`         | PropTypes.bool                           | `false`            |
-| `autoPlayLoop`     | PropTypes.bool                           | `false`            |
-| `autoPlayInterval` | PropTypes.number (milliseconds)          | `1000`             |
+| Props              | Type                                        | Default            |
+| ------------------ | ------------------------------------------- | ------------------ |
+| `theme`            | [Styled-system theme object](./themes)      |                    |
+| `template`         | [Template render function](#layout-tags)    |                    |
+| `pageSize`         | PropTypes.string                            | `"13.66in 7.68in"` |
+| `pageOrientation`  | `"landscape"` or `"portrait"`               | `"landscape"`      |
+| `printScale`       | PropTypes.number                            | `0.959`            |
+| `autoPlay`         | PropTypes.bool                              | `false`            |
+| `autoPlayLoop`     | PropTypes.bool                              | `false`            |
+| `autoPlayInterval` | PropTypes.number (milliseconds)             | `1000`             |
+| `transition`       | [**Transition**](./props#transition-object) | `slideTransition`  |
 
 ### Slide
 
 Wraps a single slide within your presentation; identifies what is contained to a single view. If a transition effect is applied to this slide, it will override the Deck-specified transition.
 
-| Props                | Type             |
-| -------------------- | ---------------- |
-| `backgroundColor`    | PropTypes.string |
-| `backgroundImage`    | PropTypes.string |
-| `backgroundOpacity`  | PropTypes.number |
-| `backgroundPosition` | PropTypes.string |
-| `backgroundRepeat`   | PropTypes.string |
-| `backgroundSize`     | PropTypes.string |
-| `scaleRatio`         | PropTypes.number |
-| `slideNum`           | PropTypes.number |
-| `template`           | PropTypes.func   |
-| `textColor`          | PropTypes.string |
+| Props                | Type                                        |
+| -------------------- | ------------------------------------------- |
+| `backgroundColor`    | PropTypes.string                            |
+| `backgroundImage`    | PropTypes.string                            |
+| `backgroundOpacity`  | PropTypes.number                            |
+| `backgroundPosition` | PropTypes.string                            |
+| `backgroundRepeat`   | PropTypes.string                            |
+| `backgroundSize`     | PropTypes.string                            |
+| `scaleRatio`         | PropTypes.number                            |
+| `slideNum`           | PropTypes.number                            |
+| `template`           | PropTypes.func                              |
+| `textColor`          | PropTypes.string                            |
+| `transition`         | [**Transition**](./props#transition-object) |
 
 ## Typography Tags
 

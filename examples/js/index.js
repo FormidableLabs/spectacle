@@ -99,6 +99,20 @@ const Presentation = () => (
       </FlexBox>
     </Slide>
     <Slide
+      transition={{
+        from: {
+          transform: 'scale(0.5) rotate(45deg)',
+          opacity: 0
+        },
+        enter: {
+          transform: 'scale(1) rotate(0)',
+          opacity: 1
+        },
+        leave: {
+          transform: 'scale(0.2) rotate(315deg)',
+          opacity: 0
+        }
+      }}
       backgroundColor="tertiary"
       backgroundImage="url(https://github.com/FormidableLabs/dogs/blob/main/src/beau.jpg?raw=true)"
       backgroundOpacity={0.5}
