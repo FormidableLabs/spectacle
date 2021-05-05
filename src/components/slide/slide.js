@@ -16,7 +16,6 @@ import { useSlide } from '../../hooks/use-slides';
 import { useCollectSteps } from '../../hooks/use-steps';
 import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { useSwipeable } from 'react-swipeable';
-import { defaultTransition } from '../transitions';
 
 const noop = () => {};
 
@@ -111,7 +110,6 @@ export default function Slide({
     slidePortalNode,
     frameOverrideStyle = {},
     wrapperOverrideStyle = {},
-    initialized: deckInitialized,
     passedSlideIds,
     upcomingSlideIds,
     activeView,
