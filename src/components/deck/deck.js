@@ -25,7 +25,6 @@ import {
 import { useAutoPlay } from '../../utils/use-auto-play';
 import defaultTheme from '../../theme/default-theme';
 import { defaultTransition } from '../transitions';
-import PropTypes from 'prop-types';
 
 export const DeckContext = createContext();
 const noop = () => {};
@@ -421,10 +420,10 @@ Deck.propTypes = {
   autoPlay: propTypes.bool,
   autoPlayLoop: propTypes.bool,
   autoPlayInterval: propTypes.number,
-  transition: PropTypes.shape({
-    from: PropTypes.object,
-    enter: PropTypes.object,
-    leave: PropTypes.object
+  transition: propTypes.shape({
+    from: propTypes.object,
+    enter: propTypes.object,
+    leave: propTypes.object
   })
 };
 
