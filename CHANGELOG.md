@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 8.2.0
 
 - Added support for custom slide and deck transitions
 - Added Fade and Slide transition objects as built-in transitions
