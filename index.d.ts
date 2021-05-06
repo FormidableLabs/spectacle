@@ -58,7 +58,7 @@ declare module 'spectacle' {
     language: string;
     theme?: Record<string, unknown>;
     stepIndex?: number;
-    highlightRanges: number | number[];
+    highlightRanges?: number[] | number[][];
   }>;
 
   type TypographyProps = {
@@ -114,13 +114,13 @@ declare module 'spectacle' {
   }>;
 
   export const Progress: React.FC<{
-    color: string;
-    size: number;
+    color?: string;
+    size?: number;
   }>;
 
   export const FullScreen: React.FC<{
-    color: string;
-    size: number;
+    color?: string;
+    size?: number;
   }>;
 
   type MdComponentProps = { [key: string]: any };
