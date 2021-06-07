@@ -70,10 +70,6 @@ const Deck = forwardRef(
       printScale = DEFAULT_PRINT_SCALE,
       template,
       theme: {
-        size: { width: nativeSlideWidth, height: nativeSlideHeight } = {
-          width: defaultTheme.size.width,
-          height: defaultTheme.size.height
-        },
         Backdrop: UserProvidedBackdropComponent,
         backdropStyle: themeProvidedBackdropStyle = {
           position: 'fixed',
@@ -107,6 +103,10 @@ const Deck = forwardRef(
     ref
   ) => {
     const [deckId] = useState(userProvidedId || ulid);
+    const {
+      width: nativeSlideWidth = defaultTheme.size.width,
+      height: nativeSlideHeight = defaultTheme.size.height
+    } = restTheme.size || {};
 
     const {
       initialized,
