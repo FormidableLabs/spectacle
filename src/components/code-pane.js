@@ -50,123 +50,130 @@ const getStyleForLineNumber = (lineNumber, activeRange) => {
   return { opacity: from <= lineNumber && lineNumber <= to ? 1 : 0.5 };
 };
 
-export default function CodePane({
-  highlightRanges = [],
-  language,
-  children: rawCodeString,
-  stepIndex,
-  theme: syntaxTheme = dark
-}) {
-  const numberOfSteps = React.useMemo(() => {
-    if (
-      highlightRanges.length === 0 ||
-      // Prevents e.g. [null, null] to be used to count the number of steps
-      checkForInvalidValues(highlightRanges)
-    ) {
-      return 0;
-    }
-
-    // Checks if the value passed to highlightRanges is a single array containing only two numbers e.g. [3, 5]
-    const isSingleRange =
-      highlightRanges.length <= 2 &&
-      // Prevents e.g. [3, [5]] from being considered a single array range
-      checkForNumberValues(highlightRanges);
-
-    if (isSingleRange) {
-      return 1;
-    }
-
-    return highlightRanges.length;
-  }, [highlightRanges]);
-
-  const theme = React.useContext(ThemeContext);
-  const { stepId, isActive, step, placeholder } = useSteps(numberOfSteps, {
-    stepIndex
-  });
-
-  const children = React.useMemo(() => {
-    return indentNormalizer(rawCodeString);
-  }, [rawCodeString]);
-
-  const scrollTarget = React.useRef();
-
-  const getLineNumberProps = React.useCallback(
-    lineNumber => {
-      if (!isActive) return;
-      const range = getRangeFormat({
-        isSingleRangeProvided: numberOfSteps === 1,
-        highlightRanges,
-        step
-      });
-      return {
-        style: getStyleForLineNumber(lineNumber, range)
-      };
+const CodePane = React.forwardRef(
+  (
+    {
+      highlightRanges = [],
+      language,
+      children: rawCodeString,
+      stepIndex,
+      theme: syntaxTheme = dark
     },
-    [isActive, highlightRanges, numberOfSteps, step]
-  );
+    ref
+  ) => {
+    const numberOfSteps = React.useMemo(() => {
+      if (
+        highlightRanges.length === 0 ||
+        // Prevents e.g. [null, null] to be used to count the number of steps
+        checkForInvalidValues(highlightRanges)
+      ) {
+        return 0;
+      }
 
-  const getLineProps = React.useCallback(
-    lineNumber => {
-      if (!isActive) return;
-      const range = getRangeFormat({
-        isSingleRangeProvided: numberOfSteps === 1,
-        highlightRanges,
-        step
-      });
-      return {
-        ref: lineNumber === range[0] ? scrollTarget : undefined,
-        style: getStyleForLineNumber(lineNumber, range)
-      };
-    },
-    [isActive, highlightRanges, numberOfSteps, step]
-  );
+      // Checks if the value passed to highlightRanges is a single array containing only two numbers e.g. [3, 5]
+      const isSingleRange =
+        highlightRanges.length <= 2 &&
+        // Prevents e.g. [3, [5]] from being considered a single array range
+        checkForNumberValues(highlightRanges);
 
-  React.useEffect(() => {
-    window.requestAnimationFrame(() => {
-      if (!scrollTarget.current) return;
-      scrollTarget.current?.scrollIntoView({
-        block: 'center',
-        behavior: 'smooth'
-      });
+      if (isSingleRange) {
+        return 1;
+      }
+
+      return highlightRanges.length;
+    }, [highlightRanges]);
+
+    const theme = React.useContext(ThemeContext);
+    const { stepId, isActive, step, placeholder } = useSteps(numberOfSteps, {
+      stepIndex
     });
-  }, [isActive, step]);
 
-  const customStyle = React.useMemo(() => {
-    /**
-     * Provide fallback values if the user intentionally overrides the
-     * default theme with no valid values.
-     */
-    const {
-      size: { width = 1366 },
-      space = [0, 0, 0],
-      fontSizes: { monospace = '20px' }
-    } = theme;
+    const children = React.useMemo(() => {
+      return indentNormalizer(rawCodeString);
+    }, [rawCodeString]);
 
-    return {
-      padding: space[0],
-      margin: 0,
-      width: width - space[2] * 2 - space[0] * 2,
-      fontSize: monospace
-    };
-  }, [theme]);
+    const scrollTarget = React.useRef();
 
-  return (
-    <>
-      {placeholder}
-      <SyntaxHighlighter
-        customStyle={customStyle}
-        language={language}
-        wrapLines
-        showLineNumbers
-        lineProps={getLineProps}
-        lineNumberProps={getLineNumberProps}
-        style={syntaxTheme}
-      >
-        {children}
-      </SyntaxHighlighter>
-    </>
-  );
-}
+    const getLineNumberProps = React.useCallback(
+      lineNumber => {
+        if (!isActive) return;
+        const range = getRangeFormat({
+          isSingleRangeProvided: numberOfSteps === 1,
+          highlightRanges,
+          step
+        });
+        return {
+          style: getStyleForLineNumber(lineNumber, range)
+        };
+      },
+      [isActive, highlightRanges, numberOfSteps, step]
+    );
+
+    const getLineProps = React.useCallback(
+      lineNumber => {
+        if (!isActive) return;
+        const range = getRangeFormat({
+          isSingleRangeProvided: numberOfSteps === 1,
+          highlightRanges,
+          step
+        });
+        return {
+          ref: lineNumber === range[0] ? scrollTarget : undefined,
+          style: getStyleForLineNumber(lineNumber, range)
+        };
+      },
+      [isActive, highlightRanges, numberOfSteps, step]
+    );
+
+    React.useEffect(() => {
+      window.requestAnimationFrame(() => {
+        if (!scrollTarget.current) return;
+        scrollTarget.current?.scrollIntoView({
+          block: 'center',
+          behavior: 'smooth'
+        });
+      });
+    }, [isActive, step]);
+
+    const customStyle = React.useMemo(() => {
+      /**
+       * Provide fallback values if the user intentionally overrides the
+       * default theme with no valid values.
+       */
+      const {
+        size: { width = 1366 },
+        space = [0, 0, 0],
+        fontSizes: { monospace = '20px' }
+      } = theme;
+
+      return {
+        padding: space[0],
+        margin: 0,
+        width: width - space[2] * 2 - space[0] * 2,
+        fontSize: monospace
+      };
+    }, [theme]);
+
+    return (
+      <>
+        {placeholder}
+        <div ref={ref}>
+          <SyntaxHighlighter
+            customStyle={customStyle}
+            language={language}
+            wrapLines
+            showLineNumbers
+            lineProps={getLineProps}
+            lineNumberProps={getLineNumberProps}
+            style={syntaxTheme}
+          >
+            {children}
+          </SyntaxHighlighter>
+        </div>
+      </>
+    );
+  }
+);
 
 CodePane.propTypes = {
   highlightRanges: propTypes.arrayOf(
@@ -180,3 +187,5 @@ CodePane.propTypes = {
   stepIndex: propTypes.number,
   theme: propTypes.object
 };
+
+export default CodePane;
