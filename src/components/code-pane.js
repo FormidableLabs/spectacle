@@ -53,6 +53,7 @@ const getStyleForLineNumber = (lineNumber, activeRange) => {
 export default function CodePane({
   highlightRanges = [],
   language,
+  showLineNumbers = true,
   children: rawCodeString,
   stepIndex,
   theme: syntaxTheme = dark
@@ -157,7 +158,7 @@ export default function CodePane({
         customStyle={customStyle}
         language={language}
         wrapLines
-        showLineNumbers
+        showLineNumbers={showLineNumbers}
         lineProps={getLineProps}
         lineNumberProps={getLineNumberProps}
         style={syntaxTheme}
@@ -173,8 +174,9 @@ CodePane.propTypes = {
     propTypes.oneOfType([
       propTypes.number.isRequired,
       propTypes.arrayOf(propTypes.number.isRequired)
-    ]).isRequired
+    ])
   ),
+  showLineNumbers: propTypes.bool,
   language: propTypes.string.isRequired,
   children: propTypes.string.isRequired,
   stepIndex: propTypes.number,
