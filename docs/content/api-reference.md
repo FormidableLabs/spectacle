@@ -123,6 +123,7 @@ _Note that each range will be considered as a step in your current slide's anima
 | `highlightRanges` | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)) | `[1, 3]` or `[[6, 8], [10, 15]]`                                                                                          | -                    |
 | `language`        | PropTypes.string                                                                              | `javascript`                                                                                                              | -                    |
 | `theme`           | PropTypes.object or                                                                           | [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | vs-dark Theme Object |
+| `showLineNumbers` | PropTypes.bool                                                                                | `true`, `false`                                                                                                           | `true`               |
 
 ```jsx
 import tomorrow from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow';

@@ -200,6 +200,14 @@ const Presentation = () => (
           </Provider>
         );
         `}</CodePane>
+      <Box height={20} />
+      <CodePane language="java" showLineNumbers={false}>{`
+        public class NoLineNumbers {
+          public static void main(String[] args) {
+            System.out.println("Hello");
+          }
+        }
+        `}</CodePane>
     </Slide>
     <div>
       <Slide>

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed `showLineNumbers` and theme sizing for `<CodePane />`
+
 ## 8.2.0
 
 - Added support for custom slide and deck transitions

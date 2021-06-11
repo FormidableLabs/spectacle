@@ -55,6 +55,7 @@ const CodePane = React.forwardRef(
     {
       highlightRanges = [],
       language,
+      showLineNumbers = true,
       children: rawCodeString,
       stepIndex,
       theme: syntaxTheme = dark
@@ -162,7 +163,7 @@ const CodePane = React.forwardRef(
             customStyle={customStyle}
             language={language}
             wrapLines
-            showLineNumbers
+            showLineNumbers={showLineNumbers}
             lineProps={getLineProps}
             lineNumberProps={getLineNumberProps}
             style={syntaxTheme}
@@ -180,8 +181,9 @@ CodePane.propTypes = {
     propTypes.oneOfType([
       propTypes.number.isRequired,
       propTypes.arrayOf(propTypes.number.isRequired)
-    ]).isRequired
+    ])
   ),
+  showLineNumbers: propTypes.bool,
   language: propTypes.string.isRequired,
   children: propTypes.string.isRequired,
   stepIndex: propTypes.number,

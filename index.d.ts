@@ -58,7 +58,8 @@ declare module 'spectacle' {
     language: string;
     theme?: Record<string, unknown>;
     stepIndex?: number;
-    highlightRanges: number | number[];
+    highlightRanges?: number | number[];
+    showLineNumbers?: boolean;
   }>;
 
   type TypographyProps = {
@@ -82,7 +83,7 @@ declare module 'spectacle' {
     React.AnchorHTMLAttributes<Record<string, unknown>>>;
 
   type BoxProps = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
   } & StyledSystem.ColorProps &
     StyledSystem.SpaceProps &
     StyledSystem.LayoutProps &
