@@ -16,13 +16,13 @@ export default function Appear({
 }) {
   const { immediate } = React.useContext(SlideContext);
 
-  const { isActive, placeholder } = useSteps(1, { id, stepIndex });
+  const { stepId, isActive, placeholder } = useSteps(1, { id, stepIndex });
 
   const AnimatedEl = animated[tagName];
 
   let children;
   if (typeof childrenOrRenderFunction === 'function') {
-    children = childrenOrRenderFunction(step, isActive);
+    children = childrenOrRenderFunction(stepId, isActive);
   } else {
     children = childrenOrRenderFunction;
   }
