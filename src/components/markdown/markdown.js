@@ -21,138 +21,143 @@ import Notes from '../notes';
 import { ListItem } from '../../index';
 import Appear from '../appear';
 
-export const Markdown = ({
-  componentMap: userProvidedComponentMap = mdxComponentMap,
-  template: { default: TemplateComponent, getPropsForAST } = {
-    default: 'div'
-  },
-  children: rawMarkdownText,
-  animateListItems = false,
-  componentProps
-}) => {
-  const {
-    theme: { markdownComponentMap: themeComponentMap } = {}
-  } = React.useContext(DeckContext);
-
-  const [templateProps, noteElements] = React.useMemo(() => {
-    // Dedent and parse markdown into MDAST
-    const markdownText = indentNormalizer(rawMarkdownText);
-    const ast = unified()
-      .use(remark)
-      .parse(markdownText);
-
-    // Extract presenter notes from the MDAST (since we want to use a different
-    // component map for them.)
-    const extractedNotes = mdRoot();
-    const transformedAst = unified()
-      .use(presenterNotesPlugin, (...notes) => {
-        extractedNotes.children.push(...notes);
-      })
-      .runSync(ast);
-
-    // Pass the AST into the provided template function, which returns an object
-    // whose keys are prop names and whose values are chunks of the parsed AST.
-    let templatePropMDASTs;
-    if (typeof getPropsForAST === 'function') {
-      templatePropMDASTs = getPropsForAST(transformedAst);
-    }
-
-    if (!templatePropMDASTs) {
-      templatePropMDASTs = { children: transformedAst };
-    }
-
-    // Construct the component map based on the current theme and any custom
-    // mappings provided directly to <Markdown />
-    const componentMap = {
-      __codeBlock: MarkdownCodePane,
-      ...(themeComponentMap || {}),
-      ...userProvidedComponentMap
-    };
-
-    // If user wants to animate list items,
-    // wrap ListItem in Appear
-    if (animateListItems) {
-      componentMap['li'] = AppearingListItem;
-    }
-
-    // Create an HOC based on the component map which will specially handle
-    // fenced code blocks. (See MarkdownPreHelper for more details.)
-    const PreComponent = componentMap['pre'];
-    const CodeBlockComponent = componentMap['__codeBlock'];
-    const CodeInlineComponent = componentMap['code'];
-    componentMap['pre'] = MarkdownPreHelper(
-      PreComponent,
-      CodeInlineComponent,
-      CodeBlockComponent
-    );
-
-    const componentMapWithPassedThroughProps = Object.entries(
-      componentMap
-    ).reduce((newMap, [key, Component]) => {
-      newMap[key] = props => (
-        <Component {...props} {...(componentProps || {})} />
-      );
-      return newMap;
-    }, {});
-
-    // Create the compiler for the _user-visible_ markdown (not presenter notes)
-    const compiler = unified()
-      .use(remark2rehype, { allowDangerousHtml: true })
-      .use(remarkRaw)
-      .use(rehype2react, {
-        createElement: React.createElement,
-        components: componentMapWithPassedThroughProps
-      });
-
-    // Compile each of the values we got back from the template function
-    const templateProps = Object.entries(templatePropMDASTs).reduce(
-      (acc, [key, mdast]) => {
-        // Make sure what we got was actually MDAST
-        mdastAssert(mdast);
-
-        // Transform the MDAST into HAST
-        const hast = compiler.runSync(mdast);
-
-        // Compile the HAST into React elements
-        acc[key] = compiler.stringify(hast);
-        return acc;
+export const Markdown = React.forwardRef(
+  (
+    {
+      componentMap: userProvidedComponentMap = mdxComponentMap,
+      template: { default: TemplateComponent, getPropsForAST } = {
+        default: 'div'
       },
-      {}
+      children: rawMarkdownText,
+      animateListItems = false,
+      componentProps
+    },
+    ref
+  ) => {
+    const {
+      theme: { markdownComponentMap: themeComponentMap } = {}
+    } = React.useContext(DeckContext);
+
+    const [templateProps, noteElements] = React.useMemo(() => {
+      // Dedent and parse markdown into MDAST
+      const markdownText = indentNormalizer(rawMarkdownText);
+      const ast = unified()
+        .use(remark)
+        .parse(markdownText);
+
+      // Extract presenter notes from the MDAST (since we want to use a different
+      // component map for them.)
+      const extractedNotes = mdRoot();
+      const transformedAst = unified()
+        .use(presenterNotesPlugin, (...notes) => {
+          extractedNotes.children.push(...notes);
+        })
+        .runSync(ast);
+
+      // Pass the AST into the provided template function, which returns an object
+      // whose keys are prop names and whose values are chunks of the parsed AST.
+      let templatePropMDASTs;
+      if (typeof getPropsForAST === 'function') {
+        templatePropMDASTs = getPropsForAST(transformedAst);
+      }
+
+      if (!templatePropMDASTs) {
+        templatePropMDASTs = { children: transformedAst };
+      }
+
+      // Construct the component map based on the current theme and any custom
+      // mappings provided directly to <Markdown />
+      const componentMap = {
+        __codeBlock: MarkdownCodePane,
+        ...(themeComponentMap || {}),
+        ...userProvidedComponentMap
+      };
+
+      // If user wants to animate list items,
+      // wrap ListItem in Appear
+      if (animateListItems) {
+        componentMap['li'] = AppearingListItem;
+      }
+
+      // Create an HOC based on the component map which will specially handle
+      // fenced code blocks. (See MarkdownPreHelper for more details.)
+      const PreComponent = componentMap['pre'];
+      const CodeBlockComponent = componentMap['__codeBlock'];
+      const CodeInlineComponent = componentMap['code'];
+      componentMap['pre'] = MarkdownPreHelper(
+        PreComponent,
+        CodeInlineComponent,
+        CodeBlockComponent
+      );
+
+      const componentMapWithPassedThroughProps = Object.entries(
+        componentMap
+      ).reduce((newMap, [key, Component]) => {
+        newMap[key] = props => (
+          <Component {...props} {...(componentProps || {})} />
+        );
+        return newMap;
+      }, {});
+
+      // Create the compiler for the _user-visible_ markdown (not presenter notes)
+      const compiler = unified()
+        .use(remark2rehype, { allowDangerousHtml: true })
+        .use(remarkRaw)
+        .use(rehype2react, {
+          createElement: React.createElement,
+          components: componentMapWithPassedThroughProps
+        });
+
+      // Compile each of the values we got back from the template function
+      const templateProps = Object.entries(templatePropMDASTs).reduce(
+        (acc, [key, mdast]) => {
+          // Make sure what we got was actually MDAST
+          mdastAssert(mdast);
+
+          // Transform the MDAST into HAST
+          const hast = compiler.runSync(mdast);
+
+          // Compile the HAST into React elements
+          acc[key] = compiler.stringify(hast);
+          return acc;
+        },
+        {}
+      );
+      // Create the compiler for presenter notes, which wraps the entire compiled
+      // chunk in a <Note> component. (Rather than React.Fragment, which is the
+      // default behavior.)
+      const notesCompiler = unified()
+        .use(remark2rehype, { allowDangerousHtml: true })
+        .use(remarkRaw)
+        .use(rehype2react, {
+          createElement: React.createElement,
+          Fragment: Notes
+        });
+
+      // Transform and compile the notes AST.
+      const transformedNotesAst = notesCompiler.runSync(extractedNotes);
+      const noteElements = notesCompiler.stringify(transformedNotesAst);
+
+      return [templateProps, noteElements];
+    }, [
+      rawMarkdownText,
+      getPropsForAST,
+      themeComponentMap,
+      userProvidedComponentMap,
+      animateListItems,
+      componentProps
+    ]);
+
+    const { children, ...restProps } = templateProps;
+
+    return (
+      <TemplateComponent ref={ref} {...restProps}>
+        {children}
+        {noteElements}
+      </TemplateComponent>
     );
-    // Create the compiler for presenter notes, which wraps the entire compiled
-    // chunk in a <Note> component. (Rather than React.Fragment, which is the
-    // default behavior.)
-    const notesCompiler = unified()
-      .use(remark2rehype, { allowDangerousHtml: true })
-      .use(remarkRaw)
-      .use(rehype2react, {
-        createElement: React.createElement,
-        Fragment: Notes
-      });
-
-    // Transform and compile the notes AST.
-    const transformedNotesAst = notesCompiler.runSync(extractedNotes);
-    const noteElements = notesCompiler.stringify(transformedNotesAst);
-
-    return [templateProps, noteElements];
-  }, [
-    rawMarkdownText,
-    getPropsForAST,
-    themeComponentMap,
-    userProvidedComponentMap,
-    animateListItems,
-    componentProps
-  ]);
-
-  const { children, ...restProps } = templateProps;
-
-  return (
-    <TemplateComponent {...restProps}>
-      {children}
-      {noteElements}
-    </TemplateComponent>
-  );
-};
+  }
+);
 
 const AppearingListItem = props => (
   <Appear>

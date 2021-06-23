@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { useToggleFullScreen } from '../hooks/use-full-screen';
 
-const FullScreen = props => {
+const FullScreen = React.forwardRef((props, ref) => {
   const Container = styled('div')`
     @media print {
       display: none;
@@ -14,6 +14,7 @@ const FullScreen = props => {
   const toggleFullScreen = useToggleFullScreen();
   return (
     <Container
+      ref={ref}
       className="spectacle-fullscreen-button"
       onClick={toggleFullScreen}
       style={{ pointerEvents: 'all' }}
@@ -30,7 +31,9 @@ const FullScreen = props => {
       </svg>
     </Container>
   );
-};
+});
+
+FullScreen.displayName = 'Fullscreen';
 
 FullScreen.propTypes = {
   color: propTypes.string,

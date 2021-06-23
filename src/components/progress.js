@@ -21,10 +21,10 @@ const Container = styled('div')`
   }
 `;
 
-const Progress = props => {
+const Progress = React.forwardRef((props, ref) => {
   const { slideCount, skipTo, activeView } = React.useContext(DeckContext);
   return (
-    <Container className="spectacle-progress-indicator">
+    <Container ref={ref} className="spectacle-progress-indicator">
       {Array(slideCount)
         .fill(0)
         .map((_, idx) => (
@@ -44,7 +44,9 @@ const Progress = props => {
         ))}
     </Container>
   );
-};
+});
+
+Progress.displayName = 'Progress';
 
 Progress.propTypes = {
   color: propTypes.string,
