@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 8.3.0
 
+- Added ref-forwarding for `CodePane`, `FullScreen`, `Markdown`, and `Progress`.
 - Fixed `showLineNumbers` and theme sizing for `<CodePane />`
 
 ## 8.2.0
