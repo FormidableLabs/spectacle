@@ -20,7 +20,7 @@ Have a question about Spectacle? Submit an issue in this repository using the
 
 ## Documentation
 
-Spectacle's documentation lives on our [docs site](https://www.formidable.com/open-source/spectacle).
+Spectacle's documentation lives on our [docs site](https://www.formidable.com/open-source/spectacle/docs/basic-concepts).
 Notice something inaccurate or confusing? Feel free to [open an issue](https://github.com/FormidableLabs/spectacle/issues)
 or [make a pull request](https://github.com/FormidableLabs/spectacle/pulls) to help improve the documentation for everyone!
 The source for our docs site lives in this repo in the [`docs`](https://github.com/FormidableLabs/spectacle/blob/main/docs/README.md) folder.
