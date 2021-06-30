@@ -11,6 +11,7 @@ function SteppedComponent({
   children: childrenOrRenderFunction,
   tagName = 'div',
   priority,
+  stepIndex,
   numSteps = 1,
   alwaysAppearActive = false,
   activeStyle = { opacity: '1' },
@@ -18,7 +19,11 @@ function SteppedComponent({
 }) {
   const { immediate } = React.useContext(SlideContext);
 
-  const { isActive, step, placeholder } = useSteps(numSteps, { id, priority });
+  const { isActive, step, placeholder } = useSteps(numSteps, {
+    id,
+    priority,
+    stepIndex
+  });
 
   const AnimatedEl = animated[tagName];
 
@@ -53,6 +58,7 @@ SteppedComponent.propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   tagName: PropTypes.string,
   priority: PropTypes.number,
+  stepIndex: PropTypes.number,
   numSteps: PropTypes.number,
   alwaysAppearActive: PropTypes.bool,
   activeStyle: PropTypes.object,
@@ -70,6 +76,7 @@ export function Appear({ children, ...restProps }) {
 Appear.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   priority: PropTypes.number,
+  stepIndex: PropTypes.number,
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   className: PropTypes.string,
   tagName: PropTypes.string,
@@ -86,9 +93,6 @@ export function Stepper({
   inactiveStyle,
   ...restProps
 }) {
-  console.log(renderFn);
-  console.log(renderChildrenFn);
-
   if (renderFn !== undefined && renderChildrenFn !== undefined) {
     throw new Error(
       '<Stepper> component specified both `render` prop and a render function as its `children`.'
@@ -112,15 +116,12 @@ export function Stepper({
 Stepper.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   priority: PropTypes.number,
-
+  stepIndex: PropTypes.number,
   render: PropTypes.func,
   children: PropTypes.func,
-
   className: PropTypes.string,
   tagName: PropTypes.string,
-
   values: PropTypes.arrayOf(PropTypes.any).isRequired,
-
   alwaysVisible: PropTypes.bool,
   activeStyle: PropTypes.object,
   inactiveStyle: PropTypes.object
