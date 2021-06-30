@@ -13,7 +13,10 @@ const PLACEHOLDER_CLASS_NAME = 'step-placeholder';
  * Returns the stepId, whether or not the step is active, the relative step
  * number and the DOM placeholder.
  */
-export function useSteps(numSteps = 1, { id: userProvidedId, stepIndex } = {}) {
+export function useSteps(
+  numSteps = 1,
+  { id: userProvidedId, priority, stepIndex } = {}
+) {
   const [stepId] = React.useState(userProvidedId || ulid);
 
   const { activeStepIndex, activationThresholds } = React.useContext(
@@ -61,8 +64,13 @@ export function useSteps(numSteps = 1, { id: userProvidedId, stepIndex } = {}) {
     'data-step-count': numSteps
   };
 
-  if (stepIndex !== undefined) {
-    placeholderProps['data-step-index'] = stepIndex;
+  if (priority !== undefined) {
+    placeholderProps['data-priority'] = priority;
+  } else if (stepIndex !== undefined) {
+    console.warn(
+      '`options.stepIndex` option to `useSteps` is deprecated- please use `priority` option instead.'
+    );
+    placeholderProps['data-priority'] = stepIndex;
   }
 
   return {
@@ -91,28 +99,28 @@ export function useCollectSteps() {
 
     const [thresholds, numSteps] = [...placeholderNodes]
       .map((node, index) => {
-        let { stepId, stepCount, stepIndex } = node.dataset;
+        let { stepId, stepCount, priority } = node.dataset;
 
         stepCount = Number(stepCount);
         if (isNaN(stepCount)) {
           stepCount = 1;
         }
-        stepIndex = Number(stepIndex);
-        if (isNaN(stepIndex)) {
-          stepIndex = index;
+        priority = Number(priority);
+        if (isNaN(priority)) {
+          priority = index;
         }
         return {
           id: stepId,
           count: stepCount,
-          index: stepIndex
+          priority
         };
       })
       .concat()
-      .sort(sortByKeyComparator('index'))
+      .sort(sortByKeyComparator('priority'))
       .reduce(
         (memo, el) => {
           const [thresholds, nextThreshold] = memo;
-          const { id, count, index } = el;
+          const { id, count } = el;
           thresholds[id] = nextThreshold;
           return [thresholds, nextThreshold + count];
         },

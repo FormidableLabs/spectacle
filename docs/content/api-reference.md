@@ -84,16 +84,116 @@ These tags are for adding tables with content to your slides.
 | **`TableRow`**    | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
 | **`TableCell`**   | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
 
+## useSteps
+
+The `useSteps` hook allows a component to participate in the _slide step sequence_ for a given Slide. 
+
+NOTE: the vast majority of use cases are covered by the `Stepper` and `Appear` components documented below- in fact, they are implemented via this hook. The only case in which you may need to use this hook explicitly is if you need more precise control over a component in your presentation.
+
+### Arguments and Options
+
+- `numSteps` The first argument to this hook, `numSteps`, indicates how many steps your component will occupy in the slide step sequence. The second argument is an options object which accepts two options: `id` and `stepIndex`.
+- `options.id`: *(For debugging and testing purposes only.)* Allows you to customize the step sequence ID for this component.
+- `options.priority`: Allows fine-grained control over the sequencing of multiple step sequence participants in a given Slide. By default, participants will be activated in the order in which they are rendered. However, this option allows you to specify a "priority"- for instance, a participant with `priority: -1` will run before any other participant, _regardless_ of render order.
+
+### Return Values
+
+This hook returns four values: `stepId`, `isActive`, `step`, and `placeholder`.
+
+- `stepId`: *(For debugging and testing purposes only.)* Either the `id` option passed into the hook, or a randomly-generated ULID.
+- `step`: the _relative_ step within this participant's step sequence. Before the slide has reached this participant, this value is `-1`. When the slide reaches this stepper, it will increase at each step until it reaches `numSteps - 1`, and will remain there after the slide step has 'passed' it.
+- `isActive`: Boolean value indicating whether the slide step sequence has reached this participant. Equivalent to the expression `step >= 0`.
+- `placeholder`: DOM node which *must* be rendered by the consumer component- this is how a Slide detects step sequence participants.
+
+## Stepper
+
+`<Stepper>` is a thin wrapper around `useSteps`. The length of its `values` list indicates the number of steps it occupies in the slide step sequence. Each of these values are passed in turn to the render function you provide.  Additionally, it allows you to specify styles which should be applied before and after it is activated, and uses `react-spring` to interpolate between the 'active style' and the 'inactive style'.
+
+The render function you provide (either via the `render` prop or as a '`children` function') is called with three arguments:
+
+- The element of the list passed to `values` which corresponds to the current step (or `undefined` if the Stepper is inactive)
+- The current step _relative_ to this Stepper's sequence (which will be `-1` if the Stepper is inactive)
+- A boolean value (`isActive`) indicating whether the Stepper is active.
+
+For instance, suppose we render a slide like this:
+
+```jsx
+<Slide>
+  <p>Hello, world!</p>
+  <Stepper tagName="p" alwaysVisible values={['foo', 'bar']}>
+    {(value, step, isActive) => (isActive
+        ? `The first stepper is not active. Step: ${step} Value: ${value}`
+        : `The first stepper is active. Step: ${step} Value: ${value}`
+    )}
+  </Stepper>
+  <Stepper tagName="p" alwaysVisible values={['baz', 'quux']}>
+    {(value, step, isActive) => (isActive
+        ? `The second stepper is not active. Step: ${step} Value: ${value}`
+        : `The second stepper is active. Step: ${step} Value: ${value}`
+    )}
+  </Stepper>
+</Slide>
+```
+
+The following output will be rendered as you step through the slide:
+
+```html
+<!-- When the slide is first rendered (slide step 0) -->
+<p>Hello, world!</p>
+<p>The first stepper is not active. Step: -1 Value: undefined</p>
+<p>The second stepper is not active. Step: -1 Value: undefined</p>
+
+<!-- slide step 1 -->
+<p>Hello, world!</p>
+<p>The first stepper is active. Step: 0 Value: foo </p>
+<p>The second stepper is not active. Step: -1 Value: undefined</p>
+
+<!-- slide step 2 -->
+<p>Hello, world!</p>
+<p>The first stepper is active. Step: 1 Value: bar</p>
+<p>The second stepper is not active. Step: -1 Value: undefined</p>
+
+<!-- slide step 3 -->
+<p>Hello, world!</p>
+<p>The first stepper is active. Step: 1 Value: bar</p>
+<p>The second stepper is active. Step: 0 Value: baz</p>
+
+<!-- slide step 3 -->
+<p>Hello, world!</p>
+<p>The first stepper is active. Step: 1 Value: bar</p>
+<p>The second stepper is active. Step: 0 Value: baz</p>
+
+<!-- slide step 4 -->
+<p>Hello, world!</p>
+<p>The first stepper is active. Step: 1 Value: bar</p>
+<p>The second stepper is active. Step: 1 Value: quux</p>
+```
+
+### Props
+
+- `id`: *(For debugging and testing purposes only)* Passed to `useSteps`.
+- `priority`: Passed to `useSteps`.
+- `render`: Render function (see above.)
+- `children`: Render function (see above.)
+- `className`: Class name applied to the animated container element.
+- `tagName`: Tag which will be used as the animated container element. Defaults to `div`.
+- `values`: Values array (see description above).
+- `alwaysVisible`: Forces this stepper to always have its active style applied.
+- `activeStyle`: Style object applied when this `<Stepper>` is active. Defaults to `{ opacity: 1 }`.
+- `inactiveStyle`: Style object applied when this `<Stepper>` is inactive.  Defaults to `{ opacity: 0 }`.
+
 ## Appear
 
-Appear is a component that makes a component animate on the slide on key press. The default animation is opacity. It is currently required to specify the order of elements to be animated starting with `1`. Sequential `<Appear />` tags do not have to be in order.
+Appear is a thin wrapper around `useSteps`. It occupies a single step within the slide step sequence. It wraps its child elements in an animated container element, and uses `react-spring` to interpolate between its `activeStyle` and `inactiveStyle`.
 
-| Props           | Type             | Example            |
-| --------------- | ---------------- | ------------------ |
-| `children`      | PropTypes.string | `<Text>Hi</Text>`  |
-| `stepIndex`     | PropTypes.number | `1`                |
-| `activeStyle`   | PropTypes.object | `{ opacity: '1' }` |
-| `inactiveStyle` | PropTypes.object | `{ opacity: '0' }` |
+### Props
+- `id`: *(For debugging and testing purposes only)* Passed to `useSteps`.
+- `priority`: Passed to `useSteps`.
+- `children`: Children rendered within this `Appear`.
+- `className`: Class name applied to the animated container element.
+- `tagName`: Tag which will be used as the animated container element. Defaults to `div`.
+- `activeStyle`: Style object applied when this `<Appear>` is active. Defaults to `{ opacity: 1 }`.
+- `inactiveStyle`: Style object applied when this `<Appear>` is inactive.  Defaults to `{ opacity: 0 }`.
 
 ## Code Pane
 
@@ -141,16 +241,6 @@ import tomorrow from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow';
     </CodePane>
   </Slide>
 );
-```
-
-## Stepper
-
-Stepper is a render-prop component that allows you to step over a set of values in your presentation, providing the current value and step as arguments in the child function. Like [Appear](#appear), this iteration happens on key press. Especially useful for stepping through the [Code Pane](#code-pane) component.
-
-```jsx
-<Stepper values={[1, 2, 3]}>
-  {(value, step) => <p>Current value: {value}</p>}
-</Stepper>
 ```
 
 ## FullScreen
