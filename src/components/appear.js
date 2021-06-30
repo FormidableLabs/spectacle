@@ -99,7 +99,6 @@ export function Stepper({
     );
   }
 
-
   return (
     <SteppedComponent
       {...restProps}
