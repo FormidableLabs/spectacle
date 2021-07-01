@@ -215,20 +215,27 @@ const Deck = forwardRef(
     const activeSlideId = slideIds[activeView.slideIndex];
     const pendingSlideId = slideIds[pendingView.slideIndex];
 
-    const [passed, upcoming] = useMemo(() => {
+    const [passed, upcoming, prevSlideId, nextSlideId] = useMemo(() => {
       const p = new Set();
       const u = new Set();
+      let prev = null;
+      let next = null;
+
       let foundActive = false;
       for (const slideId of slideIds) {
         if (foundActive) {
           u.add(slideId);
+          if (next === null) {
+            next = slideId;
+          }
         } else if (slideId === activeSlideId) {
           foundActive = true;
         } else {
           p.add(slideId);
+          prev = slideId;
         }
       }
-      return [p, u];
+      return [p, u, prev, next];
     }, [slideIds, activeSlideId]);
 
     const fullyInitialized = initialized && slideIdsInitialized;
@@ -364,6 +371,8 @@ const Deck = forwardRef(
               initialized: fullyInitialized,
               passedSlideIds: passed,
               upcomingSlideIds: upcoming,
+              prevSlideId,
+              nextSlideId,
               activeView: {
                 ...activeView,
                 slideId: activeSlideId
