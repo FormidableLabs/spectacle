@@ -1,11 +1,13 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 import { Markdown, MarkdownSlide, MarkdownSlideSet } from './markdown';
 import Adapter from 'enzyme-adapter-react-16';
 import Deck from '../deck/deck';
 import { Heading, ListItem } from '../typography';
 import { Appear } from '../appear';
 import Slide from '../slide/slide';
+import pretty from 'pretty';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -90,8 +92,8 @@ describe('<MarkdownSlideSet />', () => {
       `}</MarkdownSlideSet>
     );
 
-    expect(wrapper.find('ul')).toHaveLength(2);
-    expect(wrapper.find(ListItem)).toHaveLength(6);
+    expect(wrapper.find('ul')).toHaveLength(1);
+    expect(wrapper.find(ListItem)).toHaveLength(3);
     expect(wrapper.find(Appear)).toHaveLength(0);
   });
 
@@ -110,8 +112,8 @@ describe('<MarkdownSlideSet />', () => {
       `}</MarkdownSlideSet>
     );
 
-    expect(wrapper.find('ul')).toHaveLength(2);
-    expect(wrapper.find(Appear)).toHaveLength(6);
+    expect(wrapper.find('ul')).toHaveLength(1);
+    expect(wrapper.find(Appear)).toHaveLength(3);
   });
 
   it('Markdown should pass componentProps down to constituent components', () => {
@@ -136,13 +138,6 @@ describe('<MarkdownSlideSet />', () => {
 
     expect(
       wrapper
-        .find(Heading)
-        .at(1)
-        .prop('color')
-    ).toBe('purple');
-
-    expect(
-      wrapper
         .find(ListItem)
         .at(0)
         .prop('color')
@@ -164,29 +159,35 @@ describe('<MarkdownSlideSet />', () => {
     ).toBe('purple');
   });
 
-  it('MarkdownSlideSet should pass componentProps down to constituent components', () => {
-    const wrapper = mountInsideDeck(
-      <MarkdownSlideSet componentProps={{ color: 'purple' }}>{`
-        # What's up world, I'm styled.
+  it('MarkdownSlideSet should pass componentProps down to constituent components', async () => {
+    let deck;
 
-        ---
+    const wrapper = mount(
+      <Deck
+        ref={r => {
+          deck = r;
+        }}
+      >
+        <MarkdownSlideSet componentProps={{ color: 'purple' }}>{`
+          # Slide one
 
-        # Another slide
-      `}</MarkdownSlideSet>
+          ---
+
+          # Slide two
+        `}</MarkdownSlideSet>
+      </Deck>
     );
 
-    expect(
-      wrapper
-        .find(Heading)
-        .at(0)
-        .prop('color')
-    ).toBe('purple');
+    act(() => {
+      deck.advanceSlide();
+    });
 
-    expect(
-      wrapper
-        .find(Heading)
-        .at(1)
-        .prop('color')
-    ).toBe('purple');
+    wrapper.update();
+
+    const headings = wrapper.find(Heading);
+    expect(headings.at(0).prop('color')).toBe('purple');
+    expect(headings.at(0).text()).toBe('Slide one');
+    expect(headings.at(1).prop('color')).toBe('purple');
+    expect(headings.at(1).text()).toBe('Slide two');
   });
 });
