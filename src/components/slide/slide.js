@@ -113,7 +113,6 @@ export default function Slide({
     passedSlideIds,
     upcomingSlideIds,
     prevSlideId,
-    nextSlideId,
     activeView,
     pendingView,
     advanceSlide,
@@ -144,7 +143,6 @@ export default function Slide({
   const isPending = pendingView.slideId === slideId;
   const isPassed = passedSlideIds.has(slideId);
   const isUpcoming = upcomingSlideIds.has(slideId);
-  const isNext = nextSlideId === slideId;
   const isPrev = prevSlideId === slideId;
 
   const willEnter = !isActive && isPending;
@@ -314,7 +312,7 @@ export default function Slide({
         }}
       >
         {slidePortalNode &&
-          (isPending || isActive || isPrev || isNext) &&
+          (isPending || isActive || isPrev) &&
           ReactDOM.createPortal(
             <AnimatedDiv
               ref={setStepContainer}
