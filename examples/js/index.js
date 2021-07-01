@@ -12,6 +12,7 @@ import {
   FullScreen,
   Progress,
   Appear,
+  Stepper,
   Slide,
   Deck,
   Text,
@@ -64,6 +65,16 @@ const SlideFragments = () => (
       <Appear>
         <Text>This item shows up!</Text>
       </Appear>
+      <Stepper values={['foo', 'bar', 'baz']}>
+        {(value, step) => (
+          <>
+            <Text>This is a stepper with multiple values.</Text>
+            <Text>
+              The value is {value} on step {step}
+            </Text>
+          </>
+        )}
+      </Stepper>
       <Appear>
         <Text>This item also shows up!</Text>
       </Appear>
@@ -148,10 +159,9 @@ const Presentation = () => (
         <Appear>
           <ListItem>Out of order</ListItem>
         </Appear>
-        <Appear>
+        <Appear priority={0}>
           <ListItem>
-            Just identify the order with the prop <CodeSpan>stepIndex</CodeSpan>
-            !
+            Just identify the order with the prop <CodeSpan>priority</CodeSpan>!
           </ListItem>
         </Appear>
       </OrderedList>
@@ -229,8 +239,8 @@ const Presentation = () => (
        It uses the \`animateListItems\` prop.
 
        - Its list items...
-       - they will appear in...
-       - one at a time.
+       - ...will appear...
+       - ...one at a time.
       `}
     </MarkdownSlide>
     <Slide>

@@ -19,7 +19,7 @@ import mdxComponentMap from '../../utils/mdx-component-mapper';
 import indentNormalizer from '../../utils/indent-normalizer';
 import Notes from '../notes';
 import { ListItem } from '../../index';
-import Appear from '../appear';
+import { Appear } from '../appear';
 
 export const Markdown = React.forwardRef(
   (

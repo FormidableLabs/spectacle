@@ -112,6 +112,7 @@ export default function Slide({
     wrapperOverrideStyle = {},
     passedSlideIds,
     upcomingSlideIds,
+    prevSlideId,
     activeView,
     pendingView,
     advanceSlide,
@@ -142,6 +143,7 @@ export default function Slide({
   const isPending = pendingView.slideId === slideId;
   const isPassed = passedSlideIds.has(slideId);
   const isUpcoming = upcomingSlideIds.has(slideId);
+  const isPrev = prevSlideId === slideId;
 
   const willEnter = !isActive && isPending;
   const willExit = isActive && !isPending;
@@ -310,6 +312,7 @@ export default function Slide({
         }}
       >
         {slidePortalNode &&
+          (isPending || isActive || isPrev) &&
           ReactDOM.createPortal(
             <AnimatedDiv
               ref={setStepContainer}
