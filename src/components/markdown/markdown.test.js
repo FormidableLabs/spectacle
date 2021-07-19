@@ -4,7 +4,7 @@ import { Markdown, MarkdownSlide, MarkdownSlideSet } from './markdown';
 import Adapter from 'enzyme-adapter-react-16';
 import Deck from '../deck/deck';
 import { Heading, ListItem } from '../typography';
-import Appear from '../appear';
+import { Appear } from '../appear';
 import Slide from '../slide/slide';
 
 Enzyme.configure({ adapter: new Adapter() });

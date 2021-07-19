@@ -1,6 +1,6 @@
 import Deck from './components/deck';
 import Slide, { SlideContext } from './components/slide/slide';
-import Appear from './components/appear';
+import { Appear, Stepper } from './components/appear';
 import CodePane from './components/code-pane';
 import {
   OrderedList,
@@ -65,6 +65,7 @@ export {
   MarkdownSlide,
   MarkdownPreHelper,
   SpectacleLogo,
+  Stepper,
   Table,
   TableCell,
   TableRow,
