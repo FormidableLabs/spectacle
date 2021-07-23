@@ -3,7 +3,8 @@ import propTypes from 'prop-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { useSteps } from '../hooks/use-steps';
 import indentNormalizer from '../utils/indent-normalizer';
-import { ThemeContext } from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
+import { position } from 'styled-system';
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark';
 
 const checkForNumberValues = ranges => {
@@ -50,6 +51,22 @@ const getStyleForLineNumber = (lineNumber, activeRange) => {
   return { opacity: from <= lineNumber && lineNumber <= to ? 1 : 0.5 };
 };
 
+const getStyleWidth = (width, themeWidth = 1366) => {
+  if (typeof width === 'number') {
+    return width;
+  } else if (typeof width === 'string' && /^\d+%$/.test(width)) {
+    // width is percentage based
+    const percent = parseInt(width, 10) * 0.01;
+    return themeWidth * percent || themeWidth;
+  }
+
+  return themeWidth;
+};
+
+const Container = styled('div')`
+  ${position}
+`;
+
 const CodePane = React.forwardRef(
   (
     {
@@ -58,7 +75,9 @@ const CodePane = React.forwardRef(
       showLineNumbers = true,
       children: rawCodeString,
       stepIndex,
-      theme: syntaxTheme = dark
+      theme: syntaxTheme = dark,
+      width,
+      ...rest
     },
     ref
   ) => {
@@ -142,7 +161,6 @@ const CodePane = React.forwardRef(
        * default theme with no valid values.
        */
       const {
-        size: { width = 1366 },
         space = [0, 0, 0],
         fontSizes: { monospace = '20px' }
       } = theme;
@@ -150,15 +168,16 @@ const CodePane = React.forwardRef(
       return {
         padding: space[0],
         margin: 0,
-        width: width - space[2] * 2 - space[0] * 2,
+        width:
+          getStyleWidth(width, theme.size?.width) - space[2] * 2 - space[0] * 2,
         fontSize: monospace
       };
-    }, [theme]);
+    }, [theme, width]);
 
     return (
       <>
         {placeholder}
-        <div ref={ref}>
+        <Container {...rest} ref={ref}>
           <SyntaxHighlighter
             customStyle={customStyle}
             language={language}
@@ -170,7 +189,7 @@ const CodePane = React.forwardRef(
           >
             {children}
           </SyntaxHighlighter>
-        </div>
+        </Container>
       </>
     );
   }
@@ -187,7 +206,8 @@ CodePane.propTypes = {
   language: propTypes.string.isRequired,
   children: propTypes.string.isRequired,
   stepIndex: propTypes.number,
-  theme: propTypes.object
+  theme: propTypes.object,
+  width: propTypes.oneOfType([propTypes.number, propTypes.string])
 };
 
 export default CodePane;
