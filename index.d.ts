@@ -85,14 +85,17 @@ declare module 'spectacle' {
 
   export const Stepper: React.FC<StepperProps>;
 
-  export const CodePane: React.FC<{
+  type CodePaneProps = {
     children: React.ReactNode;
     language: string;
     theme?: Record<string, unknown>;
     stepIndex?: number;
     highlightRanges?: number | number[];
     showLineNumbers?: boolean;
-  }>;
+    width?: number | string;
+  } & StyledSystem.PositionProps;
+
+  export const CodePane: React.FC<CodePaneProps>;
 
   type TypographyProps = {
     children: React.ReactNode;
