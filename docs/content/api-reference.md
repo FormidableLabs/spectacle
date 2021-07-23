@@ -200,7 +200,7 @@ Appear is a thin wrapper around `useSteps`. It occupies a single step within the
 
 ## Code Pane
 
-CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code, trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. CodePane uses the [React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter) Component.
+CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code, trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. CodePane uses the [React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter) Component and conforms to Position props.
 
 The `theme` prop accepts a configurable object or pre-defined theme object from the available [Prism Themes](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js).
 
@@ -220,13 +220,15 @@ Array values can even be mixed to include sub-arrays (for multiple lines) and nu
 
 _Note that each range will be considered as a step in your current slide's animation. Each range will be highlighted as you move forward or backwards on each step._
 
-| Props             | Type                                                                                          | Example                                                                                                                   | Default Props        |
-| ----------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| `children`        | PropTypes.string                                                                              | `let name = "Carlos"`                                                                                                     | -                    |
-| `highlightRanges` | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)) | `[1, 3]` or `[[6, 8], [10, 15]]`                                                                                          | -                    |
-| `language`        | PropTypes.string                                                                              | `javascript`                                                                                                              | -                    |
-| `theme`           | PropTypes.object or                                                                           | [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | vs-dark Theme Object |
-| `showLineNumbers` | PropTypes.bool                                                                                | `true`, `false`                                                                                                           | `true`               |
+| Props                              | Type                                                                                          | Example                                                                                                                   | Default Props        |
+| ---------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `children`                         | PropTypes.string                                                                              | `let name = "Carlos"`                                                                                                     | -                    |
+| `highlightRanges`                  | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)) | `[1, 3]` or `[[6, 8], [10, 15]]`                                                                                          | -                    |
+| `language`                         | PropTypes.string                                                                              | `javascript`                                                                                                              | -                    |
+| `theme`                            | PropTypes.object or                                                                           | [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | vs-dark Theme Object |
+| `showLineNumbers`                  | PropTypes.bool                                                                                | `true`, `false`                                                                                                           | `true`               |
+| `width`                            | PropTypes.number or PropTypes.string                                                          | `500`, `"50%"`                                                                                                            | -                    |
+| [**`Position`**](./props#position) |                                                                                               |                                                                                                                           |                      |
 
 ```jsx
 import tomorrow from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow';
