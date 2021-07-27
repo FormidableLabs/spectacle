@@ -1,15 +1,27 @@
-// Type definitions for Spectacle 7.0.0
+// Type definitions for Spectacle 8.0.0
 // Project: Formidable Spectacle
-// Definitions by: Kylie Stewart, Urmit Patel, and Carlos Kelly
+// Definitions by: Kylie Stewart, Urmit Patel, Grant Sander, and Carlos Kelly
 
 declare module 'spectacle' {
   import * as React from 'react';
   import * as StyledSystem from 'styled-system';
+  import { ExtendedKeyboardEvent } from 'mousetrap';
+
+  export type SlideTransition = {
+    from: Record<string, string | number>;
+    leave: Record<string, string | number>;
+    enter: Record<string, string | number>;
+  };
 
   export type TemplateFn = (options: {
     numberOfSlides: number;
     currentSlide: number;
   }) => React.ReactNode;
+
+  export function useMousetrap(
+    keybinds: Record<string, (e?: ExtendedKeyboardEvent) => void>,
+    deps: any[]
+  ): void;
 
   export const Deck: React.FC<{
     children: React.ReactNode;
@@ -19,6 +31,7 @@ declare module 'spectacle' {
     theme?: Record<string, any>;
     template?: TemplateFn | React.ReactNode;
     printScale?: number;
+    transition?: SlideTransition;
   }>;
 
   export const Slide: React.FC<{
@@ -32,19 +45,53 @@ declare module 'spectacle' {
     padding?: string | number;
     textColor?: string;
     template?: TemplateFn | React.ReactNode;
+    transition?: SlideTransition;
   }>;
 
   export const Appear: React.FC<{
-    children: React.ReactNode;
+    id?: string | number;
+    priority?: number;
+    /** @deprecated use priority prop instead */
     stepIndex?: number;
+    children: React.ReactNode;
+    className?: string;
+    tagName?: keyof JSX.IntrinsicElements;
+    activeStyle?: unknown;
+    inactiveStyle?: unknown;
   }>;
+
+  type StepperProps<T extends unknown[] = unknown[]> = {
+    id?: string | number;
+    priority?: number;
+    /** @deprecated use priority prop instead */
+    stepIndex?: number;
+    render?: (
+      value: T[number],
+      step: number,
+      isActive: boolean
+    ) => React.ReactNode;
+    children?: (
+      value: T[number],
+      step: number,
+      isActive: boolean
+    ) => React.ReactNode;
+    className?: string;
+    tagName?: keyof JSX.IntrinsicElements;
+    values: T;
+    alwaysVisible?: boolean;
+    activeStyle?: unknown;
+    inactiveStyle?: unknown;
+  };
+
+  export const Stepper: React.FC<StepperProps>;
 
   export const CodePane: React.FC<{
     children: React.ReactNode;
     language: string;
-    theme?: Record<string, unknown> | string;
+    theme?: Record<string, unknown>;
     stepIndex?: number;
     highlightRanges?: number[] | number[][];
+    showLineNumbers?: boolean;
   }>;
 
   type TypographyProps = {
@@ -53,18 +100,22 @@ declare module 'spectacle' {
     StyledSystem.TypographyProps &
     StyledSystem.SpaceProps;
 
+  type ListStyleProps = {
+    listStyleType?: CSSStyleRule['style']['listStyleType'];
+  };
+
   export const Text: React.FC<TypographyProps>;
   export const CodeSpan: React.FC<TypographyProps>;
   export const Heading: React.FC<TypographyProps>;
   export const ListItem: React.FC<TypographyProps>;
   export const Quote: React.FC<TypographyProps>;
-  export const OrderedList: React.FC<TypographyProps>;
-  export const UnorderedList: React.FC<TypographyProps>;
+  export const OrderedList: React.FC<TypographyProps & ListStyleProps>;
+  export const UnorderedList: React.FC<TypographyProps & ListStyleProps>;
   export const Link: React.FC<TypographyProps &
     React.AnchorHTMLAttributes<Record<string, unknown>>>;
 
   type BoxProps = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
   } & StyledSystem.ColorProps &
     StyledSystem.SpaceProps &
     StyledSystem.LayoutProps &
@@ -72,7 +123,7 @@ declare module 'spectacle' {
     StyledSystem.BorderProps;
 
   export const Box: React.FC<BoxProps>;
-  export const FlexBox: React.FC<BoxProps & StyledSystem.FlexProps>;
+  export const FlexBox: React.FC<BoxProps & StyledSystem.FlexboxProps>;
   export const Grid: React.FC<{
     children: React.ReactNode;
   } & StyledSystem.LayoutProps &
@@ -105,19 +156,84 @@ declare module 'spectacle' {
     size?: number;
   }>;
 
+  type MdComponentProps = { [key: string]: any };
+
   export const Markdown: React.FC<{
+    animateListItems?: boolean;
     children: React.ReactNode;
+    componentProps?: MdComponentProps;
   }>;
 
   export const MarkdownSlide: React.FC<{
+    animateListItems?: boolean;
     children: React.ReactNode;
+    componentProps?: MdComponentProps;
   }>;
 
   export const MarkdownSlideSet: React.FC<{
+    animateListItems?: boolean;
     children: React.ReactNode;
+    componentProps?: MdComponentProps;
   }>;
 
   export const SpectacleLogo: React.FC<{
     size: number;
   }>;
+
+  export const defaultTheme: {
+    colors: Record<string, string>;
+    size: Record<string, number>;
+    fonts: Record<string, string>;
+    fontSizes: Record<string, string>;
+    space: number[];
+  };
+
+  export const SlideContext: React.Context<{
+    immediate: boolean;
+    slideId: number;
+    isSlideActive: boolean;
+    activationThresholds: number;
+    activeStepIndex: number;
+  }>;
+
+  export const DeckContext: React.Context<{
+    deckId: number;
+    slideCount: number;
+    useAnimations: boolean;
+    slidePortalNode: React.ReactNode;
+    onSlideClick(e: Event, slideId: number): void;
+    theme: Record<string, string | number | number[]>;
+    frameOverrideStyle: Record<string, string | number>;
+    wrapperOverrideStyle: Record<string, string | number>;
+    backdropNode: React.ReactNode;
+    notePortalNode: React.ReactNode;
+    initialized: boolean;
+    passedSlideIds: number[];
+    upcomingSlideIds: number[];
+    activeView: {
+      slideIndex: number;
+      stepIndex: number;
+    };
+    pendingView: {
+      slideIndex: number;
+      stepIndex: number;
+    };
+    skipTo(options: { slideIndex: number; stepIndex: number }): void;
+    stepForward(): void;
+    advanceSlide(): void;
+    regressSlide(): void;
+    commitTransition(): void;
+    cancelTransition(): void;
+    template:
+      | React.ReactNode
+      | ((options: {
+          slideNumber: number;
+          numberOfSlides: number;
+        }) => React.ReactNode);
+    transition: SlideTransition;
+  }>;
+
+  export const indentNormalizer: (input: string) => string;
+  export const fadeTransition: SlideTransition;
+  export const slideTransition: SlideTransition;
 }

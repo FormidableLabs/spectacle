@@ -1,6 +1,6 @@
 import Deck from './components/deck';
-import Slide from './components/slide/slide';
-import Appear from './components/appear';
+import Slide, { SlideContext } from './components/slide/slide';
+import { Appear, Stepper } from './components/appear';
 import CodePane from './components/code-pane';
 import {
   OrderedList,
@@ -34,6 +34,10 @@ import SpectacleLogo from './components/logo';
 import mdxComponentMap from './utils/mdx-component-mapper';
 import { removeNotes, isolateNotes } from './utils/notes';
 import indentNormalizer from './utils/indent-normalizer';
+import { DeckContext } from './components/deck/deck';
+import useMousetrap from './hooks/use-mousetrap';
+import defaultTheme from './theme/default-theme';
+import { fadeTransition, slideTransition } from './components/transitions';
 
 export {
   Appear,
@@ -61,13 +65,20 @@ export {
   MarkdownSlide,
   MarkdownPreHelper,
   SpectacleLogo,
+  Stepper,
   Table,
   TableCell,
   TableRow,
   TableHeader,
   TableBody,
   mdxComponentMap,
+  DeckContext,
+  SlideContext,
   removeNotes,
   isolateNotes,
-  indentNormalizer
+  indentNormalizer,
+  defaultTheme,
+  useMousetrap,
+  fadeTransition,
+  slideTransition
 };

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import propTypes from 'prop-types';
-import { DeckContext } from '../components/deck/deck';
-import { SlideContext } from '../components/slide/slide';
+import { DeckContext } from './deck/deck';
+import { SlideContext } from './slide/slide';
 
 export default function Notes({ children }) {
   const { notePortalNode } = React.useContext(DeckContext);
@@ -15,5 +15,5 @@ export default function Notes({ children }) {
 }
 
 Notes.propTypes = {
-  children: propTypes.node.isRequired
+  children: propTypes.node
 };

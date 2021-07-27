@@ -59,6 +59,8 @@ const getSrcContent = async src => {
         // Indent
         .split('\n')
         .join('\n  ')
+        // Handle pretty() erroneous newline after string literal
+        .replace(/\${\"\n[ ]*/gm, '${"')
         // Final newline
         .replace('}>`;', '}>\n`;');
 

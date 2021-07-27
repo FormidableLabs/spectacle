@@ -7,8 +7,16 @@ import clamp from '../utils/clamp';
 
 const PLACEHOLDER_CLASS_NAME = 'step-placeholder';
 
-// TODO: Document this function really well- it's a public-facing API
-export function useSteps(numSteps = 1, { id: userProvidedId, stepIndex } = {}) {
+/*
+ * This hook is used to create components which can 'participate' in a presentation.
+ * When a component uses this hook, it passes numSteps, which "reserves" that many steps within the slide progression.
+ * Returns the stepId, whether or not the step is active, the relative step
+ * number and the DOM placeholder.
+ */
+export function useSteps(
+  numSteps = 1,
+  { id: userProvidedId, priority, stepIndex } = {}
+) {
   const [stepId] = React.useState(userProvidedId || ulid);
 
   const { activeStepIndex, activationThresholds } = React.useContext(
@@ -56,8 +64,13 @@ export function useSteps(numSteps = 1, { id: userProvidedId, stepIndex } = {}) {
     'data-step-count': numSteps
   };
 
-  if (stepIndex !== undefined) {
-    placeholderProps['data-step-index'] = stepIndex;
+  if (priority !== undefined) {
+    placeholderProps['data-priority'] = priority;
+  } else if (stepIndex !== undefined) {
+    console.warn(
+      '`options.stepIndex` option to `useSteps` is deprecated- please use `priority` option instead.'
+    );
+    placeholderProps['data-priority'] = stepIndex;
   }
 
   return {
@@ -65,43 +78,6 @@ export function useSteps(numSteps = 1, { id: userProvidedId, stepIndex } = {}) {
     isActive,
     step: relStep,
     placeholder: <div {...placeholderProps}></div>
-  };
-}
-
-// TODO: same as above. this is a public-facing API, document it!
-export function useAnimatedSteps(
-  numSteps = 1,
-  {
-    namedTransition,
-    transition: userProvidedTransition = {},
-    ...useStepsOpts
-  } = {}
-) {
-  const { immediate } = React.useContext(SlideContext);
-
-  const { stepId, isActive, step, placeholder } = useSteps(
-    numSteps,
-    useStepsOpts
-  );
-
-  const transitions = useTransition(isActive, null, {
-    immediate,
-    from: {
-      opacity: 0
-    },
-    enter: {
-      opacity: 1
-    },
-    leave: {
-      opacity: 0
-    }
-  });
-
-  return {
-    transitions,
-    isActive,
-    step,
-    placeholder
   };
 }
 
@@ -123,28 +99,28 @@ export function useCollectSteps() {
 
     const [thresholds, numSteps] = [...placeholderNodes]
       .map((node, index) => {
-        let { stepId, stepCount, stepIndex } = node.dataset;
+        let { stepId, stepCount, priority } = node.dataset;
 
         stepCount = Number(stepCount);
         if (isNaN(stepCount)) {
           stepCount = 1;
         }
-        stepIndex = Number(stepIndex);
-        if (isNaN(stepIndex)) {
-          stepIndex = index;
+        priority = Number(priority);
+        if (isNaN(priority)) {
+          priority = index;
         }
         return {
           id: stepId,
           count: stepCount,
-          index: stepIndex
+          priority
         };
       })
       .concat()
-      .sort(sortByKeyComparator('index'))
+      .sort(sortByKeyComparator('priority'))
       .reduce(
         (memo, el) => {
           const [thresholds, nextThreshold] = memo;
-          const { id, count, index } = el;
+          const { id, count } = el;
           thresholds[id] = nextThreshold;
           return [thresholds, nextThreshold + count];
         },

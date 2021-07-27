@@ -15,14 +15,11 @@ import { useSpring, animated } from 'react-spring';
 import { useSlide } from '../../hooks/use-slides';
 import { useCollectSteps } from '../../hooks/use-steps';
 import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
+import { useSwipeable } from 'react-swipeable';
 
 const noop = () => {};
 
 export const SlideContext = createContext(null);
-
-const STAGE_RIGHT = 'translateX(-100%)';
-const CENTER_STAGE = 'translateX(0%)';
-const STAGE_LEFT = 'translateX(100%)';
 
 const SlideContainer = styled('div')`
   ${color};
@@ -91,6 +88,7 @@ export default function Slide({
   padding,
   textColor,
   template,
+  transition: slideTransition = {},
   className = ''
 }) {
   if (useContext(SlideContext)) {
@@ -107,11 +105,11 @@ export default function Slide({
 
   const {
     onSlideClick = noop,
+    onMobileSlide,
     useAnimations,
     slidePortalNode,
     frameOverrideStyle = {},
     wrapperOverrideStyle = {},
-    initialized: deckInitialized,
     passedSlideIds,
     upcomingSlideIds,
     activeView,
@@ -120,6 +118,7 @@ export default function Slide({
     regressSlide,
     commitTransition,
     cancelTransition,
+    transition,
     template: deckTemplate,
     slideCount
   } = useContext(DeckContext);
@@ -129,6 +128,14 @@ export default function Slide({
     },
     [onSlideClick, slideId]
   );
+
+  const mergedTransition = useMemo(() => {
+    const result = { ...transition };
+    'from' in slideTransition && (result.from = slideTransition.from);
+    'enter' in slideTransition && (result.enter = slideTransition.enter);
+    'leave' in slideTransition && (result.leave = slideTransition.leave);
+    return result;
+  }, [slideTransition, transition]);
 
   const inOverviewMode = Object.entries(frameOverrideStyle).length > 0;
   const isActive = activeView.slideId === slideId;
@@ -237,24 +244,31 @@ export default function Slide({
 
   const target = useMemo(() => {
     if (isPassed) {
-      return [{ transform: STAGE_RIGHT }, { display: 'none' }];
+      return [mergedTransition.leave, { display: 'none' }];
     }
     if (isActive) {
       return {
-        transform: CENTER_STAGE,
+        ...mergedTransition.enter,
         display: 'unset'
       };
     }
     if (isUpcoming) {
       return {
-        transform: STAGE_LEFT,
+        ...mergedTransition.from,
         display: 'none'
       };
     }
     return {
       display: 'none'
     };
-  }, [isPassed, isActive, isUpcoming]);
+  }, [
+    isPassed,
+    isActive,
+    isUpcoming,
+    mergedTransition.leave,
+    mergedTransition.enter,
+    mergedTransition.from
+  ]);
 
   const immediate = !animate || !useAnimations;
 
@@ -280,6 +294,9 @@ export default function Slide({
     };
   }, [wrapperOverrideStyle, theme, padding]);
 
+  const swipeHandler = useSwipeable({
+    onSwiped: eventData => onMobileSlide(eventData)
+  });
   return (
     <>
       {placeholder}
@@ -318,6 +335,7 @@ export default function Slide({
                 backgroundRepeat={backgroundRepeat}
                 backgroundSize={backgroundSize}
                 color={textColor}
+                {...swipeHandler}
               >
                 <TemplateWrapper style={wrapperOverrideStyle}>
                   {(typeof template === 'function' ||
@@ -354,7 +372,12 @@ Slide.propTypes = {
   children: PropTypes.node.isRequired,
   padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   textColor: PropTypes.string,
-  template: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
+  template: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  transition: PropTypes.shape({
+    from: PropTypes.object,
+    enter: PropTypes.object,
+    leave: PropTypes.object
+  })
 };
 
 Slide.defaultProps = {

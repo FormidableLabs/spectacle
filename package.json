@@ -1,6 +1,6 @@
 {
   "name": "spectacle",
-  "version": "7.0.3",
+  "version": "8.3.0",
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -57,7 +57,9 @@
     "react-fast-compare": "^3.2.0",
     "react-is": "^16.13.1",
     "react-spring": "^8.0.25",
+    "react-swipeable": "^6.1.0",
     "react-syntax-highlighter": "^12.2.1",
+    "rehype-raw": "^5.1.0",
     "rehype-react": "^6.0.0",
     "remark-parse": "^8.0.3",
     "remark-rehype": "^7.0.0",

@@ -12,6 +12,7 @@ import {
   FullScreen,
   Progress,
   Appear,
+  Stepper,
   Slide,
   Deck,
   Text,
@@ -64,6 +65,16 @@ const SlideFragments = () => (
       <Appear>
         <Text>This item shows up!</Text>
       </Appear>
+      <Stepper values={['foo', 'bar', 'baz']}>
+        {(value, step) => (
+          <>
+            <Text>This is a stepper with multiple values.</Text>
+            <Text>
+              The value is {value} on step {step}
+            </Text>
+          </>
+        )}
+      </Stepper>
       <Appear>
         <Text>This item also shows up!</Text>
       </Appear>
@@ -99,6 +110,20 @@ const Presentation = () => (
       </FlexBox>
     </Slide>
     <Slide
+      transition={{
+        from: {
+          transform: 'scale(0.5) rotate(45deg)',
+          opacity: 0
+        },
+        enter: {
+          transform: 'scale(1) rotate(0)',
+          opacity: 1
+        },
+        leave: {
+          transform: 'scale(0.2) rotate(315deg)',
+          opacity: 0
+        }
+      }}
       backgroundColor="tertiary"
       backgroundImage="url(https://github.com/FormidableLabs/dogs/blob/main/src/beau.jpg?raw=true)"
       backgroundOpacity={0.5}
@@ -134,10 +159,9 @@ const Presentation = () => (
         <Appear>
           <ListItem>Out of order</ListItem>
         </Appear>
-        <Appear>
+        <Appear priority={0}>
           <ListItem>
-            Just identify the order with the prop <CodeSpan>stepIndex</CodeSpan>
-            !
+            Just identify the order with the prop <CodeSpan>priority</CodeSpan>!
           </ListItem>
         </Appear>
       </OrderedList>
@@ -186,17 +210,65 @@ const Presentation = () => (
           </Provider>
         );
         `}</CodePane>
+      <Box height={20} />
+      <CodePane language="java" showLineNumbers={false}>{`
+        public class NoLineNumbers {
+          public static void main(String[] args) {
+            System.out.println("Hello");
+          }
+        }
+        `}</CodePane>
     </Slide>
     <div>
       <Slide>
         <Heading>This is a slide embedded in a div</Heading>
       </Slide>
     </div>
-    <MarkdownSlide>
+    <MarkdownSlide componentProps={{ color: 'yellow' }}>
       {`
         # This is a Markdown Slide
+
+        - You can pass props down to all elements on the slide.
+        - Just use the \`componentProps\` prop.
         `}
     </MarkdownSlide>
+    <MarkdownSlide animateListItems>
+      {`
+       # This is also a Markdown Slide
+
+       It uses the \`animateListItems\` prop.
+
+       - Its list items...
+       - ...will appear...
+       - ...one at a time.
+      `}
+    </MarkdownSlide>
+    <Slide>
+      <Grid
+        flex={1}
+        gridTemplateColumns="50% 50%"
+        gridTemplateRows="50% 50%"
+        height="100%"
+      >
+        <FlexBox alignItems="center" justifyContent="center">
+          <Heading>This is a 4x4 Grid</Heading>
+        </FlexBox>
+        <FlexBox alignItems="center" justifyContent="center">
+          <Text textAlign="center">
+            With all the content aligned and justified center.
+          </Text>
+        </FlexBox>
+        <FlexBox alignItems="center" justifyContent="center">
+          <Text textAlign="center">
+            It uses Spectacle <CodeSpan>{'<Grid />'}</CodeSpan> and{' '}
+            <CodeSpan>{'<FlexBox />'}</CodeSpan> components.
+          </Text>
+        </FlexBox>
+        <FlexBox alignItems="center" justifyContent="center">
+          <Box width={200} height={200} backgroundColor="secondary" />
+        </FlexBox>
+      </Grid>
+    </Slide>
     <MarkdownSlideSet>
       {`
         # This is the first slide of a Markdown Slide Set

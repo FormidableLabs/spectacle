@@ -1,5 +1,61 @@
 # Changelog
 
+## 8.3.0
+
+- Added ref-forwarding for `CodePane`, `FullScreen`, `Markdown`, and `Progress`.
+- Fixed `showLineNumbers` and theme sizing for `<CodePane />`
+
+## 8.2.0
+
+- Added support for custom slide and deck transitions
+- Added Fade and Slide transition objects as built-in transitions
+- Updated JS example with spinning custom slide transition
+
+## 8.1.0
+
+- Allow raw HTML in Markdown content.
+- Added missing export and type for `useMousetrap`
+- Removed unused `useAnimatedSteps` hook.
+
+## 8.0.1
+
+- Fixed navigation by swiping on touch-devices
+
+## 8.0.0
+
+- Removed auto-importing every Prism theme for CodePane to reduce overall bundle size
+- The CodePane theme prop now accepts a pre-defined or custom Prism object
+
+## 7.1.5
+
+- Added missing type for `indentNormalizer` function.
+
+## 7.1.4
+
+- Fixed reference for `FlexBox` type in ambient type declarations.
+
+## 7.1.3
+
+- Add support for `listStyleType` in `UnorderedList` and `OrderedList` components.
+
+## 7.1.2
+
+- Fixed issue with `animateListItems` in Markdown components that was causing lists to not show up at all.
+
+## 7.1.1
+
+- Exports `SlideContext`, `DeckContext`, and `defaultTheme`
+- Fixes required child prop for `Notes`
+
+## 7.1.0
+
+- Added animateListItems prop for Markdown, MarkdownSlide, and MarkdownSlideSet components, enabling animating list items via Markdown components.
+- Added componentProps prop for Markdown, MarkdownSlide, and MarkdownSlideSet components, enabling passing a set of props down to each component rendered within a Markdown component.
+
+## 7.0.4
+
+- Fixed page-size for export to PDF mode
+
 ## 7.0.3
 
 - Fixed margin sizing for `Link` when using Markdown.

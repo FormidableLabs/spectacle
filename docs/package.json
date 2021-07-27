@@ -16,7 +16,7 @@
     "check-ci": "yarn run lint",
     "clean": "rimraf dist",
     "format": "yarn run lint --fix && yarn run prettier-all",
-    "lint": "eslint '*.js'",
+    "lint": "eslint '*.js' src",
     "prettier-all": "prettier --write '{src,static.config,scripts,content}/**/*.{js,jsx,md}'",
     "preversion": "yarn run lint && yarn run build",
     "build": "react-static build",
@@ -69,7 +69,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react-hooks": "^4.1.2",
     "execa": "^4.0.0",
-    "formideploy": "^0.3.2",
+    "formideploy": "^0.4.0",
     "prettier": "^1.15.1",
     "puppeteer": "^1.13.0",
     "rimraf": "^3.0.0"

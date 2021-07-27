@@ -23,10 +23,17 @@ import {
   printWrapperStyle
 } from './deck-styles';
 import { useAutoPlay } from '../../utils/use-auto-play';
+import defaultTheme from '../../theme/default-theme';
+import { defaultTransition } from '../transitions';
 
 export const DeckContext = createContext();
 const noop = () => {};
-const DEFAULT_PRINT_SCALE = 0.773;
+
+/**
+ * The PDF DPI is 96. We want to scale the slide down because it's a 1:1 px to 1/100th of an inch.
+ * However there are some unchangeable margins that make 0.96 too big, so we use 0.959 to prevent overflow.
+ */
+const DEFAULT_PRINT_SCALE = 0.959;
 const DEFAULT_OVERVIEW_SCALE = 0.25;
 
 const Portal = styled('div')(
@@ -63,7 +70,6 @@ const Deck = forwardRef(
       printScale = DEFAULT_PRINT_SCALE,
       template,
       theme: {
-        slideDimensions: [nativeSlideWidth, nativeSlideHeight] = [1366, 768],
         Backdrop: UserProvidedBackdropComponent,
         backdropStyle: themeProvidedBackdropStyle = {
           position: 'fixed',
@@ -77,6 +83,7 @@ const Deck = forwardRef(
       } = {},
 
       onSlideClick = noop,
+      onMobileSlide = noop,
 
       disableInteractivity = false,
       notePortalNode,
@@ -90,11 +97,16 @@ const Deck = forwardRef(
       suppressBackdropFallback = false,
       autoPlay = false,
       autoPlayLoop = false,
-      autoPlayInterval = 1000
+      autoPlayInterval = 1000,
+      transition = defaultTransition
     },
     ref
   ) => {
     const [deckId] = useState(userProvidedId || ulid);
+    const {
+      width: nativeSlideWidth = defaultTheme.size.width,
+      height: nativeSlideHeight = defaultTheme.size.height
+    } = restTheme.size || {};
 
     const {
       initialized,
@@ -341,6 +353,7 @@ const Deck = forwardRef(
               useAnimations,
               slidePortalNode,
               onSlideClick: handleSlideClick,
+              onMobileSlide: onMobileSlide,
               theme: restTheme,
 
               frameOverrideStyle: frameStyle,
@@ -365,6 +378,7 @@ const Deck = forwardRef(
               regressSlide,
               commitTransition,
               cancelTransition,
+              transition,
               template
             }}
           >
@@ -392,6 +406,7 @@ Deck.propTypes = {
   template: propTypes.oneOfType([propTypes.node, propTypes.func]),
   theme: propTypes.object,
   onSlideClick: propTypes.func,
+  onMobileSlide: propTypes.func,
   disableInteractivity: propTypes.bool,
   notePortalNode: propTypes.node,
   useAnimations: propTypes.bool,
@@ -404,7 +419,12 @@ Deck.propTypes = {
   suppressBackdropFallback: propTypes.bool,
   autoPlay: propTypes.bool,
   autoPlayLoop: propTypes.bool,
-  autoPlayInterval: propTypes.number
+  autoPlayInterval: propTypes.number,
+  transition: propTypes.shape({
+    from: propTypes.object,
+    enter: propTypes.object,
+    leave: propTypes.object
+  })
 };
 
 export default Deck;
