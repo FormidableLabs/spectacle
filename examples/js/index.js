@@ -65,16 +65,6 @@ const SlideFragments = () => (
       <Appear>
         <Text>This item shows up!</Text>
       </Appear>
-      <Stepper values={['foo', 'bar', 'baz']}>
-        {(value, step) => (
-          <>
-            <Text>This is a stepper with multiple values.</Text>
-            <Text>
-              The value is {value} on step {step}
-            </Text>
-          </>
-        )}
-      </Stepper>
       <Appear>
         <Text>This item also shows up!</Text>
       </Appear>
