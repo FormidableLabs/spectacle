@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.4.0
+
+- Fix script reference in `examples/one-page.html`.
+- Docs: Update Formidable logo.
+- Add `Stepper` component and update docs for `useSteps` and `Appear`.
+
 ## 8.3.0
 
 - Added ref-forwarding for `CodePane`, `FullScreen`, `Markdown`, and `Progress`.
@@ -71,7 +77,7 @@
 ## 7.0.0
 
 - Updated TypeScript type definitions
-- Fixed duplication final slide in Presnter Mode
+- Fixed duplication final slide in Presenter Mode
 
 ## 7.0.0-beta.5 (1/21/2021)
 
