@@ -104,6 +104,8 @@ export function Stepper({
       {...restProps}
       numSteps={values.length}
       alwaysAppearActive={alwaysVisible}
+      activeStyle={activeStyle}
+      inactiveStyle={inactiveStyle}
     >
       {(step, isActive) =>
         (renderFn || renderChildrenFn)(values[step], step, isActive)
