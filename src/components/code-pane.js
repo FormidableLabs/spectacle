@@ -157,9 +157,9 @@ const CodePane = React.forwardRef(
 
     return (
       <>
+        <CopyButton content={children} />
         {placeholder}
         <div ref={ref}>
-          <CopyButton content={children} />
           <SyntaxHighlighter
             customStyle={customStyle}
             language={language}
