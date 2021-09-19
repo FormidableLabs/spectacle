@@ -5,7 +5,7 @@ import { useSteps } from '../hooks/use-steps';
 import indentNormalizer from '../utils/indent-normalizer';
 import { ThemeContext } from 'styled-components';
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark';
-
+import CopyButton from './copybutton';
 const checkForNumberValues = ranges => {
   return ranges.every(element => typeof element === 'number');
 };
@@ -159,6 +159,7 @@ const CodePane = React.forwardRef(
       <>
         {placeholder}
         <div ref={ref}>
+          <CopyButton content={children} />
           <SyntaxHighlighter
             customStyle={customStyle}
             language={language}
