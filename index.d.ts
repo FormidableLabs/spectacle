@@ -90,7 +90,7 @@ declare module 'spectacle' {
     language: string;
     theme?: Record<string, unknown>;
     stepIndex?: number;
-    highlightRanges?: number | number[];
+    highlightRanges?: number | (number | number[])[];
     showLineNumbers?: boolean;
   }>;
 
