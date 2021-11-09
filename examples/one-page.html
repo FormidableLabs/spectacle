@@ -176,26 +176,26 @@
           <${Slide}>
             <${CodePane} language="jsx">
               ${`
-              import { createClient, Provider } from 'urql';
+                import { createClient, Provider } from 'urql';
 
-              const client = createClient({ url: 'https://0ufyz.sse.codesandbox.io' });
+                const client = createClient({ url: 'https://0ufyz.sse.codesandbox.io' });
 
-              const App = () => (
-              <Provider value={client}>
-                <Todos />
-              </Provider>
-              );
-              `}
+                const App = () => (
+                  <Provider value={client}>
+                    <Todos />
+                  </Provider>
+                );
+                `}
             </${CodePane}>
             <${Box} height=${20} />
             <${CodePane} language="java" showLineNumbers=${false}>
               ${`
-              public class NoLineNumbers {
-              public static void main(String[] args) {
-              System.out.println("Hello");
-              }
-              }
-              `}
+                public class NoLineNumbers {
+                  public static void main(String[] args) {
+                    System.out.println("Hello");
+                  }
+                }
+                `}
             </${CodePane}>
           </${Slide}>
           <div>
@@ -207,22 +207,22 @@
           color: 'yellow'
         }}>
             ${`
-            # This is a Markdown Slide
+                # This is a Markdown Slide
 
-            - You can pass props down to all elements on the slide.
-            - Just use the \`componentProps\` prop.
-            `}
+                - You can pass props down to all elements on the slide.
+                - Just use the \`componentProps\` prop.
+                `}
           </${MarkdownSlide}>
           <${MarkdownSlide} animateListItems>
             ${`
-            # This is also a Markdown Slide
+               # This is also a Markdown Slide
 
-            It uses the \`animateListItems\` prop.
+               It uses the \`animateListItems\` prop.
 
-            - Its list items...
-            - ...will appear...
-            - ...one at a time.
-            `}
+               - Its list items...
+               - ...will appear...
+               - ...one at a time.
+              `}
           </${MarkdownSlide}>
           <${Slide}>
             <${Grid} flex=${1} gridTemplateColumns="50% 50%" gridTemplateRows="50% 50%" height="100%">
@@ -246,10 +246,10 @@
           </${Slide}>
           <${MarkdownSlideSet}>
             ${`
-            # This is the first slide of a Markdown Slide Set
-            ---
-            # This is the second slide of a Markdown Slide Set
-            `}
+                # This is the first slide of a Markdown Slide Set
+                ---
+                # This is the second slide of a Markdown Slide Set
+                `}
           </${MarkdownSlideSet}>
         </${Deck}>
       `;

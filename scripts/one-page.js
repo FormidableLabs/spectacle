@@ -53,7 +53,19 @@ const getSrcContent = async src => {
       // Initial cleanup for inline strings and functions
       htm = htm.replace(/>\${/gm, '>\n${').replace(/}<\/\${/gm, '}\n</${');
 
-      const formatted = `${open}${pretty(htm)}${close}`
+      // Protect indentation of inline strings by temporarily wrapping in <pre>
+      htm = htm
+        .replace(/\n\${`/gm, '\n<pre>SPECTACLE_ONE_PAGE_TEMP_MARKER${`')
+        .replace(/`}\n/gm, '`}SPECTACLE_ONE_PAGE_TEMP_MARKER</pre>\n');
+
+      // Make the HTML pretty:
+      htm = pretty(htm).replace(
+        /<pre>SPECTACLE_ONE_PAGE_TEMP_MARKER|SPECTACLE_ONE_PAGE_TEMP_MARKER<\/pre>/g,
+        ''
+      );
+
+      // Final tweaks:
+      htm = `${open}${htm}${close}`
         // Initial newline
         .replace('html`<${', 'html`\n<${')
         // Indent
@@ -64,7 +76,7 @@ const getSrcContent = async src => {
         // Final newline
         .replace('}>`;', '}>\n`;');
 
-      return formatted;
+      return htm;
     }
   );
 
