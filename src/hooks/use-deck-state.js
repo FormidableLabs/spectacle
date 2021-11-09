@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { merge } from 'merge-anything';
-import useActionDispatcher from '../hooks/use-action-dispatcher';
+import useActionDispatcher from './use-action-dispatcher';
 
 export const GOTO_FINAL_STEP = null;
 
