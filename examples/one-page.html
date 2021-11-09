@@ -181,9 +181,9 @@
               const client = createClient({ url: 'https://0ufyz.sse.codesandbox.io' });
 
               const App = () => (
-              <Provider value={client}>
-                <Todos />
-              </Provider>
+                <Provider value={client}>
+                  <Todos />
+                </Provider>
               );
               `}
             </${CodePane}>
@@ -191,9 +191,9 @@
             <${CodePane} language="java" showLineNumbers=${false}>
               ${`
               public class NoLineNumbers {
-              public static void main(String[] args) {
-              System.out.println("Hello");
-              }
+                public static void main(String[] args) {
+                  System.out.println("Hello");
+                }
               }
               `}
             </${CodePane}>
