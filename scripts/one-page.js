@@ -55,11 +55,14 @@ const getSrcContent = async src => {
 
       // Protect indentation of inline strings by temporarily wrapping in <pre>
       htm = htm
-        .replace(/\n\${`/gm, '\n<pre>######${`')
-        .replace(/`}\n/gm, '`}######</pre>\n');
+        .replace(/\n\${`/gm, '\n<pre>SPECTACLE_ONE_PAGE_TEMP_MARKER${`')
+        .replace(/`}\n/gm, '`}SPECTACLE_ONE_PAGE_TEMP_MARKER</pre>\n');
 
       // Make the HTML pretty:
-      htm = pretty(htm).replace(/<pre>######|######<\/pre>/g, '');
+      htm = pretty(htm).replace(
+        /<pre>SPECTACLE_ONE_PAGE_TEMP_MARKER|SPECTACLE_ONE_PAGE_TEMP_MARKER<\/pre>/g,
+        ''
+      );
 
       // Final tweaks:
       htm = `${open}${htm}${close}`
