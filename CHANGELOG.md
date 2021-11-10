@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.4.1
+
+- Fix highlight ranges bug [#1070](https://github.com/FormidableLabs/spectacle/pull/1070)
+- Update code samples with correct indentation
+- Added Google Tag Manager to documentation
+
 ## 8.4.0
 
 - Fix script reference in `examples/one-page.html`.
