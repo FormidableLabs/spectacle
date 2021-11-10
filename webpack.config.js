@@ -32,12 +32,7 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.[tj]sx?$/,
-        loader: 'ts-loader',
-        options: { transpileOnly: true }
-      },
-      // { test: /\.jsx?$/, use: ['babel-loader'] },
+      { test: /\.[tj]sx?$/, use: ['babel-loader'] },
       { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }
     ]
   }
