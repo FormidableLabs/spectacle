@@ -26,7 +26,7 @@ import { useAutoPlay } from '../../utils/use-auto-play';
 import defaultTheme from '../../theme/default-theme';
 import { defaultTransition } from '../transitions';
 
-export const DeckContext = createContext();
+export const DeckContext = createContext(null);
 const noop = () => {};
 
 /**
@@ -123,17 +123,6 @@ const Deck = forwardRef(
       cancelTransition
     } = useDeckState(initialDeckState);
 
-    useEffect(() => {
-      if (!initialized) return;
-      onActiveStateChange(activeView);
-      onActiveStateChangeExternal(activeView);
-    }, [
-      initialized,
-      activeView,
-      onActiveStateChange,
-      onActiveStateChangeExternal
-    ]);
-
     const [
       setPlaceholderContainer,
       slideIds,
@@ -184,6 +173,17 @@ const Deck = forwardRef(
       setState: skipTo,
       ...queryStringMapFns
     });
+
+    useEffect(() => {
+      if (!initialized) return;
+      onActiveStateChange(activeView);
+      onActiveStateChangeExternal(activeView);
+    }, [
+      initialized,
+      activeView,
+      onActiveStateChange,
+      onActiveStateChangeExternal
+    ]);
 
     useEffect(() => {
       const initialView = syncLocation({
