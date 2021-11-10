@@ -26,16 +26,19 @@ module.exports = {
     'react-is': 'ReactIs',
     'prop-types': 'PropTypes'
   },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    modules: [path.join(__dirname, 'src'), 'node_modules']
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        use: ['babel-loader']
+        test: /\.[tj]sx?$/,
+        loader: 'ts-loader',
+        options: { transpileOnly: true }
       },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader']
-      }
+      // { test: /\.jsx?$/, use: ['babel-loader'] },
+      { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }
     ]
   }
 };

@@ -22,7 +22,7 @@ describe('useAutoPlay()', () => {
       })
     );
 
-    jest.runTimersToTime(2000);
+    jest.advanceTimersByTime(2000);
     expect(stepForward).toBeCalledTimes(2);
   });
 
@@ -42,7 +42,7 @@ describe('useAutoPlay()', () => {
       })
     );
 
-    jest.runTimersToTime(1000);
+    jest.advanceTimersByTime(1000);
     expect(skipTo).toBeCalledTimes(1);
   });
 });
