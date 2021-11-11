@@ -1,9 +1,13 @@
 import React from 'react';
 
-export const useTimer = (handler, period, isActive) => {
+export const useTimer = (
+  handler: (timeDelay: number) => void,
+  period: number,
+  isActive: boolean
+) => {
   const [timeDelay, setTimeDelay] = React.useState(1);
-  const initialTime = React.useRef();
-  const callBack = React.useRef();
+  const initialTime = React.useRef<number>();
+  const callBack = React.useRef<typeof handler>();
   React.useEffect(() => {
     callBack.current = handler;
   }, [handler]);

@@ -1,7 +1,7 @@
 import { isolateNotes, removeNotes } from './notes';
 
 describe('isolate notes', () => {
-  it('returns emty string when there are no notes', () => {
+  it('returns empty string when there are no notes', () => {
     expect(
       isolateNotes(`
 # Test Title

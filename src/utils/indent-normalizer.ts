@@ -1,5 +1,5 @@
 // Indent to smallest non-empty whitespace level and trim start / end of string.
-const indentNormalizer = val => {
+const indentNormalizer = (val?: string) => {
   let prefix = null;
   return (val || '')
     .split('\n')

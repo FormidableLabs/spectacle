@@ -1,4 +1,4 @@
-export function toFiniteNumber(value) {
+export function toFiniteNumber(value: number) {
   if (!value || isNaN(value)) {
     return 0;
   } else if (value === Infinity || value === -Infinity) {
@@ -8,7 +8,7 @@ export function toFiniteNumber(value) {
   return value;
 }
 
-export default function clamp(number, lower, upper) {
+export default function clamp(number: number, lower?: number, upper?: number) {
   if (isNaN(number)) {
     return NaN;
   }

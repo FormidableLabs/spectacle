@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import * as React from 'react';
 
 export const useAutoPlay = options => {
   const {
