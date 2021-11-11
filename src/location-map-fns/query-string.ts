@@ -1,14 +1,25 @@
 import { GOTO_FINAL_STEP } from '../hooks/use-deck-state';
-import { parse as parseQS, stringify as stringifyQS } from 'query-string';
+import {
+  parse as parseQS,
+  ParsedQuery,
+  stringify as stringifyQS
+} from 'query-string';
 
-export function mapLocationToState(location) {
+export type SlideState = {
+  slideIndex?: number;
+  stepIndex?: number;
+};
+
+export function mapLocationToState(
+  location: Pick<Location, 'search'>
+): SlideState {
   const { search: queryString } = location;
 
   const { slideIndex: rawSlideIndex, stepIndex: rawStepIndex } = parseQS(
     queryString
   );
 
-  const nextState = {};
+  const nextState: SlideState = {};
 
   if (rawSlideIndex === undefined) {
     return nextState;
@@ -35,15 +46,15 @@ export function mapLocationToState(location) {
   return nextState;
 }
 
-export function mapStateToLocation(state) {
+export function mapStateToLocation(state: SlideState) {
   const { slideIndex, stepIndex } = state;
-  const query = {};
+  const query: ParsedQuery = {};
   if (typeof slideIndex !== 'number') {
     return query;
   }
-  query.slideIndex = slideIndex;
+  query.slideIndex = String(slideIndex);
   if (typeof stepIndex === 'number') {
-    query.stepIndex = stepIndex;
+    query.stepIndex = String(stepIndex);
   } else if (stepIndex === GOTO_FINAL_STEP) {
     query.stepIndex = 'final';
   }
