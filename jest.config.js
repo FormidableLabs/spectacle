@@ -84,7 +84,7 @@ module.exports = {
     // They aren't needed for current test suite,
     // so just map to an empty module.
     'react-syntax-highlighter/dist/esm/styles/prism':
-      '<rootDir>/src/test-utils/empty-module.js'
+      '<rootDir>/src/test-utils/empty-module.ts'
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -129,7 +129,7 @@ module.exports = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  setupFiles: ['<rootDir>/src/test-utils/test-setup.js'],
+  setupFiles: ['<rootDir>/src/test-utils/test-setup.ts'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
