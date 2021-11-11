@@ -11,7 +11,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     library: 'Spectacle',
     libraryTarget: 'umd',
