@@ -7,7 +7,7 @@ export default function useAspectRatioFitting({
   targetWidth = 1366,
   targetHeight = 768
 }) {
-  const containerRef = React.useRef();
+  const containerRef = React.useRef<HTMLDivElement>();
   const [scaleFactor, setScaleFactor] = React.useState(1);
   const [transformOrigin, setTransformOrigin] = React.useState({ x: 0, y: 0 });
 

@@ -9,6 +9,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('useToggleFullScreen', () => {
   it('calls document.documentElement.requestFullscreen when not fullscreen', () => {
     document.documentElement.requestFullscreen = jest.fn();
+    // @ts-ignore
     document.fullscreenElement = false;
     const TestComponent = () => {
       const toggleFullScreen = useToggleFullScreen();
@@ -27,6 +28,7 @@ describe('useToggleFullScreen', () => {
   });
   it('calls document.exitFullscreen when in fullscreen', () => {
     document.exitFullscreen = jest.fn();
+    // @ts-ignore
     document.fullscreenElement = true;
     const TestComponent = () => {
       const toggleFullScreen = useToggleFullScreen();

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ulid } from 'ulid';
-import { useTransition } from 'react-spring';
 import { SlideContext } from '../components/slide/slide';
 import sortByKeyComparator from '../utils/sort-by';
 import clamp from '../utils/clamp';
@@ -15,7 +14,11 @@ const PLACEHOLDER_CLASS_NAME = 'step-placeholder';
  */
 export function useSteps(
   numSteps = 1,
-  { id: userProvidedId, priority, stepIndex } = {}
+  {
+    id: userProvidedId,
+    priority,
+    stepIndex
+  }: { id?: string; priority?: number; stepIndex?: number } = {}
 ) {
   const [stepId] = React.useState(userProvidedId || ulid);
 
@@ -87,30 +90,33 @@ export function useSteps(
 // keys of 'activationThresholds' represent the IDs of stepper elements, and
 // the values represent the _first step at which they should appear_.
 export function useCollectSteps() {
-  const [stepContainer, setStepContainer] = React.useState();
+  const [stepContainer, setStepContainer] = React.useState<HTMLElement>();
   const [activationThresholds, setActivationThresholds] = React.useState({});
-  const [finalStepIndex, setFinalStepIndex] = React.useState();
+  const [finalStepIndex, setFinalStepIndex] = React.useState<number>();
 
   React.useEffect(() => {
     if (!stepContainer) return;
-    const placeholderNodes = stepContainer.getElementsByClassName(
+    const placeholderNodes = (stepContainer.getElementsByClassName(
       PLACEHOLDER_CLASS_NAME
-    );
+    ) as unknown) as Iterable<HTMLElement>;
 
     const [thresholds, numSteps] = [...placeholderNodes]
       .map((node, index) => {
-        let { stepId, stepCount, priority } = node.dataset;
+        const dataset = node.dataset;
+        // let { stepId, stepCountString, priority } = node.dataset;
 
-        stepCount = Number(stepCount);
+        let stepCount = Number(dataset.stepCount);
         if (isNaN(stepCount)) {
           stepCount = 1;
         }
-        priority = Number(priority);
+        let priority = Number(dataset.setpriority);
         if (isNaN(priority)) {
           priority = index;
         }
+        const id = dataset.stepId;
+
         return {
-          id: stepId,
+          id,
           count: stepCount,
           priority
         };

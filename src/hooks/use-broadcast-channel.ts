@@ -5,9 +5,11 @@ import { BroadcastChannel as BroadcastChannelPolyfill } from 'broadcast-channel'
 const noop = () => {};
 const BroadcastChannel = window.BroadcastChannel || BroadcastChannelPolyfill;
 
+type MessageCallback = (message: unknown) => void;
+
 export default function useBroadcastChannel(
-  channelName,
-  onMessage = noop,
+  channelName: string,
+  onMessage: MessageCallback = noop,
   deps = []
 ) {
   const [broadcasterId] = React.useState(() => ulid());
@@ -51,7 +53,7 @@ export default function useBroadcastChannel(
     const messageHandler = event => {
       const rawMessage = event.data;
       const message = JSON.parse(rawMessage);
-      userMessageHandlerRef.current(message, postMessage);
+      userMessageHandlerRef.current(message);
     };
     channel.addEventListener('message', messageHandler);
     return () => {
