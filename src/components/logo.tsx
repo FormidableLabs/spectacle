@@ -1,12 +1,11 @@
 import * as React from 'react';
-import propTypes from 'prop-types';
 
-export default function SpectacleLogo(props) {
+export default function SpectacleLogo({ size = 100 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={Math.floor(props.size * 1.012)}
-      height={props.size}
+      width={Math.floor(size * 1.012)}
+      height={size}
       fillRule="evenodd"
       clipRule="evenodd"
       viewBox="0 0 510 500"
@@ -176,11 +175,3 @@ export default function SpectacleLogo(props) {
     </svg>
   );
 }
-
-SpectacleLogo.propTypes = {
-  size: propTypes.number
-};
-
-SpectacleLogo.defaultProps = {
-  size: 100
-};

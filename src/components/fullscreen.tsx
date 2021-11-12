@@ -1,10 +1,14 @@
 import * as React from 'react';
-import propTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { useToggleFullScreen } from '../hooks/use-full-screen';
 
-const FullScreen = React.forwardRef((props, ref) => {
+type FSProps = {
+  color: string;
+  size: number;
+};
+
+const FullScreen = React.forwardRef<HTMLElement, FSProps>((props, ref) => {
   const Container = styled('div')`
     @media print {
       display: none;
@@ -34,11 +38,6 @@ const FullScreen = React.forwardRef((props, ref) => {
 });
 
 FullScreen.displayName = 'Fullscreen';
-
-FullScreen.propTypes = {
-  color: propTypes.string,
-  size: propTypes.number
-};
 
 FullScreen.defaultProps = {
   color: '#fff',
