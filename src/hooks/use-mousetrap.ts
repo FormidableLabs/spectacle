@@ -1,11 +1,14 @@
 import * as React from 'react';
-import Mousetrap from 'mousetrap';
+import Mousetrap, { ExtendedKeyboardEvent } from 'mousetrap';
 
 /*
  * Hook for binding functions to keyboard bindings. Will throw an error if the
  * value of the keybind combination is not a function.
  */
-export default function useMousetrap(keybinds, deps) {
+export default function useMousetrap(
+  keybinds: Record<string, (e?: ExtendedKeyboardEvent) => void>,
+  deps: any[]
+): void {
   React.useEffect(() => {
     for (const combo in keybinds) {
       const callback = keybinds[combo];
