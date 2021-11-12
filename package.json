@@ -88,6 +88,7 @@
     "@testing-library/react-hooks": "^3.7.0",
     "@types/jest": "^27.0.2",
     "@types/react": "^16.9.19",
+    "@types/styled-components": "^5.1.15",
     "@types/styled-system": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",

@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 import {
   color,
@@ -5,12 +6,23 @@ import {
   space,
   compose,
   border,
-  layout
+  layout,
+  ColorProps,
+  TypographyProps,
+  SpaceProps,
+  BorderProps,
+  LayoutProps
 } from 'styled-system';
+
+export type TableProps = ColorProps &
+  TypographyProps &
+  SpaceProps &
+  BorderProps &
+  LayoutProps;
 
 const Table = styled('table')(
   compose(color, typography, space, border, layout)
-);
+) as FC<TableProps>;
 
 Table.defaultProps = {
   color: 'primary',
@@ -23,7 +35,7 @@ Table.defaultProps = {
 
 const TableHeader = styled('thead')(
   compose(color, typography, space, border, layout)
-);
+) as FC<TableProps>;
 
 TableHeader.defaultProps = {
   color: 'primary',
@@ -36,7 +48,7 @@ TableHeader.defaultProps = {
 
 const TableBody = styled('tbody')(
   compose(color, typography, space, border, layout)
-);
+) as FC<TableProps>;
 
 TableBody.defaultProps = {
   color: 'primary',
@@ -49,7 +61,7 @@ TableBody.defaultProps = {
 
 const TableRow = styled('tr')(
   compose(color, typography, space, border, layout)
-);
+) as FC<TableProps>;
 
 TableRow.defaultProps = {
   color: 'primary',
@@ -61,7 +73,7 @@ TableRow.defaultProps = {
 
 const TableCell = styled('td')(
   compose(color, typography, space, border, layout)
-);
+) as FC<TableProps>;
 
 TableCell.defaultProps = {
   color: 'primary',

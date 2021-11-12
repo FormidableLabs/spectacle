@@ -1,9 +1,25 @@
 import styled from 'styled-components';
-import { color, typography, space, compose, system } from 'styled-system';
+import {
+  color,
+  typography,
+  space,
+  compose,
+  system,
+  ColorProps,
+  TypographyProps,
+  SpaceProps,
+  BorderProps
+} from 'styled-system';
+import { FC } from 'react';
 
 const decoration = system({ textDecoration: true });
+type DecorationProps = Pick<CSSStyleDeclaration, 'textDecoration'>;
 
-const Text = styled('div')(compose(color, typography, space));
+type CommonProps = ColorProps & TypographyProps & SpaceProps;
+
+const Text = styled('div')(compose(color, typography, space)) as FC<
+  CommonProps
+>;
 Text.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -13,13 +29,17 @@ Text.defaultProps = {
   margin: 0
 };
 
-const CodeSpan = styled('code')(compose(color, typography, space));
+const CodeSpan = styled('code')(compose(color, typography, space)) as FC<
+  CommonProps
+>;
 CodeSpan.defaultProps = {
   fontFamily: 'monospace',
   fontSize: 'text'
 };
 
-const Link = styled('a')(compose(color, typography, space, decoration));
+const Link = styled('a')(compose(color, typography, space, decoration)) as FC<
+  CommonProps & DecorationProps
+>;
 Link.defaultProps = {
   fontFamily: 'text',
   fontSize: 'text',
@@ -37,7 +57,9 @@ Heading.defaultProps = {
   margin: 1
 };
 
-const Quote = styled(Text)`
+const Quote = styled(
+  Text as FC<CommonProps & Pick<BorderProps, 'borderColor'>>
+)`
   border-left: 1px solid
     ${({ theme, borderColor }) => borderColor || theme.colors.secondary};
 
@@ -58,8 +80,11 @@ Quote.defaultProps = {
 const listStyle = system({
   listStyleType: true
 });
+type ListStyleProps = Pick<CSSStyleDeclaration, 'listStyleType'>;
 
-const OrderedList = styled('ol')(compose(color, typography, space, listStyle));
+const OrderedList = styled('ol')(
+  compose(color, typography, space, listStyle)
+) as FC<CommonProps & ListStyleProps>;
 OrderedList.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -70,7 +95,7 @@ OrderedList.defaultProps = {
 
 const UnorderedList = styled('ul')(
   compose(color, typography, space, listStyle)
-);
+) as FC<CommonProps & ListStyleProps>;
 UnorderedList.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -79,8 +104,9 @@ UnorderedList.defaultProps = {
   margin: 0
 };
 
-const ListItem = styled('li')(compose(color, typography, space));
-
+const ListItem = styled('li')(compose(color, typography, space)) as FC<
+  CommonProps
+>;
 ListItem.defaultProps = {
   margin: 0
 };
