@@ -1,9 +1,12 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 import { compose, layout, position } from 'styled-system';
+import * as SS from 'styled-system';
 
-const Image = styled('img')(compose(layout, position));
+type ImageType = FC<SS.LayoutProps & SS.PositionProps>;
 
-const FullSizeImage = styled(Image);
+const Image = styled.img(compose(layout, position)) as ImageType;
+const FullSizeImage = (styled(Image) as unknown) as ImageType;
 
 FullSizeImage.defaultProps = {
   maxWidth: '100%',

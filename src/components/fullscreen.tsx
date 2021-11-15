@@ -8,13 +8,13 @@ type FSProps = {
   size: number;
 };
 
-const FullScreen = React.forwardRef<HTMLElement, FSProps>((props, ref) => {
-  const Container = styled('div')`
-    @media print {
-      display: none;
-    }
-  `;
+const Container = styled('div')`
+  @media print {
+    display: none;
+  }
+`;
 
+const FullScreen = React.forwardRef<HTMLDivElement, FSProps>((props, ref) => {
   const toggleFullScreen = useToggleFullScreen();
   return (
     <Container

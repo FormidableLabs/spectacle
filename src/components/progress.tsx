@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { DeckContext } from './deck/deck';
 
-export const Circle = styled('div')`
+export type CircleProps = { size: number; color: string; active: boolean };
+export const Circle = styled.div<CircleProps>`
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   display: inline-block;
@@ -14,7 +15,7 @@ export const Circle = styled('div')`
   cursor: pointer;
 `;
 
-const Container = styled('div')`
+const Container = styled.div`
   @media print {
     display: none;
   }
@@ -25,7 +26,8 @@ export type ProgressProps = {
   size?: number;
 };
 
-const Progress = React.forwardRef<HTMLElement, ProgressProps>((props, ref) => {
+type PP = ProgressProps;
+const Progress = React.forwardRef<HTMLDivElement, PP>((props, ref) => {
   const { slideCount, skipTo, activeView } = React.useContext(DeckContext);
   return (
     <Container ref={ref} className="spectacle-progress-indicator">
