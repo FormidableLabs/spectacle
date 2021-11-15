@@ -1,5 +1,4 @@
 import * as React from 'react';
-import propTypes from 'prop-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { useSteps } from '../hooks/use-steps';
 import indentNormalizer from '../utils/indent-normalizer';
@@ -50,7 +49,7 @@ const getStyleForLineNumber = (lineNumber, activeRange) => {
   return { opacity: from <= lineNumber && lineNumber <= to ? 1 : 0.5 };
 };
 
-const CodePane = React.forwardRef(
+const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
   (
     {
       highlightRanges = [],
@@ -93,7 +92,7 @@ const CodePane = React.forwardRef(
       return indentNormalizer(rawCodeString);
     }, [rawCodeString]);
 
-    const scrollTarget = React.useRef();
+    const scrollTarget = React.useRef<HTMLElement>();
 
     const getLineNumberProps = React.useCallback(
       lineNumber => {
@@ -176,18 +175,15 @@ const CodePane = React.forwardRef(
   }
 );
 
-CodePane.propTypes = {
-  highlightRanges: propTypes.arrayOf(
-    propTypes.oneOfType([
-      propTypes.number.isRequired,
-      propTypes.arrayOf(propTypes.number.isRequired)
-    ])
-  ),
-  showLineNumbers: propTypes.bool,
-  language: propTypes.string.isRequired,
-  children: propTypes.string.isRequired,
-  stepIndex: propTypes.number,
-  theme: propTypes.object
+export type CodePaneProps = {
+  children: string;
+  language: string;
+  theme?: Record<string, unknown>;
+  stepIndex?: number;
+  highlightRanges?: Array<number | number[]>;
+  showLineNumbers?: boolean;
 };
+
+CodePane.propTypes = {};
 
 export default CodePane;
