@@ -13,13 +13,11 @@ import {
 import { FC } from 'react';
 
 const decoration = system({ textDecoration: true });
-type DecorationProps = Pick<CSSStyleDeclaration, 'textDecoration'>;
+type DecorationProps = Partial<Pick<CSSStyleDeclaration, 'textDecoration'>>;
 
 type CommonProps = ColorProps & TypographyProps & SpaceProps;
 
-const Text = styled('div')(compose(color, typography, space)) as FC<
-  CommonProps
->;
+const Text = styled.div<CommonProps>(compose(color, typography, space));
 Text.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -29,17 +27,15 @@ Text.defaultProps = {
   margin: 0
 };
 
-const CodeSpan = styled('code')(compose(color, typography, space)) as FC<
-  CommonProps
->;
+const CodeSpan = styled.code<CommonProps>(compose(color, typography, space));
 CodeSpan.defaultProps = {
   fontFamily: 'monospace',
   fontSize: 'text'
 };
 
-const Link = styled('a')(compose(color, typography, space, decoration)) as FC<
-  CommonProps & DecorationProps
->;
+const Link = styled.a<CommonProps & DecorationProps>(
+  compose(color, typography, space, decoration)
+);
 Link.defaultProps = {
   fontFamily: 'text',
   fontSize: 'text',
@@ -80,11 +76,11 @@ Quote.defaultProps = {
 const listStyle = system({
   listStyleType: true
 });
-type ListStyleProps = Pick<CSSStyleDeclaration, 'listStyleType'>;
+type ListStyleProps = Partial<Pick<CSSStyleDeclaration, 'listStyleType'>>;
 
-const OrderedList = styled('ol')(
+const OrderedList = styled.ol<CommonProps & ListStyleProps>(
   compose(color, typography, space, listStyle)
-) as FC<CommonProps & ListStyleProps>;
+);
 OrderedList.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -93,9 +89,9 @@ OrderedList.defaultProps = {
   margin: 0
 };
 
-const UnorderedList = styled('ul')(
+const UnorderedList = styled.ul<CommonProps & ListStyleProps>(
   compose(color, typography, space, listStyle)
-) as FC<CommonProps & ListStyleProps>;
+);
 UnorderedList.defaultProps = {
   color: 'primary',
   fontFamily: 'text',
@@ -104,9 +100,7 @@ UnorderedList.defaultProps = {
   margin: 0
 };
 
-const ListItem = styled('li')(compose(color, typography, space)) as FC<
-  CommonProps
->;
+const ListItem = styled.li<CommonProps>(compose(color, typography, space));
 ListItem.defaultProps = {
   margin: 0
 };
