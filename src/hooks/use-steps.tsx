@@ -18,7 +18,7 @@ export function useSteps(
     id: userProvidedId,
     priority,
     stepIndex
-  }: { id?: string; priority?: number; stepIndex?: number } = {}
+  }: { id?: string | number; priority?: number; stepIndex?: number } = {}
 ) {
   const [stepId] = React.useState(userProvidedId || ulid);
 
@@ -26,7 +26,7 @@ export function useSteps(
     SlideContext
   );
 
-  let relStep;
+  let relStep: number;
 
   if (activationThresholds === null) {
     // We won't have a set of activation thresholds during the very first render

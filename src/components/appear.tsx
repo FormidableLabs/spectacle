@@ -1,9 +1,9 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 import { animated, useSpring } from 'react-spring';
 import { useSteps } from '../hooks/use-steps';
 import { SlideContext } from './slide/slide';
+import { FC } from 'react';
 
 function SteppedComponent({
   id,
@@ -16,7 +16,7 @@ function SteppedComponent({
   alwaysAppearActive = false,
   activeStyle = { opacity: '1' },
   inactiveStyle = { opacity: '0' }
-}) {
+}: SteppedComponentProps) {
   const { immediate } = React.useContext(SlideContext);
 
   const { isActive, step, placeholder } = useSteps(numSteps, {
@@ -27,7 +27,7 @@ function SteppedComponent({
 
   const AnimatedEl = animated[tagName];
 
-  let children;
+  let children: React.ReactNode;
   if (typeof childrenOrRenderFunction === 'function') {
     children = childrenOrRenderFunction(step, isActive);
   } else {
@@ -52,36 +52,32 @@ function SteppedComponent({
   );
 }
 
-SteppedComponent.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  className: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-  tagName: PropTypes.string,
-  priority: PropTypes.number,
-  stepIndex: PropTypes.number,
-  numSteps: PropTypes.number,
-  alwaysAppearActive: PropTypes.bool,
-  activeStyle: PropTypes.object,
-  inactiveStyle: PropTypes.object
+type SteppedComponentProps = {
+  id?: string | number;
+  priority?: number;
+  /** @deprecated use priority prop instead */
+  stepIndex?: number;
+  children:
+    | React.ReactNode
+    | ((step: number, isActive: boolean) => React.ReactNode);
+  className?: string;
+  tagName?: keyof JSX.IntrinsicElements;
+  activeStyle?: Partial<CSSStyleDeclaration>;
+  inactiveStyle?: Partial<CSSStyleDeclaration>;
+  numSteps?: number;
+  alwaysAppearActive?: boolean;
 };
 
-export function Appear({ children, ...restProps }) {
+type AppearProps = Omit<
+  SteppedComponentProps,
+  'numSteps' | 'alwaysAppearActive'
+>;
+export const Appear: React.FC<AppearProps> = ({ children, ...restProps }) => {
   return (
     <SteppedComponent {...restProps} numSteps={1}>
       {children}
     </SteppedComponent>
   );
-}
-
-Appear.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  priority: PropTypes.number,
-  stepIndex: PropTypes.number,
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-  className: PropTypes.string,
-  tagName: PropTypes.string,
-  activeStyle: PropTypes.object,
-  inactiveStyle: PropTypes.object
 };
 
 export function Stepper({
@@ -92,7 +88,7 @@ export function Stepper({
   activeStyle,
   inactiveStyle,
   ...restProps
-}) {
+}: StepperProps) {
   if (renderFn !== undefined && renderChildrenFn !== undefined) {
     throw new Error(
       '<Stepper> component specified both `render` prop and a render function as its `children`.'
@@ -112,16 +108,25 @@ export function Stepper({
   );
 }
 
-Stepper.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  priority: PropTypes.number,
-  stepIndex: PropTypes.number,
-  render: PropTypes.func,
-  children: PropTypes.func,
-  className: PropTypes.string,
-  tagName: PropTypes.string,
-  values: PropTypes.arrayOf(PropTypes.any).isRequired,
-  alwaysVisible: PropTypes.bool,
-  activeStyle: PropTypes.object,
-  inactiveStyle: PropTypes.object
+type StepperProps<T extends unknown[] = unknown[]> = {
+  id?: string | number;
+  priority?: number;
+  /** @deprecated use priority prop instead */
+  stepIndex?: number;
+  render?: (
+    value: T[number],
+    step: number,
+    isActive: boolean
+  ) => React.ReactNode;
+  children?: (
+    value: T[number],
+    step: number,
+    isActive: boolean
+  ) => React.ReactNode;
+  className?: string;
+  tagName?: keyof JSX.IntrinsicElements;
+  values: T;
+  alwaysVisible?: boolean;
+  activeStyle?: Partial<CSSStyleDeclaration>;
+  inactiveStyle?: Partial<CSSStyleDeclaration>;
 };
