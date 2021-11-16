@@ -2,6 +2,8 @@ import React, { RefAttributes } from 'react';
 import { SwipeEventData } from 'react-swipeable';
 import { SlideTransition } from '../transitions';
 import { DeckStateAndActions, DeckView } from '../../hooks/use-deck-state';
+import { SpectacleThemeOverrides } from '../../theme/default-theme';
+import { MarkdownComponentMap } from '../../utils/mdx-component-mapper';
 
 export type SlideId = string | number;
 
@@ -10,6 +12,10 @@ export type TemplateFn = (options: {
   numberOfSlides: number;
 }) => React.ReactNode;
 
+type MarkdownThemeOverrides = {
+  markdownComponentMap?: MarkdownComponentMap;
+};
+
 export const DeckContext: React.Context<{
   deckId: number;
   slideCount: number;
@@ -17,7 +23,7 @@ export const DeckContext: React.Context<{
   slidePortalNode: React.ReactNode;
   onSlideClick(e: Event, slideId: SlideId): void;
   onMobileSlide(eventData: SwipeEventData): void;
-  theme: Record<string, string | number | number[]>;
+  theme?: SpectacleThemeOverrides & MarkdownThemeOverrides;
   frameOverrideStyle: Record<string, string | number>;
   wrapperOverrideStyle: Record<string, string | number>;
   backdropNode: React.ReactNode;
@@ -52,7 +58,7 @@ export type DeckProps = {
   autoPlay?: boolean;
   autoPlayLoop?: boolean;
   autoPlayInterval?: number;
-  theme?: Record<string, any>;
+  theme?: SpectacleThemeOverrides & MarkdownThemeOverrides;
   template?: TemplateFn | React.ReactNode;
   printScale?: number;
   transition?: SlideTransition;

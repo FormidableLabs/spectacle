@@ -15,13 +15,33 @@ import remarkRaw from 'rehype-raw';
 import rehype2react from 'rehype-react';
 import { isValidElementType } from 'react-is';
 import { root as mdRoot } from 'mdast-builder';
-import mdxComponentMap from '../../utils/mdx-component-mapper';
+import mdxComponentMap, {
+  MarkdownComponentMap
+} from '../../utils/mdx-component-mapper';
 import indentNormalizer from '../../utils/indent-normalizer';
 import Notes from '../notes';
 import { ListItem } from '../../index';
 import { Appear } from '../appear';
 
-export const Markdown = React.forwardRef(
+type MdComponentProps = { [key: string]: any };
+
+type CommonMarkdownProps = {
+  animateListItems?: boolean;
+  componentProps?: MdComponentProps;
+  children: string;
+};
+
+type MapAndTemplate = {
+  componentMap?: typeof mdxComponentMap;
+  template?: {
+    default: React.ElementType;
+    getPropsForAST?: Function;
+  };
+};
+
+type MarkdownProps = CommonMarkdownProps & MapAndTemplate;
+
+export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
   (
     {
       componentMap: userProvidedComponentMap = mdxComponentMap,
@@ -35,7 +55,7 @@ export const Markdown = React.forwardRef(
     ref
   ) => {
     const {
-      theme: { markdownComponentMap: themeComponentMap } = {}
+      theme: { markdownComponentMap: themeComponentMap = null } = {}
     } = React.useContext(DeckContext);
 
     const [templateProps, noteElements] = React.useMemo(() => {
@@ -56,7 +76,7 @@ export const Markdown = React.forwardRef(
 
       // Pass the AST into the provided template function, which returns an object
       // whose keys are prop names and whose values are chunks of the parsed AST.
-      let templatePropMDASTs;
+      let templatePropMDASTs: unknown;
       if (typeof getPropsForAST === 'function') {
         templatePropMDASTs = getPropsForAST(transformedAst);
       }
@@ -67,7 +87,7 @@ export const Markdown = React.forwardRef(
 
       // Construct the component map based on the current theme and any custom
       // mappings provided directly to <Markdown />
-      const componentMap = {
+      const componentMap: MarkdownComponentMap = {
         __codeBlock: MarkdownCodePane,
         ...(themeComponentMap || {}),
         ...userProvidedComponentMap
@@ -121,7 +141,7 @@ export const Markdown = React.forwardRef(
           acc[key] = compiler.stringify(hast);
           return acc;
         },
-        {}
+        {} as JSX.IntrinsicElements['div']
       );
       // Create the compiler for presenter notes, which wraps the entire compiled
       // chunk in a <Note> component. (Rather than React.Fragment, which is the
@@ -138,7 +158,7 @@ export const Markdown = React.forwardRef(
       const transformedNotesAst = notesCompiler.runSync(extractedNotes);
       const noteElements = notesCompiler.stringify(transformedNotesAst);
 
-      return [templateProps, noteElements];
+      return [templateProps, noteElements] as const;
     }, [
       rawMarkdownText,
       getPropsForAST,
@@ -165,6 +185,7 @@ const AppearingListItem = props => (
   </Appear>
 );
 
+type MarkdownSlideProps = CommonMarkdownProps & MapAndTemplate;
 // TODO: document this thoroughly, it's a public-facing API
 export const MarkdownSlide = ({
   children,
@@ -173,7 +194,7 @@ export const MarkdownSlide = ({
   animateListItems = false,
   componentProps = {},
   ...rest
-}) => {
+}: MarkdownSlideProps) => {
   return (
     <Slide {...rest}>
       <Markdown
@@ -189,13 +210,17 @@ export const MarkdownSlide = ({
   );
 };
 
+type MarkdownSlideSetProps = CommonMarkdownProps & {
+  slideProps?: Partial<MarkdownSlideProps>;
+};
+
 // TODO: document this thoroughly, it's a public-facing API (possibly rename as
 // well)
 export const MarkdownSlideSet = ({
   children: rawMarkdownText,
   slideProps = {},
   ...allSlideProps
-}) => {
+}: MarkdownSlideSetProps) => {
   const dedentedMarkdownText = indentNormalizer(rawMarkdownText);
   const mdSlides = dedentedMarkdownText.split(/\n\s*---\n/);
   return (
@@ -224,9 +249,9 @@ export const MarkdownSlideSet = ({
 // differently, we detect the latter case and render CodeBlockComponent if
 // needed.
 export const MarkdownPreHelper = (
-  PreComponent = 'pre',
-  CodeInlineComponent = 'code',
-  CodeBlockComponent
+  PreComponent: React.ElementType = 'pre',
+  CodeInlineComponent: React.ElementType = 'code',
+  CodeBlockComponent: React.ElementType
 ) => ({ children, ...restProps }) => {
   const pre = <PreComponent {...restProps}>{children}</PreComponent>;
 

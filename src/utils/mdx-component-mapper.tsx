@@ -31,4 +31,8 @@ const mdxComponentMap = {
   td: TableCell
 };
 
+export type MarkdownComponentMap = {
+  [Element in keyof typeof mdxComponentMap | '__codeBlock']?: React.ElementType;
+};
+
 export default mdxComponentMap;
