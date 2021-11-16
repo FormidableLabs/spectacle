@@ -1,10 +1,21 @@
 import * as React from 'react';
 import { merge } from 'merge-anything';
-import useActionDispatcher from './use-action-dispatcher';
+import { SlideId } from '../components/deck/deck';
 
 export const GOTO_FINAL_STEP = null;
 
-const initialDeckState = {
+type DeckView = {
+  slideId?: SlideId;
+  slideIndex?: number;
+  stepIndex?: number;
+};
+export type DeckState = {
+  initialized: boolean;
+  activeView: DeckView;
+  pendingView: DeckView;
+};
+
+const initialDeckState: DeckState = {
   initialized: false,
   pendingView: {
     slideIndex: undefined,
@@ -16,7 +27,17 @@ const initialDeckState = {
   }
 };
 
-function deckReducer(state, { type, payload = {} }) {
+type ReducerActions =
+  | { type: 'INITIALIZE_TO'; payload: Partial<DeckView> }
+  | { type: 'SKIP_TO'; payload: Partial<DeckView> }
+  | { type: 'STEP_FORWARD'; payload?: undefined }
+  | { type: 'STEP_BACKWARD'; payload?: undefined }
+  | { type: 'ADVANCE_SLIDE'; payload?: undefined }
+  | { type: 'REGRESS_SLIDE'; payload?: Pick<DeckView, 'stepIndex'> }
+  | { type: 'COMMIT_TRANSITION'; payload?: DeckView }
+  | { type: 'CANCEL_TRANSITION'; payload?: undefined };
+
+function deckReducer(state: DeckState, { type, payload }: ReducerActions) {
   switch (type) {
     case 'INITIALIZE_TO':
       return {
@@ -76,39 +97,39 @@ function deckReducer(state, { type, payload = {} }) {
   }
 }
 
-export default function useDeckReducer(userProvidedInitialState) {
+export default function useDeckState(userProvidedInitialState: DeckView) {
   const [{ initialized, pendingView, activeView }, dispatch] = React.useReducer(
     deckReducer,
     initialDeckState
   );
-
-  const initializeTo = useActionDispatcher(dispatch, 'INITIALIZE_TO');
-  const skipTo = useActionDispatcher(dispatch, 'SKIP_TO');
-  const stepForward = useActionDispatcher(dispatch, 'STEP_FORWARD');
-  const stepBackward = useActionDispatcher(dispatch, 'STEP_BACKWARD');
-  const advanceSlide = useActionDispatcher(dispatch, 'ADVANCE_SLIDE');
-  const regressSlide = useActionDispatcher(dispatch, 'REGRESS_SLIDE');
-  const commitTransition = useActionDispatcher(dispatch, 'COMMIT_TRANSITION');
-  const cancelTransition = useActionDispatcher(dispatch, 'CANCEL_TRANSITION');
+  const actions = React.useMemo(
+    () => ({
+      initializeTo: (payload: Partial<DeckView>) =>
+        dispatch({ type: 'INITIALIZE_TO', payload }),
+      skipTo: (payload: Partial<DeckView>) =>
+        dispatch({ type: 'SKIP_TO', payload }),
+      stepForward: () => dispatch({ type: 'STEP_FORWARD' }),
+      stepBackward: () => dispatch({ type: 'STEP_BACKWARD' }),
+      advanceSlide: () => dispatch({ type: 'ADVANCE_SLIDE' }),
+      regressSlide: (payload: Pick<DeckView, 'stepIndex'>) =>
+        dispatch({ type: 'REGRESS_SLIDE', payload }),
+      commitTransition: (payload: DeckView) =>
+        dispatch({ type: 'COMMIT_TRANSITION', payload }),
+      cancelTransition: () => dispatch({ type: 'CANCEL_TRANSITION' })
+    }),
+    [dispatch]
+  );
 
   React.useEffect(() => {
     if (initialized) return;
     if (userProvidedInitialState === undefined) return;
-    initializeTo(userProvidedInitialState);
-  }, [initialized, initializeTo, userProvidedInitialState]);
+    actions.initializeTo(userProvidedInitialState);
+  }, [initialized, actions, userProvidedInitialState]);
 
   return {
     initialized,
     pendingView,
     activeView,
-
-    initializeTo,
-    skipTo,
-    stepForward,
-    stepBackward,
-    advanceSlide,
-    regressSlide,
-    commitTransition,
-    cancelTransition
+    ...actions
   };
 }

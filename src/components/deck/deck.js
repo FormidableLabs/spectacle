@@ -427,4 +427,6 @@ Deck.propTypes = {
   })
 };
 
+export const DeckInternal = Deck;
+
 export default Deck;

@@ -44,7 +44,7 @@ export const DeckContext: React.Context<{
   transition: SlideTransition;
 }>;
 
-declare const Deck: React.FC<{
+export type DeckProps = {
   children: React.ReactNode;
   autoPlay?: boolean;
   autoPlayLoop?: boolean;
@@ -53,6 +53,15 @@ declare const Deck: React.FC<{
   template?: TemplateFn | React.ReactNode;
   printScale?: number;
   transition?: SlideTransition;
+};
+
+declare const Deck: React.FC<DeckProps>;
+
+export const DeckInternal: React.FC<DeckProps & {
+  printMode?: boolean;
+  exportMode?: boolean;
+  disableInteractivity?: boolean;
+  notePortalNode?: boolean;
 }>;
 
 export default Deck;
