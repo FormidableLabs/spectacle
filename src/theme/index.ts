@@ -1,4 +1,4 @@
-import defaultTheme from './default-theme';
+import defaultTheme, { SpectacleThemeOverrides } from './default-theme';
 import printTheme from './print-theme';
 
 const mergeKeys = (base, override) =>
@@ -10,7 +10,9 @@ const mergeKeys = (base, override) =>
     { ...base }
   );
 
-export function mergeTheme({ theme, printMode }) {
+type MergeOptions = { theme: SpectacleThemeOverrides; printMode?: boolean };
+
+export function mergeTheme({ theme, printMode }: MergeOptions) {
   const merged = mergeKeys(defaultTheme, theme);
   return printMode ? mergeKeys(merged, printTheme) : merged;
 }

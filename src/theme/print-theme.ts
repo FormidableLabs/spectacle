@@ -1,4 +1,6 @@
-export default {
+import { SpectacleThemeOverrides } from './default-theme';
+
+const printTheme: SpectacleThemeOverrides = {
   colors: {
     primary: '#777',
     secondary: '#000',
@@ -7,3 +9,4 @@ export default {
     quinary: '#000000'
   }
 };
+export default printTheme;

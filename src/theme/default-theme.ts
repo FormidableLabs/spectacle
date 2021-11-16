@@ -1,4 +1,4 @@
-export default {
+const defaultTheme = {
   size: {
     width: 1366,
     height: 768,
@@ -25,3 +25,12 @@ export default {
   },
   space: [16, 24, 32]
 };
+
+type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>;
+};
+
+export type SpectacleTheme = typeof defaultTheme;
+export type SpectacleThemeOverrides = DeepPartial<SpectacleTheme>;
+
+export default defaultTheme;
