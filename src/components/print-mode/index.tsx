@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
-import Deck from '../deck/deck';
+import { DeckInternal } from '../deck/deck';
 import { AnimatedDiv } from '../slide/slide';
 import defaultTheme from '../../theme/default-theme';
 
@@ -37,14 +37,14 @@ export default function PrintMode(props) {
         pageSize={computedPageSize}
         pageOrientation={pageOrientation}
       />
-      <Deck
+      <DeckInternal
         printMode
         exportMode={exportMode}
         disableInteractivity
         theme={{ ...theme, Backdrop, backdropStyle: {} }}
       >
         {children}
-      </Deck>
+      </DeckInternal>
     </>
   );
 }
