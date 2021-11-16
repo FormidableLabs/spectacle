@@ -84,6 +84,9 @@ export function useSteps(
   };
 }
 
+type StepId = string;
+export type ActivationThresholds = Record<StepId, number>;
+
 // Similar to <Deck>, this is where we go looking for "step placeholder"
 // elements. The main difference here is that slide placeholders are 1:1 with
 // slides, whereas step placeholders may represent multiple steps. So, the
@@ -91,7 +94,9 @@ export function useSteps(
 // the values represent the _first step at which they should appear_.
 export function useCollectSteps() {
   const [stepContainer, setStepContainer] = React.useState<HTMLElement>();
-  const [activationThresholds, setActivationThresholds] = React.useState({});
+  const [activationThresholds, setActivationThresholds] = React.useState<
+    ActivationThresholds
+  >({});
   const [finalStepIndex, setFinalStepIndex] = React.useState<number>();
 
   React.useEffect(() => {
@@ -103,7 +108,6 @@ export function useCollectSteps() {
     const [thresholds, numSteps] = [...placeholderNodes]
       .map((node, index) => {
         const dataset = node.dataset;
-        // let { stepId, stepCountString, priority } = node.dataset;
 
         let stepCount = Number(dataset.stepCount);
         if (isNaN(stepCount)) {
@@ -113,7 +117,7 @@ export function useCollectSteps() {
         if (isNaN(priority)) {
           priority = index;
         }
-        const id = dataset.stepId;
+        const id = dataset.stepId as StepId;
 
         return {
           id,
@@ -130,7 +134,7 @@ export function useCollectSteps() {
           thresholds[id] = nextThreshold;
           return [thresholds, nextThreshold + count];
         },
-        [{}, 1]
+        [{}, 1] as [ActivationThresholds, number]
       );
 
     setActivationThresholds(thresholds);

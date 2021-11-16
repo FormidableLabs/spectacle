@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ulid } from 'ulid';
+import { SlideId } from '../components/deck/deck';
 
 export const PLACEHOLDER_CLASS_NAME = 'spectacle-v7-slide';
 
@@ -30,8 +31,8 @@ export function useCollectSlides() {
   return [setSlideContainer, slideIds, initialized];
 }
 
-export function useSlide(userProvidedId) {
-  const [slideId] = React.useState(userProvidedId || ulid);
+export function useSlide(userProvidedId: SlideId) {
+  const [slideId] = React.useState<SlideId>(userProvidedId || ulid);
   return {
     slideId,
     placeholder: (

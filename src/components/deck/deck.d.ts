@@ -1,26 +1,36 @@
-import * as React from 'react';
+import React from 'react';
+import { SwipeEventData } from 'react-swipeable';
 import { SlideTransition } from '../transitions';
-import { TemplateFn } from '../slide/slide';
+
+export type SlideId = string | number;
+
+export type TemplateFn = (options: {
+  slideNumber: number;
+  numberOfSlides: number;
+}) => React.ReactNode;
 
 export const DeckContext: React.Context<{
   deckId: number;
   slideCount: number;
   useAnimations: boolean;
   slidePortalNode: React.ReactNode;
-  onSlideClick(e: Event, slideId: number): void;
+  onSlideClick(e: Event, slideId: SlideId): void;
+  onMobileSlide(eventData: SwipeEventData): void;
   theme: Record<string, string | number | number[]>;
   frameOverrideStyle: Record<string, string | number>;
   wrapperOverrideStyle: Record<string, string | number>;
   backdropNode: React.ReactNode;
   notePortalNode: React.ReactNode;
   initialized: boolean;
-  passedSlideIds: number[];
-  upcomingSlideIds: number[];
+  passedSlideIds: Set<SlideId>;
+  upcomingSlideIds: Set<SlideId>;
   activeView: {
+    slideId: SlideId;
     slideIndex: number;
     stepIndex: number;
   };
   pendingView: {
+    slideId: SlideId;
     slideIndex: number;
     stepIndex: number;
   };
@@ -28,14 +38,9 @@ export const DeckContext: React.Context<{
   stepForward(): void;
   advanceSlide(): void;
   regressSlide(): void;
-  commitTransition(): void;
+  commitTransition(newView?: { stepIndex: number }): void;
   cancelTransition(): void;
-  template:
-    | React.ReactNode
-    | ((options: {
-        slideNumber: number;
-        numberOfSlides: number;
-      }) => React.ReactNode);
+  template: TemplateFn | React.ReactNode;
   transition: SlideTransition;
 }>;
 

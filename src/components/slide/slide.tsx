@@ -1,27 +1,43 @@
 import React, {
   createContext,
-  useContext,
   useCallback,
-  useState,
+  useContext,
   useEffect,
-  useMemo
+  useMemo,
+  useState
 } from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import styled, { css, ThemeContext } from 'styled-components';
-import { background, color, space } from 'styled-system';
-import { DeckContext } from '../deck/deck';
-import { useSpring, animated } from 'react-spring';
+import {
+  background,
+  BackgroundProps,
+  color,
+  ColorProps,
+  space,
+  SpaceProps
+} from 'styled-system';
+import { DeckContext, SlideId, TemplateFn } from '../deck/deck';
+import { animated, useSpring } from 'react-spring';
 import { useSlide } from '../../hooks/use-slides';
-import { useCollectSteps } from '../../hooks/use-steps';
+import { ActivationThresholds, useCollectSteps } from '../../hooks/use-steps';
 import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { useSwipeable } from 'react-swipeable';
+import { SlideTransition } from '../transitions';
 
 const noop = () => {};
 
-export const SlideContext = createContext(null);
+export const SlideContext = createContext<{
+  immediate: boolean;
+  slideId: SlideId;
+  isSlideActive: boolean;
+  activationThresholds: ActivationThresholds;
+  activeStepIndex: number;
+}>(null);
 
-const SlideContainer = styled('div')`
+type SlideContainerProps = BackgroundProps &
+  ColorProps & { backgroundOpacity: number };
+
+const SlideContainer = styled.div<SlideContainerProps>`
   ${color};
   width: 100%;
   height: 100%;
@@ -43,7 +59,7 @@ const SlideContainer = styled('div')`
   }
 `;
 
-const SlideWrapper = styled('div')(
+const SlideWrapper = styled.div<ColorProps & SpaceProps>(
   color,
   space,
   css`
@@ -54,7 +70,7 @@ const SlideWrapper = styled('div')(
   `
 );
 
-const TemplateWrapper = styled('div')`
+const TemplateWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -79,18 +95,18 @@ export const AnimatedDiv = styled(animated.div)`
 export default function Slide({
   id: userProvidedId,
   children,
-  backgroundColor,
+  backgroundColor = 'tertiary',
   backgroundImage,
-  backgroundOpacity,
-  backgroundPosition,
-  backgroundRepeat,
-  backgroundSize,
-  padding,
-  textColor,
+  backgroundOpacity = 1,
+  backgroundPosition = 'center',
+  backgroundRepeat = 'no-repeat',
+  backgroundSize = 'cover',
+  padding = 2,
+  textColor = 'primary',
   template,
   transition: slideTransition = {},
   className = ''
-}) {
+}: SlideProps) {
   if (useContext(SlideContext)) {
     throw new Error(`Slide components may not be nested within each other.`);
   }
@@ -101,7 +117,7 @@ export default function Slide({
     setStepContainer,
     activationThresholds,
     finalStepIndex
-  } = useCollectSteps(slideId);
+  } = useCollectSteps();
 
   const {
     onSlideClick = noop,
@@ -294,6 +310,21 @@ export default function Slide({
     };
   }, [wrapperOverrideStyle, theme, padding]);
 
+  const templateFn =
+    typeof template === 'function'
+      ? template
+      : typeof deckTemplate === 'function'
+      ? deckTemplate
+      : null;
+
+  const templateElement: React.ReactNode =
+    templateFn?.({
+      slideNumber: activeView.slideIndex + 1,
+      numberOfSlides: slideCount
+    }) ||
+    template ||
+    deckTemplate;
+
   const swipeHandler = useSwipeable({
     onSwiped: eventData => onMobileSlide(eventData)
   });
@@ -338,12 +369,7 @@ export default function Slide({
                 {...swipeHandler}
               >
                 <TemplateWrapper style={wrapperOverrideStyle}>
-                  {(typeof template === 'function' ||
-                    typeof deckTemplate === 'function') &&
-                    (template || deckTemplate)({
-                      slideNumber: activeView.slideIndex + 1,
-                      numberOfSlides: slideCount
-                    })}
+                  {templateElement}
                 </TemplateWrapper>
                 <SlideWrapper
                   style={scaledWrapperOverrideStyle}
@@ -360,32 +386,19 @@ export default function Slide({
   );
 }
 
-Slide.propTypes = {
-  id: PropTypes.string,
-  className: PropTypes.string,
-  backgroundColor: PropTypes.string,
-  backgroundImage: PropTypes.string,
-  backgroundOpacity: PropTypes.number,
-  backgroundPosition: PropTypes.string,
-  backgroundRepeat: PropTypes.string,
-  backgroundSize: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  textColor: PropTypes.string,
-  template: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  transition: PropTypes.shape({
-    from: PropTypes.object,
-    enter: PropTypes.object,
-    leave: PropTypes.object
-  })
-};
+type SlideProps = {
+  id?: SlideId;
+  className?: string;
 
-Slide.defaultProps = {
-  textColor: 'primary',
-  backgroundColor: 'tertiary',
-  backgroundOpacity: 1,
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover',
-  padding: 2
+  backgroundColor?: string;
+  backgroundImage?: string;
+  backgroundOpacity?: number;
+  backgroundPosition?: string;
+  backgroundRepeat?: string;
+  backgroundSize?: string;
+  children: React.ReactNode;
+  padding?: string | number;
+  textColor?: string;
+  template?: TemplateFn | React.ReactNode;
+  transition?: SlideTransition;
 };

@@ -2,7 +2,17 @@ const STAGE_RIGHT = 'translateX(-100%)';
 const CENTER_STAGE = 'translateX(0%)';
 const STAGE_LEFT = 'translateX(100%)';
 
-export const fadeTransition = {
+type SlideStyle = {
+  [key in keyof CSSStyleDeclaration]?: string | number;
+};
+
+export type SlideTransition = {
+  from?: SlideStyle;
+  leave?: SlideStyle;
+  enter?: SlideStyle;
+};
+
+export const fadeTransition: SlideTransition = {
   from: {
     opacity: 0
   },
@@ -14,7 +24,7 @@ export const fadeTransition = {
   }
 };
 
-export const slideTransition = {
+export const slideTransition: SlideTransition = {
   from: {
     transform: STAGE_LEFT
   },
