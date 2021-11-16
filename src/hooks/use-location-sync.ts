@@ -3,6 +3,11 @@ import { createBrowserHistory } from 'history';
 import QS from 'query-string';
 import isEqual from 'react-fast-compare';
 import { mergeAndCompare, merge } from 'merge-anything';
+import { DeckView } from './use-deck-state';
+import {
+  mapLocationToState,
+  mapStateToLocation
+} from '../location-map-fns/query-string';
 
 // Needed to properly merge query strings. (Hook consumers can also provide
 // their own merge function if necessary)
@@ -28,15 +33,24 @@ function defaultMergeLocation(object, ...sources) {
   );
 }
 
+type LocationStateOptions = {
+  setState(state: Partial<DeckView>): void;
+  mapStateToLocation: typeof mapStateToLocation;
+  mapLocationToState: typeof mapLocationToState;
+  mergeLocation?: typeof defaultMergeLocation;
+  historyFactory?: typeof createBrowserHistory;
+  disableInteractivity?: boolean;
+};
+
 // Hook to keep some external state synchronized with the history location.
 export default function useLocationSync({
-  disableInteractivity,
   setState,
   mapStateToLocation,
   mapLocationToState,
+  disableInteractivity = false,
   mergeLocation = defaultMergeLocation,
   historyFactory = createBrowserHistory
-}) {
+}: LocationStateOptions) {
   const [history] = React.useState(() => historyFactory());
   const [initialized, setInitialized] = React.useState(false);
 
@@ -55,13 +69,13 @@ export default function useLocationSync({
   ]);
 
   const syncLocation = React.useCallback(
-    defaultState => {
+    (defaultState: DeckView) => {
       if (disableInteractivity) {
         return;
       }
       // perform initial two-way sync between location and state (state wins)
       const { location } = history;
-      const initialState = merge(
+      const initialState: DeckView = merge(
         defaultState || {},
         mapLocationToState(location)
       );
@@ -100,5 +114,5 @@ export default function useLocationSync({
     [history, initialized, mergeLocation, mapStateToLocation]
   );
 
-  return [syncLocation, setLocation];
+  return [syncLocation, setLocation] as const;
 }

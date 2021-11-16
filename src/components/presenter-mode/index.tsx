@@ -1,8 +1,13 @@
-import React, { useRef, useCallback, useState, useEffect } from 'react';
+import React, {
+  useRef,
+  useCallback,
+  useState,
+  useEffect,
+  ReactNode
+} from 'react';
 import styled from 'styled-components';
-import Deck from '../deck/deck';
+import { DeckInternal, DeckRef } from '../deck/deck';
 import { Text, SpectacleLogo } from '../../index';
-import propTypes from 'prop-types';
 import {
   PresenterDeckContainer,
   NotesColumn,
@@ -12,31 +17,34 @@ import {
 } from './components';
 import useLocationSync from '../../hooks/use-location-sync';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
-import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
+import { DeckView, GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { SYSTEM_FONT } from '../../utils/constants';
 import { FlexBox, Box } from '../layout';
 import { Timer } from './timer';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
+import { SpectacleThemeOverrides } from '../../theme/default-theme';
 
-const endOfNextSlide = ({ slideIndex }) => ({
+const endOfNextSlide = ({ slideIndex }: DeckView) => ({
   slideIndex: slideIndex + 1,
   stepIndex: GOTO_FINAL_STEP
 });
 
-const PreviewSlideWrapper = styled.div(({ visible }) => ({
-  visibility: visible ? 'visible' : 'hidden'
-}));
+const PreviewSlideWrapper = styled.div<{ visible?: boolean }>(
+  ({ visible }) => ({
+    visibility: visible ? 'visible' : 'hidden'
+  })
+);
 
-export default function PresenterMode(props) {
+export default function PresenterMode(props: PresenterModeProps) {
   const { children, theme } = props;
-  const deck = useRef();
-  const previewDeck = useRef();
-  const [notePortalNode, setNotePortalNode] = useState();
+  const deck = useRef<DeckRef>();
+  const previewDeck = useRef<DeckRef>();
+  const [notePortalNode, setNotePortalNode] = useState<HTMLDivElement>();
   const [showFinalSlide, setShowFinalSlide] = useState(true);
 
   const [postMessage] = useBroadcastChannel(
     'spectacle_presenter_bus',
-    message => {
+    (message: { type: 'SYNC_REQUEST' }) => {
       if (message.type === 'SYNC_REQUEST') {
         postMessage('SYNC', deck.current.activeView);
       }
@@ -49,7 +57,7 @@ export default function PresenterMode(props) {
   });
 
   const onActiveStateChange = useCallback(
-    activeView => {
+    (activeView: DeckView) => {
       setLocation(activeView);
       postMessage('SYNC', activeView);
       setShowFinalSlide(
@@ -104,7 +112,7 @@ export default function PresenterMode(props) {
         </NotesContainer>
       </NotesColumn>
       <PreviewColumn>
-        <Deck
+        <DeckInternal
           notePortalNode={notePortalNode}
           backdropStyle={deckBackdropStyles.currentSlide}
           onActiveStateChange={onActiveStateChange}
@@ -112,9 +120,9 @@ export default function PresenterMode(props) {
           theme={theme}
         >
           {children}
-        </Deck>
+        </DeckInternal>
         <PreviewSlideWrapper visible={showFinalSlide}>
-          <Deck
+          <DeckInternal
             disableInteractivity
             useAnimations={false}
             backdropStyle={deckBackdropStyles.nextSlide}
@@ -122,14 +130,14 @@ export default function PresenterMode(props) {
             theme={theme}
           >
             {children}
-          </Deck>
+          </DeckInternal>
         </PreviewSlideWrapper>
       </PreviewColumn>
     </PresenterDeckContainer>
   );
 }
 
-PresenterMode.propTypes = {
-  theme: propTypes.object,
-  children: propTypes.node.isRequired
+type PresenterModeProps = {
+  theme: SpectacleThemeOverrides;
+  children: ReactNode;
 };

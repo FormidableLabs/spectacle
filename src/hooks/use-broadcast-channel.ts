@@ -61,5 +61,5 @@ export default function useBroadcastChannel(
     };
   }, [channel, postMessage]);
 
-  return [postMessage, broadcasterId];
+  return [postMessage, broadcasterId] as const;
 }

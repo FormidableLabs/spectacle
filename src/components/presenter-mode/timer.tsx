@@ -1,7 +1,8 @@
 import React from 'react';
-import { useTimer } from '../../utils/use-timer';
-import { Text, FlexBox, Box } from '../../';
+import { Text } from '../typography';
+import { FlexBox, Box } from '../layout';
 import InternalButton from '../internal-button';
+import { useTimer } from '../../utils/use-timer';
 import { SYSTEM_FONT } from '../../utils/constants';
 
 export const Timer = () => {
@@ -9,7 +10,7 @@ export const Timer = () => {
   const [timerStarted, setTimerStarted] = React.useState(false);
   const addToTimer = React.useCallback(v => setTimer(s => s + v), []);
   useTimer(addToTimer, 1000, timerStarted);
-  const minutes = Math.floor(timer.toFixed(0) / 60);
+  const minutes = Math.floor(Math.round(timer) / 60);
   return (
     <FlexBox>
       <FlexBox justifyContent="flex-start" flex={1}>
@@ -19,7 +20,7 @@ export const Timer = () => {
           fontSize="2vw"
           textAlign="left"
         >{`${String(minutes).padStart(2, '0')}:${String(
-          timer.toFixed(0) - minutes * 60
+          Math.round(timer) - minutes * 60
         ).padStart(2, '0')}`}</Text>
       </FlexBox>
       <InternalButton onClick={() => setTimerStarted(s => !s)}>

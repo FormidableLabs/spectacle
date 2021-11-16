@@ -4,7 +4,7 @@ import { SlideId } from '../components/deck/deck';
 
 export const GOTO_FINAL_STEP = null;
 
-type DeckView = {
+export type DeckView = {
   slideId?: SlideId;
   slideIndex?: number;
   stepIndex?: number;
@@ -133,3 +133,5 @@ export default function useDeckState(userProvidedInitialState: DeckView) {
     ...actions
   };
 }
+
+export type DeckStateAndActions = ReturnType<typeof useDeckState>;

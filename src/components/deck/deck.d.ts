@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { RefAttributes } from 'react';
 import { SwipeEventData } from 'react-swipeable';
 import { SlideTransition } from '../transitions';
+import { DeckStateAndActions, DeckView } from '../../hooks/use-deck-state';
 
 export type SlideId = string | number;
 
@@ -44,6 +45,8 @@ export const DeckContext: React.Context<{
   transition: SlideTransition;
 }>;
 
+export type DeckRef = DeckStateAndActions & { numberOfSlides: number };
+
 export type DeckProps = {
   children: React.ReactNode;
   autoPlay?: boolean;
@@ -55,13 +58,17 @@ export type DeckProps = {
   transition?: SlideTransition;
 };
 
-declare const Deck: React.FC<DeckProps>;
+declare const Deck: React.FC<DeckProps & RefAttributes<DeckRef>>;
 
-export const DeckInternal: React.FC<DeckProps & {
-  printMode?: boolean;
-  exportMode?: boolean;
-  disableInteractivity?: boolean;
-  notePortalNode?: boolean;
-}>;
+export const DeckInternal: React.FC<DeckProps &
+  RefAttributes<DeckRef> & {
+    printMode?: boolean;
+    exportMode?: boolean;
+    disableInteractivity?: boolean;
+    useAnimations?: boolean;
+    notePortalNode?: HTMLDivElement;
+    backdropStyle?: Partial<CSSStyleDeclaration>;
+    onActiveStateChange?: (activeView: DeckView) => void;
+  }>;
 
 export default Deck;

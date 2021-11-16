@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PresenterDeckContainer = styled('div')`
+export const PresenterDeckContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@ export const PresenterDeckContainer = styled('div')`
   color: white;
 `;
 
-export const NotesColumn = styled('div')`
+export const NotesColumn = styled.div`
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@ export const NotesColumn = styled('div')`
   border-right: 1px solid black;
 `;
 
-export const PreviewColumn = styled('div')`
+export const PreviewColumn = styled.div`
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@ export const PreviewColumn = styled('div')`
   }
 `;
 
-export const SlideContainer = styled('div')`
+export const SlideContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: calc(50% - 1em);
@@ -40,28 +40,24 @@ export const SlideContainer = styled('div')`
   overflow: hidden;
 `;
 
-export const SlideWrapper = styled('div')`
+export const SlideWrapper = styled.div<{ small?: boolean }>`
   flex: 1;
   width: 100%;
   position: relative;
   .spectacle-fullscreen-button {
     display: none;
   }
-  ${({ small }) =>
-    small &&
-    css`
-      flex: 0.8;
-    `}
+  ${({ small }) => small && `flex: 0.8;`}
 `;
 
-export const SlideCountLabel = styled('span')`
+export const SlideCountLabel = styled.span`
   background: hsla(0, 0%, 100%, 0.1);
   border-radius: 4px;
   font-size: 0.7em;
   padding: 1px 4px;
 `;
 
-export const NotesContainer = styled('div')`
+export const NotesContainer = styled.div`
   border-top: 1px solid black;
   overflow-y: scroll;
   flex: 1;
