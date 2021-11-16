@@ -7,6 +7,8 @@ const BroadcastChannel = window.BroadcastChannel || BroadcastChannelPolyfill;
 
 type MessageCallback = (message: unknown) => void;
 
+type PostMessageTypes = 'SYNC' | 'SYNC_REQUEST';
+
 export default function useBroadcastChannel(
   channelName: string,
   onMessage: MessageCallback = noop,
@@ -27,7 +29,7 @@ export default function useBroadcastChannel(
   }, [channel, channelName]);
 
   const postMessage = React.useCallback(
-    (type, payload = {}) => {
+    (type: PostMessageTypes, payload = {}) => {
       const message = {
         type,
         payload,

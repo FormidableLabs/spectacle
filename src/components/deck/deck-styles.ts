@@ -2,7 +2,11 @@ export function overviewFrameStyle({
   overviewScale,
   nativeSlideWidth,
   nativeSlideHeight
-}) {
+}: {
+  overviewScale: number;
+  nativeSlideWidth: number;
+  nativeSlideHeight: number;
+}): Partial<CSSStyleDeclaration> {
   return {
     margin: '1rem',
     width: `${overviewScale * nativeSlideWidth}px`,
@@ -14,7 +18,11 @@ export function overviewFrameStyle({
   };
 }
 
-export function overviewWrapperStyle({ overviewScale }) {
+export function overviewWrapperStyle({
+  overviewScale
+}: {
+  overviewScale: number;
+}): Partial<CSSStyleDeclaration> {
   return {
     width: `${100 / overviewScale}%`,
     height: `${100 / overviewScale}%`,
@@ -28,9 +36,13 @@ export function printFrameStyle({
   nativeSlideWidth,
   nativeSlideHeight,
   printScale
-}) {
+}: {
+  nativeSlideWidth: number;
+  nativeSlideHeight: number;
+  printScale: number;
+}): Partial<CSSStyleDeclaration> {
   return {
-    margin: 0,
+    margin: '0',
     width: `${printScale * nativeSlideWidth}px`,
     height: `${(printScale / (nativeSlideWidth / nativeSlideHeight)) *
       nativeSlideWidth}px`,
@@ -41,7 +53,11 @@ export function printFrameStyle({
   };
 }
 
-export function printWrapperStyle({ printScale }) {
+export function printWrapperStyle({
+  printScale
+}: {
+  printScale: number;
+}): Partial<CSSStyleDeclaration> {
   return {
     width: `${100 / printScale}%`,
     height: `${100 / printScale}%`,

@@ -19,4 +19,6 @@ export const SPECTACLE_MODES = {
   OVERVIEW_MODE: 'OVERVIEW_MODE',
   PRINT_MODE: 'PRINT_MODE',
   EXPORT_MODE: 'EXPORT_MODE'
-};
+} as const;
+type ValuesOf<T> = T[keyof T];
+export type SpectacleMode = ValuesOf<typeof SPECTACLE_MODES>;

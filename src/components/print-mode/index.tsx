@@ -3,13 +3,16 @@ import propTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import { DeckInternal } from '../deck/deck';
 import { AnimatedDiv } from '../slide/slide';
-import defaultTheme from '../../theme/default-theme';
+import defaultTheme, {
+  SpectacleThemeOverrides
+} from '../../theme/default-theme';
 
 const Backdrop = styled.div`
   background-color: white;
 `;
 
-const PrintStyle = createGlobalStyle`
+type PrintStyleProps = { pageSize: string; pageOrientation: string };
+const PrintStyle = createGlobalStyle<PrintStyleProps>`
   @media print {
     body, html {
       margin: 0;
@@ -26,8 +29,21 @@ const PrintStyle = createGlobalStyle`
   }
 `;
 
-export default function PrintMode(props) {
-  const { children, theme, exportMode, pageSize, pageOrientation = '' } = props;
+type PrintModeProps = {
+  children: React.ReactNode;
+  theme?: SpectacleThemeOverrides;
+  exportMode?: boolean;
+  pageSize?: string;
+  pageOrientation?: string;
+};
+
+export default function PrintMode({
+  children,
+  theme,
+  exportMode,
+  pageSize,
+  pageOrientation = ''
+}: PrintModeProps) {
   const width = theme?.size?.width || defaultTheme.size.width;
   const height = theme?.size?.height || defaultTheme.size.height;
   const computedPageSize = pageSize || `${width / 100}in ${height / 100}in`;

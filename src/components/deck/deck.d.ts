@@ -64,6 +64,9 @@ export const DeckInternal: React.FC<DeckProps &
   RefAttributes<DeckRef> & {
     printMode?: boolean;
     exportMode?: boolean;
+    overviewMode?: boolean;
+    onSlideClick(e: Event, slideId: SlideId): void;
+    onMobileSlide(eventData: SwipeEventData): void;
     disableInteractivity?: boolean;
     useAnimations?: boolean;
     notePortalNode?: HTMLDivElement;

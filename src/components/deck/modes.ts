@@ -1,6 +1,13 @@
-import { SPECTACLE_MODES } from '../../utils/constants';
+import { SPECTACLE_MODES, SpectacleMode } from '../../utils/constants';
 
-export function modeSearchParamForKey(key) {
+type ModeSearchParams = {
+  presenterMode?: boolean;
+  overviewMode?: boolean;
+  printMode?: boolean;
+  exportMode?: boolean;
+};
+
+export function modeSearchParamForKey(key: SpectacleMode): ModeSearchParams {
   if (key === SPECTACLE_MODES.PRESENTER_MODE) {
     return { presenterMode: true };
   } else if (key === SPECTACLE_MODES.OVERVIEW_MODE) {
@@ -18,7 +25,7 @@ export function modeKeyForSearchParam({
   overviewMode,
   printMode,
   exportMode
-}) {
+}: ModeSearchParams) {
   if (presenterMode) {
     return SPECTACLE_MODES.PRESENTER_MODE;
   } else if (overviewMode) {

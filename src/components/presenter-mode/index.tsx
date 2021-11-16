@@ -44,7 +44,7 @@ export default function PresenterMode(props: PresenterModeProps) {
 
   const [postMessage] = useBroadcastChannel(
     'spectacle_presenter_bus',
-    (message: { type: 'SYNC_REQUEST' }) => {
+    (message: { type: string }) => {
       if (message.type === 'SYNC_REQUEST') {
         postMessage('SYNC', deck.current.activeView);
       }
@@ -138,6 +138,6 @@ export default function PresenterMode(props: PresenterModeProps) {
 }
 
 type PresenterModeProps = {
-  theme: SpectacleThemeOverrides;
+  theme?: SpectacleThemeOverrides;
   children: ReactNode;
 };

@@ -111,9 +111,9 @@ export default function useDeckState(userProvidedInitialState: DeckView) {
       stepForward: () => dispatch({ type: 'STEP_FORWARD' }),
       stepBackward: () => dispatch({ type: 'STEP_BACKWARD' }),
       advanceSlide: () => dispatch({ type: 'ADVANCE_SLIDE' }),
-      regressSlide: (payload: Pick<DeckView, 'stepIndex'>) =>
+      regressSlide: (payload?: Pick<DeckView, 'stepIndex'>) =>
         dispatch({ type: 'REGRESS_SLIDE', payload }),
-      commitTransition: (payload: DeckView) =>
+      commitTransition: (payload?: DeckView) =>
         dispatch({ type: 'COMMIT_TRANSITION', payload }),
       cancelTransition: () => dispatch({ type: 'CANCEL_TRANSITION' })
     }),

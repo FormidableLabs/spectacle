@@ -1,14 +1,18 @@
 import React, { useCallback, useRef } from 'react';
-import PropTypes from 'prop-types';
 import { parse as parseQS, stringify as stringifyQS } from 'query-string';
 import DefaultDeck from './default-deck';
 import PresenterMode from '../presenter-mode';
 import PrintMode from '../print-mode';
 import useMousetrap from '../../hooks/use-mousetrap';
-import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
+import {
+  KEYBOARD_SHORTCUTS,
+  SPECTACLE_MODES,
+  SpectacleMode
+} from '../../utils/constants';
 import { modeKeyForSearchParam, modeSearchParamForKey } from './modes';
+import { SpectacleThemeOverrides } from '../../theme/default-theme';
 
-export default function SpectacleDeck(props) {
+export default function SpectacleDeck(props: SpectacleDeckProps) {
   const mode = useRef(
     modeKeyForSearchParam(
       parseQS(location.search, {
@@ -18,18 +22,18 @@ export default function SpectacleDeck(props) {
   );
 
   const toggleMode = useCallback(
-    (e, newMode, senderSlideIndex) => {
+    (e, newMode: SpectacleMode, senderSlideIndex?: number) => {
       e?.preventDefault();
 
-      let stepIndex = 0;
-      let slideIndex = senderSlideIndex;
+      let stepIndex: string | number = 0;
+      let slideIndex: string | number = senderSlideIndex;
       const searchParams = parseQS(location.search, {
         parseBooleans: true
       });
 
       if (!slideIndex) {
-        slideIndex = searchParams.slideIndex;
-        stepIndex = searchParams.stepIndex;
+        slideIndex = searchParams.slideIndex as string;
+        stepIndex = searchParams.stepIndex as string;
       }
 
       if (mode.current === newMode) {
@@ -67,7 +71,7 @@ export default function SpectacleDeck(props) {
 
   switch (mode.current) {
     case SPECTACLE_MODES.DEFAULT_MODE:
-      return <DefaultDeck {...props} />;
+      return <DefaultDeck {...props} toggleMode={toggleMode} />;
 
     case SPECTACLE_MODES.PRESENTER_MODE:
       return <PresenterMode {...props} />;
@@ -78,7 +82,7 @@ export default function SpectacleDeck(props) {
      * monotone and export mode uses the default theme.
      */
     case SPECTACLE_MODES.PRINT_MODE:
-      return <PrintMode {...props} printMode />;
+      return <PrintMode {...props} />;
 
     case SPECTACLE_MODES.EXPORT_MODE:
       return <PrintMode {...props} exportMode />;
@@ -91,7 +95,7 @@ export default function SpectacleDeck(props) {
   }
 }
 
-SpectacleDeck.propTypes = {
-  children: PropTypes.node.isRequired,
-  theme: PropTypes.object
+type SpectacleDeckProps = {
+  children: React.ReactNode;
+  theme?: SpectacleThemeOverrides;
 };

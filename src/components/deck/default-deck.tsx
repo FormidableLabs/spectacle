@@ -1,9 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
-import propTypes from 'prop-types';
-import Deck from './deck';
+import { DeckInternal, DeckProps, DeckRef } from './deck';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 import useMousetrap from '../../hooks/use-mousetrap';
-import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
+import {
+  KEYBOARD_SHORTCUTS,
+  SPECTACLE_MODES,
+  SpectacleMode
+} from '../../utils/constants';
+import { DeckView } from '../../hooks/use-deck-state';
 
 /**
  * Spectacle DefaultDeck is a wrapper around the Deck component that adds Broadcast channel support
@@ -17,12 +21,12 @@ export default function DefaultDeck({
   toggleMode,
   children,
   ...props
-}) {
-  const deck = React.useRef();
+}: DefaultDeckProps) {
+  const deck = React.useRef<DeckRef>();
 
   const [postMessage] = useBroadcastChannel(
     'spectacle_presenter_bus',
-    message => {
+    (message: { type: 'SYNC'; payload: Partial<DeckView> }) => {
       if (message.type !== 'SYNC') return;
       const nextView = message.payload;
       if (deck.current.initialized) {
@@ -75,7 +79,7 @@ export default function DefaultDeck({
   };
 
   return (
-    <Deck
+    <DeckInternal
       overviewMode={overviewMode}
       onSlideClick={onSlideClick}
       onMobileSlide={onMobileSlide}
@@ -85,15 +89,13 @@ export default function DefaultDeck({
       {...props}
     >
       {children}
-    </Deck>
+    </DeckInternal>
   );
 }
 
-DefaultDeck.propTypes = {
-  ...Deck.propTypes,
-  children: propTypes.node.isRequired,
-  overviewMode: propTypes.bool,
-  toggleMode: propTypes.func,
-  printMode: propTypes.bool,
-  exportMode: propTypes.bool
+type DefaultDeckProps = DeckProps & {
+  toggleMode(e, newMode: SpectacleMode, senderSlideIndex?: number): void;
+  overviewMode?: boolean;
+  printMode?: boolean;
+  exportMode?: boolean;
 };
