@@ -1,5 +1,6 @@
 import * as React from 'react';
 import useResizeObserver from 'use-resize-observer';
+import { CSSObject } from 'styled-components';
 
 // Returns an offset and scaling factor which, when applied to `element`, will
 // make it properly fit into `container` at the given aspect ratio.
@@ -56,7 +57,7 @@ export default function useAspectRatioFitting({
     onResize: recalculate
   });
 
-  const styles = {
+  const styles: CSSObject = {
     position: 'relative',
     width: targetWidth,
     height: targetHeight,
@@ -65,5 +66,5 @@ export default function useAspectRatioFitting({
     transformOrigin: `${transformOrigin.x}px ${transformOrigin.y}px`
   };
 
-  return [containerRef, styles];
+  return [containerRef, styles] as const;
 }

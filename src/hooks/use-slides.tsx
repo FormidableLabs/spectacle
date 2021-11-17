@@ -28,7 +28,7 @@ export function useCollectSlides() {
     setInitialized(true);
   }, [slideContainer]);
 
-  return [setSlideContainer, slideIds, initialized];
+  return [setSlideContainer, slideIds, initialized] as const;
 }
 
 export function useSlide(userProvidedId: SlideId) {

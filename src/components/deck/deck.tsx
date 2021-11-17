@@ -4,14 +4,17 @@ import React, {
   forwardRef,
   useMemo,
   useCallback,
-  createContext
+  createContext,
+  ElementType
 } from 'react';
-import propTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { CSSObject, ThemeProvider } from 'styled-components';
 import { ulid } from 'ulid';
 import { useCollectSlides } from '../../hooks/use-slides';
 import useAspectRatioFitting from '../../hooks/use-aspect-ratio-fitting';
-import useDeckState from '../../hooks/use-deck-state';
+import useDeckState, {
+  DeckStateAndActions,
+  DeckView
+} from '../../hooks/use-deck-state';
 import useMousetrap from '../../hooks/use-mousetrap';
 import useLocationSync from '../../hooks/use-location-sync';
 import { mergeTheme } from '../../theme';
@@ -23,10 +26,47 @@ import {
   printWrapperStyle
 } from './deck-styles';
 import { useAutoPlay } from '../../utils/use-auto-play';
-import defaultTheme from '../../theme/default-theme';
-import { defaultTransition } from '../transitions';
+import defaultTheme, {
+  SpectacleThemeOverrides
+} from '../../theme/default-theme';
+import { defaultTransition, SlideTransition } from '../transitions';
+import { SwipeEventData } from 'react-swipeable';
+import { MarkdownComponentMap } from '../../utils/mdx-component-mapper';
 
-export const DeckContext = createContext(null);
+export const DeckContext = createContext<{
+  deckId: string | number;
+  slideCount: number;
+  useAnimations: boolean;
+  slidePortalNode: React.ReactNode;
+  onSlideClick(e: Event, slideId: SlideId): void;
+  onMobileSlide(eventData: SwipeEventData): void;
+  theme?: SpectacleThemeOverrides & MarkdownThemeOverrides;
+  frameOverrideStyle: React.CSSProperties;
+  wrapperOverrideStyle: React.CSSProperties;
+  backdropNode: React.ReactNode;
+  notePortalNode: React.ReactNode;
+  initialized: boolean;
+  passedSlideIds: Set<SlideId>;
+  upcomingSlideIds: Set<SlideId>;
+  activeView: {
+    slideId: SlideId;
+    slideIndex: number;
+    stepIndex: number;
+  };
+  pendingView: {
+    slideId: SlideId;
+    slideIndex: number;
+    stepIndex: number;
+  };
+  skipTo(options: { slideIndex: number; stepIndex: number }): void;
+  stepForward(): void;
+  advanceSlide(): void;
+  regressSlide(): void;
+  commitTransition(newView?: { stepIndex: number }): void;
+  cancelTransition(): void;
+  template: TemplateFn | React.ReactNode;
+  transition: SlideTransition;
+}>(null);
 const noop = () => {};
 
 /**
@@ -36,7 +76,12 @@ const noop = () => {};
 const DEFAULT_PRINT_SCALE = 0.959;
 const DEFAULT_OVERVIEW_SCALE = 0.25;
 
-const Portal = styled('div')(
+type PortalProps = {
+  fitAspectRatioStyle: CSSObject;
+  overviewMode: boolean;
+  printMode: boolean;
+};
+const Portal = styled.div<PortalProps>(
   ({ fitAspectRatioStyle, overviewMode, printMode }) => [
     !printMode && { overflow: 'hidden' },
     !printMode && fitAspectRatioStyle,
@@ -57,7 +102,7 @@ const Portal = styled('div')(
   ]
 );
 
-const Deck = forwardRef(
+export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
   (
     {
       id: userProvidedId,
@@ -216,8 +261,8 @@ const Deck = forwardRef(
     const pendingSlideId = slideIds[pendingView.slideIndex];
 
     const [passed, upcoming] = useMemo(() => {
-      const p = new Set();
-      const u = new Set();
+      const p = new Set<SlideId>();
+      const u = new Set<SlideId>();
       let foundActive = false;
       for (const slideId of slideIds) {
         if (foundActive) {
@@ -228,7 +273,7 @@ const Deck = forwardRef(
           p.add(slideId);
         }
       }
-      return [p, u];
+      return [p, u] as const;
     }, [slideIds, activeSlideId]);
 
     const fullyInitialized = initialized && slideIdsInitialized;
@@ -257,7 +302,9 @@ const Deck = forwardRef(
     //         <Slide>Conclusion Slide</Slide>
     //       </Deck>
     //     );
-    const [slidePortalNode, setSlidePortalNode] = React.useState();
+    const [slidePortalNode, setSlidePortalNode] = React.useState<
+      HTMLDivElement
+    >();
 
     const [backdropRef, fitAspectRatioStyle] = useAspectRatioFitting({
       targetWidth: nativeSlideWidth,
@@ -306,7 +353,7 @@ const Deck = forwardRef(
     // would be even more awkward.
     let useFallbackBackdropStyle = true;
     const backdropStyle = themeProvidedBackdropStyle;
-    let BackdropComponent = 'div';
+    let BackdropComponent = 'div' as React.ElementType;
     if (userProvidedBackdropStyle) {
       Object.assign(backdropStyle, userProvidedBackdropStyle);
       if (backdropStyle['background'] || backdropStyle['backgroundColor']) {
@@ -392,41 +439,62 @@ const Deck = forwardRef(
   }
 );
 
-Deck.name = Deck.displayName = 'Deck';
+export const Deck = DeckInternal as React.FC<
+  DeckProps & React.RefAttributes<DeckRef>
+>;
 
-Deck.propTypes = {
-  id: propTypes.oneOfType([propTypes.string, propTypes.number]),
-  className: propTypes.string,
-  backdropStyle: propTypes.object,
-  overviewMode: propTypes.bool,
-  printMode: propTypes.bool,
-  exportMode: propTypes.bool,
-  overviewScale: propTypes.number,
-  printScale: propTypes.number,
-  template: propTypes.oneOfType([propTypes.node, propTypes.func]),
-  theme: propTypes.object,
-  onSlideClick: propTypes.func,
-  onMobileSlide: propTypes.func,
-  disableInteractivity: propTypes.bool,
-  notePortalNode: propTypes.node,
-  useAnimations: propTypes.bool,
-  children: propTypes.node.isRequired,
-  onActiveStateChange: propTypes.func,
-  initialState: propTypes.shape({
-    slideIndex: propTypes.number,
-    stepIndex: propTypes.number
-  }),
-  suppressBackdropFallback: propTypes.bool,
-  autoPlay: propTypes.bool,
-  autoPlayLoop: propTypes.bool,
-  autoPlayInterval: propTypes.number,
-  transition: propTypes.shape({
-    from: propTypes.object,
-    enter: propTypes.object,
-    leave: propTypes.object
-  })
+Deck.displayName = 'Deck';
+
+export type TemplateFn = (options: {
+  slideNumber: number;
+  numberOfSlides: number;
+}) => React.ReactNode;
+export type SlideId = string | number;
+type MarkdownThemeOverrides = {
+  markdownComponentMap?: MarkdownComponentMap;
+};
+type BackdropOverrides = {
+  Backdrop?: ElementType;
+  backdropStyle?: CSSObject;
+  suppressBackdropFallback?: boolean;
 };
 
-export const DeckInternal = Deck;
+export type DeckRef = Omit<
+  DeckStateAndActions,
+  'pendingView' | 'commitTransition' | 'cancelTransition'
+> & {
+  numberOfSlides: number;
+};
+export type DeckProps = {
+  id?: string | number;
+  className?: string;
+  children: React.ReactNode;
+  autoPlay?: boolean;
+  autoPlayLoop?: boolean;
+  autoPlayInterval?: number;
+  theme?: SpectacleThemeOverrides & MarkdownThemeOverrides & BackdropOverrides;
+  template?: TemplateFn | React.ReactNode;
+  printScale?: number;
+  overviewScale?: number;
+  transition?: SlideTransition;
+  suppressBackdropFallback?: boolean;
+};
+/**
+ * These types are only used internally,
+ * and are not officially part of the public API
+ */
+export type DeckInternalProps = DeckProps & {
+  initialState?: DeckView;
+  printMode?: boolean;
+  exportMode?: boolean;
+  overviewMode?: boolean;
+  onSlideClick?(e: Event, slideId: SlideId): void;
+  onMobileSlide?(eventData: SwipeEventData): void;
+  disableInteractivity?: boolean;
+  useAnimations?: boolean;
+  notePortalNode?: HTMLDivElement;
+  backdropStyle?: Partial<CSSStyleDeclaration>;
+  onActiveStateChange?: (activeView: DeckView) => void;
+};
 
 export default Deck;

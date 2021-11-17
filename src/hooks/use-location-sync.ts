@@ -76,7 +76,7 @@ export default function useLocationSync({
       // perform initial two-way sync between location and state (state wins)
       const { location } = history;
       const initialState: DeckView = merge(
-        defaultState || {},
+        defaultState,
         mapLocationToState(location)
       );
       const nextLocation = mergeLocation(

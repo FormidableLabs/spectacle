@@ -6,8 +6,8 @@ export const GOTO_FINAL_STEP = null;
 
 export type DeckView = {
   slideId?: SlideId;
-  slideIndex?: number;
-  stepIndex?: number;
+  slideIndex: number;
+  stepIndex: number;
 };
 export type DeckState = {
   initialized: boolean;
