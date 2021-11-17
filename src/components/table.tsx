@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import styled from 'styled-components';
 import {
   color,
@@ -20,9 +19,9 @@ export type TableProps = ColorProps &
   BorderProps &
   LayoutProps;
 
-const Table = styled('table')(
+const Table = styled.table<TableProps>(
   compose(color, typography, space, border, layout)
-) as FC<TableProps>;
+);
 
 Table.defaultProps = {
   color: 'primary',
@@ -33,9 +32,9 @@ Table.defaultProps = {
   width: 1
 };
 
-const TableHeader = styled('thead')(
+const TableHeader = styled.thead<TableProps>(
   compose(color, typography, space, border, layout)
-) as FC<TableProps>;
+);
 
 TableHeader.defaultProps = {
   color: 'primary',
@@ -46,9 +45,9 @@ TableHeader.defaultProps = {
   margin: 'listMargin'
 };
 
-const TableBody = styled('tbody')(
+const TableBody = styled.tbody<TableProps>(
   compose(color, typography, space, border, layout)
-) as FC<TableProps>;
+);
 
 TableBody.defaultProps = {
   color: 'primary',
@@ -59,9 +58,9 @@ TableBody.defaultProps = {
   width: 1
 };
 
-const TableRow = styled('tr')(
+const TableRow = styled.tr<TableProps>(
   compose(color, typography, space, border, layout)
-) as FC<TableProps>;
+);
 
 TableRow.defaultProps = {
   color: 'primary',
@@ -71,9 +70,9 @@ TableRow.defaultProps = {
   margin: 'listMargin'
 };
 
-const TableCell = styled('td')(
+const TableCell = styled.td<TableProps>(
   compose(color, typography, space, border, layout)
-) as FC<TableProps>;
+);
 
 TableCell.defaultProps = {
   color: 'primary',

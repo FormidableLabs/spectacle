@@ -1,15 +1,13 @@
+import { CSSObject } from 'styled-components';
+
 const STAGE_RIGHT = 'translateX(-100%)';
 const CENTER_STAGE = 'translateX(0%)';
 const STAGE_LEFT = 'translateX(100%)';
 
-type SlideStyle = {
-  [key in keyof CSSStyleDeclaration]?: string | number;
-};
-
 export type SlideTransition = {
-  from?: SlideStyle;
-  leave?: SlideStyle;
-  enter?: SlideStyle;
+  from?: CSSObject;
+  leave?: CSSObject;
+  enter?: CSSObject;
 };
 
 export const fadeTransition: SlideTransition = {

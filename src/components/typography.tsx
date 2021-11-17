@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { CSSObject } from 'styled-components';
 import {
   color,
   typography,
@@ -13,7 +13,7 @@ import {
 import { FC } from 'react';
 
 const decoration = system({ textDecoration: true });
-type DecorationProps = Partial<Pick<CSSStyleDeclaration, 'textDecoration'>>;
+type DecorationProps = Pick<CSSObject, 'textDecoration'>;
 
 type CommonProps = ColorProps & TypographyProps & SpaceProps;
 
@@ -76,7 +76,7 @@ Quote.defaultProps = {
 const listStyle = system({
   listStyleType: true
 });
-type ListStyleProps = Partial<Pick<CSSStyleDeclaration, 'listStyleType'>>;
+type ListStyleProps = Pick<CSSObject, 'listStyleType'>;
 
 const OrderedList = styled.ol<CommonProps & ListStyleProps>(
   compose(color, typography, space, listStyle)
