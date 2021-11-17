@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import { DeckInternal } from '../deck/deck';
 import { AnimatedDiv } from '../slide/slide';
@@ -29,14 +28,6 @@ const PrintStyle = createGlobalStyle<PrintStyleProps>`
   }
 `;
 
-type PrintModeProps = {
-  children: React.ReactNode;
-  theme?: SpectacleThemeOverrides;
-  exportMode?: boolean;
-  pageSize?: string;
-  pageOrientation?: string;
-};
-
 export default function PrintMode({
   children,
   theme,
@@ -65,10 +56,10 @@ export default function PrintMode({
   );
 }
 
-PrintMode.propTypes = {
-  theme: propTypes.object,
-  children: propTypes.node.isRequired,
-  exportMode: propTypes.bool.isRequired,
-  pageSize: propTypes.string,
-  pageOrientation: propTypes.oneOf(['landscape', 'portrait'])
+type PrintModeProps = {
+  children: React.ReactNode;
+  theme?: SpectacleThemeOverrides;
+  exportMode?: boolean;
+  pageSize?: string;
+  pageOrientation?: '' | 'landscape' | 'portrait';
 };

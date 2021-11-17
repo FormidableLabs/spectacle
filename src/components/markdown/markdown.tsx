@@ -1,6 +1,5 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/jsx-no-undef */
-/* eslint-disable react/prop-types */
 
 import * as React from 'react';
 import Slide from '../slide/slide';

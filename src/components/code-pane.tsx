@@ -184,6 +184,4 @@ export type CodePaneProps = {
   showLineNumbers?: boolean;
 };
 
-CodePane.propTypes = {};
-
 export default CodePane;

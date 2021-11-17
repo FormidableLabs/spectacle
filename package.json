@@ -73,7 +73,6 @@
     "wonka": "^3.2.0"
   },
   "peerDependencies": {
-    "prop-types": "^15.6.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
@@ -109,7 +108,6 @@
     "jest": "^27.3.1",
     "prettier": "^1.19.1",
     "pretty": "^2.0.0",
-    "prop-types": "^15.7.2",
     "raw-loader": "^4.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
