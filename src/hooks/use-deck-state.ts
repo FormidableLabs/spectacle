@@ -37,7 +37,7 @@ type ReducerActions =
   | { type: 'COMMIT_TRANSITION'; payload?: DeckView }
   | { type: 'CANCEL_TRANSITION'; payload?: undefined };
 
-function deckReducer(state: DeckState, { type, payload }: ReducerActions) {
+function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
   switch (type) {
     case 'INITIALIZE_TO':
       return {

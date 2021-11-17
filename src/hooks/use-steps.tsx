@@ -109,15 +109,15 @@ export function useCollectSteps() {
       .map((node, index) => {
         const dataset = node.dataset;
 
+        const id = dataset.stepId as StepId;
         let stepCount = Number(dataset.stepCount);
         if (isNaN(stepCount)) {
           stepCount = 1;
         }
-        let priority = Number(dataset.setpriority);
+        let priority = Number(dataset.priority);
         if (isNaN(priority)) {
           priority = index;
         }
-        const id = dataset.stepId as StepId;
 
         return {
           id,
