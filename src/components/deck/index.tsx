@@ -10,9 +10,9 @@ import {
   SpectacleMode
 } from '../../utils/constants';
 import { modeKeyForSearchParam, modeSearchParamForKey } from './modes';
-import { SpectacleThemeOverrides } from '../../theme/default-theme';
+import { DeckProps } from './deck';
 
-export default function SpectacleDeck(props: SpectacleDeckProps) {
+export default function SpectacleDeck(props: DeckProps) {
   const mode = useRef(
     modeKeyForSearchParam(
       parseQS(location.search, {
@@ -94,8 +94,3 @@ export default function SpectacleDeck(props: SpectacleDeckProps) {
       return null;
   }
 }
-
-type SpectacleDeckProps = {
-  children: React.ReactNode;
-  theme?: SpectacleThemeOverrides;
-};
