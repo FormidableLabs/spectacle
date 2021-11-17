@@ -4,7 +4,7 @@
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "index.d.ts",
+  "types": "dist/types",
   "scripts": {
     "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
     "start:md": "webpack-dev-server --port=3100 --hot --config examples/md/webpack.config.js",
@@ -30,8 +30,9 @@
     "build-webpack-examples-js": "builder run build-webpack-base -- --config examples/js/webpack.config.js",
     "build-webpack-examples-md": "builder run build-webpack-base -- --config examples/md/webpack.config.js",
     "build-one-page": "node scripts/one-page.js",
-    "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev",
+    "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev build-types",
     "build-examples": "builder concurrent --buffer build-webpack-examples-js build-webpack-examples-md",
+    "build-types": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "author": "Formidable Labs <hello@formidable.com>",
