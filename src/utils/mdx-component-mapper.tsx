@@ -14,7 +14,25 @@ import {
   UnorderedList
 } from '../';
 
-const mdxComponentMap = {
+export type MarkdownComponentMap = Record<
+  | 'p'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'blockquote'
+  | 'ul'
+  | 'ol'
+  | 'li'
+  | 'img'
+  | 'a'
+  | 'table'
+  | 'tr'
+  | 'td',
+  React.ElementType
+>;
+
+const mdxComponentMap: MarkdownComponentMap = {
   p: Text,
   h1: props => <Heading {...props} fontSize="h1" />,
   h2: props => <Heading {...props} fontSize="h2" />,
@@ -29,10 +47,6 @@ const mdxComponentMap = {
   table: Table,
   tr: TableRow,
   td: TableCell
-};
-
-export type MarkdownComponentMap = {
-  [Element in keyof typeof mdxComponentMap | '__codeBlock']?: React.ElementType;
 };
 
 export default mdxComponentMap;

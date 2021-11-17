@@ -31,7 +31,7 @@ type CommonMarkdownProps = {
 };
 
 type MapAndTemplate = {
-  componentMap?: typeof mdxComponentMap;
+  componentMap?: MarkdownComponentMap;
   template?: {
     default: React.ElementType;
     getPropsForAST?: Function;
@@ -86,7 +86,9 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
 
       // Construct the component map based on the current theme and any custom
       // mappings provided directly to <Markdown />
-      const componentMap: MarkdownComponentMap = {
+      const componentMap: MarkdownComponentMap & {
+        __codeBlock: React.ElementType;
+      } = {
         __codeBlock: MarkdownCodePane,
         ...(themeComponentMap || {}),
         ...userProvidedComponentMap
@@ -272,7 +274,7 @@ export const MarkdownPreHelper = (
   );
 };
 
-export const MarkdownCodePane = ({ className, children, ...rest }) => {
+const MarkdownCodePane = ({ className, children, ...rest }) => {
   const language = React.useMemo(() => {
     let match;
     if ((match = /^language-(.*)$/.exec(className))) {
