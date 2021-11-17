@@ -45,13 +45,11 @@
     "broadcastchannel-polyfill": "^1.0.0",
     "dedent": "^0.7.0",
     "history": "^4.9.0",
-    "marksy": "^8.0.0",
     "mdast-builder": "^1.1.1",
     "mdast-util-assert": "^3.0.0",
     "mdast-zone": "^4.0.0",
     "merge-anything": "^3.0.3",
     "mousetrap": "^1.6.5",
-    "normalize-newline": "^3.0.0",
     "prism-react-renderer": "^0.1.7",
     "query-string": "^6.8.2",
     "react-fast-compare": "^3.2.0",
@@ -68,8 +66,7 @@
     "ulid": "^2.3.0",
     "unified": "^9.0.0",
     "unist-util-visit": "^2.0.3",
-    "use-resize-observer": "^6.1.0",
-    "wonka": "^3.2.0"
+    "use-resize-observer": "^6.1.0"
   },
   "peerDependencies": {
     "prop-types": "^15.6.2",
