@@ -17,13 +17,14 @@ export {
   TableCell,
   TableRow,
   TableHeader,
-  TableBody,
-  TableProps
+  TableBody
 } from './components/table';
+export type { TableProps } from './components/table';
 export { FlexBox, Grid, Box } from './components/layout';
 export { Image, FullSizeImage } from './components/image';
 export { default as Notes } from './components/notes';
-export { default as Progress, ProgressProps } from './components/progress';
+export { default as Progress } from './components/progress';
+export type { ProgressProps } from './components/progress';
 export { default as FullScreen } from './components/fullscreen';
 export {
   Markdown,
@@ -32,22 +33,21 @@ export {
   MarkdownPreHelper
 } from './components/markdown/markdown';
 export { default as SpectacleLogo } from './components/logo';
-export {
-  default as mdxComponentMap,
-  MarkdownComponentMap
-} from './utils/mdx-component-mapper';
+export { default as mdxComponentMap } from './utils/mdx-component-mapper';
+export type { MarkdownComponentMap } from './utils/mdx-component-mapper';
 export { removeNotes, isolateNotes } from './utils/notes';
 export { default as indentNormalizer } from './utils/indent-normalizer';
-export { DeckContext, DeckProps, SlideId } from './components/deck/deck';
+export { DeckContext } from './components/deck/deck';
+export type { DeckProps, SlideId } from './components/deck/deck';
 export { default as useMousetrap } from './hooks/use-mousetrap';
-export {
-  default as defaultTheme,
+export { default as defaultTheme } from './theme/default-theme';
+export type {
   SpectacleTheme,
   SpectacleThemeOverrides
 } from './theme/default-theme';
 export {
   fadeTransition,
   slideTransition,
-  SlideTransition,
   defaultTransition
 } from './components/transitions';
+export type { SlideTransition } from './components/transitions';
