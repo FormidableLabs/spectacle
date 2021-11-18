@@ -4,7 +4,6 @@
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "dist/types",
   "scripts": {
     "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
     "start:md": "webpack-dev-server --port=3100 --hot --config examples/md/webpack.config.js",
