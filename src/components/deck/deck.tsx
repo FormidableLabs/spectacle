@@ -168,11 +168,8 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       cancelTransition
     } = useDeckState(initialDeckState);
 
-    const [
-      setPlaceholderContainer,
-      slideIds,
-      slideIdsInitialized
-    ] = useCollectSlides();
+    const [setPlaceholderContainer, slideIds, slideIdsInitialized] =
+      useCollectSlides();
 
     // It really is much easier to just expose methods to the outside world that
     // drive the presentation through its state rather than trying to implement a
@@ -302,9 +299,8 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
     //         <Slide>Conclusion Slide</Slide>
     //       </Deck>
     //     );
-    const [slidePortalNode, setSlidePortalNode] = React.useState<
-      HTMLDivElement
-    >();
+    const [slidePortalNode, setSlidePortalNode] =
+      React.useState<HTMLDivElement>();
 
     const [backdropRef, fitAspectRatioStyle] = useAspectRatioFitting({
       targetWidth: nativeSlideWidth,

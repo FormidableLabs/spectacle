@@ -34,10 +34,10 @@ export type MarkdownComponentMap = Record<
 
 const mdxComponentMap: MarkdownComponentMap = {
   p: Text,
-  h1: props => <Heading {...props} fontSize="h1" />,
-  h2: props => <Heading {...props} fontSize="h2" />,
-  h3: props => <Heading {...props} fontSize="h3" />,
-  h4: props => <Heading {...props} fontSize="h4" />,
+  h1: (props) => <Heading {...props} fontSize="h1" />,
+  h2: (props) => <Heading {...props} fontSize="h2" />,
+  h3: (props) => <Heading {...props} fontSize="h3" />,
+  h4: (props) => <Heading {...props} fontSize="h4" />,
   blockquote: Quote,
   ul: UnorderedList,
   ol: OrderedList,

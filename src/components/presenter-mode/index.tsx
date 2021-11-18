@@ -52,7 +52,7 @@ export default function PresenterMode(props: PresenterModeProps) {
   );
 
   const [syncLocation, setLocation] = useLocationSync({
-    setState: state => deck.current.skipTo(state),
+    setState: (state) => deck.current.skipTo(state),
     ...queryStringMapFns
   });
 

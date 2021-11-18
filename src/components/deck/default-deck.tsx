@@ -50,7 +50,7 @@ export default function DefaultDeck({
             deck.current.regressSlide({
               stepIndex: 0
             }),
-          [KEYBOARD_SHORTCUTS.SELECT_SLIDE_OVERVIEW_MODE]: e =>
+          [KEYBOARD_SHORTCUTS.SELECT_SLIDE_OVERVIEW_MODE]: (e) =>
             toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE)
         }
       : {},
@@ -66,7 +66,7 @@ export default function DefaultDeck({
     [overviewMode, toggleMode]
   );
 
-  const onMobileSlide = e => {
+  const onMobileSlide = (e) => {
     if (navigator.maxTouchPoints < 1) return;
     switch (e.dir) {
       case 'Left':

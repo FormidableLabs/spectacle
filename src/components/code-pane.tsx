@@ -5,12 +5,12 @@ import indentNormalizer from '../utils/indent-normalizer';
 import { ThemeContext } from 'styled-components';
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark';
 
-const checkForNumberValues = ranges => {
-  return ranges.every(element => typeof element === 'number');
+const checkForNumberValues = (ranges) => {
+  return ranges.every((element) => typeof element === 'number');
 };
 
-const checkForInvalidValues = ranges => {
-  return ranges.every(element => element === null || element === undefined);
+const checkForInvalidValues = (ranges) => {
+  return ranges.every((element) => element === null || element === undefined);
 };
 
 const getRangeFormat = ({ isSingleRangeProvided, highlightRanges, step }) => {
@@ -95,7 +95,7 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
     const scrollTarget = React.useRef<HTMLElement>();
 
     const getLineNumberProps = React.useCallback(
-      lineNumber => {
+      (lineNumber) => {
         if (!isActive) return;
         const range = getRangeFormat({
           isSingleRangeProvided: numberOfSteps === 1,
@@ -110,7 +110,7 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
     );
 
     const getLineProps = React.useCallback(
-      lineNumber => {
+      (lineNumber) => {
         if (!isActive) return;
         const range = getRangeFormat({
           isSingleRangeProvided: numberOfSteps === 1,

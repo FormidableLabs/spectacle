@@ -10,7 +10,7 @@ import Progress, { Circle } from './progress';
 Enzyme.configure({ adapter: new Adapter() });
 
 const mountWithContext = (tree, context) => {
-  const WrappingThemeProvider = props => (
+  const WrappingThemeProvider = (props) => (
     <DeckContext.Provider
       value={{
         ...context,
@@ -41,11 +41,6 @@ describe('<Progress />', () => {
         slideIndex: 4
       }
     });
-    expect(
-      wrapper
-        .find(Circle)
-        .at(4)
-        .prop('active')
-    ).toBe(true);
+    expect(wrapper.find(Circle).at(4).prop('active')).toBe(true);
   });
 });

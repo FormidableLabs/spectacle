@@ -57,13 +57,13 @@ export default function SpectacleDeck(props: DeckProps) {
 
   useMousetrap(
     {
-      [KEYBOARD_SHORTCUTS.PRESENTER_MODE]: e =>
+      [KEYBOARD_SHORTCUTS.PRESENTER_MODE]: (e) =>
         toggleMode(e, SPECTACLE_MODES.PRESENTER_MODE),
-      [KEYBOARD_SHORTCUTS.PRINT_MODE]: e =>
+      [KEYBOARD_SHORTCUTS.PRINT_MODE]: (e) =>
         toggleMode(e, SPECTACLE_MODES.PRINT_MODE),
-      [KEYBOARD_SHORTCUTS.EXPORT_MODE]: e =>
+      [KEYBOARD_SHORTCUTS.EXPORT_MODE]: (e) =>
         toggleMode(e, SPECTACLE_MODES.EXPORT_MODE),
-      [KEYBOARD_SHORTCUTS.OVERVIEW_MODE]: e =>
+      [KEYBOARD_SHORTCUTS.OVERVIEW_MODE]: (e) =>
         toggleMode(e, SPECTACLE_MODES.OVERVIEW_MODE)
     },
     []

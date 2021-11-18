@@ -22,9 +22,8 @@ export function useSteps(
 ) {
   const [stepId] = React.useState(userProvidedId || ulid);
 
-  const { activeStepIndex, activationThresholds } = React.useContext(
-    SlideContext
-  );
+  const { activeStepIndex, activationThresholds } =
+    React.useContext(SlideContext);
 
   let relStep: number;
 
@@ -94,16 +93,15 @@ export type ActivationThresholds = Record<StepId, number>;
 // the values represent the _first step at which they should appear_.
 export function useCollectSteps() {
   const [stepContainer, setStepContainer] = React.useState<HTMLElement>();
-  const [activationThresholds, setActivationThresholds] = React.useState<
-    ActivationThresholds
-  >({});
+  const [activationThresholds, setActivationThresholds] =
+    React.useState<ActivationThresholds>({});
   const [finalStepIndex, setFinalStepIndex] = React.useState<number>();
 
   React.useEffect(() => {
     if (!stepContainer) return;
-    const placeholderNodes = (stepContainer.getElementsByClassName(
+    const placeholderNodes = stepContainer.getElementsByClassName(
       PLACEHOLDER_CLASS_NAME
-    ) as unknown) as Iterable<HTMLElement>;
+    ) as unknown as Iterable<HTMLElement>;
 
     const [thresholds, numSteps] = [...placeholderNodes]
       .map((node, index) => {

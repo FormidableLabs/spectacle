@@ -20,7 +20,7 @@ export default function remarkRehypePresenterNotes(noteCallback) {
     parent.children.splice(index, 1);
   }
 
-  return tree => {
+  return (tree) => {
     zone(tree, 'notes', transformZoneNote);
     unistVisit(tree, 'paragraph', transformLineNote);
   };

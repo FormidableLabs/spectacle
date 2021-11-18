@@ -9,7 +9,7 @@ import Slide from '../slide/slide';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const mountInsideDeck = tree => {
+const mountInsideDeck = (tree) => {
   return mount(<Deck>{tree}</Deck>);
 };
 
@@ -51,26 +51,9 @@ describe('<MarkdownSlide />', () => {
     );
 
     // Assert raw HTML elements are actually present.
-    expect(
-      wrapper
-        .find('li')
-        .at(0)
-        .children()
-        .find('div')
-    ).toHaveLength(1);
-    expect(
-      wrapper
-        .find('li')
-        .at(1)
-        .children()
-        .find('i')
-    ).toHaveLength(2);
-    expect(
-      wrapper
-        .find('li')
-        .at(2)
-        .children()
-    ).toHaveLength(1);
+    expect(wrapper.find('li').at(0).children().find('div')).toHaveLength(1);
+    expect(wrapper.find('li').at(1).children().find('i')).toHaveLength(2);
+    expect(wrapper.find('li').at(2).children()).toHaveLength(1);
   });
 });
 
@@ -127,26 +110,11 @@ describe('<MarkdownSlideSet />', () => {
       </Slide>
     );
 
-    expect(
-      wrapper
-        .find(Heading)
-        .at(0)
-        .prop('color')
-    ).not.toBe('purple');
+    expect(wrapper.find(Heading).at(0).prop('color')).not.toBe('purple');
 
-    expect(
-      wrapper
-        .find(Heading)
-        .at(1)
-        .prop('color')
-    ).toBe('purple');
+    expect(wrapper.find(Heading).at(1).prop('color')).toBe('purple');
 
-    expect(
-      wrapper
-        .find(ListItem)
-        .at(0)
-        .prop('color')
-    ).toBe('purple');
+    expect(wrapper.find(ListItem).at(0).prop('color')).toBe('purple');
   });
 
   it('MarkdownSlide should pass componentProps down to constituent components', () => {
@@ -156,12 +124,7 @@ describe('<MarkdownSlideSet />', () => {
       `}</MarkdownSlide>
     );
 
-    expect(
-      wrapper
-        .find(Heading)
-        .at(0)
-        .prop('color')
-    ).toBe('purple');
+    expect(wrapper.find(Heading).at(0).prop('color')).toBe('purple');
   });
 
   it('MarkdownSlideSet should pass componentProps down to constituent components', () => {
@@ -175,18 +138,8 @@ describe('<MarkdownSlideSet />', () => {
       `}</MarkdownSlideSet>
     );
 
-    expect(
-      wrapper
-        .find(Heading)
-        .at(0)
-        .prop('color')
-    ).toBe('purple');
+    expect(wrapper.find(Heading).at(0).prop('color')).toBe('purple');
 
-    expect(
-      wrapper
-        .find(Heading)
-        .at(1)
-        .prop('color')
-    ).toBe('purple');
+    expect(wrapper.find(Heading).at(1).prop('color')).toBe('purple');
   });
 });

@@ -15,9 +15,9 @@ export function useCollectSlides() {
 
   React.useEffect(() => {
     if (!slideContainer) return;
-    const slides = (slideContainer.getElementsByClassName(
+    const slides = slideContainer.getElementsByClassName(
       PLACEHOLDER_CLASS_NAME
-    ) as unknown) as Iterable<HTMLElement>;
+    ) as unknown as Iterable<HTMLElement>;
 
     const nextSlideIds: SlideId[] = [];
     for (const placeholderNode of slides) {

@@ -17,8 +17,8 @@ import {
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const mountWithTheme = tree => {
-  const WrappingThemeProvider = props => (
+const mountWithTheme = (tree) => {
+  const WrappingThemeProvider = (props) => (
     <ThemeProvider theme={defaultTheme}>{props.children}</ThemeProvider>
   );
   return mount(tree, { wrappingComponent: WrappingThemeProvider });

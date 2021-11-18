@@ -8,7 +8,7 @@ import { SYSTEM_FONT } from '../../utils/constants';
 export const Timer = () => {
   const [timer, setTimer] = React.useState(0);
   const [timerStarted, setTimerStarted] = React.useState(false);
-  const addToTimer = React.useCallback(v => setTimer(s => s + v), []);
+  const addToTimer = React.useCallback((v) => setTimer((s) => s + v), []);
   useTimer(addToTimer, 1000, timerStarted);
   const minutes = Math.floor(Math.round(timer) / 60);
   return (
@@ -23,7 +23,7 @@ export const Timer = () => {
           Math.round(timer) - minutes * 60
         ).padStart(2, '0')}`}</Text>
       </FlexBox>
-      <InternalButton onClick={() => setTimerStarted(s => !s)}>
+      <InternalButton onClick={() => setTimerStarted((s) => !s)}>
         {timerStarted ? 'Stop Timer' : 'Start Timer'}
       </InternalButton>
       <Box width={8} />

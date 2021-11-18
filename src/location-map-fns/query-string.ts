@@ -15,9 +15,8 @@ export function mapLocationToState(
 ): SlideState {
   const { search: queryString } = location;
 
-  const { slideIndex: rawSlideIndex, stepIndex: rawStepIndex } = parseQS(
-    queryString
-  );
+  const { slideIndex: rawSlideIndex, stepIndex: rawStepIndex } =
+    parseQS(queryString);
 
   const nextState: SlideState = {};
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const useAutoPlay = options => {
+export const useAutoPlay = (options) => {
   const {
     enabled = false,
     loop = false,

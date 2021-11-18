@@ -98,7 +98,7 @@ export default function useLocationSync({
   );
 
   const setLocation = React.useCallback(
-    state => {
+    (state) => {
       if (!initialized) return;
       // perform one-way sync to history
       const { location } = history;

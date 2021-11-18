@@ -12,8 +12,10 @@ export function overviewFrameStyle({
   return {
     margin: '1rem',
     width: `${overviewScale * nativeSlideWidth}px`,
-    height: `${(overviewScale / (nativeSlideWidth / nativeSlideHeight)) *
-      nativeSlideWidth}px`,
+    height: `${
+      (overviewScale / (nativeSlideWidth / nativeSlideHeight)) *
+      nativeSlideWidth
+    }px`,
     display: 'block',
     transform: 'none',
     position: 'relative'
@@ -46,8 +48,9 @@ export function printFrameStyle({
   return {
     margin: '0',
     width: `${printScale * nativeSlideWidth}px`,
-    height: `${(printScale / (nativeSlideWidth / nativeSlideHeight)) *
-      nativeSlideWidth}px`,
+    height: `${
+      (printScale / (nativeSlideWidth / nativeSlideHeight)) * nativeSlideWidth
+    }px`,
     display: 'block',
     transform: 'none',
     position: 'relative',

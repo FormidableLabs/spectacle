@@ -53,16 +53,13 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
     },
     ref
   ) => {
-    const {
-      theme: { markdownComponentMap: themeComponentMap = null } = {}
-    } = React.useContext(DeckContext);
+    const { theme: { markdownComponentMap: themeComponentMap = null } = {} } =
+      React.useContext(DeckContext);
 
     const [templateProps, noteElements] = React.useMemo(() => {
       // Dedent and parse markdown into MDAST
       const markdownText = indentNormalizer(rawMarkdownText);
-      const ast = unified()
-        .use(remark)
-        .parse(markdownText);
+      const ast = unified().use(remark).parse(markdownText);
 
       // Extract presenter notes from the MDAST (since we want to use a different
       // component map for them.)
@@ -114,7 +111,7 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
       const componentMapWithPassedThroughProps = Object.entries(
         componentMap
       ).reduce((newMap, [key, Component]) => {
-        newMap[key] = props => (
+        newMap[key] = (props) => (
           <Component {...props} {...(componentProps || {})} />
         );
         return newMap;
@@ -180,7 +177,7 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
   }
 );
 
-const AppearingListItem = props => (
+const AppearingListItem = (props) => (
   <Appear>
     <ListItem {...props} />
   </Appear>
@@ -249,30 +246,32 @@ export const MarkdownSlideSet = ({
 // get in there somewhere.) In order to allow the user to theme these
 // differently, we detect the latter case and render CodeBlockComponent if
 // needed.
-export const MarkdownPreHelper = (
-  PreComponent: React.ElementType = 'pre',
-  CodeInlineComponent: React.ElementType = 'code',
-  CodeBlockComponent: React.ElementType
-) => ({ children, ...restProps }) => {
-  const pre = <PreComponent {...restProps}>{children}</PreComponent>;
+export const MarkdownPreHelper =
+  (
+    PreComponent: React.ElementType = 'pre',
+    CodeInlineComponent: React.ElementType = 'code',
+    CodeBlockComponent: React.ElementType
+  ) =>
+  ({ children, ...restProps }) => {
+    const pre = <PreComponent {...restProps}>{children}</PreComponent>;
 
-  if (React.Children.count(children) !== 1) return pre;
-  if (children[0].type !== CodeInlineComponent) return pre;
-  if (!isValidElementType(CodeBlockComponent)) return pre;
+    if (React.Children.count(children) !== 1) return pre;
+    if (children[0].type !== CodeInlineComponent) return pre;
+    if (!isValidElementType(CodeBlockComponent)) return pre;
 
-  // Edge behavior: when `rehype-react` does its transformations, children are
-  // always provided as an array, even if there's only one. We extract it here
-  // so there are less surprises for implementers of a code block component.
-  const {
-    children: [rawCode],
-    ...restChildProps
-  } = children[0].props;
-  return (
-    <CodeBlockComponent {...restProps} {...restChildProps}>
-      {rawCode}
-    </CodeBlockComponent>
-  );
-};
+    // Edge behavior: when `rehype-react` does its transformations, children are
+    // always provided as an array, even if there's only one. We extract it here
+    // so there are less surprises for implementers of a code block component.
+    const {
+      children: [rawCode],
+      ...restChildProps
+    } = children[0].props;
+    return (
+      <CodeBlockComponent {...restProps} {...restChildProps}>
+        {rawCode}
+      </CodeBlockComponent>
+    );
+  };
 
 const MarkdownCodePane = ({ className, children, ...rest }) => {
   const language = React.useMemo(() => {

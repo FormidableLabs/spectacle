@@ -113,11 +113,8 @@ export default function Slide({
 
   const { slideId, placeholder } = useSlide(userProvidedId);
 
-  const {
-    setStepContainer,
-    activationThresholds,
-    finalStepIndex
-  } = useCollectSteps();
+  const { setStepContainer, activationThresholds, finalStepIndex } =
+    useCollectSteps();
 
   const {
     onSlideClick = noop,
@@ -139,7 +136,7 @@ export default function Slide({
     slideCount
   } = useContext(DeckContext);
   const handleClick = useCallback(
-    e => {
+    (e) => {
       onSlideClick(e, slideId);
     },
     [onSlideClick, slideId]
@@ -305,8 +302,9 @@ export default function Slide({
     return {
       ...wrapperOverrideStyle,
       width: `calc(${wrapperOverrideStyle.width} - ${themeSlidePadding * 2}px)`,
-      height: `calc(${wrapperOverrideStyle.height} - ${themeSlidePadding *
-        2}px)`
+      height: `calc(${wrapperOverrideStyle.height} - ${
+        themeSlidePadding * 2
+      }px)`
     };
   }, [wrapperOverrideStyle, theme, padding]);
 
@@ -326,7 +324,7 @@ export default function Slide({
     deckTemplate;
 
   const swipeHandler = useSwipeable({
-    onSwiped: eventData => onMobileSlide(eventData)
+    onSwiped: (eventData) => onMobileSlide(eventData)
   });
   return (
     <>

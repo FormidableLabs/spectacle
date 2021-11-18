@@ -3,7 +3,7 @@ const indentNormalizer = (val: string) => {
   let prefix = null;
   return (val || '')
     .split('\n')
-    .filter(line => {
+    .filter((line) => {
       const [cur, remainder] = (line.match(/^([ ]*)([^ ]+)/) || []).slice(1);
       return remainder
         ? ((prefix =
@@ -11,7 +11,7 @@ const indentNormalizer = (val: string) => {
           !0)
         : null !== prefix;
     })
-    .map(line => (prefix ? line.replace(prefix, '') : line))
+    .map((line) => (prefix ? line.replace(prefix, '') : line))
     .join('\n')
     .trimRight();
 };
