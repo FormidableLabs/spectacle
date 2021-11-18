@@ -13,6 +13,8 @@ on:
   pull_request:
     branches:
       - main
+      # TODO(v9): Remove when targeting branch at `main` for real release.
+      - v9
     paths:
       - '**'
       - '!docs/**'
