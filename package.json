@@ -31,7 +31,7 @@
     "build-one-page": "node scripts/one-page.js",
     "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev build-types",
     "build-examples": "builder concurrent --buffer build-webpack-examples-js build-webpack-examples-md",
-    "build-types": "tsc",
+    "build-types": "tsc --emitDeclarationOnly",
     "typecheck": "tsc --noEmit"
   },
   "author": "Formidable Labs <hello@formidable.com>",
