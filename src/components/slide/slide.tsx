@@ -26,13 +26,15 @@ import { SlideTransition } from '../transitions';
 
 const noop = () => {};
 
-export const SlideContext = createContext<{
+export type SlideContextType = {
   immediate: boolean;
   slideId: SlideId;
   isSlideActive: boolean;
   activationThresholds: ActivationThresholds;
   activeStepIndex: number;
-}>(null);
+};
+
+export const SlideContext = createContext<SlideContextType>(null);
 
 type SlideContainerProps = BackgroundProps &
   ColorProps & { backgroundOpacity: number };

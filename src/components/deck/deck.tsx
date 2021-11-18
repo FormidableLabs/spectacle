@@ -33,7 +33,7 @@ import { defaultTransition, SlideTransition } from '../transitions';
 import { SwipeEventData } from 'react-swipeable';
 import { MarkdownComponentMap } from '../../utils/mdx-component-mapper';
 
-export const DeckContext = createContext<{
+export type DeckContextType = {
   deckId: string | number;
   slideCount: number;
   useAnimations: boolean;
@@ -66,7 +66,9 @@ export const DeckContext = createContext<{
   cancelTransition(): void;
   template: TemplateFn | React.ReactNode;
   transition: SlideTransition;
-}>(null);
+};
+
+export const DeckContext = createContext<DeckContextType>(null);
 const noop = () => {};
 
 /**
