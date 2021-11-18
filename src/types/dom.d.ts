@@ -4,5 +4,5 @@ interface DocumentOrShadowRoot {
   webkitCancelFullScreen(): void;
 }
 interface HTMLElement {
-  readonly webkitRequestFullScreen(): void;
+  webkitRequestFullScreen(): void;
 }

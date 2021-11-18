@@ -21,7 +21,7 @@
     "clean": "rimraf dist lib es \"examples/*/dist\"",
     "preversion": "yarn run check",
     "version": "yarn clean && yarn build",
-    "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.*/\"",
+    "build-babel": "babel src --extensions .tsx,.ts,.jsx,.js --ignore \"/__snapshots__/,**/*.test.*\"",
     "build-babel-esm": "builder run build-babel -- -d es",
     "build-babel-cjs": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"cjs\\\"}\" build-babel -- -d lib",
     "build-webpack-base": "webpack",
