@@ -68,7 +68,7 @@ export type DeckContextType = {
   transition: SlideTransition;
 };
 
-export const DeckContext = createContext<DeckContextType>(null);
+export const DeckContext = createContext<DeckContextType>(null as any);
 const noop = () => {};
 
 /**
@@ -302,7 +302,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
     //       </Deck>
     //     );
     const [slidePortalNode, setSlidePortalNode] =
-      React.useState<HTMLDivElement>();
+      React.useState<HTMLDivElement | null>();
 
     const [backdropRef, fitAspectRatioStyle] = useAspectRatioFitting({
       targetWidth: nativeSlideWidth,
@@ -490,7 +490,7 @@ export type DeckInternalProps = DeckProps & {
   onMobileSlide?(eventData: SwipeEventData): void;
   disableInteractivity?: boolean;
   useAnimations?: boolean;
-  notePortalNode?: HTMLDivElement;
+  notePortalNode?: HTMLDivElement | null;
   backdropStyle?: Partial<CSSStyleDeclaration>;
   onActiveStateChange?: (activeView: DeckView) => void;
 };

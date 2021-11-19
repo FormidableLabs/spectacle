@@ -3,7 +3,6 @@ import * as React from 'react';
 import { animated, useSpring } from 'react-spring';
 import { useSteps } from '../hooks/use-steps';
 import { SlideContext } from './slide/slide';
-import { FC } from 'react';
 
 function SteppedComponent({
   id,
@@ -102,7 +101,7 @@ export function Stepper({
       alwaysAppearActive={alwaysVisible}
     >
       {(step, isActive) =>
-        (renderFn || renderChildrenFn)(values[step], step, isActive)
+        (renderFn || renderChildrenFn!)(values[step], step, isActive)
       }
     </SteppedComponent>
   );

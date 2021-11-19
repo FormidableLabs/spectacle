@@ -10,7 +10,8 @@ export const PLACEHOLDER_CLASS_NAME = 'spectacle-v7-slide';
 // placeholder.
 export function useCollectSlides() {
   const [initialized, setInitialized] = React.useState(false);
-  const [slideContainer, setSlideContainer] = React.useState<HTMLElement>();
+  const [slideContainer, setSlideContainer] =
+    React.useState<HTMLElement | null>();
   const [slideIds, setSlideIds] = React.useState<SlideId[]>([]);
 
   React.useEffect(() => {
@@ -22,7 +23,7 @@ export function useCollectSlides() {
     const nextSlideIds: SlideId[] = [];
     for (const placeholderNode of slides) {
       const { slideId } = placeholderNode.dataset;
-      nextSlideIds.push(slideId);
+      nextSlideIds.push(slideId!);
     }
     setSlideIds(nextSlideIds);
     setInitialized(true);
@@ -31,7 +32,7 @@ export function useCollectSlides() {
   return [setSlideContainer, slideIds, initialized] as const;
 }
 
-export function useSlide(userProvidedId: SlideId) {
+export function useSlide(userProvidedId?: SlideId) {
   const [slideId] = React.useState<SlideId>(userProvidedId || ulid);
   return {
     slideId,

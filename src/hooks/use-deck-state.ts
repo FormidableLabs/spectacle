@@ -2,7 +2,7 @@ import * as React from 'react';
 import { merge } from 'merge-anything';
 import { SlideId } from '../components/deck/deck';
 
-export const GOTO_FINAL_STEP = null;
+export const GOTO_FINAL_STEP = null as unknown as number;
 
 export type DeckView = {
   slideId?: SlideId;
@@ -18,12 +18,12 @@ export type DeckState = {
 const initialDeckState: DeckState = {
   initialized: false,
   pendingView: {
-    slideIndex: undefined,
-    stepIndex: undefined
+    slideIndex: 0,
+    stepIndex: 0
   },
   activeView: {
-    slideIndex: undefined,
-    stepIndex: undefined
+    slideIndex: 0,
+    stepIndex: 0
   }
 };
 

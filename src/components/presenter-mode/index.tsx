@@ -37,22 +37,22 @@ const PreviewSlideWrapper = styled.div<{ visible?: boolean }>(
 
 export default function PresenterMode(props: PresenterModeProps) {
   const { children, theme } = props;
-  const deck = useRef<DeckRef>();
-  const previewDeck = useRef<DeckRef>();
-  const [notePortalNode, setNotePortalNode] = useState<HTMLDivElement>();
+  const deck = useRef<DeckRef>(null);
+  const previewDeck = useRef<DeckRef>(null);
+  const [notePortalNode, setNotePortalNode] = useState<HTMLDivElement | null>();
   const [showFinalSlide, setShowFinalSlide] = useState(true);
 
   const [postMessage] = useBroadcastChannel(
     'spectacle_presenter_bus',
     (message: { type: string }) => {
       if (message.type === 'SYNC_REQUEST') {
-        postMessage('SYNC', deck.current.activeView);
+        postMessage('SYNC', deck.current!.activeView);
       }
     }
   );
 
   const [syncLocation, setLocation] = useLocationSync({
-    setState: (state) => deck.current.skipTo(state),
+    setState: (state) => deck.current!.skipTo(state),
     ...queryStringMapFns
   });
 
@@ -61,10 +61,10 @@ export default function PresenterMode(props: PresenterModeProps) {
       setLocation(activeView);
       postMessage('SYNC', activeView);
       setShowFinalSlide(
-        deck.current?.numberOfSlides - 1 !==
+        (deck.current?.numberOfSlides || 0) - 1 !==
           deck?.current?.activeView.slideIndex
       );
-      previewDeck.current.skipTo(endOfNextSlide(activeView));
+      previewDeck.current!.skipTo(endOfNextSlide(activeView));
     },
     [postMessage, setLocation]
   );
@@ -73,10 +73,10 @@ export default function PresenterMode(props: PresenterModeProps) {
     const initialView = syncLocation({
       slideIndex: 0,
       stepIndex: 0
-    });
-    deck.current.initializeTo(initialView);
+    })!;
+    deck.current!.initializeTo(initialView);
     postMessage('SYNC', initialView);
-    previewDeck.current.initializeTo(endOfNextSlide(initialView));
+    previewDeck.current!.initializeTo(endOfNextSlide(initialView));
   }, [postMessage, syncLocation]);
 
   return (

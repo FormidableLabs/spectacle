@@ -49,7 +49,7 @@ export function useSteps(
   // const visibleStep = (isActive ? relStep : 1);
 
   // Helpful hints for the developer.
-  const placeholderRef = React.useRef();
+  const placeholderRef = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
     if (!placeholderRef.current) {
       console.warn(
@@ -92,10 +92,11 @@ export type ActivationThresholds = Record<StepId, number>;
 // keys of 'activationThresholds' represent the IDs of stepper elements, and
 // the values represent the _first step at which they should appear_.
 export function useCollectSteps() {
-  const [stepContainer, setStepContainer] = React.useState<HTMLElement>();
+  const [stepContainer, setStepContainer] =
+    React.useState<HTMLElement | null>();
   const [activationThresholds, setActivationThresholds] =
     React.useState<ActivationThresholds>({});
-  const [finalStepIndex, setFinalStepIndex] = React.useState<number>();
+  const [finalStepIndex, setFinalStepIndex] = React.useState<number>(0);
 
   React.useEffect(() => {
     if (!stepContainer) return;

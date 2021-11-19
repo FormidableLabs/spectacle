@@ -26,37 +26,33 @@ export type ProgressProps = {
   size?: number;
 };
 
-type PP = ProgressProps;
-const Progress = React.forwardRef<HTMLDivElement, PP>((props, ref) => {
-  const { slideCount, skipTo, activeView } = React.useContext(DeckContext);
-  return (
-    <Container ref={ref} className="spectacle-progress-indicator">
-      {Array(slideCount)
-        .fill(0)
-        .map((_, idx) => (
-          <Circle
-            key={`progress-circle-${idx}`}
-            color={props.color}
-            active={activeView.slideIndex === idx}
-            size={props.size}
-            onClick={() =>
-              skipTo({
-                slideIndex: idx,
-                stepIndex: 0
-              })
-            }
-            data-testid="Progress Circle"
-          />
-        ))}
-    </Container>
-  );
-});
+const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
+  ({ color = '#fff', size = 10 }, ref) => {
+    const { slideCount, skipTo, activeView } = React.useContext(DeckContext);
+    return (
+      <Container ref={ref} className="spectacle-progress-indicator">
+        {Array(slideCount)
+          .fill(0)
+          .map((_, idx) => (
+            <Circle
+              key={`progress-circle-${idx}`}
+              color={color}
+              active={activeView.slideIndex === idx}
+              size={size}
+              onClick={() =>
+                skipTo({
+                  slideIndex: idx,
+                  stepIndex: 0
+                })
+              }
+              data-testid="Progress Circle"
+            />
+          ))}
+      </Container>
+    );
+  }
+);
 
 Progress.displayName = 'Progress';
-
-Progress.defaultProps = {
-  color: '#fff',
-  size: 10
-};
 
 export default Progress;

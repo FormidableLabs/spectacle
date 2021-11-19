@@ -34,7 +34,7 @@ export type SlideContextType = {
   activeStepIndex: number;
 };
 
-export const SlideContext = createContext<SlideContextType>(null);
+export const SlideContext = createContext<SlideContextType>(null as any);
 
 type SlideContainerProps = BackgroundProps &
   ColorProps & { backgroundOpacity: number };

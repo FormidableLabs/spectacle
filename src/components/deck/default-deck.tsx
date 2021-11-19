@@ -22,17 +22,17 @@ export default function DefaultDeck({
   children,
   ...props
 }: DefaultDeckProps) {
-  const deck = React.useRef<DeckRef>();
+  const deck = React.useRef<DeckRef>(null);
 
   const [postMessage] = useBroadcastChannel(
     'spectacle_presenter_bus',
     (message: { type: 'SYNC'; payload: Partial<DeckView> }) => {
       if (message.type !== 'SYNC') return;
       const nextView = message.payload;
-      if (deck.current.initialized) {
-        deck.current.skipTo(nextView);
+      if (deck.current!.initialized) {
+        deck.current!.skipTo(nextView);
       } else {
-        deck.current.initializeTo(nextView);
+        deck.current!.initializeTo(nextView);
       }
     }
   );
@@ -45,9 +45,9 @@ export default function DefaultDeck({
     overviewMode
       ? {
           [KEYBOARD_SHORTCUTS.TAB_FORWARD_OVERVIEW_MODE]: () =>
-            deck.current.advanceSlide(),
+            deck.current!.advanceSlide(),
           [KEYBOARD_SHORTCUTS.TAB_BACKWARD_OVERVIEW_MODE]: () =>
-            deck.current.regressSlide({
+            deck.current!.regressSlide({
               stepIndex: 0
             }),
           [KEYBOARD_SHORTCUTS.SELECT_SLIDE_OVERVIEW_MODE]: (e) =>
@@ -70,10 +70,10 @@ export default function DefaultDeck({
     if (navigator.maxTouchPoints < 1) return;
     switch (e.dir) {
       case 'Left':
-        deck.current.stepForward();
+        deck.current!.stepForward();
         break;
       case 'Right':
-        deck.current.regressSlide();
+        deck.current!.regressSlide();
         break;
     }
   };

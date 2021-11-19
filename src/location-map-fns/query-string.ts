@@ -5,9 +5,9 @@ import {
   stringify as stringifyQS
 } from 'query-string';
 
-export type SlideState = {
+type SlideState = {
   slideIndex?: number;
-  stepIndex?: number;
+  stepIndex?: number | typeof GOTO_FINAL_STEP;
 };
 
 export function mapLocationToState(

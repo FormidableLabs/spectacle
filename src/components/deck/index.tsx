@@ -26,7 +26,7 @@ export default function SpectacleDeck(props: DeckProps) {
       e?.preventDefault();
 
       let stepIndex: string | number = 0;
-      let slideIndex: string | number = senderSlideIndex;
+      let slideIndex: string | number = senderSlideIndex || '';
       const searchParams = parseQS(location.search, {
         parseBooleans: true
       });

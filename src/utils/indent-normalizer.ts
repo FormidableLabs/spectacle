@@ -1,6 +1,6 @@
 // Indent to smallest non-empty whitespace level and trim start / end of string.
 const indentNormalizer = (val: string) => {
-  let prefix = null;
+  let prefix: string | null = null;
   return (val || '')
     .split('\n')
     .filter((line) => {

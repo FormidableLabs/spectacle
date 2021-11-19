@@ -1,6 +1,4 @@
 /* eslint-disable react/display-name */
-/* eslint-disable react/jsx-no-undef */
-
 import * as React from 'react';
 import Slide from '../slide/slide';
 import { DeckContext } from '../deck/deck';
@@ -72,7 +70,7 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
 
       // Pass the AST into the provided template function, which returns an object
       // whose keys are prop names and whose values are chunks of the parsed AST.
-      let templatePropMDASTs: unknown;
+      let templatePropMDASTs: any;
       if (typeof getPropsForAST === 'function') {
         templatePropMDASTs = getPropsForAST(transformedAst);
       }
@@ -133,7 +131,7 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
           mdastAssert(mdast);
 
           // Transform the MDAST into HAST
-          const hast = compiler.runSync(mdast);
+          const hast = compiler.runSync(mdast as any);
 
           // Compile the HAST into React elements
           acc[key] = compiler.stringify(hast);

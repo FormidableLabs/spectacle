@@ -18,10 +18,10 @@ export const useTimer = (
       initialTime.current = new Date().getTime();
       const timer = setInterval(() => {
         const currentTime = new Date().getTime();
-        const delay = currentTime - initialTime.current;
+        const delay = currentTime - initialTime.current!;
         initialTime.current = currentTime;
         setTimeDelay(delay / 1000);
-        callBack.current(timeDelay);
+        callBack.current!(timeDelay);
       }, period);
 
       return () => {
