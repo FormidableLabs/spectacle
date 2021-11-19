@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { ThemeProvider } from 'styled-components';
@@ -10,8 +10,11 @@ import { DeepPartial } from '../types/deep-partial';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const mountWithContext = (tree: any, context: DeepPartial<DeckContextType>) => {
-  const WrappingThemeProvider = (props: any) => (
+const mountWithContext = (
+  tree: ReactElement,
+  context: DeepPartial<DeckContextType>
+) => {
+  const WrappingThemeProvider: FC = (props) => (
     <DeckContext.Provider
       value={{
         ...(context as DeckContextType),
