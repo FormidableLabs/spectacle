@@ -1,3 +1,5 @@
+import { DeepPartial } from '../types/deep-partial';
+
 const defaultTheme = {
   size: {
     width: 1366,
@@ -24,10 +26,6 @@ const defaultTheme = {
     monospace: '20px'
   },
   space: [16, 24, 32]
-};
-
-type DeepPartial<T> = {
-  [P in keyof T]?: DeepPartial<T[P]>;
 };
 
 export type SpectacleTheme = typeof defaultTheme;

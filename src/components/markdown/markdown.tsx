@@ -3,9 +3,10 @@ import * as React from 'react';
 import Slide from '../slide/slide';
 import { DeckContext } from '../deck/deck';
 import presenterNotesPlugin from '../../utils/remark-rehype-presenter-notes';
-import CodePane from '../code-pane';
+import CodePane, { CodePaneProps } from '../code-pane';
 import unified from 'unified';
 import remark from 'remark-parse';
+// @ts-ignore
 import mdastAssert from 'mdast-util-assert';
 import remark2rehype from 'remark-rehype';
 import remarkRaw from 'rehype-raw';
@@ -19,6 +20,14 @@ import indentNormalizer from '../../utils/indent-normalizer';
 import Notes from '../notes';
 import { ListItem } from '../../index';
 import { Appear } from '../appear';
+import { CommonTypographyProps } from '../typography';
+import {
+  ComponentProps,
+  ElementType,
+  FC,
+  ReactElement,
+  ReactNode
+} from 'react';
 
 type MdComponentProps = { [key: string]: any };
 
@@ -81,9 +90,7 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
 
       // Construct the component map based on the current theme and any custom
       // mappings provided directly to <Markdown />
-      const componentMap: MarkdownComponentMap & {
-        __codeBlock: React.ElementType;
-      } = {
+      const componentMap = {
         __codeBlock: MarkdownCodePane,
         ...(themeComponentMap || {}),
         ...userProvidedComponentMap
@@ -109,11 +116,11 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
       const componentMapWithPassedThroughProps = Object.entries(
         componentMap
       ).reduce((newMap, [key, Component]) => {
-        newMap[key] = (props) => (
+        newMap[key] = (props: any) => (
           <Component {...props} {...(componentProps || {})} />
         );
         return newMap;
-      }, {});
+      }, {} as any);
 
       // Create the compiler for the _user-visible_ markdown (not presenter notes)
       const compiler = unified()
@@ -137,7 +144,7 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
           acc[key] = compiler.stringify(hast);
           return acc;
         },
-        {} as JSX.IntrinsicElements['div']
+        {} as any
       );
       // Create the compiler for presenter notes, which wraps the entire compiled
       // chunk in a <Note> component. (Rather than React.Fragment, which is the
@@ -175,7 +182,11 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
   }
 );
 
-const AppearingListItem = (props) => (
+type PropsFrom<T extends ElementType> = T extends ElementType<infer Props>
+  ? Props
+  : never;
+
+const AppearingListItem = (props: PropsFrom<typeof ListItem>) => (
   <Appear>
     <ListItem {...props} />
   </Appear>
@@ -207,14 +218,14 @@ export const MarkdownSlide = ({
 };
 
 type MarkdownSlideSetProps = CommonMarkdownProps & {
-  slideProps?: Partial<MarkdownSlideProps>;
+  slideProps?: Partial<MarkdownSlideProps>[];
 };
 
 // TODO: document this thoroughly, it's a public-facing API (possibly rename as
 // well)
 export const MarkdownSlideSet = ({
   children: rawMarkdownText,
-  slideProps = {},
+  slideProps = [],
   ...allSlideProps
 }: MarkdownSlideSetProps) => {
   const dedentedMarkdownText = indentNormalizer(rawMarkdownText);
@@ -249,12 +260,13 @@ export const MarkdownPreHelper =
     PreComponent: React.ElementType = 'pre',
     CodeInlineComponent: React.ElementType = 'code',
     CodeBlockComponent: React.ElementType
-  ) =>
+  ): FC<{}> =>
   ({ children, ...restProps }) => {
     const pre = <PreComponent {...restProps}>{children}</PreComponent>;
 
     if (React.Children.count(children) !== 1) return pre;
-    if (children[0].type !== CodeInlineComponent) return pre;
+    const child = (children as ReactElement[])[0];
+    if (child.type !== CodeInlineComponent) return pre;
     if (!isValidElementType(CodeBlockComponent)) return pre;
 
     // Edge behavior: when `rehype-react` does its transformations, children are
@@ -263,7 +275,7 @@ export const MarkdownPreHelper =
     const {
       children: [rawCode],
       ...restChildProps
-    } = children[0].props;
+    } = child.props;
     return (
       <CodeBlockComponent {...restProps} {...restChildProps}>
         {rawCode}
@@ -271,12 +283,14 @@ export const MarkdownPreHelper =
     );
   };
 
-const MarkdownCodePane = ({ className, children, ...rest }) => {
+const MarkdownCodePane: FC<{ className?: string } & CodePaneProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
   const language = React.useMemo(() => {
-    let match;
-    if ((match = /^language-(.*)$/.exec(className))) {
-      return match[1];
-    }
+    const match = /^language-(.*)$/.exec(className || '');
+    return match ? match[1] : undefined;
   }, [className]);
 
   return (

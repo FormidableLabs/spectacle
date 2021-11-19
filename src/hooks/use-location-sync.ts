@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, Location } from 'history';
 import QS from 'query-string';
 import isEqual from 'react-fast-compare';
 import { mergeAndCompare, merge } from 'merge-anything';
@@ -11,7 +11,10 @@ import {
 
 // Needed to properly merge query strings. (Hook consumers can also provide
 // their own merge function if necessary)
-function defaultMergeLocation(object, ...sources) {
+function defaultMergeLocation(
+  object: Partial<Location>,
+  ...sources: Partial<Location>[]
+): Partial<Location> {
   return mergeAndCompare(
     (left, right, key) => {
       switch (key) {

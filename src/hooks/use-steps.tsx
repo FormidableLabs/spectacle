@@ -58,7 +58,7 @@ export function useSteps(
     }
   });
 
-  const placeholderProps = {
+  const placeholderProps: any = {
     ref: placeholderRef,
     className: PLACEHOLDER_CLASS_NAME,
     style: { display: 'none' },
