@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { ulid } from 'ulid';
 import { BroadcastChannel as BroadcastChannelPolyfill } from 'broadcast-channel';
+import { DeckView } from './use-deck-state';
 
 const noop = () => {};
 const BroadcastChannel = window.BroadcastChannel || BroadcastChannelPolyfill;
 
-type MessageCallback = (message: unknown) => void;
+type MessageCallback = (message: MessageTypes) => void;
 
-type PostMessageTypes = 'SYNC' | 'SYNC_REQUEST';
+type MessageTypes =
+  | { type: 'SYNC'; payload: Partial<DeckView> }
+  | { type: 'SYNC_REQUEST'; payload?: never };
 
 export default function useBroadcastChannel(
   channelName: string,
@@ -29,7 +32,10 @@ export default function useBroadcastChannel(
   }, [channel, channelName]);
 
   const postMessage = React.useCallback(
-    (type: PostMessageTypes, payload = {}) => {
+    <TType extends MessageTypes['type']>(
+      type: TType,
+      payload: MessageTypes['payload'] = {}
+    ) => {
       const message = {
         type,
         payload,

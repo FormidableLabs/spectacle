@@ -7,7 +7,6 @@ import {
   SPECTACLE_MODES,
   SpectacleMode
 } from '../../utils/constants';
-import { DeckView } from '../../hooks/use-deck-state';
 
 /**
  * Spectacle DefaultDeck is a wrapper around the Deck component that adds Broadcast channel support
@@ -26,7 +25,7 @@ export default function DefaultDeck({
 
   const [postMessage] = useBroadcastChannel(
     'spectacle_presenter_bus',
-    (message: { type: 'SYNC'; payload: Partial<DeckView> }) => {
+    (message) => {
       if (message.type !== 'SYNC') return;
       const nextView = message.payload;
       if (deck.current!.initialized) {

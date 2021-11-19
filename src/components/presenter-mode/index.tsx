@@ -44,7 +44,7 @@ export default function PresenterMode(props: PresenterModeProps) {
 
   const [postMessage] = useBroadcastChannel(
     'spectacle_presenter_bus',
-    (message: { type: string }) => {
+    (message) => {
       if (message.type === 'SYNC_REQUEST') {
         postMessage('SYNC', deck.current!.activeView);
       }
