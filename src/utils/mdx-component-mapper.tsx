@@ -15,7 +15,7 @@ import {
 } from '../';
 
 export type MarkdownComponentMap = Partial<
-  Record<keyof JSX.IntrinsicElements | '__codeBlock', React.ElementType>
+  Record<keyof JSX.IntrinsicElements, React.ElementType>
 >;
 
 const mdxComponentMap: MarkdownComponentMap = {

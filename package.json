@@ -48,7 +48,7 @@
     "history": "^4.9.0",
     "mdast-builder": "^1.1.1",
     "mdast-util-assert": "^3.0.0",
-    "mdast-zone": "^5.1.0",
+    "mdast-zone": "^4.0.0",
     "merge-anything": "^3.0.3",
     "mousetrap": "^1.6.5",
     "prism-react-renderer": "^0.1.7",

@@ -1,4 +1,5 @@
-import { Handler, zone, Node as MdastNode } from 'mdast-zone';
+// @ts-ignore
+import zone from 'mdast-zone';
 import unistVisit, { Visitor } from 'unist-util-visit';
 import * as mdast from 'mdast-builder';
 
@@ -7,7 +8,7 @@ import type { Node, Parent, Literal } from 'unist';
 export default function remarkRehypePresenterNotes(
   noteCallback: (...nodes: Node[]) => void
 ) {
-  const transformZoneNote: Handler = (start, nodes) => {
+  const transformZoneNote = (start: unknown, nodes: Node[]) => {
     noteCallback(...nodes);
     return [];
   };
@@ -25,7 +26,7 @@ export default function remarkRehypePresenterNotes(
   };
 
   return (tree: Node) => {
-    zone(tree as MdastNode, 'notes', transformZoneNote);
+    zone(tree, 'notes', transformZoneNote);
     unistVisit(tree, 'paragraph', transformLineNote);
   };
 }
