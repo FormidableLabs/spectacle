@@ -20,6 +20,7 @@ module.exports = {
     })
   ],
   resolve: {
+    ...base.resolve,
     alias: {
       spectacle: path.resolve(__dirname, '../../src')
     }

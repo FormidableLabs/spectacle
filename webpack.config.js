@@ -11,7 +11,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     library: 'Spectacle',
     libraryTarget: 'umd',
@@ -23,19 +23,16 @@ module.exports = {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
-    'react-is': 'ReactIs',
-    'prop-types': 'PropTypes'
+    'react-is': 'ReactIs'
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    modules: [path.join(__dirname, 'src'), 'node_modules']
   },
   module: {
     rules: [
-      {
-        test: /\.jsx?$/,
-        use: ['babel-loader']
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader']
-      }
+      { test: /\.[tj]sx?$/, use: ['babel-loader'] },
+      { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }
     ]
   }
 };
