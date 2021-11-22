@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { ThemeProvider } from 'styled-components';
@@ -8,8 +8,8 @@ import { Table, TableRow, TableCell, TableBody, TableHeader } from './table';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const mountWithTheme = (tree) => {
-  const WrappingThemeProvider = (props) => (
+const mountWithTheme = (tree: ReactElement) => {
+  const WrappingThemeProvider: FC = (props) => (
     <ThemeProvider theme={defaultTheme}>{props.children}</ThemeProvider>
   );
   return mount(tree, { wrappingComponent: WrappingThemeProvider });

@@ -58,7 +58,7 @@ export default function useBroadcastChannel(
 
   React.useEffect(() => {
     if (!channel) return;
-    const messageHandler = (event) => {
+    const messageHandler = (event: MessageEvent<string>) => {
       const rawMessage = event.data;
       const message = JSON.parse(rawMessage);
       userMessageHandlerRef.current(message);

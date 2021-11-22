@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { DeckInternal, DeckProps, DeckRef } from './deck';
+import { DeckInternal, DeckInternalProps, DeckProps, DeckRef } from './deck';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 import useMousetrap from '../../hooks/use-mousetrap';
 import {
@@ -56,7 +56,7 @@ export default function DefaultDeck({
     []
   );
 
-  const onSlideClick = useCallback(
+  const onSlideClick: DeckInternalProps['onSlideClick'] = useCallback(
     (e, slideIndex) => {
       if (overviewMode) {
         toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE, slideIndex);
@@ -65,7 +65,7 @@ export default function DefaultDeck({
     [overviewMode, toggleMode]
   );
 
-  const onMobileSlide = (e) => {
+  const onMobileSlide: DeckInternalProps['onMobileSlide'] = (e) => {
     if (navigator.maxTouchPoints < 1) return;
     switch (e.dir) {
       case 'Left':
@@ -93,7 +93,11 @@ export default function DefaultDeck({
 }
 
 type DefaultDeckProps = DeckProps & {
-  toggleMode(e, newMode: SpectacleMode, senderSlideIndex?: number): void;
+  toggleMode(
+    e: unknown,
+    newMode: SpectacleMode,
+    senderSlideIndex?: number
+  ): void;
   overviewMode?: boolean;
   printMode?: boolean;
   exportMode?: boolean;

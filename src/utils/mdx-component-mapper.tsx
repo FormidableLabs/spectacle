@@ -14,22 +14,8 @@ import {
   UnorderedList
 } from '../';
 
-export type MarkdownComponentMap = Record<
-  | 'p'
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'blockquote'
-  | 'ul'
-  | 'ol'
-  | 'li'
-  | 'img'
-  | 'a'
-  | 'table'
-  | 'tr'
-  | 'td',
-  React.ElementType
+export type MarkdownComponentMap = Partial<
+  Record<keyof JSX.IntrinsicElements, React.ElementType>
 >;
 
 const mdxComponentMap: MarkdownComponentMap = {

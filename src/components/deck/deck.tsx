@@ -37,14 +37,14 @@ export type DeckContextType = {
   deckId: string | number;
   slideCount: number;
   useAnimations: boolean;
-  slidePortalNode: React.ReactNode;
+  slidePortalNode: HTMLDivElement;
   onSlideClick(e: Event, slideId: SlideId): void;
   onMobileSlide(eventData: SwipeEventData): void;
   theme?: SpectacleThemeOverrides & MarkdownThemeOverrides;
   frameOverrideStyle: React.CSSProperties;
   wrapperOverrideStyle: React.CSSProperties;
-  backdropNode: React.ReactNode;
-  notePortalNode: React.ReactNode;
+  backdropNode: HTMLDivElement;
+  notePortalNode: HTMLDivElement;
   initialized: boolean;
   passedSlideIds: Set<SlideId>;
   upcomingSlideIds: Set<SlideId>;
@@ -124,7 +124,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
           left: 0,
           width: '100vw',
           height: '100vh'
-        },
+        } as CSSObject,
         suppressBackdropFallback: themeSuppressBackdropFallback,
         ...restTheme
       } = {},
@@ -396,7 +396,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               deckId,
               slideCount: slideIds.length,
               useAnimations,
-              slidePortalNode,
+              slidePortalNode: slidePortalNode!,
               onSlideClick: handleSlideClick,
               onMobileSlide: onMobileSlide,
               theme: restTheme,
@@ -404,8 +404,8 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               frameOverrideStyle: frameStyle,
               wrapperOverrideStyle: wrapperStyle,
 
-              backdropNode: backdropRef.current,
-              notePortalNode,
+              backdropNode: backdropRef.current!,
+              notePortalNode: notePortalNode!,
               initialized: fullyInitialized,
               passedSlideIds: passed,
               upcomingSlideIds: upcoming,

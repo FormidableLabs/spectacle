@@ -2,8 +2,12 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useAutoPlay } from './use-auto-play';
 
 describe('useAutoPlay()', () => {
+  const stepForward = jest.fn();
+  const skipTo = jest.fn();
+
   beforeEach(() => {
     jest.useFakeTimers();
+    jest.clearAllMocks();
   });
 
   afterEach(() => {
@@ -11,13 +15,14 @@ describe('useAutoPlay()', () => {
   });
 
   test('should call the step forward function twice for 2 seconds.', () => {
-    const stepForward = jest.fn();
     renderHook(() =>
       useAutoPlay({
         enabled: true,
         interval: 1000,
         navigation: {
-          stepForward
+          stepForward,
+          skipTo,
+          isFinalSlide: false
         }
       })
     );
@@ -27,8 +32,6 @@ describe('useAutoPlay()', () => {
   });
 
   test('should call the skip to function on the final slide and when loop is enabled.', () => {
-    const stepForward = jest.fn();
-    const skipTo = jest.fn();
     renderHook(() =>
       useAutoPlay({
         enabled: true,
