@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Enzyme, { mount } from 'enzyme';
 import { Markdown, MarkdownSlide, MarkdownSlideSet } from './markdown';
 import Adapter from 'enzyme-adapter-react-16';
@@ -9,7 +9,7 @@ import Slide from '../slide/slide';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const mountInsideDeck = (tree) => {
+const mountInsideDeck = (tree: ReactElement) => {
   return mount(<Deck>{tree}</Deck>);
 };
 

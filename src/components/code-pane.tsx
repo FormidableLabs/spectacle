@@ -5,18 +5,24 @@ import indentNormalizer from '../utils/indent-normalizer';
 import { ThemeContext } from 'styled-components';
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark';
 
-const checkForNumberValues = (ranges) => {
+type Ranges = Array<number | number[]>;
+
+const checkForNumberValues = (ranges: Ranges) => {
   return ranges.every((element) => typeof element === 'number');
 };
 
-const checkForInvalidValues = (ranges) => {
+const checkForInvalidValues = (ranges: Ranges) => {
   return ranges.every((element) => element === null || element === undefined);
 };
 
-const getRangeFormat = ({ isSingleRangeProvided, highlightRanges, step }) => {
+const getRangeFormat = (
+  numberOfSteps: number,
+  highlightRanges: Ranges,
+  step: number
+): Ranges => {
   // If the value passed to highlightRanges is:
   // a single array containing only two numbers e.g. [3, 5]
-  if (isSingleRangeProvided) {
+  if (numberOfSteps === 1) {
     return highlightRanges;
   }
 
@@ -31,10 +37,10 @@ const getRangeFormat = ({ isSingleRangeProvided, highlightRanges, step }) => {
   }
 
   // a 2D array e.g. [[1], [3], [5, 9], [15], [20, 25], [30]]
-  return highlightRanges[step];
+  return highlightRanges[step] as Ranges;
 };
 
-const getStyleForLineNumber = (lineNumber, activeRange) => {
+const getStyleForLineNumber = (lineNumber: number, activeRange: Ranges) => {
   const isOneLineNumber = activeRange.length === 1;
   if (isOneLineNumber) {
     const [activeLineNumber] = activeRange;
@@ -92,16 +98,12 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
       return indentNormalizer(rawCodeString);
     }, [rawCodeString]);
 
-    const scrollTarget = React.useRef<HTMLElement>();
+    const scrollTarget = React.useRef<HTMLElement>(null);
 
     const getLineNumberProps = React.useCallback(
       (lineNumber) => {
         if (!isActive) return;
-        const range = getRangeFormat({
-          isSingleRangeProvided: numberOfSteps === 1,
-          highlightRanges,
-          step
-        });
+        const range = getRangeFormat(numberOfSteps, highlightRanges, step);
         return {
           style: getStyleForLineNumber(lineNumber, range)
         };
@@ -110,15 +112,11 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
     );
 
     const getLineProps = React.useCallback(
-      (lineNumber) => {
-        if (!isActive) return;
-        const range = getRangeFormat({
-          isSingleRangeProvided: numberOfSteps === 1,
-          highlightRanges,
-          step
-        });
+      (lineNumber: number) => {
+        if (!isActive) return {};
+        const range = getRangeFormat(numberOfSteps, highlightRanges, step);
         return {
-          ref: lineNumber === range[0] ? scrollTarget : undefined,
+          ref: lineNumber === (range as number[])[0] ? scrollTarget : null,
           style: getStyleForLineNumber(lineNumber, range)
         };
       },
@@ -128,7 +126,7 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
     React.useEffect(() => {
       window.requestAnimationFrame(() => {
         if (!scrollTarget.current) return;
-        scrollTarget.current?.scrollIntoView({
+        scrollTarget.current.scrollIntoView({
           block: 'center',
           behavior: 'smooth'
         });
@@ -177,10 +175,10 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
 
 export type CodePaneProps = {
   children: string;
-  language: string;
+  language: string | undefined;
   theme?: Record<string, unknown>;
   stepIndex?: number;
-  highlightRanges?: Array<number | number[]>;
+  highlightRanges?: Ranges;
   showLineNumbers?: boolean;
 };
 

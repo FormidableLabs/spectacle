@@ -1,13 +1,21 @@
 import { useEffect, useRef } from 'react';
+import { DeckStateAndActions } from '../hooks/use-deck-state';
 
-export const useAutoPlay = (options) => {
-  const {
-    enabled = false,
-    loop = false,
-    navigation,
-    interval = 1000
-  } = options;
+export type AutoPlayOptions = {
+  enabled?: boolean;
+  loop?: boolean;
+  navigation: Pick<DeckStateAndActions, 'skipTo' | 'stepForward'> & {
+    isFinalSlide: boolean;
+  };
+  interval?: number;
+};
 
+export const useAutoPlay = ({
+  enabled = false,
+  loop = false,
+  navigation,
+  interval = 1000
+}: AutoPlayOptions) => {
   const savedCallback = useRef(() => {
     if (navigation.isFinalSlide && loop) {
       navigation.skipTo({ slideIndex: 0, stepIndex: 0 });

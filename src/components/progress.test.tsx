@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { ThemeProvider } from 'styled-components';
 
-import { DeckContext } from './deck/deck';
+import { DeckContext, DeckContextType } from './deck/deck';
 import defaultTheme from '../theme/default-theme';
 import Progress, { Circle } from './progress';
+import { DeepPartial } from '../types/deep-partial';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const mountWithContext = (tree, context) => {
-  const WrappingThemeProvider = (props) => (
+const mountWithContext = (
+  tree: ReactElement,
+  context: DeepPartial<DeckContextType>
+) => {
+  const WrappingThemeProvider: FC = (props) => (
     <DeckContext.Provider
       value={{
-        ...context,
-        goToSlide: jest.fn()
+        ...(context as DeckContextType),
+        skipTo: jest.fn()
       }}
     >
       <ThemeProvider theme={defaultTheme}>{props.children}</ThemeProvider>
