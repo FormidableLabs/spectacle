@@ -1,16 +1,18 @@
 import * as React from 'react';
 import propTypes from 'prop-types';
 import styled from 'styled-components';
+import { position } from 'styled-system';
 
 import { useToggleFullScreen } from '../hooks/use-full-screen';
 
-const FullScreen = React.forwardRef((props, ref) => {
-  const Container = styled('div')`
-    @media print {
-      display: none;
-    }
-  `;
+const Container = styled('div')`
+  ${position}
+  @media print {
+    display: none;
+  }
+`;
 
+const FullScreen = React.forwardRef(({ size, color, ...props }, ref) => {
   const toggleFullScreen = useToggleFullScreen();
   return (
     <Container
@@ -18,10 +20,11 @@ const FullScreen = React.forwardRef((props, ref) => {
       className="spectacle-fullscreen-button"
       onClick={toggleFullScreen}
       style={{ pointerEvents: 'all' }}
+      {...props}
     >
-      <svg width={props.size} height={props.size} viewBox="0 0 512 512">
+      <svg width={size} height={size} viewBox="0 0 512 512">
         <path
-          fill={props.color}
+          fill={color}
           d={
             !!document.fullscreenElement || document.webkitIsFullScreen
               ? 'M64 371.2h76.795V448H192V320H64v51.2zm76.795-230.4H64V192h128V64h-51.205v76.8zM320 448h51.2v-76.8H448V320H320v128zm51.2-307.2V64H320v128h128v-51.2h-76.8z'

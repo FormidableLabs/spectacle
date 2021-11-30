@@ -15,11 +15,15 @@ import remarkRaw from 'rehype-raw';
 import rehype2react from 'rehype-react';
 import { isValidElementType } from 'react-is';
 import { root as mdRoot } from 'mdast-builder';
+import styled from 'styled-components';
+import { compose, layout, position } from 'styled-system';
 import mdxComponentMap from '../../utils/mdx-component-mapper';
 import indentNormalizer from '../../utils/indent-normalizer';
 import Notes from '../notes';
 import { ListItem } from '../../index';
 import { Appear } from '../appear';
+
+const Container = styled('div')(compose(position, layout));
 
 export const Markdown = React.forwardRef(
   (
@@ -30,7 +34,8 @@ export const Markdown = React.forwardRef(
       },
       children: rawMarkdownText,
       animateListItems = false,
-      componentProps
+      componentProps,
+      ...props
     },
     ref
   ) => {
@@ -151,10 +156,12 @@ export const Markdown = React.forwardRef(
     const { children, ...restProps } = templateProps;
 
     return (
-      <TemplateComponent ref={ref} {...restProps}>
-        {children}
-        {noteElements}
-      </TemplateComponent>
+      <Container ref={ref} {...props}>
+        <TemplateComponent {...restProps}>
+          {children}
+          {noteElements}
+        </TemplateComponent>
+      </Container>
     );
   }
 );
