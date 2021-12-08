@@ -3,7 +3,8 @@ import propTypes from 'prop-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { useSteps } from '../hooks/use-steps';
 import indentNormalizer from '../utils/indent-normalizer';
-import { ThemeContext } from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
+import { compose, layout, position } from 'styled-system';
 import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark';
 
 const checkForNumberValues = ranges => {
@@ -50,6 +51,8 @@ const getStyleForLineNumber = (lineNumber, activeRange) => {
   return { opacity: from <= lineNumber && lineNumber <= to ? 1 : 0.5 };
 };
 
+const Container = styled('div')(compose(position, layout));
+
 const CodePane = React.forwardRef(
   (
     {
@@ -58,7 +61,8 @@ const CodePane = React.forwardRef(
       showLineNumbers = true,
       children: rawCodeString,
       stepIndex,
-      theme: syntaxTheme = dark
+      theme: syntaxTheme = dark,
+      ...props
     },
     ref
   ) => {
@@ -158,7 +162,7 @@ const CodePane = React.forwardRef(
     return (
       <>
         {placeholder}
-        <div ref={ref}>
+        <Container ref={ref} {...props}>
           <SyntaxHighlighter
             customStyle={customStyle}
             language={language}
@@ -170,7 +174,7 @@ const CodePane = React.forwardRef(
           >
             {children}
           </SyntaxHighlighter>
-        </div>
+        </Container>
       </>
     );
   }

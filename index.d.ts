@@ -92,7 +92,9 @@ declare module 'spectacle' {
     stepIndex?: number;
     highlightRanges?: number | (number | number[])[];
     showLineNumbers?: boolean;
-  }>;
+  }> &
+    StyledSystem.LayoutProps &
+    StyledSystem.PositionProps;
 
   type TypographyProps = {
     children: React.ReactNode;
@@ -149,12 +151,14 @@ declare module 'spectacle' {
   export const Progress: React.FC<{
     color: string;
     size: number;
-  }>;
+  }> &
+    StyledSystem.PositionProps;
 
   export const FullScreen: React.FC<{
     color: string;
     size: number;
-  }>;
+  }> &
+    StyledSystem.PositionProps;
 
   type MdComponentProps = { [key: string]: any };
 
@@ -162,7 +166,9 @@ declare module 'spectacle' {
     animateListItems?: boolean;
     children: React.ReactNode;
     componentProps?: MdComponentProps;
-  }>;
+  }> &
+    StyledSystem.LayoutProps &
+    StyledSystem.PositionProps;
 
   export const MarkdownSlide: React.FC<{
     animateListItems?: boolean;

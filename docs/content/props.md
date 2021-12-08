@@ -87,7 +87,7 @@ const transition = {
 
 ## Layout
 
-**Layout** props are used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), [`Grid`](./api-reference#grid), [`Table`](./api-reference#table), [`TableHeader`](./api-reference#table-header), [`TableBody`](./api-reference#table-body), [`TableRow`](./api-reference#table-row), and [`TableCell`](./api-reference#table-cell).
+**Layout** props are used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), [`Grid`](./api-reference#grid), [`Table`](./api-reference#table), [`TableHeader`](./api-reference#table-header), [`TableBody`](./api-reference#table-body), [`TableRow`](./api-reference#table-row), [`TableCell`](./api-reference#table-cell), [`CodePane`](./api-reference#code-pane), and [`Markdown`](./api-reference#markdown-components).
 
 | Name        | PropType                             | Description                                                                                                                                                                              | Example                                    |
 | ----------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
@@ -141,7 +141,7 @@ const transition = {
 
 ## Position
 
-**Position** props are used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), and [`Grid`](./api-reference#grid).
+**Position** props are used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), [`Grid`](./api-reference#grid), [`CodePane`](./api-reference#code-pane), [`FullScreen`](./api-reference#fullscreen), [`Progress`](./api-reference#progress), and [`Markdown`](./api-reference#markdown-components).
 
 | Name       | PropType         | Description              | Example    |
 | ---------- | ---------------- | ------------------------ | ---------- |

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import propTypes from 'prop-types';
 import styled from 'styled-components';
+import { position } from 'styled-system';
 import { DeckContext } from './deck/deck';
 
 export const Circle = styled('div')`
@@ -16,23 +17,24 @@ export const Circle = styled('div')`
 `;
 
 const Container = styled('div')`
+  ${position}
   @media print {
     display: none;
   }
 `;
 
-const Progress = React.forwardRef((props, ref) => {
+const Progress = React.forwardRef(({ size, color, ...props }, ref) => {
   const { slideCount, skipTo, activeView } = React.useContext(DeckContext);
   return (
-    <Container ref={ref} className="spectacle-progress-indicator">
+    <Container ref={ref} className="spectacle-progress-indicator" {...props}>
       {Array(slideCount)
         .fill(0)
         .map((_, idx) => (
           <Circle
             key={`progress-circle-${idx}`}
-            color={props.color}
+            color={color}
             active={activeView.slideIndex === idx}
-            size={props.size}
+            size={size}
             onClick={() =>
               skipTo({
                 slideIndex: idx,

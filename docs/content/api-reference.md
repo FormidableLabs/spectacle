@@ -220,13 +220,15 @@ Array values can even be mixed to include sub-arrays (for multiple lines) and nu
 
 _Note that each range will be considered as a step in your current slide's animation. Each range will be highlighted as you move forward or backwards on each step._
 
-| Props             | Type                                                                                          | Example                                                                                                                   | Default Props        |
-| ----------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| `children`        | PropTypes.string                                                                              | `let name = "Carlos"`                                                                                                     | -                    |
-| `highlightRanges` | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)) | `[1, 3]` or `[[6, 8], [10, 15]]`                                                                                          | -                    |
-| `language`        | PropTypes.string                                                                              | `javascript`                                                                                                              | -                    |
-| `theme`           | PropTypes.object or                                                                           | [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | vs-dark Theme Object |
-| `showLineNumbers` | PropTypes.bool                                                                                | `true`, `false`                                                                                                           | `true`               |
+| Props                              | Type                                                                                          | Example                                                                                                                   | Default Props        |
+| ---------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `children`                         | PropTypes.string                                                                              | `let name = "Carlos"`                                                                                                     | -                    |
+| `highlightRanges`                  | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)) | `[1, 3]` or `[[6, 8], [10, 15]]`                                                                                          | -                    |
+| `language`                         | PropTypes.string                                                                              | `javascript`                                                                                                              | -                    |
+| `theme`                            | PropTypes.object or                                                                           | [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | vs-dark Theme Object |
+| `showLineNumbers`                  | PropTypes.bool                                                                                | `true`, `false`                                                                                                           | `true`               |
+| [**`Layout`**](./props#layout)     |                                                                                               |                                                                                                                           |                      |
+| [**`Position`**](./props#position) |                                                                                               |                                                                                                                           |                      |
 
 ```jsx
 import tomorrow from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow';
@@ -250,10 +252,11 @@ import tomorrow from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow';
 
 FullScreen is a button that takes the presentation in and out of the browser's full screen mode. It can have a different color and be re-sized.
 
-| Props   | Type             | Example   |
-| ------- | ---------------- | --------- |
-| `size`  | PropTypes.number | `23`      |
-| `color` | PropTypes.string | `#abc123` |
+| Props                              | Type             | Example   |
+| ---------------------------------- | ---------------- | --------- |
+| `size`                             | PropTypes.number | `23`      |
+| `color`                            | PropTypes.string | `#abc123` |
+| [**`Position`**](./props#position) |                  |           |
 
 ## Image
 
@@ -269,11 +272,13 @@ Image is a component to display a picture within a slide. It is analogous to an 
 
 The Markdown components let you include a block of Markdown within a slide using `<Markdown />`, author a complete slide with Markdown using `<MarkdownSlide />`, or author a series of slides with Markdown using `<MarkdownSlides />`. Markdown tags get converted into Spectacle components. The `---` three dash marker when used inside `<MarkdownSlideSet />` is used to divide content into separate slides. Markdown also supports presenter notes using the `Notes:` marker. `<Markdown />` must be a child of `<Slide />` where `<MarkdownSlide />` and `<MarkdownSlideSet />` are children of `<Deck />`.
 
-| Props              | Type              | Example                                                                             |
-| ------------------ | ----------------- | ----------------------------------------------------------------------------------- |
-| `children`         | PropTypes.string  | `# Hi there`                                                                        |
-| `componentProps`   | PropTypes.object  | `<MarkdownSlide componentProps={{ color: 'purple' }}># I'm purple!</MarkdownSlide>` |
-| `animateListItems` | PropTypes.boolean | `<MarkdownSlide animateListItems />`                                                |
+| Props                              | Type              | Example                                                                             |
+| ---------------------------------- | ----------------- | ----------------------------------------------------------------------------------- |
+| `children`                         | PropTypes.string  | `# Hi there`                                                                        |
+| `componentProps`                   | PropTypes.object  | `<MarkdownSlide componentProps={{ color: 'purple' }}># I'm purple!</MarkdownSlide>` |
+| `animateListItems`                 | PropTypes.boolean | `<MarkdownSlide animateListItems />`                                                |
+| [**`Layout`**](./props#layout)     |                   |                                                                                     |
+| [**`Position`**](./props#position) |                   |                                                                                     |
 
 ```jsx
 <Slide>
@@ -337,7 +342,8 @@ Notes is a component that only renders in Presenter mode as presenter notes. It 
 
 Progress is a component with no children that just shows dots for each slide in your deck. Visited and current slides are represented by a filled circle and future slides with just a stroke. The size and color are customizable.
 
-| Props   | Type             | Example   |
-| ------- | ---------------- | --------- |
-| `size`  | PropTypes.number | `23`      |
-| `color` | PropTypes.string | `#abc123` |
+| Props                              | Type             | Example   |
+| ---------------------------------- | ---------------- | --------- |
+| `size`                             | PropTypes.number | `23`      |
+| `color`                            | PropTypes.string | `#abc123` |
+| [**`Position`**](./props#position) |                  |           |
