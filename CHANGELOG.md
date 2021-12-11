@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0-beta.1
+
+- Finished initial pass of TypeScript conversion (@scottrippey)
+
 ## 8.4.1
 
 - Fix highlight ranges bug [#1070](https://github.com/FormidableLabs/spectacle/pull/1070)
