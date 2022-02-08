@@ -1,11 +1,16 @@
-import React, {
+import {
   useState,
   useEffect,
   forwardRef,
   useMemo,
   useCallback,
   createContext,
-  ElementType
+  ElementType,
+  useImperativeHandle,
+  FC,
+  RefAttributes,
+  ReactNode,
+  CSSProperties
 } from 'react';
 import styled, { CSSObject, ThemeProvider } from 'styled-components';
 import { ulid } from 'ulid';
@@ -41,8 +46,8 @@ export type DeckContextType = {
   onSlideClick(e: Event, slideId: SlideId): void;
   onMobileSlide(eventData: SwipeEventData): void;
   theme?: SpectacleThemeOverrides & MarkdownThemeOverrides;
-  frameOverrideStyle: React.CSSProperties;
-  wrapperOverrideStyle: React.CSSProperties;
+  frameOverrideStyle: CSSProperties;
+  wrapperOverrideStyle: CSSProperties;
   backdropNode: HTMLDivElement;
   notePortalNode: HTMLDivElement;
   initialized: boolean;
@@ -64,7 +69,7 @@ export type DeckContextType = {
   regressSlide(): void;
   commitTransition(newView?: { stepIndex: number }): void;
   cancelTransition(): void;
-  template: TemplateFn | React.ReactNode;
+  template: TemplateFn | ReactNode;
   transition: SlideTransition;
 };
 
@@ -176,7 +181,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
     // It really is much easier to just expose methods to the outside world that
     // drive the presentation through its state rather than trying to implement a
     // declarative API.
-    React.useImperativeHandle(
+    useImperativeHandle(
       ref,
       () => ({
         initialized,
@@ -302,7 +307,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
     //       </Deck>
     //     );
     const [slidePortalNode, setSlidePortalNode] =
-      React.useState<HTMLDivElement | null>();
+      useState<HTMLDivElement | null>();
 
     const [backdropRef, fitAspectRatioStyle] = useAspectRatioFitting({
       targetWidth: nativeSlideWidth,
@@ -351,7 +356,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
     // would be even more awkward.
     let useFallbackBackdropStyle = true;
     const backdropStyle = themeProvidedBackdropStyle;
-    let BackdropComponent = 'div' as React.ElementType;
+    let BackdropComponent = 'div' as ElementType;
     if (userProvidedBackdropStyle) {
       Object.assign(backdropStyle, userProvidedBackdropStyle);
       if (backdropStyle['background'] || backdropStyle['backgroundColor']) {
@@ -437,16 +442,14 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
   }
 );
 
-export const Deck = DeckInternal as React.FC<
-  DeckProps & React.RefAttributes<DeckRef>
->;
+export const Deck = DeckInternal as FC<DeckProps & RefAttributes<DeckRef>>;
 
 Deck.displayName = 'Deck';
 
 export type TemplateFn = (options: {
   slideNumber: number;
   numberOfSlides: number;
-}) => React.ReactNode;
+}) => ReactNode;
 export type SlideId = string | number;
 type MarkdownThemeOverrides = {
   markdownComponentMap?: MarkdownComponentMap;
@@ -466,12 +469,12 @@ export type DeckRef = Omit<
 export type DeckProps = {
   id?: string | number;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   autoPlay?: boolean;
   autoPlayLoop?: boolean;
   autoPlayInterval?: number;
   theme?: SpectacleThemeOverrides & MarkdownThemeOverrides & BackdropOverrides;
-  template?: TemplateFn | React.ReactNode;
+  template?: TemplateFn | ReactNode;
   printScale?: number;
   overviewScale?: number;
   transition?: SlideTransition;

@@ -1,5 +1,6 @@
-import React, {
+import {
   createContext,
+  ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -94,30 +95,29 @@ export const AnimatedDiv = styled(animated.div)`
     `}
 `;
 
-export default function Slide({
-  id: userProvidedId,
-  children,
-  backgroundColor = 'tertiary',
-  backgroundImage,
-  backgroundOpacity = 1,
-  backgroundPosition = 'center',
-  backgroundRepeat = 'no-repeat',
-  backgroundSize = 'cover',
-  padding = 2,
-  textColor = 'primary',
-  template,
-  transition: slideTransition = {},
-  className = ''
-}: SlideProps) {
+const Slide = (props: SlideProps): JSX.Element => {
+  const {
+    id: userProvidedId,
+    children,
+    backgroundColor = 'tertiary',
+    backgroundImage,
+    backgroundOpacity = 1,
+    backgroundPosition = 'center',
+    backgroundRepeat = 'no-repeat',
+    backgroundSize = 'cover',
+    padding = 2,
+    textColor = 'primary',
+    template,
+    transition: slideTransition = {},
+    className = ''
+  } = props;
   if (useContext(SlideContext)) {
     throw new Error(`Slide components may not be nested within each other.`);
   }
 
   const { slideId, placeholder } = useSlide(userProvidedId);
-
   const { setStepContainer, activationThresholds, finalStepIndex } =
     useCollectSteps();
-
   const {
     onSlideClick = noop,
     onMobileSlide,
@@ -137,6 +137,7 @@ export default function Slide({
     template: deckTemplate,
     slideCount
   } = useContext(DeckContext);
+
   const handleClick = useCallback(
     (e) => {
       onSlideClick(e, slideId);
@@ -178,7 +179,7 @@ export default function Slide({
     setHover(!hover);
   }, [hover]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isActive) return;
     if (!stepWillChange) return;
     if (slideWillChange) return;
@@ -317,7 +318,7 @@ export default function Slide({
       ? deckTemplate
       : null;
 
-  const templateElement: React.ReactNode =
+  const templateElement: ReactNode =
     templateFn?.({
       slideNumber: activeView.slideIndex + 1,
       numberOfSlides: slideCount
@@ -384,7 +385,9 @@ export default function Slide({
       </SlideContext.Provider>
     </>
   );
-}
+};
+
+export default Slide;
 
 type SlideProps = {
   id?: SlideId;
@@ -396,9 +399,9 @@ type SlideProps = {
   backgroundPosition?: string;
   backgroundRepeat?: string;
   backgroundSize?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   padding?: string | number;
   textColor?: string;
-  template?: TemplateFn | React.ReactNode;
+  template?: TemplateFn | ReactNode;
   transition?: SlideTransition;
 };

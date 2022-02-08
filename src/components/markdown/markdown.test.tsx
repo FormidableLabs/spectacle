@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import Enzyme, { mount } from 'enzyme';
 import { Markdown, MarkdownSlide, MarkdownSlideSet } from './markdown';
 import Adapter from 'enzyme-adapter-react-16';

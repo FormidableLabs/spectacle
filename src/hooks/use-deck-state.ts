@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useReducer, useMemo, useEffect } from 'react';
 import { merge } from 'merge-anything';
 import { SlideId } from '../components/deck/deck';
 
@@ -98,11 +98,11 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
 }
 
 export default function useDeckState(userProvidedInitialState: DeckView) {
-  const [{ initialized, pendingView, activeView }, dispatch] = React.useReducer(
+  const [{ initialized, pendingView, activeView }, dispatch] = useReducer(
     deckReducer,
     initialDeckState
   );
-  const actions = React.useMemo(
+  const actions = useMemo(
     () => ({
       initializeTo: (payload: Partial<DeckView>) =>
         dispatch({ type: 'INITIALIZE_TO', payload }),
@@ -120,7 +120,7 @@ export default function useDeckState(userProvidedInitialState: DeckView) {
     [dispatch]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (initialized) return;
     if (userProvidedInitialState === undefined) return;
     actions.initializeTo(userProvidedInitialState);

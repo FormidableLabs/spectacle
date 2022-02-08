@@ -1,4 +1,11 @@
-import * as React from 'react';
+import {
+  forwardRef,
+  useMemo,
+  useContext,
+  useRef,
+  useCallback,
+  useEffect
+} from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { useSteps } from '../hooks/use-steps';
 import indentNormalizer from '../utils/indent-normalizer';
@@ -55,7 +62,7 @@ const getStyleForLineNumber = (lineNumber: number, activeRange: Ranges) => {
   return { opacity: from <= lineNumber && lineNumber <= to ? 1 : 0.5 };
 };
 
-const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
+const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
   (
     {
       highlightRanges = [],
@@ -67,7 +74,7 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
     },
     ref
   ) => {
-    const numberOfSteps = React.useMemo(() => {
+    const numberOfSteps = useMemo(() => {
       if (
         highlightRanges.length === 0 ||
         // Prevents e.g. [null, null] to be used to count the number of steps
@@ -89,18 +96,18 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
       return highlightRanges.length;
     }, [highlightRanges]);
 
-    const theme = React.useContext(ThemeContext);
+    const theme = useContext(ThemeContext);
     const { stepId, isActive, step, placeholder } = useSteps(numberOfSteps, {
       stepIndex
     });
 
-    const children = React.useMemo(() => {
+    const children = useMemo(() => {
       return indentNormalizer(rawCodeString);
     }, [rawCodeString]);
 
-    const scrollTarget = React.useRef<HTMLElement>(null);
+    const scrollTarget = useRef<HTMLElement>(null);
 
-    const getLineNumberProps = React.useCallback(
+    const getLineNumberProps = useCallback(
       (lineNumber) => {
         if (!isActive) return;
         const range = getRangeFormat(numberOfSteps, highlightRanges, step);
@@ -111,7 +118,7 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
       [isActive, highlightRanges, numberOfSteps, step]
     );
 
-    const getLineProps = React.useCallback(
+    const getLineProps = useCallback(
       (lineNumber: number) => {
         if (!isActive) return {};
         const range = getRangeFormat(numberOfSteps, highlightRanges, step);
@@ -123,7 +130,7 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
       [isActive, highlightRanges, numberOfSteps, step]
     );
 
-    React.useEffect(() => {
+    useEffect(() => {
       window.requestAnimationFrame(() => {
         if (!scrollTarget.current) return;
         scrollTarget.current.scrollIntoView({
@@ -133,7 +140,7 @@ const CodePane = React.forwardRef<HTMLDivElement, CodePaneProps>(
       });
     }, [isActive, step]);
 
-    const customStyle = React.useMemo(() => {
+    const customStyle = useMemo(() => {
       /**
        * Provide fallback values if the user intentionally overrides the
        * default theme with no valid values.

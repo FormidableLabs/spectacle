@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 
 import { useToggleFullScreen } from '../hooks/use-full-screen';
@@ -14,7 +14,7 @@ const Container = styled('div')`
   }
 `;
 
-const FullScreen = React.forwardRef<HTMLDivElement, FSProps>((props, ref) => {
+const FullScreen = forwardRef<HTMLDivElement, FSProps>((props, ref) => {
   const toggleFullScreen = useToggleFullScreen();
   return (
     <Container

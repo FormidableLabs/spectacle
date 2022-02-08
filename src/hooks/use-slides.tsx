@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { ulid } from 'ulid';
 import { SlideId } from '../components/deck/deck';
 
@@ -9,12 +9,12 @@ export const PLACEHOLDER_CLASS_NAME = 'spectacle-v7-slide';
 // themselves and communicate via the `data-slide-key` element on their
 // placeholder.
 export function useCollectSlides() {
-  const [initialized, setInitialized] = React.useState(false);
+  const [initialized, setInitialized] = useState(false);
   const [slideContainer, setSlideContainer] =
-    React.useState<HTMLElement | null>();
-  const [slideIds, setSlideIds] = React.useState<SlideId[]>([]);
+    useState<HTMLElement | null>();
+  const [slideIds, setSlideIds] = useState<SlideId[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!slideContainer) return;
     const slides = slideContainer.getElementsByClassName(
       PLACEHOLDER_CLASS_NAME
@@ -33,7 +33,7 @@ export function useCollectSlides() {
 }
 
 export function useSlide(userProvidedId?: SlideId) {
-  const [slideId] = React.useState<SlideId>(userProvidedId || ulid);
+  const [slideId] = useState<SlideId>(userProvidedId || ulid);
   return {
     slideId,
     placeholder: (

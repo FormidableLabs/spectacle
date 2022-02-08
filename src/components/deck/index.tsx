@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import { Fragment, useCallback, useRef } from 'react';
 import { parse as parseQS, stringify as stringifyQS } from 'query-string';
 import DefaultDeck from './default-deck';
 import PresenterMode from '../presenter-mode';
@@ -12,7 +12,7 @@ import {
 import { modeKeyForSearchParam, modeSearchParamForKey } from './modes';
 import { DeckProps } from './deck';
 
-export default function SpectacleDeck(props: DeckProps) {
+const SpectacleDeck = (props: DeckProps): JSX.Element => {
   const mode = useRef(
     modeKeyForSearchParam(
       parseQS(location.search, {
@@ -91,6 +91,8 @@ export default function SpectacleDeck(props: DeckProps) {
       return <DefaultDeck overviewMode toggleMode={toggleMode} {...props} />;
 
     default:
-      return null;
+      return <Fragment />;
   }
-}
+};
+
+export default SpectacleDeck;

@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { DeckInternal } from '../deck/deck';
 import { AnimatedDiv } from '../slide/slide';
@@ -57,7 +57,7 @@ export default function PrintMode({
 }
 
 type PrintModeProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   theme?: SpectacleThemeOverrides;
   exportMode?: boolean;
   pageSize?: string;

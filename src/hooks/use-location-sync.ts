@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { createBrowserHistory, Location } from 'history';
 import QS from 'query-string';
 import isEqual from 'react-fast-compare';
@@ -54,11 +54,11 @@ export default function useLocationSync({
   mergeLocation = defaultMergeLocation,
   historyFactory = createBrowserHistory
 }: LocationStateOptions) {
-  const [history] = React.useState(() => historyFactory());
-  const [initialized, setInitialized] = React.useState(false);
+  const [history] = useState(() => historyFactory());
+  const [initialized, setInitialized] = useState(false);
 
   // "down-sync" from location to state
-  React.useEffect(() => {
+  useEffect(() => {
     if (!initialized && disableInteractivity) return;
     return history.listen((location, action) => {
       setState(mapLocationToState(location));
@@ -71,7 +71,7 @@ export default function useLocationSync({
     mapLocationToState
   ]);
 
-  const syncLocation = React.useCallback(
+  const syncLocation = useCallback(
     (defaultState: DeckView) => {
       if (disableInteractivity) {
         return null as unknown as DeckView;
@@ -100,7 +100,7 @@ export default function useLocationSync({
     ]
   );
 
-  const setLocation = React.useCallback(
+  const setLocation = useCallback(
     (state) => {
       if (!initialized) return;
       // perform one-way sync to history

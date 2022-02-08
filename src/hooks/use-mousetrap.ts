@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import Mousetrap, { ExtendedKeyboardEvent } from 'mousetrap';
 
 /*
@@ -9,7 +9,7 @@ export default function useMousetrap(
   keybinds: Record<string, (e?: ExtendedKeyboardEvent) => void>,
   deps: any[]
 ): void {
-  React.useEffect(() => {
+  useEffect(() => {
     for (const combo in keybinds) {
       const callback = keybinds[combo];
       if (typeof callback !== 'function') {

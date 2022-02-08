@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import * as React from 'react';
+import { ElementType } from 'react';
 import {
   Heading,
   Image,
@@ -15,7 +15,7 @@ import {
 } from '../';
 
 export type MarkdownComponentMap = Partial<
-  Record<keyof JSX.IntrinsicElements, React.ElementType>
+  Record<keyof JSX.IntrinsicElements, ElementType>
 >;
 
 const mdxComponentMap: MarkdownComponentMap = {
