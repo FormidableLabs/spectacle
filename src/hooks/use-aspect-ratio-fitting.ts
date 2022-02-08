@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import useResizeObserver from 'use-resize-observer';
 import { CSSObject } from 'styled-components';
 
@@ -8,11 +8,11 @@ export default function useAspectRatioFitting({
   targetWidth = 1366,
   targetHeight = 768
 }) {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const [scaleFactor, setScaleFactor] = React.useState(1);
-  const [transformOrigin, setTransformOrigin] = React.useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scaleFactor, setScaleFactor] = useState(1);
+  const [transformOrigin, setTransformOrigin] = useState({ x: 0, y: 0 });
 
-  const recalculate = React.useCallback(
+  const recalculate = useCallback(
     ({ width: containerWidth, height: containerHeight }) => {
       const containerRatio = containerWidth / containerHeight;
       const targetRatio = targetWidth / targetHeight;
@@ -46,7 +46,7 @@ export default function useAspectRatioFitting({
   // recalculate sizes on the initial pass, and each time the target size
   // changes. (our measurements aren't as accurate as `useResizeObserver`, but
   // we only need to get them close because it'll do them again anyways.)
-  React.useEffect(() => {
+  useEffect(() => {
     if (!containerRef || !containerRef.current) return;
     const rects = containerRef.current.getClientRects();
     recalculate(rects[0]);

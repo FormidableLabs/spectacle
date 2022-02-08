@@ -31,7 +31,10 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.[tj]sx?$/, use: ['babel-loader'] },
+      {
+        test: /\.[tj]sx?$/,
+        use: ['babel-loader']
+      },
       { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }
     ]
   }

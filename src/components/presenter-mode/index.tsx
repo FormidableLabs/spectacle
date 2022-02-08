@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useCallback,
-  useState,
-  useEffect,
-  ReactNode
-} from 'react';
+import { useRef, useCallback, useState, useEffect, ReactNode } from 'react';
 import styled from 'styled-components';
 import { DeckInternal, DeckRef } from '../deck/deck';
 import { Text, SpectacleLogo } from '../../index';
@@ -35,7 +29,7 @@ const PreviewSlideWrapper = styled.div<{ visible?: boolean }>(
   })
 );
 
-export default function PresenterMode(props: PresenterModeProps) {
+const PresenterMode = (props: PresenterModeProps): JSX.Element => {
   const { children, theme } = props;
   const deck = useRef<DeckRef>(null);
   const previewDeck = useRef<DeckRef>(null);
@@ -135,7 +129,9 @@ export default function PresenterMode(props: PresenterModeProps) {
       </PreviewColumn>
     </PresenterDeckContainer>
   );
-}
+};
+
+export default PresenterMode;
 
 type PresenterModeProps = {
   theme?: SpectacleThemeOverrides;

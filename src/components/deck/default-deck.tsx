@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import { useRef, useCallback, useEffect } from 'react';
 import { DeckInternal, DeckInternalProps, DeckProps, DeckRef } from './deck';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 import useMousetrap from '../../hooks/use-mousetrap';
@@ -13,15 +13,16 @@ import {
  * for audience and presenter modes. This is intentionally not built into the base Deck component
  * to allow for extensibility outside of core Spectacle functionality.
  */
-export default function DefaultDeck({
-  overviewMode = false,
-  printMode = false,
-  exportMode = false,
-  toggleMode,
-  children,
-  ...props
-}: DefaultDeckProps) {
-  const deck = React.useRef<DeckRef>(null);
+const DefaultDeck = (props: DefaultDeckProps): JSX.Element => {
+  const {
+    overviewMode = false,
+    printMode = false,
+    exportMode = false,
+    toggleMode,
+    children,
+    ...rest
+  } = props;
+  const deck = useRef<DeckRef>(null);
 
   const [postMessage] = useBroadcastChannel(
     'spectacle_presenter_bus',
@@ -85,12 +86,14 @@ export default function DefaultDeck({
       printMode={printMode}
       exportMode={exportMode}
       ref={deck}
-      {...props}
+      {...rest}
     >
       {children}
     </DeckInternal>
   );
-}
+};
+
+export default DefaultDeck;
 
 type DefaultDeckProps = DeckProps & {
   toggleMode(

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ulid } from 'ulid';
 import { BroadcastChannel as BroadcastChannelPolyfill } from 'broadcast-channel';
 import { DeckView } from './use-deck-state';
@@ -17,12 +17,12 @@ export default function useBroadcastChannel(
   onMessage: MessageCallback = noop,
   deps = []
 ) {
-  const [broadcasterId] = React.useState(() => ulid());
-  const [channel, setChannel] = React.useState(
+  const [broadcasterId] = useState(() => ulid());
+  const [channel, setChannel] = useState(
     () => new BroadcastChannel(channelName)
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (channel.name !== channelName) {
       setChannel(() => new BroadcastChannel(channelName));
     }
@@ -31,7 +31,7 @@ export default function useBroadcastChannel(
     };
   }, [channel, channelName]);
 
-  const postMessage = React.useCallback(
+  const postMessage = useCallback(
     <TType extends MessageTypes['type']>(
       type: TType,
       payload: MessageTypes['payload'] = {}
@@ -50,13 +50,13 @@ export default function useBroadcastChannel(
   );
 
   // Avoid constantly modifying the 'message' listener in the effect below
-  const userMessageHandlerRef = React.useRef(onMessage);
-  React.useEffect(() => {
+  const userMessageHandlerRef = useRef(onMessage);
+  useEffect(() => {
     userMessageHandlerRef.current = onMessage;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [...deps, postMessage]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!channel) return;
     const messageHandler = (event: MessageEvent<string>) => {
       const rawMessage = event.data;

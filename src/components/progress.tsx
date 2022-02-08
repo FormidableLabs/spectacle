@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef, useContext } from 'react';
 import styled from 'styled-components';
 import { DeckContext } from './deck/deck';
 
@@ -26,9 +26,9 @@ export type ProgressProps = {
   size?: number;
 };
 
-const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
+const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   ({ color = '#fff', size = 10 }, ref) => {
-    const { slideCount, skipTo, activeView } = React.useContext(DeckContext);
+    const { slideCount, skipTo, activeView } = useContext(DeckContext);
     return (
       <Container ref={ref} className="spectacle-progress-indicator">
         {Array(slideCount)

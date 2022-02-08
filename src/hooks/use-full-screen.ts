@@ -1,7 +1,7 @@
-import React from 'react';
+import { useCallback } from 'react';
 
 export const useToggleFullScreen = () =>
-  React.useCallback(() => {
+  useCallback(() => {
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen
     if ('requestFullscreen' in document.documentElement) {
       // Chrome/FF

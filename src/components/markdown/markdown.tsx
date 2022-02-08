@@ -1,5 +1,4 @@
 /* eslint-disable react/display-name */
-import * as React from 'react';
 import Slide from '../slide/slide';
 import { DeckContext } from '../deck/deck';
 import presenterNotesPlugin from '../../utils/remark-rehype-presenter-notes';
@@ -22,11 +21,14 @@ import { ListItem } from '../../index';
 import { Appear } from '../appear';
 import { CommonTypographyProps } from '../typography';
 import {
-  ComponentProps,
   ElementType,
   FC,
+  forwardRef,
   ReactElement,
-  ReactNode
+  useContext,
+  useMemo,
+  createElement,
+  Children
 } from 'react';
 
 type MdComponentProps = { [key: string]: any };
@@ -40,14 +42,14 @@ type CommonMarkdownProps = {
 type MapAndTemplate = {
   componentMap?: MarkdownComponentMap;
   template?: {
-    default: React.ElementType;
+    default: ElementType;
     getPropsForAST?: Function;
   };
 };
 
 type MarkdownProps = CommonMarkdownProps & MapAndTemplate;
 
-export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
+export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
   (
     {
       componentMap: userProvidedComponentMap = mdxComponentMap,
@@ -61,9 +63,9 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
     ref
   ) => {
     const { theme: { markdownComponentMap: themeComponentMap = null } = {} } =
-      React.useContext(DeckContext);
+      useContext(DeckContext);
 
-    const [templateProps, noteElements] = React.useMemo(() => {
+    const [templateProps, noteElements] = useMemo(() => {
       // Dedent and parse markdown into MDAST
       const markdownText = indentNormalizer(rawMarkdownText);
       const ast = unified().use(remark).parse(markdownText);
@@ -127,7 +129,7 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
         .use(remark2rehype, { allowDangerousHtml: true })
         .use(remarkRaw)
         .use(rehype2react, {
-          createElement: React.createElement,
+          createElement,
           components: componentMapWithPassedThroughProps
         });
 
@@ -153,7 +155,7 @@ export const Markdown = React.forwardRef<HTMLDivElement, MarkdownProps>(
         .use(remark2rehype, { allowDangerousHtml: true })
         .use(remarkRaw)
         .use(rehype2react, {
-          createElement: React.createElement,
+          createElement,
           Fragment: Notes
         });
 
@@ -257,14 +259,14 @@ export const MarkdownSlideSet = ({
 // needed.
 export const MarkdownPreHelper =
   (
-    PreComponent: React.ElementType = 'pre',
-    CodeInlineComponent: React.ElementType = 'code',
-    CodeBlockComponent: React.ElementType
+    PreComponent: ElementType = 'pre',
+    CodeInlineComponent: ElementType = 'code',
+    CodeBlockComponent: ElementType
   ): FC<{}> =>
   ({ children, ...restProps }) => {
     const pre = <PreComponent {...restProps}>{children}</PreComponent>;
 
-    if (React.Children.count(children) !== 1) return pre;
+    if (Children.count(children) !== 1) return pre;
     const child = (children as ReactElement[])[0];
     if (child.type !== CodeInlineComponent) return pre;
     if (!isValidElementType(CodeBlockComponent)) return pre;
@@ -288,7 +290,7 @@ const MarkdownCodePane: FC<{ className?: string } & CodePaneProps> = ({
   children,
   ...rest
 }) => {
-  const language = React.useMemo(() => {
+  const language = useMemo(() => {
     const match = /^language-(.*)$/.exec(className || '');
     return match ? match[1] : undefined;
   }, [className]);

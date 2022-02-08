@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import { ulid } from 'ulid';
 import { SlideContext } from '../components/slide/slide';
 import sortByKeyComparator from '../utils/sort-by';
@@ -20,10 +20,10 @@ export function useSteps(
     stepIndex
   }: { id?: string | number; priority?: number; stepIndex?: number } = {}
 ) {
-  const [stepId] = React.useState(userProvidedId || ulid);
+  const [stepId] = useState(userProvidedId || ulid);
 
   const { activeStepIndex, activationThresholds } =
-    React.useContext(SlideContext);
+    useContext(SlideContext);
 
   let relStep: number;
 
@@ -49,8 +49,8 @@ export function useSteps(
   // const visibleStep = (isActive ? relStep : 1);
 
   // Helpful hints for the developer.
-  const placeholderRef = React.useRef<HTMLDivElement>(null);
-  React.useEffect(() => {
+  const placeholderRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
     if (!placeholderRef.current) {
       console.warn(
         `A placeholder ref does not appear to be present in the DOM for stepper element with id '${stepId}'. (Did you forget to render it?)`
@@ -93,12 +93,12 @@ export type ActivationThresholds = Record<StepId, number>;
 // the values represent the _first step at which they should appear_.
 export function useCollectSteps() {
   const [stepContainer, setStepContainer] =
-    React.useState<HTMLElement | null>();
+    useState<HTMLElement | null>();
   const [activationThresholds, setActivationThresholds] =
-    React.useState<ActivationThresholds>({});
-  const [finalStepIndex, setFinalStepIndex] = React.useState<number>(0);
+    useState<ActivationThresholds>({});
+  const [finalStepIndex, setFinalStepIndex] = useState<number>(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!stepContainer) return;
     const placeholderNodes = stepContainer.getElementsByClassName(
       PLACEHOLDER_CLASS_NAME
