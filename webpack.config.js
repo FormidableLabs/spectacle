@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 /**
  * Production library config.
@@ -37,5 +38,10 @@ module.exports = {
       },
       { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      process: 'process/browser'
+    })
+  ]
 };
