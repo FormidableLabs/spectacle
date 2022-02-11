@@ -22,8 +22,7 @@ export function useSteps(
 ) {
   const [stepId] = useState(userProvidedId || ulid);
 
-  const { activeStepIndex, activationThresholds } =
-    useContext(SlideContext);
+  const { activeStepIndex, activationThresholds } = useContext(SlideContext);
 
   let relStep: number;
 
@@ -92,8 +91,7 @@ export type ActivationThresholds = Record<StepId, number>;
 // keys of 'activationThresholds' represent the IDs of stepper elements, and
 // the values represent the _first step at which they should appear_.
 export function useCollectSteps() {
-  const [stepContainer, setStepContainer] =
-    useState<HTMLElement | null>();
+  const [stepContainer, setStepContainer] = useState<HTMLElement | null>();
   const [activationThresholds, setActivationThresholds] =
     useState<ActivationThresholds>({});
   const [finalStepIndex, setFinalStepIndex] = useState<number>(0);
