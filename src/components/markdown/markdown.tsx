@@ -19,7 +19,6 @@ import indentNormalizer from '../../utils/indent-normalizer';
 import Notes from '../notes';
 import { ListItem } from '../../index';
 import { Appear } from '../appear';
-import { CommonTypographyProps } from '../typography';
 import {
   ElementType,
   FC,
@@ -195,7 +194,7 @@ const AppearingListItem = (props: PropsFrom<typeof ListItem>) => (
 );
 
 type MarkdownSlideProps = CommonMarkdownProps & MapAndTemplate;
-// TODO: document this thoroughly, it's a public-facing API
+
 export const MarkdownSlide = ({
   children,
   componentMap,
@@ -223,8 +222,6 @@ type MarkdownSlideSetProps = CommonMarkdownProps & {
   slideProps?: Partial<MarkdownSlideProps>[];
 };
 
-// TODO: document this thoroughly, it's a public-facing API (possibly rename as
-// well)
 export const MarkdownSlideSet = ({
   children: rawMarkdownText,
   slideProps = [],
@@ -246,7 +243,6 @@ export const MarkdownSlideSet = ({
           </MarkdownSlide>
         );
       })}
-      ;
     </>
   );
 };

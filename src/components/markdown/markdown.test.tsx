@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import Enzyme, { mount } from 'enzyme';
 import { Markdown, MarkdownSlide, MarkdownSlideSet } from './markdown';
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Deck from '../deck/deck';
 import { Heading, ListItem } from '../typography';
 import { Appear } from '../appear';
