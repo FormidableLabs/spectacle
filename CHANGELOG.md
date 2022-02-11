@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0-beta.2
+
+- webpack 5 upgrade (@carlos-kelly)
+
 ## 9.0.0-beta.1
 
 - Finished initial pass of TypeScript conversion (@scottrippey)
