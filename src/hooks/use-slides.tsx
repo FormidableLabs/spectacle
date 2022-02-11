@@ -10,8 +10,7 @@ export const PLACEHOLDER_CLASS_NAME = 'spectacle-v7-slide';
 // placeholder.
 export function useCollectSlides() {
   const [initialized, setInitialized] = useState(false);
-  const [slideContainer, setSlideContainer] =
-    useState<HTMLElement | null>();
+  const [slideContainer, setSlideContainer] = useState<HTMLElement | null>();
   const [slideIds, setSlideIds] = useState<SlideId[]>([]);
 
   useEffect(() => {
