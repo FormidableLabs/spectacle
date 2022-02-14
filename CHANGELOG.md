@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0-beta.3
+
+- Added TypeScript development example
+
 ## 9.0.0-beta.2
 
 - webpack 5 upgrade (@carlos-kelly)
