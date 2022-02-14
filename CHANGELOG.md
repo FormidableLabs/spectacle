@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0-beta.1
+
+- Finished initial pass of TypeScript conversion (@scottrippey)
+
 ## 8.5.0
 
 - Add styled-system position and layout functions to CodePane, Progress, Markdown components [#1079](https://github.com/FormidableLabs/spectacle/pull/1079)
