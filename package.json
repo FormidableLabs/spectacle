@@ -1,6 +1,6 @@
 {
   "name": "spectacle",
-  "version": "9.0.0-beta.2",
+  "version": "9.0.0-beta.3",
   "description": "ReactJS Powered Presentation Framework",
   "main": "lib/index.js",
   "module": "es/index.js",
