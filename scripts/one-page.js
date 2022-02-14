@@ -23,13 +23,13 @@ const spectacleImportReplacer = (match, imports) => {
   // Prettify imports
   imports = imports
     .split(',')
-    .map(i => `  ${i.trim()}`)
+    .map((i) => `  ${i.trim()}`)
     .join(`,\n`);
 
   return `const {\n${imports}\n} = Spectacle;\n\n${htmImport}`;
 };
 
-const getSrcContent = async src => {
+const getSrcContent = async (src) => {
   let { code } = await transformFileAsync(src, {
     babelrc: false,
     configFile: false,
@@ -100,7 +100,7 @@ const writeDestContent = async (destFile, code) => {
     )
     // Trim trailing spaces
     .split('\n')
-    .map(line => line.trimRight())
+    .map((line) => line.trimRight())
     .join('\n');
 
   // Update one-page
@@ -113,7 +113,7 @@ const main = async () => {
 };
 
 if (require.main === module) {
-  main().catch(err => {
+  main().catch((err) => {
     console.error(err); // eslint-disable-line no-console
     process.exit(1); // eslint-disable-line no-process-exit
   });
