@@ -94,7 +94,7 @@ $ yarn start:one-page
 
 **Note**: This file is published and used by `spectacle-cli`.
 
-**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `yarn build-one-page` and verify changes look good.
+**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.tsx` directly into `one-page.html`. Rather than editing directly, please run `yarn build-one-page` and verify changes look good.
 
 ### Examples integration with `spectacle-cli`
 

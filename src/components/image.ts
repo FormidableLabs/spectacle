@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { compose, layout, position } from 'styled-system';
 import * as SS from 'styled-system';
 
-type ImageType = FC<SS.LayoutProps & SS.PositionProps>;
+type ImageType = FC<
+  SS.LayoutProps & SS.PositionProps & Partial<HTMLImageElement>
+>;
 
 const Image = styled.img(compose(layout, position)) as ImageType;
 const FullSizeImage = styled(Image) as unknown as ImageType;

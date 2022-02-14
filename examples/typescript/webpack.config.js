@@ -6,7 +6,7 @@ module.exports = {
   ...base,
   mode: 'development',
   context: __dirname,
-  entry: './index.js',
+  entry: './index.tsx',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'example.js'
@@ -15,14 +15,8 @@ module.exports = {
   plugins: [
     ...base.plugins,
     new HtmlWebpackPlugin({
-      title: 'Spectacle JS Development Example',
+      title: 'Spectacle TypeScript Demo',
       template: `./index.html`
     })
-  ],
-  resolve: {
-    ...base.resolve,
-    alias: {
-      spectacle: path.resolve(__dirname, '../../src')
-    }
-  }
+  ]
 };

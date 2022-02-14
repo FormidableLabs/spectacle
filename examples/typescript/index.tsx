@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import {
   FlexBox,
   Heading,
@@ -12,7 +11,6 @@ import {
   FullScreen,
   Progress,
   Appear,
-  Stepper,
   Slide,
   Deck,
   Text,
@@ -23,7 +21,7 @@ import {
   MarkdownSlide,
   MarkdownSlideSet,
   Notes
-} from 'spectacle';
+} from '../../src/index';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
@@ -174,8 +172,6 @@ const Presentation = () => (
       <Grid
         gridTemplateColumns="1fr 1fr 1fr"
         gridTemplateRows="1fr 1fr 1fr"
-        alignItems="center"
-        justifyContent="center"
         gridRowGap={1}
       >
         {Array(9)
@@ -235,7 +231,6 @@ const Presentation = () => (
     </MarkdownSlide>
     <Slide>
       <Grid
-        flex={1}
         gridTemplateColumns="50% 50%"
         gridTemplateRows="50% 50%"
         height="100%"

@@ -7,7 +7,7 @@ module.exports = {
   ...base,
   mode: 'development',
   context: __dirname,
-  entry: './index.js',
+  entry: './index.tsx',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'example.js'

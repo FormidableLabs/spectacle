@@ -5,8 +5,8 @@ import { position } from 'styled-system';
 import { useToggleFullScreen } from '../hooks/use-full-screen';
 
 type FSProps = {
-  color: string;
-  size: number;
+  color?: string;
+  size?: number;
 };
 
 const Container = styled('div')`
