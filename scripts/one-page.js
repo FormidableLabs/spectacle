@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Generate the JS `one-page.html` from `examples/js/index.tsx`
+ * Generate the JS `one-page.html` from `examples/js/index.js`
  */
 const fs = require('fs').promises;
 const path = require('path');
@@ -9,7 +9,7 @@ const path = require('path');
 const { transformFileAsync } = require('@babel/core');
 const pretty = require('pretty');
 
-const SRC_FILE = path.resolve(__dirname, '../examples/js/index.tsx');
+const SRC_FILE = path.resolve(__dirname, '../examples/js/index.js');
 const DEST_FILE = path.resolve(__dirname, '../examples/one-page.html');
 
 const htmImport = `

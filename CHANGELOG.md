@@ -175,7 +175,7 @@
 
 ## 6.0.0-alpha.8 (02-20-2020)
 
-- Update `examples/one-page.html` to `examples/js/index.tsx` with new script helper.
+- Update `examples/one-page.html` to `examples/js/index.js` with new script helper.
 - Add support for Deck or Slide-level transitions.
 - Add default transitions for Fade, Slide, and None.
 - Fixes Full Screen component for Chrome/FF, adds support for Safari.

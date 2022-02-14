@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const base = require('../../webpack.config');
 
 module.exports = {
@@ -13,18 +12,10 @@ module.exports = {
     filename: 'example.js'
   },
   externals: {},
-  module: {
-    rules: base.module.rules.concat([
-      {
-        test: /\.md$/,
-        use: [require.resolve('raw-loader')]
-      }
-    ])
-  },
   plugins: [
     ...base.plugins,
     new HtmlWebpackPlugin({
-      title: 'Spectacle MD Development Example',
+      title: 'Spectacle JavaScript Demo',
       template: `./index.html`
     })
   ],

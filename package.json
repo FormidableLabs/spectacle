@@ -5,8 +5,9 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
-    "start:ts": "webpack-dev-server --port=3000 --hot --config examples/typescript/webpack.config.js",
-    "start:md": "webpack-dev-server --port=3100 --hot --config examples/md/webpack.config.js",
+    "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
+    "start:ts": "webpack-dev-server --port=3100 --hot --config examples/typescript/webpack.config.js",
+    "start:md": "webpack-dev-server --port=3200 --hot --config examples/md/webpack.config.js",
     "start:one-page": "open examples/one-page.html",
     "check": "yarn lint && yarn prettier-check && yarn test && yarn typecheck",
     "check-ci": "yarn run check",
