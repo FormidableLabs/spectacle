@@ -4,6 +4,8 @@ import { DeckContext } from '../deck/deck';
 import presenterNotesPlugin from '../../utils/remark-rehype-presenter-notes';
 import CodePane, { CodePaneProps } from '../code-pane';
 import unified from 'unified';
+import styled from 'styled-components';
+import { compose, layout, position } from 'styled-system';
 import remark from 'remark-parse';
 // @ts-ignore
 import mdastAssert from 'mdast-util-assert';
@@ -47,6 +49,7 @@ type MapAndTemplate = {
 };
 
 type MarkdownProps = CommonMarkdownProps & MapAndTemplate;
+const Container = styled('div')(compose(position, layout));
 
 export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
   (
@@ -57,7 +60,8 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
       },
       children: rawMarkdownText,
       animateListItems = false,
-      componentProps
+      componentProps,
+      ...props
     },
     ref
   ) => {
@@ -175,10 +179,12 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
     const { children, ...restProps } = templateProps;
 
     return (
-      <TemplateComponent ref={ref} {...restProps}>
-        {children}
-        {noteElements}
-      </TemplateComponent>
+      <Container ref={ref} {...props}>
+        <TemplateComponent {...restProps}>
+          {children}
+          {noteElements}
+        </TemplateComponent>
+      </Container>
     );
   }
 );
