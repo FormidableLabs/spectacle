@@ -27,7 +27,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
-    modules: [path.join(__dirname, 'src'), 'node_modules']
+    modules: [path.join(__dirname, 'src'), 'node_modules'],
+    fallback: { assert: require.resolve('assert/') }
   },
   module: {
     rules: [
