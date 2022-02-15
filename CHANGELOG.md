@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0-beta.6
+
+- Fixed path for emitting type declarations
+
 ## 9.0.0-beta.5
 
 - Removed dependency on Node assert
