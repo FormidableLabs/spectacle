@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0-beta.5
+
+- Removed dependency on Node assert
+
 ## 9.0.0-beta.3
 
 - Added TypeScript development example

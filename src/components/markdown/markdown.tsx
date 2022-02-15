@@ -7,8 +7,6 @@ import unified from 'unified';
 import styled from 'styled-components';
 import { compose, layout, position } from 'styled-system';
 import remark from 'remark-parse';
-// @ts-ignore
-import mdastAssert from 'mdast-util-assert';
 import remark2rehype from 'remark-rehype';
 import remarkRaw from 'rehype-raw';
 import rehype2react from 'rehype-react';
@@ -139,9 +137,6 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
       // Compile each of the values we got back from the template function
       const templateProps = Object.entries(templatePropMDASTs).reduce(
         (acc, [key, mdast]) => {
-          // Make sure what we got was actually MDAST
-          mdastAssert(mdast);
-
           // Transform the MDAST into HAST
           const hast = compiler.runSync(mdast as any);
 
