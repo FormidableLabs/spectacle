@@ -1,10 +1,15 @@
 {
   "name": "spectacle",
-  "version": "9.0.0-beta.6",
+  "version": "9.0.0-beta.7",
   "description": "ReactJS Powered Presentation Framework",
   "types": "lib/src/index.d.ts",
   "main": "lib/index.js",
-  "files": ["lib/", "es/", "dist/", "README.md"],
+  "files": [
+    "lib/",
+    "es/",
+    "dist/",
+    "README.md"
+  ],
   "module": "es/index.js",
   "scripts": {
     "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
