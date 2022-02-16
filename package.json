@@ -4,6 +4,7 @@
   "description": "ReactJS Powered Presentation Framework",
   "types": "lib/src/index.d.ts",
   "main": "lib/index.js",
+  "files": ["lib/", "es/", "dist/", "README.md"],
   "module": "es/index.js",
   "scripts": {
     "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
@@ -45,6 +46,8 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
+    "@types/styled-components": "^5.1.15",
+    "@types/styled-system": "^5.1.4",
     "broadcast-channel": "^3.2.0",
     "broadcastchannel-polyfill": "^1.0.0",
     "dedent": "^0.7.0",
@@ -92,8 +95,6 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-is": "^17.0.3",
     "@types/react-syntax-highlighter": "^13.5.2",
-    "@types/styled-components": "^5.1.15",
-    "@types/styled-system": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",

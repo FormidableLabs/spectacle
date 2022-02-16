@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0-beta.7
+
+- Ensured types for styled-system based components are included with Spectacle core
+
 ## 9.0.0-beta.6
 
 - Fixed path for emitting type declarations
