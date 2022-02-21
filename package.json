@@ -1,6 +1,6 @@
 {
   "name": "spectacle",
-  "version": "9.0.0-beta.7",
+  "version": "9.0.0-rc.0",
   "description": "ReactJS Powered Presentation Framework",
   "types": "lib/src/index.d.ts",
   "main": "lib/index.js",
@@ -10,7 +10,6 @@
     "dist/",
     "examples/",
     "scripts/",
-    "docs/",
     "README.md"
   ],
   "module": "es/index.js",
