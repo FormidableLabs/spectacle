@@ -8,6 +8,9 @@
     "lib/",
     "es/",
     "dist/",
+    "examples/",
+    "scripts/",
+    "docs/",
     "README.md"
   ],
   "module": "es/index.js",
