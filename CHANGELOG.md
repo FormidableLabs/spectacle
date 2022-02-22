@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0
+
+- Migrated Spectacle core to TypeScript
+
 ## 9.0.0-beta.7
 
 - Ensured types for styled-system based components are included with Spectacle core
