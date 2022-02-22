@@ -5,7 +5,7 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
-    "prettier/react"
+    "prettier"
   ],
   "plugins": [
     "prettier",
@@ -44,6 +44,16 @@
       {
         "allowTemplateLiterals": true
       }
-    ]
-  }
+    ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "react/prop-types": "off"
+      }
+    }
+  ]
 }

@@ -24,3 +24,7 @@ Spectacle's documentation lives on our [docs site](https://www.formidable.com/op
 Notice something inaccurate or confusing? Feel free to [open an issue](https://github.com/FormidableLabs/spectacle/issues)
 or [make a pull request](https://github.com/FormidableLabs/spectacle/pulls) to help improve the documentation for everyone!
 The source for our docs site lives in this repo in the [`docs`](https://github.com/FormidableLabs/spectacle/blob/main/docs/README.md) folder.
+
+### Maintenance Status
+
+**Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.

@@ -22,12 +22,14 @@ module.exports = {
     ])
   },
   plugins: [
+    ...base.plugins,
     new HtmlWebpackPlugin({
       title: 'Spectacle MD Development Example',
       template: `./index.html`
     })
   ],
   resolve: {
+    ...base.resolve,
     alias: {
       spectacle: path.resolve(__dirname, '../../src')
     }

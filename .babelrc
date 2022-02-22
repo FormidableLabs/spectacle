@@ -1,7 +1,8 @@
 {
   "presets": [
+    "@babel/preset-typescript",
     ["@babel/preset-env", { "modules": false }],
-    "@babel/preset-react"
+    ["@babel/preset-react", { "runtime": "automatic" }]
   ],
   "plugins": [
     "@babel/plugin-proposal-object-rest-spread",

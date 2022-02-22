@@ -17,7 +17,7 @@ $ npm install --save spectacle
 
 ## Getting Started with Development
 
-The `src` directory contains all the source for the Spectacle library. All components designed to be part of the Spectacle API must be exported in `src/index.js`.
+The `src` directory contains all the source for the Spectacle library. All components designed to be part of the Spectacle API must be exported in `src/index.tsx`.
 
 #### JavaScript-based Decks
 

@@ -168,8 +168,6 @@ ahead and submit a PR, make sure that you have done the following:
 - Run all checks using `yarn check-ci`.
 - Run `yarn build-one-page` and check + commit changes to `examples/one-page.html`
 - Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
-- Update the [type definitions](./index.d.ts) for anything that modifies the Spectacle API,
-  like breaking changes or new features.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
 ### Releasing a new version to NPM

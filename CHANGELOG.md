@@ -1,5 +1,29 @@
 # Changelog
 
+## 9.0.0-beta.7
+
+- Ensured types for styled-system based components are included with Spectacle core
+
+## 9.0.0-beta.6
+
+- Fixed path for emitting type declarations
+
+## 9.0.0-beta.5
+
+- Removed dependency on Node assert
+
+## 9.0.0-beta.3
+
+- Added TypeScript development example
+
+## 9.0.0-beta.2
+
+- webpack 5 upgrade (@carlos-kelly)
+
+## 9.0.0-beta.1
+
+- Finished initial pass of TypeScript conversion (@scottrippey)
+
 ## 8.5.0
 
 - Add styled-system position and layout functions to CodePane, Progress, Markdown components [#1079](https://github.com/FormidableLabs/spectacle/pull/1079)
