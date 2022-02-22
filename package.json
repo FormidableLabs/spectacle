@@ -1,6 +1,6 @@
 {
   "name": "spectacle",
-  "version": "9.0.0-rc.0",
+  "version": "9.0.0",
   "description": "ReactJS Powered Presentation Framework",
   "types": "lib/src/index.d.ts",
   "main": "lib/index.js",
