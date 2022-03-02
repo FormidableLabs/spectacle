@@ -2,7 +2,7 @@
 
 ## UNRELEASED
 
-- Fix export mode. [#1097](https://github.com/FormidableLabs/spectacle/pull/1097)
+- Fix export mode. [#1097](https://github.com/FormidableLabs/spectacle/issues/1097)
 
 ## 9.0.0
 
