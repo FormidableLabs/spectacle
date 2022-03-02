@@ -72,9 +72,9 @@ export default function useLocationSync({
   ]);
 
   const syncLocation = useCallback(
-    (defaultState: DeckView) => {
+    (defaultState: DeckView): DeckView => {
       if (disableInteractivity) {
-        return null as unknown as DeckView;
+        return defaultState;
       }
       // perform initial two-way sync between location and state (state wins)
       const { location } = history;
