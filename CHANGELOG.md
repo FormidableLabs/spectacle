@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 9.0.1
 
 - Fix export mode. [#1097](https://github.com/FormidableLabs/spectacle/issues/1097)
 
