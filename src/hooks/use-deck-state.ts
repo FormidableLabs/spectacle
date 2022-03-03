@@ -37,42 +37,37 @@ type ReducerActions =
   | { type: 'COMMIT_TRANSITION'; payload?: DeckView }
   | { type: 'CANCEL_TRANSITION'; payload?: undefined };
 
-// If payload is null, we don't want to merge because it nulls out the whole
-// object.
-const mergeView = (view: DeckView, payload: Partial<DeckView>) =>
-  payload ? merge(view, payload) : view;
-
 function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
   switch (type) {
     case 'INITIALIZE_TO':
       return {
-        activeView: mergeView(state.activeView, payload),
-        pendingView: mergeView(state.pendingView, payload),
+        activeView: merge(state.activeView, payload),
+        pendingView: merge(state.pendingView, payload),
         initialized: true
       };
     case 'SKIP_TO':
       return {
         ...state,
-        pendingView: mergeView(state.pendingView, payload)
+        pendingView: merge(state.pendingView, payload)
       };
     case 'STEP_FORWARD':
       return {
         ...state,
-        pendingView: mergeView(state.pendingView, {
+        pendingView: merge(state.pendingView, {
           stepIndex: state.pendingView.stepIndex + 1
         })
       };
     case 'STEP_BACKWARD':
       return {
         ...state,
-        pendingView: mergeView(state.pendingView, {
+        pendingView: merge(state.pendingView, {
           stepIndex: state.pendingView.stepIndex - 1
         })
       };
     case 'ADVANCE_SLIDE':
       return {
         ...state,
-        pendingView: mergeView(state.pendingView, {
+        pendingView: merge(state.pendingView, {
           stepIndex: 0,
           slideIndex: state.pendingView.slideIndex + 1
         })
@@ -80,22 +75,22 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
     case 'REGRESS_SLIDE':
       return {
         ...state,
-        pendingView: mergeView(state.pendingView, {
+        pendingView: merge(state.pendingView, {
           stepIndex: payload?.stepIndex ?? GOTO_FINAL_STEP,
           slideIndex: state.pendingView.slideIndex - 1
         })
       };
     case 'COMMIT_TRANSITION':
-      const pendingView = mergeView(state.pendingView, payload);
+      const pendingView = merge(state.pendingView, payload);
       return {
         ...state,
         pendingView,
-        activeView: mergeView(state.activeView, pendingView)
+        activeView: merge(state.activeView, pendingView)
       };
     case 'CANCEL_TRANSITION':
       return {
         ...state,
-        pendingView: mergeView(state.pendingView, state.activeView)
+        pendingView: merge(state.pendingView, state.activeView)
       };
     default:
       return state;
