@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Fixed disappearing slides with background images in export and overveiw mode [#1100](https://github.com/FormidableLabs/spectacle/issues/1100)
+- Fixed disappearing slides with background images in export and overview mode [#1100](https://github.com/FormidableLabs/spectacle/issues/1100)
 
 ## 9.0.1
 
