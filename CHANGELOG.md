@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 9.0.2
 
 - Fixed disappearing slides with background images in export and overview mode [#1100](https://github.com/FormidableLabs/spectacle/issues/1100)
 
