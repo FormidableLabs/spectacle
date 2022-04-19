@@ -348,7 +348,7 @@ const Slide = (props: SlideProps): JSX.Element => {
               onClick={handleClick}
               tabIndex={inOverviewMode && isActive ? 0 : undefined}
               style={{
-                ...springFrameStyle,
+                ...(inOverviewMode ? {} : springFrameStyle),
                 ...frameOverrideStyle,
                 ...(inOverviewMode &&
                   hover && {
