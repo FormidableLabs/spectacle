@@ -9,7 +9,7 @@ const config = {
   title: 'Spectacle',
   tagline: 'A React.js based library for creating sleek presentations using JSX syntax that gives you the ability to live demo your code.',
   url: 'https://formidable.com',
-  baseUrl: '/',
+  baseUrl: '/open-source/spectacle/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
