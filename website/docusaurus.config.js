@@ -27,6 +27,14 @@ const config = {
           editUrl: 'https://github.com/FormidableLabs/spectacle/tree/main/website',
           breadcrumbs: false,
         },
+        googleAnalytics: {
+          trackingID: 'UA-43290258-1',
+          anonymizeIP: true,
+        },
+        gtag: {
+          trackingID: 'GTM-MD32945',
+          anonymizeIP: true,
+        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
