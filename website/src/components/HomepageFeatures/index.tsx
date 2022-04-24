@@ -14,31 +14,34 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/button.svg').default,
     description: (
       <>
-        Add clickable elements and other interactivity to make your presentations pop.
+        Add clickable elements and other interactivity to make your
+        presentations pop.
       </>
-    ),
+    )
   },
   {
     title: 'Live-Preview Your Code',
     Svg: require('@site/static/img/code-preview.svg').default,
     description: (
       <>
-        Show people more than just a code block - demo the final project in real-time without leaving your presentation deck.
+        Show people more than just a code block - demo the final project in
+        real-time without leaving your presentation deck.
       </>
-    ),
+    )
   },
   {
     title: '... and More!',
     Svg: require('@site/static/img/amazing.svg').default,
     description: (
       <>
-        Polish off your presentation with auto-formatting, easy themeing, image dimming, and other fun touches available out of the box.
+        Polish off your presentation with auto-formatting, easy themeing, image
+        dimming, and other fun touches available out of the box.
       </>
-    ),
-  },
+    )
+  }
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({ title, Svg, description }: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">

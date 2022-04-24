@@ -21,7 +21,7 @@
     "check": "yarn lint && yarn prettier-check && yarn test && yarn typecheck",
     "check-ci": "yarn run check",
     "format": "yarn run lint-fix && yarn run prettier-fix",
-    "lint": "eslint --ext .tsx,.ts,.jsx,.js examples scripts src",
+    "lint": "eslint --ext .tsx,.ts,.jsx,.js examples scripts src website",
     "lint-fix": "yarn lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
     "prettier-check": "yarn prettier --check",

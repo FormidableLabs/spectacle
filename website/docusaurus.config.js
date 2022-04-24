@@ -7,7 +7,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Spectacle',
-  tagline: 'A React.js based library for creating sleek presentations using JSX syntax that gives you the ability to live demo your code.',
+  tagline:
+    'A React.js based library for creating sleek presentations using JSX syntax that gives you the ability to live demo your code.',
   url: 'https://formidable.com',
   baseUrl: '/open-source/spectacle/',
   onBrokenLinks: 'throw',
@@ -24,22 +25,23 @@ const config = {
         docs: {
           path: '../docs',
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/FormidableLabs/spectacle/tree/main/website',
-          breadcrumbs: false,
+          editUrl:
+            'https://github.com/FormidableLabs/spectacle/tree/main/website',
+          breadcrumbs: false
         },
         googleAnalytics: {
           trackingID: 'UA-43290258-1',
-          anonymizeIP: true,
+          anonymizeIP: true
         },
         gtag: {
           trackingID: 'GTM-MD32945',
-          anonymizeIP: true,
+          anonymizeIP: true
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      }),
-    ],
+          customCss: require.resolve('./src/css/custom.css')
+        }
+      })
+    ]
   ],
 
   themeConfig:
@@ -49,38 +51,38 @@ const config = {
         title: 'Spectacle',
         logo: {
           alt: 'Spectacle Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo.svg'
         },
         items: [
           {
             type: 'doc',
             docId: 'basic-concepts',
             position: 'left',
-            label: 'Documentation',
+            label: 'Documentation'
           },
           {
             href: 'https://github.com/FormidableLabs/spectacle',
             className: 'header-github-link',
             'aria-label': 'GitHub Repository',
-            position: 'right',
+            position: 'right'
           },
           {
             href: 'https://formidable.com',
             className: 'header-formidable-link',
             'aria-label': 'Formidable Website',
-            position: 'right',
-          },
-        ],
+            position: 'right'
+          }
+        ]
       },
       footer: {
         style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} Formidable Labs, LLC.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Formidable Labs, LLC.`
       },
       prism: {
         theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
+        darkTheme: darkCodeTheme
+      }
+    })
 };
 
 module.exports = config;
