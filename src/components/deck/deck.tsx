@@ -71,6 +71,7 @@ export type DeckContextType = {
   cancelTransition(): void;
   template: TemplateFn | ReactNode;
   transition: SlideTransition;
+  backgroundImage?: string;
 };
 
 export const DeckContext = createContext<DeckContextType>(null as any);
@@ -150,7 +151,8 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       autoPlay = false,
       autoPlayLoop = false,
       autoPlayInterval = 1000,
-      transition = defaultTransition
+      transition = defaultTransition,
+      backgroundImage
     },
     ref
   ) => {
@@ -429,7 +431,8 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               commitTransition,
               cancelTransition,
               transition,
-              template
+              template,
+              backgroundImage
             }}
           >
             <div ref={setPlaceholderContainer} style={{ display: 'none' }}>
@@ -479,6 +482,7 @@ export type DeckProps = {
   overviewScale?: number;
   transition?: SlideTransition;
   suppressBackdropFallback?: boolean;
+  backgroundImage?: string;
 };
 /**
  * These types are only used internally,
@@ -496,6 +500,7 @@ export type DeckInternalProps = DeckProps & {
   notePortalNode?: HTMLDivElement | null;
   backdropStyle?: Partial<CSSStyleDeclaration>;
   onActiveStateChange?: (activeView: DeckView) => void;
+  backgroundImage?: string;
 };
 
 export default Deck;

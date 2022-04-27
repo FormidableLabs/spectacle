@@ -33,7 +33,8 @@ export default function PrintMode({
   theme,
   exportMode,
   pageSize,
-  pageOrientation = ''
+  pageOrientation = '',
+  backgroundImage
 }: PrintModeProps) {
   const width = theme?.size?.width || defaultTheme.size.width;
   const height = theme?.size?.height || defaultTheme.size.height;
@@ -49,6 +50,7 @@ export default function PrintMode({
         exportMode={exportMode}
         disableInteractivity
         theme={{ ...theme, Backdrop, backdropStyle: {} }}
+        backgroundImage={backgroundImage}
       >
         {children}
       </DeckInternal>
@@ -62,4 +64,5 @@ type PrintModeProps = {
   exportMode?: boolean;
   pageSize?: string;
   pageOrientation?: '' | 'landscape' | 'portrait';
+  backgroundImage?: string;
 };
