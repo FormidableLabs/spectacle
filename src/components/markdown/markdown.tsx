@@ -120,6 +120,7 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
         componentMap
       ).reduce((newMap, [key, Component]) => {
         newMap[key] = (props: any) => {
+          // Replace \n with <br />
           const children = props?.children?.map((child: any) => {
             if (child === '\n') return <br />;
             if (typeof child == 'string') {
