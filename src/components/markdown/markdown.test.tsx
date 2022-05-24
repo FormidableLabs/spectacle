@@ -55,6 +55,19 @@ describe('<MarkdownSlide />', () => {
     expect(wrapper.find('li').at(1).children().find('i')).toHaveLength(2);
     expect(wrapper.find('li').at(2).children()).toHaveLength(1);
   });
+
+  it('should generate line breaks for inline paragraph elements', () => {
+    const wrapper = mountInsideDeck(
+      <MarkdownSlide>{`
+        One
+        **Two**
+        _Three_
+        \`Four\`
+        ~~Five~~
+      `}</MarkdownSlide>
+    );
+    expect(wrapper.find('br')).toHaveLength(4);
+  });
 });
 
 describe('<MarkdownSlideSet />', () => {
