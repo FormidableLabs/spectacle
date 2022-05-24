@@ -19,7 +19,7 @@ import indentNormalizer from '../../utils/indent-normalizer';
 import Notes from '../notes';
 import { ListItem } from '../../index';
 import { Appear } from '../appear';
-import {
+import React, {
   ElementType,
   FC,
   forwardRef,
@@ -120,17 +120,23 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
         componentMap
       ).reduce((newMap, [key, Component]) => {
         newMap[key] = (props: any) => {
-          // Replace \n with <br />
-          const children = props?.children?.map((child: any) => {
-            if (child === '\n') return <br />;
-            if (typeof child == 'string') {
-              return child.split('\n').map((str) => {
-                if (str === '') return <br />;
-                return str;
-              });
-            }
-            return child;
-          });
+          // Replace \n with <br /> for paragraphs
+          const children =
+            key === 'p'
+              ? props?.children?.map((child: any, i: number) => {
+                  if (child === '\n') return <br key={i} />;
+                  if (typeof child == 'string') {
+                    const lines = child.split('\n');
+                    return lines.map((str, i) => (
+                      <React.Fragment key={i}>
+                        {str}
+                        {i !== lines.length - 1 && <br />}
+                      </React.Fragment>
+                    ));
+                  }
+                  return child;
+                })
+              : props.children;
           return (
             <Component {...props} {...(componentProps || {})}>
               {children}
