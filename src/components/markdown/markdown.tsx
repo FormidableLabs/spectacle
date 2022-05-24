@@ -123,7 +123,7 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
           // Replace \r\n and \n with <br /> for paragraphs
           const children =
             key === 'p'
-              ? props?.children?.map((child: any, i: number) => {
+              ? props.children?.map((child: any, i: number) => {
                   if (typeof child == 'string') {
                     const lines = child.split(/\r\n|\n/g);
                     return lines.map((str, i) => (

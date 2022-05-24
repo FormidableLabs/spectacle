@@ -68,6 +68,20 @@ describe('<MarkdownSlide />', () => {
     );
     expect(wrapper.find('br')).toHaveLength(4);
   });
+
+  it('should generate line breaks for inline paragraph elements with carriage returns', () => {
+    const wrapper = mountInsideDeck(
+      <MarkdownSlide>{`One\r\n**Two**\r\n_Three_\r\n\`Four\`\r\n~~Five~~`}</MarkdownSlide>
+    );
+    expect(wrapper.find('br')).toHaveLength(4);
+  });
+
+  it('should generate line breaks for inline paragraph elements with mixed returns', () => {
+    const wrapper = mountInsideDeck(
+      <MarkdownSlide>{`One\n**Two**\r\n_Three_\n\`Four\`\r\n~~Five~~`}</MarkdownSlide>
+    );
+    expect(wrapper.find('br')).toHaveLength(4);
+  });
 });
 
 describe('<MarkdownSlideSet />', () => {
