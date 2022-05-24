@@ -119,9 +119,23 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
       const componentMapWithPassedThroughProps = Object.entries(
         componentMap
       ).reduce((newMap, [key, Component]) => {
-        newMap[key] = (props: any) => (
-          <Component {...props} {...(componentProps || {})} />
-        );
+        newMap[key] = (props: any) => {
+          const children = props?.children?.map((child: any) => {
+            if (child === '\n') return <br />;
+            if (typeof child == 'string') {
+              return child.split('\n').map((str) => {
+                if (str === '') return <br />;
+                return str;
+              });
+            }
+            return child;
+          });
+          return (
+            <Component {...props} {...(componentProps || {})}>
+              {children}
+            </Component>
+          );
+        };
         return newMap;
       }, {} as any);
 
