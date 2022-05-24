@@ -120,13 +120,12 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
         componentMap
       ).reduce((newMap, [key, Component]) => {
         newMap[key] = (props: any) => {
-          // Replace \n with <br /> for paragraphs
+          // Replace \r\n and \n with <br /> for paragraphs
           const children =
             key === 'p'
               ? props?.children?.map((child: any, i: number) => {
-                  if (child === '\n') return <br key={i} />;
                   if (typeof child == 'string') {
-                    const lines = child.split('\n');
+                    const lines = child.split(/\r\n|\n/g);
                     return lines.map((str, i) => (
                       <React.Fragment key={i}>
                         {str}
