@@ -28,6 +28,8 @@ A `template` contains Layout tags (referred to as a template render function) an
 | `autoPlayLoop`     | PropTypes.bool                              | `false`            |
 | `autoPlayInterval` | PropTypes.number (milliseconds)             | `1000`             |
 | `transition`       | [**Transition**](./props#transition-object) | `slideTransition`  |
+| `backgroundImage`  | PropTypes.string                            |                    |
+
 
 ### Slide
 

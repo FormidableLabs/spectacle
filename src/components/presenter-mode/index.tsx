@@ -30,7 +30,7 @@ const PreviewSlideWrapper = styled.div<{ visible?: boolean }>(
 );
 
 const PresenterMode = (props: PresenterModeProps): JSX.Element => {
-  const { children, theme } = props;
+  const { children, theme, backgroundImage } = props;
   const deck = useRef<DeckRef>(null);
   const previewDeck = useRef<DeckRef>(null);
   const [notePortalNode, setNotePortalNode] = useState<HTMLDivElement | null>();
@@ -112,6 +112,7 @@ const PresenterMode = (props: PresenterModeProps): JSX.Element => {
           onActiveStateChange={onActiveStateChange}
           ref={deck}
           theme={theme}
+          backgroundImage={backgroundImage}
         >
           {children}
         </DeckInternal>
@@ -122,6 +123,7 @@ const PresenterMode = (props: PresenterModeProps): JSX.Element => {
             backdropStyle={deckBackdropStyles.nextSlide}
             ref={previewDeck}
             theme={theme}
+            backgroundImage={backgroundImage}
           >
             {children}
           </DeckInternal>
@@ -136,4 +138,5 @@ export default PresenterMode;
 type PresenterModeProps = {
   theme?: SpectacleThemeOverrides;
   children: ReactNode;
+  backgroundImage?: string;
 };

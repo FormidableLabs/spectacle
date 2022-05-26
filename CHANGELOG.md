@@ -1,5 +1,13 @@
 # Changelog
 
+## 9.1.1
+
+- Newlines in markdown slides correctly render line breaks [#1114](https://github.com/FormidableLabs/spectacle/pull/1114)
+
+## 9.1.0
+
+- Added support for deck-wide background images [#1112](https://github.com/FormidableLabs/spectacle/pull/1112)
+
 ## 9.0.2
 
 - Fixed disappearing slides with background images in export and overview mode [#1100](https://github.com/FormidableLabs/spectacle/issues/1100)

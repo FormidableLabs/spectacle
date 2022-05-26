@@ -135,7 +135,8 @@ const Slide = (props: SlideProps): JSX.Element => {
     cancelTransition,
     transition,
     template: deckTemplate,
-    slideCount
+    slideCount,
+    backgroundImage: deckBackgroundImage
   } = useContext(DeckContext);
 
   const handleClick = useCallback(
@@ -361,7 +362,7 @@ const Slide = (props: SlideProps): JSX.Element => {
               <SlideContainer
                 className={className}
                 backgroundColor={backgroundColor}
-                backgroundImage={backgroundImage}
+                backgroundImage={backgroundImage || deckBackgroundImage}
                 backgroundOpacity={backgroundOpacity}
                 backgroundPosition={backgroundPosition}
                 backgroundRepeat={backgroundRepeat}
