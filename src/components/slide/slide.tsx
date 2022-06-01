@@ -108,7 +108,7 @@ const Slide = (props: SlideProps): JSX.Element => {
     throw new Error(`Slide components may not be nested within each other.`);
   }
 
-  const hasTemplate = Boolean(template);
+  const hasTemplate = template !== undefined;
   const { slideId, placeholder } = useSlide(hasTemplate, userProvidedId);
   const { setStepContainer, activationThresholds, finalStepIndex } =
     useCollectSteps();
@@ -368,14 +368,9 @@ const Slide = (props: SlideProps): JSX.Element => {
                 color={textColor}
                 {...swipeHandler}
               >
-                {isActive && hasTemplate && (
+                {((isActive && hasTemplate) || inOverviewMode) && (
                   <TemplateWrapper style={wrapperOverrideStyle}>
-                    {slideTemplateElement}
-                  </TemplateWrapper>
-                )}
-                {inOverviewMode && (
-                  <TemplateWrapper style={wrapperOverrideStyle}>
-                    {deckTemplateElement}
+                    {hasTemplate ? slideTemplateElement : deckTemplateElement}
                   </TemplateWrapper>
                 )}
                 <SlideWrapper
