@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Persist deck template between slides in default mode [#1106](https://github.com/FormidableLabs/spectacle/issues/1106)
+
 ## 9.1.1
 
 - Newlines in markdown slides correctly render line breaks [#1114](https://github.com/FormidableLabs/spectacle/pull/1114)
