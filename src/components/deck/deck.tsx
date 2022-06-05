@@ -73,6 +73,8 @@ export type DeckContextType = {
   template: TemplateFn | ReactNode;
   transition: SlideTransition;
   backgroundImage?: string;
+  inOverviewMode: boolean;
+  inPrintMode: boolean;
 };
 
 export const DeckContext = createContext<DeckContextType>(null as any);
@@ -443,7 +445,9 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               cancelTransition,
               transition,
               template,
-              backgroundImage
+              backgroundImage,
+              inOverviewMode: overviewMode,
+              inPrintMode: printMode
             }}
           >
             <Portal
@@ -452,19 +456,21 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               printMode={printMode}
               fitAspectRatioStyle={fitAspectRatioStyle}
             >
-              {!doesCurrentSlideHaveItsOwnTemplate && !overviewMode && (
-                <TemplateWrapper
-                  style={{
-                    ...wrapperStyle,
-                    // Slides are appended to the parent as they are portaled in and end up later in
-                    // the source order. Adding zIndex to the template to overlay the sibling slides
-                    // once they have been portaled in.
-                    zIndex: 1
-                  }}
-                >
-                  {templateElement}
-                </TemplateWrapper>
-              )}
+              {!doesCurrentSlideHaveItsOwnTemplate &&
+                !overviewMode &&
+                !printMode && (
+                  <TemplateWrapper
+                    style={{
+                      ...wrapperStyle,
+                      // Slides are appended to the parent as they are portaled in and end up later in
+                      // the source order. Adding zIndex to the template to overlay the sibling slides
+                      // once they have been portaled in.
+                      zIndex: 1
+                    }}
+                  >
+                    {templateElement}
+                  </TemplateWrapper>
+                )}
             </Portal>
             <div ref={setPlaceholderContainer} style={{ display: 'none' }}>
               {children}

@@ -100,7 +100,7 @@ const Slide = (props: SlideProps): JSX.Element => {
     backgroundSize = 'cover',
     padding = 2,
     textColor = 'primary',
-    template,
+    template: slideTemplate,
     transition: slideTransition = {},
     className = ''
   } = props;
@@ -108,8 +108,8 @@ const Slide = (props: SlideProps): JSX.Element => {
     throw new Error(`Slide components may not be nested within each other.`);
   }
 
-  const hasTemplate = template !== undefined;
-  const { slideId, placeholder } = useSlide(hasTemplate, userProvidedId);
+  const slideHasTemplate = slideTemplate !== undefined;
+  const { slideId, placeholder } = useSlide(slideHasTemplate, userProvidedId);
   const { setStepContainer, activationThresholds, finalStepIndex } =
     useCollectSteps();
   const {
@@ -130,7 +130,9 @@ const Slide = (props: SlideProps): JSX.Element => {
     transition,
     template: deckTemplate,
     slideCount,
-    backgroundImage: deckBackgroundImage
+    backgroundImage: deckBackgroundImage,
+    inOverviewMode,
+    inPrintMode
   } = useContext(DeckContext);
 
   const handleClick = useCallback(
@@ -148,7 +150,6 @@ const Slide = (props: SlideProps): JSX.Element => {
     return result;
   }, [slideTransition, transition]);
 
-  const inOverviewMode = Object.entries(frameOverrideStyle).length > 0;
   const isActive = activeView.slideId === slideId;
   const isPending = pendingView.slideId === slideId;
   const isPassed = passedSlideIds.has(slideId);
@@ -306,24 +307,14 @@ const Slide = (props: SlideProps): JSX.Element => {
     };
   }, [wrapperOverrideStyle, theme, padding]);
 
-  const slideTemplateElement: ReactNode = useMemo(() => {
-    return typeof template === 'function'
-      ? template?.({
+  const template = slideHasTemplate ? slideTemplate : deckTemplate;
+  const templateElement =
+    typeof template === 'function'
+      ? template({
           slideNumber: activeView.slideIndex + 1,
           numberOfSlides: slideCount
         })
       : template;
-  }, [template, activeView.slideIndex, slideCount]);
-
-  const deckTemplateElement: ReactNode = useMemo(() => {
-    if (!inOverviewMode) return null;
-    return typeof deckTemplate === 'function'
-      ? deckTemplate?.({
-          slideNumber: activeView.slideIndex + 1,
-          numberOfSlides: slideCount
-        })
-      : deckTemplate;
-  }, [inOverviewMode, deckTemplate, activeView.slideIndex, slideCount]);
 
   const swipeHandler = useSwipeable({
     onSwiped: (eventData) => onMobileSlide(eventData)
@@ -347,7 +338,7 @@ const Slide = (props: SlideProps): JSX.Element => {
               onClick={handleClick}
               tabIndex={inOverviewMode && isActive ? 0 : undefined}
               style={{
-                ...(inOverviewMode ? {} : springFrameStyle),
+                ...(inOverviewMode || inPrintMode ? {} : springFrameStyle),
                 ...frameOverrideStyle,
                 ...(inOverviewMode &&
                   hover && {
@@ -368,9 +359,11 @@ const Slide = (props: SlideProps): JSX.Element => {
                 color={textColor}
                 {...swipeHandler}
               >
-                {((isActive && hasTemplate) || inOverviewMode) && (
+                {((slideHasTemplate && isActive) ||
+                  inOverviewMode ||
+                  inPrintMode) && (
                   <TemplateWrapper style={wrapperOverrideStyle}>
-                    {hasTemplate ? slideTemplateElement : deckTemplateElement}
+                    {templateElement}
                   </TemplateWrapper>
                 )}
                 <SlideWrapper

@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-- Persist deck template between slides in default mode [#1106](https://github.com/FormidableLabs/spectacle/issues/1106)
+- Fix deck level templates not displayed in presenter, print and export modes
+- Persist deck template between slides in default and presenter modes [#1106](https://github.com/FormidableLabs/spectacle/issues/1106)
 
 ## 9.1.1
 
