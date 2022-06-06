@@ -390,7 +390,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
 
     const templateElement: ReactNode =
       typeof template === 'function'
-        ? template?.({
+        ? template({
             slideNumber: activeView.slideIndex + 1,
             numberOfSlides: slideIds.length
           })
