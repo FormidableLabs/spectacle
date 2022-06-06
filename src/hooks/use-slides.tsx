@@ -13,7 +13,7 @@ export function useCollectSlides() {
   const [slideContainer, setSlideContainer] = useState<HTMLElement | null>();
   const [slideIds, setSlideIds] = useState<SlideId[]>([]);
   const [slideIdsOfSlidesWithTemplates, setSlideIdsOfSlidesWithTemplates] =
-    useState<SlideId[]>([]);
+    useState<Set<SlideId>>(new Set());
 
   useEffect(() => {
     if (!slideContainer) return;
@@ -22,12 +22,12 @@ export function useCollectSlides() {
     ) as unknown as Iterable<HTMLElement>;
 
     const nextSlideIds: SlideId[] = [];
-    const nextSlideIdsOfSlidesWithTemplates: SlideId[] = [];
+    const nextSlideIdsOfSlidesWithTemplates: Set<SlideId> = new Set();
     for (const placeholderNode of slides) {
       const { slideId, slideHasTemplate } = placeholderNode.dataset;
       nextSlideIds.push(slideId!);
       if (slideHasTemplate === 'true') {
-        nextSlideIdsOfSlidesWithTemplates.push(slideId!);
+        nextSlideIdsOfSlidesWithTemplates.add(slideId!);
       }
     }
     setSlideIds(nextSlideIds);

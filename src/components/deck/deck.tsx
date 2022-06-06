@@ -386,7 +386,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
     }
 
     const doesCurrentSlideHaveItsOwnTemplate =
-      slideIdsWithTemplates.includes(activeSlideId);
+      slideIdsWithTemplates.has(activeSlideId);
 
     const templateElement: ReactNode =
       typeof template === 'function'
