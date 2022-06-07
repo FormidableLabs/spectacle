@@ -25,9 +25,11 @@ export function useCollectSlides() {
     const nextSlideIdsOfSlidesWithTemplates: Set<SlideId> = new Set();
     for (const placeholderNode of slides) {
       const { slideId, slideHasTemplate } = placeholderNode.dataset;
-      nextSlideIds.push(slideId!);
-      if (slideHasTemplate === 'true') {
-        nextSlideIdsOfSlidesWithTemplates.add(slideId!);
+      if (slideId !== undefined) {
+        nextSlideIds.push(slideId);
+        if (slideHasTemplate === 'true') {
+          nextSlideIdsOfSlidesWithTemplates.add(slideId);
+        }
       }
     }
     setSlideIds(nextSlideIds);
