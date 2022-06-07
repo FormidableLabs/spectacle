@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { DeckInternal } from '../deck/deck';
+import { DeckInternal, TemplateFn } from '../deck/deck';
 import { AnimatedDiv } from '../slide/slide';
 import defaultTheme, {
   SpectacleThemeOverrides
@@ -34,7 +34,8 @@ export default function PrintMode({
   exportMode,
   pageSize,
   pageOrientation = '',
-  backgroundImage
+  backgroundImage,
+  template
 }: PrintModeProps) {
   const width = theme?.size?.width || defaultTheme.size.width;
   const height = theme?.size?.height || defaultTheme.size.height;
@@ -51,6 +52,7 @@ export default function PrintMode({
         disableInteractivity
         theme={{ ...theme, Backdrop, backdropStyle: {} }}
         backgroundImage={backgroundImage}
+        template={template}
       >
         {children}
       </DeckInternal>
@@ -65,4 +67,5 @@ type PrintModeProps = {
   pageSize?: string;
   pageOrientation?: '' | 'landscape' | 'portrait';
   backgroundImage?: string;
+  template?: TemplateFn | ReactNode;
 };

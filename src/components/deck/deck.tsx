@@ -37,6 +37,7 @@ import defaultTheme, {
 import { defaultTransition, SlideTransition } from '../transitions';
 import { SwipeEventData } from 'react-swipeable';
 import { MarkdownComponentMap } from '../../utils/mdx-component-mapper';
+import TemplateWrapper from '../template-wrapper';
 
 export type DeckContextType = {
   deckId: string | number;
@@ -72,9 +73,12 @@ export type DeckContextType = {
   template: TemplateFn | ReactNode;
   transition: SlideTransition;
   backgroundImage?: string;
+  inOverviewMode: boolean;
+  inPrintMode: boolean;
 };
 
 export const DeckContext = createContext<DeckContextType>(null as any);
+DeckContext.displayName = 'DeckContext';
 const noop = () => {};
 
 /**
@@ -177,8 +181,12 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       cancelTransition
     } = useDeckState(initialDeckState);
 
-    const [setPlaceholderContainer, slideIds, slideIdsInitialized] =
-      useCollectSlides();
+    const [
+      setPlaceholderContainer,
+      slideIds,
+      slideIdsWithTemplates,
+      slideIdsInitialized
+    ] = useCollectSlides();
 
     // It really is much easier to just expose methods to the outside world that
     // drive the presentation through its state rather than trying to implement a
@@ -377,6 +385,17 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       backdropStyle['backgroundColor'] = 'black';
     }
 
+    const doesCurrentSlideHaveItsOwnTemplate =
+      slideIdsWithTemplates.has(activeSlideId);
+
+    const templateElement: ReactNode =
+      typeof template === 'function'
+        ? template({
+            slideNumber: activeView.slideIndex + 1,
+            numberOfSlides: slideIds.length
+          })
+        : template;
+
     return (
       <ThemeProvider
         theme={mergeTheme({
@@ -392,12 +411,6 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
             overflow: 'hidden'
           }}
         >
-          <Portal
-            ref={setSlidePortalNode}
-            overviewMode={overviewMode}
-            printMode={printMode}
-            fitAspectRatioStyle={fitAspectRatioStyle}
-          />
           <DeckContext.Provider
             value={{
               deckId,
@@ -432,9 +445,33 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               cancelTransition,
               transition,
               template,
-              backgroundImage
+              backgroundImage,
+              inOverviewMode: overviewMode,
+              inPrintMode: printMode
             }}
           >
+            <Portal
+              ref={setSlidePortalNode}
+              overviewMode={overviewMode}
+              printMode={printMode}
+              fitAspectRatioStyle={fitAspectRatioStyle}
+            >
+              {!doesCurrentSlideHaveItsOwnTemplate &&
+                !overviewMode &&
+                !printMode && (
+                  <TemplateWrapper
+                    style={{
+                      ...wrapperStyle,
+                      // Slides are appended to the parent as they are portaled in and end up later in
+                      // the source order. Adding zIndex to the template to overlay the sibling slides
+                      // once they have been portaled in.
+                      zIndex: 1
+                    }}
+                  >
+                    {templateElement}
+                  </TemplateWrapper>
+                )}
+            </Portal>
             <div ref={setPlaceholderContainer} style={{ display: 'none' }}>
               {children}
             </div>
