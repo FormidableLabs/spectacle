@@ -72,6 +72,15 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
+    <Slide.TwoColumn
+      left={
+        <>
+          <Heading>Hey world!</Heading>
+          <Text>It's ya boi, Grant</Text>
+        </>
+      }
+      right={<Heading>Two column, here</Heading>}
+    />
     <Slide>
       <FlexBox height="100%">
         <SpectacleLogo size={500} />

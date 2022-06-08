@@ -25,6 +25,7 @@ import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { useSwipeable } from 'react-swipeable';
 import { SlideTransition } from '../transitions';
 import TemplateWrapper from '../template-wrapper';
+import { TwoColumn } from './layouts';
 
 const noop = () => {};
 
@@ -380,6 +381,17 @@ const Slide = (props: SlideProps): JSX.Element => {
     </>
   );
 };
+
+const TwoColumnSlide = ({
+  left,
+  right,
+  ...rest
+}: Omit<SlideProps, 'children'> & Parameters<typeof TwoColumn>[0]) => (
+  <Slide {...rest}>
+    <TwoColumn {...{ left, right }} />
+  </Slide>
+);
+Slide.TwoColumn = TwoColumnSlide;
 
 export default Slide;
 
