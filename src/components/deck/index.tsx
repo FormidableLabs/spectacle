@@ -22,7 +22,7 @@ const SpectacleDeck = (props: DeckProps): JSX.Element => {
   );
 
   const toggleMode = useCallback(
-    (e, newMode: SpectacleMode, senderSlideIndex?: number) => {
+    (e: Event, newMode: SpectacleMode, senderSlideIndex?: number) => {
       e?.preventDefault();
 
       let stepIndex: string | number = 0;
@@ -58,13 +58,13 @@ const SpectacleDeck = (props: DeckProps): JSX.Element => {
   useMousetrap(
     {
       [KEYBOARD_SHORTCUTS.PRESENTER_MODE]: (e) =>
-        toggleMode(e, SPECTACLE_MODES.PRESENTER_MODE),
+        e && toggleMode(e, SPECTACLE_MODES.PRESENTER_MODE),
       [KEYBOARD_SHORTCUTS.PRINT_MODE]: (e) =>
-        toggleMode(e, SPECTACLE_MODES.PRINT_MODE),
+        e && toggleMode(e, SPECTACLE_MODES.PRINT_MODE),
       [KEYBOARD_SHORTCUTS.EXPORT_MODE]: (e) =>
-        toggleMode(e, SPECTACLE_MODES.EXPORT_MODE),
+        e && toggleMode(e, SPECTACLE_MODES.EXPORT_MODE),
       [KEYBOARD_SHORTCUTS.OVERVIEW_MODE]: (e) =>
-        toggleMode(e, SPECTACLE_MODES.OVERVIEW_MODE)
+        e && toggleMode(e, SPECTACLE_MODES.OVERVIEW_MODE)
     },
     []
   );

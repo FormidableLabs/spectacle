@@ -53,8 +53,6 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "@types/styled-components": "^5.1.15",
-    "@types/styled-system": "^5.1.4",
     "broadcast-channel": "^3.2.0",
     "broadcastchannel-polyfill": "^1.0.0",
     "dedent": "^0.7.0",
@@ -75,15 +73,15 @@
     "remark-parse": "^8.0.3",
     "remark-rehype": "^7.0.0",
     "styled-components": "^4.3.2",
-    "styled-system": "^5.1.1",
+    "styled-system": "5.1.5",
     "ulid": "^2.3.0",
     "unified": "^9.0.0",
     "unist-util-visit": "^2.0.3",
     "use-resize-observer": "^6.1.0"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.8",
@@ -98,10 +96,12 @@
     "@types/history": "^4.7.9",
     "@types/jest": "^27.0.2",
     "@types/mousetrap": "^1.6.8",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
     "@types/react-is": "^17.0.3",
     "@types/react-syntax-highlighter": "^13.5.2",
+    "@types/styled-components": "^5.1.15",
+    "@types/styled-system": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
@@ -131,5 +131,8 @@
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
+  },
+  "resolutions": {
+    "@types/react": "^18.0.12"
   }
 }

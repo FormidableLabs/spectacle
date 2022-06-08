@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { ThemeProvider } from 'styled-components';
@@ -14,7 +14,7 @@ const mountWithContext = (
   tree: ReactElement,
   context: DeepPartial<DeckContextType>
 ) => {
-  const WrappingThemeProvider: FC = (props) => (
+  const WrappingThemeProvider = (props: PropsWithChildren<{}>) => (
     <DeckContext.Provider
       value={{
         ...(context as DeckContextType),
