@@ -72,6 +72,10 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
+    <Slide.Center>
+      <Heading>Center Slide!</Heading>
+      <Text>Some extra stuff</Text>
+    </Slide.Center>
     <Slide.TwoColumn
       left={
         <>

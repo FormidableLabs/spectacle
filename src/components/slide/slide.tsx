@@ -25,7 +25,7 @@ import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { useSwipeable } from 'react-swipeable';
 import { SlideTransition } from '../transitions';
 import TemplateWrapper from '../template-wrapper';
-import { TwoColumn } from './layouts';
+import { Center, TwoColumn } from './layouts';
 
 const noop = () => {};
 
@@ -381,6 +381,13 @@ const Slide = (props: SlideProps): JSX.Element => {
     </>
   );
 };
+
+const CenterSlide = ({ children, ...rest }: SlideProps) => (
+  <Slide {...rest}>
+    <Center>{children}</Center>
+  </Slide>
+);
+Slide.Center = CenterSlide;
 
 const TwoColumnSlide = ({
   left,
