@@ -1,14 +1,10 @@
 import { PropsWithChildren, ReactElement } from 'react';
-import Enzyme, { mount } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { ThemeProvider } from 'styled-components';
 
 import { DeckContext, DeckContextType } from './deck/deck';
 import defaultTheme from '../theme/default-theme';
 import Progress, { Circle } from './progress';
 import { DeepPartial } from '../types/deep-partial';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 const mountWithContext = (
   tree: ReactElement,
