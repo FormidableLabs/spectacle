@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { createElement } from 'react';
 import {
   FlexBox,
   Heading,
@@ -22,6 +21,7 @@ import {
   MarkdownSlideSet,
   Notes
 } from '../../src/index';
+import { createRoot } from 'react-dom/client';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
@@ -264,4 +264,5 @@ const Presentation = () => (
   </Deck>
 );
 
-ReactDOM.render(<Presentation />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root')!);
+root.render(<Presentation />);
