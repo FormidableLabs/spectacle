@@ -19,7 +19,11 @@ import {
   CodePane,
   MarkdownSlide,
   MarkdownSlideSet,
-  Notes
+  Notes,
+  TableHeader,
+  TableRow,
+  TableCell,
+  Table
 } from '../../src/index';
 import { createRoot } from 'react-dom/client';
 
@@ -72,6 +76,16 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
+    <Slide>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableCell>Row 1, Col 1</TableCell>
+            <TableCell>Row 1, Col 2</TableCell>
+          </TableRow>
+        </TableHeader>
+      </Table>
+    </Slide>
     <Slide>
       <FlexBox height="100%">
         <SpectacleLogo size={500} />

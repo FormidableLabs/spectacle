@@ -15,7 +15,7 @@ const mountWithTheme = (tree: ReactElement) => {
 
 describe('<Table />', () => {
   it('should render a <table> with a <tr> for each row and a <td> with text for each cell', () => {
-    const wrapper = mountWithTheme(
+    const { container } = mountWithTheme(
       <Table>
         <TableBody>
           <TableRow>
@@ -29,20 +29,29 @@ describe('<Table />', () => {
         </TableBody>
       </Table>
     );
-    expect(wrapper).toMatchSnapshot();
+
+    expect(container.querySelector('table')).toBeDefined();
+
+    const row1 = container.querySelectorAll('tr')[0],
+      row2 = container.querySelectorAll('tr')[1];
+    expect(row1.querySelectorAll('td')).toHaveLength(2);
+    expect(row2.querySelectorAll('td')).toHaveLength(2);
   });
 
   it('should render a <table> with bold text for the header row', () => {
-    const wrapper = mountWithTheme(
+    const { container } = mountWithTheme(
       <Table>
         <TableHeader>
           <TableRow>
-            <TableCell>Row 1</TableCell>
-            <TableCell>Row 1</TableCell>
+            <TableCell>Row 1, Col 1</TableCell>
+            <TableCell>Row 1, Col 2</TableCell>
           </TableRow>
         </TableHeader>
       </Table>
     );
-    expect(wrapper).toMatchSnapshot();
+
+    expect(container.querySelector('thead')).toHaveStyle({
+      fontWeight: 'bold'
+    });
   });
 });
