@@ -93,7 +93,6 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.0",
     "@testing-library/react": "^13.3.0",
-    "@testing-library/react-hooks": "^8.0.0",
     "@types/history": "^4.7.9",
     "@types/jest": "^27.0.2",
     "@types/mousetrap": "^1.6.8",
