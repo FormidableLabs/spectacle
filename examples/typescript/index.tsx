@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import {
   FlexBox,
   Heading,
@@ -19,11 +19,7 @@ import {
   CodePane,
   MarkdownSlide,
   MarkdownSlideSet,
-  Notes,
-  TableHeader,
-  TableRow,
-  TableCell,
-  Table
+  Notes
 } from '../../src/index';
 import { createRoot } from 'react-dom/client';
 
@@ -76,16 +72,6 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
-    <Slide>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableCell>Row 1, Col 1</TableCell>
-            <TableCell>Row 1, Col 2</TableCell>
-          </TableRow>
-        </TableHeader>
-      </Table>
-    </Slide>
     <Slide>
       <FlexBox height="100%">
         <SpectacleLogo size={500} />
