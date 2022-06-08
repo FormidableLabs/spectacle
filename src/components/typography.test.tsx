@@ -1,6 +1,4 @@
-import { FC, PropsWithChildren, ReactElement } from 'react';
-import Enzyme, { mount } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { PropsWithChildren, ReactElement } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import defaultTheme from '../theme/default-theme';
@@ -14,14 +12,13 @@ import {
   Link,
   CodeSpan
 } from './typography';
-
-Enzyme.configure({ adapter: new Adapter() });
+import { render } from '@testing-library/react';
 
 const mountWithTheme = (tree: ReactElement | JSX.Element) => {
   const WrappingThemeProvider = (props: PropsWithChildren) => (
     <ThemeProvider theme={defaultTheme}>{props.children}</ThemeProvider>
   );
-  return mount(tree, { wrappingComponent: WrappingThemeProvider });
+  return render(tree, { wrapper: WrappingThemeProvider });
 };
 
 describe('<Text />', () => {

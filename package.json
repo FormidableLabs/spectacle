@@ -118,6 +118,7 @@
     "file-loader": "5.1.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
+    "jest-dom": "^4.0.0",
     "prettier": "^2.4.1",
     "pretty": "^2.0.0",
     "process": "^0.11.10",
