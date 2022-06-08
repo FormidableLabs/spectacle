@@ -3,8 +3,9 @@ import { ThemeProvider } from 'styled-components';
 
 import { DeckContext, DeckContextType } from './deck/deck';
 import defaultTheme from '../theme/default-theme';
-import Progress, { Circle } from './progress';
+import Progress from './progress';
 import { DeepPartial } from '../types/deep-partial';
+import { render } from '@testing-library/react';
 
 const mountWithContext = (
   tree: ReactElement,
@@ -20,27 +21,31 @@ const mountWithContext = (
       <ThemeProvider theme={defaultTheme}>{props.children}</ThemeProvider>
     </DeckContext.Provider>
   );
-  return mount(tree, { wrappingComponent: WrappingThemeProvider });
+  return render(tree, { wrapper: WrappingThemeProvider });
 };
 
 describe('<Progress />', () => {
   it('should render the right amount of circles', () => {
-    const wrapper = mountWithContext(<Progress />, {
+    const { queryAllByTestId } = mountWithContext(<Progress />, {
       slideCount: 5,
       activeView: {
         slideIndex: 0
       }
     });
-    expect(wrapper.find(Circle).length).toBe(5);
+
+    expect(queryAllByTestId('Progress Circle')).toHaveLength(5);
   });
 
   it('should render the right amount of circles with the current circle in the active state', () => {
-    const wrapper = mountWithContext(<Progress />, {
+    const { queryAllByTestId } = mountWithContext(<Progress />, {
       slideCount: 5,
       activeView: {
         slideIndex: 4
       }
     });
-    expect(wrapper.find(Circle).at(4).prop('active')).toBe(true);
+
+    expect(queryAllByTestId('Progress Circle')[4]).toHaveStyle({
+      background: '#fff'
+    });
   });
 });
