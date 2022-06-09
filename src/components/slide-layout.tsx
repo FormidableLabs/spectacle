@@ -2,6 +2,10 @@ import Slide, { SlideProps } from './slide/slide';
 import { Box, FlexBox } from './layout-primitives';
 import { ReactNode } from 'react';
 
+const Full = ({ children, ...rest }: SlideProps) => (
+  <Slide {...rest}>{children}</Slide>
+);
+
 const Center = ({ children, ...rest }: SlideProps) => (
   <Slide {...rest}>
     <FlexBox justifyContent="center" alignItems="center" height="100%">
@@ -23,4 +27,4 @@ export const TwoColumn = ({
   </Slide>
 );
 
-export default { Center, TwoColumn };
+export default { Full, Center, TwoColumn };
