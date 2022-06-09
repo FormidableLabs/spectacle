@@ -44,7 +44,7 @@ export type DeckContextType = {
   slideCount: number;
   useAnimations: boolean;
   slidePortalNode: HTMLDivElement;
-  onSlideClick(e: Event, slideId: SlideId): void;
+  onSlideClick(e: MouseEvent, slideId: SlideId): void;
   onMobileSlide(eventData: SwipeEventData): void;
   theme?: SpectacleThemeOverrides & MarkdownThemeOverrides;
   frameOverrideStyle: CSSProperties;
@@ -263,7 +263,9 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       }
     });
 
-    const handleSlideClick = useCallback(
+    const handleSlideClick = useCallback<
+      NonNullable<DeckInternalProps['onSlideClick']>
+    >(
       (e, slideId) => {
         const slideIndex = slideIds.indexOf(slideId);
         onSlideClick(e, slideIndex);

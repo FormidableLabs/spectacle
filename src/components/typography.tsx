@@ -10,7 +10,7 @@ import {
   SpaceProps,
   BorderProps
 } from 'styled-system';
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 const decoration = system({ textDecoration: true });
 type DecorationProps = Pick<CSSObject, 'textDecoration'>;
@@ -58,7 +58,9 @@ Heading.defaultProps = {
 };
 
 const Quote = styled(
-  Text as FC<CommonTypographyProps & Pick<BorderProps, 'borderColor'>>
+  Text as FC<
+    PropsWithChildren<CommonTypographyProps & Pick<BorderProps, 'borderColor'>>
+  >
 )`
   border-left: 1px solid
     ${({ theme, borderColor }) => borderColor || theme.colors.secondary};

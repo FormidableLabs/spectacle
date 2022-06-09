@@ -6,7 +6,8 @@ import { mergeAndCompare, merge } from 'merge-anything';
 import { DeckView } from './use-deck-state';
 import {
   mapLocationToState,
-  mapStateToLocation
+  mapStateToLocation,
+  SlideState
 } from '../location-map-fns/query-string';
 
 // Needed to properly merge query strings. (Hook consumers can also provide
@@ -101,7 +102,7 @@ export default function useLocationSync({
   );
 
   const setLocation = useCallback(
-    (state) => {
+    (state: SlideState) => {
       if (!initialized) return;
       // perform one-way sync to history
       const { location } = history;

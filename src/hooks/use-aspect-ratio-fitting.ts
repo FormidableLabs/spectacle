@@ -2,6 +2,10 @@ import { useRef, useState, useCallback, useEffect } from 'react';
 import useResizeObserver from 'use-resize-observer';
 import { CSSObject } from 'styled-components';
 
+type ResizeHandler = NonNullable<
+  NonNullable<Parameters<typeof useResizeObserver>[0]>['onResize']
+>;
+
 // Returns an offset and scaling factor which, when applied to `element`, will
 // make it properly fit into `container` at the given aspect ratio.
 export default function useAspectRatioFitting({
@@ -12,8 +16,11 @@ export default function useAspectRatioFitting({
   const [scaleFactor, setScaleFactor] = useState(1);
   const [transformOrigin, setTransformOrigin] = useState({ x: 0, y: 0 });
 
-  const recalculate = useCallback(
-    ({ width: containerWidth, height: containerHeight }) => {
+  const recalculate = useCallback<ResizeHandler>(
+    ({ width, height }) => {
+      const containerWidth = Number(width) || 0.01;
+      const containerHeight = Number(height) || 0.01;
+
       const containerRatio = containerWidth / containerHeight;
       const targetRatio = targetWidth / targetHeight;
       const useVertical = containerRatio > targetRatio;

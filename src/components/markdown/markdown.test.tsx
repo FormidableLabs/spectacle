@@ -1,21 +1,18 @@
 import { ReactElement } from 'react';
-import Enzyme, { mount } from 'enzyme';
 import { Markdown, MarkdownSlide, MarkdownSlideSet } from './markdown';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Deck from '../deck/deck';
 import { Heading, ListItem } from '../typography';
 import { Appear } from '../appear';
 import Slide from '../slide/slide';
-
-Enzyme.configure({ adapter: new Adapter() });
+import { queryByTestId, render } from '@testing-library/react';
 
 const mountInsideDeck = (tree: ReactElement) => {
-  return mount(<Deck>{tree}</Deck>);
+  return render(<Deck>{tree}</Deck>);
 };
 
 describe('<MarkdownSlide />', () => {
   it('should generate standard unordered lists by default', () => {
-    const wrapper = mountInsideDeck(
+    const { getByText, queryByTestId } = mountInsideDeck(
       <MarkdownSlide>{`
         - One
         - Two
@@ -23,13 +20,14 @@ describe('<MarkdownSlide />', () => {
       `}</MarkdownSlide>
     );
 
-    expect(wrapper.find('ul')).toHaveLength(1);
-    expect(wrapper.find(ListItem)).toHaveLength(3);
-    expect(wrapper.find(Appear)).toHaveLength(0);
+    expect(getByText('One')).toBeDefined();
+    expect(getByText('Two')).toBeDefined();
+    expect(getByText('Three')).toBeDefined();
+    expect(queryByTestId('AppearElement')).toBeNull();
   });
 
   it('should generate animated list items with animateListItems', () => {
-    const wrapper = mountInsideDeck(
+    const { getByText, queryAllByTestId } = mountInsideDeck(
       <MarkdownSlide animateListItems>{`
         - One
         - Two
@@ -37,12 +35,14 @@ describe('<MarkdownSlide />', () => {
       `}</MarkdownSlide>
     );
 
-    expect(wrapper.find('ul')).toHaveLength(1);
-    expect(wrapper.find(Appear)).toHaveLength(3);
+    expect(getByText('One')).toBeDefined();
+    expect(getByText('Two')).toBeDefined();
+    expect(getByText('Three')).toBeDefined();
+    expect(queryAllByTestId('AppearElement').length).toBe(3);
   });
 
   it('should work with raw HTML', () => {
-    const wrapper = mountInsideDeck(
+    const { container } = mountInsideDeck(
       <MarkdownSlide>{`
         - One <div>one-div</div>
         - Two <i>two-i-1</i><i>two-i-2</i>
@@ -51,13 +51,17 @@ describe('<MarkdownSlide />', () => {
     );
 
     // Assert raw HTML elements are actually present.
-    expect(wrapper.find('li').at(0).children().find('div')).toHaveLength(1);
-    expect(wrapper.find('li').at(1).children().find('i')).toHaveLength(2);
-    expect(wrapper.find('li').at(2).children()).toHaveLength(1);
+    expect(
+      container.querySelectorAll('li')[0].querySelectorAll('div')
+    ).toHaveLength(1);
+    expect(
+      container.querySelectorAll('li')[1].querySelectorAll('i')
+    ).toHaveLength(2);
+    expect(container.querySelectorAll('li')[2].children).toHaveLength(0);
   });
 
   it('should generate line breaks for inline paragraph elements', () => {
-    const wrapper = mountInsideDeck(
+    const { container } = mountInsideDeck(
       <MarkdownSlide>{`
         One
         **Two**
@@ -66,27 +70,27 @@ describe('<MarkdownSlide />', () => {
         ~~Five~~
       `}</MarkdownSlide>
     );
-    expect(wrapper.find('br')).toHaveLength(4);
+    expect(container.querySelectorAll('br')).toHaveLength(4);
   });
 
   it('should generate line breaks for inline paragraph elements with carriage returns', () => {
-    const wrapper = mountInsideDeck(
+    const { container } = mountInsideDeck(
       <MarkdownSlide>{`One\r\n**Two**\r\n_Three_\r\n\`Four\`\r\n~~Five~~`}</MarkdownSlide>
     );
-    expect(wrapper.find('br')).toHaveLength(4);
+    expect(container.querySelectorAll('br')).toHaveLength(4);
   });
 
   it('should generate line breaks for inline paragraph elements with mixed returns', () => {
-    const wrapper = mountInsideDeck(
+    const { container } = mountInsideDeck(
       <MarkdownSlide>{`One\n**Two**\r\n_Three_\n\`Four\`\r\n~~Five~~`}</MarkdownSlide>
     );
-    expect(wrapper.find('br')).toHaveLength(4);
+    expect(container.querySelectorAll('br')).toHaveLength(4);
   });
 });
 
 describe('<MarkdownSlideSet />', () => {
   it('should generate standard unordered lists by default', () => {
-    const wrapper = mountInsideDeck(
+    const { container, queryAllByTestId } = mountInsideDeck(
       <MarkdownSlideSet>{`
         - One
         - Two
@@ -100,13 +104,13 @@ describe('<MarkdownSlideSet />', () => {
       `}</MarkdownSlideSet>
     );
 
-    expect(wrapper.find('ul')).toHaveLength(2);
-    expect(wrapper.find(ListItem)).toHaveLength(6);
-    expect(wrapper.find(Appear)).toHaveLength(0);
+    expect(container.querySelectorAll('ul')).toHaveLength(2);
+    expect(container.querySelectorAll('li')).toHaveLength(6);
+    expect(queryAllByTestId('AppearElement')).toHaveLength(0);
   });
 
   it('should generate animated list items with animateListItems', () => {
-    const wrapper = mountInsideDeck(
+    const { container, queryAllByTestId } = mountInsideDeck(
       <MarkdownSlideSet animateListItems>{`
         - One
         - Two
@@ -120,16 +124,16 @@ describe('<MarkdownSlideSet />', () => {
       `}</MarkdownSlideSet>
     );
 
-    expect(wrapper.find('ul')).toHaveLength(2);
-    expect(wrapper.find(Appear)).toHaveLength(6);
+    expect(container.querySelectorAll('ul')).toHaveLength(2);
+    expect(queryAllByTestId('AppearElement')).toHaveLength(6);
   });
 
   it('Markdown should pass componentProps down to constituent components', () => {
-    const wrapper = mountInsideDeck(
+    const { container, queryByText } = mountInsideDeck(
       <Slide>
         <Heading>Im not styled...</Heading>
         <Markdown componentProps={{ color: 'purple' }}>{`
-        # What's up world, I'm styled.
+        # Whats up world, Im styled.
 
         - List item
         - And another one
@@ -137,27 +141,33 @@ describe('<MarkdownSlideSet />', () => {
       </Slide>
     );
 
-    expect(wrapper.find(Heading).at(0).prop('color')).not.toBe('purple');
-
-    expect(wrapper.find(Heading).at(1).prop('color')).toBe('purple');
-
-    expect(wrapper.find(ListItem).at(0).prop('color')).toBe('purple');
+    expect(queryByText('Im not styled...')).not.toHaveStyle({
+      color: 'purple'
+    });
+    expect(queryByText('Whats up world, Im styled.')).toHaveStyle({
+      color: 'purple'
+    });
+    expect(queryByText('List item')).toHaveStyle({
+      color: 'purple'
+    });
   });
 
   it('MarkdownSlide should pass componentProps down to constituent components', () => {
-    const wrapper = mountInsideDeck(
+    const { getByText } = mountInsideDeck(
       <MarkdownSlide componentProps={{ color: 'purple' }}>{`
-        # What's up world, I'm styled.
+        # Whats up world, Im styled.
       `}</MarkdownSlide>
     );
 
-    expect(wrapper.find(Heading).at(0).prop('color')).toBe('purple');
+    expect(getByText('Whats up world, Im styled.')).toHaveStyle({
+      color: 'purple'
+    });
   });
 
   it('MarkdownSlideSet should pass componentProps down to constituent components', () => {
-    const wrapper = mountInsideDeck(
+    const { getByText } = mountInsideDeck(
       <MarkdownSlideSet componentProps={{ color: 'purple' }}>{`
-        # What's up world, I'm styled.
+        # Whats up world, Im styled.
 
         ---
 
@@ -165,8 +175,10 @@ describe('<MarkdownSlideSet />', () => {
       `}</MarkdownSlideSet>
     );
 
-    expect(wrapper.find(Heading).at(0).prop('color')).toBe('purple');
+    expect(getByText('Whats up world, Im styled.')).toHaveStyle({
+      color: 'purple'
+    });
 
-    expect(wrapper.find(Heading).at(1).prop('color')).toBe('purple');
+    expect(getByText('Another slide')).toHaveStyle({ color: 'purple' });
   });
 });

@@ -5,7 +5,8 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState
+  useState,
+  MouseEvent as RMouseEvent
 } from 'react';
 import ReactDOM from 'react-dom';
 import styled, { css, ThemeContext } from 'styled-components';
@@ -137,7 +138,7 @@ const Slide = (props: SlideProps): JSX.Element => {
   } = useContext(DeckContext);
 
   const handleClick = useCallback(
-    (e) => {
+    (e: MouseEvent) => {
       onSlideClick(e, slideId);
     },
     [onSlideClick, slideId]
@@ -336,6 +337,7 @@ const Slide = (props: SlideProps): JSX.Element => {
           ReactDOM.createPortal(
             <AnimatedDiv
               ref={setStepContainer}
+              // @ts-expect-error Events are not typed quite tightly enough (yet)
               onClick={handleClick}
               tabIndex={inOverviewMode && isActive ? 0 : undefined}
               style={{
