@@ -116,7 +116,7 @@ const AnimatedProgress = forwardRef<HTMLDivElement, AnimatedProgressProps>(
           circleSize / 2 + PROGRESS_CIRCLE_BORDER_WIDTH;
         setPacmanOffsetLeft(offsetLeft + halfOfCircleOccupiedSpace);
         setPacmanOffsetTop(offsetTop + halfOfCircleOccupiedSpace);
-        setAlternateAnimation(!alternateAnimation);
+        setAlternateAnimation((alternateAnimation) => !alternateAnimation);
       } else {
         setPacmanOffsetLeft(null);
         setPacmanOffsetTop(null);
