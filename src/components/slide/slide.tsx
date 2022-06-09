@@ -5,8 +5,7 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
-  MouseEvent as RMouseEvent
+  useState
 } from 'react';
 import ReactDOM from 'react-dom';
 import styled, { css, ThemeContext } from 'styled-components';
@@ -26,7 +25,6 @@ import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { useSwipeable } from 'react-swipeable';
 import { SlideTransition } from '../transitions';
 import TemplateWrapper from '../template-wrapper';
-import { Center, TwoColumn } from './layouts';
 
 const noop = () => {};
 
@@ -384,27 +382,9 @@ const Slide = (props: SlideProps): JSX.Element => {
   );
 };
 
-const CenterSlide = ({ children, ...rest }: SlideProps) => (
-  <Slide {...rest}>
-    <Center>{children}</Center>
-  </Slide>
-);
-Slide.Center = CenterSlide;
-
-const TwoColumnSlide = ({
-  left,
-  right,
-  ...rest
-}: Omit<SlideProps, 'children'> & Parameters<typeof TwoColumn>[0]) => (
-  <Slide {...rest}>
-    <TwoColumn {...{ left, right }} />
-  </Slide>
-);
-Slide.TwoColumn = TwoColumnSlide;
-
 export default Slide;
 
-type SlideProps = {
+export type SlideProps = {
   id?: SlideId;
   className?: string;
 

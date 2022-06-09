@@ -19,7 +19,8 @@ import {
   CodePane,
   MarkdownSlide,
   MarkdownSlideSet,
-  Notes
+  Notes,
+  SlideLayout
 } from '../../src/index';
 import { createRoot } from 'react-dom/client';
 
@@ -72,11 +73,11 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
-    <Slide.Center>
+    <SlideLayout.Center>
       <Heading>Center Slide!</Heading>
       <Text>Some extra stuff</Text>
-    </Slide.Center>
-    <Slide.TwoColumn
+    </SlideLayout.Center>
+    <SlideLayout.TwoColumn
       left={
         <>
           <Heading>Hey world!</Heading>

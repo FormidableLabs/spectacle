@@ -20,12 +20,13 @@ export {
   TableBody
 } from './components/table';
 export type { TableProps } from './components/table';
-export { FlexBox, Grid, Box } from './components/layout';
+export { FlexBox, Grid, Box } from './components/layout-primitives';
 export { Image, FullSizeImage } from './components/image';
 export { default as Notes } from './components/notes';
 export { default as Progress } from './components/progress';
 export type { ProgressProps } from './components/progress';
 export { default as FullScreen } from './components/fullscreen';
+export { default as SlideLayout } from './components/slide-layout';
 export {
   Markdown,
   MarkdownSlideSet,

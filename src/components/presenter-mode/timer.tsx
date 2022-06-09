@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Text } from '../typography';
-import { FlexBox, Box } from '../layout';
+import { FlexBox, Box } from '../layout-primitives';
 import InternalButton from '../internal-button';
 import { useTimer } from '../../utils/use-timer';
 import { SYSTEM_FONT } from '../../utils/constants';
