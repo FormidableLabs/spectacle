@@ -1,6 +1,8 @@
 import Slide, { SlideProps } from './slide/slide';
 import { Box, FlexBox } from './layout-primitives';
-import { ReactNode } from 'react';
+import { ComponentProps, Fragment, ReactNode } from 'react';
+import { Heading, ListItem, OrderedList, UnorderedList } from './typography';
+import { Appear } from './appear';
 
 const Full = ({ children, ...rest }: SlideProps) => (
   <Slide {...rest}>{children}</Slide>
@@ -14,7 +16,7 @@ const Center = ({ children, ...rest }: SlideProps) => (
   </Slide>
 );
 
-export const TwoColumn = ({
+const TwoColumn = ({
   left,
   right,
   ...rest
@@ -27,4 +29,52 @@ export const TwoColumn = ({
   </Slide>
 );
 
-export default { Full, Center, TwoColumn };
+const List = ({
+  title,
+  items,
+  listType = 'unordered',
+  appearIn = false,
+  titleProps,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  title?: string;
+  listType?: 'unordered' | 'ordered';
+  items: ReactNode[];
+  appearIn?: boolean;
+  titleProps?: ComponentProps<typeof Heading>;
+}) => {
+  const List = listType === 'unordered' ? UnorderedList : OrderedList;
+
+  return (
+    <Slide {...rest}>
+      {title ? (
+        <Heading textAlign="left" {...titleProps}>
+          {title}
+        </Heading>
+      ) : null}
+      <List>
+        {items.map((item, i) => {
+          const Wrapper = appearIn ? Appear : Fragment;
+
+          return (
+            <Wrapper key={i}>
+              <ListItem key={i}>{item}</ListItem>
+            </Wrapper>
+          );
+        })}
+      </List>
+    </Slide>
+  );
+};
+
+/**
+ * TODO:
+ * - Image (left, right, full bleed?)
+ * - Intro
+ * - Quote
+ * - Section
+ * - Statement?
+ * - Big fact?
+ */
+
+export default { Full, Center, TwoColumn, List };

@@ -73,6 +73,12 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
+    <SlideLayout.List
+      title="Fruits"
+      items={['Banana', 'Apple', 'Oranges']}
+      appearIn
+      listType="ordered"
+    />
     <SlideLayout.Full>
       <Heading>Full layout!</Heading>
     </SlideLayout.Full>
