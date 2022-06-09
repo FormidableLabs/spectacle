@@ -129,12 +129,7 @@ const AnimatedProgress = forwardRef<HTMLDivElement, AnimatedProgressProps>(
       circleSize + PROGRESS_CIRCLE_BORDER_WIDTH + circleMargin * 2;
 
     return (
-      <ProgressContainer
-        ref={ref}
-        className="spectacle-animated-progress-indicator"
-        position="relative"
-        {...props}
-      >
+      <ProgressContainer ref={ref} position="relative" {...props}>
         {typeof pacmanOffsetTop === 'number' &&
           typeof pacmanOffsetLeft === 'number' && (
             <PacmanBase
