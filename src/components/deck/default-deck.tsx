@@ -57,10 +57,12 @@ const DefaultDeck = (props: DefaultDeckProps): JSX.Element => {
     []
   );
 
-  const onSlideClick: DeckInternalProps['onSlideClick'] = useCallback(
+  const onSlideClick = useCallback<
+    NonNullable<DeckInternalProps['onSlideClick']>
+  >(
     (e, slideIndex) => {
       if (overviewMode) {
-        toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE, slideIndex);
+        toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE, +slideIndex);
       }
     },
     [overviewMode, toggleMode]

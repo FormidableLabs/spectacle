@@ -279,7 +279,7 @@ export const MarkdownPreHelper =
     PreComponent: ElementType = 'pre',
     CodeInlineComponent: ElementType = 'code',
     CodeBlockComponent: ElementType
-  ): FC<{}> =>
+  ): FC<React.HTMLProps<unknown>> =>
   ({ children, ...restProps }) => {
     const pre = <PreComponent {...restProps}>{children}</PreComponent>;
 

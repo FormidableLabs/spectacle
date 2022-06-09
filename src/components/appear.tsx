@@ -44,6 +44,7 @@ const SteppedComponent = (props: SteppedComponentProps): JSX.Element => {
       <AnimatedEl
         style={alwaysAppearActive ? activeStyle : springStyle}
         className={className}
+        data-testid="AppearElement"
       >
         {children}
       </AnimatedEl>

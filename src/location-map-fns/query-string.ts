@@ -5,7 +5,7 @@ import {
   stringify as stringifyQS
 } from 'query-string';
 
-type SlideState = {
+export type SlideState = {
   slideIndex?: number;
   stepIndex?: number | typeof GOTO_FINAL_STEP;
 };

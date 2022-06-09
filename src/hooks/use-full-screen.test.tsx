@@ -1,15 +1,26 @@
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-
 import { useToggleFullScreen } from './use-full-screen';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-Enzyme.configure({ adapter: new Adapter() });
+const oldDocumentFullscreenElement = document.fullscreenElement;
+const setHasFullScreenElement = (hasElement: boolean) => {
+  Object.defineProperty(document, 'fullscreenElement', {
+    value: hasElement,
+    writable: true
+  });
+};
 
 describe('useToggleFullScreen', () => {
+  afterEach(() => {
+    Object.defineProperty(document, 'fullscreenElement', {
+      value: oldDocumentFullscreenElement
+    });
+  });
+
   it('calls document.documentElement.requestFullscreen when not fullscreen', () => {
+    setHasFullScreenElement(false);
+
     document.documentElement.requestFullscreen = jest.fn();
-    // @ts-ignore
-    document.fullscreenElement = false;
     const TestComponent = () => {
       const toggleFullScreen = useToggleFullScreen();
       return (
@@ -19,16 +30,17 @@ describe('useToggleFullScreen', () => {
         ></button>
       );
     };
-    const component = shallow(<TestComponent />);
-    component
-      .find('[data-testid="toggle fullscreen button"]')
-      .simulate('click');
+
+    const { getByTestId } = render(<TestComponent />);
+    fireEvent.click(getByTestId('toggle fullscreen button'));
+
     expect(document.documentElement.requestFullscreen).toHaveBeenCalled();
   });
+
   it('calls document.exitFullscreen when in fullscreen', () => {
+    setHasFullScreenElement(true);
+
     document.exitFullscreen = jest.fn();
-    // @ts-ignore
-    document.fullscreenElement = true;
     const TestComponent = () => {
       const toggleFullScreen = useToggleFullScreen();
       return (
@@ -38,10 +50,9 @@ describe('useToggleFullScreen', () => {
         ></button>
       );
     };
-    const component = shallow(<TestComponent />);
-    component
-      .find('[data-testid="toggle fullscreen button"]')
-      .simulate('click');
+    const { getByTestId } = render(<TestComponent />);
+    fireEvent.click(getByTestId('toggle fullscreen button'));
+
     expect(document.exitFullscreen).toHaveBeenCalled();
   });
 });
