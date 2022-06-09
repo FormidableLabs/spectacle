@@ -4,10 +4,16 @@ import { ComponentProps, Fragment, ReactNode } from 'react';
 import { Heading, ListItem, OrderedList, UnorderedList } from './typography';
 import { Appear } from './appear';
 
+/**
+ * Full-slide layout
+ */
 const Full = ({ children, ...rest }: SlideProps) => (
   <Slide {...rest}>{children}</Slide>
 );
 
+/**
+ * Centered layout
+ */
 const Center = ({ children, ...rest }: SlideProps) => (
   <Slide {...rest}>
     <FlexBox justifyContent="center" alignItems="center" height="100%">
@@ -16,6 +22,9 @@ const Center = ({ children, ...rest }: SlideProps) => (
   </Slide>
 );
 
+/**
+ * Two-column layout
+ */
 const TwoColumn = ({
   left,
   right,
@@ -29,19 +38,24 @@ const TwoColumn = ({
   </Slide>
 );
 
+/**
+ * List layout with optional title
+ */
 const List = ({
   title,
   items,
   listType = 'unordered',
-  appearIn = false,
+  animateListItems = false,
   titleProps,
+  listProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
   title?: string;
   listType?: 'unordered' | 'ordered';
   items: ReactNode[];
-  appearIn?: boolean;
+  animateListItems?: boolean;
   titleProps?: ComponentProps<typeof Heading>;
+  listProps?: ComponentProps<typeof UnorderedList & typeof OrderedList>;
 }) => {
   const List = listType === 'unordered' ? UnorderedList : OrderedList;
 
@@ -52,9 +66,9 @@ const List = ({
           {title}
         </Heading>
       ) : null}
-      <List>
+      <List {...listProps}>
         {items.map((item, i) => {
-          const Wrapper = appearIn ? Appear : Fragment;
+          const Wrapper = animateListItems ? Appear : Fragment;
 
           return (
             <Wrapper key={i}>
@@ -68,7 +82,7 @@ const List = ({
 };
 
 /**
- * TODO:
+ * Layouts to consider:
  * - Image (left, right, full bleed?)
  * - Intro
  * - Quote
