@@ -1,23 +1,30 @@
 import { forwardRef, useContext } from 'react';
 import styled from 'styled-components';
 import { DeckContext } from './deck/deck';
-import { position } from 'styled-system';
+import { position, PositionProps } from 'styled-system';
 
-export type CircleProps = { size: number; color: string; active: boolean };
+export const PROGRESS_CIRCLE_BORDER_WIDTH = 1;
+export type CircleProps = {
+  size: number;
+  margin: number;
+  color: string;
+  active: boolean;
+};
 export const Circle = styled.div<CircleProps>`
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
-  display: inline-block;
-  border: 1px solid ${({ color }) => color};
+  border: ${PROGRESS_CIRCLE_BORDER_WIDTH}px solid ${({ color }) => color};
   background: ${({ color, active }) => (active ? color : 'transparent')};
-  margin: ${({ size }) => size / 3}px;
+  margin: ${({ margin }) => margin}px;
   border-radius: 50%;
   pointer-events: all;
   cursor: pointer;
 `;
 
-const Container = styled.div`
+export const ProgressContainer = styled.div<PositionProps>`
   ${position}
+  display: flex;
+  flex-wrap: wrap;
   @media print {
     display: none;
   }
@@ -32,7 +39,11 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   ({ color = '#fff', size = 10, ...props }, ref) => {
     const { slideCount, skipTo, activeView } = useContext(DeckContext);
     return (
-      <Container ref={ref} className="spectacle-progress-indicator" {...props}>
+      <ProgressContainer
+        ref={ref}
+        className="spectacle-progress-indicator"
+        {...props}
+      >
         {Array(slideCount)
           .fill(0)
           .map((_, idx) => (
@@ -41,6 +52,7 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>(
               color={color}
               active={activeView.slideIndex === idx}
               size={size}
+              margin={size / 3}
               onClick={() =>
                 skipTo({
                   slideIndex: idx,
@@ -50,7 +62,7 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>(
               data-testid="Progress Circle"
             />
           ))}
-      </Container>
+      </ProgressContainer>
     );
   }
 );

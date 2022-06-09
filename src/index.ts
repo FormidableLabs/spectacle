@@ -25,6 +25,8 @@ export { Image, FullSizeImage } from './components/image';
 export { default as Notes } from './components/notes';
 export { default as Progress } from './components/progress';
 export type { ProgressProps } from './components/progress';
+export { default as AnimatedProgress } from './components/animated-progress';
+export type { AnimatedProgressProps } from './components/animated-progress';
 export { default as FullScreen } from './components/fullscreen';
 export {
   Markdown,

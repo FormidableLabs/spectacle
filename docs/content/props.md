@@ -141,7 +141,7 @@ const transition = {
 
 ## Position
 
-**Position** props are used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), [`Grid`](./api-reference#grid), [`CodePane`](./api-reference#code-pane), [`FullScreen`](./api-reference#fullscreen), [`Progress`](./api-reference#progress), and [`Markdown`](./api-reference#markdown-components).
+**Position** props are used by [`Box`](./api-reference#box), [`FlexBox`](./api-reference#flex-box), [`Grid`](./api-reference#grid), [`CodePane`](./api-reference#code-pane), [`FullScreen`](./api-reference#fullscreen), [`Progress`](./api-reference#progress), [`AnimatedProgress`](./api-reference#animated-progress), and [`Markdown`](./api-reference#markdown-components).
 
 | Name       | PropType         | Description              | Example    |
 | ---------- | ---------------- | ------------------------ | ---------- |
