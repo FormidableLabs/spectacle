@@ -11,7 +11,8 @@ import { DeckContext } from './deck/deck';
 import {
   ProgressContainer,
   Circle,
-  PROGRESS_CIRCLE_BORDER_WIDTH
+  PROGRESS_CIRCLE_BORDER_WIDTH,
+  DEFAULT_PROGRESS_CIRCLE_WIDTH_INCLUDING_MARGIN
 } from './progress';
 
 interface PacmanBaseProps {
@@ -80,6 +81,8 @@ const PacmanBodyBottom = styled(PacmanBodyTop)`
     alternate ? pacmanBottomFrames : pacmanBottomFramesAlternate};
 `;
 
+const DEFAULT_ANIMATED_PROGRESS_CIRCLE_SIZE = 7.5;
+
 export type AnimatedProgressProps = {
   color?: string;
   size?: number;
@@ -87,7 +90,14 @@ export type AnimatedProgressProps = {
 };
 
 const AnimatedProgress = forwardRef<HTMLDivElement, AnimatedProgressProps>(
-  ({ color: circleColor = '#fff', size: circleSize = 7.5, ...props }, ref) => {
+  (
+    {
+      color: circleColor = '#fff',
+      size: circleSize = DEFAULT_ANIMATED_PROGRESS_CIRCLE_SIZE,
+      ...props
+    },
+    ref
+  ) => {
     const {
       slideCount,
       skipTo,
@@ -123,7 +133,11 @@ const AnimatedProgress = forwardRef<HTMLDivElement, AnimatedProgressProps>(
       }
     }, [circleSize, activeCircleNode]);
 
-    const circleMargin = circleSize / 1.64;
+    const circleMargin =
+      (DEFAULT_PROGRESS_CIRCLE_WIDTH_INCLUDING_MARGIN -
+        DEFAULT_ANIMATED_PROGRESS_CIRCLE_SIZE -
+        PROGRESS_CIRCLE_BORDER_WIDTH * 2) /
+      2;
     const pacmanColor = props.pacmanColor || circleColor;
     const pacmanSize =
       circleSize + PROGRESS_CIRCLE_BORDER_WIDTH + circleMargin * 2;
@@ -151,26 +165,23 @@ const AnimatedProgress = forwardRef<HTMLDivElement, AnimatedProgressProps>(
           )}
         {Array(slideCount)
           .fill(0)
-          .map((_, idx) => {
-            const isActive = slideIndex === idx;
-            return (
-              <Circle
-                key={idx}
-                ref={isActive ? activeCircleCallbackRef : null}
-                color={circleColor}
-                active={isActive}
-                size={circleSize}
-                margin={circleMargin}
-                onClick={() =>
-                  skipTo({
-                    slideIndex: idx,
-                    stepIndex: 0
-                  })
-                }
-                data-testid="animated-progress-circle"
-              />
-            );
-          })}
+          .map((_, idx) => (
+            <Circle
+              key={idx}
+              ref={slideIndex === idx ? activeCircleCallbackRef : null}
+              color={circleColor}
+              active={false}
+              size={circleSize}
+              margin={circleMargin}
+              onClick={() =>
+                skipTo({
+                  slideIndex: idx,
+                  stepIndex: 0
+                })
+              }
+              data-testid="animated-progress-circle"
+            />
+          ))}
       </ProgressContainer>
     );
   }

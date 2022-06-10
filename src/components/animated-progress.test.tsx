@@ -35,17 +35,4 @@ describe('<AnimatedProgress />', () => {
 
     expect(queryAllByTestId('animated-progress-circle')).toHaveLength(5);
   });
-
-  it('should render the right amount of circles with the current circle in the active state', () => {
-    const { queryAllByTestId } = mountWithContext(<AnimatedProgress />, {
-      slideCount: 5,
-      activeView: {
-        slideIndex: 4
-      }
-    });
-
-    expect(queryAllByTestId('animated-progress-circle')[4]).toHaveStyle({
-      background: '#fff'
-    });
-  });
 });

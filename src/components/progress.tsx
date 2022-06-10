@@ -3,7 +3,13 @@ import styled from 'styled-components';
 import { DeckContext } from './deck/deck';
 import { position, PositionProps } from 'styled-system';
 
+const DEFAULT_PROGRESS_CIRCLE_SIZE = 10;
 export const PROGRESS_CIRCLE_BORDER_WIDTH = 1;
+const DEFAULT_PROGRESS_CIRCLE_MARGIN = DEFAULT_PROGRESS_CIRCLE_SIZE / 3;
+export const DEFAULT_PROGRESS_CIRCLE_WIDTH_INCLUDING_MARGIN =
+  DEFAULT_PROGRESS_CIRCLE_SIZE +
+  (PROGRESS_CIRCLE_BORDER_WIDTH + DEFAULT_PROGRESS_CIRCLE_MARGIN) * 2;
+
 export type CircleProps = {
   size: number;
   margin: number;
@@ -36,7 +42,7 @@ export type ProgressProps = {
 };
 
 const Progress = forwardRef<HTMLDivElement, ProgressProps>(
-  ({ color = '#fff', size = 10, ...props }, ref) => {
+  ({ color = '#fff', size = DEFAULT_PROGRESS_CIRCLE_SIZE, ...props }, ref) => {
     const { slideCount, skipTo, activeView } = useContext(DeckContext);
     return (
       <ProgressContainer
@@ -52,7 +58,7 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>(
               color={color}
               active={activeView.slideIndex === idx}
               size={size}
-              margin={size / 3}
+              margin={DEFAULT_PROGRESS_CIRCLE_MARGIN}
               onClick={() =>
                 skipTo({
                   slideIndex: idx,
