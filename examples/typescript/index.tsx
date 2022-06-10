@@ -8,7 +8,7 @@ import {
   OrderedList,
   ListItem,
   FullScreen,
-  Progress,
+  AnimatedProgress,
   Appear,
   Slide,
   Deck,
@@ -47,7 +47,7 @@ const template = () => (
       <FullScreen />
     </Box>
     <Box padding="1em">
-      <Progress />
+      <AnimatedProgress />
     </Box>
   </FlexBox>
 );
