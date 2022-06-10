@@ -47,7 +47,7 @@ const SlideContainer = styled.div<SlideContainerProps>`
   ${color};
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: relative;
   overflow: hidden;
   display: flex;
   z-index: 0;
