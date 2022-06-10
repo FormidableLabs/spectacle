@@ -4,6 +4,9 @@
 
 - Fix deck level templates not displayed in presenter, print and export modes
 - Persist deck template between slides in default and presenter modes [#1106](https://github.com/FormidableLabs/spectacle/issues/1106)
+- Update to react 18
+- Replace enzyme tests with react-testing-library tests
+- Fix only the first page showing in print and export modes in Firefox
 
 ## 9.1.1
 
