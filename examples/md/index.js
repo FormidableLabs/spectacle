@@ -6,7 +6,7 @@ import {
   Deck,
   FlexBox,
   FullScreen,
-  Progress,
+  AnimatedProgress,
   MarkdownSlideSet
 } from 'spectacle';
 
@@ -30,7 +30,7 @@ const template = () => (
       <FullScreen />
     </Box>
     <Box padding="1em">
-      <Progress />
+      <AnimatedProgress />
     </Box>
   </FlexBox>
 );
