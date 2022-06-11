@@ -46,7 +46,7 @@ const SlideContainer = styled.div<SlideContainerProps>`
   ${color};
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: relative;
   overflow: hidden;
   display: flex;
   z-index: 0;
@@ -340,6 +340,12 @@ const Slide = (props: SlideProps): JSX.Element => {
               tabIndex={inOverviewMode && isActive ? 0 : undefined}
               style={{
                 ...(inOverviewMode || inPrintMode ? {} : springFrameStyle),
+                // NOTE: React-spring will update the display value at some point in the near
+                // future rather than immediately at the time of render. In the AnimatedProgress
+                // component, we need to make DOM calculations when a new slide becomes active
+                // but are not able to if the active slide is not visible at the time of render.
+                // We toggle the display immediately once a slide becomes active to avoid the delay.
+                ...(isActive && { display: 'unset' }),
                 ...frameOverrideStyle,
                 ...(inOverviewMode &&
                   hover && {

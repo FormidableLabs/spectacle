@@ -342,10 +342,21 @@ Notes is a component that only renders in Presenter mode as presenter notes. It 
 
 ## Progress
 
-Progress is a component with no children that just shows dots for each slide in your deck. Visited and current slides are represented by a filled circle and future slides with just a stroke. The size and color are customizable.
+Progress is a component with no children that just shows dots for each slide in your deck. The current slide is represented by a filled circle. Visited and future slides are represented by a transparent, outlined circle. The size and color are customizable.
 
 | Props                              | Type             | Example   |
 | ---------------------------------- | ---------------- | --------- |
 | `size`                             | PropTypes.number | `23`      |
 | `color`                            | PropTypes.string | `#abc123` |
+| [**`Position`**](./props#position) |                  |           |
+
+## AnimatedProgress
+
+AnimatedProgress is similar to the Progress component, with an additional Pacman character that moves when the current slide changes. It looks like the Pacman is eating all of the circles that represent slides up to, and including, the new current slide. The size and color of the circles are customizable, as is the color of the Pacman.
+
+| Props                              | Type             | Example   |
+| ---------------------------------- | ---------------- | --------- |
+| `size`                             | PropTypes.number | `23`      |
+| `color`                            | PropTypes.string | `#abc123` |
+| `pacmanColor`                      | PropTypes.string | `#abc123` |
 | [**`Position`**](./props#position) |                  |           |

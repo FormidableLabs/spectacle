@@ -26,7 +26,7 @@
         OrderedList,
         ListItem,
         FullScreen,
-        Progress,
+        AnimatedProgress,
         Appear,
         Slide,
         Deck,
@@ -60,7 +60,7 @@
             <${FullScreen} />
           </${Box}>
           <${Box} padding="1em">
-            <${Progress} />
+            <${AnimatedProgress} />
           </${Box}>
         </${FlexBox}>
       `;
@@ -253,7 +253,8 @@
         </${Deck}>
       `;
 
-      ReactDOM.render(html`<${Presentation}/>`, document.getElementById('root'));
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(html`<${Presentation}/>`);
     </script>
   </body>
 </html>

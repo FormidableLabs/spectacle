@@ -8,7 +8,7 @@ import {
   OrderedList,
   ListItem,
   FullScreen,
-  Progress,
+  AnimatedProgress,
   Appear,
   Slide,
   Deck,
@@ -21,7 +21,7 @@ import {
   MarkdownSlideSet,
   Notes
 } from 'spectacle';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
@@ -47,7 +47,7 @@ const template = () => (
       <FullScreen />
     </Box>
     <Box padding="1em">
-      <Progress />
+      <AnimatedProgress />
     </Box>
   </FlexBox>
 );
@@ -264,5 +264,5 @@ const Presentation = () => (
   </Deck>
 );
 
-const root = createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Presentation />);
