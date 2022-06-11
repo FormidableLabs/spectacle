@@ -13,7 +13,7 @@ import useLocationSync from '../../hooks/use-location-sync';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
 import { DeckView, GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { SYSTEM_FONT } from '../../utils/constants';
-import { FlexBox, Box } from '../layout';
+import { FlexBox, Box } from '../layout-primitives';
 import { Timer } from './timer';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 import { SpectacleThemeOverrides } from '../../theme/default-theme';

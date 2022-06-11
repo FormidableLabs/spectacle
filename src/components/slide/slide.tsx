@@ -5,8 +5,7 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
-  MouseEvent as RMouseEvent
+  useState
 } from 'react';
 import ReactDOM from 'react-dom';
 import styled, { css, ThemeContext } from 'styled-components';
@@ -391,7 +390,7 @@ const Slide = (props: SlideProps): JSX.Element => {
 
 export default Slide;
 
-type SlideProps = {
+export type SlideProps = {
   id?: SlideId;
   className?: string;
 

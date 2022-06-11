@@ -7,6 +7,7 @@
 - Upgrade dependencies to be React 18-friendly, removing Enzyme in favor of RTL via [#1119](https://github.com/FormidableLabs/spectacle/pull/1119)
 - Fix only the first page showing in print and export modes in Firefox [#1077](https://github.com/FormidableLabs/spectacle/issues/1077)
 - Add AnimatedProgress component [#1105](https://github.com/FormidableLabs/spectacle/issues/1105)
+- Add SlideLayout helper for quick-creation of slides with basic layout needs via [#1123](https://github.com/FormidableLabs/spectacle/pull/1123).
 
 ## 9.1.1
 
