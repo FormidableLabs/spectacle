@@ -37,7 +37,8 @@
         CodePane,
         MarkdownSlide,
         MarkdownSlideSet,
-        Notes
+        Notes,
+        SlideLayout
       } = Spectacle;
 
       import htm from 'https://unpkg.com/htm@^3?module';
@@ -250,6 +251,7 @@
                 # This is the second slide of a Markdown Slide Set
                 `}
           </${MarkdownSlideSet}>
+          <${SlideLayout.List} title="Slide layouts!" items=${['Two-column', 'Lists' , 'And more!' ]} animateListItems />
         </${Deck}>
       `;
 
