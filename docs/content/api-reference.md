@@ -367,7 +367,7 @@ AnimatedProgress is similar to the Progress component, with an additional Pacman
 
 ### `SlideLayout.Full`
 
-A full-slide layout. 
+A full-slide layout for if you need basic slide with nothing in your way.
 
 | Props           | Type                  | Example |
 |-----------------|-----------------------|---------|
@@ -375,7 +375,7 @@ A full-slide layout.
 
 ### `SlideLayout.Center`
 
-A centered-content layout.
+A centered-content layout for if you want to display your slide content as a piece of content centered on the slide.
 
 | Props           | Type                  | Example |
 |-----------------|-----------------------|---------|
@@ -383,7 +383,7 @@ A centered-content layout.
 
 ### `SlideLayout.TwoColumn`
 
-A two-column layout.
+A two-column layout for if you want to easily split your slide content into two equal-sized columns.
 
 | Props           | Type                  | Example                          |
 |-----------------|-----------------------|----------------------------------|
@@ -393,7 +393,7 @@ A two-column layout.
 
 ### `SlideLayout.List`
 
-A layout with a list and an optional title.
+A layout with a list and an optional title for if you want to quickly display a list of items.
 
 | Props              | Type                                | Required | Example                         |
 |--------------------|-------------------------------------|----------|---------------------------------|
