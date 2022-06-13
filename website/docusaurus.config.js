@@ -54,12 +54,12 @@ const config = {
           src: 'img/logo.svg'
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'basic-concepts',
-            position: 'left',
-            label: 'Documentation'
-          },
+          // {
+          //   type: 'doc',
+          //   docId: 'basic-concepts',
+          //   position: 'left',
+          //   label: 'Documentation'
+          // },
           {
             href: 'https://github.com/FormidableLabs/spectacle',
             className: 'header-github-link',
