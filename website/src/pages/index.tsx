@@ -1,34 +1,30 @@
 import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
+import { ThemeProvider } from 'styled-components';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import styles from './index.module.css';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-      </div>
-    </header>
-  );
-}
+import { GlobalStyle } from '@site/src/global-style';
+import { theme } from '@site/src/theme';
+import Header from '@site/src/components/global/header';
+import Footer from '@site/src/components/global/footer';
+import Features from '@site/src/components/home/features';
+import Preview from '@site/src/components/home/preview';
+import GetStarted from '@site/src/components/home/get-started';
+import MoreOSS from '@site/src/components/home/more-oss';
+import content from '@site/src/components/home/_content';
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+
   return (
-    <Layout
-      title="Write presentations in React"
-      description="Description will go into a meta tag in <head />"
-    >
-      <HomepageHeader />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Header />
       <main>
-        <HomepageFeatures />
+        <Features />
+        <Preview preview={content.preview} />
+        <GetStarted getStarted={content.getStarted} />
+        <MoreOSS oss={content.oss} />
       </main>
-    </Layout>
+      <Footer />
+    </ThemeProvider>
   );
 }
