@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 9.2.0
 
 - Fix deck level templates not displayed in presenter, print and export modes
 - Persist deck template between slides in default and presenter modes [#1106](https://github.com/FormidableLabs/spectacle/issues/1106)
