@@ -360,3 +360,46 @@ AnimatedProgress is similar to the Progress component, with an additional Pacman
 | `color`                            | PropTypes.string | `#abc123` |
 | `pacmanColor`                      | PropTypes.string | `#abc123` |
 | [**`Position`**](./props#position) |                  |           |
+
+## SlideLayout
+
+`SlideLayout` is a set of helper components used to create slides from a set of pre-defined layouts, so you can avoid dealing with things like layout primitives.
+
+### `SlideLayout.Full`
+
+A full-slide layout. 
+
+| Props           | Type                  | Example |
+|-----------------|-----------------------|---------|
+| `...slideProps` | [Slide Props](#slide) |         |
+
+### `SlideLayout.Center`
+
+A centered-content layout.
+
+| Props           | Type                  | Example |
+|-----------------|-----------------------|---------|
+| `...slideProps` | [Slide Props](#slide) |         |
+
+### `SlideLayout.TwoColumn`
+
+A two-column layout.
+
+| Props           | Type                  | Example                          |
+|-----------------|-----------------------|----------------------------------|
+| `...slideProps` | [Slide Props](#slide) |                                  |
+| `left`          | `ReactNode`           | `<Heading>Hello world</Heading>` |
+| `right`         | `ReactNode`           | `<Heading>Hello world</Heading>` |
+
+### `SlideLayout.List`
+
+A layout with a list and an optional title.
+
+| Props              | Type                                | Required | Example                         |
+|--------------------|-------------------------------------|----------|---------------------------------|
+| `...slideProps`    | [Slide Props](#slide)               | ❌        |                                 |
+| `title`            | `string`                            | ❌        | `My list slide`                 |
+| `titleProps`       | [Heading Props](./props/#typograph) | ❌        | `{ color: 'red' }`              |
+| `items`            | `ReactNode[]`                       | ✅        | `['Hello', <Text>World</Text>]` |
+| `animateListItems` | `boolean`                           | ❌        | `true`                          |
+| `listProps`        | [List Props](#typography-tags)      | ❌        | `{ backgroundColor: 'purple' }` |
