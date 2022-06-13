@@ -19,7 +19,8 @@ import {
   CodePane,
   MarkdownSlide,
   MarkdownSlideSet,
-  Notes
+  Notes,
+  SlideLayout
 } from 'spectacle';
 import ReactDOM from 'react-dom';
 
@@ -261,6 +262,11 @@ const Presentation = () => (
         # This is the second slide of a Markdown Slide Set
         `}
     </MarkdownSlideSet>
+    <SlideLayout.List
+      title="Slide layouts!"
+      items={['Two-column', 'Lists', 'And more!']}
+      animateListItems
+    />
   </Deck>
 );
 
