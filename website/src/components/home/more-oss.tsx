@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import { BodyCopy } from '@site/src/components/global/body-copy';
 import { OSSBadge } from '@site/src/components/global/oss-badge';
 import { Button } from '@site/src/components/global/button';
@@ -9,10 +7,7 @@ import { SecondaryTitle } from '@site/src/components/global/secondary-title';
 import { SectionTitle } from '@site/src/components/global/section-title';
 import { Stack } from '@site/src/components/global/stack';
 import { Wrapper } from '@site/src/components/global/wrapper';
-
 import { theme } from '@site/src/theme';
-
-// type secondaryWrapper = {};
 
 const OSSCardContainer = styled.div`
   display: grid;
@@ -88,9 +83,9 @@ const OSSDescription = styled(BodyCopy)`
   }
 `;
 
-export default function MoreOSS({ oss }) {
+export default function MoreOSS({ oss }): JSX.Element {
   return (
-    <Wrapper noMargin={false} noPadding={false} background="#000">
+    <Wrapper background="#000">
       <Stack spacingMobile={3} spacingTablet={5}>
         <SectionTitle light>More Open Source from Formidable</SectionTitle>
         <OSSCardContainer>

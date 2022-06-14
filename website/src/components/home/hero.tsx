@@ -179,7 +179,7 @@ const Hero = () => {
   const text: string = 'npm install spectacle';
 
   return (
-    <Wrapper noPadding={true} noMargin={false} background="transparent">
+    <Wrapper noPadding={true} background="transparent">
       <HeroContent>
         <HeroLogo src={badge} alt="spectacle" />
         <HeroBodyAndButtons>

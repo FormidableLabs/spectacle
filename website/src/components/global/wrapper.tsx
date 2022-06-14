@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { theme } from '@site/src/theme';
 
 type Wrapper = {
-  noMargin: boolean;
-  noPadding: boolean;
+  noMargin?: boolean;
+  noPadding?: boolean;
   background: string;
 };
 

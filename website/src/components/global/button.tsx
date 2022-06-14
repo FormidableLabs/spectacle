@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 type LinkProps = {
   color: string;
   text: string;
-  noMargin: boolean;
+  noMargin?: boolean;
 };
 
 export const Button = styled(Link)<LinkProps>`

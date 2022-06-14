@@ -102,11 +102,7 @@ function Feature({ title, Svg, description }: FeatureItem) {
 
 export default function Features(): JSX.Element {
   return (
-    <Wrapper
-      noPadding={false}
-      noMargin={false}
-      background={theme.colors.bgLight}
-    >
+    <Wrapper background={theme.colors.bgLight}>
       <Stack spacingMobile={3} spacingTablet={5}>
         <SectionTitle>Features</SectionTitle>
         <FeaturesContainer>
