@@ -32,6 +32,12 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: ${(p) => p.theme.colors.accentLight};
     font-weight: ${(p) => p.theme.fontWeights.links};
+
+    &:hover {
+      color: ${(p) => p.theme.colors.button};
+      background: ${(p) => p.theme.colors.button};
+      text-decoration: none;
+    }
   }
 
   table, pre, p, h1, h2, h3 {
