@@ -343,10 +343,64 @@ Notes is a component that only renders in Presenter mode as presenter notes. It 
 
 ## Progress
 
-Progress is a component with no children that just shows dots for each slide in your deck. Visited and current slides are represented by a filled circle and future slides with just a stroke. The size and color are customizable.
+Progress is a component with no children that just shows dots for each slide in your deck. The current slide is represented by a filled circle. Visited and future slides are represented by a transparent, outlined circle. The size and color are customizable.
 
 | Props                              | Type             | Example   |
 | ---------------------------------- | ---------------- | --------- |
 | `size`                             | PropTypes.number | `23`      |
 | `color`                            | PropTypes.string | `#abc123` |
 | [**`Position`**](./props#position) |                  |           |
+
+## AnimatedProgress
+
+AnimatedProgress is similar to the Progress component, with an additional Pacman character that moves when the current slide changes. It looks like the Pacman is eating all of the circles that represent slides up to, and including, the new current slide. The size and color of the circles are customizable, as is the color of the Pacman.
+
+| Props                              | Type             | Example   |
+| ---------------------------------- | ---------------- | --------- |
+| `size`                             | PropTypes.number | `23`      |
+| `color`                            | PropTypes.string | `#abc123` |
+| `pacmanColor`                      | PropTypes.string | `#abc123` |
+| [**`Position`**](./props#position) |                  |           |
+
+## SlideLayout
+
+`SlideLayout` is a set of helper components used to create slides from a set of pre-defined layouts, so you can avoid dealing with things like layout primitives.
+
+### `SlideLayout.Full`
+
+A full-slide layout for if you need basic slide with nothing in your way.
+
+| Props           | Type                  | Example |
+|-----------------|-----------------------|---------|
+| `...slideProps` | [Slide Props](#slide) |         |
+
+### `SlideLayout.Center`
+
+A centered-content layout for if you want to display your slide content as a piece of content centered on the slide.
+
+| Props           | Type                  | Example |
+|-----------------|-----------------------|---------|
+| `...slideProps` | [Slide Props](#slide) |         |
+
+### `SlideLayout.TwoColumn`
+
+A two-column layout for if you want to easily split your slide content into two equal-sized columns.
+
+| Props           | Type                  | Example                          |
+|-----------------|-----------------------|----------------------------------|
+| `...slideProps` | [Slide Props](#slide) |                                  |
+| `left`          | `ReactNode`           | `<Heading>Hello world</Heading>` |
+| `right`         | `ReactNode`           | `<Heading>Hello world</Heading>` |
+
+### `SlideLayout.List`
+
+A layout with a list and an optional title for if you want to quickly display a list of items.
+
+| Props              | Type                                | Required | Example                         |
+|--------------------|-------------------------------------|----------|---------------------------------|
+| `...slideProps`    | [Slide Props](#slide)               | ❌        |                                 |
+| `title`            | `string`                            | ❌        | `My list slide`                 |
+| `titleProps`       | [Heading Props](./props/#typograph) | ❌        | `{ color: 'red' }`              |
+| `items`            | `ReactNode[]`                       | ✅        | `['Hello', <Text>World</Text>]` |
+| `animateListItems` | `boolean`                           | ❌        | `true`                          |
+| `listProps`        | [List Props](#typography-tags)      | ❌        | `{ backgroundColor: 'purple' }` |

@@ -1,6 +1,6 @@
 import { useRef, useCallback, useState, useEffect, ReactNode } from 'react';
 import styled from 'styled-components';
-import { DeckInternal, DeckRef } from '../deck/deck';
+import { DeckInternal, DeckRef, TemplateFn } from '../deck/deck';
 import { Text, SpectacleLogo } from '../../index';
 import {
   PresenterDeckContainer,
@@ -13,7 +13,7 @@ import useLocationSync from '../../hooks/use-location-sync';
 import * as queryStringMapFns from '../../location-map-fns/query-string';
 import { DeckView, GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { SYSTEM_FONT } from '../../utils/constants';
-import { FlexBox, Box } from '../layout';
+import { FlexBox, Box } from '../layout-primitives';
 import { Timer } from './timer';
 import useBroadcastChannel from '../../hooks/use-broadcast-channel';
 import { SpectacleThemeOverrides } from '../../theme/default-theme';
@@ -30,7 +30,7 @@ const PreviewSlideWrapper = styled.div<{ visible?: boolean }>(
 );
 
 const PresenterMode = (props: PresenterModeProps): JSX.Element => {
-  const { children, theme, backgroundImage } = props;
+  const { children, theme, backgroundImage, template } = props;
   const deck = useRef<DeckRef>(null);
   const previewDeck = useRef<DeckRef>(null);
   const [notePortalNode, setNotePortalNode] = useState<HTMLDivElement | null>();
@@ -113,6 +113,7 @@ const PresenterMode = (props: PresenterModeProps): JSX.Element => {
           ref={deck}
           theme={theme}
           backgroundImage={backgroundImage}
+          template={template}
         >
           {children}
         </DeckInternal>
@@ -124,6 +125,7 @@ const PresenterMode = (props: PresenterModeProps): JSX.Element => {
             ref={previewDeck}
             theme={theme}
             backgroundImage={backgroundImage}
+            template={template}
           >
             {children}
           </DeckInternal>
@@ -139,4 +141,5 @@ type PresenterModeProps = {
   theme?: SpectacleThemeOverrides;
   children: ReactNode;
   backgroundImage?: string;
+  template?: TemplateFn | ReactNode;
 };

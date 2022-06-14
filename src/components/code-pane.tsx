@@ -112,7 +112,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
     const scrollTarget = useRef<HTMLElement>(null);
 
     const getLineNumberProps = useCallback(
-      (lineNumber) => {
+      (lineNumber: number) => {
         if (!isActive) return;
         const range = getRangeFormat(numberOfSteps, highlightRanges, step);
         return {

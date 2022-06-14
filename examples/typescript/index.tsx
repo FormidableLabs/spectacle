@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {
   FlexBox,
   Heading,
@@ -9,7 +8,7 @@ import {
   OrderedList,
   ListItem,
   FullScreen,
-  Progress,
+  AnimatedProgress,
   Appear,
   Slide,
   Deck,
@@ -20,8 +19,10 @@ import {
   CodePane,
   MarkdownSlide,
   MarkdownSlideSet,
-  Notes
+  Notes,
+  SlideLayout
 } from '../../src/index';
+import { createRoot } from 'react-dom/client';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
@@ -47,7 +48,7 @@ const template = () => (
       <FullScreen />
     </Box>
     <Box padding="1em">
-      <Progress />
+      <AnimatedProgress />
     </Box>
   </FlexBox>
 );
@@ -261,7 +262,13 @@ const Presentation = () => (
         # This is the second slide of a Markdown Slide Set
         `}
     </MarkdownSlideSet>
+    <SlideLayout.List
+      title="Slide layouts!"
+      items={['Two-column', 'Lists', 'And more!']}
+      animateListItems
+    />
   </Deck>
 );
 
-ReactDOM.render(<Presentation />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root')!);
+root.render(<Presentation />);

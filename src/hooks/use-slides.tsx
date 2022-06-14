@@ -12,6 +12,8 @@ export function useCollectSlides() {
   const [initialized, setInitialized] = useState(false);
   const [slideContainer, setSlideContainer] = useState<HTMLElement | null>();
   const [slideIds, setSlideIds] = useState<SlideId[]>([]);
+  const [slideIdsOfSlidesWithTemplates, setSlideIdsOfSlidesWithTemplates] =
+    useState<Set<SlideId>>(new Set());
 
   useEffect(() => {
     if (!slideContainer) return;
@@ -20,23 +22,42 @@ export function useCollectSlides() {
     ) as unknown as Iterable<HTMLElement>;
 
     const nextSlideIds: SlideId[] = [];
+    const nextSlideIdsOfSlidesWithTemplates: Set<SlideId> = new Set();
     for (const placeholderNode of slides) {
-      const { slideId } = placeholderNode.dataset;
-      nextSlideIds.push(slideId!);
+      const { slideId, slideHasTemplate } = placeholderNode.dataset;
+      if (slideId !== undefined) {
+        nextSlideIds.push(slideId);
+        if (slideHasTemplate === 'true') {
+          nextSlideIdsOfSlidesWithTemplates.add(slideId);
+        }
+      }
     }
     setSlideIds(nextSlideIds);
+    setSlideIdsOfSlidesWithTemplates(nextSlideIdsOfSlidesWithTemplates);
     setInitialized(true);
   }, [slideContainer]);
 
-  return [setSlideContainer, slideIds, initialized] as const;
+  return [
+    setSlideContainer,
+    slideIds,
+    slideIdsOfSlidesWithTemplates,
+    initialized
+  ] as const;
 }
 
-export function useSlide(userProvidedId?: SlideId) {
+export function useSlide(
+  doesSlideHaveTemplate: boolean,
+  userProvidedId?: SlideId
+) {
   const [slideId] = useState<SlideId>(userProvidedId || ulid);
   return {
     slideId,
     placeholder: (
-      <div className={PLACEHOLDER_CLASS_NAME} data-slide-id={slideId} />
+      <div
+        className={PLACEHOLDER_CLASS_NAME}
+        data-slide-id={slideId}
+        data-slide-has-template={doesSlideHaveTemplate}
+      />
     )
   };
 }

@@ -24,6 +24,7 @@ import { ActivationThresholds, useCollectSteps } from '../../hooks/use-steps';
 import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
 import { useSwipeable } from 'react-swipeable';
 import { SlideTransition } from '../transitions';
+import TemplateWrapper from '../template-wrapper';
 
 const noop = () => {};
 
@@ -36,6 +37,7 @@ export type SlideContextType = {
 };
 
 export const SlideContext = createContext<SlideContextType>(null as any);
+SlideContext.displayName = 'SlideContext';
 
 type SlideContainerProps = BackgroundProps &
   ColorProps & { backgroundOpacity: number };
@@ -44,7 +46,7 @@ const SlideContainer = styled.div<SlideContainerProps>`
   ${color};
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: relative;
   overflow: hidden;
   display: flex;
   z-index: 0;
@@ -73,15 +75,6 @@ const SlideWrapper = styled.div<ColorProps & SpaceProps>(
   `
 );
 
-const TemplateWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-`;
-
 export const AnimatedDiv = styled(animated.div)`
   width: 100%;
   height: 100%;
@@ -107,7 +100,7 @@ const Slide = (props: SlideProps): JSX.Element => {
     backgroundSize = 'cover',
     padding = 2,
     textColor = 'primary',
-    template,
+    template: slideTemplate,
     transition: slideTransition = {},
     className = ''
   } = props;
@@ -115,7 +108,8 @@ const Slide = (props: SlideProps): JSX.Element => {
     throw new Error(`Slide components may not be nested within each other.`);
   }
 
-  const { slideId, placeholder } = useSlide(userProvidedId);
+  const slideHasTemplate = slideTemplate !== undefined;
+  const { slideId, placeholder } = useSlide(slideHasTemplate, userProvidedId);
   const { setStepContainer, activationThresholds, finalStepIndex } =
     useCollectSteps();
   const {
@@ -136,11 +130,13 @@ const Slide = (props: SlideProps): JSX.Element => {
     transition,
     template: deckTemplate,
     slideCount,
-    backgroundImage: deckBackgroundImage
+    backgroundImage: deckBackgroundImage,
+    inOverviewMode,
+    inPrintMode
   } = useContext(DeckContext);
 
   const handleClick = useCallback(
-    (e) => {
+    (e: MouseEvent) => {
       onSlideClick(e, slideId);
     },
     [onSlideClick, slideId]
@@ -154,7 +150,6 @@ const Slide = (props: SlideProps): JSX.Element => {
     return result;
   }, [slideTransition, transition]);
 
-  const inOverviewMode = Object.entries(frameOverrideStyle).length > 0;
   const isActive = activeView.slideId === slideId;
   const isPending = pendingView.slideId === slideId;
   const isPassed = passedSlideIds.has(slideId);
@@ -312,20 +307,14 @@ const Slide = (props: SlideProps): JSX.Element => {
     };
   }, [wrapperOverrideStyle, theme, padding]);
 
-  const templateFn =
+  const template = slideHasTemplate ? slideTemplate : deckTemplate;
+  const templateElement =
     typeof template === 'function'
-      ? template
-      : typeof deckTemplate === 'function'
-      ? deckTemplate
-      : null;
-
-  const templateElement: ReactNode =
-    templateFn?.({
-      slideNumber: activeView.slideIndex + 1,
-      numberOfSlides: slideCount
-    }) ||
-    template ||
-    deckTemplate;
+      ? template({
+          slideNumber: activeView.slideIndex + 1,
+          numberOfSlides: slideCount
+        })
+      : template;
 
   const swipeHandler = useSwipeable({
     onSwiped: (eventData) => onMobileSlide(eventData)
@@ -346,10 +335,17 @@ const Slide = (props: SlideProps): JSX.Element => {
           ReactDOM.createPortal(
             <AnimatedDiv
               ref={setStepContainer}
+              // @ts-expect-error Events are not typed quite tightly enough (yet)
               onClick={handleClick}
               tabIndex={inOverviewMode && isActive ? 0 : undefined}
               style={{
-                ...(inOverviewMode ? {} : springFrameStyle),
+                ...(inOverviewMode || inPrintMode ? {} : springFrameStyle),
+                // NOTE: React-spring will update the display value at some point in the near
+                // future rather than immediately at the time of render. In the AnimatedProgress
+                // component, we need to make DOM calculations when a new slide becomes active
+                // but are not able to if the active slide is not visible at the time of render.
+                // We toggle the display immediately once a slide becomes active to avoid the delay.
+                ...(isActive && { display: 'unset' }),
                 ...frameOverrideStyle,
                 ...(inOverviewMode &&
                   hover && {
@@ -370,9 +366,13 @@ const Slide = (props: SlideProps): JSX.Element => {
                 color={textColor}
                 {...swipeHandler}
               >
-                <TemplateWrapper style={wrapperOverrideStyle}>
-                  {templateElement}
-                </TemplateWrapper>
+                {((slideHasTemplate && isActive) ||
+                  inOverviewMode ||
+                  inPrintMode) && (
+                  <TemplateWrapper style={wrapperOverrideStyle}>
+                    {templateElement}
+                  </TemplateWrapper>
+                )}
                 <SlideWrapper
                   style={scaledWrapperOverrideStyle}
                   padding={padding}
@@ -390,7 +390,7 @@ const Slide = (props: SlideProps): JSX.Element => {
 
 export default Slide;
 
-type SlideProps = {
+export type SlideProps = {
   id?: SlideId;
   className?: string;
 

@@ -9,9 +9,9 @@
   <body>
     <div id="root"></div>
 
-    <script src="https://unpkg.com/react@17.0.1/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/react-is@17.0.1/umd/react-is.production.min.js"></script>
+    <script src="https://unpkg.com/react@18.1.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-is@18.1.0/umd/react-is.production.min.js"></script>
     <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
     <script src="https://unpkg.com/spectacle@^9/dist/spectacle.min.js"></script>
     <!-- <script src="../dist/spectacle.min.js"></script> -->
@@ -26,9 +26,8 @@
         OrderedList,
         ListItem,
         FullScreen,
-        Progress,
+        AnimatedProgress,
         Appear,
-        Stepper,
         Slide,
         Deck,
         Text,
@@ -38,7 +37,8 @@
         CodePane,
         MarkdownSlide,
         MarkdownSlideSet,
-        Notes
+        Notes,
+        SlideLayout
       } = Spectacle;
 
       import htm from 'https://unpkg.com/htm@^3?module';
@@ -61,7 +61,7 @@
             <${FullScreen} />
           </${Box}>
           <${Box} padding="1em">
-            <${Progress} />
+            <${AnimatedProgress} />
           </${Box}>
         </${FlexBox}>
       `;
@@ -166,7 +166,7 @@
                 <${Text}>Double-size Grid Item</${Text}>
               </${Box}>
             </${Grid}>
-            <${Grid} gridTemplateColumns="1fr 1fr 1fr" gridTemplateRows="1fr 1fr 1fr" alignItems="center" justifyContent="center" gridRowGap=${1}>
+            <${Grid} gridTemplateColumns="1fr 1fr 1fr" gridTemplateRows="1fr 1fr 1fr" gridRowGap=${1}>
               ${Array(9).fill('').map((_, index) => html`<${FlexBox} paddingTop=${0} key=${`formidable-logo-${index}`} flex=${1}>
                 <${Image} src=${formidableLogo} width=${100} />
               </${FlexBox}>`)}
@@ -225,7 +225,7 @@
               `}
           </${MarkdownSlide}>
           <${Slide}>
-            <${Grid} flex=${1} gridTemplateColumns="50% 50%" gridTemplateRows="50% 50%" height="100%">
+            <${Grid} gridTemplateColumns="50% 50%" gridTemplateRows="50% 50%" height="100%">
               <${FlexBox} alignItems="center" justifyContent="center">
                 <${Heading}>This is a 4x4 Grid</${Heading}>
               </${FlexBox}>
@@ -251,10 +251,12 @@
                 # This is the second slide of a Markdown Slide Set
                 `}
           </${MarkdownSlideSet}>
+          <${SlideLayout.List} title="Slide layouts!" items=${['Two-column', 'Lists' , 'And more!' ]} animateListItems />
         </${Deck}>
       `;
 
-      ReactDOM.render(html`<${Presentation}/>`, document.getElementById('root'));
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(html`<${Presentation}/>`);
     </script>
   </body>
 </html>

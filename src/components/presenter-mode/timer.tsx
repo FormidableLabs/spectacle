@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Text } from '../typography';
-import { FlexBox, Box } from '../layout';
+import { FlexBox, Box } from '../layout-primitives';
 import InternalButton from '../internal-button';
 import { useTimer } from '../../utils/use-timer';
 import { SYSTEM_FONT } from '../../utils/constants';
@@ -8,7 +8,7 @@ import { SYSTEM_FONT } from '../../utils/constants';
 export const Timer = () => {
   const [timer, setTimer] = useState(0);
   const [timerStarted, setTimerStarted] = useState(false);
-  const addToTimer = useCallback((v) => setTimer((s) => s + v), []);
+  const addToTimer = useCallback((v: number) => setTimer((s) => s + v), []);
   useTimer(addToTimer, 1000, timerStarted);
   const minutes = Math.floor(Math.round(timer) / 60);
   return (
