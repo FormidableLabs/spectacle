@@ -3,12 +3,8 @@ import styled from 'styled-components';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Hero from '@site/src/components/home/hero';
 import bgImg from '@site/static/img/bg_hero_feather.jpg';
-import headerTriangle from '@site/static/svg/header-triangle.svg';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import logoFormidableWhite from '@site/static/img/logo_formidable_white.png';
-
-type Triangle = {
-  src: string;
-};
 
 const Container = styled.header`
   padding: 0px 0px 14rem;
@@ -30,7 +26,7 @@ const Container = styled.header`
   }
 `;
 
-const Triangle = styled.img<Triangle>`
+const Triangle = styled.img`
   position: absolute;
   left: -0.7rem;
   top: -0.3rem;
@@ -91,7 +87,7 @@ export default function Header(): JSX.Element {
 
   return (
     <Container>
-      <Triangle src={headerTriangle} />
+      <Triangle src={useBaseUrl('/svg/header-triangle.svg')} />
       <HeaderContainer
         href="https://formidable.com"
         title="Formidable"

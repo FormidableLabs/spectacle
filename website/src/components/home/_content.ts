@@ -5,25 +5,25 @@ const content = {
       title: 'Interactive Presentations',
       description:
         'Add clickable elements and other interactivity to make your presentations pop.',
-      icon: require('@site/static/svg/button.svg')
+      Svg: require('@site/static/svg/button.svg').default
     },
     {
       title: 'Live-Preview Your Code',
       description:
         'Show people more than just a code block - demo the final project in real-time without leaving your presentation deck.',
-      icon: require('@site/static/svg/code-preview.svg')
+      Svg: require('@site/static/svg/code-preview.svg').default
     },
     {
       title: '... and More!',
       description:
         'Polish off your presentation with auto-formatting, easy themeing, image dimming, and other fun touches available out of the box.',
-      icon: require('@site/static/svg/amazing.svg')
+      Svg: require('@site/static/svg/amazing.svg').default
     }
   ],
   preview: {
-    bgMp4: require('@site/static/vid/demo-presentation.mp4'),
-    bgStill: require('@site/static/img/demo-still.png'),
-    bgWebm: require('@site/static/vid/demo-presentation.webm'),
+    bgMp4: require('@site/static/vid/demo-presentation.mp4').default,
+    bgStill: require('@site/static/img/demo-still.png').default,
+    bgWebm: require('@site/static/vid/demo-presentation.webm').default,
     demoUrl:
       'https://raw.githack.com/FormidableLabs/spectacle/main/examples/one-page.html'
   },
