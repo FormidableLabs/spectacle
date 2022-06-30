@@ -4,7 +4,8 @@ import {
   useContext,
   useRef,
   useCallback,
-  useEffect
+  useEffect,
+  CSSProperties
 } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { useSteps } from '../hooks/use-steps';
@@ -187,7 +188,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
 export type CodePaneProps = {
   children: string;
   language: string | undefined;
-  theme?: Record<string, unknown>;
+  theme?: Record<string, CSSProperties>;
   stepIndex?: number;
   highlightRanges?: Ranges;
   showLineNumbers?: boolean;
