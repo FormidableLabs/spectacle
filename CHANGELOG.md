@@ -1,5 +1,10 @@
 # Changelog
 
+## 9.2.1
+
+- Fix `use-broadcast-channel` to be compatible with React 18 strict mode, via [#1131](https://github.com/FormidableLabs/spectacle/pull/1131).
+- Upgrade `react-syntax-highlighter` so that Spectacle works with Vite out of the box, via [#1132](https://github.com/FormidableLabs/spectacle/pull/1132).
+
 ## 9.2.0
 
 - Fix deck level templates not displayed in presenter, print and export modes
