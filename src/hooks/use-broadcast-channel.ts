@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { ulid } from 'ulid';
 import { BroadcastChannel as BroadcastChannelPolyfill } from 'broadcast-channel';
 import { DeckView } from './use-deck-state';
@@ -17,19 +17,16 @@ export default function useBroadcastChannel(
   onMessage: MessageCallback = noop,
   deps = []
 ) {
-  const [broadcasterId] = useState(() => ulid());
-  const [channel, setChannel] = useState(
-    () => new BroadcastChannel(channelName)
-  );
+  const broadcasterId = useRef(() => ulid());
+  const channel = useRef<BroadcastChannel>();
 
   useEffect(() => {
-    if (channel.name !== channelName) {
-      setChannel(() => new BroadcastChannel(channelName));
-    }
+    channel.current = new BroadcastChannel(channelName);
+
     return () => {
-      channel.close();
+      channel.current?.close();
     };
-  }, [channel, channelName]);
+  }, [channelName]);
 
   const postMessage = useCallback(
     <TType extends MessageTypes['type']>(
@@ -40,13 +37,13 @@ export default function useBroadcastChannel(
         type,
         payload,
         meta: {
-          sender: broadcasterId
+          sender: broadcasterId.current
         }
       };
       const rawMessage = JSON.stringify(message);
-      channel.postMessage(rawMessage);
+      channel.current?.postMessage(rawMessage);
     },
-    [channel, broadcasterId]
+    []
   );
 
   // Avoid constantly modifying the 'message' listener in the effect below
@@ -57,17 +54,17 @@ export default function useBroadcastChannel(
   }, [...deps, postMessage]);
 
   useEffect(() => {
-    if (!channel) return;
+    if (!channel.current) return;
     const messageHandler = (event: MessageEvent<string>) => {
       const rawMessage = event.data;
       const message = JSON.parse(rawMessage);
       userMessageHandlerRef.current(message);
     };
-    channel.addEventListener('message', messageHandler);
+    channel.current?.addEventListener('message', messageHandler);
     return () => {
-      channel.removeEventListener('message', messageHandler);
+      channel.current?.removeEventListener('message', messageHandler);
     };
-  }, [channel, postMessage]);
+  }, [postMessage]);
 
-  return [postMessage, broadcasterId] as const;
+  return [postMessage, broadcasterId.current] as const;
 }
