@@ -5,7 +5,8 @@
     "lint-fix": "pnpm run lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
     "prettier-check": "pnpm run prettier --check",
-    "prettier-fix": "pnpm prettier --write"
+    "prettier-fix": "pnpm prettier --write",
+    "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.4.0",
@@ -16,6 +17,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "typescript": "^4.5.2",
+    "@types/jest": "^27.0.2"
   }
 }
