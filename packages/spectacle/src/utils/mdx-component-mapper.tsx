@@ -12,7 +12,7 @@ import {
   TableRow,
   Text,
   UnorderedList
-} from '../';
+} from '../index';
 
 export type MarkdownComponentMap = Partial<
   Record<keyof JSX.IntrinsicElements, ElementType>

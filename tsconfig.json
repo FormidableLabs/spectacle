@@ -1,6 +1,6 @@
 {
   "include": [
-    "src/**/*", 
+    "packages/spectacle/src/**/*",
     "examples/typescript/**/*"
   ],
   "compilerOptions": {

@@ -184,6 +184,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
     );
   }
 );
+CodePane.displayName = 'CodePane';
 
 export type CodePaneProps = {
   children: string;
