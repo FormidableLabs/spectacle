@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Hero from '@site/src/components/home/hero';
-import bgImg from '@site/static/img/bg_hero_feather.jpg';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import logoFormidableWhite from '@site/static/img/logo_formidable_white.png';
+import Hero from '@site/src/components/index/hero';
+import bgImg from '@site/static/img/hero-bg.jpg';
 
 const Container = styled.header`
   padding: 0px 0px 14rem;
-  color: ${(p) => p.theme.colors.textLight};
-  background: ${(p) => p.theme.colors.textDark};
+  color: ${({ theme }) => theme.colors.textLight};
+  background: ${({ theme }) => theme.colors.textDark};
   background-image: linear-gradient(14deg, #404a5f, #7f526a);
   background-size: cover;
-  @media ${(p) => p.theme.media.sm} {
+  @media ${({ theme }) => theme.media.sm} {
     background-image: url(${bgImg}),
       linear-gradient(
         194deg,
@@ -31,10 +30,10 @@ const Triangle = styled.img`
   left: -0.7rem;
   top: -0.3rem;
   width: 20rem;
-  @media ${(p) => p.theme.media.sm} {
+  @media ${({ theme }) => theme.media.sm} {
     width: 26rem;
   }
-  @media ${(p) => p.theme.media.md} {
+  @media ${({ theme }) => theme.media.md} {
     width: 30rem;
   }
 `;
@@ -46,13 +45,13 @@ const HeaderContainer = styled.a`
   left: 2rem;
   top: 1.5rem;
   font-size: 0.8rem;
-  color: ${(p) => p.theme.colors.textLight};
-  @media ${(p) => p.theme.media.sm} {
+  color: ${({ theme }) => theme.colors.textLight};
+  @media ${({ theme }) => theme.media.sm} {
     left: 3.5rem;
     top: 2rem;
     font-size: 1.2rem;
   }
-  @media ${(p) => p.theme.media.md} {
+  @media ${({ theme }) => theme.media.md} {
     left: 4rem;
     top: 3rem;
   }
@@ -62,6 +61,10 @@ const HeaderContainer = styled.a`
   }
   > * + * {
     margin-top: 1rem;
+  }
+  :hover {
+    color: var(--oss-color-white);
+    background: none;
   }
 `;
 
@@ -77,27 +80,51 @@ const HeaderText = styled.p`
 
 const HeaderLogo = styled.img`
   width: 4rem;
-  @media ${(p) => p.theme.media.sm} {
+  @media ${({ theme }) => theme.media.sm} {
     width: 6rem;
   }
 `;
 
-export default function Header(): JSX.Element {
+export default function Header({ content }): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+  const {
+    formidableBadge,
+    hero
+  }: {
+    formidableBadge: boolean;
+    hero: {
+      title: string;
+      tagline: string;
+      installScript: string;
+      featureButtonText: string;
+      featureButtonUrl: string;
+      navList: {
+        text: string;
+        url: string;
+      };
+    };
+  } = content;
+
+  const triangleSrc = useBaseUrl('/svg/header-triangle.svg');
+  const logoSrc = useBaseUrl('/svg/formidable-icon-white.svg');
 
   return (
     <Container>
-      <Triangle src={useBaseUrl('/svg/header-triangle.svg')} />
-      <HeaderContainer
-        href="https://formidable.com"
-        title="Formidable"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <HeaderText>Another oss project by</HeaderText>
-        <HeaderLogo src={logoFormidableWhite} alt="Formidable Logo" />
-      </HeaderContainer>
-      <Hero />
+      {formidableBadge && (
+        <>
+          <Triangle src={triangleSrc} />
+          <HeaderContainer
+            href={siteConfig.url}
+            title="Formidable"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <HeaderText>Another oss project by</HeaderText>
+            <HeaderLogo src={logoSrc} alt="Formidable Logo" />
+          </HeaderContainer>
+        </>
+      )}
+      <Hero content={hero} />
     </Container>
   );
 }
