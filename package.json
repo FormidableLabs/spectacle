@@ -13,7 +13,9 @@
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "check": "pnpm run lint && pnpm run prettier-check && pnpm run test && pnpm run typecheck",
-    "check-ci": "pnpm run check"
+    "check-ci": "pnpm run check",
+    "clean": "pnpm run -r clean",
+    "build-examples": "pnpm run --filter spectacle build && pnpm run -r --filter \"*example*\" build"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.4.0",
