@@ -66,6 +66,7 @@ const List = ({
           {title}
         </Heading>
       ) : null}
+      {/* @ts-ignore TODO: Resolve this in follow-up */}
       <List {...listProps}>
         {items.map((item, i) => {
           const Wrapper = animateListItems ? Appear : Fragment;

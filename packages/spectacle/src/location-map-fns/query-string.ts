@@ -3,7 +3,7 @@ import {
   parse as parseQS,
   ParsedQuery,
   stringify as stringifyQS
-} from 'packages/spectacle/src/location-map-fns/query-string';
+} from 'query-string';
 
 export type SlideState = {
   slideIndex?: number;

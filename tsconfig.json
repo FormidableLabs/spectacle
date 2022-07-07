@@ -1,14 +1,10 @@
 {
-  "include": [
-    "packages/spectacle/src/**/*",
-    "examples/typescript/**/*"
-  ],
   "compilerOptions": {
     /* Language and Environment */
     "target": "ES6",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "lib": [
-      "ES6",
-      "DOM"
+      "DOM",
+      "ES2019"
     ],                                                /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     "jsx": "react-jsx",                               /* Specify what JSX code is generated. */
 
