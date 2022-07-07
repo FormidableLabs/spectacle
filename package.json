@@ -16,8 +16,9 @@
     "check": "pnpm run lint && pnpm run prettier-check && pnpm run test && pnpm run typecheck",
     "check-ci": "pnpm run check",
     "clean": "pnpm run -r clean",
-    "build": "pnpm run -r build",
     "build-examples": "pnpm run --filter spectacle build && pnpm run -r --filter \"*example*\" build",
+    "build-core": "pnpm run --filter spectacle build",
+    "build": "pnpm run -r build",
     "build-one-page": "node ./scripts/one-page.js"
   },
   "devDependencies": {

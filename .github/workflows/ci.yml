@@ -53,8 +53,7 @@ jobs:
       - name: Check Code ${{ matrix.node-version }}
         run: yarn check-ci
 
+        # NOTE! build-examples also builds the core.
+        #  This dependency will be more explicit with wireit
       - name: Build Examples ${{ matrix.node-version }}
         run: yarn build-examples
-
-      - name: Build Core ${{ matrix.node-version }}
-        run: yarn build
