@@ -2,7 +2,7 @@
   "name": "spectacle",
   "version": "9.2.1",
   "description": "ReactJS Powered Presentation Framework",
-  "types": "lib/src/index.d.ts",
+  "types": "lib/index.d.ts",
   "main": "lib/index.js",
   "files": [
     "lib/",
@@ -14,10 +14,6 @@
   ],
   "module": "es/index.js",
   "scripts": {
-    "start:js": "webpack-dev-server --port=3000 --hot --config ../../examples/js/webpack.config.js",
-    "start:ts": "webpack-dev-server --port=3100 --hot --config ../../examples/typescript/webpack.config.js",
-    "start:md": "webpack-dev-server --port=3200 --hot --config ../../examples/md/webpack.config.js",
-    "start:one-page": "open ../../examples/one-page.html",
     "test": "jest",
     "clean": "rimraf dist lib es \"examples/*/dist\"",
     "TODO:preversion": "pnpm run check",
@@ -105,7 +101,6 @@
     "jest": "^27.3.1",
     "pretty": "^2.0.0",
     "process": "^0.11.10",
-    "raw-loader": "^4.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "rimraf": "^3.0.0",

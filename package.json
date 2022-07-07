@@ -1,6 +1,10 @@
 {
   "name": "spectacle-monorepo",
   "scripts": {
+    "start:js": "pnpm run --filter spectacle-example-js start",
+    "start:ts": "pnpm run --filter spectacle-example-ts start",
+    "start:md": "pnpm run --filter spectacle-example-md start",
+    "start:one-page": "pnpm run --filter spectacle-example-one-page start",
     "lint": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src",
     "lint-fix": "pnpm run lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",

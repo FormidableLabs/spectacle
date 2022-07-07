@@ -79,11 +79,11 @@ A self-contained single web page that uses Spectacle, React, and `htm` for a "no
 ```bash
 # [optional] build the library -
 #   comment out the unpkg dependency in
-#   one-page.html and use the local dist/
+#   index.html and use the local dist/
 $ yarn build
 
 # open the browser
-$ open examples/one-page.html
+$ open examples/one-page/index.html
 ```
 
 _or_ use the single line:

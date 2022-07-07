@@ -21,7 +21,7 @@ import {
   MarkdownSlideSet,
   Notes,
   SlideLayout
-} from '../../packages/spectacle/src/index';
+} from 'spectacle';
 import { createRoot } from 'react-dom/client';
 
 const formidableLogo =
