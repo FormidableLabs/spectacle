@@ -10,7 +10,7 @@ const { transformFileAsync } = require('@babel/core');
 const pretty = require('pretty');
 
 const SRC_FILE = path.resolve(__dirname, '../examples/js/index.js');
-const DEST_FILE = path.resolve(__dirname, '../examples/index.html');
+const DEST_FILE = path.resolve(__dirname, '../examples/one-page/index.html');
 
 const htmImport = `
 import htm from 'https://unpkg.com/htm@^3?module';
