@@ -1,20 +1,18 @@
-let compStyles = getComputedStyle(document.documentElement);
-
-const borderRadius = compStyles.getPropertyValue('--oss-border-radius');
+const borderRadius = 'var(--oss-border-radius)';
 
 const colors = {
-  bgColor: compStyles.getPropertyValue('--oss-bg-color'),
-  bgDark: compStyles.getPropertyValue('--oss-bg-dark'),
-  bgLight: compStyles.getPropertyValue('--oss-bg-light'),
-  text: compStyles.getPropertyValue('--oss-text'),
-  textDark: compStyles.getPropertyValue('--oss-text-dark'),
-  textLight: compStyles.getPropertyValue('--oss-text-light'),
-  button: compStyles.getPropertyValue('--oss-button'),
-  buttonHover: compStyles.getPropertyValue('--oss-button-hover'),
-  buttonLight: compStyles.getPropertyValue('--oss-button-light'),
-  buttonLightHover: compStyles.getPropertyValue('--oss-button-light-hover'),
-  link: compStyles.getPropertyValue('--oss-link'),
-  linkHover: compStyles.getPropertyValue('--oss-link-hover')
+  bgColor: 'var(--oss-bg-color)',
+  bgDark: 'var(--oss-bg-dark)',
+  bgLight: 'var(--oss-bg-light)',
+  text: 'var(--oss-text)',
+  textDark: 'var(--oss-text-dark)',
+  textLight: 'var(--oss-text-light)',
+  button: 'var(--oss-button)',
+  buttonHover: 'var(--oss-button-hover)',
+  buttonLight: 'var(--oss-button-light)',
+  buttonLightHover: 'var(--oss-button-light-hover)',
+  link: 'var(--oss-link)',
+  linkHover: 'var(--oss-link-hover)'
 };
 
 const systemFonts = [
