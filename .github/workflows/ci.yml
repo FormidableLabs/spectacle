@@ -2,7 +2,8 @@ name: CI
 
 # Runs build and test on:
 #   every push that has a change in a file not in the docs folder
-#   every pull request with main branch as the base that has a change in a file not in the docs folder
+#   every pull request with main branch as the base that has a change
+#     in a file not in the docs folder
 on:
   push:
     branches:
@@ -37,7 +38,7 @@ jobs:
       - name: Get pnpm store directory
         id: pnpm-cache
         run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-        
+
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -46,8 +47,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-        - name: Install dependencies
-          run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Check Code ${{ matrix.node-version }}
         run: yarn check-ci
