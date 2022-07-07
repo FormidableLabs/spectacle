@@ -1,21 +1,20 @@
+let compStyles = getComputedStyle(document.documentElement);
+
+const borderRadius = compStyles.getPropertyValue('--oss-border-radius');
+
 const colors = {
-  accentLight: '#ff5d7b',
-  accentMedium: '#c75d74',
-  accentDark: '#8f5261',
-  bg: '#ffffff',
-  bgDark: '#1f1f1f',
-  bgLight: '#f0f0f0',
-  border: '#ececec',
-  button: '#4e4e4e',
-  buttonHover: '#1f1f1f',
-  buttonLight: '#f0f0f0',
-  buttonLightHover: '#fc6986',
-  code: '#ff5d7b',
-  codeBg: '#f0f7fb',
-  passive: '#444444',
-  passiveBg: '#f2f2f2',
-  textDark: '#333',
-  textLight: '#ffffff'
+  bgColor: compStyles.getPropertyValue('--oss-bg-color'),
+  bgDark: compStyles.getPropertyValue('--oss-bg-dark'),
+  bgLight: compStyles.getPropertyValue('--oss-bg-light'),
+  text: compStyles.getPropertyValue('--oss-text'),
+  textDark: compStyles.getPropertyValue('--oss-text-dark'),
+  textLight: compStyles.getPropertyValue('--oss-text-light'),
+  button: compStyles.getPropertyValue('--oss-button'),
+  buttonHover: compStyles.getPropertyValue('--oss-button-hover'),
+  buttonLight: compStyles.getPropertyValue('--oss-button-light'),
+  buttonLightHover: compStyles.getPropertyValue('--oss-button-light-hover'),
+  link: compStyles.getPropertyValue('--oss-link'),
+  linkHover: compStyles.getPropertyValue('--oss-link-hover')
 };
 
 const systemFonts = [
@@ -43,24 +42,28 @@ const fontSizes = {
   body: '1.8rem',
   bodySmall: '1.5rem',
   code: '0.8em',
-  h1: '2.8em',
-  h2: '2.1em',
-  h3: '1.64em'
+  h1: '5.8rem',
+  h1Small: '4.5rem',
+  h2: '3.2rem',
+  h3: '2.2rem'
 };
 
 const fontWeights = {
   body: '400',
   links: '500',
-  heading: '600'
+  heading: '700'
 };
 
-const layout = {
-  page: '144rem',
-  header: '4.8rem',
-  stripes: '1.3rem',
-  sidebar: '22rem',
-  legend: '22rem',
-  logo: '11rem'
+const lineHeights = {
+  body: '1.5',
+  heading: '1.1',
+  code: '1.2'
+};
+
+const media = {
+  sm: `(min-width: 700px)`,
+  md: `(min-width: 960px)`,
+  lg: `(min-width: 1200px)`
 };
 
 const spacing = {
@@ -71,37 +74,13 @@ const spacing = {
   xl: '8.2rem'
 };
 
-export const shadows = {
-  header: 'rgba(0, 0, 0, 0.09) 0px 2px 10px -3px',
-  input: 'rgba(0, 0, 0, 0.09) 0px 2px 10px -3px'
-};
-
-const lineHeights = {
-  body: '1.5',
-  heading: '1.1',
-  code: '1.2'
-};
-
-export const mediaSizes = {
-  sm: 700,
-  md: 960,
-  lg: 1200
-};
-
-export const media = {
-  sm: `(min-width: ${mediaSizes.sm}px)`,
-  md: `(min-width: ${mediaSizes.md}px)`,
-  lg: `(min-width: ${mediaSizes.lg}px)`
-};
-
 export const theme = {
+  borderRadius,
   colors,
+  fonts,
   fontSizes,
   fontWeights,
-  fonts,
-  layout,
   lineHeights,
   media,
-  shadows,
   spacing
 };
