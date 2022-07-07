@@ -9,3 +9,7 @@ window.HTMLElement.prototype.getClientRects = (): any => [
     height: 300
   }
 ];
+
+jest.mock('use-resize-observer', () => {
+  return jest.requireActual('use-resize-observer/polyfilled');
+});

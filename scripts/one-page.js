@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Generate the JS `one-page.html` from `examples/js/index.js`
+ * Generate the JS `index.html` from `examples/js/index.js`
  */
 const fs = require('fs').promises;
 const path = require('path');
@@ -10,7 +10,7 @@ const { transformFileAsync } = require('@babel/core');
 const pretty = require('pretty');
 
 const SRC_FILE = path.resolve(__dirname, '../examples/js/index.js');
-const DEST_FILE = path.resolve(__dirname, '../examples/one-page.html');
+const DEST_FILE = path.resolve(__dirname, '../examples/one-page/index.html');
 
 const htmImport = `
 import htm from 'https://unpkg.com/htm@^3?module';
@@ -84,7 +84,7 @@ const getSrcContent = async (src) => {
 };
 
 const writeDestContent = async (destFile, code) => {
-  // Format for indentation in one-page.html.
+  // Format for indentation in index.html.
   const indent = '      ';
   code = `${indent}${code}`;
   code = code.split('\n').join(`\n${indent}`);

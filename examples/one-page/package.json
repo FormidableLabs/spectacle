@@ -1,0 +1,7 @@
+{
+  "name": "spectacle-example-one-page",
+  "private": "true",
+  "scripts": {
+    "start": "open index.html"
+  }
+}

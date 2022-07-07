@@ -1,0 +1,26 @@
+{
+  "name": "spectacle-example-js",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server --port=3000 --hot --config ./webpack.config.js",
+    "clean": "rimraf dist",
+    "build": "webpack --config ./webpack.config.js"
+  },
+  "dependencies": {
+    "spectacle": "workspace:spectacle@*",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.2",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.0",
+    "babel-loader": "^8.0.6",
+    "rimraf": "^3.0.0",
+    "webpack": "^5.68.0",
+    "webpack-dev-server": "^4.7.4"
+  }
+}

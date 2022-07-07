@@ -483,6 +483,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
     );
   }
 );
+DeckInternal.displayName = 'Deck';
 
 export const Deck = DeckInternal as FC<DeckProps & RefAttributes<DeckRef>>;
 
