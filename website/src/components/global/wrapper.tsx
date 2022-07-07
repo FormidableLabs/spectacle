@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '@site/src/theme';
 
 type Wrapper = {
   noMargin?: boolean;
@@ -15,10 +14,10 @@ export const Wrapper = styled.div<Wrapper>`
   width: 100%;
   margin: ${({ noMargin }) => (noMargin ? '0' : 'auto')};
   padding: ${({ noPadding }) => (noPadding ? '0' : '4rem')};
-  background: ${({ background }) => background || theme.colors.bgLight};
+  background: ${(p) => p.theme.colors[`bg${p.background}`]};
   text-align: center;
 
-  @media ${(p) => p.theme.media.sm} {
+  @media ${({ theme }) => theme.media.sm} {
     padding: ${({ noPadding }) => (noPadding ? '0' : '8rem')};
   }
 `;

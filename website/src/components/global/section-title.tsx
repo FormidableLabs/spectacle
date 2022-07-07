@@ -5,14 +5,16 @@ type SectionTitle = {
 };
 
 export const SectionTitle = styled.h2<SectionTitle>`
-  color: ${(p) => (p.light ? p.theme.colors.textLight : '#4e4e4e')};
-  font-size: 2.5rem;
+  color: ${(p) =>
+    p.light ? p.theme.colors.textDark : p.theme.colors.textLight};
+  font-size: ${({ theme }) => theme.fontSizes.h2};
+  font-weight: ${({ theme }) => theme.fontWeights.heading};
   flex: auto;
   line-height: 1.3;
   margin: 2rem 0 3rem;
   width: 100%;
   text-align: center;
-  @media ${(p) => p.theme.media.sm} {
+  @media ${({ theme }) => theme.media.sm} {
     margin: 2rem 0 6rem;
   }
   @media (max-width: 768px) {

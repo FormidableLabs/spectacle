@@ -1,14 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import { Wrapper } from '@site/src/components/global/wrapper';
-import { theme } from '@site/src/theme';
-import logoFormidableWhite from '@site/static/img/logo_formidable_white.png';
+
+type Meta = {
+  theme: string;
+  noMargin: boolean;
+  noPadding: boolean;
+};
 
 const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media ${(p) => p.theme.media.sm} {
+  @media ${({ theme }) => theme.media.md} {
     flex-direction: row;
   }
 
@@ -21,19 +26,27 @@ const FooterLeft = styled.div`
   display: flex;
   padding: 0;
   text-align: left;
+  flex-direction: column;
+
+  @media ${({ theme }) => theme.media.md} {
+    flex-direction: row;
+  }
 `;
 
 const FooterLogo = styled.img`
-  width: 10rem;
-  margin-right: 3rem;
+  width: 20rem;
 `;
 
 const FooterLinks = styled.ul`
   font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   list-style: none;
-  padding: 0 1rem;
+  padding: 0;
   text-transform: uppercase;
-  margin: 1em 0;
+  margin: 2rem auto;
 
   > * {
     margin-top: 0;
@@ -41,55 +54,143 @@ const FooterLinks = styled.ul`
   }
 
   > * + * {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+    margin-left: 0;
   }
 
-  & a {
-    color: ${(p) => p.theme.colors.textLight};
+  @media ${({ theme }) => theme.media.sm} {
+    flex-direction: row;
+
+    > * + * {
+      margin-top: 0;
+      margin-left: 4rem;
+    }
+  }
+
+  @media ${({ theme }) => theme.media.md} {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 6rem 0 auto;
+
+    > * + * {
+      margin-top: 2rem;
+      margin-left: 0;
+    }
+  }
+
+  & li a {
+    color: ${({ theme }) => theme.colors.buttonLight};
     letter-spacing: 0.1rem;
-    transition: opacity 0.4s ease-out;
-  }
+    transition: color 0.2s ease-out;
 
-  & a:hover {
-    opacity: 0.7;
-  }
-
-  & a:visited {
-    color: ${(p) => p.theme.colors.textLight};
+    :hover {
+      color: ${({ theme }) => theme.colors.buttonLightHover};
+    }
   }
 `;
 
 const FooterDescription = styled.p`
-  font-size: 1.4rem;
-  letter-spacing: 0.05rem;
+  font-size: 1.3rem;
   line-height: 1.6;
   max-width: 56rem;
-  text-align: left;
-  color: ${(p) => p.theme.colors.textLight};
-  margin: 0;
+  margin: 0 auto;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.textLight};
+
+  @media ${({ theme }) => theme.media.md} {
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6;
+  }
 
   & a {
-    color: ${(p) => p.theme.colors.textLight};
-    letter-spacing: 0.1rem;
-    transition: opacity 0.3s ease-out;
-  }
+    color: ${({ theme }) => theme.colors.buttonLight};
+    transition: color 0.2s ease-out;
 
-  & a:hover {
-    opacity: 0.7;
-  }
-
-  & a:visited {
-    color: ${(p) => p.theme.colors.textLight};
+    :hover {
+      color: ${({ theme }) => theme.colors.buttonLightHover};
+    }
   }
 `;
 
-export default function Footer() {
+const FooterCopyright = styled.p`
+  font-size: 1.3rem;
+  line-height: 1.6;
+  width: 100%;
+  margin: 2rem auto 0;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.textLight};
+
+  @media ${({ theme }) => theme.media.md} {
+    text-align: left;
+    font-size: 1.4rem;
+  }
+
+  & a {
+    margin-left: 0;
+    display: block;
+    color: ${({ theme }) => theme.colors.buttonLight};
+    transition: color 0.2s ease-out;
+
+    @media ${({ theme }) => theme.media.md} {
+      margin-left: 6rem;
+      display: inline-block;
+    }
+
+    :hover {
+      color: ${({ theme }) => theme.colors.buttonLightHover};
+    }
+  }
+`;
+
+function romanize(num) {
+  if (!+num) return false;
+  const digits = String(+num).split('');
+  const key = [
+    '',
+    'C',
+    'CC',
+    'CCC',
+    'CD',
+    'D',
+    'DC',
+    'DCC',
+    'DCCC',
+    'CM',
+    '',
+    'X',
+    'XX',
+    'XXX',
+    'XL',
+    'L',
+    'LX',
+    'LXX',
+    'LXXX',
+    'XC',
+    '',
+    'I',
+    'II',
+    'III',
+    'IV',
+    'V',
+    'VI',
+    'VII',
+    'VIII',
+    'IX'
+  ];
+  let roman = '';
+  let i = 3;
+  while (i--) roman = (key[+digits.pop() + i * 10] || '') + roman;
+  return Array(+digits.join('') + 1).join('M') + roman;
+}
+
+export default function Footer({ content }) {
+  const { meta }: { meta: Meta } = content;
+
+  const logoSrc = useBaseUrl('/svg/formidable-logo-white.svg');
+
   return (
-    <Wrapper
-      noPadding={false}
-      noMargin={false}
-      background={theme.colors.bgDark}
-    >
+    <Wrapper noPadding={false} noMargin={false} background={meta.theme}>
       <FooterContainer>
         <FooterLeft>
           <a
@@ -97,10 +198,21 @@ export default function Footer() {
             title="Formidable"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ textAlign: 'center' }}
           >
-            <FooterLogo src={logoFormidableWhite} alt="Formidable Logo" />
+            <FooterLogo src={logoSrc} alt="Formidable Logo" />
           </a>
           <FooterLinks>
+            <li>
+              <a
+                href="https://formidable.com/open-source"
+                title="Open Source"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open Source
+              </a>
+            </li>
             <li>
               <a
                 href="https://formidable.com/contact/"
@@ -124,14 +236,20 @@ export default function Footer() {
           </FooterLinks>
         </FooterLeft>
         <FooterDescription>
-          Formidable is a global design and engineering consultancy and open
-          source software organization, specializing in React.js, React Native,
-          GraphQL, Node.js, and the extended JavaScript ecosystem. We have
-          locations in Seattle, London, Toronto, Denver, and Phoenix with remote
-          consultants worldwide. For more information please visit{' '}
-          <a href="https://www.formidable.com">formidable.com</a>.
+          Formidable is a global design and engineering consultancy, and
+          open-source software organization, specializing in digital products
+          and transformation. The firm has location hubs in Seattle, London,
+          Toronto, Denver, Atlanta, and Phoenix with remote consultants
+          worldwide. Since 2013, its team has worked with companies ranging in
+          size from startups to Fortune 100s to build quality digital products
+          and level-up engineering and design teams. For more information please
+          visit <a href="https://www.formidable.com">formidable.com</a>.
         </FooterDescription>
       </FooterContainer>
+      <FooterCopyright>
+        © {romanize(new Date().getFullYear())} Formidable Labs, LLC.{' '}
+        <a href="https://www.formidable.com">Privacy and Cookie Policies</a>
+      </FooterCopyright>
     </Wrapper>
   );
 }

@@ -15,7 +15,7 @@ export const Stack = styled.div<Stack>`
   > * + * {
     margin-top: ${({ spacingMobile }) => `${spacingMobile}rem`};
   }
-  @media ${(p) => p.theme.media.sm} {
+  @media ${({ theme }) => theme.media.sm} {
     > * + * {
       margin-top: ${({ spacingTablet }) => `${spacingTablet}rem`};
     }
