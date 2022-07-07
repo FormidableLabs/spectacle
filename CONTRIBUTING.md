@@ -13,12 +13,12 @@ from within [@FormidableLabs][formidable-github].
 
 ### Installing dependencies
 
-We prefer to use [`yarn`][yarn-docs].
+We prefer to use [`pnpm`][pnpm-docs].
 
 Install all dependencies by running:
 
 ```bash
-$ yarn
+$ pnpm install
 ```
 
 ### Examples
@@ -41,7 +41,7 @@ Our examples are spread out across multiple projects depending on where the core
 We have various deck scenarios in `examples` in this repository that are part of the development process.
 
 We follow the convention of `start:NAME` to run an in-memory dev server for a specific
-example, but we also have a `yarn build-examples` script task to make sure we're actually
+example, but we also have a `pnpm run build-examples` script task to make sure we're actually
 producing non-broken sample presentations as a CI / assurance test.
 
 #### `examples/js`
@@ -50,7 +50,7 @@ A basic deck with JSX and JavaScript:
 
 ```bash
 # start the dev server
-$ yarn start:js
+$ pnpm run start:js
 
 # open the browser
 $ open http://localhost:3000/
@@ -64,7 +64,7 @@ A basic deck written in markdown:
 
 ```bash
 # In one terminal open dev server
-$ yarn start:md
+$ pnpm start:md
 
 # In another open a browser to 3100
 $ open http://localhost:3100/
@@ -80,7 +80,7 @@ A self-contained single web page that uses Spectacle, React, and `htm` for a "no
 # [optional] build the library -
 #   comment out the unpkg dependency in
 #   index.html and use the local dist/
-$ yarn build
+$ pnpm run build
 
 # open the browser
 $ open examples/one-page/index.html
@@ -89,12 +89,12 @@ $ open examples/one-page/index.html
 _or_ use the single line:
 
 ```bash
-$ yarn start:one-page
+$ pnpm run start:one-page
 ```
 
 **Note**: This file is published and used by `spectacle-cli`.
 
-**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `yarn build-one-page` and verify changes look good.
+**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `pnpm run build-one-page` and verify changes look good.
 
 ### Examples integration with `spectacle-cli`
 
@@ -132,7 +132,7 @@ $ open http://localhost:6300/ http://localhost:6100/ http://localhost:6200/
 To run all tests:
 
 ```bash
-$ yarn test
+$ pnpm run test
 ```
 
 ### Linting and Formatting
@@ -140,21 +140,21 @@ $ yarn test
 To check (and fix) code:
 
 ```bash
-$ yarn lint
-$ yarn lint-fix
+$ pnpm run lint
+$ pnpm run lint-fix
 ```
 
 To check (and fix) formatting of MD, JSON, _and_ code:
 
 ```bash
-$ yarn prettier-check
-$ yarn prettier-fix
+$ pnpm run prettier-check
+$ pnpm run prettier-fix
 ```
 
 We also have a simple one-liner for running both of these fix-checks back-to-back:
 
 ```bash
-$ yarn format
+$ pnpm run format
 ```
 
 Note that there is duplication for JS code in `prettier` doing the same style changes,
@@ -165,9 +165,9 @@ but both should be harmonious and run together.
 Thanks for taking the time to help us make Spectacle even better! Before you go
 ahead and submit a PR, make sure that you have done the following:
 
-- Run all checks using `yarn check-ci`.
-- Run `yarn build-one-page` and check + commit changes to `examples/one-page.html`
-- Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
+- Run all checks using `pnpm run check-ci`.
+- Run `pnpm run build-one-page` and check + commit changes to `examples/one-page/index.html`
+- Check that both the core library and _all_ examples build: `pnpm run build`.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
 ### Releasing a new version to NPM
@@ -278,4 +278,4 @@ available at [https://www.contributor-covenant.org/version/2/0][cc-latest-versio
 [kale-stew]: https://www.github.com/kale-stew
 [mdx]: https://mdxjs.com/
 [spectacle-cli]: https://www.github.com/FormidableLabs/spectacle-cli
-[yarn-docs]: https://yarnpkg.com/en/docs/getting-started
+[pnpm-docs]: https://pnpm.io/
