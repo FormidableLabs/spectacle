@@ -141,14 +141,14 @@ To check (and fix) code:
 
 ```bash
 $ pnpm run lint
-$ pnpm run lint-fix
+$ pnpm run lint:fix
 ```
 
 To check (and fix) formatting of MD, JSON, _and_ code:
 
 ```bash
-$ pnpm run prettier-check
-$ pnpm run prettier-fix
+$ pnpm run prettier:check
+$ pnpm run prettier:fix
 ```
 
 We also have a simple one-liner for running both of these fix-checks back-to-back:
@@ -165,7 +165,7 @@ but both should be harmonious and run together.
 Thanks for taking the time to help us make Spectacle even better! Before you go
 ahead and submit a PR, make sure that you have done the following:
 
-- Run all checks using `pnpm run check-ci`.
+- Run all checks using `pnpm run check:ci`.
 - Run `pnpm run build:one-page` and check + commit changes to `examples/one-page/index.html`
 - Check that both the core library and _all_ examples build: `pnpm run build`.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).

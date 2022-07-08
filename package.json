@@ -2,13 +2,13 @@
   "name": "spectacle-monorepo",
   "scripts": {
     "lint": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src",
-    "lint-fix": "pnpm run lint --fix",
+    "lint:fix": "pnpm run lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
-    "prettier-check": "pnpm run prettier --check",
-    "prettier-fix": "pnpm prettier --write",
+    "prettier:check": "pnpm run prettier --check",
+    "prettier:fix": "pnpm prettier --write",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
-    "check-ci": "wireit",
+    "check:ci": "wireit",
     "clean": "pnpm run -r clean",
 
     "build:core": "wireit",
@@ -41,10 +41,10 @@
     "wireit": "^0.7.1"
   },
   "wireit": {
-    "check-ci": {
+    "check:ci": {
       "dependencies": [
         "lint",
-        "prettier-check",
+        "prettier:check",
         "test",
         "typecheck"
       ]

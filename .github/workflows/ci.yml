@@ -51,7 +51,7 @@ jobs:
         run: pnpm install
 
       - name: Check Code ${{ matrix.node-version }}
-        run: pnpm run check-ci
+        run: pnpm run check:ci
 
         # NOTE! build-examples also builds the core.
         #  This dependency will be more explicit with wireit
