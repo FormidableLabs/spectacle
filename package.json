@@ -1,11 +1,6 @@
 {
   "name": "spectacle-monorepo",
   "scripts": {
-    "start:js": "pnpm run --filter spectacle-example-js start",
-    "start:ts": "pnpm run --filter spectacle-example-ts start",
-    "start:md": "pnpm run --filter spectacle-example-md start",
-    "start:one-page": "pnpm run --filter spectacle-example-one-page start",
-    "start:examples": "pnpm run --parallel --filter \"*example*\" start",
     "lint": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src",
     "lint-fix": "pnpm run lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
@@ -13,16 +8,24 @@
     "prettier-fix": "pnpm prettier --write",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
-    "check": "pnpm run lint && pnpm run prettier-check && pnpm run test && pnpm run typecheck",
-    "check-ci": "pnpm run check",
+    "check-ci": "wireit",
     "clean": "pnpm run -r clean",
-    "build-examples": "pnpm run --filter spectacle build && pnpm run -r --filter \"*example*\" build",
-    "build-core": "pnpm run --filter spectacle build",
-    "build": "pnpm run -r build",
-    "build-one-page": "node ./scripts/one-page.js"
+
+    "build:core": "wireit",
+    "start:js": "wireit",
+    "build:js": "wireit",
+    "start:ts": "wireit",
+    "build:ts": "wireit",
+    "start:md": "wireit",
+    "build:md": "wireit",
+    "start:one-page": "wireit",
+    "build:one-page": "wireit",
+    "start:examples": "wireit",
+    "build:examples": "wireit"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
+    "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "babel-eslint": "^10.1.0",
@@ -35,6 +38,65 @@
     "prettier": "^2.4.1",
     "pretty": "^2.0.0",
     "typescript": "^4.5.2",
-    "@types/jest": "^27.0.2"
+    "wireit": "^0.7.1"
+  },
+  "wireit": {
+    "check-ci": {
+      "dependencies": [
+        "lint",
+        "prettier-check",
+        "test",
+        "typecheck"
+      ]
+    },
+    "build:core": {
+      "files": ["./packages/spectacle/src/**/*.{ts,tsx,js}"],
+      "dependencies": ["./packages/spectacle:build"]
+    },
+    "start:js": {
+      "dependencies": ["build:core", "./examples/js:start"]
+    },
+    "build:js": {
+      "files": ["./examples/js/*"],
+      "dependencies": ["build:core", "./examples/js:build"]
+    },
+    "start:ts": {
+      "dependencies": ["build:core", "./examples/typescript:start"]
+    },
+    "build:ts": {
+      "files": ["./examples/typescript/*"],
+      "dependencies": ["build:core", "./examples/typescript:build"]
+    },
+    "start:md": {
+      "dependencies": ["build:core", "./examples/md:start"]
+    },
+    "build:md": {
+      "files": ["./examples/md/*"],
+      "dependencies": ["build:core", "./examples/md:build"]
+    },
+    "start:one-page": {
+      "dependencies": ["build:core", "./examples/one-page:start"]
+    },
+    "build:one-page": {
+      "command": "node ./scripts/one-page.js",
+      "files": ["./examples/js/index.{html,js}"]
+    },
+    "start:examples": {
+      "dependencies": [
+        "start:js",
+        "start:ts",
+        "start:md",
+        "start:one-page"
+      ]
+    },
+    "build:examples": {
+      "dependencies": [
+        "build:core",
+        "build:js",
+        "build:ts",
+        "build:md",
+        "build:one-page"
+      ]
+    }
   }
 }

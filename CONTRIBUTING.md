@@ -94,7 +94,7 @@ $ pnpm run start:one-page
 
 **Note**: This file is published and used by `spectacle-cli`.
 
-**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `pnpm run build-one-page` and verify changes look good.
+**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `pnpm run build:one-page` and verify changes look good.
 
 ### Examples integration with `spectacle-cli`
 
@@ -166,7 +166,7 @@ Thanks for taking the time to help us make Spectacle even better! Before you go
 ahead and submit a PR, make sure that you have done the following:
 
 - Run all checks using `pnpm run check-ci`.
-- Run `pnpm run build-one-page` and check + commit changes to `examples/one-page/index.html`
+- Run `pnpm run build:one-page` and check + commit changes to `examples/one-page/index.html`
 - Check that both the core library and _all_ examples build: `pnpm run build`.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
