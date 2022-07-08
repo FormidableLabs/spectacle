@@ -5,7 +5,7 @@
   "main": "src/cli.ts",
   "scripts": {
     "clean": "rimraf bin",
-    "start": "nodemon --watch 'cli/**/*.ts' --exec 'ts-node' src/cli.ts",
+    "start": "nodemon src/cli.ts",
     "build": "tsc --p tsconfig.json",
     "preversion": "pnpm run clean && pnpm run build"
   },
