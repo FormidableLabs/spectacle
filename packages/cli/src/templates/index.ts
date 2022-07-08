@@ -1,3 +1,4 @@
+import path from 'path';
 import { existsSync } from 'fs';
 import { mkdir, writeFile } from 'fs/promises';
 import { htmlTemplate } from './html';
@@ -12,10 +13,11 @@ export const writeBaseWebpackProjectFiles = async ({
   snakeCaseName,
   name
 }: FileOptions) => {
-  if (existsSync(snakeCaseName)) {
+  const outPath = path.resolve(process.cwd(), snakeCaseName);
+  if (existsSync(outPath)) {
     throw new Error(`Directory named ${snakeCaseName} already exists.`);
   }
-  await mkdir(snakeCaseName, { recursive: true });
+  await mkdir(outPath, { recursive: true });
   await writeFile(`${snakeCaseName}/index.html`, htmlTemplate({ name }));
 };
 

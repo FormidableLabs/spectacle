@@ -35,4 +35,4 @@ build
 dist
 lib
 es
-/packages/cli/bin/
+bin
