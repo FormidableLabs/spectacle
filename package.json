@@ -6,7 +6,8 @@
     "start:md": "pnpm run --filter spectacle-example-md start",
     "start:one-page": "pnpm run --filter spectacle-example-one-page start",
     "start:examples": "pnpm run --parallel --filter \"*example*\" start",
-    "lint": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src",
+    "start:cli": "pnpm run --filter spectacle-cli start",
+    "lint": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src packages/cli/src",
     "lint-fix": "pnpm run lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
     "prettier-check": "pnpm run prettier --check",
@@ -19,7 +20,8 @@
     "build-examples": "pnpm run --filter spectacle build && pnpm run -r --filter \"*example*\" build",
     "build-core": "pnpm run --filter spectacle build",
     "build": "pnpm run -r build",
-    "build-one-page": "node ./scripts/one-page.js"
+    "build-one-page": "node ./scripts/one-page.js",
+    "build:cli": "pnpm run --filter spectacle-cli build"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",

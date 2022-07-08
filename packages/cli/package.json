@@ -1,0 +1,37 @@
+{
+  "name": "spectacle-cli",
+  "version": "2.0.0-alpha.1",
+  "description": "CLI for Spectacle",
+  "main": "src/cli.ts",
+  "scripts": {
+    "clean": "rimraf bin",
+    "start": "nodemon --watch 'cli/**/*.ts' --exec 'ts-node' src/cli.ts",
+    "build": "tsc --p tsconfig.json",
+    "preversion": "pnpm run clean && pnpm run build"
+  },
+  "bin": {
+    "spectacle-cli": "bin/cli.js"
+  },
+  "author": "Formidable Labs <hello@formidable.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FormidableLabs/spectacle.git"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "clear": "^0.1.0",
+    "cli-spinners": "^2.6.1",
+    "commander": "^9.3.0",
+    "log-update": "4.0.0"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.0.3",
+    "nodemon": "^2.0.18",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.8.1",
+    "typescript": "*"
+  },
+  "resolutions": {}
+}

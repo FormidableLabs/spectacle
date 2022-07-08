@@ -1,0 +1,10 @@
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "outDir": "./bin",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  }
+}
