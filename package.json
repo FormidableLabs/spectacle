@@ -1,13 +1,12 @@
 {
   "name": "spectacle-monorepo",
   "scripts": {
-    "lint": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src",
+    "lint": "wireit",
     "lint:fix": "pnpm run lint --fix",
-    "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
-    "prettier:check": "pnpm run prettier --check",
-    "prettier:fix": "pnpm prettier --write",
-    "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r test",
+    "prettier:check": "wireit",
+    "prettier:fix": "wireit",
+    "typecheck": "wireit",
+    "test": "wireit",
     "check:ci": "wireit",
     "clean": "pnpm run -r clean",
 
@@ -41,6 +40,28 @@
     "wireit": "^0.7.1"
   },
   "wireit": {
+    "lint": {
+      "files": ["./examples", "./scripts", "./packages/spectacle/src", "!**/node_modules", "!**/es", "!**/lib", "!**/dist"],
+      "command": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src"
+    },
+    "lint:fix": {
+      "command": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src --fix"
+    },
+    "prettier:check": {
+      "files": ["**/*.{js,json,ts,css,md}", "!**/node_modules", "!**/es", "!**/lib", "!**/dist", "!**/docs", "!.vscode", "!.idea", "!.nova"],
+      "command": "prettier \"**/*.{js,json,ts,css,md}\" --check"
+    },
+    "prettier:fix": {
+      "command": "prettier \"**/*.{js,json,ts,css,md}\" --write"
+    },
+    "typecheck": {
+      "files": ["./packages/spectacle/**/*.{ts,tsx,json}", "!**/node_modules", "!**/es", "!**/lib", "!**/dist"],
+      "dependencies": ["./packages/spectacle:typecheck"]
+    },
+    "test": {
+      "files": ["./packages/spectacle/src/**/*", "./packages/spectacle/*"],
+      "dependencies": ["./packages/spectacle:test"]
+    },
     "check:ci": {
       "dependencies": [
         "lint",
@@ -49,6 +70,7 @@
         "typecheck"
       ]
     },
+
     "build:core": {
       "files": ["./packages/spectacle/src/**/*.{ts,tsx,js}"],
       "dependencies": ["./packages/spectacle:build"]
