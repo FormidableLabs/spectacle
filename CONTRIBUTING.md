@@ -6,7 +6,7 @@ Thank you for contributing!
   <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
 </a>
 
-Spectacle is actively maintained by @[carlos-kelly][] and @[kale-stew][]
+Spectacle is actively maintained by @[carlos-kelly][] and @[gksander][]
 from within [@FormidableLabs][formidable-github].
 
 ## Development
@@ -29,6 +29,7 @@ Our examples are spread out across multiple projects depending on where the core
 
 - `spectacle`
   - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/main/examples/js)
+  - [`examples/typescript`](https://github.com/FormidableLabs/spectacle/tree/main/examples/typescript)
   - [`examples/md`](https://github.com/FormidableLabs/spectacle/tree/main/examples/md)
   - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page.html)
 - `spectacle-mdx-loader`
@@ -41,8 +42,10 @@ Our examples are spread out across multiple projects depending on where the core
 We have various deck scenarios in `examples` in this repository that are part of the development process.
 
 We follow the convention of `start:NAME` to run an in-memory dev server for a specific
-example, but we also have a `pnpm run build-examples` script task to make sure we're actually
+example, but we also have a `pnpm run build:examples` script task to make sure we're actually
 producing non-broken sample presentations as a CI / assurance test.
+
+If you'd like to make changes to Spectacle core, and see changes reflected in the examples, run `pnpm run build:core --watch` in a terminal window, and then follow along with the following commands in a _separate_ terminal window.
 
 #### `examples/js`
 
@@ -275,7 +278,7 @@ available at [https://www.contributor-covenant.org/version/2/0][cc-latest-versio
 [cc-homepage]: http://contributor-covenant.org
 [cc-latest-version]: https://www.contributor-covenant.org/version/2/0/code_of_conduct
 [formidable-github]: https://www.github.com/FormidableLabs
-[kale-stew]: https://www.github.com/kale-stew
+[gksander]: https://www.github.com/gksander
 [mdx]: https://mdxjs.com/
 [spectacle-cli]: https://www.github.com/FormidableLabs/spectacle-cli
 [pnpm-docs]: https://pnpm.io/
