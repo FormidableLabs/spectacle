@@ -41,7 +41,7 @@ Our examples are spread out across multiple projects depending on where the core
 We have various deck scenarios in `examples` in this repository that are part of the development process.
 
 We follow the convention of `start:NAME` to run an in-memory dev server for a specific
-example, but we also have a `pnpm run build-examples` script task to make sure we're actually
+example, but we also have a `pnpm run build:examples` script task to make sure we're actually
 producing non-broken sample presentations as a CI / assurance test.
 
 #### `examples/js`
@@ -94,7 +94,7 @@ $ pnpm run start:one-page
 
 **Note**: This file is published and used by `spectacle-cli`.
 
-**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `pnpm run build-one-page` and verify changes look good.
+**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `pnpm run build:one-page` and verify changes look good.
 
 ### Examples integration with `spectacle-cli`
 
@@ -141,14 +141,14 @@ To check (and fix) code:
 
 ```bash
 $ pnpm run lint
-$ pnpm run lint-fix
+$ pnpm run lint:fix
 ```
 
 To check (and fix) formatting of MD, JSON, _and_ code:
 
 ```bash
-$ pnpm run prettier-check
-$ pnpm run prettier-fix
+$ pnpm run prettier:check
+$ pnpm run prettier:fix
 ```
 
 We also have a simple one-liner for running both of these fix-checks back-to-back:
@@ -166,7 +166,7 @@ Thanks for taking the time to help us make Spectacle even better! Before you go
 ahead and submit a PR, make sure that you have done the following:
 
 - Run all checks using `pnpm run check-ci`.
-- Run `pnpm run build-one-page` and check + commit changes to `examples/one-page/index.html`
+- Run `pnpm run build:one-page` and check + commit changes to `examples/one-page/index.html`
 - Check that both the core library and _all_ examples build: `pnpm run build`.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
