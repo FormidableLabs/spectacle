@@ -22,6 +22,7 @@
     "build": "pnpm run -r build",
     "build-one-page": "node ./scripts/one-page.js",
     "build:cli": "pnpm run --filter spectacle-cli build",
+    "changeset": "changeset",
     "version": "pnpm changeset version && pnpm install --fix-lockfile"
   },
   "devDependencies": {
