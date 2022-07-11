@@ -39,7 +39,7 @@ jobs:
         run: pnpm install
 
       - name: Build packages
-        run: pnpm run build:core
+        run: pnpm run build
 
       - name: PR or Publish
         id: changesets
