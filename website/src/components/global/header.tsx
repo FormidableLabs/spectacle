@@ -63,8 +63,9 @@ const HeaderContainer = styled.a`
     margin-top: 1rem;
   }
   :hover {
-    color: var(--oss-color-white);
+    color: ${({ theme }) => theme.colors.textLight};
     background: none;
+    text-decoration: none;
   }
 `;
 
@@ -81,7 +82,7 @@ const HeaderText = styled.p`
 const HeaderLogo = styled.img`
   width: 4rem;
   @media ${({ theme }) => theme.media.sm} {
-    width: 6rem;
+    width: 7rem;
   }
 `;
 
