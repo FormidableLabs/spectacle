@@ -31,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.link};
-    font-weight: ${({ theme }) => theme.fontWeights.links};
+    font-weight: ${({ theme }) => theme.fontWeights.heading};
 
     &:hover {
       color: ${({ theme }) => theme.colors.linkHover};
