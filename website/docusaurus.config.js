@@ -101,18 +101,12 @@ const config = {
           src: 'svg/nav-logo.svg'
         },
         items: [
-          // {
-          //   type: 'doc',
-          //   docId: 'advanced-concepts',
-          //   position: 'left',
-          //   label: 'Testing Internal Link'
-          // },
-          // {
-          //   href: 'https://github.com/FormidableLabs/spectacle',
-          //   'aria-label': 'GitHub Repository',
-          //   label: 'Testing External Link',
-          //   position: 'left'
-          // },
+          {
+            type: 'doc',
+            docId: 'basic-concepts',
+            position: 'left',
+            label: 'Docs'
+          },
           {
             href: 'https://github.com/FormidableLabs/spectacle',
             className: 'header-github-link',
@@ -130,43 +124,11 @@ const config = {
       footer: {
         logo: {
           alt: 'Formidable Labs Logo',
-          src: 'svg/formidable-icon-white.svg'
+          src: 'svg/formidable-logo-white.svg'
         },
         copyright: `© ${romanize(
           new Date().getFullYear()
         )} Formidable Labs, LLC.`
-        // links: [
-        //   {
-        //     items: [
-        //       {
-        //         html: `<img src="./src/img/logo_formidable_white.png" alt="Formidable Labs Logo" />`
-        //       }
-        //     ]
-        //   },
-        //   {
-        //     items: [
-        //       {
-        //         label: 'Open Source', //Link text
-        //         href: '#' //Link target
-        //       },
-        //       {
-        //         label: 'Contact',
-        //         href: '#'
-        //       },
-        //       {
-        //         label: 'Careers',
-        //         href: '#'
-        //       }
-        //     ]
-        //   },
-        //   {
-        //     items: [
-        //       {
-        //         html: `<p>Formidable is a global design and engineering consultancy and open source software organization, specializing in React.js, React Native, GraphQL, Node.js, and the extended JavaScript ecosystem. We have locations in Seattle, London, Toronto, Denver, and Phoenix with remote consultants worldwide. For more information please visit formidable.com.</p>`
-        //       }
-        //     ]
-        //   }
-        // ]
       },
       prism: {
         theme: lightCodeTheme,
