@@ -48,7 +48,7 @@ const FeatureCard = styled.div`
   }
 
   > * + * {
-    margin-top: 2rem;
+    margin-top: 4rem;
   }
 
   svg {

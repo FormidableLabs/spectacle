@@ -14,7 +14,7 @@ const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5rem;
+  margin-top: 12rem;
   width: 100%;
   > * {
     margin-top: 0;
@@ -94,7 +94,6 @@ const HeroNavList = styled.ul`
     font-size: 1.7rem;
     letter-spacing: 0.1rem;
     transition: opacity 0.4s ease-out;
-    text-transform: uppercase;
     text-decoration: none;
     &:hover {
       color: ${({ theme }) => theme.colors.buttonLightHover};
@@ -129,11 +128,11 @@ const HeroButtonsContainer = styled.div`
 
 const DocumentationButton = styled(Link)`
   width: 30rem;
-  height: 4rem;
+  height: 4.5rem;
   font-size: 1.4rem;
   background: ${({ theme }) => theme.colors.buttonLight};
   transition: background 0.25s ease-out;
-  line-height: 4rem;
+  line-height: 4.5rem;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;

@@ -215,7 +215,7 @@ export default function Footer({ content }) {
             </li>
             <li>
               <a
-                href="https://formidable.com/contact/"
+                href="https://formidable.com/contact"
                 title="Contact"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -225,7 +225,7 @@ export default function Footer({ content }) {
             </li>
             <li>
               <a
-                href="https://formidable.com/careers/"
+                href="https://formidable.com/careers"
                 title="Careers"
                 target="_blank"
                 rel="noopener noreferrer"

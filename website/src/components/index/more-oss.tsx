@@ -32,10 +32,12 @@ const OSSCardContainer = styled.div`
   max-width: 75%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 0;
   @media ${(p) => p.theme.media.sm} {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     max-width: 116rem;
+    margin-bottom: 3rem;
   }
 `;
 
@@ -92,7 +94,7 @@ const OSSTitle = styled(SecondaryTitle)`
   color: ${(p) =>
     p.light ? p.theme.colors.textDark : p.theme.colors.textLight};
   transition: opacity 0.3s ease-out;
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   &:hover {
     opacity: 0.7;
   }

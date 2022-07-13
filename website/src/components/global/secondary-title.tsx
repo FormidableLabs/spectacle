@@ -11,4 +11,5 @@ export const SecondaryTitle = styled.h3<SecondaryTitle>`
   font-weight: ${({ theme }) => theme.fontWeights.heading};
   line-height: 2.4rem;
   text-align: center;
+  margin-bottom: 1.25rem;
 `;

@@ -16,6 +16,7 @@ const Buttons = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 0;
 
   @media ${({ theme }) => theme.media.sm} {
     flex-direction: row;

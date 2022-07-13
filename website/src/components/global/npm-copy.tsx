@@ -17,12 +17,12 @@ const HeroNPMWrapper = styled.div`
 
 const HeroNPMCopy = styled.p`
   width: 22rem;
-  height: 4rem;
+  height: 4.5rem;
   color: ${({ theme }) => theme.colors.textDark};
   background-color: ${({ theme }) => theme.colors.imputBg}; /* #ebe5da; */
   text-align: left;
   padding: 0.33rem 1.5rem;
-  line-height: 3.44rem;
+  line-height: 3.75rem;
   font-size: 14px;
   letter-spacing: 0.2px;
   margin: 0;
@@ -31,11 +31,11 @@ const HeroNPMCopy = styled.p`
 
 const HeroNPMButton = styled.button`
   width: 8rem;
-  height: 4rem;
+  height: 4.5rem;
   background: ${({ theme }) => theme.colors.bgLight};
   transition: background 0.4s;
   font-size: 14px;
-  font-weight: ${({ theme }) => theme.fontWeights.links};
+  font-weight: ${({ theme }) => theme.fontWeights.heading};
   letter-spacing: 1px;
   color: ${({ theme }) => theme.colors.textDark};
   border: 0;

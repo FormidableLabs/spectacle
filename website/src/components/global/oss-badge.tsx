@@ -25,12 +25,12 @@ const OSSImage = styled.a<OSSImage>`
   cursor: pointer;
 
   @media ${({ theme }) => theme.media.sm} {
-    width: 30rem;
+    width: 26rem;
     max-width: initial;
   }
 
   @media ${({ theme }) => theme.media.md} {
-    width: 36rem;
+    width: 30rem;
     margin-right: 0;
     margin-left: auto;
   }

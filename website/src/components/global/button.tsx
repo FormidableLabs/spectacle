@@ -14,9 +14,9 @@ export const Button = styled(Link)<LinkProps>`
     p.light ? p.theme.colors.textLight : p.theme.colors.textDark};
   display: block;
   font-size: 1.5rem;
-  height: 4rem;
+  height: 4.5rem;
   letter-spacing: 0.05em;
-  line-height: 4rem;
+  line-height: 4.5rem;
   margin: ${({ noMargin }) => (noMargin ? '0' : '5rem auto 3rem')};
   max-width: 30rem;
   min-width: 22rem;
