@@ -12,7 +12,8 @@ const colors = {
   buttonLight: 'var(--oss-button-light)',
   buttonLightHover: 'var(--oss-button-light-hover)',
   link: 'var(--oss-link)',
-  linkHover: 'var(--oss-link-hover)'
+  linkHover: 'var(--oss-link-hover)',
+  imputBg: 'var(--oss-input-bg)'
 };
 
 const systemFonts = [
