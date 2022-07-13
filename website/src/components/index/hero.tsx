@@ -43,6 +43,7 @@ const HeroTitle = styled.h1`
   font-size: ${({ theme }) => theme.fontSizes.h1Small};
   letter-spacing: 0.1rem;
   text-align: center;
+  text-transform: uppercase;
   @media ${({ theme }) => theme.media.sm} {
     font-size: ${({ theme }) => theme.fontSizes.h1};
     text-align: left;
