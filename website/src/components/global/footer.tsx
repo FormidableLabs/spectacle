@@ -247,8 +247,7 @@ export default function Footer({ content }) {
         </FooterDescription>
       </FooterContainer>
       <FooterCopyright>
-        © {romanize(new Date().getFullYear())} Formidable Labs, LLC.{' '}
-        <a href="https://www.formidable.com">Privacy and Cookie Policies</a>
+        © {romanize(new Date().getFullYear())} Formidable Labs, LLC.
       </FooterCopyright>
     </Wrapper>
   );
