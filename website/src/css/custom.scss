@@ -162,7 +162,7 @@
   --oss-text-light: var(--oss-color-white);
   --oss-button: var(--oss-color-black);
   --oss-button-hover: var(--oss-color-primary);
-  --oss-button-light: var(--oss-color-tan-light);
+  --oss-button-light: var(--oss-color-white);
   --oss-button-light-hover: var(--oss-color-primary);
   --oss-link: var(--oss-color-primary);
   --oss-link-hover: var(--oss-color-primary-shade-light);
@@ -205,7 +205,7 @@
   // menu (left sidebar)
   --ifm-menu-color: var(--oss-color-black);
   --ifm-menu-color-active: var(--ifm-color-primary);
-  --ifm-menu-color-background-hover: var(--oss-color-tan-dark);
+  --ifm-menu-color-background-hover: var(--oss-color-tan-light);
   --ifm-menu-color-background-active: var(--oss-color-tan-dark);
   --ifm-navbar-background-color: var(--oss-color-tan-light);
 
@@ -244,7 +244,7 @@
   // menu (left sidebar)
   --ifm-menu-color: var(--oss-color-white);
   --ifm-menu-color-active: var(--ifm-color-primary);
-  --ifm-menu-color-background-hover: var(--oss-color-grey-darker);
+  --ifm-menu-color-background-hover: var(--oss-color-black);
   --ifm-menu-color-background-active: var(--oss-color-grey-darker);
   --ifm-navbar-background-color: var(--oss-color-black);
 
@@ -266,6 +266,14 @@
 
 code {
   color: var(--ifm-color-primary-dark);
+}
+
+.menu__link--sublist-caret:after {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
+}
+
+.docusaurus-mt-lg {
+  margin-bottom: 3rem;
 }
 
 // top navbar
@@ -483,9 +491,16 @@ nav.menu {
   }
 }
 
-article {
-  div:first-child {
+article > div {
+  &:first-child {
     background-color: var(--oss-color-tan-light);
+  }
+
+  button {
+    &::after {
+      background: var(--ifm-menu-link-sublist-icon) 50% 50% / 1.5rem 1.5rem
+        no-repeat !important;
+    }
   }
 }
 
@@ -563,8 +578,8 @@ article {
     }
   }
 
-  article {
-    div:first-child {
+  article > div {
+    &:first-child {
       background-color: var(--oss-color-grey-darker);
     }
   }
