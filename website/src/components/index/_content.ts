@@ -126,7 +126,7 @@ const content = {
       bgWebm: require('@site/static/vid/video.webm').default,
       bgStill: require('@site/static/img/video-poster.png').default,
       demoUrl:
-        'https://raw.githack.com/FormidableLabs/spectacle/main/examples/one-page.html'
+        'https://raw.githack.com/FormidableLabs/spectacle/main/examples/one-page/index.html'
     },
     buttonText: '',
     buttonUrl: ''
