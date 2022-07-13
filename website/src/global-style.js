@@ -37,6 +37,13 @@ export const GlobalStyle = createGlobalStyle`
       color: ${({ theme }) => theme.colors.linkHover};
       text-decoration: none;
     }
+
+    &:any-link:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+
+
   }
 
   table, pre, p, h1, h2, h3 {
