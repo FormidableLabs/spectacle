@@ -20,10 +20,10 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-beta.21",
-    "@docusaurus/preset-classic": "^2.0.0-beta.21",
-    "@docusaurus/theme-live-codeblock": "^2.0.0-beta.21",
-    "@docusaurus/theme-search-algolia": "^2.0.0-beta.21",
+    "@docusaurus/core": "^2.0.0-beta.22",
+    "@docusaurus/preset-classic": "^2.0.0-beta.22",
+    "@docusaurus/theme-live-codeblock": "^2.0.0-beta.22",
+    "@docusaurus/theme-search-algolia": "^2.0.0-beta.22",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
     "docusaurus-plugin-sass": "^0.2.2",
@@ -37,7 +37,7 @@
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.0.0-beta.21",
+    "@docusaurus/module-type-aliases": "^2.0.0-beta.22",
     "@tsconfig/docusaurus": "^1.0.5",
     "@types/styled-components": "^5.1.25",
     "typescript": "^4.6.3"
