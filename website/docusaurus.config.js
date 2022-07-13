@@ -111,13 +111,15 @@ const config = {
             href: 'https://github.com/FormidableLabs/spectacle',
             className: 'header-github-link',
             'aria-label': 'GitHub Repository',
-            position: 'right'
+            position: 'right',
+            label: 'GitHub Repository'
           },
           {
             href: 'https://formidable.com',
             className: 'header-formidable-link',
             'aria-label': 'Formidable Website',
-            position: 'right'
+            position: 'right',
+            label: 'Formidable Website'
           }
         ]
       },
