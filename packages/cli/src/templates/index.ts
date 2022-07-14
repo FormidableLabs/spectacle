@@ -1,29 +1,46 @@
-import path from 'path';
-import { existsSync } from 'fs';
-import { mkdir, writeFile } from 'fs/promises';
-import { htmlTemplate } from './html';
-import { onePageTemplate } from './one-page';
-
-type FileOptions = {
-  snakeCaseName: string;
+type IndexTemplateOptions = {
   name: string;
+  usesTypeScript: boolean;
 };
 
-export const writeBaseWebpackProjectFiles = async ({
-  snakeCaseName,
-  name
-}: FileOptions) => {
-  const outPath = path.resolve(process.cwd(), snakeCaseName);
-  if (existsSync(outPath)) {
-    throw new Error(`Directory named ${snakeCaseName} already exists.`);
-  }
-  await mkdir(outPath, { recursive: true });
-  await writeFile(`${snakeCaseName}/index.html`, htmlTemplate({ name }));
-};
+export const indexTemplate = (options: IndexTemplateOptions) =>
+  `import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Slide, Deck, FlexBox, Heading, SpectacleLogo, Box, FullScreen, AnimatedProgress } from 'spectacle';
 
-export const writeOnePageHTMLFile = async ({
-  snakeCaseName,
-  name
-}: FileOptions) => {
-  await writeFile(`${snakeCaseName}.html`, onePageTemplate({ name }));
-};
+const template = () => (
+  <FlexBox
+    justifyContent="space-between"
+    position="absolute"
+    bottom={0}
+    width={1}
+  >
+    <Box padding="0 1em">
+      <FullScreen />
+    </Box>
+    <Box padding="1em">
+      <AnimatedProgress />
+    </Box>
+  </FlexBox>
+);
+
+const Presentation = () => (
+  <Deck template={template}>
+    <Slide>
+      <FlexBox height="100%">
+        <Heading>${options.name}</Heading>
+      </FlexBox>
+    </Slide>
+    <Slide>
+      <FlexBox height="100%">
+        <Heading fontSize="h2">Made with</Heading>
+        <SpectacleLogo size={300} />
+      </FlexBox>
+    </Slide>
+  </Deck>
+);
+
+createRoot(document.getElementById('app')${
+    options.usesTypeScript ? '!' : ''
+  }).render(<Presentation />);
+`;

@@ -5,16 +5,20 @@ import { Command } from 'commander';
 import cliSpinners from 'cli-spinners';
 import logUpdate from 'log-update';
 import {
-  writeBaseWebpackProjectFiles,
+  FileOptions,
+  writeWebpackProjectFiles,
   writeOnePageHTMLFile
-} from './templates';
+} from './templates/file-writers';
 
 type CLIOptions = {
   type: 'tsx' | 'jsx' | 'mdx' | 'onepage';
   name: string;
+  lang?: string;
+  port?: number;
 };
 
 let progressInterval: NodeJS.Timer;
+const SPECTACLE_VERSION = '9.2.1';
 const log = console.log;
 const program = new Command();
 const printConsoleError = (message: string) =>
@@ -41,11 +45,12 @@ const main = async () => {
       'deck source type (choices: "tsx", "jsx", "mdx", "onepage")'
     )
     .requiredOption('-n, --name [name]', 'name of presentation')
+    .option('-l, --lang [lang]', 'language code for generated HTML document')
+    .option('-p, --port [port]', 'default port for webpack dev server')
     .parse(process.argv);
 
   let i = 0;
-  const { type, name } = program.opts<CLIOptions>();
-  const snakeCaseName = name.toLowerCase().replace(/([^a-z0-9]+)/gi, '-');
+  const { type, name, lang = 'en', port = 3000 } = program.opts<CLIOptions>();
 
   progressInterval = setInterval(() => {
     const { frames } = cliSpinners.aesthetic;
@@ -57,24 +62,24 @@ const main = async () => {
 
   await sleep(750);
 
+  const fileOptions: FileOptions = {
+    snakeCaseName: name.toLowerCase().replace(/([^a-z0-9]+)/gi, '-'),
+    name,
+    lang,
+    port,
+    enableTypeScriptSupport: type === 'tsx',
+    spectacleVersion: SPECTACLE_VERSION
+  };
+
   switch (type) {
     case 'jsx':
-      await writeBaseWebpackProjectFiles({
-        snakeCaseName,
-        name
-      });
+      await writeWebpackProjectFiles(fileOptions);
       break;
     case 'tsx':
-      await writeBaseWebpackProjectFiles({
-        snakeCaseName,
-        name
-      });
+      await writeWebpackProjectFiles(fileOptions);
       break;
     case 'onepage':
-      await writeOnePageHTMLFile({
-        snakeCaseName,
-        name
-      });
+      await writeOnePageHTMLFile(fileOptions);
       break;
   }
 
