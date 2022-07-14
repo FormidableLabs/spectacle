@@ -14,7 +14,7 @@ export const packageTemplate = (options: PackageTemplateOptions) =>
     "build": "webpack --config ./webpack.config.js --mode production"
   },
   "dependencies": {
-    "spectacle": "${options.spectacleVersion}",
+    "spectacle": "^${options.spectacleVersion}",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
