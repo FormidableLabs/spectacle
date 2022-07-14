@@ -9,6 +9,7 @@ import {
   writeWebpackProjectFiles,
   writeOnePageHTMLFile
 } from './templates/file-writers';
+import { version as SPECTACLE_VERSION } from 'spectacle/package.json';
 
 type CLIOptions = {
   type: 'tsx' | 'jsx' | 'mdx' | 'onepage';
@@ -18,7 +19,6 @@ type CLIOptions = {
 };
 
 let progressInterval: NodeJS.Timer;
-const SPECTACLE_VERSION = '9.2.1';
 const log = console.log;
 const program = new Command();
 const printConsoleError = (message: string) =>
