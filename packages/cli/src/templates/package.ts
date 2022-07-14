@@ -26,6 +26,7 @@ export const packageTemplate = (options: PackageTemplateOptions) =>
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.0.6",
     "html-webpack-plugin": "^5.3.1",
+    "style-loader": "^3.3.1",
     "css-loader": "^5.1.3",
     "file-loader": "^6.2.0",
     "rimraf": "^3.0.0",
