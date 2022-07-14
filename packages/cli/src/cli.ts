@@ -45,8 +45,11 @@ const main = async () => {
       'deck source type (choices: "tsx", "jsx", "mdx", "onepage")'
     )
     .requiredOption('-n, --name [name]', 'name of presentation')
-    .option('-l, --lang [lang]', 'language code for generated HTML document')
-    .option('-p, --port [port]', 'default port for webpack dev server')
+    .option(
+      '-l, --lang [lang]',
+      'language code for generated HTML document, default: en'
+    )
+    .option('-p, --port [port]', 'port for webpack dev server, default: 3000')
     .parse(process.argv);
 
   let i = 0;
