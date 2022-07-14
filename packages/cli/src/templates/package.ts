@@ -11,7 +11,7 @@ export const packageTemplate = (options: PackageTemplateOptions) =>
   "scripts": {
     "start": "webpack-dev-server --hot --config ./webpack.config.js",
     "clean": "rimraf dist",
-    "build": "webpack --config ./webpack.config.js"
+    "build": "webpack --config ./webpack.config.js --mode production"
   },
   "dependencies": {
     "spectacle": "${options.spectacleVersion}",
