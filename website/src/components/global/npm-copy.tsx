@@ -19,7 +19,7 @@ const HeroNPMCopy = styled.p`
   width: 22rem;
   height: 4.5rem;
   color: ${({ theme }) => theme.colors.textDark};
-  background-color: ${({ theme }) => theme.colors.imputBg}; /* #ebe5da; */
+  background-color: ${({ theme }) => theme.colors.inputBg}; /* #ebe5da; */
   text-align: left;
   padding: 0.33rem 1.5rem;
   line-height: 3.75rem;
