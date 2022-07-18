@@ -181,7 +181,7 @@ If your work contributes changes that require a change in version to any of the 
 pnpm changeset
 ```
 
-which will open an interactive CLI menu. Use this menu to select which packages need versioning, which semantic version changes are needed, and add appropriate messages accordingly. 
+which will open an interactive CLI menu. Use this menu to select which packages need versioning, which semantic version changes are needed, and add appropriate messages accordingly.
 
 After this, you'll see a new uncommitted file in `.changesets` that looks something like:
 
@@ -218,36 +218,35 @@ For exceptional circumstances, here is a quick guide to manually publish from a 
 
 1. Add a changeset with `pnpm changeset`. Generate the changeset file, review it, and commit it.
 2. Make a version. Due to our `changesets/changelog-github` package you will need to create a personal token and pass it to the environment.
-    ```shell
-    GITHUB_TOKEN=<INSERT TOKEN> pnpm run version
-    ```
-    Review git changes, tweak, and commit.
+   ```shell
+   GITHUB_TOKEN=<INSERT TOKEN> pnpm run version
+   ```
+   Review git changes, tweak, and commit.
 3. Publish.
 
    First, build necessary files:
 
-    ```sh
-    pnpm run build
-    ```
+   ```sh
+   pnpm run build
+   ```
 
    Then publish:
 
-    ```sh
-    # Test things out first
-    $ pnpm -r publish --dry-run
+   ```sh
+   # Test things out first
+   $ pnpm -r publish --dry-run
 
-    # The real publish
-    $ pnpm changeset publish --otp=<insert otp code>
-    ```
+   # The real publish
+   $ pnpm changeset publish --otp=<insert otp code>
+   ```
 
    Note that publishing multiple pacakges via `changeset` to npm with an OTP code can often fail with `429 Too Many Requests` rate limiting error. Take a 5+ minute coffee break, then come back and try again.
 
    Then issue the following to also push git tags:
 
-    ```sh
-    $ git push && git push --tags
-    ```
-
+   ```sh
+   $ git push && git push --tags
+   ```
 
 </details>
 
