@@ -41,7 +41,7 @@ Our examples are spread out across multiple projects depending on where the core
 We have various deck scenarios in `examples` in this repository that are part of the development process.
 
 We follow the convention of `start:NAME` to run an in-memory dev server for a specific
-example, but we also have a `pnpm run build-examples` script task to make sure we're actually
+example, but we also have a `pnpm run build:examples` script task to make sure we're actually
 producing non-broken sample presentations as a CI / assurance test.
 
 #### `examples/js`
@@ -94,7 +94,7 @@ $ pnpm run start:one-page
 
 **Note**: This file is published and used by `spectacle-cli`.
 
-**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `pnpm run build-one-page` and verify changes look good.
+**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `pnpm run build:one-page` and verify changes look good.
 
 ### Examples integration with `spectacle-cli`
 
@@ -141,14 +141,14 @@ To check (and fix) code:
 
 ```bash
 $ pnpm run lint
-$ pnpm run lint-fix
+$ pnpm run lint:fix
 ```
 
 To check (and fix) formatting of MD, JSON, _and_ code:
 
 ```bash
-$ pnpm run prettier-check
-$ pnpm run prettier-fix
+$ pnpm run prettier:check
+$ pnpm run prettier:fix
 ```
 
 We also have a simple one-liner for running both of these fix-checks back-to-back:
@@ -166,9 +166,34 @@ Thanks for taking the time to help us make Spectacle even better! Before you go
 ahead and submit a PR, make sure that you have done the following:
 
 - Run all checks using `pnpm run check-ci`.
-- Run `pnpm run build-one-page` and check + commit changes to `examples/one-page/index.html`
+- Run `pnpm run build:one-page` and check + commit changes to `examples/one-page/index.html`
 - Check that both the core library and _all_ examples build: `pnpm run build`.
+- Add a [changeset](#changeset) if your PR requires a version change for any of the packages in this repo.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
+
+### Changesets
+
+We use [changesets](https://github.com/changesets/changesets) to create package versions and publish them.
+
+If your work contributes changes that require a change in version to any of the packages, add a changeset by running:
+
+```bash
+pnpm changeset
+```
+
+which will open an interactive CLI menu. Use this menu to select which packages need versioning, which semantic version changes are needed, and add appropriate messages accordingly.
+
+After this, you'll see a new uncommitted file in `.changesets` that looks something like:
+
+```
+$ git status
+# ....
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.changeset/flimsy-pandas-marry.md
+```
+
+Review this file, make any necessary adjustments, and commit the file to source. During the next package release, the changes (and changeset notes) will be automatically incorporated based on these changeset files.
 
 ### Releasing a new version to NPM
 
@@ -177,23 +202,51 @@ ahead and submit a PR, make sure that you have done the following:
 <i>Only for project administrators</i>
 </summary>
 
-```sh
-# (1) Update the Changelog, following format from previous versions
-# and commit those changes independently of other updates
-$ git add CHANGELOG.md && git commit -m "Changes for v<version>"
+We use [changesets](https://github.com/changesets/changesets) to create package versions and publish them.
 
-# (2) Run tests, lint, build published dir, update package.json
-$ npm version [patch|minor|major|<version>]
+Our official release path is to use automation (via GitHub actions) to perform the actual publishing of our packages. The steps are:
 
-# (3) If all is well, publish the new version to the npm registry
-$ npm publish
+1. Developers add changesets, ideally as part of their PR that have version impacts.
+2. On merge of a PR with a changeset file, our automation opens a "Version Packages" PR.
+3. On merging the "Version Packages" PR, the automation system publishes the packages.
 
-# (4) Then, update github with the associated tag
-$ git push --tags && git push
-```
+This streamlines releasing to: ensuring PRs have changeset files added as necessary, and approving the "Version Packages" PR generated from GitHub actions to publish a release to all affected packages.
 
-Then, go and manually draft a release for your recently pushed tag with notes in
-the [Github UI](https://github.com/FormidableLabs/spectacle/releases/new).
+#### Manual Releases
+
+For exceptional circumstances, here is a quick guide to manually publish from a local machine using changesets.
+
+1. Add a changeset with `pnpm changeset`. Generate the changeset file, review it, and commit it.
+2. Make a version. Due to our changelog formatting package you will need to create a personal token and pass it to the environment.
+   ```shell
+   GITHUB_TOKEN=<INSERT TOKEN> pnpm run version
+   ```
+   Review git changes, tweak, and commit.
+3. Publish.
+
+   First, build necessary files:
+
+   ```sh
+   pnpm run build
+   ```
+
+   Then publish:
+
+   ```sh
+   # Test things out first
+   $ pnpm -r publish --dry-run
+
+   # The real publish
+   $ pnpm changeset publish --otp=<insert otp code>
+   ```
+
+   Note that publishing multiple pacakges via `changeset` to npm with an OTP code can often fail with `429 Too Many Requests` rate limiting error. Take a 5+ minute coffee break, then come back and try again.
+
+   Then issue the following to also push git tags:
+
+   ```sh
+   $ git push && git push --tags
+   ```
 
 </details>
 

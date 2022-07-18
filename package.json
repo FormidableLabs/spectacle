@@ -8,23 +8,27 @@
     "start:examples": "pnpm run --parallel --filter \"*example*\" start",
     "start:cli": "pnpm run --filter spectacle-cli start",
     "lint": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src packages/cli/src",
-    "lint-fix": "pnpm run lint --fix",
+    "lint:fix": "pnpm run lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
-    "prettier-check": "pnpm run prettier --check",
-    "prettier-fix": "pnpm prettier --write",
+    "prettier:check": "pnpm run prettier --check",
+    "prettier:fix": "pnpm prettier --write",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
-    "check": "pnpm run lint && pnpm run prettier-check && pnpm run test && pnpm run typecheck",
+    "check": "pnpm run lint && pnpm run prettier:check && pnpm run test && pnpm run typecheck",
     "check-ci": "pnpm run check",
     "clean": "pnpm run -r clean",
-    "build-examples": "pnpm run --filter spectacle build && pnpm run -r --filter \"*example*\" build",
-    "build-core": "pnpm run --filter spectacle build",
+    "build:examples": "pnpm run --filter spectacle build && pnpm run -r --filter \"*example*\" build",
+    "build:core": "pnpm run --filter spectacle build",
     "build": "pnpm run -r build",
-    "build-one-page": "node ./scripts/one-page.js",
-    "build:cli": "pnpm run --filter spectacle-cli build"
+    "build:one-page": "node ./scripts/one-page.js",
+    "build:cli": "pnpm run --filter spectacle-cli build",
+    "changeset": "changeset",
+    "version": "pnpm changeset version && pnpm install --fix-lockfile"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
+    "@changesets/cli": "^2.23.1",
+    "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "babel-eslint": "^10.1.0",
@@ -36,7 +40,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.4.1",
     "pretty": "^2.0.0",
-    "typescript": "^4.5.2",
-    "@types/jest": "^27.0.2"
+    "typescript": "^4.5.2"
   }
 }
