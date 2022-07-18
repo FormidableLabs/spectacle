@@ -109,6 +109,12 @@ const config = {
           },
           {
             href: 'https://github.com/FormidableLabs/spectacle',
+            'aria-label': 'GitHub Repository',
+            position: 'left',
+            label: 'Testing External'
+          },
+          {
+            href: 'https://github.com/FormidableLabs/spectacle',
             className: 'header-github-link',
             'aria-label': 'GitHub Repository',
             position: 'right',
