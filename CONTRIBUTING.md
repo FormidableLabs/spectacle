@@ -217,7 +217,7 @@ This streamlines releasing to: ensuring PRs have changeset files added as necess
 For exceptional circumstances, here is a quick guide to manually publish from a local machine using changesets.
 
 1. Add a changeset with `pnpm changeset`. Generate the changeset file, review it, and commit it.
-2. Make a version. Due to our `changesets/changelog-github` package you will need to create a personal token and pass it to the environment.
+2. Make a version. Due to our changelog formatting package you will need to create a personal token and pass it to the environment.
    ```shell
    GITHUB_TOKEN=<INSERT TOKEN> pnpm run version
    ```
