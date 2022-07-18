@@ -6,41 +6,51 @@
 
 :root {
   /*
-   * COLOR WHITE
-   * background color in light mode
-   * top nav item color
-   * top nav title color
-   * top nav icon color
-   * footer text color
-   */
+  ********************************************************
+  COLOR WHITE
+  *********************************************************
+  LIGHT MODE
+      - background color
+      - top nav link color
+      - footer text color
+  DARK MODE
+      - headline color
+      - top nav link color
+      - sidebar menu link color
+      - footer text color
+  *********************************************************/
+
   --oss-color-white: #ffffff;
 
   /*
-   * COLOR BLACK
-   * background color in light mode
-   * sidebar menu item color
-   * content header color
-   * footer background color
-   */
+  ********************************************************
+  COLOR BLACK
+  *********************************************************
+  LIGHT MODE
+      - headline color
+      - sidebar menu link color
+  DARK MODE
+      - background color
+  *********************************************************/
+
   --oss-color-black: #202020;
 
   /*
-   * COLOR PRIMARY (hex and hsl)
-   * 6 variations of this color will be generated (light/dark)
-   * primary color when in light mode
-   * sidebar menu active color
-   */
+  ********************************************************
+  COLOR PRIMARY (hex and hsl)
+  6 variations of this color will be generated (light/dark)
+  *********************************************************
+  LIGHT MODE
+    - primary color
+    - sidebar menu active
+    - sidebar menu hover
+    - sidebar subnav menu hover
+  *********************************************************/
+
   --oss-color-primary: #e13e65;
   --oss-color-primary-hs: 346, 73%;
   --oss-color-primary-l: 56%;
-  /*
-   * #cb2048 (-10%) anchor links and code blocks
-   * #b51c40 (-15%) anchor link hovers
-   * #731228 (-30%) 
-   * #e86987 (+10%)
-   * #eb7f98 (+15%) 
-   * #f5c1cd (+30%) top nav item hover color
-   */
+
   --oss-color-primary-shade-dark: hsl(
     var(--oss-color-primary-hs),
     calc(var(--oss-color-primary-l) - 10%)
@@ -67,96 +77,142 @@
   );
 
   /*
-   * COLOR PRIMARY DARK (hex and hsl)
-   * primary color when in dark mode
-   */
+  ********************************************************
+  COLOR PRIMARY DARK (hex and hsl)
+  6 variations of this color will be generated (light/dark)
+  *********************************************************
+  DARK MODE
+    - primary color
+    - sidebar menu active
+    - sidebar menu hover
+    - sidebar subnav menu hover
+  *********************************************************/
+
   --oss-color-primary-dark: #ff92ac;
   --oss-color-primary-dark-hs: 346, 100%;
   --oss-color-primary-dark-l: 79%;
-  /*
-   * #ff6186 (-10%) anchor links and code blocks
-   * #ff4772 (-15%) anchor link hovers
-   * #fa003a (-30%) 
-   * #ffc7d4 (+10%) 
-   * #ffe0e8 (+15%) 
-   * #ffffff (+30%) top nav item hover color
-   */
+
   --oss-color-primary-dark-shade-dark: hsl(
-    var(--oss-color-primary-dark-hs),
-    calc(var(--oss-color-primary-dark-l) - 10%)
+    var(--oss-color-primary-hs),
+    calc(var(--oss-color-primary-l) - 10%)
   );
   --oss-color-primary-dark-shade-darker: hsl(
-    var(--oss-color-primary-dark-hs),
-    calc(var(--oss-color-primary-dark-l) - 15%)
+    var(--oss-color-primary-hs),
+    calc(var(--oss-color-primary-l) - 15%)
   );
   --oss-color-primary-dark-shade-darkest: hsl(
-    var(--oss-color-primary-dark-hs),
-    calc(var(--oss-color-primary-dark-l) - 30%)
+    var(--oss-color-primary-hs),
+    calc(var(--oss-color-primary-l) - 30%)
   );
   --oss-color-primary-dark-shade-light: hsl(
-    var(--oss-color-primary-dark-hs),
-    calc(var(--oss-color-primary-dark-l) + 10%)
+    var(--oss-color-primary-hs),
+    calc(var(--oss-color-primary-l) + 10%)
   );
   --oss-color-primary-dark-shade-lighter: hsl(
-    var(--oss-color-primary-dark-hs),
-    calc(var(--oss-color-primary-dark-l) + 15%)
+    var(--oss-color-primary-hs),
+    calc(var(--oss-color-primary-l) + 15%)
   );
   --oss-color-primary-dark-shade-lightest: hsl(
-    var(--oss-color-primary-dark-hs),
-    calc(var(--oss-color-primary-dark-l) + 30%)
+    var(--oss-color-primary-hs),
+    calc(var(--oss-color-primary-l) + 30%)
   );
 
   /*
-   * COLOR GREY LIGHT
-   * right toc left border color
-   */
+  ********************************************************
+  COLOR GREY LIGHT
+  *********************************************************
+  LIGHT MODE
+      - right toc left border color
+  DARK MODE
+      - body text color
+      - right toc link color
+      - sidebar subnav link color
+  *********************************************************/
+
   --oss-color-grey-light: #d9d9d9;
 
   /*
-   * COLOR GREY DARK
-   * global paragraph copy color
-   * right toc link color
-   */
+  ********************************************************
+  COLOR GREY DARK
+  *********************************************************
+  LIGHT MODE
+      - body text color
+      - right toc link color
+      - sidebar subnav link color
+  DARK MODE
+      - 
+  *********************************************************/
+
   --oss-color-grey-dark: #606060;
 
   /*
-   * COLOR GREY DARKER
-   * used for background for the sidebar menu
-   */
-  --oss-color-grey-darker: #4e4e4e;
+  ********************************************************
+  COLOR GREY DARKER
+  *********************************************************
+  LIGHT MODE
+      - sidebar menu link hover background
+  DARK MODE
+      - 
+  *********************************************************/
+
+  --oss-color-grey-darker: #454545;
 
   /*
-   * COLOR TAN LIGHT
-   * used for background for the sidebar menu
-   */
+  ********************************************************
+  COLOR TAN LIGHT
+  *********************************************************
+  LIGHT MODE
+      - sidebar background
+  DARK MODE
+      - 
+  *********************************************************/
+
   --oss-color-tan-light: #f9f7f3;
 
   /*
-   * COLOR TAN DARK
-   * used for hover background for the sidebar menu
-   */
+  ********************************************************
+  COLOR TAN DARK
+  *********************************************************
+  LIGHT MODE
+      - sidebar menu link hover background
+  DARK MODE
+      - 
+  *********************************************************/
+
   --oss-color-tan-dark: #f2ede4;
 
   /*
-   * NAV BAR GRADIENT
-   * colors used for gradient nav bar
-   */
+  ********************************************************
+  NAV BAR GRADIENT
+  *********************************************************
+  LIGHT MODE
+      - nav bar gradient background
+  DARK MODE
+      - nav bar gradient background
+  *********************************************************/
+
   --oss-navbar-gradient-start: #b4455a;
   --oss-navbar-gradient-end: #8e4453;
 
   /*
-   * BORDER RADIUS
-   * general border radius for buttons
-   */
-  --oss-border-radius: 0.1875rem; // 3px
+  ********************************************************
+  BORDER RADIUS
+  *********************************************************
+  - general border radius for buttons
+  *********************************************************/
+
+  --oss-border-radius: 0.1875rem;
 
   /*
-   * LANDER COLORS
-   * this block of variables is imported in the theme.js file
-   */
-  --oss-bg-color: var(--oss-color-tan-light);
-  --oss-bg-dark: var(--oss-color-black);
-  --oss-bg-light: var(--oss-color-white);
+  ********************************************************
+  PAGE/LANDER COLORS
+  *********************************************************
+  - variables is imported in the theme.js file
+  *********************************************************/
+
+  --oss-background-color: var(--oss-color-tan-light);
+  --oss-background-dark: var(--oss-color-black);
+  --oss-background-light: var(--oss-color-white);
   --oss-text: var(--oss-color-grey-darker);
   --oss-text-dark: var(--oss-color-black);
   --oss-text-light: var(--oss-color-white);
@@ -166,7 +222,7 @@
   --oss-button-light-hover: var(--oss-color-primary);
   --oss-link: var(--oss-color-primary);
   --oss-link-hover: var(--oss-color-primary-shade-light);
-  --oss-input-bg: var(--oss-color-tan-dark);
+  --oss-input-background: var(--oss-color-tan-dark);
 }
 
 /**********************************************************************
@@ -197,7 +253,7 @@
 
   // top nav
   --ifm-navbar-link-color: var(--oss-color-white);
-  --ifm-navbar-link-hover-color: var(--ifm-color-primary-lightest);
+  --ifm-navbar-link-hover-color: var(--oss-color-primary-dark);
   --ifm-navbar-shadow: none;
   --ifm-navbar-padding-horizontal: calc(var(--ifm-spacing-horizontal) * 1.875);
   --ifm-navbar-padding-vertical: calc(var(--ifm-spacing-vertical) * 0.5);
@@ -239,7 +295,7 @@
 
   // top nav
   --ifm-navbar-link-color: var(--oss-color-white);
-  --ifm-navbar-link-hover-color: var(--ifm-color-primary-light);
+  --ifm-navbar-link-hover-color: var(--oss-color-primary-dark);
 
   // menu (left sidebar)
   --ifm-menu-color: var(--oss-color-white);
@@ -304,7 +360,7 @@ code {
   }
 
   .navbar__link {
-    font-weight: var(--ifm-font-weight-semibold);
+    font-weight: var(--ifm-font-weight-bold);
   }
 
   .navbar__link--active {
@@ -478,6 +534,10 @@ nav.menu {
   .menu__link {
     border-radius: var(--oss-border-radius);
     text-decoration: none;
+
+    &:hover {
+      color: var(--ifm-menu-color-active);
+    }
   }
 }
 
@@ -518,7 +578,9 @@ article > div {
   }
 }
 
-// DARK
+/*****************************************************************
+ Dark Theme
+ *****************************************************************/
 [data-theme='dark'] {
   code {
     color: var(--ifm-color-primary-dark);
