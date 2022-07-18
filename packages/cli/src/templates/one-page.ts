@@ -1,10 +1,11 @@
 type OnePageTemplateOptions = {
   name: string;
+  lang: string;
 };
 
-export const onePageTemplate = ({ name }: OnePageTemplateOptions) => `
+export const onePageTemplate = ({ name, lang }: OnePageTemplateOptions) => `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
