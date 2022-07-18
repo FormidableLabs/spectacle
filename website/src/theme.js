@@ -1,9 +1,9 @@
 const borderRadius = 'var(--oss-border-radius)';
 
 const colors = {
-  bgColor: 'var(--oss-bg-color)',
-  bgDark: 'var(--oss-bg-dark)',
-  bgLight: 'var(--oss-bg-light)',
+  backgroundColor: 'var(--oss-background-color)',
+  backgroundDark: 'var(--oss-background-dark)',
+  backgroundLight: 'var(--oss-background-light)',
   text: 'var(--oss-text)',
   textDark: 'var(--oss-text-dark)',
   textLight: 'var(--oss-text-light)',
@@ -13,7 +13,7 @@ const colors = {
   buttonLightHover: 'var(--oss-button-light-hover)',
   link: 'var(--oss-link)',
   linkHover: 'var(--oss-link-hover)',
-  inputBg: 'var(--oss-input-bg)'
+  inputBackground: 'var(--oss-input-background)'
 };
 
 const systemFonts = [

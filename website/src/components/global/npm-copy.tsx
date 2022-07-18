@@ -19,7 +19,7 @@ const HeroNPMCopy = styled.p`
   width: 22rem;
   height: 4.5rem;
   color: ${({ theme }) => theme.colors.textDark};
-  background-color: ${({ theme }) => theme.colors.inputBg}; /* #ebe5da; */
+  background-color: ${({ theme }) => theme.colors.inputBackground};
   text-align: left;
   padding: 0.33rem 1.5rem;
   line-height: 3.75rem;
@@ -32,7 +32,7 @@ const HeroNPMCopy = styled.p`
 const HeroNPMButton = styled.button`
   width: 8rem;
   height: 4.5rem;
-  background: ${({ theme }) => theme.colors.bgLight};
+  background: ${({ theme }) => theme.colors.backgroundLight};
   transition: background 0.4s;
   font-size: 14px;
   font-weight: ${({ theme }) => theme.fontWeights.heading};

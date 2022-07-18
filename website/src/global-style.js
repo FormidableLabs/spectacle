@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: ${({ theme }) => theme.colors.bgLight};
+    background: ${({ theme }) => theme.colors.backgroundLight};
     color: ${({ theme }) => theme.colors.textDark};
     font-family: ${({ theme }) => theme.fonts.body};
     font-size: ${({ theme }) => theme.fontSizes.bodySmall};

@@ -13,9 +13,9 @@ type VideoProps = {
 };
 
 type VideoAsset = {
-  bgMp4: string;
-  bgStill: string;
-  bgWebm: string;
+  mp4: string;
+  still: string;
+  webm: string;
   demoUrl: string;
 };
 
@@ -59,9 +59,9 @@ export default function Preview({ content }): JSX.Element {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Video autoPlay muted loop poster={videoAssets.bgStill}>
-          <source src={videoAssets.bgWebm} type="video/webm" />
-          <source src={videoAssets.bgMp4} type="video/mp4" />
+        <Video autoPlay muted loop poster={videoAssets.still}>
+          <source src={videoAssets.webm} type="video/webm" />
+          <source src={videoAssets.mp4} type="video/mp4" />
         </Video>
       </a>
       {buttonText && buttonUrl && (

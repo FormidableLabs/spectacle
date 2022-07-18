@@ -106,9 +106,9 @@ const content = {
    * @param {boolean} meta-noPadding - true, false
    * @param {string} title - section title text
    * @param {string} longText - longer body copy above the video (optional, only displayed of present)
-   * @param {string} videoAssets-bgMp4 - path to mp4 video
-   * @param {string} videoAssets-bgWebm - path to webm video
-   * @param {string} videoAssets-bgStill - path to poster image
+   * @param {string} videoAssets-mp4 - path to mp4 video
+   * @param {string} videoAssets-webm - path to webm video
+   * @param {string} videoAssets-still - path to poster image
    * @param {string} videoAssets-demoUrl - link to live demo
    * @param {string} buttonText - button label (optional, only displayed of present)
    * @param {string} buttonUrl - button URL (optional, only displayed of present)
@@ -122,9 +122,9 @@ const content = {
     title: 'Code Preview',
     longText: '',
     videoAssets: {
-      bgMp4: require('@site/static/vid/video.mp4').default,
-      bgWebm: require('@site/static/vid/video.webm').default,
-      bgStill: require('@site/static/img/video-poster.png').default,
+      mp4: require('@site/static/vid/video.mp4').default,
+      webm: require('@site/static/vid/video.webm').default,
+      still: require('@site/static/img/video-poster.png').default,
       demoUrl:
         'https://raw.githack.com/FormidableLabs/spectacle/main/examples/one-page/index.html'
     },

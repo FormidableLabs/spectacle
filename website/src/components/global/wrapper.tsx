@@ -14,7 +14,7 @@ export const Wrapper = styled.div<Wrapper>`
   width: 100%;
   margin: ${({ noMargin }) => (noMargin ? '0' : 'auto')};
   padding: ${({ noPadding }) => (noPadding ? '0' : '4rem')};
-  background: ${(p) => p.theme.colors[`bg${p.background}`]};
+  background: ${(p) => p.theme.colors[`background${p.background}`]};
   text-align: center;
 
   @media ${({ theme }) => theme.media.sm} {
