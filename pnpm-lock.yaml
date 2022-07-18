@@ -148,6 +148,7 @@ importers:
       log-update: 4.0.0
       nodemon: ^2.0.18
       rimraf: ^3.0.2
+      spectacle: workspace:spectacle@*
       ts-node: ^10.8.1
       typescript: '*'
     dependencies:
@@ -160,6 +161,7 @@ importers:
       '@types/node': 18.0.3
       nodemon: 2.0.19
       rimraf: 3.0.2
+      spectacle: link:../spectacle
       ts-node: 10.8.2_fxk5i3xm3ivo7fjwhcizcinpla
       typescript: 4.7.4
 
