@@ -25,6 +25,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 ### Checklist: (Feel free to delete this section upon completion)
 
+- [ ] I have included a [changeset](../CONTRIBUTING.md#changesets) if this change will require a version change to one of the packages.
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
