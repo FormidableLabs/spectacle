@@ -39,11 +39,9 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     &:any-link:hover {
-    color: inherit;
-    text-decoration: none;
-  }
-
-
+      color: inherit;
+      text-decoration: none;
+    }
   }
 
   table, pre, p, h1, h2, h3 {
