@@ -18,7 +18,7 @@ type OSSImage = {
 const OSSImage = styled.a<OSSImage>`
   margin-right: auto;
   margin-left: auto;
-
+  height: 20rem;
   width: 20rem;
   max-width: 20rem;
   padding: 0;
