@@ -112,13 +112,11 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
 
     const scrollTarget = useRef<HTMLElement>(null);
 
-    const getLineNumberProps = useCallback(
+    const getLineNumberStyle = useCallback(
       (lineNumber: number) => {
-        if (!isActive) return;
+        if (!isActive) return {};
         const range = getRangeFormat(numberOfSteps, highlightRanges, step);
-        return {
-          style: getStyleForLineNumber(lineNumber, range)
-        };
+        return getStyleForLineNumber(lineNumber, range);
       },
       [isActive, highlightRanges, numberOfSteps, step]
     );
@@ -174,7 +172,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
             wrapLines
             showLineNumbers={showLineNumbers}
             lineProps={getLineProps}
-            lineNumberProps={getLineNumberProps}
+            lineNumberStyle={getLineNumberStyle}
             style={syntaxTheme}
           >
             {children}
