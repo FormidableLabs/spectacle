@@ -19,6 +19,7 @@ export {
   TableHeader,
   TableBody
 } from './components/table';
+export { default as CommandBar } from './components/command-bar';
 export type { TableProps } from './components/table';
 export { FlexBox, Grid, Box } from './components/layout-primitives';
 export { Image, FullSizeImage } from './components/image';
