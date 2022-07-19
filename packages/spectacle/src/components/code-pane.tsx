@@ -116,9 +116,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
       (lineNumber: number) => {
         if (!isActive) return {};
         const range = getRangeFormat(numberOfSteps, highlightRanges, step);
-        return {
-          ...getStyleForLineNumber(lineNumber, range)
-        };
+        return getStyleForLineNumber(lineNumber, range);
       },
       [isActive, highlightRanges, numberOfSteps, step]
     );
