@@ -35,6 +35,7 @@ const FooterLeft = styled.div`
 `;
 
 const FooterLogo = styled.img`
+  height: auto;
   width: 20rem;
 `;
 

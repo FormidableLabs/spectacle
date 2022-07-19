@@ -80,6 +80,7 @@ const HeaderText = styled.p`
 `;
 
 const HeaderLogo = styled.img`
+  height: auto;
   width: 4rem;
   @media ${({ theme }) => theme.media.sm} {
     width: 7rem;
@@ -113,7 +114,7 @@ export default function Header({ content }): JSX.Element {
     <Container>
       {formidableBadge && (
         <>
-          <Triangle src={triangleSrc} width="300px" height="309px" />
+          <Triangle alt="" src={triangleSrc} width="300px" height="309px" />
           <HeaderContainer
             href={siteConfig.url}
             title="Formidable"
