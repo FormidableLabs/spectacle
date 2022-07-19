@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { Wrapper } from '@site/src/components/global/wrapper';
+import { MakeRomanNum } from '@site/src/utils/numbers';
 
 type Meta = {
   theme: string;
@@ -143,47 +144,6 @@ const FooterCopyright = styled.p`
   }
 `;
 
-function romanize(num) {
-  if (!+num) return false;
-  const digits = String(+num).split('');
-  const key = [
-    '',
-    'C',
-    'CC',
-    'CCC',
-    'CD',
-    'D',
-    'DC',
-    'DCC',
-    'DCCC',
-    'CM',
-    '',
-    'X',
-    'XX',
-    'XXX',
-    'XL',
-    'L',
-    'LX',
-    'LXX',
-    'LXXX',
-    'XC',
-    '',
-    'I',
-    'II',
-    'III',
-    'IV',
-    'V',
-    'VI',
-    'VII',
-    'VIII',
-    'IX'
-  ];
-  let roman = '';
-  let i = 3;
-  while (i--) roman = (key[+digits.pop() + i * 10] || '') + roman;
-  return Array(+digits.join('') + 1).join('M') + roman;
-}
-
 export default function Footer({ content }) {
   const { meta }: { meta: Meta } = content;
 
@@ -247,7 +207,7 @@ export default function Footer({ content }) {
         </FooterDescription>
       </FooterContainer>
       <FooterCopyright>
-        © {romanize(new Date().getFullYear())} Formidable Labs, LLC.
+        © {MakeRomanNum(new Date().getFullYear())} Formidable Labs, LLC.
       </FooterCopyright>
     </Wrapper>
   );
