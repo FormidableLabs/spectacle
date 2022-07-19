@@ -29,6 +29,7 @@ const Triangle = styled.img`
   position: absolute;
   left: -0.7rem;
   top: -0.3rem;
+  height: auto;
   width: 20rem;
   @media ${({ theme }) => theme.media.sm} {
     width: 26rem;
