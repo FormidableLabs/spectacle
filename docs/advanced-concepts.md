@@ -34,4 +34,4 @@ To combine parameters, use multiple `&` to separate the parameters, e.g.: `&expo
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `exportMode`    | For exporting your presentation as a PDF. Add it to your project URL and "Save to PDF" directly from the browser                                               |
 | `printMode`     | Turns your slideshow into a printer-friendly, black & white version. Meant for use concurrently with `?exportMode` e.g. `?exportMode=true&printMode=true`      |
-| `presenterMode` | Displays a Presenter Mode for ease of presentation. For more info on this mode, please see [Presenting](./basic-concepts#presenting) in our Basic Concepts doc |
+| `presenterMode` | Displays a Presenter Mode for ease of presentation. For more info on this mode, please see [Presenting](./#presenting) in our Basic Concepts doc |

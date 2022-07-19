@@ -100,7 +100,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'basic-concepts',
+            docId: 'index',
             position: 'left',
             label: 'Docs'
           },

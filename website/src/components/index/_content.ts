@@ -30,11 +30,11 @@ const content = {
         'A React.js based library for creating sleek presentations using JSX syntax that gives you the ability to live demo your code.',
       installScript: 'npm install spectacle',
       featureButtonText: 'Documentation',
-      featureButtonUrl: 'docs/basic-concepts/',
+      featureButtonUrl: 'docs/',
       navList: [
         {
           text: 'Docs',
-          url: 'docs/basic-concepts/'
+          url: 'docs/'
         },
         {
           text: 'Issues',

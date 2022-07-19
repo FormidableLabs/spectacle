@@ -1,7 +1,8 @@
 ---
-title: Basic Concepts
+sidebar_label: Basic Concepts
 order: 1
 sidebar_position: 1
+slug: /
 ---
 
 # Basic Concepts
