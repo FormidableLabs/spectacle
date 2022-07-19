@@ -1,9 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-
 function romanize(num) {
   if (!+num) return false;
   const digits = String(+num).split('');
@@ -111,7 +108,7 @@ const config = {
             href: 'https://github.com/FormidableLabs/spectacle',
             'aria-label': 'GitHub Repository',
             position: 'left',
-            label: 'Testing External'
+            label: 'External Link'
           },
           {
             href: 'https://github.com/FormidableLabs/spectacle',
@@ -139,10 +136,20 @@ const config = {
         )} Formidable Labs, LLC.`
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme
+        // theme: lightCodeTheme,
+        // darkTheme: darkCodeTheme
       }
     })
 };
 
-module.exports = config;
+async function createConfig() {
+  const lightTheme = (await import('./src/utils/prismLight.mjs')).default;
+  const darkTheme = (await import('./src/utils/prismDark.mjs')).default;
+  // @ts-expect-error: we know it exists, right
+  config.themeConfig.prism.theme = lightTheme;
+  // @ts-expect-error: we know it exists, right
+  config.themeConfig.prism.darkTheme = darkTheme;
+  return config;
+}
+
+module.exports = createConfig;
