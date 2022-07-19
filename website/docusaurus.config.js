@@ -129,7 +129,9 @@ const config = {
       footer: {
         logo: {
           alt: 'Formidable Labs Logo',
-          src: 'svg/formidable-logo-white.svg'
+          src: 'svg/formidable-logo-white.svg',
+          href: 'https://formidable.com',
+          target: '_blank'
         },
         copyright: `© ${romanize(
           new Date().getFullYear()

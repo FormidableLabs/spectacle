@@ -476,9 +476,17 @@ article {
 
 // footer
 .footer {
+  a {
+    opacity: 1;
+  }
+
   .footer__logo {
     margin-top: 0;
     max-width: 12.5rem;
+
+    @media (max-width: 996px) {
+      max-width: 10rem;
+    }
   }
 
   .footer__copyright {
