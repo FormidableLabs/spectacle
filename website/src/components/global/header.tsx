@@ -113,7 +113,7 @@ export default function Header({ content }): JSX.Element {
     <Container>
       {formidableBadge && (
         <>
-          <Triangle src={triangleSrc} />
+          <Triangle src={triangleSrc} width="300px" height="309px" />
           <HeaderContainer
             href={siteConfig.url}
             title="Formidable"
@@ -121,7 +121,12 @@ export default function Header({ content }): JSX.Element {
             rel="noopener noreferrer"
           >
             <HeaderText>Another oss project by</HeaderText>
-            <HeaderLogo src={logoSrc} alt="Formidable Logo" />
+            <HeaderLogo
+              src={logoSrc}
+              alt="Formidable Logo"
+              width="70px"
+              height="90px"
+            />
           </HeaderContainer>
         </>
       )}

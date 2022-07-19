@@ -160,7 +160,12 @@ export default function Footer({ content }) {
             rel="noopener noreferrer"
             style={{ textAlign: 'center' }}
           >
-            <FooterLogo src={logoSrc} alt="Formidable Logo" />
+            <FooterLogo
+              src={logoSrc}
+              alt="Formidable Logo"
+              width="200px"
+              height="110px"
+            />
           </a>
           <FooterLinks>
             <li>
