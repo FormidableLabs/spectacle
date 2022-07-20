@@ -23,7 +23,8 @@
     "build-babel-cjs": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"cjs\\\"}\" build-babel -- -d lib",
     "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-types",
     "build-types": "tsc --emitDeclarationOnly",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "cp ../../README.md ./README.md && pnpm run build"
   },
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
