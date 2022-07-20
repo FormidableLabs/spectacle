@@ -6,11 +6,7 @@
   "main": "lib/index.js",
   "files": [
     "lib/",
-    "es/",
-    "dist/",
-    "examples/",
-    "scripts/",
-    "../../README.md"
+    "es/"
   ],
   "module": "es/index.js",
   "scripts": {
