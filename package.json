@@ -17,6 +17,8 @@
     "check": "pnpm run lint && pnpm run prettier:check && pnpm run test && pnpm run typecheck",
     "check-ci": "pnpm run check",
     "clean": "pnpm run -r clean",
+    "flush:deps": "rimraf **/node_modules",
+    "nuke": "pnpm run -r clean && pnpm run flush:deps",
     "build:examples": "pnpm run --filter spectacle build && pnpm run -r --filter \"*example*\" build",
     "build:core": "pnpm run --filter spectacle build",
     "build": "pnpm run -r build",
@@ -38,6 +40,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "rimraf": "^3.0.0",
     "prettier": "^2.4.1",
     "pretty": "^2.0.0",
     "typescript": "^4.5.2"
