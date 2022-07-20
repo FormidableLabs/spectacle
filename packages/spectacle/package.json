@@ -12,7 +12,7 @@
   "module": "es/index.js",
   "scripts": {
     "test": "jest",
-    "clean": "rimraf lib es",
+    "clean": "rimraf dist lib es",
     "preversion": "cd ../../ && pnpm run check",
     "version": "pnpm run clean && pnpm run build",
     "build-babel": "babel src --extensions .tsx,.ts,.jsx,.js --ignore \\\\\\\"/__snapshots__/,**/*.test.*\\\\\\\"",
