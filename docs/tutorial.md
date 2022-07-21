@@ -116,7 +116,7 @@ The easiest way to apply consistent styles to your Spectacle deck is using [them
 
 ### Sharing your Spectacle Deck
 
-For more information on [presenting](./basic-concepts#presenting), [exporting](./advanced-concepts#exporting), [building](./advanced-concepts#build--deployment), or [deploying](./advanced-concepts#build--deployment) your Spectacle deck, please check out [the documentation on advanced concepts](./advanced-concepts).
+For more information on [presenting](./#presenting), [exporting](./advanced-concepts#exporting), [building](./advanced-concepts#build--deployment), or [deploying](./advanced-concepts#build--deployment) your Spectacle deck, please check out [the documentation on advanced concepts](./advanced-concepts).
 
 ## Documentation, Contributing, and Source
 
