@@ -5,6 +5,7 @@ import {
   KBarPositioner,
   KBarAnimator,
   KBarSearch,
+  KBarResults,
   useMatches,
   NO_GROUP
 } from 'kbar';
@@ -20,7 +21,7 @@ const actions = [
   {
     id: 'contact',
     name: 'Contact',
-    shortcut: ['c'],
+    shortcut: ['c', 'k'],
     keywords: 'email',
     perform: () => console.log('Contacten')
   }
@@ -34,6 +35,7 @@ const CommandBar = (props: CommandBarProps): JSX.Element => {
         <KBarPositioner>
           <KBarAnimator>
             <KBarSearch />
+            <RenderResults />
           </KBarAnimator>
         </KBarPositioner>
       </KBarPortal>
@@ -45,5 +47,28 @@ const CommandBar = (props: CommandBarProps): JSX.Element => {
 export type CommandBarProps = {
   children: ReactNode;
 };
+
+function RenderResults() {
+  const { results } = useMatches();
+
+  return (
+    <KBarResults
+      items={results}
+      onRender={({ item, active }) =>
+        typeof item === 'string' ? (
+          <div>{item}</div>
+        ) : (
+          <div
+            style={{
+              background: active ? '#eee' : 'transparent'
+            }}
+          >
+            {item.name}
+          </div>
+        )
+      }
+    />
+  );
+}
 
 export default CommandBar;
