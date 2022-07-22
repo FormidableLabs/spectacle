@@ -38,6 +38,7 @@ import { defaultTransition, SlideTransition } from '../transitions';
 import { SwipeEventData } from 'react-swipeable';
 import { MarkdownComponentMap } from '../../utils/mdx-component-mapper';
 import TemplateWrapper from '../template-wrapper';
+import { useRegisterActions } from 'kbar';
 
 export type DeckContextType = {
   deckId: string | number;
@@ -216,6 +217,39 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
         slideIds
       ]
     );
+
+    // TODO: this should only be called if 'KBarProvider' is available
+    // TODO: actions here aren't working as expected in presenterMode
+    useRegisterActions([
+      {
+        id: 'Next Slide',
+        name: 'Next Slide',
+        shortcut: ['k'],
+        keywords: 'next',
+        perform: stepForward,
+        section: 'Slides'
+      },
+      {
+        id: 'Previous Slide',
+        name: 'Previous Slide',
+        shortcut: ['j'],
+        keywords: 'previous',
+        perform: stepBackward,
+        section: 'Slides'
+      },
+      {
+        id: 'Restart Presentation',
+        name: 'Restart Presentation',
+        shortcut: ['p', 'r'],
+        keywords: 'restart',
+        perform: () =>
+          skipTo({
+            slideIndex: 0,
+            stepIndex: 0
+          }),
+        section: 'Slides'
+      }
+    ]);
 
     useMousetrap(
       disableInteractivity
