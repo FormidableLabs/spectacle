@@ -225,7 +225,6 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
             {
               id: 'Next Slide',
               name: 'Next Slide',
-              shortcut: ['k'],
               keywords: 'next',
               perform: () => stepForward(),
               section: 'Slides'
@@ -233,7 +232,6 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
             {
               id: 'Previous Slide',
               name: 'Previous Slide',
-              shortcut: ['j'],
               keywords: 'previous',
               perform: () => stepBackward(),
               section: 'Slides'
@@ -241,7 +239,6 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
             {
               id: 'Restart Presentation',
               name: 'Restart Presentation',
-              shortcut: ['p', 'r'],
               keywords: 'restart',
               perform: () =>
                 skipTo({

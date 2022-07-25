@@ -19,7 +19,6 @@ export const Timer = () => {
     {
       id: 'Start/Pause Timer',
       name: 'Start/Pause Timer',
-      shortcut: ['t', '1'],
       keywords: 'start pause',
       perform: toggleTimer,
       section: 'Timer'
@@ -27,7 +26,6 @@ export const Timer = () => {
     {
       id: 'Restart Timer',
       name: 'Restart Timer',
-      shortcut: ['t', '2'],
       keywords: 'restart',
       perform: resetTimer,
       section: 'Timer'
@@ -46,11 +44,11 @@ export const Timer = () => {
           Math.round(timer) - minutes * 60
         ).padStart(2, '0')}`}</Text>
       </FlexBox>
-      <InternalButton onClick={() => setTimerStarted((s) => !s)}>
+      <InternalButton onClick={toggleTimer}>
         {timerStarted ? 'Stop Timer' : 'Start Timer'}
       </InternalButton>
       <Box width={8} />
-      <InternalButton onClick={() => setTimer(0)}>Reset</InternalButton>
+      <InternalButton onClick={resetTimer}>Reset</InternalButton>
     </FlexBox>
   );
 };

@@ -1,5 +1,4 @@
 import { ActionImpl, KBarResults, useMatches } from 'kbar';
-import { useCallback } from 'react';
 import styled from 'styled-components';
 
 interface ResultProps {
@@ -34,10 +33,6 @@ const CommandBarResults = (): JSX.Element => {
   `;
 
   // TODO: Use platform icons for 'mod', 'shift', and 'alt' keys
-  const getShortcut = useCallback((item: ActionImpl & InteralCommand) => {
-    return item.internal_shortcut?.split('+') ?? item.shortcut ?? [];
-  }, []);
-
   return (
     <KBarResults
       items={results}
@@ -48,8 +43,10 @@ const CommandBarResults = (): JSX.Element => {
           <ResultCommand active={active}>
             {item.name}
             <span>
-              {getShortcut(item)?.map((sc) => (
-                <ResultShortcutKey key={item.id}>{sc}</ResultShortcutKey>
+              {item.shortcut?.map((sc) => (
+                <ResultShortcutKey key={`${item.id}-${sc}`}>
+                  {sc}
+                </ResultShortcutKey>
               ))}
             </span>
           </ResultCommand>
@@ -57,10 +54,6 @@ const CommandBarResults = (): JSX.Element => {
       }
     />
   );
-};
-
-type InteralCommand = ActionImpl & {
-  internal_shortcut?: string;
 };
 
 export default CommandBarResults;
