@@ -31,7 +31,7 @@ export type ModeSearchParams = {
   exportMode?: boolean;
 };
 
-export type ToggleModeArgs = {
+export type ToggleModeParams = {
   newMode: SpectacleMode;
   senderSlideIndex?: number;
   e?: Event;

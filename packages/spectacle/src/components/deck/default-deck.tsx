@@ -5,7 +5,7 @@ import useMousetrap from '../../hooks/use-mousetrap';
 import {
   KEYBOARD_SHORTCUTS,
   SPECTACLE_MODES,
-  ToggleModeArgs
+  ToggleModeParams
 } from '../../utils/constants';
 
 /**
@@ -104,7 +104,7 @@ const DefaultDeck = (props: DefaultDeckProps): JSX.Element => {
 export default DefaultDeck;
 
 type DefaultDeckProps = DeckProps & {
-  toggleMode(args: ToggleModeArgs): void;
+  toggleMode(args: ToggleModeParams): void;
   overviewMode?: boolean;
   printMode?: boolean;
   exportMode?: boolean;

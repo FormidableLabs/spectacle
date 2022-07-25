@@ -3,7 +3,7 @@ import { parse as parseQS, stringify as stringifyQS } from 'query-string';
 import {
   SPECTACLE_MODES,
   SpectacleMode,
-  ToggleModeArgs,
+  ToggleModeParams,
   ModeSearchParams
 } from '../utils/constants';
 
@@ -17,7 +17,7 @@ const useModes = () => {
   );
 
   const toggleMode = useCallback(
-    (args: ToggleModeArgs) => {
+    (args: ToggleModeParams) => {
       const { newMode, senderSlideIndex, e } = args;
       e?.preventDefault();
 
