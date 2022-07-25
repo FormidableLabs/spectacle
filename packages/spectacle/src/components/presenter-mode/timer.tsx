@@ -11,10 +11,10 @@ export const Timer = () => {
   const [timerStarted, setTimerStarted] = useState(false);
   const addToTimer = useCallback((v: number) => setTimer((s) => s + v), []);
   const toggleTimer = useCallback(() => setTimerStarted((s) => !s), []);
+  const resetTimer = useCallback(() => setTimer(0), []);
   useTimer(addToTimer, 1000, timerStarted);
   const minutes = Math.floor(Math.round(timer) / 60);
 
-  // TODO: this should only be called if 'KBarProvider' is available
   useRegisterActions([
     {
       id: 'Start/Pause Timer',
@@ -29,7 +29,7 @@ export const Timer = () => {
       name: 'Restart Timer',
       shortcut: ['t', '2'],
       keywords: 'restart',
-      perform: () => setTimer(0),
+      perform: resetTimer,
       section: 'Timer'
     }
   ]);

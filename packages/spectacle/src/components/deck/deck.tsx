@@ -67,6 +67,7 @@ export type DeckContextType = {
   };
   skipTo(options: { slideIndex: number; stepIndex: number }): void;
   stepForward(): void;
+  stepBackward(): void;
   advanceSlide(): void;
   regressSlide(): void;
   commitTransition(newView?: { stepIndex: number }): void;
@@ -218,39 +219,40 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       ]
     );
 
-    // TODO: this should only be called if 'KBarProvider' is available
-    // TODO: actions here aren't working as expected in presenterMode
-    useRegisterActions([
-      {
-        id: 'Next Slide',
-        name: 'Next Slide',
-        shortcut: ['k'],
-        keywords: 'next',
-        perform: stepForward,
-        section: 'Slides'
-      },
-      {
-        id: 'Previous Slide',
-        name: 'Previous Slide',
-        shortcut: ['j'],
-        keywords: 'previous',
-        perform: stepBackward,
-        section: 'Slides'
-      },
-      {
-        id: 'Restart Presentation',
-        name: 'Restart Presentation',
-        shortcut: ['p', 'r'],
-        keywords: 'restart',
-        perform: () =>
-          skipTo({
-            slideIndex: 0,
-            stepIndex: 0
-          }),
-        section: 'Slides'
-      }
-    ]);
-
+    useRegisterActions(
+      !disableInteractivity
+        ? [
+            {
+              id: 'Next Slide',
+              name: 'Next Slide',
+              shortcut: ['k'],
+              keywords: 'next',
+              perform: () => stepForward(),
+              section: 'Slides'
+            },
+            {
+              id: 'Previous Slide',
+              name: 'Previous Slide',
+              shortcut: ['j'],
+              keywords: 'previous',
+              perform: () => stepBackward(),
+              section: 'Slides'
+            },
+            {
+              id: 'Restart Presentation',
+              name: 'Restart Presentation',
+              shortcut: ['p', 'r'],
+              keywords: 'restart',
+              perform: () =>
+                skipTo({
+                  slideIndex: 0,
+                  stepIndex: 0
+                }),
+              section: 'Slides'
+            }
+          ]
+        : []
+    );
     useMousetrap(
       disableInteractivity
         ? {}
@@ -475,6 +477,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               },
               skipTo,
               stepForward,
+              stepBackward,
               advanceSlide,
               regressSlide,
               commitTransition,

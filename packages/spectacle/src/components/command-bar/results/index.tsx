@@ -1,4 +1,5 @@
-import { KBarResults, useMatches } from 'kbar';
+import { ActionImpl, KBarResults, useMatches } from 'kbar';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 
 interface ResultProps {
@@ -8,7 +9,7 @@ interface ResultProps {
 const CommandBarResults = (): JSX.Element => {
   const { results } = useMatches();
 
-  const Result = styled.div<ResultProps>`
+  const ResultCommand = styled.div<ResultProps>`
     display: flex;
     justify-content: space-between;
     background-color: ${(p) => (p.active ? 'lightgrey' : 'white')};
@@ -16,7 +17,7 @@ const CommandBarResults = (): JSX.Element => {
     padding: 1rem;
   `;
 
-  const ResultSection = styled.div`
+  const ResultSectionHeader = styled.div`
     background-color: white;
     padding-left: 1rem;
     border-bottom: 1px solid rgba(0 0 0 / 0.1);
@@ -24,7 +25,7 @@ const CommandBarResults = (): JSX.Element => {
     margin: 0 1rem;
   `;
 
-  const ShortcutKey = styled.span`
+  const ResultShortcutKey = styled.span`
     padding: 5px 10px;
     background: rgba(0 0 0 / 0.1);
     border-radius: 4px;
@@ -32,27 +33,34 @@ const CommandBarResults = (): JSX.Element => {
     margin-right: 5px;
   `;
 
-  const styleShortcut: React.CSSProperties = {};
+  // TODO: Use platform icons for 'mod', 'shift', and 'alt' keys
+  const getShortcut = useCallback((item: ActionImpl & InteralCommand) => {
+    return item.internal_shortcut?.split('+') ?? item.shortcut ?? [];
+  }, []);
 
   return (
     <KBarResults
       items={results}
       onRender={({ item, active }) =>
         typeof item === 'string' ? (
-          <ResultSection>{item}</ResultSection>
+          <ResultSectionHeader>{item}</ResultSectionHeader>
         ) : (
-          <Result active={active}>
+          <ResultCommand active={active}>
             {item.name}
             <span>
-              {item.shortcut?.map((sc) => (
-                <ShortcutKey key={`${item.name}-${sc}`}>{sc}</ShortcutKey>
+              {getShortcut(item)?.map((sc) => (
+                <ResultShortcutKey key={item.id}>{sc}</ResultShortcutKey>
               ))}
             </span>
-          </Result>
+          </ResultCommand>
         )
       }
     />
   );
+};
+
+type InteralCommand = ActionImpl & {
+  internal_shortcut?: string;
 };
 
 export default CommandBarResults;

@@ -1,6 +1,5 @@
 import CommandBarResults from '../results';
 import { KBarPortal, KBarPositioner, KBarAnimator, KBarSearch } from 'kbar';
-import { opacity } from 'styled-system';
 import styled from 'styled-components';
 
 const KBarSearchStyled = styled(KBarSearch)`

@@ -23,3 +23,16 @@ export const SPECTACLE_MODES = {
 } as const;
 type ValuesOf<T> = T[keyof T];
 export type SpectacleMode = ValuesOf<typeof SPECTACLE_MODES>;
+
+export type ModeSearchParams = {
+  presenterMode?: boolean;
+  overviewMode?: boolean;
+  printMode?: boolean;
+  exportMode?: boolean;
+};
+
+export type ToggleModeArgs = {
+  newMode: SpectacleMode;
+  senderSlideIndex?: number;
+  e?: Event;
+};

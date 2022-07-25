@@ -5,7 +5,7 @@ import useMousetrap from '../../hooks/use-mousetrap';
 import {
   KEYBOARD_SHORTCUTS,
   SPECTACLE_MODES,
-  SpectacleMode
+  ToggleModeArgs
 } from '../../utils/constants';
 
 /**
@@ -51,7 +51,9 @@ const DefaultDeck = (props: DefaultDeckProps): JSX.Element => {
               stepIndex: 0
             }),
           [KEYBOARD_SHORTCUTS.SELECT_SLIDE_OVERVIEW_MODE]: (e) =>
-            toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE)
+            toggleMode({
+              newMode: SPECTACLE_MODES.DEFAULT_MODE
+            })
         }
       : {},
     []
@@ -62,7 +64,11 @@ const DefaultDeck = (props: DefaultDeckProps): JSX.Element => {
   >(
     (e, slideIndex) => {
       if (overviewMode) {
-        toggleMode(e, SPECTACLE_MODES.DEFAULT_MODE, +slideIndex);
+        toggleMode({
+          e,
+          newMode: SPECTACLE_MODES.DEFAULT_MODE,
+          senderSlideIndex: +slideIndex
+        });
       }
     },
     [overviewMode, toggleMode]
@@ -98,11 +104,7 @@ const DefaultDeck = (props: DefaultDeckProps): JSX.Element => {
 export default DefaultDeck;
 
 type DefaultDeckProps = DeckProps & {
-  toggleMode(
-    e: unknown,
-    newMode: SpectacleMode,
-    senderSlideIndex?: number
-  ): void;
+  toggleMode(args: ToggleModeArgs): void;
   overviewMode?: boolean;
   printMode?: boolean;
   exportMode?: boolean;

@@ -1,83 +1,40 @@
-import { useCallback, useRef } from 'react';
-import { modeKeyForSearchParam, modeSearchParamForKey } from '../deck/modes';
-import { parse as parseQS, stringify as stringifyQS } from 'query-string';
-import { SpectacleMode, SPECTACLE_MODES } from '../../utils/constants';
+import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
+import useModes from '../../hooks/use-modes';
 
 const useCommandBarActions = () => {
-  const mode = useRef(
-    modeKeyForSearchParam(
-      parseQS(location.search, {
-        parseBooleans: true
-      })
-    )
-  );
+  const { toggleMode } = useModes();
 
-  const toggleMode = useCallback(
-    (newMode: SpectacleMode, senderSlideIndex?: number) => {
-      let stepIndex: string | number = 0;
-      let slideIndex: string | number = senderSlideIndex || '';
-      const searchParams = parseQS(location.search, {
-        parseBooleans: true
-      });
-
-      if (!slideIndex) {
-        slideIndex = searchParams.slideIndex as string;
-        stepIndex = searchParams.stepIndex as string;
-      }
-
-      if (mode.current === newMode) {
-        location.search = stringifyQS({
-          slideIndex,
-          stepIndex
-        });
-        return;
-      }
-
-      mode.current = newMode;
-
-      location.search = stringifyQS({
-        slideIndex,
-        stepIndex,
-        ...modeSearchParamForKey(newMode)
-      });
-    },
-    [mode]
-  );
-
-  // TODO: KBar shortcuts don't work with 'mod', 'shift', or 'opt' keys
-  // If we want to keep the og shortcut for these modes then remove these
-  // shortcuts
   return [
     {
-      id: 'Presenter Mode',
+      id: SPECTACLE_MODES.PRESENTER_MODE,
       name: 'Presenter Mode',
-      shortcut: ['p'],
       keywords: 'presenter',
-      perform: () => toggleMode(SPECTACLE_MODES.PRESENTER_MODE),
+      internal_shortcut: KEYBOARD_SHORTCUTS.PRESENTER_MODE,
+      perform: () => toggleMode({ newMode: SPECTACLE_MODES.PRESENTER_MODE }),
       section: 'Mode'
     },
     {
-      id: 'Overview Mode',
+      id: SPECTACLE_MODES.OVERVIEW_MODE,
       name: 'Overview Mode',
-      shortcut: ['o'],
       keywords: 'overview',
-      perform: () => toggleMode(SPECTACLE_MODES.OVERVIEW_MODE),
+      internal_shortcut: KEYBOARD_SHORTCUTS.OVERVIEW_MODE,
+      perform: () => toggleMode({ newMode: SPECTACLE_MODES.OVERVIEW_MODE }),
       section: 'Mode'
     },
     {
-      id: 'Print Mode',
+      id: SPECTACLE_MODES.PRINT_MODE,
       name: 'Print Mode',
-      shortcut: ['r'],
       keywords: 'export',
-      perform: () => toggleMode(SPECTACLE_MODES.PRINT_MODE),
+      internal_shortcut: KEYBOARD_SHORTCUTS.PRINT_MODE,
+      perform: () => toggleMode({ newMode: SPECTACLE_MODES.PRINT_MODE }),
       section: 'Mode'
     },
     {
-      id: 'Export Mode',
+      id: SPECTACLE_MODES.EXPORT_MODE,
       name: 'Export Mode',
-      shortcut: ['e'],
       keywords: 'export',
-      perform: () => toggleMode(SPECTACLE_MODES.EXPORT_MODE),
+      internal_shortcut: KEYBOARD_SHORTCUTS.EXPORT_MODE,
+      perform: () => toggleMode({ newMode: SPECTACLE_MODES.EXPORT_MODE }),
       section: 'Mode'
     }
   ];
