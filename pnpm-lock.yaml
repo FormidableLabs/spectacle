@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@babel/core': ^7.17.2
       '@changesets/cli': ^2.23.1
+      '@svitejs/changesets-changelog-github-compact': ^0.1.1
       '@types/jest': ^27.0.2
       '@typescript-eslint/eslint-plugin': ^5.4.0
       '@typescript-eslint/parser': ^5.4.0
@@ -23,6 +24,7 @@ importers:
     devDependencies:
       '@babel/core': 7.18.6
       '@changesets/cli': 2.23.1
+      '@svitejs/changesets-changelog-github-compact': 0.1.1
       '@types/jest': 27.5.2
       '@typescript-eslint/eslint-plugin': 5.30.5_6zdoc3rn4mpiddqwhppni2mnnm
       '@typescript-eslint/parser': 5.30.5_4x5o4skxv6sl53vpwefgt23khm
@@ -1707,6 +1709,15 @@ packages:
       semver: 5.7.1
     dev: true
 
+  /@changesets/get-github-info/0.5.1:
+    resolution: {integrity: sha512-w2yl3AuG+hFuEEmT6j1zDlg7GQLM/J2UxTmk0uJBMdRqHni4zXGe/vUlPfLom5KfX3cRfHc0hzGvloDPjWFNZw==}
+    dependencies:
+      dataloader: 1.4.0
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
+    dev: true
+
   /@changesets/get-release-plan/3.0.10:
     resolution: {integrity: sha512-QeKHeo+mX1baRy3OIHQePMPebPFymq/ZxS6Bk3Y3FXiU+pXVnjrfqARj1E4xQT5c+48u6ISqJ8tW5f3EZ1/hng==}
     dependencies:
@@ -2246,6 +2257,16 @@ packages:
       '@styled-system/core': 5.1.2
       '@styled-system/css': 5.1.5
     dev: false
+
+  /@svitejs/changesets-changelog-github-compact/0.1.1:
+    resolution: {integrity: sha512-eBi211CfmKtkxB6tINicaDPBMbolswPbaAy7kCx+uUFL/LxztLm9cB+7jP54TgCrv+mMz8vSJWIs/baH63PjsA==}
+    engines: {node: ^12.20 || ^14.13.1 || >= 16}
+    dependencies:
+      '@changesets/get-github-info': 0.5.1
+      dotenv: 16.0.1
+    transitivePeerDependencies:
+      - encoding
+    dev: true
 
   /@testing-library/dom/8.14.0:
     resolution: {integrity: sha512-m8FOdUo77iMTwVRCyzWcqxlEIk+GnopbrRI15a0EaLbpZSCinIVI4kSQzWhkShK83GogvEFJSsHF3Ws0z1vrqA==}
@@ -3931,6 +3952,10 @@ packages:
       whatwg-url: 8.7.0
     dev: true
 
+  /dataloader/1.4.0:
+    resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
+    dev: true
+
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -4161,6 +4186,11 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.4.0
+    dev: true
+
+  /dotenv/16.0.1:
+    resolution: {integrity: sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==}
+    engines: {node: '>=12'}
     dev: true
 
   /editorconfig/0.15.3:
@@ -6644,6 +6674,18 @@ packages:
       tslib: 2.4.0
     dev: true
 
+  /node-fetch/2.6.7:
+    resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
+    dev: true
+
   /node-forge/1.3.1:
     resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
     engines: {node: '>= 6.13.0'}
@@ -8306,6 +8348,10 @@ packages:
       universalify: 0.1.2
     dev: true
 
+  /tr46/0.0.3:
+    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
+    dev: true
+
   /tr46/2.1.0:
     resolution: {integrity: sha512-15Ih7phfcdP5YxqiB+iDtLoaTz4Nd35+IiAv0kQ5FNKHzXgdWqPoTIqEDDJmXceQt4JZk6lVPT8lnDlPpGDppw==}
     engines: {node: '>=8'}
@@ -8777,6 +8823,10 @@ packages:
     resolution: {integrity: sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==}
     dev: false
 
+  /webidl-conversions/3.0.1:
+    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
+    dev: true
+
   /webidl-conversions/5.0.0:
     resolution: {integrity: sha512-VlZwKPCkYKxQgeSbH5EyngOmRp7Ww7I9rQLERETtf5ofd9pGeswWiOtogpEO850jziPRarreGxn5QIiTqpb2wA==}
     engines: {node: '>=8'}
@@ -8962,6 +9012,13 @@ packages:
 
   /whatwg-mimetype/2.3.0:
     resolution: {integrity: sha512-M4yMwr6mAnQz76TbJm914+gPpB/nCwvZbJU28cUD6dR004SAxDLOOSUaB1JDRqLtaOV/vi0IC5lEAGFgrjGv/g==}
+    dev: true
+
+  /whatwg-url/5.0.0:
+    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
+    dependencies:
+      tr46: 0.0.3
+      webidl-conversions: 3.0.1
     dev: true
 
   /whatwg-url/8.7.0:
