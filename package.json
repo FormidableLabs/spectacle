@@ -25,7 +25,7 @@
     "build:one-page": "node ./scripts/one-page.js",
     "build:cli": "pnpm run --filter spectacle-cli build",
     "changeset": "changeset",
-    "version": "pnpm changeset version && pnpm install --fix-lockfile"
+    "version": "pnpm changeset version && pnpm install"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
