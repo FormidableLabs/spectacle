@@ -27,7 +27,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "spectacle": "workspace:spectacle@*",
+    "spectacle": "*",
     "@types/node": "^18.0.3",
     "nodemon": "^2.0.18",
     "rimraf": "^3.0.2",

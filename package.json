@@ -1,11 +1,11 @@
 {
   "name": "spectacle-monorepo",
   "scripts": {
-    "start:js": "pnpm run --filter spectacle-example-js start",
-    "start:ts": "pnpm run --filter spectacle-example-ts start",
-    "start:md": "pnpm run --filter spectacle-example-md start",
+    "start:js": "pnpm run build:core && pnpm run --filter spectacle-example-js start",
+    "start:ts": "pnpm run build:core && pnpm run --filter spectacle-example-ts start",
+    "start:md": "pnpm run build:core && pnpm run --filter spectacle-example-md start",
     "start:one-page": "pnpm run --filter spectacle-example-one-page start",
-    "start:examples": "pnpm run --parallel --filter \"*example*\" start",
+    "start:examples": "pnpm run build:core && pnpm run --parallel --filter \"*example*\" start",
     "start:cli": "pnpm run --filter spectacle-cli start",
     "lint": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src packages/cli/src",
     "lint:fix": "pnpm run lint --fix",
@@ -17,17 +17,20 @@
     "check": "pnpm run lint && pnpm run prettier:check && pnpm run test && pnpm run typecheck",
     "check-ci": "pnpm run check",
     "clean": "pnpm run -r clean",
+    "flush:deps": "rimraf **/node_modules",
+    "nuke": "pnpm run -r clean && pnpm run flush:deps",
     "build:examples": "pnpm run --filter spectacle build && pnpm run -r --filter \"*example*\" build",
     "build:core": "pnpm run --filter spectacle build",
-    "build": "pnpm run -r build",
+    "build": "pnpm run build:core && pnpm run build:examples",
     "build:one-page": "node ./scripts/one-page.js",
     "build:cli": "pnpm run --filter spectacle-cli build",
     "changeset": "changeset",
-    "version": "pnpm changeset version && pnpm install --fix-lockfile"
+    "version": "pnpm changeset version && pnpm install"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
     "@changesets/cli": "^2.23.1",
+    "@svitejs/changesets-changelog-github-compact": "^0.1.1",
     "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
@@ -40,6 +43,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.4.1",
     "pretty": "^2.0.0",
+    "rimraf": "^3.0.0",
     "typescript": "^4.5.2"
   }
 }
