@@ -1,5 +1,11 @@
 # Changelog
 
+## 9.3.0
+
+### Minor Changes
+
+- Fixed lineNumberStyle prop for CodePane. (fixes [#1150](https://github.com/FormidableLabs/spectacle/issues/1150)) ([#1154](https://github.com/FormidableLabs/spectacle/pull/1154))
+
 ## 9.2.1
 
 - Fix `use-broadcast-channel` to be compatible with React 18 strict mode, via [#1131](https://github.com/FormidableLabs/spectacle/pull/1131).
