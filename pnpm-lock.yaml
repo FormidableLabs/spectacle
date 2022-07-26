@@ -53,7 +53,7 @@ importers:
       react: ^18.1.0
       react-dom: ^18.1.0
       rimraf: ^3.0.0
-      spectacle: workspace:spectacle@*
+      spectacle: '*'
       webpack: ^5.68.0
       webpack-cli: ^4.10.0
       webpack-dev-server: ^4.7.4
@@ -89,7 +89,7 @@ importers:
       react: ^18.1.0
       react-dom: ^18.1.0
       rimraf: ^3.0.0
-      spectacle: workspace:spectacle@*
+      spectacle: '*'
       typescript: ^4.5.2
       webpack: ^5.68.0
       webpack-cli: ^4.10.0
@@ -130,7 +130,7 @@ importers:
       react: ^18.1.0
       react-dom: ^18.1.0
       rimraf: ^3.0.0
-      spectacle: workspace:spectacle@*
+      spectacle: '*'
       typescript: ^4.5.2
       webpack: ^5.68.0
       webpack-cli: ^4.10.0
@@ -164,7 +164,7 @@ importers:
       log-update: 4.0.0
       nodemon: ^2.0.18
       rimraf: ^3.0.2
-      spectacle: workspace:spectacle@*
+      spectacle: '*'
       ts-node: ^10.8.1
       typescript: '*'
     dependencies:
