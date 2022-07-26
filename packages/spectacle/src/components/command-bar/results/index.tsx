@@ -1,68 +1,85 @@
-import { ActionImpl, KBarResults, useMatches } from 'kbar';
-import { useCallback } from 'react';
 import styled from 'styled-components';
-import { InternalCommand } from '../command-bar-actions';
+import { ActionImpl, KBarResults, useMatches } from 'kbar';
+import { prettifyShortcut } from '../../../utils/platform-keys';
+import {
+  KeyboardShortcutTypes,
+  KEYBOARD_SHORTCUTS
+} from '../../../utils/constants';
+import { Text } from '../../typography';
 
-interface ResultProps {
+type RenderParams = {
+  item: ActionImpl | string;
   active: boolean;
+};
+
+function getShortcutKeys({ id, shortcut = [] }: ActionImpl): string[] {
+  if (id in KEYBOARD_SHORTCUTS && !shortcut?.length) {
+    const _id = id as KeyboardShortcutTypes;
+    return prettifyShortcut(KEYBOARD_SHORTCUTS[_id].split('+'));
+  }
+  return prettifyShortcut(shortcut);
+}
+
+const ResultCommand = styled.div<Partial<RenderParams>>`
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+    background-color: ${(p) => (p.active ? 'lightsteelblue' : 'transparent')};
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  `;
+
+const ResultSectionHeader = styled.div`
+  background-color: white;
+  padding-left: 1rem;
+  border-bottom: 1px solid rgba(0 0 0 / 0.1);
+  font-size: smaller;
+  margin: 0 1rem;
+`;
+
+const ResultShortcut = styled.span`
+  display: flex;
+  gap: 5px;
+  font-size: 1.3em;
+`;
+
+const ResultShortcutKey = styled.kbd`
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  padding: 5px 10px;
+  white-space: nowrap;
+`;
+
+function onRender({ item, active }: RenderParams): JSX.Element {
+  if (typeof item === 'string') {
+    return (
+      <ResultSectionHeader>
+        <Text>{item}</Text>
+      </ResultSectionHeader>
+    );
+  } else {
+    return (
+      <ResultCommand active={active}>
+        <Text>{item.name}</Text>
+        <ResultShortcut>
+          {getShortcutKeys(item).map(
+            (key) =>
+              key && (
+                <ResultShortcutKey key={`${item.id}-${key}`}>
+                  {key}
+                </ResultShortcutKey>
+              )
+          )}
+        </ResultShortcut>
+      </ResultCommand>
+    );
+  }
 }
 
 const CommandBarResults = (): JSX.Element => {
   const { results } = useMatches();
-
-  const ResultCommand = styled.div<ResultProps>`
-    display: flex;
-    justify-content: space-between;
-    background-color: ${(p) => (p.active ? 'lightgrey' : 'white')};
-    color: rgb(28 28 29);
-    padding: 1rem;
-  `;
-
-  const ResultSectionHeader = styled.div`
-    background-color: white;
-    padding-left: 1rem;
-    border-bottom: 1px solid rgba(0 0 0 / 0.1);
-    font-size: smaller;
-    margin: 0 1rem;
-  `;
-
-  const ResultShortcutKey = styled.span`
-    padding: 5px 10px;
-    background: rgba(0 0 0 / 0.1);
-    border-radius: 4px;
-    fontsize: 14;
-    margin-right: 5px;
-  `;
-
-  const getShortcutKeys = useCallback((item: InternalCommand) => {
-    if (item.internal_shortcut) {
-      return item.internal_shortcut;
-    }
-    return item.shortcut ?? [];
-  }, []);
-
-  // TODO: Use platform icons for 'mod', 'shift', and 'alt' keys
-  return (
-    <KBarResults
-      items={results}
-      onRender={({ item, active }) =>
-        typeof item === 'string' ? (
-          <ResultSectionHeader>{item}</ResultSectionHeader>
-        ) : (
-          <ResultCommand active={active}>
-            {item.name}
-            <span>
-              {getShortcutKeys(item)?.map((sc) => (
-                <ResultShortcutKey key={`${item.id}-${sc}`}>
-                  {sc}
-                </ResultShortcutKey>
-              ))}
-            </span>
-          </ResultCommand>
-        )
-      }
-    />
-  );
+  return <KBarResults items={results} onRender={onRender} />;
 };
 
 export default CommandBarResults;

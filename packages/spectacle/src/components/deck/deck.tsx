@@ -39,6 +39,7 @@ import { SwipeEventData } from 'react-swipeable';
 import { MarkdownComponentMap } from '../../utils/mdx-component-mapper';
 import TemplateWrapper from '../template-wrapper';
 import { useRegisterActions } from 'kbar';
+import { KEYBOARD_SHORTCUTS_IDS } from '../../utils/constants';
 
 export type DeckContextType = {
   deckId: string | number;
@@ -223,14 +224,14 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       !disableInteractivity
         ? [
             {
-              id: 'Next Slide',
+              id: KEYBOARD_SHORTCUTS_IDS.NEXT_SLIDE,
               name: 'Next Slide',
               keywords: 'next',
               perform: () => stepForward(),
               section: 'Slides'
             },
             {
-              id: 'Previous Slide',
+              id: KEYBOARD_SHORTCUTS_IDS.PREVIOUS_SLIDE,
               name: 'Previous Slide',
               keywords: 'previous',
               perform: () => stepBackward(),
