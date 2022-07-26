@@ -1,4 +1,4 @@
-const base = require('./packages/spectacle/webpack.config');
+const base = require('./webpack.config');
 
 module.exports = {
   ...base,
