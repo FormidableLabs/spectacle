@@ -1,6 +1,6 @@
-import CommandBarResults from '../results';
-import { KBarPortal, KBarPositioner, KBarAnimator, KBarSearch } from 'kbar';
 import styled from 'styled-components';
+import { KBarPortal, KBarPositioner, KBarAnimator, KBarSearch } from 'kbar';
+import CommandBarResults from '../results';
 
 const KBarSearchStyled = styled(KBarSearch)`
   padding: 12px 16px;
