@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "spectacle": "workspace:spectacle@*"
+    "spectacle": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",

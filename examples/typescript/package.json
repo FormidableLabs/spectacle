@@ -7,7 +7,7 @@
     "build": "webpack --config ./webpack.config.js"
   },
   "dependencies": {
-    "spectacle": "workspace:spectacle@*",
+    "spectacle": "*",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
