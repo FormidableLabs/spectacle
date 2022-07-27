@@ -31,6 +31,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      # Wireit cache
+      - uses: google/wireit@setup-github-actions-caching/v1
+
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7
@@ -50,10 +53,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # TODO(wireit): add `pnpm run build` step.
+
       - name: Check Code ${{ matrix.node-version }}
+        run: pnpm run check
+
+      # TODO(wireit): REMOVE
+      - name: Check Code LEGACY ${{ matrix.node-version }}
         run: yarn check-ci
 
-        # NOTE! build:examples also builds the core.
-        #  This dependency will be more explicit with wireit
+      # TODO(wireit): Fix this elsewhere.
+      # NOTE! build:examples also builds the core.
+      #  This dependency will be more explicit with wireit
       - name: Build Examples ${{ matrix.node-version }}
         run: yarn build:examples
