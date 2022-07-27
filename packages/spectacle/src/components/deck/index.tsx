@@ -3,10 +3,46 @@ import DefaultDeck from './default-deck';
 import PresenterMode from '../presenter-mode';
 import PrintMode from '../print-mode';
 import useMousetrap from '../../hooks/use-mousetrap';
-import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
+import {
+  KEYBOARD_SHORTCUTS,
+  SPECTACLE_MODES,
+  ToggleModeParams
+} from '../../utils/constants';
 import { DeckProps } from './deck';
 import useModes from '../../hooks/use-modes';
 import CommandBar from '../command-bar';
+
+type ViewProps = DeckProps & {
+  mode: string;
+  toggleMode: (args: ToggleModeParams) => void;
+};
+
+const View = ({ mode, toggleMode, ...props }: ViewProps): JSX.Element => {
+  switch (mode) {
+    case SPECTACLE_MODES.DEFAULT_MODE:
+      return <DefaultDeck {...props} toggleMode={toggleMode} />;
+
+    case SPECTACLE_MODES.PRESENTER_MODE:
+      return <PresenterMode {...props} />;
+
+    /**
+     * Print mode and export mode are identical except for the theme
+     * that is used. Print mode uses the print theme which is usually
+     * monotone and export mode uses the default theme.
+     */
+    case SPECTACLE_MODES.PRINT_MODE:
+      return <PrintMode {...props} />;
+
+    case SPECTACLE_MODES.EXPORT_MODE:
+      return <PrintMode {...props} exportMode />;
+
+    case SPECTACLE_MODES.OVERVIEW_MODE:
+      return <DefaultDeck overviewMode toggleMode={toggleMode} {...props} />;
+
+    default:
+      return <Fragment />;
+  }
+};
 
 const SpectacleDeck = (props: DeckProps): JSX.Element => {
   const { toggleMode, currentMode } = useModes();
@@ -25,36 +61,9 @@ const SpectacleDeck = (props: DeckProps): JSX.Element => {
     []
   );
 
-  const View = () => {
-    switch (currentMode) {
-      case SPECTACLE_MODES.DEFAULT_MODE:
-        return <DefaultDeck {...props} toggleMode={toggleMode} />;
-
-      case SPECTACLE_MODES.PRESENTER_MODE:
-        return <PresenterMode {...props} />;
-
-      /**
-       * Print mode and export mode are identical except for the theme
-       * that is used. Print mode uses the print theme which is usually
-       * monotone and export mode uses the default theme.
-       */
-      case SPECTACLE_MODES.PRINT_MODE:
-        return <PrintMode {...props} />;
-
-      case SPECTACLE_MODES.EXPORT_MODE:
-        return <PrintMode {...props} exportMode />;
-
-      case SPECTACLE_MODES.OVERVIEW_MODE:
-        return <DefaultDeck overviewMode toggleMode={toggleMode} {...props} />;
-
-      default:
-        return <Fragment />;
-    }
-  };
-
   return (
     <CommandBar>
-      <View />
+      <View mode={currentMode} toggleMode={toggleMode} {...props} />
     </CommandBar>
   );
 };
