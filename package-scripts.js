@@ -27,7 +27,6 @@ module.exports = {
       'prettier --write "./*.js*" "./{scripts,config,demo,docs,stories,test}/*.{js,jsx,json,ts,tsx}"',
 
     // - Lint
-    // TODO(wireit): IMPLEMENT
     'lint:base': 'eslint --cache --color',
     'lint:pkg': 'nps "lint:base src"',
     'lint:pkg:fix': 'nps "lint:base --fix src"'

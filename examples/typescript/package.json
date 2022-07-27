@@ -1,11 +1,6 @@
 {
   "name": "spectacle-example-ts",
   "private": true,
-  "scripts": {
-    "start": "webpack-dev-server --port=3100 --hot --config ./webpack.config.js",
-    "clean": "rimraf dist",
-    "build": "webpack --config ./webpack.config.js"
-  },
   "dependencies": {
     "spectacle": "*",
     "react": "^18.1.0",
@@ -25,5 +20,39 @@
     "webpack": "^5.68.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.7.4"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --port=3100 --hot --config ./webpack.config.js",
+    "clean": "rimraf dist",
+    "build": "webpack --config ./webpack.config.js",
+    "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
+    "lint": "wireit",
+    "lint:fix": "wireit"
+  },
+  "wireit": {
+    "lint": {
+      "command": "nps \"lint:base *.js *.tsx\"",
+      "files": [
+        "*.{js,jsx,ts,tsx}",
+        "../../.eslintignore",
+        "../../.eslintrc"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:fix": {
+      "command": "pnpm run lint || nps \"lint:base --fix *.js *.tsx\"",
+      "files": [
+        "*.{js,jsx,ts,tsx}",
+        "../../.eslintignore",
+        "../../.eslintrc"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
   }
 }

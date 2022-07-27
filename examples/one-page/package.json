@@ -2,6 +2,7 @@
   "name": "spectacle-example-one-page",
   "private": "true",
   "scripts": {
-    "start": "open index.html"
+    "start": "open index.html",
+    "TODO_WIREIT": "echo TODO ADD BUILD SCRIPT AND ALL WIREIT COMMANDS"
   }
 }
