@@ -9,7 +9,7 @@
     "start:cli": "pnpm run --filter spectacle-cli start",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
-    "check": "pnpm run lint && pnpm run prettier:check && pnpm run test && pnpm run typecheck",
+    "check": "wireit",
     "check-ci": "pnpm run check",
     "clean": "pnpm run -r clean",
     "flush:deps": "rimraf **/node_modules",
@@ -22,19 +22,18 @@
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "version": "pnpm changeset version && pnpm install",
     "changeset": "changeset",
-    "check": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "lint:root": "wireit",
     "lint:root:fix": "wireit",
     "lint:pkgs": "wireit",
-    "lint:pkgs:fix": "wireit" ,
+    "lint:pkgs:fix": "wireit",
     "prettier": "wireit",
     "prettier:fix": "wireit",
     "prettier:root": "wireit",
     "prettier:root:fix": "wireit",
     "prettier:pkgs": "wireit",
-    "prettier:pkgs:fix": "wireit" 
+    "prettier:pkgs:fix": "wireit"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
@@ -45,6 +44,7 @@
     "@typescript-eslint/parser": "^5.4.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-transform-jsx-to-htm": "^2.0.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -182,4 +182,3 @@
     }
   }
 }
-

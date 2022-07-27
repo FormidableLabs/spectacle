@@ -12,6 +12,7 @@ importers:
       '@typescript-eslint/parser': ^5.4.0
       babel-eslint: ^10.1.0
       babel-plugin-transform-jsx-to-htm: ^2.0.0
+      cross-env: ^7.0.3
       eslint: ^8.2.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-prettier: ^4.0.0
@@ -32,6 +33,7 @@ importers:
       '@typescript-eslint/parser': 5.30.5_4x5o4skxv6sl53vpwefgt23khm
       babel-eslint: 10.1.0_eslint@8.19.0
       babel-plugin-transform-jsx-to-htm: 2.2.0_@babel+core@7.18.6
+      cross-env: 7.0.3
       eslint: 8.19.0
       eslint-config-prettier: 8.5.0_eslint@8.19.0
       eslint-plugin-prettier: 4.2.1_7uxdfn2xinezdgvmbammh6ev5i
@@ -3865,6 +3867,14 @@ packages:
 
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/5.1.0:
