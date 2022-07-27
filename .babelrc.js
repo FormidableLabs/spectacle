@@ -16,8 +16,5 @@ module.exports = {
       presets: ['@babel/preset-env', '@babel/preset-react']
     }
   },
-  ignore: [
-    "/__snapshots__/",
-    /^.*(.test.)[j|t]sx?$/
-  ],
+  ignore: ['/__snapshots__/', /^.*(.test.)[j|t]sx?$/]
 };

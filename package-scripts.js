@@ -15,13 +15,19 @@
 module.exports = {
   scripts: {
     // Build
+    // - Typescript
+    tsc: 'tsc',
+
     // - Babel
-    'babel:pkg:base': 'babel src --config-file ../../.babelrc.js --extensions .tsx,.ts,.jsx,.js',
-    'babel:pkg:lib:esm': 'cross-env BABEL_ENV=es nps "babel:pkg:base src --out-dir es"',
-    'babel:pkg:lib:cjs': 'cross-env BABEL_ENV=commonjs nps "babel:pkg:base src --out-dir lib"',
+    'babel:pkg:base':
+      'babel src --config-file ../../.babelrc.js --extensions .tsx,.ts,.jsx,.js',
+    'babel:pkg:lib:esm':
+      'cross-env BABEL_ENV=es nps "babel:pkg:base src --out-dir es"',
+    'babel:pkg:lib:cjs':
+      'cross-env BABEL_ENV=commonjs nps "babel:pkg:base src --out-dir lib"',
 
     // - Webpack
-    'webpack': 'webpack',
+    webpack: 'webpack',
 
     // Quality.
     // - Format
