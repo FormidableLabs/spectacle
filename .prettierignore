@@ -8,3 +8,7 @@ dist
 docs
 .nova
 .vscode
+.wireit
+
+# Allow us to manually format this.
+examples/md/slides.md

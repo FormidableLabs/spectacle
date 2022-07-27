@@ -107,16 +107,18 @@
     "postpack": "shx rm ./README.md && shx rm ./LICENSE",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "lint": "wireit",
-    "lint:fix": "wireit"
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit"
   },
   "wireit": {
     "lint": {
       "command": "nps lint:pkg",
       "files": [
-        "*.js",
-        "src/**",
         "../../.eslintignore",
-        "../../.eslintrc"
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
       ],
       "output": [],
       "packageLocks": [
@@ -126,10 +128,36 @@
     "lint:fix": {
       "command": "pnpm run lint || nps lint:pkg:fix",
       "files": [
-        "*.js",
-        "src/**",
         "../../.eslintignore",
-        "../../.eslintrc"
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:pkg",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
       ],
       "output": [],
       "packageLocks": [

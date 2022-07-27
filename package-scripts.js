@@ -17,14 +17,14 @@ module.exports = {
     // Quality.
     // - Format
     // TODO(wireit): IMPLEMENT
-    'format:pkg':
-      'prettier --config ../../.prettierrc.json --ignore-path ../../.prettierignore --list-different "./**/*.{js,jsx,json,ts,tsx}"',
-    'format:pkg:fix':
-      'prettier --config ../../.prettierrc.json --ignore-path ../../.prettierignore --write "./**/*.{js,jsx,json,ts,tsx}"',
-    'format:root':
-      'prettier --list-different "./*.js*" "./{scripts,config,demo,docs,stories,test}/*.{js,jsx,json,ts,tsx}"',
-    'format:root:fix':
-      'prettier --write "./*.js*" "./{scripts,config,demo,docs,stories,test}/*.{js,jsx,json,ts,tsx}"',
+    'prettier:base':
+      'prettier --list-different "./**/*.{js,jsx,json,ts,tsx,css,md}"',
+    'prettier:base:fix':
+      'prettier --write "./**/*.{js,jsx,json,ts,tsx,css,md}"',
+    'prettier:pkg':
+      'nps "prettier:base --config ../../.prettierrc --ignore-path ../../.prettierignore"',
+    'prettier:pkg:fix':
+      'nps "prettier:base:fix --config ../../.prettierrc --ignore-path ../../.prettierignore"',
 
     // - Lint
     'lint:base': 'eslint --cache --color',

@@ -7,9 +7,6 @@
     "start:one-page": "pnpm run --filter spectacle-example-one-page start",
     "start:examples": "pnpm run build:core && pnpm run --parallel --filter \"*example*\" start",
     "start:cli": "pnpm run --filter spectacle-cli start",
-    "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
-    "prettier:check": "pnpm run prettier --check",
-    "prettier:fix": "pnpm prettier --write",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "check": "pnpm run lint && pnpm run prettier:check && pnpm run test && pnpm run typecheck",
@@ -25,12 +22,19 @@
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "version": "pnpm changeset version && pnpm install",
     "changeset": "changeset",
+    "check": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "lint:root": "wireit",
     "lint:root:fix": "wireit",
     "lint:pkgs": "wireit",
-    "lint:pkgs:fix": "wireit" 
+    "lint:pkgs:fix": "wireit" ,
+    "prettier": "wireit",
+    "prettier:fix": "wireit",
+    "prettier:root": "wireit",
+    "prettier:root:fix": "wireit",
+    "prettier:pkgs": "wireit",
+    "prettier:pkgs:fix": "wireit" 
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
@@ -54,6 +58,12 @@
     "wireit": "^0.7.1"
   },
   "wireit": {
+    "check": {
+      "dependencies": [
+        "prettier",
+        "lint"
+      ]
+    },
     "lint": {
       "dependencies": [
         "lint:root",
@@ -69,6 +79,8 @@
     "lint:root": {
       "command": "nps \"lint:base *.js scripts\"",
       "files": [
+        ".eslintrc",
+        ".eslintignore",
         "*.js",
         "scripts",
         "!**/node_modules/**"
@@ -81,6 +93,8 @@
     "lint:root:fix": {
       "command": "pnpm run lint:root || nps \"lint:base --fix *.js scripts\"",
       "files": [
+        ".eslintrc",
+        ".eslintignore",
         "*.js",
         "scripts",
         "!**/node_modules/**"
@@ -107,6 +121,65 @@
         "./examples/md:lint:fix",
         "./examples/typescript:lint:fix"
       ]
+    },
+    "prettier": {
+      "dependencies": [
+        "prettier:root",
+        "prettier:pkgs"
+      ]
+    },
+    "prettier:fix": {
+      "dependencies": [
+        "prettier:root:fix",
+        "prettier:pkgs:fix"
+      ]
+    },
+    "prettier:root": {
+      "command": "nps prettier:base",
+      "files": [
+        ".prettierrc",
+        ".prettierignore",
+        "*.{js,jsx,json,ts,tsx,css,md}",
+        "scripts",
+        "!**/node_modules/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:root:fix": {
+      "command": "pnpm run prettier:root || nps prettier:base:fix",
+      "files": [
+        ".prettierrc",
+        ".prettierignore",
+        "*.{js,jsx,json,ts,tsx,css,md}",
+        "scripts",
+        "!**/node_modules/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:pkgs": {
+      "dependencies": [
+        "./packages/spectacle:prettier",
+        "./packages/cli:prettier",
+        "./examples/js:prettier",
+        "./examples/md:prettier",
+        "./examples/typescript:prettier"
+      ]
+    },
+    "prettier:pkgs:fix": {
+      "dependencies": [
+        "./packages/spectacle:prettier:fix",
+        "./packages/cli:prettier:fix",
+        "./examples/js:prettier:fix",
+        "./examples/md:prettier:fix",
+        "./examples/typescript:prettier:fix"
+      ]
     }
   }
 }
+

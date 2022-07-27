@@ -27,15 +27,17 @@
     "build": "webpack --config ./webpack.config.js",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "lint": "wireit",
-    "lint:fix": "wireit"
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit"
   },
   "wireit": {
     "lint": {
       "command": "nps \"lint:base *.js *.tsx\"",
       "files": [
-        "*.{js,jsx,ts,tsx}",
         "../../.eslintignore",
-        "../../.eslintrc"
+        "../../.eslintrc",
+        "*.{js,jsx,ts,tsx}"
       ],
       "output": [],
       "packageLocks": [
@@ -45,9 +47,33 @@
     "lint:fix": {
       "command": "pnpm run lint || nps \"lint:base --fix *.js *.tsx\"",
       "files": [
-        "*.{js,jsx,ts,tsx}",
         "../../.eslintignore",
-        "../../.eslintrc"
+        "../../.eslintrc",
+        "*.{js,jsx,ts,tsx}"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:pkg",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.{js,jsx,ts,tsx}"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.{js,jsx,ts,tsx}"
       ],
       "output": [],
       "packageLocks": [
