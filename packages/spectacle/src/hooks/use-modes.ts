@@ -7,7 +7,7 @@ import {
   ModeSearchParams
 } from '../utils/constants';
 
-const useModes = () => {
+const useModes = (): ModeActions => {
   const mode = useRef(
     modeKeyForSearchParam(
       parseQS(location.search, {
@@ -51,7 +51,9 @@ const useModes = () => {
     [mode]
   );
 
-  return { toggleMode, currentMode: mode.current };
+  const getCurrentMode = useCallback((): SpectacleMode => mode.current, []);
+
+  return { toggleMode, getCurrentMode };
 };
 
 function modeSearchParamForKey(key: SpectacleMode): ModeSearchParams {
@@ -84,5 +86,10 @@ function modeKeyForSearchParam({
   }
   return SPECTACLE_MODES.DEFAULT_MODE;
 }
+
+export type ModeActions = {
+  toggleMode: (args: ToggleModeParams) => void;
+  getCurrentMode: () => SpectacleMode;
+};
 
 export default useModes;

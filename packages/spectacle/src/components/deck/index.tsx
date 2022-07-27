@@ -3,21 +3,17 @@ import DefaultDeck from './default-deck';
 import PresenterMode from '../presenter-mode';
 import PrintMode from '../print-mode';
 import useMousetrap from '../../hooks/use-mousetrap';
-import {
-  KEYBOARD_SHORTCUTS,
-  SPECTACLE_MODES,
-  ToggleModeParams
-} from '../../utils/constants';
+import { KEYBOARD_SHORTCUTS, SPECTACLE_MODES } from '../../utils/constants';
 import { DeckProps } from './deck';
-import useModes from '../../hooks/use-modes';
+import useModes, { ModeActions } from '../../hooks/use-modes';
 import CommandBar from '../command-bar';
 
-type ViewProps = DeckProps & {
-  mode: string;
-  toggleMode: (args: ToggleModeParams) => void;
-};
-
-const View = ({ mode, toggleMode, ...props }: ViewProps): JSX.Element => {
+const View = ({
+  getCurrentMode,
+  toggleMode,
+  ...props
+}: ModeActions & DeckProps): JSX.Element => {
+  const mode = getCurrentMode();
   switch (mode) {
     case SPECTACLE_MODES.DEFAULT_MODE:
       return <DefaultDeck {...props} toggleMode={toggleMode} />;
@@ -45,7 +41,7 @@ const View = ({ mode, toggleMode, ...props }: ViewProps): JSX.Element => {
 };
 
 const SpectacleDeck = (props: DeckProps): JSX.Element => {
-  const { toggleMode, currentMode } = useModes();
+  const { toggleMode, getCurrentMode } = useModes();
 
   useMousetrap(
     {
@@ -63,7 +59,11 @@ const SpectacleDeck = (props: DeckProps): JSX.Element => {
 
   return (
     <CommandBar>
-      <View mode={currentMode} toggleMode={toggleMode} {...props} />
+      <View
+        getCurrentMode={getCurrentMode}
+        toggleMode={toggleMode}
+        {...props}
+      />
     </CommandBar>
   );
 };
