@@ -7,8 +7,6 @@
     "start:one-page": "pnpm run --filter spectacle-example-one-page start",
     "start:examples": "pnpm run build:core && pnpm run --parallel --filter \"*example*\" start",
     "start:cli": "pnpm run --filter spectacle-cli start",
-    "lint": "eslint --ext .tsx,.ts,.jsx,.js ./examples ./scripts packages/spectacle/src packages/cli/src",
-    "lint:fix": "pnpm run lint --fix",
     "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
     "prettier:check": "pnpm run prettier --check",
     "prettier:fix": "pnpm prettier --write",
@@ -24,8 +22,15 @@
     "build": "pnpm run build:core && pnpm run build:examples",
     "build:one-page": "node ./scripts/one-page.js",
     "build:cli": "pnpm run --filter spectacle-cli build",
+    "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
+    "version": "pnpm changeset version && pnpm install",
     "changeset": "changeset",
-    "version": "pnpm changeset version && pnpm install"
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "lint:root": "wireit",
+    "lint:root:fix": "wireit",
+    "lint:pkgs": "wireit",
+    "lint:pkgs:fix": "wireit" 
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
@@ -41,9 +46,67 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "nps": "^5.10.0",
     "prettier": "^2.4.1",
     "pretty": "^2.0.0",
     "rimraf": "^3.0.0",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "wireit": "^0.7.1"
+  },
+  "wireit": {
+    "lint": {
+      "dependencies": [
+        "lint:root",
+        "lint:pkgs"
+      ]
+    },
+    "lint:fix": {
+      "dependencies": [
+        "lint:root:fix",
+        "lint:pkgs:fix"
+      ]
+    },
+    "lint:root": {
+      "command": "nps \"lint:base *.js scripts\"",
+      "files": [
+        "*.js",
+        "scripts",
+        "!**/node_modules/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:root:fix": {
+      "command": "pnpm run lint:root || nps \"lint:base --fix *.js scripts\"",
+      "files": [
+        "*.js",
+        "scripts",
+        "!**/node_modules/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:pkgs": {
+      "dependencies": [
+        "./packages/spectacle:lint",
+        "./packages/cli:lint",
+        "./examples/js:lint",
+        "./examples/md:lint",
+        "./examples/typescript:lint"
+      ]
+    },
+    "lint:pkgs:fix": {
+      "dependencies": [
+        "./packages/spectacle:lint:fix",
+        "./packages/cli:lint:fix",
+        "./examples/js:lint:fix",
+        "./examples/md:lint:fix",
+        "./examples/typescript:lint:fix"
+      ]
+    }
   }
 }

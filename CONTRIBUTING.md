@@ -50,7 +50,7 @@ A basic deck with JSX and JavaScript:
 
 ```bash
 # start the dev server
-$ pnpm run start:js
+$ pnpm start:js
 
 # open the browser
 $ open http://localhost:3000/
