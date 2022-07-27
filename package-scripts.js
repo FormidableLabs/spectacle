@@ -15,17 +15,13 @@
 module.exports = {
   scripts: {
     // Build
+    // - Babel
     'babel:pkg:base': 'babel src --config-file ../../.babelrc.js --extensions .tsx,.ts,.jsx,.js',
     'babel:pkg:lib:esm': 'cross-env BABEL_ENV=es nps "babel:pkg:base src --out-dir es"',
     'babel:pkg:lib:cjs': 'cross-env BABEL_ENV=commonjs nps "babel:pkg:base src --out-dir lib"',
 
-    //   // - UMD distributions
-    //   // TODO(23`75): Add / verify caching
-    //   // https://github.com/FormidableLabs/victory/issues/2375
-    //   "build:dist:dev":
-    //     "webpack --bail --config ../../config/webpack/webpack.config.dev.js",
-    //   "build:dist:min":
-    //     "webpack --bail --config ../../config/webpack/webpack.config.js",
+    // - Webpack
+    'webpack': 'webpack',
 
     // Quality.
     // - Format
