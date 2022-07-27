@@ -71,7 +71,10 @@
     "build": {
       "dependencies": [
         "./packages/cli:build",
-        "./packages/spectacle:build"
+        "./packages/spectacle:build",
+        "./examples/js:build",
+        "./examples/md:build",
+        "./examples/typescript:build"
       ]
     },
     "check": {
