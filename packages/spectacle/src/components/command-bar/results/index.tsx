@@ -15,7 +15,7 @@ type RenderParams = {
 function getShortcutKeys({ id, shortcut = [] }: ActionImpl): string[] {
   if (id in KEYBOARD_SHORTCUTS && !shortcut?.length) {
     const _id = id as KeyboardShortcutTypes;
-    return prettifyShortcut(KEYBOARD_SHORTCUTS[_id].split('+'));
+    return prettifyShortcut(KEYBOARD_SHORTCUTS[_id]);
   }
   return prettifyShortcut(shortcut);
 }
