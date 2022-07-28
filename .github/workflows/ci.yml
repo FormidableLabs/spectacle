@@ -53,8 +53,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Check Code ${{ matrix.node-version }}
-        run: pnpm run check:ci
-
       - name: Build Code and Examples ${{ matrix.node-version }}
         run: pnpm run build
+
+      # We build in-source files like `examples/one-page/index.html`.
+      # This check ensures we don't build changes that need committing.
+      - name: Check generated in-source files
+        run: git diff --no-ext-diff --quiet --exit-code
+
+      - name: Check Code ${{ matrix.node-version }}
+        run: pnpm run check:ci
