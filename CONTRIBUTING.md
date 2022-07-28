@@ -22,30 +22,25 @@ $ pnpm install
 
 ### Examples
 
-#### Overview
+We have various deck scenarios in `examples` in this repository that are part of the development process.
 
-Our examples are spread out across multiple projects depending on where the core technology lies. We publish most of these to `npm` for use in `spectacle-cli` project to either use with the CLI (`spectacle`) or generate a fresh project boilerplate (`spectacle-boilerplate`).
+We follow the convention of `start:NAME` to run an in-memory dev server for a specific
+example, but we also have a `pnpm build` script task to make sure we're actually
+producing non-broken sample presentations as a CI / assurance test.
 
 - `spectacle`
   - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/main/examples/js)
   - [`examples/md`](https://github.com/FormidableLabs/spectacle/tree/main/examples/md)
+  - [`examples/typescript`](https://github.com/FormidableLabs/spectacle/tree/main/examples/typescript)
   - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page)
 - `spectacle-mdx-loader`
   - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/mdx)
-
-#### This repository
-
-We have various deck scenarios in `examples` in this repository that are part of the development process.
-
-We follow the convention of `start:NAME` to run an in-memory dev server for a specific
-example, but we also have a `pnpm run build:examples` script task to make sure we're actually
-producing non-broken sample presentations as a CI / assurance test.
 
 #### `examples/js`
 
 A basic deck with JSX and JavaScript:
 
-```bash
+```sh
 # start the dev server
 $ pnpm start:js
 
@@ -53,47 +48,41 @@ $ pnpm start:js
 $ open http://localhost:3000/
 ```
 
-**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
-
 #### `examples/md`
 
 A basic deck written in markdown:
 
-```bash
-# In one terminal open dev server
+```sh
+# start the dev server
 $ pnpm start:md
 
-# In another open a browser to 3100
+# open the browser
 $ open http://localhost:3100/
 ```
 
-**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
+#### `examples/typescript`
+
+<!--
+TODO(wireit): Add this section.
+-->
 
 #### `examples/one-page`
 
 A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
 
-```bash
-# [optional] build the library -
-#   comment out the unpkg dependency in
-#   index.html and use the local dist/
-$ pnpm run build
+```sh
+# start the dev watches
+$ pnpm start:one-page
 
 # open the browser
 $ open examples/one-page/index.html
-```
-
-_or_ use the single line:
-
-```bash
-$ pnpm run start:one-page
 ```
 
 ### Testing
 
 To run all tests:
 
-```bash
+```sh
 $ pnpm run test
 ```
 
@@ -101,21 +90,21 @@ $ pnpm run test
 
 To check (and fix) code:
 
-```bash
+```sh
 $ pnpm run lint
 $ pnpm run lint:fix
 ```
 
 To check (and fix) formatting of MD, JSON, _and_ code:
 
-```bash
+```sh
 $ pnpm run prettier
 $ pnpm run prettier:fix
 ```
 
 We also have a simple one-liner for running both of these fix-checks back-to-back:
 
-```bash
+```sh
 # TODO(wireit): Add this? Remove this section?
 $ pnpm run format
 ```
@@ -126,8 +115,7 @@ Thanks for taking the time to help us make Spectacle even better! Before you go
 ahead and submit a PR, make sure that you have done the following:
 
 - Run all checks using `pnpm run check:ci`.
-- Run `pnpm run build:one-page` and check + commit changes to `examples/one-page/index.html`
-- Check that both the core library and _all_ examples build: `pnpm run build`.
+- Run `pnpm run build` and check + commit changes to `examples/one-page/index.html`
 - Add a [changeset](#changeset) if your PR requires a version change for any of the packages in this repo.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
@@ -137,8 +125,8 @@ We use [changesets](https://github.com/changesets/changesets) to create package 
 
 If your work contributes changes that require a change in version to any of the packages, add a changeset by running:
 
-```bash
-pnpm changeset
+```sh
+$ pnpm changeset
 ```
 
 which will open an interactive CLI menu. Use this menu to select which packages need versioning, which semantic version changes are needed, and add appropriate messages accordingly.
