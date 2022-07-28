@@ -99,6 +99,18 @@ $ pnpm run prettier:fix
 $ pnpm run lint:fix
 ```
 
+If you have having issues with tasks failing erroneously, you can clear our tooling caches:
+
+```sh
+# Clean out everything
+$ yarn clean:cache
+
+# Individually
+$ yarn clean:cache:lint      # eslint cache
+$ yarn clean:cache:wireit    # wireit task cache
+$ yarn clean:cache:modules   # caches in node_modules (prettier, etc.)
+```
+
 ### Before submitting a PR
 
 Thanks for taking the time to help us make Spectacle even better! Before you go
