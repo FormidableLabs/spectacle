@@ -36,77 +36,67 @@ producing non-broken sample presentations as a CI / assurance test.
 - `spectacle-mdx-loader`
   - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/mdx)
 
-#### `examples/js`
-
-A basic deck with JSX and JavaScript:
+Here's how you can run the various examples:
 
 ```sh
-# start the dev server
+# JavaScript demo app (in two different terminals)
 $ pnpm start:js
-
-# open the browser
 $ open http://localhost:3000/
-```
 
-#### `examples/md`
-
-A basic deck written in markdown:
-
-```sh
-# start the dev server
+# Markdown demo app (in two different terminals)
 $ pnpm start:md
-
-# open the browser
 $ open http://localhost:3100/
-```
 
-#### `examples/typescript`
+# TypeScript demo app (in two different terminals)
+# TODO(wireit): TS DEMO
 
-<!--
-TODO(wireit): Add this section.
--->
-
-#### `examples/one-page`
-
-A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
-
-```sh
-# start the dev watches
+# One-page (no build, HTML page only) demo app (in two different terminals)
 $ pnpm start:one-page
-
-# open the browser
 $ open examples/one-page/index.html
 ```
 
-### Testing
+These run appropriate file watchers, so you can just start developing source files and wait for the various dev servers to pick up the new changes.
 
-To run all tests:
+### Build and checks
+
+Our task system mostly takes care of all task dependencies and things you need. When you first clone this repo or a new branch, run:
 
 ```sh
-$ pnpm run test
+# Run all checks. Re-run this command for your normal workflow.
+$ pnpm run check
+# ... or add in a `--watch` to watch & re-run checks for only what you change!
+$ pnpm run check --watch
+
+# Build libraries and UMD distributions.
+# Really only needed to double-check the webpack build still works.
+$ pnpm run build
+# ... or add in a `--watch` to watch & re-run the parts of the build that changed!
+$ pnpm run build --watch
 ```
 
-### Linting and Formatting
+This will do all the build, seeding the task cache so subsequent tasks are fast, and checks that everything is correctly working. Your Victory workflow could reasonably just be (1) making some changes to files + tests, and then (2) re-running `pnpm run check`!
 
-To check (and fix) code:
-
-```sh
-$ pnpm run lint
-$ pnpm run lint:fix
-```
-
-To check (and fix) formatting of MD, JSON, _and_ code:
+Here are some other useful tasks (with or without a `--watch` flag):
 
 ```sh
+# Quality checks
 $ pnpm run prettier
-$ pnpm run prettier:fix
+$ pnpm run prettier --watch
+$ pnpm run lint
+$ pnpm run lint --watch
+$ pnpm run types:check
+$ pnpm run types:check --watch
+
+# Tests
+$ pnpm run test
+$ pnpm run test --watch
 ```
 
-We also have a simple one-liner for running both of these fix-checks back-to-back:
+We also have some helper tasks to fix issues that are fixable.
 
 ```sh
-# TODO(wireit): Add this? Remove this section?
-$ pnpm run format
+$ pnpm run prettier:fix
+$ pnpm run lint:fix
 ```
 
 ### Before submitting a PR
