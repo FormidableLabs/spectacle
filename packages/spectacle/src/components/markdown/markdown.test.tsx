@@ -8,7 +8,7 @@ import { render } from '@testing-library/react';
 jest.mock('../../hooks/use-broadcast-channel', () => {
   return {
     __esModule: true,
-    default: function useModes() {
+    default: function useBroadcastChannel() {
       return [() => {}];
     }
   };

@@ -7,7 +7,7 @@ import { Heading, Text } from './typography';
 jest.mock('../hooks/use-broadcast-channel', () => {
   return {
     __esModule: true,
-    default: function useModes() {
+    default: function useBroadcastChannel() {
       return [() => {}];
     }
   };
