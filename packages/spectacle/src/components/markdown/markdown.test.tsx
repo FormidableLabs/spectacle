@@ -1,10 +1,18 @@
 import { ReactElement } from 'react';
 import { Markdown, MarkdownSlide, MarkdownSlideSet } from './markdown';
-import Deck from '../deck/deck';
-import { Heading, ListItem } from '../typography';
-import { Appear } from '../appear';
+import Deck from '../deck';
+import { Heading } from '../typography';
 import Slide from '../slide/slide';
-import { queryByTestId, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
+
+jest.mock('../../hooks/use-broadcast-channel', () => {
+  return {
+    __esModule: true,
+    default: function useModes() {
+      return [() => {}];
+    }
+  };
+});
 
 const mountInsideDeck = (tree: ReactElement) => {
   return render(<Deck>{tree}</Deck>);
