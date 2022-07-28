@@ -6,18 +6,17 @@ Thank you for contributing!
   <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
 </a>
 
-Spectacle is actively maintained by @[carlos-kelly][] and @[kale-stew][]
-from within [@FormidableLabs][formidable-github].
+Spectacle is actively maintained by @[carlos-kelly][] for [@FormidableLabs][formidable-github].
 
 ## Development
 
 ### Installing dependencies
 
-We prefer to use [`pnpm`][pnpm-docs].
+We use [`pnpm`][pnpm-docs].
 
 Install all dependencies by running:
 
-```bash
+```sh
 $ pnpm install
 ```
 
@@ -30,11 +29,9 @@ Our examples are spread out across multiple projects depending on where the core
 - `spectacle`
   - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/main/examples/js)
   - [`examples/md`](https://github.com/FormidableLabs/spectacle/tree/main/examples/md)
-  - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page.html)
+  - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page)
 - `spectacle-mdx-loader`
   - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/mdx)
-- `spectacle-cli`
-  - [`examples/cli-mdx-babel`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/cli-mdx-babel): _Not published_
 
 #### This repository
 
@@ -90,41 +87,6 @@ _or_ use the single line:
 
 ```bash
 $ pnpm run start:one-page
-```
-
-**Note**: This file is published and used by `spectacle-cli`.
-
-**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `pnpm run build:one-page` and verify changes look good.
-
-### Examples integration with `spectacle-cli`
-
-`spectacle-cli` uses our `js,md,one-page` examples in the CLI and boilerplate tools. To check that changes to these files don't break `spectacle-cli` upstream, check with something like the following:
-
-```bash
-# In `spectacle` repo
-$ yarn link
-
-# In `spectacle-cli` repo
-$ yarn link spectacle
-
-# Check all MDX, MD examples per https://github.com/FormidableLabs/spectacle-cli/blob/main/CONTRIBUTING.md#examples
-$ yarn start:examples
-
-# (In another shell) Check mdx:5000, mdx+babel:5001, md:5100
-$ open http://localhost:5000/ http://localhost:5001/ http://localhost:5100/
-
-# Check all JS, MDX, MD boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/main/CONTRIBUTING.md#boilerplate
-$ yarn clean:boilerplate
-$ yarn boilerplate:generate
-$ yarn boilerplate:install
-$ yarn start:boilerplate
-
-# (In another shell) Check mdx:6300, md:6100, js:6200
-#
-# **Note**: These `yarn install` internally so will use latest published
-# `spectacle`, so results may be not entirely accurage. You may need to manually
-# update the installed contents in generated project `node_modules`.
-$ open http://localhost:6300/ http://localhost:6100/ http://localhost:6200/
 ```
 
 ### Testing
