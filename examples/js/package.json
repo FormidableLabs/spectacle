@@ -39,6 +39,9 @@
       "output": [
         "dist/*"
       ],
+      "dependencies": [
+        "../../packages/spectacle:build:lib:esm"
+      ],
       "packageLocks": [
         "pnpm-lock.yaml"
       ]

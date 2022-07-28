@@ -158,7 +158,6 @@ We also have a simple one-liner for running both of these fix-checks back-to-bac
 $ pnpm run format
 ```
 
-
 ### Before submitting a PR
 
 Thanks for taking the time to help us make Spectacle even better! Before you go
