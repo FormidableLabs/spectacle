@@ -38,6 +38,8 @@ import { defaultTransition, SlideTransition } from '../transitions';
 import { SwipeEventData } from 'react-swipeable';
 import { MarkdownComponentMap } from '../../utils/mdx-component-mapper';
 import TemplateWrapper from '../template-wrapper';
+import { useRegisterActions } from 'kbar';
+import { KEYBOARD_SHORTCUTS_IDS } from '../../utils/constants';
 
 export type DeckContextType = {
   deckId: string | number;
@@ -66,6 +68,7 @@ export type DeckContextType = {
   };
   skipTo(options: { slideIndex: number; stepIndex: number }): void;
   stepForward(): void;
+  stepBackward(): void;
   advanceSlide(): void;
   regressSlide(): void;
   commitTransition(newView?: { stepIndex: number }): void;
@@ -217,6 +220,37 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       ]
     );
 
+    useRegisterActions(
+      !disableInteractivity
+        ? [
+            {
+              id: KEYBOARD_SHORTCUTS_IDS.NEXT_SLIDE,
+              name: 'Next Slide',
+              keywords: 'next',
+              perform: () => stepForward(),
+              section: 'Slide'
+            },
+            {
+              id: KEYBOARD_SHORTCUTS_IDS.PREVIOUS_SLIDE,
+              name: 'Previous Slide',
+              keywords: 'previous',
+              perform: () => stepBackward(),
+              section: 'Slide'
+            },
+            {
+              id: 'Restart Presentation',
+              name: 'Restart Presentation',
+              keywords: 'restart',
+              perform: () =>
+                skipTo({
+                  slideIndex: 0,
+                  stepIndex: 0
+                }),
+              section: 'Slide'
+            }
+          ]
+        : []
+    );
     useMousetrap(
       disableInteractivity
         ? {}
@@ -441,6 +475,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               },
               skipTo,
               stepForward,
+              stepBackward,
               advanceSlide,
               regressSlide,
               commitTransition,

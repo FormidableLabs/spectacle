@@ -62,7 +62,7 @@ const PacmanBodyTop = styled.div<PacmanBodyProps>`
   border-top-left-radius: ${({ pacmanSize }) => pacmanSize / 2}px;
   border-top-right-radius: ${({ pacmanSize }) => pacmanSize / 2}px;
   // NOTE: So the top and bottom always overlap when sizes are in decimals.
-  box-shadow: 0 0 0 0.1px ${({ color }) => color};
+  box-shadow: 0 0 0 0.5px ${({ color }) => color};
   animation-name: ${({ alternate }) =>
     alternate ? pacmanTopFrames : pacmanTopFramesAlternate};
   animation-duration: 0.12s;
