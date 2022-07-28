@@ -77,7 +77,6 @@
   },
   "scripts": {
     "test": "jest",
-    "clean": "rimraf dist lib es",
     "preversion": "cd ../../ && pnpm run check",
     "version": "pnpm run clean && pnpm run build",
     "build-types": "tsc --emitDeclarationOnly",

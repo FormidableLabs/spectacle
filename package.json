@@ -9,7 +9,6 @@
     "start:cli": "echo TODO WIREIT pnpm run --filter spectacle-cli start",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
-    "build:one-page": "ECHO TODO ADD IN node ./scripts/one-page.js",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "version": "pnpm changeset version && pnpm install",
     "changeset": "changeset",
@@ -90,6 +89,7 @@
         "./packages/spectacle:build",
         "./examples/js:build",
         "./examples/md:build",
+        "./examples/one-page:build",
         "./examples/typescript:build"
       ]
     },
@@ -106,12 +106,11 @@
       ]
     },
     "lint:root": {
-      "command": "nps \"lint:base *.js scripts\"",
+      "command": "nps \"lint:base *.js\"",
       "files": [
         ".eslintrc",
         ".eslintignore",
         "*.js",
-        "scripts",
         "!**/node_modules/**"
       ],
       "output": [],
@@ -120,12 +119,11 @@
       ]
     },
     "lint:root:fix": {
-      "command": "pnpm run lint:root || nps \"lint:base --fix *.js scripts\"",
+      "command": "pnpm run lint:root || nps \"lint:base --fix *.js\"",
       "files": [
         ".eslintrc",
         ".eslintignore",
         "*.js",
-        "scripts",
         "!**/node_modules/**"
       ],
       "output": [],
@@ -139,6 +137,7 @@
         "./packages/cli:lint",
         "./examples/js:lint",
         "./examples/md:lint",
+        "./examples/one-page:lint",
         "./examples/typescript:lint"
       ]
     },
@@ -148,6 +147,7 @@
         "./packages/cli:lint:fix",
         "./examples/js:lint:fix",
         "./examples/md:lint:fix",
+        "./examples/one-page:lint:fix",
         "./examples/typescript:lint:fix"
       ]
     },
@@ -169,7 +169,6 @@
         ".prettierrc",
         ".prettierignore",
         "*.{js,jsx,json,ts,tsx,css,md}",
-        "scripts",
         "!**/node_modules/**"
       ],
       "output": [],
@@ -183,7 +182,6 @@
         ".prettierrc",
         ".prettierignore",
         "*.{js,jsx,json,ts,tsx,css,md}",
-        "scripts",
         "!**/node_modules/**"
       ],
       "output": [],
@@ -197,6 +195,7 @@
         "./packages/cli:prettier",
         "./examples/js:prettier",
         "./examples/md:prettier",
+        "./examples/one-page:prettier",
         "./examples/typescript:prettier"
       ]
     },
@@ -206,6 +205,7 @@
         "./packages/cli:prettier:fix",
         "./examples/js:prettier:fix",
         "./examples/md:prettier:fix",
+        "./examples/one-page:prettier:fix",
         "./examples/typescript:prettier:fix"
       ]
     }

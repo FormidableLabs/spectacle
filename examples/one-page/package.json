@@ -3,6 +3,75 @@
   "private": "true",
   "scripts": {
     "start": "open index.html",
-    "TODO_WIREIT": "echo TODO ADD BUILD SCRIPT AND ALL WIREIT COMMANDS"
+    "TODO_WIREIT": "echo TODO ADD BUILD SCRIPT AND ALL WIREIT COMMANDS",
+    "build": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "node ./scripts/one-page.js",
+      "clean": false,
+      "files": [
+        "../examples/js/index.js",
+        "scripts/one-page.js"
+      ],
+      "output": [
+        "index.html"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint": {
+      "command": "nps \"lint:base scripts\"",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "scripts"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:fix": {
+      "command": "pnpm run lint || nps \"lint:base --fix scripts\"",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "scripts"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:pkg",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "scripts"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "scripts"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
   }
 }

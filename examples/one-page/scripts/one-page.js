@@ -9,8 +9,9 @@ const path = require('path');
 const { transformFileAsync } = require('@babel/core');
 const pretty = require('pretty');
 
-const SRC_FILE = path.resolve(__dirname, '../examples/js/index.js');
-const DEST_FILE = path.resolve(__dirname, '../examples/one-page/index.html');
+const EXAMPLES = path.resolve(__dirname, '../..');
+const SRC_FILE = path.join(EXAMPLES, 'js/index.js');
+const DEST_FILE = path.join(EXAMPLES, 'one-page/index.html');
 
 const htmImport = `
 import htm from 'https://unpkg.com/htm@^3?module';

@@ -23,7 +23,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server --port=3100 --hot --config ./webpack.config.js",
-    "clean": "rimraf dist",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "build": "wireit",
     "lint": "wireit",

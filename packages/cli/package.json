@@ -29,7 +29,6 @@
   },
   "resolutions": {},
   "scripts": {
-    "clean": "rimraf bin",
     "start": "nodemon src/cli.ts",
     "preversion": "pnpm run clean && pnpm run build",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
