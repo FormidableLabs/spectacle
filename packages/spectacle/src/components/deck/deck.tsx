@@ -228,14 +228,14 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               name: 'Next Slide',
               keywords: 'next',
               perform: () => stepForward(),
-              section: 'Slides'
+              section: 'Slide'
             },
             {
               id: KEYBOARD_SHORTCUTS_IDS.PREVIOUS_SLIDE,
               name: 'Previous Slide',
               keywords: 'previous',
               perform: () => stepBackward(),
-              section: 'Slides'
+              section: 'Slide'
             },
             {
               id: 'Restart Presentation',
@@ -246,7 +246,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
                   slideIndex: 0,
                   stepIndex: 0
                 }),
-              section: 'Slides'
+              section: 'Slide'
             }
           ]
         : []

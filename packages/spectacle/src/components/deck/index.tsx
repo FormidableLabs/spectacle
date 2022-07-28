@@ -12,7 +12,7 @@ const View = ({
   getCurrentMode,
   toggleMode,
   ...props
-}: ModeActions & DeckProps): JSX.Element => {
+}: ModeActions & DeckProps) => {
   const mode = getCurrentMode();
   switch (mode) {
     case SPECTACLE_MODES.DEFAULT_MODE:

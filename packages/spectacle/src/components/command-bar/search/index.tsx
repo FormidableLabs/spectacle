@@ -20,7 +20,7 @@ const KBarAnimatorStyled = styled(KBarAnimator)`
   box-shadow: rgb(0 0 0 / 50%) 0px 16px 70px;
 `;
 
-const CommandBarSearch = (): JSX.Element => {
+const CommandBarSearch = () => {
   return (
     <KBarPortal>
       <KBarPositioner>
