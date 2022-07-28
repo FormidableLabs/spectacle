@@ -3,14 +3,23 @@ import { renderHook } from '@testing-library/react';
 import { SPECTACLE_MODES } from '../utils/constants';
 import useModes from './use-modes';
 
+const { location: locationBefore } = window;
+
 describe('useModes', () => {
-  Object.defineProperty(window, 'location', {
-    value: {
-      search: 'slideIndex=0&stepIndex=0'
-    }
+  beforeAll(() => {
+    Object.defineProperty(window, 'location', {
+      value: {
+        search: 'slideIndex=0&stepIndex=0'
+      },
+      writable: true
+    });
+  });
+
+  afterAll(() => {
+    window.location = locationBefore;
   });
   describe('toggleMode and currentMode', () => {
-    it('should set the window.location based on the spectacle modes', () => {
+    it('should set the window.location and current mode based on the spectacle modes', () => {
       const { result } = renderHook(() => useModes());
 
       // Default

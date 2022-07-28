@@ -10,7 +10,7 @@ import {
 const useModes = (): ModeActions => {
   const mode = useRef(
     modeKeyForSearchParam(
-      parseQS(location.search, {
+      parseQS(window.location.search, {
         parseBooleans: true
       })
     )
@@ -23,7 +23,7 @@ const useModes = (): ModeActions => {
 
       let stepIndex: string | number = 0;
       let slideIndex: string | number = senderSlideIndex || '';
-      const searchParams = parseQS(location.search, {
+      const searchParams = parseQS(window.location.search, {
         parseBooleans: true
       });
 
@@ -33,7 +33,7 @@ const useModes = (): ModeActions => {
       }
 
       if (mode.current === newMode) {
-        location.search = stringifyQS({
+        window.location.search = stringifyQS({
           slideIndex,
           stepIndex
         });
@@ -42,7 +42,7 @@ const useModes = (): ModeActions => {
 
       mode.current = newMode;
 
-      location.search = stringifyQS({
+      window.location.search = stringifyQS({
         slideIndex,
         stepIndex,
         ...modeSearchParamForKey(newMode)
