@@ -34,6 +34,12 @@ jobs:
       # Wireit cache
       - uses: google/wireit@setup-github-actions-caching/v1
 
+      # If you hare having issues post-merge with wireit improperly caching,
+      # comment this out, push a commit, then re-comment.
+      # TODO(wireit): Comment out below.
+      - name: Clear all caches
+        run: pnpm clean:cache
+
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7
