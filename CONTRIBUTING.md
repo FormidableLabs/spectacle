@@ -147,18 +147,17 @@ $ pnpm run lint:fix
 To check (and fix) formatting of MD, JSON, _and_ code:
 
 ```bash
-$ pnpm run prettier:check
+$ pnpm run prettier
 $ pnpm run prettier:fix
 ```
 
 We also have a simple one-liner for running both of these fix-checks back-to-back:
 
 ```bash
+# TODO(wireit): Add this? Remove this section?
 $ pnpm run format
 ```
 
-Note that there is duplication for JS code in `prettier` doing the same style changes,
-but both should be harmonious and run together.
 
 ### Before submitting a PR
 
