@@ -1,8 +1,17 @@
 import { ReactElement } from 'react';
 import { render } from '@testing-library/react';
-import Deck from './deck/deck';
+import Deck from './deck';
 import SlideLayout from './slide-layout';
 import { Heading, Text } from './typography';
+
+jest.mock('../hooks/use-broadcast-channel', () => {
+  return {
+    __esModule: true,
+    default: function useModes() {
+      return [() => {}];
+    }
+  };
+});
 
 const renderInDeck = (tree: ReactElement | JSX.Element) =>
   render(<Deck>{tree}</Deck>);
