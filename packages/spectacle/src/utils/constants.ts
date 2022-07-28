@@ -3,7 +3,6 @@ export const DEFAULT_SLIDE_INDEX = 0;
 export const SYSTEM_FONT =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Helvetica, sans-serif';
 
-// TODO: KBar could replace this but modifier keys don't seem to work with KBar
 export const KEYBOARD_SHORTCUTS = {
   PRESENTER_MODE: 'mod+shift+p',
   OVERVIEW_MODE: 'mod+shift+o',
