@@ -1,27 +1,26 @@
 {
   "name": "spectacle-monorepo",
   "scripts": {
-    "start:js": "pnpm run build:core && pnpm run --filter spectacle-example-js start",
-    "start:ts": "pnpm run build:core && pnpm run --filter spectacle-example-ts start",
-    "start:md": "pnpm run build:core && pnpm run --filter spectacle-example-md start",
+    "start:js": "echo TODO WIREIT WATCH ESM && pnpm run --filter spectacle-example-js start",
+    "start:ts": "echo TODO WIREIT WATCH ESM  && pnpm run --filter spectacle-example-ts start",
+    "start:md": "echo TODO WIREIT WATCH ESM  && pnpm run --filter spectacle-example-md start",
     "start:one-page": "pnpm run --filter spectacle-example-one-page start",
-    "start:examples": "pnpm run build:core && pnpm run --parallel --filter \"*example*\" start",
-    "start:cli": "pnpm run --filter spectacle-cli start",
+    "start:examples": "echo TODO WIREIT pnpm run build:core && pnpm run --parallel --filter \"*example*\" start",
+    "start:cli": "echo TODO WIREIT pnpm run --filter spectacle-cli start",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
-    "check": "wireit",
-    "check-ci": "pnpm run check",
-    "clean": "pnpm run -r clean",
-    "flush:deps": "rimraf **/node_modules",
-    "nuke": "pnpm run -r clean && pnpm run flush:deps",
-    "build:examples": "pnpm run --filter spectacle build && pnpm run -r --filter \"*example*\" build",
-    "build:core": "pnpm run --filter spectacle build",
-    "build": "wireit",
-    "build:one-page": "node ./scripts/one-page.js",
-    "build:cli": "pnpm run --filter spectacle-cli build",
+    "build:one-page": "ECHO TODO ADD IN node ./scripts/one-page.js",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "version": "pnpm changeset version && pnpm install",
     "changeset": "changeset",
+    "clean:build": "rimraf \"{packages,examples}/*/{es,lib,dist}\" packages/cli/bin",
+    "clean:cache": "wireit",
+    "clean:cache:lint": "rimraf .eslintcache \"{packages,examples}/*/.eslintcache\"",
+    "clean:cache:wireit": "rimraf .wireit \"{packages,examples}/*/.wireit\"",
+    "clean:cache:modules": "rimraf node_modules/.cache \"{packages,examples}/*/node_modules/.cache\"",
+    "check": "wireit",
+    "check:ci": "wireit",
+    "build": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "lint:root": "wireit",
@@ -67,6 +66,24 @@
     "wireit": "^0.7.1"
   },
   "wireit": {
+    "clean:cache": {
+      "dependencies": [
+        "clean:cache:wireit",
+        "clean:cache:lint",
+        "clean:cache:modules"
+      ]
+    },
+    "check": {
+      "dependencies": [
+        "prettier",
+        "lint"
+      ]
+    },
+    "check:ci": {
+      "dependencies": [
+        "check"
+      ]
+    },
     "build": {
       "dependencies": [
         "./packages/cli:build",
@@ -74,12 +91,6 @@
         "./examples/js:build",
         "./examples/md:build",
         "./examples/typescript:build"
-      ]
-    },
-    "check": {
-      "dependencies": [
-        "prettier",
-        "lint"
       ]
     },
     "lint": {

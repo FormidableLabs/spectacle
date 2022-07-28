@@ -164,7 +164,7 @@ $ pnpm run format
 Thanks for taking the time to help us make Spectacle even better! Before you go
 ahead and submit a PR, make sure that you have done the following:
 
-- Run all checks using `pnpm run check-ci`.
+- Run all checks using `pnpm run check:ci`.
 - Run `pnpm run build:one-page` and check + commit changes to `examples/one-page/index.html`
 - Check that both the core library and _all_ examples build: `pnpm run build`.
 - Add a [changeset](#changeset) if your PR requires a version change for any of the packages in this repo.
