@@ -1,6 +1,7 @@
 {
   "name": "spectacle-cli",
   "version": "2.0.0-alpha.2",
+  "private": "true",
   "description": "CLI for Spectacle",
   "main": "bin/cli.js",
   "files": [
