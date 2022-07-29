@@ -55,4 +55,7 @@ jobs:
         run: ts-node ./packages/cli/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
 
       - name: Install dependencies for example-${{ matrix.output-types }} example project
-        run: cd ./example-${{ matrix.output-types }} && pnpm install
+        run: pnpm install --prefix ./example-${{ matrix.output-types }}
+
+      - name: Build onepage project
+      - run: ts-node ./packages/cli/src/cli.ts -t onepage -n example-onepage
