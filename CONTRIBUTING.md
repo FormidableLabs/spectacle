@@ -45,7 +45,7 @@ $ open http://localhost:3000/
 
 # Markdown demo app (in two different terminals)
 $ pnpm start:md
-$ open http://localhost:3100/
+$ open http://localhost:3200/
 
 # TypeScript demo app (in two different terminals)
 # TODO(wireit): TS DEMO
