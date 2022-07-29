@@ -38,3 +38,7 @@ dist
 lib
 es
 bin
+
+# Pack-ing artifacts
+packages/**/package
+**/*.tgz
