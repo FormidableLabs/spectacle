@@ -16,6 +16,7 @@ jobs:
       matrix:
         node-version: [14.x, 16.x, 18.x]
         output-types: ['tsx', 'jsx', 'onepage']
+        output-project-types: ['tsx', 'jsx']
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -47,8 +48,14 @@ jobs:
       - name: Install ts-node
         run: sudo npm install -g ts-node
 
-      - name: Create ${{ matrix.output-types }} example project
-        run: ts-node ./packages/cli/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
+      - name: Move into cli package
+        run: cd ./packages/cli/
 
-      - name: Cat out the contents of example-${{ matrix.output-types }} package.json
-        run: cat example-${{ matrix.output-types }}/package.json
+      - name: Create ${{ matrix.output-types }} example project
+        run: ts-node ./src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
+
+      - name: Install dependencies for example-${{ matrix.output-project-types }} example project
+        run: cd ./example-${{ matrix.output-project-types }} && pnpm install
+
+      - name: Start example-${{ matrix.output-project-types }} project
+        run: pnpm start
