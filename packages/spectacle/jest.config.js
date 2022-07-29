@@ -1,5 +1,9 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
+const path = require('path');
+const ROOT = path.resolve(__dirname, '../..');
+const BABEL_PATH = path.resolve(ROOT, '.babelrc.js'); // eslint-disable-line no-undef
+const BABEL_TRANSFORM = ['babel-jest', { configFile: BABEL_PATH }];
 
 module.exports = {
   // All imported modules in your tests should be mocked automatically
@@ -171,13 +175,12 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.(tsx|ts|jsx|js)$': 'babel-jest'
-  }
+    '^.+test\\.*[jt]sx?$': BABEL_TRANSFORM,
+    '.*/test/.+\\.*[jt]sx?$': BABEL_TRANSFORM
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  transformIgnorePatterns: ['/node_modules/', '/es/', '/lib/']
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,

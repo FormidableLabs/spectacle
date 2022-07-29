@@ -20,7 +20,7 @@ module.exports = {
 
     // - Babel
     'babel:pkg:base':
-      'babel src --config-file ../../.babelrc.js --extensions .tsx,.ts,.jsx,.js',
+      'babel src --config-file ../../.babelrc.build.js --extensions .tsx,.ts,.jsx,.js',
     'babel:pkg:lib:esm':
       'cross-env BABEL_ENV=es nps "babel:pkg:base src --out-dir es"',
     'babel:pkg:lib:cjs':
