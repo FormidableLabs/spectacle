@@ -1,0 +1,56 @@
+name: CLI Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/cli/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'packages/cli/**'
+
+jobs:
+  build:
+    name: Check and build codebase
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        output-types: ['tsx', 'jsx', 'onepage']
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('./pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build CLI
+        run: pnpm run build:cli
+
+      - name: ${{ matrix.output-types }} example
+        run: mkdir examples && cd examples
+        run: spectacle -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
+
+      - name: Check that files exist for example-${{ matrix.output-types }}
+        run: cat example-${{ matrix.output-types }}/package.json
