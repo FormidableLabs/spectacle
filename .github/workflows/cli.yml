@@ -44,5 +44,8 @@ jobs:
       - name: Build CLI
         run: pnpm run build:cli
 
+      - name: install ts-node
+        run: sudo npm install -g ts-node
+
       - name: Create ${{ matrix.output-types }} example project
-        run: npx ts-node ./packages/cli/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
+        run: ts-node ./packages/cli/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
