@@ -52,6 +52,3 @@ jobs:
 
       - name: Install dependencies for example-${{ matrix.output-types }} example project
         run: cd ./example-${{ matrix.output-types }} && pnpm install
-
-      - name: Start example-${{ matrix.output-types }} project
-        run: pnpm run start
