@@ -44,6 +44,7 @@
     "prettier": "^2.4.1",
     "pretty": "^2.0.0",
     "rimraf": "^3.0.0",
+    "spectacle": "*",
     "typescript": "^4.5.2"
   }
 }
