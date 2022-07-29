@@ -51,7 +51,7 @@ jobs:
         run: mkdir cli-build-examples && cd cli-build-examples
 
       - name: Create ${{ matrix.output-types }} example project
-        run: npx ts-node ../src/cli.tsx -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
+        run: npx ts-node ../src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
 
       - name: Check that files exist for example-${{ matrix.output-types }}
         run: cat example-${{ matrix.output-types }}/package.json
