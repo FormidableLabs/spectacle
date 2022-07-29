@@ -13,13 +13,13 @@ on:
     #  - 'packages/cli/**'
 
 jobs:
-  build:
+  build-tsx-jsx:
     name: Check and build codebase
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
-        output-types: ['tsx', 'jsx']
+        output-types: ['tsx', 'jsx', 'onepage']
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -54,8 +54,6 @@ jobs:
       - name: Create ${{ matrix.output-types }} example project
         run: ts-node ./packages/cli/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
 
-      - name: Install dependencies for example-${{ matrix.output-types }} example project
-        run: pnpm install --prefix ./example-${{ matrix.output-types }}
-
-      - name: Build onepage project
-        run: ts-node ./packages/cli/src/cli.ts -t onepage -n example-onepage
+      # Run some tests
+      #- name: Test project
+      # run: pnpm --prefix ./packages/cli/ run test
