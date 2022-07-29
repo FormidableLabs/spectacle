@@ -2,12 +2,16 @@
   "name": "spectacle-cli",
   "version": "2.0.0-alpha.1",
   "description": "CLI for Spectacle",
-  "main": "src/cli.ts",
+  "main": "bin/cli.js",
+  "files": [
+    "bin/"
+  ],
   "scripts": {
     "clean": "rimraf bin",
     "start": "nodemon src/cli.ts",
     "build": "tsc --p tsconfig.json",
-    "preversion": "pnpm run clean && pnpm run build"
+    "preversion": "pnpm run clean && pnpm run build",
+    "prepublishOnly": "pnpm run build"
   },
   "bin": {
     "spectacle-cli": "bin/cli.js"
