@@ -54,4 +54,4 @@ jobs:
         run: cd ./example-${{ matrix.output-types }} && pnpm install
 
       - name: Start example-${{ matrix.output-types }} project
-        run: pnpm start
+        run: pnpm run start
