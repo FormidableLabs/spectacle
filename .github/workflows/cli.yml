@@ -44,8 +44,8 @@ jobs:
       - name: Build CLI
         run: pnpm run build:cli
 
-      - name: Install CLI dependencies
-        run: cd ./packages/cli && pnpm install
+      - name: Install spectacle
+        run: pnpm install spectacle
 
       - name: create examples directory and move into it
         run: mkdir cli-build-examples
