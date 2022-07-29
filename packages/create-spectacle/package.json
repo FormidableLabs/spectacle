@@ -1,9 +1,9 @@
 {
-  "name": "spectacle-cli",
-  "version": "2.0.0-alpha.2",
+  "name": "create-spectacle",
+  "version": "0.0.1",
   "private": "true",
-  "description": "CLI for Spectacle",
-  "main": "bin/cli.js",
+  "description": "Project generator for Spectacle",
+  "main": "",
   "files": [
     "bin/"
   ],
@@ -14,7 +14,7 @@
     "prepublishOnly": "pnpm run clean && pnpm run build"
   },
   "bin": {
-    "spectacle-cli": "bin/cli.js"
+    "spectacle-cli": ""
   },
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
