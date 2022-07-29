@@ -45,7 +45,7 @@ jobs:
         run: pnpm run build:cli
 
       - name: create examples directory and move into it
-        run: mkdir examples && cd examples
+        run: mkdir cli-build-examples && cd cli-build-examples
 
       - name: ${{ matrix.output-types }} example
         run: spectacle -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
