@@ -8,7 +8,6 @@
     "start:examples": "echo TODO WIREIT pnpm run build:core && pnpm run --parallel --filter \"*example*\" start",
     "start:cli": "echo TODO WIREIT pnpm run --filter spectacle-cli start",
     "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r test",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "version": "pnpm changeset version && pnpm install",
     "changeset": "changeset",
@@ -31,7 +30,8 @@
     "prettier:root": "wireit",
     "prettier:root:fix": "wireit",
     "prettier:pkgs": "wireit",
-    "prettier:pkgs:fix": "wireit"
+    "prettier:pkgs:fix": "wireit",
+    "test": "wireit"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.8",
@@ -76,7 +76,8 @@
     "check": {
       "dependencies": [
         "prettier",
-        "lint"
+        "lint",
+        "test"
       ]
     },
     "check:ci": {
@@ -208,6 +209,11 @@
         "./examples/md:prettier:fix",
         "./examples/one-page:prettier:fix",
         "./examples/typescript:prettier:fix"
+      ]
+    },
+    "test": {
+      "dependencies": [
+        "./packages/spectacle:test"
       ]
     }
   }

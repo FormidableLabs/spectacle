@@ -77,7 +77,6 @@
     "@types/react": "^18.0.12"
   },
   "scripts": {
-    "test": "jest",
     "preversion": "cd ../../ && pnpm run check",
     "version": "pnpm run clean && pnpm run build",
     "build-types": "tsc --emitDeclarationOnly",
@@ -95,7 +94,8 @@
     "lint": "wireit",
     "lint:fix": "wireit",
     "prettier": "wireit",
-    "prettier:fix": "wireit"
+    "prettier:fix": "wireit",
+    "test": "wireit"
   },
   "wireit": {
     "build": {
@@ -226,6 +226,17 @@
         "../../.prettierrc",
         "*.js",
         "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "test": {
+      "command": "jest",
+      "files": [
+        "src/**",
+        "../../.babelrc.js"
       ],
       "output": [],
       "packageLocks": [
