@@ -58,4 +58,4 @@ jobs:
         run: pnpm install --prefix ./example-${{ matrix.output-types }}
 
       - name: Build onepage project
-      - run: ts-node ./packages/cli/src/cli.ts -t onepage -n example-onepage
+        run: ts-node ./packages/cli/src/cli.ts -t onepage -n example-onepage
