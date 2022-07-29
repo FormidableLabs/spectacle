@@ -5,7 +5,7 @@
   "description": "Project generator for Spectacle",
   "main": "bin/cli.js",
   "files": [
-    "bin/cli.js"
+    "bin/"
   ],
   "scripts": {
     "clean": "rimraf bin",
@@ -14,7 +14,7 @@
     "prepublishOnly": "pnpm run clean && pnpm run build"
   },
   "bin": {
-    "spectacle-cli": ""
+    "spectacle-cli": "bin/cli.js"
   },
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
