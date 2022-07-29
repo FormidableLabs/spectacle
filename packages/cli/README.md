@@ -1,3 +1,3 @@
 # `spectacle-cli`
 
-TODO: Right a README for the migrated CLI.
+TODO: Write a README for the migrated CLI.
