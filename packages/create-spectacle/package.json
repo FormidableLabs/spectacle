@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": "true",
   "description": "Project generator for Spectacle",
-  "main": "",
+  "main": "bin/cli.js",
   "files": [
-    "bin/"
+    "bin/cli.js"
   ],
   "scripts": {
     "clean": "rimraf bin",
