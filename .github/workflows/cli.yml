@@ -45,7 +45,7 @@ jobs:
         run: pnpm run build:cli
 
       - name: Install CLI dependencies
-        run: pnpm install --prefix ./packages/cli
+        run: cd ./packages/cli && pnpm install
 
       - name: create examples directory and move into it
         run: mkdir cli-build-examples
