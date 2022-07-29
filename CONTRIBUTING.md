@@ -43,16 +43,20 @@ Here's how you can run the various examples:
 $ pnpm start:js
 $ open http://localhost:3000/
 
+# TypeScript demo app (in two different terminals)
+$ pnpm start:ts
+$ open http://localhost:3100/
+
 # Markdown demo app (in two different terminals)
 $ pnpm start:md
 $ open http://localhost:3200/
 
-# TypeScript demo app (in two different terminals)
-# TODO(wireit): TS DEMO
-
 # One-page (no build, HTML page only) demo app (in two different terminals)
 $ pnpm start:one-page
 $ open examples/one-page/index.html
+
+# Start **ALL** the example watchers at the same time!
+$ pnpm start:examples
 ```
 
 These run appropriate file watchers, so you can just start developing source files and wait for the various dev servers to pick up the new changes.
