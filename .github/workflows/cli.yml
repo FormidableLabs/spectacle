@@ -13,7 +13,7 @@ on:
     #  - 'packages/cli/**'
 
 jobs:
-  build-tsx-jsx:
+  build:
     name: Check and build codebase
     runs-on: ubuntu-latest
     strategy:
