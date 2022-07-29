@@ -1,12 +1,16 @@
 name: CLI Build
-
+# TODO: add 'paths' backs
 on:
   push:
     branches:
       - main
+    #paths:
+    #  - 'packages/cli/**'
   pull_request:
     branches:
       - main
+    #paths:
+    #  - 'packages/cli/**'
 
 jobs:
   build:
