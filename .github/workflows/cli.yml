@@ -46,6 +46,3 @@ jobs:
 
       - name: Create ${{ matrix.output-types }} example project
         run: npx ts-node ./packages/cli/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
-
-      - name: Check that files exist for example-${{ matrix.output-types }}
-        run: cat example-${{ matrix.output-types }}/package.json
