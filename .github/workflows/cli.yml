@@ -44,11 +44,14 @@ jobs:
       - name: Build CLI
         run: pnpm run build:cli
 
+      - name: Build CORE
+        run: pnpm run build:core
+
       - name: Create examples directory and move into it
         run: mkdir cli-build-examples && cd cli-build-examples
 
       - name: Create ${{ matrix.output-types }} example project
-        run: spectacle-cli -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
+        run: spectacle -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
 
       - name: Check that files exist for example-${{ matrix.output-types }}
         run: cat example-${{ matrix.output-types }}/package.json
