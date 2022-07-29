@@ -1,7 +1,6 @@
 {
   "name": "spectacle-monorepo",
   "scripts": {
-    "start:js": "echo TODO WIREIT WATCH ESM && pnpm run --filter spectacle-example-js start",
     "start:ts": "echo TODO WIREIT WATCH ESM  && pnpm run --filter spectacle-example-ts start",
     "start:md": "echo TODO WIREIT WATCH ESM  && pnpm run --filter spectacle-example-md start",
     "start:one-page": "pnpm run --filter spectacle-example-one-page start",
@@ -11,6 +10,7 @@
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "version": "pnpm changeset version && pnpm install",
     "changeset": "changeset",
+    "start:js": "concurrently --raw \"pnpm run --filter ./packages/spectacle build --watch\" \"pnpm run --filter ./examples/js start\"",
     "clean:build": "rimraf \"{packages,examples}/*/{es,lib,dist}\" packages/cli/bin",
     "clean:cache": "wireit",
     "clean:cache:lint": "rimraf .eslintcache \"{packages,examples}/*/.eslintcache\"",

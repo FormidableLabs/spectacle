@@ -22,7 +22,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server --port=3000 --hot --config ./webpack.config.js",
-    "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "build": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
