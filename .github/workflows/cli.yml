@@ -44,8 +44,11 @@ jobs:
       - name: Build CLI
         run: pnpm run build:cli
 
+      - name: Install CLI dependencies
+        run: pnpm install --prefix ./packages/cli
+
       - name: create examples directory and move into it
-        run: mkdir cli-build-examples && cd cli-build-examples
+        run: mkdir cli-build-examples
 
       - name: ${{ matrix.output-types }} example
         run: spectacle -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
