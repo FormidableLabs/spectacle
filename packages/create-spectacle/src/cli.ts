@@ -29,7 +29,7 @@ const main = async () => {
   log(chalk.whiteBright.bgMagenta.bold(' Spectacle CLI '));
 
   program
-    .name('spectacle-cli')
+    .name('create-spectacle')
     .description('CLI to bootstrap Spectacle decks')
     .version('2.0.0')
     .showHelpAfterError()
