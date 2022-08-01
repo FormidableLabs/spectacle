@@ -64,7 +64,7 @@ You can also live watch the CLI and execute the built script on command with:
 ```sh
 # Watch create-spectacle code and test out (in two different terminals)
 $ pnpm start:create-spectacle
-$ node packages/create-spectacle/bin/create-spectacle.js -h
+$ node packages/create-spectacle/bin/cli.js -h
 ```
 
 These run appropriate file watchers, so you can just start developing source files and wait for the various dev servers to pick up the new changes.

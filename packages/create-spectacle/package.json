@@ -38,7 +38,7 @@
   },
   "wireit": {
     "build": {
-      "command": "nps \"tsc --p tsconfig.json\"",
+      "command": "tsc --p tsconfig.json",
       "files": [
         "src/**",
         "!src/**/*.test.*",
