@@ -63,5 +63,6 @@ jobs:
 
       - name: Run some tests
         run: |
+          npm --prefix ./packages/create-spectacle install husky
           npm --prefix ./packages/create-spectacle install
           npm --prefix ./packages/create-spectacle test
