@@ -57,7 +57,10 @@ jobs:
 
       # cant cd into onepage its just a html file
       - name: Start project
-        run: cd example-${{ matrix.output-types }} && npm install && npm start
+        run: |
+          cd example-${{ matrix.output-types }}
+          npm install
+          npm start &
 
       - name: Run some tests
         run: cd .. && npm --prefix ./packages/create-spectacle install && npm --prefix ./packages/create-spectacle test
