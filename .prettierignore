@@ -7,6 +7,7 @@ lib
 dist
 docs
 bin
+build
 .nova
 .vscode
 .wireit

@@ -62,9 +62,9 @@ $ pnpm start:examples
 You can also live watch the CLI and execute the built script on command with:
 
 ```sh
-# Watch CLI code and test out (in two different terminals)
-$ pnpm start:cli
-$ node packages/cli/bin/cli.js -h
+# Watch create-spectacle code and test out (in two different terminals)
+$ pnpm start:create-spectacle
+$ node packages/create-spectacle/bin/create-spectacle.js -h
 ```
 
 These run appropriate file watchers, so you can just start developing source files and wait for the various dev servers to pick up the new changes.
@@ -292,5 +292,4 @@ available at [https://www.contributor-covenant.org/version/2/0][cc-latest-versio
 [formidable-github]: https://www.github.com/FormidableLabs
 [kale-stew]: https://www.github.com/kale-stew
 [mdx]: https://mdxjs.com/
-[spectacle-cli]: https://www.github.com/FormidableLabs/spectacle-cli
 [pnpm-docs]: https://pnpm.io/

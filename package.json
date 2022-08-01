@@ -10,8 +10,8 @@
     "start:ts": "concurrently --raw pnpm:build:spectacle:esm:watch \"pnpm run --filter ./examples/typescript start\"",
     "start:one-page": "concurrently --raw pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch",
     "start:examples": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
-    "start:cli": "pnpm run --filter ./packages/cli build --watch",
-    "clean:build": "rimraf \"{packages,examples}/*/{es,lib,dist}\" packages/cli/bin",
+    "start:create-spectacle": "pnpm run --filter ./packages/create-spectacle build --watch",
+    "clean:build": "rimraf \"{packages,examples}/*/{es,lib,dist}\" packages/create-spectacle/bin",
     "clean:cache": "wireit",
     "clean:cache:lint": "rimraf .eslintcache \"{packages,examples}/*/.eslintcache\"",
     "clean:cache:wireit": "rimraf .wireit \"{packages,examples}/*/.wireit\"",
@@ -90,7 +90,7 @@
     },
     "build": {
       "dependencies": [
-        "./packages/cli:build",
+        "./packages/create-spectacle:build",
         "./packages/spectacle:build",
         "./examples/js:build",
         "./examples/md:build",
@@ -139,7 +139,7 @@
     "lint:pkgs": {
       "dependencies": [
         "./packages/spectacle:lint",
-        "./packages/cli:lint",
+        "./packages/create-spectacle:lint",
         "./examples/js:lint",
         "./examples/md:lint",
         "./examples/one-page:lint",
@@ -149,7 +149,7 @@
     "lint:pkgs:fix": {
       "dependencies": [
         "./packages/spectacle:lint:fix",
-        "./packages/cli:lint:fix",
+        "./packages/create-spectacle:lint:fix",
         "./examples/js:lint:fix",
         "./examples/md:lint:fix",
         "./examples/one-page:lint:fix",
@@ -197,7 +197,7 @@
     "prettier:pkgs": {
       "dependencies": [
         "./packages/spectacle:prettier",
-        "./packages/cli:prettier",
+        "./packages/create-spectacle:prettier",
         "./examples/js:prettier",
         "./examples/md:prettier",
         "./examples/one-page:prettier",
@@ -207,7 +207,7 @@
     "prettier:pkgs:fix": {
       "dependencies": [
         "./packages/spectacle:prettier:fix",
-        "./packages/cli:prettier:fix",
+        "./packages/create-spectacle:prettier:fix",
         "./examples/js:prettier:fix",
         "./examples/md:prettier:fix",
         "./examples/one-page:prettier:fix",
