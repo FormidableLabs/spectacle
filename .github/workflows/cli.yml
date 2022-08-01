@@ -47,17 +47,17 @@ jobs:
         run: pnpm install
 
       - name: Build CLI
-        run: pnpm run build:cli
+        run: pnpm run build:create-spectacle
 
       - name: Install ts-node
         run: sudo npm install -g ts-node
 
       - name: Create ${{ matrix.output-types }} example project
-        run: ts-node ./packages/cli/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
+        run: ts-node ./packages/create-spectacle/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
 
       # cant cd into onepage its just a html file
       - name: Start project
         run: cd example-${{ matrix.output-types }} && npm install && npm start
 
       - name: Run some tests
-        run: cd .. && npm --prefix ./packages/cli install && npm --prefix ./packages/cli test
+        run: cd .. && npm --prefix ./packages/create-spectacle install && npm --prefix ./packages/create-spectacle test
