@@ -19,7 +19,8 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
-        output-types: ['tsx', 'jsx', 'onepage']
+        # TODO: add onepage back
+        output-types: ['tsx', 'jsx']
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -54,6 +55,9 @@ jobs:
       - name: Create ${{ matrix.output-types }} example project
         run: ts-node ./packages/cli/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
 
-      # Run some tests
-      #- name: Test project
-      # run: pnpm --prefix ./packages/cli/ run test
+      # cant cd into onepage its just a html file
+      - name: Start project
+        run: cd example-${{ matrix.output-types }} && npm install && npm start
+
+      - name: Run some tests
+        run: cd .. && npm --prefix ./packages/cli install && npm --prefix ./packages/cli test

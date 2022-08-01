@@ -28,7 +28,7 @@ const Presentation = () => (
   <Deck template={template}>
     <Slide>
       <FlexBox height="100%">
-        <Heading>${options.name}</Heading>
+        <Heading className="example-text">${options.name}</Heading>
       </FlexBox>
     </Slide>
     <Slide>
