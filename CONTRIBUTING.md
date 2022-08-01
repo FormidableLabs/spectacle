@@ -36,7 +36,7 @@ producing non-broken sample presentations as a CI / assurance test.
 - `spectacle-mdx-loader`
   - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/mdx)
 
-Here's how you can run the various JS, TS, and MD examples:
+Here's how you can run the various examples:
 
 ```sh
 # JavaScript demo app (in two different terminals)
