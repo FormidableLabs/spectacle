@@ -2,7 +2,6 @@
   "name": "spectacle-monorepo",
   "scripts": {
     "start:one-page": "pnpm run --filter spectacle-example-one-page start",
-    "start:cli": "echo TODO WIREIT pnpm run --filter spectacle-cli start",
     "typecheck": "pnpm -r typecheck",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "version": "pnpm changeset version && pnpm install",
@@ -11,6 +10,7 @@
     "start:md": "concurrently --raw pnpm:build:start:watch \"pnpm run --filter ./examples/md start\"",
     "start:ts": "concurrently --raw pnpm:build:start:watch \"pnpm run --filter ./examples/typescript start\"",
     "start:examples": "concurrently --raw pnpm:build:start:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
+    "start:cli": "pnpm run --filter ./packages/cli build --watch",
     "clean:build": "rimraf \"{packages,examples}/*/{es,lib,dist}\" packages/cli/bin",
     "clean:cache": "wireit",
     "clean:cache:lint": "rimraf .eslintcache \"{packages,examples}/*/.eslintcache\"",
