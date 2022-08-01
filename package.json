@@ -1,41 +1,5 @@
 {
   "name": "spectacle-monorepo",
-  "scripts": {
-    "typecheck": "pnpm -r typecheck",
-    "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
-    "version": "pnpm changeset version && pnpm install",
-    "changeset": "changeset",
-    "start:js": "concurrently --raw pnpm:build:spectacle:esm:watch \"pnpm run --filter ./examples/js start\"",
-    "start:md": "concurrently --raw pnpm:build:spectacle:esm:watch \"pnpm run --filter ./examples/md start\"",
-    "start:ts": "concurrently --raw pnpm:build:spectacle:esm:watch \"pnpm run --filter ./examples/typescript start\"",
-    "start:one-page": "concurrently --raw pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch",
-    "start:examples": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
-    "start:create-spectacle": "pnpm run --filter ./packages/create-spectacle build --watch",
-    "clean:build": "rimraf \"{packages,examples}/*/{es,lib,dist}\" packages/create-spectacle/bin",
-    "clean:cache": "wireit",
-    "clean:cache:lint": "rimraf .eslintcache \"{packages,examples}/*/.eslintcache\"",
-    "clean:cache:wireit": "rimraf .wireit \"{packages,examples}/*/.wireit\"",
-    "clean:cache:modules": "rimraf node_modules/.cache \"{packages,examples}/*/node_modules/.cache\"",
-    "check": "wireit",
-    "check:ci": "wireit",
-    "build": "wireit",
-    "build:one-page:watch": "pnpm run --filter ./examples/one-page build --watch",
-    "build:spectacle:dev:watch": "pnpm run --filter ./packages/spectacle build:dist:dev --watch",
-    "build:spectacle:esm:watch": "pnpm run --filter ./packages/spectacle build:lib:esm --watch",
-    "lint": "wireit",
-    "lint:fix": "wireit",
-    "lint:root": "wireit",
-    "lint:root:fix": "wireit",
-    "lint:pkgs": "wireit",
-    "lint:pkgs:fix": "wireit",
-    "prettier": "wireit",
-    "prettier:fix": "wireit",
-    "prettier:root": "wireit",
-    "prettier:root:fix": "wireit",
-    "prettier:pkgs": "wireit",
-    "prettier:pkgs:fix": "wireit",
-    "test": "wireit"
-  },
   "devDependencies": {
     "@babel/cli": "^7.12.8",
     "@babel/core": "^7.17.2",
@@ -68,6 +32,43 @@
     "webpack-dev-server": "^4.7.4",
     "wireit": "^0.7.1"
   },
+  "scripts": {
+    "typecheck": "pnpm -r typecheck",
+    "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
+    "version": "pnpm changeset version && pnpm install",
+    "changeset": "changeset",
+    "start:js": "concurrently --raw pnpm:build:spectacle:esm:watch \"pnpm run --filter ./examples/js start\"",
+    "start:md": "concurrently --raw pnpm:build:spectacle:esm:watch \"pnpm run --filter ./examples/md start\"",
+    "start:ts": "concurrently --raw pnpm:build:spectacle:esm:watch \"pnpm run --filter ./examples/typescript start\"",
+    "start:one-page": "concurrently --raw pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch",
+    "start:examples": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
+    "start:create-spectacle": "pnpm run --filter ./packages/create-spectacle build --watch",
+    "clean:build": "rimraf \"{packages,examples}/*/{es,lib,dist}\" packages/create-spectacle/bin",
+    "clean:cache": "wireit",
+    "clean:cache:lint": "rimraf .eslintcache \"{packages,examples}/*/.eslintcache\"",
+    "clean:cache:wireit": "rimraf .wireit \"{packages,examples}/*/.wireit\"",
+    "clean:cache:modules": "rimraf node_modules/.cache \"{packages,examples}/*/node_modules/.cache\"",
+    "check": "wireit",
+    "check:ci": "wireit",
+    "build": "wireit",
+    "build:one-page:watch": "pnpm run --filter ./examples/one-page build --watch",
+    "build:spectacle:dev:watch": "pnpm run --filter ./packages/spectacle build:dist:dev --watch",
+    "build:spectacle:esm:watch": "pnpm run --filter ./packages/spectacle build:lib:esm --watch",
+    "types:check": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "lint:root": "wireit",
+    "lint:root:fix": "wireit",
+    "lint:pkgs": "wireit",
+    "lint:pkgs:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit",
+    "prettier:root": "wireit",
+    "prettier:root:fix": "wireit",
+    "prettier:pkgs": "wireit",
+    "prettier:pkgs:fix": "wireit",
+    "test": "wireit"
+  },
   "wireit": {
     "clean:cache": {
       "dependencies": [
@@ -80,6 +81,7 @@
       "dependencies": [
         "prettier",
         "lint",
+        "types:check",
         "test"
       ]
     },
@@ -96,6 +98,11 @@
         "./examples/md:build",
         "./examples/one-page:build",
         "./examples/typescript:build"
+      ]
+    },
+    "types:check": {
+      "dependencies": [
+        "./packages/spectacle:types:check"
       ]
     },
     "lint": {

@@ -77,10 +77,6 @@
     "@types/react": "^18.0.12"
   },
   "scripts": {
-    "preversion": "cd ../../ && pnpm run check",
-    "version": "pnpm run clean && pnpm run build",
-    "build-types": "tsc --emitDeclarationOnly",
-    "typecheck": "tsc --noEmit",
     "prepublishOnly": "shx cp ../../README.md ./README.md && shx cp ../../LICENSE ./LICENSE && pnpm run build",
     "postpack": "shx rm ./README.md && shx rm ./LICENSE",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
@@ -91,6 +87,8 @@
     "build:dist": "wireit",
     "build:dist:dev": "wireit",
     "build:dist:min": "wireit",
+    "types:check": "wireit",
+    "types:create": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "prettier": "wireit",
@@ -101,7 +99,8 @@
     "build": {
       "dependencies": [
         "build:lib",
-        "build:dist"
+        "build:dist",
+        "types:create"
       ]
     },
     "build:lib": {
@@ -176,6 +175,35 @@
       "output": [
         "dist/spectacle.min.js*"
       ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:check": {
+      "command": "nps types:check",
+      "files": [
+        "src/**/*.{ts,tsx}",
+        "../../tsconfig.json",
+        "tsconfig.json"
+      ],
+      "dependencies": [],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:create": {
+      "command": "nps types:create",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "../../tsconfig.json"
+      ],
+      "output": [
+        "lib/**/*.d.ts",
+        "lib/**/*.d.ts.map"
+      ],
+      "dependencies": [],
       "packageLocks": [
         "pnpm-lock.yaml"
       ]

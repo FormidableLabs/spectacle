@@ -16,7 +16,8 @@ module.exports = {
   scripts: {
     // Build
     // - Typescript
-    tsc: 'tsc',
+    'types:create': 'tsc --emitDeclarationOnly',
+    'types:check': 'tsc --noEmit',
 
     // - Babel
     'babel:pkg:base':
