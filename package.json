@@ -33,8 +33,6 @@
     "wireit": "^0.7.1"
   },
   "scripts": {
-    "typecheck": "pnpm -r typecheck",
-    "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "version": "pnpm changeset version && pnpm install",
     "changeset": "changeset",
     "start:js": "concurrently --raw pnpm:build:spectacle:esm:watch \"pnpm run --filter ./examples/js start\"",
