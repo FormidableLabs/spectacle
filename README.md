@@ -12,7 +12,7 @@
 </p>
 
 Looking for a quick preview of what you can do with Spectacle? Check out our Live Demo deck
-[here](https://raw.githack.com/FormidableLabs/spectacle/main/examples/one-page.html).
+[here](https://raw.githack.com/FormidableLabs/spectacle/main/examples/one-page/index.html).
 
 Have a question about Spectacle? Submit an issue in this repository using the
 ["Question" template](https://github.com/FormidableLabs/spectacle/issues/new?template=question.md).

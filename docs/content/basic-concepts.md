@@ -132,7 +132,7 @@ To create a Spectacle presentation that lives in a single HTML page, you will on
 </script>
 ```
 
-To see a complete example of a presentation written as a single HTML page, please check out our [sample one page presentation](https://github.com/FormidableLabs/spectacle/blob/main/examples/one-page.html).
+To see a complete example of a presentation written as a single HTML page, please check out our [sample one page presentation](https://github.com/FormidableLabs/spectacle/blob/main/examples/one-page/index.html).
 
 ## Presenting
 

@@ -2,8 +2,6 @@
   "name": "spectacle-example-one-page",
   "private": "true",
   "scripts": {
-    "start": "echo TODO WIREIT open index.html",
-    "TODO_WIREIT": "echo TODO ADD BUILD SCRIPT AND ALL WIREIT COMMANDS",
     "build": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
@@ -15,6 +13,7 @@
       "command": "node ./scripts/one-page.js",
       "clean": false,
       "files": [
+        "index.html",
         "../examples/js/index.js",
         "scripts/one-page.js"
       ],
