@@ -102,7 +102,9 @@
     },
     "types:check": {
       "dependencies": [
-        "./packages/spectacle:types:check"
+        "./packages/create-spectacle:types:check",
+        "./packages/spectacle:types:check",
+        "./examples/typescript:types:check"
       ]
     },
     "lint": {

@@ -18,7 +18,6 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "@types/testing-library__jest-dom": "^5.14.5",
     "broadcast-channel": "^3.2.0",
     "broadcastchannel-polyfill": "^1.0.0",
     "dedent": "^0.7.0",
@@ -62,6 +61,7 @@
     "@types/react-syntax-highlighter": "^15.5.2",
     "@types/styled-components": "^5.1.15",
     "@types/styled-system": "^5.1.5",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@types/unist": "^2.0.6",
     "csstype": "^3.1.0",
     "jest": "^27.3.1",

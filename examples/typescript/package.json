@@ -6,10 +6,14 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5"
+  },
   "scripts": {
     "start": "webpack-dev-server --port=3100 --hot --config ./webpack.config.js",
     "build": "wireit",
+    "types:check": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "prettier": "wireit",
@@ -27,6 +31,19 @@
       "dependencies": [
         "../../packages/spectacle:build:lib:esm"
       ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:check": {
+      "command": "nps types:check",
+      "files": [
+        "index.{ts,tsx}",
+        "../../tsconfig.json",
+        "tsconfig.json"
+      ],
+      "dependencies": [],
+      "output": [],
       "packageLocks": [
         "pnpm-lock.yaml"
       ]

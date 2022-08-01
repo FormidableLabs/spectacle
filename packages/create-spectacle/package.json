@@ -31,6 +31,7 @@
   "resolutions": {},
   "scripts": {
     "build": "wireit",
+    "types:check": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "prettier": "wireit",
@@ -47,6 +48,19 @@
       "output": [
         "bin/**/*.js"
       ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:check": {
+      "command": "nps types:check",
+      "files": [
+        "src/**/*.{ts,tsx}",
+        "../../tsconfig.json",
+        "tsconfig.json"
+      ],
+      "dependencies": [],
+      "output": [],
       "packageLocks": [
         "pnpm-lock.yaml"
       ]
