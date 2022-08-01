@@ -24,9 +24,7 @@ $ pnpm install
 
 We have various deck scenarios in `examples` in this repository that are part of the development process.
 
-We follow the convention of `start:NAME` to run an in-memory dev server for a specific
-example, but we also have a `pnpm build` script task to make sure we're actually
-producing non-broken sample presentations as a CI / assurance test.
+We follow the convention of `start:NAME` to run an in-memory dev server for a specific example, but we also have a `pnpm build` script task to make sure we're actually producing non-broken sample presentations as a CI / assurance test.
 
 - `spectacle`
   - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/main/examples/js)
@@ -125,8 +123,7 @@ $ yarn clean:cache:modules   # caches in node_modules (prettier, etc.)
 
 ### Before submitting a PR
 
-Thanks for taking the time to help us make Spectacle even better! Before you go
-ahead and submit a PR, make sure that you have done the following:
+Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
 
 - Run all checks using `pnpm run check:ci`.
 - Run `pnpm run build` and check + commit changes to `examples/one-page/index.html`
@@ -180,16 +177,19 @@ For exceptional circumstances, here is a quick guide to manually publish from a 
 
 1. Add a changeset with `pnpm changeset`. Generate the changeset file, review it, and commit it.
 2. Make a version. Due to our changelog formatting package you will need to create a personal token and pass it to the environment.
-   ```shell
-   GITHUB_TOKEN=<INSERT TOKEN> pnpm run version
+
+   ```sh
+   $ GITHUB_TOKEN=<INSERT TOKEN> pnpm run version
    ```
+
    Review git changes, tweak, and commit.
+
 3. Publish.
 
    First, build necessary files:
 
    ```sh
-   pnpm run build
+   $ pnpm run build
    ```
 
    Then publish:
