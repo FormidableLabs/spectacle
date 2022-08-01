@@ -1,0 +1,43 @@
+@import '../../css/variables.scss';
+
+.heroNPMWrapper {
+  flex-direction: row;
+  justify-content: stretch;
+  width: 30rem;
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.heroNPMCopy {
+  width: 22rem;
+  height: 4.5rem;
+  color: var(--oss-text-dark);
+  background-color: var(--oss-input-background);
+  text-align: left;
+  padding: 0.33rem 1.5rem;
+  line-height: 3.75rem;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  margin: 0;
+  flex: 1 0 auto;
+}
+
+.heroNPMButton {
+  width: 8rem;
+  height: 4.5rem;
+  background: var(--oss-background-light);
+  transition: background 0.4s;
+  font-size: 14px;
+  font-weight: $font-weights-heading;
+  letter-spacing: 1px;
+  color: var(--oss-text-dark);
+  border: 0;
+  border-radius: 0 var(--oss-border-radius) var(--oss-border-radius) 0;
+  text-transform: uppercase;
+  cursor: copy;
+
+  &:hover {
+    color: var(--oss-text-light);
+    background: var(--oss-button-light-hover);
+  }
+}

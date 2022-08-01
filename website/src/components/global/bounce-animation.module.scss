@@ -1,0 +1,9 @@
+.bounceAnimation {
+  display: block;
+  transition: all 0.1s;
+  transform: translateY(0);
+
+  &.bouncing {
+    transform: translateY(-0.6rem);
+  }
+}

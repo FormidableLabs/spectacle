@@ -1,0 +1,53 @@
+@import '../../css/variables.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto;
+  padding: 4rem;
+  // background: var(--oss-background-dark);
+  text-align: center;
+
+  @media ($media-breakpoint-sm) {
+    padding: 8rem;
+  }
+
+  &.noMargin {
+    margin: 0;
+  }
+
+  &.noPadding {
+    padding: 0;
+  }
+
+  &.light {
+    background: var(--oss-background-light);
+  }
+
+  &.dark {
+    background: var(--oss-background-dark);
+  }
+
+  &.color {
+    background: var(--oss-background-color);
+  }
+}
+
+// .wrapper {
+//   display: flex;
+//   flex-direction: column;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   width: 100%;
+//   margin: ${({ noMargin }) => (noMargin ? '0' : 'auto')};
+//   padding: ${({ noPadding }) => (noPadding ? '0' : '4rem')};
+//   background: ${(p) => p.theme.colors[`background${p.background}`]};
+//   text-align: center;
+
+//   @media ($media-breakpoint-sm) {
+//     padding: ${({ noPadding }) => (noPadding ? '0' : '8rem')};
+//   }
+// }

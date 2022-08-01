@@ -1,15 +1,21 @@
-import styled from 'styled-components';
+import React from 'react';
+import clsx from 'clsx';
+import styles from './secondary-title.module.scss';
 
 type SecondaryTitle = {
+  className?: string;
   light?: boolean;
+  children: React.ReactNode;
 };
 
-export const SecondaryTitle = styled.h3<SecondaryTitle>`
-  color: ${(p) =>
-    p.light ? p.theme.colors.textDark : p.theme.colors.textLight};
-  font-size: ${({ theme }) => theme.fontSizes.h3};
-  font-weight: ${({ theme }) => theme.fontWeights.heading};
-  line-height: 2.4rem;
-  text-align: center;
-  margin-bottom: 1.25rem;
-`;
+const SecondaryTitle = ({ className, light, children }: SecondaryTitle) => {
+  const classNames = clsx(
+    styles.secondaryTitle,
+    light && styles.light,
+    className && className
+  );
+
+  return <h3 className={classNames}>{children}</h3>;
+};
+
+export default SecondaryTitle;

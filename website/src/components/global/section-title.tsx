@@ -1,23 +1,17 @@
-import styled from 'styled-components';
+import React from 'react';
+import styles from './section-title.module.scss';
 
 type SectionTitle = {
   light?: boolean;
+  children: React.ReactNode;
 };
 
-export const SectionTitle = styled.h2<SectionTitle>`
-  color: ${(p) =>
-    p.light ? p.theme.colors.textDark : p.theme.colors.textLight};
-  font-size: ${({ theme }) => theme.fontSizes.h2};
-  font-weight: ${({ theme }) => theme.fontWeights.heading};
-  flex: auto;
-  line-height: 1.3;
-  margin: 2rem 0 3rem;
-  width: 100%;
-  text-align: center;
-  @media ${({ theme }) => theme.media.sm} {
-    margin: 2rem 0 6rem;
-  }
-  @media (max-width: 768px) {
-    margin: 4rem 0;
-  }
-`;
+const sectionTitle = ({ light, children }: SectionTitle) => {
+  return (
+    <h2 className={`${styles.sectionTitle} ${light && styles.light}`}>
+      {children}
+    </h2>
+  );
+};
+
+export default sectionTitle;

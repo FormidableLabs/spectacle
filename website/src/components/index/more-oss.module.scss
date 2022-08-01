@@ -1,0 +1,148 @@
+@import '../../css/variables.scss';
+
+.ossCardContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 4rem;
+  width: calc(100% - 4rem);
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+
+  @media ($media-breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    max-width: 116rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.ossCard {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  > * + * {
+    margin-top: 1rem;
+  }
+  @media ($media-breakpoint-sm) {
+    flex-direction: row;
+    justify-content: space-between;
+    > * {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    > * + * {
+      margin-top: 0;
+      margin-left: 3rem;
+    }
+  }
+}
+
+.ossBadgeContainer {
+  display: flex;
+  flex: 1;
+
+  a:hover {
+    background: none;
+    text-decoration: none;
+  }
+}
+
+.ossCopyContainer {
+  color: var(--oss-text);
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  > * + * {
+    margin-top: 2rem;
+  }
+
+  &:hover {
+    color: var(--oss-text);
+  }
+}
+
+.ossTitle {
+  color: var(--oss-text-light);
+  transition: opacity 0.3s ease-out;
+  margin: 0 0 0.5rem 0;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  @media ($media-breakpoint-sm) {
+    text-align: left;
+  }
+
+  &.light {
+    color: var(--oss-text-dark);
+  }
+}
+
+.ossDescription {
+  margin: 0 auto;
+  color: var(--oss-text-light);
+
+  @media ($media-breakpoint-sm) {
+    text-align: left;
+  }
+
+  &.light {
+    color: var(--oss-text);
+  }
+}
+
+.button {
+  background: var(--oss-button-light);
+  border-radius: var(--oss-border-radius);
+  color: var(--oss-text-dark);
+  display: block;
+  font-size: 1.5rem;
+  height: 4.5rem;
+  letter-spacing: 0.05em;
+  line-height: 4.5rem;
+  margin: 5rem auto 3rem;
+  max-width: 30rem;
+  min-width: 22rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background 0.4s;
+  width: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  &:hover {
+    background: var(--oss-button-light-hover);
+    color: var(--oss-text-light);
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  &.noMargin {
+    margin: 0;
+  }
+
+  &.light {
+    background: var(--oss-button);
+    color: var(--oss-text-light);
+
+    &:hover {
+      background: var(--oss-button-hover);
+      color: var(--oss-text-light);
+    }
+  }
+}

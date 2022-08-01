@@ -1,0 +1,136 @@
+@import '../../css/variables.scss';
+
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+
+  @media ($media-breakpoint-md) {
+    flex-direction: row;
+  }
+
+  > * {
+    flex-basis: 50%;
+  }
+}
+
+.footerLeft {
+  display: flex;
+  padding: 0;
+  text-align: left;
+  flex-direction: column;
+
+  @media ($media-breakpoint-md) {
+    flex-direction: row;
+  }
+}
+
+.footerDescription {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  max-width: 56rem;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--oss-text-light);
+
+  @media ($media-breakpoint-md) {
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6;
+  }
+
+  & a {
+    color: var(--oss-button-light);
+    transition: color 0.2s ease-out;
+
+    :hover {
+      color: var(--oss-button-light-hover);
+    }
+  }
+}
+
+.footerCopyright {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  width: 100%;
+  margin: 2rem auto 0;
+  text-align: center;
+  color: var(--oss-text-light);
+
+  @media ($media-breakpoint-md) {
+    text-align: left;
+    font-size: 1.4rem;
+  }
+
+  & a {
+    margin-left: 0;
+    display: block;
+    color: var(--oss-button-light);
+    transition: color 0.2s ease-out;
+
+    @media ($media-breakpoint-md) {
+      margin-left: 6rem;
+      display: inline-block;
+    }
+
+    :hover {
+      color: var(--oss-button-light-hover);
+    }
+  }
+}
+
+.footerLogo {
+  height: auto;
+  width: 20rem;
+}
+
+.footerLinks {
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  list-style: none;
+  padding: 0;
+  text-transform: uppercase;
+  margin: 2rem auto;
+
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  > * + * {
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+
+  @media ($media-breakpoint-sm) {
+    flex-direction: row;
+
+    > * + * {
+      margin-top: 0;
+      margin-left: 4rem;
+    }
+  }
+
+  @media ($media-breakpoint-md) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 6rem 0 auto;
+
+    > * + * {
+      margin-top: 2rem;
+      margin-left: 0;
+    }
+  }
+
+  li a {
+    color: var(--oss-button-light);
+    letter-spacing: 0.1rem;
+    transition: color 0.2s ease-out;
+
+    &:hover {
+      color: var(--oss-button-light-hover);
+    }
+  }
+}

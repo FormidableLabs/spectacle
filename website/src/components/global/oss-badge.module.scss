@@ -1,0 +1,31 @@
+@import '../../css/variables.scss';
+
+.ossImage {
+  margin-right: auto;
+  margin-left: auto;
+  height: 20rem;
+  width: 20rem;
+  max-width: 20rem;
+  padding: 0;
+  cursor: pointer;
+
+  @media ($media-breakpoint-sm) {
+    width: 26rem;
+    max-width: initial;
+  }
+
+  @media ($media-breakpoint-md) {
+    width: 30rem;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  &:hover {
+    background: none;
+    cursor: default;
+
+    &.hoverable {
+      cursor: pointer;
+    }
+  }
+}

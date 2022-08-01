@@ -1,16 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-import { BodyCopy } from '@site/src/components/global/body-copy';
-import { Button } from '@site/src/components/global/button';
-import { SectionTitle } from '@site/src/components/global/section-title';
-import { Wrapper } from '@site/src/components/global/wrapper';
+import BodyCopy from '@site/src/components/global/body-copy';
+import Button from '@site/src/components/global/button';
+import SectionTitle from '@site/src/components/global/section-title';
+import Wrapper from '@site/src/components/global/wrapper';
 
-type VideoProps = {
-  autoPlay?: boolean;
-  muted?: boolean;
-  loop?: boolean;
-  poster: string;
-};
+import styles from './preview.module.scss';
 
 type VideoAsset = {
   mp4: string;
@@ -24,10 +18,6 @@ interface Meta {
   noMargin: boolean;
   noPadding: boolean;
 }
-
-const Video = styled.video<VideoProps>`
-  width: 100%;
-`;
 
 export default function Preview({ content }): JSX.Element {
   const {
@@ -59,13 +49,19 @@ export default function Preview({ content }): JSX.Element {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Video autoPlay muted loop poster={videoAssets.still}>
+        <video
+          className={styles.video}
+          autoPlay
+          muted
+          loop
+          poster={videoAssets.still}
+        >
           <source src={videoAssets.webm} type="video/webm" />
           <source src={videoAssets.mp4} type="video/mp4" />
-        </Video>
+        </video>
       </a>
       {buttonText && buttonUrl && (
-        <Button light={isLightTheme} to={buttonUrl}>
+        <Button as={'href'} light={isLightTheme} to={buttonUrl}>
           {buttonText}
         </Button>
       )}

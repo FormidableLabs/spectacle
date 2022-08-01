@@ -80,7 +80,7 @@ const config = {
           trackingID: 'GTM-MD32945'
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.scss')
+          customCss: [require.resolve('./src/css/custom.scss')]
         }
       })
     ]

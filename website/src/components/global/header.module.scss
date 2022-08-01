@@ -1,0 +1,91 @@
+$media-breakpoint-sm: 'min-width: 700px';
+$media-breakpoint-md: 'min-width: 960px';
+$media-breakpoint-lg: 'min-width: 1200px';
+
+header {
+  padding: 0px 0px 14rem;
+  color: var(--oss-text-light);
+  background: var(--oss-text-dark);
+  background-image: linear-gradient(14deg, #404a5f, #7f526a);
+  background-size: cover;
+
+  @media ($media-breakpoint-sm) {
+    background-image: url('/img/hero-bg.jpg'),
+      linear-gradient(
+        194deg,
+        #77414b,
+        #564c60 18%,
+        #0d4a5d 73%,
+        #023340,
+        #023340,
+        #023340
+      );
+  }
+}
+
+.triangle {
+  position: absolute;
+  left: -0.7rem;
+  top: -0.3rem;
+  height: auto;
+  width: 20rem;
+
+  @media ($media-breakpoint-sm) {
+    width: 26rem;
+  }
+
+  @media ($media-breakpoint-md) {
+    width: 30rem;
+  }
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 2rem;
+  top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--oss-text-light);
+
+  @media ($media-breakpoint-sm) {
+    left: 3.5rem;
+    top: 2rem;
+    font-size: 1.2rem;
+  }
+
+  @media ($media-breakpoint-md) {
+    left: 4rem;
+    top: 3rem;
+  }
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  > * + * {
+    margin-top: 1rem;
+  }
+  :hover {
+    color: var(--oss-text-light);
+    background: none;
+    text-decoration: none;
+  }
+
+  .badge__text {
+    text-transform: uppercase;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.5;
+    letter-spacing: 0.86px;
+    max-width: 10rem;
+  }
+
+  .badge__logo {
+    height: auto;
+    width: 4rem;
+    @media ($media-breakpoint-sm) {
+      width: 7rem;
+    }
+  }
+}

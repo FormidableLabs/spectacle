@@ -1,23 +1,25 @@
-import styled from 'styled-components';
+import React from 'react';
+import styles from './wrapper.module.scss';
 
 type Wrapper = {
   noMargin?: boolean;
   noPadding?: boolean;
   background: string;
+  children: React.ReactNode;
 };
 
-export const Wrapper = styled.div<Wrapper>`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  margin: ${({ noMargin }) => (noMargin ? '0' : 'auto')};
-  padding: ${({ noPadding }) => (noPadding ? '0' : '4rem')};
-  background: ${(p) => p.theme.colors[`background${p.background}`]};
-  text-align: center;
+const Wrapper = ({ noMargin, noPadding, background, children }: Wrapper) => {
+  return (
+    <div
+      className={`${styles.wrapper} ${noMargin && styles.noMargin} ${
+        noPadding && styles.noPadding
+      } ${background === 'Light' && styles.light} ${
+        background === 'Dark' && styles.dark
+      } ${background === 'Color' && styles.color}`}
+    >
+      {children}
+    </div>
+  );
+};
 
-  @media ${({ theme }) => theme.media.sm} {
-    padding: ${({ noPadding }) => (noPadding ? '0' : '8rem')};
-  }
-`;
+export default Wrapper;

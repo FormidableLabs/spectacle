@@ -1,0 +1,14 @@
+@import '../../css/variables.scss';
+
+.secondaryTitle {
+  color: var(--oss-text-light);
+  font-size: $font-sizes-h3;
+  font-weight: $font-weights-heading;
+  line-height: 2.4rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+
+  &.light {
+    color: var(--oss-text-dark);
+  }
+}

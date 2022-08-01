@@ -1,0 +1,42 @@
+.button {
+  background: var(--oss-button-light);
+  border-radius: var(--oss-border-radius);
+  color: var(--oss-text-dark);
+  display: block;
+  font-size: 1.5rem;
+  height: 4.5rem;
+  letter-spacing: 0.05em;
+  line-height: 4.5rem;
+  margin: 5rem auto 3rem;
+  max-width: 30rem;
+  min-width: 22rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background 0.4s;
+  width: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  &:hover {
+    background: var(--oss-button-light-hover);
+    color: var(--oss-text-light);
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  &.noMargin {
+    margin: 0;
+  }
+
+  &.light {
+    background: var(--oss-button);
+    color: var(--oss-text-light);
+
+    &:hover {
+      background: var(--oss-button-hover);
+      color: var(--oss-text-light);
+    }
+  }
+}
