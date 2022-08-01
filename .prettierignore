@@ -8,3 +8,5 @@ dist
 docs
 .nova
 .vscode
+bin
+build

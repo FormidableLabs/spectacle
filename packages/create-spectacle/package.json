@@ -1,14 +1,19 @@
 {
-  "name": "spectacle-cli",
-  "version": "2.0.0-alpha.1",
-  "description": "CLI for Spectacle",
-  "main": "src/cli.ts",
+  "name": "create-spectacle",
+  "version": "0.0.1",
+  "private": "true",
+  "description": "Project generator for Spectacle",
+  "main": "bin/cli.js",
+  "files": [
+    "bin/"
+  ],
   "scripts": {
     "clean": "rimraf bin",
     "start": "nodemon src/cli.ts",
     "build": "tsc --p tsconfig.json",
     "preversion": "pnpm run clean && pnpm run build",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
   },
   "bin": {
     "spectacle-cli": "bin/cli.js"

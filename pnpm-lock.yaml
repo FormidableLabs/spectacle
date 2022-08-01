@@ -154,7 +154,7 @@ importers:
       webpack-cli: 4.10.0_6rc575xxn4hngez2jk2zkyfdoi
       webpack-dev-server: 4.9.3_77l47gmqkrqiei5z7sbwz5iaj4
 
-  packages/cli:
+  packages/create-spectacle:
     specifiers:
       '@types/node': ^18.0.3
       chalk: ^4.1.2
