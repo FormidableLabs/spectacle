@@ -1,6 +1,9 @@
 {
   "name": "spectacle-example-one-page",
   "private": "true",
+  "devDependencies": {
+    "pretty": "^2.0.0"
+  },
   "scripts": {
     "build": "wireit",
     "lint": "wireit",

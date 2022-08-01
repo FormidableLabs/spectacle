@@ -68,16 +68,12 @@
     "process": "^0.11.10",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "shx": "^0.3.4",
     "ts-jest": "^27.0.7"
   },
   "resolutions": {
     "@types/react": "^18.0.12"
   },
   "scripts": {
-    "prepublishOnly": "shx cp ../../README.md ./README.md && shx cp ../../LICENSE ./LICENSE && pnpm run build",
-    "postpack": "shx rm ./README.md && shx rm ./LICENSE",
-    "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "build": "wireit",
     "build:lib": "wireit",
     "build:lib:esm": "wireit",
