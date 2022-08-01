@@ -26,15 +26,10 @@
   "peerDependencies": {},
   "devDependencies": {
     "spectacle": "*",
-    "@types/node": "^18.0.3",
-    "nodemon": "^2.0.18",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.8.1"
+    "@types/node": "^18.0.3"
   },
   "resolutions": {},
   "scripts": {
-    "start": "nodemon src/cli.ts",
-    "preversion": "pnpm run clean && pnpm run build",
     "TODO_WIREIT": "echo TODO HANDLE TASKS ABOVE",
     "build": "wireit",
     "lint": "wireit",
