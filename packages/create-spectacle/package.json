@@ -14,7 +14,7 @@
     "preversion": "pnpm run clean && pnpm run build",
     "test": "jest",
     "prepublishOnly": "pnpm run clean && pnpm run build",
-    "prepare": "husky install"
+    "prepare": "cd ../.. && husky install ./packages/create-spectacle/husky"
   },
   "bin": {
     "spectacle-cli": "bin/cli.js"
