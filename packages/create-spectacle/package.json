@@ -12,7 +12,7 @@
     "start": "nodemon src/cli.ts",
     "build": "tsc --p tsconfig.json",
     "preversion": "pnpm run clean && pnpm run build",
-    "test": "jest",
+    "eample-test": "jest",
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "prepare": "cd ../.. && husky install ./packages/create-spectacle/husky"
   },
