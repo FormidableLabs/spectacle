@@ -66,8 +66,8 @@ A basic deck written in markdown:
 # In one terminal open dev server
 $ pnpm start:md
 
-# In another open a browser to 3100
-$ open http://localhost:3100/
+# In another open a browser to 3200
+$ open http://localhost:3200/
 ```
 
 **Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
