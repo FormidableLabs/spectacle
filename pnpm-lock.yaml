@@ -161,6 +161,7 @@ importers:
       clear: ^0.1.0
       cli-spinners: ^2.6.1
       commander: ^9.3.0
+      husky: ^8.0.0
       jest: ^28.1.3
       jest-puppeteer: ^6.1.1
       log-update: 4.0.0
@@ -178,6 +179,7 @@ importers:
       log-update: 4.0.0
     devDependencies:
       '@types/node': 18.0.3
+      husky: 8.0.1
       jest: 28.1.3_eudefza5kbv4z3gj6nnnsfn4wu
       jest-puppeteer: 6.1.1_puppeteer@15.5.0
       nodemon: 2.0.19
@@ -5838,6 +5840,12 @@ packages:
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+    dev: true
+
+  /husky/8.0.1:
+    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /iconv-lite/0.4.24:

@@ -13,7 +13,8 @@
     "build": "tsc --p tsconfig.json",
     "preversion": "pnpm run clean && pnpm run build",
     "test": "jest",
-    "prepublishOnly": "pnpm run clean && pnpm run build"
+    "prepublishOnly": "pnpm run clean && pnpm run build",
+    "prepare": "husky install"
   },
   "bin": {
     "spectacle-cli": "bin/cli.js"
@@ -40,7 +41,8 @@
     "rimraf": "^3.0.2",
     "spectacle": "*",
     "ts-node": "^10.8.1",
-    "typescript": "*"
+    "typescript": "*",
+    "husky": "^8.0.0"
   },
   "resolutions": {}
 }
