@@ -54,22 +54,23 @@ h3 {
   margin: 0 0 $spacing-md 0;
 }
 
-h1,
-h2,
-h3 {
+h1 {
+  font-size: $font-sizes-h1;
   font-weight: $font-weights-heading;
   line-height: $line-heights-heading;
   color: var(--oss-text-light);
 }
-
-h1 {
-  font-size: $font-sizes-h1;
-}
 h2 {
   font-size: $font-sizes-h2;
+  font-weight: $font-weights-heading;
+  line-height: $line-heights-heading;
+  color: var(--oss-text-light);
 }
 h3 {
   font-size: $font-sizes-h3;
+  font-weight: $font-weights-heading;
+  line-height: $line-heights-heading;
+  color: var(--oss-text-light);
 }
 img {
   max-width: 100%;
