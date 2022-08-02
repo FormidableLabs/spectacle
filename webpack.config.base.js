@@ -33,7 +33,11 @@ module.exports = {
     rules: [
       {
         test: /\.[tj]sx?$/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          // eslint-disable-next-line global-require
+          options: require('./.babelrc.js')
+        }
       },
       { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }
     ]

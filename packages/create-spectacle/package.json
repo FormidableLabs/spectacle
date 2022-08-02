@@ -7,14 +7,8 @@
   "files": [
     "bin/"
   ],
-  "scripts": {
-    "clean": "rimraf bin",
-    "start": "nodemon src/cli.ts",
-    "build": "tsc --p tsconfig.json",
-    "prepublishOnly": "pnpm run clean && pnpm run build"
-  },
   "bin": {
-    "spectacle-cli": "bin/cli.js"
+    "create-spectacle": "bin/cli.js"
   },
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
@@ -32,11 +26,96 @@
   "peerDependencies": {},
   "devDependencies": {
     "spectacle": "*",
-    "@types/node": "^18.0.3",
-    "nodemon": "^2.0.18",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.8.1",
-    "typescript": "*"
+    "@types/node": "^18.0.3"
   },
-  "resolutions": {}
+  "resolutions": {},
+  "scripts": {
+    "build": "wireit",
+    "types:check": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "tsc --p tsconfig.json",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "tsconfig.json"
+      ],
+      "output": [
+        "bin/**/*.js"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:check": {
+      "command": "nps types:check",
+      "files": [
+        "src/**/*.{ts,tsx}",
+        "../../tsconfig.json",
+        "tsconfig.json"
+      ],
+      "dependencies": [],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint": {
+      "command": "nps lint:pkg",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:fix": {
+      "command": "pnpm run lint || nps lint:pkg:fix",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:pkg",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
+  }
 }
