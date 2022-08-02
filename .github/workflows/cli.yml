@@ -49,20 +49,18 @@ jobs:
       - name: Build CLI
         run: pnpm run build:create-spectacle
 
-      - name: Install ts-node
-        run: sudo npm install -g ts-node
-
       - name: Create ${{ matrix.output-types }} example project
-        run: ts-node ./packages/create-spectacle/src/cli.ts -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
+        run: node ./packages/create-spectacle/bin/cli.js -t ${{ matrix.output-types }} -n example-${{ matrix.output-types }}
 
       # cant cd into onepage its just a html file
       - name: Start project
         run: |
-          npm --prefix example-${{ matrix.output-types }} install
-          npm --prefix example-${{ matrix.output-types }} start &
+          npm example-${{ matrix.output-types }} install
+          npm example-${{ matrix.output-types }} start &
+        working-directory: ./example-${{ matrix.output-types }}
 
       - name: Run some tests
         run: |
-          npm --prefix ./packages/create-spectacle install husky
-          npm --prefix ./packages/create-spectacle install
-          npm --prefix ./packages/create-spectacle test
+          npm install
+          npm test
+        working-directory: ./packages/create-spectacle
