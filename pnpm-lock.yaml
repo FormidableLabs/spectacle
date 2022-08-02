@@ -144,9 +144,7 @@ importers:
       '@types/testing-library__jest-dom': ^5.14.5
       '@types/unist': ^2.0.6
       broadcast-channel: ^3.2.0
-      broadcastchannel-polyfill: ^1.0.0
       csstype: ^3.1.0
-      dedent: ^0.7.0
       history: ^4.9.0
       jest: ^27.3.1
       kbar: 0.1.0-beta.36
@@ -154,7 +152,6 @@ importers:
       mdast-zone: ^4.0.0
       merge-anything: ^3.0.3
       mousetrap: ^1.6.5
-      prism-react-renderer: ^0.1.7
       process: ^0.11.10
       query-string: ^6.8.2
       react: ^18.1.0
@@ -177,15 +174,12 @@ importers:
       use-resize-observer: ^6.1.0
     dependencies:
       broadcast-channel: 3.7.0
-      broadcastchannel-polyfill: 1.0.1
-      dedent: 0.7.0
       history: 4.10.1
       kbar: 0.1.0-beta.36_biqbaboplfbrettd7655fr4n2y
       mdast-builder: 1.1.1
       mdast-zone: 4.0.1
       merge-anything: 3.0.7
       mousetrap: 1.6.5
-      prism-react-renderer: 0.1.7_react@18.2.0
       query-string: 6.14.1
       react-fast-compare: 3.2.0
       react-is: 18.2.0
@@ -3338,10 +3332,6 @@ packages:
       unload: 2.2.0
     dev: false
 
-  /broadcastchannel-polyfill/1.0.1:
-    resolution: {integrity: sha512-iooPAN913j4xfrIu5o+mDaks9UUDOBfgjn8SsuzysfXr/X+f8m9y5t8c5rAbW6P0LdUXBJx33zwN4Cs6b9BGRw==}
-    dev: false
-
   /browser-process-hrtime/1.0.0:
     resolution: {integrity: sha512-9o5UecI3GhkpM6DrXr69PblIuWxPKk9Y0jHBRhdocZ2y7YECBFCsHm79Pr3OyR2AvjhDkabFJaDJMYRazHgsow==}
     dev: true
@@ -3932,6 +3922,7 @@ packages:
 
   /dedent/0.7.0:
     resolution: {integrity: sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==}
+    dev: true
 
   /deep-is/0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -7071,14 +7062,6 @@ packages:
       extend-shallow: 2.0.1
       js-beautify: 1.14.4
     dev: true
-
-  /prism-react-renderer/0.1.7_react@18.2.0:
-    resolution: {integrity: sha512-EhnM0sYfLK103ASK0ViSv0rta//ZGB0dBA9TiFyOvA+zOj5peLmGEG01sLEDwl9sMe+gSqncInafBe1VFTCMvA==}
-    peerDependencies:
-      react: '>=0.14.9'
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /prismjs/1.27.0:
     resolution: {integrity: sha512-t13BGPUlFDR7wRB5kQDG4jjl7XeuH6jbJGt11JHPL96qwsEHNX2+68tFXqc1/k+/jALsbSWJKUOT/hcYAZ5LkA==}
