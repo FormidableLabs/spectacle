@@ -14,7 +14,7 @@
 
 Welcome to our monorepo project, housing the core [`spectacle` package](https://github.com/FormidableLabs/spectacle/blob/main/packages/spectacle/README.md) and related tools and examples.
 
-Come learn more at https://www.formidable.com/open-source/spectacle!
+Come learn more at our [docs site]!
 
 ## Support
 
@@ -32,3 +32,5 @@ Please see our [contributing guide](CONTRIBUTING.md).
 ## Maintenance Status
 
 **Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
+
+[docs site]: https://www.formidable.com/open-source/spectacle

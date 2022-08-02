@@ -32,7 +32,6 @@ module.exports = {
 
     // Quality.
     // - Format
-    // TODO(wireit): IMPLEMENT
     'prettier:base':
       'prettier --list-different "./**/*.{js,jsx,json,ts,tsx,css,md}"',
     'prettier:base:fix':
