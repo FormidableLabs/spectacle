@@ -1,17 +1,35 @@
 {
-  "name": "spectacle-example-ts",
-  "private": true,
+  "name": "create-spectacle",
+  "version": "0.0.1",
+  "private": "true",
+  "description": "Project generator for Spectacle",
+  "main": "bin/cli.js",
+  "files": [
+    "bin/"
+  ],
+  "bin": {
+    "create-spectacle": "bin/cli.js"
+  },
+  "author": "Formidable Labs <hello@formidable.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FormidableLabs/spectacle.git"
+  },
   "dependencies": {
-    "spectacle": "*",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "chalk": "^4.1.2",
+    "clear": "^0.1.0",
+    "cli-spinners": "^2.6.1",
+    "commander": "^9.3.0",
+    "log-update": "4.0.0"
   },
+  "peerDependencies": {},
   "devDependencies": {
-    "@types/react": "^18.0.12",
-    "@types/react-dom": "^18.0.5"
+    "spectacle": "*",
+    "@types/node": "^18.0.3"
   },
+  "resolutions": {},
   "scripts": {
-    "start": "webpack-dev-server --port=3100 --hot --config ./webpack.config.js",
     "build": "wireit",
     "types:check": "wireit",
     "lint": "wireit",
@@ -21,15 +39,14 @@
   },
   "wireit": {
     "build": {
-      "command": "nps webpack",
+      "command": "tsc --p tsconfig.json",
       "files": [
-        "*.{js,jsx,ts,tsx,html}"
+        "src/**",
+        "!src/**/*.test.*",
+        "tsconfig.json"
       ],
       "output": [
-        "dist/*"
-      ],
-      "dependencies": [
-        "../../packages/spectacle:build:lib:esm"
+        "bin/**/*.js"
       ],
       "packageLocks": [
         "pnpm-lock.yaml"
@@ -38,7 +55,7 @@
     "types:check": {
       "command": "nps types:check",
       "files": [
-        "index.{ts,tsx}",
+        "src/**/*.{ts,tsx}",
         "../../tsconfig.json",
         "tsconfig.json"
       ],
@@ -49,11 +66,12 @@
       ]
     },
     "lint": {
-      "command": "nps \"lint:base *.js *.tsx\"",
+      "command": "nps lint:pkg",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
-        "*.{js,jsx,ts,tsx}"
+        "*.js",
+        "src/**"
       ],
       "output": [],
       "packageLocks": [
@@ -61,11 +79,12 @@
       ]
     },
     "lint:fix": {
-      "command": "pnpm run lint || nps \"lint:base --fix *.js *.tsx\"",
+      "command": "pnpm run lint || nps lint:pkg:fix",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
-        "*.{js,jsx,ts,tsx}"
+        "*.js",
+        "src/**"
       ],
       "output": [],
       "packageLocks": [
@@ -77,7 +96,8 @@
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
-        "*.{js,jsx,ts,tsx}"
+        "*.js",
+        "src/**"
       ],
       "output": [],
       "packageLocks": [
@@ -89,7 +109,8 @@
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
-        "*.{js,jsx,ts,tsx}"
+        "*.js",
+        "src/**"
       ],
       "output": [],
       "packageLocks": [

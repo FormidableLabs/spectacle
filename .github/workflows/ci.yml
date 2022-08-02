@@ -8,15 +8,13 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '**'
-      - '!docs/**'
+    paths-ignore:
+      - "docs/**"
   pull_request:
     branches:
       - main
-    paths:
-      - '**'
-      - '!docs/**'
+    paths-ignore:
+      - "docs/**"
 
 jobs:
   build:
@@ -30,6 +28,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+
+      # Wireit cache
+      - uses: google/wireit@setup-github-actions-caching/v1
 
       - uses: pnpm/action-setup@v2.2.2
         with:
@@ -50,10 +51,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Check Code ${{ matrix.node-version }}
-        run: yarn check-ci
+      # If you hare having issues post-merge with wireit improperly caching,
+      # comment this out, push a commit, then re-comment.
+      # - name: Clear all caches
+      #   run: pnpm clean:cache
 
-        # NOTE! build:examples also builds the core.
-        #  This dependency will be more explicit with wireit
-      - name: Build Examples ${{ matrix.node-version }}
-        run: yarn build:examples
+      - name: Build Code and Examples ${{ matrix.node-version }}
+        run: pnpm run build
+
+      # We build in-source files like `examples/one-page/index.html`.
+      # This check ensures we don't build changes that need committing.
+      - name: Check generated in-source files
+        run: git diff --no-ext-diff --quiet --exit-code
+
+      - name: Check Code ${{ matrix.node-version }}
+        run: pnpm run check:ci

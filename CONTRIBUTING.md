@@ -6,168 +6,127 @@ Thank you for contributing!
   <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
 </a>
 
-Spectacle is actively maintained by @[carlos-kelly][] and @[kale-stew][]
-from within [@FormidableLabs][formidable-github].
+Spectacle is actively maintained by @[carlos-kelly][] for [@FormidableLabs][formidable-github].
 
 ## Development
 
 ### Installing dependencies
 
-We prefer to use [`pnpm`][pnpm-docs].
+We use [`pnpm`][pnpm-docs].
 
 Install all dependencies by running:
 
-```bash
+```sh
 $ pnpm install
 ```
 
 ### Examples
 
-#### Overview
+We have various deck scenarios in `examples` in this repository that are part of the development process.
 
-Our examples are spread out across multiple projects depending on where the core technology lies. We publish most of these to `npm` for use in `spectacle-cli` project to either use with the CLI (`spectacle`) or generate a fresh project boilerplate (`spectacle-boilerplate`).
+We follow the convention of `start:NAME` to run an in-memory dev server for a specific example, but we also have a `pnpm build` script task to make sure we're actually producing non-broken sample presentations as a CI / assurance test.
 
 - `spectacle`
   - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/main/examples/js)
   - [`examples/md`](https://github.com/FormidableLabs/spectacle/tree/main/examples/md)
-  - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page.html)
+  - [`examples/typescript`](https://github.com/FormidableLabs/spectacle/tree/main/examples/typescript)
+  - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page)
 - `spectacle-mdx-loader`
   - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/mdx)
-- `spectacle-cli`
-  - [`examples/cli-mdx-babel`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/cli-mdx-babel): _Not published_
 
-#### This repository
+Here's how you can run the various examples:
 
-We have various deck scenarios in `examples` in this repository that are part of the development process.
-
-We follow the convention of `start:NAME` to run an in-memory dev server for a specific
-example, but we also have a `pnpm run build:examples` script task to make sure we're actually
-producing non-broken sample presentations as a CI / assurance test.
-
-#### `examples/js`
-
-A basic deck with JSX and JavaScript:
-
-```bash
-# start the dev server
-$ pnpm run start:js
-
-# open the browser
+```sh
+# JavaScript demo app (in two different terminals)
+$ pnpm start:js
 $ open http://localhost:3000/
-```
 
-**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
-
-#### `examples/md`
-
-A basic deck written in markdown:
-
-```bash
-# In one terminal open dev server
-$ pnpm start:md
-
-# In another open a browser to 3100
+# TypeScript demo app (in two different terminals)
+$ pnpm start:ts
 $ open http://localhost:3100/
-```
 
-**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
+# Markdown demo app (in two different terminals)
+$ pnpm start:md
+$ open http://localhost:3200/
 
-#### `examples/one-page`
-
-A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
-
-```bash
-# [optional] build the library -
-#   comment out the unpkg dependency in
-#   index.html and use the local dist/
-$ pnpm run build
-
-# open the browser
+# One-page (no build, HTML page only) demo app (in two different terminals)
+$ pnpm start:one-page
 $ open examples/one-page/index.html
+
+# Start **ALL** the example watchers at the same time!
+$ pnpm start:examples
 ```
 
-_or_ use the single line:
+You can also live watch the CLI and execute the built script on command with:
 
-```bash
-$ pnpm run start:one-page
+```sh
+# Watch create-spectacle code and test out (in two different terminals)
+$ pnpm start:create-spectacle
+$ node packages/create-spectacle/bin/cli.js -h
 ```
 
-**Note**: This file is published and used by `spectacle-cli`.
+These run appropriate file watchers, so you can just start developing source files and wait for the various dev servers to pick up the new changes.
 
-**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `pnpm run build:one-page` and verify changes look good.
+### Build and checks
 
-### Examples integration with `spectacle-cli`
+Our task system mostly takes care of all task dependencies and things you need. When you first clone this repo or a new branch, run:
 
-`spectacle-cli` uses our `js,md,one-page` examples in the CLI and boilerplate tools. To check that changes to these files don't break `spectacle-cli` upstream, check with something like the following:
+```sh
+# Run all checks. Re-run this command for your normal workflow.
+$ pnpm run check
+# ... or add in a `--watch` to watch & re-run checks for only what you change!
+$ pnpm run check --watch
 
-```bash
-# In `spectacle` repo
-$ yarn link
-
-# In `spectacle-cli` repo
-$ yarn link spectacle
-
-# Check all MDX, MD examples per https://github.com/FormidableLabs/spectacle-cli/blob/main/CONTRIBUTING.md#examples
-$ yarn start:examples
-
-# (In another shell) Check mdx:5000, mdx+babel:5001, md:5100
-$ open http://localhost:5000/ http://localhost:5001/ http://localhost:5100/
-
-# Check all JS, MDX, MD boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/main/CONTRIBUTING.md#boilerplate
-$ yarn clean:boilerplate
-$ yarn boilerplate:generate
-$ yarn boilerplate:install
-$ yarn start:boilerplate
-
-# (In another shell) Check mdx:6300, md:6100, js:6200
-#
-# **Note**: These `yarn install` internally so will use latest published
-# `spectacle`, so results may be not entirely accurage. You may need to manually
-# update the installed contents in generated project `node_modules`.
-$ open http://localhost:6300/ http://localhost:6100/ http://localhost:6200/
+# Build libraries and UMD distributions.
+# Really only needed to double-check the webpack build still works.
+$ pnpm run build
+# ... or add in a `--watch` to watch & re-run the parts of the build that changed!
+$ pnpm run build --watch
 ```
 
-### Testing
+This will do all the build, seeding the task cache so subsequent tasks are fast, and checks that everything is correctly working. Your Victory workflow could reasonably just be (1) making some changes to files + tests, and then (2) re-running `pnpm run check`!
 
-To run all tests:
+Here are some other useful tasks (with or without a `--watch` flag):
 
-```bash
-$ pnpm run test
-```
-
-### Linting and Formatting
-
-To check (and fix) code:
-
-```bash
+```sh
+# Quality checks
+$ pnpm run prettier
+$ pnpm run prettier --watch
 $ pnpm run lint
+$ pnpm run lint --watch
+$ pnpm run types:check
+$ pnpm run types:check --watch
+
+# Tests
+$ pnpm run test
+$ pnpm run test --watch
+```
+
+We also have some helper tasks to fix issues that are fixable.
+
+```sh
+$ pnpm run prettier:fix
 $ pnpm run lint:fix
 ```
 
-To check (and fix) formatting of MD, JSON, _and_ code:
+If you have having issues with tasks failing erroneously, you can clear our tooling caches:
 
-```bash
-$ pnpm run prettier:check
-$ pnpm run prettier:fix
+```sh
+# Clean out everything
+$ yarn clean:cache
+
+# Individually
+$ yarn clean:cache:lint      # eslint cache
+$ yarn clean:cache:wireit    # wireit task cache
+$ yarn clean:cache:modules   # caches in node_modules (prettier, etc.)
 ```
-
-We also have a simple one-liner for running both of these fix-checks back-to-back:
-
-```bash
-$ pnpm run format
-```
-
-Note that there is duplication for JS code in `prettier` doing the same style changes,
-but both should be harmonious and run together.
 
 ### Before submitting a PR
 
-Thanks for taking the time to help us make Spectacle even better! Before you go
-ahead and submit a PR, make sure that you have done the following:
+Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
 
-- Run all checks using `pnpm run check-ci`.
-- Run `pnpm run build:one-page` and check + commit changes to `examples/one-page/index.html`
-- Check that both the core library and _all_ examples build: `pnpm run build`.
+- Run all checks using `pnpm run check:ci`.
+- Run `pnpm run build` and check + commit changes to `examples/one-page/index.html`
 - Add a [changeset](#changeset) if your PR requires a version change for any of the packages in this repo.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
@@ -177,8 +136,8 @@ We use [changesets](https://github.com/changesets/changesets) to create package 
 
 If your work contributes changes that require a change in version to any of the packages, add a changeset by running:
 
-```bash
-pnpm changeset
+```sh
+$ pnpm changeset
 ```
 
 which will open an interactive CLI menu. Use this menu to select which packages need versioning, which semantic version changes are needed, and add appropriate messages accordingly.
@@ -218,16 +177,19 @@ For exceptional circumstances, here is a quick guide to manually publish from a 
 
 1. Add a changeset with `pnpm changeset`. Generate the changeset file, review it, and commit it.
 2. Make a version. Due to our changelog formatting package you will need to create a personal token and pass it to the environment.
-   ```shell
-   GITHUB_TOKEN=<INSERT TOKEN> pnpm run version
+
+   ```sh
+   $ GITHUB_TOKEN=<INSERT TOKEN> pnpm run version
    ```
+
    Review git changes, tweak, and commit.
+
 3. Publish.
 
    First, build necessary files:
 
    ```sh
-   pnpm run build
+   $ pnpm run build
    ```
 
    Then publish:
@@ -330,5 +292,4 @@ available at [https://www.contributor-covenant.org/version/2/0][cc-latest-versio
 [formidable-github]: https://www.github.com/FormidableLabs
 [kale-stew]: https://www.github.com/kale-stew
 [mdx]: https://mdxjs.com/
-[spectacle-cli]: https://www.github.com/FormidableLabs/spectacle-cli
 [pnpm-docs]: https://pnpm.io/

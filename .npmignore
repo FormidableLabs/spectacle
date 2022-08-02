@@ -2,10 +2,6 @@
 !/dist/spectacle*.js
 !/es/**/*.js
 !/lib/**/*.js
-!/examples/js/index.*
-!/examples/md/index.*
-!/examples/md/slides.md
-!/examples/one-page.html
 __snapshots__
 __mocks__
 *.test.js

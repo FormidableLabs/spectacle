@@ -10,23 +10,6 @@
     "dist/"
   ],
   "module": "es/index.js",
-  "scripts": {
-    "test": "jest",
-    "clean": "rimraf dist lib es",
-    "preversion": "cd ../../ && pnpm run check",
-    "version": "pnpm run clean && pnpm run build",
-    "build-babel": "babel src --extensions .tsx,.ts,.jsx,.js --ignore \\\\\\\"/__snapshots__/,**/*.test.*\\\\\\\"",
-    "build-babel-esm": "builder run build-babel -- -d es",
-    "build-babel-cjs": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"cjs\\\"}\" build-babel -- -d lib",
-    "build-webpack-base": "webpack",
-    "build-webpack-lib-dev": "builder run build-webpack-base -- --config ./webpack.config.dev.js",
-    "build-webpack-lib": "builder run build-webpack-base",
-    "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev build-types",
-    "build-types": "tsc --emitDeclarationOnly",
-    "typecheck": "tsc --noEmit",
-    "prepublishOnly": "shx cp ../../README.md ./README.md && shx cp ../../LICENSE ./LICENSE && pnpm run build",
-    "postpack": "shx rm ./README.md && shx rm ./LICENSE"
-  },
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
   "repository": {
@@ -35,16 +18,13 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "@types/testing-library__jest-dom": "^5.14.5",
     "broadcast-channel": "^3.2.0",
-    "broadcastchannel-polyfill": "^1.0.0",
-    "dedent": "^0.7.0",
     "history": "^4.9.0",
+    "kbar": "0.1.0-beta.36",
     "mdast-builder": "^1.1.1",
     "mdast-zone": "^4.0.0",
     "merge-anything": "^3.0.3",
     "mousetrap": "^1.6.5",
-    "prism-react-renderer": "^0.1.7",
     "query-string": "^6.8.2",
     "react-fast-compare": "^3.2.0",
     "react-is": "^18.1.0",
@@ -67,13 +47,6 @@
     "react-dom": ">=17.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.8",
-    "@babel/core": "^7.17.2",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
-    "@babel/preset-env": "^7.12.7",
-    "@babel/preset-react": "^7.16.7",
-    "@babel/preset-typescript": "^7.16.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@types/history": "^4.7.9",
@@ -85,25 +58,209 @@
     "@types/react-syntax-highlighter": "^15.5.2",
     "@types/styled-components": "^5.1.15",
     "@types/styled-system": "^5.1.5",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@types/unist": "^2.0.6",
-    "babel-loader": "^8.0.6",
-    "builder": "^4.0.0",
     "csstype": "^3.1.0",
-    "file-loader": "5.1.0",
-    "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
     "process": "^0.11.10",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "rimraf": "^3.0.0",
-    "shx": "^0.3.4",
-    "ts-jest": "^27.0.7",
-    "typescript": "^4.5.2",
-    "webpack": "^5.68.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "ts-jest": "^27.0.7"
   },
   "resolutions": {
     "@types/react": "^18.0.12"
+  },
+  "scripts": {
+    "build": "wireit",
+    "build:lib": "wireit",
+    "build:lib:esm": "wireit",
+    "build:lib:cjs": "wireit",
+    "build:dist": "wireit",
+    "build:dist:dev": "wireit",
+    "build:dist:min": "wireit",
+    "types:check": "wireit",
+    "types:create": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit",
+    "test": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:lib",
+        "build:dist",
+        "types:create"
+      ]
+    },
+    "build:lib": {
+      "dependencies": [
+        "build:lib:esm",
+        "build:lib:cjs"
+      ]
+    },
+    "build:lib:esm": {
+      "command": "nps babel:pkg:lib:esm",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "../../.babelrc.js",
+        "../../.babelrc.build.js"
+      ],
+      "output": [
+        "es/**/*.js"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "build:lib:cjs": {
+      "command": "nps babel:pkg:lib:cjs",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "../../.babelrc.js",
+        "../../.babelrc.build.js"
+      ],
+      "output": [
+        "lib/**/*.js"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "build:dist": {
+      "dependencies": [
+        "build:dist:dev",
+        "build:dist:min"
+      ]
+    },
+    "build:dist:dev": {
+      "command": "nps \"webpack --config webpack.config.dev.js\"",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "../../.babelrc.js",
+        "../../.babelrc.build.js",
+        "webpack.config.js",
+        "webpack.config.dev.js"
+      ],
+      "output": [
+        "dist/spectacle.js*",
+        "!dist/spectacle.min.js*"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "build:dist:min": {
+      "command": "nps webpack",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "../../.babelrc.js",
+        "../../.babelrc.build.js",
+        "webpack.config.dev.js"
+      ],
+      "output": [
+        "dist/spectacle.min.js*"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:check": {
+      "command": "nps types:check",
+      "files": [
+        "src/**/*.{ts,tsx}",
+        "../../tsconfig.json",
+        "tsconfig.json"
+      ],
+      "dependencies": [],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:create": {
+      "command": "nps types:create",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "../../tsconfig.json"
+      ],
+      "output": [
+        "lib/**/*.d.ts",
+        "lib/**/*.d.ts.map"
+      ],
+      "dependencies": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint": {
+      "command": "nps lint:pkg",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:fix": {
+      "command": "pnpm run lint || nps lint:pkg:fix",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:pkg",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "test": {
+      "command": "jest",
+      "files": [
+        "src/**",
+        "../../.babelrc.js"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
   }
 }
