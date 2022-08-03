@@ -17,11 +17,11 @@
   @media ($media-breakpoint-sm) {
     display: grid;
     grid-template-areas:
-      'a . b'
-      'a . b'
-      'a . b'
-      'a . c'
-      'd d d';
+      'left . right'
+      'left . right'
+      'left . right'
+      'left . right2'
+      'bottom bottom bottom';
     margin-top: 12.5rem;
     padding: 0 1.25rem;
     > * + * {
@@ -39,7 +39,7 @@
     }
 
     @media ($media-breakpoint-sm) {
-      grid-area: b;
+      grid-area: right;
       max-width: 32.5rem;
       margin-left: 3.75rem;
     }
@@ -141,13 +141,13 @@
     text-align: center;
 
     @media ($media-breakpoint-sm) {
-      grid-area: d;
+      grid-area: bottom;
       width: 100%;
       margin-top: 1.25rem;
     }
 
     @media ($media-breakpoint-md) {
-      grid-area: c;
+      grid-area: right2;
       margin: 1.375rem 0 0;
       width: 100%;
       max-width: 32.5rem;

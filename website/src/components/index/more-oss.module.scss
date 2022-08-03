@@ -4,7 +4,8 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 1fr);
-  grid-gap: 2.5rem;
+  grid-column-gap: 2.5rem;
+  grid-row-gap: 5rem;
   width: calc(100% - 2.5rem);
   max-width: 75%;
   margin-left: auto;
@@ -49,9 +50,23 @@
   display: flex;
   flex: 1;
 
+  > a:first-child {
+    height: 13.75rem;
+    max-width: 12.5rem;
+    width: 12.5rem;
+  }
+
   a:hover {
     background: none;
     text-decoration: none;
+  }
+
+  @media ($media-breakpoint-sm) {
+    > a:first-child {
+      height: 11.25rem;
+      max-width: 11.25rem;
+      width: 11.25rem;
+    }
   }
 }
 
