@@ -7,14 +7,15 @@
   margin-top: 0;
 
   a {
-    margin: 1.25rem auto; // 20px
+    margin: 1.25rem auto;
   }
 
   @media ($media-breakpoint-sm) {
     flex-direction: row;
+    margin-top: 0;
 
     a {
-      margin: 1.875rem; // 30px
+      margin: 1.875rem;
     }
   }
 }
