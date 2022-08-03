@@ -30,6 +30,9 @@ module.exports = {
     // - Webpack
     webpack: 'webpack',
 
+    // Test
+    jest: 'jest',
+
     // Quality.
     // - Format
     'prettier:base':
