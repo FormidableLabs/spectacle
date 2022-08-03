@@ -29,8 +29,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
-- [ ] My code follows the style guidelines of this project (I have run `pnpm run prettier` and `pnpm run lint`)
+- [ ] I have run `pnpm run check:ci` and all checks pass
 - [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes (I have run `pnpm run types:check`, `pnpm run test` and `pnpm run check:ci`)
 - [ ] My changes generate no new warnings
 - [ ] Any dependent changes have been merged and published in downstream modules
