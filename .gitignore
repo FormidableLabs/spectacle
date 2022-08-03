@@ -38,6 +38,7 @@ dist
 lib
 es
 bin
+.examples
 
 # Pack-ing artifacts
 packages/**/package
