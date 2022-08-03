@@ -28,8 +28,10 @@
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.3",
     "jest-environment-jsdom": "^28.1.3",
+    "jest-puppeteer": "^6.1.1",
     "nps": "^5.10.0",
     "prettier": "^2.4.1",
+    "puppeteer": "^16.0.0",
     "raw-loader": "^4.0.0",
     "rimraf": "^3.0.0",
     "ts-jest": "^28.0.7",
@@ -38,6 +40,11 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.7.4",
     "wireit": "^0.7.1"
+  },
+  "pnpm": {
+    "neverBuiltDependencies": [
+      "puppeteer"
+    ]
   },
   "scripts": {
     "version": "pnpm changeset version && pnpm install --no-frozen-lockfile",
@@ -72,7 +79,8 @@
     "prettier:root:fix": "wireit",
     "prettier:pkgs": "wireit",
     "prettier:pkgs:fix": "wireit",
-    "test": "wireit"
+    "test": "wireit",
+    "puppeteer:install": "node ./node_modules/puppeteer/install.js"
   },
   "wireit": {
     "clean:cache": {
