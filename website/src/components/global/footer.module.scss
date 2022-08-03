@@ -25,16 +25,16 @@
 }
 
 .footerDescription {
-  font-size: 1.3rem;
+  font-size: 0.81rem;
   line-height: 1.6;
-  max-width: 56rem;
+  max-width: 35rem;
   margin: 0 auto;
   text-align: center;
   color: var(--oss-text-light);
 
   @media ($media-breakpoint-md) {
     text-align: left;
-    font-size: 1.4rem;
+    font-size: 0.875rem;
     line-height: 1.6;
   }
 
@@ -49,16 +49,16 @@
 }
 
 .footerCopyright {
-  font-size: 1.3rem;
+  font-size: 0.81rem;
   line-height: 1.6;
   width: 100%;
-  margin: 2rem auto 0;
+  margin: 1.25rem auto 0;
   text-align: center;
   color: var(--oss-text-light);
 
   @media ($media-breakpoint-md) {
     text-align: left;
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 
   & a {
@@ -68,7 +68,7 @@
     transition: color 0.2s ease-out;
 
     @media ($media-breakpoint-md) {
-      margin-left: 6rem;
+      margin-left: 3.75rem;
       display: inline-block;
     }
 
@@ -80,11 +80,11 @@
 
 .footerLogo {
   height: auto;
-  width: 20rem;
+  width: 12.5rem;
 }
 
 .footerLinks {
-  font-size: 1.4rem;
+  font-size: 0.875rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,7 +92,7 @@
   list-style: none;
   padding: 0;
   text-transform: uppercase;
-  margin: 2rem auto;
+  margin: 1.25rem auto;
 
   > * {
     margin-top: 0;
@@ -100,7 +100,7 @@
   }
 
   > * + * {
-    margin-top: 1rem;
+    margin-top: 0.625rem;
     margin-left: 0;
   }
 
@@ -109,25 +109,26 @@
 
     > * + * {
       margin-top: 0;
-      margin-left: 4rem;
+      margin-left: 2.5rem;
     }
   }
 
   @media ($media-breakpoint-md) {
     flex-direction: column;
     align-items: flex-start;
-    margin: 0 6rem 0 auto;
+    margin: 0 3.75rem 0 auto;
 
     > * + * {
-      margin-top: 2rem;
+      margin-top: 1.25rem;
       margin-left: 0;
     }
   }
 
   li a {
     color: var(--oss-button-light);
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.06rem;
     transition: color 0.2s ease-out;
+    font-weight: $font-weights-heading;
 
     &:hover {
       color: var(--oss-button-light-hover);

@@ -1,9 +1,7 @@
-$media-breakpoint-sm: 'min-width: 700px';
-$media-breakpoint-md: 'min-width: 960px';
-$media-breakpoint-lg: 'min-width: 1200px';
+@import '../../css/variables.scss';
 
-header {
-  padding: 0px 0px 14rem;
+.header {
+  padding: 0 0 8.75rem;
   color: var(--oss-text-light);
   background: var(--oss-text-dark);
   background-image: linear-gradient(14deg, #404a5f, #7f526a);
@@ -25,17 +23,18 @@ header {
 
 .triangle {
   position: absolute;
-  left: -0.7rem;
-  top: -0.3rem;
+  left: -0.25rem;
+  top: -0.25rem;
   height: auto;
-  width: 20rem;
+  width: 12.5rem;
+  transition: width 0.1s ease-in-out;
 
   @media ($media-breakpoint-sm) {
-    width: 26rem;
+    width: 16.25rem;
   }
 
   @media ($media-breakpoint-md) {
-    width: 30rem;
+    width: 18.75rem;
   }
 }
 
@@ -43,29 +42,33 @@ header {
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 2rem;
+  left: 1.5rem;
   top: 1.5rem;
-  font-size: 0.8rem;
+  font-size: 0.5rem;
   color: var(--oss-text-light);
+  font-weight: $font-weights-heading;
+  transition: font-size 0.1s ease-in-out, left 0.1s ease-in-out,
+    top 0.1s ease-in-out;
 
   @media ($media-breakpoint-sm) {
-    left: 3.5rem;
-    top: 2rem;
-    font-size: 1.2rem;
+    left: 1.75rem;
+    top: 1.75rem;
+    font-size: 0.75rem;
   }
 
   @media ($media-breakpoint-md) {
-    left: 4rem;
-    top: 3rem;
+    left: 2.25rem;
+    top: 2.25rem;
   }
   > * {
     margin-top: 0;
     margin-bottom: 0;
   }
   > * + * {
-    margin-top: 1rem;
+    margin-top: 0.625rem;
   }
-  :hover {
+
+  &:hover {
     color: var(--oss-text-light);
     background: none;
     text-decoration: none;
@@ -78,14 +81,20 @@ header {
     font-size: inherit;
     line-height: 1.5;
     letter-spacing: 0.86px;
-    max-width: 10rem;
+    max-width: 6.25rem;
   }
 
   .badge__logo {
     height: auto;
-    width: 4rem;
+    width: 2.5rem;
+    transition: width 0.1s ease-in-out;
+
     @media ($media-breakpoint-sm) {
-      width: 7rem;
+      width: 3.75rem;
+    }
+
+    @media ($media-breakpoint-md) {
+      width: 4.375rem;
     }
   }
 }

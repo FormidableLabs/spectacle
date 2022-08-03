@@ -5,17 +5,18 @@
   font-size: $font-sizes-h2;
   font-weight: $font-weights-heading;
   flex: auto;
-  line-height: 1.3;
-  margin: 2rem 0 3rem;
+  line-height: $line-heights-heading;
+  // margin: 2rem 0 3rem;
   width: 100%;
   text-align: center;
+  margin: 1.25rem 0 $spacing-md 0;
 
   @media ($media-breakpoint-sm) {
-    margin: 2rem 0 6rem;
+    margin: 1.25rem 0 3.75rem;
   }
 
   @media (max-width: 768px) {
-    margin: 4rem 0;
+    margin: 2.5rem 0;
   }
 
   &.light {

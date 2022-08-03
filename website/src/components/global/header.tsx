@@ -28,7 +28,7 @@ export default function Header({ content }): JSX.Element {
   const logoSrc = useBaseUrl('/svg/formidable-icon-white.svg');
 
   return (
-    <header>
+    <header className={styles.header}>
       {formidableBadge && (
         <>
           <img

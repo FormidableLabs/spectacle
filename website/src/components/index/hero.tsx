@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import Link from '@docusaurus/Link';
 import { OSSBadge } from '@site/src/components/global/oss-badge';
 import NpmCopy from '@site/src/components/global/npm-copy';
@@ -10,18 +9,6 @@ type NavItem = {
   text: string;
   url: string;
 };
-
-const NavItemExternal = styled.a`
-  &:hover {
-    background: none;
-  }
-`;
-
-const NavItemInternal = styled(Link)`
-  &:hover {
-    background: none;
-  }
-`;
 
 function NavItem({ text, url }: NavItem) {
   const isExternalUrl = /^(http|https):\/\//.test(url);

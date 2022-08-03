@@ -3,19 +3,19 @@
 .ossImage {
   margin-right: auto;
   margin-left: auto;
-  height: 20rem;
-  width: 20rem;
-  max-width: 20rem;
+  height: 12.5rem; // 200px *
+  width: 12.5rem; // 200px *
+  max-width: 12.5rem; // 200px *
   padding: 0;
   cursor: pointer;
 
   @media ($media-breakpoint-sm) {
-    width: 26rem;
+    width: 16.25rem; // 260px *
     max-width: initial;
   }
 
   @media ($media-breakpoint-md) {
-    width: 30rem;
+    width: 18.75rem; // 300px *
     margin-right: 0;
     margin-left: auto;
   }

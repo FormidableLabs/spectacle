@@ -1,21 +1,24 @@
+@import '../../css/variables.scss';
+
 .button {
   background: var(--oss-button-light);
   border-radius: var(--oss-border-radius);
   color: var(--oss-text-dark);
   display: block;
-  font-size: 1.5rem;
-  height: 4.5rem;
-  letter-spacing: 0.05em;
-  line-height: 4.5rem;
-  margin: 5rem auto 3rem;
-  max-width: 30rem;
-  min-width: 22rem;
+  font-size: 0.94rem;
+  height: 2.8125rem;
+  letter-spacing: 0.06rem;
+  line-height: 2.8125rem;
+  margin: 3.125rem auto 1.875rem;
+  max-width: 18.75rem;
+  min-width: 13.75rem;
   text-align: center;
   text-transform: uppercase;
   transition: background 0.4s;
   width: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  font-weight: $font-weights-heading;
 
   &:hover {
     background: var(--oss-button-light-hover);

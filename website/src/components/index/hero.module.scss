@@ -4,14 +4,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 12rem;
+  margin-top: 7.5rem;
   width: 100%;
   > * {
     margin-top: 0;
     margin-bottom: 0;
   }
   > * + * {
-    margin-top: 2rem;
+    margin-top: 1.25rem;
   }
 
   @media ($media-breakpoint-sm) {
@@ -22,8 +22,8 @@
       'a . b'
       'a . c'
       'd d d';
-    margin-top: 20rem;
-    padding: 0 2rem;
+    margin-top: 12.5rem;
+    padding: 0 1.25rem;
     > * + * {
       margin-top: 0;
     }
@@ -35,24 +35,28 @@
       margin-bottom: 0;
     }
     > * + * {
-      margin-top: 2rem;
+      margin-top: 1.25rem;
     }
 
     @media ($media-breakpoint-sm) {
       grid-area: b;
-      max-width: 52rem;
-      margin-left: 6rem;
+      max-width: 32.5rem;
+      margin-left: 3.75rem;
     }
 
     @media ($media-breakpoint-md) {
-      margin-left: 0rem;
+      margin-left: 0;
     }
 
     .heroBody__title {
       font-size: $font-sizes-h1-small;
-      letter-spacing: 0.1rem;
+      letter-spacing: 0.06rem;
       text-align: center;
       text-transform: uppercase;
+      font-weight: $font-weights-heading;
+      line-height: $line-heights-heading;
+      color: var(--oss-text-light);
+      margin: 0 0 $spacing-md 0;
 
       @media ($media-breakpoint-sm) {
         font-size: $font-sizes-h1;
@@ -62,14 +66,14 @@
 
     .heroBody__tagline {
       font-family: Helvetica;
-      font-size: 1.4rem;
-      line-height: 2.2rem;
-      max-width: 30rem;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+      max-width: 18.75rem;
       text-align: center;
 
       @media ($media-breakpoint-sm) {
-        font-size: 2rem;
-        line-height: 2.8rem;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
         max-width: none;
         text-align: left;
       }
@@ -84,7 +88,7 @@
         margin-bottom: 0;
       }
       > * + * {
-        margin-top: 2rem;
+        margin-top: 1.25rem;
       }
       @media ($media-breakpoint-md) {
         align-items: center;
@@ -95,28 +99,29 @@
         }
         > * + * {
           margin-top: 0;
-          margin-left: 2rem;
+          margin-left: 1.25rem;
         }
       }
 
       .button__docs {
-        width: 30rem;
-        height: 4.5rem;
-        font-size: 1.4rem;
+        width: 18.75rem;
+        height: 2.8125rem;
+        font-size: 0.875rem;
         background: var(--oss-button-light);
         transition: background 0.25s ease-out;
-        line-height: 4.5rem;
+        line-height: 2.8125rem;
         text-align: center;
         text-transform: uppercase;
         text-decoration: none;
-        letter-spacing: 0.1rem;
+        letter-spacing: 0.06rem;
         color: var(--oss-text-dark);
         border: 0;
         border-radius: var(--oss-border-radius);
+        font-weight: $font-weights-heading;
 
         @media ($media-breakpoint-md) {
           margin-top: 0;
-          width: 18rem;
+          width: 11.25rem;
         }
 
         &:hover {
@@ -128,39 +133,40 @@
   }
 
   .heroNav {
-    border-top: 0.2rem solid var(--oss-text-light);
+    border-top: 0.13rem solid var(--oss-text-light);
     display: flex;
     justify-content: center;
     list-style: none;
-    padding: 2rem 0 0;
+    padding: 1.25rem 0 0;
     text-align: center;
 
     @media ($media-breakpoint-sm) {
       grid-area: d;
       width: 100%;
-      margin-top: 2rem;
+      margin-top: 1.25rem;
     }
 
     @media ($media-breakpoint-md) {
       grid-area: c;
-      margin: 2.2rem 0 0;
+      margin: 1.375rem 0 0;
       width: 100%;
-      max-width: 52rem;
+      max-width: 32.5rem;
     }
     > * {
       margin-left: 0;
       margin-right: 0;
     }
     > * + * {
-      margin-left: 4rem;
+      margin-left: 2.5rem;
     }
 
     & li a {
       color: var(--oss-text-light);
-      font-size: 1.7rem;
-      letter-spacing: 0.1rem;
+      font-size: 1.06rem;
+      letter-spacing: 0.06rem;
       transition: opacity 0.4s ease-out;
       text-decoration: none;
+      font-weight: $font-weights-heading;
 
       &:hover {
         color: var(--oss-button-light-hover);
