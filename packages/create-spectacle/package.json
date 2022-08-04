@@ -100,7 +100,7 @@
       ]
     },
     "prettier": {
-      "command": "nps prettier:pkg",
+      "command": "nps prettier:pkg -- -- src test",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
@@ -114,7 +114,7 @@
       ]
     },
     "prettier:fix": {
-      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- src test",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",

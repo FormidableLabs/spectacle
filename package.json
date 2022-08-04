@@ -192,11 +192,11 @@
       ]
     },
     "prettier:root": {
-      "command": "nps prettier:base",
+      "command": "nps prettier:base -- -- \"*.{js,json,md}\"",
       "files": [
         ".prettierrc",
         ".prettierignore",
-        "*.{js,jsx,json,ts,tsx,css,md}",
+        "*.{js,json,md}",
         "!**/node_modules/**"
       ],
       "output": [],
@@ -205,11 +205,11 @@
       ]
     },
     "prettier:root:fix": {
-      "command": "pnpm run prettier:root || nps prettier:base:fix",
+      "command": "pnpm run prettier:root || nps prettier:base:fix -- -- \"*.{js,json,md}\"",
       "files": [
         ".prettierrc",
         ".prettierignore",
-        "*.{js,jsx,json,ts,tsx,css,md}",
+        "*.{js,json,md}",
         "!**/node_modules/**"
       ],
       "output": [],

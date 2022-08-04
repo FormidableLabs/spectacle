@@ -35,7 +35,7 @@ describe('App.js', () => {
     await page.goto('http://localhost:3000');
 
     // TODO: GET BETTER SELECTORS
-    const sel = 'div[font-family=\'header\'][font-size=\'h1\']';
+    const sel = "div[font-family='header'][font-size='h1']";
     await page.waitForSelector(sel);
     const text = await page.$eval(sel, (e) => e.textContent);
 
