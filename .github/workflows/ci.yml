@@ -112,3 +112,7 @@ jobs:
           pnpm run examples:${{ matrix.create-type }}:install
           pnpm run examples:${{ matrix.create-type }}:build
           echo TODO pnpm run examples:${{ matrix.create-type }}:start
+
+      - name: Test example - ${{ matrix.create-type }}
+        working-directory: ./packages/create-spectacle
+        run: pnpm run examples:test

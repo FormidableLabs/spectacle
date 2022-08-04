@@ -11,6 +11,7 @@ build
 .nova
 .vscode
 .wireit
+.examples
 
 # Allow us to manually format this.
 examples/md/slides.md

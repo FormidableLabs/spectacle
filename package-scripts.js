@@ -46,7 +46,7 @@ module.exports = {
 
     // - Lint
     'lint:base': 'eslint --cache --color',
-    'lint:pkg': 'nps "lint:base src"',
-    'lint:pkg:fix': 'nps "lint:base --fix src"'
+    'lint:pkg': 'nps lint:base -- -- src',
+    'lint:pkg:fix': 'nps lint:base -- -- --fix src'
   }
 };

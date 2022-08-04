@@ -37,6 +37,7 @@
     "prettier": "wireit",
     "prettier:fix": "wireit",
     "examples:clean": "rimraf .examples",
+    "examples:test": "nps jest",
     "examples:jsx:create": "mkdir -p .examples && cd .examples && node ../bin/cli.js -t jsx -n jsx",
     "examples:jsx:install": "cd .examples/jsx && npm install",
     "examples:jsx:build": "cd .examples/jsx && npm run build",
@@ -71,12 +72,13 @@
       ]
     },
     "lint": {
-      "command": "nps lint:pkg",
+      "command": "nps lint:pkg -- -- test",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
         "*.js",
-        "src/**"
+        "src/**",
+        "test/**"
       ],
       "output": [],
       "packageLocks": [
@@ -84,12 +86,13 @@
       ]
     },
     "lint:fix": {
-      "command": "pnpm run lint || nps lint:pkg:fix",
+      "command": "pnpm run lint || nps lint:pkg:fix -- -- test",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
         "*.js",
-        "src/**"
+        "src/**",
+        "test/**"
       ],
       "output": [],
       "packageLocks": [
@@ -102,7 +105,8 @@
         "../../.prettierignore",
         "../../.prettierrc",
         "*.js",
-        "src/**"
+        "src/**",
+        "test/**"
       ],
       "output": [],
       "packageLocks": [
@@ -115,7 +119,8 @@
         "../../.prettierignore",
         "../../.prettierrc",
         "*.js",
-        "src/**"
+        "src/**",
+        "test/**"
       ],
       "output": [],
       "packageLocks": [
