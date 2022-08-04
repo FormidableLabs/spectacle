@@ -11,7 +11,7 @@
     margin-bottom: 0;
   }
   > * + * {
-    margin-top: 1.25rem;
+    margin-top: $spacing-sm;
   }
 
   @media ($media-breakpoint-sm) {
@@ -22,8 +22,8 @@
       'left . right'
       'left . right2'
       'bottom bottom bottom';
-    margin-top: 12.5rem;
-    padding: 0 1.25rem;
+    margin-top: $margin-padding-xs;
+    padding: 0 $spacing-sm;
     > * + * {
       margin-top: 0;
     }
@@ -35,12 +35,12 @@
       margin-bottom: 0;
     }
     > * + * {
-      margin-top: 1.25rem;
+      margin-top: $spacing-sm;
     }
 
     @media ($media-breakpoint-sm) {
       grid-area: right;
-      max-width: 32.5rem;
+      max-width: $sizing-xxl;
       margin-left: 3.75rem;
     }
 
@@ -50,13 +50,13 @@
 
     .heroBody__title {
       font-size: $font-sizes-h1-small;
-      letter-spacing: 0.06rem;
+      letter-spacing: $letter-spacing-lg;
       text-align: center;
       text-transform: uppercase;
       font-weight: $font-weights-heading;
       line-height: $line-heights-heading;
       color: var(--oss-text-light);
-      margin: 0 0 $spacing-md 0;
+      margin: 0 0 $spacing-lg 0;
 
       @media ($media-breakpoint-sm) {
         font-size: $font-sizes-h1;
@@ -66,14 +66,14 @@
 
     .heroBody__tagline {
       font-family: Helvetica;
-      font-size: 0.875rem;
-      line-height: 1.375rem;
-      max-width: 18.75rem;
+      font-size: $font-sizes-tagline-sm;
+      line-height: $line-heights-tagline-small;
+      max-width: $width-height-lg;
       text-align: center;
 
       @media ($media-breakpoint-sm) {
-        font-size: 1.25rem;
-        line-height: 1.75rem;
+        font-size: $font-sizes-tagline;
+        line-height: $line-heights-tagline;
         max-width: none;
         text-align: left;
       }
@@ -88,7 +88,7 @@
         margin-bottom: 0;
       }
       > * + * {
-        margin-top: 1.25rem;
+        margin-top: $spacing-sm;
       }
       @media ($media-breakpoint-md) {
         align-items: center;
@@ -99,29 +99,29 @@
         }
         > * + * {
           margin-top: 0;
-          margin-left: 1.25rem;
+          margin-left: $spacing-sm;
         }
       }
 
       .button__docs {
-        width: 18.75rem;
-        height: 2.8125rem;
-        font-size: 0.875rem;
+        width: $width-height-lg;
+        height: $line-heights-button;
+        font-size: $font-sizes-body-sm;
         background: var(--oss-button-light);
         transition: background 0.25s ease-out;
-        line-height: 2.8125rem;
+        line-height: $line-heights-button;
         text-align: center;
         text-transform: uppercase;
         text-decoration: none;
-        letter-spacing: 0.06rem;
+        letter-spacing: $letter-spacing-lg;
         color: var(--oss-text-dark);
         border: 0;
         border-radius: var(--oss-border-radius);
-        font-weight: $font-weights-heading;
+        font-weight: $font-weights-link;
 
         @media ($media-breakpoint-md) {
           margin-top: 0;
-          width: 11.25rem;
+          width: $width-height-xxs;
         }
 
         &:hover {
@@ -137,20 +137,20 @@
     display: flex;
     justify-content: center;
     list-style: none;
-    padding: 1.25rem 0 0;
+    padding: $spacing-sm 0 0;
     text-align: center;
 
     @media ($media-breakpoint-sm) {
       grid-area: bottom;
       width: 100%;
-      margin-top: 1.25rem;
+      margin-top: $spacing-sm;
     }
 
     @media ($media-breakpoint-md) {
       grid-area: right2;
-      margin: 1.375rem 0 0;
+      margin: $spacing-md 0 0;
       width: 100%;
-      max-width: 32.5rem;
+      max-width: $sizing-xxl;
     }
     > * {
       margin-left: 0;
@@ -162,11 +162,11 @@
 
     & li a {
       color: var(--oss-text-light);
-      font-size: 1.06rem;
-      letter-spacing: 0.06rem;
+      font-size: $font-sizes-link-large;
+      letter-spacing: $letter-spacing-lg;
       transition: opacity 0.4s ease-out;
       text-decoration: none;
-      font-weight: $font-weights-heading;
+      font-weight: $font-weights-link;
 
       &:hover {
         color: var(--oss-button-light-hover);

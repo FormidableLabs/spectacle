@@ -34,19 +34,3 @@
     background: var(--oss-background-color);
   }
 }
-
-// .wrapper {
-//   display: flex;
-//   flex-direction: column;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-//   width: 100%;
-//   margin: ${({ noMargin }) => (noMargin ? '0' : 'auto')};
-//   padding: ${({ noPadding }) => (noPadding ? '0' : '4rem')};
-//   background: ${(p) => p.theme.colors[`background${p.background}`]};
-//   text-align: center;
-
-//   @media ($media-breakpoint-sm) {
-//     padding: ${({ noPadding }) => (noPadding ? '0' : '8rem')};
-//   }
-// }

@@ -26,15 +26,15 @@
   left: -0.25rem;
   top: -0.25rem;
   height: auto;
-  width: 12.5rem;
+  width: $width-height-xs;
   transition: width 0.1s ease-in-out;
 
   @media ($media-breakpoint-sm) {
-    width: 16.25rem;
+    width: $width-height-md;
   }
 
   @media ($media-breakpoint-md) {
-    width: 18.75rem;
+    width: $width-height-lg;
   }
 }
 
@@ -44,7 +44,7 @@
   position: absolute;
   left: 1.5rem;
   top: 1.5rem;
-  font-size: 0.5rem;
+  font-size: $font-sizes-badge-small;
   color: var(--oss-text-light);
   font-weight: $font-weights-heading;
   transition: font-size 0.1s ease-in-out, left 0.1s ease-in-out,
@@ -53,7 +53,7 @@
   @media ($media-breakpoint-sm) {
     left: 1.75rem;
     top: 1.75rem;
-    font-size: 0.75rem;
+    font-size: $font-sizes-badge;
   }
 
   @media ($media-breakpoint-md) {
@@ -79,8 +79,8 @@
     margin: 0;
     font-family: inherit;
     font-size: inherit;
-    line-height: 1.5;
-    letter-spacing: 0.86px;
+    line-height: $line-heights-body;
+    letter-spacing: $letter-spacing-lg;
     max-width: 6.25rem;
   }
 

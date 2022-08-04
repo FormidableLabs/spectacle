@@ -15,7 +15,7 @@
   @media ($media-breakpoint-sm) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    max-width: 72.5rem;
+    max-width: $sizing-xxxl;
     margin-bottom: 1.875rem;
   }
 }
@@ -51,9 +51,9 @@
   flex: 1;
 
   > a:first-child {
-    height: 13.75rem;
-    max-width: 12.5rem;
-    width: 12.5rem;
+    height: $width-height-sm;
+    max-width: $width-height-xs;
+    width: $width-height-xs;
   }
 
   a:hover {
@@ -63,9 +63,9 @@
 
   @media ($media-breakpoint-sm) {
     > a:first-child {
-      height: 11.25rem;
-      max-width: 11.25rem;
-      width: 11.25rem;
+      height: $width-height-xxs;
+      max-width: $width-height-xxs;
+      width: $width-height-xxs;
     }
   }
 }
@@ -80,7 +80,7 @@
     margin-bottom: 0;
   }
   > * + * {
-    margin-top: 1.25rem;
+    margin-top: $spacing-sm;
   }
 
   &:hover {
@@ -124,19 +124,18 @@
   border-radius: var(--oss-border-radius);
   color: var(--oss-text-dark);
   display: block;
-  font-size: 0.94rem;
-  height: 2.8125rem;
-  letter-spacing: 0.06rem;
-  line-height: 2.8125rem;
+  font-size: $font-sizes-link;
+  height: $line-heights-button;
+  letter-spacing: $letter-spacing-lg;
+  line-height: $line-heights-button;
   margin: 3.125rem auto 1.875rem;
-  max-width: 18.75rem;
-  min-width: 13.75rem;
+  min-width: $width-height-sm;
   text-align: center;
   text-transform: uppercase;
   transition: background 0.4s;
   width: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: $spacing-sm;
+  padding-right: $spacing-sm;
 
   &:hover {
     background: var(--oss-button-light-hover);

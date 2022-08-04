@@ -3,8 +3,8 @@
 .featuresContainer {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 1.875rem; // 30px
-  max-width: 82.5rem; // 1320px
+  grid-gap: 1.875rem;
+  max-width: 82.5rem;
   margin-left: auto;
   margin-right: auto;
 
@@ -13,12 +13,12 @@
   }
 
   @media ($media-breakpoint-md) {
-    grid-gap: 3.125rem; // 50px
+    grid-gap: 3.125rem;
   }
 }
 
 .featureInfo {
-  max-width: 18.75rem; // 300px
+  max-width: $width-height-lg;
 }
 
 .featureCard {
@@ -33,7 +33,7 @@
   }
 
   > * + * {
-    margin-top: 2.5rem; // 40px
+    margin-top: 2.5rem;
   }
 
   svg {

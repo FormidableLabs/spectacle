@@ -45,6 +45,7 @@
 // 75px => 4.69rem
 // 76px => 4.75rem
 // 80px => 5rem
+// 82px => 5.13rem
 // 100px => 6.25rem
 // 120px => 7.5rem
 // 140px => 8.75rem
@@ -57,53 +58,61 @@
 // 560px => 35rem
 // - - - - - - - - - - - - - - - -
 
+// breakpoints
 $media-breakpoint-sm: 'min-width: 700px';
 $media-breakpoint-md: 'min-width: 960px';
 $media-breakpoint-lg: 'min-width: 1200px';
 
-$font-sizes-small: 0.5625rem;
-$font-sizes-body: 1.125rem;
-$font-sizes-body-small: 0.94rem;
-$font-sizes-code: 0.5rem;
-$font-sizes-h1: 3.63rem;
-$font-sizes-h1-small: 2.8125rem;
-$font-sizes-h2: 2rem;
-$font-sizes-h3: 1.375rem;
+// fonts
+$font-sizes-body-xs: 0.81rem; // 13px
+$font-sizes-body-sm: 0.875rem; // 14px
+$font-sizes-body: 0.94rem; // 15px
+$font-sizes-badge: 0.75rem; // 12px
+$font-sizes-badge-small: 0.5rem; // 8px
+$font-sizes-link: 0.94rem; // 15px
+$font-sizes-link-large: 1.06rem; // 17px
+$font-sizes-tagline: 1.25rem; // 14px
+$font-sizes-tagline-sm: 0.875rem; // 14px
+$font-sizes-h1: 3.63rem; // 58px
+$font-sizes-h1-small: 2.8125rem; // 45px
+$font-sizes-h2: 2rem; // 32px
+$font-sizes-h3: 1.375rem; // 22px
 
 $font-weights-body: 400;
-$font-weights-links: 500;
+$font-weights-link: 700;
 $font-weights-heading: 700;
 
 $line-heights-body: 1.5;
 $line-heights-heading: 1.1;
-$line-heights-code: 1.2;
+$line-heights-footer: 1.6;
+$line-heights-npm: 2.34rem;
+$line-heights-button: 2.8125rem;
+$line-heights-tagline-small: 1.375rem;
+$line-heights-tagline: 1.75rem;
 
-$spacing-xs: 0.38rem;
-$spacing-sm: 0.94rem;
-$spacing-md: 1.72rem;
-$spacing-lg: 2.97rem;
-$spacing-xl: 5.13rem;
+$spacing-xs: 0.94rem; // 15px
+$spacing-sm: 1.25rem; // 20px
+$spacing-md: 1.375rem; // 22px
+$spacing-lg: 1.72rem; // 27.5px
+$spacing-xl: 2rem; // 32px
 
-// backup
-// $font-sizes-small: 0.9em;
-// $font-sizes-body: 1.8rem;
-// $font-sizes-body-small: 1.5rem;
-// $font-sizes-code: 0.8em;
-// $font-sizes-h1: 5.8rem;
-// $font-sizes-h1-small: 4.5rem;
-// $font-sizes-h2: 3.2rem;
-// $font-sizes-h3: 2.2rem;
+$letter-spacing-sm: 0.01rem;
+$letter-spacing-lg: 0.06rem;
 
-// $font-weights-body: 400;
-// $font-weights-links: 500;
-// $font-weights-heading: 700;
+$sizing-xxl: 32.5rem;
+$sizing-xxxl: 72.5rem;
 
-// $line-heights-body: 1.5;
-// $line-heights-heading: 1.1;
-// $line-heights-code: 1.2;
+// 10rem, 35rem, 50rem, 82.5rem,
 
-// $spacing-xs: 0.6rem;
-// $spacing-sm: 1.5rem;
-// $spacing-md: 2.75rem;
-// $spacing-lg: 4.75rem;
-// $spacing-xl: 8.2rem;
+$width-height-xxs: 11.25rem;
+$width-height-xs: 12.5rem;
+$width-height-sm: 13.75rem;
+$width-height-md: 16.25rem;
+$width-height-lg: 18.75rem;
+$width-height-xl: 20rem;
+
+$margin-padding-xs: 12.5rem;
+// $margin-padding-sm: ;
+// $margin-padding-md: ;
+// $margin-padding-lg: ;
+// $margin-padding-xl: ;

@@ -25,8 +25,8 @@
 }
 
 .footerDescription {
-  font-size: 0.81rem;
-  line-height: 1.6;
+  font-size: $font-sizes-body-xs;
+  line-height: $line-heights-footer;
   max-width: 35rem;
   margin: 0 auto;
   text-align: center;
@@ -34,8 +34,8 @@
 
   @media ($media-breakpoint-md) {
     text-align: left;
-    font-size: 0.875rem;
-    line-height: 1.6;
+    font-size: $font-sizes-body-sm;
+    line-height: $line-heights-footer;
   }
 
   & a {
@@ -49,16 +49,16 @@
 }
 
 .footerCopyright {
-  font-size: 0.81rem;
-  line-height: 1.6;
+  font-size: $font-sizes-body-xs;
+  line-height: $line-heights-footer;
   width: 100%;
-  margin: 1.25rem auto 0;
+  margin: $spacing-sm auto 0;
   text-align: center;
   color: var(--oss-text-light);
 
   @media ($media-breakpoint-md) {
     text-align: left;
-    font-size: 0.875rem;
+    font-size: $font-sizes-body-sm;
   }
 
   & a {
@@ -80,11 +80,11 @@
 
 .footerLogo {
   height: auto;
-  width: 12.5rem;
+  width: $width-height-xs;
 }
 
 .footerLinks {
-  font-size: 0.875rem;
+  font-size: $font-sizes-body-sm;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,7 +92,7 @@
   list-style: none;
   padding: 0;
   text-transform: uppercase;
-  margin: 1.25rem auto;
+  margin: $spacing-sm auto;
 
   > * {
     margin-top: 0;
@@ -119,16 +119,16 @@
     margin: 0 3.75rem 0 auto;
 
     > * + * {
-      margin-top: 1.25rem;
+      margin-top: $spacing-sm;
       margin-left: 0;
     }
   }
 
   li a {
     color: var(--oss-button-light);
-    letter-spacing: 0.06rem;
+    letter-spacing: $letter-spacing-lg;
     transition: color 0.2s ease-out;
-    font-weight: $font-weights-heading;
+    font-weight: $font-weights-link;
 
     &:hover {
       color: var(--oss-button-light-hover);

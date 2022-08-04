@@ -5,20 +5,20 @@
   border-radius: var(--oss-border-radius);
   color: var(--oss-text-dark);
   display: block;
-  font-size: 0.94rem;
-  height: 2.8125rem;
-  letter-spacing: 0.06rem;
-  line-height: 2.8125rem;
+  font-size: $font-sizes-link;
+  height: $line-heights-button;
+  letter-spacing: $letter-spacing-lg;
+  line-height: $line-heights-button;
   margin: 3.125rem auto 1.875rem;
-  max-width: 18.75rem;
-  min-width: 13.75rem;
+  max-width: $width-height-lg;
+  min-width: $width-height-sm;
   text-align: center;
   text-transform: uppercase;
   transition: background 0.4s;
   width: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  font-weight: $font-weights-heading;
+  padding-left: $spacing-sm;
+  padding-right: $spacing-sm;
+  font-weight: $font-weights-link;
 
   &:hover {
     background: var(--oss-button-light-hover);

@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 /**
  * The following variables will be used to style the entire website.
  * Any CSS included here will be global. The classic template bundles Infima by default
@@ -483,7 +485,7 @@ article {
 
   .footer__logo {
     margin-top: 0;
-    max-width: 12.5rem;
+    max-width: $width-height-xs;
 
     @media (max-width: 996px) {
       max-width: 10rem;
@@ -491,7 +493,7 @@ article {
   }
 
   .footer__copyright {
-    font-size: 0.875rem;
+    font-size: $font-sizes-body-sm;
   }
 }
 

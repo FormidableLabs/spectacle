@@ -1,16 +1,14 @@
 @import '../../css/variables.scss';
 
 .bodyCopy {
-  font-size: 0.94rem; //15px
-  line-height: 1.5;
+  font-size: $font-sizes-body;
   color: var(--oss-text-light);
   text-align: center;
   margin: 0 auto;
   width: 100%;
   max-width: 50rem;
-  // font-size: $font-sizes-body-small;
-  // font-weight: $font-weights-body;
-  // line-height: $line-heights-body;
+  font-weight: $font-weights-body;
+  line-height: $line-heights-body;
   text-rendering: optimizeLegibility;
 
   // @media ($media-breakpoint-lg) {
