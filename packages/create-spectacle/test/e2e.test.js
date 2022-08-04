@@ -43,5 +43,9 @@ describe('App.js', () => {
     expect(text).toContain('jsx');
   });
 
-  afterAll(() => browser.close());
+  afterAll(() => {
+    if (browser) {
+      browser.close();
+    }
+  });
 });
