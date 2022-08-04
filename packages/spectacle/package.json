@@ -194,7 +194,7 @@
       ]
     },
     "lint": {
-      "command": "nps lint:pkg -- -- src",
+      "command": "nps lint:pkg -- -- \"*.js\" src",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
@@ -207,7 +207,7 @@
       ]
     },
     "lint:fix": {
-      "command": "pnpm run lint || nps lint:pkg:fix -- -- src",
+      "command": "pnpm run lint || nps lint:pkg:fix -- -- \"*.js\" src",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
@@ -220,7 +220,7 @@
       ]
     },
     "prettier": {
-      "command": "nps prettier:pkg -- -- \"*.js\"",
+      "command": "nps prettier:pkg -- -- \"*.js\" src",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
@@ -233,7 +233,7 @@
       ]
     },
     "prettier:fix": {
-      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- \"*.js\"",
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- \"*.js\" src",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
