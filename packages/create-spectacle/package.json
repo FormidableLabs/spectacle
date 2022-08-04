@@ -37,10 +37,10 @@
     "prettier": "wireit",
     "prettier:fix": "wireit",
     "examples:clean": "rimraf .examples",
-    "examples:js:create": "mkdir -p .examples && cd .examples && node ../bin/cli.js -t jsx -n js",
-    "examples:js:install": "cd .examples/js && npm install",
-    "examples:js:build": "cd .examples/js && npm run build",
-    "examples:js:start": "cd .examples/js && npm start"
+    "examples:jsx:create": "mkdir -p .examples && cd .examples && node ../bin/cli.js -t jsx -n js",
+    "examples:jsx:install": "cd .examples/jsx && npm install",
+    "examples:jsx:build": "cd .examples/jsx && npm run build",
+    "examples:jsx:start": "cd .examples/jsx && npm start"
   },
   "wireit": {
     "build": {
