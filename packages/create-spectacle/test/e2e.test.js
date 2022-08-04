@@ -9,7 +9,8 @@ describe('App.js', () => {
     browser = await puppeteer.launch({
       // TODO: FIGURE THIS OUT BETTER
       // TOOD: Currently using -- PUPPETEER_EXPERIMENTAL_CHROMIUM_MAC_ARM=true pnpm puppeteer:install
-      executablePath: "/Users/rye/scm/fmd/spectacle/node_modules/.pnpm/puppeteer@16.0.0/node_modules/puppeteer/.local-chromium/mac_arm-1022525/chrome-mac/Chromium.app/Contents/MacOS/Chromium"
+      executablePath:
+        '/Users/rye/scm/fmd/spectacle/node_modules/.pnpm/puppeteer@16.0.0/node_modules/puppeteer/.local-chromium/mac_arm-1022525/chrome-mac/Chromium.app/Contents/MacOS/Chromium'
     });
     page = await browser.newPage();
   });
