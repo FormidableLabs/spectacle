@@ -73,7 +73,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        create-type: ['jsx'] # TODO: MORE SCENARIOS
+        create-type: ['jsx', 'tsx'] # TODO: MORE SCENARIOS
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

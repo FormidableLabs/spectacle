@@ -31,16 +31,14 @@ describe('App.js', () => {
     page = await browser.newPage();
   });
 
-  it('contains the welcome text', async () => {
+  it('contains last slide text', async () => {
     await page.goto('http://localhost:3000');
 
     // TODO: GET BETTER SELECTORS
-    const sel = "div[font-family='header'][font-size='h1']";
+    const sel = "div[font-family='header'][font-size='h2']";
     await page.waitForSelector(sel);
     const text = await page.$eval(sel, (e) => e.textContent);
-
-    // TODO: SWITH TO EACH TYPE OF OUTPUT
-    expect(text).toContain('jsx');
+    expect(text).toContain('Made with');
   });
 
   afterAll(() => {

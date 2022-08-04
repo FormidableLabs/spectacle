@@ -41,7 +41,15 @@
     "examples:jsx:create": "mkdir -p .examples && cd .examples && node ../bin/cli.js -t jsx -n jsx",
     "examples:jsx:install": "cd .examples/jsx && npm install",
     "examples:jsx:build": "cd .examples/jsx && npm run build",
-    "examples:jsx:start": "cd .examples/jsx && npm start"
+    "examples:jsx:start": "cd .examples/jsx && npm start",
+    "examples:tsx:create": "mkdir -p .examples && cd .examples && node ../bin/cli.js -t tsx -n tsx",
+    "examples:tsx:install": "cd .examples/tsx && npm install",
+    "examples:tsx:build": "cd .examples/tsx && npm run build",
+    "examples:tsx:start": "cd .examples/tsx && npm start",
+    "examples:onepage:create": "mkdir -p .examples/onepage && cd .examples/onepage && node ../bin/cli.js -t onepage -n onepage",
+    "examples:onepage:install": "echo",
+    "examples:onepage:build": "echo",
+    "examples:onepage:start": "echo TODO USE SERVE"
   },
   "wireit": {
     "build": {
