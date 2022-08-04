@@ -77,7 +77,7 @@
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
-        "*.{js,jsx,ts,tsx}"
+        "*.{js,jsx,ts,tsx,html}"
       ],
       "output": [],
       "packageLocks": [
@@ -89,7 +89,7 @@
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
-        "*.{js,jsx,ts,tsx}"
+        "*.{js,jsx,ts,tsx,html}"
       ],
       "output": [],
       "packageLocks": [
