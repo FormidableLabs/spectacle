@@ -3,25 +3,25 @@
 .ossImage {
   margin-right: auto;
   margin-left: auto;
-  height: $width-height-xs;
-  width: $width-height-xs;
-  max-width: $width-height-xs;
+  height: $sizing-xs;
+  width: $sizing-xs;
+  max-width: $sizing-xs;
   padding: 0;
   cursor: pointer;
 
   @media ($media-breakpoint-sm) {
-    width: $width-height-md;
-    height: $width-height-md;
-    max-width: $width-height-md;
+    width: $sizing-md;
+    height: $sizing-md;
+    max-width: $sizing-md;
     max-width: initial;
     grid-area: left / left / left / left;
     place-self: flex-start flex-end;
   }
 
   @media ($media-breakpoint-md) {
-    width: $width-height-xl;
-    height: $width-height-xl;
-    max-width: $width-height-xl;
+    width: $sizing-xl;
+    height: $sizing-xl;
+    max-width: $sizing-xl;
     margin-right: 0;
     margin-left: auto;
   }

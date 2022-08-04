@@ -23,18 +23,18 @@
 
 .triangle {
   position: absolute;
-  left: -0.25rem;
-  top: -0.25rem;
+  left: $badge-corner-neg;
+  top: $badge-corner-neg;
   height: auto;
-  width: $width-height-xs;
+  width: $sizing-xs;
   transition: width 0.1s ease-in-out;
 
   @media ($media-breakpoint-sm) {
-    width: $width-height-md;
+    width: $sizing-md;
   }
 
   @media ($media-breakpoint-md) {
-    width: $width-height-lg;
+    width: $sizing-lg;
   }
 }
 
@@ -42,8 +42,8 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 1.5rem;
-  top: 1.5rem;
+  left: $badge-corner-sm;
+  top: $badge-corner-sm;
   font-size: $font-sizes-badge-small;
   color: var(--oss-text-light);
   font-weight: $font-weights-heading;
@@ -51,21 +51,21 @@
     top 0.1s ease-in-out;
 
   @media ($media-breakpoint-sm) {
-    left: 1.75rem;
-    top: 1.75rem;
+    left: $badge-corner-md;
+    top: $badge-corner-md;
     font-size: $font-sizes-badge;
   }
 
   @media ($media-breakpoint-md) {
-    left: 2.25rem;
-    top: 2.25rem;
+    left: $badge-corner-lg;
+    top: $badge-corner-lg;
   }
   > * {
     margin-top: 0;
     margin-bottom: 0;
   }
   > * + * {
-    margin-top: 0.625rem;
+    margin-top: $spacing-xxs;
   }
 
   &:hover {
@@ -86,11 +86,11 @@
 
   .badge__logo {
     height: auto;
-    width: 2.5rem;
+    width: $spacing-md;
     transition: width 0.1s ease-in-out;
 
     @media ($media-breakpoint-sm) {
-      width: 3.75rem;
+      width: $spacing-xl;
     }
 
     @media ($media-breakpoint-md) {

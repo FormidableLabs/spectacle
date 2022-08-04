@@ -7,11 +7,11 @@
   justify-content: space-between;
   width: 100%;
   margin: auto;
-  padding: 2.5rem;
+  padding: $spacing-md;
   text-align: center;
 
   @media ($media-breakpoint-sm) {
-    padding: 5rem;
+    padding: $spacing-xxl;
   }
 
   &.noMargin {

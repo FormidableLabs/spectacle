@@ -82,6 +82,11 @@ $font-weights-body: 400;
 $font-weights-link: 700;
 $font-weights-heading: 700;
 
+$grid-gap-xs: 1.875rem;
+$grid-gap-sm: 2.5rem;
+$grid-gap-md: 3.125rem;
+$grid-gap-lg: 5rem;
+
 $line-heights-body: 1.5;
 $line-heights-heading: 1.1;
 $line-heights-footer: 1.6;
@@ -90,29 +95,35 @@ $line-heights-button: 2.8125rem;
 $line-heights-tagline-small: 1.375rem;
 $line-heights-tagline: 1.75rem;
 
-$spacing-xs: 0.94rem; // 15px
-$spacing-sm: 1.25rem; // 20px
-$spacing-md: 1.375rem; // 22px
-$spacing-lg: 1.72rem; // 27.5px
-$spacing-xl: 2rem; // 32px
-
 $letter-spacing-sm: 0.01rem;
 $letter-spacing-lg: 0.06rem;
 
-$sizing-xxl: 32.5rem;
-$sizing-xxxl: 72.5rem;
+$badge-corner-neg: -0.25rem;
+$badge-corner-sm: 1.5rem;
+$badge-corner-md: 1.75rem;
+$badge-corner-lg: 2.25rem;
 
-// 10rem, 35rem, 50rem, 82.5rem,
+$border-div: 0.13rem;
 
-$width-height-xxs: 11.25rem;
-$width-height-xs: 12.5rem;
-$width-height-sm: 13.75rem;
-$width-height-md: 16.25rem;
-$width-height-lg: 18.75rem;
-$width-height-xl: 20rem;
+$container-xxs: 10rem;
+$container-xs: 32.5rem;
+$container-sm: 35rem;
+$container-md: 50rem;
+$container-lg: 72.5rem;
+$container-xl: 82.5rem;
 
-$margin-padding-xs: 12.5rem;
-// $margin-padding-sm: ;
-// $margin-padding-md: ;
-// $margin-padding-lg: ;
-// $margin-padding-xl: ;
+$sizing-xxs: 11.25rem;
+$sizing-xs: 12.5rem;
+$sizing-sm: 13.75rem;
+$sizing-md: 16.25rem;
+$sizing-lg: 18.75rem;
+$sizing-xl: 20rem;
+
+$spacing-xxs: 0.625rem;
+$spacing-xs: 1.25rem;
+$spacing-sm: 1.875rem;
+$spacing-md: 2.5rem;
+$spacing-lg: 3.125rem;
+$spacing-xl: 3.75rem;
+$spacing-xxl: 5rem;
+$spacing-xxxl: 12.5rem;

@@ -4,9 +4,9 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 1fr);
-  grid-column-gap: 2.5rem;
-  grid-row-gap: 5rem;
-  width: calc(100% - 2.5rem);
+  grid-column-gap: $grid-gap-sm;
+  grid-row-gap: $grid-gap-lg;
+  width: calc(100% - $grid-gap-sm);
   max-width: 75%;
   margin-left: auto;
   margin-right: auto;
@@ -15,8 +15,8 @@
   @media ($media-breakpoint-sm) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    max-width: $sizing-xxxl;
-    margin-bottom: 1.875rem;
+    max-width: $container-lg;
+    margin-bottom: $spacing-sm;
   }
 }
 
@@ -30,7 +30,7 @@
     margin-bottom: 0;
   }
   > * + * {
-    margin-top: 0.625rem;
+    margin-top: $spacing-xxs;
   }
   @media ($media-breakpoint-sm) {
     flex-direction: row;
@@ -41,7 +41,7 @@
     }
     > * + * {
       margin-top: 0;
-      margin-left: 1.875rem;
+      margin-left: $spacing-sm;
     }
   }
 }
@@ -51,9 +51,9 @@
   flex: 1;
 
   > a:first-child {
-    height: $width-height-sm;
-    max-width: $width-height-xs;
-    width: $width-height-xs;
+    height: $sizing-sm;
+    max-width: $sizing-xs;
+    width: $sizing-xs;
   }
 
   a:hover {
@@ -63,9 +63,9 @@
 
   @media ($media-breakpoint-sm) {
     > a:first-child {
-      height: $width-height-xxs;
-      max-width: $width-height-xxs;
-      width: $width-height-xxs;
+      height: $sizing-xxs;
+      max-width: $sizing-xxs;
+      width: $sizing-xxs;
     }
   }
 }
@@ -80,7 +80,7 @@
     margin-bottom: 0;
   }
   > * + * {
-    margin-top: $spacing-sm;
+    margin-top: $spacing-xs;
   }
 
   &:hover {
@@ -128,14 +128,14 @@
   height: $line-heights-button;
   letter-spacing: $letter-spacing-lg;
   line-height: $line-heights-button;
-  margin: 3.125rem auto 1.875rem;
-  min-width: $width-height-sm;
+  margin: $spacing-lg auto $spacing-sm;
+  min-width: $sizing-sm;
   text-align: center;
   text-transform: uppercase;
   transition: background 0.4s;
   width: auto;
-  padding-left: $spacing-sm;
-  padding-right: $spacing-sm;
+  padding-left: $spacing-xs;
+  padding-right: $spacing-xs;
 
   &:hover {
     background: var(--oss-button-light-hover);

@@ -27,7 +27,7 @@
 .footerDescription {
   font-size: $font-sizes-body-xs;
   line-height: $line-heights-footer;
-  max-width: 35rem;
+  max-width: $container-sm;
   margin: 0 auto;
   text-align: center;
   color: var(--oss-text-light);
@@ -52,7 +52,7 @@
   font-size: $font-sizes-body-xs;
   line-height: $line-heights-footer;
   width: 100%;
-  margin: $spacing-sm auto 0;
+  margin: $spacing-xs auto 0;
   text-align: center;
   color: var(--oss-text-light);
 
@@ -68,7 +68,7 @@
     transition: color 0.2s ease-out;
 
     @media ($media-breakpoint-md) {
-      margin-left: 3.75rem;
+      margin-left: $spacing-xl;
       display: inline-block;
     }
 
@@ -80,7 +80,7 @@
 
 .footerLogo {
   height: auto;
-  width: $width-height-xs;
+  width: $sizing-xs;
 }
 
 .footerLinks {
@@ -92,7 +92,7 @@
   list-style: none;
   padding: 0;
   text-transform: uppercase;
-  margin: $spacing-sm auto;
+  margin: $spacing-xs auto;
 
   > * {
     margin-top: 0;
@@ -100,7 +100,7 @@
   }
 
   > * + * {
-    margin-top: 0.625rem;
+    margin-top: $spacing-xxs;
     margin-left: 0;
   }
 
@@ -109,17 +109,17 @@
 
     > * + * {
       margin-top: 0;
-      margin-left: 2.5rem;
+      margin-left: $spacing-md;
     }
   }
 
   @media ($media-breakpoint-md) {
     flex-direction: column;
     align-items: flex-start;
-    margin: 0 3.75rem 0 auto;
+    margin: 0 $spacing-xl 0 auto;
 
     > * + * {
-      margin-top: $spacing-sm;
+      margin-top: $spacing-xs;
       margin-left: 0;
     }
   }

@@ -11,7 +11,7 @@
     margin-bottom: 0;
   }
   > * + * {
-    margin-top: $spacing-sm;
+    margin-top: $spacing-xs;
   }
 
   @media ($media-breakpoint-sm) {
@@ -22,8 +22,8 @@
       'left . right'
       'left . right2'
       'bottom bottom bottom';
-    margin-top: $margin-padding-xs;
-    padding: 0 $spacing-sm;
+    margin-top: $spacing-xxxl;
+    padding: 0 $spacing-xs;
     > * + * {
       margin-top: 0;
     }
@@ -35,13 +35,13 @@
       margin-bottom: 0;
     }
     > * + * {
-      margin-top: $spacing-sm;
+      margin-top: $spacing-xs;
     }
 
     @media ($media-breakpoint-sm) {
       grid-area: right;
-      max-width: $sizing-xxl;
-      margin-left: 3.75rem;
+      max-width: $container-xs;
+      margin-left: $spacing-xl;
     }
 
     @media ($media-breakpoint-md) {
@@ -56,7 +56,7 @@
       font-weight: $font-weights-heading;
       line-height: $line-heights-heading;
       color: var(--oss-text-light);
-      margin: 0 0 $spacing-lg 0;
+      margin: 0 0 $spacing-sm 0;
 
       @media ($media-breakpoint-sm) {
         font-size: $font-sizes-h1;
@@ -68,7 +68,7 @@
       font-family: Helvetica;
       font-size: $font-sizes-tagline-sm;
       line-height: $line-heights-tagline-small;
-      max-width: $width-height-lg;
+      max-width: $sizing-lg;
       text-align: center;
 
       @media ($media-breakpoint-sm) {
@@ -88,7 +88,7 @@
         margin-bottom: 0;
       }
       > * + * {
-        margin-top: $spacing-sm;
+        margin-top: $spacing-xs;
       }
       @media ($media-breakpoint-md) {
         align-items: center;
@@ -99,12 +99,12 @@
         }
         > * + * {
           margin-top: 0;
-          margin-left: $spacing-sm;
+          margin-left: $spacing-xs;
         }
       }
 
       .button__docs {
-        width: $width-height-lg;
+        width: $sizing-lg;
         height: $line-heights-button;
         font-size: $font-sizes-body-sm;
         background: var(--oss-button-light);
@@ -121,7 +121,7 @@
 
         @media ($media-breakpoint-md) {
           margin-top: 0;
-          width: $width-height-xxs;
+          width: $sizing-xxs;
         }
 
         &:hover {
@@ -133,31 +133,31 @@
   }
 
   .heroNav {
-    border-top: 0.13rem solid var(--oss-text-light);
+    border-top: $border-div solid var(--oss-text-light);
     display: flex;
     justify-content: center;
     list-style: none;
-    padding: $spacing-sm 0 0;
+    padding: $spacing-xs 0 0;
     text-align: center;
 
     @media ($media-breakpoint-sm) {
       grid-area: bottom;
       width: 100%;
-      margin-top: $spacing-sm;
+      margin-top: $spacing-xs;
     }
 
     @media ($media-breakpoint-md) {
       grid-area: right2;
-      margin: $spacing-md 0 0;
+      margin: $spacing-sm 0 0;
       width: 100%;
-      max-width: $sizing-xxl;
+      max-width: $container-xs;
     }
     > * {
       margin-left: 0;
       margin-right: 0;
     }
     > * + * {
-      margin-left: 2.5rem;
+      margin-left: $spacing-md;
     }
 
     & li a {

@@ -7,7 +7,7 @@
   margin-top: 0;
 
   a {
-    margin: $spacing-sm auto;
+    margin: $spacing-xs auto;
   }
 
   @media ($media-breakpoint-sm) {
@@ -15,7 +15,7 @@
     margin-top: 0;
 
     a {
-      margin: 1.875rem;
+      margin: $spacing-sm;
     }
   }
 }

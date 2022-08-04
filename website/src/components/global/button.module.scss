@@ -9,15 +9,15 @@
   height: $line-heights-button;
   letter-spacing: $letter-spacing-lg;
   line-height: $line-heights-button;
-  margin: 3.125rem auto 1.875rem;
-  max-width: $width-height-lg;
-  min-width: $width-height-sm;
+  margin: $spacing-lg auto $spacing-sm;
+  max-width: $sizing-lg;
+  min-width: $sizing-sm;
   text-align: center;
   text-transform: uppercase;
   transition: background 0.4s;
   width: auto;
-  padding-left: $spacing-sm;
-  padding-right: $spacing-sm;
+  padding-left: $spacing-xs;
+  padding-right: $spacing-xs;
   font-weight: $font-weights-link;
 
   &:hover {

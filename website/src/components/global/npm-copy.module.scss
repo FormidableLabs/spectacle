@@ -3,18 +3,18 @@
 .heroNPMWrapper {
   flex-direction: row;
   justify-content: stretch;
-  width: $width-height-lg;
+  width: $sizing-lg;
   display: flex;
   flex: 1 0 auto;
 }
 
 .heroNPMCopy {
-  width: $width-height-sm;
+  width: $sizing-sm;
   height: $line-heights-button;
   color: var(--oss-text-dark);
   background-color: var(--oss-input-background);
   text-align: left;
-  padding: 0.21rem $spacing-xs;
+  padding: 0.21rem 0.94rem;
   line-height: $line-heights-npm;
   font-size: $font-sizes-body-sm;
   letter-spacing: $letter-spacing-sm;
@@ -23,7 +23,7 @@
 }
 
 .heroNPMButton {
-  width: 5rem;
+  width: $spacing-xxl;
   height: $line-heights-button;
   line-height: $line-heights-button;
   background: var(--oss-background-light);
