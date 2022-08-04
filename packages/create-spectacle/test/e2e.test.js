@@ -28,13 +28,19 @@ describe('App.js', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch(LAUNCH_OPTS);
+    page = await browser.newPage();
   });
 
   it('contains the welcome text', async () => {
     await page.goto('http://localhost:3000');
-    await page.waitForSelector('.example-text');
-    const text = await page.$eval('.example-text', (e) => e.textContent);
-    expect(text).toContain('js');
+
+    // TODO: GET BETTER SELECTORS
+    const sel = 'div[font-family=\'header\'][font-size=\'h1\']';
+    await page.waitForSelector(sel);
+    const text = await page.$eval(sel, (e) => e.textContent);
+
+    // TODO: SWITH TO EACH TYPE OF OUTPUT
+    expect(text).toContain('jsx');
   });
 
   afterAll(() => browser.close());
