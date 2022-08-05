@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import styles from './wrapper.module.scss';
 
 type Wrapper = {
@@ -9,17 +10,16 @@ type Wrapper = {
 };
 
 const Wrapper = ({ noMargin, noPadding, background, children }: Wrapper) => {
-  return (
-    <div
-      className={`${styles.wrapper} ${noMargin && styles.noMargin} ${
-        noPadding && styles.noPadding
-      } ${background === 'Light' && styles.light} ${
-        background === 'Dark' && styles.dark
-      } ${background === 'Color' && styles.color}`}
-    >
-      {children}
-    </div>
+  const classNames = clsx(
+    styles.wrapper,
+    noMargin && styles.noMargin,
+    noPadding && styles.noPadding,
+    background === 'Light' && styles.light,
+    background === 'Dark' && styles.dark,
+    background === 'Color' && styles.color
   );
+
+  return <div className={classNames}>{children}</div>;
 };
 
 export default Wrapper;

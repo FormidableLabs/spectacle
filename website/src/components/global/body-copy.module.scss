@@ -1,7 +1,7 @@
 @import '../../css/variables.scss';
 
 .bodyCopy {
-  font-size: $font-sizes-body;
+  font-size: $font-sizes-body-sm;
   color: var(--oss-text-light);
   text-align: center;
   margin: 0 auto;
@@ -11,9 +11,9 @@
   line-height: $line-heights-body;
   text-rendering: optimizeLegibility;
 
-  // @media ($media-breakpoint-lg) {
-  //   font-size: $font-sizes-body;
-  // }
+  @media ($media-breakpoint-lg) {
+    font-size: $font-sizes-body;
+  }
 
   &.light {
     color: var(--oss-text);

@@ -4,14 +4,15 @@ import styles from './body-copy.module.scss';
 
 type BodyCopy = {
   className?: string;
-  light?: boolean;
+  theme: string;
   children: React.ReactNode;
 };
 
-const BodyCopy = ({ className, light, children }: BodyCopy) => {
+const BodyCopy = ({ className, theme, children }: BodyCopy) => {
+  const isLight = theme === 'Light' || theme === 'Color';
   const classNames = clsx(
     styles.bodyCopy,
-    light && styles.light,
+    isLight && styles.light,
     className && className
   );
 

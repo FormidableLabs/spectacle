@@ -6,16 +6,17 @@ import styles from './button.module.scss';
 type ButtonProps = {
   as: 'href' | 'link';
   to: string;
-  light: boolean;
+  theme: string;
   noMargin?: boolean;
   children: React.ReactNode;
 };
 
-const Button = ({ as, to, light, noMargin, children }: ButtonProps) => {
+const Button = ({ as, to, theme, noMargin, children }: ButtonProps) => {
+  const isLight = theme === 'Light' || theme === 'Color';
   const classNames = clsx(
     styles.button,
     noMargin && styles.noMargin,
-    light && styles.light
+    isLight && styles.light
   );
 
   if (as === 'href') {

@@ -15,7 +15,7 @@ type ProductItem = {
   abbreviation: string;
   color: string;
   link: string;
-  light?: string;
+  theme: string;
 };
 
 interface Meta {
@@ -30,7 +30,7 @@ function Product({
   abbreviation,
   color,
   link,
-  light
+  theme
 }: ProductItem) {
   const card = {
     title,
@@ -38,7 +38,7 @@ function Product({
     abbreviation,
     color,
     link,
-    light
+    theme
   };
 
   return (
@@ -48,17 +48,11 @@ function Product({
       </div>
       <div className={styles.ossCopyContainer}>
         <a href={link} target="_blank" rel="noopener noreferrer">
-          <SecondaryTitle
-            className={styles.ossTitle}
-            light={light === 'Light' || light === 'Color'}
-          >
+          <SecondaryTitle className={styles.ossTitle} theme={theme}>
             {title}
           </SecondaryTitle>
         </a>
-        <BodyCopy
-          className={styles.ossDescription}
-          light={light === 'Light' || light === 'Color'}
-        >
+        <BodyCopy className={styles.ossDescription} theme={theme}>
           {description}
         </BodyCopy>
       </div>
@@ -83,8 +77,6 @@ export default function MoreOSS({ content }): JSX.Element {
     buttonUrl: string;
   } = content;
 
-  const isLightTheme = meta.theme === 'Light' || meta.theme === 'Color';
-
   return (
     <Wrapper
       noMargin={meta.noMargin}
@@ -92,14 +84,14 @@ export default function MoreOSS({ content }): JSX.Element {
       background={meta.theme}
     >
       <Stack>
-        <SectionTitle light={isLightTheme}>{title}</SectionTitle>
-        {longText && <BodyCopy light={isLightTheme}>{longText}</BodyCopy>}
+        <SectionTitle theme={meta.theme}>{title}</SectionTitle>
+        {longText && <BodyCopy theme={meta.theme}>{longText}</BodyCopy>}
         <div className={styles.ossCardContainer}>
           {productList.map((props, idx) => (
-            <Product key={idx} light={meta.theme} {...props} />
+            <Product key={idx} theme={meta.theme} {...props} />
           ))}
         </div>
-        <Button as="href" light={isLightTheme} to={buttonUrl}>
+        <Button as="href" theme={meta.theme} to={buttonUrl}>
           {buttonText}
         </Button>
       </Stack>

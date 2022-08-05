@@ -36,13 +36,10 @@ export default function Preview({ content }): JSX.Element {
     buttonUrl: string;
   } = content;
 
-  const isLightTheme: boolean =
-    meta.theme === 'Light' || meta.theme === 'Color';
-
   return (
     <Wrapper background={meta.theme}>
-      <SectionTitle light={isLightTheme}>{title}</SectionTitle>
-      {longText && <BodyCopy light={isLightTheme}>{longText}</BodyCopy>}
+      <SectionTitle theme={meta.theme}>{title}</SectionTitle>
+      {longText && <BodyCopy theme={meta.theme}>{longText}</BodyCopy>}
       <a
         href={videoAssets.demoUrl}
         title="See the live preview"
@@ -61,7 +58,7 @@ export default function Preview({ content }): JSX.Element {
         </video>
       </a>
       {buttonText && buttonUrl && (
-        <Button as={'href'} light={isLightTheme} to={buttonUrl}>
+        <Button as={'href'} theme={meta.theme} to={buttonUrl}>
           {buttonText}
         </Button>
       )}

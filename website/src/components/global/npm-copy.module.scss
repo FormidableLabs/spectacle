@@ -20,6 +20,8 @@
   letter-spacing: $letter-spacing-sm;
   margin: 0;
   flex: 1 0 auto;
+  border-bottom-left-radius: var(--oss-border-radius);
+  border-top-left-radius: var(--oss-border-radius);
 }
 
 .heroNPMButton {
@@ -27,7 +29,16 @@
   height: $line-heights-button;
   line-height: $line-heights-button;
   background: var(--oss-background-light);
-  transition: background 0.4s;
+  background: {
+    image: linear-gradient(
+      -40deg,
+      var(--oss-button-light-hover) 50%,
+      transparent 50%
+    );
+    position: 0;
+    size: 400%;
+  }
+  transition: all 0.2s ease-in-out;
   font-size: $font-sizes-body-sm;
   font-weight: $font-weights-link;
   letter-spacing: $letter-spacing-lg;
@@ -39,6 +50,7 @@
 
   &:hover {
     color: var(--oss-text-light);
-    background: var(--oss-button-light-hover);
+    background-position: 100%;
+    // background: var(--oss-button-light-hover);
   }
 }

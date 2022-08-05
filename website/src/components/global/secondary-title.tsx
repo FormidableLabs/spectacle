@@ -4,14 +4,15 @@ import styles from './secondary-title.module.scss';
 
 type SecondaryTitle = {
   className?: string;
-  light?: boolean;
+  theme: string;
   children: React.ReactNode;
 };
 
-const SecondaryTitle = ({ className, light, children }: SecondaryTitle) => {
+const SecondaryTitle = ({ className, theme, children }: SecondaryTitle) => {
+  const isLight = theme === 'Light' || theme === 'Color';
   const classNames = clsx(
     styles.secondaryTitle,
-    light && styles.light,
+    isLight && styles.light,
     className && className
   );
 

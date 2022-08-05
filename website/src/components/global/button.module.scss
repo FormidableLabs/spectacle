@@ -2,6 +2,16 @@
 
 .button {
   background: var(--oss-button-light);
+  background: {
+    image: linear-gradient(
+      -40deg,
+      var(--oss-button-light-hover) 50%,
+      transparent 50%
+    );
+    position: 0;
+    size: 400%;
+  }
+  transition: all 0.4s ease-in-out;
   border-radius: var(--oss-border-radius);
   color: var(--oss-text-dark);
   display: block;
@@ -14,14 +24,14 @@
   min-width: $sizing-sm;
   text-align: center;
   text-transform: uppercase;
-  transition: background 0.4s;
   width: auto;
   padding-left: $spacing-xs;
   padding-right: $spacing-xs;
   font-weight: $font-weights-link;
 
   &:hover {
-    background: var(--oss-button-light-hover);
+    // background: var(--oss-button-light-hover);
+    background-position: 100%;
     color: var(--oss-text-light);
   }
 
@@ -35,10 +45,20 @@
 
   &.light {
     background: var(--oss-button);
+    background: {
+      image: linear-gradient(
+        -40deg,
+        var(--oss-button-hover) 50%,
+        transparent 50%
+      );
+      position: 0;
+      size: 400%;
+    }
     color: var(--oss-text-light);
 
     &:hover {
-      background: var(--oss-button-hover);
+      // background: var(--oss-button-hover);
+      background-position: 100%;
       color: var(--oss-text-light);
     }
   }

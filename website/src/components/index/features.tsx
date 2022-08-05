@@ -10,7 +10,7 @@ type FeatureItem = {
   title: string;
   Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: JSX.Element;
-  light?: string;
+  theme: string;
 };
 
 type Meta = {
@@ -19,17 +19,13 @@ type Meta = {
   noPadding: boolean;
 };
 
-function Feature({ title, Svg, description, light }: FeatureItem) {
+function Feature({ title, Svg, description, theme }: FeatureItem) {
   return (
     <div className={styles.featureCard} key={title}>
       <Svg role="img" />
       <div className={styles.featureInfo}>
-        <SecondaryTitle light={light === 'Light' || light === 'Color'}>
-          {title}
-        </SecondaryTitle>
-        <BodyCopy light={light === 'Light' || light === 'Color'}>
-          {description}
-        </BodyCopy>
+        <SecondaryTitle theme={theme}>{title}</SecondaryTitle>
+        <BodyCopy theme={theme}>{description}</BodyCopy>
       </div>
     </div>
   );
@@ -49,12 +45,10 @@ export default function Features({ content }): JSX.Element {
       background={meta.theme}
     >
       <Stack>
-        <SectionTitle light={meta.theme === 'Light' || meta.theme === 'Color'}>
-          {title}
-        </SectionTitle>
+        <SectionTitle theme={meta.theme}>{title}</SectionTitle>
         <div className={styles.featuresContainer}>
           {featureList.map((props, idx) => (
-            <Feature key={idx} light={meta.theme} {...props} />
+            <Feature key={idx} theme={meta.theme} {...props} />
           ))}
         </div>
       </Stack>

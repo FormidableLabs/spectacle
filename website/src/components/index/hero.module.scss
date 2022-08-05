@@ -108,7 +108,16 @@
         height: $line-heights-button;
         font-size: $font-sizes-body-sm;
         background: var(--oss-button-light);
-        transition: background 0.25s ease-out;
+        background: {
+          image: linear-gradient(
+            -40deg,
+            var(--oss-button-light-hover) 50%,
+            transparent 50%
+          );
+          position: 0;
+          size: 400%;
+        }
+        transition: all 0.4s ease-in-out;
         line-height: $line-heights-button;
         text-align: center;
         text-transform: uppercase;
@@ -126,7 +135,8 @@
 
         &:hover {
           color: var(--oss-text-light);
-          background: var(--oss-button-light-hover);
+          background-position: 100%;
+          // background: var(--oss-button-light-hover);
         }
       }
     }
@@ -164,7 +174,7 @@
       color: var(--oss-text-light);
       font-size: $font-sizes-link-large;
       letter-spacing: $letter-spacing-lg;
-      transition: opacity 0.4s ease-out;
+      transition: all 0.2s ease-in-out;
       text-decoration: none;
       font-weight: $font-weights-link;
 

@@ -31,19 +31,17 @@ export default function GetStarted({ content }): JSX.Element {
     secondaryButtonUrl: string;
   } = content;
 
-  const isLightTheme = meta.theme === 'Light' || meta.theme === 'Color';
-
   return (
     <Wrapper background={meta.theme}>
       <Stack>
-        <SectionTitle light={isLightTheme}>{title}</SectionTitle>
-        <BodyCopy light={isLightTheme}>{longText}</BodyCopy>
+        <SectionTitle theme={meta.theme}>{title}</SectionTitle>
+        <BodyCopy theme={meta.theme}>{longText}</BodyCopy>
         <div className={styles.buttons}>
-          <Button as={'link'} light={isLightTheme} to={primaryButtonUrl}>
+          <Button as={'link'} theme={meta.theme} to={primaryButtonUrl}>
             {primaryButtonText}
           </Button>
           {secondaryButtonText && secondaryButtonUrl && (
-            <Button as={'link'} light={isLightTheme} to={secondaryButtonUrl}>
+            <Button as={'link'} theme={meta.theme} to={secondaryButtonUrl}>
               {secondaryButtonText}
             </Button>
           )}
