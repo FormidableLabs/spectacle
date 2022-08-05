@@ -46,10 +46,10 @@
     "examples:tsx:install": "cd .examples/tsx && npm install",
     "examples:tsx:build": "cd .examples/tsx && npm run build",
     "examples:tsx:start": "cd .examples/tsx && npm start",
-    "examples:onepage:create": "mkdir -p .examples/onepage && cd .examples/onepage && node ../bin/cli.js -t onepage -n onepage",
-    "examples:onepage:install": "echo",
-    "examples:onepage:build": "echo",
-    "examples:onepage:start": "echo TODO USE SERVE"
+    "examples:onepage:create": "mkdir -p .examples/onepage && cd .examples/onepage && node ../../bin/cli.js -t onepage -n index",
+    "examples:onepage:install": "echo unused",
+    "examples:onepage:build": "echo unused",
+    "examples:onepage:start": "pnpm exec serve .examples/onepage"
   },
   "wireit": {
     "build": {

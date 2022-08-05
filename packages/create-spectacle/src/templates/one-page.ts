@@ -24,6 +24,7 @@ export const onePageTemplate = ({ name, lang }: OnePageTemplateOptions) => `
     <script type="module">
       const {
         FlexBox,
+        Heading,
         SpectacleLogo,
         Slide,
         Deck,
@@ -36,7 +37,13 @@ export const onePageTemplate = ({ name, lang }: OnePageTemplateOptions) => `
         <\${Deck}>
           <\${Slide}>
             <\${FlexBox} height="100%">
-              <\${SpectacleLogo} size=${500} />
+              <\${Heading}>${name}</\${Heading}>
+            </\${FlexBox}>
+          </\${Slide}>
+          <\${Slide}>
+            <\${FlexBox} height="100%">
+              <\${Heading} fontSize="h2">Made with</\${Heading}>
+              <\${SpectacleLogo} size=${300} />
             </\${FlexBox}>
           </\${Slide}>
         </\${Deck}>
