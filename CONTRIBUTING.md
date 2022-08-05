@@ -121,6 +121,23 @@ $ yarn clean:cache:wireit    # wireit task cache
 $ yarn clean:cache:modules   # caches in node_modules (prettier, etc.)
 ```
 
+### Checking `create-spectacle`
+
+We have slower checks for the outputs created by our `create-spectacle` package that are run in CI, but you generally won't need to run unless you are developing that package.
+
+First, you can install Chromium to use in `puppeteer` or use a local Chrome instance. We only presently have Mac instructions and will get to Windows/Linux support when we get demand.
+
+```sh
+# Option 1 -- Do nothing! If you have the Mac Chrome app, you can skip this step!
+# Option 2 -- Install chromium
+# Option 2.a -- Normal binary
+$ pnpm puppeteer:install
+# Option 2.b -- If you are on an M1/2 Mac, do this instead:
+$ PUPPETEER_EXPERIMENTAL_CHROMIUM_MAC_ARM=true pnpm puppeteer:install
+```
+
+TODO: INSERT NEXT STEPS AND TEST STEPS
+
 ### Before submitting a PR
 
 Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:

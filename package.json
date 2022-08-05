@@ -82,7 +82,7 @@
     "prettier:pkgs": "wireit",
     "prettier:pkgs:fix": "wireit",
     "test": "wireit",
-    "puppeteer:install": "node ./node_modules/puppeteer/install.js"
+    "puppeteer:install": "rimraf .puppeteer && cross-env PUPPETEER_DOWNLOAD_PATH=.puppeteer node ./node_modules/puppeteer/install.js"
   },
   "wireit": {
     "clean:cache": {

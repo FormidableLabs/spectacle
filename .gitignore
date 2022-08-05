@@ -38,6 +38,7 @@ dist
 lib
 es
 bin
+.puppeteer
 .examples
 
 # Pack-ing artifacts
