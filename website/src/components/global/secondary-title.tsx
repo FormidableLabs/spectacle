@@ -13,7 +13,7 @@ const SecondaryTitle = ({ className, theme, children }: SecondaryTitle) => {
   const classNames = clsx(
     styles.secondaryTitle,
     isLight && styles.light,
-    className && className
+    className
   );
 
   return <h3 className={classNames}>{children}</h3>;

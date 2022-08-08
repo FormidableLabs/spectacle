@@ -13,7 +13,7 @@ const BodyCopy = ({ className, theme, children }: BodyCopy) => {
   const classNames = clsx(
     styles.bodyCopy,
     isLight && styles.light,
-    className && className
+    className
   );
 
   return <p className={classNames}>{children}</p>;
