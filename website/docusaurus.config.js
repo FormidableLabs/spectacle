@@ -145,10 +145,7 @@ async function createConfig() {
             new Date().getFullYear()
           )} Formidable Labs, LLC.`
         },
-        prism: {
-          // theme: lightCodeTheme,
-          // darkTheme: darkCodeTheme
-        }
+        prism: {} // Keep empty object so we can add prism themes below
       })
   };
 
