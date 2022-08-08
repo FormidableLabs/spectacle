@@ -12,6 +12,10 @@ on:
       - 'docs/**'
       - 'website/**'
 
+defaults:
+  run:
+    working-directory: ./website
+
 jobs:
   deploy-website:
     runs-on: ubuntu-latest
@@ -36,11 +40,9 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-        working-directory: ./website
 
       - name: Build the website
         run: yarn build
-        working-directory: ./website
 
       # Use `gh` tool to infer more information about the pull request.
       # The underlying issue here is pushes to a non-mergeable/main target branch
@@ -55,7 +57,6 @@ jobs:
       - name: Deploy docs (staging)
         if: github.ref != 'refs/heads/main'
         run: yarn deploy:stage
-        working-directory: ./website
         env:
           # GH actions have a PR merge commit that _isn't_ our actual commits.
           # Manually infer correct branch and sha for pull requests.
@@ -68,7 +69,6 @@ jobs:
       - name: Deploy docs (production)
         if: github.ref == 'refs/heads/main'
         run: yarn deploy:prod
-        working-directory: ./website
         env:
           GITHUB_DEPLOYMENT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
