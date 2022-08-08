@@ -1,4 +1,3 @@
-// TODO(e2e): Convert to TS.
 import puppeteer from 'puppeteer';
 import { getLaunchOptions } from './util';
 
