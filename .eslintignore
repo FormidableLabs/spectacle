@@ -1,3 +1,6 @@
-dist/
-lib/
-node_modules/*
+dist
+lib
+es
+node_modules
+coverage
+.wireit

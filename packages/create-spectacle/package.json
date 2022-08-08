@@ -1,0 +1,121 @@
+{
+  "name": "create-spectacle",
+  "version": "0.0.1",
+  "private": "true",
+  "description": "Project generator for Spectacle",
+  "main": "bin/cli.js",
+  "files": [
+    "bin/"
+  ],
+  "bin": {
+    "create-spectacle": "bin/cli.js"
+  },
+  "author": "Formidable Labs <hello@formidable.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FormidableLabs/spectacle.git"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "clear": "^0.1.0",
+    "cli-spinners": "^2.6.1",
+    "commander": "^9.3.0",
+    "log-update": "4.0.0"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "spectacle": "*",
+    "@types/node": "^18.0.3"
+  },
+  "resolutions": {},
+  "scripts": {
+    "build": "wireit",
+    "types:check": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "tsc --p tsconfig.json",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "tsconfig.json"
+      ],
+      "output": [
+        "bin/**/*.js"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:check": {
+      "command": "nps types:check",
+      "files": [
+        "src/**/*.{ts,tsx}",
+        "../../tsconfig.json",
+        "tsconfig.json"
+      ],
+      "dependencies": [],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint": {
+      "command": "nps lint:pkg",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:fix": {
+      "command": "pnpm run lint || nps lint:pkg:fix",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:pkg",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
+  }
+}

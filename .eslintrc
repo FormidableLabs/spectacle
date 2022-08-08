@@ -3,12 +3,10 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "prettier"
   ],
   "plugins": [
-    "prettier",
     "react",
     "react-hooks",
     "@typescript-eslint"

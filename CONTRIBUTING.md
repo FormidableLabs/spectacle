@@ -6,169 +6,153 @@ Thank you for contributing!
   <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
 </a>
 
-Spectacle is actively maintained by @[carlos-kelly][] and @[kale-stew][]
-from within [@FormidableLabs][formidable-github].
+Spectacle is actively maintained by @[carlos-kelly][] for [@FormidableLabs][formidable-github].
 
 ## Development
 
 ### Installing dependencies
 
-We prefer to use [`yarn`][yarn-docs].
+We use [`pnpm`][pnpm-docs].
 
 Install all dependencies by running:
 
-```bash
-$ yarn
+```sh
+$ pnpm install
 ```
 
 ### Examples
 
-#### Overview
+We have various deck scenarios in `examples` in this repository that are part of the development process.
 
-Our examples are spread out across multiple projects depending on where the core technology lies. We publish most of these to `npm` for use in `spectacle-cli` project to either use with the CLI (`spectacle`) or generate a fresh project boilerplate (`spectacle-boilerplate`).
+We follow the convention of `start:NAME` to run an in-memory dev server for a specific example, but we also have a `pnpm build` script task to make sure we're actually producing non-broken sample presentations as a CI / assurance test.
 
 - `spectacle`
   - [`examples/js`](https://github.com/FormidableLabs/spectacle/tree/main/examples/js)
   - [`examples/md`](https://github.com/FormidableLabs/spectacle/tree/main/examples/md)
-  - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page.html)
+  - [`examples/typescript`](https://github.com/FormidableLabs/spectacle/tree/main/examples/typescript)
+  - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page)
 - `spectacle-mdx-loader`
   - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/mdx)
-- `spectacle-cli`
-  - [`examples/cli-mdx-babel`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/cli-mdx-babel): _Not published_
 
-#### This repository
+Here's how you can run the various examples:
 
-We have various deck scenarios in `examples` in this repository that are part of the development process.
-
-We follow the convention of `start:NAME` to run an in-memory dev server for a specific
-example, but we also have a `yarn build-examples` script task to make sure we're actually
-producing non-broken sample presentations as a CI / assurance test.
-
-#### `examples/js`
-
-A basic deck with JSX and JavaScript:
-
-```bash
-# start the dev server
-$ yarn start:js
-
-# open the browser
+```sh
+# JavaScript demo app (in two different terminals)
+$ pnpm start:js
 $ open http://localhost:3000/
-```
 
-**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
-
-#### `examples/md`
-
-A basic deck written in markdown:
-
-```bash
-# In one terminal open dev server
-$ yarn start:md
-
-# In another open a browser to 3100
+# TypeScript demo app (in two different terminals)
+$ pnpm start:ts
 $ open http://localhost:3100/
+
+# Markdown demo app (in two different terminals)
+$ pnpm start:md
+$ open http://localhost:3200/
+
+# One-page (no build, HTML page only) demo app (in two different terminals)
+$ pnpm start:one-page
+$ open examples/one-page/index.html
+
+# Start **ALL** the example watchers at the same time!
+$ pnpm start:examples
 ```
 
-**Note**: The files `index.{js,html}`, `slides.md` are published and used by `spectacle-cli`.
+You can also live watch the CLI and execute the built script on command with:
 
-#### `examples/one-page`
-
-A self-contained single web page that uses Spectacle, React, and `htm` for a "no build" presentation!
-
-```bash
-# [optional] build the library -
-#   comment out the unpkg dependency in
-#   one-page.html and use the local dist/
-$ yarn build
-
-# open the browser
-$ open examples/one-page.html
+```sh
+# Watch create-spectacle code and test out (in two different terminals)
+$ pnpm start:create-spectacle
+$ node packages/create-spectacle/bin/cli.js -h
 ```
 
-_or_ use the single line:
+These run appropriate file watchers, so you can just start developing source files and wait for the various dev servers to pick up the new changes.
 
-```bash
-$ yarn start:one-page
+### Build and checks
+
+Our task system mostly takes care of all task dependencies and things you need. When you first clone this repo or a new branch, run:
+
+```sh
+# Run all checks. Re-run this command for your normal workflow.
+$ pnpm run check
+# ... or add in a `--watch` to watch & re-run checks for only what you change!
+$ pnpm run check --watch
+
+# Build libraries and UMD distributions.
+# Really only needed to double-check the webpack build still works.
+$ pnpm run build
+# ... or add in a `--watch` to watch & re-run the parts of the build that changed!
+$ pnpm run build --watch
 ```
 
-**Note**: This file is published and used by `spectacle-cli`.
+This will do all the build, seeding the task cache so subsequent tasks are fast, and checks that everything is correctly working. Your Spectacle workflow could reasonably just be (1) making some changes to files + tests, and then (2) re-running `pnpm run check`!
 
-**Development Note**: This JS code portion of this file is programmatically updated from the source in `examples/js/index.js` directly into `one-page.html`. Rather than editing directly, please run `yarn build-one-page` and verify changes look good.
+Here are some other useful tasks (with or without a `--watch` flag):
 
-### Examples integration with `spectacle-cli`
+```sh
+# Quality checks
+$ pnpm run prettier
+$ pnpm run prettier --watch
+$ pnpm run lint
+$ pnpm run lint --watch
+$ pnpm run types:check
+$ pnpm run types:check --watch
 
-`spectacle-cli` uses our `js,md,one-page` examples in the CLI and boilerplate tools. To check that changes to these files don't break `spectacle-cli` upstream, check with something like the following:
-
-```bash
-# In `spectacle` repo
-$ yarn link
-
-# In `spectacle-cli` repo
-$ yarn link spectacle
-
-# Check all MDX, MD examples per https://github.com/FormidableLabs/spectacle-cli/blob/main/CONTRIBUTING.md#examples
-$ yarn start:examples
-
-# (In another shell) Check mdx:5000, mdx+babel:5001, md:5100
-$ open http://localhost:5000/ http://localhost:5001/ http://localhost:5100/
-
-# Check all JS, MDX, MD boilerplates per https://github.com/FormidableLabs/spectacle-cli/blob/main/CONTRIBUTING.md#boilerplate
-$ yarn clean:boilerplate
-$ yarn boilerplate:generate
-$ yarn boilerplate:install
-$ yarn start:boilerplate
-
-# (In another shell) Check mdx:6300, md:6100, js:6200
-#
-# **Note**: These `yarn install` internally so will use latest published
-# `spectacle`, so results may be not entirely accurage. You may need to manually
-# update the installed contents in generated project `node_modules`.
-$ open http://localhost:6300/ http://localhost:6100/ http://localhost:6200/
+# Tests
+$ pnpm run test
+$ pnpm run test --watch
 ```
 
-### Testing
+We also have some helper tasks to fix issues that are fixable.
 
-To run all tests:
-
-```bash
-$ yarn test
+```sh
+$ pnpm run prettier:fix
+$ pnpm run lint:fix
 ```
 
-### Linting and Formatting
+If you have having issues with tasks failing erroneously, you can clear our tooling caches:
 
-To check (and fix) code:
+```sh
+# Clean out everything
+$ yarn clean:cache
 
-```bash
-$ yarn lint
-$ yarn lint-fix
+# Individually
+$ yarn clean:cache:lint      # eslint cache
+$ yarn clean:cache:wireit    # wireit task cache
+$ yarn clean:cache:modules   # caches in node_modules (prettier, etc.)
 ```
-
-To check (and fix) formatting of MD, JSON, _and_ code:
-
-```bash
-$ yarn prettier-check
-$ yarn prettier-fix
-```
-
-We also have a simple one-liner for running both of these fix-checks back-to-back:
-
-```bash
-$ yarn format
-```
-
-Note that there is duplication for JS code in `prettier` doing the same style changes,
-but both should be harmonious and run together.
 
 ### Before submitting a PR
 
-Thanks for taking the time to help us make Spectacle even better! Before you go
-ahead and submit a PR, make sure that you have done the following:
+Thanks for taking the time to help us make Spectacle even better! Before you go ahead and submit a PR, make sure that you have done the following:
 
-- Run all checks using `yarn check-ci`.
-- Run `yarn build-one-page` and check + commit changes to `examples/one-page.html`
-- Check that both the core library and _all_ examples build: `yarn build && yarn build-examples`.
+- Run all checks using `pnpm run check:ci`.
+- Run `pnpm run build` and check + commit changes to `examples/one-page/index.html`
+- Add a [changeset](#changeset) if your PR requires a version change for any of the packages in this repo.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
+
+### Changesets
+
+We use [changesets](https://github.com/changesets/changesets) to create package versions and publish them.
+
+If your work contributes changes that require a change in version to any of the packages, add a changeset by running:
+
+```sh
+$ pnpm changeset
+```
+
+which will open an interactive CLI menu. Use this menu to select which packages need versioning, which semantic version changes are needed, and add appropriate messages accordingly.
+
+After this, you'll see a new uncommitted file in `.changesets` that looks something like:
+
+```
+$ git status
+# ....
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.changeset/flimsy-pandas-marry.md
+```
+
+Review this file, make any necessary adjustments, and commit the file to source. During the next package release, the changes (and changeset notes) will be automatically incorporated based on these changeset files.
 
 ### Releasing a new version to NPM
 
@@ -177,23 +161,54 @@ ahead and submit a PR, make sure that you have done the following:
 <i>Only for project administrators</i>
 </summary>
 
-```sh
-# (1) Update the Changelog, following format from previous versions
-# and commit those changes independently of other updates
-$ git add CHANGELOG.md && git commit -m "Changes for v<version>"
+We use [changesets](https://github.com/changesets/changesets) to create package versions and publish them.
 
-# (2) Run tests, lint, build published dir, update package.json
-$ npm version [patch|minor|major|<version>]
+Our official release path is to use automation (via GitHub actions) to perform the actual publishing of our packages. The steps are:
 
-# (3) If all is well, publish the new version to the npm registry
-$ npm publish
+1. Developers add changesets, ideally as part of their PR that have version impacts.
+2. On merge of a PR with a changeset file, our automation opens a "Version Packages" PR.
+3. On merging the "Version Packages" PR, the automation system publishes the packages.
 
-# (4) Then, update github with the associated tag
-$ git push --tags && git push
-```
+This streamlines releasing to: ensuring PRs have changeset files added as necessary, and approving the "Version Packages" PR generated from GitHub actions to publish a release to all affected packages.
 
-Then, go and manually draft a release for your recently pushed tag with notes in
-the [Github UI](https://github.com/FormidableLabs/spectacle/releases/new).
+#### Manual Releases
+
+For exceptional circumstances, here is a quick guide to manually publish from a local machine using changesets.
+
+1. Add a changeset with `pnpm changeset`. Generate the changeset file, review it, and commit it.
+2. Make a version. Due to our changelog formatting package you will need to create a personal token and pass it to the environment.
+
+   ```sh
+   $ GITHUB_TOKEN=<INSERT TOKEN> pnpm run version
+   ```
+
+   Review git changes, tweak, and commit.
+
+3. Publish.
+
+   First, build necessary files:
+
+   ```sh
+   $ pnpm run build
+   ```
+
+   Then publish:
+
+   ```sh
+   # Test things out first
+   $ pnpm -r publish --dry-run
+
+   # The real publish
+   $ pnpm changeset publish --otp=<insert otp code>
+   ```
+
+   Note that publishing multiple pacakges via `changeset` to npm with an OTP code can often fail with `429 Too Many Requests` rate limiting error. Take a 5+ minute coffee break, then come back and try again.
+
+   Then issue the following to also push git tags:
+
+   ```sh
+   $ git push && git push --tags
+   ```
 
 </details>
 
@@ -277,5 +292,4 @@ available at [https://www.contributor-covenant.org/version/2/0][cc-latest-versio
 [formidable-github]: https://www.github.com/FormidableLabs
 [kale-stew]: https://www.github.com/kale-stew
 [mdx]: https://mdxjs.com/
-[spectacle-cli]: https://www.github.com/FormidableLabs/spectacle-cli
-[yarn-docs]: https://yarnpkg.com/en/docs/getting-started
+[pnpm-docs]: https://pnpm.io/

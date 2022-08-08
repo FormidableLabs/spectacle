@@ -1,6 +1,6 @@
 # dependencies
 /node_modules
-/*/node_modules
+/**/node_modules
 package-lock.json
 
 # testing
@@ -29,9 +29,16 @@ yarn-error.log*
 *.log
 
 # build
+.wireit
+.eslintcache
 coverage
 Procfile
 build
 dist
 lib
 es
+bin
+
+# Pack-ing artifacts
+packages/**/package
+**/*.tgz
