@@ -125,7 +125,7 @@ $ yarn clean:cache:modules   # caches in node_modules (prettier, etc.)
 
 We have slower checks for the outputs created by our `create-spectacle` package that are run in CI, but you generally won't need to run unless you are developing that package.
 
-First, you can install Chromium to use in `puppeteer` or use a local Chrome instance. We only presently have Mac instructions and will get to Windows/Linux support when we get demand.
+First, you can install Chromium to use in `puppeteer` or use a local Chrome instance. We only presently have Mac instructions and will get to Windows/Linux support when we get demand. You only need to do the following step once.
 
 ```sh
 # Option 1 -- Do nothing! If you have the Mac Chrome app, you can skip this step!
@@ -136,7 +136,34 @@ $ pnpm puppeteer:install
 $ PUPPETEER_EXPERIMENTAL_CHROMIUM_MAC_ARM=true pnpm puppeteer:install
 ```
 
-TODO: INSERT NEXT STEPS AND TEST STEPS
+From there, here are sample collections of commands to create new example applications from scratch with full installation and ending with firing up a dev server:
+
+```sh
+# JavaScript
+$ pnpm run --filter ./packages/create-spectacle examples:jsx:clean && \
+  pnpm run --filter ./packages/create-spectacle examples:jsx:create && \
+  pnpm run --filter ./packages/create-spectacle examples:jsx:install && \
+  pnpm run --filter ./packages/create-spectacle examples:jsx:build && \
+  pnpm run --filter ./packages/create-spectacle examples:jsx:start
+
+# TypeScript
+$ pnpm run --filter ./packages/create-spectacle examples:tsx:clean && \
+  pnpm run --filter ./packages/create-spectacle examples:tsx:create && \
+  pnpm run --filter ./packages/create-spectacle examples:tsx:install && \
+  pnpm run --filter ./packages/create-spectacle examples:tsx:build && \
+  pnpm run --filter ./packages/create-spectacle examples:tsx:start
+
+# One Page (HTML-only, no build step)
+$ pnpm run --filter ./packages/create-spectacle examples:onepage:clean && \
+  pnpm run --filter ./packages/create-spectacle examples:onepage:create && \
+  pnpm run --filter ./packages/create-spectacle examples:onepage:start
+```
+
+The dev server in each of these examples runs on port 3000 by default, and you can run a simple Puppeteer test against that port with the following:
+
+```sh
+$ pnpm run --filter ./packages/create-spectacle examples:test
+```
 
 ### Before submitting a PR
 
