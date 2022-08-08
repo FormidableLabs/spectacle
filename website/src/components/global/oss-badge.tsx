@@ -26,23 +26,30 @@ export const OSSBadge = ({ project, hoverable }: OSSBadge) => {
     FEATURED_PROJECTS.find((p) => p === projectName)
   );
 
-  return (
+  const wrapperClassName = `${styles.ossImage} ${
+    hoverable && styles.hoverable
+  }`;
+  const children = isFeaturedProject ? (
+    <FeaturedBadge isHoverable={hoverable} name={projectName} />
+  ) : (
+    <ProjectBadge
+      abbreviation={project.abbreviation}
+      color={project.color}
+      description={project.title}
+    />
+  );
+
+  return project.link ? (
     <a
-      className={`${styles.ossImage} ${hoverable && styles.hoverable}`}
+      className={wrapperClassName}
       href={project.link}
       title={`Visit ${projectName}'s website.`}
       target="_blank"
       rel="noopener noreferrer"
     >
-      {isFeaturedProject ? (
-        <FeaturedBadge isHoverable={hoverable} name={projectName} />
-      ) : (
-        <ProjectBadge
-          abbreviation={project.abbreviation}
-          color={project.color}
-          description={project.title}
-        />
-      )}
+      {children}
     </a>
+  ) : (
+    <span className={wrapperClassName}>{children}</span>
   );
 };
