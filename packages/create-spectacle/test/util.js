@@ -7,7 +7,7 @@ const DL_DIR = path.join(ROOT, '.puppeteer');
 const IS_MAC = process.platform.startsWith('darwin');
 
 // Infer local chrome/chromium location and set options.
-// TODO: Abstract this to a common file in `create-spectacle` or root if multiple packages use.
+// TODO: Abstract this to a common root file if multiple packages use.
 const getLaunchOptions = async () => {
   // CI: Assume GH Actions environment and use local chrome.
   if (process.env.CI === 'true') {

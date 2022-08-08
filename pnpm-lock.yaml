@@ -35,6 +35,7 @@ importers:
       jest: ^28.1.3
       jest-environment-jsdom: ^28.1.3
       jest-puppeteer: ^6.1.1
+      mkdirp: ^1.0.4
       nps: ^5.10.0
       prettier: ^2.4.1
       puppeteer: ^16.0.0
@@ -77,6 +78,7 @@ importers:
       jest: 28.1.3
       jest-environment-jsdom: 28.1.3
       jest-puppeteer: 6.1.1_puppeteer@16.0.0
+      mkdirp: 1.0.4
       nps: 5.10.0
       prettier: 2.7.1
       puppeteer: 16.0.0
@@ -7174,6 +7176,12 @@ packages:
 
   /mkdirp-classic/0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
+    dev: true
+
+  /mkdirp/1.0.4:
+    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
+    engines: {node: '>=10'}
+    hasBin: true
     dev: true
 
   /mousetrap/1.6.5:

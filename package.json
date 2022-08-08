@@ -29,6 +29,7 @@
     "jest": "^28.1.3",
     "jest-environment-jsdom": "^28.1.3",
     "jest-puppeteer": "^6.1.1",
+    "mkdirp": "^1.0.4",
     "nps": "^5.10.0",
     "prettier": "^2.4.1",
     "puppeteer": "^16.0.0",
