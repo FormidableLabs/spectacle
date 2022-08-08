@@ -1,7 +1,7 @@
 import React from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Wrapper from '@site/src/components/global/wrapper';
-import { MakeRomanNum } from '@site/src/utils/numbers';
+import { romanize } from '@site/src/utils/numbers';
 import styles from './footer.module.scss';
 
 type Meta = {
@@ -79,7 +79,7 @@ export default function Footer({ content }) {
         </p>
       </div>
       <p className={styles.footerCopyright}>
-        © {MakeRomanNum(new Date().getFullYear())} Formidable Labs, LLC.
+        © {romanize(new Date().getFullYear())} Formidable Labs, LLC.
       </p>
     </Wrapper>
   );

@@ -1,4 +1,9 @@
-export function MakeRomanNum(num: number) {
+/**
+ * Romanize a number
+ * @param {number} num
+ * @returns {string}
+ */
+module.exports.romanize = function romanize(num) {
   if (!+num) return false;
   const digits = String(+num).split('');
   const key = [
