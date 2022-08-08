@@ -7,7 +7,7 @@ interface Text {
   text: string;
 }
 
-function NpmCopy(props: Text): JSX.Element {
+function NpmCopy(props: Text) {
   const [animating, setAnimating] = useState(false);
   const [copied, setCopied] = useState(false);
 

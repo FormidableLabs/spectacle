@@ -31,7 +31,7 @@ function Feature({ title, Svg, description, theme }: FeatureItem) {
   );
 }
 
-export default function Features({ content }): JSX.Element {
+export default function Features({ content }) {
   const {
     meta,
     title,

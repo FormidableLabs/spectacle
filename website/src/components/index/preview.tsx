@@ -19,7 +19,7 @@ interface Meta {
   noPadding: boolean;
 }
 
-export default function Preview({ content }): JSX.Element {
+export default function Preview({ content }) {
   const {
     meta,
     title,

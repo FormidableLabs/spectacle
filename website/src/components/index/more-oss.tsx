@@ -60,7 +60,7 @@ function Product({
   );
 }
 
-export default function MoreOSS({ content }): JSX.Element {
+export default function MoreOSS({ content }) {
   const {
     meta,
     title,

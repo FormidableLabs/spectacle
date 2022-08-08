@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Hero from '@site/src/components/index/hero';
 import styles from './header.module.scss';
 
-export default function Header({ content }): JSX.Element {
+export default function Header({ content }) {
   const { siteConfig } = useDocusaurusContext();
   const {
     formidableBadge,

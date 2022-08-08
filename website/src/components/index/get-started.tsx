@@ -12,7 +12,7 @@ interface Meta {
   noPadding: boolean;
 }
 
-export default function GetStarted({ content }): JSX.Element {
+export default function GetStarted({ content }) {
   const {
     meta,
     title,

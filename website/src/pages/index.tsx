@@ -9,7 +9,7 @@ import content from '@site/src/components/index/_content';
 
 import styles from './index.module.scss';
 
-export default function Home(): JSX.Element {
+export default function Home() {
   const { header, footer, features, preview, getStarted, oss } = content;
 
   return (
