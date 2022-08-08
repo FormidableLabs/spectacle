@@ -139,7 +139,7 @@
       - right toc link color
       - sidebar subnav link color
   DARK MODE
-      - 
+      -
   ********************************************************/
 
   --oss-color-grey-dark: #606060;
@@ -152,7 +152,7 @@
       - body text color
       - sidebar menu link hover background
   DARK MODE
-      - 
+      -
   ********************************************************/
 
   --oss-color-grey-darker: #454545;
@@ -162,7 +162,7 @@
   COLOR GREY DARKEST
   *********************************************************
   LIGHT MODE
-      - 
+      -
   DARK MODE
       - prism background color
   ********************************************************/
@@ -188,7 +188,7 @@
   LIGHT MODE
       - sidebar menu link hover background
   DARK MODE
-      - 
+      -
   ********************************************************/
 
   --oss-color-tan-dark: #f2ede4;
@@ -495,9 +495,9 @@ article {
 
   .footer__logo {
     margin-top: 0;
-    max-width: 1.25rem;
+    max-width: 6rem;
 
-    @media (max-width: 996px) {
+    @media (min-width: 996px) {
       max-width: 10rem;
     }
   }
