@@ -1,6 +1,6 @@
 // TODO(e2e): Convert to TS.
-const puppeteer = require('puppeteer');
-const { getLaunchOptions } = require('./util');
+import puppeteer from 'puppeteer';
+import { getLaunchOptions } from './util';
 
 describe('App.js', () => {
   let browser;

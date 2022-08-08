@@ -70,11 +70,12 @@
       ]
     },
     "types:check": {
-      "command": "nps types:check",
+      "command": "nps types:check -- -- --p tsconfig.all.json",
       "files": [
         "src/**/*.{ts,tsx}",
-        "../../tsconfig.json",
-        "tsconfig.json"
+        "test/**/*.{ts,tsx}",
+        "tsconfig.json",
+        "tsconfig.all.json"
       ],
       "dependencies": [],
       "output": [],

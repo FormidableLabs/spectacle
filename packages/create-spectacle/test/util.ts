@@ -1,6 +1,5 @@
-// TODO(e2e): Convert to TS.
-const path = require('path');
-const fs = require('fs').promises;
+import path from 'path';
+import { promises as fs } from 'fs';
 
 const ROOT = path.resolve(__dirname, '../../..');
 const DL_DIR = path.join(ROOT, '.puppeteer');
@@ -8,7 +7,7 @@ const IS_MAC = process.platform.startsWith('darwin');
 
 // Infer local chrome/chromium location and set options.
 // TODO: Abstract this to a common root file if multiple packages use.
-const getLaunchOptions = async () => {
+export const getLaunchOptions = async () => {
   // CI: Assume GH Actions environment and use local chrome.
   if (process.env.CI === 'true') {
     return {
@@ -64,8 +63,4 @@ const getLaunchOptions = async () => {
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   };
-};
-
-module.exports = {
-  getLaunchOptions
 };
