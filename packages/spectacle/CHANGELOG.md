@@ -1,5 +1,15 @@
 # Changelog
 
+## 9.4.0
+
+### Minor Changes
+
+- Utilize `Kbar` to allow users to quickly search and use the current commands Spectacle supports within presentations. Fixes #1115 ([#1161](https://github.com/FormidableLabs/spectacle/pull/1161))
+
+### Patch Changes
+
+- (fix [#1171](https://github.com/FormidableLabs/spectacle/issues/1171)) Fix for URL state being overwritten (see [#1171](https://github.com/FormidableLabs/spectacle/issues/1171)) ([#1188](https://github.com/FormidableLabs/spectacle/pull/1188))
+
 ## 9.3.0
 
 ### Minor Changes
