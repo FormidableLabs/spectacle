@@ -30,20 +30,21 @@ module.exports = {
     // - Webpack
     webpack: 'webpack',
 
+    // Test
+    jest: 'jest',
+
     // Quality.
     // - Format
-    'prettier:base':
-      'prettier --list-different "./**/*.{js,jsx,json,ts,tsx,css,md}"',
-    'prettier:base:fix':
-      'prettier --write "./**/*.{js,jsx,json,ts,tsx,css,md}"',
+    'prettier:base': 'prettier --list-different',
+    'prettier:base:fix': 'prettier --write',
     'prettier:pkg':
-      'nps "prettier:base --config ../../.prettierrc --ignore-path ../../.prettierignore"',
+      'nps prettier:base -- -- --config ../../.prettierrc --ignore-path ../../.prettierignore',
     'prettier:pkg:fix':
-      'nps "prettier:base:fix --config ../../.prettierrc --ignore-path ../../.prettierignore"',
+      'nps prettier:base:fix -- -- --config ../../.prettierrc --ignore-path ../../.prettierignore',
 
     // - Lint
     'lint:base': 'eslint --cache --color',
-    'lint:pkg': 'nps "lint:base src"',
-    'lint:pkg:fix': 'nps "lint:base --fix src"'
+    'lint:pkg': 'nps lint:base -- -- src',
+    'lint:pkg:fix': 'nps lint:base -- -- --fix src'
   }
 };

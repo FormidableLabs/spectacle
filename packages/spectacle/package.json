@@ -47,10 +47,7 @@
     "react-dom": ">=17.0.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
     "@types/history": "^4.7.9",
-    "@types/jest": "^27.0.2",
     "@types/mousetrap": "^1.6.8",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
@@ -58,14 +55,11 @@
     "@types/react-syntax-highlighter": "^15.5.2",
     "@types/styled-components": "^5.1.15",
     "@types/styled-system": "^5.1.5",
-    "@types/testing-library__jest-dom": "^5.14.5",
     "@types/unist": "^2.0.6",
     "csstype": "^3.1.0",
-    "jest": "^27.3.1",
     "process": "^0.11.10",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "ts-jest": "^27.0.7"
+    "react-dom": "^18.1.0"
   },
   "resolutions": {
     "@types/react": "^18.0.12"
@@ -200,7 +194,7 @@
       ]
     },
     "lint": {
-      "command": "nps lint:pkg",
+      "command": "nps lint:pkg -- -- \"*.js\" src",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
@@ -213,7 +207,7 @@
       ]
     },
     "lint:fix": {
-      "command": "pnpm run lint || nps lint:pkg:fix",
+      "command": "pnpm run lint || nps lint:pkg:fix -- -- \"*.js\" src",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
@@ -226,7 +220,7 @@
       ]
     },
     "prettier": {
-      "command": "nps prettier:pkg",
+      "command": "nps prettier:pkg -- -- \"*.js\" src",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
@@ -239,7 +233,7 @@
       ]
     },
     "prettier:fix": {
-      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- \"*.js\" src",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
@@ -252,7 +246,7 @@
       ]
     },
     "test": {
-      "command": "jest",
+      "command": "nps jest",
       "files": [
         "src/**",
         "../../.babelrc.js"

@@ -35,7 +35,24 @@
     "lint": "wireit",
     "lint:fix": "wireit",
     "prettier": "wireit",
-    "prettier:fix": "wireit"
+    "prettier:fix": "wireit",
+    "examples:clean": "rimraf .examples",
+    "examples:test": "nps jest",
+    "examples:jsx:clean": "rimraf .examples/jsx",
+    "examples:jsx:create": "mkdirp .examples && cd .examples && node ../bin/cli.js -t jsx -n jsx",
+    "examples:jsx:install": "cd .examples/jsx && npm install",
+    "examples:jsx:build": "cd .examples/jsx && npm run build",
+    "examples:jsx:start": "cd .examples/jsx && npm start",
+    "examples:tsx:clean": "rimraf .examples/tsx",
+    "examples:tsx:create": "mkdirp .examples && cd .examples && node ../bin/cli.js -t tsx -n tsx",
+    "examples:tsx:install": "cd .examples/tsx && npm install",
+    "examples:tsx:build": "cd .examples/tsx && npm run build",
+    "examples:tsx:start": "cd .examples/tsx && npm start",
+    "examples:onepage:clean": "rimraf .examples/onepage",
+    "examples:onepage:create": "mkdirp .examples/onepage && cd .examples/onepage && node ../../bin/cli.js -t onepage -n index",
+    "examples:onepage:install": "echo unused",
+    "examples:onepage:build": "echo unused",
+    "examples:onepage:start": "pnpm exec serve .examples/onepage"
   },
   "wireit": {
     "build": {
@@ -53,11 +70,12 @@
       ]
     },
     "types:check": {
-      "command": "nps types:check",
+      "command": "nps types:check -- -- --p tsconfig.all.json",
       "files": [
         "src/**/*.{ts,tsx}",
-        "../../tsconfig.json",
-        "tsconfig.json"
+        "test/**/*.{ts,tsx}",
+        "tsconfig.json",
+        "tsconfig.all.json"
       ],
       "dependencies": [],
       "output": [],
@@ -66,12 +84,13 @@
       ]
     },
     "lint": {
-      "command": "nps lint:pkg",
+      "command": "nps lint:pkg -- -- test",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
         "*.js",
-        "src/**"
+        "src/**",
+        "test/**"
       ],
       "output": [],
       "packageLocks": [
@@ -79,12 +98,13 @@
       ]
     },
     "lint:fix": {
-      "command": "pnpm run lint || nps lint:pkg:fix",
+      "command": "pnpm run lint || nps lint:pkg:fix -- -- test",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
         "*.js",
-        "src/**"
+        "src/**",
+        "test/**"
       ],
       "output": [],
       "packageLocks": [
@@ -92,12 +112,13 @@
       ]
     },
     "prettier": {
-      "command": "nps prettier:pkg",
+      "command": "nps prettier:pkg -- -- src test",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
         "*.js",
-        "src/**"
+        "src/**",
+        "test/**"
       ],
       "output": [],
       "packageLocks": [
@@ -105,12 +126,13 @@
       ]
     },
     "prettier:fix": {
-      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- src test",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
         "*.js",
-        "src/**"
+        "src/**",
+        "test/**"
       ],
       "output": [],
       "packageLocks": [

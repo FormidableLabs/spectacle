@@ -73,11 +73,11 @@
       ]
     },
     "prettier": {
-      "command": "nps prettier:pkg",
+      "command": "nps prettier:pkg -- -- \"*\"",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
-        "*.{js,jsx,ts,tsx}"
+        "*.{js,jsx,ts,tsx,html}"
       ],
       "output": [],
       "packageLocks": [
@@ -85,11 +85,11 @@
       ]
     },
     "prettier:fix": {
-      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- \"*\"",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
-        "*.{js,jsx,ts,tsx}"
+        "*.{js,jsx,ts,tsx,html}"
       ],
       "output": [],
       "packageLocks": [

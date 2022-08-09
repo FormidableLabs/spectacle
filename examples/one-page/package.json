@@ -52,10 +52,11 @@
       ]
     },
     "prettier": {
-      "command": "nps prettier:pkg",
+      "command": "nps prettier:pkg -- -- \"*\" scripts",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
+        "*.html",
         "scripts"
       ],
       "output": [],
@@ -64,10 +65,11 @@
       ]
     },
     "prettier:fix": {
-      "command": "pnpm run prettier || nps prettier:pkg:fix",
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- \"*\" scripts",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
+        "*.html",
         "scripts"
       ],
       "output": [],
