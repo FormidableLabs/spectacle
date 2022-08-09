@@ -100,7 +100,7 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
 export default function useDeckState(userProvidedInitialState: DeckView) {
   const [{ initialized, pendingView, activeView }, dispatch] = useReducer(
     deckReducer,
-    initialDeckState
+    { ...initialDeckState, ...userProvidedInitialState }
   );
   const actions = useMemo(
     () => ({
@@ -119,12 +119,6 @@ export default function useDeckState(userProvidedInitialState: DeckView) {
     }),
     [dispatch]
   );
-
-  useEffect(() => {
-    if (initialized) return;
-    if (userProvidedInitialState === undefined) return;
-    actions.initializeTo(userProvidedInitialState);
-  }, [initialized, actions, userProvidedInitialState]);
 
   return {
     initialized,
