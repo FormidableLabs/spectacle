@@ -136,6 +136,13 @@ $ pnpm puppeteer:install
 $ PUPPETEER_EXPERIMENTAL_CHROMIUM_MAC_ARM=true pnpm puppeteer:install
 ```
 
+After that, you'll want to either build or watch the `create-spectacle` files:
+
+```sh
+$ pnpm run --filter ./packages/create-spectacle build
+$ pnpm run --filter ./packages/create-spectacle build --watch
+```
+
 From there, here are sample collections of commands to create new example applications from scratch with full installation and ending with firing up a dev server:
 
 ```sh
