@@ -1,0 +1,21 @@
+@import '../../css/variables.scss';
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0;
+
+  a {
+    margin: $spacing-xs auto;
+  }
+
+  @media ($media-breakpoint-sm) {
+    flex-direction: row;
+    margin-top: 0;
+
+    a {
+      margin: $spacing-sm;
+    }
+  }
+}

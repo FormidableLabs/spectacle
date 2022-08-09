@@ -1,0 +1,36 @@
+@import '../../css/variables.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto;
+  padding: $spacing-md;
+  text-align: center;
+
+  @media ($media-breakpoint-sm) {
+    padding: $spacing-xxl;
+  }
+
+  &.noMargin {
+    margin: 0;
+  }
+
+  &.noPadding {
+    padding: 0;
+  }
+
+  &.light {
+    background: var(--oss-background-light);
+  }
+
+  &.dark {
+    background: var(--oss-background-dark);
+  }
+
+  &.color {
+    background: var(--oss-background-color);
+  }
+}

@@ -1,0 +1,43 @@
+@import '../../css/variables.scss';
+
+.featuresContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: $grid-gap-xs;
+  max-width: $container-xl;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media ($media-breakpoint-sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media ($media-breakpoint-md) {
+    grid-gap: $grid-gap-md;
+  }
+}
+
+.featureInfo {
+  max-width: $sizing-lg;
+}
+
+.featureCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  > * + * {
+    margin-top: $spacing-md;
+  }
+
+  svg {
+    height: auto;
+    max-width: 100%;
+  }
+}
