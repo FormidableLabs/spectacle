@@ -53,11 +53,12 @@
   },
   "wireit": {
     "build": {
-      "command": "tsc --p tsconfig.json",
+      "command": "tsc --p tsconfig.build.json",
       "files": [
         "src/**",
         "!src/**/*.test.*",
-        "tsconfig.json"
+        "tsconfig.json",
+        "tsconfig.build.json"
       ],
       "output": [
         "bin/**/*.js"
