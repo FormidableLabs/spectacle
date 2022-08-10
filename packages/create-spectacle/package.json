@@ -2,7 +2,7 @@
   "name": "create-spectacle",
   "version": "0.1.0",
   "description": "Project generator for Spectacle",
-  "main": "bin/cli.js",
+  "main": "bin/src/cli.js",
   "files": [
     "bin/"
   ],
@@ -22,7 +22,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "spectacle": "*",
+    "spectacle": "workspace:*",
     "@types/node": "^18.0.3"
   },
   "resolutions": {},

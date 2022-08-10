@@ -149,9 +149,9 @@ importers:
       cli-spinners: 2.6.1
       commander: 9.3.0
       log-update: 4.0.0
+      spectacle: link:../spectacle
     devDependencies:
       '@types/node': 18.0.3
-      spectacle: link:../spectacle
 
   packages/spectacle:
     specifiers:
