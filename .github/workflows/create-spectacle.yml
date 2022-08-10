@@ -17,6 +17,7 @@ on:
 jobs:
   build:
     name: Create, build, and install
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     strategy:
       matrix:
