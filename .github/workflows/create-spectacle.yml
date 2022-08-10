@@ -55,11 +55,19 @@ jobs:
       # Then, start a background dev server.
       - name: Create example - ${{ matrix.create-type }}
         working-directory: ./packages/create-spectacle
-        run: |
-          pnpm run examples:${{ matrix.create-type }}:create && \
-          pnpm run examples:${{ matrix.create-type }}:install && \
-          pnpm run examples:${{ matrix.create-type }}:build && \
-          pnpm run examples:${{ matrix.create-type }}:start &
+        run: pnpm run examples:${{ matrix.create-type }}:create
+
+      - name: Install example - ${{ matrix.create-type }}
+        working-directory: ./packages/create-spectacle
+        run: pnpm run examples:${{ matrix.create-type }}:install
+
+      - name: Build example - ${{ matrix.create-type }}
+        working-directory: ./packages/create-spectacle
+        run: pnpm run examples:${{ matrix.create-type }}:build
+
+      - name: Start example - ${{ matrix.create-type }}
+        working-directory: ./packages/create-spectacle
+        run: pnpm run examples:${{ matrix.create-type }}:start &
 
       # Wait until the dev server is full up and running and then test.
       - name: Test example - ${{ matrix.create-type }}
