@@ -22,7 +22,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "spectacle": "*",
+    "spectacle": "workspace:*",
     "@types/node": "^18.0.3"
   },
   "resolutions": {},
@@ -53,11 +53,12 @@
   },
   "wireit": {
     "build": {
-      "command": "tsc --p tsconfig.json",
+      "command": "tsc --p tsconfig.build.json",
       "files": [
         "src/**",
         "!src/**/*.test.*",
-        "tsconfig.json"
+        "tsconfig.json",
+        "tsconfig.build.json"
       ],
       "output": [
         "bin/**/*.js"
@@ -67,12 +68,12 @@
       ]
     },
     "types:check": {
-      "command": "nps types:check -- -- --p tsconfig.all.json",
+      "command": "nps types:check -- -- --p tsconfig.typecheck.json",
       "files": [
         "src/**/*.{ts,tsx}",
         "test/**/*.{ts,tsx}",
         "tsconfig.json",
-        "tsconfig.all.json"
+        "tsconfig.typecheck.json"
       ],
       "dependencies": [],
       "output": [],

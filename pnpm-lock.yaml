@@ -142,7 +142,7 @@ importers:
       cli-spinners: ^2.6.1
       commander: ^9.3.0
       log-update: 4.0.0
-      spectacle: '*'
+      spectacle: workspace:*
     dependencies:
       chalk: 4.1.2
       clear: 0.1.0
