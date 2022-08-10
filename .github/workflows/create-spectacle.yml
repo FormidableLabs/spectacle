@@ -67,13 +67,10 @@ jobs:
         working-directory: ./packages/create-spectacle
         run: pnpm run examples:${{ matrix.create-type }}:build
 
-      - name: Start example - ${{ matrix.create-type }}
-        working-directory: ./packages/create-spectacle
-        run: pnpm run examples:${{ matrix.create-type }}:start &
-
       # Wait until the dev server is full up and running and then test.
-      - name: Test example - ${{ matrix.create-type }}
+      - name: Start and test example - ${{ matrix.create-type }}
         working-directory: ./packages/create-spectacle
         run: |
+          pnpm run examples:${{ matrix.create-type }}:start & \
           pnpm exec wait-on http-get://localhost:3000 && \
           pnpm run examples:test
