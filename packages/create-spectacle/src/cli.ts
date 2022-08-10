@@ -9,7 +9,7 @@ import {
   writeWebpackProjectFiles,
   writeOnePageHTMLFile
 } from './templates/file-writers';
-import { devDependencies: { spectacle as SPECTACLE_VERSION } } from '../package.json';
+import { devDependencies } from '../package.json';
 
 type CLIOptions = {
   type: 'tsx' | 'jsx' | 'mdx' | 'onepage';
@@ -71,7 +71,7 @@ const main = async () => {
     lang,
     port,
     enableTypeScriptSupport: type === 'tsx',
-    spectacleVersion: SPECTACLE_VERSION
+    spectacleVersion: devDependencies.spectacle
   };
 
   switch (type) {
