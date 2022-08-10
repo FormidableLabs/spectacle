@@ -9,7 +9,7 @@ import {
   writeWebpackProjectFiles,
   writeOnePageHTMLFile
 } from './templates/file-writers';
-import { version as SPECTACLE_VERSION } from '../package.json';
+import { devDependencies: { spectacle as SPECTACLE_VERSION } } from '../package.json';
 
 type CLIOptions = {
   type: 'tsx' | 'jsx' | 'mdx' | 'onepage';
