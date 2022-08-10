@@ -1,6 +1,6 @@
 {
   "name": "create-spectacle",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": "false",
   "description": "Project generator for Spectacle",
   "main": "bin/cli.js",
