@@ -9,7 +9,8 @@ import {
   writeWebpackProjectFiles,
   writeOnePageHTMLFile
 } from './templates/file-writers';
-import { devDependencies } from '../package.json';
+// @ts-ignore
+import { version, devDependencies } from '../package.json';
 
 type CLIOptions = {
   type: 'tsx' | 'jsx' | 'mdx' | 'onepage';
@@ -31,7 +32,7 @@ const main = async () => {
   program
     .name('create-spectacle')
     .description('CLI to bootstrap Spectacle decks')
-    .version('2.0.0')
+    .version(version)
     .showHelpAfterError()
     .configureOutput({
       outputError: (message, write) =>

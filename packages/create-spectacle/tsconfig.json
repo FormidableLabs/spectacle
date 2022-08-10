@@ -4,6 +4,7 @@
     "moduleResolution": "node",
     "module": "commonjs",
     "outDir": "./bin",
+    "rootDir": "./src",
     // https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping#node-14
     "target": "ES2020",
     "esModuleInterop": true,
