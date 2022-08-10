@@ -2,7 +2,7 @@
   "name": "create-spectacle",
   "version": "0.1.0",
   "description": "Project generator for Spectacle",
-  "main": "bin/src/cli.js",
+  "main": "bin/cli.js",
   "files": [
     "bin/"
   ],
