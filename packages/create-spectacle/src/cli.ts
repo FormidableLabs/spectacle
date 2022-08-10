@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import chalk from 'chalk';
-import { Command } from 'commander';
 import cliSpinners from 'cli-spinners';
 import logUpdate from 'log-update';
+import prompts from 'prompts';
 import {
   FileOptions,
   writeWebpackProjectFiles,
@@ -12,16 +14,23 @@ import {
 // @ts-ignore
 import { version, devDependencies } from '../package.json';
 
+const argv = yargs(hideBin(process.argv)).argv;
+enum ArgName {
+  type = 'type',
+  name = 'name',
+  lang = 'lang',
+  port = 'port'
+}
+
 type CLIOptions = {
-  type: 'tsx' | 'jsx' | 'mdx' | 'onepage';
-  name: string;
-  lang?: string;
-  port?: number;
+  [ArgName.type]: 'tsx' | 'jsx' | 'mdx' | 'onepage';
+  [ArgName.name]: string;
+  [ArgName.lang]?: string;
+  [ArgName.port]?: number;
 };
 
 let progressInterval: NodeJS.Timer;
 const log = console.log;
-const program = new Command();
 const printConsoleError = (message: string) =>
   chalk.whiteBright.bgRed.bold(' ! ') + chalk.red.bold(' ' + message + '\n');
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -29,32 +38,60 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const main = async () => {
   log(chalk.whiteBright.bgMagenta.bold(' Spectacle CLI '));
 
-  program
-    .name('create-spectacle')
-    .description('CLI to bootstrap Spectacle decks')
-    .version(version)
-    .showHelpAfterError()
-    .configureOutput({
-      outputError: (message, write) =>
-        write(
-          chalk.whiteBright.bgRed.bold(' ! ') +
-            chalk.red.bold(' ' + message.replace('error: ', ''))
-        )
-    })
-    .requiredOption(
-      '-t, --type <type>',
-      'deck source type (choices: "tsx", "jsx", "mdx", "onepage")'
-    )
-    .requiredOption('-n, --name [name]', 'name of presentation')
-    .option(
-      '-l, --lang [lang]',
-      'language code for generated HTML document, default: en'
-    )
-    .option('-p, --port [port]', 'port for webpack dev server, default: 3000')
-    .parse(process.argv);
-
   let i = 0;
-  const { type, name, lang = 'en', port = 3000 } = program.opts<CLIOptions>();
+  let type = argv[ArgName.type] || argv['t'];
+  let name = argv[ArgName.name] || argv['n'];
+  let lang = argv[ArgName.lang] || argv['l'] || 'en';
+  let port = argv[ArgName.port] || argv['p'] || 3000;
+
+  /**
+   * If type/name not both provided via CLI flags, prompt for them.
+   * TODO: Handle abort signal. If user aborts during prompt, we should respect that.
+   */
+  if (!(type && name)) {
+    const response = await prompts([
+      !type && {
+        type: 'select',
+        name: ArgName.type as string,
+        message: 'What type of deck do you want to create?',
+        choices: [
+          { title: 'tsx', value: 'tsx' },
+          { title: 'jsx', value: 'jsx' },
+          { title: 'mdx', value: 'mdx' },
+          { title: 'One Page', value: 'onepage' }
+        ]
+      },
+      !name && {
+        type: 'text',
+        name: ArgName.name as string,
+        message: 'What is the name of the presentation?',
+        // TODO: Validate path doesn't already exist
+        validate: async (val) => {
+          return val.length > 0 ? true : 'Name is required';
+        }
+      },
+      {
+        type: 'text',
+        name: ArgName.lang as string,
+        message: 'What is the language code for the generated HTML document?',
+        initial: lang,
+        validate: (val) => {
+          return val.length > 0 ? true : 'Language code is required';
+        }
+      },
+      {
+        type: 'number',
+        name: ArgName.port as string,
+        message: 'What port should the webpack dev server run on?',
+        initial: port
+      }
+    ]);
+
+    if (response.type) type = response.type;
+    if (response.name) name = response.name;
+    lang = response.lang;
+    port = response.port;
+  }
 
   progressInterval = setInterval(() => {
     const { frames } = cliSpinners.aesthetic;
@@ -75,17 +112,17 @@ const main = async () => {
     spectacleVersion: devDependencies.spectacle
   };
 
-  switch (type) {
-    case 'jsx':
-      await writeWebpackProjectFiles(fileOptions);
-      break;
-    case 'tsx':
-      await writeWebpackProjectFiles(fileOptions);
-      break;
-    case 'onepage':
-      await writeOnePageHTMLFile(fileOptions);
-      break;
-  }
+  // switch (type) {
+  //   case 'jsx':
+  //     await writeWebpackProjectFiles(fileOptions);
+  //     break;
+  //   case 'tsx':
+  //     await writeWebpackProjectFiles(fileOptions);
+  //     break;
+  //   case 'onepage':
+  //     await writeOnePageHTMLFile(fileOptions);
+  //     break;
+  // }
 
   clearInterval(progressInterval);
   logUpdate(

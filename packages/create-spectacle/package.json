@@ -14,16 +14,18 @@
     "url": "https://github.com/FormidableLabs/spectacle.git"
   },
   "dependencies": {
+    "@types/yargs": "^17.0.11",
     "chalk": "^4.1.2",
     "clear": "^0.1.0",
     "cli-spinners": "^2.6.1",
-    "commander": "^9.3.0",
-    "log-update": "4.0.0"
+    "log-update": "4.0.0",
+    "prompts": "^2.4.2",
+    "yargs": "^17.5.1"
   },
-  "peerDependencies": {},
   "devDependencies": {
-    "spectacle": "workspace:*",
-    "@types/node": "^18.0.3"
+    "@types/node": "^18.0.3",
+    "@types/prompts": "^2.0.14",
+    "spectacle": "workspace:*"
   },
   "resolutions": {},
   "scripts": {
