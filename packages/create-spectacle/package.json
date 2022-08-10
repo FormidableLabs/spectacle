@@ -1,15 +1,13 @@
 {
   "name": "create-spectacle",
   "version": "0.0.1",
-  "private": "true",
+  "private": "false",
   "description": "Project generator for Spectacle",
   "main": "bin/cli.js",
   "files": [
     "bin/"
   ],
-  "bin": {
-    "create-spectacle": "bin/cli.js"
-  },
+  "bin": "bin/cli.js",
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
   "repository": {
