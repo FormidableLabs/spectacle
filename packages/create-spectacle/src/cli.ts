@@ -153,17 +153,17 @@ const main = async () => {
     spectacleVersion: devDependencies.spectacle
   };
 
-  // switch (type) {
-  //   case 'jsx':
-  //     await writeWebpackProjectFiles(fileOptions);
-  //     break;
-  //   case 'tsx':
-  //     await writeWebpackProjectFiles(fileOptions);
-  //     break;
-  //   case 'onepage':
-  //     await writeOnePageHTMLFile(fileOptions);
-  //     break;
-  // }
+  switch (type) {
+    case 'jsx':
+      await writeWebpackProjectFiles(fileOptions);
+      break;
+    case 'tsx':
+      await writeWebpackProjectFiles(fileOptions);
+      break;
+    case 'onepage':
+      await writeOnePageHTMLFile(fileOptions);
+      break;
+  }
 
   clearInterval(progressInterval);
   logUpdate(
