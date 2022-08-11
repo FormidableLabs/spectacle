@@ -30,7 +30,7 @@ enum ArgName {
 const DeckTypeOptions = [
   { title: chalk.cyan('tsx'), value: 'tsx' },
   { title: chalk.yellow('jsx'), value: 'jsx' },
-  { title: chalk.red('mdx'), value: 'mdx' },
+  // { title: chalk.red('mdx'), value: 'mdx' },
   { title: chalk.green('One Page'), value: 'onepage' }
 ];
 
@@ -68,7 +68,7 @@ const main = async () => {
             message: 'What is the name of the presentation?',
             initial: name,
             validate: async (val) => {
-              return val.length > 0 ? true : 'Name is required';
+              return val.trim().length > 0 ? true : 'Name is required';
             }
           },
           // If output directory already exists, prompt to overwrite
@@ -108,7 +108,7 @@ const main = async () => {
               'What is the language code for the generated HTML document?',
             initial: lang,
             validate: async (val) => {
-              return val.length > 0 ? true : 'Language code is required';
+              return val.trim().length > 0 ? true : 'Language code is required';
             }
           },
           {
