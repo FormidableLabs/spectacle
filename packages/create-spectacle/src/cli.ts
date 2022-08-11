@@ -54,10 +54,11 @@ const main = async () => {
   /**
    * If type/name not both provided via CLI flags, prompt for them.
    */
-  if (
-    !(type && name && lang && (type === 'onepage' || port)) ||
-    isTryingToOverwrite
-  ) {
+  const hasType = Boolean(type);
+  const hasName = Boolean(name);
+  const hasLang = Boolean(lang);
+  const hasPort = type === 'onepage' || Boolean(port); // onepage has no port
+  if (!(hasType && hasName && hasLang && hasPort) || isTryingToOverwrite) {
     try {
       const response = await prompts(
         [
