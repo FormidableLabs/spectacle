@@ -170,9 +170,15 @@ const main = async () => {
   }
 
   clearInterval(progressInterval);
+  const atLocation =
+    type === 'onepage'
+      ? `at ${fileOptions.snakeCaseName}.html`
+      : `in ${fileOptions.snakeCaseName}/`;
   logUpdate(
     chalk.whiteBright.bgGreen.bold(` \u2714 `),
-    chalk.green.bold(`A new ${type} deck named ${name} was created.\n`)
+    chalk.green.bold(
+      `A new ${type} deck named ${name} was created ${atLocation}.\n`
+    )
   );
 };
 
