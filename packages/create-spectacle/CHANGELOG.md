@@ -1,5 +1,11 @@
 # create-spectacle
 
+## 0.2.0
+
+### Minor Changes
+
+- Added interactive CLI prompt ([#1195](https://github.com/FormidableLabs/spectacle/pull/1195))
+
 ## 0.1.1
 
 ### Patch Changes
