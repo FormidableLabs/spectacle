@@ -1,5 +1,4 @@
 import path from 'path';
-import { existsSync } from 'fs';
 import { mkdir, writeFile, rm } from 'fs/promises';
 import { htmlTemplate } from './html';
 import { onePageTemplate } from './one-page';
@@ -8,6 +7,8 @@ import { babelTemplate } from './babel';
 import { packageTemplate } from './package';
 import { indexTemplate } from './index';
 import { tsconfigTemplate } from './tsconfig';
+import { gitignoreTemplate } from './gitignore';
+import { readmeTemplate } from './readme';
 
 export type FileOptions = {
   snakeCaseName: string;
@@ -27,24 +28,22 @@ export const writeWebpackProjectFiles = async ({
   spectacleVersion
 }: FileOptions) => {
   const outPath = path.resolve(process.cwd(), snakeCaseName);
+  const pathFor = (file: string) => path.join(outPath, file);
 
   await rm(outPath, { recursive: true, force: true });
 
-  if (existsSync(outPath)) {
-    throw new Error(`Directory named ${snakeCaseName} already exists.`);
-  }
   await mkdir(outPath, { recursive: true });
-  await writeFile(`${snakeCaseName}/index.html`, htmlTemplate({ name, lang }));
+  await writeFile(pathFor('index.html'), htmlTemplate({ name, lang }));
   await writeFile(
-    `${snakeCaseName}/webpack.config.js`,
+    pathFor('webpack.config.js'),
     webpackTemplate({ port, usesTypeScript: enableTypeScriptSupport })
   );
   await writeFile(
-    `${snakeCaseName}/.babelrc`,
+    pathFor('.babelrc'),
     babelTemplate({ enableTypeScriptSupport })
   );
   await writeFile(
-    `${snakeCaseName}/package.json`,
+    pathFor('package.json'),
     packageTemplate({
       usesTypeScript: enableTypeScriptSupport,
       name: snakeCaseName,
@@ -52,15 +51,20 @@ export const writeWebpackProjectFiles = async ({
     })
   );
   await writeFile(
-    `${snakeCaseName}/index.${enableTypeScriptSupport ? 'tsx' : 'jsx'}`,
+    pathFor(`index.${enableTypeScriptSupport ? 'tsx' : 'jsx'}`),
     indexTemplate({
       usesTypeScript: enableTypeScriptSupport,
       name
     })
   );
+  await writeFile(pathFor('.gitignore'), gitignoreTemplate());
+  await writeFile(
+    pathFor('README.md'),
+    readmeTemplate({ name, enableTypeScriptSupport })
+  );
 
   enableTypeScriptSupport &&
-    (await writeFile(`${snakeCaseName}/tsconfig.json`, tsconfigTemplate()));
+    (await writeFile(pathFor('tsconfig.json'), tsconfigTemplate()));
 };
 
 export const writeOnePageHTMLFile = async ({
@@ -68,5 +72,8 @@ export const writeOnePageHTMLFile = async ({
   name,
   lang
 }: FileOptions) => {
-  await writeFile(`${snakeCaseName}.html`, onePageTemplate({ name, lang }));
+  await writeFile(
+    path.resolve(process.cwd(), `${snakeCaseName}.html`),
+    onePageTemplate({ name, lang })
+  );
 };
