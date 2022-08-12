@@ -16,7 +16,7 @@ Once running the respective command, you will be prompted to provide information
 `create-spectacle`'s core usage is via the interactive prompts. However, there are a handful of arguments/flags that you can provide to pre-fill prompt options:
 
 - Pass a project name as the main argument to specify a project name, e.g. `yarn create spectacle my-presentation`.
-- Pass the `--type` or `-t` flag to specify the type of spectacle project you'd like to create. Options are `jsx`, `tsx`, `mdx`, or `onepage`. Example: `yarn create spectacle -t onepage my-presentation`.
+- Pass the `--type` or `-t` flag to specify the type of spectacle project you'd like to create. Options are `jsx`, `tsx`, or `onepage`. Example: `yarn create spectacle -t onepage my-presentation`.
 - Pass the `--lang` or `-l` flag to specify the HTML lang attribute for your presentation. Example: `yarn create spectacle -l en my-presentation`.
 - Pass the `--port` or `-p` flag to specify the port to run the presentation on. Example: `yarn create spectacle -p 8080 my-presentation`.
 
