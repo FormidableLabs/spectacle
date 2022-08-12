@@ -14,16 +14,18 @@
     "url": "https://github.com/FormidableLabs/spectacle.git"
   },
   "dependencies": {
+    "@types/yargs": "^17.0.11",
     "chalk": "^4.1.2",
     "clear": "^0.1.0",
     "cli-spinners": "^2.6.1",
-    "commander": "^9.3.0",
-    "log-update": "4.0.0"
+    "log-update": "4.0.0",
+    "prompts": "^2.4.2",
+    "yargs": "^17.5.1"
   },
-  "peerDependencies": {},
   "devDependencies": {
-    "spectacle": "workspace:*",
-    "@types/node": "^18.0.3"
+    "@types/node": "^18.0.3",
+    "@types/prompts": "^2.0.14",
+    "spectacle": "workspace:*"
   },
   "resolutions": {},
   "scripts": {
@@ -36,17 +38,17 @@
     "examples:clean": "rimraf .examples",
     "examples:test": "nps jest",
     "examples:jsx:clean": "rimraf .examples/jsx",
-    "examples:jsx:create": "mkdirp .examples && cd .examples && node ../bin/cli.js -t jsx -n jsx",
+    "examples:jsx:create": "mkdirp .examples && cd .examples && node ../bin/cli.js jsx -t jsx -l en -p 3000",
     "examples:jsx:install": "cd .examples/jsx && npm install",
     "examples:jsx:build": "cd .examples/jsx && npm run build",
     "examples:jsx:start": "cd .examples/jsx && npm start",
     "examples:tsx:clean": "rimraf .examples/tsx",
-    "examples:tsx:create": "mkdirp .examples && cd .examples && node ../bin/cli.js -t tsx -n tsx",
+    "examples:tsx:create": "mkdirp .examples && cd .examples && node ../bin/cli.js tsx -t tsx -l en -p 3000",
     "examples:tsx:install": "cd .examples/tsx && npm install",
     "examples:tsx:build": "cd .examples/tsx && npm run build",
     "examples:tsx:start": "cd .examples/tsx && npm start",
     "examples:onepage:clean": "rimraf .examples/onepage",
-    "examples:onepage:create": "mkdirp .examples/onepage && cd .examples/onepage && node ../../bin/cli.js -t onepage -n index",
+    "examples:onepage:create": "mkdirp .examples/onepage && cd .examples/onepage && node ../../bin/cli.js index -t onepage -l en",
     "examples:onepage:install": "echo unused",
     "examples:onepage:build": "echo unused",
     "examples:onepage:start": "pnpm exec serve .examples/onepage"

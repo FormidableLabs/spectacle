@@ -1,9 +1,10 @@
+import type { Browser, Page } from 'puppeteer';
 import puppeteer from 'puppeteer';
 import { getLaunchOptions } from './util';
 
 describe('App.js', () => {
-  let browser;
-  let page;
+  let browser: Browser;
+  let page: Page;
 
   beforeAll(async () => {
     const launchOpts = await getLaunchOptions();
