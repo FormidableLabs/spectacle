@@ -9,8 +9,6 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build --out-dir build/open-source/spectacle",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "formideploy serve",
     "deploy:stage": "formideploy deploy --staging",
@@ -19,13 +17,16 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc"
   },
-  "dependencies": {
+  "devDependencies": {
     "@docusaurus/core": "^2.0.1",
+    "@docusaurus/module-type-aliases": "^2.0.1",
     "@docusaurus/plugin-client-redirects": "^2.0.1",
     "@docusaurus/preset-classic": "^2.0.1",
     "@docusaurus/theme-live-codeblock": "^2.0.1",
     "@docusaurus/theme-search-algolia": "^2.0.1",
     "@mdx-js/react": "^1.6.22",
+    "@tsconfig/docusaurus": "^1.0.5",
+    "@types/styled-components": "^5.1.25",
     "clsx": "^1.1.1",
     "docusaurus-plugin-sass": "^0.2.2",
     "formidable-oss-badges": "^0.5.1",
@@ -34,13 +35,10 @@
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^5.3.3",
     "sass": "^1.53.0",
-    "styled-components": "^5.3.5"
-  },
-  "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.0.1",
-    "@tsconfig/docusaurus": "^1.0.5",
-    "@types/styled-components": "^5.1.25",
+    "sass-loader": "^13.0.2",
+    "styled-components": "^5.3.5",
     "typescript": "^4.6.3"
   },
   "browserslist": {

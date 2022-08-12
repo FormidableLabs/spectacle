@@ -1,6 +1,6 @@
-import darkTheme from 'prism-react-renderer/themes/dracula/index.cjs.js';
+const darkTheme = require('prism-react-renderer/themes/dracula/index.cjs.js');
 
-export default {
+module.exports = {
   ...darkTheme,
   plain: {
     backgroundColor: 'var(--oss-color-grey-darkest)'

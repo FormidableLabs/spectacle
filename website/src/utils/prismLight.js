@@ -1,6 +1,6 @@
-import lightTheme from 'prism-react-renderer/themes/github/index.cjs.js';
+const lightTheme = require('prism-react-renderer/themes/github/index.cjs.js');
 
-export default {
+module.exports = {
   ...lightTheme,
   styles: [
     ...lightTheme.styles,
