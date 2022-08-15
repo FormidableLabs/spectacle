@@ -76,7 +76,7 @@ const main = async () => {
           },
           /**
            * Type of deck.
-           * Needs to be first so we can determine if folder/file already exists.
+           * Needs to be before overwrite confirmation so we can determine if folder/file already exists.
            */
           {
             type: 'select',
