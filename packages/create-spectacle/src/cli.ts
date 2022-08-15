@@ -46,8 +46,8 @@ const main = async () => {
   let i = 0;
   let type = argv[ArgName.type] || argv['t'];
   let name = argv['_']?.[0];
-  let lang = argv[ArgName.lang] || argv['l'] || 'en';
-  let port = argv[ArgName.port] || argv['p'] || 3000;
+  let lang = argv[ArgName.lang] || argv['l'];
+  let port = argv[ArgName.port] || argv['p'];
 
   const isTryingToOverwrite =
     Boolean(name) && !isOutputPathAvailable(name, type === 'onepage');
@@ -64,6 +64,16 @@ const main = async () => {
     try {
       const response = await prompts(
         [
+          // Name prompt
+          {
+            type: 'text',
+            name: ArgName.name as string,
+            message: 'What is the name of the presentation?',
+            initial: name,
+            validate: async (val) => {
+              return val.trim().length > 0 ? true : 'Name is required';
+            }
+          },
           /**
            * Type of deck.
            * Needs to be first so we can determine if folder/file already exists.
@@ -78,31 +88,26 @@ const main = async () => {
               return ind > -1 ? ind : 0;
             })()
           },
-          // Name prompt
-          {
-            type: 'text',
-            name: ArgName.name as string,
-            message: 'What is the name of the presentation?',
-            initial: name,
-            validate: async (val) => {
-              return val.trim().length > 0 ? true : 'Name is required';
-            }
-          },
           // If output directory already exists, prompt to overwrite
           {
-            type: (val, answers) =>
-              isOutputPathAvailable(val, answers?.[ArgName.type] === 'onepage')
+            type: (_, answers) =>
+              isOutputPathAvailable(
+                answers?.[ArgName.name],
+                answers?.[ArgName.type] === 'onepage'
+              )
                 ? null
                 : 'confirm',
             name: ArgName.overwrite as string,
-            message: (val, answers) => {
-              if (answers?.[ArgName.type] === 'onepage') {
+            message: (_, answers) => {
+              const name = answers?.[ArgName.name];
+              const type = answers?.[ArgName.type];
+              if (type === 'onepage') {
                 return `File ${formatProjectOutputPath(
-                  val
+                  name
                 )}.html already exists. Overwrite it?`;
               } else {
                 return `Target directory ${formatProjectOutputPath(
-                  val
+                  name
                 )} already exists. Overwrite and continue?`;
               }
             }
@@ -123,7 +128,7 @@ const main = async () => {
             name: ArgName.lang as string,
             message:
               'What is the language code for the generated HTML document?',
-            initial: lang,
+            initial: lang || 'en',
             validate: async (val) => {
               return val.trim().length > 0 ? true : 'Language code is required';
             }
@@ -134,7 +139,7 @@ const main = async () => {
               answers?.[ArgName.type] === 'onepage' ? null : 'text',
             name: ArgName.port as string,
             message: 'What port should the webpack dev server run on?',
-            initial: port
+            initial: port || '3000'
           }
         ],
         {
