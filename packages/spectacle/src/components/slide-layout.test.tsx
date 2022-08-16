@@ -120,4 +120,116 @@ describe('SlideLayout', () => {
 
     expect(queryAllByTestId('AppearElement')).toHaveLength(3);
   });
+
+
+  it('SlideLayout.Section should render a section title', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Section
+        sectionTitle={"Section title"}
+      />
+    );
+
+    expect(getByText('Section title')).toBeDefined();
+  });
+
+  it('SlideLayout.Section should render a section slide with props passed through', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Section
+        sectionTitle={"Section title"}
+        sectionTitleProps={{ fontSize: '68px' }}
+      />
+    );
+
+    expect(getByText('Section title')).toHaveStyle({ fontSize: '68px' });
+  });
+
+  it('SlideLayout.Section should render a section title in a left aligned flexbox', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Section
+        sectionTitle={"Section title"}
+      />
+    );
+
+    expect(getByText('Section title').parentElement).toHaveStyle({ justifyContent: 'flex-start'});
+  });
+
+  it('SlideLayout.Statement should render statement text', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Statement
+        statement={"Statement"}
+      />
+    );
+
+    expect(getByText('Statement')).toBeDefined();
+  });
+
+  it('SlideLayout.Statement should render a statement slide with props passed through', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Statement
+        statement={"Statement"}
+        statementProps={{ fontSize: '88px' }}
+      />
+    );
+
+    expect(getByText('Statement')).toHaveStyle({ fontSize: '88px' });
+  });
+
+  it('SlideLayout.BigFact should render a slide with fact text', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.BigFact
+        fact={"100%"}
+      />
+    );
+
+    expect(getByText('100%')).toBeDefined();
+  });
+
+  it('SlideLayout.BigFact should render a slide with props passed through', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.BigFact
+        fact={"100%"}
+        factProps={{ fontSize: '88px' }}
+      />
+    );
+
+    expect(getByText('100%')).toHaveStyle({ fontSize: '88px' });
+  });
+
+  it('SlideLayout.BigFact should render a slide with fact information if it exists', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.BigFact
+        fact={"100%"}
+        factInformation={'We earned 100%!'}
+      />
+    );
+
+    expect(getByText('We earned 100%!')).toBeDefined();
+  });
+
+  it('SlideLayout.Quote should render a slide with a quote and attribution text', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Quote
+        quote={'To be, or not to be...'}
+        attribution={'-William Shakespeare'}
+      />
+    );
+
+    expect(getByText('To be, or not to be...')).toBeDefined();
+    expect(getByText('-William Shakespeare')).toBeDefined();
+  });
+
+  it('SlideLayout.Quote should render a slide with quote and attribution props passed through', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Quote
+        quote={"I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel."}
+        quoteProps={{ fontSize: '68px' }}
+        attribution={"Maya Angelou"}
+        attributionProps={{ fontSize: '48px' }}
+      />
+    );
+
+    expect(getByText("I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.")).toHaveStyle({ fontSize: '68px' });
+    expect(getByText("Maya Angelou")).toHaveStyle({ fontSize: '48px' });
+  });
+
 });
