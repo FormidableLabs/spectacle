@@ -52,7 +52,7 @@
   "scripts": {
     "version": "pnpm changeset version && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
-    "start:js": "concurrently --raw pnpm:build:spectacle:esm:watch \"pnpm run --filter ./examples/js start\"",
+    "start:js": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:create:watch \"pnpm run --filter ./examples/js start\"",
     "start:md": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:create:watch \"pnpm run --filter ./examples/md start\"",
     "start:ts": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:create:watch \"pnpm run --filter ./examples/typescript start\"",
     "start:one-page": "concurrently --raw pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch",
