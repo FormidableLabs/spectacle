@@ -89,6 +89,26 @@ const List = ({
 };
 
 /**
+ * Generic vertically-centered Header layout
+ */
+const Header = ({
+  flexBoxProps,
+  headingProps,
+  heading,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  heading: string;
+  flexBoxProps?: ComponentProps<typeof FlexBox>;
+  headingProps?: ComponentProps<typeof Heading>;
+}) => (
+  <Slide {...rest}>
+    <FlexBox height="100%" {...flexBoxProps}>
+      <Heading {...headingProps}>{heading}</Heading>
+    </FlexBox>
+  </Slide>
+);
+
+/**
  * Section layout with left aligned text
  */
 const Section = ({
@@ -99,11 +119,11 @@ const Section = ({
   sectionTitle: string;
   sectionTitleProps?: ComponentProps<typeof Heading>;
 }) => (
-  <Slide {...rest}>
-    <FlexBox justifyContent="flex-start" height="100%">
-      <Heading {...sectionTitleProps}>{sectionTitle}</Heading>
-    </FlexBox>
-  </Slide>
+  <Header
+    heading={sectionTitle}
+    headingProps={sectionTitleProps}
+    flexBoxProps={{ justifyContent: 'flex-start' }}
+  />
 );
 
 /**
@@ -116,13 +136,7 @@ const Statement = ({
 }: Omit<SlideProps, 'children'> & {
   statement: string;
   statementProps?: ComponentProps<typeof Heading>;
-}) => (
-  <Slide {...rest}>
-    <FlexBox height="100%">
-      <Heading {...statementProps}>{statement}</Heading>
-    </FlexBox>
-  </Slide>
-);
+}) => <Header heading={statement} headingProps={statementProps} />;
 
 /**
  * Big Fact with optional fact information
