@@ -166,6 +166,7 @@
       "dependencies": [
         "./packages/spectacle:lint",
         "./packages/create-spectacle:lint",
+        "./website:lint",
         "./examples/js:lint",
         "./examples/md:lint",
         "./examples/one-page:lint",
@@ -176,6 +177,7 @@
       "dependencies": [
         "./packages/spectacle:lint:fix",
         "./packages/create-spectacle:lint:fix",
+        "./website:lint:fix",
         "./examples/js:lint:fix",
         "./examples/md:lint:fix",
         "./examples/one-page:lint:fix",
@@ -224,6 +226,7 @@
       "dependencies": [
         "./packages/spectacle:prettier",
         "./packages/create-spectacle:prettier",
+        "./website:prettier",
         "./examples/js:prettier",
         "./examples/md:prettier",
         "./examples/one-page:prettier",
@@ -234,6 +237,7 @@
       "dependencies": [
         "./packages/spectacle:prettier:fix",
         "./packages/create-spectacle:prettier:fix",
+        "./website:prettier:fix",
         "./examples/js:prettier:fix",
         "./examples/md:prettier:fix",
         "./examples/one-page:prettier:fix",

@@ -5,18 +5,6 @@
   "engines": {
     "node": "<18"
   },
-  "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build --out-dir build/open-source/spectacle",
-    "clear": "docusaurus clear",
-    "serve": "formideploy serve",
-    "deploy:stage": "formideploy deploy --staging",
-    "deploy:prod": "formideploy deploy --production",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
-  },
   "devDependencies": {
     "@docusaurus/core": "^2.0.1",
     "@docusaurus/module-type-aliases": "^2.0.1",
@@ -40,6 +28,76 @@
     "sass-loader": "^13.0.2",
     "styled-components": "^5.3.5",
     "typescript": "^4.6.3"
+  },
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build --out-dir build/open-source/spectacle",
+    "clear": "docusaurus clear",
+    "serve": "formideploy serve",
+    "deploy:stage": "formideploy deploy --staging",
+    "deploy:prod": "formideploy deploy --production",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit"
+  },
+  "wireit": {
+    "lint": {
+      "command": "nps lint:pkg -- -- \"*.js\" src",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:fix": {
+      "command": "pnpm run lint || nps lint:pkg:fix -- -- \"*.js\" src",
+      "files": [
+        "../.eslintignore",
+        "../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:website -- -- \"*.js\" src",
+      "files": [
+        "../.prettierignore",
+        "../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:website:fix -- -- \"*.js\" src",
+      "files": [
+        "../.prettierignore",
+        "../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
   },
   "browserslist": {
     "production": [
