@@ -35,6 +35,7 @@
     "lint:fix": "wireit",
     "prettier": "wireit",
     "prettier:fix": "wireit",
+    "test": "wireit",
     "examples:clean": "rimraf .examples",
     "examples:test": "nps jest",
     "examples:jsx:clean": "rimraf .examples/jsx",
@@ -133,6 +134,18 @@
         "*.js",
         "src/**",
         "test/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "test": {
+      "dependencies": ["build"],
+      "command": "jest --testMatch=\"<rootDir>/src/*.test.ts\"",
+      "files": [
+        "src/**",
+        "../../.babelrc.js"
       ],
       "output": [],
       "packageLocks": [
