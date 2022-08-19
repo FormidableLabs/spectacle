@@ -8,6 +8,12 @@ const OUT_NAME = 'my-deck';
 const OUT_PATH = path.join(TMP_PATH, OUT_NAME);
 
 describe('create-spectacle', () => {
+  /**
+   * Some file/dir setup:
+   * - Make tmp dir before suite
+   * - Clean up tmp dir after suite
+   * - After each test, try to clean up the generated files from that test.
+   */
   beforeAll(async () => {
     await fs.mkdir(TMP_PATH, { recursive: true });
   });
