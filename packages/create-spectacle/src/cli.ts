@@ -31,6 +31,7 @@ enum ArgName {
 const DeckTypeOptions = [
   { title: chalk.cyan('tsx (webpack)'), value: 'tsx' },
   { title: chalk.yellow('jsx (webpack)'), value: 'jsx' },
+  // TODO: Better colors for these...
   { title: chalk.bgCyan('tsx (vite)'), value: 'tsx-vite' },
   { title: chalk.bgYellow('jsx (vite)'), value: 'jsx-vite' },
   { title: chalk.green('One Page'), value: 'onepage' }

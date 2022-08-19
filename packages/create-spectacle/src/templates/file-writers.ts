@@ -113,6 +113,9 @@ export const writeViteProjectFiles = async (options: FileOptions) => {
   await writeFile(pathFor('vite.config.ts'), viteConfigTemplate());
 };
 
+/**
+ * Generate a one-page project
+ */
 export const writeOnePageHTMLFile = async ({
   snakeCaseName,
   name,
