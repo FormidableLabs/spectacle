@@ -423,20 +423,21 @@ A vertically-centered center-aligned statement for if you want to make a stateme
 | Props                  | Type                            | Required |  Example                 |
 |------------------------|---------------------------------|----------|--------------------------|
 | `...slideProps`        | [Slide Props](#slide)           | ❌        |                          |
-| `statementTitle`       | `string`                        | ✅        | `Statement!`          |
+| `statementTitle`       | `string`                        | ✅        | `Statement!`             |
 | `statementProps`       | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
 
 ### `SlideLayout.BigFact`
 
 A centered Big Fact layout for if you want to present a fact in a large font.
 
-| Props                     | Type                            | Required |  Example               |
-|---------------------------|---------------------------------|----------|------------------------|
-| `...slideProps`           | [Slide Props](#slide)           | ❌        |                        |
-| `fact`                    | `string`                        | ✅        | `100%`                 |
-| `factInformation`         | `string`                        | ❌        | `Fact information`     |
-| `factProps`               | [Text Props](#typography-tags)  | ❌        | { fontSize: "100px" }  |
-| `factInformationProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }   |
+| Props                     | Type                            | Required |  Example               | Default |
+|---------------------------|---------------------------------|----------|------------------------|---------|
+| `...slideProps`           | [Slide Props](#slide)           | ❌        |                        |        |
+| `fact`                    | `string`                        | ✅        | `100%`                 |        |
+| `factInformation`         | `string`                        | ❌        | `Fact information`     |        |
+| `factProps`               | [Text Props](#typography-tags)  | ❌        | { fontSize: "100px" }  |        |
+| `factInformationProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }   |        |
+| `factFontSize`            | `string`                        | ❌        | `150px`                |`250px` |
 
 ### `SlideLayout.Quote`
 
