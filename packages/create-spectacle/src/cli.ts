@@ -29,12 +29,11 @@ enum ArgName {
 }
 
 const DeckTypeOptions = [
-  { title: chalk.cyan('tsx (webpack)'), value: 'tsx' },
-  { title: chalk.yellow('jsx (webpack)'), value: 'jsx' },
-  // TODO: Better colors for these...
-  { title: chalk.bgCyan('tsx (vite)'), value: 'tsx-vite' },
-  { title: chalk.bgYellow('jsx (vite)'), value: 'jsx-vite' },
-  { title: chalk.green('One Page'), value: 'onepage' }
+  { title: chalk.bgCyanBright(chalk.black('tsx (webpack)')), value: 'tsx' },
+  { title: chalk.bgBlack(chalk.cyanBright('jsx (webpack)')), value: 'jsx' },
+  { title: chalk.bgGreenBright(chalk.black('tsx (vite)')), value: 'tsx-vite' },
+  { title: chalk.greenBright('jsx (vite)'), value: 'jsx-vite' },
+  { title: chalk.bgBlack(chalk.yellow('One Page')), value: 'onepage' }
 ];
 
 let progressInterval: NodeJS.Timer;
