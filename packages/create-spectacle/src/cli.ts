@@ -46,10 +46,11 @@ const main = async () => {
   let i = 0;
   let type = argv[ArgName.type] || argv['t'];
   let name = argv['_']?.[0];
-  let lang = argv[ArgName.lang] || argv['l'] || 'en';
-  let port = argv[ArgName.port] || argv['p'] || 3000;
+  let lang = argv[ArgName.lang] || argv['l'];
+  let port = argv[ArgName.port] || argv['p'];
 
-  const isTryingToOverwrite = Boolean(name) && !isFolderNameAvailable(name);
+  const isTryingToOverwrite =
+    Boolean(name) && !isOutputPathAvailable(name, type === 'onepage');
 
   /**
    * If type/name not both provided via CLI flags, prompt for them.
@@ -58,6 +59,7 @@ const main = async () => {
   const hasName = Boolean(name);
   const hasLang = Boolean(lang);
   const hasPort = type === 'onepage' || Boolean(port); // onepage has no port
+
   if (!(hasType && hasName && hasLang && hasPort) || isTryingToOverwrite) {
     try {
       const response = await prompts(
@@ -72,14 +74,43 @@ const main = async () => {
               return val.trim().length > 0 ? true : 'Name is required';
             }
           },
+          /**
+           * Type of deck.
+           * Needs to be before overwrite confirmation so we can determine if folder/file already exists.
+           */
+          {
+            type: 'select',
+            name: ArgName.type as string,
+            message: 'What type of deck do you want to create?',
+            choices: DeckTypeOptions,
+            initial: (() => {
+              const ind = DeckTypeOptions.findIndex((o) => o.value === type);
+              return ind > -1 ? ind : 0;
+            })()
+          },
           // If output directory already exists, prompt to overwrite
           {
-            type: (val) => (isFolderNameAvailable(val) ? null : 'confirm'),
+            type: (_, answers) =>
+              isOutputPathAvailable(
+                answers?.[ArgName.name],
+                answers?.[ArgName.type] === 'onepage'
+              )
+                ? null
+                : 'confirm',
             name: ArgName.overwrite as string,
-            message: (val) =>
-              `Target directory ${formatProjectDirName(
-                val
-              )} already exists. Overwrite and continue?`
+            message: (_, answers) => {
+              const name = answers?.[ArgName.name];
+              const type = answers?.[ArgName.type];
+              if (type === 'onepage') {
+                return `File ${formatProjectOutputPath(
+                  name
+                )}.html already exists. Overwrite and continue?`;
+              } else {
+                return `Target directory ${formatProjectOutputPath(
+                  name
+                )} already exists. Overwrite and continue?`;
+              }
+            }
           },
           // Check overwrite comes back false, we need to abort.
           {
@@ -91,23 +122,13 @@ const main = async () => {
             },
             name: 'overwriteAborter'
           },
-          {
-            type: 'select',
-            name: ArgName.type as string,
-            message: 'What type of deck do you want to create?',
-            choices: DeckTypeOptions,
-            initial: (() => {
-              const ind = DeckTypeOptions.findIndex((o) => o.value === type);
-              return ind > -1 ? ind : 0;
-            })()
-          },
           // Language prompt
           {
             type: 'text',
             name: ArgName.lang as string,
             message:
               'What is the language code for the generated HTML document?',
-            initial: lang,
+            initial: lang || 'en',
             validate: async (val) => {
               return val.trim().length > 0 ? true : 'Language code is required';
             }
@@ -118,7 +139,7 @@ const main = async () => {
               answers?.[ArgName.type] === 'onepage' ? null : 'text',
             name: ArgName.port as string,
             message: 'What port should the webpack dev server run on?',
-            initial: port
+            initial: port || '3000'
           }
         ],
         {
@@ -149,7 +170,7 @@ const main = async () => {
   await sleep(750);
 
   const fileOptions: FileOptions = {
-    snakeCaseName: formatProjectDirName(name),
+    snakeCaseName: formatProjectOutputPath(name),
     name,
     lang,
     port,
@@ -182,12 +203,14 @@ const main = async () => {
   );
 };
 
-const formatProjectDirName = (name: string) =>
+const formatProjectOutputPath = (name: string) =>
   name.toLowerCase().replace(/([^a-z0-9]+)/gi, '-');
 
-const isFolderNameAvailable = (name: string) => {
-  const dir = path.join(cwd, formatProjectDirName(name));
-  return !fs.existsSync(dir);
+const isOutputPathAvailable = (name: string, isHTMLFile = false) => {
+  const outputPath = isHTMLFile
+    ? path.join(cwd, `${formatProjectOutputPath(name)}.html`)
+    : path.join(cwd, formatProjectOutputPath(name));
+  return !fs.existsSync(outputPath);
 };
 
 main().catch((err) => {
