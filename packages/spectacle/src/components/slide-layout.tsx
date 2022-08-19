@@ -192,7 +192,7 @@ const Quote = ({
         {quote}
       </Text>
       <Text fontSize="36px" padding={'0em 0em 0em 1em'} {...attributionProps}>
-        {attribution}
+        &ndash;{attribution}
       </Text>
     </Box>
   </Slide>
