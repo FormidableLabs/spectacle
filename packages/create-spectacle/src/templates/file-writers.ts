@@ -53,7 +53,7 @@ const prepForProjectWrite = async (fileOptions: FileOptions) => {
   await writeFile(pathFor('.gitignore'), gitignoreTemplate());
   await writeFile(
     pathFor('README.md'),
-    readmeTemplate({ name, enableTypeScriptSupport })
+    readmeTemplate({ name, enableTypeScriptSupport, isVite })
   );
   enableTypeScriptSupport &&
     (await writeFile(pathFor('tsconfig.json'), tsconfigTemplate()));
@@ -110,7 +110,10 @@ export const writeViteProjectFiles = async (options: FileOptions) => {
     })
   );
 
-  await writeFile(pathFor('vite.config.ts'), viteConfigTemplate());
+  await writeFile(
+    pathFor(`vite.config.${enableTypeScriptSupport ? 'ts' : 'js'}`),
+    viteConfigTemplate()
+  );
 };
 
 /**
