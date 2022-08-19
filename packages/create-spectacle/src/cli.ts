@@ -104,7 +104,7 @@ const main = async () => {
               if (type === 'onepage') {
                 return `File ${formatProjectOutputPath(
                   name
-                )}.html already exists. Overwrite it?`;
+                )}.html already exists. Overwrite and continue?`;
               } else {
                 return `Target directory ${formatProjectOutputPath(
                   name
