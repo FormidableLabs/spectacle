@@ -2,8 +2,12 @@ type PackageTemplateOptions = {
   name: string;
   spectacleVersion: string;
   usesTypeScript: boolean;
+  port?: number;
 };
 
+/**
+ * TODO: JSON.stringify this one.
+ */
 export const packageTemplate = (options: PackageTemplateOptions) =>
   `{
   "name": "${options.name}",
@@ -47,3 +51,36 @@ export const packageTemplate = (options: PackageTemplateOptions) =>
   }
 }
   `;
+
+export const vitePackageTemplate = (options: PackageTemplateOptions) =>
+  JSON.stringify(
+    {
+      name: options.name,
+      private: true,
+      scripts: {
+        start: `vite dev --port ${options.port || 3000}`,
+        build: 'vite build'
+      },
+      dependencies: {
+        react: '^18.1.0',
+        'react-dom': '^18.1.0',
+        spectacle:
+          options.spectacleVersion === 'workspace:*'
+            ? '*'
+            : `^${options.spectacleVersion}`
+      },
+      devDependencies: {
+        '@types/react': '^18.0.17',
+        '@types/react-dom': '^18.0.6',
+        '@vitejs/plugin-react': '^2.0.1',
+        ...(options.usesTypeScript
+          ? {
+              typescript: '^4.6.4'
+            }
+          : {}),
+        vite: '^3.0.7'
+      }
+    },
+    null,
+    2
+  );

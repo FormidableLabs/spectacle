@@ -11,7 +11,8 @@ import prompts from 'prompts';
 import {
   FileOptions,
   writeWebpackProjectFiles,
-  writeOnePageHTMLFile
+  writeOnePageHTMLFile,
+  writeViteProjectFiles
 } from './templates/file-writers';
 // @ts-ignore
 import { version, devDependencies } from '../package.json';
@@ -28,9 +29,10 @@ enum ArgName {
 }
 
 const DeckTypeOptions = [
-  { title: chalk.cyan('tsx'), value: 'tsx' },
-  { title: chalk.yellow('jsx'), value: 'jsx' },
-  // { title: chalk.red('mdx'), value: 'mdx' },
+  { title: chalk.cyan('tsx (webpack)'), value: 'tsx' },
+  { title: chalk.yellow('jsx (webpack)'), value: 'jsx' },
+  { title: chalk.bgCyan('tsx (vite)'), value: 'tsx-vite' },
+  { title: chalk.bgYellow('jsx (vite)'), value: 'jsx-vite' },
   { title: chalk.green('One Page'), value: 'onepage' }
 ];
 
@@ -174,16 +176,19 @@ const main = async () => {
     name,
     lang,
     port,
-    enableTypeScriptSupport: type === 'tsx',
+    enableTypeScriptSupport: /^tsx/.test(type),
+    isVite: /vite$/.test(type),
     spectacleVersion: devDependencies.spectacle
   };
 
   switch (type) {
     case 'jsx':
-      await writeWebpackProjectFiles(fileOptions);
-      break;
     case 'tsx':
       await writeWebpackProjectFiles(fileOptions);
+      break;
+    case 'jsx-vite':
+    case 'tsx-vite':
+      await writeViteProjectFiles(fileOptions);
       break;
     case 'onepage':
       await writeOnePageHTMLFile(fileOptions);

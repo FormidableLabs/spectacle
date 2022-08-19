@@ -4,11 +4,12 @@ import { htmlTemplate } from './html';
 import { onePageTemplate } from './one-page';
 import { webpackTemplate } from './webpack';
 import { babelTemplate } from './babel';
-import { packageTemplate } from './package';
+import { packageTemplate, vitePackageTemplate } from './package';
 import { indexTemplate } from './index';
 import { tsconfigTemplate } from './tsconfig';
 import { gitignoreTemplate } from './gitignore';
 import { readmeTemplate } from './readme';
+import { viteConfigTemplate } from './viteConfig';
 
 export type FileOptions = {
   snakeCaseName: string;
@@ -17,23 +18,62 @@ export type FileOptions = {
   port: number;
   enableTypeScriptSupport: boolean;
   spectacleVersion: string;
+  isVite: boolean;
 };
 
-export const writeWebpackProjectFiles = async ({
-  snakeCaseName,
-  name,
-  lang,
-  port,
-  enableTypeScriptSupport,
-  spectacleVersion
-}: FileOptions) => {
+const prepForProjectWrite = async (fileOptions: FileOptions) => {
+  const { name, lang, snakeCaseName, enableTypeScriptSupport, isVite } =
+    fileOptions;
+
   const outPath = path.resolve(process.cwd(), snakeCaseName);
   const pathFor = (file: string) => path.join(outPath, file);
 
+  // Clear out the directory if it already exists.
   await rm(outPath, { recursive: true, force: true });
 
+  // Make new directory, and add some base files (shared between webpack and vite).
   await mkdir(outPath, { recursive: true });
-  await writeFile(pathFor('index.html'), htmlTemplate({ name, lang }));
+  await writeFile(
+    pathFor('index.html'),
+    htmlTemplate({
+      name,
+      lang,
+      entryFile: isVite
+        ? `/index.${enableTypeScriptSupport ? 'tsx' : 'jsx'}`
+        : undefined
+    })
+  );
+  await writeFile(
+    pathFor(`index.${enableTypeScriptSupport ? 'tsx' : 'jsx'}`),
+    indexTemplate({
+      usesTypeScript: enableTypeScriptSupport,
+      name
+    })
+  );
+  await writeFile(pathFor('.gitignore'), gitignoreTemplate());
+  await writeFile(
+    pathFor('README.md'),
+    readmeTemplate({ name, enableTypeScriptSupport })
+  );
+  enableTypeScriptSupport &&
+    (await writeFile(pathFor('tsconfig.json'), tsconfigTemplate()));
+
+  return { outPath, pathFor };
+};
+
+/**
+ * Generate a webpack-based project
+ */
+export const writeWebpackProjectFiles = async (options: FileOptions) => {
+  const {
+    port,
+    enableTypeScriptSupport,
+    snakeCaseName,
+    spectacleVersion,
+    name
+  } = options;
+  const { outPath, pathFor } = await prepForProjectWrite(options);
+
   await writeFile(
     pathFor('webpack.config.js'),
     webpackTemplate({ port, usesTypeScript: enableTypeScriptSupport })
@@ -50,21 +90,27 @@ export const writeWebpackProjectFiles = async ({
       spectacleVersion
     })
   );
+};
+
+/**
+ * Generate a vite-based project
+ */
+export const writeViteProjectFiles = async (options: FileOptions) => {
+  const { enableTypeScriptSupport, snakeCaseName, spectacleVersion, port } =
+    options;
+  const { outPath, pathFor } = await prepForProjectWrite(options);
+
   await writeFile(
-    pathFor(`index.${enableTypeScriptSupport ? 'tsx' : 'jsx'}`),
-    indexTemplate({
+    pathFor('package.json'),
+    vitePackageTemplate({
       usesTypeScript: enableTypeScriptSupport,
-      name
+      name: snakeCaseName,
+      spectacleVersion,
+      port
     })
   );
-  await writeFile(pathFor('.gitignore'), gitignoreTemplate());
-  await writeFile(
-    pathFor('README.md'),
-    readmeTemplate({ name, enableTypeScriptSupport })
-  );
 
-  enableTypeScriptSupport &&
-    (await writeFile(pathFor('tsconfig.json'), tsconfigTemplate()));
+  await writeFile(pathFor('vite.config.ts'), viteConfigTemplate());
 };
 
 export const writeOnePageHTMLFile = async ({
