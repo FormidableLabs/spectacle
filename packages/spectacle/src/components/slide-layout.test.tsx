@@ -129,6 +129,20 @@ describe('SlideLayout', () => {
     expect(getByText('Section title')).toBeDefined();
   });
 
+  it('SlideLayout.Section should render a section title within a react node', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Section
+        sectionTitle={
+          <>
+            Hello<em>World!</em>
+          </>
+        }
+      />
+    );
+
+    expect(getByText('World!')).toBeDefined();
+  });
+
   it('SlideLayout.Section should render a section slide with props passed through', () => {
     const { getByText } = renderInDeck(
       <SlideLayout.Section
@@ -156,6 +170,20 @@ describe('SlideLayout', () => {
     );
 
     expect(getByText('Statement')).toBeDefined();
+  });
+
+  it('SlideLayout.Statement should render statement text within a react node', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Statement
+        statement={
+          <>
+            Hello<em>World!</em>
+          </>
+        }
+      />
+    );
+
+    expect(getByText('World!')).toBeDefined();
   });
 
   it('SlideLayout.Statement should render a statement slide with props passed through', () => {
@@ -209,12 +237,12 @@ describe('SlideLayout', () => {
     const { getByText } = renderInDeck(
       <SlideLayout.Quote
         quote={'To be, or not to be...'}
-        attribution={'-William Shakespeare'}
+        attribution={'William Shakespeare'}
       />
     );
 
     expect(getByText('To be, or not to be...')).toBeDefined();
-    expect(getByText('-William Shakespeare')).toBeDefined();
+    expect(getByText('William Shakespeare', { exact: false })).toBeDefined();
   });
 
   it('SlideLayout.Quote should render a slide with quote and attribution props passed through', () => {
@@ -234,6 +262,8 @@ describe('SlideLayout', () => {
         "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel."
       )
     ).toHaveStyle({ fontSize: '68px' });
-    expect(getByText('Maya Angelou')).toHaveStyle({ fontSize: '48px' });
+    expect(getByText('Maya Angelou', { exact: false })).toHaveStyle({
+      fontSize: '48px'
+    });
   });
 });
