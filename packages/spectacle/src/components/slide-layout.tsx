@@ -97,7 +97,7 @@ const Header = ({
   heading,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  heading: string;
+  heading: string | ReactNode;
   flexBoxProps?: ComponentProps<typeof FlexBox>;
   headingProps?: ComponentProps<typeof Heading>;
 }) => (
@@ -116,7 +116,7 @@ const Section = ({
   sectionTitleProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  sectionTitle: string;
+  sectionTitle: string | ReactNode;
   sectionTitleProps?: ComponentProps<typeof Heading>;
 }) => (
   <Header
@@ -134,7 +134,7 @@ const Statement = ({
   statementProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  statement: string;
+  statement: string | ReactNode;
   statementProps?: ComponentProps<typeof Heading>;
 }) => <Header heading={statement} headingProps={statementProps} />;
 
