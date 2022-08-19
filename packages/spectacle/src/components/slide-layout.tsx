@@ -145,18 +145,20 @@ const BigFact = ({
   fact,
   factInformation,
   factProps,
+  factFontSize = '250px',
   factInformationProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
   fact: string;
   factInformation?: string;
   factProps?: ComponentProps<typeof Text>;
+  factFontSize?: string;
   factInformationProps?: ComponentProps<typeof Text>;
 }) => (
   <Slide {...rest}>
     <FlexBox>
       <Box>
-        <Text fontSize="250px" textAlign="center" {...factProps}>
+        <Text textAlign="center" fontSize={factFontSize} {...factProps}>
           {fact}
         </Text>
         {factInformation ? (

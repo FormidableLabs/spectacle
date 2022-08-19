@@ -183,6 +183,20 @@ describe('SlideLayout', () => {
     expect(getByText('100%')).toHaveStyle({ fontSize: '88px' });
   });
 
+  it('SlideLayout.BigFact should render a fact with default font size', () => {
+    const { getByText } = renderInDeck(<SlideLayout.BigFact fact={'100%'} />);
+
+    expect(getByText('100%')).toHaveStyle({ fontSize: '250px' });
+  });
+
+  it('SlideLayout.BigFact should render a fact with customizable font size', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.BigFact fact={'100%'} factFontSize={'150px'} />
+    );
+
+    expect(getByText('100%')).toHaveStyle({ fontSize: '150px' });
+  });
+
   it('SlideLayout.BigFact should render a slide with fact information if it exists', () => {
     const { getByText } = renderInDeck(
       <SlideLayout.BigFact fact={'100%'} factInformation={'We earned 100%!'} />
