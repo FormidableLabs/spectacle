@@ -49,8 +49,8 @@
     "lint": {
       "command": "nps lint:pkg -- -- \"*.js\" src",
       "files": [
-        "../../.eslintignore",
-        "../../.eslintrc",
+        "../.eslintignore",
+        "../.eslintrc",
         "*.js",
         "src/**"
       ],
@@ -73,7 +73,7 @@
       ]
     },
     "prettier": {
-      "command": "nps prettier:website -- -- src",
+      "command": "nps prettier:website -- -- \"*.js\" src",
       "files": [
         "../.prettierignore",
         "../.prettierrc",
