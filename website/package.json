@@ -73,7 +73,7 @@
       ]
     },
     "prettier": {
-      "command": "nps prettier:website -- -- \"*.js\" src",
+      "command": "nps prettier:website -- -- src",
       "files": [
         "../.prettierignore",
         "../.prettierrc",
