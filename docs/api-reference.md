@@ -431,8 +431,8 @@ A centered Big Fact layout for if you want to present a fact in a large font.
 | Props                     | Type                            | Required |  Example               | Default |
 |---------------------------|---------------------------------|----------|------------------------|---------|
 | `...slideProps`           | [Slide Props](#slide)           | ❌        |                        |        |
-| `fact`                    | `string`                        | ✅        | `100%`                 |        |
-| `factInformation`         | `string`                        | ❌        | `Fact information`     |        |
+| `fact`                    | `string | ReactNode`                        | ✅        | `100%`                 |        |
+| `factInformation`         | `string | ReactNode`                        | ❌        | `Fact information`     |        |
 | `factProps`               | [Text Props](#typography-tags)  | ❌        | { fontSize: "100px" }  |        |
 | `factInformationProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }   |        |
 | `factFontSize`            | `string`                        | ❌        | `150px`                |`250px` |
