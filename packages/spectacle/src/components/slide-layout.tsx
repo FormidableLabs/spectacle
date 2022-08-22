@@ -179,9 +179,9 @@ const Quote = ({
   attributionProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  quote: string;
+  quote: string | ReactNode;
   quoteProps?: ComponentProps<typeof Text>;
-  attribution: string;
+  attribution: string | ReactNode;
   attributionProps?: ComponentProps<typeof Text>;
 }) => (
   <Slide {...rest}>
