@@ -123,7 +123,7 @@ describe('SlideLayout', () => {
 
   it('SlideLayout.Section should render a section title', () => {
     const { getByText } = renderInDeck(
-      <SlideLayout.Section sectionTitle={'Section title'} />
+      <SlideLayout.Section>{'Section title'}</SlideLayout.Section>
     );
 
     expect(getByText('Section title')).toBeDefined();
@@ -131,13 +131,13 @@ describe('SlideLayout', () => {
 
   it('SlideLayout.Section should render a section title within a react node', () => {
     const { getByText } = renderInDeck(
-      <SlideLayout.Section
-        sectionTitle={
+      <SlideLayout.Section>
+        {
           <>
             Hello<em>World!</em>
           </>
         }
-      />
+      </SlideLayout.Section>
     );
 
     expect(getByText('World!')).toBeDefined();
@@ -145,10 +145,9 @@ describe('SlideLayout', () => {
 
   it('SlideLayout.Section should render a section slide with props passed through', () => {
     const { getByText } = renderInDeck(
-      <SlideLayout.Section
-        sectionTitle={'Section title'}
-        sectionTitleProps={{ fontSize: '68px' }}
-      />
+      <SlideLayout.Section sectionProps={{ fontSize: '68px' }}>
+        {'Section title'}
+      </SlideLayout.Section>
     );
 
     expect(getByText('Section title')).toHaveStyle({ fontSize: '68px' });
@@ -156,7 +155,7 @@ describe('SlideLayout', () => {
 
   it('SlideLayout.Section should render a section title in a left aligned flexbox', () => {
     const { getByText } = renderInDeck(
-      <SlideLayout.Section sectionTitle={'Section title'} />
+      <SlideLayout.Section>{'Section title'}</SlideLayout.Section>
     );
 
     expect(getByText('Section title').parentElement).toHaveStyle({
@@ -166,7 +165,7 @@ describe('SlideLayout', () => {
 
   it('SlideLayout.Statement should render statement text', () => {
     const { getByText } = renderInDeck(
-      <SlideLayout.Statement statement={'Statement'} />
+      <SlideLayout.Statement>{'Statement'}</SlideLayout.Statement>
     );
 
     expect(getByText('Statement')).toBeDefined();
@@ -174,13 +173,13 @@ describe('SlideLayout', () => {
 
   it('SlideLayout.Statement should render statement text within a react node', () => {
     const { getByText } = renderInDeck(
-      <SlideLayout.Statement
-        statement={
+      <SlideLayout.Statement>
+        {
           <>
             Hello<em>World!</em>
           </>
         }
-      />
+      </SlideLayout.Statement>
     );
 
     expect(getByText('World!')).toBeDefined();
@@ -188,10 +187,9 @@ describe('SlideLayout', () => {
 
   it('SlideLayout.Statement should render a statement slide with props passed through', () => {
     const { getByText } = renderInDeck(
-      <SlideLayout.Statement
-        statement={'Statement'}
-        statementProps={{ fontSize: '88px' }}
-      />
+      <SlideLayout.Statement statementProps={{ fontSize: '88px' }}>
+        {'Statement'}
+      </SlideLayout.Statement>
     );
 
     expect(getByText('Statement')).toHaveStyle({ fontSize: '88px' });

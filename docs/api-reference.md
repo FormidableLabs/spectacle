@@ -413,8 +413,7 @@ A vertically-centered left-aligned section title layout for if you want title pa
 | Props                  | Type                            | Required |  Example                 |
 |------------------------|---------------------------------|----------|--------------------------|
 | `...slideProps`        | [Slide Props](#slide)           | ❌        |                          |
-| `sectionTitle`         | `string`                        | ✅        | `Section Title`          |
-| `sectionTitleProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
+| `sectionProps`         | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
 
 ### `SlideLayout.Statement`
 
@@ -423,7 +422,6 @@ A vertically-centered center-aligned statement for if you want to make a stateme
 | Props                  | Type                            | Required |  Example                 |
 |------------------------|---------------------------------|----------|--------------------------|
 | `...slideProps`        | [Slide Props](#slide)           | ❌        |                          |
-| `statementTitle`       | `string`                        | ✅        | `Statement!`             |
 | `statementProps`       | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
 
 ### `SlideLayout.BigFact`

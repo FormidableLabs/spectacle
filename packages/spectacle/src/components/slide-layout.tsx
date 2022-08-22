@@ -94,16 +94,15 @@ const List = ({
 const Header = ({
   flexBoxProps,
   headingProps,
-  heading,
+  children,
   ...rest
-}: Omit<SlideProps, 'children'> & {
-  heading: string | ReactNode;
+}: SlideProps & {
   flexBoxProps?: ComponentProps<typeof FlexBox>;
   headingProps?: ComponentProps<typeof Heading>;
 }) => (
   <Slide {...rest}>
     <FlexBox height="100%" {...flexBoxProps}>
-      <Heading {...headingProps}>{heading}</Heading>
+      <Heading {...headingProps}>{children}</Heading>
     </FlexBox>
   </Slide>
 );
@@ -112,31 +111,30 @@ const Header = ({
  * Section layout with left aligned text
  */
 const Section = ({
-  sectionTitle,
-  sectionTitleProps,
+  sectionProps,
+  children,
   ...rest
-}: Omit<SlideProps, 'children'> & {
-  sectionTitle: string | ReactNode;
-  sectionTitleProps?: ComponentProps<typeof Heading>;
+}: SlideProps & {
+  sectionProps?: ComponentProps<typeof Heading>;
 }) => (
   <Header
-    heading={sectionTitle}
-    headingProps={sectionTitleProps}
+    headingProps={sectionProps}
     flexBoxProps={{ justifyContent: 'flex-start' }}
-  />
+  >
+    {children}
+  </Header>
 );
 
 /**
  * Statement layout with centered text
  */
 const Statement = ({
-  statement,
   statementProps,
+  children,
   ...rest
-}: Omit<SlideProps, 'children'> & {
-  statement: string | ReactNode;
+}: SlideProps & {
   statementProps?: ComponentProps<typeof Heading>;
-}) => <Header heading={statement} headingProps={statementProps} />;
+}) => <Header headingProps={statementProps}>{children}</Header>;
 
 /**
  * Big Fact with optional fact information
