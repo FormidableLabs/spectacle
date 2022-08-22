@@ -147,8 +147,8 @@ const BigFact = ({
   factInformationProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  fact: string;
-  factInformation?: string;
+  fact: string | ReactNode;
+  factInformation?: string | ReactNode;
   factProps?: ComponentProps<typeof Text>;
   factFontSize?: string;
   factInformationProps?: ComponentProps<typeof Text>;
