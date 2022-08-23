@@ -404,3 +404,47 @@ A layout with a list and an optional title for if you want to quickly display a 
 | `items`            | `ReactNode[]`                       | ✅        | `['Hello', <Text>World</Text>]` |
 | `animateListItems` | `boolean`                           | ❌        | `true`                          |
 | `listProps`        | [List Props](#typography-tags)      | ❌        | `{ backgroundColor: 'purple' }` |
+
+
+### `SlideLayout.Section`
+
+A vertically-centered left-aligned section title layout for if you want title page for a new section.
+
+| Props                  | Type                            | Required |  Example                 |
+|------------------------|---------------------------------|----------|--------------------------|
+| `...slideProps`        | [Slide Props](#slide)           | ❌        |                          |
+| `sectionProps`         | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
+
+### `SlideLayout.Statement`
+
+A vertically-centered center-aligned statement for if you want to make a statement.
+
+| Props                  | Type                            | Required |  Example                 |
+|------------------------|---------------------------------|----------|--------------------------|
+| `...slideProps`        | [Slide Props](#slide)           | ❌        |                          |
+| `statementProps`       | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
+
+### `SlideLayout.BigFact`
+
+A centered Big Fact layout for if you want to present a fact in a large font.
+
+| Props                     | Type                            | Required |  Example               | Default |
+|---------------------------|---------------------------------|----------|------------------------|---------|
+| `...slideProps`           | [Slide Props](#slide)           | ❌        |                        |        |
+| `fact`                    | `string | ReactNode`                        | ✅        | `100%`                 |        |
+| `factInformation`         | `string | ReactNode`                        | ❌        | `Fact information`     |        |
+| `factProps`               | [Text Props](#typography-tags)  | ❌        | { fontSize: "100px" }  |        |
+| `factInformationProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }   |        |
+| `factFontSize`            | `string`                        | ❌        | `150px`                |`250px` |
+
+### `SlideLayout.Quote`
+
+A vertically-centered Quote layout for if you want to present a quote and attribute it to someone.
+
+| Props                 | Type                            | Required |  Example               |
+|-----------------------|---------------------------------|----------|------------------------|
+| `...slideProps`       | [Slide Props](#slide)           | ❌        |                        |
+| `quote`               | `string | ReactNode`                        | ✅        | `To be, or not to be`  |
+| `attribution`         | `string | ReactNode`                        | ✅        | `William Shakespeare`  |
+| `quoteProps`          | [Text Props](#typography-tags)  | ❌        | { fontSize: "100px" }  |
+| `attributionProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }   |
