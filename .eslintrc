@@ -6,11 +6,7 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint"
-  ],
+  "plugins": ["prettier", "react", "react-hooks", "@typescript-eslint"],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -37,7 +33,12 @@
   },
   "rules": {
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "prettier/prettier": ["error"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
   },
   "overrides": [
     {

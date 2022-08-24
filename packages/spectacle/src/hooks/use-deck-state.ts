@@ -1,4 +1,4 @@
-import { useReducer, useMemo, useEffect } from 'react';
+import { useReducer, useMemo } from 'react';
 import { merge } from 'merge-anything';
 import { SlideId } from '../components/deck/deck';
 
