@@ -2,11 +2,10 @@ import {
   forwardRef,
   useContext,
   useEffect,
-  useRef,
   useState,
   useCallback
 } from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { DeckContext } from './deck/deck';
 import {
   ProgressContainer,

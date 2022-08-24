@@ -102,7 +102,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
     }, [highlightRanges]);
 
     const theme = useContext(ThemeContext);
-    const { stepId, isActive, step, placeholder } = useSteps(numberOfSteps, {
+    const { isActive, step, placeholder } = useSteps(numberOfSteps, {
       stepIndex
     });
 

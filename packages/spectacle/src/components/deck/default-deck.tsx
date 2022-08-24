@@ -50,7 +50,7 @@ const DefaultDeck = (props: DefaultDeckProps): JSX.Element => {
             deck.current!.regressSlide({
               stepIndex: 0
             }),
-          [KEYBOARD_SHORTCUTS.SELECT_SLIDE_OVERVIEW_MODE]: (e) =>
+          [KEYBOARD_SHORTCUTS.SELECT_SLIDE_OVERVIEW_MODE]: () =>
             toggleMode({
               newMode: SPECTACLE_MODES.DEFAULT_MODE
             })
