@@ -112,8 +112,7 @@ const Header = ({
  */
 const Section = ({
   sectionProps,
-  children,
-  ...rest
+  children
 }: SlideProps & {
   sectionProps?: ComponentProps<typeof Heading>;
 }) => (
@@ -130,8 +129,7 @@ const Section = ({
  */
 const Statement = ({
   statementProps,
-  children,
-  ...rest
+  children
 }: SlideProps & {
   statementProps?: ComponentProps<typeof Heading>;
 }) => <Header headingProps={statementProps}>{children}</Header>;

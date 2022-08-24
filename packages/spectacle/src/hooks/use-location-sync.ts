@@ -61,7 +61,7 @@ export default function useLocationSync({
   // "down-sync" from location to state
   useEffect(() => {
     if (!initialized && disableInteractivity) return;
-    return history.listen((location, action) => {
+    return history.listen((location) => {
       setState(mapLocationToState(location));
     });
   }, [

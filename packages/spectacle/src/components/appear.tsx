@@ -85,8 +85,6 @@ export const Stepper = (props: StepperProps): JSX.Element => {
     render: renderFn,
     children: renderChildrenFn,
     alwaysVisible = false,
-    activeStyle,
-    inactiveStyle,
     ...restProps
   } = props;
   if (renderFn !== undefined && renderChildrenFn !== undefined) {

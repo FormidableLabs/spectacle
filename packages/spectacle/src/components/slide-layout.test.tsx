@@ -265,7 +265,7 @@ describe('SlideLayout', () => {
 
     expect(
       getByText(
-        "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel."
+        `I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.`
       )
     ).toHaveStyle({ fontSize: '68px' });
     expect(getByText('Maya Angelou', { exact: false })).toHaveStyle({
