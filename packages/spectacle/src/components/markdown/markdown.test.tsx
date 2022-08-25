@@ -137,7 +137,7 @@ describe('<MarkdownSlideSet />', () => {
   });
 
   it('Markdown should pass componentProps down to constituent components', () => {
-    const { container, queryByText } = mountInsideDeck(
+    const { queryByText } = mountInsideDeck(
       <Slide>
         <Heading>Im not styled...</Heading>
         <Markdown componentProps={{ color: 'purple' }}>{`

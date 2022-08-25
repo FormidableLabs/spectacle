@@ -14,7 +14,7 @@ import {
   writeOnePageHTMLFile
 } from './templates/file-writers';
 // @ts-ignore
-import { version, devDependencies } from '../package.json';
+import { devDependencies } from '../package.json';
 
 const argv = yargs(hideBin(process.argv)).argv;
 const cwd = process.cwd();
