@@ -41,7 +41,7 @@ module.exports = {
       // `.mdx` files go through babel and mdx transforming loader.
       {
         test: /\.mdx$/,
-        use: [babelLoader, require.resolve('../../lib/index')]
+        use: [babelLoader, require.resolve('../../packages/spectacle-mdx-loader/src/index')]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
