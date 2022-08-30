@@ -264,4 +264,62 @@ describe('SlideLayout', () => {
       fontSize: '48px'
     });
   });
+
+  // It should pass props through to the code pane component
+  // It should pass title props through
+  // Multi should render more than one code pane component
+  it('SlideLayout.SingleCodeLayout should render a titled slide with props passed through', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.SingleCodeLayout
+        language={'js'}
+        title={'Hello World!'}
+        titleProps={{ fontSize: '24px' }}
+      >
+        {'console.log("Hello World!");'}
+      </SlideLayout.SingleCodeLayout>
+    );
+
+    expect(getByText('Hello World!')).toHaveStyle({ fontSize: '24px' });
+  });
+
+  it('SlideLayout.MultiCodeLayout should contain more than one code pane', () => {
+    const { queryAllByTestId } = renderInDeck(
+      <SlideLayout.MultiCodeLayout
+        codePaneProps={[
+          { code: `const greeting = 'hello world.'`, language: `jsx` },
+          { code: `const greeting = 'hello again world.'`, language: `jsx` }
+        ]}
+      />
+    );
+
+    expect(queryAllByTestId('CodePane')).toHaveLength(2);
+  });
+
+  it('SlideLayout.MultiCodeLayout should render multiple code panes with description props passed through', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.MultiCodeLayout
+        codePaneProps={[
+          {
+            code: `let greeting = 'hello world.'`,
+            language: `jsx`,
+            description: `assign a variable to a string.`,
+            descriptionProps: { color: 'cyan' }
+          },
+          {
+            code: `greeting = 'hello again world.'`,
+            language: `jsx`,
+            description: `reassign the variable.`,
+            descriptionProps: { color: 'cyan' }
+          }
+        ]}
+      />
+    );
+
+    expect(getByText('assign a variable to a string.')).toHaveStyle({
+      color: 'cyan'
+    });
+    expect(getByText('reassign the variable.')).toHaveStyle({
+      color: 'cyan'
+    });
+  });
 });

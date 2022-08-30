@@ -203,18 +203,16 @@ const Quote = ({
 const CodeLayout = ({
   children,
   language,
-  key,
   text,
   textProps,
   ...props
-}: SlideProps & {
+}: Omit<SlideProps, 'children'> & {
   children: string;
   language: string;
-  key?: number;
   text?: string | ReactNode;
   textProps?: ComponentProps<typeof Text>;
 }) => (
-  <Box key={key}>
+  <Box data-testid="CodePane">
     {text ? (
       <Text margin={8} {...textProps}>
         {text}
@@ -235,7 +233,7 @@ const SingleCodeLayout = ({
   title,
   titleProps,
   ...rest
-}: SlideProps & {
+}: Omit<SlideProps, 'children'> & {
   children: string;
   language: string;
   title?: string | ReactNode;
@@ -263,20 +261,19 @@ const SingleCodeLayout = ({
  * multiple Code Panes with optional Description, with optional Title layout
  */
 const MultiCodeLayout = ({
-  children,
+  codePaneProps,
   title,
   titleProps,
-  textProps,
   ...rest
-}: SlideProps & {
-  children: {
+}: Omit<SlideProps, 'children'> & {
+  codePaneProps: {
     code: string;
     language: string;
     description?: string | ReactNode;
+    descriptionProps?: ComponentProps<typeof Text>;
   }[];
   title?: string | ReactNode;
   titleProps?: ComponentProps<typeof Text>;
-  textProps: ComponentProps<typeof Text>;
 }) => {
   return (
     <Slide {...rest}>
@@ -288,11 +285,19 @@ const MultiCodeLayout = ({
         }}
       >
         {title ? <Heading {...titleProps}>{title}</Heading> : null}
-        {children.map(({ code, language, description, ...props }, i) => (
-          <CodeLayout key={i} text={description} language={language} {...props}>
-            {code}
-          </CodeLayout>
-        ))}
+        {codePaneProps.map(
+          ({ code, language, description, descriptionProps, ...props }, i) => (
+            <CodeLayout
+              key={i}
+              text={description}
+              textProps={descriptionProps}
+              language={language}
+              {...props}
+            >
+              {code}
+            </CodeLayout>
+          )
+        )}
       </FlexBox>
     </Slide>
   );
