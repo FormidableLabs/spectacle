@@ -1,5 +1,6 @@
 import Slide, { SlideProps } from './slide/slide';
 import { Box, FlexBox } from './layout-primitives';
+import CodePane from './code-pane';
 import { ComponentProps, Fragment, ReactNode } from 'react';
 import {
   Heading,
@@ -195,11 +196,112 @@ const Quote = ({
     </Box>
   </Slide>
 );
+
+/**
+ * Generic Codepane utility with optional Description text
+ */
+const CodeLayout = ({
+  children,
+  language,
+  key,
+  text,
+  textProps,
+  ...props
+}: SlideProps & {
+  children: string;
+  language: string;
+  key?: number;
+  text?: string | ReactNode;
+  textProps?: ComponentProps<typeof Text>;
+}) => (
+  <Box key={key}>
+    {text ? (
+      <Text margin={8} {...textProps}>
+        {text}
+      </Text>
+    ) : null}
+    <CodePane language={language} {...props}>
+      {children}
+    </CodePane>
+  </Box>
+);
+
+/**
+ * single Code Pane with optional Title layout
+ */
+const SingleCodeLayout = ({
+  children,
+  language,
+  title,
+  titleProps,
+  ...rest
+}: SlideProps & {
+  children: string;
+  language: string;
+  title?: string | ReactNode;
+  titleProps?: ComponentProps<typeof Text>;
+}) => {
+  return (
+    <Slide {...rest}>
+      <FlexBox
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%'
+        }}
+      >
+        {title ? <Heading {...titleProps}>{title}</Heading> : null}
+        <CodeLayout language={language} {...rest}>
+          {children}
+        </CodeLayout>
+      </FlexBox>
+    </Slide>
+  );
+};
+
+/**
+ * multiple Code Panes with optional Description, with optional Title layout
+ */
+const MultiCodeLayout = ({
+  children,
+  title,
+  titleProps,
+  textProps,
+  ...rest
+}: SlideProps & {
+  children: {
+    code: string;
+    language: string;
+    description?: string | ReactNode;
+  }[];
+  title?: string | ReactNode;
+  titleProps?: ComponentProps<typeof Text>;
+  textProps: ComponentProps<typeof Text>;
+}) => {
+  return (
+    <Slide {...rest}>
+      <FlexBox
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%'
+        }}
+      >
+        {title ? <Heading {...titleProps}>{title}</Heading> : null}
+        {children.map(({ code, language, description, ...props }, i) => (
+          <CodeLayout key={i} text={description} language={language} {...props}>
+            {code}
+          </CodeLayout>
+        ))}
+      </FlexBox>
+    </Slide>
+  );
+};
+
 /**
  * Layouts to consider:
  * - Image (left, right, full bleed?)
  * - Intro
- * - Code Snippet (syntax highlighting)
  */
 
 export default {
@@ -210,5 +312,7 @@ export default {
   Section,
   BigFact,
   Quote,
-  Statement
+  Statement,
+  SingleCodeLayout,
+  MultiCodeLayout
 };
