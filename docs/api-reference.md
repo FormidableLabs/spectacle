@@ -444,8 +444,8 @@ A vertically-centered Quote layout for if you want to present a quote and attrib
 | Props                 | Type                            | Required |  Example               |
 |-----------------------|---------------------------------|----------|------------------------|
 | `...slideProps`       | [Slide Props](#slide)           | ❌        |                        |
-| `quote`               | `string | ReactNode`            | ✅        | `To be, or not to be`  |
-| `attribution`         | `string | ReactNode`            | ✅        | `William Shakespeare`  |
+| `quote`               | `string | ReactNode`                        | ✅        | `To be, or not to be`  |
+| `attribution`         | `string | ReactNode`                        | ✅        | `William Shakespeare`  |
 | `quoteProps`          | [Text Props](#typography-tags)  | ❌        | { fontSize: "100px" }  |
 | `attributionProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }   |
 

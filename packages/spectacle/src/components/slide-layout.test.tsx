@@ -265,10 +265,7 @@ describe('SlideLayout', () => {
     });
   });
 
-  // It should pass props through to the code pane component
-  // It should pass title props through
-  // Multi should render more than one code pane component
-  it('SlideLayout.SingleCodeLayout should render a titled slide with props passed through', () => {
+  it('SlideLayout.SingleCodeLayout should render a titled slide with title props passed through', () => {
     const { getByText } = renderInDeck(
       <SlideLayout.SingleCodeLayout
         language={'js'}
@@ -303,7 +300,7 @@ describe('SlideLayout', () => {
             code: `let greeting = 'hello world.'`,
             language: `jsx`,
             description: `assign a variable to a string.`,
-            descriptionProps: { color: 'cyan' }
+            descriptionProps: { color: 'blue' }
           },
           {
             code: `greeting = 'hello again world.'`,
@@ -316,7 +313,7 @@ describe('SlideLayout', () => {
     );
 
     expect(getByText('assign a variable to a string.')).toHaveStyle({
-      color: 'cyan'
+      color: 'blue'
     });
     expect(getByText('reassign the variable.')).toHaveStyle({
       color: 'cyan'
