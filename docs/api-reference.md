@@ -470,5 +470,4 @@ A layout with multiple code panes and optional descriptions, and an optional tit
 | `...slideProps`    | [Slide Props](#slide)               | ❌        |                                 |
 | `title`            | `string`                            | ❌        | `Show me the code!`             |
 | `titleProps`       | [Heading Props](#typography-tags)   | ❌        | `{ color: 'red' }`              |
-| `children`         | `PropTypes.arrayOf(PropTypes.object([Code Pane props](#code-pane)))` | ✅        | `[{ code: 'console.log("hello world!")', language: 'jsx', description: 'Say hello', props: {...} }, {...}]` |
-| `language`         | `boolean`                           | ✅        | `false`                          |
+| `codePaneProps`    | `PropTypes.arrayOf(PropTypes.object([Code Pane props](#code-pane)))` | ✅        | `[{ code: 'console.log("hello world!")', language: 'jsx', description: 'Say hello', props: {...} }, {...}]` |
