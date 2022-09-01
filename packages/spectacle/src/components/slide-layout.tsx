@@ -227,7 +227,7 @@ const CodeLayout = ({
 /**
  * single Code Pane with optional Title layout
  */
-const SingleCodeLayout = ({
+const Code = ({
   children,
   language,
   title,
@@ -318,6 +318,6 @@ export default {
   BigFact,
   Quote,
   Statement,
-  SingleCodeLayout,
+  Code,
   MultiCodeLayout
 };

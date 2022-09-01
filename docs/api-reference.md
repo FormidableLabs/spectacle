@@ -449,7 +449,7 @@ A vertically-centered Quote layout for if you want to present a quote and attrib
 | `quoteProps`          | [Text Props](#typography-tags)  | ❌        | { fontSize: "100px" }  |
 | `attributionProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }   |
 
-### `SlideLayout.SingleCodeLayout`
+### `SlideLayout.Code`
 
 A layout with a single code pane and an optional title for if you want one code block per slide.
 

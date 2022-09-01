@@ -265,15 +265,15 @@ describe('SlideLayout', () => {
     });
   });
 
-  it('SlideLayout.SingleCodeLayout should render a titled slide with title props passed through', () => {
+  it('SlideLayout.Code should render a titled slide with title props passed through', () => {
     const { getByText } = renderInDeck(
-      <SlideLayout.SingleCodeLayout
+      <SlideLayout.Code
         language={'js'}
         title={'Hello World!'}
         titleProps={{ fontSize: '24px' }}
       >
         {'console.log("Hello World!");'}
-      </SlideLayout.SingleCodeLayout>
+      </SlideLayout.Code>
     );
 
     expect(getByText('Hello World!')).toHaveStyle({ fontSize: '24px' });
