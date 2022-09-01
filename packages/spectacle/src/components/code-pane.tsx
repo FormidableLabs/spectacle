@@ -157,7 +157,6 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
       return {
         padding: space[0],
         margin: 0,
-        width: width - space[2] * 2 - space[0] * 2,
         fontSize: monospace
       };
     }, [theme]);

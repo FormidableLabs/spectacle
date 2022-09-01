@@ -1,5 +1,5 @@
 import Slide, { SlideProps } from './slide/slide';
-import { Box, FlexBox } from './layout-primitives';
+import { Box, FlexBox, Grid } from './layout-primitives';
 import CodePane from './code-pane';
 import { ComponentProps, Fragment, ReactNode } from 'react';
 import {
@@ -241,18 +241,12 @@ const Code = ({
 }) => {
   return (
     <Slide {...rest}>
-      <FlexBox
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100%'
-        }}
-      >
+      <Box display="inline-block" style={{ overflow: 'scroll' }}>
         {title ? <Heading {...titleProps}>{title}</Heading> : null}
         <CodeLayout language={language} {...rest}>
           {children}
         </CodeLayout>
-      </FlexBox>
+      </Box>
     </Slide>
   );
 };
@@ -264,6 +258,7 @@ const MultiCodeLayout = ({
   codePaneProps,
   title,
   titleProps,
+  numColumns = 1,
   ...rest
 }: Omit<SlideProps, 'children'> & {
   codePaneProps: {
@@ -274,31 +269,36 @@ const MultiCodeLayout = ({
   }[];
   title?: string | ReactNode;
   titleProps?: ComponentProps<typeof Text>;
+  numColumns?: number;
 }) => {
   return (
     <Slide {...rest}>
-      <FlexBox
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100%'
-        }}
-      >
+      <Box display="inline-block" style={{ overflow: 'scroll' }}>
         {title ? <Heading {...titleProps}>{title}</Heading> : null}
-        {codePaneProps.map(
-          ({ code, language, description, descriptionProps, ...props }, i) => (
-            <CodeLayout
-              key={i}
-              text={description}
-              textProps={descriptionProps}
-              language={language}
-              {...props}
-            >
-              {code}
-            </CodeLayout>
-          )
-        )}
-      </FlexBox>
+        <Grid
+          gridRowGap={1}
+          gridColumnGap={1}
+          gridTemplateColumns={`repeat(${numColumns}, minmax(100px, 1fr))`}
+          maxWidth="100%"
+        >
+          {codePaneProps.map(
+            (
+              { code, language, description, descriptionProps, ...props },
+              i
+            ) => (
+              <CodeLayout
+                key={i}
+                text={description}
+                textProps={descriptionProps}
+                language={language}
+                {...props}
+              >
+                {code}
+              </CodeLayout>
+            )
+          )}
+        </Grid>
+      </Box>
     </Slide>
   );
 };
