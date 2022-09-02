@@ -113,8 +113,7 @@ const Header = ({
  */
 const Section = ({
   sectionProps,
-  children,
-  ...rest
+  children
 }: SlideProps & {
   sectionProps?: ComponentProps<typeof Heading>;
 }) => (
@@ -131,8 +130,7 @@ const Section = ({
  */
 const Statement = ({
   statementProps,
-  children,
-  ...rest
+  children
 }: SlideProps & {
   statementProps?: ComponentProps<typeof Heading>;
 }) => <Header headingProps={statementProps}>{children}</Header>;
@@ -141,14 +139,13 @@ const Statement = ({
  * Big Fact with optional fact information
  */
 const BigFact = ({
-  fact,
+  children,
   factInformation,
   factProps,
   factFontSize = '250px',
   factInformationProps,
   ...rest
-}: Omit<SlideProps, 'children'> & {
-  fact: string | ReactNode;
+}: SlideProps & {
   factInformation?: string | ReactNode;
   factProps?: ComponentProps<typeof Text>;
   factFontSize?: string;
@@ -158,7 +155,7 @@ const BigFact = ({
     <FlexBox>
       <Box>
         <Text textAlign="center" fontSize={factFontSize} {...factProps}>
-          {fact}
+          {children}
         </Text>
         {factInformation ? (
           <Text textAlign="center" {...factInformationProps}>
@@ -174,13 +171,12 @@ const BigFact = ({
  * Quote layout
  */
 const Quote = ({
-  quote,
+  children,
   quoteProps,
   attribution,
   attributionProps,
   ...rest
-}: Omit<SlideProps, 'children'> & {
-  quote: string | ReactNode;
+}: SlideProps & {
   quoteProps?: ComponentProps<typeof Text>;
   attribution: string | ReactNode;
   attributionProps?: ComponentProps<typeof Text>;
@@ -188,7 +184,7 @@ const Quote = ({
   <Slide {...rest}>
     <Box width="100%" margin="auto">
       <Text fontSize="85px" {...quoteProps}>
-        {quote}
+        {children}
       </Text>
       <Text fontSize="36px" padding={'0em 0em 0em 1em'} {...attributionProps}>
         &ndash;{attribution}

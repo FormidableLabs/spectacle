@@ -20,7 +20,7 @@ interface OSSBadge {
   hoverable: boolean;
 }
 
-export const OSSBadge = ({ project, hoverable }: OSSBadge) => {
+const OSSBadge = ({ project, hoverable }: OSSBadge) => {
   const projectName = project.title.toLowerCase();
   const isFeaturedProject = Boolean(
     FEATURED_PROJECTS.find((p) => p === projectName)
@@ -53,3 +53,5 @@ export const OSSBadge = ({ project, hoverable }: OSSBadge) => {
     <span className={wrapperClassName}>{children}</span>
   );
 };
+
+export { OSSBadge };

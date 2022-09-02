@@ -428,26 +428,26 @@ A vertically-centered center-aligned statement for if you want to make a stateme
 
 A centered Big Fact layout for if you want to present a fact in a large font.
 
-| Props                     | Type                            | Required |  Example               | Default |
-|---------------------------|---------------------------------|----------|------------------------|---------|
-| `...slideProps`           | [Slide Props](#slide)           | ❌        |                        |        |
-| `fact`                    | `string | ReactNode`                        | ✅        | `100%`                 |        |
-| `factInformation`         | `string | ReactNode`                        | ❌        | `Fact information`     |        |
-| `factProps`               | [Text Props](#typography-tags)  | ❌        | { fontSize: "100px" }  |        |
-| `factInformationProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }   |        |
-| `factFontSize`            | `string`                        | ❌        | `150px`                |`250px` |
+| Props                  | Type                           | Required | Example               | Default |
+|------------------------|--------------------------------|----------|-----------------------|---------|
+| `children`             | `ReactNode`                    | ✅        | `100%`                |         |
+| `...slideProps`        | [Slide Props](#slide)          | ❌        |                       |         |
+| `factInformation`      | `ReactNode`                    | ❌        | `Fact information`    |         |
+| `factProps`            | [Text Props](#typography-tags) | ❌        | { fontSize: "100px" } |         |
+| `factInformationProps` | [Text Props](#typography-tags) | ❌        | { fontSize: "48px" }  |         |
+| `factFontSize`         | `string`                       | ❌        | `150px`               | `250px` |
 
 ### `SlideLayout.Quote`
 
 A vertically-centered Quote layout for if you want to present a quote and attribute it to someone.
 
-| Props                 | Type                            | Required |  Example               |
-|-----------------------|---------------------------------|----------|------------------------|
-| `...slideProps`       | [Slide Props](#slide)           | ❌        |                        |
-| `quote`               | `string | ReactNode`                        | ✅        | `To be, or not to be`  |
-| `attribution`         | `string | ReactNode`                        | ✅        | `William Shakespeare`  |
-| `quoteProps`          | [Text Props](#typography-tags)  | ❌        | { fontSize: "100px" }  |
-| `attributionProps`    | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }   |
+| Props              | Type                           | Required | Example               |
+|--------------------|--------------------------------|----------|-----------------------|
+| `children`         | `ReactNode`                    | ✅        | `To be, or not to be` |
+| `...slideProps`    | [Slide Props](#slide)          | ❌        |                       |
+| `attribution`      | `ReactNode`                    | ✅        | `William Shakespeare` |
+| `quoteProps`       | [Text Props](#typography-tags) | ❌        | { fontSize: "100px" } |
+| `attributionProps` | [Text Props](#typography-tags) | ❌        | { fontSize: "48px" }  |
 
 ### `SlideLayout.Code`
 

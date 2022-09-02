@@ -41,6 +41,10 @@ module.exports = {
       'nps prettier:base -- -- --config ../../.prettierrc --ignore-path ../../.prettierignore',
     'prettier:pkg:fix':
       'nps prettier:base:fix -- -- --config ../../.prettierrc --ignore-path ../../.prettierignore',
+    'prettier:website':
+      'nps prettier:base -- -- --config ../.prettierrc --ignore-path ../.prettierignore',
+    'prettier:website:fix':
+      'nps prettier:base:fix -- -- --config ../.prettierrc --ignore-path ../.prettierignore',
 
     // - Lint
     'lint:base': 'eslint --cache --color',
