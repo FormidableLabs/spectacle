@@ -42,4 +42,4 @@ module.exports.romanize = function romanize(num) {
   let i = 3;
   while (i--) roman = (key[+digits.pop() + i * 10] || '') + roman;
   return Array(+digits.join('') + 1).join('M') + roman;
-}
+};

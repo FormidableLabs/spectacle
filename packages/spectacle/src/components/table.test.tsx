@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ReactElement } from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import defaultTheme from '../theme/default-theme';

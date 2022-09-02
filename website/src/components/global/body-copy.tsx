@@ -10,11 +10,7 @@ type BodyCopy = {
 
 const BodyCopy = ({ className, theme, children }: BodyCopy) => {
   const isLight = theme === 'Light' || theme === 'Color';
-  const classNames = clsx(
-    styles.bodyCopy,
-    isLight && styles.light,
-    className
-  );
+  const classNames = clsx(styles.bodyCopy, isLight && styles.light, className);
 
   return <p className={classNames}>{children}</p>;
 };
