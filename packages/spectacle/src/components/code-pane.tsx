@@ -149,7 +149,6 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
        * default theme with no valid values.
        */
       const {
-        size: { width = 1366 },
         space = [0, 0, 0],
         fontSizes: { monospace = '20px' }
       } = theme;
