@@ -1,6 +1,6 @@
 import Slide, { SlideProps } from './slide/slide';
 import { Box, FlexBox, Grid } from './layout-primitives';
-import CodePane from './code-pane';
+import CodePane, { CodePaneProps } from './code-pane';
 import { ComponentProps, Fragment, ReactNode } from 'react';
 import {
   Heading,
@@ -208,7 +208,7 @@ const CodeLayout = ({
   ...props
 }: Omit<SlideProps, 'children'> & {
   children: string;
-  language: string;
+  language: string | undefined;
   text?: string | ReactNode;
   textProps?: ComponentProps<typeof Text>;
 }) => (
@@ -232,18 +232,20 @@ const Code = ({
   language,
   title,
   titleProps,
+  codePaneProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
   children: string;
   language: string;
   title?: string | ReactNode;
   titleProps?: ComponentProps<typeof Text>;
+  codePaneProps?: CodePaneProps;
 }) => {
   return (
     <Slide {...rest}>
       <Box display="inline-block" style={{ overflow: 'scroll' }}>
         {title ? <Heading {...titleProps}>{title}</Heading> : null}
-        <CodeLayout language={language} {...rest}>
+        <CodeLayout language={language} {...codePaneProps}>
           {children}
         </CodeLayout>
       </Box>
@@ -251,22 +253,21 @@ const Code = ({
   );
 };
 
+interface CodeBlocks extends CodePaneProps {
+  description?: string | ReactNode;
+  descriptionProps?: ComponentProps<typeof Text>;
+}
 /**
  * multiple Code Panes with optional Description, with optional Title layout
  */
 const MultiCodeLayout = ({
-  codePaneProps,
+  codeBlocks,
   title,
   titleProps,
   numColumns = 1,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  codePaneProps: {
-    code: string;
-    language: string;
-    description?: string | ReactNode;
-    descriptionProps?: ComponentProps<typeof Text>;
-  }[];
+  codeBlocks: CodeBlocks[];
   title?: string | ReactNode;
   titleProps?: ComponentProps<typeof Text>;
   numColumns?: number;
@@ -281,9 +282,15 @@ const MultiCodeLayout = ({
           gridTemplateColumns={`repeat(${numColumns}, minmax(100px, 1fr))`}
           maxWidth="100%"
         >
-          {codePaneProps.map(
+          {codeBlocks.map(
             (
-              { code, language, description, descriptionProps, ...props },
+              {
+                description,
+                descriptionProps,
+                language,
+                children,
+                ...codePaneProps
+              },
               i
             ) => (
               <CodeLayout
@@ -291,9 +298,9 @@ const MultiCodeLayout = ({
                 text={description}
                 textProps={descriptionProps}
                 language={language}
-                {...props}
+                {...codePaneProps}
               >
-                {code}
+                {children}
               </CodeLayout>
             )
           )}
