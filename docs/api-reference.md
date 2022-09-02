@@ -459,7 +459,8 @@ A layout with a single code pane and an optional title for if you want one code 
 | `title`            | `string`                            | ❌        | `Show me the code!`             |
 | `titleProps`       | [Heading Props](#typography-tags)   | ❌        | `{ color: 'red' }`              |
 | `children`         | `string`                            | ✅        | `const Component = (props: componentProps): JSX.Element = {...}` |
-| `language`         | `boolean`                           | ✅        | `false`                          |
+| `language`         | `boolean`                           | ✅        | `false`                         |
+| `codePaneProps`    | CodePaneProps                       | ❌        |                                 |
 
 ### `SlideLayout.MultiCodeLayout`
 
@@ -470,4 +471,5 @@ A layout with multiple code panes and optional descriptions, and an optional tit
 | `...slideProps`    | [Slide Props](#slide)               | ❌        |                                 |
 | `title`            | `string`                            | ❌        | `Show me the code!`             |
 | `titleProps`       | [Heading Props](#typography-tags)   | ❌        | `{ color: 'red' }`              |
-| `codePaneProps`    | `PropTypes.arrayOf(PropTypes.object([Code Pane props](#code-pane)))` | ✅        | `[{ code: 'console.log("hello world!")', language: 'jsx', description: 'Say hello', props: {...} }, {...}]` |
+| `numColumns`       | `number`                            | ❌        | `{2}`                           |
+| `codeBlocks`       | `CodePaneProps & {description?: string | ReactNode, descriptionProps?: ComponentProps<typeof Text>}[]` | ✅        | `[{ children: 'console.log("hello world!")', language: 'jsx', description: 'Say hello', codePaneProps: {...} }, {...}]` |

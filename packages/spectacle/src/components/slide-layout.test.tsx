@@ -282,9 +282,9 @@ describe('SlideLayout', () => {
   it('SlideLayout.MultiCodeLayout should contain more than one code pane', () => {
     const { queryAllByTestId } = renderInDeck(
       <SlideLayout.MultiCodeLayout
-        codePaneProps={[
-          { code: `const greeting = 'hello world.'`, language: `jsx` },
-          { code: `const greeting = 'hello again world.'`, language: `jsx` }
+        codeBlocks={[
+          { children: `const greeting = 'hello world.'`, language: `jsx` },
+          { children: `const greeting = 'hello again world.'`, language: `jsx` }
         ]}
       />
     );
@@ -295,15 +295,15 @@ describe('SlideLayout', () => {
   it('SlideLayout.MultiCodeLayout should render multiple code panes with description props passed through', () => {
     const { getByText } = renderInDeck(
       <SlideLayout.MultiCodeLayout
-        codePaneProps={[
+        codeBlocks={[
           {
-            code: `let greeting = 'hello world.'`,
+            children: `let greeting = 'hello world.'`,
             language: `jsx`,
             description: `assign a variable to a string.`,
             descriptionProps: { color: 'blue' }
           },
           {
-            code: `greeting = 'hello again world.'`,
+            children: `greeting = 'hello again world.'`,
             language: `jsx`,
             description: `reassign the variable.`,
             descriptionProps: { color: 'cyan' }
