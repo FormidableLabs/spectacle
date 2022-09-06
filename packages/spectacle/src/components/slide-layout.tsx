@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Slide, { SlideProps } from './slide/slide';
 import { Box, FlexBox, Grid } from './layout-primitives';
 import CodePane, { CodePaneProps } from './code-pane';
@@ -197,14 +198,11 @@ const Quote = ({
  * Generic Codepane utility with optional Description text
  */
 const CodeLayout = ({
-  children,
-  language,
   text,
   textProps,
+  children,
   ...props
-}: Omit<SlideProps, 'children'> & {
-  children: string;
-  language: string | undefined;
+}: CodePaneProps & {
   text?: string | ReactNode;
   textProps?: ComponentProps<typeof Text>;
 }) => (
@@ -214,9 +212,7 @@ const CodeLayout = ({
         {text}
       </Text>
     ) : null}
-    <CodePane language={language} {...props}>
-      {children}
-    </CodePane>
+    <CodePane {...props}>{children}</CodePane>
   </Box>
 );
 
@@ -249,10 +245,6 @@ const Code = ({
   );
 };
 
-interface CodeBlocks extends CodePaneProps {
-  description?: string | ReactNode;
-  descriptionProps?: ComponentProps<typeof Text>;
-}
 /**
  * multiple Code Panes with optional Description, with optional Title layout
  */
@@ -263,7 +255,13 @@ const MultiCodeLayout = ({
   numColumns = 1,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  codeBlocks: CodeBlocks[];
+  codeBlocks: Array<
+    Omit<CodePaneProps, 'children'> & {
+      code: CodePaneProps['children'];
+      description?: string | ReactNode;
+      descriptionProps?: ComponentProps<typeof Text>;
+    }
+  >;
   title?: string | ReactNode;
   titleProps?: ComponentProps<typeof Text>;
   numColumns?: number;
@@ -279,24 +277,14 @@ const MultiCodeLayout = ({
           maxWidth="100%"
         >
           {codeBlocks.map(
-            (
-              {
-                description,
-                descriptionProps,
-                language,
-                children,
-                ...codePaneProps
-              },
-              i
-            ) => (
+            ({ description, descriptionProps, code, ...codePaneProps }, i) => (
               <CodeLayout
                 key={i}
                 text={description}
                 textProps={descriptionProps}
-                language={language}
                 {...codePaneProps}
               >
-                {children}
+                {code}
               </CodeLayout>
             )
           )}

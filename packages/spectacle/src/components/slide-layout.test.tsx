@@ -291,8 +291,8 @@ describe('SlideLayout', () => {
     const { queryAllByTestId } = renderInDeck(
       <SlideLayout.MultiCodeLayout
         codeBlocks={[
-          { children: `const greeting = 'hello world.'`, language: `jsx` },
-          { children: `const greeting = 'hello again world.'`, language: `jsx` }
+          { code: `const greeting = 'hello world.'`, language: `jsx` },
+          { code: `const greeting = 'hello again world.'`, language: `jsx` }
         ]}
       />
     );
@@ -305,13 +305,13 @@ describe('SlideLayout', () => {
       <SlideLayout.MultiCodeLayout
         codeBlocks={[
           {
-            children: `let greeting = 'hello world.'`,
+            code: `let greeting = 'hello world.'`,
             language: `jsx`,
             description: `assign a variable to a string.`,
             descriptionProps: { color: 'blue' }
           },
           {
-            children: `greeting = 'hello again world.'`,
+            code: `greeting = 'hello again world.'`,
             language: `jsx`,
             description: `reassign the variable.`,
             descriptionProps: { color: 'cyan' }
