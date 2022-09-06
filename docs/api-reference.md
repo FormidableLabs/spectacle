@@ -448,3 +448,38 @@ A vertically-centered Quote layout for if you want to present a quote and attrib
 | `attribution`      | `ReactNode`                    | ✅        | `William Shakespeare` |
 | `quoteProps`       | [Text Props](#typography-tags) | ❌        | { fontSize: "100px" } |
 | `attributionProps` | [Text Props](#typography-tags) | ❌        | { fontSize: "48px" }  |
+
+### `SlideLayout.Code`
+
+A layout with a single code pane and an optional title for if you want one code block per slide.
+
+| Props           | Type                              | Required | Example                                                          |
+|-----------------|-----------------------------------|----------|------------------------------------------------------------------|
+| `...slideProps` | [Slide Props](#slide)             | ❌        |                                                                  |
+| `title`         | `string`                          | ❌        | `Show me the code!`                                              |
+| `titleProps`    | [Heading Props](#typography-tags) | ❌        | `{ color: 'red' }`                                               |
+| `children`      | `string`                          | ✅        | `const Component = (props: componentProps): JSX.Element = {...}` |
+| `language`      | `boolean`                         | ✅        | `false`                                                          |
+| `codePaneProps` | `CodePaneProps`                   | ❌        |                                                                  |
+
+### `SlideLayout.MultiCodeLayout`
+
+A layout with multiple code panes and optional descriptions, and an optional title for if you want more than one code block per slide or code with description text.
+
+| Props           | Type                              | Required | Example                                                                                                             |
+|-----------------|-----------------------------------|----------|---------------------------------------------------------------------------------------------------------------------|
+| `...slideProps` | [Slide Props](#slide)             | ❌        |                                                                                                                     |
+| `title`         | `string`                          | ❌        | `Show me the code!`                                                                                                 |
+| `titleProps`    | [Heading Props](#typography-tags) | ❌        | `{ color: 'red' }`                                                                                                  |
+| `numColumns`    | `number`                          | ❌        | `{2}`                                                                                                               |
+| `codeBlocks`    | `CodeBlock[]`                     | ✅        | `[{ code: 'console.log("hello world!")', language: 'jsx', description: 'Say hello', codePaneProps: {...} }, {...}]` |
+
+where
+
+```ts
+type CodeBlock = Omit<CodePaneProps, 'children'> & {
+  code: CodePaneProps['children'];
+  description?: string | ReactNode;
+  descriptionProps?: ComponentProps<typeof Text>;
+}
+```

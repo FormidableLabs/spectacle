@@ -272,4 +272,59 @@ describe('SlideLayout', () => {
       fontSize: '48px'
     });
   });
+
+  it('SlideLayout.Code should render a titled slide with title props passed through', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.Code
+        language={'js'}
+        title={'Hello World!'}
+        titleProps={{ fontSize: '24px' }}
+      >
+        {'console.log("Hello World!");'}
+      </SlideLayout.Code>
+    );
+
+    expect(getByText('Hello World!')).toHaveStyle({ fontSize: '24px' });
+  });
+
+  it('SlideLayout.MultiCodeLayout should contain more than one code pane', () => {
+    const { queryAllByTestId } = renderInDeck(
+      <SlideLayout.MultiCodeLayout
+        codeBlocks={[
+          { code: `const greeting = 'hello world.'`, language: `jsx` },
+          { code: `const greeting = 'hello again world.'`, language: `jsx` }
+        ]}
+      />
+    );
+
+    expect(queryAllByTestId('CodePane')).toHaveLength(2);
+  });
+
+  it('SlideLayout.MultiCodeLayout should render multiple code panes with description props passed through', () => {
+    const { getByText } = renderInDeck(
+      <SlideLayout.MultiCodeLayout
+        codeBlocks={[
+          {
+            code: `let greeting = 'hello world.'`,
+            language: `jsx`,
+            description: `assign a variable to a string.`,
+            descriptionProps: { color: 'blue' }
+          },
+          {
+            code: `greeting = 'hello again world.'`,
+            language: `jsx`,
+            description: `reassign the variable.`,
+            descriptionProps: { color: 'cyan' }
+          }
+        ]}
+      />
+    );
+
+    expect(getByText('assign a variable to a string.')).toHaveStyle({
+      color: 'blue'
+    });
+    expect(getByText('reassign the variable.')).toHaveStyle({
+      color: 'cyan'
+    });
+  });
 });

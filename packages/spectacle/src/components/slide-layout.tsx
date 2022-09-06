@@ -1,5 +1,7 @@
+import * as React from 'react';
 import Slide, { SlideProps } from './slide/slide';
-import { Box, FlexBox } from './layout-primitives';
+import { Box, FlexBox, Grid } from './layout-primitives';
+import CodePane, { CodePaneProps } from './code-pane';
 import { ComponentProps, Fragment, ReactNode } from 'react';
 import {
   Heading,
@@ -193,10 +195,109 @@ const Quote = ({
 );
 
 /**
+ * Generic Codepane utility with optional Description text
+ */
+const CodeLayout = ({
+  text,
+  textProps,
+  children,
+  ...props
+}: CodePaneProps & {
+  text?: string | ReactNode;
+  textProps?: ComponentProps<typeof Text>;
+}) => (
+  <Box data-testid="CodePane">
+    {text ? (
+      <Text margin={8} {...textProps}>
+        {text}
+      </Text>
+    ) : null}
+    <CodePane {...props}>{children}</CodePane>
+  </Box>
+);
+
+/**
+ * single Code Pane with optional Title layout
+ */
+const Code = ({
+  children,
+  language,
+  title,
+  titleProps,
+  codePaneProps,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  children: string;
+  language: string;
+  title?: string | ReactNode;
+  titleProps?: ComponentProps<typeof Text>;
+  codePaneProps?: CodePaneProps;
+}) => {
+  return (
+    <Slide {...rest}>
+      <Box display="inline-block" style={{ overflow: 'scroll' }}>
+        {title ? <Heading {...titleProps}>{title}</Heading> : null}
+        <CodeLayout language={language} {...codePaneProps}>
+          {children}
+        </CodeLayout>
+      </Box>
+    </Slide>
+  );
+};
+
+/**
+ * multiple Code Panes with optional Description, with optional Title layout
+ */
+const MultiCodeLayout = ({
+  codeBlocks,
+  title,
+  titleProps,
+  numColumns = 1,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  codeBlocks: Array<
+    Omit<CodePaneProps, 'children'> & {
+      code: CodePaneProps['children'];
+      description?: string | ReactNode;
+      descriptionProps?: ComponentProps<typeof Text>;
+    }
+  >;
+  title?: string | ReactNode;
+  titleProps?: ComponentProps<typeof Text>;
+  numColumns?: number;
+}) => {
+  return (
+    <Slide {...rest}>
+      <Box display="inline-block" style={{ overflow: 'scroll' }}>
+        {title ? <Heading {...titleProps}>{title}</Heading> : null}
+        <Grid
+          gridRowGap={1}
+          gridColumnGap={1}
+          gridTemplateColumns={`repeat(${numColumns}, minmax(100px, 1fr))`}
+          maxWidth="100%"
+        >
+          {codeBlocks.map(
+            ({ description, descriptionProps, code, ...codePaneProps }, i) => (
+              <CodeLayout
+                key={i}
+                text={description}
+                textProps={descriptionProps}
+                {...codePaneProps}
+              >
+                {code}
+              </CodeLayout>
+            )
+          )}
+        </Grid>
+      </Box>
+    </Slide>
+  );
+};
+
+/**
  * Layouts to consider:
  * - Image (left, right, full bleed?)
  * - Intro
- * - Code Snippet (syntax highlighting)
  */
 
 export default {
@@ -207,5 +308,7 @@ export default {
   Section,
   BigFact,
   Quote,
-  Statement
+  Statement,
+  Code,
+  MultiCodeLayout
 };
