@@ -65,14 +65,9 @@ const prepForProjectWrite = async (fileOptions: FileOptions) => {
  * Generate a webpack-based project
  */
 export const writeWebpackProjectFiles = async (options: FileOptions) => {
-  const {
-    port,
-    enableTypeScriptSupport,
-    snakeCaseName,
-    spectacleVersion,
-    name
-  } = options;
-  const { outPath, pathFor } = await prepForProjectWrite(options);
+  const { port, enableTypeScriptSupport, snakeCaseName, spectacleVersion } =
+    options;
+  const { pathFor } = await prepForProjectWrite(options);
 
   await writeFile(
     pathFor('webpack.config.js'),
@@ -98,7 +93,7 @@ export const writeWebpackProjectFiles = async (options: FileOptions) => {
 export const writeViteProjectFiles = async (options: FileOptions) => {
   const { enableTypeScriptSupport, snakeCaseName, spectacleVersion, port } =
     options;
-  const { outPath, pathFor } = await prepForProjectWrite(options);
+  const { pathFor } = await prepForProjectWrite(options);
 
   await writeFile(
     pathFor('package.json'),
