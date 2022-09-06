@@ -248,7 +248,8 @@
     },
     "test": {
       "dependencies": [
-        "./packages/spectacle:test"
+        "./packages/spectacle:test",
+        "./packages/create-spectacle:test"
       ]
     }
   }
