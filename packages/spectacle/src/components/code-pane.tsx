@@ -169,7 +169,6 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
             language={language}
             wrapLines
             showLineNumbers={showLineNumbers}
-            showInlineLineNumbers
             lineProps={getLineProps}
             lineNumberStyle={getLineNumberStyle}
             style={syntaxTheme}
