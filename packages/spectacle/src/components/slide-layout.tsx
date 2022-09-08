@@ -295,6 +295,36 @@ const MultiCodeLayout = ({
 };
 
 /**
+ * Full Bleed Image layout
+ */
+const FullBleedImage = ({
+  src,
+  imgProps,
+  flexBoxProps,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  src: string;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  flexBoxProps?: ComponentProps<typeof FlexBox>;
+}) => (
+  <Slide padding="0 0 0" {...rest}>
+    <FlexBox
+      style={{
+        height: '100%',
+        overflow: 'hidden'
+      }}
+      {...flexBoxProps}
+    >
+      <img
+        src={src}
+        style={{ minWidth: '100%', minHeight: '100%', flexShrink: '0' }}
+        {...imgProps}
+      />
+    </FlexBox>
+  </Slide>
+);
+
+/**
  * Layouts to consider:
  * - Image (left, right, full bleed?)
  * - Intro
@@ -310,5 +340,6 @@ export default {
   Quote,
   Statement,
   Code,
-  MultiCodeLayout
+  MultiCodeLayout,
+  FullBleedImage
 };
