@@ -295,6 +295,99 @@ const MultiCodeLayout = ({
 };
 
 /**
+ * Generic Image utility component
+ */
+const Image = ({
+  src,
+  imgProps,
+  flexBoxProps
+}: Omit<SlideProps, 'children'> & {
+  src: string;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  flexBoxProps?: ComponentProps<typeof FlexBox>;
+}) => (
+  <FlexBox
+    style={{
+      height: '100%'
+    }}
+    {...flexBoxProps}
+  >
+    <img src={src} style={{}} {...imgProps} />
+  </FlexBox>
+);
+
+/**
+ * Image and List layout with optional Title
+ */
+const VerticalImage = ({
+  src,
+  imgProps,
+  flexBoxProps,
+  title,
+  titleProps,
+  listType = 'unordered',
+  listItems,
+  animateListItems = false,
+  listProps,
+  position= "right",
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  src: string;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  flexBoxProps?: ComponentProps<typeof FlexBox>;
+  title?: 'string' | ReactNode;
+  titleProps?: ComponentProps<typeof Heading>;
+  listType?: 'unordered' | 'ordered';
+  listItems: ReactNode[];
+  animateListItems?: boolean;
+  listProps?: React.ComponentPropsWithoutRef<typeof UnorderedList & typeof OrderedList>;
+  position?: 'right' | 'left';
+}) => {
+  const List = listType === 'unordered' ? UnorderedList : OrderedList;
+  return (
+    <Slide padding="0 0 0" {...rest}>
+      {title ? <Heading {...titleProps}>{title}</Heading> : null}
+      <Grid
+        gridColumnGap={2}
+        gridTemplateColumns={'repeat(2, 1fr)'}
+        style={{ padding: title ? '0 32px 0' : '32px' }}
+      >
+        <FlexBox justifyContent="start">
+          <List {...listProps}>
+            {listItems.map((item, i) => {
+              const Wrapper = animateListItems ? Appear : Fragment;
+
+              return (
+                <Wrapper key={i}>
+                  <ListItem key={i}>{item}</ListItem>
+                </Wrapper>
+              );
+            })}
+          </List>
+        </FlexBox>
+
+        <FlexBox
+          style={{
+            height: '100%',
+            overflow: 'hidden',
+            maxHeight: '695px'
+          }}
+          order={position === "right" ? 1 : -1}
+          {...flexBoxProps}
+        >
+          <img
+            src={src}
+            style={{ minWidth: '100%', minHeight: '100%' }}
+            {...imgProps}
+          />
+        </FlexBox>
+      </Grid>
+    </Slide>
+  );
+};
+
+
+/**
  * Full Bleed Image layout
  */
 const FullBleedImage = ({
@@ -341,5 +434,6 @@ export default {
   Statement,
   Code,
   MultiCodeLayout,
+  VerticalImage,
   FullBleedImage
 };
