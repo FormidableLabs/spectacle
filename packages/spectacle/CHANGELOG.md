@@ -1,5 +1,13 @@
 # Changelog
 
+## 9.5.0
+
+### Minor Changes
+
+- feat: Add new Slide Layouts: Section, Statement, Big fact, Quote to expand basic layout creation. ([#1209](https://github.com/FormidableLabs/spectacle/pull/1209))
+
+* feat: Add single and multiple code pane Slide Layouts with options. ([#1217](https://github.com/FormidableLabs/spectacle/pull/1217))
+
 ## 9.4.0
 
 ### Minor Changes

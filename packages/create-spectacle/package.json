@@ -1,6 +1,6 @@
 {
   "name": "create-spectacle",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Project generator for Spectacle",
   "main": "bin/cli.js",
   "files": [
@@ -141,7 +141,9 @@
       ]
     },
     "test": {
-      "dependencies": ["build"],
+      "dependencies": [
+        "build"
+      ],
       "command": "jest --testMatch=\"<rootDir>/src/*.test.ts\"",
       "files": [
         "src/**",
