@@ -329,7 +329,7 @@ const VerticalImage = ({
   listItems,
   animateListItems = false,
   listProps,
-  position= "right",
+  position = 'right',
   ...rest
 }: Omit<SlideProps, 'children'> & {
   src: string;
@@ -340,7 +340,9 @@ const VerticalImage = ({
   listType?: 'unordered' | 'ordered';
   listItems: ReactNode[];
   animateListItems?: boolean;
-  listProps?: React.ComponentPropsWithoutRef<typeof UnorderedList & typeof OrderedList>;
+  listProps?: React.ComponentPropsWithoutRef<
+    typeof UnorderedList & typeof OrderedList
+  >;
   position?: 'right' | 'left';
 }) => {
   const List = listType === 'unordered' ? UnorderedList : OrderedList;
@@ -372,7 +374,7 @@ const VerticalImage = ({
             overflow: 'hidden',
             maxHeight: '695px'
           }}
-          order={position === "right" ? 1 : -1}
+          order={position === 'right' ? 1 : -1}
           {...flexBoxProps}
         >
           <img
@@ -386,6 +388,80 @@ const VerticalImage = ({
   );
 };
 
+/**
+ * Image 3-up layout
+ */
+const ThreeUpImage = ({
+  src,
+  imgProps,
+  flexBoxProps,
+  position = 'right',
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  src: string;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  flexBoxProps?: ComponentProps<typeof FlexBox>;
+  position?: 'right' | 'left';
+}) => {
+  return (
+    <Slide {...rest}>
+      <Grid gridColumnGap={2} gridTemplateColumns={'repeat(2, 1fr)'}>
+        <Grid gridRowGap={2} gridTemplateRows={'repeat(2, .5fr)'}>
+          <FlexBox
+            style={{
+              height: '100%',
+              overflow: 'hidden',
+              maxHeight: '350px'
+            }}
+          >
+            <img
+              src={src}
+              style={{
+                minWidth: '100%',
+                minHeight: '100%',
+                objectFit: 'cover'
+              }}
+              {...imgProps}
+            />
+          </FlexBox>
+          <FlexBox
+            style={{
+              height: '100%',
+              overflow: 'hidden',
+              maxHeight: '350px'
+            }}
+          >
+            <img
+              src={src}
+              style={{
+                minWidth: '100%',
+                minHeight: '100%',
+                objectFit: 'cover'
+              }}
+              {...imgProps}
+            />
+          </FlexBox>
+        </Grid>
+
+        <FlexBox
+          style={{
+            overflow: 'hidden',
+            height: '700px',
+            width: '625px'
+          }}
+          order={position === 'right' ? 1 : -1}
+          {...flexBoxProps}
+        >
+          <img
+            src={src}
+            style={{ minWidth: '100%', minHeight: '100%', objectFit: 'cover' }}
+            {...imgProps}
+          />
+        </FlexBox>
+      </Grid>
+    </Slide>
+  );
+};
 
 /**
  * Full Bleed Image layout
@@ -435,5 +511,6 @@ export default {
   Code,
   MultiCodeLayout,
   VerticalImage,
+  ThreeUpImage,
   FullBleedImage
 };
