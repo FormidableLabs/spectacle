@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import Slide, { SlideProps } from './slide/slide';
 import { Box, FlexBox, Grid } from './layout-primitives';
 import CodePane, { CodePaneProps } from './code-pane';
@@ -295,28 +296,6 @@ const MultiCodeLayout = ({
 };
 
 /**
- * Generic Image utility component
- */
-const Image = ({
-  src,
-  imgProps,
-  flexBoxProps
-}: Omit<SlideProps, 'children'> & {
-  src: string;
-  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
-  flexBoxProps?: ComponentProps<typeof FlexBox>;
-}) => (
-  <FlexBox
-    style={{
-      height: '100%'
-    }}
-    {...flexBoxProps}
-  >
-    <img src={src} style={{}} {...imgProps} />
-  </FlexBox>
-);
-
-/**
  * Image and List layout with optional Title
  */
 const VerticalImage = ({
@@ -389,6 +368,34 @@ const VerticalImage = ({
 };
 
 /**
+ * Generic Image utility component
+ */
+const Img = styled.img`
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+`;
+
+const ImgContainer = styled(FlexBox).attrs({})`
+  height: ${(props) => props.height || '100%'};
+  overflow: hidden;
+`;
+
+const Image = ({
+  src,
+  imgContainerProps,
+  imgProps
+}: {
+  src: string;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+}) => (
+  <ImgContainer {...imgContainerProps}>
+    <Img src={src} {...imgProps} />
+  </ImgContainer>
+);
+
+/**
  * Image 3-up layout
  */
 const ThreeUpImage = ({
@@ -407,57 +414,18 @@ const ThreeUpImage = ({
     <Slide {...rest}>
       <Grid gridColumnGap={2} gridTemplateColumns={'repeat(2, 1fr)'}>
         <Grid gridRowGap={2} gridTemplateRows={'repeat(2, .5fr)'}>
-          <FlexBox
-            style={{
-              height: '100%',
-              overflow: 'hidden',
-              maxHeight: '350px'
-            }}
-          >
-            <img
-              src={src}
-              style={{
-                minWidth: '100%',
-                minHeight: '100%',
-                objectFit: 'cover'
-              }}
-              {...imgProps}
-            />
-          </FlexBox>
-          <FlexBox
-            style={{
-              height: '100%',
-              overflow: 'hidden',
-              maxHeight: '350px'
-            }}
-          >
-            <img
-              src={src}
-              style={{
-                minWidth: '100%',
-                minHeight: '100%',
-                objectFit: 'cover'
-              }}
-              {...imgProps}
-            />
-          </FlexBox>
+          <Image src={src} imgContainerProps={{ maxHeight: '350px' }} />
+          <Image src={src} imgContainerProps={{ maxHeight: '350px' }} />
         </Grid>
 
-        <FlexBox
-          style={{
-            overflow: 'hidden',
+        <Image
+          imgContainerProps={{
             height: '700px',
-            width: '625px'
+            width: '625px',
+            order: position === 'right' ? 1 : -1
           }}
-          order={position === 'right' ? 1 : -1}
-          {...flexBoxProps}
-        >
-          <img
-            src={src}
-            style={{ minWidth: '100%', minHeight: '100%', objectFit: 'cover' }}
-            {...imgProps}
-          />
-        </FlexBox>
+          src={src}
+        />
       </Grid>
     </Slide>
   );
