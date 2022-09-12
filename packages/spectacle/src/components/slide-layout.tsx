@@ -48,6 +48,41 @@ const TwoColumn = ({
 );
 
 /**
+ * Generic List utility
+ */
+const Outline = ({
+  items = [],
+  type = 'unordered',
+  animate = false,
+  listProps
+}:
+  (typeof UnorderedList
+  | typeof OrderedList) & {
+      items: ReactNode[];
+      type?: 'unordered' | 'ordered';
+      animate?: boolean;
+      listProps?: React.ComponentPropsWithoutRef<
+        typeof UnorderedList & typeof OrderedList
+      >;
+    }) => {
+  const List = type === 'unordered' ? UnorderedList : OrderedList;
+
+  return (
+    <List {...listProps}>
+      {items.map((item, i) => {
+        const Wrapper = animate ? Appear : Fragment;
+
+        return (
+          <Wrapper key={i}>
+            <ListItem key={i}>{item}</ListItem>
+          </Wrapper>
+        );
+      })}
+    </List>
+  );
+};
+
+/**
  * List layout with optional title
  */
 const List = ({
@@ -64,31 +99,24 @@ const List = ({
   items: ReactNode[];
   animateListItems?: boolean;
   titleProps?: ComponentProps<typeof Heading>;
-  listProps?: ComponentProps<typeof UnorderedList & typeof OrderedList>;
+  listProps?: React.ComponentPropsWithoutRef<
+    typeof UnorderedList & typeof OrderedList
+  >;
 }) => {
-  const List = listType === 'unordered' ? UnorderedList : OrderedList;
-
-  return (
-    <Slide {...rest}>
-      {title ? (
-        <Heading textAlign="left" {...titleProps}>
-          {title}
-        </Heading>
-      ) : null}
-      {/* @ts-ignore TODO: Resolve this in follow-up */}
-      <List {...listProps}>
-        {items.map((item, i) => {
-          const Wrapper = animateListItems ? Appear : Fragment;
-
-          return (
-            <Wrapper key={i}>
-              <ListItem key={i}>{item}</ListItem>
-            </Wrapper>
-          );
-        })}
-      </List>
-    </Slide>
-  );
+  <Slide {...rest}>
+    {title ? (
+      <Heading textAlign="left" {...titleProps}>
+        {title}
+      </Heading>
+    ) : null}
+    {/* @ts-ignore TODO: Resolve this in follow-up */}
+    <Outline
+      items={items}
+      animate={animateListItems}
+      type={listType}
+      {...listProps}
+    />
+  </Slide>;
 };
 
 /**
@@ -296,79 +324,7 @@ const MultiCodeLayout = ({
 };
 
 /**
- * Image and List layout with optional Title
- */
-const VerticalImage = ({
-  src,
-  imgProps,
-  flexBoxProps,
-  title,
-  titleProps,
-  listType = 'unordered',
-  listItems,
-  animateListItems = false,
-  listProps,
-  position = 'right',
-  ...rest
-}: Omit<SlideProps, 'children'> & {
-  src: string;
-  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
-  flexBoxProps?: ComponentProps<typeof FlexBox>;
-  title?: 'string' | ReactNode;
-  titleProps?: ComponentProps<typeof Heading>;
-  listType?: 'unordered' | 'ordered';
-  listItems: ReactNode[];
-  animateListItems?: boolean;
-  listProps?: React.ComponentPropsWithoutRef<
-    typeof UnorderedList & typeof OrderedList
-  >;
-  position?: 'right' | 'left';
-}) => {
-  const List = listType === 'unordered' ? UnorderedList : OrderedList;
-  return (
-    <Slide padding="0 0 0" {...rest}>
-      {title ? <Heading {...titleProps}>{title}</Heading> : null}
-      <Grid
-        gridColumnGap={2}
-        gridTemplateColumns={'repeat(2, 1fr)'}
-        style={{ padding: title ? '0 32px 0' : '32px' }}
-      >
-        <FlexBox justifyContent="start">
-          <List {...listProps}>
-            {listItems.map((item, i) => {
-              const Wrapper = animateListItems ? Appear : Fragment;
-
-              return (
-                <Wrapper key={i}>
-                  <ListItem key={i}>{item}</ListItem>
-                </Wrapper>
-              );
-            })}
-          </List>
-        </FlexBox>
-
-        <FlexBox
-          style={{
-            height: '100%',
-            overflow: 'hidden',
-            maxHeight: '695px'
-          }}
-          order={position === 'right' ? 1 : -1}
-          {...flexBoxProps}
-        >
-          <img
-            src={src}
-            style={{ minWidth: '100%', minHeight: '100%' }}
-            {...imgProps}
-          />
-        </FlexBox>
-      </Grid>
-    </Slide>
-  );
-};
-
-/**
- * Generic Image utility component
+ * Generic styled-component Image utilities
  */
 const Img = styled.img`
   min-width: 100%;
@@ -396,26 +352,94 @@ const Image = ({
 );
 
 /**
+ * Image and List layout with optional Title
+ */
+const VerticalImage = ({
+  src,
+  title,
+  titleProps,
+  listType = 'unordered',
+  listItems,
+  animateListItems = false,
+  listProps,
+  imgProps,
+  imgContainerProps,
+  position = 'right',
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  src: string;
+  listItems: ReactNode[];
+  title?: 'string' | ReactNode;
+  titleProps?: ComponentProps<typeof Heading>;
+  listType?: 'unordered' | 'ordered';
+  animateListItems?: boolean;
+  listProps?: React.ComponentPropsWithoutRef<
+    typeof UnorderedList & typeof OrderedList
+  >;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
+  position?: 'right' | 'left';
+}) => {
+  return (
+    <Slide padding="0 0 0" {...rest}>
+      {title ? <Heading {...titleProps}>{title}</Heading> : null}
+      <Grid
+        gridColumnGap={2}
+        gridTemplateColumns={'repeat(2, 1fr)'}
+        style={{ padding: title ? '0 32px 0' : '32px' }}
+      >
+        <FlexBox justifyContent="start">
+          {/* @ts-ignore TODO: Resolve this in follow-up */}
+          <Outline
+            items={listItems}
+            animate={animateListItems}
+            type={listType}
+            {...listProps}
+          />
+        </FlexBox>
+        <Image
+          src={src}
+          imgContainerProps={{
+            height: title ? '550px' : '700px',
+            order: position === 'right' ? 1 : -1
+          }}
+          {...{ ...imgProps, ...imgContainerProps }}
+        />
+      </Grid>
+    </Slide>
+  );
+};
+
+/**
  * Image 3-up layout
  */
+// TODO: figure out positioning portion of three up api
 const ThreeUpImage = ({
   src,
   imgProps,
-  flexBoxProps,
+  imgContainerProps,
   position = 'right',
   ...rest
 }: Omit<SlideProps, 'children'> & {
   src: string;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
-  flexBoxProps?: ComponentProps<typeof FlexBox>;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
   position?: 'right' | 'left';
 }) => {
   return (
     <Slide {...rest}>
       <Grid gridColumnGap={2} gridTemplateColumns={'repeat(2, 1fr)'}>
         <Grid gridRowGap={2} gridTemplateRows={'repeat(2, .5fr)'}>
-          <Image src={src} imgContainerProps={{ maxHeight: '350px' }} />
-          <Image src={src} imgContainerProps={{ maxHeight: '350px' }} />
+          <Image
+            src={src}
+            imgContainerProps={{ maxHeight: '350px' }}
+            {...{ ...imgProps, ...imgContainerProps }}
+          />
+          <Image
+            src={src}
+            imgContainerProps={{ maxHeight: '350px' }}
+            {...{ ...imgProps, ...imgContainerProps }}
+          />
         </Grid>
 
         <Image
@@ -425,6 +449,7 @@ const ThreeUpImage = ({
             order: position === 'right' ? 1 : -1
           }}
           src={src}
+          {...{ ...imgProps, ...imgContainerProps }}
         />
       </Grid>
     </Slide>
@@ -437,27 +462,15 @@ const ThreeUpImage = ({
 const FullBleedImage = ({
   src,
   imgProps,
-  flexBoxProps,
+  imgContainerProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
   src: string;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
-  flexBoxProps?: ComponentProps<typeof FlexBox>;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
 }) => (
   <Slide padding="0 0 0" {...rest}>
-    <FlexBox
-      style={{
-        height: '100%',
-        overflow: 'hidden'
-      }}
-      {...flexBoxProps}
-    >
-      <img
-        src={src}
-        style={{ minWidth: '100%', minHeight: '100%', flexShrink: '0' }}
-        {...imgProps}
-      />
-    </FlexBox>
+    <Image src={src} {...{ ...imgProps, ...imgContainerProps }} />
   </Slide>
 );
 
