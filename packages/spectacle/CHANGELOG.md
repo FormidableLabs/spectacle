@@ -1,5 +1,11 @@
 # Changelog
 
+## 9.5.1
+
+### Patch Changes
+
+- Fixed Notes node tree generation inside Markdown component. ([#1219](https://github.com/FormidableLabs/spectacle/pull/1219))
+
 ## 9.5.0
 
 ### Minor Changes
