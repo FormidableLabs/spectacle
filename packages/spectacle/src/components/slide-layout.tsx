@@ -55,16 +55,14 @@ const Outline = ({
   type = 'unordered',
   animate = false,
   listProps
-}:
-  (typeof UnorderedList
-  | typeof OrderedList) & {
-      items: ReactNode[];
-      type?: 'unordered' | 'ordered';
-      animate?: boolean;
-      listProps?: React.ComponentPropsWithoutRef<
-        typeof UnorderedList & typeof OrderedList
-      >;
-    }) => {
+}: (typeof UnorderedList | typeof OrderedList) & {
+  items: ReactNode[];
+  type?: 'unordered' | 'ordered';
+  animate?: boolean;
+  listProps?: React.ComponentPropsWithoutRef<
+    typeof UnorderedList & typeof OrderedList
+  >;
+}) => {
   const List = type === 'unordered' ? UnorderedList : OrderedList;
 
   return (
@@ -102,7 +100,7 @@ const List = ({
   listProps?: React.ComponentPropsWithoutRef<
     typeof UnorderedList & typeof OrderedList
   >;
-}) => {
+}) => (
   <Slide {...rest}>
     {title ? (
       <Heading textAlign="left" {...titleProps}>
@@ -114,10 +112,10 @@ const List = ({
       items={items}
       animate={animateListItems}
       type={listType}
-      {...listProps}
+      listProps={listProps}
     />
-  </Slide>;
-};
+  </Slide>
+);
 
 /**
  * Generic vertically-centered Header layout
@@ -342,7 +340,7 @@ const Image = ({
   imgContainerProps,
   imgProps
 }: {
-  src: 'string';
+  src: string;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
 }) => (
@@ -364,10 +362,10 @@ const HorizontalImage = ({
   imgContainerProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  src: 'string';
-  title?: 'string' | ReactNode;
+  src: string;
+  title?: string | ReactNode;
   titleProps?: ComponentProps<typeof Text>;
-  description?: 'string' | ReactNode;
+  description?: string | ReactNode;
   descriptionProps?: ComponentProps<typeof Text>;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
@@ -412,9 +410,9 @@ const VerticalImage = ({
   position = 'right',
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  src: 'string';
+  src: string;
   listItems: ReactNode[];
-  title?: 'string' | ReactNode;
+  title?: string | ReactNode;
   titleProps?: ComponentProps<typeof Heading>;
   listType?: 'unordered' | 'ordered';
   animateListItems?: boolean;
@@ -466,18 +464,18 @@ const ThreeUpImage = ({
   ...rest
 }: Omit<SlideProps, 'children'> & {
   primary: {
-    src: 'string';
+    src: string;
     position?: 'right' | 'left';
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
   top: {
-    src: 'string';
+    src: string;
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
   bottom: {
-    src: 'string';
+    src: string;
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
@@ -525,7 +523,7 @@ const FullBleedImage = ({
   imgContainerProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  src: 'string';
+  src: string;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
 }) => (
