@@ -342,7 +342,7 @@ const Image = ({
   imgContainerProps,
   imgProps
 }: {
-  src: string;
+  src: 'string';
   imgContainerProps?: ComponentProps<typeof FlexBox>;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
 }) => (
@@ -350,6 +350,51 @@ const Image = ({
     <Img src={src} {...imgProps} />
   </ImgContainer>
 );
+
+/**
+ * Horizontal Image layout with optional Title and Description
+ */
+const HorizontalImage = ({
+  src,
+  title,
+  titleProps,
+  description,
+  descriptionProps,
+  imgProps,
+  imgContainerProps,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  src: 'string';
+  title?: 'string' | ReactNode;
+  titleProps?: ComponentProps<typeof Text>;
+  description?: 'string' | ReactNode;
+  descriptionProps?: ComponentProps<typeof Text>;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
+}) => {
+  return (
+    <Slide {...rest}>
+      <Image
+        src={src}
+        imgContainerProps={{
+          width: '100%',
+          ...imgContainerProps
+        }}
+        imgProps={imgProps}
+      />
+      {title ? (
+        <Heading textAlign="left" margin="0 0" {...titleProps}>
+          {title}
+        </Heading>
+      ) : null}
+      {description ? (
+        <Text margin="0 0" {...descriptionProps}>
+          {description}
+        </Text>
+      ) : null}
+    </Slide>
+  );
+};
 
 /**
  * Image and List layout with optional Title
@@ -367,7 +412,7 @@ const VerticalImage = ({
   position = 'right',
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  src: string;
+  src: 'string';
   listItems: ReactNode[];
   title?: 'string' | ReactNode;
   titleProps?: ComponentProps<typeof Heading>;
@@ -401,9 +446,10 @@ const VerticalImage = ({
           src={src}
           imgContainerProps={{
             height: title ? '550px' : '700px',
-            order: position === 'right' ? 1 : -1
+            order: position === 'right' ? 1 : -1,
+            ...imgContainerProps
           }}
-          {...{ ...imgProps, ...imgContainerProps }}
+          imgProps={imgProps}
         />
       </Grid>
     </Slide>
@@ -413,32 +459,45 @@ const VerticalImage = ({
 /**
  * Image 3-up layout
  */
-// TODO: figure out positioning portion of three up api
 const ThreeUpImage = ({
-  src,
-  imgProps,
-  imgContainerProps,
-  position = 'right',
+  primary,
+  top,
+  bottom,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  src: string;
-  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
-  imgContainerProps?: ComponentProps<typeof FlexBox>;
-  position?: 'right' | 'left';
+  primary: {
+    src: 'string';
+    position?: 'right' | 'left';
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+    imgContainerProps?: ComponentProps<typeof FlexBox>;
+  };
+  top: {
+    src: 'string';
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+    imgContainerProps?: ComponentProps<typeof FlexBox>;
+  };
+  bottom: {
+    src: 'string';
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+    imgContainerProps?: ComponentProps<typeof FlexBox>;
+  };
 }) => {
   return (
     <Slide {...rest}>
       <Grid gridColumnGap={2} gridTemplateColumns={'repeat(2, 1fr)'}>
         <Grid gridRowGap={2} gridTemplateRows={'repeat(2, .5fr)'}>
           <Image
-            src={src}
-            imgContainerProps={{ maxHeight: '350px' }}
-            {...{ ...imgProps, ...imgContainerProps }}
+            src={top.src}
+            imgContainerProps={{ maxHeight: '350px', ...top.imgContainerProps }}
+            imgProps={top.imgProps}
           />
           <Image
-            src={src}
-            imgContainerProps={{ maxHeight: '350px' }}
-            {...{ ...imgProps, ...imgContainerProps }}
+            src={bottom.src}
+            imgContainerProps={{
+              maxHeight: '350px',
+              ...bottom.imgContainerProps
+            }}
+            imgProps={bottom.imgProps}
           />
         </Grid>
 
@@ -446,10 +505,11 @@ const ThreeUpImage = ({
           imgContainerProps={{
             height: '700px',
             width: '625px',
-            order: position === 'right' ? 1 : -1
+            order: primary.position === 'right' ? 1 : -1,
+            ...primary.imgContainerProps
           }}
-          src={src}
-          {...{ ...imgProps, ...imgContainerProps }}
+          src={primary.src}
+          imgProps={primary.imgProps}
         />
       </Grid>
     </Slide>
@@ -465,18 +525,21 @@ const FullBleedImage = ({
   imgContainerProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
-  src: string;
+  src: 'string';
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
 }) => (
   <Slide padding="0 0 0" {...rest}>
-    <Image src={src} {...{ ...imgProps, ...imgContainerProps }} />
+    <Image
+      src={src}
+      imgProps={imgProps}
+      imgContainerProps={imgContainerProps}
+    />
   </Slide>
 );
 
 /**
  * Layouts to consider:
- * - Image (left, right, full bleed?)
  * - Intro
  */
 
@@ -491,6 +554,7 @@ export default {
   Statement,
   Code,
   MultiCodeLayout,
+  HorizontalImage,
   VerticalImage,
   ThreeUpImage,
   FullBleedImage
