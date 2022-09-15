@@ -50,7 +50,7 @@ const TwoColumn = ({
 /**
  * Generic List utility
  */
-const Outline = ({
+const Ul = ({
   items = [],
   type = 'unordered',
   animate = false,
@@ -108,7 +108,7 @@ const List = ({
       </Heading>
     ) : null}
     {/* @ts-ignore TODO: Resolve this in follow-up */}
-    <Outline
+    <Ul
       items={items}
       animate={animateListItems}
       type={listType}
@@ -330,22 +330,24 @@ const Img = styled.img`
   object-fit: cover;
 `;
 
-const ImgContainer = styled(FlexBox).attrs({})`
+const ImgContainer = styled(FlexBox)<{ height?: string }>`
   height: ${(props) => props.height || '100%'};
   overflow: hidden;
 `;
 
 const Image = ({
   src,
+  alt = '',
   imgContainerProps,
   imgProps
 }: {
   src: string;
+  alt: string;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
 }) => (
-  <ImgContainer {...imgContainerProps}>
-    <Img src={src} {...imgProps} />
+  <ImgContainer data-testid="ImgContainer" {...imgContainerProps}>
+    <Img data-testid="Img" src={src} alt={alt} {...imgProps} />
   </ImgContainer>
 );
 
@@ -354,6 +356,7 @@ const Image = ({
  */
 const HorizontalImage = ({
   src,
+  alt,
   title,
   titleProps,
   description,
@@ -363,6 +366,7 @@ const HorizontalImage = ({
   ...rest
 }: Omit<SlideProps, 'children'> & {
   src: string;
+  alt: string;
   title?: string | ReactNode;
   titleProps?: ComponentProps<typeof Text>;
   description?: string | ReactNode;
@@ -374,6 +378,7 @@ const HorizontalImage = ({
     <Slide {...rest}>
       <Image
         src={src}
+        alt={alt}
         imgContainerProps={{
           width: '100%',
           ...imgContainerProps
@@ -399,6 +404,7 @@ const HorizontalImage = ({
  */
 const VerticalImage = ({
   src,
+  alt,
   title,
   titleProps,
   listType = 'unordered',
@@ -407,10 +413,11 @@ const VerticalImage = ({
   listProps,
   imgProps,
   imgContainerProps,
-  position = 'right',
+  position = 'left',
   ...rest
 }: Omit<SlideProps, 'children'> & {
   src: string;
+  alt: string;
   listItems: ReactNode[];
   title?: string | ReactNode;
   titleProps?: ComponentProps<typeof Heading>;
@@ -433,7 +440,7 @@ const VerticalImage = ({
       >
         <FlexBox justifyContent="start">
           {/* @ts-ignore TODO: Resolve this in follow-up */}
-          <Outline
+          <Ul
             items={listItems}
             animate={animateListItems}
             type={listType}
@@ -442,6 +449,7 @@ const VerticalImage = ({
         </FlexBox>
         <Image
           src={src}
+          alt={alt}
           imgContainerProps={{
             height: title ? '550px' : '700px',
             order: position === 'right' ? 1 : -1,
@@ -465,17 +473,20 @@ const ThreeUpImage = ({
 }: Omit<SlideProps, 'children'> & {
   primary: {
     src: string;
+    alt: string;
     position?: 'right' | 'left';
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
   top: {
     src: string;
+    alt: string;
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
   bottom: {
     src: string;
+    alt: string;
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
@@ -486,11 +497,13 @@ const ThreeUpImage = ({
         <Grid gridRowGap={2} gridTemplateRows={'repeat(2, .5fr)'}>
           <Image
             src={top.src}
+            alt={top.alt}
             imgContainerProps={{ maxHeight: '350px', ...top.imgContainerProps }}
             imgProps={top.imgProps}
           />
           <Image
             src={bottom.src}
+            alt={bottom.alt}
             imgContainerProps={{
               maxHeight: '350px',
               ...bottom.imgContainerProps
@@ -507,6 +520,7 @@ const ThreeUpImage = ({
             ...primary.imgContainerProps
           }}
           src={primary.src}
+          alt={primary.alt}
           imgProps={primary.imgProps}
         />
       </Grid>
@@ -519,17 +533,20 @@ const ThreeUpImage = ({
  */
 const FullBleedImage = ({
   src,
+  alt,
   imgProps,
   imgContainerProps,
   ...rest
 }: Omit<SlideProps, 'children'> & {
   src: string;
+  alt: string;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
 }) => (
   <Slide padding="0 0 0" {...rest}>
     <Image
       src={src}
+      alt={alt}
       imgProps={imgProps}
       imgContainerProps={imgContainerProps}
     />
