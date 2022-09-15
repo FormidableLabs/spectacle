@@ -487,6 +487,7 @@ type CodeBlock = Omit<CodePaneProps, 'children'> & {
 ### `SlideLayout.HorizontalImage`
 
 A layout with a horizontal/landscape image and an optional title and description for if you want one image per slide.
+[alt text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt)
 
 | Props               | Type                                    | Required | Example                                                          |
 |---------------------|-----------------------------------------|----------|------------------------------------------------------------------|
@@ -504,6 +505,7 @@ A layout with a horizontal/landscape image and an optional title and description
 ### `SlideLayout.VerticalImage`
 
 A layout with a vertical/portrait image and an optional title and bulletted list for if you want one image per slide.
+[alt text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt)
 
 | Props               | Type                                                              | Required | Example                                                          |
 |---------------------|-------------------------------------------------------------------|----------|------------------------------------------------------------------|
@@ -524,6 +526,7 @@ A layout with a vertical/portrait image and an optional title and bulletted list
 ### `SlideLayout.ThreeUpImage`
 
 A layout with a primary, top and bottom images for if you want three images per slide.
+[alt text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt)
 
 | Props               | Type                                              | Required | Example                                                          |
 |---------------------|---------------------------------------------------|----------|------------------------------------------------------------------|
@@ -547,6 +550,7 @@ type ImagePane = {
 ### `SlideLayout.FullBleedImage`
 
 A layout with a full bleed image for if you want one image to full the entire slide.
+[alt text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt)
 
 | Props               | Type                                    | Required | Example                                                          |
 |---------------------|-----------------------------------------|----------|------------------------------------------------------------------|
