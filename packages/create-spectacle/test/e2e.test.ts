@@ -2,6 +2,8 @@ import type { Browser, Page } from 'puppeteer';
 import puppeteer from 'puppeteer';
 import { getLaunchOptions } from './util';
 
+jest.setTimeout(50000);
+
 describe('App.js', () => {
   let browser: Browser;
   let page: Page;
