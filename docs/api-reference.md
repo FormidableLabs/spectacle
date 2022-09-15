@@ -404,3 +404,82 @@ A layout with a list and an optional title for if you want to quickly display a 
 | `items`            | `ReactNode[]`                       | ✅        | `['Hello', <Text>World</Text>]` |
 | `animateListItems` | `boolean`                           | ❌        | `true`                          |
 | `listProps`        | [List Props](#typography-tags)      | ❌        | `{ backgroundColor: 'purple' }` |
+
+
+### `SlideLayout.Section`
+
+A vertically-centered left-aligned section title layout for if you want title page for a new section.
+
+| Props                  | Type                            | Required |  Example                 |
+|------------------------|---------------------------------|----------|--------------------------|
+| `...slideProps`        | [Slide Props](#slide)           | ❌        |                          |
+| `sectionProps`         | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
+
+### `SlideLayout.Statement`
+
+A vertically-centered center-aligned statement for if you want to make a statement.
+
+| Props                  | Type                            | Required |  Example                 |
+|------------------------|---------------------------------|----------|--------------------------|
+| `...slideProps`        | [Slide Props](#slide)           | ❌        |                          |
+| `statementProps`       | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
+
+### `SlideLayout.BigFact`
+
+A centered Big Fact layout for if you want to present a fact in a large font.
+
+| Props                  | Type                           | Required | Example               | Default |
+|------------------------|--------------------------------|----------|-----------------------|---------|
+| `children`             | `ReactNode`                    | ✅        | `100%`                |         |
+| `...slideProps`        | [Slide Props](#slide)          | ❌        |                       |         |
+| `factInformation`      | `ReactNode`                    | ❌        | `Fact information`    |         |
+| `factProps`            | [Text Props](#typography-tags) | ❌        | { fontSize: "100px" } |         |
+| `factInformationProps` | [Text Props](#typography-tags) | ❌        | { fontSize: "48px" }  |         |
+| `factFontSize`         | `string`                       | ❌        | `150px`               | `250px` |
+
+### `SlideLayout.Quote`
+
+A vertically-centered Quote layout for if you want to present a quote and attribute it to someone.
+
+| Props              | Type                           | Required | Example               |
+|--------------------|--------------------------------|----------|-----------------------|
+| `children`         | `ReactNode`                    | ✅        | `To be, or not to be` |
+| `...slideProps`    | [Slide Props](#slide)          | ❌        |                       |
+| `attribution`      | `ReactNode`                    | ✅        | `William Shakespeare` |
+| `quoteProps`       | [Text Props](#typography-tags) | ❌        | { fontSize: "100px" } |
+| `attributionProps` | [Text Props](#typography-tags) | ❌        | { fontSize: "48px" }  |
+
+### `SlideLayout.Code`
+
+A layout with a single code pane and an optional title for if you want one code block per slide.
+
+| Props           | Type                              | Required | Example                                                          |
+|-----------------|-----------------------------------|----------|------------------------------------------------------------------|
+| `...slideProps` | [Slide Props](#slide)             | ❌        |                                                                  |
+| `title`         | `string`                          | ❌        | `Show me the code!`                                              |
+| `titleProps`    | [Heading Props](#typography-tags) | ❌        | `{ color: 'red' }`                                               |
+| `children`      | `string`                          | ✅        | `const Component = (props: componentProps): JSX.Element = {...}` |
+| `language`      | `boolean`                         | ✅        | `false`                                                          |
+| `codePaneProps` | `CodePaneProps`                   | ❌        |                                                                  |
+
+### `SlideLayout.MultiCodeLayout`
+
+A layout with multiple code panes and optional descriptions, and an optional title for if you want more than one code block per slide or code with description text.
+
+| Props           | Type                              | Required | Example                                                                                                             |
+|-----------------|-----------------------------------|----------|---------------------------------------------------------------------------------------------------------------------|
+| `...slideProps` | [Slide Props](#slide)             | ❌        |                                                                                                                     |
+| `title`         | `string`                          | ❌        | `Show me the code!`                                                                                                 |
+| `titleProps`    | [Heading Props](#typography-tags) | ❌        | `{ color: 'red' }`                                                                                                  |
+| `numColumns`    | `number`                          | ❌        | `{2}`                                                                                                               |
+| `codeBlocks`    | `CodeBlock[]`                     | ✅        | `[{ code: 'console.log("hello world!")', language: 'jsx', description: 'Say hello', codePaneProps: {...} }, {...}]` |
+
+where
+
+```ts
+type CodeBlock = Omit<CodePaneProps, 'children'> & {
+  code: CodePaneProps['children'];
+  description?: string | ReactNode;
+  descriptionProps?: ComponentProps<typeof Text>;
+}
+```

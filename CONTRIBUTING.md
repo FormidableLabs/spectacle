@@ -109,7 +109,7 @@ $ pnpm run prettier:fix
 $ pnpm run lint:fix
 ```
 
-If you have having issues with tasks failing erroneously, you can clear our tooling caches:
+If you have issues with tasks failing erroneously, you can clear our tooling caches:
 
 ```sh
 # Clean out everything
@@ -220,7 +220,7 @@ Our official release path is to use automation (via GitHub actions) to perform t
 2. On merge of a PR with a changeset file, our automation opens a "Version Packages" PR.
 3. On merging the "Version Packages" PR, the automation system publishes the packages.
 
-This streamlines releasing to: ensuring PRs have changeset files added as necessary, and approving the "Version Packages" PR generated from GitHub actions to publish a release to all affected packages.
+This streamlines releasing too: ensuring PRs have changeset files added as necessary, and approving the "Version Packages" PR generated from GitHub actions to publish a release to all affected packages.
 
 #### Manual Releases
 

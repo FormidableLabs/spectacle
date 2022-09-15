@@ -102,7 +102,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
     }, [highlightRanges]);
 
     const theme = useContext(ThemeContext);
-    const { stepId, isActive, step, placeholder } = useSteps(numberOfSteps, {
+    const { isActive, step, placeholder } = useSteps(numberOfSteps, {
       stepIndex
     });
 
@@ -149,7 +149,6 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
        * default theme with no valid values.
        */
       const {
-        size: { width = 1366 },
         space = [0, 0, 0],
         fontSizes: { monospace = '20px' }
       } = theme;
@@ -157,7 +156,6 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
       return {
         padding: space[0],
         margin: 0,
-        width: width - space[2] * 2 - space[0] * 2,
         fontSize: monospace
       };
     }, [theme]);

@@ -123,7 +123,7 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
           // Replace \r\n and \n with <br /> for paragraphs
           const children =
             key === 'p'
-              ? props.children?.map((child: any, i: number) => {
+              ? props.children?.map((child: any) => {
                   if (typeof child == 'string') {
                     const lines = child.split(/\r\n|\n/g);
                     return lines.map((str, i) => (
@@ -178,10 +178,15 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
         });
 
       // Transform and compile the notes AST.
-      const transformedNotesAst = notesCompiler.runSync(extractedNotes);
-      const noteElements = notesCompiler.stringify(transformedNotesAst);
-
-      return [templateProps, noteElements] as const;
+      if (
+        Array.isArray(extractedNotes.children) &&
+        extractedNotes.children.length >= 1
+      ) {
+        const transformedNotesAst = notesCompiler.runSync(extractedNotes);
+        const noteElements = notesCompiler.stringify(transformedNotesAst);
+        return [templateProps, noteElements] as const;
+      }
+      return [templateProps, null] as const;
     }, [
       rawMarkdownText,
       getPropsForAST,

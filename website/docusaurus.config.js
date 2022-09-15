@@ -1,6 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 const { romanize } = require('./src/utils/numbers');
+const lightTheme = require('./src/utils/prismLight.js');
+const darkTheme = require('./src/utils/prismDark.js');
 
 async function createConfig() {
   /** @type {import("@docusaurus/types").Config} */
@@ -63,7 +65,7 @@ async function createConfig() {
     ],
 
     themeConfig:
-    /** @type {import("@docusaurus/preset-classic").ThemeConfig} */
+      /** @type {import("@docusaurus/preset-classic").ThemeConfig} */
       ({
         navbar: {
           title: 'SPECTACLE',
@@ -109,9 +111,6 @@ async function createConfig() {
       })
   };
 
-
-  const lightTheme = (await import('./src/utils/prismLight.mjs')).default;
-  const darkTheme = (await import('./src/utils/prismDark.mjs')).default;
   // @ts-expect-error: we know it exists, right
   config.themeConfig.prism.theme = lightTheme;
   // @ts-expect-error: we know it exists, right
