@@ -327,4 +327,55 @@ describe('SlideLayout', () => {
       color: 'cyan'
     });
   });
+
+  const formidableDogs = {
+    madden:
+      'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/madden.jpg'
+  };
+  it('SlideLayout.HorizontalImage should pass props to image and its container if provided', () => {
+    const { container, queryAllByTestId } = renderInDeck(
+      <SlideLayout.HorizontalImage
+        src={formidableDogs.madden}
+        alt={'Madden the dog looking regal'}
+        title={'Madden the dog is so cute'}
+        description={'We love him'}
+        imgContainerProps={{ style: { border: '8px solid white' } }}
+      />
+    );
+
+    expect(container.querySelector('img')).toHaveProperty(
+      'alt',
+      'Madden the dog looking regal'
+    );
+    const styles = getComputedStyle(queryAllByTestId('ImgContainer')[0]);
+    expect(styles.border).toBe('8px solid white');
+  });
+
+  it('SlideLayout.VerticalImage should allow object-fit to be overridden', () => {
+    const { queryAllByTestId } = renderInDeck(
+      <SlideLayout.VerticalImage
+        src={formidableDogs.madden}
+        alt="madden the dog looking regal"
+        listItems={['madden', 'the dog', 'looking', 'regal']}
+        imgProps={{ style: { objectFit: 'contain' } }}
+      />
+    );
+
+    const styles = getComputedStyle(queryAllByTestId('Img')[0]);
+    expect(styles.objectFit).toBe('contain');
+  });
+
+  it('SlideLayout.VerticalImage should allow allow order to be determined', () => {
+    const { queryAllByTestId } = renderInDeck(
+      <SlideLayout.VerticalImage
+        src={formidableDogs.madden}
+        alt="madden the dog looking regal"
+        listItems={['madden', 'the dog', 'looking', 'regal']}
+        position="left"
+      />
+    );
+
+    const styles = getComputedStyle(queryAllByTestId('ImgContainer')[0]);
+    expect(styles.order).toBe('-1');
+  });
 });
