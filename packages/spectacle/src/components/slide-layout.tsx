@@ -431,12 +431,12 @@ const VerticalImage = ({
   position?: 'right' | 'left';
 }) => {
   return (
-    <Slide padding="0 0 0" {...rest}>
+    <Slide {...rest}>
       {title ? <Heading {...titleProps}>{title}</Heading> : null}
       <Grid
         gridColumnGap={2}
         gridTemplateColumns={'repeat(2, 1fr)'}
-        style={{ padding: title ? '0 32px 0' : '32px' }}
+        height={'100%'}
       >
         <FlexBox justifyContent="start">
           {/* @ts-ignore TODO: Resolve this in follow-up */}
@@ -451,7 +451,6 @@ const VerticalImage = ({
           src={src}
           alt={alt}
           imgContainerProps={{
-            height: title ? '550px' : '700px',
             order: position === 'right' ? 1 : -1,
             ...imgContainerProps
           }}
