@@ -327,11 +327,11 @@ const MultiCodeLayout = ({
 const Img = styled.img`
   min-width: 100%;
   min-height: 100%;
+  max-width: 100%;
   object-fit: cover;
 `;
 
 const ImgContainer = styled(FlexBox)<{ height?: string }>`
-  height: ${(props) => props.height || '100%'};
   overflow: hidden;
 `;
 
@@ -493,19 +493,22 @@ const ThreeUpImage = ({
 }) => {
   return (
     <Slide {...rest}>
-      <Grid gridColumnGap={2} gridTemplateColumns={'repeat(2, 1fr)'}>
+      <Grid
+        height={'100%'}
+        gridColumnGap={2}
+        gridTemplateColumns={'repeat(2, 1fr)'}
+      >
         <Grid gridRowGap={2} gridTemplateRows={'repeat(2, .5fr)'}>
           <Image
             src={top.src}
             alt={top.alt}
-            imgContainerProps={{ maxHeight: '350px', ...top.imgContainerProps }}
+            imgContainerProps={{ ...top.imgContainerProps }}
             imgProps={top.imgProps}
           />
           <Image
             src={bottom.src}
             alt={bottom.alt}
             imgContainerProps={{
-              maxHeight: '350px',
               ...bottom.imgContainerProps
             }}
             imgProps={bottom.imgProps}
@@ -514,8 +517,6 @@ const ThreeUpImage = ({
 
         <Image
           imgContainerProps={{
-            height: '700px',
-            width: '625px',
             order: primary.position === 'right' ? 1 : -1,
             ...primary.imgContainerProps
           }}
