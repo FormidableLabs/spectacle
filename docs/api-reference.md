@@ -483,3 +483,75 @@ type CodeBlock = Omit<CodePaneProps, 'children'> & {
   descriptionProps?: ComponentProps<typeof Text>;
 }
 ```
+
+### `SlideLayout.HorizontalImage`
+
+A layout with a horizontal/landscape image and an optional title and description for if you want one image per slide.
+
+| Props               | Type                                    | Required | Example                                                          |
+|---------------------|-----------------------------------------|----------|------------------------------------------------------------------|
+| `...slideProps`     | [Slide Props](#slide)                   | ❌        |                                                                           |
+| `src`               | `string`                                | ✅        | `https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg` |
+| `alt`               | `string`                                | ✅        | `Fred the dog looking at the camera`                                      |
+| `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>`   | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
+| `imgContainerProps` | `ComponentProps<typeof FlexBox>`        | ❌        | `{ style: { border: '8px solid white' } }`                                |
+| `title`             | `string | ReactNode`                    | ❌        | `Fred is a 100% pure bred good boy!`                                      |
+| `titleProps`        | [Text Props](#typography-tags)          | ❌        | `{ color: 'red' }`                                                        |
+| `description`       | `string | ReactNode`                    | ❌        | `and we love him`                                                         |
+| `descriptionProps`  | [Text Props](#typography-tags)          | ❌        | `{ color: 'white' }`                                                      |
+
+
+### `SlideLayout.VerticalImage`
+
+A layout with a vertical/portrait image and an optional title and bulletted list for if you want one image per slide.
+
+| Props               | Type                                                              | Required | Example                                                          |
+|---------------------|-------------------------------------------------------------------|----------|------------------------------------------------------------------|
+| `...slideProps`     | [Slide Props](#slide)                                             | ❌        |                                                                           |
+| `src`               | `string`                                                          | ✅        | `https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg` |
+| `alt`               | `string`                                                          | ✅        | `Fred the dog looking at the camera`                                      |
+| `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>`                             | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
+| `imgContainerProps` | `ComponentProps<typeof FlexBox>`                                  | ❌        | `{ style: { border: '8px solid white' } }`                                |
+| `position`          | `right` | `left`                                                  | ❌        | `right`                                                                   |
+| `title`             | `string | ReactNode`                                              | ❌        | `Fred is a 100% pure bred good boy!`                                      |
+| `titleProps`        | [Text Props](#typography-tags)                                    | ❌        | `{ color: 'red' }`                                                        |
+| `listItems`         | `ReactNode[]`                                                     | ❌        | `['brown hair', 'brown eyes', 'happy boy']`                               |
+| `animateListItems`  | `boolean`                                                         | ❌        | `true`                                                                    |
+| `listType`          | `ordered` | `unordered`                                           | ❌        | `unordered`                                                               |
+| `listProps`         | `ComponentProps<typeof UnorderedList & typeof OrderedList>`       | ❌        | `{ color: 'white' }`                                                      |
+
+
+### `SlideLayout.ThreeUpImage`
+
+A layout with a primary, top and bottom images for if you want three images per slide.
+
+| Props               | Type                                              | Required | Example                                                          |
+|---------------------|---------------------------------------------------|----------|------------------------------------------------------------------|
+| `...slideProps`     | [Slide Props](#slide)                             | ❌        |                                                                 |
+| `primary`           | `ImagePane & { position?: 'right' | 'left'; }`    | ✅        | `{src: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg', alt: 'Fred the dog looking at the camera' }` |
+| `top`               | `ImagePane`                                       | ✅        | `{src: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg', alt: 'Fred the dog looking at the camera' }` |
+| `bottom`            | `ImagePane`                                       | ✅        | `{src: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg', alt: 'Fred the dog looking at the camera' }` |
+
+where
+
+```ts
+type ImagePane = {
+  src: string;
+  alt: string;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
+}
+```
+
+
+### `SlideLayout.FullBleedImage`
+
+A layout with a full bleed image for if you want one image to full the entire slide.
+
+| Props               | Type                                    | Required | Example                                                          |
+|---------------------|-----------------------------------------|----------|------------------------------------------------------------------|
+| `...slideProps`     | [Slide Props](#slide)                   | ❌        |                                                                           |
+| `src`               | `string`                                | ✅        | `https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg` |
+| `alt`               | `string`                                | ✅        | `Fred the dog looking at the camera`                                      |
+| `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>`   | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
+| `imgContainerProps` | `ComponentProps<typeof FlexBox>`        | ❌        | `{ style: { border: '8px solid white' } }`                                |
