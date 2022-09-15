@@ -11,6 +11,7 @@ export const getLaunchOptions = async () => {
   // CI: Assume GH Actions environment and use local chrome.
   if (process.env.CI === 'true') {
     return {
+      executablePath: '/usr/bin/google-chrome-stable',
       headless: true,
       args: [
         '--ignore-certificate-errors',
