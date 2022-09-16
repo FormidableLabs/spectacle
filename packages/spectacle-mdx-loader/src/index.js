@@ -24,7 +24,7 @@ const SLIDE_TYPE = 'Slide';
 const NOTES_TYPE = 'Notes';
 
 // eslint-disable-next-line max-statements
-module.exports = async function(src) {
+module.exports = async function (src) {
   const { data, content } = matter(src);
 
   const inlineModules = [];
@@ -61,8 +61,8 @@ module.exports = async function(src) {
    */
   const slides = separatedContent
     .map(removeNotes)
-    .map(mdxContent => addInlineModules(mdxContent, inlineModules))
-    .map(mdxContent => sync(mdxContent, options))
+    .map((mdxContent) => addInlineModules(mdxContent, inlineModules))
+    .map((mdxContent) => sync(mdxContent, options))
     .map(removeDefaultExport)
     .map(removeInlineModules)
     .map(trim)
@@ -73,8 +73,8 @@ module.exports = async function(src) {
    */
   const notes = separatedContent
     .map(isolateNotes)
-    .map(mdxContent => addInlineModules(mdxContent, inlineModules))
-    .map(mdxContent => sync(mdxContent, options))
+    .map((mdxContent) => addInlineModules(mdxContent, inlineModules))
+    .map((mdxContent) => sync(mdxContent, options))
     .map(removeDefaultExport)
     .map(removeInlineModules)
     .map(trim)

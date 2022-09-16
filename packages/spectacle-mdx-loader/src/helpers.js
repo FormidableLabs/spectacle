@@ -20,7 +20,7 @@ const nameForComponent = (index, type) => `MDXContentWrapper${type}${index}`;
  * We want to pull the notes out of each slide. This RegEx looks for "Notes: "
  * that starts on a new line. Anything after the notes marker will be considered notes.
  */
-const isolateNotes = content => {
+const isolateNotes = (content) => {
   const indexOfNotes = content.search(NOTES_REG);
   if (indexOfNotes >= 0) {
     // found the notes marker!
@@ -33,7 +33,7 @@ const isolateNotes = content => {
  * When generating the slide components, we only want the slide content to be
  * compiled by mdx.sync. Remove all the notes content.
  */
-const removeNotes = content => {
+const removeNotes = (content) => {
   const indexOfNotes = content.search(NOTES_REG);
   if (indexOfNotes >= 0) {
     // found the notes marker!
@@ -64,13 +64,13 @@ const sync = (content, options) => mdx.sync(content, options);
  * We can't export multiple defaults, so we must remove all existing occurences of
  * `export default`.
  */
-const removeDefaultExport = content => content.replace(EX_REG, '');
+const removeDefaultExport = (content) => content.replace(EX_REG, '');
 
 /*
  * Remove the inline exports/imports. We don't want to duplicate inline import/export
  * statements littered throughout the file output.
  */
-const removeInlineModules = content =>
+const removeInlineModules = (content) =>
   content.replace(MOD_REG, (value, group1) => {
     if (!group1) {
       // group1 is empty, so this is not the import/export case we're looking for
@@ -79,7 +79,7 @@ const removeInlineModules = content =>
     return '';
   });
 
-const trim = content => content.trim();
+const trim = (content) => content.trim();
 
 /*
  * The generated component from mdx.sync assumes it's the only component that
