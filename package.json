@@ -55,6 +55,7 @@
     "changeset": "changeset",
     "start:js": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/js start\"",
     "start:md": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/md start\"",
+    "start:mdx": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/mdx start\"",
     "start:ts": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/typescript start\"",
     "start:one-page": "concurrently --raw pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch",
     "start:examples": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
@@ -114,6 +115,7 @@
         "./packages/spectacle:build",
         "./examples/js:build",
         "./examples/md:build",
+        "./examples/mdx:build",
         "./examples/one-page:build",
         "./examples/typescript:build"
       ]

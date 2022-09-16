@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const base = require('../../webpack.config.base');
 
 // Customized babel loader with the minimum we need to get `mdx` libraries
 // working, which unfortunately codegen JSX instead of JS.
@@ -17,6 +18,7 @@ const babelLoader = {
  * Base configuration for the CLI, core, and examples.
  */
 module.exports = {
+  ...base,
   mode: 'development',
   context: __dirname,
   entry: './index.js',
@@ -41,7 +43,10 @@ module.exports = {
       // `.mdx` files go through babel and mdx transforming loader.
       {
         test: /\.mdx$/,
-        use: [babelLoader, require.resolve('../../packages/spectacle-mdx-loader/src/index')]
+        use: [
+          babelLoader,
+          require.resolve('../../packages/spectacle-mdx-loader/src/index')
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
