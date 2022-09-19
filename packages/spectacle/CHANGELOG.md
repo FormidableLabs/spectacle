@@ -1,5 +1,11 @@
 # Changelog
 
+## 9.6.0
+
+### Minor Changes
+
+- exports the `useSteps` hook ([#1225](https://github.com/FormidableLabs/spectacle/pull/1225))
+
 ## 9.5.1
 
 ### Patch Changes
