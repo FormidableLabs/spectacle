@@ -21,7 +21,7 @@ Come learn more at our [docs site]!
 Have a question about Spectacle? Submit an issue in this repository using the
 ["Question" template](https://github.com/FormidableLabs/spectacle/issues/new?template=question.md).
 
-Notice something inaccurate or confusing? Feel free to [open an issue](https://github.com/FormidableLabs/spectacle/issues) or [make a pull request](https://github.com/FormidableLabs/spectacle/pulls) to help improve the documentation for everyone!
+Notice something inaccurate or confusing? Feel free to [open an issue](https://github.com/FormidableLabs/spectacle/issues/new/choose) or [make a pull request](https://github.com/FormidableLabs/spectacle/pulls) to help improve the documentation for everyone!
 
 The source for our docs site lives in this repo in the [`docs`](https://github.com/FormidableLabs/spectacle/blob/main/docs/README.md) folder.
 
