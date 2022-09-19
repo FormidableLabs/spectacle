@@ -1,0 +1,21 @@
+@import '../../css/variables.scss';
+
+.bodyCopy {
+  font-size: $font-sizes-body-sm;
+  color: var(--oss-text-light);
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: $container-md;
+  font-weight: $font-weights-body;
+  line-height: $line-heights-body;
+  text-rendering: optimizeLegibility;
+
+  @media ($media-breakpoint-lg) {
+    font-size: $font-sizes-body;
+  }
+
+  &.light {
+    color: var(--oss-text);
+  }
+}

@@ -1,0 +1,185 @@
+@import '../../css/variables.scss';
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7.5rem;
+  width: 100%;
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  > * + * {
+    margin-top: $spacing-xs;
+  }
+
+  @media ($media-breakpoint-sm) {
+    display: grid;
+    grid-template-areas:
+      'left . right'
+      'left . right'
+      'left . right'
+      'left . right2'
+      'bottom bottom bottom';
+    margin-top: $spacing-xxxl;
+    padding: 0 $spacing-xs;
+    > * + * {
+      margin-top: 0;
+    }
+  }
+
+  .heroBody {
+    > * {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    > * + * {
+      margin-top: $spacing-xs;
+    }
+
+    @media ($media-breakpoint-sm) {
+      grid-area: right;
+      max-width: $container-xs;
+      margin-left: $spacing-xl;
+    }
+
+    @media ($media-breakpoint-md) {
+      margin-left: 0;
+    }
+
+    .heroBody__title {
+      font-size: $font-sizes-h1-small;
+      letter-spacing: $letter-spacing-lg;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: $font-weights-heading;
+      line-height: $line-heights-heading;
+      color: var(--oss-text-light);
+      margin: 0 0 $spacing-sm 0;
+
+      @media ($media-breakpoint-sm) {
+        font-size: $font-sizes-h1;
+        text-align: left;
+      }
+    }
+
+    .heroBody__tagline {
+      font-family: Helvetica;
+      font-size: $font-sizes-tagline-sm;
+      line-height: $line-heights-tagline-small;
+      max-width: $sizing-lg;
+      text-align: center;
+
+      @media ($media-breakpoint-sm) {
+        font-size: $font-sizes-tagline;
+        line-height: $line-heights-tagline;
+        max-width: none;
+        text-align: left;
+      }
+    }
+
+    .heroBody__buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      > * + * {
+        margin-top: $spacing-xs;
+      }
+      @media ($media-breakpoint-md) {
+        align-items: center;
+        flex-direction: row;
+        > * {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        > * + * {
+          margin-top: 0;
+          margin-left: $spacing-xs;
+        }
+      }
+
+      .button__docs {
+        width: $sizing-lg;
+        height: $line-heights-button;
+        font-size: $font-sizes-body-sm;
+        background: var(--oss-button-light);
+        background: {
+          image: linear-gradient(
+            -40deg,
+            var(--oss-button-light-hover) 50%,
+            transparent 50%
+          );
+          position: 0;
+          size: 400%;
+        }
+        transition: all 0.4s ease-in-out;
+        line-height: $line-heights-button;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: $letter-spacing-lg;
+        color: var(--oss-text-dark);
+        border: 0;
+        border-radius: var(--oss-border-radius);
+        font-weight: $font-weights-link;
+
+        @media ($media-breakpoint-md) {
+          margin-top: 0;
+          width: $sizing-xxs;
+        }
+
+        &:hover {
+          color: var(--oss-text-light);
+          background-position: 100%;
+        }
+      }
+    }
+  }
+
+  .heroNav {
+    border-top: $border-div solid var(--oss-text-light);
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: $spacing-xs 0 0;
+    text-align: center;
+
+    @media ($media-breakpoint-sm) {
+      grid-area: bottom;
+      width: 100%;
+      margin-top: $spacing-xs;
+    }
+
+    @media ($media-breakpoint-md) {
+      grid-area: right2;
+      margin: $spacing-sm 0 0;
+      width: 100%;
+      max-width: $container-xs;
+    }
+    > * {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    > * + * {
+      margin-left: $spacing-md;
+    }
+
+    & li a {
+      color: var(--oss-text-light);
+      font-size: $font-sizes-link-large;
+      letter-spacing: $letter-spacing-lg;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+      font-weight: $font-weights-link;
+
+      &:hover {
+        color: var(--oss-button-light-hover);
+      }
+    }
+  }
+}

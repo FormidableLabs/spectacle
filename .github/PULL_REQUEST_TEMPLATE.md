@@ -12,7 +12,7 @@ Fixes # (issue)
 
 #### Type of Change
 
-Please delete options that are not relevant (including this descriptive text).
+<!-- Please delete options that are not relevant (including this descriptive text). -->
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
@@ -21,16 +21,15 @@ Please delete options that are not relevant (including this descriptive text).
 
 ### How Has This Been Tested?
 
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration.
+<!-- Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration. -->
 
 ### Checklist: (Feel free to delete this section upon completion)
 
+- [ ] I have included a [changeset](../CONTRIBUTING.md#changesets) if this change will require a version change to one of the packages.
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
-- [ ] I have updated type definitions in `index.d.ts` for any breaking API changes
-- [ ] My code follows the style guidelines of this project (I have run `yarn format`)
+- [ ] I have run `pnpm run check:ci` and all checks pass
 - [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes (I have run `yarn test`)
 - [ ] My changes generate no new warnings
 - [ ] Any dependent changes have been merged and published in downstream modules

@@ -1,0 +1,100 @@
+@import '../../css/variables.scss';
+
+.header {
+  padding: 0 0 8.75rem;
+  color: var(--oss-text-light);
+  background: var(--oss-text-dark);
+  background-image: linear-gradient(14deg, #404a5f, #7f526a);
+  background-size: cover;
+
+  @media ($media-breakpoint-sm) {
+    background-image: url('/img/hero-bg.jpg'),
+      linear-gradient(
+        194deg,
+        #77414b,
+        #564c60 18%,
+        #0d4a5d 73%,
+        #023340,
+        #023340,
+        #023340
+      );
+  }
+}
+
+.triangle {
+  position: absolute;
+  left: $badge-corner-neg;
+  top: $badge-corner-neg;
+  height: auto;
+  width: $sizing-xs;
+  transition: width 0.1s ease-in-out;
+
+  @media ($media-breakpoint-sm) {
+    width: $sizing-md;
+  }
+
+  @media ($media-breakpoint-md) {
+    width: $sizing-lg;
+  }
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: $badge-corner-sm;
+  top: $badge-corner-sm;
+  font-size: $font-sizes-badge-small;
+  color: var(--oss-text-light);
+  font-weight: $font-weights-heading;
+  transition: font-size 0.1s ease-in-out, left 0.1s ease-in-out,
+    top 0.1s ease-in-out;
+
+  @media ($media-breakpoint-sm) {
+    left: $badge-corner-md;
+    top: $badge-corner-md;
+    font-size: $font-sizes-badge;
+  }
+
+  @media ($media-breakpoint-md) {
+    left: $badge-corner-lg;
+    top: $badge-corner-lg;
+  }
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  > * + * {
+    margin-top: $spacing-xxs;
+  }
+
+  &:hover {
+    color: var(--oss-text-light);
+    background: none;
+    text-decoration: none;
+  }
+
+  .badge__text {
+    text-transform: uppercase;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: $line-heights-body;
+    letter-spacing: $letter-spacing-lg;
+    max-width: 6.25rem;
+  }
+
+  .badge__logo {
+    height: auto;
+    width: $spacing-md;
+    transition: width 0.1s ease-in-out;
+
+    @media ($media-breakpoint-sm) {
+      width: $spacing-xl;
+    }
+
+    @media ($media-breakpoint-md) {
+      width: 4.375rem;
+    }
+  }
+}

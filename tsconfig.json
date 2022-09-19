@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES6",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "lib": [
+      "DOM",
+      "ES2019"
+    ],                                                /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    "jsx": "react-jsx",                               /* Specify what JSX code is generated. */
+
+    /* Modules */
+    "module": "commonjs",                             /* Specify what module code is generated. */
+    "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
+    "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
+
+    /* Interop Constraints */
+    "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
+    "esModuleInterop": true,                          /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
+    "forceConsistentCasingInFileNames": true,         /* Ensure that casing is correct in imports. */
+
+    /* Type Checking */
+    "strict": true,                                   /* Enable all strict type-checking options. */
+    "skipLibCheck": true                              /* Skip type checking all .d.ts files. */
+  }
+}

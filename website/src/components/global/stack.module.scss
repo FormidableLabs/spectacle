@@ -1,0 +1,21 @@
+@import '../../css/variables.scss';
+
+.stack {
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  > * + * {
+    margin-top: var(--oss-stack-space-mobile);
+  }
+
+  @media ($media-breakpoint-sm) {
+    > * + * {
+      margin-top: var(--oss-stack-space-tablet);
+    }
+  }
+}

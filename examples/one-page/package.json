@@ -1,0 +1,81 @@
+{
+  "name": "spectacle-example-one-page",
+  "private": "true",
+  "devDependencies": {
+    "pretty": "^2.0.0"
+  },
+  "scripts": {
+    "build": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "node ./scripts/one-page.js",
+      "clean": false,
+      "files": [
+        "index.html",
+        "../examples/js/index.js",
+        "scripts/one-page.js"
+      ],
+      "output": [
+        "index.html"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint": {
+      "command": "nps \"lint:base scripts\"",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "scripts"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:fix": {
+      "command": "pnpm run lint || nps \"lint:base --fix scripts\"",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "scripts"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:pkg -- -- \"*\" scripts",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.html",
+        "scripts"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- \"*\" scripts",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.html",
+        "scripts"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
+  }
+}

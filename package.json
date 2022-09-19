@@ -1,116 +1,256 @@
 {
-  "name": "spectacle",
-  "version": "7.0.4",
-  "description": "ReactJS Powered Presentation Framework",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "types": "index.d.ts",
-  "scripts": {
-    "start:js": "webpack-dev-server --port=3000 --hot --config examples/js/webpack.config.js",
-    "start:md": "webpack-dev-server --port=3100 --hot --config examples/md/webpack.config.js",
-    "start:one-page": "open examples/one-page.html",
-    "check": "yarn lint && yarn prettier-check && yarn test",
-    "check-ci": "yarn run check",
-    "format": "yarn run lint-fix && yarn run prettier-fix",
-    "lint": "eslint '*.js' 'examples/**/*.js' src scripts 'docs/*.js' docs/src",
-    "lint-fix": "yarn lint --fix",
-    "prettier": "prettier \"**/*.{js,json,ts,css,md}\"",
-    "prettier-check": "yarn prettier --check",
-    "prettier-fix": "yarn prettier --write",
-    "test": "jest",
-    "clean": "rimraf dist lib es \"examples/*/dist\"",
-    "preversion": "yarn run check",
-    "version": "yarn clean && yarn build",
-    "build-babel": "babel src --ignore \"/__snapshots__/,/**/*.test.js/\"",
-    "build-babel-esm": "builder run build-babel -- -d es",
-    "build-babel-cjs": "builder run --env \"{\\\"BABEL_ENV\\\":\\\"cjs\\\"}\" build-babel -- -d lib",
-    "build-webpack-base": "webpack",
-    "build-webpack-lib-dev": "builder run build-webpack-base -- --config webpack.config.dev.js",
-    "build-webpack-lib": "builder run build-webpack-base",
-    "build-webpack-examples-js": "builder run build-webpack-base -- --config examples/js/webpack.config.js",
-    "build-webpack-examples-md": "builder run build-webpack-base -- --config examples/md/webpack.config.js",
-    "build-one-page": "node scripts/one-page.js",
-    "build": "builder concurrent --buffer build-babel-esm build-babel-cjs build-webpack-lib build-webpack-lib-dev",
-    "build-examples": "builder concurrent --buffer build-webpack-examples-js build-webpack-examples-md"
-  },
-  "author": "Formidable Labs <hello@formidable.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/FormidableLabs/spectacle.git"
-  },
-  "browserslist": "> 0.25%, not dead",
-  "dependencies": {
-    "broadcast-channel": "^3.2.0",
-    "broadcastchannel-polyfill": "^1.0.0",
-    "dedent": "^0.7.0",
-    "history": "^4.9.0",
-    "marksy": "^8.0.0",
-    "mdast-builder": "^1.1.1",
-    "mdast-util-assert": "^3.0.0",
-    "mdast-zone": "^4.0.0",
-    "merge-anything": "^3.0.3",
-    "mousetrap": "^1.6.5",
-    "normalize-newline": "^3.0.0",
-    "prism-react-renderer": "^0.1.7",
-    "query-string": "^6.8.2",
-    "react-fast-compare": "^3.2.0",
-    "react-is": "^16.13.1",
-    "react-spring": "^8.0.25",
-    "react-syntax-highlighter": "^12.2.1",
-    "rehype-react": "^6.0.0",
-    "remark-parse": "^8.0.3",
-    "remark-rehype": "^7.0.0",
-    "styled-components": "^4.3.2",
-    "styled-system": "^5.1.1",
-    "ulid": "^2.3.0",
-    "unified": "^9.0.0",
-    "unist-util-visit": "^2.0.3",
-    "use-resize-observer": "^6.1.0",
-    "wonka": "^3.2.0"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.6.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  },
+  "name": "spectacle-monorepo",
   "devDependencies": {
     "@babel/cli": "^7.12.8",
-    "@babel/core": "^7.12.8",
+    "@babel/core": "^7.17.2",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
-    "@babel/preset-react": "^7.12.7",
-    "@testing-library/react-hooks": "^3.7.0",
-    "@types/react": "^16.9.19",
-    "@types/styled-system": "^5.1.4",
-    "@typescript-eslint/eslint-plugin": "^4.14.2",
-    "@typescript-eslint/parser": "^4.14.2",
-    "babel-eslint": "^10.0.2",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.0",
+    "@changesets/cli": "^2.23.1",
+    "@svitejs/changesets-changelog-github-compact": "^0.1.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@types/jest": "^27.5.2",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-jsx-to-htm": "^2.0.0",
-    "builder": "^4.0.0",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "enzyme-to-json": "^3.4.3",
-    "eslint": "^7.19.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^4.1.2",
-    "file-loader": "^4.2.0",
-    "html-webpack-plugin": "^3.2.0",
-    "jest": "^24.9.0",
-    "prettier": "^1.15.3",
-    "pretty": "^2.0.0",
-    "prop-types": "^15.7.2",
+    "concurrently": "^7.3.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
+    "jest-puppeteer": "^6.1.1",
+    "mkdirp": "^1.0.4",
+    "nps": "^5.10.0",
+    "prettier": "^2.4.1",
+    "puppeteer": "^16.0.0",
     "raw-loader": "^4.0.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
     "rimraf": "^3.0.0",
-    "typescript": "^4.1.3",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.4",
-    "webpack-dev-server": "^3.7.1"
+    "serve": "^14.0.1",
+    "ts-jest": "^28.0.7",
+    "typescript": "^4.7.4",
+    "wait-on": "^6.0.1",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.7.4",
+    "wireit": "^0.7.1"
+  },
+  "pnpm": {
+    "neverBuiltDependencies": [
+      "puppeteer"
+    ]
+  },
+  "scripts": {
+    "version": "pnpm changeset version && pnpm install --no-frozen-lockfile",
+    "changeset": "changeset",
+    "start:js": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/js start\"",
+    "start:md": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/md start\"",
+    "start:ts": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/typescript start\"",
+    "start:one-page": "concurrently --raw pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch",
+    "start:examples": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:dev:watch pnpm:build:spectacle:dev:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
+    "start:create-spectacle": "pnpm run --filter ./packages/create-spectacle build --watch",
+    "clean:build": "rimraf \"{packages,examples}/*/{es,lib,dist}\" packages/create-spectacle/bin",
+    "clean:cache": "wireit",
+    "clean:cache:lint": "rimraf .eslintcache \"{packages,examples}/*/.eslintcache\"",
+    "clean:cache:wireit": "rimraf .wireit \"{packages,examples}/*/.wireit\"",
+    "clean:cache:modules": "rimraf node_modules/.cache \"{packages,examples}/*/node_modules/.cache\"",
+    "check": "wireit",
+    "check:ci": "wireit",
+    "build": "wireit",
+    "build:one-page:watch": "pnpm run --filter ./examples/one-page build --watch",
+    "build:spectacle:dev:watch": "pnpm run --filter ./packages/spectacle build:dist:dev --watch",
+    "build:spectacle:esm:watch": "pnpm run --filter ./packages/spectacle build:lib:esm --watch",
+    "build:spectacle:types:watch": "pnpm run --filter ./packages/spectacle types:create --watch",
+    "types:check": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "lint:root": "wireit",
+    "lint:root:fix": "wireit",
+    "lint:pkgs": "wireit",
+    "lint:pkgs:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit",
+    "prettier:root": "wireit",
+    "prettier:root:fix": "wireit",
+    "prettier:pkgs": "wireit",
+    "prettier:pkgs:fix": "wireit",
+    "test": "wireit",
+    "puppeteer:install": "rimraf .puppeteer && cross-env PUPPETEER_DOWNLOAD_PATH=.puppeteer node ./node_modules/puppeteer/install.js"
+  },
+  "wireit": {
+    "clean:cache": {
+      "dependencies": [
+        "clean:cache:wireit",
+        "clean:cache:lint",
+        "clean:cache:modules"
+      ]
+    },
+    "check": {
+      "dependencies": [
+        "prettier",
+        "lint",
+        "types:check",
+        "test"
+      ]
+    },
+    "check:ci": {
+      "dependencies": [
+        "check"
+      ]
+    },
+    "build": {
+      "dependencies": [
+        "./packages/create-spectacle:build",
+        "./packages/spectacle:build",
+        "./examples/js:build",
+        "./examples/md:build",
+        "./examples/one-page:build",
+        "./examples/typescript:build"
+      ]
+    },
+    "types:check": {
+      "dependencies": [
+        "./packages/create-spectacle:types:check",
+        "./packages/spectacle:types:check",
+        "./examples/typescript:types:check",
+        "./website:types:check"
+      ]
+    },
+    "lint": {
+      "dependencies": [
+        "lint:root",
+        "lint:pkgs"
+      ]
+    },
+    "lint:fix": {
+      "dependencies": [
+        "lint:root:fix",
+        "lint:pkgs:fix"
+      ]
+    },
+    "lint:root": {
+      "command": "nps \"lint:base *.js\"",
+      "files": [
+        ".eslintrc",
+        ".eslintignore",
+        "*.js",
+        "!**/node_modules/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:root:fix": {
+      "command": "pnpm run lint:root || nps \"lint:base --fix *.js\"",
+      "files": [
+        ".eslintrc",
+        ".eslintignore",
+        "*.js",
+        "!**/node_modules/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:pkgs": {
+      "dependencies": [
+        "./packages/spectacle:lint",
+        "./packages/create-spectacle:lint",
+        "./website:lint",
+        "./examples/js:lint",
+        "./examples/md:lint",
+        "./examples/one-page:lint",
+        "./examples/typescript:lint"
+      ]
+    },
+    "lint:pkgs:fix": {
+      "dependencies": [
+        "./packages/spectacle:lint:fix",
+        "./packages/create-spectacle:lint:fix",
+        "./website:lint:fix",
+        "./examples/js:lint:fix",
+        "./examples/md:lint:fix",
+        "./examples/one-page:lint:fix",
+        "./examples/typescript:lint:fix"
+      ]
+    },
+    "prettier": {
+      "dependencies": [
+        "prettier:root",
+        "prettier:pkgs"
+      ]
+    },
+    "prettier:fix": {
+      "dependencies": [
+        "prettier:root:fix",
+        "prettier:pkgs:fix"
+      ]
+    },
+    "prettier:root": {
+      "command": "nps prettier:base -- -- \"*.{js,json,md}\"",
+      "files": [
+        ".prettierrc",
+        ".prettierignore",
+        "*.{js,json,md}",
+        "!**/node_modules/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:root:fix": {
+      "command": "pnpm run prettier:root || nps prettier:base:fix -- -- \"*.{js,json,md}\"",
+      "files": [
+        ".prettierrc",
+        ".prettierignore",
+        "*.{js,json,md}",
+        "!**/node_modules/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:pkgs": {
+      "dependencies": [
+        "./packages/spectacle:prettier",
+        "./packages/create-spectacle:prettier",
+        "./website:prettier",
+        "./examples/js:prettier",
+        "./examples/md:prettier",
+        "./examples/one-page:prettier",
+        "./examples/typescript:prettier"
+      ]
+    },
+    "prettier:pkgs:fix": {
+      "dependencies": [
+        "./packages/spectacle:prettier:fix",
+        "./packages/create-spectacle:prettier:fix",
+        "./website:prettier:fix",
+        "./examples/js:prettier:fix",
+        "./examples/md:prettier:fix",
+        "./examples/one-page:prettier:fix",
+        "./examples/typescript:prettier:fix"
+      ]
+    },
+    "test": {
+      "dependencies": [
+        "./packages/spectacle:test",
+        "./packages/create-spectacle:test"
+      ]
+    }
   }
 }

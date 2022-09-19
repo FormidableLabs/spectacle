@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import {
   Box,
   Deck,
   FlexBox,
   FullScreen,
-  Progress,
+  AnimatedProgress,
   MarkdownSlideSet
 } from 'spectacle';
 
@@ -30,7 +30,7 @@ const template = () => (
       <FullScreen />
     </Box>
     <Box padding="1em">
-      <Progress />
+      <AnimatedProgress />
     </Box>
   </FlexBox>
 );
@@ -42,4 +42,5 @@ const Presentation = () => (
   </Deck>
 );
 
-render(<Presentation />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+root.render(<Presentation />);

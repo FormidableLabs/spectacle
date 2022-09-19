@@ -1,0 +1,11 @@
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    // https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping#node-14
+    "target": "ES2020",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  }
+}

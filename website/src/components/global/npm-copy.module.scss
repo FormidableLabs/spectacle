@@ -1,0 +1,55 @@
+@import '../../css/variables.scss';
+
+.heroNPMWrapper {
+  flex-direction: row;
+  justify-content: stretch;
+  width: $sizing-lg;
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.heroNPMCopy {
+  width: $sizing-sm;
+  height: $line-heights-button;
+  color: var(--oss-text-dark);
+  background-color: var(--oss-input-background);
+  text-align: left;
+  padding: 0.21rem 0.94rem;
+  line-height: $line-heights-npm;
+  font-size: $font-sizes-body-sm;
+  letter-spacing: $letter-spacing-sm;
+  margin: 0;
+  flex: 1 0 auto;
+  border-bottom-left-radius: var(--oss-border-radius);
+  border-top-left-radius: var(--oss-border-radius);
+}
+
+.heroNPMButton {
+  width: $spacing-xxl;
+  height: $line-heights-button;
+  line-height: $line-heights-button;
+  background: var(--oss-background-light);
+  background: {
+    image: linear-gradient(
+      -40deg,
+      var(--oss-button-light-hover) 50%,
+      transparent 50%
+    );
+    position: 0;
+    size: 400%;
+  }
+  transition: all 0.2s ease-in-out;
+  font-size: $font-sizes-body-sm;
+  font-weight: $font-weights-link;
+  letter-spacing: $letter-spacing-lg;
+  color: var(--oss-text-dark);
+  border: 0;
+  border-radius: 0 var(--oss-border-radius) var(--oss-border-radius) 0;
+  text-transform: uppercase;
+  cursor: copy;
+
+  &:hover {
+    color: var(--oss-text-light);
+    background-position: 100%;
+  }
+}

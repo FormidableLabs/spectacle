@@ -1,6 +1,6 @@
 # dependencies
 /node_modules
-/*/node_modules
+/**/node_modules
 package-lock.json
 
 # testing
@@ -21,6 +21,7 @@ test/screenshots
 \.hg
 .idea
 .vscode
+.nova
 
 npm-debug.log*
 yarn-debug.log*
@@ -28,9 +29,18 @@ yarn-error.log*
 *.log
 
 # build
+.wireit
+.eslintcache
 coverage
 Procfile
 build
 dist
 lib
 es
+bin
+.puppeteer
+.examples
+
+# Pack-ing artifacts
+packages/**/package
+**/*.tgz

@@ -3,16 +3,10 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
-    "prettier/react"
+    "prettier"
   ],
-  "plugins": [
-    "prettier",
-    "react",
-    "react-hooks",
-    "@typescript-eslint"
-  ],
+  "plugins": ["prettier", "react", "react-hooks", "@typescript-eslint"],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -38,12 +32,20 @@
     }
   },
   "rules": {
-    "quotes": [
-      "error",
-      "single",
-      {
-        "allowTemplateLiterals": true
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "prettier/prettier": ["error"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "react/prop-types": "off"
       }
-    ]
-  }
+    }
+  ]
 }

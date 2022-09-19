@@ -1,0 +1,158 @@
+{
+  "name": "create-spectacle",
+  "version": "0.3.0",
+  "description": "Project generator for Spectacle",
+  "main": "bin/cli.js",
+  "files": [
+    "bin/"
+  ],
+  "bin": "bin/cli.js",
+  "author": "Formidable Labs <hello@formidable.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FormidableLabs/spectacle.git"
+  },
+  "dependencies": {
+    "@types/yargs": "^17.0.11",
+    "chalk": "^4.1.2",
+    "clear": "^0.1.0",
+    "cli-spinners": "^2.6.1",
+    "log-update": "4.0.0",
+    "prompts": "^2.4.2",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.3",
+    "@types/prompts": "^2.0.14",
+    "spectacle": "workspace:*"
+  },
+  "resolutions": {},
+  "scripts": {
+    "build": "wireit",
+    "types:check": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit",
+    "test": "wireit",
+    "examples:clean": "rimraf .examples",
+    "examples:test": "nps jest",
+    "examples:jsx:clean": "rimraf .examples/jsx",
+    "examples:jsx:create": "mkdirp .examples && cd .examples && node ../bin/cli.js jsx -t jsx -l en -p 3000",
+    "examples:jsx:install": "cd .examples/jsx && npm install",
+    "examples:jsx:build": "cd .examples/jsx && npm run build",
+    "examples:jsx:start": "cd .examples/jsx && npm start",
+    "examples:tsx:clean": "rimraf .examples/tsx",
+    "examples:tsx:create": "mkdirp .examples && cd .examples && node ../bin/cli.js tsx -t tsx -l en -p 3000",
+    "examples:tsx:install": "cd .examples/tsx && npm install",
+    "examples:tsx:build": "cd .examples/tsx && npm run build",
+    "examples:tsx:start": "cd .examples/tsx && npm start",
+    "examples:onepage:clean": "rimraf .examples/onepage",
+    "examples:onepage:create": "mkdirp .examples/onepage && cd .examples/onepage && node ../../bin/cli.js index -t onepage -l en",
+    "examples:onepage:install": "echo unused",
+    "examples:onepage:build": "echo unused",
+    "examples:onepage:start": "pnpm exec serve .examples/onepage"
+  },
+  "wireit": {
+    "build": {
+      "command": "tsc --p tsconfig.build.json",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "tsconfig.json",
+        "tsconfig.build.json"
+      ],
+      "output": [
+        "bin/**/*.js"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:check": {
+      "command": "nps types:check -- -- --p tsconfig.typecheck.json",
+      "files": [
+        "src/**/*.{ts,tsx}",
+        "test/**/*.{ts,tsx}",
+        "tsconfig.json",
+        "tsconfig.typecheck.json"
+      ],
+      "dependencies": [],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint": {
+      "command": "nps lint:pkg -- -- test",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**",
+        "test/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "lint:fix": {
+      "command": "pnpm run lint || nps lint:pkg:fix -- -- test",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**",
+        "test/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:pkg -- -- src test",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**",
+        "test/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- src test",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**",
+        "test/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "test": {
+      "dependencies": [
+        "build"
+      ],
+      "command": "jest --testMatch=\"<rootDir>/src/*.test.ts\"",
+      "files": [
+        "src/**",
+        "../../.babelrc.js"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
+  }
+}

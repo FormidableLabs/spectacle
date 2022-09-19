@@ -1,0 +1,10 @@
+@import '../../css/variables.scss';
+
+.video {
+  margin-top: var(--oss-stack-space-mobile);
+  width: 100%;
+
+  @media ($media-breakpoint-sm) {
+    margin-top: var(--oss-stack-space-tablet);
+  }
+}

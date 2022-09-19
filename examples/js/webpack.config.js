@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const base = require('../../webpack.config');
+const base = require('../../webpack.config.base');
 
 module.exports = {
   ...base,
@@ -14,14 +13,10 @@ module.exports = {
   },
   externals: {},
   plugins: [
+    ...base.plugins,
     new HtmlWebpackPlugin({
-      title: 'Spectacle JS Development Example',
+      title: 'Spectacle JavaScript Demo',
       template: `./index.html`
     })
-  ],
-  resolve: {
-    alias: {
-      spectacle: path.resolve(__dirname, '../../src')
-    }
-  }
+  ]
 };
