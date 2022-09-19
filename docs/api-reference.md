@@ -27,7 +27,7 @@ A `template` contains Layout tags (referred to as a template render function) an
 | `autoPlay`         | PropTypes.bool                              | `false`            |
 | `autoPlayLoop`     | PropTypes.bool                              | `false`            |
 | `autoPlayInterval` | PropTypes.number (milliseconds)             | `1000`             |
-| `transition`       | [**Transition**](./props.md.md#transition-object) | `slideTransition`  |
+| `transition`       | [**Transition**](./props.md#transition-object) | `slideTransition`  |
 | `backgroundImage`  | PropTypes.string                            |                    |
 
 
