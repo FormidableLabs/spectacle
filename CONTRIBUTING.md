@@ -341,6 +341,4 @@ available at [https://www.contributor-covenant.org/version/2/0][cc-latest-versio
 [cc-homepage]: http://contributor-covenant.org
 [cc-latest-version]: https://www.contributor-covenant.org/version/2/0/code_of_conduct
 [formidable-github]: https://www.github.com/FormidableLabs
-[kale-stew]: https://www.github.com/kale-stew
-[mdx]: https://mdxjs.com/
 [pnpm-docs]: https://pnpm.io/
