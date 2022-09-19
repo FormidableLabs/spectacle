@@ -9,6 +9,7 @@ export const tsconfigTemplate = () =>
     "jsx": "react-jsx",
     "module": "commonjs",
     "moduleResolution": "node",
+    "allowJs": true,
     "allowUmdGlobalAccess": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
