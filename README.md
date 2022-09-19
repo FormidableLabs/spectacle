@@ -33,4 +33,4 @@ Please see our [contributing guide](CONTRIBUTING.md).
 
 **Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
 
-[docs site]: https://www.formidable.com/open-source/spectacle
+[docs site]: https://www.formidable.com/open-source/spectacle/docs/
