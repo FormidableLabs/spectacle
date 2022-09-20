@@ -44,6 +44,7 @@ export { default as indentNormalizer } from './utils/indent-normalizer';
 export { DeckContext } from './components/deck/deck';
 export type { DeckProps, SlideId } from './components/deck/deck';
 export { default as useMousetrap } from './hooks/use-mousetrap';
+export { useSteps } from './hooks/use-steps';
 export { default as defaultTheme } from './theme/default-theme';
 export type {
   SpectacleTheme,

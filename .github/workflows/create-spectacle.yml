@@ -5,16 +5,19 @@ on:
     branches:
       - main
     paths:
+      - ".github/workflows/create-spectacle.yml"
       - "packages/create-spectacle/**"
   pull_request:
     branches:
       - main
     paths:
+      - ".github/workflows/create-spectacle.yml"
       - "packages/create-spectacle/**"
 
 jobs:
   build:
     name: Create, build, and install
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -55,15 +58,20 @@ jobs:
       # Then, start a background dev server.
       - name: Create example - ${{ matrix.create-type }}
         working-directory: ./packages/create-spectacle
-        run: |
-          pnpm run examples:${{ matrix.create-type }}:create && \
-          pnpm run examples:${{ matrix.create-type }}:install && \
-          pnpm run examples:${{ matrix.create-type }}:build && \
-          pnpm run examples:${{ matrix.create-type }}:start &
+        run: pnpm run examples:${{ matrix.create-type }}:create
+
+      - name: Install example - ${{ matrix.create-type }}
+        working-directory: ./packages/create-spectacle
+        run: pnpm run examples:${{ matrix.create-type }}:install
+
+      - name: Build example - ${{ matrix.create-type }}
+        working-directory: ./packages/create-spectacle
+        run: pnpm run examples:${{ matrix.create-type }}:build
 
       # Wait until the dev server is full up and running and then test.
-      - name: Test example - ${{ matrix.create-type }}
+      - name: Start and test example - ${{ matrix.create-type }}
         working-directory: ./packages/create-spectacle
         run: |
+          pnpm run examples:${{ matrix.create-type }}:start & \
           pnpm exec wait-on http-get://localhost:3000 && \
           pnpm run examples:test
