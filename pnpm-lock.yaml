@@ -42,8 +42,6 @@ importers:
       prop-types: ^15.7.2
       puppeteer: ^16.0.0
       raw-loader: ^4.0.0
-      react: ^16.12.0
-      react-dom: ^16.12.0
       rimraf: ^3.0.0
       serve: ^14.0.1
       spectacle-mdx-loader: ^0.1.1
@@ -65,7 +63,7 @@ importers:
       '@changesets/cli': 2.24.2
       '@svitejs/changesets-changelog-github-compact': 0.1.1
       '@testing-library/jest-dom': 5.16.5
-      '@testing-library/react': 13.3.0_wcqkhtmu7mswc6yz4uyexck3ty
+      '@testing-library/react': 13.3.0
       '@types/jest': 27.5.2
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.33.0_njno5y7ry2l2lcmiu4tywxkwnq
@@ -90,8 +88,6 @@ importers:
       prop-types: 15.8.1
       puppeteer: 16.1.0
       raw-loader: 4.0.2_webpack@5.74.0
-      react: 16.14.0
-      react-dom: 16.14.0_react@16.14.0
       rimraf: 3.0.2
       serve: 14.0.1
       spectacle-mdx-loader: link:packages/spectacle-mdx-loader
@@ -3786,7 +3782,7 @@ packages:
       redent: 3.0.0
     dev: true
 
-  /@testing-library/react/13.3.0_wcqkhtmu7mswc6yz4uyexck3ty:
+  /@testing-library/react/13.3.0:
     resolution: {integrity: sha512-DB79aA426+deFgGSjnf5grczDPiL4taK3hFaa+M5q7q20Kcve9eQottOG5kZ74KEr55v0tU2CQormSSDK87zYQ==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -3796,8 +3792,6 @@ packages:
       '@babel/runtime': 7.18.9
       '@testing-library/dom': 8.17.1
       '@types/react-dom': 18.0.6
-      react: 16.14.0
-      react-dom: 16.14.0_react@16.14.0
     dev: true
 
   /@tootallnate/once/2.0.0:
@@ -11585,18 +11579,6 @@ packages:
       - webpack
     dev: true
 
-  /react-dom/16.14.0_react@16.14.0:
-    resolution: {integrity: sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==}
-    peerDependencies:
-      react: ^16.14.0
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      prop-types: 15.8.1
-      react: 16.14.0
-      scheduler: 0.19.1
-    dev: true
-
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
     peerDependencies:
@@ -11809,15 +11791,6 @@ packages:
       '@reach/observe-rect': 1.2.0
       react: 18.2.0
     dev: false
-
-  /react/16.14.0:
-    resolution: {integrity: sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      prop-types: 15.8.1
-    dev: true
 
   /react/17.0.2:
     resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
@@ -12414,13 +12387,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       xmlchars: 2.2.0
-    dev: true
-
-  /scheduler/0.19.1:
-    resolution: {integrity: sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
     dev: true
 
   /scheduler/0.20.2:

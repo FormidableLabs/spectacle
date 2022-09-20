@@ -36,8 +36,6 @@
     "prop-types": "^15.7.2",
     "puppeteer": "^16.0.0",
     "raw-loader": "^4.0.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
     "rimraf": "^3.0.0",
     "serve": "^14.0.1",
     "spectacle-mdx-loader": "^0.1.1",
