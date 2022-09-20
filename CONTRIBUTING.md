@@ -50,7 +50,7 @@ $ pnpm start:md
 $ open http://localhost:3200/
 
 # MDX demo app (in two different terminals)
-$ pnpm start:md
+$ pnpm start:mdx
 $ open http://localhost:3300/
 
 # One-page (no build, HTML page only) demo app (in two different terminals)
