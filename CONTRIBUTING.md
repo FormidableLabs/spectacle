@@ -32,7 +32,7 @@ We follow the convention of `start:NAME` to run an in-memory dev server for a sp
   - [`examples/typescript`](https://github.com/FormidableLabs/spectacle/tree/main/examples/typescript)
   - [`examples/one-page`](https://github.com/FormidableLabs/spectacle/tree/main/examples/one-page)
 - `spectacle-mdx-loader`
-  - [`examples/mdx`](https://github.com/FormidableLabs/spectacle-mdx-loader/tree/main/examples/mdx)
+  - [`examples/mdx`](https://github.com/FormidableLabs/spectacle/tree/main/examples/mdx)
 
 Here's how you can run the various examples:
 
@@ -48,6 +48,10 @@ $ open http://localhost:3100/
 # Markdown demo app (in two different terminals)
 $ pnpm start:md
 $ open http://localhost:3200/
+
+# MDX demo app (in two different terminals)
+$ pnpm start:md
+$ open http://localhost:3300/
 
 # One-page (no build, HTML page only) demo app (in two different terminals)
 $ pnpm start:one-page
