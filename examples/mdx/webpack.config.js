@@ -55,5 +55,9 @@ module.exports = {
       title: 'Spectacle MDX Development Example',
       template: `./index.html`
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    modules: [path.join(__dirname, 'src'), 'node_modules']
+  }
 };
