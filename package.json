@@ -33,10 +33,14 @@
     "mkdirp": "^1.0.4",
     "nps": "^5.10.0",
     "prettier": "^2.4.1",
+    "prop-types": "^15.7.2",
     "puppeteer": "^16.0.0",
     "raw-loader": "^4.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "rimraf": "^3.0.0",
     "serve": "^14.0.1",
+    "spectacle-mdx-loader": "^0.1.1",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4",
     "wait-on": "^6.0.1",
@@ -115,7 +119,6 @@
         "./packages/spectacle:build",
         "./examples/js:build",
         "./examples/md:build",
-        "./examples/mdx:build",
         "./examples/one-page:build",
         "./examples/typescript:build"
       ]
@@ -173,6 +176,7 @@
         "./website:lint",
         "./examples/js:lint",
         "./examples/md:lint",
+        "./examples/mdx:lint",
         "./examples/one-page:lint",
         "./examples/typescript:lint"
       ]
@@ -184,6 +188,7 @@
         "./website:lint:fix",
         "./examples/js:lint:fix",
         "./examples/md:lint:fix",
+        "./examples/mdx:lint:fix",
         "./examples/one-page:lint:fix",
         "./examples/typescript:lint:fix"
       ]
@@ -233,6 +238,7 @@
         "./website:prettier",
         "./examples/js:prettier",
         "./examples/md:prettier",
+        "./examples/mdx:prettier",
         "./examples/one-page:prettier",
         "./examples/typescript:prettier"
       ]
@@ -244,6 +250,7 @@
         "./website:prettier:fix",
         "./examples/js:prettier:fix",
         "./examples/md:prettier:fix",
+        "./examples/mdx:prettier:fix",
         "./examples/one-page:prettier:fix",
         "./examples/typescript:prettier:fix"
       ]

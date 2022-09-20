@@ -43,10 +43,7 @@ module.exports = {
       // `.mdx` files go through babel and mdx transforming loader.
       {
         test: /\.mdx$/,
-        use: [
-          babelLoader,
-          require.resolve('../../packages/spectacle-mdx-loader/src/index')
-        ]
+        use: [babelLoader, require.resolve('spectacle-mdx-loader')]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -55,6 +52,7 @@ module.exports = {
     ]
   },
   plugins: [
+    ...base.plugins,
     new HtmlWebpackPlugin({
       title: 'Spectacle MDX Development Example',
       template: `./index.html`

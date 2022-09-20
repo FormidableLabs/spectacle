@@ -7,15 +7,10 @@
     "node": ">=10"
   },
   "scripts": {
-    "preversion": "yarn run check",
-    "clean": "rimraf \"examples/*/dist\"",
-    "build:examples-mdx": "webpack --config ../../examples/mdx/webpack.config.js",
-    "build:examples": "yarn build:examples-mdx",
-    "start:mdx": "webpack-dev-server --port=4000 --hot --config ../../examples/mdx/webpack.config.js",
-    "start": "yarn start:mdx",
-    "lint": "eslint .",
-    "check": "yarn lint",
-    "check:ci": "yarn run check"
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit"
   },
   "license": "MIT",
   "repository": {
@@ -29,31 +24,45 @@
     "normalize-newline": "^3.0.0",
     "spectacle": "workspace:*"
   },
-  "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-react": "^7.7.4",
-    "@mdx-js/react": "^1.5.3",
-    "babel-eslint": "^10.0.2",
-    "babel-loader": "^8.0.6",
-    "eslint": "^6.7.2",
-    "eslint-config-formidable": "^4.0.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-filenames": "^1.2.0",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "file-loader": "^5.0.2",
-    "html-webpack-plugin": "^3.2.0",
-    "prettier": "^1.19.1",
-    "prop-types": "^15.7.2",
-    "raw-loader": "^4.0.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "rimraf": "^3.0.0",
-    "spectacle": "workspace:*",
-    "webpack": "^4.41.4",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1"
+  "wireit": {
+    "lint:fix": {
+      "command": "pnpm run lint || nps lint:pkg:fix -- -- \"*.js\" src",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier": {
+      "command": "nps prettier:pkg -- -- \"*.js\" src",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "prettier:fix": {
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- \"*.js\" src",
+      "files": [
+        "../../.prettierignore",
+        "../../.prettierrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
   }
 }
