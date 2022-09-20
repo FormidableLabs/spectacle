@@ -1,6 +1,7 @@
 ---
 name: Question
 about: Ask a question about using Spectacle.
+labels: 🤔 Question
 ---
 
 <!--
