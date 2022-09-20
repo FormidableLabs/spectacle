@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const base = require('../../webpack.config.base');
 
 // Customized babel loader with the minimum we need to get `mdx` libraries
 // working, which unfortunately codegen JSX instead of JS.
@@ -17,6 +18,7 @@ const babelLoader = {
  * Base configuration for the CLI, core, and examples.
  */
 module.exports = {
+  ...base,
   mode: 'development',
   context: __dirname,
   entry: './index.js',
@@ -51,13 +53,10 @@ module.exports = {
     ]
   },
   plugins: [
+    ...base.plugins,
     new HtmlWebpackPlugin({
       title: 'Spectacle MDX Development Example',
       template: `./index.html`
     })
-  ],
-  resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js'],
-    modules: [path.join(__dirname, 'src'), 'node_modules']
-  }
+  ]
 };
