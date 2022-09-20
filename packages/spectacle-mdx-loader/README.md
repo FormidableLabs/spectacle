@@ -1,5 +1,4 @@
-spectacle-mdx-loader
-====================
+# spectacle-mdx-loader
 
 [![npm version][npm_img]][npm_site]
 [![Travis Status][trav_img]][trav_site]
@@ -16,7 +15,7 @@ $ yarn add --dev spectacle-mdx-loader
 
 ## Usage
 
-To use this loader in a Spectacle presenation you need to configure webpack and then add the surrounding MDX Spectacle helper code. See a [full example](./examples/mdx) for more details.
+To use this loader in a Spectacle presentation you need to configure webpack and then add the surrounding MDX Spectacle helper code. See a [full example](../../examples/mdx) for more details.
 
 First, integrate into your `webpack.config.js` file:
 
@@ -70,10 +69,9 @@ render(<Deck />, document.getElementById('root'));
 [npm_site]: http://badge.fury.io/js/spectacle-mdx-loader
 [trav_img]: https://api.travis-ci.com/FormidableLabs/spectacle-mdx-loader.svg
 [trav_site]: https://travis-ci.com/FormidableLabs/spectacle-mdx-loader
-
-[MDX]: https://mdxjs.com/
+[mdx]: https://mdxjs.com/
 [webpack]: https://webpack.js.org/
-[Spectacle]: https://formidable.com/open-source/spectacle/
+[spectacle]: https://formidable.com/open-source/spectacle/
 [npx]: https://www.npmjs.com/package/npx
 [maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg?color=brightgreen&style=flat
 

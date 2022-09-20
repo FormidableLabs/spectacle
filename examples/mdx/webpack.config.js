@@ -5,13 +5,7 @@ const base = require('../../webpack.config.base');
 // Customized babel loader with the minimum we need to get `mdx` libraries
 // working, which unfortunately codegen JSX instead of JS.
 const babelLoader = {
-  loader: require.resolve('babel-loader'),
-  options: {
-    // Use user-provided .babelrc
-    babelrc: true,
-    // ... with some additional needed options.
-    presets: [require.resolve('@babel/preset-react')]
-  }
+  loader: require.resolve('babel-loader')
 };
 
 /**

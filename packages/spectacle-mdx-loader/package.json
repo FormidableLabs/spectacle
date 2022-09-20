@@ -6,12 +6,6 @@
   "engines": {
     "node": ">=10"
   },
-  "scripts": {
-    "lint": "wireit",
-    "lint:fix": "wireit",
-    "prettier": "wireit",
-    "prettier:fix": "wireit"
-  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -24,9 +18,28 @@
     "normalize-newline": "^3.0.0",
     "spectacle": "workspace:*"
   },
+  "scripts": {
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "prettier": "wireit",
+    "prettier:fix": "wireit"
+  },
   "wireit": {
+    "lint": {
+      "command": "nps lint:pkg -- -- src",
+      "files": [
+        "../../.eslintignore",
+        "../../.eslintrc",
+        "*.js",
+        "src/**"
+      ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
     "lint:fix": {
-      "command": "pnpm run lint || nps lint:pkg:fix -- -- \"*.js\" src",
+      "command": "pnpm run lint || nps lint:pkg:fix -- -- src",
       "files": [
         "../../.eslintignore",
         "../../.eslintrc",
@@ -39,7 +52,7 @@
       ]
     },
     "prettier": {
-      "command": "nps prettier:pkg -- -- \"*.js\" src",
+      "command": "nps prettier:pkg -- -- src",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
@@ -52,7 +65,7 @@
       ]
     },
     "prettier:fix": {
-      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- \"*.js\" src",
+      "command": "pnpm run prettier || nps prettier:pkg:fix -- -- src",
       "files": [
         "../../.prettierignore",
         "../../.prettierrc",
