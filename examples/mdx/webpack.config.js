@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const base = require('../../webpack.config.base');
 
 // Customized babel loader with the minimum we need to get `mdx` libraries
 // working, which unfortunately codegen JSX instead of JS.
@@ -18,7 +17,6 @@ const babelLoader = {
  * Base configuration for the CLI, core, and examples.
  */
 module.exports = {
-  ...base,
   mode: 'development',
   context: __dirname,
   entry: './index.js',
@@ -26,6 +24,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: 'example.js'
   },
+  externals: {},
   devtool: 'source-map',
   module: {
     // Not we use `require.resolve` to make sure to use the loader installed
@@ -52,18 +51,9 @@ module.exports = {
     ]
   },
   plugins: [
-    ...base.plugins,
     new HtmlWebpackPlugin({
       title: 'Spectacle MDX Development Example',
       template: `./index.html`
     })
-  ],
-  resolve: {
-    alias: {
-      // Add helper aliases needed when `yarn link spectacle` development
-      // is enabled to avoid duplicate libs that require singletons.
-      react: require.resolve('react'),
-      'react-dom': require.resolve('react-dom')
-    }
-  }
+  ]
 };
