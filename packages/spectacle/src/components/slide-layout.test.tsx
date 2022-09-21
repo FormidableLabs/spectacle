@@ -351,7 +351,7 @@ describe('SlideLayout', () => {
     expect(styles.border).toBe('8px solid white');
   });
 
-  it('SlideLayout.VerticalImage should allow object-fit to be overridden', () => {
+  it('SlideLayout.VerticalImage should allow default styles to be overridden', () => {
     const { queryAllByTestId } = renderInDeck(
       <SlideLayout.VerticalImage
         src={formidableDogs.madden}
@@ -365,7 +365,7 @@ describe('SlideLayout', () => {
     expect(styles.objectFit).toBe('contain');
   });
 
-  it('SlideLayout.VerticalImage should allow allow order to be determined', () => {
+  it('SlideLayout.VerticalImage should allow allow photo order to be determined', () => {
     const { queryAllByTestId } = renderInDeck(
       <SlideLayout.VerticalImage
         src={formidableDogs.madden}

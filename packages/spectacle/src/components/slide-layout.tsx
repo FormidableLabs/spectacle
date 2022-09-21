@@ -97,9 +97,7 @@ const List = ({
   items: ReactNode[];
   animateListItems?: boolean;
   titleProps?: ComponentProps<typeof Heading>;
-  listProps?: React.ComponentPropsWithoutRef<
-    typeof UnorderedList & typeof OrderedList
-  >;
+  listProps?: ComponentProps<typeof UnorderedList & typeof OrderedList>;
 }) => (
   <Slide {...rest}>
     {title ? (
@@ -331,7 +329,7 @@ const Img = styled.img`
   object-fit: cover;
 `;
 
-const ImgContainer = styled(FlexBox)<{ height?: string }>`
+const ImgContainer = styled(FlexBox)`
   overflow: hidden;
 `;
 
@@ -423,9 +421,7 @@ const VerticalImage = ({
   titleProps?: ComponentProps<typeof Heading>;
   listType?: 'unordered' | 'ordered';
   animateListItems?: boolean;
-  listProps?: React.ComponentPropsWithoutRef<
-    typeof UnorderedList & typeof OrderedList
-  >;
+  listProps?: ComponentProps<typeof UnorderedList & typeof OrderedList>;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
   position?: 'right' | 'left';
@@ -501,27 +497,27 @@ const ThreeUpImage = ({
           <Image
             src={top.src}
             alt={top.alt}
-            imgContainerProps={{ ...top.imgContainerProps }}
             imgProps={top.imgProps}
+            imgContainerProps={{ ...top.imgContainerProps }}
           />
           <Image
             src={bottom.src}
             alt={bottom.alt}
+            imgProps={bottom.imgProps}
             imgContainerProps={{
               ...bottom.imgContainerProps
             }}
-            imgProps={bottom.imgProps}
           />
         </Grid>
 
         <Image
+          src={primary.src}
+          alt={primary.alt}
+          imgProps={primary.imgProps}
           imgContainerProps={{
             order: primary.position === 'right' ? 1 : -1,
             ...primary.imgContainerProps
           }}
-          src={primary.src}
-          alt={primary.alt}
-          imgProps={primary.imgProps}
         />
       </Grid>
     </Slide>
