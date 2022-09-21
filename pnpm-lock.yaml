@@ -124,12 +124,12 @@ importers:
       spectacle: '*'
       spectacle-mdx-loader: '*'
     dependencies:
+      '@mdx-js/react': 1.6.22_react@18.2.0
+      prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       spectacle: link:../../packages/spectacle
     devDependencies:
-      '@mdx-js/react': 1.6.22_react@18.2.0
-      prop-types: 15.8.1
       spectacle-mdx-loader: link:../../packages/spectacle-mdx-loader
 
   examples/one-page:
@@ -3263,7 +3263,7 @@ packages:
       react: ^16.13.1 || ^17.0.0
     dependencies:
       react: 18.2.0
-    dev: true
+    dev: false
 
   /@mdx-js/util/1.6.22:
     resolution: {integrity: sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==}

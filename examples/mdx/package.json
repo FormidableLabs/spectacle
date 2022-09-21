@@ -2,13 +2,13 @@
     "name": "spectacle-example-mdx",
     "private": true,
     "dependencies": {
+      "@mdx-js/react": "^1.5.3",
+      "prop-types": "^15.7.2",
       "spectacle": "*",
       "react": "^18.1.0",
       "react-dom": "^18.1.0"
     },
     "devDependencies": {
-      "@mdx-js/react": "^1.5.3",
-      "prop-types": "^15.7.2",
       "spectacle-mdx-loader": "*"
     },
     "scripts": {
