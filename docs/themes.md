@@ -61,9 +61,9 @@ Common CSS properties are divided into theme keys, which you can override in you
 Additionally, there are keys for assorted overrides for the presentation:
 
 | Theme Key        | Type                  | Description                                                          |
-| ---------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `backdropStyle`  | `React.CSSProperties` | Set styles for the backdrop similar to React `style` props, e.g., `{ backgroundColor: '#FFF' }`. Defaults to `{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }` |
-| `Backdrop`       | `React.ElementType`   | Replace the backdrop component with a completely custom component or tag name, e.g., `'main'` or `MyCustomComponent`. Defaults to `'div'`.                                             |
+| ---------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `backdropStyle`  | `React.CSSProperties` | Set styles for the backdrop (the edge-to-edge area behind the slides) similar to React `style` props, e.g., `{ backgroundColor: '#FFF' }`. Defaults to `{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }` |
+| `Backdrop`       | `React.ElementType`   | Replace the default backdrop component (which appears behind the slides) with a completely custom component or tag name, e.g., `'main'` or `MyCustomComponent`. Defaults to `'div'`.                                             |
 
 ## Deck Templates
 
