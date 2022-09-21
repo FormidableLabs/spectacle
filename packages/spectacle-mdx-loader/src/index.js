@@ -4,7 +4,6 @@ const { getOptions } = require('loader-utils');
 const matter = require('gray-matter');
 const normalizeNewline = require('normalize-newline');
 
-const helpers = require('./helpers');
 const {
   wrapComponent,
   trim,
@@ -16,7 +15,7 @@ const {
   isolateNotes,
   removeNotes,
   MOD_REG
-} = helpers;
+} = require('./helpers');
 
 const SLIDE_REG = /\n---\n/;
 
