@@ -27,6 +27,26 @@ import { createRoot } from 'react-dom/client';
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
 
+const formidableDogs = {
+  sophie:
+    'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/sophie.jpg',
+  lucy: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/lucy.jpg',
+  boba: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/boba.jpg',
+  otis: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/otis.jpg',
+  penelope:
+    'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/penelope.jpg',
+  odie: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/odie.jpg',
+  fred: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg',
+  islay:
+    'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/islay.jpg',
+  beau: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/beau.jpg',
+  rusty:
+    'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/rusty.jpg',
+  madden:
+    'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/madden.jpg',
+  neve: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/neve.jpg'
+};
+
 // SPECTACLE_CLI_THEME_START
 const theme = {
   fonts: {
@@ -73,6 +93,145 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
+    <SlideLayout.ThreeUpImage
+      primary={{
+        src: formidableDogs.madden,
+        alt: 'madden the dog looking regal',
+        imgProps: { style: { objectFit: 'contain' } },
+        position: 'right'
+      }}
+      top={{
+        src: formidableDogs.madden,
+        alt: 'madden the dog looking regal'
+      }}
+      bottom={{
+        src: formidableDogs.madden,
+        alt: 'madden the dog looking regal'
+      }}
+    />
+    <SlideLayout.HorizontalImage
+      src={formidableDogs.madden}
+      title={'Madden the dog is so cute'}
+      description={'We love him'}
+      alt={'Studio portrait of Madden the dog.'}
+    />
+    <SlideLayout.HorizontalImage
+      src={formidableDogs.neve}
+      title={'Neve the dog is so cute'}
+      description={'We love him'}
+      alt={'Neve the dog panting while laying in a garden bed.'}
+    />
+    <SlideLayout.HorizontalImage
+      src={formidableDogs.beau}
+      title={'Beau the dog is so cute'}
+      description={'We love him'}
+      alt={'Beau the dog on an upholstered chair looking at the camera.'}
+    />
+    <SlideLayout.HorizontalImage
+      src={formidableDogs.rusty}
+      title={'Fred the dog is so cute'}
+      description={'We love him'}
+      imgContainerProps={{ style: { border: '8px white solid' } }}
+      alt={'Rusy the dog wearing a scarf.'}
+    />
+    <SlideLayout.ThreeUpImage
+      primary={{ src: formidableDogs.odie, alt: 'Odie on a beach' }}
+      top={{ src: formidableDogs.lucy, alt: 'Lucy sitting' }}
+      bottom={{ src: formidableDogs.madden, alt: 'Madden the dog.' }}
+    />
+    <SlideLayout.ThreeUpImage
+      primary={{
+        src: formidableDogs.beau,
+        alt: 'Beau the dog laying on the couch looking at the camera.',
+        position: 'left',
+        imgContainerProps: { style: { border: '8px white solid' } }
+      }}
+      top={{
+        src: formidableDogs.madden,
+        alt: 'Madden the dog with a seriously regal look on his face.',
+        imgContainerProps: { style: { border: '8px white solid' } }
+      }}
+      bottom={{
+        src: formidableDogs.neve,
+        alt: 'Neve the dog laying in a flower bed.',
+        imgContainerProps: { style: { border: '8px white solid' } }
+      }}
+    />
+    <SlideLayout.ThreeUpImage
+      primary={{
+        src: formidableDogs.neve,
+        position: 'left',
+        alt: 'Neve in a flower bed'
+      }}
+      top={{ src: formidableDogs.rusty, alt: 'Rusty wearing a scarf' }}
+      bottom={{ src: formidableDogs.fred, alt: 'Fred looking at the camera' }}
+    />
+    <SlideLayout.ThreeUpImage
+      primary={{
+        src: formidableDogs.madden,
+        position: 'left',
+        alt: 'Madden the dog'
+      }}
+      top={{ src: formidableDogs.lucy, alt: 'Lucy sitting and panting' }}
+      bottom={{ src: formidableDogs.boba, alt: 'Boba panting' }}
+    />
+    <SlideLayout.VerticalImage
+      src={formidableDogs.sophie}
+      listItems={['Roux', 'fred', 'penelope', 'odie']}
+      position={'right'}
+      alt={'A stack of treats sitting atop Lucys nose.'}
+    />
+    <SlideLayout.VerticalImage
+      src={formidableDogs.odie}
+      listItems={['Roux', 'fred', 'penelope', 'odie']}
+      position={'right'}
+      alt={'Odie the dog'}
+    />
+    <SlideLayout.VerticalImage
+      src={formidableDogs.odie}
+      listItems={['Roux', 'fred', 'penelope', 'odie']}
+      title={'The dogs'}
+      alt={'Odie the dog'}
+    />
+    <SlideLayout.VerticalImage
+      src={formidableDogs.lucy}
+      listItems={['Roux', 'fred', 'penelope', 'odie']}
+      title={'The dogs'}
+      alt={'Lucy the dog'}
+    />
+    <SlideLayout.VerticalImage
+      src={formidableDogs.lucy}
+      listItems={['Roux', 'fred', 'penelope', 'Lucy']}
+      alt={'Lucy the dog'}
+    />
+    <SlideLayout.VerticalImage
+      src={formidableDogs.sophie}
+      listItems={['Roux', 'fred', 'penelope', 'odie']}
+      title={'The dogs'}
+      imgContainerProps={{ style: { border: '8px white solid' } }}
+      alt={'Lucy balancing treats on their nose'}
+    />
+    <SlideLayout.FullBleedImage
+      src={formidableDogs.fred}
+      imgContainerProps={{ style: { border: '8px white solid' } }}
+      alt={'Fred looking at the camera'}
+    />
+    <SlideLayout.FullBleedImage
+      src={formidableDogs.penelope}
+      alt={'Penelope the dog'}
+    />
+    <SlideLayout.FullBleedImage
+      src={formidableDogs.otis}
+      alt={'Otis the dog'}
+    />
+    <SlideLayout.FullBleedImage
+      src={formidableDogs.odie}
+      alt={'Odie the dog'}
+    />
+    <SlideLayout.FullBleedImage
+      src={formidableDogs.boba}
+      alt={'Boba the dog'}
+    />
     <Slide>
       <FlexBox height="100%">
         <SpectacleLogo size={500} />

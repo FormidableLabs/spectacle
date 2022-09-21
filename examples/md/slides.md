@@ -52,3 +52,10 @@ const App = () => (
   </Provider>
 );
 ```
+---
+
+# Welcome Slide Layouts
+
+---
+
+---

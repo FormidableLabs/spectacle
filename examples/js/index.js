@@ -27,6 +27,14 @@ import ReactDOM from 'react-dom';
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
 
+const formidableDogs = {
+  beau: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/beau.jpg',
+  fred: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg',
+  madden:
+    'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/madden.jpg',
+  neve: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/neve.jpg'
+};
+
 // SPECTACLE_CLI_THEME_START
 const theme = {
   fonts: {
@@ -266,6 +274,31 @@ const Presentation = () => (
       title="Slide layouts!"
       items={['Two-column', 'Lists', 'And more!']}
       animateListItems
+    />
+    <SlideLayout.Quote attribution="Mary Oliver">
+      {'You may not agree, you may not care...'}
+    </SlideLayout.Quote>
+    <SlideLayout.VerticalImage
+      src={formidableDogs.neve}
+      alt={'Neve the dog.'}
+      listItems={['Roux', 'fred', 'penelope', 'odie']}
+      position={'right'}
+    />
+    <SlideLayout.ThreeUpImage
+      primary={{
+        src: formidableDogs.madden,
+        position: 'left',
+        alt: 'Madden the dog'
+      }}
+      top={{ src: formidableDogs.neve, alt: 'Neve the dog in a flower bed' }}
+      bottom={{ src: formidableDogs.beau, alt: 'Beau sitting on a couch' }}
+    />
+    <SlideLayout.HorizontalImage
+      src={formidableDogs.fred}
+      title={'Fred the dog is so cute'}
+      description={'We love him'}
+      imgContainerProps={{ style: { border: '8px white solid' } }}
+      alt={'Fred the dog looking at the camera'}
     />
   </Deck>
 );
