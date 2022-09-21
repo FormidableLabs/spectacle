@@ -32,20 +32,30 @@ describe('useAutoPlay()', () => {
   });
 
   test('should call the skip to function on the final slide and when loop is enabled.', () => {
-    renderHook(() =>
-      useAutoPlay({
-        enabled: true,
-        interval: 1000,
-        loop: true,
-        navigation: {
-          stepForward,
-          skipTo,
-          isFinalSlide: true
-        }
-      })
+    const { rerender } = renderHook(
+      ({ isFinalSlide }) =>
+        useAutoPlay({
+          enabled: true,
+          interval: 1000,
+          loop: true,
+          navigation: {
+            stepForward,
+            skipTo,
+            isFinalSlide
+          }
+        }),
+      { initialProps: { isFinalSlide: false } }
     );
 
     jest.advanceTimersByTime(1000);
+    expect(stepForward).toBeCalledTimes(1);
+    expect(skipTo).toBeCalledTimes(0);
+
+    rerender({ isFinalSlide: true });
+
+    jest.advanceTimersByTime(1000);
+
+    expect(stepForward).toBeCalledTimes(1);
     expect(skipTo).toBeCalledTimes(1);
   });
 });

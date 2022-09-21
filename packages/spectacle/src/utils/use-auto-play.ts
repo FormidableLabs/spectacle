@@ -16,18 +16,20 @@ export const useAutoPlay = ({
   navigation,
   interval = 1000
 }: AutoPlayOptions) => {
-  const savedCallback = useRef(() => {
-    if (navigation.isFinalSlide && loop) {
-      navigation.skipTo({ slideIndex: 0, stepIndex: 0 });
-    } else {
-      navigation.stepForward();
-    }
-  });
+  const navRef = useRef(navigation);
+  navRef.current = navigation;
 
   useEffect(() => {
     if (enabled) {
-      const id = setInterval(savedCallback.current, interval);
+      const id = setInterval(() => {
+        if (navRef.current.isFinalSlide && loop) {
+          navRef.current.skipTo({ slideIndex: 0, stepIndex: 0 });
+        } else {
+          navRef.current.stepForward();
+        }
+      }, interval);
+
       return () => clearInterval(id);
     }
-  }, [enabled, interval]);
+  }, [enabled, interval, loop]);
 };
