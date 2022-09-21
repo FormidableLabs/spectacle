@@ -1,7 +1,6 @@
 # spectacle-mdx-loader
 
 [![npm version][npm_img]][npm_site]
-[![Travis Status][trav_img]][trav_site]
 [![Maintenance Status][maintenance-image]](#maintenance-status)
 
 An [MDX][] [webpack][] loader for [Spectacle][] presentation decks.
@@ -67,8 +66,6 @@ render(<Deck />, document.getElementById('root'));
 
 [npm_img]: https://badge.fury.io/js/spectacle-mdx-loader.svg
 [npm_site]: http://badge.fury.io/js/spectacle-mdx-loader
-[trav_img]: https://api.travis-ci.com/FormidableLabs/spectacle-mdx-loader.svg
-[trav_site]: https://travis-ci.com/FormidableLabs/spectacle-mdx-loader
 [mdx]: https://mdxjs.com/
 [webpack]: https://webpack.js.org/
 [spectacle]: https://formidable.com/open-source/spectacle/
