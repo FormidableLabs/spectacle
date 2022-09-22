@@ -58,6 +58,13 @@ Common CSS properties are divided into theme keys, which you can override in you
 | `shadows`        | `box-shadow`, `text-shadow`                                             |
 | `zIndices`       | `z-index`                                                               |
 
+Additionally, there are keys for assorted overrides for the presentation:
+
+| Theme Key        | Type                  | Description                                                          |
+| ---------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `backdropStyle`  | `React.CSSProperties` | Set styles for the backdrop (the edge-to-edge area behind the slides) similar to React `style` props, e.g., `{ backgroundColor: '#FFF' }`. Defaults to `{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }` |
+| `Backdrop`       | `React.ElementType`   | Replace the default backdrop component (which appears behind the slides) with a completely custom component or tag name, e.g., `'main'` or `MyCustomComponent`. Defaults to `'div'`.                                             |
+
 ## Deck Templates
 
 A template in Spectacle is a fixed overlay of components that are presented on every slide. They are similar to masters in Keynote or PowerPoint. It’s a function prop that has a single optional config object containing the current slide and total slide count and returns a React Node.

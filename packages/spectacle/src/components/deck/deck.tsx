@@ -400,21 +400,16 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
     //
     // Yes, this is slightly awkward, but IMO adding an additional `<div>` element
     // would be even more awkward.
-    let useFallbackBackdropStyle = true;
-    const backdropStyle = themeProvidedBackdropStyle;
-    let BackdropComponent = 'div' as ElementType;
-    if (userProvidedBackdropStyle) {
-      Object.assign(backdropStyle, userProvidedBackdropStyle);
-      if (backdropStyle['background'] || backdropStyle['backgroundColor']) {
-        useFallbackBackdropStyle = false;
-      }
-    }
-    if (UserProvidedBackdropComponent) {
-      BackdropComponent = UserProvidedBackdropComponent;
-      useFallbackBackdropStyle = false;
-    }
+    const backdropStyle = {
+      ...themeProvidedBackdropStyle,
+      ...userProvidedBackdropStyle
+    };
+    const BackdropComponent = UserProvidedBackdropComponent || 'div';
+
     if (
-      useFallbackBackdropStyle &&
+      !backdropStyle['background'] &&
+      !backdropStyle['backgroundColor'] &&
+      !UserProvidedBackdropComponent &&
       !suppressBackdropFallback &&
       !themeSuppressBackdropFallback
     ) {
@@ -535,6 +530,11 @@ type MarkdownThemeOverrides = {
 type BackdropOverrides = {
   Backdrop?: ElementType;
   backdropStyle?: CSSObject;
+  /**
+   * @deprecated set a value to one of the `Backdrop`,
+   * `backdropStyle.background`, or `backdropStyle.backgroundColor` properties
+   * inside the `theme` prop object instead
+   */
   suppressBackdropFallback?: boolean;
 };
 
@@ -556,6 +556,11 @@ export type DeckProps = {
   printScale?: number;
   overviewScale?: number;
   transition?: SlideTransition;
+  /**
+   * @deprecated set a value to one of the `Backdrop`,
+   * `backdropStyle.background`, or `backdropStyle.backgroundColor` properties
+   * inside the `theme` prop object instead
+   */
   suppressBackdropFallback?: boolean;
   backgroundImage?: string;
 };
@@ -573,6 +578,7 @@ export type DeckInternalProps = DeckProps & {
   disableInteractivity?: boolean;
   useAnimations?: boolean;
   notePortalNode?: HTMLDivElement | null;
+  /** @deprecated use the backdropStyle property inside the `theme` prop object instead */
   backdropStyle?: Partial<CSSStyleDeclaration>;
   onActiveStateChange?: (activeView: DeckView) => void;
   backgroundImage?: string;
