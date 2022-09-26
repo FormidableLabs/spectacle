@@ -71,6 +71,26 @@ const SlideFragments = () => (
   </>
 );
 
+const codeExample = `
+    <SlideLayout.MultiCodeLayout
+      numColumns={2}
+      title={'How to JavaScript'}
+      codeBlocks={[
+        {
+          code: 'let greeting = 'hello Spectacle.',
+          language: 'jsx',
+          description: 'assign a variable to a string',
+          descriptionProps: { color: 'quaternary' }
+        },
+        {
+          code: 'greeting = 'hello again Spectacle.',
+          language: 'jsx',
+          description: 'reassign the variable',
+          descriptionProps: { color: 'quaternary' }
+        }
+      ]}
+    />`;
+
 const Presentation = () => (
   <Deck theme={theme} template={template}>
     <Slide>
