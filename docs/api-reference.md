@@ -361,4 +361,3 @@ AnimatedProgress is similar to the Progress component, with an additional Pacman
 | `color`                            | PropTypes.string | `#abc123` |
 | `pacmanColor`                      | PropTypes.string | `#abc123` |
 | [**`Position`**](./props#position) |                  |           |
-
