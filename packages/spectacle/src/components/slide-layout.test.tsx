@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Deck from './deck';
 import SlideLayout from './slide-layout';
 import { Heading, Text } from './typography';
@@ -333,49 +333,47 @@ describe('SlideLayout', () => {
       'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/madden.jpg'
   };
   it('SlideLayout.HorizontalImage should pass props to image and its container if provided', () => {
-    const { container, queryAllByTestId } = renderInDeck(
+    renderInDeck(
       <SlideLayout.HorizontalImage
         src={formidableDogs.madden}
-        alt={'Madden the dog looking regal'}
+        alt={'Madden the dog'}
         title={'Madden the dog is so cute'}
         description={'We love him'}
         imgContainerProps={{ style: { border: '8px solid white' } }}
       />
     );
 
-    expect(container.querySelector('img')).toHaveProperty(
-      'alt',
-      'Madden the dog looking regal'
-    );
-    const styles = getComputedStyle(queryAllByTestId('ImgContainer')[0]);
-    expect(styles.border).toBe('8px solid white');
+    expect(screen.getByRole('img', { name: /Madden the dog/ })).toBeTruthy();
+    expect(screen.queryByTestId('ImgContainer')).toHaveStyle({
+      border: '8px solid white'
+    });
   });
 
   it('SlideLayout.VerticalImage should allow default styles to be overridden', () => {
-    const { queryAllByTestId } = renderInDeck(
+    renderInDeck(
       <SlideLayout.VerticalImage
         src={formidableDogs.madden}
-        alt="madden the dog looking regal"
+        alt="madden the dog"
         listItems={['madden', 'the dog', 'looking', 'regal']}
         imgProps={{ style: { objectFit: 'contain' } }}
       />
     );
 
-    const styles = getComputedStyle(queryAllByTestId('Img')[0]);
-    expect(styles.objectFit).toBe('contain');
+    expect(screen.queryByTestId('Img')).toHaveStyle({ objectFit: 'contain' });
   });
 
   it('SlideLayout.VerticalImage should allow allow photo order to be determined', () => {
-    const { queryAllByTestId } = renderInDeck(
+    renderInDeck(
       <SlideLayout.VerticalImage
         src={formidableDogs.madden}
-        alt="madden the dog looking regal"
+        alt="madden the dog"
         listItems={['madden', 'the dog', 'looking', 'regal']}
         position="left"
       />
     );
 
-    const styles = getComputedStyle(queryAllByTestId('ImgContainer')[0]);
-    expect(styles.order).toBe('-1');
+    expect(screen.queryByTestId('ImgContainer')).toHaveStyle({
+      order: '-1'
+    });
   });
 });
