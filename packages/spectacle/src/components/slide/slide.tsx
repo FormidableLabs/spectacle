@@ -116,15 +116,16 @@ const Slide = (props: SlideProps): JSX.Element => {
     onSlideClick = noop,
     onMobileSlide,
     useAnimations,
+    autoPlayLoop,
     slidePortalNode,
     frameOverrideStyle = {},
     wrapperOverrideStyle = {},
-    passedSlideIds,
-    upcomingSlideIds,
+    slideIds,
     activeView,
     pendingView,
     advanceSlide,
     regressSlide,
+    skipTo,
     commitTransition,
     cancelTransition,
     transition,
@@ -152,8 +153,33 @@ const Slide = (props: SlideProps): JSX.Element => {
 
   const isActive = activeView.slideId === slideId;
   const isPending = pendingView.slideId === slideId;
-  const isPassed = passedSlideIds.has(slideId);
-  const isUpcoming = upcomingSlideIds.has(slideId);
+  const slideIndex = slideIds.findIndex((id) => id === slideId);
+  const [isPassed, isUpcoming] = (() => {
+    // Handle special cases not covered by the main logic below
+    if (slideCount === 1) {
+      return [false, false];
+    }
+    if (slideCount === 2) {
+      if (slideIndex === activeView.slideIndex) {
+        return [false, false];
+      }
+      if (slideIndex === 0) {
+        return [true, false];
+      }
+      return [false, true];
+    }
+
+    const isWrappingForward =
+      slideIndex === slideCount - 1 && activeView.slideIndex === 0;
+    const isWrappingReverse =
+      slideIndex === 0 && activeView.slideIndex === slideCount - 1;
+    const isWrapping = isWrappingForward || isWrappingReverse;
+    const isPassed =
+      (!isWrapping && slideIndex < activeView.slideIndex) || isWrappingForward;
+    const isUpcoming =
+      (!isWrapping && slideIndex > activeView.slideIndex) || isWrappingReverse;
+    return [isPassed, isUpcoming];
+  })();
 
   const willEnter = !isActive && isPending;
   const willExit = isActive && !isPending;
@@ -167,7 +193,8 @@ const Slide = (props: SlideProps): JSX.Element => {
   // we haven't gotten to it yet, none of them should be visible. (This helps us
   // handle slides which are exiting but which are still visible while
   // animated.)
-  const infinityDirection = isPassed ? Infinity : -Infinity;
+  const infinityDirection =
+    slideIndex < activeView.slideIndex ? Infinity : -Infinity;
   const internalStepIndex = isActive ? activeView.stepIndex : infinityDirection;
 
   const [hover, setHover] = useState(false);
@@ -182,10 +209,20 @@ const Slide = (props: SlideProps): JSX.Element => {
 
     if (pendingView.stepIndex < 0) {
       setAnimate(false);
-      regressSlide();
+
+      if (autoPlayLoop && activeView.slideIndex === 0) {
+        skipTo({ slideIndex: slideCount - 1, stepIndex: GOTO_FINAL_STEP });
+      } else {
+        regressSlide();
+      }
     } else if (pendingView.stepIndex > finalStepIndex) {
       setAnimate(true);
-      advanceSlide();
+
+      if (autoPlayLoop && activeView.slideIndex === slideCount - 1) {
+        skipTo({ slideIndex: 0, stepIndex: 0 });
+      } else {
+        advanceSlide();
+      }
     } else if (pendingView.stepIndex === GOTO_FINAL_STEP) {
       setAnimate(false);
       commitTransition({
@@ -199,21 +236,25 @@ const Slide = (props: SlideProps): JSX.Element => {
       commitTransition();
     }
   }, [
-    isActive,
-    stepWillChange,
-    slideWillChange,
     activeView,
     pendingView,
-    finalStepIndex,
-    regressSlide,
     advanceSlide,
-    commitTransition
+    autoPlayLoop,
+    commitTransition,
+    finalStepIndex,
+    isActive,
+    pendingView,
+    regressSlide,
+    skipTo,
+    slideCount,
+    slideWillChange,
+    stepWillChange
   ]);
 
   // Bounds checking for slides in the presentation.
   useEffect(() => {
     if (!willExit) return;
-    if (pendingView.slideId === undefined) {
+    if (pendingView.slideId === undefined && !autoPlayLoop) {
       setAnimate(false);
       cancelTransition();
     } else {
@@ -221,7 +262,13 @@ const Slide = (props: SlideProps): JSX.Element => {
         activeView.slideIndex === pendingView.slideIndex - 1;
       setAnimate(isTransitionToNextSlide);
     }
-  }, [willExit, pendingView, cancelTransition, activeView.slideIndex]);
+  }, [
+    activeView.slideIndex,
+    autoPlayLoop,
+    cancelTransition,
+    pendingView,
+    willExit
+  ]);
 
   useEffect(() => {
     if (!willEnter) return;
@@ -252,7 +299,13 @@ const Slide = (props: SlideProps): JSX.Element => {
       setAnimate(isTransitionFromPreviousSlide);
       commitTransition();
     }
-  }, [willEnter, activeView, pendingView, finalStepIndex, commitTransition]);
+  }, [
+    activeView,
+    commitTransition,
+    finalStepIndex,
+    pendingView,
+    willEnter
+  ]);
 
   const target = useMemo(() => {
     if (isPassed) {

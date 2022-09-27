@@ -3,7 +3,6 @@ import { useAutoPlay } from './use-auto-play';
 
 describe('useAutoPlay()', () => {
   const stepForward = jest.fn();
-  const skipTo = jest.fn();
 
   beforeEach(() => {
     jest.useFakeTimers();
@@ -19,43 +18,11 @@ describe('useAutoPlay()', () => {
       useAutoPlay({
         enabled: true,
         interval: 1000,
-        navigation: {
-          stepForward,
-          skipTo,
-          isFinalSlide: false
-        }
+        stepForward
       })
     );
 
     jest.advanceTimersByTime(2000);
     expect(stepForward).toBeCalledTimes(2);
-  });
-
-  test('should call the skip to function on the final slide and when loop is enabled.', () => {
-    const { rerender } = renderHook(
-      ({ isFinalSlide }) =>
-        useAutoPlay({
-          enabled: true,
-          interval: 1000,
-          loop: true,
-          navigation: {
-            stepForward,
-            skipTo,
-            isFinalSlide
-          }
-        }),
-      { initialProps: { isFinalSlide: false } }
-    );
-
-    jest.advanceTimersByTime(1000);
-    expect(stepForward).toBeCalledTimes(1);
-    expect(skipTo).toBeCalledTimes(0);
-
-    rerender({ isFinalSlide: true });
-
-    jest.advanceTimersByTime(1000);
-
-    expect(stepForward).toBeCalledTimes(1);
-    expect(skipTo).toBeCalledTimes(1);
   });
 });

@@ -44,7 +44,10 @@ import { KEYBOARD_SHORTCUTS_IDS } from '../../utils/constants';
 export type DeckContextType = {
   deckId: string | number;
   slideCount: number;
+  slideIds: SlideId[];
   useAnimations: boolean;
+  autoPlayLoop: boolean;
+  navigationDirection: number;
   slidePortalNode: HTMLDivElement;
   onSlideClick(e: MouseEvent, slideId: SlideId): void;
   onMobileSlide(eventData: SwipeEventData): void;
@@ -54,8 +57,6 @@ export type DeckContextType = {
   backdropNode: HTMLDivElement;
   notePortalNode: HTMLDivElement;
   initialized: boolean;
-  passedSlideIds: Set<SlideId>;
-  upcomingSlideIds: Set<SlideId>;
   activeView: {
     slideId: SlideId;
     slideIndex: number;
@@ -290,11 +291,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       enabled: autoPlay,
       loop: autoPlayLoop,
       interval: autoPlayInterval,
-      navigation: {
-        skipTo,
-        stepForward,
-        isFinalSlide: activeView.slideIndex === slideIds.length - 1
-      }
+      stepForward
     });
 
     const handleSlideClick = useCallback<
@@ -309,22 +306,6 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
 
     const activeSlideId = slideIds[activeView.slideIndex];
     const pendingSlideId = slideIds[pendingView.slideIndex];
-
-    const [passed, upcoming] = useMemo(() => {
-      const p = new Set<SlideId>();
-      const u = new Set<SlideId>();
-      let foundActive = false;
-      for (const slideId of slideIds) {
-        if (foundActive) {
-          u.add(slideId);
-        } else if (slideId === activeSlideId) {
-          foundActive = true;
-        } else {
-          p.add(slideId);
-        }
-      }
-      return [p, u] as const;
-    }, [slideIds, activeSlideId]);
 
     const fullyInitialized = initialized && slideIdsInitialized;
 
@@ -446,11 +427,13 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
             value={{
               deckId,
               slideCount: slideIds.length,
+              slideIds,
               useAnimations,
               slidePortalNode: slidePortalNode!,
               onSlideClick: handleSlideClick,
               onMobileSlide: onMobileSlide,
               theme: restTheme,
+              autoPlayLoop,
 
               frameOverrideStyle: frameStyle,
               wrapperOverrideStyle: wrapperStyle,
@@ -458,8 +441,6 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               backdropNode: backdropRef.current!,
               notePortalNode: notePortalNode!,
               initialized: fullyInitialized,
-              passedSlideIds: passed,
-              upcomingSlideIds: upcoming,
               activeView: {
                 ...activeView,
                 slideId: activeSlideId
