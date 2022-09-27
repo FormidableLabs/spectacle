@@ -488,49 +488,49 @@ type CodeBlock = Omit<CodePaneProps, 'children'> & {
 
 A layout with one image per slide: a horizontal/landscape image and an optional title and/or description.
 
-| Props               | Type                                    | Required | Example                                                          |
-|---------------------|-----------------------------------------|----------|------------------------------------------------------------------|
-| `...slideProps`     | [Slide Props](#slide)                   | ❌        |                                                                           |
-| `src`               | `string`                                | ✅        | `https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg` |
-| `alt`               | `string`                                | ✅        | `Fred the dog looking at the camera`                                      |
-| `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>`   | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
-| `imgContainerProps` | `ComponentProps<typeof FlexBox>`        | ❌        | `{ style: { border: '8px solid white' } }`                                |
-| `title`             | `string \| ReactNode`                    | ❌        | `Fred is a 100% pure bred good boy!`                                      |
-| `titleProps`        | [Text Props](#typography-tags)          | ❌        | `{ color: 'red' }`                                                        |
-| `description`       | `string \| ReactNode`                    | ❌        | `and we love him`                                                         |
-| `descriptionProps`  | [Text Props](#typography-tags)          | ❌        | `{ color: 'white' }`                                                      |
+| Props               | Type                                  | Required | Example                                                                   |
+|---------------------|---------------------------------------|----------|---------------------------------------------------------------------------|
+| `...slideProps`     | [Slide Props](#slide)                 | ❌        |                                                                           |
+| `src`               | `string`                              | ✅        | `https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg` |
+| `alt`               | `string`                              | ✅        | `Fred the dog looking at the camera`                                      |
+| `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>` | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
+| `imgContainerProps` | `ComponentProps<typeof FlexBox>`      | ❌        | `{ style: { border: '8px solid white' } }`                                |
+| `title`             | `string \| ReactNode`                 | ❌        | `Fred is a 100% pure bred good boy!`                                      |
+| `titleProps`        | [Text Props](#typography-tags)        | ❌        | `{ color: 'red' }`                                                        |
+| `description`       | `string \| ReactNode`                 | ❌        | `and we love him`                                                         |
+| `descriptionProps`  | [Text Props](#typography-tags)        | ❌        | `{ color: 'white' }`                                                      |
 
 
 ### `SlideLayout.VerticalImage`
 
 A layout with one image per slide: a vertical/portrait image with a bulleted list and an optional title.
 
-| Props               | Type                                                              | Required | Example                                                          |
-|---------------------|-------------------------------------------------------------------|----------|------------------------------------------------------------------|
-| `...slideProps`     | [Slide Props](#slide)                                             | ❌        |                                                                           |
-| `src`               | `string`                                                          | ✅        | `https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg` |
-| `alt`               | `string`                                                          | ✅        | `Fred the dog looking at the camera`                                      |
-| `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>`                             | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
-| `imgContainerProps` | `ComponentProps<typeof FlexBox>`                                  | ❌        | `{ style: { border: '8px solid white' } }`                                |
-| `position`          | `right` \| `left`                                                  | ❌        | `right`                                                                   |
-| `title`             | `string \| ReactNode`                                              | ❌        | `Fred is a 100% pure bred good boy!`                                      |
-| `titleProps`        | [Text Props](#typography-tags)                                    | ❌        | `{ color: 'red' }`                                                        |
-| `listItems`         | `ReactNode[]`                                                     | ❌        | `['brown hair', 'brown eyes', 'happy boy']`                               |
-| `animateListItems`  | `boolean`                                                         | ❌        | `true`                                                                    |
-| `listType`          | `ordered` \| `unordered`                                           | ❌        | `unordered`                                                               |
-| `listProps`         | `ComponentProps<typeof UnorderedList & typeof OrderedList>`       | ❌        | `{ color: 'white' }`                                                      |
+| Props               | Type                                                        | Required | Example                                                                   |
+|---------------------|-------------------------------------------------------------|----------|---------------------------------------------------------------------------|
+| `...slideProps`     | [Slide Props](#slide)                                       | ❌        |                                                                           |
+| `src`               | `string`                                                    | ✅        | `https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg` |
+| `alt`               | `string`                                                    | ✅        | `Fred the dog looking at the camera`                                      |
+| `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>`                       | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
+| `imgContainerProps` | `ComponentProps<typeof FlexBox>`                            | ❌        | `{ style: { border: '8px solid white' } }`                                |
+| `position`          | `right` \| `left`                                           | ❌        | `right`                                                                   |
+| `title`             | `string \| ReactNode`                                       | ❌        | `Fred is a 100% pure bred good boy!`                                      |
+| `titleProps`        | [Text Props](#typography-tags)                              | ❌        | `{ color: 'red' }`                                                        |
+| `listItems`         | `ReactNode[]`                                               | ❌        | `['brown hair', 'brown eyes', 'happy boy']`                               |
+| `animateListItems`  | `boolean`                                                   | ❌        | `true`                                                                    |
+| `listType`          | `ordered` \| `unordered`                                    | ❌        | `unordered`                                                               |
+| `listProps`         | `ComponentProps<typeof UnorderedList & typeof OrderedList>` | ❌        | `{ color: 'white' }`                                                      |
 
 
 ### `SlideLayout.ThreeUpImage`
 
 A layout with three images per slide: a primary, a top and bottom images.
 
-| Props               | Type                                              | Required | Example                                                          |
-|---------------------|---------------------------------------------------|----------|------------------------------------------------------------------|
-| `...slideProps`     | [Slide Props](#slide)                             | ❌        |                                                                 |
-| `primary`           | `ImagePane & { position?: 'right' \| 'left'; }`    | ✅        | `{src: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg', alt: 'Fred the dog looking at the camera' }` |
-| `top`               | `ImagePane`                                       | ✅        | `{src: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg', alt: 'Fred the dog looking at the camera' }` |
-| `bottom`            | `ImagePane`                                       | ✅        | `{src: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg', alt: 'Fred the dog looking at the camera' }` |
+| Props           | Type                                            | Required | Example                                                                                                                        |
+|-----------------|-------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|
+| `...slideProps` | [Slide Props](#slide)                           | ❌        |                                                                                                                                |
+| `primary`       | `ImagePane & { position?: 'right' \| 'left'; }` | ✅        | `{src: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg', alt: 'Fred the dog looking at the camera' }` |
+| `top`           | `ImagePane`                                     | ✅        | `{src: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg', alt: 'Fred the dog looking at the camera' }` |
+| `bottom`        | `ImagePane`                                     | ✅        | `{src: 'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg', alt: 'Fred the dog looking at the camera' }` |
 
 where
 
@@ -548,10 +548,10 @@ type ImagePane = {
 
 A layout with an image that covers the entire slide.
 
-| Props               | Type                                    | Required | Example                                                          |
-|---------------------|-----------------------------------------|----------|------------------------------------------------------------------|
-| `...slideProps`     | [Slide Props](#slide)                   | ❌        |                                                                           |
-| `src`               | `string`                                | ✅        | `https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg` |
-| `alt`               | `string`                                | ✅        | `Fred the dog looking at the camera`                                      |
-| `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>`   | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
-| `imgContainerProps` | `ComponentProps<typeof FlexBox>`        | ❌        | `{ style: { border: '8px solid white' } }`                                |
+| Props               | Type                                  | Required | Example                                                                   |
+|---------------------|---------------------------------------|----------|---------------------------------------------------------------------------|
+| `...slideProps`     | [Slide Props](#slide)                 | ❌        |                                                                           |
+| `src`               | `string`                              | ✅        | `https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/fred.jpg` |
+| `alt`               | `string`                              | ✅        | `Fred the dog looking at the camera`                                      |
+| `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>` | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
+| `imgContainerProps` | `ComponentProps<typeof FlexBox>`      | ❌        | `{ style: { border: '8px solid white' } }`                                |
