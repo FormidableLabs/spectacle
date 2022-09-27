@@ -487,7 +487,6 @@ type CodeBlock = Omit<CodePaneProps, 'children'> & {
 ### `SlideLayout.HorizontalImage`
 
 A layout with one image per slide: a horizontal/landscape image and an optional title and/or description.
-[alt text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt)
 
 | Props               | Type                                    | Required | Example                                                          |
 |---------------------|-----------------------------------------|----------|------------------------------------------------------------------|
@@ -505,7 +504,6 @@ A layout with one image per slide: a horizontal/landscape image and an optional 
 ### `SlideLayout.VerticalImage`
 
 A layout with one image per slide: a vertical/portrait image with a bulleted list and an optional title.
-[alt text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt)
 
 | Props               | Type                                                              | Required | Example                                                          |
 |---------------------|-------------------------------------------------------------------|----------|------------------------------------------------------------------|
@@ -526,7 +524,6 @@ A layout with one image per slide: a vertical/portrait image with a bulleted lis
 ### `SlideLayout.ThreeUpImage`
 
 A layout with three images per slide: a primary, a top and bottom images.
-[alt text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt)
 
 | Props               | Type                                              | Required | Example                                                          |
 |---------------------|---------------------------------------------------|----------|------------------------------------------------------------------|
@@ -550,7 +547,6 @@ type ImagePane = {
 ### `SlideLayout.FullBleedImage`
 
 A layout with an image that covers the entire slide.
-[alt text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt)
 
 | Props               | Type                                    | Required | Example                                                          |
 |---------------------|-----------------------------------------|----------|------------------------------------------------------------------|
