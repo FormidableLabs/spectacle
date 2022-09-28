@@ -161,6 +161,9 @@ const Slide = (props: SlideProps): JSX.Element => {
       return [false, false];
     }
     if (slideCount === 2) {
+      // The 2-slide case results in some janky animation when wrapping from end
+      // to start, but that's the best overall behavior that could be achieved
+      // without majorly reworking the animation logic.
       if (slideIndex === activeView.slideIndex) {
         return [false, false];
       }
