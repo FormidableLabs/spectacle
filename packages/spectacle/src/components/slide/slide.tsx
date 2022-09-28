@@ -117,6 +117,7 @@ const Slide = (props: SlideProps): JSX.Element => {
     onMobileSlide,
     useAnimations,
     autoPlayLoop,
+    navigationDirection,
     slidePortalNode,
     frameOverrideStyle = {},
     wrapperOverrideStyle = {},
@@ -229,19 +230,18 @@ const Slide = (props: SlideProps): JSX.Element => {
         stepIndex: finalStepIndex
       });
     } else {
-      const isSingleForwardStep =
-        activeView.stepIndex === pendingView.stepIndex - 1;
+      const isSingleForwardStep = navigationDirection > 0;
       // the step is happening within this slide
       setAnimate(isSingleForwardStep);
       commitTransition();
     }
   }, [
     activeView,
-    pendingView,
     advanceSlide,
     autoPlayLoop,
     commitTransition,
     finalStepIndex,
+    navigationDirection,
     isActive,
     pendingView,
     regressSlide,
@@ -258,15 +258,15 @@ const Slide = (props: SlideProps): JSX.Element => {
       setAnimate(false);
       cancelTransition();
     } else {
-      const isTransitionToNextSlide =
-        activeView.slideIndex === pendingView.slideIndex - 1;
-      setAnimate(isTransitionToNextSlide);
+      const isSingleForwardStep = navigationDirection > 0;
+      setAnimate(isSingleForwardStep);
     }
   }, [
     activeView.slideIndex,
     autoPlayLoop,
     cancelTransition,
     pendingView,
+    navigationDirection,
     willExit
   ]);
 
@@ -294,15 +294,16 @@ const Slide = (props: SlideProps): JSX.Element => {
         stepIndex: finalStepIndex
       });
     } else {
-      const isTransitionFromPreviousSlide =
-        activeView.slideIndex === pendingView.slideIndex - 1;
-      setAnimate(isTransitionFromPreviousSlide);
+      const isSingleForwardStep = navigationDirection > 0;
+
+      setAnimate(isSingleForwardStep);
       commitTransition();
     }
   }, [
     activeView,
     commitTransition,
     finalStepIndex,
+    navigationDirection,
     pendingView,
     willEnter
   ]);

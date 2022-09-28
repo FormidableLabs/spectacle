@@ -174,6 +174,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
       initialized,
       pendingView,
       activeView,
+      navigationDirection,
 
       initializeTo,
       skipTo,
@@ -434,6 +435,7 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
               onMobileSlide: onMobileSlide,
               theme: restTheme,
               autoPlayLoop,
+              navigationDirection,
 
               frameOverrideStyle: frameStyle,
               wrapperOverrideStyle: wrapperStyle,
@@ -521,7 +523,10 @@ type BackdropOverrides = {
 
 export type DeckRef = Omit<
   DeckStateAndActions,
-  'pendingView' | 'commitTransition' | 'cancelTransition'
+  | 'cancelTransition'
+  | 'commitTransition'
+  | 'navigationDirection'
+  | 'pendingView'
 > & {
   numberOfSlides: number;
 };
