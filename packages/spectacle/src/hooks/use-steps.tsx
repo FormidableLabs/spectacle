@@ -22,7 +22,15 @@ export function useSteps(
 ) {
   const [stepId] = useState(userProvidedId || ulid);
 
-  const { activeStepIndex, activationThresholds } = useContext(SlideContext);
+  const slideContext = useContext(SlideContext);
+  if (slideContext === null) {
+    throw new Error(
+      '`useSteps` must be called within a SlideContext.Provider. Did you' +
+        ' call `useSteps` in a component that was not placed inside a <Slide>?'
+    );
+  }
+
+  const { activeStepIndex, activationThresholds } = slideContext;
 
   let relStep: number;
 
