@@ -2,7 +2,7 @@
   "name": "spectacle-example-ts",
   "private": true,
   "dependencies": {
-    "spectacle": "workspace:*",
+    "spectacle": "*",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
