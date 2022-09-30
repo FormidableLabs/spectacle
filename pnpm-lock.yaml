@@ -184,7 +184,7 @@ importers:
       react-fast-compare: ^3.2.0
       react-is: ^18.1.0
       react-spring: ^9.5.5
-      react-swipeable: ^6.1.0
+      react-swipeable: ^7.0.0
       react-syntax-highlighter: ^15.5.0
       rehype-raw: ^5.1.0
       rehype-react: ^6.0.0
@@ -208,7 +208,7 @@ importers:
       react-fast-compare: 3.2.0
       react-is: 18.2.0
       react-spring: 9.5.5_biqbaboplfbrettd7655fr4n2y
-      react-swipeable: 6.2.2_react@18.2.0
+      react-swipeable: 7.0.0_react@18.2.0
       react-syntax-highlighter: 15.5.0_react@18.2.0
       rehype-raw: 5.1.0
       rehype-react: 6.2.1
@@ -13118,8 +13118,8 @@ packages:
       - zdog
     dev: false
 
-  /react-swipeable/6.2.2_react@18.2.0:
-    resolution: {integrity: sha512-Oz7nSFrssvq2yvy05aNL3F+yBUqSvLsK6x1mu+rQFOpMdQVnt4izKt1vyjvvTb70q6GQOaSpaB6qniROW2MAzQ==}
+  /react-swipeable/7.0.0_react@18.2.0:
+    resolution: {integrity: sha512-NI7KGfQ6gwNFN0Hor3vytYW3iRfMMaivGEuxcADOOfBCx/kqwXE8IfHFxEcxSUkxCYf38COLKYd9EMYZghqaUA==}
     peerDependencies:
       react: ^16.8.3 || ^17 || ^18
     dependencies:
