@@ -18,7 +18,7 @@ Wraps the entire presentation and carries most of the overarching slide logic, l
 A `template` contains Layout tags (referred to as a template render function) and is supplied to the `Deck` component to apply to all subsequent `Slide`s. The last three props are for print and export mode only, they have no effect on the audience or presenter views. The `pageSize` and `pageOrientation` props correspond to the size and orientation values for the [CSS media print size selector](https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size). The `pageSize` is automatically set based on the deck theme slide size for a best-fit using export to PDF mode. If you need to print your deck, supply your paper size using the `pageSize` prop. The `printScale` is the ratio for the selected page size, orientation, and slide size. `0.958` is the best ratio for to ensure the PDF export fits the slide theme size. Currently, only Chrome and Chromium-based browsers fully implement the custom page size CSS media print specification. Other browsers such as Firefox and Safari can still export to PDF but the page size will not be a best fit.
 
 | Props              | Type                                        | Default            |
-| ------------------ | ------------------------------------------- | ------------------ |
+|--------------------|---------------------------------------------|--------------------|
 | `theme`            | [Styled-system theme object](./themes)      |                    |
 | `template`         | [Template render function](#layout-tags)    |                    |
 | `pageSize`         | PropTypes.string                            | `"13.66in 7.68in"` |
@@ -36,7 +36,7 @@ A `template` contains Layout tags (referred to as a template render function) an
 Wraps a single slide within your presentation; identifies what is contained to a single view. If a transition effect is applied to this slide, it will override the Deck-specified transition.
 
 | Props                | Type                                        |
-| -------------------- | ------------------------------------------- |
+|----------------------|---------------------------------------------|
 | `backgroundColor`    | PropTypes.string                            |
 | `backgroundImage`    | PropTypes.string                            |
 | `backgroundOpacity`  | PropTypes.number                            |
@@ -54,7 +54,7 @@ Wraps a single slide within your presentation; identifies what is contained to a
 These tags are for displaying textual content.
 
 | Tag Name            | Theme Props                                                                                                 | Additional Props           | Default Props                                                                                                                                                    |
-| ------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------|-------------------------------------------------------------------------------------------------------------|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **`Text`**          | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: textMargin                                       |
 | **`Heading`**       | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: secondary<br /> **fontFamily**: header<br />**fontSize**: h1<br />**fontWeight**: bold<br />**textAlign**: center<br />**margin**: headerMargin       |
 | **`Link`**          | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)<br /> | **href**: PropTypes.string | **color**: quaternary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textDecoration**: underline<br />**textAlign**: left<br />**margin**: textMargin |
@@ -70,7 +70,7 @@ These tags are for adding structure to your slides.
 A template render function consists of one or more Layout tags — it is supplied to the `Deck` component to apply to all subsequent `Slide`s.
 
 | Tag Name      | Theme Props                                                                                                                                                                                               | Additional Props | Default Props     |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-------------------|
 | **`Box`**     | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Position**](./props#position)<br /> [**Border**](./props#border)                                     | —                | —                 |
 | **`FlexBox`** | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Position**](./props#position)<br /> [**Border**](./props#border)<br />[**Flex**](./props#flex)<br /> | —                | —                 |
 | **`Grid`**    | [**Layout**](./props#layout)<br />[**Position**](./props#position)<br />[**Grid**](./props#grid)<br />                                                                                                    | —                | **display**: grid |
@@ -80,7 +80,7 @@ A template render function consists of one or more Layout tags — it is supplie
 These tags are for adding tables with content to your slides.
 
 | Tag Name          | Theme Props                                                                                                                                                               | Additional Props | Default Props                                                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | **`Table`**       | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
 | **`TableHeader`** | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**fontWeight**: bold<br />**textAlign:** left<br />**margin**: listMargin |
 | **`TableBody`**   | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
@@ -224,7 +224,7 @@ Array values can even be mixed to include sub-arrays (for multiple lines) and nu
 _Note that each range will be considered as a step in your current slide's animation. Each range will be highlighted as you move forward or backwards on each step._
 
 | Props                              | Type                                                                                          | Example                                                                                                                   | Default Props        |
-| ---------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+|------------------------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------|
 | `children`                         | PropTypes.string                                                                              | `let name = "Carlos"`                                                                                                     | -                    |
 | `highlightRanges`                  | PropTypes.arrayOf(PropTypes.number) or PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)) | `[1, 3]` or `[[6, 8], [10, 15]]`                                                                                          | -                    |
 | `language`                         | PropTypes.string                                                                              | `javascript`                                                                                                              | -                    |
@@ -256,7 +256,7 @@ import tomorrow from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow';
 FullScreen is a button that takes the presentation in and out of the browser's full screen mode. It can have a different color and be re-sized.
 
 | Props                              | Type             | Example   |
-| ---------------------------------- | ---------------- | --------- |
+|------------------------------------|------------------|-----------|
 | `size`                             | PropTypes.number | `23`      |
 | `color`                            | PropTypes.string | `#abc123` |
 | [**`Position`**](./props#position) |                  |           |
@@ -266,7 +266,7 @@ FullScreen is a button that takes the presentation in and out of the browser's f
 Image is a component to display a picture within a slide. It is analogous to an `<img>` tag and conforms to Layout and Position props.
 
 | Props                              | Type             |
-| ---------------------------------- | ---------------- |
+|------------------------------------|------------------|
 | src                                | PropTypes.string |
 | [**`Layout`**](./props#layout)     |                  |
 | [**`Position`**](./props#position) |                  |
@@ -276,7 +276,7 @@ Image is a component to display a picture within a slide. It is analogous to an 
 The Markdown components let you include a block of Markdown within a slide using `<Markdown />`, author a complete slide with Markdown using `<MarkdownSlide />`, or author a series of slides with Markdown using `<MarkdownSlides />`. Markdown tags get converted into Spectacle components. The `---` three dash marker when used inside `<MarkdownSlideSet />` is used to divide content into separate slides. Markdown also supports presenter notes using the `Notes:` marker. `<Markdown />` must be a child of `<Slide />` where `<MarkdownSlide />` and `<MarkdownSlideSet />` are children of `<Deck />`.
 
 | Props                              | Type              | Example                                                                             |
-| ---------------------------------- | ----------------- | ----------------------------------------------------------------------------------- |
+|------------------------------------|-------------------|-------------------------------------------------------------------------------------|
 | `children`                         | PropTypes.string  | `# Hi there`                                                                        |
 | `componentProps`                   | PropTypes.object  | `<MarkdownSlide componentProps={{ color: 'purple' }}># I'm purple!</MarkdownSlide>` |
 | `animateListItems`                 | PropTypes.boolean | `<MarkdownSlide animateListItems />`                                                |
@@ -328,7 +328,7 @@ In prior versions of Spectacle the `<Markdown />` component was used for slides,
 Notes is a component that only renders in Presenter mode as presenter notes. It is used as the last component inside your slide but does not show on the deck.
 
 | Props      | Type             | Example           |
-| ---------- | ---------------- | ----------------- |
+|------------|------------------|-------------------|
 | `children` | PropTypes.string | `Presenter Notes` |
 
 ```jsx
@@ -346,7 +346,7 @@ Notes is a component that only renders in Presenter mode as presenter notes. It 
 Progress is a component with no children that just shows dots for each slide in your deck. The current slide is represented by a filled circle. Visited and future slides are represented by a transparent, outlined circle. The size and color are customizable.
 
 | Props                              | Type             | Example   |
-| ---------------------------------- | ---------------- | --------- |
+|------------------------------------|------------------|-----------|
 | `size`                             | PropTypes.number | `23`      |
 | `color`                            | PropTypes.string | `#abc123` |
 | [**`Position`**](./props#position) |                  |           |
@@ -356,7 +356,7 @@ Progress is a component with no children that just shows dots for each slide in 
 AnimatedProgress is similar to the Progress component, with an additional Pacman character that moves when the current slide changes. It looks like the Pacman is eating all of the circles that represent slides up to, and including, the new current slide. The size and color of the circles are customizable, as is the color of the Pacman.
 
 | Props                              | Type             | Example   |
-| ---------------------------------- | ---------------- | --------- |
+|------------------------------------|------------------|-----------|
 | `size`                             | PropTypes.number | `23`      |
 | `color`                            | PropTypes.string | `#abc123` |
 | `pacmanColor`                      | PropTypes.string | `#abc123` |
@@ -410,19 +410,19 @@ A layout with a list and an optional title for if you want to quickly display a 
 
 A vertically-centered left-aligned section title layout for if you want title page for a new section.
 
-| Props                  | Type                            | Required |  Example                 |
-|------------------------|---------------------------------|----------|--------------------------|
-| `...slideProps`        | [Slide Props](#slide)           | ❌        |                          |
-| `sectionProps`         | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
+| Props           | Type                           | Required | Example              |
+|-----------------|--------------------------------|----------|----------------------|
+| `...slideProps` | [Slide Props](#slide)          | ❌        |                      |
+| `sectionProps`  | [Text Props](#typography-tags) | ❌        | { fontSize: "48px" } |
 
 ### `SlideLayout.Statement`
 
 A vertically-centered center-aligned statement for if you want to make a statement.
 
-| Props                  | Type                            | Required |  Example                 |
-|------------------------|---------------------------------|----------|--------------------------|
-| `...slideProps`        | [Slide Props](#slide)           | ❌        |                          |
-| `statementProps`       | [Text Props](#typography-tags)  | ❌        | { fontSize: "48px" }     |
+| Props            | Type                           | Required | Example              |
+|------------------|--------------------------------|----------|----------------------|
+| `...slideProps`  | [Slide Props](#slide)          | ❌        |                      |
+| `statementProps` | [Text Props](#typography-tags) | ❌        | { fontSize: "48px" } |
 
 ### `SlideLayout.BigFact`
 
@@ -499,6 +499,7 @@ A layout with one image per slide: a horizontal/landscape image and an optional 
 | `titleProps`        | [Text Props](#typography-tags)        | ❌        | `{ color: 'red' }`                                                        |
 | `description`       | `string \| ReactNode`                 | ❌        | `and we love him`                                                         |
 | `descriptionProps`  | [Text Props](#typography-tags)        | ❌        | `{ color: 'white' }`                                                      |
+| `objectFit`         | `string`                              | ❌        | `cover`                                                                   |
 
 
 ### `SlideLayout.VerticalImage`
@@ -519,6 +520,7 @@ A layout with one image per slide: a vertical/portrait image with a bulleted lis
 | `animateListItems`  | `boolean`                                                   | ❌        | `true`                                                                    |
 | `listType`          | `ordered` \| `unordered`                                    | ❌        | `unordered`                                                               |
 | `listProps`         | `ComponentProps<typeof UnorderedList & typeof OrderedList>` | ❌        | `{ color: 'white' }`                                                      |
+| `objectFit`         | `string`                                                    | ❌        | `cover`                                                                   |
 
 
 ### `SlideLayout.ThreeUpImage`
@@ -540,6 +542,7 @@ type ImagePane = {
   alt: string;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
+  objectFit:? string;
 }
 ```
 
@@ -555,3 +558,4 @@ A layout with an image that covers the entire slide.
 | `alt`               | `string`                              | ✅        | `Fred the dog looking at the camera`                                      |
 | `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>` | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
 | `imgContainerProps` | `ComponentProps<typeof FlexBox>`      | ❌        | `{ style: { border: '8px solid white' } }`                                |
+| `objectFit`         | `string`                              | ❌        | `cover`                                                                   |
