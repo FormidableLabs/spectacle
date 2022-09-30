@@ -18,8 +18,9 @@ Wraps the entire presentation and carries most of the overarching slide logic, l
 A `template` contains Layout tags (referred to as a template render function) and is supplied to the `Deck` component to apply to all subsequent `Slide`s. The last three props are for print and export mode only, they have no effect on the audience or presenter views. The `pageSize` and `pageOrientation` props correspond to the size and orientation values for the [CSS media print size selector](https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size). The `pageSize` is automatically set based on the deck theme slide size for a best-fit using export to PDF mode. If you need to print your deck, supply your paper size using the `pageSize` prop. The `printScale` is the ratio for the selected page size, orientation, and slide size. `0.958` is the best ratio for to ensure the PDF export fits the slide theme size. Currently, only Chrome and Chromium-based browsers fully implement the custom page size CSS media print specification. Other browsers such as Firefox and Safari can still export to PDF but the page size will not be a best fit.
 
 | Props              | Type                                        | Default            |
-|--------------------|---------------------------------------------|--------------------|
-| `theme`            | [Styled-system theme object](./themes)      |                    |
+
+| ------------------ | ------------------------------------------- | ------------------ |
+| `theme`            | [Styled-system theme object](./themes.md)      |                    |
 | `template`         | [Template render function](#layout-tags)    |                    |
 | `pageSize`         | PropTypes.string                            | `"13.66in 7.68in"` |
 | `pageOrientation`  | `"landscape"` or `"portrait"`               | `"landscape"`      |
@@ -27,7 +28,7 @@ A `template` contains Layout tags (referred to as a template render function) an
 | `autoPlay`         | PropTypes.bool                              | `false`            |
 | `autoPlayLoop`     | PropTypes.bool                              | `false`            |
 | `autoPlayInterval` | PropTypes.number (milliseconds)             | `1000`             |
-| `transition`       | [**Transition**](./props#transition-object) | `slideTransition`  |
+| `transition`       | [**Transition**](./props.md#transition-object) | `slideTransition`  |
 | `backgroundImage`  | PropTypes.string                            |                    |
 
 
@@ -47,22 +48,22 @@ Wraps a single slide within your presentation; identifies what is contained to a
 | `slideNum`           | PropTypes.number                            |
 | `template`           | PropTypes.func                              |
 | `textColor`          | PropTypes.string                            |
-| `transition`         | [**Transition**](./props#transition-object) |
+| `transition`         | [**Transition**](./props.md#transition-object) |
 
 ## Typography Tags
 
 These tags are for displaying textual content.
 
 | Tag Name            | Theme Props                                                                                                 | Additional Props           | Default Props                                                                                                                                                    |
-|---------------------|-------------------------------------------------------------------------------------------------------------|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`Text`**          | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: textMargin                                       |
-| **`Heading`**       | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: secondary<br /> **fontFamily**: header<br />**fontSize**: h1<br />**fontWeight**: bold<br />**textAlign**: center<br />**margin**: headerMargin       |
-| **`Link`**          | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)<br /> | **href**: PropTypes.string | **color**: quaternary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textDecoration**: underline<br />**textAlign**: left<br />**margin**: textMargin |
-| **`Quote`**         | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)<br /> | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**borderLeft**: 1px solid secondary                          |
-| **`OrderedList`**   | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
-| **`UnorderedList`** | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
-| **`ListItem`**      | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **margin**: listMargin                                                                                                                                           |
-| **`CodeSpan`**      | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **fontFamily**: monospace<br />**fontSize**: text                                                                                                                |
+| ------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`Text`**          | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br /> [**Typography**](./props.md#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: textMargin                                       |
+| **`Heading`**       | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br /> [**Typography**](./props.md#typography)       | —                          | **color**: secondary<br /> **fontFamily**: header<br />**fontSize**: h1<br />**fontWeight**: bold<br />**textAlign**: center<br />**margin**: headerMargin       |
+| **`Link`**          | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br /> [**Typography**](./props.md#typography)<br /> | **href**: PropTypes.string | **color**: quaternary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textDecoration**: underline<br />**textAlign**: left<br />**margin**: textMargin |
+| **`Quote`**         | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br /> [**Typography**](./props.md#typography)<br /> | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**borderLeft**: 1px solid secondary                          |
+| **`OrderedList`**   | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br /> [**Typography**](./props.md#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
+| **`UnorderedList`** | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br /> [**Typography**](./props.md#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
+| **`ListItem`**      | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br /> [**Typography**](./props.md#typography)       | —                          | **margin**: listMargin                                                                                                                                           |
+| **`CodeSpan`**      | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br /> [**Typography**](./props.md#typography)       | —                          | **fontFamily**: monospace<br />**fontSize**: text                                                                                                                |
 
 ## Layout Tags
 
@@ -70,22 +71,22 @@ These tags are for adding structure to your slides.
 A template render function consists of one or more Layout tags — it is supplied to the `Deck` component to apply to all subsequent `Slide`s.
 
 | Tag Name      | Theme Props                                                                                                                                                                                               | Additional Props | Default Props     |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-------------------|
-| **`Box`**     | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Position**](./props#position)<br /> [**Border**](./props#border)                                     | —                | —                 |
-| **`FlexBox`** | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Position**](./props#position)<br /> [**Border**](./props#border)<br />[**Flex**](./props#flex)<br /> | —                | —                 |
-| **`Grid`**    | [**Layout**](./props#layout)<br />[**Position**](./props#position)<br />[**Grid**](./props#grid)<br />                                                                                                    | —                | **display**: grid |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- |
+| **`Box`**     | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br />[**Layout**](./props.md#layout)<br />[**Position**](./props.md#position)<br /> [**Border**](./props.md#border)                                     | —                | —                 |
+| **`FlexBox`** | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br />[**Layout**](./props.md#layout)<br />[**Position**](./props.md#position)<br /> [**Border**](./props.md#border)<br />[**Flex**](./props.md#flex)<br /> | —                | —                 |
+| **`Grid`**    | [**Layout**](./props.md#layout)<br />[**Position**](./props.md#position)<br />[**Grid**](./props.md#grid)<br />                                                                                                    | —                | **display**: grid |
 
 ## Table Tags
 
 These tags are for adding tables with content to your slides.
 
 | Tag Name          | Theme Props                                                                                                                                                               | Additional Props | Default Props                                                                                                                                       |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`Table`**       | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
-| **`TableHeader`** | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**fontWeight**: bold<br />**textAlign:** left<br />**margin**: listMargin |
-| **`TableBody`**   | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
-| **`TableRow`**    | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
-| **`TableCell`**   | [**Space**](./props#space)<br />[**Color**](./props#color)<br />[**Layout**](./props#layout)<br />[**Typography**](./props#typography)<br /> [**Border**](./props#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`Table`**       | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br />[**Layout**](./props.md#layout)<br />[**Typography**](./props.md#typography)<br /> [**Border**](./props.md#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| **`TableHeader`** | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br />[**Layout**](./props.md#layout)<br />[**Typography**](./props.md#typography)<br /> [**Border**](./props.md#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**fontWeight**: bold<br />**textAlign:** left<br />**margin**: listMargin |
+| **`TableBody`**   | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br />[**Layout**](./props.md#layout)<br />[**Typography**](./props.md#typography)<br /> [**Border**](./props.md#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| **`TableRow`**    | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br />[**Layout**](./props.md#layout)<br />[**Typography**](./props.md#typography)<br /> [**Border**](./props.md#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
+| **`TableCell`**   | [**Space**](./props.md#space)<br />[**Color**](./props.md#color)<br />[**Layout**](./props.md#layout)<br />[**Typography**](./props.md#typography)<br /> [**Border**](./props.md#border) | -                | **color**: primary<br />**fontFamily**: text<br />**fontSize**: text<br />**textAlign:** left<br />**margin**: listMargin                           |
 
 ## useSteps
 
@@ -230,8 +231,8 @@ _Note that each range will be considered as a step in your current slide's anima
 | `language`                         | PropTypes.string                                                                              | `javascript`                                                                                                              | -                    |
 | `theme`                            | PropTypes.object or                                                                           | [Prism Theme](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js) | vs-dark Theme Object |
 | `showLineNumbers`                  | PropTypes.bool                                                                                | `true`, `false`                                                                                                           | `true`               |
-| [**`Layout`**](./props#layout)     |                                                                                               |                                                                                                                           |                      |
-| [**`Position`**](./props#position) |                                                                                               |                                                                                                                           |                      |
+| [**`Layout`**](./props.md#layout)     |                                                                                               |                                                                                                                           |                      |
+| [**`Position`**](./props.md#position) |                                                                                               |                                                                                                                           |                      |
 
 ```jsx
 import tomorrow from 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow';
@@ -259,7 +260,7 @@ FullScreen is a button that takes the presentation in and out of the browser's f
 |------------------------------------|------------------|-----------|
 | `size`                             | PropTypes.number | `23`      |
 | `color`                            | PropTypes.string | `#abc123` |
-| [**`Position`**](./props#position) |                  |           |
+| [**`Position`**](./props.md#position) |                  |           |
 
 ## Image
 
@@ -268,8 +269,8 @@ Image is a component to display a picture within a slide. It is analogous to an 
 | Props                              | Type             |
 |------------------------------------|------------------|
 | src                                | PropTypes.string |
-| [**`Layout`**](./props#layout)     |                  |
-| [**`Position`**](./props#position) |                  |
+| [**`Layout`**](./props.md#layout)     |                  |
+| [**`Position`**](./props.md#position) |                  |
 
 ## Markdown Components
 
@@ -280,8 +281,8 @@ The Markdown components let you include a block of Markdown within a slide using
 | `children`                         | PropTypes.string  | `# Hi there`                                                                        |
 | `componentProps`                   | PropTypes.object  | `<MarkdownSlide componentProps={{ color: 'purple' }}># I'm purple!</MarkdownSlide>` |
 | `animateListItems`                 | PropTypes.boolean | `<MarkdownSlide animateListItems />`                                                |
-| [**`Layout`**](./props#layout)     |                   |                                                                                     |
-| [**`Position`**](./props#position) |                   |                                                                                     |
+| [**`Layout`**](./props.md#layout)     |                   |                                                                                     |
+| [**`Position`**](./props.md#position) |                   |                                                                                     |
 
 ```jsx
 <Slide>
@@ -349,7 +350,7 @@ Progress is a component with no children that just shows dots for each slide in 
 |------------------------------------|------------------|-----------|
 | `size`                             | PropTypes.number | `23`      |
 | `color`                            | PropTypes.string | `#abc123` |
-| [**`Position`**](./props#position) |                  |           |
+| [**`Position`**](./props.md#position) |                  |           |
 
 ## AnimatedProgress
 
@@ -360,7 +361,7 @@ AnimatedProgress is similar to the Progress component, with an additional Pacman
 | `size`                             | PropTypes.number | `23`      |
 | `color`                            | PropTypes.string | `#abc123` |
 | `pacmanColor`                      | PropTypes.string | `#abc123` |
-| [**`Position`**](./props#position) |                  |           |
+| [**`Position`**](./props.md#position) |                  |           |
 
 ## SlideLayout
 
@@ -400,7 +401,7 @@ A layout with a list and an optional title for if you want to quickly display a 
 |--------------------|-------------------------------------|----------|---------------------------------|
 | `...slideProps`    | [Slide Props](#slide)               | ❌        |                                 |
 | `title`            | `string`                            | ❌        | `My list slide`                 |
-| `titleProps`       | [Heading Props](./props/#typograph) | ❌        | `{ color: 'red' }`              |
+| `titleProps`       | [Heading Props](./props.md/#typograph) | ❌        | `{ color: 'red' }`              |
 | `items`            | `ReactNode[]`                       | ✅        | `['Hello', <Text>World</Text>]` |
 | `animateListItems` | `boolean`                           | ❌        | `true`                          |
 | `listProps`        | [List Props](#typography-tags)      | ❌        | `{ backgroundColor: 'purple' }` |

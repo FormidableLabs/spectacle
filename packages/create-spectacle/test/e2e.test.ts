@@ -2,6 +2,9 @@ import type { Browser, Page } from 'puppeteer';
 import puppeteer from 'puppeteer';
 import { getLaunchOptions } from './util';
 
+// Make the test timeout longer to accomodate Puppeteer startup
+jest.setTimeout(20000);
+
 describe('App.js', () => {
   let browser: Browser;
   let page: Page;

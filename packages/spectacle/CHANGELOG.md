@@ -1,5 +1,25 @@
 # Changelog
 
+## 9.6.0
+
+### Minor Changes
+
+- exports the `useSteps` hook ([#1225](https://github.com/FormidableLabs/spectacle/pull/1225))
+
+## 9.5.1
+
+### Patch Changes
+
+- Fixed Notes node tree generation inside Markdown component. ([#1219](https://github.com/FormidableLabs/spectacle/pull/1219))
+
+## 9.5.0
+
+### Minor Changes
+
+- feat: Add new Slide Layouts: Section, Statement, Big fact, Quote to expand basic layout creation. ([#1209](https://github.com/FormidableLabs/spectacle/pull/1209))
+
+* feat: Add single and multiple code pane Slide Layouts with options. ([#1217](https://github.com/FormidableLabs/spectacle/pull/1217))
+
 ## 9.4.0
 
 ### Minor Changes

@@ -178,10 +178,15 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
         });
 
       // Transform and compile the notes AST.
-      const transformedNotesAst = notesCompiler.runSync(extractedNotes);
-      const noteElements = notesCompiler.stringify(transformedNotesAst);
-
-      return [templateProps, noteElements] as const;
+      if (
+        Array.isArray(extractedNotes.children) &&
+        extractedNotes.children.length >= 1
+      ) {
+        const transformedNotesAst = notesCompiler.runSync(extractedNotes);
+        const noteElements = notesCompiler.stringify(transformedNotesAst);
+        return [templateProps, noteElements] as const;
+      }
+      return [templateProps, null] as const;
     }, [
       rawMarkdownText,
       getPropsForAST,
