@@ -16,7 +16,15 @@ const SteppedComponent = (props: SteppedComponentProps): JSX.Element => {
     activeStyle = { opacity: '1' },
     inactiveStyle = { opacity: '0' }
   } = props;
-  const { immediate } = useContext(SlideContext);
+  const slideContext = useContext(SlideContext);
+  if (slideContext === null) {
+    throw new Error(
+      'This component must be used within a SlideContext.Provider. Did you' +
+        ' put an <Appear> or <Stepper> component outside of a <Slide>?'
+    );
+  }
+
+  const { immediate } = slideContext;
 
   const { isActive, step, placeholder } = useSteps(numSteps, {
     id,
