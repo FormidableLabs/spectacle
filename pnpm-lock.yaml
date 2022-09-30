@@ -22,7 +22,6 @@ importers:
       '@types/testing-library__jest-dom': ^5.14.5
       '@typescript-eslint/eslint-plugin': ^5.4.0
       '@typescript-eslint/parser': ^5.4.0
-      babel-eslint: ^10.1.0
       babel-loader: ^8.0.6
       babel-plugin-transform-jsx-to-htm: ^2.0.0
       concurrently: ^7.3.0
@@ -66,7 +65,6 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.33.0_njno5y7ry2l2lcmiu4tywxkwnq
       '@typescript-eslint/parser': 5.33.0_qugx7qdu5zevzvxaiqyxfiwquq
-      babel-eslint: 10.1.0_eslint@8.21.0
       babel-loader: 8.2.5_xc6oct4hcywdrbo4ned6ytbybm
       babel-plugin-transform-jsx-to-htm: 2.2.0_@babel+core@7.18.10
       concurrently: 7.3.0
@@ -99,7 +97,7 @@ importers:
     specifiers:
       react: ^18.1.0
       react-dom: ^18.1.0
-      spectacle: '*'
+      spectacle: workspace:*
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -109,7 +107,7 @@ importers:
     specifiers:
       react: ^18.1.0
       react-dom: ^18.1.0
-      spectacle: '*'
+      spectacle: workspace:*
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -127,7 +125,7 @@ importers:
       '@types/react-dom': ^18.0.5
       react: ^18.1.0
       react-dom: ^18.1.0
-      spectacle: '*'
+      spectacle: workspace:*
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -4849,24 +4847,6 @@ packages:
       - debug
     dev: true
 
-  /babel-eslint/10.1.0_eslint@8.21.0:
-    resolution: {integrity: sha512-ifWaTHQ0ce+448CYop8AdrQiBsGrnC+bMgfyKFdi6EsPLTAWG+QfyDeM6OH+FmWnKvEq5NnBMLvlBUPKQZoDSg==}
-    engines: {node: '>=6'}
-    deprecated: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
-    peerDependencies:
-      eslint: '>= 4.12.1'
-    dependencies:
-      '@babel/code-frame': 7.18.6
-      '@babel/parser': 7.18.11
-      '@babel/traverse': 7.18.11
-      '@babel/types': 7.18.10
-      eslint: 8.21.0
-      eslint-visitor-keys: 1.3.0
-      resolve: 1.22.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /babel-jest/28.1.3_@babel+core@7.18.10:
     resolution: {integrity: sha512-epUaPOEWMk3cWX0M/sPvCHHCe9fMFAa/9hXEgKP8nFfNl/jlGkE9ucq9NqkZGXLDduCJYS0UvSlPUwC0S+rH6Q==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
@@ -4897,7 +4877,7 @@ packages:
       loader-utils: 2.0.2
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.74.0
+      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /babel-plugin-apply-mdx-type-prop/1.6.22_@babel+core@7.12.9:
@@ -6864,11 +6844,6 @@ packages:
       eslint-visitor-keys: 2.1.0
     dev: true
 
-  /eslint-visitor-keys/1.3.0:
-    resolution: {integrity: sha512-6J72N8UNa462wa/KFODt/PJ3IU60SDpC3QXC1Hjc1BXXpfL2C9R5+AU7jhe0F6GREqVMh4Juu+NY7xn+6dipUQ==}
-    engines: {node: '>=4'}
-    dev: true
-
   /eslint-visitor-keys/2.1.0:
     resolution: {integrity: sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==}
     engines: {node: '>=10'}
@@ -8106,7 +8081,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.74.0
+      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /htmlparser2/6.1.0:
@@ -13332,7 +13307,7 @@ packages:
       schema-utils: 3.1.1
       serialize-javascript: 6.0.0
       terser: 5.14.2
-      webpack: 5.74.0
+      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /terser/5.14.2:
@@ -14120,7 +14095,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.74.0
+      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /webpack-dev-server/4.10.0_5v66e2inugklgvlh4huuavolfq:
