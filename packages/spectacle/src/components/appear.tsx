@@ -34,7 +34,7 @@ const SteppedComponent = (props: SteppedComponentProps): JSX.Element => {
   }
 
   const springStyle = useSpring({
-    to: isActive ? activeStyle : inactiveStyle,
+    to: (isActive ? activeStyle : inactiveStyle) as React.CSSProperties,
     immediate
   });
 
@@ -42,7 +42,11 @@ const SteppedComponent = (props: SteppedComponentProps): JSX.Element => {
     <>
       {placeholder}
       <AnimatedEl
-        style={alwaysAppearActive ? activeStyle : springStyle}
+        style={
+          alwaysAppearActive
+            ? (activeStyle as React.CSSProperties)
+            : springStyle
+        }
         className={className}
         data-testid="AppearElement"
       >
