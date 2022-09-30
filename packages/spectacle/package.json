@@ -40,7 +40,7 @@
     "ulid": "^2.3.0",
     "unified": "^9.0.0",
     "unist-util-visit": "^2.0.3",
-    "use-resize-observer": "^6.1.0"
+    "use-resize-observer": "^9.0.2"
   },
   "peerDependencies": {
     "react": ">=17.0.2",

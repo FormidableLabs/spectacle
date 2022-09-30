@@ -195,7 +195,7 @@ importers:
       ulid: ^2.3.0
       unified: ^9.0.0
       unist-util-visit: ^2.0.3
-      use-resize-observer: ^6.1.0
+      use-resize-observer: ^9.0.2
     dependencies:
       broadcast-channel: 4.17.0
       history: 5.3.0
@@ -219,7 +219,7 @@ importers:
       ulid: 2.3.0
       unified: 9.2.2
       unist-util-visit: 2.0.3
-      use-resize-observer: 6.1.0_biqbaboplfbrettd7655fr4n2y
+      use-resize-observer: 9.0.2_biqbaboplfbrettd7655fr4n2y
     devDependencies:
       '@types/mousetrap': 1.6.9
       '@types/react': 18.0.21
@@ -4346,6 +4346,10 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+
+  /@juggle/resize-observer/3.4.0:
+    resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+    dev: false
 
   /@leichtgewicht/ip-codec/2.0.4:
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
@@ -13570,10 +13574,6 @@ packages:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
     dev: true
 
-  /resize-observer-polyfill/1.5.1:
-    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
-    dev: false
-
   /resolve-cwd/3.0.0:
     resolution: {integrity: sha512-OrZaX2Mb+rJCpH/6CpSqt9xFVpN++x01XnN2ie9g6P5/3xelLAkXWVADpdz1IHD/KFfEXyE6V0U01OQ3UO2rEg==}
     engines: {node: '>=8'}
@@ -15349,15 +15349,15 @@ packages:
       use-isomorphic-layout-effect: 1.1.2_react@17.0.2
     dev: true
 
-  /use-resize-observer/6.1.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-SiPcWHiIQ1CnHmb6PxbYtygqiZXR0U9dNkkbpX9VYnlstUwF8+QqpUTrzh13pjPwcjMVGR+QIC+nvF5ujfFNng==}
+  /use-resize-observer/9.0.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-JOzsmF3/IDmtjG7OE5qXOP69LEpBpwhpLSiT1XgSr+uFRX0ftJHQnDaP7Xq+uhbljLYkJt67sqsbnyXBjiY8ig==}
     peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
+      react: 16.8.0 - 18
+      react-dom: 16.8.0 - 18
     dependencies:
+      '@juggle/resize-observer': 3.4.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      resize-observer-polyfill: 1.5.1
     dev: false
 
   /util-deprecate/1.0.2:
