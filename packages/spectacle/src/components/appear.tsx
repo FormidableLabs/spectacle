@@ -60,7 +60,9 @@ type SteppedComponentProps = {
   children: ReactNode | ((step: number, isActive: boolean) => ReactNode);
   className?: string;
   tagName?: keyof JSX.IntrinsicElements;
+  // TODO v10: change this type to React.CSSProperties
   activeStyle?: Partial<CSSStyleDeclaration>;
+  // TODO v10: change this type to React.CSSProperties
   inactiveStyle?: Partial<CSSStyleDeclaration>;
   numSteps?: number;
   alwaysAppearActive?: boolean;
@@ -117,6 +119,8 @@ type StepperProps<T extends unknown[] = unknown[]> = {
   tagName?: keyof JSX.IntrinsicElements;
   values: T;
   alwaysVisible?: boolean;
+  // TODO v10: change this type to React.CSSProperties
   activeStyle?: Partial<CSSStyleDeclaration>;
+  // TODO v10: change this type to React.CSSProperties
   inactiveStyle?: Partial<CSSStyleDeclaration>;
 };
