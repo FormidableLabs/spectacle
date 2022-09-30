@@ -499,7 +499,7 @@ A layout with one image per slide: a horizontal/landscape image and an optional 
 | `titleProps`        | [Text Props](#typography-tags)        | ❌        | `{ color: 'red' }`                                                        |
 | `description`       | `string \| ReactNode`                 | ❌        | `and we love him`                                                         |
 | `descriptionProps`  | [Text Props](#typography-tags)        | ❌        | `{ color: 'white' }`                                                      |
-| `objectFit`         | `string`                              | ❌        | `cover`                                                                   |
+| `objectFit`         | `React.CSSProperties['objectFit']`    | ❌        | `cover`                                                                   |
 
 
 ### `SlideLayout.VerticalImage`
@@ -520,7 +520,7 @@ A layout with one image per slide: a vertical/portrait image with a bulleted lis
 | `animateListItems`  | `boolean`                                                   | ❌        | `true`                                                                    |
 | `listType`          | `ordered` \| `unordered`                                    | ❌        | `unordered`                                                               |
 | `listProps`         | `ComponentProps<typeof UnorderedList & typeof OrderedList>` | ❌        | `{ color: 'white' }`                                                      |
-| `objectFit`         | `string`                                                    | ❌        | `cover`                                                                   |
+| `objectFit`         | `React.CSSProperties['objectFit']`                          | ❌        | `cover`                                                                   |
 
 
 ### `SlideLayout.ThreeUpImage`
@@ -542,7 +542,7 @@ type ImagePane = {
   alt: string;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
-  objectFit:? string;
+  objectFit:? React.CSSProperties['objectFit'];
 }
 ```
 
@@ -558,4 +558,4 @@ A layout with an image that covers the entire slide.
 | `alt`               | `string`                              | ✅        | `Fred the dog looking at the camera`                                      |
 | `imgProps`          | `ImgHTMLAttributes<HTMLImageElement>` | ❌        | `{ style: { objectFit: 'contain' } }`                                     |
 | `imgContainerProps` | `ComponentProps<typeof FlexBox>`      | ❌        | `{ style: { border: '8px solid white' } }`                                |
-| `objectFit`         | `string`                              | ❌        | `cover`                                                                   |
+| `objectFit`         | `React.CSSProperties['objectFit']`    | ❌        | `cover`                                                                   |

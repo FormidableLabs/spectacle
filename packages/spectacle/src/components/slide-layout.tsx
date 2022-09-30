@@ -322,7 +322,7 @@ const MultiCodeLayout = ({
 /**
  * Generic styled-component Image utilities
  */
-const Img = styled.img<{ objectFit?: string }>`
+const Img = styled.img<{ objectFit?: React.CSSProperties['objectFit'] }>`
   min-width: 100%;
   min-height: 100%;
   max-width: 100%;
@@ -344,7 +344,7 @@ const Image = ({
   alt: string;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
-  objectFit?: string;
+  objectFit?: React.CSSProperties['objectFit'];
 }) => (
   <ImgContainer data-testid="ImgContainer" {...imgContainerProps}>
     <Img
@@ -380,7 +380,7 @@ const HorizontalImage = ({
   descriptionProps?: ComponentProps<typeof Text>;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
-  objectFit?: string;
+  objectFit?: React.CSSProperties['objectFit'];
 }) => {
   return (
     <Slide {...rest}>
@@ -437,7 +437,7 @@ const VerticalImage = ({
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
   position?: 'right' | 'left';
-  objectFit?: string;
+  objectFit?: React.CSSProperties['objectFit'];
 }) => {
   return (
     <Slide {...rest}>
@@ -483,7 +483,7 @@ const ThreeUpImage = ({
   primary: {
     src: string;
     alt: string;
-    objectFit?: string;
+    objectFit?: React.CSSProperties['objectFit'];
     position?: 'right' | 'left';
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
@@ -491,14 +491,14 @@ const ThreeUpImage = ({
   top: {
     src: string;
     alt: string;
-    objectFit?: string;
+    objectFit?: React.CSSProperties['objectFit'];
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
   bottom: {
     src: string;
     alt: string;
-    objectFit?: string;
+    objectFit?: React.CSSProperties['objectFit'];
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
@@ -559,7 +559,7 @@ const FullBleedImage = ({
   alt: string;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
-  objectFit?: string;
+  objectFit?: React.CSSProperties['objectFit'];
 }) => (
   <Slide padding="0 0 0" {...rest}>
     <Image
