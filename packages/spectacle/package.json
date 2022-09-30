@@ -18,8 +18,8 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "broadcast-channel": "^3.2.0",
-    "history": "^4.9.0",
+    "broadcast-channel": "^4.17.0",
+    "history": "^5.3.0",
     "kbar": "0.1.0-beta.36",
     "mdast-builder": "^1.1.1",
     "mdast-zone": "^4.0.0",
@@ -47,12 +47,11 @@
     "react-dom": ">=17.0.2"
   },
   "devDependencies": {
-    "@types/history": "^4.7.9",
     "@types/mousetrap": "^1.6.8",
-    "@types/react": "^18.0.12",
+    "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.5",
     "@types/react-is": "^17.0.3",
-    "@types/react-syntax-highlighter": "^15.5.2",
+    "@types/react-syntax-highlighter": "^15.5.5",
     "@types/styled-components": "^5.1.15",
     "@types/styled-system": "^5.1.5",
     "@types/unist": "^2.0.6",
