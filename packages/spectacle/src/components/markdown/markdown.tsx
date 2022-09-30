@@ -209,11 +209,9 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
   }
 );
 
-type PropsFrom<T extends ElementType> = T extends ElementType<infer Props>
-  ? Props
-  : never;
-
-const AppearingListItem = (props: PropsFrom<typeof ListItem>) => (
+const AppearingListItem = (
+  props: React.ComponentPropsWithoutRef<typeof ListItem>
+) => (
   <Appear>
     <ListItem {...props} />
   </Appear>

@@ -75,13 +75,13 @@ const DefaultDeck = (props: DefaultDeckProps): JSX.Element => {
   );
 
   const onMobileSlide: DeckInternalProps['onMobileSlide'] = (e) => {
-    if (navigator.maxTouchPoints < 1) return;
+    if (navigator.maxTouchPoints < 1 || !deck.current) return;
     switch (e.dir) {
       case 'Left':
-        deck.current!.stepForward();
+        deck.current.stepForward();
         break;
       case 'Right':
-        deck.current!.regressSlide();
+        deck.current.regressSlide();
         break;
     }
   };
