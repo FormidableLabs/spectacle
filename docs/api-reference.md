@@ -89,7 +89,7 @@ These tags are for adding tables with content to your slides.
 
 ## useSteps
 
-The `useSteps` hook allows a component to participate in the _slide step sequence_ for a given Slide.
+The `useSteps` hook allows a component to participate in the _slide step sequence_ for a given Slide. It must be called inside a component that sits somewhere underneath a slide component, i.e., `<Slide><MyComponentThatUsesUseStepsInside /></Slide>`, so it can access the `SlideContext` managed by the Slide component.
 
 NOTE: the vast majority of use cases are covered by the `Stepper` and `Appear` components documented below- in fact, they are implemented via this hook. The only case in which you may need to use this hook explicitly is if you need more precise control over a component in your presentation.
 
