@@ -322,11 +322,11 @@ const MultiCodeLayout = ({
 /**
  * Generic styled-component Image utilities
  */
-const Img = styled.img`
+const Img = styled.img<{ objectFit?: string }>`
   min-width: 100%;
   min-height: 100%;
   max-width: 100%;
-  object-fit: cover;
+  object-fit: ${(props) => props.objectFit || 'contain'};
 `;
 
 const ImgContainer = styled(FlexBox)`
@@ -337,15 +337,23 @@ const Image = ({
   src,
   alt = '',
   imgContainerProps,
-  imgProps
+  imgProps,
+  objectFit
 }: {
   src: string;
   alt: string;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  objectFit?: string;
 }) => (
   <ImgContainer data-testid="ImgContainer" {...imgContainerProps}>
-    <Img data-testid="Img" src={src} alt={alt} {...imgProps} />
+    <Img
+      data-testid="Img"
+      src={src}
+      alt={alt}
+      objectFit={objectFit}
+      {...imgProps}
+    />
   </ImgContainer>
 );
 
@@ -361,6 +369,7 @@ const HorizontalImage = ({
   descriptionProps,
   imgProps,
   imgContainerProps,
+  objectFit,
   ...rest
 }: Omit<SlideProps, 'children'> & {
   src: string;
@@ -371,12 +380,14 @@ const HorizontalImage = ({
   descriptionProps?: ComponentProps<typeof Text>;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
+  objectFit?: string;
 }) => {
   return (
     <Slide {...rest}>
       <Image
         src={src}
         alt={alt}
+        objectFit={objectFit}
         imgContainerProps={{
           width: '100%',
           ...imgContainerProps
@@ -412,6 +423,7 @@ const VerticalImage = ({
   imgProps,
   imgContainerProps,
   position = 'left',
+  objectFit,
   ...rest
 }: Omit<SlideProps, 'children'> & {
   src: string;
@@ -425,6 +437,7 @@ const VerticalImage = ({
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
   position?: 'right' | 'left';
+  objectFit?: string;
 }) => {
   return (
     <Slide {...rest}>
@@ -446,6 +459,7 @@ const VerticalImage = ({
         <Image
           src={src}
           alt={alt}
+          objectFit={objectFit}
           imgContainerProps={{
             order: position === 'right' ? 1 : -1,
             ...imgContainerProps
@@ -469,6 +483,7 @@ const ThreeUpImage = ({
   primary: {
     src: string;
     alt: string;
+    objectFit?: string;
     position?: 'right' | 'left';
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
@@ -476,12 +491,14 @@ const ThreeUpImage = ({
   top: {
     src: string;
     alt: string;
+    objectFit?: string;
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
   bottom: {
     src: string;
     alt: string;
+    objectFit?: string;
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     imgContainerProps?: ComponentProps<typeof FlexBox>;
   };
@@ -497,12 +514,14 @@ const ThreeUpImage = ({
           <Image
             src={top.src}
             alt={top.alt}
+            objectFit={top.objectFit}
             imgProps={top.imgProps}
             imgContainerProps={{ ...top.imgContainerProps }}
           />
           <Image
             src={bottom.src}
             alt={bottom.alt}
+            objectFit={bottom.objectFit}
             imgProps={bottom.imgProps}
             imgContainerProps={{
               ...bottom.imgContainerProps
@@ -513,6 +532,7 @@ const ThreeUpImage = ({
         <Image
           src={primary.src}
           alt={primary.alt}
+          objectFit={primary.objectFit}
           imgProps={primary.imgProps}
           imgContainerProps={{
             order: primary.position === 'right' ? 1 : -1,
@@ -532,19 +552,25 @@ const FullBleedImage = ({
   alt,
   imgProps,
   imgContainerProps,
+  objectFit,
   ...rest
 }: Omit<SlideProps, 'children'> & {
   src: string;
   alt: string;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   imgContainerProps?: ComponentProps<typeof FlexBox>;
+  objectFit?: string;
 }) => (
   <Slide padding="0 0 0" {...rest}>
     <Image
       src={src}
       alt={alt}
+      objectFit={objectFit || 'cover'}
       imgProps={imgProps}
-      imgContainerProps={imgContainerProps}
+      imgContainerProps={{
+        height: '100%',
+        ...imgContainerProps
+      }}
     />
   </Slide>
 );
