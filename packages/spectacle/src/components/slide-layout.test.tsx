@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Deck from './deck';
 import SlideLayout from './slide-layout';
 import { Heading, Text } from './typography';
@@ -316,6 +316,55 @@ describe('SlideLayout', () => {
     });
     expect(getByText('reassign the variable.')).toHaveStyle({
       color: 'cyan'
+    });
+  });
+
+  const formidableDogs = {
+    madden:
+      'https://raw.githubusercontent.com/FormidableLabs/dogs/main/src/madden.jpg'
+  };
+  it('SlideLayout.HorizontalImage should pass props to image and its container if provided', () => {
+    renderInDeck(
+      <SlideLayout.HorizontalImage
+        src={formidableDogs.madden}
+        alt={'Madden the dog'}
+        title={'Madden the dog is so cute'}
+        description={'We love him'}
+        imgContainerProps={{ style: { border: '8px solid white' } }}
+      />
+    );
+
+    expect(screen.getByRole('img', { name: /Madden the dog/ })).toBeTruthy();
+    expect(screen.queryByTestId('ImgContainer')).toHaveStyle({
+      border: '8px solid white'
+    });
+  });
+
+  it('SlideLayout.VerticalImage should allow default styles to be overridden', () => {
+    renderInDeck(
+      <SlideLayout.VerticalImage
+        src={formidableDogs.madden}
+        alt="madden the dog"
+        listItems={['madden', 'the dog', 'looking', 'regal']}
+        imgProps={{ style: { objectFit: 'contain' } }}
+      />
+    );
+
+    expect(screen.queryByTestId('Img')).toHaveStyle({ objectFit: 'contain' });
+  });
+
+  it('SlideLayout.VerticalImage should allow allow photo order to be determined', () => {
+    renderInDeck(
+      <SlideLayout.VerticalImage
+        src={formidableDogs.madden}
+        alt="madden the dog"
+        listItems={['madden', 'the dog', 'looking', 'regal']}
+        position="left"
+      />
+    );
+
+    expect(screen.queryByTestId('ImgContainer')).toHaveStyle({
+      order: '-1'
     });
   });
 });
