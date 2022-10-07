@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import Slide, { SlideProps } from './slide/slide';
 import { Box, FlexBox, Grid } from './layout-primitives';
 import CodePane, { CodePaneProps } from './code-pane';
@@ -47,6 +48,39 @@ const TwoColumn = ({
 );
 
 /**
+ * Generic List utility
+ */
+const Ul = ({
+  items = [],
+  type = 'unordered',
+  animate = false,
+  listProps
+}: (typeof UnorderedList | typeof OrderedList) & {
+  items: ReactNode[];
+  type?: 'unordered' | 'ordered';
+  animate?: boolean;
+  listProps?: React.ComponentPropsWithoutRef<
+    typeof UnorderedList & typeof OrderedList
+  >;
+}) => {
+  const List = type === 'unordered' ? UnorderedList : OrderedList;
+
+  return (
+    <List {...listProps}>
+      {items.map((item, i) => {
+        const Wrapper = animate ? Appear : Fragment;
+
+        return (
+          <Wrapper key={i}>
+            <ListItem key={i}>{item}</ListItem>
+          </Wrapper>
+        );
+      })}
+    </List>
+  );
+};
+
+/**
  * List layout with optional title
  */
 const List = ({
@@ -64,31 +98,22 @@ const List = ({
   animateListItems?: boolean;
   titleProps?: ComponentProps<typeof Heading>;
   listProps?: ComponentProps<typeof UnorderedList & typeof OrderedList>;
-}) => {
-  const List = listType === 'unordered' ? UnorderedList : OrderedList;
-
-  return (
-    <Slide {...rest}>
-      {title ? (
-        <Heading textAlign="left" {...titleProps}>
-          {title}
-        </Heading>
-      ) : null}
-      {/* @ts-ignore TODO: Resolve this in follow-up */}
-      <List {...listProps}>
-        {items.map((item, i) => {
-          const Wrapper = animateListItems ? Appear : Fragment;
-
-          return (
-            <Wrapper key={i}>
-              <ListItem key={i}>{item}</ListItem>
-            </Wrapper>
-          );
-        })}
-      </List>
-    </Slide>
-  );
-};
+}) => (
+  <Slide {...rest}>
+    {title ? (
+      <Heading textAlign="left" {...titleProps}>
+        {title}
+      </Heading>
+    ) : null}
+    {/* @ts-ignore TODO: Resolve this in follow-up */}
+    <Ul
+      items={items}
+      animate={animateListItems}
+      type={listType}
+      listProps={listProps}
+    />
+  </Slide>
+);
 
 /**
  * Generic vertically-centered Header layout
@@ -295,8 +320,263 @@ const MultiCodeLayout = ({
 };
 
 /**
+ * Generic styled-component Image utilities
+ */
+const Img = styled.img<{ objectFit?: React.CSSProperties['objectFit'] }>`
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  object-fit: ${(props) => props.objectFit || 'contain'};
+`;
+
+const ImgContainer = styled(FlexBox)`
+  overflow: hidden;
+`;
+
+const Image = ({
+  src,
+  alt = '',
+  imgContainerProps,
+  imgProps,
+  objectFit
+}: {
+  src: string;
+  alt: string;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  objectFit?: React.CSSProperties['objectFit'];
+}) => (
+  <ImgContainer data-testid="ImgContainer" {...imgContainerProps}>
+    <Img
+      data-testid="Img"
+      src={src}
+      alt={alt}
+      objectFit={objectFit}
+      {...imgProps}
+    />
+  </ImgContainer>
+);
+
+/**
+ * Horizontal Image layout with optional Title and Description
+ */
+const HorizontalImage = ({
+  src,
+  alt,
+  title,
+  titleProps,
+  description,
+  descriptionProps,
+  imgProps,
+  imgContainerProps,
+  objectFit,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  src: string;
+  alt: string;
+  title?: string | ReactNode;
+  titleProps?: ComponentProps<typeof Text>;
+  description?: string | ReactNode;
+  descriptionProps?: ComponentProps<typeof Text>;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
+  objectFit?: React.CSSProperties['objectFit'];
+}) => {
+  return (
+    <Slide {...rest}>
+      <Image
+        src={src}
+        alt={alt}
+        objectFit={objectFit}
+        imgContainerProps={{
+          width: '100%',
+          ...imgContainerProps
+        }}
+        imgProps={imgProps}
+      />
+      {title ? (
+        <Heading textAlign="left" margin="0 0" {...titleProps}>
+          {title}
+        </Heading>
+      ) : null}
+      {description ? (
+        <Text margin="0 0" {...descriptionProps}>
+          {description}
+        </Text>
+      ) : null}
+    </Slide>
+  );
+};
+
+/**
+ * Image and List layout with optional Title
+ */
+const VerticalImage = ({
+  src,
+  alt,
+  title,
+  titleProps,
+  listType = 'unordered',
+  listItems,
+  animateListItems = false,
+  listProps,
+  imgProps,
+  imgContainerProps,
+  position = 'left',
+  objectFit,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  src: string;
+  alt: string;
+  listItems: ReactNode[];
+  title?: string | ReactNode;
+  titleProps?: ComponentProps<typeof Heading>;
+  listType?: 'unordered' | 'ordered';
+  animateListItems?: boolean;
+  listProps?: ComponentProps<typeof UnorderedList & typeof OrderedList>;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
+  position?: 'right' | 'left';
+  objectFit?: React.CSSProperties['objectFit'];
+}) => {
+  return (
+    <Slide {...rest}>
+      {title ? <Heading {...titleProps}>{title}</Heading> : null}
+      <Grid
+        gridColumnGap={2}
+        gridTemplateColumns={'repeat(2, 1fr)'}
+        height={'100%'}
+      >
+        <FlexBox justifyContent="start">
+          {/* @ts-ignore TODO: Resolve this in follow-up */}
+          <Ul
+            items={listItems}
+            animate={animateListItems}
+            type={listType}
+            {...listProps}
+          />
+        </FlexBox>
+        <Image
+          src={src}
+          alt={alt}
+          objectFit={objectFit}
+          imgContainerProps={{
+            order: position === 'right' ? 1 : -1,
+            ...imgContainerProps
+          }}
+          imgProps={imgProps}
+        />
+      </Grid>
+    </Slide>
+  );
+};
+
+/**
+ * Image 3-up layout
+ */
+const ThreeUpImage = ({
+  primary,
+  top,
+  bottom,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  primary: {
+    src: string;
+    alt: string;
+    objectFit?: React.CSSProperties['objectFit'];
+    position?: 'right' | 'left';
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+    imgContainerProps?: ComponentProps<typeof FlexBox>;
+  };
+  top: {
+    src: string;
+    alt: string;
+    objectFit?: React.CSSProperties['objectFit'];
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+    imgContainerProps?: ComponentProps<typeof FlexBox>;
+  };
+  bottom: {
+    src: string;
+    alt: string;
+    objectFit?: React.CSSProperties['objectFit'];
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+    imgContainerProps?: ComponentProps<typeof FlexBox>;
+  };
+}) => {
+  return (
+    <Slide {...rest}>
+      <Grid
+        height={'100%'}
+        gridColumnGap={2}
+        gridTemplateColumns={'repeat(2, 1fr)'}
+      >
+        <Grid gridRowGap={2} gridTemplateRows={'repeat(2, .5fr)'}>
+          <Image
+            src={top.src}
+            alt={top.alt}
+            objectFit={top.objectFit}
+            imgProps={top.imgProps}
+            imgContainerProps={{ ...top.imgContainerProps }}
+          />
+          <Image
+            src={bottom.src}
+            alt={bottom.alt}
+            objectFit={bottom.objectFit}
+            imgProps={bottom.imgProps}
+            imgContainerProps={{
+              ...bottom.imgContainerProps
+            }}
+          />
+        </Grid>
+
+        <Image
+          src={primary.src}
+          alt={primary.alt}
+          objectFit={primary.objectFit}
+          imgProps={primary.imgProps}
+          imgContainerProps={{
+            order: primary.position === 'right' ? 1 : -1,
+            ...primary.imgContainerProps
+          }}
+        />
+      </Grid>
+    </Slide>
+  );
+};
+
+/**
+ * Full Bleed Image layout
+ */
+const FullBleedImage = ({
+  src,
+  alt,
+  imgProps,
+  imgContainerProps,
+  objectFit,
+  ...rest
+}: Omit<SlideProps, 'children'> & {
+  src: string;
+  alt: string;
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+  imgContainerProps?: ComponentProps<typeof FlexBox>;
+  objectFit?: React.CSSProperties['objectFit'];
+}) => (
+  <Slide padding="0 0 0" {...rest}>
+    <Image
+      src={src}
+      alt={alt}
+      objectFit={objectFit || 'cover'}
+      imgProps={imgProps}
+      imgContainerProps={{
+        height: '100%',
+        ...imgContainerProps
+      }}
+    />
+  </Slide>
+);
+
+/**
  * Layouts to consider:
- * - Image (left, right, full bleed?)
  * - Intro
  */
 
@@ -310,5 +590,9 @@ export default {
   Quote,
   Statement,
   Code,
-  MultiCodeLayout
+  MultiCodeLayout,
+  HorizontalImage,
+  VerticalImage,
+  ThreeUpImage,
+  FullBleedImage
 };

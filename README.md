@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/main/website/static/img/logo_spectacle.png" width=250></p>
+<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/ac6c9266/website/static/img/logo_spectacle.png" width=250></p>
 <h2 align="center">Spectacle</h2>
 <p align="center">
 <strong>✨ A ReactJS based Presentation Library ✨</strong>
@@ -21,9 +21,9 @@ Come learn more at our [docs site]!
 Have a question about Spectacle? Submit an issue in this repository using the
 ["Question" template](https://github.com/FormidableLabs/spectacle/issues/new?template=question.md).
 
-Notice something inaccurate or confusing? Feel free to [open an issue](https://github.com/FormidableLabs/spectacle/issues) or [make a pull request](https://github.com/FormidableLabs/spectacle/pulls) to help improve the documentation for everyone!
+Notice something inaccurate or confusing? Feel free to [open an issue](https://github.com/FormidableLabs/spectacle/issues/new/choose) or [make a pull request](https://github.com/FormidableLabs/spectacle/pulls) to help improve the documentation for everyone!
 
-The source for our docs site lives in this repo in the [`docs`](https://github.com/FormidableLabs/spectacle/blob/main/docs/README.md) folder.
+The source for our docs site lives in this repo in the [`docs`](https://github.com/FormidableLabs/spectacle/blob/main/docs) folder.
 
 ## Contributing
 
@@ -33,4 +33,4 @@ Please see our [contributing guide](CONTRIBUTING.md).
 
 **Active:** Formidable is actively working on this project, and we expect to continue for work for the foreseeable future. Bug reports, feature requests and pull requests are welcome.
 
-[docs site]: https://www.formidable.com/open-source/spectacle
+[docs site]: https://www.formidable.com/open-source/spectacle/docs/

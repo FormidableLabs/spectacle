@@ -4,30 +4,26 @@ import { DeckStateAndActions } from '../hooks/use-deck-state';
 export type AutoPlayOptions = {
   enabled?: boolean;
   loop?: boolean;
-  navigation: Pick<DeckStateAndActions, 'skipTo' | 'stepForward'> & {
-    isFinalSlide: boolean;
-  };
+  stepForward: DeckStateAndActions['stepForward'];
   interval?: number;
 };
 
 export const useAutoPlay = ({
   enabled = false,
   loop = false,
-  navigation,
+  stepForward,
   interval = 1000
 }: AutoPlayOptions) => {
-  const savedCallback = useRef(() => {
-    if (navigation.isFinalSlide && loop) {
-      navigation.skipTo({ slideIndex: 0, stepIndex: 0 });
-    } else {
-      navigation.stepForward();
-    }
-  });
+  const stepFn = useRef(stepForward);
+  stepFn.current = stepForward;
 
   useEffect(() => {
     if (enabled) {
-      const id = setInterval(savedCallback.current, interval);
+      const id = setInterval(() => {
+        stepFn.current();
+      }, interval);
+
       return () => clearInterval(id);
     }
-  }, [enabled, interval]);
+  }, [enabled, interval, loop]);
 };

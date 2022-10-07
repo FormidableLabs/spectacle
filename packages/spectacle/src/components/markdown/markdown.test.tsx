@@ -5,15 +5,6 @@ import { Heading } from '../typography';
 import Slide from '../slide/slide';
 import { render } from '@testing-library/react';
 
-jest.mock('../../hooks/use-broadcast-channel', () => {
-  return {
-    __esModule: true,
-    default: function useBroadcastChannel() {
-      return [() => {}];
-    }
-  };
-});
-
 const mountInsideDeck = (tree: ReactElement) => {
   return render(<Deck>{tree}</Deck>);
 };

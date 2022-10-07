@@ -11,12 +11,14 @@ export type DeckView = {
 };
 export type DeckState = {
   initialized: boolean;
+  navigationDirection: number;
   activeView: DeckView;
   pendingView: DeckView;
 };
 
 const initialDeckState: DeckState = {
   initialized: false,
+  navigationDirection: 0,
   pendingView: {
     slideIndex: 0,
     stepIndex: 0
@@ -41,6 +43,7 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
   switch (type) {
     case 'INITIALIZE_TO':
       return {
+        navigationDirection: 0,
         activeView: merge(state.activeView, payload),
         pendingView: merge(state.pendingView, payload),
         initialized: true
@@ -53,6 +56,7 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
     case 'STEP_FORWARD':
       return {
         ...state,
+        navigationDirection: 1,
         pendingView: merge(state.pendingView, {
           stepIndex: state.pendingView.stepIndex + 1
         })
@@ -60,6 +64,7 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
     case 'STEP_BACKWARD':
       return {
         ...state,
+        navigationDirection: -1,
         pendingView: merge(state.pendingView, {
           stepIndex: state.pendingView.stepIndex - 1
         })
@@ -67,6 +72,7 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
     case 'ADVANCE_SLIDE':
       return {
         ...state,
+        navigationDirection: 1,
         pendingView: merge(state.pendingView, {
           stepIndex: 0,
           slideIndex: state.pendingView.slideIndex + 1
@@ -75,6 +81,7 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
     case 'REGRESS_SLIDE':
       return {
         ...state,
+        navigationDirection: -1,
         pendingView: merge(state.pendingView, {
           stepIndex: payload?.stepIndex ?? GOTO_FINAL_STEP,
           slideIndex: state.pendingView.slideIndex - 1
@@ -98,10 +105,13 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
 }
 
 export default function useDeckState(userProvidedInitialState: DeckView) {
-  const [{ initialized, pendingView, activeView }, dispatch] = useReducer(
-    deckReducer,
-    { ...initialDeckState, ...userProvidedInitialState }
-  );
+  const [
+    { initialized, navigationDirection, pendingView, activeView },
+    dispatch
+  ] = useReducer(deckReducer, {
+    ...initialDeckState,
+    ...userProvidedInitialState
+  });
   const actions = useMemo(
     () => ({
       initializeTo: (payload: Partial<DeckView>) =>
@@ -122,6 +132,7 @@ export default function useDeckState(userProvidedInitialState: DeckView) {
 
   return {
     initialized,
+    navigationDirection,
     pendingView,
     activeView,
     ...actions
