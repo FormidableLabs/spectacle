@@ -13,12 +13,28 @@
     },
     "scripts": {
       "start": "webpack-dev-server --port=3300 --hot --config ./webpack.config.js",
+      "build": "wireit",
       "lint": "wireit",
       "lint:fix": "wireit",
       "prettier": "wireit",
       "prettier:fix": "wireit"
     },
     "wireit": {
+      "build": {
+        "command": "nps webpack",
+        "files": [
+          "*.{js,jsx,ts,tsx,html}"
+        ],
+        "output": [
+          "dist/*"
+        ],
+        "dependencies": [
+          "../../packages/spectacle:build:lib:esm"
+        ],
+        "packageLocks": [
+          "pnpm-lock.yaml"
+        ]
+      },
       "lint": {
         "command": "nps \"lint:base *.js\"",
         "files": [

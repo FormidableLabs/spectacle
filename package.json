@@ -114,6 +114,7 @@
         "./packages/spectacle:build",
         "./examples/js:build",
         "./examples/md:build",
+        "./examples/mdx:build",
         "./examples/one-page:build",
         "./examples/typescript:build"
       ]

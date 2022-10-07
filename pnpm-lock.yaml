@@ -257,13 +257,11 @@ importers:
       gray-matter: ^4.0.2
       loader-utils: ^1.2.3
       normalize-newline: ^3.0.0
-      spectacle: workspace:*
     dependencies:
       '@mdx-js/mdx': 1.6.22
       gray-matter: 4.0.3
       loader-utils: 1.4.0
       normalize-newline: 3.0.0
-      spectacle: link:../spectacle
 
   website:
     specifiers:
