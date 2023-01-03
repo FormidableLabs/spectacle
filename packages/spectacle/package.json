@@ -98,6 +98,7 @@
       "files": [
         "src/**",
         "!src/**/*.test.*",
+        "../../package-scripts.js",
         "../../.babelrc.js",
         "../../.babelrc.build.js"
       ],
@@ -113,6 +114,7 @@
       "files": [
         "src/**",
         "!src/**/*.test.*",
+        "../../package-scripts.js",
         "../../.babelrc.js",
         "../../.babelrc.build.js"
       ],
