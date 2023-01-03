@@ -25,7 +25,7 @@ module.exports = {
     'babel:pkg:lib:esm':
       'cross-env BABEL_ENV=es nps "babel:pkg:base src --out-dir es"',
     'babel:pkg:lib:cjs':
-      'cross-env BABEL_ENV=commonjs nps "babel:pkg:base src --out-dir lib"',
+      'cross-env BABEL_ENV=cjs nps "babel:pkg:base src --out-dir lib"',
 
     // - Webpack
     webpack: 'webpack',
