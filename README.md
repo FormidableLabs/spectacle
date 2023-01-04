@@ -1,13 +1,16 @@
-<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/ac6c9266/website/static/img/logo_spectacle.png" width=250></p>
-<h2 align="center">Spectacle</h2>
 <p align="center">
-<strong>✨ A ReactJS based Presentation Library ✨</strong>
-<br><br>
-<a href="https://npmjs.com/package/spectacle"><img src="https://img.shields.io/npm/dm/spectacle.svg"></a>
-<a href="https://npmjs.com/package/spectacle"><img src="https://img.shields.io/npm/v/spectacle.svg"></a>
-<a href="https://github.com/FormidableLabs/spectacle#maintenance-status">
-  <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
-</a>
+  <a href="https://formidable.com/open-source/" target="_blank">
+    <img alt="Spectacle — Formidable, We build the modern web" src="./Spectacle-Hero.png" />
+  </a>
+</p>
+<p align="center">
+  <strong>✨ A ReactJS based Presentation Library ✨</strong>
+  <br><br>
+  <a href="https://npmjs.com/package/spectacle"><img src="https://img.shields.io/npm/dm/spectacle.svg"></a>
+  <a href="https://npmjs.com/package/spectacle"><img src="https://img.shields.io/npm/v/spectacle.svg"></a>
+  <a href="https://github.com/FormidableLabs/spectacle#maintenance-status">
+    <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
+  </a>
 </p>
 
 ## Getting Started
