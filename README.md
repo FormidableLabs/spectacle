@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://formidable.com/open-source/" target="_blank">
-    <img alt="Spectacle — Formidable, We build the modern web" src="./Spectacle-Hero.png" />
+    <img alt="Spectacle — Formidable, We build the modern web" src="https://raw.githubusercontent.com/FormidableLabs/spectacle/main/Spectacle-Hero.png" />
   </a>
 </p>
 <p align="center">
