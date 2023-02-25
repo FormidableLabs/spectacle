@@ -1,7 +1,7 @@
 ---
 title: Themes
-order: 4
-sidebar_position: 4
+order: 7
+sidebar_position: 7
 ---
 
 # Theme System

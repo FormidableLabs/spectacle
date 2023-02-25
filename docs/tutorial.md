@@ -1,7 +1,7 @@
 ---
 title: Getting Started
-order: 6
-sidebar_position: 6
+order: 3
+sidebar_position: 3
 ---
 
 # Getting Started with Spectacle: A Tutorial
