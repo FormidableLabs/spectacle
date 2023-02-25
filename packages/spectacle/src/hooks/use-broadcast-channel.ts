@@ -5,10 +5,11 @@ import { DeckView } from './use-deck-state';
 
 const noop = () => {};
 let safeWindow: any = {};
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   safeWindow = window;
 }
-const BroadcastChannel = safeWindow.BroadcastChannel || BroadcastChannelPolyfill;
+const BroadcastChannel =
+  safeWindow.BroadcastChannel || BroadcastChannelPolyfill;
 
 type MessageCallback = (message: MessageTypes) => void;
 
