@@ -4,7 +4,11 @@ import { BroadcastChannel as BroadcastChannelPolyfill } from 'broadcast-channel'
 import { DeckView } from './use-deck-state';
 
 const noop = () => {};
-const BroadcastChannel = window.BroadcastChannel || BroadcastChannelPolyfill;
+let safeWindow: any = {};
+if (typeof window !== "undefined") {
+  safeWindow = window;
+}
+const BroadcastChannel = safeWindow.BroadcastChannel || BroadcastChannelPolyfill;
 
 type MessageCallback = (message: MessageTypes) => void;
 
