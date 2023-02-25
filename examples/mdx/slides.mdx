@@ -1,0 +1,68 @@
+import Test from './test-component';
+export const testProp = 50;
+
+# Spectacle Presentation (MDX) 👋
+
+This example uses:
+
+- `mdx`
+- `@babel/preset-react` for the React components we import
+
+Notes: These are presenter notes. This text will be automatically exported as `notes` from your MDX file (e.g. `import {notes} from './my-file.mdx'`).
+
+---
+
+## Yellow div from a JSX component
+
+<Test height={testProp} />
+
+Notes: here are some more notes.
+
+---
+
+# Write your Spectacle Presentations in Markdown
+
+## And seamlessly use React Components
+
+**How sweet is that**
+**(super sweet)**
+
+---
+
+![datboi](https://pbs.twimg.com/media/CkjFUyTXEAEysBY.jpg)
+
+---
+
+###### Typography
+
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+Standard Text
+
+---
+
+> Example Quote
+
+---
+
+```jsx
+import { createClient, Provider } from 'urql';
+
+const client = createClient({ url: 'https://0ufyz.sse.codesandbox.io' });
+
+const App = () => (
+  <Provider value={client}>
+    <Todos />
+  </Provider>
+);
+```

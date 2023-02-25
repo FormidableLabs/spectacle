@@ -54,6 +54,7 @@
     "changeset": "changeset",
     "start:js": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/js start\"",
     "start:md": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/md start\"",
+    "start:mdx": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/mdx start\"",
     "start:ts": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/typescript start\"",
     "start:one-page": "concurrently --raw pnpm:build:spectacle:dev:watch pnpm:build:spectacle:types:watch",
     "start:examples": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:dev:watch pnpm:build:spectacle:types:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
@@ -113,6 +114,7 @@
         "./packages/spectacle:build",
         "./examples/js:build",
         "./examples/md:build",
+        "./examples/mdx:build",
         "./examples/one-page:build",
         "./examples/typescript:build"
       ]
@@ -167,9 +169,11 @@
       "dependencies": [
         "./packages/spectacle:lint",
         "./packages/create-spectacle:lint",
+        "./packages/spectacle-mdx-loader:lint",
         "./website:lint",
         "./examples/js:lint",
         "./examples/md:lint",
+        "./examples/mdx:lint",
         "./examples/one-page:lint",
         "./examples/typescript:lint"
       ]
@@ -178,9 +182,11 @@
       "dependencies": [
         "./packages/spectacle:lint:fix",
         "./packages/create-spectacle:lint:fix",
+        "./packages/spectacle-mdx-loader:lint:fix",
         "./website:lint:fix",
         "./examples/js:lint:fix",
         "./examples/md:lint:fix",
+        "./examples/mdx:lint:fix",
         "./examples/one-page:lint:fix",
         "./examples/typescript:lint:fix"
       ]
@@ -227,9 +233,11 @@
       "dependencies": [
         "./packages/spectacle:prettier",
         "./packages/create-spectacle:prettier",
+        "./packages/spectacle-mdx-loader:prettier",
         "./website:prettier",
         "./examples/js:prettier",
         "./examples/md:prettier",
+        "./examples/mdx:prettier",
         "./examples/one-page:prettier",
         "./examples/typescript:prettier"
       ]
@@ -238,9 +246,11 @@
       "dependencies": [
         "./packages/spectacle:prettier:fix",
         "./packages/create-spectacle:prettier:fix",
+        "./packages/spectacle-mdx-loader:prettier:fix",
         "./website:prettier:fix",
         "./examples/js:prettier:fix",
         "./examples/md:prettier:fix",
+        "./examples/mdx:prettier:fix",
         "./examples/one-page:prettier:fix",
         "./examples/typescript:prettier:fix"
       ]
