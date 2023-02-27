@@ -1,7 +1,7 @@
 ---
 title: Base Props
-order: 3
-sidebar_position: 3
+order: 5
+sidebar_position: 5
 ---
 
 # Base Props

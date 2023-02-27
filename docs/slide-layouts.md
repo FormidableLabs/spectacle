@@ -1,5 +1,10 @@
-import Full from '../website/static/img/slide-layouts/full.png';
+---
+title: Slide Layouts
+order: 6
+sidebar_position: 6
+---
 
+import Full from '../website/static/img/slide-layouts/full.png';
 
 ## SlideLayout
 
