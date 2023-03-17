@@ -70,7 +70,7 @@ Additionally, there are keys for assorted overrides for the presentation:
 A template in Spectacle is a fixed overlay of components that are presented on every slide. They are similar to masters in Keynote or PowerPoint. It’s a function prop that has a single optional config object containing the current slide and total slide count and returns a React Node.
 
 ```jsx
-<Deck template=(({ slideNumber, numberOfSlides }) => (
+<Deck template={({ slideNumber, numberOfSlides }) => (
   <FlexBox
     justifyContent="space-between"
     position="absolute"
@@ -85,7 +85,7 @@ A template in Spectacle is a fixed overlay of components that are presented on e
       Slide {slideNumber} of {numberOfSlides}
     </Box>
   </FlexBox>
-))>
+)}>
 ```
 
 ## Scaled Spacing
