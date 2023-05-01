@@ -54,6 +54,9 @@
     "examples:onepage:build": "echo unused",
     "examples:onepage:start": "pnpm exec serve .examples/onepage"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "wireit": {
     "build": {
       "command": "tsc --p tsconfig.build.json",
