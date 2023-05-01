@@ -1,5 +1,11 @@
 # create-spectacle
 
+## 0.3.1
+
+### Patch Changes
+
+- Setup NPM Provenance ([#1258](https://github.com/FormidableLabs/spectacle/pull/1258))
+
 ## 0.3.0
 
 ### Minor Changes

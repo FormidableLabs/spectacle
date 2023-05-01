@@ -1,5 +1,11 @@
 # Changelog
 
+## 9.7.1
+
+### Patch Changes
+
+- Setup NPM Provenance ([#1258](https://github.com/FormidableLabs/spectacle/pull/1258))
+
 ## 9.7.0
 
 ### Minor Changes
