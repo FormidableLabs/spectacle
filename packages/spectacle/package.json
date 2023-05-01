@@ -79,6 +79,9 @@
     "prettier:fix": "wireit",
     "test": "wireit"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "wireit": {
     "build": {
       "dependencies": [
