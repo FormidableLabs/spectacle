@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+
+const containerPrintStyle = `
+  @media print {
+    height: inherit;
+  }
+`;
+
 import {
   compose,
   grid,
@@ -18,11 +25,13 @@ type BoxProps = SS.LayoutProps &
   SS.BorderProps;
 
 const Box = styled.div<BoxProps>(
-  compose(layout, space, position, color, border)
+  compose(layout, space, position, color, border),
+  containerPrintStyle
 );
 
 const FlexBox = styled.div<BoxProps & SS.FlexboxProps>(
-  compose(layout, space, position, color, border, flexbox)
+  compose(layout, space, position, color, border, flexbox),
+  containerPrintStyle
 );
 
 FlexBox.defaultProps = {
@@ -32,7 +41,10 @@ FlexBox.defaultProps = {
 };
 
 type GridProps = SS.LayoutProps & SS.GridProps & SS.PositionProps;
-const Grid = styled.div<GridProps>(compose(layout, grid, position));
+const Grid = styled.div<GridProps>(
+  compose(layout, grid, position),
+  containerPrintStyle
+);
 
 Grid.defaultProps = {
   display: 'grid'
