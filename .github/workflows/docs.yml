@@ -64,19 +64,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy docs (staging)
-        if: github.ref != 'refs/heads/main'
-        working-directory: ./website
-        run: pnpm deploy:stage
-        env:
-          # GH actions have a PR merge commit that _isn't_ our actual commits.
-          # Manually infer correct branch and sha for pull requests.
-          FORMIDEPLOY_GIT_SHA: ${{ github.event.pull_request.head.sha }}
-          FORMIDEPLOY_PULL_REQUEST: ${{ steps.pr_info.outputs.pull_request_number }}
-          GITHUB_DEPLOYMENT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-
       - name: Deploy docs (production)
         if: github.ref == 'refs/heads/main'
         working-directory: ./website
