@@ -74,7 +74,7 @@ const SlideFragments = () => (
 const Presentation = () => (
   <Deck theme={theme} template={template}>
     <Slide>
-      <FlexBox height="100%">
+      <FlexBox>
         <SpectacleLogo size={500} />
       </FlexBox>
       <Notes>

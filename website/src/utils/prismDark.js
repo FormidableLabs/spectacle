@@ -1,12 +1,12 @@
-const darkTheme = require('prism-react-renderer/themes/dracula/index.cjs.js');
+const { themes } = require('prism-react-renderer');
 
 module.exports = {
-  ...darkTheme,
+  ...themes.nightOwl,
   plain: {
     backgroundColor: 'var(--oss-color-grey-darkest)'
   },
   styles: [
-    ...darkTheme.styles,
+    ...themes.nightOwl.styles,
     {
       types: ['function'],
       style: {

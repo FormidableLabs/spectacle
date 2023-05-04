@@ -1,9 +1,9 @@
-const lightTheme = require('prism-react-renderer/themes/github/index.cjs.js');
+const { themes } = require('prism-react-renderer');
 
 module.exports = {
-  ...lightTheme,
+  ...themes.nightOwlLight,
   styles: [
-    ...lightTheme.styles,
+    ...themes.nightOwlLight.styles,
     {
       types: ['function'],
       style: {
