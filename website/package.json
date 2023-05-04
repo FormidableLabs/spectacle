@@ -6,7 +6,7 @@
     "node": "<18"
   },
   "devDependencies": {
-    "@docusaurus/core": "^2.0.1",
+    "@docusaurus/core": "^2.4.0",
     "@docusaurus/module-type-aliases": "^2.0.1",
     "@docusaurus/plugin-client-redirects": "^2.0.1",
     "@docusaurus/preset-classic": "^2.0.1",
