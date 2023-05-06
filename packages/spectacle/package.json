@@ -2,12 +2,13 @@
   "name": "spectacle",
   "version": "9.7.2",
   "description": "ReactJS Powered Presentation Framework",
-  "types": "dist/index.d.ts",
-  "main": "dist/index.js",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
   "files": [
-    "dist/"
+    "dist/",
+    "lib/"
   ],
-  "module": "dist/index.mjs",
+  "module": "lib/index.mjs",
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
   "repository": {
@@ -63,6 +64,7 @@
     "build": "wireit",
     "build:lib": "wireit",
     "build:lib:watch": "wireit",
+    "build:dist": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "prettier": "wireit",
@@ -74,11 +76,12 @@
   },
   "wireit": {
     "build": {
-      "dependencies": [ "build:lib" ]
+      "dependencies": [ "build:lib", "build:dist" ]
     },
     "build:lib": {
       "command": "pnpm tsup",
       "files": [
+        "./tsup.config.ts",
         "src/**",
         "!src/**/*.test.*",
         "../../package-scripts.js",
@@ -86,7 +89,7 @@
         "../../.babelrc.build.js"
       ],
       "output": [
-        "dist/**/*.js"
+        "lib/**/*.js"
       ],
       "packageLocks": [
         "pnpm-lock.yaml"
@@ -102,7 +105,23 @@
         "../../.babelrc.build.js"
       ],
       "output": [
-        "dist/**/*.js"
+        "lib/**/*.js"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "build:dist": {
+      "command": "nps webpack",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "../../.babelrc.js",
+        "../../.babelrc.build.js",
+        "webpack.config.js"
+      ],
+      "output": [
+        "dist/spectacle.min.js*"
       ],
       "packageLocks": [
         "pnpm-lock.yaml"

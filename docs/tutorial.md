@@ -21,11 +21,11 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 3. In `App.tsx`, replace the boilerplate content with this Spectacle starter:
 
    ```tsx
-   import { Deck, Slide, Heading } from 'spectacle';
+   import { Deck, Slide, Heading, DefaultTemplate } from 'spectacle';
 
    function App() {
      return (
-       <Deck>
+       <Deck template={<DefaultTemplate />}>
          <Slide>
            <Heading>Welcome to Spectacle</Heading>
          </Slide>
@@ -51,11 +51,11 @@ In this guide, we'll show you a couple of different ways to get started with Spe
    ```tsx
    "use client";
    
-   import { Deck, Slide, Heading } from 'spectacle';
+   import { Deck, Slide, Heading, DefaultTemplate } from 'spectacle';
 
    export const SpectacleDeck = () => {
      return (
-       <Deck>
+       <Deck template={<DefaultTemplate />}>
          <Slide>
            <Heading>Welcome to Spectacle</Heading>
          </Slide>

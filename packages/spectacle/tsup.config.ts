@@ -3,7 +3,8 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   entry: ['src/index.ts'],
   sourcemap: true,
-  clean: true,
+  outDir: './lib',
+  clean: false,
   external: ['react', 'react-dom'],
   dts: true,
   format: ['cjs', 'esm'],

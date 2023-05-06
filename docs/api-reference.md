@@ -20,7 +20,7 @@ A `template` contains Layout tags (referred to as a template render function) an
 | Props              | Type                                        | Default            |
 |--------------------|---------------------------------------------|--------------------|
 | `theme`            | [Styled-system theme object](./themes)      |                    |
-| `template`         | [Template render function](#layout-tags)    |                    |
+| `template`         | [Templates](#templates)                     |                    |
 | `pageSize`         | PropTypes.string                            | `"13.66in 7.68in"` |
 | `pageOrientation`  | `"landscape"` or `"portrait"`               | `"landscape"`      |
 | `printScale`       | PropTypes.number                            | `0.959`            |
@@ -63,6 +63,31 @@ These tags are for displaying textual content.
 | **`UnorderedList`** | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **color**: primary<br /> **fontFamily**: text<br />**fontSize**: text<br />**textAlign**: left<br />**margin**: listMargin                                       |
 | **`ListItem`**      | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **margin**: listMargin                                                                                                                                           |
 | **`CodeSpan`**      | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **fontFamily**: monospace<br />**fontSize**: text                                                                                                                |
+
+
+## Templates 🆕
+
+Templates are overlays that are present on every slide. Typically, they contain controls and deck progress. Spectacle contains a default template, shown below, ready to use that contains the full screen control and the animated progress dots. `<DefaultTemplate />` also supports customizing the color using the prop `color` and CSS color values such as `purple` or `#fff`.
+
+![default template](../website/static/img/templates/default-template.png)
+
+```tsx
+  import { Deck, DefaultTemplate } from 'spectacle'
+
+  const Presentation = () => (
+    <Deck theme={theme} template={<DefaultTemplate />}>
+      {/* Your presentation here */}
+    </Deck>
+  )
+```
+
+You can also create a custom template component. Props provided to the template component are:
+
+
+| Props            | Type   | Description                            |
+|------------------|--------|----------------------------------------|
+| `slideNumber`    | number | The current index of the active slide. |
+| `numberOfSlides` | number | The total count of slides in the deck. |
 
 ## Layout Tags
 
