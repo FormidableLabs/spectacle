@@ -72,13 +72,13 @@ Templates are overlays that are present on every slide. Typically, they contain 
 ![default template](../website/static/img/templates/default-template.png)
 
 ```tsx
-  import { Deck, DefaultTemplate } from 'spectacle'
+import { Deck, DefaultTemplate } from 'spectacle'
 
-  const Presentation = () => (
-    <Deck theme={theme} template={<DefaultTemplate />}>
-      {/* Your presentation here */}
-    </Deck>
-  )
+const Presentation = () => (
+  <Deck theme={theme} template={<DefaultTemplate />}>
+    {/* Your presentation here */}
+  </Deck>
+)
 ```
 
 You can also create a custom template component. Props provided to the template component are:
