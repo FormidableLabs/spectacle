@@ -44,7 +44,8 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      process: 'process/browser'
+      process: 'process/browser',
+      React: 'react'
     })
   ]
 };

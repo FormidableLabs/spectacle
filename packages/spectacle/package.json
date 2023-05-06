@@ -2,14 +2,12 @@
   "name": "spectacle",
   "version": "9.7.2",
   "description": "ReactJS Powered Presentation Framework",
-  "types": "lib/index.d.ts",
-  "main": "lib/index.js",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "files": [
-    "lib/",
-    "es/",
     "dist/"
   ],
-  "module": "es/index.js",
+  "module": "dist/index.mjs",
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
   "repository": {
@@ -48,8 +46,8 @@
   },
   "devDependencies": {
     "@types/mousetrap": "^1.6.8",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.5",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
     "@types/react-is": "^17.0.3",
     "@types/react-syntax-highlighter": "^15.5.5",
     "@types/styled-components": "^5.1.15",
@@ -57,22 +55,14 @@
     "@types/unist": "^2.0.6",
     "csstype": "^3.1.1",
     "process": "^0.11.10",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
-  },
-  "resolutions": {
-    "@types/react": "^18.0.12"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^6.7.0"
   },
   "scripts": {
     "build": "wireit",
     "build:lib": "wireit",
-    "build:lib:esm": "wireit",
-    "build:lib:cjs": "wireit",
-    "build:dist": "wireit",
-    "build:dist:dev": "wireit",
-    "build:dist:min": "wireit",
-    "types:check": "wireit",
-    "types:create": "wireit",
+    "build:lib:watch": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "prettier": "wireit",
@@ -84,20 +74,10 @@
   },
   "wireit": {
     "build": {
-      "dependencies": [
-        "build:lib",
-        "build:dist",
-        "types:create"
-      ]
+      "dependencies": [ "build:lib" ]
     },
     "build:lib": {
-      "dependencies": [
-        "build:lib:esm",
-        "build:lib:cjs"
-      ]
-    },
-    "build:lib:esm": {
-      "command": "nps babel:pkg:lib:esm",
+      "command": "pnpm tsup",
       "files": [
         "src/**",
         "!src/**/*.test.*",
@@ -106,14 +86,14 @@
         "../../.babelrc.build.js"
       ],
       "output": [
-        "es/**/*.js"
+        "dist/**/*.js"
       ],
       "packageLocks": [
         "pnpm-lock.yaml"
       ]
     },
-    "build:lib:cjs": {
-      "command": "nps babel:pkg:lib:cjs",
+    "build:lib:watch": {
+      "command": "pnpm tsup --watch",
       "files": [
         "src/**",
         "!src/**/*.test.*",
@@ -122,77 +102,8 @@
         "../../.babelrc.build.js"
       ],
       "output": [
-        "lib/**/*.js"
+        "dist/**/*.js"
       ],
-      "packageLocks": [
-        "pnpm-lock.yaml"
-      ]
-    },
-    "build:dist": {
-      "dependencies": [
-        "build:dist:dev",
-        "build:dist:min"
-      ]
-    },
-    "build:dist:dev": {
-      "command": "nps \"webpack --config webpack.config.dev.js\"",
-      "files": [
-        "src/**",
-        "!src/**/*.test.*",
-        "../../.babelrc.js",
-        "../../.babelrc.build.js",
-        "webpack.config.js",
-        "webpack.config.dev.js"
-      ],
-      "output": [
-        "dist/spectacle.js*",
-        "!dist/spectacle.min.js*"
-      ],
-      "packageLocks": [
-        "pnpm-lock.yaml"
-      ]
-    },
-    "build:dist:min": {
-      "command": "nps webpack",
-      "files": [
-        "src/**",
-        "!src/**/*.test.*",
-        "../../.babelrc.js",
-        "../../.babelrc.build.js",
-        "webpack.config.dev.js"
-      ],
-      "output": [
-        "dist/spectacle.min.js*"
-      ],
-      "packageLocks": [
-        "pnpm-lock.yaml"
-      ]
-    },
-    "types:check": {
-      "command": "nps types:check",
-      "files": [
-        "src/**/*.{ts,tsx}",
-        "../../tsconfig.json",
-        "tsconfig.json"
-      ],
-      "dependencies": [],
-      "output": [],
-      "packageLocks": [
-        "pnpm-lock.yaml"
-      ]
-    },
-    "types:create": {
-      "command": "nps types:create",
-      "files": [
-        "src/**",
-        "!src/**/*.test.*",
-        "../../tsconfig.json"
-      ],
-      "output": [
-        "lib/**/*.d.ts",
-        "lib/**/*.d.ts.map"
-      ],
-      "dependencies": [],
       "packageLocks": [
         "pnpm-lock.yaml"
       ]

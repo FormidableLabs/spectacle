@@ -110,6 +110,7 @@ const Slide = (props: SlideProps): JSX.Element => {
 
   const slideHasTemplate = slideTemplate !== undefined;
   const { slideId, placeholder } = useSlide(slideHasTemplate, userProvidedId);
+
   const { setStepContainer, activationThresholds, finalStepIndex } =
     useCollectSteps();
   const {

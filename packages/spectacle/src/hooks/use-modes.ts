@@ -8,9 +8,11 @@ import {
 } from '../utils/constants';
 
 const useModes = (): ModeActions => {
+  const qs =
+    (typeof window !== 'undefined' ? window : {})?.location?.search || '';
   const mode = useRef(
     modeKeyForSearchParam(
-      parseQS(window.location.search, {
+      parseQS(qs, {
         parseBooleans: true
       })
     )

@@ -8,20 +8,19 @@ sidebar_position: 3
 
 In this guide, we'll show you a couple of different ways to get started with Spectacle and walk you through the creation and customization of a presentation deck.
 
-## Option One: Using a standard React-based web app
+## Option One: Using Vite to bootstrap a React-based Spectacle app
 
-1. Spin up a new React project using [`create-react-app`](https://github.com/facebook/create-react-app):
+1. Spin up a new React project using [`vite`](https://vitejs.dev/guide/#scaffolding-your-first-vite-project):
 
    ```bash
-   npx create-react-app spectacle-tutorial
+   npm create vite@latest my-spectacle-deck -- --template react-ts
    ```
 
-2. Install Spectacle by running `yarn add spectacle` or `npm i spectacle`.
+2. Install Spectacle by running `npm add spectacle`.
 
-3. In `App.js`, replace the boilerplate content with this Spectacle starter:
+3. In `App.tsx`, replace the boilerplate content with this Spectacle starter:
 
-   ```jsx
-   import React from 'react';
+   ```tsx
    import { Deck, Slide, Heading } from 'spectacle';
 
    function App() {
@@ -37,9 +36,46 @@ In this guide, we'll show you a couple of different ways to get started with Spe
    export default App;
    ```
 
-4. And you're good to go! Using `create-react-app`'s built-in `start` script, you can start a hot-reloading server to begin building your Spectacle presentation by running `yarn run start` or `npm run start`.
+## Option Two: Using NextJS App Router to bootstrap a React-based Spectacle app
 
-## Option Two: Using Markdown and the Spectacle CLI
+1. Spin up a new React project using [`vite`](https://vitejs.dev/guide/#scaffolding-your-first-vite-project):
+
+   ```bash
+   npx create-next-app@latest
+   ```
+
+2. Install Spectacle by running `npm add spectacle`.
+
+3. Create a `deck.tsx` file inside the `app` directory and add the following Spectacle starter:
+
+   ```tsx
+   "use client";
+   
+   import { Deck, Slide, Heading } from 'spectacle';
+
+   export const SpectacleDeck = () => {
+     return (
+       <Deck>
+         <Slide>
+           <Heading>Welcome to Spectacle</Heading>
+         </Slide>
+       </Deck>
+     );
+   };
+   ```
+
+4. In `App.tsx`, import the `<SpectacleDeck />` component:
+
+   ```tsx
+   import { SpectacleDeck } from "./deck";
+
+   export default function Home() {
+     return <SpectacleDeck />;
+   }
+
+   ```
+
+## Option Three: Using Markdown and the Spectacle CLI
 
 1. Create a new markdown file. You can use `.md` or `.mdx` (MDX lets you mix JSX components inside markdown).
 
@@ -71,7 +107,7 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 
 3. And you're good to go! The web server you started supports live refreshing and will update your deck as you make changes to the markdown file.
 
-## Option Three: Using One Page
+## Option Four: Using One Page
 
 One Page is a single self-contained `HTML` file that lets you build a deck using no build steps, using [htm](https://github.com/developit/htm) over JSX to reduce the dependencies and load time.
 

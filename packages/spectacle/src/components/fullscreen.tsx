@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { position } from 'styled-system';
 
@@ -19,6 +19,14 @@ const Container = styled('div')`
 const FullScreen = forwardRef<HTMLDivElement, FSProps>(
   ({ size, color, ...props }, ref) => {
     const toggleFullScreen = useToggleFullScreen();
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+      setIsClient(true);
+    }, []);
+
+    if (!isClient) return null;
+
     return (
       <Container
         ref={ref}

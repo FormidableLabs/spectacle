@@ -4,6 +4,7 @@ export const SYSTEM_FONT =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Helvetica, sans-serif';
 
 export const KEYBOARD_SHORTCUTS = {
+  DEFAULT_MODE: 'mod+shift+d',
   PRESENTER_MODE: 'mod+shift+p',
   OVERVIEW_MODE: 'mod+shift+o',
   PRINT_MODE: 'mod+shift+r',
@@ -17,6 +18,7 @@ export const KEYBOARD_SHORTCUTS = {
 export type KeyboardShortcutTypes = keyof typeof KEYBOARD_SHORTCUTS;
 
 export const KEYBOARD_SHORTCUTS_IDS = {
+  DEFAULT_MODE: 'DEFAULT_MODE',
   PRESENTER_MODE: 'PRESENTER_MODE',
   OVERVIEW_MODE: 'OVERVIEW_MODE',
   PRINT_MODE: 'PRINT_MODE',

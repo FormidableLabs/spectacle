@@ -53,12 +53,13 @@
     "version": "pnpm changeset version && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
     "start:js": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/js start\"",
-    "start:md": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/md start\"",
-    "start:mdx": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/mdx start\"",
-    "start:ts": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:types:watch \"pnpm run --filter ./examples/typescript start\"",
-    "start:one-page": "concurrently --raw pnpm:build:spectacle:dev:watch pnpm:build:spectacle:types:watch",
-    "start:examples": "concurrently --raw pnpm:build:spectacle:esm:watch pnpm:build:spectacle:dev:watch pnpm:build:spectacle:types:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
+    "start:md": "concurrently --raw pnpm:build:spectacle:watch \"pnpm run --filter ./examples/md start\"",
+    "start:mdx": "concurrently --raw pnpm:build:spectacle:watch \"pnpm run --filter ./examples/mdx start\"",
+    "start:ts": "concurrently --raw pnpm:build:spectacle:watch \"pnpm run --filter ./examples/typescript start\"",
+    "start:one-page": "concurrently --raw pnpm:build:spectacle:watch pnpm:build:spectacle:types:watch",
+    "start:examples": "concurrently --raw pnpm:build:spectacle:watch pnpm:build:spectacle:dev:watch pnpm:build:spectacle:types:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
     "start:create-spectacle": "pnpm run --filter ./packages/create-spectacle build --watch",
+    "start:docs": "pnpm run --filter spectacle-docs start",
     "clean:build": "rimraf \"{packages,examples}/*/{es,lib,dist}\" packages/create-spectacle/bin",
     "clean:cache": "wireit",
     "clean:cache:lint": "rimraf .eslintcache \"{packages,examples}/*/.eslintcache\"",
@@ -68,10 +69,7 @@
     "check:ci": "wireit",
     "build": "wireit",
     "build:one-page:watch": "pnpm run --filter ./examples/one-page build --watch",
-    "build:spectacle:dev:watch": "pnpm run --filter ./packages/spectacle build:dist:dev --watch",
-    "build:spectacle:esm:watch": "pnpm run --filter ./packages/spectacle build:lib:esm --watch",
-    "build:spectacle:types:watch": "pnpm run --filter ./packages/spectacle types:create --watch",
-    "types:check": "wireit",
+    "build:spectacle:watch": "pnpm run --filter ./packages/spectacle build:lib:watch --watch",
     "lint": "wireit",
     "lint:fix": "wireit",
     "lint:root": "wireit",
@@ -99,7 +97,6 @@
       "dependencies": [
         "prettier",
         "lint",
-        "types:check",
         "test"
       ]
     },
@@ -117,14 +114,6 @@
         "./examples/mdx:build",
         "./examples/one-page:build",
         "./examples/typescript:build"
-      ]
-    },
-    "types:check": {
-      "dependencies": [
-        "./packages/create-spectacle:types:check",
-        "./packages/spectacle:types:check",
-        "./examples/typescript:types:check",
-        "./website:types:check"
       ]
     },
     "lint": {

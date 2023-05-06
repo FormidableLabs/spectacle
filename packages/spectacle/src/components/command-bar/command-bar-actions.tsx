@@ -28,7 +28,6 @@ const spectacleModeDisplay = {
 
 const getName = (currentMode: string, mode: SpectacleMode) => {
   const defaultMode = SPECTACLE_MODES.DEFAULT_MODE;
-
   return currentMode === mode
     ? `← Back to ${spectacleModeDisplay[defaultMode]}`
     : spectacleModeDisplay[mode];
