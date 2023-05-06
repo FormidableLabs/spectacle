@@ -16,7 +16,7 @@ import { compose, layout, position } from 'styled-system';
  * The types for these theme files don't exist, so we need to ts-ignore it.
  */
 // @ts-ignore
-import defaultTheme from 'react-syntax-highlighter/dist/esm/styles/prism/vs-dark.js';
+import defaultTheme from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark.js';
 
 type Ranges = Array<number | number[]>;
 
@@ -78,7 +78,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
       showLineNumbers = true,
       children: rawCodeString,
       stepIndex,
-      theme: syntaxTheme = defaultTheme,
+      theme: syntaxTheme = defaultTheme.default,
       ...props
     },
     ref
