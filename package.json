@@ -76,6 +76,7 @@
     "lint:root:fix": "wireit",
     "lint:pkgs": "wireit",
     "lint:pkgs:fix": "wireit",
+    "types:check": "wireit",
     "prettier": "wireit",
     "prettier:fix": "wireit",
     "prettier:root": "wireit",
@@ -97,6 +98,7 @@
       "dependencies": [
         "prettier",
         "lint",
+        "types:check",
         "test"
       ]
     },
@@ -114,6 +116,13 @@
         "./examples/mdx:build",
         "./examples/one-page:build",
         "./examples/typescript:build"
+      ]
+    },
+    "types:check": {
+      "dependencies": [
+        "./packages/create-spectacle:types:check",
+        "./packages/spectacle:types:check",
+        "./website:types:check"
       ]
     },
     "lint": {
