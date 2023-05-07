@@ -1,5 +1,4 @@
-import { useState, useContext, useRef, useEffect } from 'react';
-import { ulid } from 'ulid';
+import { useState, useContext, useRef, useEffect, useId } from 'react';
 import { SlideContext } from '../components/slide/slide';
 import sortByKeyComparator from '../utils/sort-by';
 import clamp from '../utils/clamp';
@@ -20,7 +19,8 @@ export function useSteps(
     stepIndex
   }: { id?: string | number; priority?: number; stepIndex?: number } = {}
 ) {
-  const [stepId] = useState(userProvidedId || ulid);
+  const id = useId();
+  const [stepId] = useState(userProvidedId || id);
 
   const slideContext = useContext(SlideContext);
   if (slideContext === null) {

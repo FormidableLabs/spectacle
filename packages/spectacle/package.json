@@ -19,7 +19,7 @@
   "dependencies": {
     "broadcast-channel": "^4.17.0",
     "history": "^5.3.0",
-    "kbar": "0.1.0-beta.36",
+    "kbar": "0.1.0-beta.40",
     "mdast-builder": "^1.1.1",
     "mdast-zone": "^4.0.0",
     "merge-anything": "^3.0.3",
@@ -36,14 +36,13 @@
     "remark-rehype": "^7.0.0",
     "styled-components": "^5.3.6",
     "styled-system": "5.1.5",
-    "ulid": "^2.3.0",
     "unified": "^9.0.0",
     "unist-util-visit": "^2.0.3",
     "use-resize-observer": "^9.0.2"
   },
   "peerDependencies": {
-    "react": ">=17.0.2",
-    "react-dom": ">=17.0.2"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@types/mousetrap": "^1.6.8",
@@ -65,10 +64,13 @@
     "build:lib": "wireit",
     "build:lib:watch": "wireit",
     "build:dist": "wireit",
+    "build:dist:dev": "wireit",
+    "build:dist:min": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "prettier": "wireit",
     "prettier:fix": "wireit",
+    "types:check": "wireit",
     "test": "wireit"
   },
   "publishConfig": {
@@ -79,7 +81,7 @@
       "dependencies": [ "build:lib", "build:dist" ]
     },
     "build:lib": {
-      "command": "pnpm tsup",
+      "command": "nps tsup",
       "files": [
         "./tsup.config.ts",
         "src/**",
@@ -96,7 +98,7 @@
       ]
     },
     "build:lib:watch": {
-      "command": "pnpm tsup --watch",
+      "command": "nps tsup:watch",
       "files": [
         "src/**",
         "!src/**/*.test.*",
@@ -112,6 +114,29 @@
       ]
     },
     "build:dist": {
+      "dependencies": [
+        "build:dist:dev",
+        "build:dist:min"
+      ]
+    },
+    "build:dist:dev": {
+      "command": "nps \"webpack --config webpack.config.dev.js\"",
+      "files": [
+        "src/**",
+        "!src/**/*.test.*",
+        "../../.babelrc.js",
+        "../../.babelrc.build.js",
+        "webpack.config.js"
+      ],
+      "output": [
+        "dist/spectacle.js*",
+        "!dist/spectacle.min.js*"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "build:dist:min": {
       "command": "nps webpack",
       "files": [
         "src/**",
@@ -174,6 +199,19 @@
         "*.js",
         "src/**"
       ],
+      "output": [],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    },
+    "types:check": {
+      "command": "nps types:check",
+      "files": [
+        "src/**/*.{ts,tsx}",
+        "../../tsconfig.json",
+        "tsconfig.json"
+      ],
+      "dependencies": [],
       "output": [],
       "packageLocks": [
         "pnpm-lock.yaml"

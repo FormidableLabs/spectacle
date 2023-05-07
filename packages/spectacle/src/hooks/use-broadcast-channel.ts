@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
-import { ulid } from 'ulid';
+import { useCallback, useEffect, useId, useRef } from 'react';
 import { BroadcastChannel as BroadcastChannelPolyfill } from 'broadcast-channel';
 import { DeckView } from './use-deck-state';
 
@@ -22,7 +21,7 @@ export default function useBroadcastChannel(
   onMessage: MessageCallback = noop,
   deps = []
 ) {
-  const broadcasterId = useRef(() => ulid());
+  const broadcasterId = useId();
   const channel = useRef<BroadcastChannel>();
 
   useEffect(() => {
@@ -41,14 +40,12 @@ export default function useBroadcastChannel(
       const message = {
         type,
         payload,
-        meta: {
-          sender: broadcasterId.current
-        }
+        meta: { sender: broadcasterId }
       };
       const rawMessage = JSON.stringify(message);
       channel.current?.postMessage(rawMessage);
     },
-    []
+    [broadcasterId]
   );
 
   // Avoid constantly modifying the 'message' listener in the effect below
@@ -71,5 +68,5 @@ export default function useBroadcastChannel(
     };
   }, [postMessage]);
 
-  return [postMessage, broadcasterId.current] as const;
+  return [postMessage, broadcasterId] as const;
 }
