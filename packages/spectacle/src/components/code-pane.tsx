@@ -12,7 +12,11 @@ import { useSteps } from '../hooks/use-steps';
 import indentNormalizer from '../utils/indent-normalizer';
 import styled, { ThemeContext } from 'styled-components';
 import { compose, layout, position } from 'styled-system';
-import dark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark';
+/**
+ * The types for these theme files don't exist, so we need to ts-ignore it.
+ */
+// @ts-ignore
+import defaultTheme from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark.js';
 
 type Ranges = Array<number | number[]>;
 
@@ -74,7 +78,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
       showLineNumbers = true,
       children: rawCodeString,
       stepIndex,
-      theme: syntaxTheme = dark,
+      theme: syntaxTheme = defaultTheme.default,
       ...props
     },
     ref

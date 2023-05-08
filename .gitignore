@@ -44,3 +44,4 @@ bin
 # Pack-ing artifacts
 packages/**/package
 **/*.tgz
+/examples/nextjs-app-router/

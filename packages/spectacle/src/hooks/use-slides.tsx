@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { ulid } from 'ulid';
+import { useState, useEffect, useId } from 'react';
 import { SlideId } from '../components/deck/deck';
 
 export const PLACEHOLDER_CLASS_NAME = 'spectacle-v7-slide';
@@ -49,7 +48,8 @@ export function useSlide(
   doesSlideHaveTemplate: boolean,
   userProvidedId?: SlideId
 ) {
-  const [slideId] = useState<SlideId>(userProvidedId || ulid);
+  const id = useId();
+  const [slideId] = useState<SlideId>(userProvidedId || id);
   return {
     slideId,
     placeholder: (

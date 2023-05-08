@@ -7,8 +7,6 @@ import {
   CodeSpan,
   OrderedList,
   ListItem,
-  FullScreen,
-  AnimatedProgress,
   Appear,
   Slide,
   Deck,
@@ -20,6 +18,7 @@ import {
   MarkdownSlide,
   MarkdownSlideSet,
   Notes,
+  DefaultTemplate,
   SlideLayout
 } from 'spectacle';
 import ReactDOM from 'react-dom';
@@ -35,24 +34,6 @@ const theme = {
   }
 };
 // SPECTACLE_CLI_THEME_END
-
-// SPECTACLE_CLI_TEMPLATE_START
-const template = () => (
-  <FlexBox
-    justifyContent="space-between"
-    position="absolute"
-    bottom={0}
-    width={1}
-  >
-    <Box padding="0 1em">
-      <FullScreen />
-    </Box>
-    <Box padding="1em">
-      <AnimatedProgress />
-    </Box>
-  </FlexBox>
-);
-// SPECTACLE_CLI_TEMPLATE_END
 
 const SlideFragments = () => (
   <>
@@ -70,6 +51,8 @@ const SlideFragments = () => (
     </Slide>
   </>
 );
+
+const template = <DefaultTemplate />;
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>

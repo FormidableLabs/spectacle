@@ -55,13 +55,15 @@ export default function useLocationSync({
   mergeLocation = defaultMergeLocation,
   historyFactory = createBrowserHistory
 }: LocationStateOptions) {
-  const [history] = useState(() => historyFactory());
+  const [history] = useState(() => {
+    return typeof document !== 'undefined' ? historyFactory() : null;
+  });
   const [initialized, setInitialized] = useState(false);
 
   // "down-sync" from location to state
   useEffect(() => {
     if (!initialized && disableInteractivity) return;
-    return history.listen(({ location }) => {
+    return history?.listen(({ location }) => {
       setState(mapLocationToState(location));
     });
   }, [
@@ -74,7 +76,7 @@ export default function useLocationSync({
 
   const syncLocation = useCallback(
     (defaultState: DeckView): DeckView => {
-      if (disableInteractivity) {
+      if (disableInteractivity || !history) {
         return defaultState;
       }
       // perform initial two-way sync between location and state (state wins)
@@ -103,7 +105,7 @@ export default function useLocationSync({
 
   const setLocation = useCallback(
     (state: SlideState) => {
-      if (!initialized) return;
+      if (!initialized || !history) return;
       // perform one-way sync to history
       const { location } = history;
       const nextLocation = mergeLocation(

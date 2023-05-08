@@ -14,7 +14,7 @@
     <script src="https://unpkg.com/react-is@18.1.0/umd/react-is.production.min.js"></script>
     <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
     <script src="https://unpkg.com/spectacle@^9/dist/spectacle.min.js"></script>
-    <!-- <script src="../../packages/spectacle/dist/spectacle.js"></script> -->
+<!--    <script src="../../packages/spectacle/dist/spectacle.min.js"></script>-->
 
     <script type="module">
       const {
@@ -25,8 +25,6 @@
         CodeSpan,
         OrderedList,
         ListItem,
-        FullScreen,
-        AnimatedProgress,
         Appear,
         Slide,
         Deck,
@@ -38,6 +36,7 @@
         MarkdownSlide,
         MarkdownSlideSet,
         Notes,
+        DefaultTemplate,
         SlideLayout
       } = Spectacle;
 
@@ -53,20 +52,6 @@
         }
       };
       // SPECTACLE_CLI_THEME_END
-
-      // SPECTACLE_CLI_TEMPLATE_START
-      const template = () => html`
-        <${FlexBox} justifyContent="space-between" position="absolute" bottom=${0} width=${1}>
-          <${Box} padding="0 1em">
-            <${FullScreen} />
-          </${Box}>
-          <${Box} padding="1em">
-            <${AnimatedProgress} />
-          </${Box}>
-        </${FlexBox}>
-      `;
-      // SPECTACLE_CLI_TEMPLATE_END
-
       const SlideFragments = () => html`
         <${Slide}>
           <${Text}>This is a slide fragment.</${Text}>
@@ -82,8 +67,10 @@
         </${Slide}>
       `;
 
-      const Presentation = () => html`
-        <${Deck} theme=${theme} template=${template}>
+      const template = html`
+        <${DefaultTemplate} />`;
+
+        const Presentation = () => html`<${Deck} theme=${theme} template=${template}>
           <${Slide}>
             <${FlexBox} height="100%">
               <${SpectacleLogo} size=${500} />

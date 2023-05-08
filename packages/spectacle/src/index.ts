@@ -30,6 +30,7 @@ export { default as AnimatedProgress } from './components/animated-progress';
 export type { AnimatedProgressProps } from './components/animated-progress';
 export { default as FullScreen } from './components/fullscreen';
 export { default as SlideLayout } from './components/slide-layout';
+export { DefaultTemplate } from './components/default-template';
 export {
   Markdown,
   MarkdownSlideSet,

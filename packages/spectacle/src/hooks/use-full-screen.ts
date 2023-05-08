@@ -2,6 +2,9 @@ import { useCallback } from 'react';
 
 export const useToggleFullScreen = () =>
   useCallback(() => {
+    if (typeof document === 'undefined') {
+      return;
+    }
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen
     if ('requestFullscreen' in document.documentElement) {
       // Chrome/FF

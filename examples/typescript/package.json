@@ -3,12 +3,12 @@
   "private": true,
   "dependencies": {
     "spectacle": "*",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.12",
-    "@types/react-dom": "^18.0.5"
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4"
   },
   "scripts": {
     "start": "webpack-dev-server --port=3100 --hot --config ./webpack.config.js",
@@ -29,7 +29,7 @@
         "dist/*"
       ],
       "dependencies": [
-        "../../packages/spectacle:build:lib:esm"
+        "../../packages/spectacle:build:lib"
       ],
       "packageLocks": [
         "pnpm-lock.yaml"

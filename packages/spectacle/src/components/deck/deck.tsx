@@ -10,10 +10,10 @@ import {
   FC,
   RefAttributes,
   ReactNode,
-  CSSProperties
+  CSSProperties,
+  useId
 } from 'react';
 import styled, { CSSObject, ThemeProvider } from 'styled-components';
-import { ulid } from 'ulid';
 import { useCollectSlides } from '../../hooks/use-slides';
 import useAspectRatioFitting from '../../hooks/use-aspect-ratio-fitting';
 import useDeckState, {
@@ -164,7 +164,8 @@ export const DeckInternal = forwardRef<DeckRef, DeckInternalProps>(
     },
     ref
   ) => {
-    const [deckId] = useState(userProvidedId || ulid);
+    const id = useId();
+    const [deckId] = useState(userProvidedId || id);
     const {
       width: nativeSlideWidth = defaultTheme.size.width,
       height: nativeSlideHeight = defaultTheme.size.height
