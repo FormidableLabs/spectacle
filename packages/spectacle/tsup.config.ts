@@ -26,6 +26,7 @@ export default defineConfig({
   ],
   esbuildOptions: (options, context) => {
     if (context.format === 'iife') {
+      options.minify = true;
       options.platform = 'browser';
       options.define!['process.env.NODE_ENV'] = '"production"';
     }
