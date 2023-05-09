@@ -24,6 +24,7 @@ export default defineConfig({
       'react-dom': 'window.ReactDOM'
     })
   ],
+
   esbuildOptions: (options, context) => {
     if (context.format === 'iife') {
       options.minify = true;
