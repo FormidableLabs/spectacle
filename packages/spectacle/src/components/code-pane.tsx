@@ -13,10 +13,15 @@ import indentNormalizer from '../utils/indent-normalizer';
 import styled, { ThemeContext } from 'styled-components';
 import { compose, layout, position } from 'styled-system';
 /**
- * The types for these theme files don't exist, so we need to ts-ignore it.
+ * We export all the themes from the index file and the VSCode Dark Theme.
+ * The default VSCode dark theme is not part of the index file, so we need
+ * to import it separately and re-export with the rest of the themes.
  */
 // @ts-ignore
-import defaultTheme from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark.js';
+import vsDark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark.js';
+// @ts-ignore
+import * as allThemes from 'react-syntax-highlighter/dist/cjs/styles/prism/index.js';
+export const codePaneThemes = { vsDark: vsDark.default, ...allThemes };
 
 type Ranges = Array<number | number[]>;
 
@@ -78,7 +83,7 @@ const CodePane = forwardRef<HTMLDivElement, CodePaneProps>(
       showLineNumbers = true,
       children: rawCodeString,
       stepIndex,
-      theme: syntaxTheme = defaultTheme.default,
+      theme: syntaxTheme = codePaneThemes.vsDark,
       ...props
     },
     ref
