@@ -1,5 +1,17 @@
 # Changelog
 
+## 10.1.0
+
+### Minor Changes
+
+- Use tsup (instead of webpack) for browser/umd build ([#1268](https://github.com/FormidableLabs/spectacle/pull/1268))
+
+- Export all code pane themes as part of the Spectacle package. ([#1266](https://github.com/FormidableLabs/spectacle/pull/1266))
+
+### Patch Changes
+
+- Bumped dependency of one-page.html to v10 ([#1265](https://github.com/FormidableLabs/spectacle/pull/1265))
+
 ## 10.0.0
 
 ### Major Changes
