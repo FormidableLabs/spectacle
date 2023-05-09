@@ -1,5 +1,13 @@
 # spectacle-docs
 
+## 0.2.0
+
+### Minor Changes
+
+- Added support for App Dir and SSR. Updated doc examples. ([#1263](https://github.com/FormidableLabs/spectacle/pull/1263))
+  Added default template component containing the full screen and animated progress indicator.
+  Set peer dependency on React to v18
+
 ## 0.1.1
 
 ### Patch Changes

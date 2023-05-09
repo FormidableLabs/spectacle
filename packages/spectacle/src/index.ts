@@ -1,7 +1,7 @@
 export { default as Deck } from './components/deck';
 export { default as Slide, SlideContext } from './components/slide/slide';
 export { Appear, Stepper } from './components/appear';
-export { default as CodePane } from './components/code-pane';
+export { default as CodePane, codePaneThemes } from './components/code-pane';
 export {
   OrderedList,
   Quote,
