@@ -230,7 +230,7 @@ Appear is a thin wrapper around `useSteps`. It occupies a single step within the
 
 CodePane is a component for showing a syntax-highlighted block of source code. It will scroll for overflow amounts of code, trim whitespace and normalize indents. It will also wrap long lines of code and preserve the indent. CodePane uses the [React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter) Component.
 
-The `theme` prop accepts a configurable object or pre-defined theme object from the available [Prism Themes](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js).
+The `theme` prop accepts a configurable object or pre-defined theme object from the available [Prism Themes](https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/src/styles/prism/index.js). These themes are conveniently exported from Spectacle as `codePaneThemes`.
 
 Additionally, the `highlightRanges` prop accepts an array that can be used to highlight certain ranges of code:
 
