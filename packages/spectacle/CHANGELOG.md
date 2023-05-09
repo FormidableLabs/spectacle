@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.1.1
+
+### Patch Changes
+
+- Re-run 10.1.0 release to fix wireit cache failure. ([#1270](https://github.com/FormidableLabs/spectacle/pull/1270))
+
 ## 10.1.0
 
 ### Minor Changes
