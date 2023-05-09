@@ -36,9 +36,9 @@ In this guide, we'll show you a couple of different ways to get started with Spe
    export default App;
    ```
 
-## Option Two: Using NextJS App Router to bootstrap a React-based Spectacle app
+## Option Two: Using Next.js App Router to bootstrap a React-based Spectacle app
 
-1. Spin up a new React project using [`vite`](https://vitejs.dev/guide/#scaffolding-your-first-vite-project):
+1. Spin up a new React project using [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app):
 
    ```bash
    npx create-next-app@latest
@@ -49,7 +49,7 @@ In this guide, we'll show you a couple of different ways to get started with Spe
 3. Create a `deck.tsx` file inside the `app` directory and add the following Spectacle starter:
 
    ```tsx
-   "use client";
+   'use client';
    
    import { Deck, Slide, Heading, DefaultTemplate } from 'spectacle';
 
@@ -64,15 +64,14 @@ In this guide, we'll show you a couple of different ways to get started with Spe
    };
    ```
 
-4. In `App.tsx`, import the `<SpectacleDeck />` component:
+4. In `app/page.tsx`, import the `<SpectacleDeck />` component:
 
    ```tsx
-   import { SpectacleDeck } from "./deck";
+   import { SpectacleDeck } from './deck';
 
    export default function Home() {
      return <SpectacleDeck />;
    }
-
    ```
 
 ## Option Three: Using Markdown and the Spectacle CLI
