@@ -19,7 +19,8 @@ import {
   MarkdownSlideSet,
   Notes,
   DefaultTemplate,
-  SlideLayout
+  SlideLayout,
+  codePaneThemes
 } from 'spectacle';
 import { createRoot } from 'react-dom/client';
 
@@ -167,7 +168,7 @@ const Presentation = () => (
     </Slide>
     <SlideFragments />
     <Slide>
-      <CodePane language="jsx">{`
+      <CodePane language="jsx" theme={codePaneThemes.a11yDark}>{`
         import { createClient, Provider } from 'urql';
 
         const client = createClient({ url: 'https://0ufyz.sse.codesandbox.io' });
