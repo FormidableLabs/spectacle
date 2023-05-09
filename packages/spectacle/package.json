@@ -4,10 +4,7 @@
   "description": "ReactJS Powered Presentation Framework",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
-  "files": [
-    "dist/",
-    "lib/"
-  ],
+  "files": ["lib/"],
   "module": "lib/index.mjs",
   "author": "Formidable Labs <hello@formidable.com>",
   "license": "MIT",
@@ -55,7 +52,6 @@
     "@types/unist": "^2.0.6",
     "csstype": "^3.1.1",
     "esbuild-plugin-external-global": "^1.0.1",
-    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsup": "^6.7.0"
@@ -64,9 +60,6 @@
     "build": "wireit",
     "build:lib": "wireit",
     "build:lib:watch": "wireit",
-    "build:dist": "wireit",
-    "build:dist:dev": "wireit",
-    "build:dist:min": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
     "prettier": "wireit",
@@ -79,10 +72,7 @@
   },
   "wireit": {
     "build": {
-      "dependencies": [
-        "build:lib",
-        "build:dist"
-      ]
+      "dependencies": ["build:lib"]
     },
     "build:lib": {
       "command": "nps tsup",
@@ -112,45 +102,6 @@
       ],
       "output": [
         "lib/**/*.js"
-      ],
-      "packageLocks": [
-        "pnpm-lock.yaml"
-      ]
-    },
-    "build:dist": {
-      "dependencies": [
-        "build:dist:dev",
-        "build:dist:min"
-      ]
-    },
-    "build:dist:dev": {
-      "command": "nps \"webpack --config webpack.config.dev.js\"",
-      "files": [
-        "src/**",
-        "!src/**/*.test.*",
-        "../../.babelrc.js",
-        "../../.babelrc.build.js",
-        "webpack.config.js"
-      ],
-      "output": [
-        "dist/spectacle.js*",
-        "!dist/spectacle.min.js*"
-      ],
-      "packageLocks": [
-        "pnpm-lock.yaml"
-      ]
-    },
-    "build:dist:min": {
-      "command": "nps webpack",
-      "files": [
-        "src/**",
-        "!src/**/*.test.*",
-        "../../.babelrc.js",
-        "../../.babelrc.build.js",
-        "webpack.config.js"
-      ],
-      "output": [
-        "dist/spectacle.min.js*"
       ],
       "packageLocks": [
         "pnpm-lock.yaml"
