@@ -6,7 +6,7 @@ async function createConfig() {
   /** @type {import("@docusaurus/types").Config} */
   const config = {
     ...(await baseConfig()),
-    baseUrl: '/'
+    ...(process.env.VERCEL_ENV === 'preview' && { baseUrl: '/' })
   };
   return config;
 }
