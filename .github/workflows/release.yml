@@ -27,9 +27,6 @@ jobs:
         with:
           node-version: 18.x
 
-      # Wireit cache
-      - uses: google/wireit@setup-github-actions-caching/v1
-
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7
