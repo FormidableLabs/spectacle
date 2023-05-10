@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.1.3
+
+### Patch Changes
+
+- Remove GA Wireit caching from release builds. ([#1273](https://github.com/FormidableLabs/spectacle/pull/1273))
+
 ## 10.1.1
 
 ### Patch Changes
