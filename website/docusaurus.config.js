@@ -11,7 +11,8 @@ async function createConfig() {
     tagline:
       'A React.js based library for creating sleek presentations using JSX syntax that gives you the ability to live demo your code.',
     url: 'https://formidable.com',
-    baseUrl: '/open-source/spectacle',
+    baseUrl:
+      process.env.VERCEL_ENV === 'preview' ? '/' : '/open-source/spectacle',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',

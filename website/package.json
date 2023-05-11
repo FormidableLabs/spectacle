@@ -34,7 +34,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build --out-dir build/open-source/spectacle",
-    "build:vercel": "docusaurus build --out-dir build/open-source/spectacle --config docusaurus-vercel.config.js",
+    "build:vercel": "docusaurus build",
     "clear": "docusaurus clear",
     "serve": "formideploy serve",
     "deploy:stage": "formideploy deploy --staging",
