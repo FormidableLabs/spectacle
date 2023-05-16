@@ -34,7 +34,7 @@ const DEV = IS_DEV ? '&dev' : '';
 // Use local built spectacle? Toggle to `true` for dev-only.
 // Note: Due to CORS, you'll need to run `pnpm run --filter ./examples/one-page start` and
 // open http://localhost:5000/examples/one-page to work.
-const USE_LOCAL = true; // TODO REMOVE
+const USE_LOCAL = false;
 
 // ================================================================================================
 // Import Map
