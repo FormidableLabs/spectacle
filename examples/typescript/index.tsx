@@ -1,4 +1,5 @@
 import React from 'react';
+import { createRoot } from 'react-dom/client';
 import {
   FlexBox,
   Heading,
@@ -22,7 +23,6 @@ import {
   SlideLayout,
   codePaneThemes
 } from 'spectacle';
-import { createRoot } from 'react-dom/client';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';

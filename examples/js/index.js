@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {
   FlexBox,
   Heading,
@@ -21,7 +22,6 @@ import {
   DefaultTemplate,
   SlideLayout
 } from 'spectacle';
-import ReactDOM from 'react-dom';
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';

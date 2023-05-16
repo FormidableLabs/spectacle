@@ -9,12 +9,64 @@ const path = require('path');
 const { transformFileAsync } = require('@babel/core');
 const pretty = require('pretty');
 
+// Paths
 const EXAMPLES = path.resolve(__dirname, '../..');
+const SPECTACLE_PATH = path.resolve(__dirname, "../../../packages/spectacle");
 const SRC_FILE = path.join(EXAMPLES, 'js/index.js');
 const DEST_FILE = path.join(EXAMPLES, 'one-page/index.html');
 
+// Dependencies.
+const { dependencies, peerDependencies } = require(`${SPECTACLE_PATH}/package.json`);
+const reactPkgPath = require.resolve("react/package.json", { paths: [SPECTACLE_PATH] });
+const { version: reactVersion } = require(reactPkgPath);
+const DEPS = `deps=react@${reactVersion}`;
+
+// Toggle dev resources. (Use if debugging load / dependency errors).
+const IS_DEV = false;
+const DEV = IS_DEV ? "&dev" : "";
+
+// ================================================================================================
+// Import Map
+// ================================================================================================
+const importUrl = (k, v, extra = "") => {
+  // Pin react.
+  if (k === "react") {
+    v = reactVersion;
+  }
+
+  // TODO: Something with v119? Make a variable?
+  return `https://esm.sh/v119/${k}@${v}?${DEPS}${DEV}${extra}`;
+};
+
+// Start with extra imports for one-page alone.
+const importMap = {
+  'htm': importUrl('htm', '^3'),
+  'spectacle': importUrl('spectacle', '^10')
+};
+
+const map = Object
+  .entries(Object.assign({}, dependencies, peerDependencies))
+  .forEach(([k, v]) => {
+    // General
+    importMap[k] = importUrl(k, v)
+
+    // Special case internal deps
+    if (k === "react") {
+      importMap[`${k}/jsx-runtime`] = importUrl(k, v, "/jsx-runtime");
+    }
+    if (k === "react-syntax-highlighter") {
+      importMap[`${k}/dist/cjs/styles/prism/vs-dark.js`] = importUrl(k, v, "/dist/esm/styles/prism/vs-dark.js");
+      importMap[`${k}/dist/cjs/styles/prism/index.js`] = importUrl(k, v, "/dist/esm/styles/prism/index.js");
+    }
+  });
+
+// TODO: SORT KEYS?
+
+// ================================================================================================
+// Rewriting
+// ================================================================================================
 const htmImport = `
-import htm from 'https://unpkg.com/htm@^3?module';
+import htm from 'htm';
 const html = htm.bind(React.createElement);
 `
   .replace(/  /gm, '')
@@ -27,7 +79,7 @@ const spectacleImportReplacer = (match, imports) => {
     .map((i) => `  ${i.trim()}`)
     .join(`,\n`);
 
-  return `const {\n${imports}\n} = Spectacle;\n\n${htmImport}`;
+  return `import {\n${imports}\n} from 'spectacle';\n\n${htmImport}`;
 };
 
 const getSrcContent = async (src) => {
@@ -40,7 +92,6 @@ const getSrcContent = async (src) => {
   // Mutate exports and comments.
   code = code
     // Mutate exports to our global imports.
-    .replace(/import React(|DOM) from 'react(|-dom)';[\n]*/gm, '')
     .replace(/import {[ ]*(.*)} from 'spectacle';/, spectacleImportReplacer)
     // Hackily fix / undo babel's poor control comment placment.
     .replace(/\/\/ SPECTACLE_CLI/gm, '\n// SPECTACLE_CLI')
@@ -84,6 +135,9 @@ const getSrcContent = async (src) => {
   return code;
 };
 
+// ================================================================================================
+// Output
+// ================================================================================================
 const writeDestContent = async (destFile, code) => {
   // Format for indentation in index.html.
   const indent = '      ';
@@ -95,6 +149,11 @@ const writeDestContent = async (destFile, code) => {
 
   // Mutate in our updated code.
   destContent = destContent
+    // TODO: HERE INDENT NEEDS TO GO IN.
+    .replace(
+      /(<script type="importmap">\n)[\s\S]*?(\n[ ]*<\/script>)/m,
+      (match, open, close) => `${open}${JSON.stringify({ imports: importMap }, null, 2)}${close}`
+    )
     .replace(
       /(<script type="module">\n)[\s\S]*?(\n[ ]*<\/script>\n[ ]*<\/body>\n[ ]*<\/html>)/m,
       (match, open, close) => `${open}${code}${close}`
