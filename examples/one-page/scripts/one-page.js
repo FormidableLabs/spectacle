@@ -11,20 +11,25 @@ const pretty = require('pretty');
 
 // Paths
 const EXAMPLES = path.resolve(__dirname, '../..');
-const SPECTACLE_PATH = path.resolve(__dirname, "../../../packages/spectacle");
+const SPECTACLE_PATH = path.resolve(__dirname, '../../../packages/spectacle');
 const SRC_FILE = path.join(EXAMPLES, 'js/index.js');
 const DEST_FILE = path.join(EXAMPLES, 'one-page/index.html');
 
 // Dependencies.
-const ESM_SH_VERSION = "v121"; // v121, stable, etc.
-const { dependencies, peerDependencies } = require(`${SPECTACLE_PATH}/package.json`);
-const reactPkgPath = require.resolve("react/package.json", { paths: [SPECTACLE_PATH] });
+const ESM_SH_VERSION = 'v121'; // v121, stable, etc.
+const {
+  dependencies,
+  peerDependencies
+} = require(`${SPECTACLE_PATH}/package.json`);
+const reactPkgPath = require.resolve('react/package.json', {
+  paths: [SPECTACLE_PATH]
+});
 const { version: reactVersion } = require(reactPkgPath);
 const DEPS = `deps=react@${reactVersion}`;
 
 // Toggle dev resources. (Use if debugging load / dependency errors).
 const IS_DEV = false;
-const DEV = IS_DEV ? "&dev" : "";
+const DEV = IS_DEV ? '&dev' : '';
 
 // Use local built spectacle? Toggle to `true` for dev-only.
 // Note: Due to CORS, you'll need to run `pnpm run --filter ./examples/one-page start` and
@@ -34,9 +39,9 @@ const USE_LOCAL = false;
 // ================================================================================================
 // Import Map
 // ================================================================================================
-const importUrl = (k, v, extra = "") => {
+const importUrl = (k, v, extra = '') => {
   // Pin react.
-  if (k === "react") {
+  if (k === 'react') {
     v = reactVersion;
   }
 
@@ -46,31 +51,38 @@ const importUrl = (k, v, extra = "") => {
 const getImportMap = () => {
   // Start with extra imports for one-page alone.
   const importMap = {
-    'htm': importUrl('htm', '^3'),
-    'spectacle': USE_LOCAL
-      ? "../../packages/spectacle/lib/index.mjs"
+    htm: importUrl('htm', '^3'),
+    spectacle: USE_LOCAL
+      ? '../../packages/spectacle/lib/index.mjs'
       : importUrl('spectacle', '^10')
   };
 
-  Object
-    .entries(Object.assign({}, dependencies, peerDependencies))
-    .forEach(([k, v]) => {
+  Object.entries(Object.assign({}, dependencies, peerDependencies)).forEach(
+    ([k, v]) => {
       // General
-      importMap[k] = importUrl(k, v)
+      importMap[k] = importUrl(k, v);
 
       // Special case internal deps
-      if (k === "react") {
-        importMap[`${k}/jsx-runtime`] = importUrl(k, v, "/jsx-runtime");
+      if (k === 'react') {
+        importMap[`${k}/jsx-runtime`] = importUrl(k, v, '/jsx-runtime');
       }
-      if (k === "react-syntax-highlighter") {
-        importMap[`${k}/dist/cjs/styles/prism/vs-dark.js`] = importUrl(k, v, "/dist/esm/styles/prism/vs-dark.js");
-        importMap[`${k}/dist/cjs/styles/prism/index.js`] = importUrl(k, v, "/dist/esm/styles/prism/index.js");
+      if (k === 'react-syntax-highlighter') {
+        importMap[`${k}/dist/cjs/styles/prism/vs-dark.js`] = importUrl(
+          k,
+          v,
+          '/dist/esm/styles/prism/vs-dark.js'
+        );
+        importMap[`${k}/dist/cjs/styles/prism/index.js`] = importUrl(
+          k,
+          v,
+          '/dist/esm/styles/prism/index.js'
+        );
       }
-    });
+    }
+  );
 
   return importMap;
-}
-
+};
 
 // TODO: SORT KEYS?
 
