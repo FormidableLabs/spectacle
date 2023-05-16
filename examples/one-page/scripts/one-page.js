@@ -153,11 +153,11 @@ const getSrcContent = async (src) => {
 const writeDestContent = async (destFile, code) => {
   // Format for indentation in index.html.
   const indent = '      ';
-  code = `${indent}${code}`;
-  code = code.split('\n').join(`\n${indent}`);
+  code = `${indent}${code.split('\n').join(`\n${indent}`)}`;
 
   // Import map
-  const importMap = getImportMap();
+  let importMap = JSON.stringify({ imports: getImportMap() }, null, 2);
+  importMap = `${indent}${importMap.split('\n').join(`\n${indent}`)}`;
 
   // Get destination content.
   let destContent = (await fs.readFile(destFile)).toString();
@@ -167,7 +167,7 @@ const writeDestContent = async (destFile, code) => {
     // TODO: HERE INDENT NEEDS TO GO IN.
     .replace(
       /(<script type="importmap">\n)[\s\S]*?(\n[ ]*<\/script>)/m,
-      (match, open, close) => `${open}${JSON.stringify({ imports: importMap }, null, 2)}${close}`
+      (match, open, close) => `${open}${importMap}${close}`
     )
     .replace(
       /(<script type="module">\n)[\s\S]*?(\n[ ]*<\/script>\n[ ]*<\/body>\n[ ]*<\/html>)/m,
