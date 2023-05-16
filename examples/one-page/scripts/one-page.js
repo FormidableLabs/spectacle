@@ -57,8 +57,9 @@ const getImportMap = () => {
       : importUrl('spectacle', '^10')
   };
 
-  Object.entries(Object.assign({}, dependencies, peerDependencies)).forEach(
-    ([k, v]) => {
+  Object.entries(Object.assign({}, dependencies, peerDependencies))
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .forEach(([k, v]) => {
       // General
       importMap[k] = importUrl(k, v);
 
@@ -78,13 +79,10 @@ const getImportMap = () => {
           '/dist/esm/styles/prism/index.js'
         );
       }
-    }
-  );
+    });
 
   return importMap;
 };
-
-// TODO: SORT KEYS?
 
 // ================================================================================================
 // Rewriting
@@ -176,7 +174,6 @@ const writeDestContent = async (destFile, code) => {
 
   // Mutate in our updated code.
   destContent = destContent
-    // TODO: HERE INDENT NEEDS TO GO IN.
     .replace(
       /(<script type="importmap">\n)[\s\S]*?(\n[ ]*<\/script>)/m,
       (match, open, close) => `${open}${importMap}${close}`
