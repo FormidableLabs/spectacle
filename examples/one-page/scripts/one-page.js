@@ -16,6 +16,7 @@ const SRC_FILE = path.join(EXAMPLES, 'js/index.js');
 const DEST_FILE = path.join(EXAMPLES, 'one-page/index.html');
 
 // Dependencies.
+const ESM_SH_VERSION = "v121"; // v121, stable, etc.
 const { dependencies, peerDependencies } = require(`${SPECTACLE_PATH}/package.json`);
 const reactPkgPath = require.resolve("react/package.json", { paths: [SPECTACLE_PATH] });
 const { version: reactVersion } = require(reactPkgPath);
@@ -34,31 +35,35 @@ const importUrl = (k, v, extra = "") => {
     v = reactVersion;
   }
 
-  // TODO: Something with v119? Make a variable?
-  return `https://esm.sh/v119/${k}@${v}?${DEPS}${DEV}${extra}`;
+  return `https://esm.sh/${ESM_SH_VERSION}/${k}@${v}?${DEPS}${DEV}${extra}`;
 };
 
-// Start with extra imports for one-page alone.
-const importMap = {
-  'htm': importUrl('htm', '^3'),
-  'spectacle': importUrl('spectacle', '^10')
-};
+const getImportMap = () => {
+  // Start with extra imports for one-page alone.
+  const importMap = {
+    'htm': importUrl('htm', '^3'),
+    'spectacle': importUrl('spectacle', '^10')
+  };
 
-const map = Object
-  .entries(Object.assign({}, dependencies, peerDependencies))
-  .forEach(([k, v]) => {
-    // General
-    importMap[k] = importUrl(k, v)
+  Object
+    .entries(Object.assign({}, dependencies, peerDependencies))
+    .forEach(([k, v]) => {
+      // General
+      importMap[k] = importUrl(k, v)
 
-    // Special case internal deps
-    if (k === "react") {
-      importMap[`${k}/jsx-runtime`] = importUrl(k, v, "/jsx-runtime");
-    }
-    if (k === "react-syntax-highlighter") {
-      importMap[`${k}/dist/cjs/styles/prism/vs-dark.js`] = importUrl(k, v, "/dist/esm/styles/prism/vs-dark.js");
-      importMap[`${k}/dist/cjs/styles/prism/index.js`] = importUrl(k, v, "/dist/esm/styles/prism/index.js");
-    }
-  });
+      // Special case internal deps
+      if (k === "react") {
+        importMap[`${k}/jsx-runtime`] = importUrl(k, v, "/jsx-runtime");
+      }
+      if (k === "react-syntax-highlighter") {
+        importMap[`${k}/dist/cjs/styles/prism/vs-dark.js`] = importUrl(k, v, "/dist/esm/styles/prism/vs-dark.js");
+        importMap[`${k}/dist/cjs/styles/prism/index.js`] = importUrl(k, v, "/dist/esm/styles/prism/index.js");
+      }
+    });
+
+  return importMap;
+}
+
 
 // TODO: SORT KEYS?
 
@@ -143,6 +148,9 @@ const writeDestContent = async (destFile, code) => {
   const indent = '      ';
   code = `${indent}${code}`;
   code = code.split('\n').join(`\n${indent}`);
+
+  // Import map
+  const importMap = getImportMap();
 
   // Get destination content.
   let destContent = (await fs.readFile(destFile)).toString();
