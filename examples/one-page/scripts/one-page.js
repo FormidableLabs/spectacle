@@ -26,6 +26,11 @@ const DEPS = `deps=react@${reactVersion}`;
 const IS_DEV = false;
 const DEV = IS_DEV ? "&dev" : "";
 
+// Use local built spectacle? Toggle to `true` for dev-only.
+// Note: Due to CORS, you'll need to run `pnpm run --filter ./examples/one-page start` and
+// open http://localhost:52295/examples/one-page to work.
+const USE_LOCAL = false;
+
 // ================================================================================================
 // Import Map
 // ================================================================================================
@@ -42,7 +47,9 @@ const getImportMap = () => {
   // Start with extra imports for one-page alone.
   const importMap = {
     'htm': importUrl('htm', '^3'),
-    'spectacle': importUrl('spectacle', '^10')
+    'spectacle': USE_LOCAL
+      ? "../../packages/spectacle/lib/index.mjs"
+      : importUrl('spectacle', '^10')
   };
 
   Object
