@@ -21,7 +21,18 @@ import { compose, layout, position } from 'styled-system';
 import vsDark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark.js';
 // @ts-ignore
 import * as allThemes from 'react-syntax-highlighter/dist/cjs/styles/prism/index.js';
-export const codePaneThemes = { vsDark: vsDark.default, ...allThemes };
+
+// Allow for rewriting of RSH `/cjs/` to `/esm/` by flexibly falling back to object
+// if `.default` isn't available.
+const vsDarkTheme = vsDark.default || vsDark;
+
+export const codePaneThemes = { vsDark: vsDarkTheme, ...allThemes };
+
+console.log("TODO HERE", {
+  vsDark,
+  vsDarkTheme,
+  allThemes
+});
 
 type Ranges = Array<number | number[]>;
 

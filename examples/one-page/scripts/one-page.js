@@ -33,8 +33,8 @@ const DEV = IS_DEV ? '&dev' : '';
 
 // Use local built spectacle? Toggle to `true` for dev-only.
 // Note: Due to CORS, you'll need to run `pnpm run --filter ./examples/one-page start` and
-// open http://localhost:52295/examples/one-page to work.
-const USE_LOCAL = false;
+// open http://localhost:5000/examples/one-page to work.
+const USE_LOCAL = true; // TODO REMOVE
 
 // ================================================================================================
 // Import Map
@@ -45,7 +45,7 @@ const importUrl = (k, v, extra = '') => {
     v = reactVersion;
   }
 
-  return `https://esm.sh/${ESM_SH_VERSION}/${k}@${v}?${DEPS}${DEV}${extra}`;
+  return `https://esm.sh/${ESM_SH_VERSION}/${k}@${v}${extra}?${DEPS}${DEV}`;
 };
 
 const getImportMap = () => {

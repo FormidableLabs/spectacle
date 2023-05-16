@@ -5,7 +5,7 @@
     "pretty": "^2.0.0"
   },
   "scripts": {
-    "start": "pnpm exec serve ../..",
+    "start": "pnpm exec serve --listen 5000 ../..",
     "build": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
