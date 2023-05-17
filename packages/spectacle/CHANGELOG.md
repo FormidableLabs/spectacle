@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.1.4
+
+### Patch Changes
+
+- Allow react-syntax-highlighter prism theme imports to have more tolerant `.default` behavior with CJS vs. ESM. ([#1277](https://github.com/FormidableLabs/spectacle/pull/1277))
+
 ## 10.1.3
 
 ### Patch Changes
