@@ -16,12 +16,19 @@ import { compose, layout, position } from 'styled-system';
  * We export all the themes from the index file and the VSCode Dark Theme.
  * The default VSCode dark theme is not part of the index file, so we need
  * to import it separately and re-export with the rest of the themes.
+ *
+ * **Note**: For ESM + one-page we swap out for `dist/esm/**` files instead.
  */
 // @ts-ignore
 import vsDark from 'react-syntax-highlighter/dist/cjs/styles/prism/vs-dark.js';
 // @ts-ignore
 import * as allThemes from 'react-syntax-highlighter/dist/cjs/styles/prism/index.js';
-export const codePaneThemes = { vsDark: vsDark.default, ...allThemes };
+
+// Allow for rewriting of RSH `/cjs/` to `/esm/` by flexibly falling back to object
+// if `.default` isn't available.
+const vsDarkTheme = vsDark.default || vsDark;
+
+export const codePaneThemes = { vsDark: vsDarkTheme, ...allThemes };
 
 type Ranges = Array<number | number[]>;
 
