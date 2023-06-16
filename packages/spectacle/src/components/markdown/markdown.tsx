@@ -29,6 +29,7 @@ import React, {
   createElement,
   Children
 } from 'react';
+import { separateSectionsFromJson } from '../../utils/separate-sections-from-json';
 
 type MdComponentProps = { [key: string]: any };
 
@@ -252,7 +253,7 @@ export const MarkdownSlideSet = ({
   ...allSlideProps
 }: MarkdownSlideSetProps) => {
   const dedentedMarkdownText = indentNormalizer(rawMarkdownText);
-  const mdSlides = dedentedMarkdownText.split(/\n\s*---\n/);
+  const mdSlides = separateSectionsFromJson(dedentedMarkdownText);
   return (
     <>
       {mdSlides.map((md, ix) => {
@@ -263,7 +264,7 @@ export const MarkdownSlideSet = ({
         }
         return (
           <MarkdownSlide key={ix} {...props}>
-            {md}
+            {md.content}
           </MarkdownSlide>
         );
       })}

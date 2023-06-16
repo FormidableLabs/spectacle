@@ -1,3 +1,5 @@
+--- {"someConfig":"someOption", "aRandomNumber":23}
+
 # Spectacle Presentation (MD) 👋
 
 These slides are bare Markdown with nothing special.
