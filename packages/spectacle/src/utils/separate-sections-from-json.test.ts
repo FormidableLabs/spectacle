@@ -79,19 +79,14 @@ Slide 2 Content
 
     expect(sections.length).toBe(2);
 
-    // expect(sections[0]).toEqual({
-    //   content: '',
-    //   jsonObject: {}
-    // });
-    //
-    // expect(sections[1]).toEqual({
-    //   content: '',
-    //   jsonObject: { foo: 'bar' }
-    // });
-    //
-    // expect(sections[2]).toEqual({
-    //   content: '',
-    //   jsonObject: undefined
-    // });
+    expect(sections[0]).toEqual({
+      content: '# Slide 1\n\n',
+      jsonObject: undefined
+    });
+
+    expect(sections[1]).toEqual({
+      content: '# Slide 2',
+      jsonObject: undefined
+    });
   });
 });
