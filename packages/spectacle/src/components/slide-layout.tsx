@@ -55,7 +55,7 @@ const Ul = ({
   type = 'unordered',
   animate = false,
   listProps
-}: (typeof UnorderedList | typeof OrderedList) & {
+}: {
   items: ReactNode[];
   type?: 'unordered' | 'ordered';
   animate?: boolean;
@@ -105,7 +105,6 @@ const List = ({
         {title}
       </Heading>
     ) : null}
-    {/* @ts-ignore TODO: Resolve this in follow-up */}
     <Ul
       items={items}
       animate={animateListItems}
@@ -448,7 +447,6 @@ const VerticalImage = ({
         height={'100%'}
       >
         <FlexBox justifyContent="start">
-          {/* @ts-ignore TODO: Resolve this in follow-up */}
           <Ul
             items={listItems}
             animate={animateListItems}
