@@ -1,8 +1,9 @@
---- {"someConfig":"someOption", "aRandomNumber":23}
+--- { "layout" : "twoColumns" }
 
 # Spectacle Presentation (MD) 👋
-
 These slides are bare Markdown with nothing special.
+
+::section
 
 - `one`
 - "two"

@@ -1,5 +1,4 @@
 /* eslint-disable react/display-name */
-import Slide from '../slide/slide';
 import { DeckContext } from '../deck/deck';
 import presenterNotesPlugin from '../../utils/remark-rehype-presenter-notes';
 import CodePane, { CodePaneProps } from '../code-pane';
@@ -12,9 +11,7 @@ import remarkRaw from 'rehype-raw';
 import rehype2react from 'rehype-react';
 import { isValidElementType } from 'react-is';
 import { root as mdRoot } from 'mdast-builder';
-import mdxComponentMap, {
-  MarkdownComponentMap
-} from '../../utils/mdx-component-mapper';
+import mdxComponentMap from '../../utils/mdx-component-mapper';
 import indentNormalizer from '../../utils/indent-normalizer';
 import Notes from '../notes';
 import { ListItem } from '../../index';
@@ -30,22 +27,16 @@ import React, {
   Children
 } from 'react';
 import { separateSectionsFromJson } from '../../utils/separate-sections-from-json';
-
-type MdComponentProps = { [key: string]: any };
-
-type CommonMarkdownProps = {
-  animateListItems?: boolean;
-  componentProps?: MdComponentProps;
-  children: string;
-};
-
-type MapAndTemplate = {
-  componentMap?: MarkdownComponentMap;
-  template?: {
-    default: ElementType;
-    getPropsForAST?: Function;
-  };
-};
+import {
+  CommonMarkdownProps,
+  MapAndTemplate,
+  MarkdownSlideSetProps
+} from './markdown-types';
+import { MarkdownSlide } from './markdown-slide-renderer';
+import {
+  directiveParserPlugin,
+  directivesHandlerPlugin
+} from '../../utils/remark-rehype-directive';
 
 type MarkdownProps = CommonMarkdownProps & MapAndTemplate;
 const Container = styled('div')(compose(position, layout));
@@ -79,6 +70,8 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
         .use(presenterNotesPlugin, (...notes) => {
           extractedNotes.children.push(...notes);
         })
+        .use(directiveParserPlugin)
+        .use(directivesHandlerPlugin)
         .runSync(ast);
 
       // Pass the AST into the provided template function, which returns an object
@@ -218,35 +211,6 @@ const AppearingListItem = (
   </Appear>
 );
 
-type MarkdownSlideProps = CommonMarkdownProps & MapAndTemplate;
-
-export const MarkdownSlide = ({
-  children,
-  componentMap,
-  template,
-  animateListItems = false,
-  componentProps = {},
-  ...rest
-}: MarkdownSlideProps) => {
-  return (
-    <Slide {...rest}>
-      <Markdown
-        {...{
-          componentMap,
-          template,
-          animateListItems,
-          componentProps,
-          children
-        }}
-      />
-    </Slide>
-  );
-};
-
-type MarkdownSlideSetProps = CommonMarkdownProps & {
-  slideProps?: Partial<MarkdownSlideProps>[];
-};
-
 export const MarkdownSlideSet = ({
   children: rawMarkdownText,
   slideProps = [],
@@ -262,9 +226,11 @@ export const MarkdownSlideSet = ({
         if (slideProps[ix]) {
           Object.assign(props, slideProps[ix]);
         }
+        const { jsonObject = {}, content } = md;
+        console.log('jsonObject', jsonObject);
         return (
           <MarkdownSlide key={ix} {...props}>
-            {md.content}
+            {content}
           </MarkdownSlide>
         );
       })}
