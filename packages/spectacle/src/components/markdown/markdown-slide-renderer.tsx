@@ -1,18 +1,8 @@
 import Slide from '../slide/slide';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { Markdown } from './markdown';
 import { MarkdownSlideProps } from './markdown-types';
-import { FlexBox } from '../layout-primitives';
-
-const Columns = ({ children }: PropsWithChildren) => (
-  <FlexBox flexDirection="row" alignItems="start" flex={1}>
-    {children}
-  </FlexBox>
-);
-
-const hasLayoutConfig =
-  (layoutKey: string) => (config?: Record<string, string>) =>
-    config && 'layout' in config && config.layout === layoutKey;
+import { Center, Columns, hasLayoutConfig } from './markdown-layout-containers';
 
 export const MarkdownSlide = ({
   children,
@@ -26,6 +16,7 @@ export const MarkdownSlide = ({
   let template = propTemplate;
 
   if (hasLayoutConfig('columns')(slideConfig)) template = { default: Columns };
+  if (hasLayoutConfig('center')(slideConfig)) template = { default: Center };
 
   return (
     <Slide {...rest}>

@@ -4,6 +4,7 @@ import { Literal, Node, Parent } from 'unist';
 import * as mdast from 'mdast-builder';
 import type { Plugin } from 'unified';
 import visit from 'unist-util-visit';
+import cloneDeep from 'lodash.clonedeep';
 
 const directiveNodeTypes = ['sectionDirective'] as const;
 export const directiveMatch = /^::(.*)$/;
@@ -16,6 +17,9 @@ type VisitNode = Node & {
   children?: unknown[];
 };
 type TreeNode = Node & { children: Node[] };
+
+const cloneFn =
+  typeof structuredClone !== 'undefined' ? structuredClone : cloneDeep;
 
 export const directiveParserPlugin = () => {
   const transformLineDirective: Visitor<Parent> = (node, index, parent) => {
@@ -51,10 +55,12 @@ export const directiveParserPlugin = () => {
 export const directivesHandlerPlugin: Plugin = () => {
   return (tree) => {
     const treeChildren: Node[] = [];
+    let slideHasDirectives = false;
     visit(tree, (node) => {
       if (isDirectiveNode(node)) {
+        slideHasDirectives = true;
         const treeNodes = <TreeNode>tree;
-        const clonedNode = <typeof node>structuredClone(node);
+        const clonedNode = <typeof node>cloneFn(node);
 
         switch (<DirectiveNodes>node.type) {
           case 'sectionDirective': {
@@ -80,7 +86,7 @@ export const directivesHandlerPlugin: Plugin = () => {
         }
       }
     });
-    (<TreeNode>tree).children = treeChildren;
+    slideHasDirectives && ((<TreeNode>tree).children = treeChildren);
   };
 };
 
