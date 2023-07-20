@@ -22,8 +22,8 @@ export const directiveParserPlugin = () => {
     if (node.children.length === 0) return;
     if (node.children[0].type !== 'text') return;
 
-    const text = node.children[0] as Literal;
-    const match = directiveMatch.exec(text.value as string);
+    const text = <Literal>node.children[0];
+    const match = directiveMatch.exec(<string>text.value);
     if (!match) return;
 
     const matchedNode = mdast.paragraph(mdast.text(match[1]));
