@@ -39,7 +39,7 @@ import {
 } from '../../utils/remark-rehype-directive';
 
 type MarkdownProps = CommonMarkdownProps & MapAndTemplate;
-const Container = styled('div')(compose(position, layout));
+const Container = styled('div')(compose(position, layout), { height: '100%' });
 
 export const Markdown = forwardRef<
   HTMLDivElement,
