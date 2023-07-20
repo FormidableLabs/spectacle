@@ -1,9 +1,10 @@
 import { ReactElement } from 'react';
-import { Markdown, MarkdownSlide, MarkdownSlideSet } from './markdown';
+import { Markdown, MarkdownSlideSet } from './markdown';
 import Deck from '../deck';
 import { Heading } from '../typography';
 import Slide from '../slide/slide';
 import { render } from '@testing-library/react';
+import { MarkdownSlide } from './markdown-slide-renderer';
 
 const mountInsideDeck = (tree: ReactElement) => {
   return render(<Deck>{tree}</Deck>);
