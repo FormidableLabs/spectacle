@@ -41,7 +41,10 @@ import {
 type MarkdownProps = CommonMarkdownProps & MapAndTemplate;
 const Container = styled('div')(compose(position, layout));
 
-export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
+export const Markdown = forwardRef<
+  HTMLDivElement,
+  MarkdownProps & { slideConfig?: Record<string, string> }
+>(
   (
     {
       componentMap: userProvidedComponentMap = mdxComponentMap,
@@ -51,6 +54,7 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
       children: rawMarkdownText,
       animateListItems = false,
       componentProps,
+      slideConfig,
       ...props
     },
     ref
@@ -130,6 +134,7 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
                   return child;
                 })
               : props.children;
+
           return (
             <Component {...props} {...(componentProps || {})}>
               {children}
@@ -191,11 +196,12 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
     ]);
 
     const { children, ...restProps } = templateProps;
-
     return (
       <Container ref={ref} {...props}>
         <TemplateComponent {...restProps}>
-          {children}
+          {slideConfig?.layout === 'columns'
+            ? children.props.children
+            : children}
           {noteElements}
         </TemplateComponent>
       </Container>
@@ -227,9 +233,8 @@ export const MarkdownSlideSet = ({
           Object.assign(props, slideProps[ix]);
         }
         const { jsonObject = {}, content } = md;
-        console.log('jsonObject', jsonObject);
         return (
-          <MarkdownSlide key={ix} {...props}>
+          <MarkdownSlide key={ix} slideConfig={jsonObject} {...props}>
             {content}
           </MarkdownSlide>
         );
