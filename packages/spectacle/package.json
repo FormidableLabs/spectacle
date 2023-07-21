@@ -19,6 +19,7 @@
     "broadcast-channel": "^4.17.0",
     "history": "^5.3.0",
     "kbar": "0.1.0-beta.40",
+    "lodash.clonedeep": "^4.5.0",
     "mdast-builder": "^1.1.1",
     "mdast-zone": "^4.0.0",
     "merge-anything": "^3.0.3",
@@ -44,6 +45,7 @@
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
+    "@types/lodash.clonedeep": "^4.5.7",
     "@types/mousetrap": "^1.6.8",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",

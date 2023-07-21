@@ -1,5 +1,4 @@
 /* eslint-disable react/display-name */
-import Slide from '../slide/slide';
 import { DeckContext } from '../deck/deck';
 import presenterNotesPlugin from '../../utils/remark-rehype-presenter-notes';
 import CodePane, { CodePaneProps } from '../code-pane';
@@ -12,9 +11,7 @@ import remarkRaw from 'rehype-raw';
 import rehype2react from 'rehype-react';
 import { isValidElementType } from 'react-is';
 import { root as mdRoot } from 'mdast-builder';
-import mdxComponentMap, {
-  MarkdownComponentMap
-} from '../../utils/mdx-component-mapper';
+import mdxComponentMap from '../../utils/mdx-component-mapper';
 import indentNormalizer from '../../utils/indent-normalizer';
 import Notes from '../notes';
 import { ListItem } from '../../index';
@@ -29,27 +26,25 @@ import React, {
   createElement,
   Children
 } from 'react';
-
-type MdComponentProps = { [key: string]: any };
-
-type CommonMarkdownProps = {
-  animateListItems?: boolean;
-  componentProps?: MdComponentProps;
-  children: string;
-};
-
-type MapAndTemplate = {
-  componentMap?: MarkdownComponentMap;
-  template?: {
-    default: ElementType;
-    getPropsForAST?: Function;
-  };
-};
+import { separateSectionsFromJson } from '../../utils/separate-sections-from-json';
+import {
+  CommonMarkdownProps,
+  MapAndTemplate,
+  MarkdownSlideSetProps
+} from './markdown-types';
+import { MarkdownSlide } from './markdown-slide-renderer';
+import {
+  directiveParserPlugin,
+  directivesHandlerPlugin
+} from '../../utils/remark-rehype-directive';
 
 type MarkdownProps = CommonMarkdownProps & MapAndTemplate;
-const Container = styled('div')(compose(position, layout));
+const Container = styled('div')(compose(position, layout), { height: '100%' });
 
-export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
+export const Markdown = forwardRef<
+  HTMLDivElement,
+  MarkdownProps & { slideConfig?: Record<string, string> }
+>(
   (
     {
       componentMap: userProvidedComponentMap = mdxComponentMap,
@@ -59,6 +54,7 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
       children: rawMarkdownText,
       animateListItems = false,
       componentProps,
+      slideConfig,
       ...props
     },
     ref
@@ -78,6 +74,8 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
         .use(presenterNotesPlugin, (...notes) => {
           extractedNotes.children.push(...notes);
         })
+        .use(directiveParserPlugin)
+        .use(directivesHandlerPlugin)
         .runSync(ast);
 
       // Pass the AST into the provided template function, which returns an object
@@ -136,6 +134,7 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
                   return child;
                 })
               : props.children;
+
           return (
             <Component {...props} {...(componentProps || {})}>
               {children}
@@ -197,11 +196,12 @@ export const Markdown = forwardRef<HTMLDivElement, MarkdownProps>(
     ]);
 
     const { children, ...restProps } = templateProps;
-
     return (
       <Container ref={ref} {...props}>
         <TemplateComponent {...restProps}>
-          {children}
+          {slideConfig?.layout === 'columns'
+            ? children.props.children
+            : children}
           {noteElements}
         </TemplateComponent>
       </Container>
@@ -217,42 +217,13 @@ const AppearingListItem = (
   </Appear>
 );
 
-type MarkdownSlideProps = CommonMarkdownProps & MapAndTemplate;
-
-export const MarkdownSlide = ({
-  children,
-  componentMap,
-  template,
-  animateListItems = false,
-  componentProps = {},
-  ...rest
-}: MarkdownSlideProps) => {
-  return (
-    <Slide {...rest}>
-      <Markdown
-        {...{
-          componentMap,
-          template,
-          animateListItems,
-          componentProps,
-          children
-        }}
-      />
-    </Slide>
-  );
-};
-
-type MarkdownSlideSetProps = CommonMarkdownProps & {
-  slideProps?: Partial<MarkdownSlideProps>[];
-};
-
 export const MarkdownSlideSet = ({
   children: rawMarkdownText,
   slideProps = [],
   ...allSlideProps
 }: MarkdownSlideSetProps) => {
   const dedentedMarkdownText = indentNormalizer(rawMarkdownText);
-  const mdSlides = dedentedMarkdownText.split(/\n\s*---\n/);
+  const mdSlides = separateSectionsFromJson(dedentedMarkdownText);
   return (
     <>
       {mdSlides.map((md, ix) => {
@@ -261,9 +232,10 @@ export const MarkdownSlideSet = ({
         if (slideProps[ix]) {
           Object.assign(props, slideProps[ix]);
         }
+        const { jsonObject = {}, content } = md;
         return (
-          <MarkdownSlide key={ix} {...props}>
-            {md}
+          <MarkdownSlide key={ix} slideConfig={jsonObject} {...props}>
+            {content}
           </MarkdownSlide>
         );
       })}

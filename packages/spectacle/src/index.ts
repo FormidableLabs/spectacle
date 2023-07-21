@@ -34,9 +34,9 @@ export { DefaultTemplate } from './components/default-template';
 export {
   Markdown,
   MarkdownSlideSet,
-  MarkdownSlide,
   MarkdownPreHelper
 } from './components/markdown/markdown';
+export { MarkdownSlide } from './components/markdown/markdown-slide-renderer';
 export { default as SpectacleLogo } from './components/logo';
 export { default as mdxComponentMap } from './utils/mdx-component-mapper';
 export type { MarkdownComponentMap } from './utils/mdx-component-mapper';

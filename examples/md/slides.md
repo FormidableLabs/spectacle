@@ -1,21 +1,28 @@
-# Spectacle Presentation (MD) 👋
+---
 
+# Spectacle Presentation (MD) 👋
 These slides are bare Markdown with nothing special.
 
 - `one`
 - "two"
 - 'three'
 
----
+--- { "layout" : "columns" }
+
+::section
 
 # Write your Spectacle Presentations in Markdown
+
+And use layout primitives to define columns!
+
+::section
 
 ## And seamlessly use React Components
 
 **How sweet is that**
 **(super sweet)**
 
----
+--- { "layout" : "center" }
 
 ![datboi](https://media.giphy.com/media/xohHbwcnOhqbS/giphy.gif)
 

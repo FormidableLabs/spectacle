@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "engines": {
-    "node": "<18"
+    "node": "18"
   },
   "devDependencies": {
     "@docusaurus/core": "^2.4.0",
