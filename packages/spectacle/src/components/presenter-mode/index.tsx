@@ -1,4 +1,11 @@
-import { useRef, useCallback, useState, useEffect, ReactNode } from 'react';
+import {
+  useRef,
+  useCallback,
+  useState,
+  useEffect,
+  ReactNode,
+  ReactElement
+} from 'react';
 import styled from 'styled-components';
 import { DeckInternal, DeckRef, TemplateFn } from '../deck/deck';
 import { Text, SpectacleLogo } from '../../index';
@@ -29,7 +36,7 @@ const PreviewSlideWrapper = styled.div<{ visible?: boolean }>(
   })
 );
 
-const PresenterMode = (props: PresenterModeProps): JSX.Element => {
+const PresenterMode = (props: PresenterModeProps): ReactElement => {
   const { children, theme, backgroundImage, template } = props;
   const deck = useRef<DeckRef>(null);
   const previewDeck = useRef<DeckRef>(null);

@@ -30,6 +30,7 @@ const DefaultDeck = (props: DefaultDeckProps): JSX.Element => {
       if (message.type !== 'SYNC') return;
       const nextView = message.payload;
       if (deck.current!.initialized) {
+        console.log(nextView, deck.current?.activeView);
         deck.current!.skipTo(nextView);
       } else {
         deck.current!.initializeTo(nextView);

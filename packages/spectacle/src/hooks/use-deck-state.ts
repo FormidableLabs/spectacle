@@ -1,6 +1,7 @@
 import { useReducer, useMemo } from 'react';
 import { merge } from 'merge-anything';
 import { SlideId } from '../components/deck/deck';
+import clamp from '../utils/clamp';
 
 export const GOTO_FINAL_STEP = null as unknown as number;
 
@@ -16,7 +17,7 @@ export type DeckState = {
   pendingView: DeckView;
 };
 
-const initialDeckState: DeckState = {
+export const initialDeckState: DeckState = {
   initialized: false,
   navigationDirection: 0,
   pendingView: {
@@ -49,8 +50,15 @@ function deckReducer(state: DeckState, { type, payload = {} }: ReducerActions) {
         initialized: true
       };
     case 'SKIP_TO':
+      const navigationDirection = (() => {
+        if ('slideIndex' in payload && payload.slideIndex) {
+          return clamp(payload.slideIndex - state.activeView.slideIndex, -1, 1);
+        }
+        return null;
+      })();
       return {
         ...state,
+        navigationDirection: navigationDirection || state.navigationDirection,
         pendingView: merge(state.pendingView, payload)
       };
     case 'STEP_FORWARD':
@@ -109,8 +117,16 @@ export default function useDeckState(userProvidedInitialState: DeckView) {
     { initialized, navigationDirection, pendingView, activeView },
     dispatch
   ] = useReducer(deckReducer, {
-    ...initialDeckState,
-    ...userProvidedInitialState
+    initialized: initialDeckState.initialized,
+    navigationDirection: initialDeckState.navigationDirection,
+    pendingView: {
+      ...initialDeckState.pendingView,
+      ...userProvidedInitialState
+    },
+    activeView: {
+      ...initialDeckState.activeView,
+      ...userProvidedInitialState
+    }
   });
   const actions = useMemo(
     () => ({
