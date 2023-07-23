@@ -21,8 +21,7 @@ import {
   Notes,
   DefaultTemplate,
   SlideLayout,
-  codePaneThemes,
-  useSteps
+  codePaneThemes
 } from 'spectacle';
 
 const formidableLogo =
@@ -36,16 +35,6 @@ const theme = {
   }
 };
 // SPECTACLE_CLI_THEME_END
-
-const Sequence = () => {
-  const { step, placeholder } = useSteps(2);
-  return (
-    <>
-      {placeholder}
-      <Heading>{String(step)}</Heading>
-    </>
-  );
-};
 
 const SlideFragments = () => (
   <>
@@ -89,7 +78,6 @@ const Presentation = () => (
         <Heading margin="0px 32px" color="primary" fontSize="h3">
           Where you can write your decks in JSX, Markdown, or MDX!
         </Heading>
-        <Sequence />
       </FlexBox>
     </Slide>
     <Slide
