@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.1.5
+
+### Patch Changes
+
+- Fixed deck transitions for presenter mode, added test coverage around deck reducer. ([#1290](https://github.com/FormidableLabs/spectacle/pull/1290))
+
 ## 10.1.4
 
 ### Patch Changes
