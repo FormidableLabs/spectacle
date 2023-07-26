@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: false
+  excludeLinksFromLockfile: false
+
 neverBuiltDependencies:
   - puppeteer
 
@@ -413,9 +417,6 @@ importers:
       docusaurus-plugin-sass:
         specifier: ^0.2.2
         version: 0.2.2(@docusaurus/core@2.4.0)(sass@1.54.4)
-      dotenv:
-        specifier: ^16.3.1
-        version: 16.3.1
       formidable-oss-badges:
         specifier: ^0.5.1
         version: 0.5.2(styled-components@5.3.10)
@@ -632,7 +633,7 @@ packages:
       '@babel/traverse': 7.18.11
       '@babel/types': 7.18.10
       convert-source-map: 1.8.0
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@5.5.0)
       gensync: 1.0.0-beta.2
       json5: 2.2.1
       lodash: 4.17.21
@@ -677,10 +678,10 @@ packages:
       '@babel/helpers': 7.21.5
       '@babel/parser': 7.21.8
       '@babel/template': 7.20.7
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@babel/types': 7.21.5
       convert-source-map: 1.8.0
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@5.5.0)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.0
@@ -895,7 +896,7 @@ packages:
       '@babel/core': 7.21.8
       '@babel/helper-compilation-targets': 7.21.5(@babel/core@7.21.8)
       '@babel/helper-plugin-utils': 7.21.5
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@5.5.0)
       lodash.debounce: 4.0.8
       resolve: 1.22.2
       semver: 6.3.0
@@ -927,7 +928,7 @@ packages:
       '@babel/core': 7.21.8
       '@babel/helper-compilation-targets': 7.19.3(@babel/core@7.21.8)
       '@babel/helper-plugin-utils': 7.21.5
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@5.5.0)
       lodash.debounce: 4.0.8
       resolve: 1.22.2
       semver: 6.3.0
@@ -1006,7 +1007,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.18.6
       '@babel/helper-validator-identifier': 7.19.1
       '@babel/template': 7.20.7
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@babel/types': 7.21.5
     transitivePeerDependencies:
       - supports-color
@@ -1037,7 +1038,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.18.6
       '@babel/helper-validator-identifier': 7.19.1
       '@babel/template': 7.20.7
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@babel/types': 7.21.5
     transitivePeerDependencies:
       - supports-color
@@ -1103,7 +1104,7 @@ packages:
       '@babel/helper-environment-visitor': 7.21.5
       '@babel/helper-member-expression-to-functions': 7.18.9
       '@babel/helper-optimise-call-expression': 7.18.6
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@babel/types': 7.21.5
     transitivePeerDependencies:
       - supports-color
@@ -1116,7 +1117,7 @@ packages:
       '@babel/helper-environment-visitor': 7.21.5
       '@babel/helper-member-expression-to-functions': 7.18.9
       '@babel/helper-optimise-call-expression': 7.18.6
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@babel/types': 7.21.5
     transitivePeerDependencies:
       - supports-color
@@ -1176,7 +1177,7 @@ packages:
     dependencies:
       '@babel/helper-function-name': 7.19.0
       '@babel/template': 7.20.7
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@babel/types': 7.21.5
     transitivePeerDependencies:
       - supports-color
@@ -1187,7 +1188,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.20.7
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@babel/types': 7.21.5
     transitivePeerDependencies:
       - supports-color
@@ -1208,7 +1209,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.20.7
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@babel/types': 7.21.5
     transitivePeerDependencies:
       - supports-color
@@ -3207,7 +3208,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.18.6
       '@babel/parser': 7.21.8
       '@babel/types': 7.21.5
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@5.5.0)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -3224,7 +3225,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.18.6
       '@babel/parser': 7.19.3
       '@babel/types': 7.19.3
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@5.5.0)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -3260,10 +3261,11 @@ packages:
       '@babel/helper-split-export-declaration': 7.18.6
       '@babel/parser': 7.21.8
       '@babel/types': 7.21.5
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@5.5.0)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/traverse@7.21.5(supports-color@5.5.0):
     resolution: {integrity: sha512-AhQoI3YjWi6u/y/ntv7k48mcrCXmus0t79J9qPNlk/lAsFlCiJ047RmbfMOawySTHtywXhbXgpx/8nXMYd+oFw==}
@@ -3281,7 +3283,6 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/types@7.18.10:
     resolution: {integrity: sha512-MJvnbEiiNkpjo+LknnmRrqbY1GPUUggjv+wQVjetM/AONoupqRALB7I6jGqNUAZsKcRIEu2J6FRFvsczljjsaQ==}
@@ -3553,7 +3554,7 @@ packages:
       '@babel/preset-typescript': 7.18.6(@babel/core@7.21.8)
       '@babel/runtime': 7.19.0
       '@babel/runtime-corejs3': 7.18.9
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@docusaurus/cssnano-preset': 2.4.0
       '@docusaurus/logger': 2.4.0
       '@docusaurus/mdx-loader': 2.4.0(@docusaurus/types@2.4.0)(react-dom@17.0.2)(react@17.0.2)
@@ -3660,7 +3661,7 @@ packages:
       react-dom: ^16.8.4 || ^17.0.0
     dependencies:
       '@babel/parser': 7.21.8
-      '@babel/traverse': 7.21.5
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
       '@docusaurus/logger': 2.4.0
       '@docusaurus/utils': 2.4.0(@docusaurus/types@2.4.0)
       '@mdx-js/mdx': 1.6.22
@@ -8020,6 +8021,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
 
   /debug@4.3.4(supports-color@5.5.0):
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -9868,7 +9870,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.76.0(webpack-cli@4.10.0)
+      webpack: 5.76.0
     dev: true
 
   /htmlparser2@6.1.0:
@@ -14462,7 +14464,7 @@ packages:
   /spdy-transport@3.0.0:
     resolution: {integrity: sha512-hsLVFE5SjA6TCisWeJXFKniGGOpBgMLmerfO2aCyCU5s7nJ/rpAepqmFifv/GCbSbueEeAJJnmSQ2rKC/g8Fcw==}
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@5.5.0)
       detect-node: 2.1.0
       hpack.js: 2.1.6
       obuf: 1.1.2
@@ -14476,7 +14478,7 @@ packages:
     resolution: {integrity: sha512-r46gZQZQV+Kl9oItvl1JZZqJKGr+oEkB08A6BzkiR7593/7IbtuncXHd2YoYeTsG4157ZssMu9KYvUHLcjcDoA==}
     engines: {node: '>=6.0.0'}
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.4(supports-color@5.5.0)
       handle-thing: 2.0.1
       http-deceiver: 1.2.7
       select-hose: 2.0.0
@@ -15761,7 +15763,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.76.0(webpack-cli@4.10.0)
+      webpack: 5.76.0
     dev: true
 
   /webpack-dev-server@4.11.1(webpack-cli@4.10.0)(webpack@5.76.0):
@@ -16322,7 +16324,3 @@ packages:
 
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
-
-settings:
-  autoInstallPeers: false
-  excludeLinksFromLockfile: false

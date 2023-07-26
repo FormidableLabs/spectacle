@@ -19,7 +19,6 @@
     "@types/styled-components": "^5.1.25",
     "clsx": "^1.1.1",
     "docusaurus-plugin-sass": "^0.2.2",
-    "dotenv": "^16.3.1",
     "formidable-oss-badges": "^0.5.1",
     "prism-react-renderer": "^2.0.3",
     "react": "^17.0.2",

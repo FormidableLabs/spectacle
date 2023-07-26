@@ -1,7 +1,5 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-require('dotenv').config();
-
 const { romanize } = require('./src/utils/numbers');
 const lightTheme = require('./src/utils/prismLight.js');
 const darkTheme = require('./src/utils/prismDark.js');
