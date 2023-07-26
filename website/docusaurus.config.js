@@ -1,5 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+require('dotenv').config();
+
 const { romanize } = require('./src/utils/numbers');
 const lightTheme = require('./src/utils/prismLight.js');
 const darkTheme = require('./src/utils/prismDark.js');
@@ -21,7 +23,7 @@ async function createConfig() {
 
     presets: [
       [
-        'classic',
+        '@docusaurus/preset-classic',
         /** @type {import("@docusaurus/preset-classic").Options} */
         ({
           docs: {
@@ -45,7 +47,16 @@ async function createConfig() {
           },
           theme: {
             customCss: [require.resolve('./src/css/custom.scss')]
-          }
+          },
+          ...(process.env.VERCEL_ENV === 'production' && {
+            gtag: {
+              trackingID: process.env.GTAG_TRACKING_ID,
+              anonymizeIP: true
+            },
+            googleTagManager: {
+              containerId: process.env.GTM_CONTAINER_ID
+            }
+          })
         })
       ]
     ],
