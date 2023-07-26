@@ -413,6 +413,9 @@ importers:
       docusaurus-plugin-sass:
         specifier: ^0.2.2
         version: 0.2.2(@docusaurus/core@2.4.0)(sass@1.54.4)
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
       formidable-oss-badges:
         specifier: ^0.5.1
         version: 0.5.2(styled-components@5.3.10)
@@ -5468,7 +5471,7 @@ packages:
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
     dependencies:
       '@changesets/get-github-info': 0.5.1
-      dotenv: 16.0.1
+      dotenv: 16.3.1
     transitivePeerDependencies:
       - encoding
     dev: true
@@ -8333,8 +8336,8 @@ packages:
       is-obj: 2.0.0
     dev: true
 
-  /dotenv@16.0.1:
-    resolution: {integrity: sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==}
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
     dev: true
 
