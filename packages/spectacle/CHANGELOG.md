@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.1.6
+
+### Patch Changes
+
+- Push for a new esm build ([#1295](https://github.com/FormidableLabs/spectacle/pull/1295))
+
 ## 10.1.5
 
 ### Patch Changes
