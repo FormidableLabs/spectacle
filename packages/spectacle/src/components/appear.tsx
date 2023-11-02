@@ -2,6 +2,7 @@ import { ReactNode, useContext } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { useSteps } from '../hooks/use-steps';
 import { SlideContext } from './slide/slide';
+import { DeckContext } from './deck/deck';
 
 const SteppedComponent = (props: SteppedComponentProps): JSX.Element => {
   const {
@@ -17,6 +18,8 @@ const SteppedComponent = (props: SteppedComponentProps): JSX.Element => {
     inactiveStyle = { opacity: '0' }
   } = props;
   const slideContext = useContext(SlideContext);
+  const { inPrintMode, inOverviewMode } = useContext(DeckContext);
+
   if (slideContext === null) {
     throw new Error(
       'This component must be used within a SlideContext.Provider. Did you' +
@@ -51,7 +54,7 @@ const SteppedComponent = (props: SteppedComponentProps): JSX.Element => {
       {placeholder}
       <AnimatedEl
         style={
-          alwaysAppearActive
+          alwaysAppearActive || inPrintMode || inOverviewMode
             ? (activeStyle as React.CSSProperties)
             : springStyle
         }

@@ -86,10 +86,10 @@ DeckContext.displayName = 'DeckContext';
 const noop = () => {};
 
 /**
- * The PDF DPI is 96. We want to scale the slide down because it's a 1:1 px to 1/100th of an inch.
- * However there are some unchangeable margins that make 0.96 too big, so we use 0.959 to prevent overflow.
+ * By default, Spectacle will maintain a 100% zoom on print/export mode. This can be customized if the
+ * user wants to select a different paper size.
  */
-const DEFAULT_PRINT_SCALE = 0.959;
+const DEFAULT_PRINT_SCALE = 1.0;
 const DEFAULT_OVERVIEW_SCALE = 0.25;
 
 type PortalProps = {
