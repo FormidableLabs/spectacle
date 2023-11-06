@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.1.7
+
+### Patch Changes
+
+- Fix print mode not showing content for Markdown and Animated item slides. ([#1299](https://github.com/FormidableLabs/spectacle/pull/1299))
+
 ## 10.1.6
 
 ### Patch Changes
