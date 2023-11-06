@@ -10,15 +10,14 @@ const Backdrop = styled.div`
   background-color: white;
 `;
 
-type PrintStyleProps = { pageSize: string; pageOrientation: string };
+type PrintStyleProps = { pageSize: string };
 const PrintStyle = createGlobalStyle<PrintStyleProps>`
   @media print {
     body, html {
       margin: 0;
     }
     @page {
-      size: ${({ pageSize, pageOrientation }) =>
-        `${pageSize} ${pageOrientation}`.trim()};
+      size: ${({ pageSize }) => pageSize};
     }
     ${AnimatedDiv} {
       @page {
@@ -33,19 +32,15 @@ export default function PrintMode({
   theme,
   exportMode,
   pageSize,
-  pageOrientation = '',
   backgroundImage,
   template
 }: PrintModeProps) {
   const width = theme?.size?.width || defaultTheme.size.width;
   const height = theme?.size?.height || defaultTheme.size.height;
-  const computedPageSize = pageSize || `${width / 100}in ${height / 100}in`;
+  const computedPageSize = pageSize || `${width}px ${height}px`;
   return (
     <>
-      <PrintStyle
-        pageSize={computedPageSize}
-        pageOrientation={pageOrientation}
-      />
+      <PrintStyle pageSize={computedPageSize} />
       <DeckInternal
         printMode
         exportMode={exportMode}
