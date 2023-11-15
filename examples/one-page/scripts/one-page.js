@@ -54,7 +54,7 @@ const getImportMap = () => {
     htm: importUrl('htm', '^3'),
     spectacle: USE_LOCAL
       ? '../../packages/spectacle/lib/index.mjs'
-      : importUrl('spectacle', '^10')
+      : 'https://esm.sh/spectacle@10?bundle'
   };
 
   Object.entries(Object.assign({}, dependencies, peerDependencies))
