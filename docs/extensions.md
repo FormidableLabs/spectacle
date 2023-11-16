@@ -1,7 +1,7 @@
 ---
 title: Extensions
-order: 8
-sidebar_position: 8
+order: 9
+sidebar_position: 9
 ---
 
 # Third Party Extensions
