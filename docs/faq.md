@@ -1,7 +1,7 @@
 ---
 title: FAQ
-order: 9
-sidebar_position: 9
+order: 10
+sidebar_position: 10
 ---
 
 # Frequently Asked Questions

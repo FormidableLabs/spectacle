@@ -1,5 +1,5 @@
 ---
-title: Slide Layouts
+title: JSX Slide Layouts
 order: 6
 sidebar_position: 6
 ---
