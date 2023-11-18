@@ -1,7 +1,6 @@
 import path from 'path';
 import { mkdir, writeFile, rm } from 'fs/promises';
 import { htmlTemplate } from './html';
-import { onePageTemplate } from './one-page';
 import { webpackTemplate } from './webpack';
 import { babelTemplate } from './babel';
 import { packageTemplate, vitePackageTemplate } from './package';
