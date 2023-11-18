@@ -1,7 +1,7 @@
 type OnePageTemplateOptions = {
   name: string;
   lang: string;
-  importMap: IterableIterator<[string, string]>;
+  importMap: Map<string, string>;
 };
 
 export const onePageTemplate = ({
@@ -23,9 +23,9 @@ export const onePageTemplate = ({
     <script type="importmap">
       {
         "imports": {
-          ${Array.from(importMap)
+          ${Array.from(importMap.entries())
             .map(([pkg, url]) => `"${pkg}": "${url}"`)
-            .join(',\n')}
+            .join(',\n          ')}
         }
       }
     </script>

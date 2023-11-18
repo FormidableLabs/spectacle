@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Carlos</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "htm": "https://esm.sh/v121/htm@^3?deps=react@18.2.0",
+          "spectacle": "https://esm.sh/spectacle@10?bundle",
+          "broadcast-channel": "https://esm.sh/v121/broadcast-channel@^4.17.0?deps=react@18.2.0",
+          "history": "https://esm.sh/v121/history@^5.3.0?deps=react@18.2.0",
+          "kbar": "https://esm.sh/v121/kbar@0.1.0-beta.40?deps=react@18.2.0",
+          "lodash.clonedeep": "https://esm.sh/v121/lodash.clonedeep@^4.5.0?deps=react@18.2.0",
+          "mdast-builder": "https://esm.sh/v121/mdast-builder@^1.1.1?deps=react@18.2.0",
+          "mdast-zone": "https://esm.sh/v121/mdast-zone@^4.0.0?deps=react@18.2.0",
+          "merge-anything": "https://esm.sh/v121/merge-anything@^3.0.3?deps=react@18.2.0",
+          "mousetrap": "https://esm.sh/v121/mousetrap@^1.6.5?deps=react@18.2.0",
+          "query-string": "https://esm.sh/v121/query-string@^7.1.1?deps=react@18.2.0",
+          "react": "https://esm.sh/v121/react@18.2.0?deps=react@18.2.0",
+          "react/jsx-runtime": "https://esm.sh/v121/react@18.2.0/jsx-runtime?deps=react@18.2.0",
+          "react-dom": "https://esm.sh/v121/react-dom@>=18.0.0?deps=react@18.2.0",
+          "react-fast-compare": "https://esm.sh/v121/react-fast-compare@^3.2.0?deps=react@18.2.0",
+          "react-is": "https://esm.sh/v121/react-is@^18.1.0?deps=react@18.2.0",
+          "react-spring": "https://esm.sh/v121/react-spring@^9.5.5?deps=react@18.2.0",
+          "react-swipeable": "https://esm.sh/v121/react-swipeable@^7.0.0?deps=react@18.2.0",
+          "react-syntax-highlighter": "https://esm.sh/v121/react-syntax-highlighter@^15.5.0?deps=react@18.2.0",
+          "react-syntax-highlighter/dist/cjs/styles/prism/vs-dark.js": "https://esm.sh/v121/react-syntax-highlighter@^15.5.0/dist/esm/styles/prism/vs-dark.js?deps=react@18.2.0",
+          "react-syntax-highlighter/dist/cjs/styles/prism/index.js": "https://esm.sh/v121/react-syntax-highlighter@^15.5.0/dist/esm/styles/prism/index.js?deps=react@18.2.0",
+          "rehype-raw": "https://esm.sh/v121/rehype-raw@^5.1.0?deps=react@18.2.0",
+          "rehype-react": "https://esm.sh/v121/rehype-react@^6.0.0?deps=react@18.2.0",
+          "remark-parse": "https://esm.sh/v121/remark-parse@^8.0.3?deps=react@18.2.0",
+          "remark-rehype": "https://esm.sh/v121/remark-rehype@^7.0.0?deps=react@18.2.0",
+          "styled-components": "https://esm.sh/v121/styled-components@^5.3.6?deps=react@18.2.0",
+          "styled-system": "https://esm.sh/v121/styled-system@5.1.5?deps=react@18.2.0",
+          "unified": "https://esm.sh/v121/unified@^9.0.0?deps=react@18.2.0",
+          "unist-util-visit": "https://esm.sh/v121/unist-util-visit@^2.0.3?deps=react@18.2.0",
+          "use-resize-observer": "https://esm.sh/v121/use-resize-observer@^9.0.2?deps=react@18.2.0"
+        }
+      }
+    </script>
+
+    <script type="module">
+      import htm from 'htm';
+      import React from 'react';
+      import ReactDOM from 'react-dom';
+      import {
+        FlexBox,
+        Heading,
+        SpectacleLogo,
+        Slide,
+        Deck,
+        DefaultTemplate
+      } from 'spectacle';
+
+      const html = htm.bind(React.createElement);
+      const template = () => html`<${DefaultTemplate} />`;
+
+      const Presentation = () => html`
+        <${Deck} template=${template}>
+          <${Slide}>
+            <${FlexBox} height="100%">
+              <${Heading}>Carlos</${Heading}>
+            </${FlexBox}>
+          </${Slide}>
+          <${Slide}>
+            <${FlexBox} height="100%">
+              <${Heading} fontSize="h2">Made with</${Heading}>
+              <${SpectacleLogo} size=300 />
+            </${FlexBox}>
+          </${Slide}>
+        </${Deck}>
+      `;
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(html`<${Presentation}/>`);
+    </script>
+  </body>
+</html>

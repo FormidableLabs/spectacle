@@ -2,7 +2,8 @@ import path from 'path';
 import { onePageTemplate } from '../templates/one-page';
 
 const SPECTACLE_PATH = path.resolve(__dirname, '../../../spectacle');
-const REACT_VERSION = '18.2.0';
+const spectaclePackage = require(`${SPECTACLE_PATH}/package.json`);
+const REACT_VERSION = spectaclePackage.devDependencies.react.replace('^', '');
 const ESM_SH_VERSION = 'v121';
 
 export const createOnePage = async (name: string, lang: string) => {
@@ -26,11 +27,11 @@ export const createOnePage = async (name: string, lang: string) => {
     handlePackageExceptions(pkg, version, importMap);
   }
 
-  return onePageTemplate({ importMap: importMap.entries(), name, lang });
+  return onePageTemplate({ importMap, name, lang });
 };
 
 const importUrl = (pkg: string, version: string, extra = '') => {
-  if (pkg === 'react') version = '18.2.0';
+  if (pkg === 'react') version = REACT_VERSION;
   return `https://esm.sh/${ESM_SH_VERSION}/${pkg}@${version}${extra}?deps=react@${REACT_VERSION}`;
 };
 
