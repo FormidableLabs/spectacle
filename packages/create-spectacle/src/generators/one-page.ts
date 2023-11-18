@@ -1,0 +1,57 @@
+import path from 'path';
+import { onePageTemplate } from '../templates/one-page';
+
+const SPECTACLE_PATH = path.resolve(__dirname, '../../../spectacle');
+const REACT_VERSION = '18.2.0';
+const ESM_SH_VERSION = 'v121';
+
+export const createOnePage = async (name: string, lang: string) => {
+  const importMap = new Map<string, string>();
+  const {
+    dependencies,
+    peerDependencies
+  } = require(`${SPECTACLE_PATH}/package.json`);
+
+  importMap.set('htm', importUrl('htm', '^3'));
+  importMap.set('spectacle', 'https://esm.sh/spectacle@10?bundle');
+
+  const sortedDeps = <[string, string][]>Object.entries({
+    ...dependencies,
+    ...peerDependencies
+  }).sort(([a], [b]) => a.localeCompare(b));
+
+  for (const [pkg, version] of sortedDeps) {
+    if (importMap.has(pkg)) continue;
+    importMap.set(pkg, importUrl(pkg, version));
+    handlePackageExceptions(pkg, version, importMap);
+  }
+
+  return onePageTemplate({ importMap: importMap.entries(), name, lang });
+};
+
+const importUrl = (pkg: string, version: string, extra = '') => {
+  if (pkg === 'react') version = '18.2.0';
+  return `https://esm.sh/${ESM_SH_VERSION}/${pkg}@${version}${extra}?deps=react@${REACT_VERSION}`;
+};
+
+const handlePackageExceptions = (
+  pkg: string,
+  version: string,
+  importMap: Map<string, string>
+) => {
+  if (pkg === 'react')
+    importMap.set(
+      `${pkg}/jsx-runtime`,
+      importUrl(pkg, version, '/jsx-runtime')
+    );
+  else if (pkg === 'react-syntax-highlighter') {
+    importMap.set(
+      `${pkg}/dist/cjs/styles/prism/vs-dark.js`,
+      importUrl(pkg, version, '/dist/esm/styles/prism/vs-dark.js')
+    );
+    importMap.set(
+      `${pkg}/dist/cjs/styles/prism/index.js`,
+      importUrl(pkg, version, '/dist/esm/styles/prism/index.js')
+    );
+  }
+};

@@ -1,9 +1,14 @@
 type OnePageTemplateOptions = {
   name: string;
   lang: string;
+  importMap: IterableIterator<[string, string]>;
 };
 
-export const onePageTemplate = ({ name, lang }: OnePageTemplateOptions) => `
+export const onePageTemplate = ({
+  name,
+  lang,
+  importMap
+}: OnePageTemplateOptions) => `
 <!DOCTYPE html>
 <html lang="${lang}">
   <head>
@@ -15,26 +20,34 @@ export const onePageTemplate = ({ name, lang }: OnePageTemplateOptions) => `
   <body>
     <div id="root"></div>
 
-    <script src="https://unpkg.com/react@18.1.0/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/react-is@18.1.0/umd/react-is.production.min.js"></script>
-    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
-    <script src="https://unpkg.com/spectacle@^9/dist/spectacle.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          ${Array.from(importMap)
+            .map(([pkg, url]) => `"${pkg}": "${url}"`)
+            .join(',\n')}
+        }
+      }
+    </script>
 
     <script type="module">
-      const {
+      import htm from 'htm';
+      import React from 'react';
+      import ReactDOM from 'react-dom';
+      import {
         FlexBox,
         Heading,
         SpectacleLogo,
         Slide,
         Deck,
-      } = Spectacle;
+        DefaultTemplate
+      } from 'spectacle';
 
-      import htm from 'https://unpkg.com/htm@^3?module';
       const html = htm.bind(React.createElement);
+      const template = () => html\`<\${DefaultTemplate} />\`;
 
       const Presentation = () => html\`
-        <\${Deck}>
+        <\${Deck} template=\${template}>
           <\${Slide}>
             <\${FlexBox} height="100%">
               <\${Heading}>${name}</\${Heading}>

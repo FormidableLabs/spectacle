@@ -10,6 +10,7 @@ import { tsconfigTemplate } from './tsconfig';
 import { gitignoreTemplate } from './gitignore';
 import { readmeTemplate } from './readme';
 import { viteConfigTemplate } from './viteConfig';
+import { createOnePage } from '../generators/one-page';
 
 export type FileOptions = {
   snakeCaseName: string;
@@ -121,6 +122,6 @@ export const writeOnePageHTMLFile = async ({
 }: FileOptions) => {
   await writeFile(
     path.resolve(process.cwd(), `${snakeCaseName}.html`),
-    onePageTemplate({ name, lang })
+    await createOnePage(name, lang)
   );
 };
