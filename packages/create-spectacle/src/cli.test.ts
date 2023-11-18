@@ -2,7 +2,6 @@ import path from 'node:path';
 import { exec } from 'node:child_process';
 import fs from 'node:fs/promises';
 import { generateImportMap } from './generators/one-page';
-import exp from 'constants';
 
 const CLI_PATH = path.resolve(__dirname, '../bin/cli.js');
 const TMP_PATH = path.resolve(__dirname, '../tmp');
