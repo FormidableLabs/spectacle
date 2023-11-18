@@ -6,7 +6,7 @@ const spectaclePackage = require(`${SPECTACLE_PATH}/package.json`);
 const REACT_VERSION = spectaclePackage.devDependencies.react.replace('^', '');
 const ESM_SH_VERSION = 'v121';
 
-export const createOnePage = async (name: string, lang: string) => {
+export const generateImportMap = async () => {
   const importMap = new Map<string, string>();
   const {
     dependencies,
@@ -27,6 +27,11 @@ export const createOnePage = async (name: string, lang: string) => {
     handlePackageExceptions(pkg, version, importMap);
   }
 
+  return importMap;
+};
+
+export const createOnePage = async (name: string, lang: string) => {
+  const importMap = await generateImportMap();
   return onePageTemplate({ importMap, name, lang });
 };
 

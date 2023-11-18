@@ -1,6 +1,8 @@
 import path from 'node:path';
 import { exec } from 'node:child_process';
 import fs from 'node:fs/promises';
+import { generateImportMap } from './generators/one-page';
+import exp from 'constants';
 
 const CLI_PATH = path.resolve(__dirname, '../bin/cli.js');
 const TMP_PATH = path.resolve(__dirname, '../tmp');
@@ -214,16 +216,8 @@ describe('create-spectacle', () => {
       .readFile(HTML_PATH, 'utf8')
       .then((buffer) => buffer.toString());
 
-    // Should have deps
-    const deps = [
-      'https://unpkg.com/react@18.1.0/umd/react.production.min.js',
-      'https://unpkg.com/react-dom@18.1.0/umd/react-dom.production.min.js',
-      'https://unpkg.com/react-is@18.1.0/umd/react-is.production.min.js',
-      'https://unpkg.com/prop-types@15.7.2/prop-types.min.js',
-      'https://unpkg.com/spectacle@^9/dist/spectacle.min.js'
-    ];
-    deps.forEach((dep) => {
-      expect(contents).toContain(`<script src="${dep}"></script>`);
+    Array.from((await generateImportMap()).entries()).forEach(([pkg, url]) => {
+      expect(contents).toContain(`"${pkg}": "${url}"`);
     });
   });
 });
