@@ -1,7 +1,6 @@
 import path from 'path';
 import { mkdir, writeFile, rm } from 'fs/promises';
 import { htmlTemplate } from './html';
-import { onePageTemplate } from './one-page';
 import { webpackTemplate } from './webpack';
 import { babelTemplate } from './babel';
 import { packageTemplate, vitePackageTemplate } from './package';
@@ -10,6 +9,7 @@ import { tsconfigTemplate } from './tsconfig';
 import { gitignoreTemplate } from './gitignore';
 import { readmeTemplate } from './readme';
 import { viteConfigTemplate } from './viteConfig';
+import { createOnePage } from '../generators/one-page';
 
 export type FileOptions = {
   snakeCaseName: string;
@@ -121,6 +121,6 @@ export const writeOnePageHTMLFile = async ({
 }: FileOptions) => {
   await writeFile(
     path.resolve(process.cwd(), `${snakeCaseName}.html`),
-    onePageTemplate({ name, lang })
+    createOnePage(name, lang)
   );
 };

@@ -20,6 +20,7 @@
     "cli-spinners": "^2.6.1",
     "log-update": "4.0.0",
     "prompts": "^2.4.2",
+    "ts-node": "^10.9.1",
     "yargs": "^17.5.1"
   },
   "devDependencies": {
@@ -29,6 +30,7 @@
   },
   "resolutions": {},
   "scripts": {
+    "dev": "ts-node src/cli.ts",
     "build": "wireit",
     "types:check": "wireit",
     "lint": "wireit",
