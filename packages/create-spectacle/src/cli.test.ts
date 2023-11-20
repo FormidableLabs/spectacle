@@ -215,7 +215,7 @@ describe('create-spectacle', () => {
       .readFile(HTML_PATH, 'utf8')
       .then((buffer) => buffer.toString());
 
-    Array.from((await generateImportMap()).entries()).forEach(([pkg, url]) => {
+    Array.from(generateImportMap().entries()).forEach(([pkg, url]) => {
       expect(contents).toContain(`"${pkg}": "${url}"`);
     });
   });
