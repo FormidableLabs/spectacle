@@ -121,6 +121,6 @@ export const writeOnePageHTMLFile = async ({
 }: FileOptions) => {
   await writeFile(
     path.resolve(process.cwd(), `${snakeCaseName}.html`),
-    await createOnePage(name, lang)
+    createOnePage(name, lang)
   );
 };
