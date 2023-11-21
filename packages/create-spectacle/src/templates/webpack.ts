@@ -23,6 +23,7 @@ module.exports = {
       { test: /\\.[tj]sx?$/, use: ['babel-loader'] },
       { test: /\\.(png|svg|jpg|gif)$/, use: ['file-loader'] },
       { test: /\\.css$/, use: ['style-loader', 'css-loader'] }
+      { test: /\\.md$/, use: [require.resolve('raw-loader')] }
     ]
   },
   plugins: [

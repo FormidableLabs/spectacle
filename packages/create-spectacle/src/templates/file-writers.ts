@@ -16,14 +16,13 @@ export type FileOptions = {
   name: string;
   lang: string;
   port: number;
-  enableTypeScriptSupport: boolean;
+  useMarkdownSlides?: boolean;
   spectacleVersion: string;
   isVite: boolean;
 };
 
 const prepForProjectWrite = async (fileOptions: FileOptions) => {
-  const { name, lang, snakeCaseName, enableTypeScriptSupport, isVite } =
-    fileOptions;
+  const { name, lang, snakeCaseName, isVite } = fileOptions;
 
   const outPath = path.resolve(process.cwd(), snakeCaseName);
   const pathFor = (file: string) => path.join(outPath, file);
@@ -38,22 +37,20 @@ const prepForProjectWrite = async (fileOptions: FileOptions) => {
     htmlTemplate({
       name,
       lang,
-      entryFile: isVite
-        ? `/index.${enableTypeScriptSupport ? 'tsx' : 'jsx'}`
-        : undefined
+      entryFile: isVite ? '/index.tsx' : undefined
     })
   );
   await writeFile(
-    pathFor(`index.${enableTypeScriptSupport ? 'tsx' : 'jsx'}`),
+    pathFor('index.tsx'),
     indexTemplate({
-      usesTypeScript: enableTypeScriptSupport,
-      name
+      name,
+      usesMarkdown:
     })
   );
   await writeFile(pathFor('.gitignore'), gitignoreTemplate());
   await writeFile(
     pathFor('README.md'),
-    readmeTemplate({ name, enableTypeScriptSupport, isVite })
+    readmeTemplate({ name, isVite })
   );
   enableTypeScriptSupport &&
     (await writeFile(pathFor('tsconfig.json'), tsconfigTemplate()));

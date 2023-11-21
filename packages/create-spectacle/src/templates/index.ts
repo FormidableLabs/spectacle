@@ -1,12 +1,13 @@
 type IndexTemplateOptions = {
   name: string;
-  usesTypeScript: boolean;
+  usesMarkdown: boolean;
 };
 
 export const indexTemplate = (options: IndexTemplateOptions) =>
   `import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Slide, Deck, FlexBox, Heading, SpectacleLogo, Box, FullScreen, AnimatedProgress } from 'spectacle';
+import { Slide, Deck, FlexBox, Heading, SpectacleLogo, Box, FullScreen, AnimatedProgress, MarkdownSlideSet } from 'spectacle';
+${options.usesMarkdown ? `import mdContent from './slides.md';` : ''}
 
 const template = () => (
   <FlexBox
@@ -26,6 +27,10 @@ const template = () => (
 
 const Presentation = () => (
   <Deck template={template}>
+    ${
+      options.usesMarkdown
+        ? `<MarkdownSlideSet>{mdContent}</MarkdownSlideSet>`
+        : `
     <Slide>
       <FlexBox height="100%">
         <Heading>${options.name}</Heading>
@@ -37,10 +42,10 @@ const Presentation = () => (
         <SpectacleLogo size={300} />
       </FlexBox>
     </Slide>
+    `
+    }
   </Deck>
 );
 
-createRoot(document.getElementById('app')${
-    options.usesTypeScript ? '!' : ''
-  }).render(<Presentation />);
+createRoot(document.getElementById('app')!).render(<Presentation />);
 `;
