@@ -175,7 +175,6 @@ const main = async () => {
     name,
     lang,
     port,
-    enableTypeScriptSupport: /^tsx/.test(type),
     isVite: /vite$/.test(type),
     spectacleVersion: devDependencies.spectacle
   };

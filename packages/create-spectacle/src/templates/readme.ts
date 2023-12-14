@@ -1,6 +1,5 @@
 type ReadmeTemplateOptions = {
   name: string;
-  enableTypeScriptSupport: boolean;
   isVite?: boolean;
 };
 
@@ -15,7 +14,7 @@ Made with ❤️ and [Spectacle](https://github.com/FormidableLabs/spectacle/).
 - Run \`yarn install\` (or \`npm install\` or \`pnpm install\`) to install dependencies.
 - Run \`yarn start\` (or \`npm start\` or \`pnpm start\`) to start the presentation.
 - Edit \`index.tsx to add your presentation content.
-  
+
 ## Building you presentation
 
 To build your presentation for a production deploy, run \`yarn build\` (or \`npm build\` or \`pnpm build\`).

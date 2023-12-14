@@ -44,16 +44,12 @@ const prepForProjectWrite = async (fileOptions: FileOptions) => {
     pathFor('index.tsx'),
     indexTemplate({
       name,
-      usesMarkdown:
+      usesMarkdown: false
     })
   );
   await writeFile(pathFor('.gitignore'), gitignoreTemplate());
-  await writeFile(
-    pathFor('README.md'),
-    readmeTemplate({ name, isVite })
-  );
-  enableTypeScriptSupport &&
-    (await writeFile(pathFor('tsconfig.json'), tsconfigTemplate()));
+  await writeFile(pathFor('README.md'), readmeTemplate({ name, isVite }));
+  await writeFile(pathFor('tsconfig.json'), tsconfigTemplate());
 
   return { outPath, pathFor };
 };
@@ -62,22 +58,14 @@ const prepForProjectWrite = async (fileOptions: FileOptions) => {
  * Generate a webpack-based project
  */
 export const writeWebpackProjectFiles = async (options: FileOptions) => {
-  const { port, enableTypeScriptSupport, snakeCaseName, spectacleVersion } =
-    options;
+  const { port, snakeCaseName, spectacleVersion } = options;
   const { pathFor } = await prepForProjectWrite(options);
 
-  await writeFile(
-    pathFor('webpack.config.js'),
-    webpackTemplate({ port, usesTypeScript: enableTypeScriptSupport })
-  );
-  await writeFile(
-    pathFor('.babelrc'),
-    babelTemplate({ enableTypeScriptSupport })
-  );
+  await writeFile(pathFor('webpack.config.js'), webpackTemplate({ port }));
+  await writeFile(pathFor('.babelrc'), babelTemplate());
   await writeFile(
     pathFor('package.json'),
     packageTemplate({
-      usesTypeScript: enableTypeScriptSupport,
       name: snakeCaseName,
       spectacleVersion
     })
@@ -88,24 +76,19 @@ export const writeWebpackProjectFiles = async (options: FileOptions) => {
  * Generate a vite-based project
  */
 export const writeViteProjectFiles = async (options: FileOptions) => {
-  const { enableTypeScriptSupport, snakeCaseName, spectacleVersion, port } =
-    options;
+  const { snakeCaseName, spectacleVersion, port } = options;
   const { pathFor } = await prepForProjectWrite(options);
 
   await writeFile(
     pathFor('package.json'),
     vitePackageTemplate({
-      usesTypeScript: enableTypeScriptSupport,
       name: snakeCaseName,
       spectacleVersion,
       port
     })
   );
 
-  await writeFile(
-    pathFor(`vite.config.${enableTypeScriptSupport ? 'ts' : 'js'}`),
-    viteConfigTemplate()
-  );
+  await writeFile(pathFor(`vite.config.ts`), viteConfigTemplate());
 };
 
 /**

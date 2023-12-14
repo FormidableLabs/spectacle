@@ -1,6 +1,5 @@
 type WebpackTemplateOptions = {
   port: number;
-  usesTypeScript: boolean;
 };
 
 export const webpackTemplate = (options: WebpackTemplateOptions) =>
@@ -10,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   context: __dirname,
-  entry: './index.${options.usesTypeScript ? 'tsx' : 'jsx'}',
+  entry: './index.tsx',
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'app.bundle.js'
@@ -22,7 +21,7 @@ module.exports = {
     rules: [
       { test: /\\.[tj]sx?$/, use: ['babel-loader'] },
       { test: /\\.(png|svg|jpg|gif)$/, use: ['file-loader'] },
-      { test: /\\.css$/, use: ['style-loader', 'css-loader'] }
+      { test: /\\.css$/, use: ['style-loader', 'css-loader'] },
       { test: /\\.md$/, use: [require.resolve('raw-loader')] }
     ]
   },

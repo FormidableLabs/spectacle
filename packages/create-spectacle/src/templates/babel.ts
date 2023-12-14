@@ -1,11 +1,7 @@
-type BabelTemplateOptions = {
-  enableTypeScriptSupport: boolean;
-};
-
-export const babelTemplate = (options: BabelTemplateOptions) =>
+export const babelTemplate = () =>
   `{
   "presets": [
-    ${options.enableTypeScriptSupport ? '"@babel/preset-typescript",' : ''}
+    "@babel/preset-typescript",
     ["@babel/preset-env", { "modules": false }],
     ["@babel/preset-react", { "runtime": "automatic" }]
   ],

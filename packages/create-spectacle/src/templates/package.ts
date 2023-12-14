@@ -1,7 +1,6 @@
 type PackageTemplateOptions = {
   name: string;
   spectacleVersion: string;
-  usesTypeScript: boolean;
   port?: number;
 };
 
@@ -16,8 +15,8 @@ export const packageTemplate = (options: PackageTemplateOptions) =>
         build: 'webpack --config ./webpack.config.js --mode production'
       },
       dependencies: {
-        react: '^18.1.0',
-        'react-dom': '^18.1.0',
+        react: '^18.2.0',
+        'react-dom': '^18.2.0',
         spectacle:
           options.spectacleVersion === 'workspace:*'
             ? '*'
@@ -38,14 +37,10 @@ export const packageTemplate = (options: PackageTemplateOptions) =>
         webpack: '^5.68.0',
         'webpack-cli': '^4.5.0',
         'webpack-dev-server': '^4.7.4',
-        ...(options.usesTypeScript
-          ? {
-              typescript: '^4.5.2',
-              '@babel/preset-typescript': '^7.16.0',
-              '@types/react': '^18.0.12',
-              '@types/react-dom': '^18.0.5'
-            }
-          : {})
+        typescript: '^5.3.3',
+        '@babel/preset-typescript': '^7.16.0',
+        '@types/react': '^18.0.12',
+        '@types/react-dom': '^18.0.5'
       }
     },
     null,
@@ -73,11 +68,7 @@ export const vitePackageTemplate = (options: PackageTemplateOptions) =>
         '@types/react': '^18.0.17',
         '@types/react-dom': '^18.0.6',
         '@vitejs/plugin-react': '^2.0.1',
-        ...(options.usesTypeScript
-          ? {
-              typescript: '^4.6.4'
-            }
-          : {}),
+        typescript: '^5.3.3',
         vite: '^3.0.7'
       }
     },
