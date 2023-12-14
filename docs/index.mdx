@@ -1,0 +1,97 @@
+---
+title: Introduction
+order: 1
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+**A React-based library for creating sleek presentations using React or Markdown that gives you the ability to live demo your code.**
+
+# How to use get started with Spectacle
+
+
+<Tabs>
+  <TabItem value="spectacle-cli" label="Create Spectacle CLI" default>
+
+
+  </TabItem>
+  <TabItem value="autoPlay" label="Manual Installation" default>
+
+  1. Install Spectacle by running `npm add spectacle`.
+
+  2. In your main entry file, return the following Spectacle starter:
+
+    ```tsx
+    import { Deck, Slide, Heading, DefaultTemplate } from 'spectacle';
+
+    function App() {
+      return (
+        <Deck template={<DefaultTemplate />}>
+          <Slide>
+            <Heading>Welcome to Spectacle</Heading>
+          </Slide>
+        </Deck>
+      );
+    }
+
+    export default App;
+    ```
+
+    :::info
+
+    If you are using NextJS with App Router, Spectacle needs to be rendered inside a client component. You can read more about this [here](https://nextjs.org/docs/app/building-your-application/rendering/client-components).
+
+    :::
+
+
+  </TabItem>
+</Tabs>
+
+### Styling your Spectacle Deck
+
+The easiest way to apply consistent styles to your Spectacle deck is using [themes](./themes.md).
+
+1. Create a theme JS file containing a single object export. Supplied properties will be merged with the default base theme (found in Spectacle at `src/theme/default-theme.js`).
+
+   Here's a sample object:
+
+   ```js
+   export default {
+     colors: {
+       primary: 'red',
+       secondary: 'green'
+     },
+     fonts: {
+       header: '"Helvetica Neue", Helvetica, Arial, sans-serif'
+     },
+     fontSizes: {
+       h1: '72px',
+       h2: '64px'
+     }
+   };
+   ```
+
+2. Consume the theme using the approach of your choice:
+
+   a. To use a custom theme with a JSX- (Option One) or HTM- (Option Three) Deck, supply the object to the `theme` prop in the `Deck` tag. `<Deck theme={customTheme}>`.
+
+   b. To use a custom theme with the Markdown CLI (Option Two), supply the file using the `-t` argument.
+
+   ```bash
+   $ npm install --global spectacle-cli
+   $ spectacle -s my-slides.mdx -t custom-theme.js
+   ```
+
+### Sharing your Spectacle Deck
+
+For more information on [presenting](./index.md#presenting), [exporting](./advanced-concepts.md#exporting), [building](./advanced-concepts.md#build--deployment), or [deploying](./advanced-concepts.md#build--deployment) your Spectacle deck, please check out [the documentation on advanced concepts](./advanced-concepts.md).
+
+## Documentation, Contributing, and Source
+
+For more information about Spectacle and its components, check out [the docs](https://formidable.com/open-source/spectacle).
+
+Interested in helping out or seeing what's happening under the hood? Spectacle is maintained [on Github](https://github.com/FormidableLabs/spectacle) and you can [start contributing here](https://github.com/FormidableLabs/spectacle/blob/main/CONTRIBUTING.md).
+
+For any questions, feel free to [open a new question on Github](https://github.com/FormidableLabs/spectacle/issues/new?template=question.md).

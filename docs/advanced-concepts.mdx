@@ -1,28 +1,31 @@
 ---
-title: Advanced Concepts
+title: Presenting Controls
 order: 2
 sidebar_position: 2
 ---
 
-# Advanced Concepts
+import commandBarImage from "../website/static/img/command-bar.png"
 
-## Build & Deployment
+# Presenting Controls
 
-There are a variety of ways to host your Spectacle presentation.
+Spectacle comes with a few keyboard shortcuts to help you navigate your presentation. These shortcuts are available in both the browser and the Presenter Mode. You can also use the command bar to see all available shortcuts.
 
-1. If you are integrating this lib yourself, take your build and follow the linked instructions from any of (but not limited to) the following providers: [Netlify](https://docs.netlify.com/get-started/#deploy-a-project-to-netlify), [Vercel](https://vercel.com/docs/concepts/deployments/overview), or [Surge](https://surge.sh/help/deploying-continuously-using-git-hooks).
+## Command Bar
 
-2. If using `spectacle-cli` (either `spectacle --action build` or `spectacle-boilerplate` with `yarn clean && yarn build`) your output is `dist/` and upload that directory to any of the above static hosting providers.
+Pressing <kbd>&#8984;</kbd>/<kbd>Ctrl</kbd> + <kbd>k</kbd> will open the command bar. This will show you all available keyboard shortcuts and common navigation options.
+
+<img src={commandBarImage} alt="Command Bar interface" style={{ width: "30rem" }} />
+
 
 ## Keyboard Controls
 
 | Key Combination | Function               |
 | --------------- | ---------------------- |
-| Right Arrow     | Next Slide             |
-| Left Arrow      | Previous Slide         |
-| Alt/Option + O  | Toggle Overview Mode   |
-| Alt/Option + P  | Toggle Presenter Mode  |
-| Alt/Option + F  | Toggle Fullscreen Mode |
+| <kbd aria-label="Arrow Right Key">&#8594;</kbd>     | Next Slide             |
+| <kbd>&#8592;</kbd>      | Previous Slide         |
+| <kbd>&#8997;</kbd>/<kbd>Alt</kbd> + <kbd>&#8679;</kbd> + <kbd>O</kbd>  | Toggle Overview Mode   |
+| <kbd>&#8997;</kbd>/<kbd>Alt</kbd> + <kbd>&#8679;</kbd> + <kbd>P</kbd>  | Toggle Presenter Mode  |
+| <kbd>&#8997;</kbd>/<kbd>Alt</kbd> + <kbd>&#8679;</kbd> + <kbd>F</kbd>  | Toggle Fullscreen Mode |
 
 ## Query Parameters
 
