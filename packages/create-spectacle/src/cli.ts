@@ -181,7 +181,10 @@ const main = async () => {
 
   switch (type) {
     case 'md':
-      await writeWebpackProjectFiles(fileOptions);
+      await writeWebpackProjectFiles({
+        ...fileOptions,
+        useMarkdownSlides: true
+      });
       break;
     case 'tsx':
       await writeWebpackProjectFiles(fileOptions);

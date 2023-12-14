@@ -3,34 +3,25 @@ type IndexTemplateOptions = {
   usesMarkdown: boolean;
 };
 
+const tsxImports = `
+import { Deck, DefaultTemplate, Slide, FlexBox, Heading, SpectacleLogo } from 'spectacle';
+`;
+
+const mdImports = `
+import { Deck, DefaultTemplate, MarkdownSlideSet } from 'spectacle';
+import mdContent from './slides.md';
+`;
+
 export const indexTemplate = (options: IndexTemplateOptions) =>
   `import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Slide, Deck, FlexBox, Heading, SpectacleLogo, Box, FullScreen, AnimatedProgress, MarkdownSlideSet } from 'spectacle';
-${options.usesMarkdown ? `import mdContent from './slides.md';` : ''}
-
-const template = () => (
-  <FlexBox
-    justifyContent="space-between"
-    position="absolute"
-    bottom={0}
-    width={1}
-  >
-    <Box padding="0 1em">
-      <FullScreen />
-    </Box>
-    <Box padding="1em">
-      <AnimatedProgress />
-    </Box>
-  </FlexBox>
-);
+${(options.usesMarkdown ? mdImports : tsxImports).trim()}
 
 const Presentation = () => (
-  <Deck template={template}>
-    ${
-      options.usesMarkdown
-        ? `<MarkdownSlideSet>{mdContent}</MarkdownSlideSet>`
-        : `
+  <Deck template={() => <DefaultTemplate />}>
+    ${(options.usesMarkdown
+      ? `<MarkdownSlideSet>{mdContent}</MarkdownSlideSet>`
+      : `
     <Slide>
       <FlexBox height="100%">
         <Heading>${options.name}</Heading>
@@ -43,7 +34,7 @@ const Presentation = () => (
       </FlexBox>
     </Slide>
     `
-    }
+    ).trim()}
   </Deck>
 );
 
