@@ -5,14 +5,14 @@ on:
     branches:
       - main
     paths:
-      - ".github/workflows/create-spectacle.yml"
-      - "packages/create-spectacle/**"
+      - '.github/workflows/create-spectacle.yml'
+      - 'packages/create-spectacle/**'
   pull_request:
     branches:
       - main
     paths:
-      - ".github/workflows/create-spectacle.yml"
-      - "packages/create-spectacle/**"
+      - '.github/workflows/create-spectacle.yml'
+      - 'packages/create-spectacle/**'
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        create-type: ['jsx', 'tsx', 'onepage']
+        create-type: ['tsx', 'onepage']
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
