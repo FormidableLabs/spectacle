@@ -31,8 +31,8 @@ enum ArgName {
 const DeckTypeOptions = [
   { title: 'One Page', value: 'onepage' },
   { title: 'Markdown', value: 'md' },
-  { title: 'TypeScript using Vite', value: 'tsx-vite' },
-  { title: 'TypeScript using webpack', value: 'tsx' }
+  { title: 'React using Vite', value: 'tsx-vite' },
+  { title: 'React using webpack', value: 'tsx' }
 ];
 
 let progressInterval: NodeJS.Timer;
