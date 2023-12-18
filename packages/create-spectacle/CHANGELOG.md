@@ -1,5 +1,11 @@
 # create-spectacle
 
+## 0.4.0
+
+### Minor Changes
+
+- Update the create-spectacle CLI to use new ESM/import map-based one page. ([#1304](https://github.com/FormidableLabs/spectacle/pull/1304))
+
 ## 0.3.1
 
 ### Patch Changes
