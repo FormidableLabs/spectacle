@@ -4,7 +4,8 @@
   "description": "Project generator for Spectacle",
   "main": "bin/cli.js",
   "files": [
-    "bin/"
+    "bin/",
+    "spectacle-package.json"
   ],
   "bin": "bin/cli.js",
   "author": "Formidable Labs <hello@formidable.com>",
@@ -26,11 +27,12 @@
   "devDependencies": {
     "@types/node": "^18.0.3",
     "@types/prompts": "^2.0.14",
+    "shx": "^0.3.4",
     "spectacle": "*"
   },
   "resolutions": {},
   "scripts": {
-    "dev": "ts-node src/cli.ts",
+    "dev": "pnpm copy-spectacle-package && ts-node src/cli.ts",
     "build": "wireit",
     "types:check": "wireit",
     "lint": "wireit",
@@ -38,6 +40,9 @@
     "prettier": "wireit",
     "prettier:fix": "wireit",
     "test": "wireit",
+    "copy-spectacle-package": "shx cp ../spectacle/package.json ./spectacle-package.json",
+    "prepack": "pnpm copy-spectacle-package",
+    "postpack": "shx rm ./spectacle-package.json",
     "examples:clean": "rimraf .examples",
     "examples:test": "nps jest",
     "examples:jsx:clean": "rimraf .examples/jsx",
