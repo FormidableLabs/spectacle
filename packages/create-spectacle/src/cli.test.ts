@@ -70,20 +70,20 @@ describe('create-spectacle', () => {
     expect(await peakFile('webpack.config.js')).toContain('6969');
   });
 
-  it('generates jsx (webpack) deck with expected files', async () => {
-    await runCliWithArgs({ type: 'jsx' });
+  it('generates a markdown deck with expected files', async () => {
+    await runCliWithArgs({ type: 'md', lang: 'foobar', port: 6969 });
 
-    const files = await listFiles();
-    expect(files).toEqual([
+    expect(await listFiles()).toEqual([
       '.babelrc',
       '.gitignore',
       'README.md',
       'index.html',
-      'index.jsx',
+      'index.tsx',
       'package.json',
+      'slides.md',
+      'tsconfig.json',
       'webpack.config.js'
     ]);
-    expect(files).not.toContain('tsconfig.json');
 
     // package.json fields
     const pak = JSON.parse(await peakFile('package.json'));
@@ -97,14 +97,32 @@ describe('create-spectacle', () => {
     expect(Object.keys(pak.dependencies)).toEqual(
       expect.arrayContaining(['spectacle', 'react', 'react-dom'])
     );
-    expect(Object.keys(pak.devDependencies)).not.toContain([
-      'typescript',
-      '@types/react'
-    ]);
+    expect(Object.keys(pak.devDependencies)).toEqual(
+      expect.arrayContaining([
+        '@babel/core',
+        '@babel/preset-env' /* ignoring a lot... */,
+        'typescript',
+        '@types/react'
+      ])
+    );
+
+    // README instructions for changing dist directory
+    expect(await peakFile('README.md')).toContain(
+      `\`output.path\` in \`webpack.config.js\``
+    );
 
     // Custom lang/port
-    expect(await peakFile('index.html')).toContain(`lang="en"`);
-    expect(await peakFile('webpack.config.js')).toContain('3000');
+    expect(await peakFile('index.html')).toContain(`lang="foobar"`);
+    expect(await peakFile('slides.md')).toContain(
+      `
+--- { "layout" : "center" }
+# my-deck
+
+---
+- Made with Spectacle
+    `.trim()
+    );
+    expect(await peakFile('webpack.config.js')).toContain('6969');
   });
 
   it('generates tsx (vite) deck with expected files', async () => {
@@ -158,55 +176,6 @@ describe('create-spectacle', () => {
     expect(pak.scripts.start).toContain('--port 6969');
   });
 
-  it('generates jsx (vite) deck with expected files', async () => {
-    await runCliWithArgs({ type: 'jsx-vite' });
-
-    expect(await listFiles()).toEqual([
-      '.gitignore',
-      'README.md',
-      'index.html',
-      'index.jsx',
-      'package.json',
-      'vite.config.js'
-    ]);
-
-    // package.json fields
-    const pak = JSON.parse(await peakFile('package.json'));
-    expect(Object.keys(pak)).toEqual([
-      'name',
-      'private',
-      'scripts',
-      'dependencies',
-      'devDependencies'
-    ]);
-    expect(Object.keys(pak.dependencies)).toEqual(
-      expect.arrayContaining(['spectacle', 'react', 'react-dom'])
-    );
-    expect(Object.keys(pak.devDependencies)).toEqual(
-      expect.arrayContaining([
-        '@types/react',
-        '@types/react-dom',
-        '@vitejs/plugin-react'
-      ])
-    );
-
-    // Vite config should have react plugin
-    expect(await peakFile('vite.config.js')).toContain('plugins: [react()]');
-    // Vite index.html should have entry point
-    expect(await peakFile('index.html')).toContain(
-      `<script type="module" src="/index.jsx"></script>`
-    );
-
-    // README instructions for changing dist directory
-    expect(await peakFile('README.md')).toContain(
-      `\`build.outDir\` in \`vite.config.js`
-    );
-
-    // Custom lang/port
-    expect(await peakFile('index.html')).toContain(`lang="en"`);
-    expect(pak.scripts.start).toContain('--port 3000');
-  });
-
   it('generates a onepage file', async () => {
     await runCliWithArgs({ type: 'onepage' });
 
@@ -224,7 +193,7 @@ describe('create-spectacle', () => {
 /**
  * Run the cli with certain args
  */
-type Type = 'tsx' | 'jsx' | 'tsx-vite' | 'jsx-vite' | 'onepage';
+type Type = 'tsx' | 'md' | 'tsx-vite' | 'onepage';
 const runCliWithArgs = ({
   type,
   lang = 'en',

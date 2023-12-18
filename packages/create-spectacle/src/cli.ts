@@ -29,11 +29,10 @@ enum ArgName {
 }
 
 const DeckTypeOptions = [
-  { title: 'tsx (webpack)', value: 'tsx' },
-  { title: 'jsx (webpack)', value: 'jsx' },
-  { title: 'tsx (vite)', value: 'tsx-vite' },
-  { title: 'jsx (vite)', value: 'jsx-vite' },
-  { title: 'One Page', value: 'onepage' }
+  { title: 'One Page', value: 'onepage' },
+  { title: 'Markdown', value: 'md' },
+  { title: 'React using Vite', value: 'tsx-vite' },
+  { title: 'React using webpack', value: 'tsx' }
 ];
 
 let progressInterval: NodeJS.Timer;
@@ -176,17 +175,20 @@ const main = async () => {
     name,
     lang,
     port,
-    enableTypeScriptSupport: /^tsx/.test(type),
     isVite: /vite$/.test(type),
     spectacleVersion: devDependencies.spectacle
   };
 
   switch (type) {
-    case 'jsx':
+    case 'md':
+      await writeWebpackProjectFiles({
+        ...fileOptions,
+        useMarkdownSlides: true
+      });
+      break;
     case 'tsx':
       await writeWebpackProjectFiles(fileOptions);
       break;
-    case 'jsx-vite':
     case 'tsx-vite':
       await writeViteProjectFiles(fileOptions);
       break;

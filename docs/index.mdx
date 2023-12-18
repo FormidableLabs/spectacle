@@ -1,0 +1,89 @@
+---
+title: Introduction
+order: 1
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import defaultDeckImg from '../website/static/img/default-deck.png'
+import presenterModeImg from '../website/static/img/presenter-mode.png'
+import animatedPresentationImg from '../website/static/img/presentation-mode.gif'
+
+Spectacle is a React-based library for creating sleek presentations using React or Markdown that gives you the ability to live demo your code and use React libraries in your slides.
+
+<img src={defaultDeckImg} style={{ width: '40rem'}} />
+
+## How to get started with Spectacle
+
+
+<Tabs>
+  <TabItem value="spectacle-cli" label="Create Spectacle CLI" default>
+  The fastest and easiest way to get started with Spectacle is to use the Create Spectacle CLI. This will create a new Spectacle project with a default deck and all the necessary dependencies.
+
+  There are four different kinds of templates you can use to create your Spectacle project:
+
+  1. ⚡️ **One Page** - A single HTML file using [htm](https://github.com/developit/htm) that self contains everything you need. Since it does not require a server to run your presentation, this is the recommended option for quickly spinning up a deck.
+  2. 📄 **Markdown** - An app that uses Markdown for your presentation’s content with support for [Markdown Slide Layouts](md-slide-layouts). This is a React app that uses webpack and imports the Markdown content using Spectacle’s [`MarkdownSlideSet`](api-reference#markdown-components) component.
+  3. 🏗️ **React using Vite** - An app that lets you build your presentation in React and uses Vite for building and running. This is the recommended option if you plan on using a number of additional npm libraries in your presentation.
+  4. 🏗️ **React using webpack** - An app that lets you build your presentation in React and uses webpack for building and running.
+
+  **To get started use `npx` or `pnpm dlx` to run the `create-spectacle` cli:**
+
+  ```bash
+
+  $ npx create-spectacle
+
+  ```
+
+  This will create a new Spectacle presentation in a directory of your deck’s name or one page file in the current directory.
+
+
+  </TabItem>
+  <TabItem value="autoPlay" label="Manual Installation" default>
+
+  1. Install Spectacle by running `npm add spectacle`.
+
+  2. In your main entry file, return the following Spectacle starter:
+
+    ```tsx
+    import { Deck, Slide, Heading, DefaultTemplate } from 'spectacle';
+
+    function App() {
+      return (
+        <Deck template={<DefaultTemplate />}>
+          <Slide>
+            <Heading>Welcome to Spectacle</Heading>
+          </Slide>
+        </Deck>
+      );
+    }
+
+    export default App;
+    ```
+
+    :::info
+
+    If you are using NextJS with App Router, Spectacle needs to be rendered inside a client component. You can read more about this [here](https://nextjs.org/docs/app/building-your-application/rendering/client-components).
+
+    :::
+
+
+  </TabItem>
+</Tabs>
+
+## Presenter Mode
+
+Spectacle also has a presenter mode that allows you to view your slides and notes on one screen while your audience views your slides on another. To use presenter mode, open a second browser window and visit your deck’s local server and enable it by using the key command. You can find more information about presentation controls [here](presenting-controls).
+
+<img src={presenterModeImg} style={{ width: '40rem'}} />
+<img src={animatedPresentationImg} style={{ width: '40rem'}} />
+
+
+## Documentation, Contributing, and Source
+
+For more information about Spectacle and its components, check out [the docs](https://formidable.com/open-source/spectacle).
+
+Interested in helping out or seeing what's happening under the hood? Spectacle is maintained [on Github](https://github.com/FormidableLabs/spectacle) and you can [start contributing here](https://github.com/FormidableLabs/spectacle/blob/main/CONTRIBUTING.md).
+
+For any questions, feel free to [open a new question on Github](https://github.com/FormidableLabs/spectacle/issues/new?template=question.md).
