@@ -1,5 +1,11 @@
 # create-spectacle
 
+## 0.4.1
+
+### Patch Changes
+
+- Fix inclusion of Spectacle library package.json ([#1307](https://github.com/FormidableLabs/spectacle/pull/1307))
+
 ## 0.4.0
 
 ### Minor Changes
