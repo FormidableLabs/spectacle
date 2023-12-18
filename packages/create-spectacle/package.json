@@ -152,6 +152,7 @@
     },
     "test": {
       "dependencies": [
+        "copy-spectacle-package",
         "build"
       ],
       "command": "jest --testMatch=\"<rootDir>/src/*.test.ts\"",
