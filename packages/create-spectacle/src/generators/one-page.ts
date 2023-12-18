@@ -1,17 +1,12 @@
-import path from 'path';
 import { onePageTemplate } from '../templates/one-page';
 
-const SPECTACLE_PATH = path.resolve(__dirname, '../../../spectacle');
-const spectaclePackage = require(`${SPECTACLE_PATH}/package.json`);
+const spectaclePackage = require(`${__dirname}/../../spectacle-package.json`);
 const REACT_VERSION = spectaclePackage.devDependencies.react.replace('^', '');
 const ESM_SH_VERSION = 'v121';
 
 export const generateImportMap = () => {
   const importMap = new Map<string, string>();
-  const {
-    dependencies,
-    peerDependencies
-  } = require(`${SPECTACLE_PATH}/package.json`);
+  const { dependencies, peerDependencies } = spectaclePackage;
 
   importMap.set('htm', importUrl('htm', '^3'));
   importMap.set('spectacle', 'https://esm.sh/spectacle@10?bundle');
