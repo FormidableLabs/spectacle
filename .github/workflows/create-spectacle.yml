@@ -51,6 +51,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Copy Spectacle package
+        run: pnpm run --filter ./packages/create-spectacle copy-spectacle-package
+
       - name: Build create-spectacle
         run: pnpm run --filter ./packages/create-spectacle build
 
