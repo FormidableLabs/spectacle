@@ -77,6 +77,7 @@ describe('create-spectacle', () => {
       '.babelrc',
       '.gitignore',
       'README.md',
+      'custom.d.ts',
       'index.html',
       'index.tsx',
       'package.json',
