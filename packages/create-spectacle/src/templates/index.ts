@@ -3,28 +3,29 @@ type IndexTemplateOptions = {
   usesMarkdown: boolean;
 };
 
-const tsxImports = `
-import { Deck, DefaultTemplate, Slide, FlexBox, Heading, SpectacleLogo } from 'spectacle';
-`;
+const content = {
+  reactImports() {
+    return `
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Deck, DefaultTemplate, Slide, FlexBox, Heading, SpectacleLogo } from 'spectacle'
+    `;
+  },
 
-const mdImports = `
+  mdImports() {
+    return `
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { Deck, DefaultTemplate, MarkdownSlideSet } from 'spectacle';
 import mdContent from './slides.md';
-`;
+    `;
+  },
 
-export const indexTemplate = (options: IndexTemplateOptions) =>
-  `import React from 'react';
-import { createRoot } from 'react-dom/client';
-${(options.usesMarkdown ? mdImports : tsxImports).trim()}
-
-const Presentation = () => (
-  <Deck template={() => <DefaultTemplate />}>
-    ${(options.usesMarkdown
-      ? `<MarkdownSlideSet>{mdContent}</MarkdownSlideSet>`
-      : `
+  reactBody(name: string) {
+    return `
     <Slide>
       <FlexBox height="100%">
-        <Heading>${options.name}</Heading>
+        <Heading>${name}</Heading>
       </FlexBox>
     </Slide>
     <Slide>
@@ -34,9 +35,38 @@ const Presentation = () => (
       </FlexBox>
     </Slide>
     `
-    ).trim()}
+      .substring(1)
+      .trim();
+  },
+
+  mdBody() {
+    return `
+    <MarkdownSlideSet>{mdContent}</MarkdownSlideSet>
+    `
+      .substring(1)
+      .trim();
+  }
+};
+
+export const indexTemplate = (options: IndexTemplateOptions) =>
+  `
+${(() => {
+  if (options.usesMarkdown) {
+    return content.mdImports();
+  }
+  return content.reactImports();
+})().trim()}
+
+const Presentation = () => (
+  <Deck template={() => <DefaultTemplate />}>
+    ${(() => {
+      if (options.usesMarkdown) {
+        return content.mdBody();
+      }
+      return content.reactBody(options.name);
+    })()}
   </Deck>
 );
 
 createRoot(document.getElementById('app')!).render(<Presentation />);
-`;
+`.trim();
