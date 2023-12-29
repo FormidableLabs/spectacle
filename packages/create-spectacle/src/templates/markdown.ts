@@ -10,3 +10,11 @@ export const markdownTemplate = (options: TemplateOptions) =>
 ---
 - Made with Spectacle
 `.trim();
+
+export const markdownCustomTypesTemplate = () =>
+  `
+declare module '*.md' {
+  const content: string;
+  export default content;
+}
+`.trim();

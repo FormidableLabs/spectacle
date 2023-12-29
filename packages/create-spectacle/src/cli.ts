@@ -14,9 +14,8 @@ import {
   writeOnePageHTMLFile,
   writeViteProjectFiles
 } from './templates/file-writers';
-// @ts-ignore
-import { devDependencies } from '../package.json';
 
+const spectaclePackage = require(`${__dirname}/../spectacle-package.json`);
 const argv = yargs(hideBin(process.argv)).argv;
 const cwd = process.cwd();
 
@@ -176,7 +175,7 @@ const main = async () => {
     lang,
     port,
     isVite: /vite$/.test(type),
-    spectacleVersion: devDependencies.spectacle
+    spectacleVersion: spectaclePackage.version
   };
 
   switch (type) {

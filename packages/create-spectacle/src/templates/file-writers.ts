@@ -10,7 +10,7 @@ import { gitignoreTemplate } from './gitignore';
 import { readmeTemplate } from './readme';
 import { viteConfigTemplate } from './viteConfig';
 import { createOnePage } from '../generators/one-page';
-import { markdownTemplate } from './markdown';
+import { markdownCustomTypesTemplate, markdownTemplate } from './markdown';
 
 export type FileOptions = {
   snakeCaseName: string;
@@ -52,7 +52,10 @@ const prepForProjectWrite = async (fileOptions: FileOptions) => {
   await writeFile(pathFor('README.md'), readmeTemplate({ name, isVite }));
   await writeFile(pathFor('tsconfig.json'), tsconfigTemplate());
   fileOptions.useMarkdownSlides &&
-    (await writeFile(pathFor('slides.md'), markdownTemplate({ name })));
+    (await Promise.all([
+      writeFile(pathFor('custom.d.ts'), markdownCustomTypesTemplate()),
+      writeFile(pathFor('slides.md'), markdownTemplate({ name }))
+    ]));
 
   return { outPath, pathFor };
 };
