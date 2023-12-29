@@ -1,5 +1,11 @@
 # create-spectacle
 
+## 0.4.2
+
+### Patch Changes
+
+- Fix generated Spectacle version in CLI, add custom types to MD output. ([#1313](https://github.com/FormidableLabs/spectacle/pull/1313))
+
 ## 0.4.1
 
 ### Patch Changes
