@@ -20,7 +20,7 @@ const theme = {
     primary: '#f00',
     secondary: '#00f'
   },
-  fontSizes: {
+  font: {
     header: '64px',
     paragraph: '28px'
   }
