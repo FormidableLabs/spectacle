@@ -1,8 +1,5 @@
 name: CI
 
-env:
-  PNPM_STORE_PATH: ''
-
 # Runs build and test on:
 #   every push that has a change in a file not in the docs folder
 #   every pull request with main branch as the base that has a change
@@ -23,6 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
+          cache: 'pnpm'
           node-version: 18.x
 
       # Wireit cache
@@ -33,20 +31,6 @@ jobs:
         with:
           run_install: false
           version: 7
-
-      - name: Get pnpm store directory
-        shell: bash
-        id: pnpm-cache
-        run: |
-          echo "PNPM_STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.PNPM_STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('./pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install
