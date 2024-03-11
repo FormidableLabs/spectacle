@@ -376,8 +376,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.3
       loader-utils:
-        specifier: ^1.4.2
-        version: 1.4.2
+        specifier: ^2.0.4
+        version: 2.0.4
       normalize-newline:
         specifier: ^3.0.0
         version: 3.0.0
@@ -6339,6 +6339,9 @@ packages:
 
   /ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
+    peerDependenciesMeta:
+      ajv:
+        optional: true
     dependencies:
       ajv: 8.11.0
     dev: true
@@ -6649,7 +6652,7 @@ packages:
     dependencies:
       '@babel/core': 7.19.3
       find-cache-dir: 3.3.2
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       make-dir: 3.1.0
       schema-utils: 2.7.1
       webpack: 5.76.0(webpack-cli@4.10.0)
@@ -6664,7 +6667,7 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       find-cache-dir: 3.3.2
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       make-dir: 3.1.0
       schema-utils: 2.7.1
       webpack: 5.76.0(webpack-cli@4.10.0)
@@ -9054,7 +9057,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       schema-utils: 3.1.1
       webpack: 5.76.0(webpack-cli@4.10.0)
     dev: true
@@ -11157,13 +11160,6 @@ packages:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
     dev: true
 
-  /json5@1.0.1:
-    resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
-    hasBin: true
-    dependencies:
-      minimist: 1.2.6
-    dev: false
-
   /json5@2.2.1:
     resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
     engines: {node: '>=6'}
@@ -11321,23 +11317,13 @@ packages:
     engines: {node: '>=6.11.5'}
     dev: true
 
-  /loader-utils@1.4.2:
-    resolution: {integrity: sha512-I5d00Pd/jwMD2QCduo657+YM/6L3KZu++pmX9VFncxaxvHcru9jx1lBaFft+r4Mt2jK0Yhp41XlRAihzPxHNCg==}
-    engines: {node: '>=4.0.0'}
-    dependencies:
-      big.js: 5.2.2
-      emojis-list: 3.0.0
-      json5: 1.0.1
-    dev: false
-
-  /loader-utils@2.0.2:
-    resolution: {integrity: sha512-TM57VeHptv569d/GKh6TAYdzKblwDNiumOdkFnejjD0XwTH87K90w3O7AiJRqdQoXygvi1VQTJTLGhJl7WqA7A==}
+  /loader-utils@2.0.4:
+    resolution: {integrity: sha512-xXqpXoINfFhgua9xiqD8fPFHgkoq1mmmpE92WlDbm9rNRd/EbRb+Gqf908T2DMfuHjjJlksiK2RbHVOdD/MqSw==}
     engines: {node: '>=8.9.0'}
     dependencies:
       big.js: 5.2.2
       emojis-list: 3.0.0
       json5: 2.2.3
-    dev: true
 
   /loader-utils@3.2.0:
     resolution: {integrity: sha512-HVl9ZqccQihZ7JM85dco1MvO9G+ONvxoGa9rkhzFsneGLKSUg1gJf9bWzhRhcvm2qChhWpebQhP44qxjKIUCaQ==}
@@ -11766,6 +11752,7 @@ packages:
 
   /minimist@1.2.6:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
+    dev: true
 
   /mixin-object@2.0.1:
     resolution: {integrity: sha512-ALGF1Jt9ouehcaXaHhn6t1yGWRqGaHkPFndtFVHfZXOvkIZ/yoGaSi0AHVTafb3ZBGg4dr/bDwnaEKqCXzchMA==}
@@ -13117,7 +13104,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       schema-utils: 3.1.1
       webpack: 5.76.0(webpack-cli@4.10.0)
     dev: true
@@ -13934,7 +13921,7 @@ packages:
         optional: true
     dependencies:
       klona: 2.0.5
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       neo-async: 2.6.2
       sass: 1.54.4
       schema-utils: 3.1.1
@@ -15490,7 +15477,7 @@ packages:
         optional: true
     dependencies:
       file-loader: 6.2.0(webpack@5.76.0)
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       mime-types: 2.1.35
       schema-utils: 3.1.1
       webpack: 5.76.0(webpack-cli@4.10.0)
