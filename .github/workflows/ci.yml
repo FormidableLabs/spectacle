@@ -1,5 +1,8 @@
 name: CI
 
+env:
+  PNPM_STORE_PATH: ''
+
 # Runs build and test on:
 #   every push that has a change in a file not in the docs folder
 #   every pull request with main branch as the base that has a change
@@ -26,17 +29,21 @@ jobs:
       - uses: google/wireit@setup-github-actions-caching/v1
 
       - uses: pnpm/action-setup@v3
+        name: Install pnpm
         with:
+          run_install: false
           version: 7
 
       - name: Get pnpm store directory
+        shell: bash
         id: pnpm-cache
-        run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+        run: |
+          echo "PNPM_STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - name: Setup pnpm cache
         uses: actions/cache@v4
         with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          path: ${{ env.PNPM_STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('./pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
