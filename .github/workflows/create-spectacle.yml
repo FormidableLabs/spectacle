@@ -1,5 +1,8 @@
 name: create-spectacle
 
+env:
+  PNPM_STORE_PATH: ''
+
 on:
   push:
     branches:
@@ -24,26 +27,29 @@ jobs:
         node-version: [18.x]
         create-type: ['tsx', 'onepage']
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       # Wireit cache
       - uses: google/wireit@setup-github-actions-caching/v1
 
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: pnpm/action-setup@v3
+        name: Install pnpm
         with:
+          run_install: false
           version: 7
 
       - name: Get pnpm store directory
         id: pnpm-cache
-        run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+        run: |
+          echo "PNPM_STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          path: ${{ env.PNPM_STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('./pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
