@@ -276,8 +276,8 @@ importers:
         specifier: ^1.6.5
         version: 1.6.5
       query-string:
-        specifier: ^7.1.1
-        version: 7.1.1
+        specifier: ^7.1.3
+        version: 7.1.3
       react-fast-compare:
         specifier: ^3.2.0
         version: 3.2.0
@@ -376,8 +376,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.3
       loader-utils:
-        specifier: ^1.2.3
-        version: 1.4.0
+        specifier: ^1.4.2
+        version: 1.4.2
       normalize-newline:
         specifier: ^3.0.0
         version: 3.0.0
@@ -5160,9 +5160,6 @@ packages:
 
   /ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
-    peerDependenciesMeta:
-      ajv:
-        optional: true
     dependencies:
       ajv: 8.11.0
     dev: true
@@ -6815,8 +6812,8 @@ packages:
     resolution: {integrity: sha512-F29o+vci4DodHYT9UrR5IEbfBw9pE5eSapIJdTqXK5+6hq+t8VRxwQyKlW2i+KDKFkkJQRvFyI/QXD83h8LyQw==}
     dev: true
 
-  /decode-uri-component@0.2.0:
-    resolution: {integrity: sha512-hjf+xovcEn31w/EUYdTXQh/8smFL/dzYjohQGEIgjyNavaJfBY2p5F527Bo1VPATxv0VYTUC2bOcXvqFwk78Og==}
+  /decode-uri-component@0.2.2:
+    resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
     engines: {node: '>=0.10'}
     dev: false
 
@@ -10094,8 +10091,8 @@ packages:
     engines: {node: '>=6.11.5'}
     dev: true
 
-  /loader-utils@1.4.0:
-    resolution: {integrity: sha512-qH0WSMBtn/oHuwjy/NucEgbx5dbxxnxup9s4PVXJUDHZBQY+s0NWA9rJf53RBnQZxfch7euUui7hpoAPvALZdA==}
+  /loader-utils@1.4.2:
+    resolution: {integrity: sha512-I5d00Pd/jwMD2QCduo657+YM/6L3KZu++pmX9VFncxaxvHcru9jx1lBaFft+r4Mt2jK0Yhp41XlRAihzPxHNCg==}
     engines: {node: '>=4.0.0'}
     dependencies:
       big.js: 5.2.2
@@ -11829,11 +11826,11 @@ packages:
       side-channel: 1.0.4
     dev: true
 
-  /query-string@7.1.1:
-    resolution: {integrity: sha512-MplouLRDHBZSG9z7fpuAAcI7aAYjDLhtsiVZsevsfaHWDS2IDdORKbSd1kWUA+V4zyva/HZoSfpwnYMMQDhb0w==}
+  /query-string@7.1.3:
+    resolution: {integrity: sha512-hh2WYhq4fi8+b+/2Kg9CEge4fDPvHS534aOOvOZeQ3+Vf2mCFsaFBYj0i+iXcAq6I9Vzp5fjMFBlONvayDC1qg==}
     engines: {node: '>=6'}
     dependencies:
-      decode-uri-component: 0.2.0
+      decode-uri-component: 0.2.2
       filter-obj: 1.1.0
       split-on-first: 1.1.0
       strict-uri-encode: 2.0.0
