@@ -14,7 +14,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.5.3",
     "gray-matter": "^4.0.2",
-    "loader-utils": "^1.4.2",
+    "loader-utils": "^2.0.4",
     "normalize-newline": "^3.0.0"
   },
   "scripts": {
