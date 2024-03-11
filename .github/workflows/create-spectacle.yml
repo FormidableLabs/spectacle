@@ -25,6 +25,12 @@ jobs:
         create-type: ['tsx', 'onepage']
     steps:
       - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          run_install: false
+          version: 7
+
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
@@ -32,12 +38,6 @@ jobs:
 
       # Wireit cache
       - uses: google/wireit@setup-github-actions-caching/v1
-
-      - uses: pnpm/action-setup@v3
-        name: Install pnpm
-        with:
-          run_install: false
-          version: 7
 
       - name: Install dependencies
         run: pnpm install
