@@ -16,14 +16,11 @@ jobs:
   build:
     name: Check and build codebase
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18.x
 
       # Wireit cache
       - uses: google/wireit@setup-github-actions-caching/v1
@@ -52,7 +49,7 @@ jobs:
       # - name: Clear all caches
       #   run: pnpm clean:cache
 
-      - name: Build Code and Examples ${{ matrix.node-version }}
+      - name: Build Code and Examples
         run: pnpm run build
 
       # We build in-source files like `examples/one-page/index.html`.
@@ -60,5 +57,5 @@ jobs:
       - name: Check generated in-source files
         run: git diff --no-ext-diff --quiet --exit-code
 
-      - name: Check Code ${{ matrix.node-version }}
+      - name: Check Code
         run: pnpm run check:ci
