@@ -75,6 +75,8 @@
       const html = htm.bind(React.createElement);
       const formidableLogo = 'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
 
+
+
       // SPECTACLE_CLI_THEME_START
       const theme = {
         fonts: {
@@ -82,6 +84,7 @@
           text: '"Open Sans Condensed", Helvetica, Arial, sans-serif'
         }
       };
+
       // SPECTACLE_CLI_THEME_END
       const SlideFragments = () => html`
         <${Slide}>
@@ -97,10 +100,8 @@
           </${Appear}>
         </${Slide}>
       `;
-
       const template = html`
         <${DefaultTemplate} />`;
-
         const Presentation = () => html`<${Deck} theme=${theme} template=${template}>
           <${Slide}>
             <${FlexBox} height="100%">
@@ -272,7 +273,6 @@
           <${SlideLayout.List} title="Slide layouts!" items=${['Two-column', 'Lists' , 'And more!' ]} animateListItems />
         </${Deck}>
       `;
-
       const root = ReactDOM.createRoot(document.getElementById('root'));
       root.render(html`<${Presentation}/>`);
     </script>
