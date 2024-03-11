@@ -1,5 +1,8 @@
 name: Spectacle Release Workflow
 
+env:
+  PNPM_STORE_PATH: ''
+
 on:
   push:
     branches:
@@ -18,27 +21,29 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 18.x
 
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: pnpm/action-setup@v3
         with:
+          run_install: false
           version: 7
 
       - name: Get pnpm store directory
         id: pnpm-cache
-        run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+        run: |
+          echo "PNPM_STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - name: Setup pnpm cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          path: ${{ env.PNPM_STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
