@@ -18,30 +18,18 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18.x
-
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: pnpm/action-setup@v3
         with:
           version: 7
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
+      - uses: actions/setup-node@v4
         with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          cache: 'pnpm'
+          node-version: 18.x
 
       - name: Install dependencies
         run: pnpm install
