@@ -192,13 +192,13 @@ const content = {
         title: 'Victory',
         description:
           'An ecosystem of modular data visualization components for React. Friendly and flexible.',
-        link: 'https://formidable.com/open-source/victory'
+        link: 'https://commerce.nearform.com/open-source/victory'
       },
       {
         title: 'urql',
         description:
           'Universal React Query Library is a blazing-fast GraphQL client, exposed as a set of ReactJS components.',
-        link: 'https://formidable.com/open-source/urql/'
+        link: 'https://commerce.nearform.com/open-source/urql/'
       },
       {
         title: 'Runpkg',
@@ -210,7 +210,7 @@ const content = {
       }
     ],
     buttonText: 'View All',
-    buttonUrl: 'https://formidable.com/open-source/'
+    buttonUrl: 'https://commerce.nearform.com/open-source/'
   }
 };
 
