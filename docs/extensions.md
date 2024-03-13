@@ -29,4 +29,4 @@ For complete documentation of the CLI, please check out [the repository](https:/
 
 A webpack MDX loader for Spectacle presentations.
 
-See [the repository](https://www.github.com/FormidableLabs/spectacle-mdx-loader) for usage, integration, and more information.
+Check [here](../packages/spectacle-mdx-loader/) for usage, integration, and more information.

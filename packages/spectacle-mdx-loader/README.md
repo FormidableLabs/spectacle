@@ -68,7 +68,7 @@ render(<Deck />, document.getElementById('root'));
 [npm_site]: http://badge.fury.io/js/spectacle-mdx-loader
 [mdx]: https://mdxjs.com/
 [webpack]: https://webpack.js.org/
-[spectacle]: https://formidable.com/open-source/spectacle/
+[spectacle]: https://commerce.nearform.com/open-source/spectacle/
 [npx]: https://www.npmjs.com/package/npx
 [maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg?color=brightgreen&style=flat
 

@@ -25,7 +25,7 @@ export default function Home() {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content="http://www.formidable.com/open-source/spectacle/"
+          content="http://commerce.nearform.com/open-source/spectacle/"
         />
         <meta
           property="og:description"

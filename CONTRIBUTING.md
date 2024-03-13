@@ -257,7 +257,7 @@ For exceptional circumstances, here is a quick guide to manually publish from a 
    $ pnpm changeset publish --otp=<insert otp code>
    ```
 
-   Note that publishing multiple pacakges via `changeset` to npm with an OTP code can often fail with `429 Too Many Requests` rate limiting error. Take a 5+ minute coffee break, then come back and try again.
+   Note that publishing multiple packages via `changeset` to npm with an OTP code can often fail with `429 Too Many Requests` rate limiting error. Take a 5+ minute coffee break, then come back and try again.
 
    Then issue the following to also push git tags:
 
