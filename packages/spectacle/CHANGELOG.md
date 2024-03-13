@@ -1,5 +1,13 @@
 # Changelog
 
+## 10.1.8
+
+### Patch Changes
+
+- security update: increment ts-jest and babel/core ([#1321](https://github.com/FormidableLabs/spectacle/pull/1321))
+
+- security update: update query-string to fix decode-uri-component vulnerability in 0.2.0 ([#1319](https://github.com/FormidableLabs/spectacle/pull/1319))
+
 ## 10.1.7
 
 ### Patch Changes
