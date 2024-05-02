@@ -1,8 +1,5 @@
-<p align="center">
-  <a href="https://formidable.com/open-source/" target="_blank">
-    <img alt="Spectacle — Formidable, We build the modern web" src="https://raw.githubusercontent.com/FormidableLabs/spectacle/main/Spectacle-Hero.png" />
-  </a>
-</p>
+[![Spectacle](https://oss.nearform.com/api/banner?badge=spectacle&bg=fc6986)](https://commerce.nearform.com/open-source/spectacle/)
+
 <p align="center">
   <strong>✨ A ReactJS based Presentation Library ✨</strong>
   <br><br>
