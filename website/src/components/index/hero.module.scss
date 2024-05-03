@@ -1,51 +1,39 @@
 @import '../../css/variables.scss';
 
+.wrapper {
+  background: url("../../../static/img/background-banner.png");
+  background-size: cover;
+  background-repeat: none;
+}
+
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 7.5rem;
-  width: 100%;
-  > * {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  > * + * {
-    margin-top: $spacing-xs;
+  justify-content: space-between;
+  gap: 4rem;
+  margin: 0 16rem 0 16rem;
+  padding: 6rem 0 6rem;
+  color: var(--oss-text-light);
+
+  @media ($media-breakpoint-md) {
+    flex-direction: row;
   }
 
-  @media ($media-breakpoint-sm) {
-    display: grid;
-    grid-template-areas:
-      'left . right'
-      'left . right'
-      'left . right'
-      'left . right2'
-      'bottom bottom bottom';
-    margin-top: $spacing-xxxl;
-    padding: 0 $spacing-xs;
-    > * + * {
-      margin-top: 0;
-    }
+  @media ($media-breakpoint-lg) {
+    gap: 6rem;
+  }
+
+  .badge {
+    align-self: center;
+    width: 320px;
+    height: 320px;
   }
 
   .heroBody {
-    > * {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-    > * + * {
-      margin-top: $spacing-xs;
-    }
-
-    @media ($media-breakpoint-sm) {
-      grid-area: right;
-      max-width: $container-xs;
-      margin-left: $spacing-xl;
-    }
 
     @media ($media-breakpoint-md) {
-      margin-left: 0;
+      max-width: 50%;
     }
 
     .heroBody__title {
@@ -102,51 +90,14 @@
           margin-left: $spacing-xs;
         }
       }
-
-      .button__docs {
-        width: $sizing-lg;
-        height: $line-heights-button;
-        font-size: $font-sizes-body-sm;
-        background: var(--oss-button-light);
-        background: {
-          image: linear-gradient(
-            -40deg,
-            var(--oss-button-light-hover) 50%,
-            transparent 50%
-          );
-          position: 0;
-          size: 400%;
-        }
-        transition: all 0.4s ease-in-out;
-        line-height: $line-heights-button;
-        text-align: center;
-        text-transform: uppercase;
-        text-decoration: none;
-        letter-spacing: $letter-spacing-lg;
-        color: var(--oss-text-dark);
-        border: 0;
-        border-radius: var(--oss-border-radius);
-        font-weight: $font-weights-link;
-
-        @media ($media-breakpoint-md) {
-          margin-top: 0;
-          width: $sizing-xxs;
-        }
-
-        &:hover {
-          color: var(--oss-text-light);
-          background-position: 100%;
-        }
-      }
     }
   }
 
   .heroNav {
-    border-top: $border-div solid var(--oss-text-light);
     display: flex;
-    justify-content: center;
+    justify-content: start;
     list-style: none;
-    padding: $spacing-xs 0 0;
+    padding: 0;
     text-align: center;
 
     @media ($media-breakpoint-sm) {

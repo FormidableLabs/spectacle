@@ -33,7 +33,7 @@ const content = {
       featureButtonUrl: 'docs/',
       navList: [
         {
-          text: 'Docs',
+          text: 'Documentation',
           url: 'docs/'
         },
         {

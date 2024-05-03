@@ -217,8 +217,8 @@
   --oss-text-light: var(--oss-color-white);
   --oss-button: var(--oss-color-black);
   --oss-button-hover: var(--oss-color-primary);
-  --oss-button-light: var(--oss-color-white);
-  --oss-button-light-hover: var(--oss-color-primary);
+  --oss-button-light: var(--oss-color-primary);
+  --oss-button-light-hover: var(--oss-color-primary-shade-dark);
   --oss-link: var(--oss-color-primary);
   --oss-link-hover: var(--oss-color-primary-shade-light);
   --oss-input-background: var(--oss-color-grey-light);
@@ -259,7 +259,7 @@
   --ifm-navbar-shadow: none;
   --ifm-navbar-padding-horizontal: calc(var(--ifm-spacing-horizontal) * 1.875);
   --ifm-navbar-padding-vertical: calc(var(--ifm-spacing-vertical) * 0.5);
-  --ifm-navbar-background-color: var(--oss-color-midnight);
+  --ifm-navbar-background-color: var(--oss-color-black);
 
   // menu (left sidebar)
   --ifm-menu-color: var(--oss-color-black);
@@ -299,7 +299,6 @@
   // top nav
   --ifm-navbar-link-color: var(--oss-color-white);
   --ifm-navbar-link-hover-color: var(--oss-color-primary-dark);
-  --ifm-navbar-background-color: var(--oss-color-black);
 
   // menu (left sidebar)
   --ifm-menu-color: var(--oss-color-white);

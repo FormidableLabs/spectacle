@@ -1,6 +1,5 @@
 import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Header from '@site/src/components/global/header';
 import Footer from '@site/src/components/global/footer';
 import Features from '@site/src/components/index/features';
 import Preview from '@site/src/components/index/preview';
@@ -37,7 +36,7 @@ export default function Home() {
         <meta name="theme-color" content="#ffffff" />
         <title>spectacle Documentation</title>
       </Head>
-      <Header content={header} />
+      <Hero content={header.hero} />
       <main>
         <Features content={features} />
         <Preview content={preview} />

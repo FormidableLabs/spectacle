@@ -27,14 +27,14 @@ function NpmCopy(props: Text) {
 
   return (
     <CopyToClipboard text={props.text}>
-      <div className={styles.heroNPMWrapper}>
-        <p className={styles.heroNPMCopy}>{props.text}</p>
-        <button onClick={handleCopy} className={styles.heroNPMButton}>
+      <button onClick={handleCopy} className={styles.heroNPMWrapper}>
+        <code className={styles.heroNPMCopy}>{props.text}</code>
+        <span className={styles.heroNPMButton}>
           <BounceAnimation bouncing={animating}>
             {copied ? 'Copied' : 'Copy'}
           </BounceAnimation>
-        </button>
-      </div>
+        </span>
+      </button>
     </CopyToClipboard>
   );
 }

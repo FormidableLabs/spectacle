@@ -88,7 +88,7 @@ async function createConfig() {
               type: 'doc',
               docId: 'index',
               position: 'left',
-              label: 'Docs'
+              label: 'Documentation'
             },
             {
               href: 'https://github.com/FormidableLabs/spectacle',
