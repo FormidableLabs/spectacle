@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import { OSSBadge } from '@site/src/components/global/oss-badge';
 import NpmCopy from '@site/src/components/global/npm-copy';
 import Wrapper from '@site/src/components/global/wrapper';
 import styles from './hero.module.scss';
+import { FeaturedBadge } from 'formidable-oss-badges';
 
 type NavItem = {
   text: string;
@@ -42,12 +42,11 @@ const Hero = ({ content }) => {
     navList: NavItem[];
   } = content;
 
-  const badge = { title };
 
   return (
     <Wrapper noPadding={true} background="transparent">
       <div className={styles.hero}>
-        <OSSBadge hoverable={false} project={badge} />
+        <FeaturedBadge name="spectacle" />
         <div className={styles.heroBody}>
           <h1 className={styles.heroBody__title}>{title}</h1>
           <p className={styles.heroBody__tagline}>{tagline}</p>

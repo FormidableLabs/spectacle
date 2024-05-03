@@ -1,6 +1,6 @@
 import React from 'react';
 import BodyCopy from '@site/src/components/global/body-copy';
-import { OSSBadge } from '@site/src/components/global/oss-badge';
+// import { OSSBadge } from '@site/src/components/global/oss-badge';
 import Button from '@site/src/components/global/button';
 import SecondaryTitle from '@site/src/components/global/secondary-title';
 import SectionTitle from '@site/src/components/global/section-title';
@@ -44,7 +44,7 @@ function Product({
   return (
     <div key={title} className={styles.ossCard}>
       <div className={styles.ossBadgeContainer}>
-        <OSSBadge project={card} hoverable />
+        {/* <OSSBadge project={card} hoverable /> */}
       </div>
       <div className={styles.ossCopyContainer}>
         <a href={link} target="_blank" rel="noopener noreferrer">

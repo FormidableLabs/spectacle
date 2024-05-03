@@ -1,4 +1,5 @@
 import React from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Header from '@site/src/components/global/header';
 import Footer from '@site/src/components/global/footer';
 import Features from '@site/src/components/index/features';
@@ -7,14 +8,15 @@ import GetStarted from '@site/src/components/index/get-started';
 import MoreOSS from '@site/src/components/index/more-oss';
 import content from '@site/src/components/index/_content';
 
-import styles from './index.module.scss';
 import Head from '@docusaurus/Head';
+import Layout from '@theme/Layout';
+import Hero from '../components/index/hero';
 
 export default function Home() {
   const { header, footer, features, preview, getStarted, oss } = content;
-
+  const { siteConfig } = useDocusaurusContext();
   return (
-    <div className={styles.container}>
+    <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <Head>
         <meta
           name="description"
@@ -43,6 +45,6 @@ export default function Home() {
         <MoreOSS content={oss} />
       </main>
       <Footer content={footer} />
-    </div>
+    </Layout>
   );
 }

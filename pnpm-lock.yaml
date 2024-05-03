@@ -424,8 +424,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(@docusaurus/core@2.4.0)(sass@1.54.4)(webpack@5.76.0)
       formidable-oss-badges:
-        specifier: ^0.5.1
-        version: 0.5.2(styled-components@5.3.10)
+        specifier: ^1.4.1
+        version: 1.4.1(react-dom@17.0.2)(react@17.0.2)
       prism-react-renderer:
         specifier: ^2.0.3
         version: 2.0.3(react@17.0.2)
@@ -8155,13 +8155,15 @@ packages:
     engines: {node: '>=0.4.x'}
     dev: false
 
-  /formidable-oss-badges@0.5.2(styled-components@5.3.10):
-    resolution: {integrity: sha512-JV0lFKXGlUJa69p5SJw/MRSgsh2CcHal46T6ixz8nSjvR7GIJee/q/SK+nLZhITiBpoEaWNguRVLAqhx290GpQ==}
+  /formidable-oss-badges@1.4.1(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-lEjmQ7zNNZbIgVtdhTykd93MISJiRUZzSlAdiMvQ95/oxmPf4zhTj0WIex3a5oozNPQ9hIEjHjXorKqJ2pPuTg==}
     engines: {node: '>= 0.12.0', npm: '>= 2.0.0'}
     peerDependencies:
-      styled-components: '>= 4.0.0'
+      react: '>= 18.0.0'
+      react-dom: '>= 18.0.0'
     dependencies:
-      styled-components: 5.3.10(react-dom@17.0.2)(react@17.0.2)
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
     dev: true
 
   /forwarded@0.2.0:
