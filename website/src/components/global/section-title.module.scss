@@ -1,7 +1,7 @@
 @import '../../css/variables.scss';
 
 .sectionTitle {
-  color: var(--oss-text-light);
+  color: var(--oss-text-dark);
   font-size: $font-sizes-h2;
   font-weight: $font-weights-heading;
   flex: auto;
@@ -12,9 +12,5 @@
 
   @media ($media-breakpoint-sm) {
     margin: 0;
-  }
-
-  &.light {
-    color: var(--oss-text-dark);
   }
 }

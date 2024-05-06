@@ -309,6 +309,12 @@
   // table of contents (right sidebar)
   --ifm-toc-border-color: var(--oss-color-grey-darker);
   --ifm-toc-link-color: var(--oss-color-grey);
+
+  // page/lander colors
+  --oss-background-color: var(--oss-color-grey-darkest);
+  --oss-background-light: var(--oss-color-black);
+  --oss-text-dark: var(--oss-color-grey-light);
+  --oss-text: var(--oss-color-grey);
 }
 
 /*****************************************************************
