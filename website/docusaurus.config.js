@@ -10,13 +10,13 @@ async function createConfig() {
     title: 'Spectacle',
     tagline:
       'A React.js based library for creating sleek presentations using JSX syntax that gives you the ability to live demo your code.',
-    url: 'https://formidable.com',
+    url: 'https://commerce.nearform.com/',
     baseUrl:
       process.env.VERCEL_ENV === 'preview' ? '/' : '/open-source/spectacle',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
-    organizationName: 'formidablelabs',
+    organizationName: 'Nearform Commerce',
     projectName: 'spectacle',
 
     presets: [
@@ -98,11 +98,11 @@ async function createConfig() {
               label: 'GitHub Repository'
             },
             {
-              href: 'https://formidable.com',
-              className: 'header-formidable-link',
-              'aria-label': 'Formidable Website',
+              href: 'https://commerce.nearform.com',
+              className: 'header-nearform-link',
+              'aria-label': 'Nearform Commerce Website',
               position: 'right',
-              label: 'Formidable Website'
+              label: 'Nearform Commerce Website'
             }
           ]
         },
