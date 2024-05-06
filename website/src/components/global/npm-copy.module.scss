@@ -32,6 +32,7 @@
   height: $line-heights-button;
   line-height: $line-heights-button;
   background: var(--oss-button-light);
+  transition: all 0.3s ease-in-out;
   font-size: $font-sizes-body-sm;
   font-weight: $font-weights-link;
   letter-spacing: $letter-spacing-lg;

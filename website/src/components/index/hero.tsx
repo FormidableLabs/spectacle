@@ -30,8 +30,6 @@ const Hero = ({ content }) => {
     title,
     tagline,
     installScript,
-    featureButtonText,
-    featureButtonUrl,
     navList
   }: {
     title: string;
