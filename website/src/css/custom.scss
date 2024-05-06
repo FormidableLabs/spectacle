@@ -478,21 +478,13 @@ article {
 
 // footer
 .footer {
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   a {
     opacity: 1;
-  }
-
-  .footer__logo {
-    margin-top: 0;
-    max-width: 6rem;
-
-    @media (min-width: 996px) {
-      max-width: 10rem;
-    }
-  }
-
-  .footer__copyright {
-    font-size: 0.875rem;
   }
 }
 

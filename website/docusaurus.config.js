@@ -1,6 +1,5 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-const { romanize } = require('./src/utils/numbers');
 const lightTheme = require('./src/utils/prismLight.js');
 const darkTheme = require('./src/utils/prismDark.js');
 
@@ -108,14 +107,13 @@ async function createConfig() {
         },
         footer: {
           logo: {
-            alt: 'Formidable Labs Logo',
-            src: 'svg/formidable-logo-white.svg',
-            href: 'https://formidable.com',
-            target: '_blank'
+            alt: 'Nearform logo',
+            src: 'img/nearform-logo-white.svg',
+            href: 'https://commerce.nearform.com',
+            width: 100,
+            height: 100
           },
-          copyright: `© ${romanize(
-            new Date().getFullYear()
-          )} Formidable Labs, LLC.`
+          copyright: `Copyright © ${new Date().getFullYear()} Nearform`
         },
         prism: {} // Keep empty object so we can add prism themes below
       })

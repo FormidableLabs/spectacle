@@ -7,6 +7,8 @@
   display: flex;
   border: 0;
   background: transparent;
+  padding: 0;
+  cursor: copy;
 }
 
 .heroNPMCopy {
@@ -36,7 +38,6 @@
   color: var(--oss-text-light);
   border-radius: 0 var(--oss-border-radius) var(--oss-border-radius) 0;
   text-transform: uppercase;
-  cursor: copy;
 
   &:hover {
     background: var(--oss-button-light-hover);

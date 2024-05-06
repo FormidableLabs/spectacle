@@ -1,6 +1,5 @@
 import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Footer from '@site/src/components/global/footer';
 import Features from '@site/src/components/index/features';
 import Preview from '@site/src/components/index/preview';
 import GetStarted from '@site/src/components/index/get-started';
@@ -12,7 +11,7 @@ import Layout from '@theme/Layout';
 import Hero from '../components/index/hero';
 
 export default function Home() {
-  const { header, footer, features, preview, getStarted, oss } = content;
+  const { header, features, preview, getStarted, oss } = content;
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout title={siteConfig.title} description={siteConfig.tagline}>
@@ -43,7 +42,6 @@ export default function Home() {
         <GetStarted content={getStarted} />
         <MoreOSS content={oss} />
       </main>
-      <Footer content={footer} />
     </Layout>
   );
 }
