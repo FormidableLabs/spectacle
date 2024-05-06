@@ -4,6 +4,11 @@
   background: url("../../../static/img/background-banner.png");
   background-size: cover;
   background-repeat: none;
+  justify-content: center;
+
+  @media ($media-breakpoint-md) {
+    flex-direction: row;
+  }
 }
 
 .hero {
@@ -12,11 +17,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 4rem;
-  margin: 0 16rem 0 16rem;
-  padding: 6rem 0 6rem;
+  padding: $spacing-md 0 $spacing-md;
   color: var(--oss-text-light);
-
+  max-width: $container-xl;
+  
   @media ($media-breakpoint-md) {
+    margin: 0 $spacing-xxxl 0 $spacing-xxxl;
+    padding: $spacing-xxl 0 $spacing-xxl;
     flex-direction: row;
   }
 
@@ -46,7 +53,7 @@
       color: var(--oss-text-light);
       margin: 0 0 $spacing-sm 0;
 
-      @media ($media-breakpoint-sm) {
+      @media ($media-breakpoint-md) {
         font-size: $font-sizes-h1;
         text-align: left;
       }
@@ -59,7 +66,7 @@
       max-width: $sizing-lg;
       text-align: center;
 
-      @media ($media-breakpoint-sm) {
+      @media ($media-breakpoint-md) {
         font-size: $font-sizes-tagline;
         line-height: $line-heights-tagline;
         max-width: none;
@@ -69,8 +76,9 @@
 
     .heroBody__buttons {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: $spacing-sm;
       > * {
         margin-top: 0;
         margin-bottom: 0;
@@ -81,14 +89,7 @@
       @media ($media-breakpoint-md) {
         align-items: center;
         flex-direction: row;
-        > * {
-          margin-left: 0;
-          margin-right: 0;
-        }
-        > * + * {
-          margin-top: 0;
-          margin-left: $spacing-xs;
-        }
+        justify-content: start;
       }
     }
   }

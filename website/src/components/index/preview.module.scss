@@ -1,8 +1,18 @@
 @import '../../css/variables.scss';
 
+.wrapper {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.demoUrl {
+  max-width: $container-xl;
+}
+
 .video {
   margin-top: var(--oss-stack-space-mobile);
   width: 100%;
+  max-width: $container-xl;
 
   @media ($media-breakpoint-sm) {
     margin-top: var(--oss-stack-space-tablet);
