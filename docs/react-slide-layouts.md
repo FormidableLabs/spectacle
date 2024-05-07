@@ -64,7 +64,7 @@ A layout with a section title
 | Props           | Type                                          | Required | Example              |
 |-----------------|-----------------------------------------------|----------|----------------------|
 | `...slideProps` | [Slide Props](./api-reference#slide)          | ❌        |                      |
-| `sectionProps`  | [Text Props](./api-reference#typography-tags) | ❌        | { fontSize: "48px" } |
+| `sectionProps`  | [Text Props](./api-reference#typography-tags) | ❌        | `{ fontSize: "48px" }` |
 
 ![Section layout example slide](../website/static/img/slide-layouts/section.png)
 
@@ -75,7 +75,7 @@ A layout with a centered statement
 | Props            | Type                                          | Required | Example              |
 |------------------|-----------------------------------------------|----------|----------------------|
 | `...slideProps`  | [Slide Props](./api-reference#slide)          | ❌        |                      |
-| `statementProps` | [Text Props](./api-reference#typography-tags) | ❌        | { fontSize: "48px" } |
+| `statementProps` | [Text Props](./api-reference#typography-tags) | ❌        | `{ fontSize: "48px" }` |
 
 ![Statement layout example slide](../website/static/img/slide-layouts/statement.png)
 
@@ -88,8 +88,8 @@ A layout to present a fact in large font
 | `children`             | `ReactNode`                                   | ✅        | `100%`                |         |
 | `...slideProps`        | [Slide Props](./api-reference#slide)          | ❌        |                       |         |
 | `factInformation`      | `ReactNode`                                   | ❌        | `Fact information`    |         |
-| `factProps`            | [Text Props](./api-reference#typography-tags) | ❌        | { fontSize: "100px" } |         |
-| `factInformationProps` | [Text Props](./api-reference#typography-tags) | ❌        | { fontSize: "48px" }  |         |
+| `factProps`            | [Text Props](./api-reference#typography-tags) | ❌        | `{ fontSize: "100px" }` |         |
+| `factInformationProps` | [Text Props](./api-reference#typography-tags) | ❌        | `{ fontSize: "48px" }`  |         |
 | `factFontSize`         | `string`                                      | ❌        | `150px`               | `250px` |
 
 ![Big fact layout example slide](../website/static/img/slide-layouts/bigFact.png)
@@ -103,8 +103,8 @@ A quote and attribution layout
 | `...slideProps`    | [Slide Props](./api-reference#slide)          | ❌        |                       |
 | `children`         | `ReactNode`                                   | ✅        | `To be, or not to be` |
 | `attribution`      | `ReactNode`                                   | ✅        | `William Shakespeare` |
-| `quoteProps`       | [Text Props](./api-reference#typography-tags) | ❌        | { fontSize: "100px" } |
-| `attributionProps` | [Text Props](./api-reference#typography-tags) | ❌        | { fontSize: "48px" }  |
+| `quoteProps`       | [Text Props](./api-reference#typography-tags) | ❌        | `{ fontSize: "100px" }` |
+| `attributionProps` | [Text Props](./api-reference#typography-tags) | ❌        | `{ fontSize: "48px" }`  |
 
 ![Quote layout example slide](../website/static/img/slide-layouts/quote.png)
 ![Long quote layout example slide](../website/static/img/slide-layouts/quote2.png)
