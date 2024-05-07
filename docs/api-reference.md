@@ -65,7 +65,7 @@ These tags are for displaying textual content.
 | **`CodeSpan`**      | [**Space**](./props#space)<br />[**Color**](./props#color)<br /> [**Typography**](./props#typography)       | —                          | **fontFamily**: monospace<br />**fontSize**: text                                                                                                                |
 
 
-## Templates 🆕
+## Templates
 
 Templates are overlays that are present on every slide. Typically, they contain controls and deck progress. Spectacle contains a default template, shown below, ready to use that contains the full screen control and the animated progress dots. `<DefaultTemplate />` also supports customizing the color using the prop `color` and CSS color values such as `purple` or `#fff`.
 
