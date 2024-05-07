@@ -315,6 +315,7 @@
   --oss-background-light: var(--oss-color-black);
   --oss-text-dark: var(--oss-color-grey-light);
   --oss-text: var(--oss-color-grey);
+  --oss-input-background: var(--oss-color-grey-darkest);
 }
 
 /*****************************************************************
@@ -329,6 +330,10 @@
 .container {
   padding: calc(var(--ifm-spacing-vertical) * 1.5)
     calc(var(--ifm-spacing-horizontal) * 1.5) !important;
+}
+
+img {
+  height: auto;
 }
 
 .menu__link--sublist-caret:after {
