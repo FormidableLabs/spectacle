@@ -37,7 +37,7 @@ export default function Preview({ content }) {
   } = content;
 
   return (
-    <Wrapper background={meta.theme}>
+    <Wrapper background={meta.theme} className={styles.wrapper}>
       <SectionTitle theme={meta.theme}>{title}</SectionTitle>
       {longText && <BodyCopy theme={meta.theme}>{longText}</BodyCopy>}
       <a
@@ -45,6 +45,7 @@ export default function Preview({ content }) {
         title="See the live preview"
         target="_blank"
         rel="noopener noreferrer"
+        className={styles.demoUrl}
       >
         <video
           className={styles.video}

@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import { OSSBadge } from '@site/src/components/global/oss-badge';
 import NpmCopy from '@site/src/components/global/npm-copy';
 import Wrapper from '@site/src/components/global/wrapper';
 import styles from './hero.module.scss';
+import { FeaturedBadge } from 'formidable-oss-badges';
 
 type NavItem = {
   text: string;
@@ -30,8 +30,6 @@ const Hero = ({ content }) => {
     title,
     tagline,
     installScript,
-    featureButtonText,
-    featureButtonUrl,
     navList
   }: {
     title: string;
@@ -42,27 +40,28 @@ const Hero = ({ content }) => {
     navList: NavItem[];
   } = content;
 
-  const badge = { title };
-
   return (
-    <Wrapper noPadding={true} background="transparent">
+    <Wrapper
+      noPadding={true}
+      background="transparent"
+      className={styles.wrapper}
+    >
       <div className={styles.hero}>
-        <OSSBadge hoverable={false} project={badge} />
+        <div className={styles.badge}>
+          <FeaturedBadge name="spectacle" />
+        </div>
         <div className={styles.heroBody}>
           <h1 className={styles.heroBody__title}>{title}</h1>
           <p className={styles.heroBody__tagline}>{tagline}</p>
           <div className={styles.heroBody__buttons}>
             <NpmCopy text={installScript} />
-            <Link className={styles.button__docs} to={featureButtonUrl}>
-              {featureButtonText}
-            </Link>
           </div>
+          <ul className={styles.heroNav}>
+            {navList.map((item, idx) => (
+              <NavItem key={idx} {...item} />
+            ))}
+          </ul>
         </div>
-        <ul className={styles.heroNav}>
-          {navList.map((item, idx) => (
-            <NavItem key={idx} {...item} />
-          ))}
-        </ul>
       </div>
     </Wrapper>
   );

@@ -1,20 +1,20 @@
 import React from 'react';
-import Header from '@site/src/components/global/header';
-import Footer from '@site/src/components/global/footer';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Features from '@site/src/components/index/features';
 import Preview from '@site/src/components/index/preview';
 import GetStarted from '@site/src/components/index/get-started';
 import MoreOSS from '@site/src/components/index/more-oss';
 import content from '@site/src/components/index/_content';
 
-import styles from './index.module.scss';
 import Head from '@docusaurus/Head';
+import Layout from '@theme/Layout';
+import Hero from '../components/index/hero';
 
 export default function Home() {
-  const { header, footer, features, preview, getStarted, oss } = content;
-
+  const { header, features, preview, getStarted, oss } = content;
+  const { siteConfig } = useDocusaurusContext();
   return (
-    <div className={styles.container}>
+    <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <Head>
         <meta
           name="description"
@@ -33,16 +33,15 @@ export default function Home() {
         />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
-        <title>spectacle Documentation</title>
+        <title>Spectacle Documentation</title>
       </Head>
-      <Header content={header} />
+      <Hero content={header.hero} />
       <main>
         <Features content={features} />
         <Preview content={preview} />
         <GetStarted content={getStarted} />
         <MoreOSS content={oss} />
       </main>
-      <Footer content={footer} />
-    </div>
+    </Layout>
   );
 }

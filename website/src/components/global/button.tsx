@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Link } from 'react-router-dom';
 import styles from './button.module.scss';
 
 type ButtonProps = {
@@ -34,9 +33,9 @@ const Button = ({ as, to, theme, noMargin, children }: ButtonProps) => {
 
   if (as === 'link') {
     return (
-      <Link to={to} className={classNames}>
+      <a href={to} className={classNames}>
         {children}
-      </Link>
+      </a>
     );
   }
 

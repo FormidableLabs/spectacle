@@ -44,7 +44,7 @@ const transition = {
 
 ## Color
 
-**Color** props are used by [`CodeSpan`](./api-reference.md#code-span), [`Text`](./api-reference.md#text), [`Link`](./api-reference.md#link), [`Heading`](./api-reference.md#heading), [`Quote`](./api-reference.md#quote), [`Table`](./api-reference.md#table), [`TableHeader`](./api-reference.md#table-header), [`TableBody`](./api-reference.md#table-body), [`TableRow`](./api-reference.md#table-row), [`TableCell`](./api-reference.md#table-cell), [`UnorderedList`](./api-reference.md#unordered-list), [`OrderedList`](./api-reference.md#ordered-list), and [`ListItem`](./api-reference.md#list-item).
+**Color** props are used by [`CodeSpan`](./api-reference.md#typography-tags), [`Text`](./api-reference.md#typography-tags), [`Link`](./api-reference.md#typography-tags), [`Heading`](./api-reference.md#typography-tags), [`Quote`](./api-reference.md#typography-tags), [`Table`](./api-reference.md#table-tags), [`TableHeader`](./api-reference.md#table-tags), [`TableBody`](./api-reference.md#table-tags), [`TableRow`](./api-reference.md#table-tags), [`TableCell`](./api-reference.md#table-tags), [`UnorderedList`](./api-reference.md#typography-tags), [`OrderedList`](./api-reference.md#typography-tags), and [`ListItem`](./api-reference.md#typography-tags).
 
 | Name                      | PropType         | Description                                             | Example                  |
 | ------------------------- | ---------------- | ------------------------------------------------------- | ------------------------ |
@@ -53,7 +53,7 @@ const transition = {
 
 ## Space
 
-**Space** props used by [`Box`](./api-reference.md#box), [`FlexBox`](./api-reference.md#flex-box), [`Grid`](./api-reference.md#grid), [`CodeSpan`](./api-reference.md#code-span), [`Text`](./api-reference.md#text), [`Link`](./api-reference.md#link), [`Heading`](./api-reference.md#heading), [`Quote`](./api-reference.md#quote), [`Table`](./api-reference.md#table), [`TableHeader`](./api-reference.md#table-header), [`TableBody`](./api-reference.md#table-body), [`TableRow`](./api-reference.md#table-row), [`TableCell`](./api-reference.md#table-cell), [`UnorderedList`](./api-reference.md#unordered-list), [`OrderedList`](./api-reference.md#ordered-list), and [`ListItem`](./api-reference.md#list-item).
+**Space** props used by [`Box`](./api-reference.md#layout-tags), [`FlexBox`](./api-reference.md#layout-tags), [`Grid`](./api-reference.md#layout-tags), [`CodeSpan`](./api-reference.md#typography-tags), [`Text`](./api-reference.md#typography-tags), [`Link`](./api-reference.md#typography-tags), [`Heading`](./api-reference.md#typography-tags), [`Quote`](./api-reference.md#typography-tags), [`Table`](./api-reference.md#table-tags), [`TableHeader`](./api-reference.md#table-tags), [`TableBody`](./api-reference.md#table-tags), [`TableRow`](./api-reference.md#table-tags), [`TableCell`](./api-reference.md#table-tags), [`UnorderedList`](./api-reference.md#typography-tags), [`OrderedList`](./api-reference.md#typography-tags), and [`ListItem`](./api-reference.md#typography-tags).
 
 | Name                    | PropType         | Description                                                             | Example                             |
 | ----------------------- | ---------------- | ----------------------------------------------------------------------- | ----------------------------------- |
@@ -74,13 +74,13 @@ const transition = {
 
 ## Typography
 
-**Typography** props are used by [`CodeSpan`](./api-reference.md#code-span), [`Text`](./api-reference.md#text), [`Link`](./api-reference.md#link), [`Heading`](./api-reference.md#heading), [`Quote`](./api-reference.md#quote), [`Table`](./api-reference.md#table), [`TableHeader`](./api-reference.md#table-header), [`TableBody`](./api-reference.md#table-body), [`TableRow`](./api-reference.md#table-row), [`TableCell`](./api-reference.md#table-cell), [`UnorderedList`](./api-reference.md#unordered-list), [`OrderedList`](./api-reference.md#ordered-list), and [`ListItem`](./api-reference.md#list-item).
+**Typography** props are used by [`CodeSpan`](./api-reference.md#typography-tags), [`Text`](./api-reference.md#typography-tags), [`Link`](./api-reference.md#typography-tags), [`Heading`](./api-reference.md#typography-tags), [`Quote`](./api-reference.md#typography-tags), [`Table`](./api-reference.md#table-tags), [`TableHeader`](./api-reference.md#table-tags), [`TableBody`](./api-reference.md#table-tags), [`TableRow`](./api-reference.md#table-tags), [`TableCell`](./api-reference.md#table-tags), [`UnorderedList`](./api-reference.md#typography-tags), [`OrderedList`](./api-reference.md#typography-tags), and [`ListItem`](./api-reference.md#typography-tags).
 
 | Name            | PropType         | Description                                                    | Example                                                |
 | --------------- | ---------------- | -------------------------------------------------------------- | ------------------------------------------------------ |
 | `fontFamily`    | PropTypes.string | Set CSS `font-family` value or `fonts` theme value             | `Helvetica` or `primary`                               |
 | `fontSize`      | PropTypes.string | Set CSS `font-size` value or `fontSizes` theme value           | `16px` or `bodyCopy`                                   |
-| `fontWeight`    | PropTypes.string | Set CSS `font-weight` value or `fontWeights` theme value       | `400`, `bold`, or [`Heading`](./api-reference.md#heading) |
+| `fontWeight`    | PropTypes.string | Set CSS `font-weight` value or `fontWeights` theme value       | `400`, `bold`, or [`Heading`](./api-reference.md#typography-tags) |
 | `lineHeight`    | PropTypes.string | Set CSS `line-height` value or `fontWeights` theme value       | `1.5em` or `paragraph`                                 |
 | `letterSpacing` | PropTypes.string | Set CSS `letter-spacing` value or `letterSpacings` theme value | `1px` or `spreadOutText`                               |
 | `textAlign`     | PropTypes.string | Set CSS `text-align` value                                     | `left`                                                 |
@@ -88,7 +88,7 @@ const transition = {
 
 ## Layout
 
-**Layout** props are used by [`Box`](./api-reference.md#box), [`FlexBox`](./api-reference.md#flex-box), [`Grid`](./api-reference.md#grid), [`Table`](./api-reference.md#table), [`TableHeader`](./api-reference.md#table-header), [`TableBody`](./api-reference.md#table-body), [`TableRow`](./api-reference.md#table-row), [`TableCell`](./api-reference.md#table-cell), [`CodePane`](./api-reference.md#code-pane), and [`Markdown`](./api-reference.md#markdown-components).
+**Layout** props are used by [`Box`](./api-reference.md#layout-tags), [`FlexBox`](./api-reference.md#layout-tags), [`Grid`](./api-reference.md#layout-tags), [`Table`](./api-reference.md#table-tags), [`TableHeader`](./api-reference.md#table-tags), [`TableBody`](./api-reference.md#table-tags), [`TableRow`](./api-reference.md#table-tags), [`TableCell`](./api-reference.md#table-tags), [`CodePane`](./api-reference.md#code-pane), and [`Markdown`](./api-reference.md#markdown-components).
 
 | Name        | PropType                             | Description                                                                                                                                                                              | Example                                    |
 | ----------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
@@ -106,7 +106,7 @@ const transition = {
 
 ## Flex
 
-**Flex** props are used by [`FlexBox`](./api-reference.md#flex-box).
+**Flex** props are used by [`FlexBox`](./api-reference.md#layout-tags).
 
 | Name             | PropType                             | Description                     | Example         |
 | ---------------- | ------------------------------------ | ------------------------------- | --------------- |
@@ -123,7 +123,7 @@ const transition = {
 
 ## Grid
 
-**Grid** props are used by [`Grid`](./api-reference.md#grid).
+**Grid** props are used by [`Grid`](./api-reference.md#layout-tags).
 
 | Name                  | PropType                             | Description                           | Example                                       |
 | --------------------- | ------------------------------------ | ------------------------------------- | --------------------------------------------- |
@@ -142,7 +142,7 @@ const transition = {
 
 ## Position
 
-**Position** props are used by [`Box`](./api-reference.md#box), [`FlexBox`](./api-reference.md#flex-box), [`Grid`](./api-reference.md#grid), [`CodePane`](./api-reference.md#code-pane), [`FullScreen`](./api-reference.md#fullscreen), [`Progress`](./api-reference.md#progress), [`AnimatedProgress`](./api-reference.md#animatedprogress), and [`Markdown`](./api-reference.md#markdown-components).
+**Position** props are used by [`Box`](./api-reference.md#layout-tags), [`FlexBox`](./api-reference.md#layout-tags), [`Grid`](./api-reference.md#layout-tags), [`CodePane`](./api-reference.md#typography-tags), [`FullScreen`](./api-reference.md#fullscreen), [`Progress`](./api-reference.md#progress), [`AnimatedProgress`](./api-reference.md#animatedprogress), and [`Markdown`](./api-reference.md#markdown-components).
 
 | Name       | PropType         | Description              | Example    |
 | ---------- | ---------------- | ------------------------ | ---------- |
@@ -155,7 +155,7 @@ const transition = {
 
 ## Border
 
-**Border** props are used by [`Box`](./api-reference.md#box), [`FlexBox`](./api-reference.md#flex-box), [`Grid`](./api-reference.md#grid), [`Table`](./api-reference.md#table), [`TableHeader`](./api-reference.md#table-header), [`TableBody`](./api-reference.md#table-body), [`TableRow`](./api-reference.md#table-row), and [`TableCell`](./api-reference.md#table-cell).
+**Border** props are used by [`Box`](./api-reference.md#layout-tags), [`FlexBox`](./api-reference.md#layout-tags), [`Grid`](./api-reference.md#layout-tags), [`Table`](./api-reference.md#table-tags), [`TableHeader`](./api-reference.md#table-tags), [`TableBody`](./api-reference.md#table-tags), [`TableRow`](./api-reference.md#table-tags), and [`TableCell`](./api-reference.md#table-tags).
 
 | Name                      | PropType                             | Description                                    | Example              |
 | ------------------------- | ------------------------------------ | ---------------------------------------------- | -------------------- |

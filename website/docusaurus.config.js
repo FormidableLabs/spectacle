@@ -1,6 +1,5 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-const { romanize } = require('./src/utils/numbers');
 const lightTheme = require('./src/utils/prismLight.js');
 const darkTheme = require('./src/utils/prismDark.js');
 
@@ -10,13 +9,13 @@ async function createConfig() {
     title: 'Spectacle',
     tagline:
       'A React.js based library for creating sleek presentations using JSX syntax that gives you the ability to live demo your code.',
-    url: 'https://formidable.com',
+    url: 'https://commerce.nearform.com/',
     baseUrl:
       process.env.VERCEL_ENV === 'preview' ? '/' : '/open-source/spectacle',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
-    organizationName: 'formidablelabs',
+    organizationName: 'Nearform Commerce',
     projectName: 'spectacle',
 
     presets: [
@@ -88,7 +87,7 @@ async function createConfig() {
               type: 'doc',
               docId: 'index',
               position: 'left',
-              label: 'Docs'
+              label: 'Documentation'
             },
             {
               href: 'https://github.com/FormidableLabs/spectacle',
@@ -98,24 +97,23 @@ async function createConfig() {
               label: 'GitHub Repository'
             },
             {
-              href: 'https://formidable.com',
-              className: 'header-formidable-link',
-              'aria-label': 'Formidable Website',
+              href: 'https://commerce.nearform.com',
+              className: 'header-nearform-link',
+              'aria-label': 'Nearform Commerce Website',
               position: 'right',
-              label: 'Formidable Website'
+              label: 'Nearform Commerce Website'
             }
           ]
         },
         footer: {
           logo: {
-            alt: 'Formidable Labs Logo',
-            src: 'svg/formidable-logo-white.svg',
-            href: 'https://formidable.com',
-            target: '_blank'
+            alt: 'Nearform logo',
+            src: 'img/nearform-logo-white.svg',
+            href: 'https://commerce.nearform.com',
+            width: 100,
+            height: 100
           },
-          copyright: `© ${romanize(
-            new Date().getFullYear()
-          )} Formidable Labs, LLC.`
+          copyright: `Copyright © ${new Date().getFullYear()} Nearform`
         },
         prism: {} // Keep empty object so we can add prism themes below
       })

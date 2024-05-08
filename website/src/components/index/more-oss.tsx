@@ -1,6 +1,5 @@
 import React from 'react';
 import BodyCopy from '@site/src/components/global/body-copy';
-import { OSSBadge } from '@site/src/components/global/oss-badge';
 import Button from '@site/src/components/global/button';
 import SecondaryTitle from '@site/src/components/global/secondary-title';
 import SectionTitle from '@site/src/components/global/section-title';
@@ -8,10 +7,15 @@ import Stack from '@site/src/components/global/stack';
 import Wrapper from '@site/src/components/global/wrapper';
 
 import styles from './more-oss.module.scss';
+import {
+  featuredBadgeNames,
+  FeaturedBadge,
+  ProjectBadge
+} from 'formidable-oss-badges';
 
 type ProductItem = {
   title: string;
-  description: JSX.Element;
+  description: string;
   abbreviation: string;
   color: string;
   link: string;
@@ -41,11 +45,23 @@ function Product({
     theme
   };
 
+  const badge = (card: ProductItem) => {
+    if (featuredBadgeNames.includes(card.title.toLowerCase())) {
+      // @ts-ignore
+      return <FeaturedBadge name={card.title} description={card.description} />;
+    }
+    return (
+      <ProjectBadge
+        abbreviation={card.abbreviation}
+        description={card.title}
+        color="#80EAC7"
+      />
+    );
+  };
+
   return (
     <div key={title} className={styles.ossCard}>
-      <div className={styles.ossBadgeContainer}>
-        <OSSBadge project={card} hoverable />
-      </div>
+      <div className={styles.ossBadgeContainer}>{badge(card)}</div>
       <div className={styles.ossCopyContainer}>
         <a href={link} target="_blank" rel="noopener noreferrer">
           <SecondaryTitle className={styles.ossTitle} theme={theme}>
