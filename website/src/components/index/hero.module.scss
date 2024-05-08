@@ -1,7 +1,7 @@
 @import '../../css/variables.scss';
 
 .wrapper {
-  background: url("../../../static/img/background-banner.png");
+  background: url('../../../static/img/background-banner.png');
   background-size: cover;
   background-repeat: none;
   justify-content: center;
@@ -20,7 +20,7 @@
   padding: $spacing-md 0 $spacing-md;
   color: var(--oss-text-light);
   max-width: $container-xl;
-  
+
   @media ($media-breakpoint-md) {
     margin: 0 $spacing-xxxl 0 $spacing-xxxl;
     padding: $spacing-xxl 0 $spacing-xxl;
@@ -38,7 +38,6 @@
   }
 
   .heroBody {
-
     @media ($media-breakpoint-md) {
       max-width: 50%;
     }
