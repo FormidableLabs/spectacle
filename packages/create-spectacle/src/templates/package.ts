@@ -33,6 +33,7 @@ export const packageTemplate = (options: PackageTemplateOptions) =>
         'style-loader': '^3.3.1',
         'css-loader': '^5.1.3',
         'file-loader': '^6.2.0',
+        'raw-loader': '^4.0.2',
         rimraf: '^3.0.0',
         webpack: '^5.68.0',
         'webpack-cli': '^4.5.0',
