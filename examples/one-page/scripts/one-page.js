@@ -40,8 +40,8 @@ const USE_LOCAL = false;
 // Import Map
 // ================================================================================================
 const importUrl = (k, v, extra = '') => {
-  // Pin react.
-  if (k === 'react') {
+  // Pin react and react-dom
+  if (k === 'react' || k === 'react-dom') {
     v = reactVersion;
   }
 
