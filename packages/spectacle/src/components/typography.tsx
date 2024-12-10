@@ -121,5 +121,6 @@ export {
   UnorderedList,
   ListItem,
   Link,
-  CodeSpan
+  CodeSpan,
+  FitText
 };
