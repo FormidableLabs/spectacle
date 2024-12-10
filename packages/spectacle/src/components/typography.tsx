@@ -11,6 +11,7 @@ import {
   BorderProps
 } from 'styled-system';
 import { FC, PropsWithChildren } from 'react';
+export { FitText } from './typography/fit-text';
 
 const decoration = system({ textDecoration: true });
 type DecorationProps = Pick<CSSObject, 'textDecoration'>;
@@ -121,6 +122,5 @@ export {
   UnorderedList,
   ListItem,
   Link,
-  CodeSpan,
-  FitText
+  CodeSpan
 };
