@@ -12,6 +12,7 @@ import {
   Slide,
   Deck,
   Text,
+  FitText,
   Grid,
   Box,
   Image,
@@ -137,6 +138,9 @@ const Presentation = () => (
           </ListItem>
         </Appear>
       </OrderedList>
+    </Slide>
+    <Slide>
+      <FitText>This is a FitText component</FitText>
     </Slide>
     <Slide>
       <FlexBox>

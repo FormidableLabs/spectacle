@@ -16,7 +16,7 @@ const ScalableText = styled(Text)<{ scale: number }>`
   transform: scale(${(props) => props.scale});
   white-space: nowrap;
   max-width: ${(props) => `${100 / props.scale}%`};
-`;
+` as any; // TODO: FIX TS ERROR (remove `any`).
 
 export const FitText: FC<CommonTypographyProps> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null);
