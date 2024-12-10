@@ -13,9 +13,9 @@ const FitContainer = styled.div`
 
 const ScalableText = styled(Text)<{ scale: number }>`
   transform-origin: center left;
-  transform: scale(${props => props.scale});
+  transform: scale(${(props) => props.scale});
   white-space: nowrap;
-  max-width: ${props => `${100 / props.scale}%`};
+  max-width: ${(props) => `${100 / props.scale}%`};
 `;
 
 export const FitText: FC<CommonTypographyProps> = (props) => {
@@ -27,12 +27,12 @@ export const FitText: FC<CommonTypographyProps> = (props) => {
     ref: containerRef,
     onResize: () => {
       if (!containerRef.current || !textRef.current) return;
-      
+
       const containerWidth = containerRef.current.offsetWidth;
       const textWidth = textRef.current.offsetWidth;
-      
+
       if (textWidth === 0) return;
-      
+
       const newScale = Math.min(containerWidth / textWidth, 1);
       setScale(newScale);
     }

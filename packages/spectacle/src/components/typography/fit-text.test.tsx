@@ -4,16 +4,12 @@ import defaultTheme from '../../theme/default-theme';
 import { FitText } from './fit-text';
 
 const mountWithTheme = (tree: React.ReactElement) => {
-  return render(
-    <ThemeProvider theme={defaultTheme}>{tree}</ThemeProvider>
-  );
+  return render(<ThemeProvider theme={defaultTheme}>{tree}</ThemeProvider>);
 };
 
 describe('<FitText />', () => {
   it('should render text content', () => {
-    const { getByText } = mountWithTheme(
-      <FitText>Spectacle!</FitText>
-    );
+    const { getByText } = mountWithTheme(<FitText>Spectacle!</FitText>);
     expect(getByText('Spectacle!')).toBeInTheDocument();
   });
 
