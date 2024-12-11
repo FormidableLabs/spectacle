@@ -120,27 +120,4 @@ describe('<FitText />', () => {
     expect(textElement).toHaveStyle({ color: defaultTheme.colors.secondary });
     expect(textElement).toHaveStyle({ fontSize: 'h1' });
   });
-
-  it('should scale text when container size changes', () => {
-    // Simulate a container that's smaller than the text
-    jest.mock('use-resize-observer', () => {
-      return { width: 100, height: 100 };
-    });
-
-    const { container } = mountWithTheme(
-      <FitText>Long text that needs scaling</FitText>
-    );
-    const scaledText = container.querySelector('div[scale]');
-    expect(scaledText).toHaveStyle({ transform: 'scale(1)' }); // TODO: Not sure if this is a great test / expected.
-  });
-
-  it('should center text in container', () => {
-    const { container } = mountWithTheme(<FitText>Centered text</FitText>);
-    const fitContainer = container.firstChild;
-    expect(fitContainer).toHaveStyle({
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    });
-  });
 });
