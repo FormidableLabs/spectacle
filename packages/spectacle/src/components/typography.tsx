@@ -10,7 +10,7 @@ import {
   SpaceProps,
   BorderProps
 } from 'styled-system';
-import { FC, PropsWithChildren, useRef, useState } from 'react';
+import { FC, PropsWithChildren, RefAttributes, useRef, useState } from 'react';
 import useResizeObserver from 'use-resize-observer';
 
 const decoration = system({ textDecoration: true });
@@ -121,11 +121,13 @@ const FitContainer = styled.div`
   justify-content: center;
 `;
 
-const ScalableText = styled(Text)<{ scale: number }>`
+const ScalableText = styled(
+  Text as FC<CommonTypographyProps & RefAttributes<HTMLDivElement>>
+)<{ scale: number }>`
   transform-origin: center;
   transform: scale(${(props) => props.scale});
   white-space: nowrap;
-` as any; // TODO: FIX TS ERROR (remove `any`).
+`;
 ScalableText.defaultProps = {
   ...Text.defaultProps,
   scale: 1

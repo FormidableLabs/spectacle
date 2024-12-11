@@ -53,8 +53,6 @@ const SlideFragments = () => (
   </>
 );
 
-console.log({ FitText });
-
 const template = <DefaultTemplate />;
 
 const Presentation = () => (
