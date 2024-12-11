@@ -145,11 +145,6 @@ const FitText: FC<CommonTypographyProps> = (props) => {
   useResizeObserver({
     ref: containerRef,
     onResize: () => {
-      console.log('inside useResizeObserver', {
-        containerRef: containerRef.current,
-        textRef: textRef.current
-      });
-
       if (!containerRef.current || !textRef.current) return;
 
       const containerWidth = containerRef.current.offsetWidth;
@@ -157,12 +152,6 @@ const FitText: FC<CommonTypographyProps> = (props) => {
       if (textWidth === 0) return;
 
       const newScale = Math.min(containerWidth / textWidth);
-      console.log('inside useResizeObserver', {
-        containerWidth,
-        textWidth,
-        newScale
-      });
-
       setScale(newScale);
     }
   });
