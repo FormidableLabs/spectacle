@@ -133,7 +133,7 @@ ScalableText.defaultProps = {
   scale: 1
 };
 
-const FitText: FC<CommonTypographyProps> = (props) => {
+const FitText: FC<PropsWithChildren<CommonTypographyProps>> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);

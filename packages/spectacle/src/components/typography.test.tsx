@@ -1,5 +1,6 @@
 import { PropsWithChildren, ReactElement } from 'react';
 import { ThemeProvider } from 'styled-components';
+import useResizeObserver from 'use-resize-observer';
 
 import defaultTheme from '../theme/default-theme';
 import {
@@ -10,9 +11,13 @@ import {
   UnorderedList,
   ListItem,
   Link,
-  CodeSpan
+  CodeSpan,
+  FitText
 } from './typography';
 import { render } from '@testing-library/react';
+// Mock useResizeObserver for FitText tests
+jest.mock('use-resize-observer');
+const mockedUseResizeObserver = useResizeObserver as jest.Mock;
 
 const mountWithTheme = (tree: ReactElement | JSX.Element) => {
   const WrappingThemeProvider = (props: PropsWithChildren) => (
@@ -89,5 +94,55 @@ describe('<CodeSpan />', () => {
     const { container } = mountWithTheme(<CodeSpan>Code!</CodeSpan>);
 
     expect(container.querySelector('code')?.innerHTML).toBe('Code!');
+  });
+});
+
+describe('<FitText />', () => {
+  beforeEach(() => {
+    // Default mock implementation
+    mockedUseResizeObserver.mockImplementation(({ onResize }) => {
+      onResize({ width: 500, height: 100 });
+      return { ref: null };
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should render text content correctly', () => {
+    const { getByText } = mountWithTheme(<FitText>Spectacle!</FitText>);
+    expect(getByText('Spectacle!')).toBeInTheDocument();
+  });
+
+  it('should apply color and typography props correctly', () => {
+    const { getByText } = mountWithTheme(
+      <FitText color="secondary" fontSize="h1">Spectacle!</FitText>
+    );
+    const textElement = getByText('Spectacle!');
+    expect(textElement).toHaveStyle({ color: defaultTheme.colors.secondary });
+    expect(textElement).toHaveStyle({ fontSize: 'h1' });
+  });
+
+  it('should scale text when container size changes', () => {
+    // Simulate a container that's smaller than the text
+    mockedUseResizeObserver.mockImplementation(({ onResize }) => {
+      onResize({ width: 100, height: 100 });
+      return { ref: null };
+    });
+
+    const { container } = mountWithTheme(<FitText>Long text that needs scaling</FitText>);
+    const scaledText = container.querySelector('div[scale]');
+    expect(scaledText).toHaveStyle({ transform: expect.stringContaining('scale') });
+  });
+
+  it('should center text in container', () => {
+    const { container } = mountWithTheme(<FitText>Centered text</FitText>);
+    const fitContainer = container.firstChild;
+    expect(fitContainer).toHaveStyle({
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    });
   });
 });
