@@ -130,6 +130,7 @@ const ScalableText = styled(
 `;
 ScalableText.defaultProps = {
   ...Text.defaultProps,
+  textAlign: 'center',
   scale: 1
 };
 
