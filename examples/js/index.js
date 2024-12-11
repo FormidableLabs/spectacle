@@ -147,6 +147,7 @@ const Presentation = () => (
         This is a <code>FitText</code> component
       </FitText>
       <FitText
+        color="secondary"
         style={{ textTransform: 'uppercase', fontFamily: 'Comic Sans MS' }}
       >
         Shorter fit text
