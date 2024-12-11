@@ -122,7 +122,7 @@ const FitContainer = styled.div`
 `;
 
 const ScalableText = styled(Text)<{ scale: number }>`
-  transform-origin: center left;
+  transform-origin: center;
   transform: scale(${(props) => props.scale});
   white-space: nowrap;
   max-width: ${(props) => `${100 / props.scale}%`};
@@ -137,17 +137,32 @@ const FitText: FC<CommonTypographyProps> = (props) => {
   const textRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
 
+  console.log('before useResizeObserver', {
+    containerRef: containerRef.current,
+    textRef: textRef.current
+  });
+
   useResizeObserver({
     ref: containerRef,
     onResize: () => {
+      console.log('inside useResizeObserver', {
+        containerRef: containerRef.current,
+        textRef: textRef.current
+      });
+
       if (!containerRef.current || !textRef.current) return;
 
       const containerWidth = containerRef.current.offsetWidth;
       const textWidth = textRef.current.offsetWidth;
-
       if (textWidth === 0) return;
 
-      const newScale = Math.min(containerWidth / textWidth, 1);
+      const newScale = Math.min(containerWidth / textWidth);
+      console.log('inside useResizeObserver', {
+        containerWidth,
+        textWidth,
+        newScale
+      });
+
       setScale(newScale);
     }
   });
@@ -158,7 +173,6 @@ const FitText: FC<CommonTypographyProps> = (props) => {
     </FitContainer>
   );
 };
-
 
 export {
   Text,

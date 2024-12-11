@@ -26,6 +26,11 @@ export const FitText: FC<CommonTypographyProps> = (props) => {
   useResizeObserver({
     ref: containerRef,
     onResize: () => {
+      console.log('onResize', {
+        containerRef: containerRef.current,
+        textRef: textRef.current
+      });
+
       if (!containerRef.current || !textRef.current) return;
 
       const containerWidth = containerRef.current.offsetWidth;

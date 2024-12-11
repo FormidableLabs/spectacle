@@ -53,6 +53,8 @@ const SlideFragments = () => (
   </>
 );
 
+console.log({ FitText });
+
 const template = <DefaultTemplate />;
 
 const Presentation = () => (
@@ -140,7 +142,16 @@ const Presentation = () => (
       </OrderedList>
     </Slide>
     <Slide>
-      <FitText>This is a FitText component</FitText>
+      <Heading>This is a Heading</Heading>
+      <FitText>
+        This is a <code>FitText</code> component
+      </FitText>
+      <FitText
+        style={{ textTransform: 'uppercase', fontFamily: 'Comic Sans MS' }}
+      >
+        Shorter fit text
+      </FitText>
+      <Text>This is a Text. (Resize this window!)</Text>
     </Slide>
     <Slide>
       <FlexBox>
