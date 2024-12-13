@@ -10,7 +10,14 @@ import {
   SpaceProps,
   BorderProps
 } from 'styled-system';
-import { FC, PropsWithChildren, RefAttributes, useRef, useState } from 'react';
+import {
+  FC,
+  PropsWithChildren,
+  RefAttributes,
+  useRef,
+  useState,
+  HTMLAttributes
+} from 'react';
 import useResizeObserver from 'use-resize-observer';
 
 const decoration = system({ textDecoration: true });
@@ -134,7 +141,9 @@ ScalableText.defaultProps = {
   scale: 1
 };
 
-const FitText: FC<PropsWithChildren<CommonTypographyProps>> = (props) => {
+const FitText: FC<
+  PropsWithChildren<CommonTypographyProps & HTMLAttributes<HTMLDivElement>>
+> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);

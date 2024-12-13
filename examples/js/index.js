@@ -142,7 +142,7 @@ const Presentation = () => (
     <Slide>
       <Heading>This is a Heading</Heading>
       <FitText>
-        This is a <code>FitText</code> component
+        This is a <CodeSpan>FitText</CodeSpan> component
       </FitText>
       <FitText
         color="secondary"
