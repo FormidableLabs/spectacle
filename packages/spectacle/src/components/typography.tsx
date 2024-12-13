@@ -10,7 +10,15 @@ import {
   SpaceProps,
   BorderProps
 } from 'styled-system';
-import { FC, PropsWithChildren } from 'react';
+import {
+  FC,
+  PropsWithChildren,
+  RefAttributes,
+  useRef,
+  useState,
+  HTMLAttributes
+} from 'react';
+import useResizeObserver from 'use-resize-observer';
 
 const decoration = system({ textDecoration: true });
 type DecorationProps = Pick<CSSObject, 'textDecoration'>;
@@ -113,6 +121,54 @@ ListItem.defaultProps = {
   margin: 0
 };
 
+const FitContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ScalableText = styled(
+  Text as FC<CommonTypographyProps & RefAttributes<HTMLDivElement>>
+)<{ scale: number }>`
+  transform-origin: center;
+  transform: scale(${(props) => props.scale});
+  white-space: nowrap;
+`;
+ScalableText.defaultProps = {
+  ...Text.defaultProps,
+  textAlign: 'center',
+  scale: 1
+};
+
+const FitText: FC<
+  PropsWithChildren<CommonTypographyProps & HTMLAttributes<HTMLDivElement>>
+> = (props) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useResizeObserver({
+    ref: containerRef,
+    onResize: () => {
+      if (!containerRef.current || !textRef.current) return;
+
+      const containerWidth = containerRef.current.offsetWidth;
+      const textWidth = textRef.current.offsetWidth;
+      if (textWidth === 0) return;
+
+      const newScale = Math.min(containerWidth / textWidth);
+      setScale(newScale);
+    }
+  });
+
+  return (
+    <FitContainer ref={containerRef}>
+      <ScalableText {...props} ref={textRef} scale={scale} />
+    </FitContainer>
+  );
+};
+
 export {
   Text,
   Heading,
@@ -121,5 +177,6 @@ export {
   UnorderedList,
   ListItem,
   Link,
-  CodeSpan
+  CodeSpan,
+  FitText
 };

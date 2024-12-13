@@ -10,7 +10,8 @@ export {
   UnorderedList,
   Text,
   Link,
-  CodeSpan
+  CodeSpan,
+  FitText
 } from './components/typography';
 export {
   Table,

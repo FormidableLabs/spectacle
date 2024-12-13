@@ -10,7 +10,8 @@ import {
   UnorderedList,
   ListItem,
   Link,
-  CodeSpan
+  CodeSpan,
+  FitText
 } from './typography';
 import { render } from '@testing-library/react';
 
@@ -89,5 +90,34 @@ describe('<CodeSpan />', () => {
     const { container } = mountWithTheme(<CodeSpan>Code!</CodeSpan>);
 
     expect(container.querySelector('code')?.innerHTML).toBe('Code!');
+  });
+});
+
+describe('<FitText />', () => {
+  beforeEach(() => {
+    // Default mock implementation
+    jest.mock('use-resize-observer', () => {
+      return { width: 500, height: 100 };
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should render text content correctly', () => {
+    const { getByText } = mountWithTheme(<FitText>Spectacle!</FitText>);
+    expect(getByText('Spectacle!')).toBeInTheDocument();
+  });
+
+  it('should apply color and typography props correctly', () => {
+    const { getByText } = mountWithTheme(
+      <FitText color="secondary" fontSize="h1">
+        Spectacle!
+      </FitText>
+    );
+    const textElement = getByText('Spectacle!');
+    expect(textElement).toHaveStyle({ color: defaultTheme.colors.secondary });
+    expect(textElement).toHaveStyle({ fontSize: 'h1' });
   });
 });

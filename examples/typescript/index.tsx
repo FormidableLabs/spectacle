@@ -12,6 +12,7 @@ import {
   Slide,
   Deck,
   Text,
+  FitText,
   Grid,
   Box,
   Image,
@@ -136,6 +137,19 @@ const Presentation = () => (
           </ListItem>
         </Appear>
       </OrderedList>
+    </Slide>
+    <Slide>
+      <Heading>This is a Heading</Heading>
+      <FitText>
+        This is a <CodeSpan>FitText</CodeSpan> component
+      </FitText>
+      <FitText
+        color="secondary"
+        style={{ textTransform: 'uppercase', fontFamily: 'Comic Sans MS' }}
+      >
+        Shorter fit text
+      </FitText>
+      <Text>This is a Text. (Resize this window!)</Text>
     </Slide>
     <Slide>
       <FlexBox>
