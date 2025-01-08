@@ -1,3 +1,5 @@
+// @ts-check
+// Note: type annotations allow type checking and IDEs autocompletion
 const lightTheme = require('./src/utils/prismLight.js');
 const darkTheme = require('./src/utils/prismDark.js');
 
