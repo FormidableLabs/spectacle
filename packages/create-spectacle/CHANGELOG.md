@@ -1,5 +1,11 @@
 # create-spectacle
 
+## 0.4.3
+
+### Patch Changes
+
+- Fix Missing Backtick in Readme-Template ([#1335](https://github.com/FormidableLabs/spectacle/pull/1335))
+
 ## 0.4.2
 
 ### Patch Changes

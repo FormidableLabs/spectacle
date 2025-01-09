@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.2.0
+
+### Minor Changes
+
+- Add `FitText` typography component. ([#1342](https://github.com/FormidableLabs/spectacle/pull/1342))
+
 ## 10.1.8
 
 ### Patch Changes
