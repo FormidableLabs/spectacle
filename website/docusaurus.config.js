@@ -3,12 +3,16 @@
 const lightTheme = require('./src/utils/prismLight.js');
 const darkTheme = require('./src/utils/prismDark.js');
 
+const title = 'Spectacle';
+const subtitle = `${title} - React library for sleek presentations, using JSX syntax`;
+const tagline =
+  'A React.js based library for creating sleek presentations using JSX syntax that gives you the ability to live demo your code.';
+
 async function createConfig() {
   /** @type {import("@docusaurus/types").Config} */
   const config = {
-    title: 'Spectacle',
-    tagline:
-      'A React.js based library for creating sleek presentations using JSX syntax that gives you the ability to live demo your code.',
+    title,
+    tagline,
     url: 'https://commerce.nearform.com/',
     baseUrl:
       process.env.VERCEL_ENV === 'preview' ? '/' : '/open-source/spectacle',
@@ -17,7 +21,6 @@ async function createConfig() {
     favicon: 'img/favicon.ico',
     organizationName: 'Nearform Commerce',
     projectName: 'spectacle',
-
     presets: [
       [
         '@docusaurus/preset-classic',
@@ -57,7 +60,6 @@ async function createConfig() {
         })
       ]
     ],
-
     plugins: [
       'docusaurus-plugin-sass',
       [
@@ -72,7 +74,6 @@ async function createConfig() {
         }
       ]
     ],
-
     themeConfig:
       /** @type {import("@docusaurus/preset-classic").ThemeConfig} */
       ({
@@ -115,7 +116,59 @@ async function createConfig() {
           },
           copyright: `Copyright © ${new Date().getFullYear()} Nearform`
         },
-        prism: {} // Keep empty object so we can add prism themes below
+        prism: {}, // Keep empty object so we can add prism themes below
+        metadata: [
+          {
+            name: 'title',
+            content: subtitle
+          },
+          {
+            name: 'description',
+            content: tagline
+          },
+          {
+            name: 'viewport',
+            content: 'width=device-width, initial-scale=1, maximum-scale=1'
+          },
+          {
+            property: 'og:type',
+            content: 'website'
+          },
+          {
+            property: 'og:url',
+            content: 'https://commerce.nearform.com/open-source/spectacle/'
+          },
+          {
+            property: 'og:title',
+            content: subtitle
+          },
+          {
+            property: 'og:description',
+            content: tagline
+          },
+          {
+            property: 'og:image',
+            content:
+              'https://commerce.nearform.com/open-source/spectacle/open-graph.png'
+          },
+          {
+            property: 'twitter:card',
+            content: 'summary_large_image'
+          },
+          {
+            property: 'twitter:title',
+            content: subtitle
+          },
+          {
+            property: 'twitter:description',
+            content: tagline
+          },
+          {
+            property: 'twitter:image',
+            content:
+              'https://commerce.nearform.com/open-source/spectacle/open-graph.png'
+          }
+        ]
       })
   };
 
@@ -125,5 +178,4 @@ async function createConfig() {
   config.themeConfig.prism.darkTheme = darkTheme;
   return config;
 }
-
 module.exports = createConfig;
