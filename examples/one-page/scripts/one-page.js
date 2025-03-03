@@ -25,7 +25,7 @@ const reactPkgPath = require.resolve('react/package.json', {
   paths: [SPECTACLE_PATH]
 });
 const { version: reactVersion } = require(reactPkgPath);
-const DEPS = `deps=react@${reactVersion}`;
+const DEPS = `deps=react@${reactVersion},react-dom@${reactVersion}`;
 
 // Toggle dev resources. (Use if debugging load / dependency errors).
 const IS_DEV = false;
