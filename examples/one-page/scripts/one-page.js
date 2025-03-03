@@ -16,7 +16,7 @@ const SRC_FILE = path.join(EXAMPLES, 'js/index.js');
 const DEST_FILE = path.join(EXAMPLES, 'one-page/index.html');
 
 // Dependencies.
-const ESM_SH_VERSION = 'v121'; // v121, stable, etc.
+const ESM_SH_VERSION = ''; // 'v121/, stable, etc.
 const {
   dependencies,
   peerDependencies
@@ -25,10 +25,10 @@ const reactPkgPath = require.resolve('react/package.json', {
   paths: [SPECTACLE_PATH]
 });
 const { version: reactVersion } = require(reactPkgPath);
-const DEPS = `deps=react@${reactVersion},react-dom@${reactVersion}`;
+const EXTERNAL = `external=react,react-dom`;
 
 // Toggle dev resources. (Use if debugging load / dependency errors).
-const IS_DEV = false;
+const IS_DEV = true;
 const DEV = IS_DEV ? '&dev' : '';
 
 // Use local built spectacle? Toggle to `true` for dev-only.
@@ -39,13 +39,15 @@ const USE_LOCAL = false;
 // ================================================================================================
 // Import Map
 // ================================================================================================
-const importUrl = (k, v, extra = '') => {
+const importUrl = (k, v, extra = '', params = '') => {
+  let external = EXTERNAL;
   // Pin react and react-dom.
   if (k === 'react' || k === 'react-dom') {
     v = reactVersion;
+    external = '';
   }
 
-  return `https://esm.sh/${ESM_SH_VERSION}/${k}@${v}${extra}?${DEPS}${DEV}`;
+  return `https://esm.sh/${ESM_SH_VERSION}${k}@${v}${extra}?${external}${params}${DEV}`;
 };
 
 const getImportMap = () => {
@@ -54,7 +56,7 @@ const getImportMap = () => {
     htm: importUrl('htm', '^3'),
     spectacle: USE_LOCAL
       ? '../../packages/spectacle/lib/index.mjs'
-      : 'https://esm.sh/spectacle@10?bundle'
+      : importUrl('spectacle', '10', '', '&bundle')
   };
 
   Object.entries(Object.assign({}, dependencies, peerDependencies))

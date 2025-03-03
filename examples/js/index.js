@@ -12,7 +12,6 @@ import {
   Slide,
   Deck,
   Text,
-  FitText,
   Grid,
   Box,
   Image,
@@ -23,6 +22,7 @@ import {
   DefaultTemplate,
   SlideLayout
 } from 'spectacle';
+const FitText = Text; // TODO: NEED PUBLISH
 
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
