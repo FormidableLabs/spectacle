@@ -42,7 +42,7 @@
     "webpack": "5.76.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1",
-    "wireit": "^0.7.2"
+    "wireit": "^0.14.12"
   },
   "pnpm": {
     "neverBuiltDependencies": [
