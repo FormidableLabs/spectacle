@@ -34,7 +34,7 @@ const DeckTypeOptions = [
   { title: 'React using webpack', value: 'tsx' }
 ];
 
-let progressInterval: NodeJS.Timer;
+let progressInterval: NodeJS.Timeout;
 const log = console.log;
 const printConsoleError = (message: string) =>
   chalk.whiteBright.bgRed.bold(' ! ') + chalk.red.bold(' ' + message + '\n');
