@@ -3,20 +3,25 @@ import { onePageTemplate } from '../templates/one-page';
 const spectaclePackage = require(`${__dirname}/../../spectacle-package.json`);
 const REACT_VERSION = spectaclePackage.devDependencies.react.replace('^', '');
 const ESM_SH_VERSION = 'v121';
+const DEVELOPMENT_BUILDS = false; // Enable this to use react.development.mjs etc...
 
 export const generateImportMap = () => {
   const importMap = new Map<string, string>();
-  const { dependencies, peerDependencies } = spectaclePackage;
 
+  importMap.set('spectacle', importUrl('spectacle', '10', '?bundle'));
+  importMap.set('react', importUrl('react', REACT_VERSION));
+  importMap.set(
+    'react/jsx-runtime',
+    importUrl('react', REACT_VERSION, '/jsx-runtime')
+  );
+  importMap.set(
+    'react-dom/client',
+    importUrl('react-dom', REACT_VERSION, '/client')
+  );
   importMap.set('htm', importUrl('htm', '^3'));
-  importMap.set('spectacle', 'https://esm.sh/spectacle@10?bundle');
 
-  const sortedDeps = <[string, string][]>Object.entries({
-    ...dependencies,
-    ...peerDependencies
-  }).sort(([a], [b]) => a.localeCompare(b));
-
-  for (const [pkg, version] of sortedDeps) {
+  const dependencies = spectaclePackage.dependencies as Record<string, string>;
+  for (const [pkg, version] of Object.entries(dependencies)) {
     if (importMap.has(pkg)) continue;
     importMap.set(pkg, importUrl(pkg, version));
     handlePackageExceptions(pkg, version, importMap);
@@ -30,9 +35,12 @@ export const createOnePage = (name: string, lang: string) => {
   return onePageTemplate({ importMap, name, lang });
 };
 
-const importUrl = (pkg: string, version: string, extra = '') => {
-  if (pkg === 'react') version = REACT_VERSION;
-  return `https://esm.sh/${ESM_SH_VERSION}/${pkg}@${version}${extra}?deps=react@${REACT_VERSION}`;
+const importUrl = (pkg: string, version: string, path = '') => {
+  let params = `?deps=react@${REACT_VERSION},react-dom@${REACT_VERSION}`;
+  if (DEVELOPMENT_BUILDS) params += '&dev';
+  if (path.includes('?')) params = params.replace('?', '&');
+
+  return `https://esm.sh/${ESM_SH_VERSION}/${pkg}@${version}${path}${params}`;
 };
 
 const handlePackageExceptions = (
@@ -40,12 +48,7 @@ const handlePackageExceptions = (
   version: string,
   importMap: Map<string, string>
 ) => {
-  if (pkg === 'react')
-    importMap.set(
-      `${pkg}/jsx-runtime`,
-      importUrl(pkg, version, '/jsx-runtime')
-    );
-  else if (pkg === 'react-syntax-highlighter') {
+  if (pkg === 'react-syntax-highlighter') {
     importMap.set(
       `${pkg}/dist/cjs/styles/prism/vs-dark.js`,
       importUrl(pkg, version, '/dist/esm/styles/prism/vs-dark.js')

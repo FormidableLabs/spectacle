@@ -30,7 +30,6 @@
     "shx": "^0.3.4",
     "spectacle": "*"
   },
-  "resolutions": {},
   "scripts": {
     "dev": "pnpm copy-spectacle-package && ts-node src/cli.ts",
     "build": "wireit",
