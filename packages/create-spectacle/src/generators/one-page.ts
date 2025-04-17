@@ -3,20 +3,30 @@ import { onePageTemplate } from '../templates/one-page';
 const spectaclePackage = require(`${__dirname}/../../spectacle-package.json`);
 const REACT_VERSION = spectaclePackage.devDependencies.react.replace('^', '');
 const ESM_SH_VERSION = 'v121';
+const DEVELOPMENT_BUILDS = false; // Enable this to use react.development.mjs etc...
 
 export const generateImportMap = () => {
   const importMap = new Map<string, string>();
-  const { dependencies, peerDependencies } = spectaclePackage;
 
   importMap.set('htm', importUrl('htm', '^3'));
-  importMap.set('spectacle', 'https://esm.sh/spectacle@10?bundle');
+  importMap.set('spectacle', importUrl('spectacle', '10', '?bundle'));
+  importMap.set('react', importUrl('react', REACT_VERSION));
+  importMap.set(
+    'react/jsx-runtime',
+    importUrl('react', REACT_VERSION, '/jsx-runtime')
+  );
+  importMap.set(
+    'react-dom/client',
+    importUrl('react-dom', REACT_VERSION, '/client')
+  );
+  // importMap.set('react-dom', importUrl('react-dom', REACT_VERSION));
 
-  const sortedDeps = <[string, string][]>Object.entries({
-    ...dependencies,
-    ...peerDependencies
-  }).sort(([a], [b]) => a.localeCompare(b));
-
-  for (const [pkg, version] of sortedDeps) {
+  type Dependencies = Record<string, string>;
+  const dependencies = Object.entries({
+    ...spectaclePackage.dependencies
+    // ...spectaclePackage.peerDependencies
+  } as Dependencies);
+  for (const [pkg, version] of dependencies) {
     if (importMap.has(pkg)) continue;
     importMap.set(pkg, importUrl(pkg, version));
     handlePackageExceptions(pkg, version, importMap);
@@ -30,9 +40,14 @@ export const createOnePage = (name: string, lang: string) => {
   return onePageTemplate({ importMap, name, lang });
 };
 
-const importUrl = (pkg: string, version: string, extra = '') => {
-  if (pkg === 'react') version = REACT_VERSION;
-  return `https://esm.sh/${ESM_SH_VERSION}/${pkg}@${version}${extra}?deps=react@${REACT_VERSION}`;
+const importUrl = (pkg: string, version: string, path = '') => {
+  if (pkg === 'react' || pkg === 'react-dom') version = REACT_VERSION;
+
+  let params = `?deps=react@${REACT_VERSION},react-dom@${REACT_VERSION}`;
+
+  if (DEVELOPMENT_BUILDS) params += '&dev';
+  if (path.includes('?')) params = params.replace('?', '&');
+  return `https://esm.sh/${ESM_SH_VERSION}/${pkg}@${version}${path}${params}`;
 };
 
 const handlePackageExceptions = (
@@ -44,6 +59,11 @@ const handlePackageExceptions = (
     importMap.set(
       `${pkg}/jsx-runtime`,
       importUrl(pkg, version, '/jsx-runtime')
+    );
+  else if (pkg === 'react-dom')
+    importMap.set(
+      `${pkg}/client`, //
+      importUrl(pkg, version, '/client')
     );
   else if (pkg === 'react-syntax-highlighter') {
     importMap.set(
