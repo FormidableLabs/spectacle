@@ -8,7 +8,6 @@ const DEVELOPMENT_BUILDS = false; // Enable this to use react.development.mjs et
 export const generateImportMap = () => {
   const importMap = new Map<string, string>();
 
-  importMap.set('htm', importUrl('htm', '^3'));
   importMap.set('spectacle', importUrl('spectacle', '10', '?bundle'));
   importMap.set('react', importUrl('react', REACT_VERSION));
   importMap.set(
@@ -19,14 +18,10 @@ export const generateImportMap = () => {
     'react-dom/client',
     importUrl('react-dom', REACT_VERSION, '/client')
   );
-  // importMap.set('react-dom', importUrl('react-dom', REACT_VERSION));
+  importMap.set('htm', importUrl('htm', '^3'));
 
-  type Dependencies = Record<string, string>;
-  const dependencies = Object.entries({
-    ...spectaclePackage.dependencies
-    // ...spectaclePackage.peerDependencies
-  } as Dependencies);
-  for (const [pkg, version] of dependencies) {
+  const dependencies = spectaclePackage.dependencies as Record<string, string>;
+  for (const [pkg, version] of Object.entries(dependencies)) {
     if (importMap.has(pkg)) continue;
     importMap.set(pkg, importUrl(pkg, version));
     handlePackageExceptions(pkg, version, importMap);
@@ -41,12 +36,10 @@ export const createOnePage = (name: string, lang: string) => {
 };
 
 const importUrl = (pkg: string, version: string, path = '') => {
-  if (pkg === 'react' || pkg === 'react-dom') version = REACT_VERSION;
-
   let params = `?deps=react@${REACT_VERSION},react-dom@${REACT_VERSION}`;
-
   if (DEVELOPMENT_BUILDS) params += '&dev';
   if (path.includes('?')) params = params.replace('?', '&');
+
   return `https://esm.sh/${ESM_SH_VERSION}/${pkg}@${version}${path}${params}`;
 };
 
@@ -55,17 +48,7 @@ const handlePackageExceptions = (
   version: string,
   importMap: Map<string, string>
 ) => {
-  if (pkg === 'react')
-    importMap.set(
-      `${pkg}/jsx-runtime`,
-      importUrl(pkg, version, '/jsx-runtime')
-    );
-  else if (pkg === 'react-dom')
-    importMap.set(
-      `${pkg}/client`, //
-      importUrl(pkg, version, '/client')
-    );
-  else if (pkg === 'react-syntax-highlighter') {
+  if (pkg === 'react-syntax-highlighter') {
     importMap.set(
       `${pkg}/dist/cjs/styles/prism/vs-dark.js`,
       importUrl(pkg, version, '/dist/esm/styles/prism/vs-dark.js')
