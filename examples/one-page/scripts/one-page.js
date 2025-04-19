@@ -28,7 +28,7 @@ const { version: reactVersion } = require(reactPkgPath);
 const EXTERNAL = `external=react,react-dom`;
 
 // Toggle dev resources. (Use if debugging load / dependency errors).
-const IS_DEV = true;
+const IS_DEV = false;
 const DEV = IS_DEV ? '&dev' : '';
 
 // Use local built spectacle? Toggle to `true` for dev-only.
