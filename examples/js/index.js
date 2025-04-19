@@ -38,10 +38,10 @@ const theme = {
 
 const SlideFragments = () => (
   <>
-    <Slide>
+    <Slide key="slide-fragment-1">
       <Text>This is a slide fragment.</Text>
     </Slide>
-    <Slide>
+    <Slide key="slide-fragment-2">
       <Text>This is also a slide fragment.</Text>
       <Appear>
         <Text>This item shows up!</Text>

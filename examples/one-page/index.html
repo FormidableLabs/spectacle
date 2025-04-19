@@ -9,6 +9,12 @@
   <body>
     <div id="root"></div>
 
+    <!--
+    For local development
+      "spectacle": "../packages/spectacle/lib/index.mjs",
+    For production
+      "spectacle": "https://esm.sh/spectacle@10?external=react,react-dom&bundle&dev",
+     -->
     <script type="importmap">
       {
         "imports": {
@@ -89,10 +95,10 @@
 
       // SPECTACLE_CLI_THEME_END
       const SlideFragments = () => html`
-        <${Slide}>
+        <${Slide} key="slide-fragment-1">
           <${Text}>This is a slide fragment.</${Text}>
         </${Slide}>
-        <${Slide}>
+        <${Slide} key="slide-fragment-2">
           <${Text}>This is also a slide fragment.</${Text}>
           <${Appear}>
             <${Text}>This item shows up!</${Text}>

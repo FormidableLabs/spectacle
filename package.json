@@ -56,6 +56,7 @@
     "start:md": "concurrently --raw pnpm:build:spectacle:watch \"pnpm run --filter ./examples/md start\"",
     "start:mdx": "concurrently --raw pnpm:build:spectacle:watch \"pnpm run --filter ./examples/mdx start\"",
     "start:ts": "concurrently --raw pnpm:build:spectacle:watch \"pnpm run --filter ./examples/typescript start\"",
+    "start:one-page": "concurrently --raw pnpm:build:spectacle:watch \"pnpm run --filter ./examples/one-page start\"",
     "start:examples": "concurrently --raw pnpm:build:spectacle:watch \"pnpm run --parallel --filter \\\"./examples/*\\\" start\"",
     "start:create-spectacle": "pnpm run --filter ./packages/create-spectacle build --watch",
     "start:docs": "pnpm run --filter spectacle-docs start",
