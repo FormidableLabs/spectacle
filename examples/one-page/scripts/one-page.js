@@ -69,6 +69,9 @@ const getImportMap = () => {
       if (k === 'react') {
         importMap[`${k}/jsx-runtime`] = importUrl(k, v, '/jsx-runtime');
       }
+      if (k === 'react-dom') {
+        importMap[`${k}/client`] = importUrl(k, v, '/client');
+      }
       if (k === 'react-syntax-highlighter') {
         importMap[`${k}/dist/cjs/styles/prism/vs-dark.js`] = importUrl(
           k,

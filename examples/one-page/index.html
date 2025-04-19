@@ -26,6 +26,7 @@
           "react": "https://esm.sh/react@18.2.0?&dev",
           "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime?&dev",
           "react-dom": "https://esm.sh/react-dom@18.2.0?&dev",
+          "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?&dev",
           "react-fast-compare": "https://esm.sh/react-fast-compare@^3.2.0?external=react,react-dom&dev",
           "react-is": "https://esm.sh/react-is@^18.1.0?external=react,react-dom&dev",
           "react-spring": "https://esm.sh/react-spring@^9.5.5?external=react,react-dom&dev",
@@ -47,7 +48,7 @@
     </script>
     <script type="module">
       import React from 'react';
-      import ReactDOM from 'react-dom';
+      import { createRoot } from 'react-dom/client';
       import {
         FlexBox,
         Heading,
@@ -283,7 +284,7 @@
           <${SlideLayout.List} title="Slide layouts!" items=${['Two-column', 'Lists' , 'And more!' ]} animateListItems />
         </${Deck}>
       `;
-      const root = ReactDOM.createRoot(document.getElementById('root'));
+      const root = createRoot(document.getElementById('root'));
       root.render(html`<${Presentation}/>`);
     </script>
   </body>
