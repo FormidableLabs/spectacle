@@ -2,6 +2,16 @@
 
 /**
  * Generate the JS `index.html` from `examples/js/index.js`
+ *
+ * To rebuild:
+ * ```sh
+ * pnpm run build:one-page
+ * ```
+ *
+ * To do dev builds and testing:
+ * ```sh
+ * USE_LOCAL=true IS_DEV=true pnpm run build:one-page && pnpm run start:one-page
+ * ```
  */
 const fs = require('fs').promises;
 const path = require('path');
@@ -28,19 +38,20 @@ const { version: reactVersion } = require(reactPkgPath);
 const EXTERNAL = `external=react,react-dom`;
 
 // Toggle dev resources. (Use if debugging load / dependency errors).
-const IS_DEV = false;
+const IS_DEV = process.env.IS_DEV === 'true';
 const DEV = IS_DEV ? '&dev' : '';
 
 // Use local built spectacle? Toggle to `true` for dev-only.
 // Note: Due to CORS, you'll need to run `pnpm run --filter ./examples/one-page start` and
 // open http://localhost:5000/examples/one-page to work.
-const USE_LOCAL = false;
+const USE_LOCAL = process.env.USE_LOCAL === 'true';
 
 // ================================================================================================
 // Import Map
 // ================================================================================================
 const importUrl = (k, v, extra = '', params = '') => {
   let external = EXTERNAL;
+
   // Pin react and react-dom.
   if (k === 'react' || k === 'react-dom') {
     v = reactVersion;
