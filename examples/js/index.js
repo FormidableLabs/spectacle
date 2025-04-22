@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import {
   FlexBox,
   Heading,
@@ -38,10 +38,10 @@ const theme = {
 
 const SlideFragments = () => (
   <>
-    <Slide>
+    <Slide key="slide-fragment-1">
       <Text>This is a slide fragment.</Text>
     </Slide>
-    <Slide>
+    <Slide key="slide-fragment-2">
       <Text>This is also a slide fragment.</Text>
       <Appear>
         <Text>This item shows up!</Text>
@@ -267,5 +267,5 @@ const Presentation = () => (
   </Deck>
 );
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
 root.render(<Presentation />);
