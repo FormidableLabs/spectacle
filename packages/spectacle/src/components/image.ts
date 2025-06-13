@@ -8,19 +8,10 @@ type ImageType = FC<
 >;
 
 const Image = styled.img(compose(layout, position)) as ImageType;
-
-// Option 1: Using styled-components `attrs` method to set default props
-const FullSizeImage = styled(Image).attrs<SS.LayoutProps>({
+const FullSizeImage = styled(Image).attrs<SS.LayoutProps>((props) => ({
   maxWidth: '100%',
-  maxHeight: '100%'
-})`
-  /* Additional styles can go here if needed */
-` as unknown as ImageType;
-
-// Option 2: Alternative approach using CSS defaults
-// const FullSizeImage = styled(Image)`
-//   max-width: 100%;
-//   max-height: 100%;
-// ` as unknown as ImageType;
+  maxHeight: '100%',
+  ...props
+})) as unknown as ImageType;
 
 export { Image, FullSizeImage };
