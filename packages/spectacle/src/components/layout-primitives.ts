@@ -29,25 +29,20 @@ const Box = styled.div<BoxProps>(
   containerPrintStyle
 );
 
-const FlexBox = styled.div<BoxProps & SS.FlexboxProps>(
+const FlexBox = styled.div.attrs<BoxProps & SS.FlexboxProps>((props) => ({
+  alignItems: 'center',
+  justifyContent: 'center',
+  display: 'flex',
+  ...props
+}))<BoxProps & SS.FlexboxProps>(
   compose(layout, space, position, color, border, flexbox),
   containerPrintStyle
 );
 
-FlexBox.defaultProps = {
-  alignItems: 'center',
-  justifyContent: 'center',
-  display: 'flex'
-};
-
 type GridProps = SS.LayoutProps & SS.GridProps & SS.PositionProps;
-const Grid = styled.div<GridProps>(
-  compose(layout, grid, position),
-  containerPrintStyle
-);
-
-Grid.defaultProps = {
-  display: 'grid'
-};
+const Grid = styled.div.attrs<GridProps>((props) => ({
+  display: 'grid',
+  ...props
+}))<GridProps>(compose(layout, grid, position), containerPrintStyle);
 
 export { Box, FlexBox, Grid };
