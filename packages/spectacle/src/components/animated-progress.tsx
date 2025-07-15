@@ -27,6 +27,8 @@ export const PacmanBase = styled.div<PacmanBaseProps>`
   width: ${({ pacmanSize }) => pacmanSize}px;
   transition: left 0.3s ease-in-out 0.2s;
   transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  overflow: hidden;
 `;
 
 const pacmanTopFrames = keyframes`
