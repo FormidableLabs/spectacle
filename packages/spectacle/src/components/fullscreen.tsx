@@ -17,7 +17,7 @@ const Container = styled('div')`
 `;
 
 const FullScreen = forwardRef<HTMLDivElement, FSProps>(
-  ({ size, color, ...props }, ref) => {
+  ({ size = 24, color = '#fff', ...props }, ref) => {
     const toggleFullScreen = useToggleFullScreen();
     const [isClient, setIsClient] = useState(false);
 
@@ -51,10 +51,5 @@ const FullScreen = forwardRef<HTMLDivElement, FSProps>(
 );
 
 FullScreen.displayName = 'Fullscreen';
-
-FullScreen.defaultProps = {
-  color: '#fff',
-  size: 24
-};
 
 export default FullScreen;

@@ -19,67 +19,52 @@ export type TableProps = ColorProps &
   BorderProps &
   LayoutProps;
 
-const Table = styled.table<TableProps>(
-  compose(color, typography, space, border, layout)
-);
-
-Table.defaultProps = {
+const Table = styled.table.attrs<TableProps>((props) => ({
   color: 'primary',
   fontFamily: 'text',
   fontSize: 'text',
   textAlign: 'left',
   margin: 'listMargin',
-  width: 1
-};
+  width: 1,
+  ...props
+}))<TableProps>(compose(color, typography, space, border, layout));
 
-const TableHeader = styled.thead<TableProps>(
-  compose(color, typography, space, border, layout)
-);
-
-TableHeader.defaultProps = {
+const TableHeader = styled.thead.attrs<TableProps>((props) => ({
   color: 'primary',
   fontFamily: 'text',
   fontSize: 'text',
   fontWeight: 'bold',
   textAlign: 'left',
-  margin: 'listMargin'
-};
+  margin: 'listMargin',
+  ...props
+}))<TableProps>(compose(color, typography, space, border, layout));
 
-const TableBody = styled.tbody<TableProps>(
-  compose(color, typography, space, border, layout)
-);
-
-TableBody.defaultProps = {
+const TableBody = styled.tbody.attrs<TableProps>((props) => ({
   color: 'primary',
   fontFamily: 'text',
   fontSize: 'text',
   textAlign: 'left',
   margin: 'listMargin',
-  width: 1
-};
+  width: 1,
+  ...props
+}))<TableProps>(compose(color, typography, space, border, layout));
 
-const TableRow = styled.tr<TableProps>(
-  compose(color, typography, space, border, layout)
-);
-
-TableRow.defaultProps = {
+const TableRow = styled.tr.attrs<TableProps>((props) => ({
   color: 'primary',
   fontFamily: 'text',
   fontSize: 'text',
   textAlign: 'left',
-  margin: 'listMargin'
-};
+  margin: 'listMargin',
+  ...props
+}))<TableProps>(compose(color, typography, space, border, layout));
 
-const TableCell = styled.td<TableProps>(
-  compose(color, typography, space, border, layout)
-);
-
-TableCell.defaultProps = {
+const TableCell = styled.td.attrs<TableProps>((props) => ({
   color: 'primary',
   fontFamily: 'text',
   fontSize: 'text',
   textAlign: 'left',
-  margin: 'listMargin'
-};
+  margin: 'listMargin',
+  ...props
+}))<TableProps>(compose(color, typography, space, border, layout));
 
 export { Table, TableCell, TableRow, TableHeader, TableBody };

@@ -25,51 +25,58 @@ type DecorationProps = Pick<CSSObject, 'textDecoration'>;
 
 export type CommonTypographyProps = ColorProps & TypographyProps & SpaceProps;
 
-const Text = styled.div<CommonTypographyProps>(
-  compose(color, typography, space)
-);
-Text.defaultProps = {
+const Text = styled.div.attrs<CommonTypographyProps>((props) => ({
   color: 'primary',
   fontFamily: 'text',
   fontSize: 'text',
   textAlign: 'left',
   padding: 0,
-  margin: 0
-};
+  margin: 0,
+  ...props
+}))<CommonTypographyProps>(compose(color, typography, space));
 
-const CodeSpan = styled.code<CommonTypographyProps>(
-  compose(color, typography, space)
-);
-CodeSpan.defaultProps = {
+const CodeSpan = styled.code.attrs<CommonTypographyProps>((props) => ({
   fontFamily: 'monospace',
-  fontSize: 'text'
-};
+  fontSize: 'text',
+  ...props
+}))<CommonTypographyProps>(compose(color, typography, space));
 
-const Link = styled.a<CommonTypographyProps & DecorationProps>(
+const Link = styled.a.attrs<CommonTypographyProps & DecorationProps>(
+  (props) => ({
+    fontFamily: 'text',
+    fontSize: 'text',
+    textDecoration: 'underline',
+    color: 'quaternary',
+    ...props
+  })
+)<CommonTypographyProps & DecorationProps>(
   compose(color, typography, space, decoration)
 );
-Link.defaultProps = {
-  fontFamily: 'text',
-  fontSize: 'text',
-  textDecoration: 'underline',
-  color: 'quaternary'
-};
 
-const Heading = styled(Text)({});
-Heading.defaultProps = {
+const Heading = styled(Text).attrs<CommonTypographyProps>((props) => ({
   color: 'secondary',
   fontFamily: 'header',
   fontSize: 'h1',
   fontWeight: 'bold',
   textAlign: 'center',
-  margin: 1
-};
+  margin: 1,
+  ...props
+}))<CommonTypographyProps>({});
 
 const Quote = styled(
   Text as FC<
     PropsWithChildren<CommonTypographyProps & Pick<BorderProps, 'borderColor'>>
   >
-)`
+).attrs<CommonTypographyProps & Pick<BorderProps, 'borderColor'>>((props) => ({
+  color: 'primary',
+  fontFamily: 'text',
+  fontSize: 'text',
+  textAlign: 'left',
+  fontStyle: 'italic',
+  padding: '16px 0 16px 8px',
+  margin: 0,
+  ...props
+}))<CommonTypographyProps & Pick<BorderProps, 'borderColor'>>`
   border-left: 1px solid
     ${({ theme, borderColor }) => borderColor || theme.colors.secondary};
 
@@ -77,49 +84,42 @@ const Quote = styled(
     margin: 0;
   }
 `;
-Quote.defaultProps = {
-  color: 'primary',
-  fontFamily: 'text',
-  fontSize: 'text',
-  textAlign: 'left',
-  fontStyle: 'italic',
-  padding: '16px 0 16px 8px',
-  margin: 0
-};
 
 const listStyle = system({
   listStyleType: true
 });
 type ListStyleProps = Pick<CSSObject, 'listStyleType'>;
 
-const OrderedList = styled.ol<CommonTypographyProps & ListStyleProps>(
+const OrderedList = styled.ol.attrs<CommonTypographyProps & ListStyleProps>(
+  (props) => ({
+    color: 'primary',
+    fontFamily: 'text',
+    fontSize: 'text',
+    textAlign: 'left',
+    margin: 0,
+    ...props
+  })
+)<CommonTypographyProps & ListStyleProps>(
   compose(color, typography, space, listStyle)
 );
-OrderedList.defaultProps = {
-  color: 'primary',
-  fontFamily: 'text',
-  fontSize: 'text',
-  textAlign: 'left',
-  margin: 0
-};
 
-const UnorderedList = styled.ul<CommonTypographyProps & ListStyleProps>(
+const UnorderedList = styled.ul.attrs<CommonTypographyProps & ListStyleProps>(
+  (props) => ({
+    color: 'primary',
+    fontFamily: 'text',
+    fontSize: 'text',
+    textAlign: 'left',
+    margin: 0,
+    ...props
+  })
+)<CommonTypographyProps & ListStyleProps>(
   compose(color, typography, space, listStyle)
 );
-UnorderedList.defaultProps = {
-  color: 'primary',
-  fontFamily: 'text',
-  fontSize: 'text',
-  textAlign: 'left',
-  margin: 0
-};
 
-const ListItem = styled.li<CommonTypographyProps>(
-  compose(color, typography, space)
-);
-ListItem.defaultProps = {
-  margin: 0
-};
+const ListItem = styled.li.attrs<CommonTypographyProps>((props) => ({
+  margin: 0,
+  ...props
+}))<CommonTypographyProps>(compose(color, typography, space));
 
 const FitContainer = styled.div`
   width: 100%;
@@ -130,16 +130,14 @@ const FitContainer = styled.div`
 
 const ScalableText = styled(
   Text as FC<CommonTypographyProps & RefAttributes<HTMLDivElement>>
-)<{ scale: number }>`
+).attrs<CommonTypographyProps & { scale?: number }>((props) => ({
+  textAlign: 'center',
+  ...props
+}))<{ scale?: number }>`
   transform-origin: center;
-  transform: scale(${(props) => props.scale});
+  transform: scale(${(props) => props.scale || 1});
   white-space: nowrap;
 `;
-ScalableText.defaultProps = {
-  ...Text.defaultProps,
-  textAlign: 'center',
-  scale: 1
-};
 
 const FitText: FC<
   PropsWithChildren<CommonTypographyProps & HTMLAttributes<HTMLDivElement>>
