@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.2.1
+
+### Patch Changes
+
+- Ensure "PacMan" animation works in Safari ([#1352](https://github.com/FormidableLabs/spectacle/pull/1352))
+
 ## 10.2.0
 
 ### Minor Changes
