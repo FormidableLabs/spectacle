@@ -26,7 +26,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
-          node-version: 22.x
+          node-version-file: .nvmrc
 
       # Wireit cache
       - uses: google/wireit@setup-github-actions-caching/v2

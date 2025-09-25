@@ -21,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22.x]
         create-type: ['tsx', 'onepage']
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +32,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
-          node-version: ${{ matrix.node-version }}
+          node-version-file: .nvmrc
 
       # Wireit cache
       - uses: google/wireit@setup-github-actions-caching/v2

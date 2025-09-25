@@ -31,13 +31,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
-          node-version: 22.x
+          node-version-file: .nvmrc
 
       - name: Upgrade npm for OIDC
-        run: npm i -g npm@^11.5.1
-
-      - name: Set npm registry for OIDC
-        run: npm config set registry https://registry.npmjs.org
+        run: npm i -g npm@>=11.5.1
 
       - name: Install dependencies
         run: pnpm install
