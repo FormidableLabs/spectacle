@@ -34,7 +34,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Upgrade npm for OIDC
-        run: npm i -g npm@>=11.5.1
+        run: npm i -g npm@">=11.5.1"
 
       - name: Install dependencies
         run: pnpm install
