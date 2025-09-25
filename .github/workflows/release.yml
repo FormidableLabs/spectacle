@@ -8,6 +8,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    environment: Production
     permissions:
       contents: write
       id-token: write
@@ -20,6 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v3
@@ -29,7 +31,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
-          node-version: 18.x
+          node-version: 22.x
+
+      - name: Upgrade npm for OIDC
+        run: npm i -g npm@^11.5.1
+
+      - name: Set npm registry for OIDC
+        run: npm config set registry https://registry.npmjs.org
 
       - name: Install dependencies
         run: pnpm install
@@ -48,4 +56,3 @@ jobs:
           publish: pnpm changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

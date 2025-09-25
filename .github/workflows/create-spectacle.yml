@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
         create-type: ['tsx', 'onepage']
     steps:
       - uses: actions/checkout@v4
