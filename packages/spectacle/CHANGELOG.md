@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.2.2
+
+### Patch Changes
+
+- Fix React 19 compatibility by replacing defaultProps with attrs method ([#1351](https://github.com/FormidableLabs/spectacle/pull/1351))
+
 ## 10.2.1
 
 ### Patch Changes
