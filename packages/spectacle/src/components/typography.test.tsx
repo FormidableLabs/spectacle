@@ -34,6 +34,11 @@ describe('<Heading />', () => {
     const { getByText } = mountWithTheme(<Heading>Spectacle!</Heading>);
     expect(getByText('Spectacle!')).toHaveStyle({ fontSize: 'h1' });
   });
+
+  it('should apply the secondary color from theme', () => {
+    const { getByText } = mountWithTheme(<Heading>Spectacle!</Heading>);
+    expect(getByText('Spectacle!')).toHaveStyle({ color: '#fc6986' });
+  });
 });
 
 describe('<Quote />', () => {

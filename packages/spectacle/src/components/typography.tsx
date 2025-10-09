@@ -53,15 +53,16 @@ const Link = styled.a.attrs<CommonTypographyProps & DecorationProps>(
   compose(color, typography, space, decoration)
 );
 
-const Heading = styled(Text).attrs<CommonTypographyProps>((props) => ({
+const Heading = styled.div.attrs<CommonTypographyProps>((props) => ({
   color: 'secondary',
   fontFamily: 'header',
   fontSize: 'h1',
   fontWeight: 'bold',
   textAlign: 'center',
   margin: 1,
+  padding: 0,
   ...props
-}))<CommonTypographyProps>({});
+}))<CommonTypographyProps>(compose(color, typography, space));
 
 const Quote = styled(
   Text as FC<
