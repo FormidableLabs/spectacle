@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.2.3
+
+### Patch Changes
+
+- Fix Heading component not applying secondary color styling. Restores correct theme color for headings that was lost in v10.2.2 when replacing defaultProps with attrs method. ([#1358](https://github.com/FormidableLabs/spectacle/pull/1358))
+
 ## 10.2.2
 
 ### Patch Changes
