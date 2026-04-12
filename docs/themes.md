@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Theme System
 
-Spectacle has a robust theme system that is built upon [styled system](https://styled-system.com/theme-specification).
+Spectacle has a robust theme system that is built upon styled system.
 
 A theme is a 2-level deep object of labeled theme keys and CSS property object values, which is passed directly to the `Deck` component.
 
