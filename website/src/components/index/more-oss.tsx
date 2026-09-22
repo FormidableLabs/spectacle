@@ -8,8 +8,8 @@ import Wrapper from '@site/src/components/global/wrapper';
 
 import styles from './more-oss.module.scss';
 import {
-  featuredBadgeNames,
   FeaturedBadge,
+  FeaturedBadgeName,
   ProjectBadge
 } from 'formidable-oss-badges';
 
@@ -46,9 +46,25 @@ function Product({
   };
 
   const badge = (card: ProductItem) => {
-    if (featuredBadgeNames.includes(card.title.toLowerCase())) {
-      // @ts-ignore
-      return <FeaturedBadge name={card.title} description={card.description} />;
+    const candidate = card.title.toLowerCase() as FeaturedBadgeName;
+    if (
+      (
+        [
+          'renature',
+          'victory',
+          'spectacle',
+          'urql',
+          'nuka',
+          'owl',
+          'groqd',
+          'envy',
+          'figlog',
+          'cloudsplice',
+          'ama'
+        ] as readonly string[]
+      ).includes(candidate)
+    ) {
+      return <FeaturedBadge name={candidate} />;
     }
     return (
       <ProjectBadge

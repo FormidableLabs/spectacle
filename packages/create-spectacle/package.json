@@ -15,19 +15,19 @@
     "url": "https://github.com/FormidableLabs/spectacle.git"
   },
   "dependencies": {
-    "@types/yargs": "^17.0.11",
+    "@types/yargs": "^17.0.35",
     "chalk": "^4.1.2",
     "clear": "^0.1.0",
-    "cli-spinners": "^2.6.1",
+    "cli-spinners": "^2.9.2",
     "log-update": "4.0.0",
     "prompts": "^2.4.2",
-    "ts-node": "^10.9.1",
-    "yargs": "^17.5.1"
+    "ts-node": "^10.9.2",
+    "yargs": "^17.7.3"
   },
   "devDependencies": {
-    "@types/node": "^18.0.3",
-    "@types/prompts": "^2.0.14",
-    "shx": "^0.3.4",
+    "@types/node": "^18.19.130",
+    "@types/prompts": "^2.4.9",
+    "shx": "^0.4.0",
     "spectacle": "*"
   },
   "scripts": {

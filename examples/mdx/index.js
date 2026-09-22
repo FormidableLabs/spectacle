@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import { MDXProvider } from '@mdx-js/react';
 
@@ -57,4 +57,5 @@ const Presentation = () => (
   </MDXProvider>
 );
 
-render(<Presentation />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+root.render(<Presentation />);

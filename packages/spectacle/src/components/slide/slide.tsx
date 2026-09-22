@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   ReactNode,
   useCallback,
@@ -18,7 +18,7 @@ import {
   SpaceProps
 } from 'styled-system';
 import { DeckContext, SlideId, TemplateFn } from '../deck/deck';
-import { animated, useSpring } from 'react-spring';
+import { animated, AnimatedProps, useSpring } from 'react-spring';
 import { useSlide } from '../../hooks/use-slides';
 import { ActivationThresholds, useCollectSteps } from '../../hooks/use-steps';
 import { GOTO_FINAL_STEP } from '../../hooks/use-deck-state';
@@ -75,7 +75,9 @@ const SlideWrapper = styled.div<ColorProps & SpaceProps>(
   `
 );
 
-export const AnimatedDiv = styled(animated.div)`
+export const AnimatedDiv: React.ComponentType<AnimatedProps<any>> = styled(
+  animated.div
+)`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -86,7 +88,7 @@ export const AnimatedDiv = styled(animated.div)`
     css`
       outline: 2px solid white;
     `}
-`;
+` as unknown as React.ComponentType<AnimatedProps<any>>;
 
 const Slide = (props: SlideProps): JSX.Element => {
   const {
@@ -393,7 +395,6 @@ const Slide = (props: SlideProps): JSX.Element => {
           ReactDOM.createPortal(
             <AnimatedDiv
               ref={setStepContainer}
-              // @ts-expect-error Events are not typed quite tightly enough (yet)
               onClick={handleClick}
               tabIndex={inOverviewMode && isActive ? 0 : undefined}
               style={{

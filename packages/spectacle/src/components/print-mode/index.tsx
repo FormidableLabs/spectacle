@@ -19,7 +19,7 @@ const PrintStyle = createGlobalStyle<PrintStyleProps>`
     @page {
       size: ${({ pageSize }) => pageSize};
     }
-    ${AnimatedDiv} {
+    ${AnimatedDiv as unknown as string} {
       @page {
         margin: 0;
       }

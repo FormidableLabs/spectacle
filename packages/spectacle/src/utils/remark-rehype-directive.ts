@@ -9,7 +9,7 @@ import cloneDeep from 'lodash.clonedeep';
 const directiveNodeTypes = ['sectionDirective'] as const;
 export const directiveMatch = /^::(.*)$/;
 
-type DirectiveNodes = typeof directiveNodeTypes[number];
+type DirectiveNodes = (typeof directiveNodeTypes)[number];
 type ValueNode = Node & { value: string; children?: unknown[] };
 type VisitNode = Node & {
   name: string;
