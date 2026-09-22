@@ -44,11 +44,6 @@
     "webpack-dev-server": "^4.15.2",
     "wireit": "^0.14.13"
   },
-  "pnpm": {
-    "neverBuiltDependencies": [
-      "puppeteer"
-    ]
-  },
   "scripts": {
     "version": "pnpm changeset version && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
