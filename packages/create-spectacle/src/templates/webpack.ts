@@ -20,9 +20,9 @@ module.exports = {
   module: {
     rules: [
       { test: /\\.[tj]sx?$/, use: ['babel-loader'] },
-      { test: /\\.(png|svg|jpg|gif)$/, use: ['file-loader'] },
+      { test: /\\.(png|svg|jpg|gif)$/, type: 'asset/resource' },
       { test: /\\.css$/, use: ['style-loader', 'css-loader'] },
-      { test: /\\.md$/, use: [require.resolve('raw-loader')] }
+      { test: /\\.md$/, type: 'asset/source' }
     ]
   },
   plugins: [
