@@ -41,7 +41,7 @@
     "wait-on": "^6.0.1",
     "webpack": "5.111.1",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.15.2",
+    "webpack-dev-server": "^5.2.6",
     "wireit": "^0.14.13"
   },
   "scripts": {
