@@ -19,7 +19,10 @@
       "files": [
         "index.html",
         "../examples/js/index.js",
-        "scripts/one-page.js"
+        "scripts/one-page.js",
+        "../../packages/spectacle/package.json",
+        "../../package-scripts.js",
+        "../../webpack.config.base.js"
       ],
       "output": [
         "index.html"

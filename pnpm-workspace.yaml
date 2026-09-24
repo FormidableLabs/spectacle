@@ -2,3 +2,28 @@ packages:
   - 'packages/*'
   - 'examples/*'
   - 'website'
+
+# Which dependencies may run install/postinstall scripts.
+#
+# This has to be spelled out twice because the setting was renamed: pnpm 10
+# (the version CI pins) reads `onlyBuiltDependencies`/`ignoredBuiltDependencies`
+# and ignores `allowBuilds`; pnpm 12 reads `allowBuilds` and ignores the older
+# pair. Keep the two lists in sync.
+#
+# puppeteer is denied on purpose: its postinstall downloads a full Chromium into
+# the virtual store. We fetch it on demand into `.puppeteer` instead, via the
+# root `puppeteer:install` script, which is what the create-spectacle e2e tests
+# look for.
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  esbuild: true
+  puppeteer: false
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - core-js
+  - esbuild
+
+ignoredBuiltDependencies:
+  - puppeteer

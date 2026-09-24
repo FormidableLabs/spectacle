@@ -1,5 +1,9 @@
 import { useCallback } from 'react';
 
+interface WebkitFullScreenElement extends HTMLElement {
+  webkitRequestFullScreen: () => void;
+}
+
 export const useToggleFullScreen = () =>
   useCallback(() => {
     if (typeof document === 'undefined') {
@@ -16,7 +20,9 @@ export const useToggleFullScreen = () =>
     } else if ('webkitRequestFullScreen' in document.documentElement) {
       // Safari still doesn't support standard.
       if (!document.webkitIsFullScreen) {
-        document.documentElement!.webkitRequestFullScreen();
+        (
+          document.documentElement as WebkitFullScreenElement
+        ).webkitRequestFullScreen();
       } else {
         document.webkitCancelFullScreen();
       }
