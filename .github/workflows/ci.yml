@@ -34,6 +34,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # Validate the pending changesets before the release workflow does.
+      # `changeset status` fails on a malformed or "mixed" changeset - one
+      # that lists both published packages and the private, unversioned
+      # example apps (which Changesets ignores). That combination aborts
+      # `changeset version` on push to main, silently blocking all releases.
+      # Catching it here fails the PR instead. See #1374.
+      - name: Validate changesets
+        run: pnpm changeset status
+
       # If you hare having issues post-merge with wireit improperly caching,
       # comment this out, push a commit, then re-comment.
       # - name: Clear all caches
