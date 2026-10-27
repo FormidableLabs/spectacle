@@ -1,6 +1,6 @@
 {
   "name": "spectacle-mdx-loader",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Webpack MDX loader for Spectacle presentations",
   "main": "src/index.js",
   "engines": {
