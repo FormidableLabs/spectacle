@@ -1,5 +1,11 @@
 # create-spectacle
 
+## 0.4.4
+
+### Patch Changes
+
+- build: upgrade minor dependencies ([#1366](https://github.com/FormidableLabs/spectacle/pull/1366))
+
 ## 0.4.3
 
 ### Patch Changes
