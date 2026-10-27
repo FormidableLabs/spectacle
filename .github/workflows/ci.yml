@@ -53,10 +53,20 @@ jobs:
       # recreate it from the fetched remote-tracking ref. Do not use
       # `--since`: it filters to packages changed since the ref and skips the
       # mixed-changeset check entirely.
+      #
+      # Only run when changesets are actually present. Besides rejecting mixed
+      # changesets, `changeset status` also fails when a package changed with
+      # no covering changeset - which we do not want to enforce, and which
+      # would break the automated "Version Packages" PR, whose whole job is to
+      # consume the changesets and bump versions (leaving none behind).
       - name: Validate changesets
         run: |
-          git show-ref --verify --quiet refs/heads/main || git branch main origin/main
-          pnpm changeset status
+          if [ -n "$(find .changeset -maxdepth 1 -name '*.md')" ]; then
+            git show-ref --verify --quiet refs/heads/main || git branch main origin/main
+            pnpm changeset status
+          else
+            echo "No changesets to validate."
+          fi
 
       # If you hare having issues post-merge with wireit improperly caching,
       # comment this out, push a commit, then re-comment.
