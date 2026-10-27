@@ -61,7 +61,7 @@ jobs:
       # consume the changesets and bump versions (leaving none behind).
       - name: Validate changesets
         run: |
-          if [ -n "$(find .changeset -maxdepth 1 -name '*.md' ! -name 'README.md' -print -quit)" ]; then
+          if [ -n "$(find .changeset -maxdepth 1 -name '*.md')" ]; then
             git show-ref --verify --quiet refs/heads/main || git branch main origin/main
             pnpm changeset status
           else
