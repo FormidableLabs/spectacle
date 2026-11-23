@@ -35,7 +35,7 @@ export const packageTemplate = (options: PackageTemplateOptions) =>
         rimraf: '^3.0.0',
         webpack: '^5.68.0',
         'webpack-cli': '^5.1.4',
-        'webpack-dev-server': '^4.7.4',
+        'webpack-dev-server': '^5.2.7',
         typescript: '^5.3.3',
         '@babel/preset-typescript': '^7.16.0',
         '@types/react': '^18.0.12',
