@@ -14,8 +14,10 @@ module.exports = {
   mode: 'production',
   entry: './src/index.ts',
   output: {
-    library: 'Spectacle',
-    libraryTarget: 'umd',
+    library: {
+      name: 'Spectacle',
+      type: 'umd'
+    },
     path: path.join(__dirname, 'dist'),
     filename: 'spectacle.min.js'
   },
@@ -39,7 +41,7 @@ module.exports = {
           options: require('./.babelrc.js')
         }
       },
-      { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }
+      { test: /\.(png|svg|jpg|gif)$/, type: 'asset/resource' }
     ]
   },
   plugins: [

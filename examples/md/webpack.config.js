@@ -17,7 +17,7 @@ module.exports = {
     rules: base.module.rules.concat([
       {
         test: /\.md$/,
-        use: [require.resolve('raw-loader')]
+        type: 'asset/source'
       }
     ])
   },
