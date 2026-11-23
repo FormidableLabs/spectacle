@@ -1,5 +1,11 @@
 # Changelog
 
+## 10.2.4
+
+### Patch Changes
+
+- build: upgrade minor dependencies ([#1366](https://github.com/FormidableLabs/spectacle/pull/1366))
+
 ## 10.2.3
 
 ### Patch Changes

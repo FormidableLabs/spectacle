@@ -1,5 +1,11 @@
 # spectacle-mdx-loader
 
+## 0.1.3
+
+### Patch Changes
+
+- build: upgrade minor dependencies ([#1366](https://github.com/FormidableLabs/spectacle/pull/1366))
+
 ## 0.1.2
 
 ### Patch Changes
