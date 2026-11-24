@@ -65,7 +65,7 @@ describe('SlideLayout', () => {
       />
     );
 
-    expect(getByText('Title')).toHaveStyle({ color: 'purple' });
+    expect(getByText('Title')).toHaveStyle({ color: 'rgb(128, 0, 128)' });
   });
 
   it('SlideLayout.List render items to list', () => {
@@ -97,7 +97,9 @@ describe('SlideLayout', () => {
       />
     );
 
-    expect(container.querySelector('ul')).toHaveStyle({ color: 'green' });
+    expect(container.querySelector('ul')).toHaveStyle({
+      color: 'rgb(0, 128, 0)'
+    });
   });
 
   it('SlideLayout.List should allow list items to be animated in', () => {
@@ -312,10 +314,10 @@ describe('SlideLayout', () => {
     );
 
     expect(getByText('assign a variable to a string.')).toHaveStyle({
-      color: 'blue'
+      color: 'rgb(0, 0, 255)'
     });
     expect(getByText('reassign the variable.')).toHaveStyle({
-      color: 'cyan'
+      color: 'rgb(0, 255, 255)'
     });
   });
 

@@ -7,14 +7,12 @@ import {
 const { navigator: navigatorBefore } = window;
 
 describe('platform-keys', () => {
-  beforeAll(() => {
+  afterEach(() => {
     Object.defineProperty(window, 'navigator', {
+      value: navigatorBefore,
+      configurable: true,
       writable: true
     });
-  });
-
-  afterAll(() => {
-    window.navigator = navigatorBefore;
   });
   describe('isPlatformMacOS', () => {
     it('should return true for MacIntel', () => {

@@ -15,14 +15,19 @@ jest.mock('use-resize-observer', () => {
 });
 
 jest.mock('broadcast-channel', () => {
-  const bcExport = jest.requireActual('broadcast-channel');
-  const ActualBroadcastChannel = bcExport.BroadcastChannel;
+  const actualBroadcastChannel = jest.requireActual('broadcast-channel');
+  const ActualBroadcastChannel = actualBroadcastChannel.BroadcastChannel;
 
-  // Wrap the BroadcastChannel constructor so it always uses the `simulate`
-  // mode. This prevents tests from hanging after mounting a Deck.
-  bcExport.BroadcastChannel = function (name: string) {
-    return new ActualBroadcastChannel(name, { type: 'simulate' });
+  // The `simulate` mode prevents tests from hanging after mounting a Deck, and
+  // the exports of the actual module are read-only getters, so the mock is
+  // built around them instead of being written to.
+  return {
+    __esModule: true,
+    ...actualBroadcastChannel,
+    BroadcastChannel: class SimulatedBroadcastChannel extends ActualBroadcastChannel {
+      constructor(name: string) {
+        super(name, { type: 'simulate' });
+      }
+    }
   };
-
-  return bcExport;
 });

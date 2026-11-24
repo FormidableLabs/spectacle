@@ -23,6 +23,6 @@ describe('useAutoPlay()', () => {
     );
 
     jest.advanceTimersByTime(2000);
-    expect(stepForward).toBeCalledTimes(2);
+    expect(stepForward).toHaveBeenCalledTimes(2);
   });
 });

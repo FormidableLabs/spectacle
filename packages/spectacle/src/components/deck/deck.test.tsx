@@ -25,22 +25,22 @@ describe('<Deck />', () => {
     let { container, rerender } = render(deckWithStyle({ padding: 16 }));
 
     expect(container.querySelector('.backdrop')).toHaveStyle({
-      backgroundColor: 'black'
+      backgroundColor: 'rgb(0, 0, 0)'
     });
 
     rerender(deckWithStyle({ backgroundColor: 'blue' }));
     expect(container.querySelector('.backdrop')).toHaveStyle({
-      backgroundColor: 'blue'
+      backgroundColor: 'rgb(0, 0, 255)'
     });
 
     rerender(deckWithStyle({ background: 'red' }));
     expect(container.querySelector('.backdrop')).toHaveStyle({
-      backgroundColor: 'red'
+      backgroundColor: 'rgb(255, 0, 0)'
     });
 
     rerender(deckWithStyle({}, 'section'));
     expect(container.querySelector('.backdrop')).not.toHaveStyle({
-      backgroundColor: 'black'
+      backgroundColor: 'rgb(0, 0, 0)'
     });
   });
 

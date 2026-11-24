@@ -58,7 +58,7 @@ const useModes = (): ModeActions => {
   return { toggleMode, getCurrentMode };
 };
 
-function modeSearchParamForKey(key: SpectacleMode): ModeSearchParams {
+export function modeSearchParamForKey(key: SpectacleMode): ModeSearchParams {
   if (key === SPECTACLE_MODES.PRESENTER_MODE) {
     return { presenterMode: true };
   } else if (key === SPECTACLE_MODES.OVERVIEW_MODE) {

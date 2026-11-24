@@ -142,13 +142,13 @@ describe('<MarkdownSlideSet />', () => {
     );
 
     expect(queryByText('Im not styled...')).not.toHaveStyle({
-      color: 'purple'
+      color: 'rgb(128, 0, 128)'
     });
     expect(queryByText('Whats up world, Im styled.')).toHaveStyle({
-      color: 'purple'
+      color: 'rgb(128, 0, 128)'
     });
     expect(queryByText('List item')).toHaveStyle({
-      color: 'purple'
+      color: 'rgb(128, 0, 128)'
     });
   });
 
@@ -160,7 +160,7 @@ describe('<MarkdownSlideSet />', () => {
     );
 
     expect(getByText('Whats up world, Im styled.')).toHaveStyle({
-      color: 'purple'
+      color: 'rgb(128, 0, 128)'
     });
   });
 
@@ -176,9 +176,11 @@ describe('<MarkdownSlideSet />', () => {
     );
 
     expect(getByText('Whats up world, Im styled.')).toHaveStyle({
-      color: 'purple'
+      color: 'rgb(128, 0, 128)'
     });
 
-    expect(getByText('Another slide')).toHaveStyle({ color: 'purple' });
+    expect(getByText('Another slide')).toHaveStyle({
+      color: 'rgb(128, 0, 128)'
+    });
   });
 });

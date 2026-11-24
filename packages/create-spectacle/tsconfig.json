@@ -6,6 +6,9 @@
     // https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping#node-14
     "target": "ES2020",
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    // @types/jest 30 references the ESNext.Disposable lib, which TypeScript 4.9
+    // does not ship.
+    "skipLibCheck": true
   }
 }

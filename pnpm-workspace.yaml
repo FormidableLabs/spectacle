@@ -3,6 +3,13 @@ packages:
   - 'examples/*'
   - 'website'
 
+# tough-cookie is only reached through jsdom, and the newest jsdom that
+# jest-environment-jsdom supports (26.x) is still on its 5.x line. 6.x keeps the
+# synchronous CookieJar API jsdom uses and is dual-published, so the whole graph
+# moves onto it. Drop the override once our jsdom declares ^6.
+overrides:
+  tough-cookie: ^6.1.0
+
 # Which dependencies may run install/postinstall scripts.
 #
 # This has to be spelled out twice because the setting was renamed: pnpm 10
